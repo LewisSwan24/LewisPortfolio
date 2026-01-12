@@ -7,6 +7,9 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SkipLink } from "@/components/SkipLink";
+import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import { Analytics } from "@vercel/analytics/react";
+import { StructuredData, generatePersonSchema, generateWebSiteSchema } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -69,6 +72,8 @@ export default function RootLayout({
             </main>
             <Footer lang={lang} dict={dict} />
           </div>
+          <PerformanceMonitor />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
