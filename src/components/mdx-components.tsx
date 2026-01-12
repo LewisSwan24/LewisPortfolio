@@ -1,6 +1,7 @@
 import { cn } from "@/lib/cn";
 import GithubSlugger from "github-slugger";
 import { isValidElement } from "react";
+import { ImageGallery } from "./ImageGallery";
 
 type MDXComponents = Record<string, React.ComponentType<any>>;
 
@@ -111,5 +112,7 @@ export function getMdxComponents(): MDXComponents {
         </div>
       );
     },
+    // Add ImageGallery for project showcases
+    ImageGallery,
   };
 }
