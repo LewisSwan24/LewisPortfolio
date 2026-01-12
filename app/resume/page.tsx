@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/Button";
+import { ResumeTimeline } from "@/components/ResumeTimeline";
 import { siteConfig } from "@/lib/site";
+import { resumeData } from "@/lib/resume-data";
 import { getCurrentDictionary } from "@/lib/i18n-server";
 
 export const metadata: Metadata = {
@@ -12,100 +14,92 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   const { dict } = getCurrentDictionary();
-  const cardTitle = dict.resume.cardTitle.replace("{name}", siteConfig.name);
 
   return (
     <section className="py-16 sm:py-20">
       <Container>
-        <div className="max-w-2xl">
+        {/* Header */}
+        <div className="max-w-4xl mx-auto">
           <SectionHeading
             as="h1"
             title={dict.resume.title}
             description={dict.resume.description}
           />
 
-          <div className="rounded-xl border border-border bg-card p-8 text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-8 w-8 text-accent"
-              >
-                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" x2="8" y1="13" y2="13" />
-                <line x1="16" x2="8" y1="17" y2="17" />
-                <line x1="10" x2="8" y1="9" y2="9" />
-              </svg>
+          {/* Personal Info Card */}
+          <div className="rounded-2xl border border-border/50 bg-card/50 p-8 mb-12">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div>
+                <h2 className="text-3xl font-bold text-foreground mb-2">
+                  {resumeData.personal.name}
+                </h2>
+                <p className="text-lg text-accent mb-4">
+                  {resumeData.personal.title}
+                </p>
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                  <a href={`mailto:${resumeData.personal.email}`} className="hover:text-accent transition-colors">
+                    📧 {resumeData.personal.email}
+                  </a>
+                  <span>📍 {resumeData.personal.location}</span>
+                </div>
+                <div className="flex gap-3 mt-4">
+                  {resumeData.personal.github && (
+                    <a
+                      href={resumeData.personal.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-accent transition-colors"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                  {resumeData.personal.website && (
+                    <a
+                      href={resumeData.personal.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-accent transition-colors"
+                    >
+                      Website
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <Button href="/resume.pdf" download>
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download PDF
+                </Button>
+                <Button href="/contact" variant="secondary">
+                  Get in Touch
+                </Button>
+              </div>
             </div>
 
-            <h2 className="mb-2 text-xl font-semibold text-foreground">
-              {cardTitle}
-            </h2>
-            <p className="mb-6 text-muted-foreground">
-              {dict.resume.cardMeta}
-            </p>
-
-            <Button href="/resume.pdf" download>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" x2="12" y1="15" y2="3" />
-              </svg>
-              {dict.resume.downloadPdf}
-            </Button>
+            {/* Summary */}
+            {resumeData.summary && (
+              <div className="mt-6 pt-6 border-t border-border">
+                <p className="text-muted-foreground leading-relaxed">
+                  {resumeData.summary}
+                </p>
+              </div>
+            )}
           </div>
 
-          {/* Quick Overview */}
-          <div className="mt-12 space-y-8">
-            <div>
-              <h3 className="mb-4 text-lg font-semibold text-foreground">
-                {dict.resume.overview.education}
-              </h3>
-              <div className="rounded-lg border border-border bg-card p-4">
-                <p className="font-medium text-foreground">
-                  {dict.resume.education.degree}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {dict.resume.education.institutionAndYears}
-                </p>
-              </div>
-            </div>
+          {/* Resume Timeline */}
+          <ResumeTimeline data={resumeData} />
 
-            <div>
-              <h3 className="mb-4 text-lg font-semibold text-foreground">
-                {dict.resume.overview.experienceHighlights}
-              </h3>
-              <div className="space-y-3">
-                {dict.resume.experience.map((item) => (
-                  <div key={item.title} className="rounded-lg border border-border bg-card p-4">
-                    <p className="font-medium text-foreground">
-                      {item.title}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {item.orgAndYear}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Print Hint */}
+          <div className="mt-12 rounded-xl border border-border/50 bg-muted/30 p-6 text-center print:hidden">
+            <p className="text-sm text-muted-foreground">
+              💡 Tip: Use your browser&apos;s print function (Ctrl/Cmd + P) to save this page as a PDF
+            </p>
           </div>
         </div>
       </Container>
     </section>
   );
- }
+}
