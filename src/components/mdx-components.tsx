@@ -1,0 +1,118 @@
+import { cn } from "@/lib/cn";
+import GithubSlugger from "github-slugger";
+import { isValidElement } from "react";
+import { ImageGallery } from "./ImageGallery";
+
+type MDXComponents = Record<string, React.ComponentType<any>>;
+
+function getTextFromChildren(children: React.ReactNode): string {
+  if (typeof children === "string" || typeof children === "number") {
+    return String(children);
+  }
+
+  if (Array.isArray(children)) {
+    return children.map(getTextFromChildren).join("");
+  }
+
+  if (isValidElement(children)) {
+    return getTextFromChildren(children.props.children);
+  }
+
+  return "";
+}
+
+function createHeading(level: 2 | 3, slugger: GithubSlugger) {
+  const HeadingComponent = ({
+    children,
+    ...props
+  }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const text = getTextFromChildren(children);
+    const id = slugger.slug(text || "section");
+    const Tag = `h${level}` as const;
+
+    return (
+      <Tag id={id} className="group scroll-mt-20" {...props}>
+        {children}
+        <a
+          href={`#${id}`}
+          className={cn(
+            "ml-2 rounded px-1 text-muted-foreground opacity-0 transition-opacity motion-reduce:transition-none",
+            "group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100",
+            "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background"
+          )}
+          aria-label={`Link to ${text || "section"}`}
+        >
+          #
+        </a>
+      </Tag>
+    );
+  };
+
+  HeadingComponent.displayName = `Heading${level}`;
+  return HeadingComponent;
+}
+
+export function getMdxComponents(): MDXComponents {
+  const slugger = new GithubSlugger();
+
+  return {
+    h2: createHeading(2, slugger),
+    h3: createHeading(3, slugger),
+    a: ({ href, children, ...props }) => {
+      const isExternal = href?.startsWith("http");
+      return (
+        <a
+          href={href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+          className={cn(
+            "text-accent underline underline-offset-4 transition-colors motion-reduce:transition-none",
+            "hover:text-accent/80",
+            "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background rounded"
+          )}
+          {...props}
+        >
+          {children}
+        </a>
+      );
+    },
+    pre: ({ children, ...props }) => (
+      <pre
+        className="overflow-x-auto rounded-lg border border-border bg-muted p-4"
+        {...props}
+      >
+        {children}
+      </pre>
+    ),
+    code: ({ children, ...props }) => (
+      <code
+        className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono"
+        {...props}
+      >
+        {children}
+      </code>
+    ),
+    Callout: ({
+      type = "info",
+      children,
+    }: {
+      type?: "info" | "warning" | "tip";
+      children: React.ReactNode;
+    }) => {
+      const styles = {
+        info: "bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800",
+        warning:
+          "bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800",
+        tip: "bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-800",
+      };
+
+      return (
+        <div className={cn("my-6 rounded-lg border p-4", styles[type])}>
+          {children}
+        </div>
+      );
+    },
+    // Add ImageGallery for project showcases
+    ImageGallery,
+  };
+}
