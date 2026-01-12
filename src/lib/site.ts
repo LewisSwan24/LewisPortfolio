@@ -10,19 +10,22 @@ export const siteConfig = {
     location: "Brisbane, Australia",
   },
   social: {
-    linkedin: "",
+    // Add your social media links below (leave empty to hide the icon)
+    linkedin: "https://linkedin.com/in/lewis-dong", // TODO: Update with your LinkedIn URL
     github: "https://github.com/LewisSwan24",
-    dribbble: "",
+    dribbble: "https://dribbble.com/lewisdong", // TODO: Update with your Dribbble URL
   },
   navLinks: [
     { href: "/", label: "Home" },
     { href: "/projects", label: "Projects" },
+    { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
     { href: "/resume", label: "Resume" },
   ],
   footerLinks: [
     { href: "/projects", label: "Projects" },
+    { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
     { href: "/resume", label: "Resume" },

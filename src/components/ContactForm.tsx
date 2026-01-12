@@ -24,12 +24,17 @@ export function ContactForm({ dict }: ContactFormProps) {
         setError("");
 
         try {
-            // Using Formspree (replace with your form ID)
-            // Get your form ID from https://formspree.io/
-            const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+            const formEndpoint = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT;
+            
+            if (!formEndpoint) {
+                throw new Error("Contact form endpoint not configured");
+            }
+            
+            const response = await fetch(formEndpoint, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Accept": "application/json",
                 },
                 body: JSON.stringify(formState),
             });
@@ -223,9 +228,9 @@ export function ContactForm({ dict }: ContactFormProps) {
                 {submitting ? "Sending..." : dict.contact.form.submit}
             </button>
 
-            {/* FormSpree Notice */}
+            {/* Privacy Notice */}
             <p className="text-center text-xs text-muted-foreground">
-                Note: Replace YOUR_FORM_ID in ContactForm.tsx with your Formspree form ID
+                {dict.contact.form.privacyNotice || "Your information will be kept confidential and used only to respond to your inquiry."}
             </p>
         </form>
     );

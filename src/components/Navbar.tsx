@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -7,6 +8,7 @@ import { cn } from "@/lib/cn";
 import { siteConfig } from "@/lib/site";
 import type { Dictionary, Language } from "@/lib/i18n";
 import { Container } from "./Container";
+import { SearchModal } from "./SearchModal";
 
 // Dynamic imports for non-critical components
 const ThemeToggle = dynamic(() => import("./ThemeToggle").then(mod => ({ default: mod.ThemeToggle })), {
@@ -35,8 +37,33 @@ interface NavbarProps {
   dict: Dictionary;
 }
 
-export function Navbar({ lang, dict }: NavbarProps) {
+interface SearchItem {
+  type: "project" | "blog";
+  slug: string;
+  title: string;
+  description: string;
+  tags: string[];
+}
+
+interface NavbarPropsWithSearch extends NavbarProps {
+  searchItems?: SearchItem[];
+}
+
+export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) {
   const pathname = usePathname();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        event.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const navLabels: Record<string, string> = {
     "/": dict.nav.home,
@@ -44,6 +71,7 @@ export function Navbar({ lang, dict }: NavbarProps) {
     "/about": dict.nav.about,
     "/contact": dict.nav.contact,
     "/resume": dict.nav.resume,
+    "/blog": dict.nav.blog || "Blog",
   };
 
   return (
@@ -112,6 +140,20 @@ export function Navbar({ lang, dict }: NavbarProps) {
               {/* Divider */}
               <div className="hidden lg:block h-6 w-px bg-border" />
 
+              {/* Search Button */}
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="flex items-center gap-2 rounded-lg border border-border/60 bg-background/40 backdrop-blur-md px-2.5 py-2 text-muted-foreground shadow-sm shadow-black/5 hover:border-border hover:bg-muted/40 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background transition-all duration-200"
+                aria-label="Search (⌘K)"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded border border-border/60 bg-muted/50 px-1.5 py-0.5 text-[10px]">
+                  <span>⌘</span>K
+                </kbd>
+              </button>
+
               <LanguageToggle lang={lang} dict={dict} />
               <ThemeToggle />
               <MobileMenu dict={dict} navLabels={navLabels} />
@@ -119,6 +161,13 @@ export function Navbar({ lang, dict }: NavbarProps) {
           </div>
         </Container>
       </div>
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        items={searchItems}
+        placeholder={dict.search?.placeholder || "Search projects and blog posts..."}
+      />
     </header>
   );
 }

@@ -5,13 +5,19 @@ A production-ready portfolio website skeleton for a UQ Interaction Design master
 ## Features
 
 - **Modern Stack**: Next.js 14 App Router, TypeScript, Tailwind CSS
-- **MDX Content**: Write case studies in MDX with full frontmatter support
+- **MDX Content**: Write case studies and blog posts in MDX with full frontmatter support
 - **Theme Toggle**: Light/dark mode with next-themes
 - **Dynamic OG Images**: Auto-generated Open Graph images for sharing
-- **SEO Ready**: Sitemap, robots.txt, and comprehensive metadata
+- **SEO Ready**: Sitemap, robots.txt, JSON-LD structured data, and comprehensive metadata
 - **Responsive Design**: Mobile-first with accessible components
 - **Table of Contents**: Auto-generated TOC from MDX headings
 - **Tag Filtering**: Filter projects by tags on the projects page
+- **Global Search**: Search projects and blog posts with keyboard shortcut (⌘K / Ctrl+K)
+- **Blog System**: Full-featured blog with MDX support
+- **Internationalization**: English and Chinese language support
+- **Back to Top**: Smooth scroll back to top button
+- **Accessibility**: Skip links, ARIA labels, and keyboard navigation
+- **Contact Form**: Configurable contact form with Formspree integration
 
 ## Tech Stack
 
@@ -76,21 +82,28 @@ portfolio/
 │   ├── robots.ts                 # Robots.txt
 │   └── opengraph-image.tsx       # Default OG image
 ├── content/
-│   └── projects/                 # MDX project files
-│       ├── spectra-lens.mdx
-│       ├── uq-connect.mdx
-│       └── connect-circles.mdx
+│   ├── projects/                 # MDX project files
+│   │   ├── spectra-lens.mdx
+│   │   ├── uq-connect.mdx
+│   │   └── connect-circles.mdx
+│   └── blog/                     # MDX blog posts
+│       ├── ux-research-methods-guide.mdx
+│       └── accessibility-in-design.mdx
 ├── src/
 │   ├── components/               # React components
+│   │   ├── BackToTop.tsx         # Back to top button
 │   │   ├── Button.tsx
 │   │   ├── Card.tsx
+│   │   ├── ContactForm.tsx       # Contact form with validation
 │   │   ├── Container.tsx
 │   │   ├── Footer.tsx
 │   │   ├── MobileMenu.tsx
 │   │   ├── Navbar.tsx
+│   │   ├── PageTransition.tsx    # Page transition animations
 │   │   ├── Prose.tsx
+│   │   ├── SearchModal.tsx       # Global search modal
 │   │   ├── SectionHeading.tsx
-│   │   ├── SkipLink.tsx
+│   │   ├── SkipLink.tsx          # Accessibility skip link
 │   │   ├── Tag.tsx
 │   │   ├── ThemeProvider.tsx
 │   │   ├── ThemeToggle.tsx
@@ -98,8 +111,11 @@ portfolio/
 │   │   ├── mdx-components.tsx
 │   │   └── index.ts
 │   ├── lib/                      # Utility functions
+│   │   ├── blog.ts               # Blog data fetching
 │   │   ├── cn.ts                 # Class name utility
+│   │   ├── i18n.ts               # Internationalization
 │   │   ├── projects.ts           # Project data fetching
+│   │   ├── seo.tsx               # SEO & structured data
 │   │   ├── site.ts               # Site configuration
 │   │   └── toc.ts                # TOC extraction
 │   └── styles/

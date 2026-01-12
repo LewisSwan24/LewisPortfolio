@@ -10,6 +10,12 @@ const dictionaries = {
       about: "About",
       contact: "Contact",
       resume: "Resume",
+      blog: "Blog",
+    },
+    search: {
+      placeholder: "Search projects and blog posts...",
+      noResults: "No results found",
+      recentSearches: "Recent searches",
     },
     common: {
       featured: "Featured",
@@ -295,6 +301,12 @@ const dictionaries = {
       about: "关于",
       contact: "联系",
       resume: "简历",
+      blog: "博客",
+    },
+    search: {
+      placeholder: "搜索项目和博客文章...",
+      noResults: "未找到结果",
+      recentSearches: "最近搜索",
     },
     common: {
       featured: "精选",
