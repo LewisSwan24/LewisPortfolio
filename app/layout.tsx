@@ -8,7 +8,10 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SkipLink } from "@/components/SkipLink";
 import { BackToTop } from "@/components/BackToTop";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import { CustomCursor } from "@/components/CustomCursor";
+import { KeyboardShortcutsModal } from "@/components/KeyboardShortcutsModal";
 import { Analytics } from "@vercel/analytics/react";
 import { StructuredData, generatePersonSchema, generateWebSiteSchema } from "@/lib/seo";
 import { getAllProjects } from "@/lib/projects";
@@ -29,9 +32,36 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "UX Designer",
+    "Interaction Designer",
+    "UX Researcher",
+    "Portfolio",
+    "Brisbane",
+    "Australia",
+    "Figma",
+    "User Experience",
+    "Accessibility",
+  ],
+  authors: [{ name: siteConfig.author.name, url: siteConfig.url }],
+  creator: siteConfig.author.name,
+  publisher: siteConfig.author.name,
+  category: "Portfolio",
+  alternates: {
+    canonical: siteConfig.url,
+    languages: {
+      "en": `${siteConfig.url}?lang=en`,
+      "zh": `${siteConfig.url}?lang=zh`,
+      "x-default": siteConfig.url,
+    },
+    types: {
+      "application/rss+xml": `${siteConfig.url}/feed.xml`,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_AU",
+    alternateLocale: ["zh_CN"],
     url: siteConfig.url,
     siteName: siteConfig.name,
     title: `${siteConfig.name} | ${siteConfig.title}`,
@@ -41,13 +71,22 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} | ${siteConfig.title}`,
     description: siteConfig.description,
+    creator: "@lewisdong",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
     icon: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 
@@ -95,11 +134,15 @@ export default async function RootLayout({
           <div className="flex min-h-screen flex-col">
             <Navbar lang={lang} dict={dict} searchItems={searchItems} />
             <main id="main-content" className="flex-1">
-              {children}
+              <ErrorBoundary>
+                {children}
+              </ErrorBoundary>
             </main>
             <Footer lang={lang} dict={dict} />
           </div>
           <BackToTop />
+          <CustomCursor />
+          <KeyboardShortcutsModal />
           <PerformanceMonitor />
           <Analytics />
         </ThemeProvider>

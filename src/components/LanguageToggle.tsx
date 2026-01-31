@@ -30,7 +30,7 @@ export function LanguageToggle({ lang, dict }: LanguageToggleProps) {
           router.refresh();
         });
       }}
-      className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-background/40 backdrop-blur-md text-foreground shadow-sm shadow-black/5 transition-all duration-200 motion-reduce:transition-none hover:bg-muted/40 hover:border-border focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+      className="flex h-9 items-center justify-center rounded-lg text-foreground transition-all duration-200 motion-reduce:transition-none hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background px-3"
       aria-label={ariaLabel}
       disabled={isPending}
     >

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Fuse from "fuse.js";
 import { cn } from "@/lib/cn";
@@ -32,11 +32,15 @@ export function SearchModal({
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const fuse = new Fuse(items, {
-    keys: ["title", "description", "tags"],
-    threshold: 0.3,
-    includeScore: true,
-  });
+  const fuse = useMemo(
+    () =>
+      new Fuse(items, {
+        keys: ["title", "description", "tags"],
+        threshold: 0.3,
+        includeScore: true,
+      }),
+    [items]
+  );
 
   const handleSearch = useCallback(
     (searchQuery: string) => {
@@ -229,7 +233,7 @@ export function SearchModal({
               />
             </svg>
             <p className="text-sm text-muted-foreground">
-              No results found for "<span className="font-medium">{query}</span>"
+              No results found for &quot;<span className="font-medium">{query}</span>&quot;
             </p>
             <p className="text-xs text-muted-foreground/70 mt-1">
               Try searching for project names or blog topics

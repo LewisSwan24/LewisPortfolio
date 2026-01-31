@@ -9,6 +9,7 @@ import { TOC } from "@/components/TOC";
 import { Prose } from "@/components/Prose";
 import { ShareButtons } from "@/components/ShareButtons";
 import { RelatedProjects } from "@/components/RelatedProjects";
+import { ReadingProgress } from "@/components/ReadingProgress";
 import { getMdxComponents } from "@/components/mdx-components";
 import { getProjectBySlug, getProjectSlugs, getAllProjects } from "@/lib/projects";
 import { extractTOC } from "@/lib/toc";
@@ -36,19 +37,28 @@ export async function generateMetadata({
     };
   }
 
+  const projectUrl = `${siteConfig.url}/projects/${project.slug}`;
+
   return {
     title: project.title,
     description: project.oneLiner,
+    authors: [{ name: siteConfig.author.name }],
     openGraph: {
       title: project.title,
       description: project.oneLiner,
       type: "article",
-      url: `${siteConfig.url}/projects/${project.slug}`,
+      url: projectUrl,
+      publishedTime: project.date,
+      authors: [siteConfig.author.name],
+      tags: project.tags,
     },
     twitter: {
       card: "summary_large_image",
       title: project.title,
       description: project.oneLiner,
+    },
+    alternates: {
+      canonical: projectUrl,
     },
   };
 }
@@ -56,6 +66,7 @@ export async function generateMetadata({
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
+  const allProjects = getAllProjects();
   const { dict } = getCurrentDictionary();
 
   if (!project) {
@@ -64,107 +75,142 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const toc = extractTOC(project.content);
   const mdxComponents = getMdxComponents();
+  const projectUrl = `${siteConfig.url}/projects/${project.slug}`;
 
   return (
-    <article className="py-16 sm:py-20">
-      <Container>
-        {/* Header */}
-        <header className="mb-12">
-          <Button href="/projects" variant="ghost" className="mb-6">
-            {dict.project.backToProjects}
-          </Button>
+    <>
+      {/* Reading Progress Indicator */}
+      <ReadingProgress />
 
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            {project.featured && (
-              <Tag variant="accent" size="sm">
-                {dict.common.featured}
-              </Tag>
+      <article className="py-16 sm:py-20">
+        <Container>
+          {/* Header */}
+          <header className="mb-12">
+            <Button href="/projects" variant="ghost" className="mb-6">
+              {dict.project.backToProjects}
+            </Button>
+
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              {project.featured && (
+                <Tag variant="accent" size="sm">
+                  {dict.common.featured}
+                </Tag>
+              )}
+              {project.status && <Tag size="sm">{project.status}</Tag>}
+            </div>
+
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              {project.title}
+            </h1>
+
+            <p className="mt-4 text-xl text-muted-foreground max-w-3xl">
+              {project.oneLiner}
+            </p>
+
+            {project.highlights.length > 0 && (
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {project.highlights.map((highlight) => (
+                  <div
+                    key={highlight}
+                    className="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 px-4 py-3"
+                  >
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
+                    <p className="text-sm text-muted-foreground">{highlight}</p>
+                  </div>
+                ))}
+              </div>
             )}
-            {project.status && <Tag size="sm">{project.status}</Tag>}
-          </div>
 
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            {project.title}
-          </h1>
+            {/* Meta */}
+            <div className="mt-6 flex flex-wrap gap-6 text-sm text-muted-foreground">
+              <div>
+                <span className="font-medium text-foreground">{dict.project.role}:</span>{" "}
+                {project.role}
+              </div>
+              <div>
+                <span className="font-medium text-foreground">{dict.project.timeline}:</span>{" "}
+                {project.timeframe}
+              </div>
+            </div>
 
-          <p className="mt-4 text-xl text-muted-foreground max-w-3xl">
-            {project.oneLiner}
-          </p>
+            {/* Tools */}
+            {project.tools.length > 0 && (
+              <div className="mt-4">
+                <span className="text-sm font-medium text-foreground">
+                  {dict.project.tools}:{" "}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {project.tools.join(", ")}
+                </span>
+              </div>
+            )}
 
-          {project.highlights.length > 0 && (
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {project.highlights.map((highlight) => (
-                <div
-                  key={highlight}
-                  className="flex items-start gap-3 rounded-xl border border-border/50 bg-card/50 px-4 py-3"
-                >
-                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
-                  <p className="text-sm text-muted-foreground">{highlight}</p>
-                </div>
+            {/* Tags */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <Tag key={tag} size="sm">
+                  {tag}
+                </Tag>
               ))}
             </div>
-          )}
 
-          {/* Meta */}
-          <div className="mt-6 flex flex-wrap gap-6 text-sm text-muted-foreground">
-            <div>
-              <span className="font-medium text-foreground">{dict.project.role}:</span>{" "}
-              {project.role}
-            </div>
-            <div>
-              <span className="font-medium text-foreground">{dict.project.timeline}:</span>{" "}
-              {project.timeframe}
-            </div>
-          </div>
-
-          {/* Tools */}
-          {project.tools.length > 0 && (
-            <div className="mt-4">
-              <span className="text-sm font-medium text-foreground">
-                {dict.project.tools}:{" "}
-              </span>
-              <span className="text-sm text-muted-foreground">
-                {project.tools.join(", ")}
-              </span>
-            </div>
-          )}
-
-          {/* Tags */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Tag key={tag} size="sm">
-                {tag}
-              </Tag>
-            ))}
-          </div>
-        </header>
-
-        {/* Content with TOC */}
-        <div className="lg:grid lg:grid-cols-[1fr_250px] lg:gap-12">
-          <div>
-            {/* Mobile TOC */}
-            <TOC items={toc} />
-
-            {/* MDX Content */}
-            <Prose>
-              <MDXRemote
-                source={project.content}
-                components={mdxComponents}
-                options={{
-                  mdxOptions: {
-                    remarkPlugins: [remarkGfm],
-                  },
-                }}
+            {/* Share Buttons */}
+            <div className="mt-6 pt-6 border-t border-border/50">
+              <ShareButtons
+                url={projectUrl}
+                title={project.title}
+                description={project.oneLiner}
               />
-            </Prose>
+            </div>
+          </header>
+
+          {/* Content with TOC */}
+          <div className="lg:grid lg:grid-cols-[1fr_250px] lg:gap-12">
+            <div>
+              {/* Mobile TOC */}
+              <TOC items={toc} />
+
+              {/* MDX Content */}
+              <Prose>
+                <MDXRemote
+                  source={project.content}
+                  components={mdxComponents}
+                  options={{
+                    mdxOptions: {
+                      remarkPlugins: [remarkGfm],
+                    },
+                  }}
+                />
+              </Prose>
+
+              {/* Bottom Share Buttons */}
+              <div className="mt-12 pt-8 border-t border-border">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Found this helpful? Share it!
+                </p>
+                <ShareButtons
+                  url={projectUrl}
+                  title={project.title}
+                  description={project.oneLiner}
+                />
+              </div>
+            </div>
+
+            {/* Desktop TOC */}
+            <div className="hidden lg:block">
+              <TOC items={toc} />
+            </div>
           </div>
 
-          {/* Desktop TOC */}
-          <div className="hidden lg:block">
-            <TOC items={toc} />
-          </div>
-        </div>
-      </Container>
-    </article>
+          {/* Related Projects */}
+          <RelatedProjects
+            currentProject={project}
+            allProjects={allProjects}
+            dict={dict}
+            maxItems={3}
+          />
+        </Container>
+      </article>
+    </>
   );
 }

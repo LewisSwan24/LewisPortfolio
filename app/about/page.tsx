@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
+import { AnimatedSection } from "@/components/AnimatedSection";
 import { siteConfig } from "@/lib/site";
 import { getCurrentDictionary } from "@/lib/i18n-server";
 

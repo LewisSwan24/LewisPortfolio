@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Fuse from "fuse.js";
 import { cn } from "@/lib/cn";
@@ -28,11 +28,15 @@ export function Search({ items, placeholder = "Search...", className }: SearchPr
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  const fuse = new Fuse(items, {
-    keys: ["title", "description", "tags"],
-    threshold: 0.3,
-    includeScore: true,
-  });
+  const fuse = useMemo(
+    () =>
+      new Fuse(items, {
+        keys: ["title", "description", "tags"],
+        threshold: 0.3,
+        includeScore: true,
+      }),
+    [items]
+  );
 
   const handleSearch = useCallback(
     (searchQuery: string) => {
@@ -193,7 +197,7 @@ export function Search({ items, placeholder = "Search...", className }: SearchPr
 
       {isOpen && query && results.length === 0 && (
         <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-xl border border-border/60 bg-background/95 backdrop-blur-xl shadow-xl shadow-black/10 p-8 text-center">
-          <p className="text-sm text-muted-foreground">No results found for "{query}"</p>
+          <p className="text-sm text-muted-foreground">No results found for &quot;{query}&quot;</p>
         </div>
       )}
     </div>

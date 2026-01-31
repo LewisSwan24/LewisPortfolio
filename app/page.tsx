@@ -1,6 +1,19 @@
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
+import { HeroTypewriter } from "@/components/HeroTypewriter";
+<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/app/page.tsx
+<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/app/page.tsx
+<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/app/page.tsx
+=======
+import { AnimatedSection } from "@/components/AnimatedSection";
+>>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/app/page.tsx
+=======
+import { AnimatedSection } from "@/components/AnimatedSection";
+>>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/app/page.tsx
+=======
+import { AnimatedSection } from "@/components/AnimatedSection";
+>>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/app/page.tsx
 import { siteConfig } from "@/lib/site";
 import { getCurrentDictionary } from "@/lib/i18n-server";
 import { getFeaturedProjects } from "@/lib/projects";
@@ -45,7 +58,9 @@ export default function HomePage() {
             {/* Main heading */}
             <h1 className="animate-fade-in stagger-1 text-4xl font-bold tracking-tight sm:text-5xl lg:text-7xl">
               <span className="text-foreground">{dict.home.greeting}</span>
-              <span className="gradient-text">{siteConfig.name}</span>
+              <span className="gradient-text">
+                <HeroTypewriter text={siteConfig.name} />
+              </span>
             </h1>
             
             {/* Title with animated underline */}
@@ -138,13 +153,14 @@ export default function HomePage() {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="relative py-24 overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute -top-40 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        
-        <Container>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+      <AnimatedSection>
+        <section className="relative py-24 overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+          <div className="absolute -top-40 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+          
+          <Container>
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
             <div>
               <span className="text-sm font-medium text-accent uppercase tracking-wider">{dict.home.portfolioLabel}</span>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -180,11 +196,13 @@ export default function HomePage() {
             )}
           </div>
         </Container>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Skills Section */}
-      <section className="relative py-24 bg-muted/30">
-        <div className="absolute inset-0 noise" />
+      <AnimatedSection delay={0.1}>
+        <section className="relative py-24 bg-muted/30">
+          <div className="absolute inset-0 noise" />
         
         <Container>
           <div className="text-center mb-12">
@@ -215,8 +233,12 @@ export default function HomePage() {
             ))}
           </div>
         </Container>
-      </section>
-      <section className="py-24">
+        </section>
+      </AnimatedSection>
+
+      {/* Stats Section */}
+      <AnimatedSection delay={0.2}>
+        <section className="py-24">
         <Container>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -239,10 +261,12 @@ export default function HomePage() {
             ))}
           </div>
         </Container>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
+      <AnimatedSection delay={0.3}>
+        <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent/5" />
           <div className="blob blob-1 w-[600px] h-[600px] -bottom-40 -right-40 opacity-30" />
@@ -268,7 +292,8 @@ export default function HomePage() {
             </div>
           </div>
         </Container>
-      </section>
+        </section>
+      </AnimatedSection>
     </>
   );
 }

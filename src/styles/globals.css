@@ -19,18 +19,18 @@
   }
 
   .dark {
-    --background: 220 15% 8%;
-    --foreground: 220 10% 92%;
-    --muted: 220 12% 15%;
-    --muted-foreground: 220 10% 60%;
-    --card: 220 14% 12%;
-    --card-foreground: 220 10% 92%;
-    --border: 220 12% 20%;
-    --accent: 220 80% 60%;
+    --background: 222 20% 7%;
+    --foreground: 210 15% 95%;
+    --muted: 220 15% 13%;
+    --muted-foreground: 215 12% 55%;
+    --card: 222 18% 10%;
+    --card-foreground: 210 15% 95%;
+    --border: 220 15% 18%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
-    --accent-secondary: 280 70% 60%;
-    --gradient-start: 220 80% 60%;
-    --gradient-end: 280 70% 60%;
+    --accent-secondary: 280 75% 65%;
+    --gradient-start: 217 91% 60%;
+    --gradient-end: 280 75% 65%;
   }
 }
 
@@ -104,11 +104,78 @@
       0 0 80px -20px hsl(var(--accent) / 0.3);
   }
 
-  /* Glass morphism */
+  /* Glass morphism - Enhanced */
   .glass {
     background: hsl(var(--card) / 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-subtle {
+    background: hsl(var(--card) / 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .glass-medium {
+    background: hsl(var(--card) / 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-heavy {
+    background: hsl(var(--card) / 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  /* Enhanced shadow system */
+  .shadow-layered {
+    box-shadow:
+      0 1px 2px hsl(var(--foreground) / 0.04),
+      0 4px 8px hsl(var(--foreground) / 0.04),
+      0 16px 32px hsl(var(--foreground) / 0.04);
+  }
+
+  .shadow-layered-lg {
+    box-shadow:
+      0 2px 4px hsl(var(--foreground) / 0.03),
+      0 8px 16px hsl(var(--foreground) / 0.04),
+      0 24px 48px hsl(var(--foreground) / 0.05),
+      0 48px 96px hsl(var(--foreground) / 0.06);
+  }
+
+  .dark .shadow-layered {
+    box-shadow:
+      0 1px 2px hsl(0 0% 0% / 0.2),
+      0 4px 8px hsl(0 0% 0% / 0.15),
+      0 16px 32px hsl(0 0% 0% / 0.1),
+      0 0 0 1px hsl(var(--border) / 0.5);
+  }
+
+  .dark .shadow-layered-lg {
+    box-shadow:
+      0 2px 4px hsl(0 0% 0% / 0.25),
+      0 8px 16px hsl(0 0% 0% / 0.2),
+      0 24px 48px hsl(0 0% 0% / 0.15),
+      0 0 0 1px hsl(var(--border) / 0.5);
+  }
+
+  /* Gradient utilities */
+  .gradient-accent {
+    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+  }
+
+  .gradient-subtle {
+    background: linear-gradient(180deg, hsl(var(--muted) / 0.5), transparent);
+  }
+
+  .gradient-glow {
+    background: radial-gradient(ellipse at center, hsl(var(--accent) / 0.15), transparent 70%);
+  }
+
+  .gradient-radial {
+    background: radial-gradient(circle at 50% 0%, hsl(var(--accent) / 0.1), transparent 50%);
   }
 
   /* Animated background blob */
@@ -361,5 +428,98 @@ html {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Enhanced focus-visible styles for accessibility */
+:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 220 10% 40%;
+    --muted-foreground: 220 10% 30%;
+  }
+  
+  .dark {
+    --border: 220 12% 45%;
+    --muted-foreground: 220 10% 75%;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    background-image: none !important;
+    animation: none !important;
+    color: black !important;
+  }
+
+  /* Hide non-essential elements */
+  nav,
+  footer,
+  .back-to-top,
+  .theme-toggle,
+  .mobile-menu,
+  .search-modal,
+  .skip-link,
+  [aria-hidden="true"] {
+    display: none !important;
+  }
+
+  /* Ensure content is readable */
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+
+  /* Show link URLs */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  pre, blockquote {
+    page-break-inside: avoid;
+  }
+
+  /* Reset animations */
+  .animate-fade-in,
+  .animate-slide-in-left,
+  .animate-scale-in,
+  .animate-float,
+  .blob,
+  .gradient-text {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background: transparent !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    color: inherit !important;
   }
 }

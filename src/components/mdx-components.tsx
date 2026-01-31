@@ -2,6 +2,7 @@ import { cn } from "@/lib/cn";
 import GithubSlugger from "github-slugger";
 import { isValidElement } from "react";
 import { ImageGallery } from "./ImageGallery";
+import { CodeBlock } from "./CodeBlock";
 
 type MDXComponents = Record<string, React.ComponentType<any>>;
 
@@ -76,13 +77,9 @@ export function getMdxComponents(): MDXComponents {
         </a>
       );
     },
+    // Use CodeBlock component for code blocks with copy functionality
     pre: ({ children, ...props }) => (
-      <pre
-        className="overflow-x-auto rounded-lg border border-border bg-muted p-4"
-        {...props}
-      >
-        {children}
-      </pre>
+      <CodeBlock {...props}>{children}</CodeBlock>
     ),
     code: ({ children, ...props }) => (
       <code

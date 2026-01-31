@@ -101,7 +101,7 @@ export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) 
 
             {/* Desktop nav */}
             <nav className="hidden md:flex md:items-center md:gap-1 rounded-full border border-border/60 bg-background/40 backdrop-blur-md shadow-sm shadow-black/5 p-1">
-              {siteConfig.navLinks.map((link) => (
+              {siteConfig.navLinks.slice(0, 4).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -122,40 +122,59 @@ export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) 
                   </span>
                 </Link>
               ))}
+              
+              {/* More dropdown for remaining links */}
+              {siteConfig.navLinks.length > 4 && (
+                <div className="relative group">
+                  <button className="relative rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background">
+                    More
+                    <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div className="absolute top-full right-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="rounded-lg border border-border/60 bg-background/95 backdrop-blur-xl shadow-lg shadow-black/10 p-1">
+                      {siteConfig.navLinks.slice(4).map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className={cn(
+                            "block rounded-md px-3 py-2 text-sm transition-colors",
+                            pathname === link.href
+                              ? "bg-accent text-accent-foreground"
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                          )}
+                        >
+                          {navLabels[link.href] ?? link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </nav>
 
             {/* Right side actions */}
-            <div className="flex items-center gap-3">
-              {/* CTA Button - desktop only */}
-              <Link
-                href="/projects"
-                className="relative hidden lg:inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] px-4 py-2 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/25 transition-all duration-200 ease-out motion-reduce:transition-none hover:shadow-xl hover:shadow-accent/30 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-background before:content-[''] before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:opacity-0 before:transition-opacity motion-reduce:before:transition-none hover:before:opacity-100 after:content-[''] after:absolute after:inset-y-0 after:left-[-150%] after:w-[150%] after:skew-x-[-20deg] after:bg-[linear-gradient(110deg,transparent,hsl(0_0%_100%_/_0.35),transparent)] after:opacity-0 after:pointer-events-none after:transition-all after:duration-700 motion-reduce:after:transition-none motion-safe:hover:after:left-[150%] motion-safe:hover:after:opacity-100"
-              >
-                <span className="relative z-10">{dict.cta.viewProjects}</span>
-                <svg className="relative z-10 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-
-              {/* Divider */}
-              <div className="hidden lg:block h-6 w-px bg-border" />
-
-              {/* Search Button */}
+            <div className="flex items-center gap-2">
+              {/* Search - simplified */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="flex items-center gap-2 rounded-lg border border-border/60 bg-background/40 backdrop-blur-md px-2.5 py-2 text-muted-foreground shadow-sm shadow-black/5 hover:border-border hover:bg-muted/40 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background transition-all duration-200"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-background/40 backdrop-blur-md text-muted-foreground shadow-sm shadow-black/5 hover:border-border hover:bg-muted/40 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background transition-all duration-200"
                 aria-label="Search (⌘K)"
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded border border-border/60 bg-muted/50 px-1.5 py-0.5 text-[10px]">
-                  <span>⌘</span>K
-                </kbd>
               </button>
 
-              <LanguageToggle lang={lang} dict={dict} />
-              <ThemeToggle />
+              {/* Theme and Language */}
+              <div className="hidden sm:flex items-center gap-1 rounded-lg border border-border/60 bg-background/40 backdrop-blur-md shadow-sm shadow-black/5">
+                <LanguageToggle lang={lang} dict={dict} />
+                <div className="h-5 w-px bg-border/60" />
+                <ThemeToggle />
+              </div>
+              
+              {/* Mobile menu */}
               <MobileMenu dict={dict} navLabels={navLabels} />
             </div>
           </div>
