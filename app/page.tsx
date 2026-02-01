@@ -2,18 +2,7 @@ import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { HeroTypewriter } from "@/components/HeroTypewriter";
-<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/app/page.tsx
-<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/app/page.tsx
-<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/app/page.tsx
-=======
 import { AnimatedSection } from "@/components/AnimatedSection";
->>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/app/page.tsx
-=======
-import { AnimatedSection } from "@/components/AnimatedSection";
->>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/app/page.tsx
-=======
-import { AnimatedSection } from "@/components/AnimatedSection";
->>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/app/page.tsx
 import { siteConfig } from "@/lib/site";
 import { getCurrentDictionary } from "@/lib/i18n-server";
 import { getFeaturedProjects } from "@/lib/projects";

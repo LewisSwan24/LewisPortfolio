@@ -22,20 +22,6 @@ export { PageTransitionWrapper } from "./PageTransitionWrapper";
 export { ErrorBoundary } from "./ErrorBoundary";
 export * from "./motion";
 export { ScrollReveal } from "./motion/ScrollReveal";
-<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/src/components/index.ts
-<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/src/components/index.ts
-<<<<<<< C:/Users/LewisDong/CascadeProjects/portfolio/src/components/index.ts
-=======
-export { AnimatedSection } from "./AnimatedSection";
-export { TiltCard } from "./TiltCard";
-export { Comments } from "./Comments";
->>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/src/components/index.ts
-=======
-export { AnimatedSection } from "./AnimatedSection";
-export { TiltCard } from "./TiltCard";
-export { Comments } from "./Comments";
->>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/src/components/index.ts
-=======
 export { AnimatedSection } from "./AnimatedSection";
 export { TiltCard } from "./TiltCard";
 export { Comments } from "./Comments";
@@ -48,4 +34,3 @@ export { RelatedPosts } from "./RelatedPosts";
 export { SeriesNavigation } from "./SeriesNavigation";
 export { VisitorCounter } from "./VisitorCounter";
 export { PageLoader } from "./PageLoader";
->>>>>>> C:/Users/LewisDong/.windsurf/worktrees/portfolio/portfolio-28678ea1/src/components/index.ts
