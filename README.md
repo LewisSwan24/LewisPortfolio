@@ -1,355 +1,303 @@
-# Portfolio Website
+# Lewis Dong — Portfolio
 
-A production-ready portfolio website skeleton for a UQ Interaction Design master student. Built with Next.js 14, TypeScript, and Tailwind CSS.
+A production-ready, fully internationalized portfolio website for a UQ Master of Interaction Design student. Built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**.
+
+[![Build](https://img.shields.io/badge/build-passing-brightgreen)](#scripts)
+[![Tests](https://img.shields.io/badge/tests-62%20passed-brightgreen)](#testing)
+[![Lint](https://img.shields.io/badge/lint-0%20errors-brightgreen)](#scripts)
+[![i18n](https://img.shields.io/badge/i18n-EN%20%7C%20ZH-blue)](#internationalization)
+
+---
 
 ## Features
 
-- **Modern Stack**: Next.js 14 App Router, TypeScript, Tailwind CSS
-- **MDX Content**: Write case studies and blog posts in MDX with full frontmatter support
-- **Theme Toggle**: Light/dark mode with next-themes
-- **Dynamic OG Images**: Auto-generated Open Graph images for sharing
-- **SEO Ready**: Sitemap, robots.txt, JSON-LD structured data, and comprehensive metadata
-- **Responsive Design**: Mobile-first with accessible components
-- **Table of Contents**: Auto-generated TOC from MDX headings
-- **Tag Filtering**: Filter projects by tags on the projects page
-- **Global Search**: Search projects and blog posts with keyboard shortcut (⌘K / Ctrl+K)
-- **Blog System**: Full-featured blog with MDX support
-- **Internationalization**: English and Chinese language support
-- **Back to Top**: Smooth scroll back to top button
-- **Accessibility**: Skip links, ARIA labels, and keyboard navigation
-- **Contact Form**: Configurable contact form with Formspree integration
+### Core
+- **Next.js 14 App Router** — Server components, static generation, streaming
+- **MDX Content** — Case studies and blog posts with full frontmatter support
+- **TypeScript** — Strict typing across the entire codebase
+- **Tailwind CSS** — Utility-first styling with custom design tokens
+
+### UX & Interactivity
+- **Global Search** — Fuzzy search with Fuse.js, keyboard shortcut (⌘K / Ctrl+K)
+- **Theme Toggle** — Light/dark mode with system preference detection
+- **Custom Cursor** — Magnetic cursor effect on desktop (pointer devices only)
+- **Page Transitions** — Fade-in animations with `motion-reduce` support
+- **Reading Progress** — Chapter-aware progress bar on article pages
+- **Back to Top** — Smooth scroll button with scroll-aware visibility
+- **3D Tilt Cards / Magnetic Buttons** — Interactive lab experiments
+
+### Content
+- **Project Case Studies** — MDX with auto-generated TOC, related projects, share buttons
+- **Blog System** — Full blog with tag filtering, related articles, RSS feed, newsletter signup
+- **Resume Page** — Timeline-based resume with PDF download and print hint
+- **Lab Page** — Interactive UI experiment showcase
+
+### SEO & Performance
+- **JSON-LD Structured Data** — Person, WebSite, Article, CreativeWork, BreadcrumbList schemas
+- **Dynamic OG Images** — Auto-generated per-project Open Graph images via `next/og`
+- **Sitemap & Robots.txt** — Dynamically generated
+- **Web Vitals Monitoring** — CLS, INP, FCP, LCP, TTFB tracking
+- **Dynamic Imports** — Code-split heavy components (search modal, cursor, charts)
+
+### Accessibility
+- **Skip Links** — Jump to main content
+- **Keyboard Navigation** — Full keyboard support with visible focus rings
+- **ARIA Attributes** — Semantic roles, labels, and live regions
+- **Reduced Motion** — All animations respect `prefers-reduced-motion`
+- **Screen Reader Friendly** — Proper heading hierarchy and landmark regions
+
+### Internationalization
+- **EN / ZH** — Full bilingual support across all pages
+- **Cookie-based** — Language preference persisted via cookie
+- **Server-side** — Dictionary resolved at render time, no client-side flash
+
+---
 
 ## Tech Stack
 
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **MDX**: [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)
-- **Theme**: [next-themes](https://github.com/pacocoursey/next-themes)
-- **Package Manager**: [pnpm](https://pnpm.io/)
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | [Next.js 14](https://nextjs.org/) (App Router) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) (strict) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) + CSS variables |
+| **Content** | [MDX](https://mdxjs.com/) via next-mdx-remote |
+| **Animation** | [Framer Motion](https://www.framer.com/motion/) |
+| **Search** | [Fuse.js](https://www.fusejs.io/) |
+| **Theme** | [next-themes](https://github.com/pacocoursey/next-themes) |
+| **Testing** | [Vitest](https://vitest.dev/) + [Playwright](https://playwright.dev/) |
+| **Analytics** | [Vercel Analytics](https://vercel.com/analytics) |
+| **Package Manager** | [pnpm](https://pnpm.io/) |
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18.17 or later
-- pnpm 8.0 or later
+- Node.js 18.17+
+- pnpm 8.0+
 
 ### Installation
 
 ```bash
-# Clone the repository
 git clone <your-repo-url>
 cd portfolio
-
-# Install dependencies
 pnpm install
-
-# Start development server
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+Open [http://localhost:3000](http://localhost:3000).
 
-### Build for Production
+### Production Build
 
 ```bash
-# Build the application
 pnpm build
-
-# Start production server
 pnpm start
 ```
+
+---
 
 ## Project Structure
 
 ```
 portfolio/
-├── app/                          # Next.js App Router pages
-│   ├── layout.tsx                # Root layout
-│   ├── page.tsx                  # Home page
-│   ├── about/page.tsx            # About page
-│   ├── contact/page.tsx          # Contact page
-│   ├── resume/page.tsx           # Resume page
+├── app/                            # Next.js App Router
+│   ├── layout.tsx                  # Root layout (Navbar, Footer, providers)
+│   ├── page.tsx                    # Home page
+│   ├── about/page.tsx
+│   ├── blog/
+│   │   ├── page.tsx                # Blog listing with filters + RSS button
+│   │   └── [slug]/page.tsx         # Blog detail with TOC, related posts
+│   ├── contact/page.tsx            # Contact form (Formspree-ready)
+│   ├── lab/page.tsx                # Interactive experiments
 │   ├── projects/
-│   │   ├── page.tsx              # Projects listing
-│   │   ├── ProjectsGrid.tsx      # Client component for filtering
+│   │   ├── page.tsx                # Projects grid with search + tag filter
+│   │   ├── ProjectsGrid.tsx        # Client component (grid/list toggle)
 │   │   └── [slug]/
-│   │       ├── page.tsx          # Individual project page
-│   │       └── opengraph-image.tsx
-│   ├── not-found.tsx             # 404 page
-│   ├── sitemap.ts                # Dynamic sitemap
-│   ├── robots.ts                 # Robots.txt
-│   └── opengraph-image.tsx       # Default OG image
+│   │       ├── page.tsx            # Project detail with JSON-LD
+│   │       └── opengraph-image.tsx # Dynamic OG image
+│   ├── resume/page.tsx             # Resume with timeline
+│   ├── not-found.tsx               # Custom 404
+│   ├── sitemap.ts / robots.ts      # SEO
+│   └── feed.xml/route.ts           # RSS feed
 ├── content/
-│   ├── projects/                 # MDX project files
-│   │   ├── spectra-lens.mdx
-│   │   ├── uq-connect.mdx
-│   │   └── connect-circles.mdx
-│   └── blog/                     # MDX blog posts
-│       ├── ux-research-methods-guide.mdx
-│       └── accessibility-in-design.mdx
+│   ├── projects/*.mdx              # Project case studies
+│   └── blog/*.mdx                  # Blog posts
 ├── src/
-│   ├── components/               # React components
-│   │   ├── BackToTop.tsx         # Back to top button
-│   │   ├── Button.tsx
-│   │   ├── Card.tsx
-│   │   ├── ContactForm.tsx       # Contact form with validation
-│   │   ├── Container.tsx
-│   │   ├── Footer.tsx
-│   │   ├── MobileMenu.tsx
-│   │   ├── Navbar.tsx
-│   │   ├── PageTransition.tsx    # Page transition animations
-│   │   ├── Prose.tsx
-│   │   ├── SearchModal.tsx       # Global search modal
-│   │   ├── SectionHeading.tsx
-│   │   ├── SkipLink.tsx          # Accessibility skip link
-│   │   ├── Tag.tsx
-│   │   ├── ThemeProvider.tsx
-│   │   ├── ThemeToggle.tsx
-│   │   ├── TOC.tsx
-│   │   ├── mdx-components.tsx
-│   │   └── index.ts
-│   ├── lib/                      # Utility functions
-│   │   ├── blog.ts               # Blog data fetching
-│   │   ├── cn.ts                 # Class name utility
-│   │   ├── i18n.ts               # Internationalization
-│   │   ├── projects.ts           # Project data fetching
-│   │   ├── seo.tsx               # SEO & structured data
-│   │   ├── site.ts               # Site configuration
-│   │   └── toc.ts                # TOC extraction
-│   └── styles/
-│       └── globals.css           # Global styles & CSS variables
-├── public/
-│   ├── favicon.svg
-│   ├── resume.pdf
-│   └── images/
-│       └── cover-placeholder-*.png
+│   ├── components/                 # 40+ React components
+│   │   ├── Card.tsx                # Project card (grid/list view modes)
+│   │   ├── SearchModal.tsx         # Global fuzzy search
+│   │   ├── Toast.tsx               # Toast notification system
+│   │   ├── ShareButtons.tsx        # Social sharing + copy link
+│   │   ├── CustomCursor.tsx        # Magnetic cursor effect
+│   │   ├── PageTransition.tsx      # Fade-in page transitions
+│   │   └── ...
+│   ├── lib/
+│   │   ├── i18n.ts                 # EN/ZH dictionaries + helpers
+│   │   ├── i18n-server.ts          # Server-side language detection
+│   │   ├── seo.tsx                 # JSON-LD schema generators
+│   │   ├── projects.ts             # MDX project data layer
+│   │   ├── blog.ts                 # MDX blog data layer
+│   │   ├── date.ts                 # Locale-aware date formatting
+│   │   ├── toc.ts                  # Heading extraction for TOC
+│   │   └── cn.ts                   # clsx + tailwind-merge
+│   └── styles/globals.css          # Design tokens (HSL variables)
+├── e2e/basic.spec.ts               # Playwright E2E tests (17 cases)
+├── src/lib/__tests__/              # Vitest unit tests (62 tests)
+├── public/                         # Static assets
 ├── tailwind.config.ts
-├── tsconfig.json
-├── package.json
-└── README.md
+├── vitest.config.ts
+└── playwright.config.ts
 ```
+
+---
 
 ## Configuration
 
 ### Site Metadata
 
-Edit `src/lib/site.ts` to customize:
+Edit `src/lib/site.ts`:
 
 ```typescript
 export const siteConfig = {
   name: "Your Name",
   title: "Interaction Designer",
-  description: "Your description...",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-  author: {
-    name: "Your Name",
-    email: "your@email.com",
-    location: "Your Location",
-  },
-  social: {
-    linkedin: "https://linkedin.com/in/yourprofile",
-    github: "https://github.com/yourprofile",
-    dribbble: "https://dribbble.com/yourprofile",
-  },
-  // ... more options
+  author: { name: "Your Name", email: "you@example.com", location: "City" },
+  social: { linkedin: "...", github: "...", dribbble: "..." },
 };
 ```
 
 ### Design Tokens
 
-Colors are defined in `src/styles/globals.css` using CSS variables (HSL format):
+Colors in `src/styles/globals.css` (HSL format):
 
 ```css
 :root {
   --background: 0 0% 98%;
   --foreground: 220 15% 15%;
   --accent: 220 80% 55%;
-  /* ... more tokens */
 }
-
 .dark {
   --background: 220 15% 10%;
   --foreground: 220 10% 92%;
   --accent: 220 80% 60%;
-  /* ... more tokens */
 }
 ```
 
-To change the accent color, modify the `--accent` values in both `:root` and `.dark`.
+### Internationalization
 
-## Adding New Projects
+Dictionaries live in `src/lib/i18n.ts`. Both `en` and `zh` objects must have identical key structures. Language is detected from a `lang` cookie and resolved server-side in `src/lib/i18n-server.ts`.
 
-1. Create a new MDX file in `content/projects/`:
-
-```bash
-touch content/projects/my-new-project.mdx
-```
-
-2. Add frontmatter and content:
-
-```mdx
 ---
-slug: my-new-project
-title: My New Project
-oneLiner: A brief description of the project
+
+## Content Authoring
+
+### Adding a Project
+
+1. Create `content/projects/my-project.mdx`
+2. Add frontmatter:
+
+```yaml
+---
+slug: my-project
+title: My Project
+oneLiner: Brief description
 role: Lead Designer
-timeframe: Jan 2024 - Mar 2024
-tools:
-  - Figma
-  - Miro
-tags:
-  - UX Design
-  - Mobile App
+timeframe: Jan – Mar 2024
+tools: [Figma, Miro]
+tags: [UX Design, Mobile App]
 featured: true
 status: Completed
 cover: /images/my-project-cover.png
 date: 2024-03-15
 ---
+```
 
-## Overview
+3. Write content with `##` and `###` headings (auto-extracted for TOC)
+4. Add cover image to `public/images/`
 
-Your project overview...
+### Adding a Blog Post
 
-## Problem
+Same pattern in `content/blog/`. Additional frontmatter: `excerpt`, `author`, `readingTime` (auto-calculated).
 
-The problem you solved...
+### Frontmatter Reference
 
-## Research
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `slug` | string | Yes | URL identifier (must match filename) |
+| `title` | string | Yes | Display title |
+| `oneLiner` | string | Yes | One-line description |
+| `tags` | string[] | Yes | Categories for filtering |
+| `date` | string | Yes | ISO date for sorting |
+| `featured` | boolean | No | Show on homepage |
+| `cover` | string | No | Cover image path |
 
-Your research process...
-
-## Insights
-
-Key insights...
-
-## Ideation
-
-Design exploration...
-
-## Prototype
-
-Prototyping details...
+---
 
 ## Testing
 
-Testing and iteration...
-
-## Outcome
-
-Results and impact...
-
-## Reflection
-
-Learnings and next steps...
-```
-
-3. Add a cover image to `public/images/`
-
-4. The project will automatically appear on the projects page
-
-### Required Frontmatter Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `slug` | string | URL-safe identifier (must match filename) |
-| `title` | string | Project title |
-| `oneLiner` | string | Brief description |
-| `role` | string | Your role in the project |
-| `timeframe` | string | Project duration |
-| `tools` | string[] | Tools used |
-| `tags` | string[] | Categories/tags |
-| `featured` | boolean | Show on homepage |
-| `status` | string | "Completed", "In Progress", etc. |
-| `cover` | string | Path to cover image |
-| `date` | string | ISO date for sorting |
-
-## Deploy to Vercel
-
-### Option 1: Deploy from GitHub
-
-1. Push your code to GitHub
-2. Go to [Vercel](https://vercel.com)
-3. Click "New Project"
-4. Import your GitHub repository
-5. Vercel auto-detects Next.js - no configuration needed
-6. Click "Deploy"
-
-### Option 2: Deploy via CLI
+### Unit Tests (Vitest)
 
 ```bash
-# Install Vercel CLI
+pnpm vitest run          # Run all 62 tests
+pnpm vitest --coverage   # With coverage report
+```
+
+Test suites: `cn`, `i18n`, `toc`, `seo`, `projects`, `blog`, `image-utils`
+
+### E2E Tests (Playwright)
+
+```bash
+pnpm playwright test     # Run 17 E2E test cases
+```
+
+Covers: homepage, projects, blog, blog detail, contact, resume, lab, search, 404, accessibility, responsive design.
+
+---
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Import in [Vercel](https://vercel.com) — auto-detects Next.js
+3. Set environment variable: `NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app`
+4. Deploy
+
+### CLI
+
+```bash
 pnpm add -g vercel
-
-# Deploy
-vercel
-
-# Deploy to production
 vercel --prod
 ```
 
-### Environment Variables (Optional)
-
-Set in Vercel dashboard or `.env.local`:
-
-```env
-NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
-```
-
-## OG Images
-
-Dynamic Open Graph images are generated at:
-
-- **Site-wide**: `/opengraph-image.png`
-- **Per project**: `/projects/[slug]/opengraph-image.png`
-
-These are generated using `next/og` ImageResponse. To customize:
-
-1. Edit `app/opengraph-image.tsx` for the default image
-2. Edit `app/projects/[slug]/opengraph-image.tsx` for project images
-
-The accent color in OG images is hardcoded to `#3b82f6` (blue). Update the hex value in both files to match your accent color.
-
-## Troubleshooting
-
-### "Cannot find module" errors in IDE
-
-Run `pnpm install` to install dependencies. TypeScript errors in the IDE will resolve after installation.
-
-### Project not appearing
-
-1. Check that the `.mdx` file is in `content/projects/`
-2. Verify the `slug` in frontmatter matches the filename
-3. Ensure all required frontmatter fields are present
-4. Restart the dev server
-
-### TOC not working
-
-1. Ensure headings use `##` (h2) or `###` (h3) syntax
-2. Headings must be plain text (no links or code)
-3. Check that `extractTOC` is being called with the content
-
-### Build fails on Vercel
-
-1. Ensure all dependencies are in `package.json`
-2. Check for TypeScript errors: `pnpm build`
-3. Verify environment variables are set in Vercel
-
-### Images not loading
-
-1. Images must be in `public/` directory
-2. Reference with absolute paths: `/images/my-image.png`
-3. For external images, configure `next.config.js`
+---
 
 ## Scripts
 
 | Command | Description |
 |---------|-------------|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Build for production |
-| `pnpm start` | Start production server |
-| `pnpm lint` | Run ESLint |
+| `pnpm dev` | Development server (http://localhost:3000) |
+| `pnpm build` | Production build |
+| `pnpm start` | Production server |
+| `pnpm lint` | ESLint check |
+| `pnpm vitest run` | Unit tests |
+| `pnpm playwright test` | E2E tests |
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|---------|
+| Module not found | Run `pnpm install` |
+| Project not appearing | Check MDX is in `content/projects/`, slug matches filename, all required frontmatter present |
+| TOC empty | Use `##` / `###` headings in MDX content |
+| Build fails | Run `pnpm build` locally to check TypeScript errors |
+| Images not loading | Place in `public/`, reference with absolute paths (`/images/...`) |
+
+---
 
 ## License
 
@@ -357,4 +305,4 @@ MIT
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, and Tailwind CSS.
+Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.

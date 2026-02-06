@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/Container";
-import { Button } from "@/components/Button";
-import { AnimatedSection } from "@/components/AnimatedSection";
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { AnimatedSection } from "@/components/effects/AnimatedSection";
+import { ParallaxBackground } from "@/components/effects/ParallaxBackground";
+import { DynamicSkillsVisualization } from "@/components/seo/DynamicImports";
 import { siteConfig } from "@/lib/site";
 import { getCurrentDictionary } from "@/lib/i18n-server";
 
@@ -17,6 +19,7 @@ export const metadata: Metadata = {
     <>
       {/* Hero Section */}
       <section className="relative py-20 sm:py-28 overflow-hidden">
+        <ParallaxBackground />
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10">
           <div className="blob blob-1 w-[400px] h-[400px] -top-20 right-0" />
@@ -71,17 +74,17 @@ export const metadata: Metadata = {
                 {/* Main container */}
                 <div className="absolute inset-8 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center overflow-hidden">
                   <div className="text-center">
-                    <div className="text-6xl mb-4">👨‍🎨</div>
+                    <div className="text-6xl mb-4">{"🧑‍🎨"}</div>
                     <p className="text-sm text-muted-foreground">{dict.about.profilePhoto}</p>
                   </div>
                 </div>
 
                 {/* Floating elements */}
                 <div className="absolute -top-4 -right-4 w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center animate-float">
-                  <span className="text-2xl">✨</span>
+                  <span className="text-2xl">{"✨"}</span>
                 </div>
                 <div className="absolute -bottom-4 -left-4 w-14 h-14 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center animate-float" style={{ animationDelay: '-1.5s' }}>
-                  <span className="text-xl">🎨</span>
+                  <span className="text-xl">{"🎨"}</span>
                 </div>
               </div>
             </div>
@@ -146,28 +149,48 @@ export const metadata: Metadata = {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {dict.about.toolCategories.map((category, catIndex) => (
-              <div
-                key={category.name}
-                className={`animate-fade-in stagger-${catIndex + 1} rounded-2xl border border-border/50 bg-card/50 p-6`}
-              >
-                <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-accent" />
-                  {category.name}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className="inline-flex items-center px-3 py-1.5 rounded-lg bg-muted/50 text-sm font-medium text-foreground border border-border/50 hover:border-accent/50 hover:bg-accent/10 transition-all cursor-default"
-                    >
-                      {tool}
-                    </span>
-                  ))}
+          <div className="grid gap-8 lg:grid-cols-2 items-start">
+            {/* Skills Radar Chart */}
+            <div className="flex justify-center">
+              <DynamicSkillsVisualization
+                skills={[
+                  { name: "User Research", level: 90, category: "research" },
+                  { name: "Prototyping", level: 85, category: "design" },
+                  { name: "Visual Design", level: 80, category: "design" },
+                  { name: "Accessibility", level: 85, category: "design" },
+                  { name: "React / Next.js", level: 75, category: "technical" },
+                  { name: "Design Systems", level: 80, category: "design" },
+                  { name: "Usability Testing", level: 88, category: "research" },
+                  { name: "Communication", level: 85, category: "soft" },
+                ]}
+                size={320}
+              />
+            </div>
+
+            {/* Tool Categories */}
+            <div className="space-y-6">
+              {dict.about.toolCategories.map((category, catIndex) => (
+                <div
+                  key={category.name}
+                  className={`animate-fade-in stagger-${catIndex + 1} rounded-2xl border border-border/50 bg-card/50 p-6`}
+                >
+                  <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-accent" />
+                    {category.name}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {category.tools.map((tool) => (
+                      <span
+                        key={tool}
+                        className="inline-flex items-center px-3 py-1.5 rounded-lg bg-muted/50 text-sm font-medium text-foreground border border-border/50 hover:border-accent/50 hover:bg-accent/10 transition-all cursor-default"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </Container>
       </section>

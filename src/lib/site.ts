@@ -11,9 +11,9 @@ export const siteConfig = {
   },
   social: {
     // Add your social media links below (leave empty to hide the icon)
-    linkedin: "https://linkedin.com/in/lewis-dong", // TODO: Update with your LinkedIn URL
+    linkedin: "https://linkedin.com/in/lewis-dong",
     github: "https://github.com/LewisSwan24",
-    dribbble: "https://dribbble.com/lewisdong", // TODO: Update with your Dribbble URL
+    dribbble: "https://dribbble.com/lewisdong",
   },
   navLinks: [
     { href: "/", label: "Home" },

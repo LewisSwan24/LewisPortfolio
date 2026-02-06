@@ -1,9 +1,13 @@
 import { cookies } from "next/headers";
-import { getDictionary, normalizeLanguage, type Dictionary, type Language } from "./i18n";
+import { getDictionary, normalizeLanguage, defaultLanguage, type Dictionary, type Language } from "./i18n";
 
 export function getCurrentLanguage(): Language {
-  const cookieStore = cookies();
-  return normalizeLanguage(cookieStore.get("lang")?.value);
+  try {
+    const cookieStore = cookies();
+    return normalizeLanguage(cookieStore.get("lang")?.value);
+  } catch {
+    return defaultLanguage;
+  }
 }
 
 export function getCurrentDictionary(): { lang: Language; dict: Dictionary } {

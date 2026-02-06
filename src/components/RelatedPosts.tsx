@@ -6,9 +6,10 @@ interface RelatedPostsProps {
   posts: BlogPost[];
   currentSlug: string;
   className?: string;
+  dict?: Record<string, any>;
 }
 
-export function RelatedPosts({ posts, currentSlug, className }: RelatedPostsProps) {
+export function RelatedPosts({ posts, currentSlug, className, dict }: RelatedPostsProps) {
   // Filter out current post and limit to 3
   const relatedPosts = posts
     .filter((post) => post.slug !== currentSlug)

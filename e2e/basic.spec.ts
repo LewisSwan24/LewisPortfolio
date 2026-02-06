@@ -124,6 +124,94 @@ test.describe("Accessibility", () => {
     });
 });
 
+test.describe("Blog Detail Page", () => {
+    test("should navigate to blog post and display content", async ({ page }) => {
+        await page.goto("/blog");
+        const firstPost = page.locator('a[href^="/blog/"]').first();
+        if (await firstPost.count() > 0) {
+            await firstPost.click();
+            await expect(page).toHaveURL(/\/blog\/.+/);
+            await expect(page.locator("article")).toBeVisible();
+            await expect(page.locator("h1")).toBeVisible();
+        }
+    });
+
+    test("should display breadcrumb navigation", async ({ page }) => {
+        await page.goto("/blog");
+        const firstPost = page.locator('a[href^="/blog/"]').first();
+        if (await firstPost.count() > 0) {
+            await firstPost.click();
+            const breadcrumb = page.locator('nav[aria-label*="breadcrumb"], nav[aria-label*="Breadcrumb"]');
+            if (await breadcrumb.count() > 0) {
+                await expect(breadcrumb.first()).toBeVisible();
+            }
+        }
+    });
+});
+
+test.describe("Contact Page", () => {
+    test("should display contact form", async ({ page }) => {
+        await page.goto("/contact");
+        await expect(page.locator("form")).toBeVisible();
+    });
+
+    test("should have required form fields", async ({ page }) => {
+        await page.goto("/contact");
+        await expect(page.locator('input[name="name"], #name')).toBeVisible();
+        await expect(page.locator('input[name="email"], #email')).toBeVisible();
+        await expect(page.locator('textarea[name="message"], #message')).toBeVisible();
+    });
+});
+
+test.describe("Resume Page", () => {
+    test("should display resume content", async ({ page }) => {
+        await page.goto("/resume");
+        await expect(page.locator("h1")).toBeVisible();
+    });
+
+    test("should have download PDF button", async ({ page }) => {
+        await page.goto("/resume");
+        const downloadBtn = page.locator('a[href*="resume.pdf"], a[download]');
+        await expect(downloadBtn.first()).toBeVisible();
+    });
+});
+
+test.describe("Lab Page", () => {
+    test("should display lab experiments", async ({ page }) => {
+        await page.goto("/lab");
+        await expect(page.locator("h1")).toBeVisible();
+    });
+});
+
+test.describe("Search Modal", () => {
+    test("should open search with keyboard shortcut", async ({ page }) => {
+        await page.goto("/");
+
+        // Try Ctrl+K
+        await page.keyboard.press("Control+k");
+        await page.waitForTimeout(500);
+
+        const searchInput = page.locator('input[type="search"], input[placeholder*="Search"], input[role="combobox"]');
+        if (await searchInput.count() > 0) {
+            await expect(searchInput.first()).toBeVisible();
+        }
+    });
+});
+
+test.describe("404 Page", () => {
+    test("should display 404 for non-existent routes", async ({ page }) => {
+        await page.goto("/this-page-does-not-exist");
+        const notFoundText = page.locator('text=/not found|404/i');
+        await expect(notFoundText.first()).toBeVisible();
+    });
+
+    test("should have navigation links back to main pages", async ({ page }) => {
+        await page.goto("/this-page-does-not-exist");
+        const homeLink = page.locator('a[href="/"]');
+        await expect(homeLink.first()).toBeVisible();
+    });
+});
+
 test.describe("Responsive Design", () => {
     test("should display mobile menu on small screens", async ({ page }) => {
         // Set mobile viewport
@@ -133,5 +221,22 @@ test.describe("Responsive Design", () => {
         // Mobile menu button should be visible
         const mobileMenuButton = page.locator('button[aria-label*="menu"], button[aria-label*="Menu"]');
         await expect(mobileMenuButton.first()).toBeVisible();
+    });
+
+    test("should show theme toggle in mobile menu", async ({ page }) => {
+        await page.setViewportSize({ width: 375, height: 667 });
+        await page.goto("/");
+
+        const mobileMenuButton = page.locator('button[aria-label*="menu"], button[aria-label*="Menu"]');
+        if (await mobileMenuButton.count() > 0) {
+            await mobileMenuButton.first().click();
+            await page.waitForTimeout(300);
+
+            // Theme toggle should be visible in mobile menu
+            const themeToggle = page.locator('button[aria-label*="theme"], button[aria-label*="Theme"], button[aria-label*="mode"]');
+            if (await themeToggle.count() > 0) {
+                await expect(themeToggle.first()).toBeVisible();
+            }
+        }
     });
 });

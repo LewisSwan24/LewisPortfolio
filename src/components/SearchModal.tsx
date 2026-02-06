@@ -18,6 +18,7 @@ interface SearchModalProps {
   onClose: () => void;
   items: SearchItem[];
   placeholder?: string;
+  noResultsText?: string;
 }
 
 export function SearchModal({

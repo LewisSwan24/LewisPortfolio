@@ -10,9 +10,10 @@ import type { Dictionary } from "@/lib/i18n";
 interface MobileMenuProps {
   dict: Dictionary;
   navLabels: Record<string, string>;
+  lang?: string;
 }
 
-export function MobileMenu({ dict, navLabels }: MobileMenuProps) {
+export function MobileMenu({ dict, navLabels, lang }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 

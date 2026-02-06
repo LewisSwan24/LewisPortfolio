@@ -1,7 +1,9 @@
 import { getAllBlogPosts, getAllBlogTags } from "@/lib/blog";
-import { Container } from "@/components/Container";
-import { SectionHeading } from "@/components/SectionHeading";
-import { BlogListWithFilters } from "@/components/BlogListWithFilters";
+import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { BlogListWithFilters } from "@/components/content/BlogListWithFilters";
+import { NewsletterSignup } from "@/components/content/NewsletterSignup";
+import { getCurrentDictionary } from "@/lib/i18n-server";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
+    const { dict } = getCurrentDictionary();
     const posts = await getAllBlogPosts();
     const allTags = await getAllBlogTags();
 
@@ -26,11 +29,25 @@ export default async function BlogPage() {
     return (
         <section className="py-16 sm:py-20">
             <Container>
-                <SectionHeading
-                    as="h1"
-                    title="Blog"
-                    description="Thoughts on UX design, interaction design, and design thinking."
-                />
+                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                    <SectionHeading
+                        as="h1"
+                        title={dict.blog.title}
+                        description={dict.blog.description}
+                    />
+                    <a
+                        href="/feed.xml"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 shrink-0 rounded-lg border border-border/60 bg-background/40 backdrop-blur-md px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm shadow-black/5 hover:text-accent hover:border-accent/50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+                        aria-label={dict.blog.rss}
+                    >
+                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                        {dict.blog.rss}
+                    </a>
+                </div>
 
                 <div className="mt-12">
                     {posts.length === 0 ? (
@@ -49,15 +66,20 @@ export default async function BlogPage() {
                                 />
                             </svg>
                             <h2 className="text-xl font-semibold text-foreground mb-2">
-                                No blog posts yet
+                                {dict.blog.emptyTitle}
                             </h2>
                             <p className="text-muted-foreground">
-                                Check back soon for articles on design thinking and UX best practices.
+                                {dict.blog.emptyDescription}
                             </p>
                         </div>
                     ) : (
                         <BlogListWithFilters posts={postsData} allTags={allTags} />
                     )}
+                </div>
+
+                {/* Newsletter Signup */}
+                <div className="mt-16">
+                    <NewsletterSignup />
                 </div>
             </Container>
         </section>

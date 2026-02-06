@@ -5,13 +5,14 @@ import { Tag } from "./Tag";
 import type { ProjectFrontmatter } from "@/lib/projects";
 import type { Dictionary } from "@/lib/i18n";
 
-interface CardProps {
+export interface CardProps {
   project: ProjectFrontmatter;
   dict?: Dictionary;
   className?: string;
+  viewMode?: 'grid' | 'list';
 }
 
-export function Card({ project, dict, className }: CardProps) {
+export function Card({ project, dict, className, viewMode = 'grid' }: CardProps) {
   return (
     <Link
       href={`/projects/${project.slug}`}

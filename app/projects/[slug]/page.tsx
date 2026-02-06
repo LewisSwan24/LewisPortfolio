@@ -2,19 +2,21 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import { Container } from "@/components/Container";
-import { Tag } from "@/components/Tag";
-import { Button } from "@/components/Button";
-import { TOC } from "@/components/TOC";
-import { Prose } from "@/components/Prose";
-import { ShareButtons } from "@/components/ShareButtons";
-import { RelatedProjects } from "@/components/RelatedProjects";
-import { ReadingProgress } from "@/components/ReadingProgress";
-import { getMdxComponents } from "@/components/mdx-components";
+import { Container } from "@/components/ui/Container";
+import { Tag } from "@/components/ui/Tag";
+import { Button } from "@/components/ui/Button";
+import { TOC } from "@/components/content/TOC";
+import { Prose } from "@/components/ui/Prose";
+import { ShareButtons } from "@/components/content/ShareButtons";
+import { RelatedProjects } from "@/components/content/RelatedProjects";
+import { ReadingProgressChapters } from "@/components/content/ReadingProgressChapters";
+import { ViewCounter } from "@/components/seo/ViewCounter";
+import { getMdxComponents } from "@/components/content/mdx-components";
 import { getProjectBySlug, getProjectSlugs, getAllProjects } from "@/lib/projects";
 import { extractTOC } from "@/lib/toc";
 import { siteConfig } from "@/lib/site";
 import { getCurrentDictionary } from "@/lib/i18n-server";
+import { generateProjectSchema, generateBreadcrumbSchema, StructuredData } from "@/lib/seo";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -77,10 +79,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const mdxComponents = getMdxComponents();
   const projectUrl = `${siteConfig.url}/projects/${project.slug}`;
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || siteConfig.url || "";
+
   return (
     <>
-      {/* Reading Progress Indicator */}
-      <ReadingProgress />
+      <StructuredData data={generateProjectSchema({
+        title: project.title,
+        oneLiner: project.oneLiner,
+        slug: project.slug,
+        cover: project.cover || "",
+        tags: project.tags,
+        timeframe: project.timeframe,
+      })} />
+      <StructuredData data={generateBreadcrumbSchema([
+        { name: dict.nav.home, url: siteUrl },
+        { name: dict.nav.projects, url: `${siteUrl}/projects` },
+        { name: project.title, url: `${siteUrl}/projects/${project.slug}` },
+      ])} />
+
+      {/* Reading Progress with Chapter Markers */}
+      <ReadingProgressChapters 
+        chapters={toc.map(item => ({ id: item.id, title: item.text, level: item.level }))} 
+      />
 
       <article className="py-16 sm:py-20">
         <Container>
@@ -146,12 +166,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             )}
 
             {/* Tags */}
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <Tag key={tag} size="sm">
-                  {tag}
-                </Tag>
-              ))}
+            <div className="mt-4 flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <Tag key={tag} size="sm">
+                    {tag}
+                  </Tag>
+                ))}
+              </div>
+              <ViewCounter slug={slug} />
             </div>
 
             {/* Share Buttons */}
@@ -186,7 +209,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {/* Bottom Share Buttons */}
               <div className="mt-12 pt-8 border-t border-border">
                 <p className="text-sm text-muted-foreground mb-4">
-                  Found this helpful? Share it!
+                  {dict.project.shareHelpful}
                 </p>
                 <ShareButtons
                   url={projectUrl}

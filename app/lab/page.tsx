@@ -1,59 +1,15 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/Container";
-import { SectionHeading } from "@/components/SectionHeading";
+import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getCurrentDictionary } from "@/lib/i18n-server";
 import { siteConfig } from "@/lib/site";
-import Link from "next/link";
+import { MagneticButton } from "@/components/effects/MagneticButton";
+import { TiltCard } from "@/components/effects/TiltCard";
 
 export const metadata: Metadata = {
   title: "Lab",
   description: `Experimental projects and interactive demos by ${siteConfig.name}.`,
 };
-
-const experiments = [
-  {
-    id: "custom-cursor",
-    title: "Custom Cursor",
-    description: "A smooth, animated cursor that responds to interactive elements.",
-    icon: "🎯",
-    status: "live",
-  },
-  {
-    id: "magnetic-buttons",
-    title: "Magnetic Buttons",
-    description: "Buttons that subtly follow your mouse movement.",
-    icon: "🧲",
-    status: "live",
-  },
-  {
-    id: "parallax-effects",
-    title: "Parallax Effects",
-    description: "Multi-layered backgrounds that create depth on scroll.",
-    icon: "🌌",
-    status: "live",
-  },
-  {
-    id: "glass-morphism",
-    title: "Glass Morphism",
-    description: "Modern frosted glass UI effects with blur and transparency.",
-    icon: "🪟",
-    status: "live",
-  },
-  {
-    id: "3d-cards",
-    title: "3D Card Tilt",
-    description: "Cards that tilt in 3D space following cursor position.",
-    icon: "🃏",
-    status: "live",
-  },
-  {
-    id: "smooth-scroll",
-    title: "Smooth Scroll",
-    description: "Custom easing functions for buttery smooth scrolling.",
-    icon: "📜",
-    status: "live",
-  },
-];
 
 export default function LabPage() {
   const { dict } = getCurrentDictionary();
@@ -63,55 +19,134 @@ export default function LabPage() {
       <Container>
         <SectionHeading
           as="h1"
-          title="Lab"
-          description="A collection of interactive experiments and UI components. These are the building blocks that power this portfolio."
+          title={dict.lab.title}
+          description={dict.lab.description}
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {experiments.map((experiment) => (
-            <div
-              key={experiment.id}
-              className="group relative rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-accent/50 hover:shadow-layered"
-            >
-              {/* Status badge */}
-              <div className="absolute top-4 right-4">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-green-500/10 px-2.5 py-0.5 text-xs font-medium text-green-600 dark:text-green-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                  {experiment.status}
-                </span>
-              </div>
-
-              {/* Icon */}
-              <div className="mb-4 text-4xl">{experiment.icon}</div>
-
-              {/* Content */}
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {experiment.title}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {experiment.description}
-              </p>
-
-              {/* Hover effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-            </div>
-          ))}
+        {/* Magnetic Buttons Demo */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-foreground mb-4">{dict.lab.magneticButtons.title}</h2>
+          <p className="text-muted-foreground mb-8">
+            {dict.lab.magneticButtons.description}
+          </p>
+          <div className="flex flex-wrap gap-4 p-8 rounded-2xl border border-border bg-card/50">
+            <MagneticButton className="inline-flex items-center justify-center rounded-xl bg-accent text-accent-foreground px-6 py-3 text-sm font-medium shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-shadow">{dict.lab.magneticButtons.hover}</MagneticButton>
+            <MagneticButton className="inline-flex items-center justify-center rounded-xl border border-border bg-card text-foreground px-6 py-3 text-sm font-medium hover:border-accent/50 transition-colors">{dict.lab.magneticButtons.secondary}</MagneticButton>
+            <MagneticButton className="inline-flex items-center justify-center rounded-xl text-muted-foreground px-6 py-3 text-sm font-medium hover:text-foreground hover:bg-muted/50 transition-colors">{dict.lab.magneticButtons.ghost}</MagneticButton>
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-muted-foreground mb-4">
-            Want to see these in action?
+        {/* 3D Card Tilt Demo */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-foreground mb-4">{dict.lab.tiltCards.title}</h2>
+          <p className="text-muted-foreground mb-8">
+            {dict.lab.tiltCards.description}
           </p>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-accent hover:underline"
-          >
-            Explore the homepage
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <TiltCard>
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/20">
+                <div className="text-4xl mb-4">{"🎹"}</div>
+                <h3 className="font-semibold text-foreground mb-2">{dict.lab.tiltCards.design}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {dict.lab.tiltCards.designDesc}
+                </p>
+              </div>
+            </TiltCard>
+            <TiltCard>
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-500/5 border border-green-500/20">
+                <div className="text-4xl mb-4">{"⚡"}</div>
+                <h3 className="font-semibold text-foreground mb-2">{dict.lab.tiltCards.performance}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {dict.lab.tiltCards.performanceDesc}
+                </p>
+              </div>
+            </TiltCard>
+            <TiltCard>
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 border border-purple-500/20">
+                <div className="text-4xl mb-4">{"♿"}</div>
+                <h3 className="font-semibold text-foreground mb-2">{dict.lab.tiltCards.accessibility}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {dict.lab.tiltCards.accessibilityDesc}
+                </p>
+              </div>
+            </TiltCard>
+          </div>
+        </div>
+
+        {/* Glass Morphism Demo */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-foreground mb-4">{dict.lab.glassMorphism.title}</h2>
+          <p className="text-muted-foreground mb-8">
+            {dict.lab.glassMorphism.description}
+          </p>
+          <div className="relative p-12 rounded-3xl overflow-hidden bg-gradient-to-br from-accent/30 via-accent/10 to-transparent">
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 via-transparent to-blue-500/30" />
+            <div className="relative grid gap-6 sm:grid-cols-2">
+              <div className="glass p-6 rounded-2xl border border-white/20">
+                <h3 className="font-semibold text-foreground mb-2">{dict.lab.glassMorphism.glassCard}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {dict.lab.glassMorphism.glassCardDesc}
+                </p>
+              </div>
+              <div className="glass-heavy p-6 rounded-2xl border border-white/20">
+                <h3 className="font-semibold text-foreground mb-2">{dict.lab.glassMorphism.heavyGlass}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {dict.lab.glassMorphism.heavyGlassDesc}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Animation Playground */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-foreground mb-4">{dict.lab.animations.title}</h2>
+          <p className="text-muted-foreground mb-8">
+            {dict.lab.animations.description}
+          </p>
+          <div className="p-8 rounded-2xl border border-border bg-card/50 space-y-8">
+            {/* Fade In */}
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-24">{dict.lab.animations.fadeIn}</span>
+              <div className="animate-fade-in px-4 py-2 rounded-lg bg-accent text-accent-foreground">
+                Animate Fade In
+              </div>
+            </div>
+
+            {/* Scale In */}
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-24">{dict.lab.animations.scaleIn}</span>
+              <div className="animate-scale-in px-4 py-2 rounded-lg bg-green-500 text-white">
+                Animate Scale In
+              </div>
+            </div>
+
+            {/* Float */}
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground w-24">{dict.lab.animations.float}</span>
+              <div className="animate-float px-4 py-2 rounded-lg bg-purple-500 text-white">
+                Floating Animation
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Component Info */}
+        <div className="mt-16 rounded-2xl border border-border bg-muted/30 p-8">
+          <h3 className="text-lg font-semibold text-foreground mb-4">
+            {dict.lab.about.title}
+          </h3>
+          <p className="text-muted-foreground mb-4">
+            {dict.lab.about.description}
+          </p>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            {dict.lab.about.features.map((feature, index) => (
+              <li key={index} className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                {feature}
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

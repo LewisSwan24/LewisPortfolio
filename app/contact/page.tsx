@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/Container";
-import { Button } from "@/components/Button";
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { ContactForm } from "@/components/content/ContactForm";
 import { siteConfig } from "@/lib/site";
 import { getCurrentDictionary } from "@/lib/i18n-server";
 
@@ -11,9 +12,6 @@ export const metadata: Metadata = {
 
  export default function ContactPage() {
   const { dict } = getCurrentDictionary();
-  const formEndpoint =
-    process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ||
-    process.env.CONTACT_FORM_ENDPOINT;
 
   const contactMethods = [
     {
@@ -171,97 +169,7 @@ export const metadata: Metadata = {
 
             {/* Form Card */}
             <div className="rounded-3xl border border-border/50 bg-card p-8 sm:p-10 shadow-xl">
-              <form className="space-y-6" action={formEndpoint} method="POST">
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="mb-2 block text-sm font-medium text-foreground"
-                    >
-                      {dict.contact.form.fields.name.label}
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder={dict.contact.form.fields.name.placeholder}
-                      className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all motion-reduce:transition-none"
-                      disabled={!formEndpoint}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="mb-2 block text-sm font-medium text-foreground"
-                    >
-                      {dict.contact.form.fields.email.label}
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder={dict.contact.form.fields.email.placeholder}
-                      className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all motion-reduce:transition-none"
-                      disabled={!formEndpoint}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="mb-2 block text-sm font-medium text-foreground"
-                  >
-                    {dict.contact.form.fields.subject.label}
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder={dict.contact.form.fields.subject.placeholder}
-                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all motion-reduce:transition-none"
-                    disabled={!formEndpoint}
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="mb-2 block text-sm font-medium text-foreground"
-                  >
-                    {dict.contact.form.fields.message.label}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    placeholder={dict.contact.form.fields.message.placeholder}
-                    className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all motion-reduce:transition-none"
-                    disabled={!formEndpoint}
-                  />
-                </div>
-
-                {/* Notice */}
-                {!formEndpoint && (
-                  <div className="rounded-xl bg-accent/10 border border-accent/20 p-4">
-                    <p className="text-sm text-accent flex items-center gap-2">
-                      <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {dict.contact.form.noticeUnconfigured}
-                    </p>
-                  </div>
-                )}
-
-                <Button type="submit" disabled={!formEndpoint} className="w-full">
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                    {dict.contact.form.submit}
-                  </span>
-                </Button>
-              </form>
+              <ContactForm dict={dict} />
             </div>
           </div>
         </Container>

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Container } from "@/components/Container";
-import { Button } from "@/components/Button";
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
 import { getCurrentDictionary } from "@/lib/i18n-server";
 
 export default function NotFound() {
@@ -38,14 +38,14 @@ export default function NotFound() {
           {/* Quick Links */}
           <div className="pt-8 border-t border-border">
             <p className="text-sm text-muted-foreground mb-4">
-              Or try these popular pages:
+              {dict.notFound.tryPopular}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               {[
-                { href: "/about", label: "About" },
-                { href: "/blog", label: "Blog" },
-                { href: "/contact", label: "Contact" },
-                { href: "/resume", label: "Resume" },
+                { href: "/about", label: dict.nav.about },
+                { href: "/blog", label: dict.nav.blog || "Blog" },
+                { href: "/contact", label: dict.nav.contact },
+                { href: "/resume", label: dict.nav.resume },
               ].map((link) => (
                 <Link
                   key={link.href}

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/Container";
-import { SectionHeading } from "@/components/SectionHeading";
-import { Button } from "@/components/Button";
-import { ResumeTimeline } from "@/components/ResumeTimeline";
+import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Button } from "@/components/ui/Button";
+import { ResumeTimeline } from "@/components/content/ResumeTimeline";
 import { siteConfig } from "@/lib/site";
 import { resumeData } from "@/lib/resume-data";
 import { getCurrentDictionary } from "@/lib/i18n-server";
@@ -71,10 +71,10 @@ export default function ResumePage() {
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  Download PDF
+                  {dict.resume.downloadPdfShort}
                 </Button>
                 <Button href="/contact" variant="secondary">
-                  Get in Touch
+                  {dict.resume.getInTouch}
                 </Button>
               </div>
             </div>
@@ -90,12 +90,12 @@ export default function ResumePage() {
           </div>
 
           {/* Resume Timeline */}
-          <ResumeTimeline data={resumeData} />
+          <ResumeTimeline data={resumeData} dict={dict} />
 
           {/* Print Hint */}
           <div className="mt-12 rounded-xl border border-border/50 bg-muted/30 p-6 text-center print:hidden">
             <p className="text-sm text-muted-foreground">
-              💡 Tip: Use your browser&apos;s print function (Ctrl/Cmd + P) to save this page as a PDF
+              💡 {dict.resume.printHint}
             </p>
           </div>
         </div>

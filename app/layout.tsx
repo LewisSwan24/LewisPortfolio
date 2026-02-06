@@ -3,15 +3,16 @@ import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { siteConfig } from "@/lib/site";
 import { getCurrentDictionary } from "@/lib/i18n-server";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { SkipLink } from "@/components/SkipLink";
-import { BackToTop } from "@/components/BackToTop";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { PerformanceMonitor } from "@/components/PerformanceMonitor";
-import { CustomCursor } from "@/components/CustomCursor";
-import { KeyboardShortcutsModal } from "@/components/KeyboardShortcutsModal";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { SkipLink } from "@/components/layout/SkipLink";
+import { BackToTop } from "@/components/navigation/BackToTop";
+import { ErrorBoundary } from "@/components/providers/ErrorBoundary";
+import { PageTransition } from "@/components/effects/PageTransition";
+import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
+import { AutoThemeSwitch } from "@/components/providers/AutoThemeSwitch";
+import { KeyboardShortcutsModal } from "@/components/providers/KeyboardShortcutsModal";
 import { Analytics } from "@vercel/analytics/react";
 import { StructuredData, generatePersonSchema, generateWebSiteSchema } from "@/lib/seo";
 import { getAllProjects } from "@/lib/projects";
@@ -135,13 +136,15 @@ export default async function RootLayout({
             <Navbar lang={lang} dict={dict} searchItems={searchItems} />
             <main id="main-content" className="flex-1">
               <ErrorBoundary>
-                {children}
+                <PageTransition>
+                  {children}
+                </PageTransition>
               </ErrorBoundary>
             </main>
             <Footer lang={lang} dict={dict} />
           </div>
           <BackToTop />
-          <CustomCursor />
+          <AutoThemeSwitch />
           <KeyboardShortcutsModal />
           <PerformanceMonitor />
           <Analytics />

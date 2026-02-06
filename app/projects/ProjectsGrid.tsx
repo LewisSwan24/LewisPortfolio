@@ -2,10 +2,14 @@
 
 import { useState, useMemo } from "react";
 import Fuse from "fuse.js";
-import { Card } from "@/components/Card";
+import { Card } from "@/components/ui/Card";
+import { ViewToggle } from "@/components/ui/ViewToggle";
+import { ProjectTimeline } from "@/components/content/ProjectTimeline";
 import { cn } from "@/lib/cn";
 import type { Dictionary } from "@/lib/i18n";
 import type { Project } from "@/lib/projects";
+
+type ViewMode = 'grid' | 'list' | 'timeline';
 
 interface ProjectsGridProps {
   projects: Project[];
@@ -16,6 +20,7 @@ interface ProjectsGridProps {
 export function ProjectsGrid({ projects, allTags, dict }: ProjectsGridProps) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
 
   // Configure Fuse.js for fuzzy search
   const fuse = useMemo(() => {
@@ -26,7 +31,7 @@ export function ProjectsGrid({ projects, allTags, dict }: ProjectsGridProps) {
         { name: "tags", weight: 0.2 },
         { name: "role", weight: 0.1 },
       ],
-      threshold: 0.3, // 0 = perfect match, 1 = match anything
+      threshold: 0.3,
       minMatchCharLength: 2,
       includeScore: true,
     });
@@ -53,9 +58,9 @@ export function ProjectsGrid({ projects, allTags, dict }: ProjectsGridProps) {
 
   return (
     <div>
-      {/* Search */}
-      <div className="mb-6">
-        <div className="relative">
+      {/* Search and View Toggle */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="relative flex-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -77,6 +82,7 @@ export function ProjectsGrid({ projects, allTags, dict }: ProjectsGridProps) {
             className="w-full rounded-xl border border-border/60 bg-background/40 backdrop-blur-md py-2.5 pl-10 pr-4 text-sm text-foreground shadow-sm shadow-black/5 placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all duration-200 motion-reduce:transition-none"
           />
         </div>
+        <ViewToggle currentView={viewMode} onViewChange={setViewMode} />
       </div>
 
       {/* Tag Filter */}
@@ -118,13 +124,21 @@ export function ProjectsGrid({ projects, allTags, dict }: ProjectsGridProps) {
         ))}
       </div>
 
-      {/* Projects Grid */}
+      {/* Projects Display */}
       {filteredProjects.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project) => (
-            <Card key={project.slug} project={project} dict={dict} />
-          ))}
-        </div>
+        viewMode === 'timeline' ? (
+          <ProjectTimeline projects={filteredProjects} />
+        ) : (
+          <div className={cn(
+            viewMode === 'grid'
+              ? "grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              : "flex flex-col gap-4"
+          )}>
+            {filteredProjects.map((project) => (
+              <Card key={project.slug} project={project} dict={dict} viewMode={viewMode} />
+            ))}
+          </div>
+        )
       ) : (
         <div className="rounded-xl border border-border bg-card p-12 text-center">
           <p className="text-muted-foreground">
