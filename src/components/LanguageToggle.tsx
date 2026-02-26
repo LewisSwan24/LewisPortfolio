@@ -1,36 +1,43 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
-import type { Dictionary, Language } from "@/lib/i18n";
 
-interface LanguageToggleProps {
-  lang: Language;
-  dict: Dictionary;
-}
-
-export function LanguageToggle({ lang, dict }: LanguageToggleProps) {
+export function LanguageToggle() {
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = useLocale();
+  const t = useTranslations("languageToggle");
   const [isPending, startTransition] = useTransition();
 
-  const nextLang: Language = lang === "en" ? "zh" : "en";
-  const label =
-    lang === "en" ? dict.languageToggle.toChinese : dict.languageToggle.toEnglish;
+  const nextLocale = locale === "en" ? "zh" : "en";
+  const label = locale === "en" ? t("toChinese") : t("toEnglish");
   const ariaLabel =
-    lang === "en"
-      ? dict.languageToggle.ariaLabelToChinese
-      : dict.languageToggle.ariaLabelToEnglish;
+    locale === "en" ? t("ariaLabelToChinese") : t("ariaLabelToEnglish");
 
   return (
     <button
       type="button"
       onClick={() => {
-        document.cookie = `lang=${nextLang}; path=/; max-age=31536000; samesite=lax`;
+        // With next-intl, switching locale means navigating to the
+        // locale-prefixed (or un-prefixed) version of the current path.
+        const segments = pathname.split("/").filter(Boolean);
+        // Remove existing locale prefix if present
+        const pathWithoutLocale =
+          segments[0] === "en" || segments[0] === "zh"
+            ? "/" + segments.slice(1).join("/")
+            : pathname;
+        const newPath =
+          nextLocale === "en"
+            ? pathWithoutLocale || "/"
+            : `/zh${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+
         startTransition(() => {
-          router.refresh();
+          router.push(newPath);
         });
       }}
-      className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-background/40 backdrop-blur-md text-foreground shadow-sm shadow-black/5 transition-all duration-200 motion-reduce:transition-none hover:bg-muted/40 hover:border-border focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+      className="flex h-9 items-center justify-center rounded-lg text-foreground transition-all duration-200 motion-reduce:transition-none hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background px-3"
       aria-label={ariaLabel}
       disabled={isPending}
     >

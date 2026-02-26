@@ -1,0 +1,169 @@
+---
+title: "Designing for AI: Lessons from Building Smart Interfaces"
+date: "2025-01-20"
+excerpt: "Artificial intelligence is reshaping how we design user experiences. Here are key principles I've learned from designing AI-powered interfaces that feel natural and helpful."
+tags:
+  - AI Design
+  - UX Design
+  - Human-AI Interaction
+  - Design Principles
+author: "Lewis Dong"
+published: true
+---
+
+## Introduction
+
+Over the past year, I've had the opportunity to design several AI-powered interfaces, from interview preparation tools to accessibility assistants. Working with AI has challenged many of my traditional design assumptions and taught me valuable lessons about creating human-centered intelligent systems.
+
+In this post, I'll share the key principles I've developed for designing AI interfaces that users actually enjoy using.
+
+## The AI Design Challenge
+
+Designing for AI is fundamentally different from traditional interface design. You're not just designing buttons and screens—you're designing a relationship between humans and an intelligent system that can make decisions, generate content, and learn over time.
+
+This introduces unique challenges:
+
+- **Unpredictability**: AI outputs aren't deterministic
+- **Trust**: Users need to understand and trust AI decisions
+- **Control**: Users need appropriate levels of agency
+- **Transparency**: The "black box" problem of AI systems
+
+## Core Design Principles
+
+### 1. Set Appropriate Expectations
+
+**The Principle**: Be clear about what the AI can and cannot do.
+
+**My Experience**: In my AI Interview Assistant project, early versions set unrealistic expectations. Users thought the AI could guarantee interview success. After adding clear messaging about the tool being "practice support" rather than "interview insurance," user satisfaction improved significantly.
+
+**Implementation Tips**:
+- Use onboarding to explain AI capabilities
+- Include contextual hints about limitations
+- Set realistic success metrics
+
+### 2. Maintain Human Agency
+
+**The Principle**: Users should always feel in control, not controlled by AI.
+
+**My Experience**: Early iterations of the Spectra Lens AR feature automatically identified colors without user initiation. Users felt surveilled. Adding a manual trigger button increased comfort and usage by 40%.
+
+**Implementation Tips**:
+- Make AI actions require user initiation when possible
+- Provide easy ways to override AI suggestions
+- Allow users to customize AI behavior
+
+### 3. Design for Uncertainty
+
+**The Principle**: AI will make mistakes. Design interfaces that handle uncertainty gracefully.
+
+**My Experience**: In interview practice sessions, the AI speech analysis sometimes misinterpreted accents or technical jargon. Instead of showing incorrect feedback, we added confidence scores and fallback states.
+
+**Implementation Tips**:
+- Show confidence levels for AI outputs
+- Provide easy correction mechanisms
+- Design graceful degradation paths
+
+### 4. Make AI Transparent
+
+**The Principle**: Users should understand *why* the AI responded a certain way.
+
+**My Experience**: When the interview assistant gave feedback, users initially couldn't tell if it was helpful or arbitrary. Adding explanations like "You used 12 filler words in 2 minutes" made feedback actionable.
+
+**Implementation Tips**:
+- Explain AI reasoning in human terms
+- Show the data that led to conclusions
+- Allow users to explore "behind the curtain"
+
+### 5. Personalize Thoughtfully
+
+**The Principle**: Use AI's personalization capabilities, but respect privacy and avoid creepiness.
+
+**My Experience**: The AI interview tool could theoretically track everything users said. We consciously limited data collection to only what's necessary for the service, making this explicit in our privacy design.
+
+**Implementation Tips**:
+- Collect only necessary data
+- Make personalization opt-in when possible
+- Provide clear privacy controls
+
+## Practical Design Patterns
+
+### Progressive AI Disclosure
+
+Don't overwhelm users with AI features all at once. Introduce capabilities progressively:
+
+1. **First**: Basic AI assistance with clear boundaries
+2. **Then**: Advanced features as users build trust
+3. **Finally**: Full AI customization for power users
+
+### Human-in-the-Loop Design
+
+For critical decisions, always include human oversight:
+
+- **AI Suggests**: Present AI-generated options
+- **Human Decides**: User makes the final choice
+- **AI Learns**: System improves from the decision
+
+### Conversational UI Best Practices
+
+When designing chat-based AI interfaces:
+
+- **Typing indicators**: Show when AI is "thinking"
+- **Message formatting**: Use rich formatting for complex information
+- **Context preservation**: Help users understand conversation flow
+- **Error recovery**: Graceful handling of misunderstood inputs
+
+## Measuring AI UX Success
+
+Traditional UX metrics aren't always sufficient for AI interfaces. I track:
+
+### Trust Indicators
+- Repeat usage rate
+- Feature adoption depth
+- User feedback sentiment
+
+### Control Metrics
+- Override rate (how often users correct AI)
+- Customization usage
+- Setting adjustment frequency
+
+### Understanding Measures
+- Task completion rates
+- Error recovery success
+- Time to value (how quickly users get benefits)
+
+## Common Pitfalls to Avoid
+
+### 1. The "Black Box" Trap
+
+Don't hide AI complexity so much that users can't understand or trust the system.
+
+### 2. Over-Automation
+
+Not everything should be automated. Some user tasks provide value through the doing, not just the outcome.
+
+### 3. False Anthropomorphism
+
+Making AI seem too human can create unrealistic expectations and user disappointment.
+
+### 4. Ignoring Edge Cases
+
+AI fails in unexpected ways. Design for failure modes, not just happy paths.
+
+## The Future of AI Design
+
+As AI capabilities expand, I believe the most successful interfaces will:
+
+- **Augment** human capabilities rather than replace them
+- **Adapt** to individual users while respecting privacy
+- **Explain** themselves in ways that build genuine understanding
+- **Fail** gracefully and learn from mistakes
+
+## Conclusion
+
+Designing for AI requires a shift in thinking from creating fixed interfaces to designing evolving relationships between users and intelligent systems. The principles I've shared—setting expectations, maintaining agency, designing for uncertainty, ensuring transparency, and personalizing thoughtfully—have helped me create AI experiences that users trust and enjoy.
+
+As AI becomes more prevalent in our designs, our responsibility as designers grows. We're not just designing tools anymore; we're designing the future of human-computer collaboration.
+
+---
+
+*What AI design challenges have you encountered? I'd love to hear your experiences and insights.*

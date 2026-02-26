@@ -88,6 +88,39 @@ export function generateBreadcrumbSchema(breadcrumbs: Array<{ name: string; url:
     };
 }
 
+// Article schema for blog posts
+export function generateArticleSchema(article: {
+    title: string;
+    excerpt: string;
+    slug: string;
+    date: string;
+    author: string;
+    tags: string[];
+}) {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: article.title,
+        description: article.excerpt,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${article.slug}`,
+        datePublished: article.date,
+        dateModified: article.date,
+        author: {
+            "@type": "Person",
+            name: article.author,
+        },
+        publisher: {
+            "@type": "Person",
+            name: siteConfig.author.name,
+        },
+        keywords: article.tags.join(", "),
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${article.slug}`,
+        },
+    };
+}
+
 /**
  * Helper to inject structured data into page
  */
@@ -96,6 +129,7 @@ export function StructuredData({ data }: { data: Record<string, any> }) {
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+            suppressHydrationWarning
         />
     );
 }

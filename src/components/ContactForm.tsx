@@ -18,30 +18,37 @@ export function ContactForm({ dict }: ContactFormProps) {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
 
+    const [honeypot, setHoneypot] = useState("");
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitting(true);
         setError("");
 
         try {
-            // Using Formspree (replace with your form ID)
-            // Get your form ID from https://formspree.io/
-            const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+            const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Accept: "application/json",
                 },
-                body: JSON.stringify(formState),
+                body: JSON.stringify({ ...formState, _gotcha: honeypot }),
             });
 
-            if (response.ok) {
+            const data = await response.json();
+
+            if (response.ok && data.success) {
                 setSubmitted(true);
                 setFormState({ name: "", email: "", subject: "", message: "" });
             } else {
-                throw new Error("Failed to send message");
+                throw new Error(data.error || "Failed to send message");
             }
         } catch (err) {
-            setError("Failed to send message. Please try again or email me directly.");
+            setError(
+                err instanceof Error
+                    ? err.message
+                    : "Failed to send message. Please try again or email me directly."
+            );
             console.error(err);
         } finally {
             setSubmitting(false);
@@ -198,6 +205,18 @@ export function ContactForm({ dict }: ContactFormProps) {
                 />
             </div>
 
+            {/* Honeypot — hidden from real users */}
+            <div className="hidden" aria-hidden="true">
+                <input
+                    type="text"
+                    name="_gotcha"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                />
+            </div>
+
             {/* Error Message */}
             {error && (
                 <div className="rounded-xl border border-red-500/20 bg-red-500/10 p-4">
@@ -223,9 +242,9 @@ export function ContactForm({ dict }: ContactFormProps) {
                 {submitting ? "Sending..." : dict.contact.form.submit}
             </button>
 
-            {/* FormSpree Notice */}
+            {/* Privacy Notice */}
             <p className="text-center text-xs text-muted-foreground">
-                Note: Replace YOUR_FORM_ID in ContactForm.tsx with your Formspree form ID
+                {dict.contact.form.privacyNotice || "Your information will be kept confidential and used only to respond to your inquiry."}
             </p>
         </form>
     );

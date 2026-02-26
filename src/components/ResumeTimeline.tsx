@@ -3,9 +3,10 @@ import type { ResumeData } from "@/lib/resume-data";
 
 interface ResumeTimelineProps {
     data: ResumeData;
+    dict?: Record<string, any>;
 }
 
-export function ResumeTimeline({ data }: ResumeTimelineProps) {
+export function ResumeTimeline({ data, dict }: ResumeTimelineProps) {
     return (
         <div className="space-y-16">
             {/* Education */}

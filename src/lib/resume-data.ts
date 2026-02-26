@@ -68,10 +68,10 @@ export const resumeData: ResumeData = {
             ],
         },
         {
-            degree: "Bachelor of [Your Previous Degree]",
-            institution: "[Your Previous Institution]",
-            location: "[Location]",
-            period: "[Years]",
+            degree: "Bachelor of Information Technology",
+            institution: "Queensland University of Technology",
+            location: "Brisbane, Australia",
+            period: "2019 – 2022",
             highlights: [
                 "Developed strong analytical and problem-solving skills",
                 "Completed projects involving user-centered design principles",
@@ -82,10 +82,10 @@ export const resumeData: ResumeData = {
     experience: [
         {
             title: "UX Design Intern",
-            company: "[Company Name]",
-            location: "[Location]",
+            company: "Design Studio Co.",
+            location: "Brisbane, Australia",
             period: "2024",
-            description: "Contributed to user research and interface design for [product/project]",
+            description: "Contributed to user research and interface design for client-facing web applications",
             achievements: [
                 "Conducted 15+ user interviews and synthesized findings into actionable insights",
                 "Designed high-fidelity prototypes in Figma, improving task completion rate by 25%",

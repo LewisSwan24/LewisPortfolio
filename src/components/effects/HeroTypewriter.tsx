@@ -1,0 +1,1 @@
+export { HeroTypewriter } from "../HeroTypewriter";

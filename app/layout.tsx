@@ -2,21 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { siteConfig } from "@/lib/site";
-import { getCurrentDictionary } from "@/lib/i18n-server";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { SkipLink } from "@/components/SkipLink";
-import { PerformanceMonitor } from "@/components/PerformanceMonitor";
-import { Analytics } from "@vercel/analytics/react";
-import { StructuredData, generatePersonSchema, generateWebSiteSchema } from "@/lib/seo";
 
 const inter = Inter({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
   preload: true,
-  fallback: ["system-ui", "arial"],
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "arial"],
 });
 
 export const metadata: Metadata = {
@@ -26,25 +18,9 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  openGraph: {
-    type: "website",
-    locale: "en_AU",
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    title: `${siteConfig.name} | ${siteConfig.title}`,
-    description: siteConfig.description,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${siteConfig.name} | ${siteConfig.title}`,
-    description: siteConfig.description,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
   icons: {
     icon: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 
@@ -53,28 +29,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { lang, dict } = getCurrentDictionary();
-
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <SkipLink label={dict.skipLink} />
-          <div className="flex min-h-screen flex-col">
-            <Navbar lang={lang} dict={dict} />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer lang={lang} dict={dict} />
-          </div>
-          <PerformanceMonitor />
-          <Analytics />
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

@@ -5,13 +5,14 @@ import { Tag } from "./Tag";
 import type { ProjectFrontmatter } from "@/lib/projects";
 import type { Dictionary } from "@/lib/i18n";
 
-interface CardProps {
+export interface CardProps {
   project: ProjectFrontmatter;
   dict?: Dictionary;
   className?: string;
+  viewMode?: 'grid' | 'list';
 }
 
-export function Card({ project, dict, className }: CardProps) {
+export function Card({ project, dict, className, viewMode = 'grid' }: CardProps) {
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -43,10 +44,13 @@ export function Card({ project, dict, className }: CardProps) {
             fill
             className="object-cover transition-all duration-500 motion-reduce:transition-none motion-safe:group-hover:scale-110 motion-safe:group-focus:scale-110"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEyMTIxNCIvPjwvc3ZnPg=="
+            loading="lazy"
           />
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 motion-reduce:transition-none" />
-          
+
           {/* Featured badge overlay */}
           {project.featured && (
             <div className="absolute top-3 left-3">
@@ -68,19 +72,19 @@ export function Card({ project, dict, className }: CardProps) {
           <div className="mb-3">
             <span className={cn(
               "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium",
-              project.status === "Completed" 
+              project.status === "Completed"
                 ? "bg-green-500/10 text-green-600 dark:text-green-400"
                 : project.status === "In Progress"
-                ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
-                : "bg-muted text-muted-foreground"
+                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                  : "bg-muted text-muted-foreground"
             )}>
               <span className={cn(
                 "w-1.5 h-1.5 rounded-full",
-                project.status === "Completed" 
+                project.status === "Completed"
                   ? "bg-green-500"
                   : project.status === "In Progress"
-                  ? "bg-amber-500 motion-safe:animate-pulse"
-                  : "bg-muted-foreground"
+                    ? "bg-amber-500 motion-safe:animate-pulse"
+                    : "bg-muted-foreground"
               )} />
               {project.status}
             </span>

@@ -1,7 +1,10 @@
 import { cn } from "@/lib/cn";
 import GithubSlugger from "github-slugger";
 import { isValidElement } from "react";
+import Image from "next/image";
 import { ImageGallery } from "./ImageGallery";
+import { CodeBlock } from "./CodeBlock";
+import { getBlurDataURL } from "@/lib/image-utils";
 
 type MDXComponents = Record<string, React.ComponentType<any>>;
 
@@ -76,13 +79,9 @@ export function getMdxComponents(): MDXComponents {
         </a>
       );
     },
+    // Use CodeBlock component for code blocks with copy functionality
     pre: ({ children, ...props }) => (
-      <pre
-        className="overflow-x-auto rounded-lg border border-border bg-muted p-4"
-        {...props}
-      >
-        {children}
-      </pre>
+      <CodeBlock {...props}>{children}</CodeBlock>
     ),
     code: ({ children, ...props }) => (
       <code
@@ -110,6 +109,30 @@ export function getMdxComponents(): MDXComponents {
         <div className={cn("my-6 rounded-lg border p-4", styles[type])}>
           {children}
         </div>
+      );
+    },
+    // Optimized image component for MDX content
+    img: ({ src, alt, ...props }) => {
+      if (!src) return null;
+      
+      // Check if it's an external image
+      const isExternal = src.startsWith("http");
+      
+      return (
+        <span className="block my-8 overflow-hidden rounded-xl">
+          <Image
+            src={src}
+            alt={alt || ""}
+            width={1200}
+            height={630}
+            className="w-full h-auto"
+            placeholder="blur"
+            blurDataURL={getBlurDataURL()}
+            loading="lazy"
+            unoptimized={isExternal}
+            {...props}
+          />
+        </span>
       );
     },
     // Add ImageGallery for project showcases

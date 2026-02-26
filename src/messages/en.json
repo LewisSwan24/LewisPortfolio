@@ -1,0 +1,385 @@
+{
+    "nav": {
+        "home": "Home",
+        "projects": "Projects",
+        "about": "About",
+        "contact": "Contact",
+        "resume": "Resume",
+        "blog": "Blog",
+        "more": "More"
+    },
+    "search": {
+        "placeholder": "Search projects and blog posts...",
+        "noResults": "No results found",
+        "recentSearches": "Recent searches"
+    },
+    "common": {
+        "featured": "Featured",
+        "viewCaseStudy": "View Case Study",
+        "scroll": "Scroll"
+    },
+    "cta": {
+        "letsTalk": "Let's Talk",
+        "openToOpportunities": "Open to opportunities",
+        "viewProjects": "View Projects",
+        "viewAll": "View All →",
+        "downloadResume": "Download Resume",
+        "getInTouch": "Get In Touch"
+    },
+    "skipLink": "Skip to main content",
+    "footer": {
+        "navigation": "Navigation",
+        "getInTouch": "Get In Touch",
+        "downloadResume": "Download Resume",
+        "builtWith": "Built with",
+        "allRightsReserved": "All rights reserved."
+    },
+    "mobileMenu": {
+        "open": "Open menu",
+        "close": "Close menu"
+    },
+    "home": {
+        "greeting": "Hi, I'm ",
+        "findMeOn": "Find me on",
+        "portfolioLabel": "Portfolio",
+        "featuredProjects": "Featured Projects",
+        "featuredProjectsDescription": "Selected case studies showcasing my design process and problem-solving approach.",
+        "expertise": "Expertise",
+        "skillsAndTools": "Skills & Tools",
+        "skillsAndToolsDescription": "Core competencies developed through academic study and hands-on projects.",
+        "letsWorkTogether": "Let's Work Together",
+        "letsWorkTogetherDescription": "I'm currently looking for internship opportunities and excited to contribute to meaningful design projects.",
+        "featuredProjectsEmpty": "Featured projects coming soon.",
+        "stats": {
+            "userInterviews": "User Interviews",
+            "treeTestParticipants": "Tree Test Participants",
+            "taskSuccessRate": "Task Success Rate",
+            "findabilityRate": "Findability Rate"
+        }
+    },
+    "about": {
+        "badge": "About Me",
+        "title": {
+            "prefix": "Crafting ",
+            "highlight": "meaningful",
+            "suffix": " digital experiences"
+        },
+        "intro": {
+            "p1": "I'm currently pursuing a Master of Interaction Design at The University of Queensland, where I'm developing expertise in user research, prototyping, and human-centered design methodologies.",
+            "p2": "My approach combines analytical thinking with creative problem-solving. I believe that great design emerges from deeply understanding user needs and iterating towards solutions that are both functional and delightful."
+        },
+        "profilePhoto": "Profile Photo",
+        "sections": {
+            "philosophy": {
+                "label": "Philosophy",
+                "title": "Design Principles",
+                "description": "Core values that guide every design decision I make."
+            },
+            "toolbox": {
+                "label": "Skills",
+                "title": "My Toolbox",
+                "description": "Technologies and tools I work with regularly."
+            },
+            "journey": {
+                "label": "Journey",
+                "title": "My Path",
+                "description": "Key milestones in my design journey."
+            },
+            "personal": {
+                "label": "Personal",
+                "title": "Beyond Design",
+                "description": "A few things about me outside of work."
+            }
+        },
+        "designPrinciples": [
+            {
+                "icon": "👤",
+                "title": "User-Centered",
+                "description": "Every design decision starts with understanding real user needs through research and empathy."
+            },
+            {
+                "icon": "🔄",
+                "title": "Iterative Process",
+                "description": "Embrace continuous improvement through prototyping, testing, and refinement cycles."
+            },
+            {
+                "icon": "♿",
+                "title": "Accessible by Default",
+                "description": "Design inclusive experiences that work for everyone, regardless of ability or context."
+            },
+            {
+                "icon": "📊",
+                "title": "Evidence-Based",
+                "description": "Ground design choices in data, research findings, and validated user feedback."
+            }
+        ],
+        "toolCategories": [
+            {
+                "name": "Design",
+                "tools": [
+                    "Figma",
+                    "Adobe XD",
+                    "Sketch",
+                    "Framer",
+                    "Photoshop",
+                    "Illustrator"
+                ]
+            },
+            {
+                "name": "Research",
+                "tools": [
+                    "Miro",
+                    "Notion",
+                    "Maze",
+                    "Hotjar",
+                    "UserTesting",
+                    "Optimal Workshop"
+                ]
+            },
+            {
+                "name": "Development",
+                "tools": [
+                    "HTML/CSS",
+                    "JavaScript",
+                    "React",
+                    "TypeScript",
+                    "Tailwind CSS",
+                    "Next.js"
+                ]
+            }
+        ],
+        "timeline": [
+            {
+                "year": "2024",
+                "title": "Master of Interaction Design",
+                "org": "The University of Queensland",
+                "description": "Advanced study in human-computer interaction, UX research, and design thinking."
+            },
+            {
+                "year": "2023",
+                "title": "Started Design Journey",
+                "org": "Self-directed Learning",
+                "description": "Began exploring UX/UI design through online courses and personal projects."
+            }
+        ],
+        "funFacts": [
+            {
+                "emoji": "📚",
+                "label": "Avid reader"
+            },
+            {
+                "emoji": "☕",
+                "label": "Coffee enthusiast"
+            },
+            {
+                "emoji": "🎮",
+                "label": "Casual gamer"
+            },
+            {
+                "emoji": "🌏",
+                "label": "Love exploring"
+            }
+        ]
+    },
+    "contact": {
+        "hero": {
+            "title": {
+                "prefix": "Let's ",
+                "highlight": "Create",
+                "suffix": " Something Amazing"
+            },
+            "description": "I'm always open to discussing new projects, design opportunities, or just having a friendly chat about UX and design."
+        },
+        "methods": {
+            "email": {
+                "title": "Email",
+                "description": "Drop me a line anytime",
+                "action": "Send Email"
+            },
+            "linkedin": {
+                "title": "LinkedIn",
+                "description": "Let's connect professionally",
+                "value": "View Profile",
+                "action": "Connect"
+            },
+            "location": {
+                "title": "Location",
+                "description": "Based in"
+            }
+        },
+        "form": {
+            "label": "Message",
+            "title": "Send a Message",
+            "description": "Fill out the form below and I'll get back to you as soon as possible.",
+            "fields": {
+                "name": {
+                    "label": "Name",
+                    "placeholder": "John Doe"
+                },
+                "email": {
+                    "label": "Email",
+                    "placeholder": "john@example.com"
+                },
+                "subject": {
+                    "label": "Subject",
+                    "placeholder": "What's this about?"
+                },
+                "message": {
+                    "label": "Message",
+                    "placeholder": "Tell me about your project, idea, or just say hello..."
+                }
+            },
+            "noticeUnconfigured": "Form submission is not configured yet. For now, please email me directly.",
+            "submit": "Send Message"
+        },
+        "faq": {
+            "label": "FAQ",
+            "title": "Frequently Asked",
+            "items": [
+                {
+                    "q": "What's your typical response time?",
+                    "a": "I usually respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn."
+                },
+                {
+                    "q": "Are you available for freelance work?",
+                    "a": "I'm currently focused on my studies but open to interesting projects. Let's chat about what you have in mind!"
+                },
+                {
+                    "q": "What kind of projects interest you?",
+                    "a": "I'm passionate about user-centered design, accessibility, and creating delightful digital experiences. Mobile apps, web platforms, and design systems all excite me."
+                }
+            ]
+        }
+    },
+    "resume": {
+        "title": "Resume",
+        "description": "Download my resume to learn more about my experience and qualifications.",
+        "cardTitle": "{name}'s Resume",
+        "cardMeta": "PDF format • Last updated December 2024",
+        "downloadPdf": "Download Resume (PDF)",
+        "downloadPdfShort": "Download PDF",
+        "getInTouch": "Get in Touch",
+        "printHint": "Tip: Use your browser's print function (Ctrl/Cmd + P) to save this page as a PDF",
+        "overview": {
+            "education": "Education",
+            "experienceHighlights": "Experience Highlights"
+        },
+        "sections": {
+            "education": "Education",
+            "experience": "Experience",
+            "skills": "Skills",
+            "certifications": "Certifications",
+            "awards": "Awards & Recognition"
+        },
+        "education": {
+            "degree": "Master of Interaction Design",
+            "institutionAndYears": "The University of Queensland • 2023 – Present"
+        },
+        "experience": [
+            {
+                "title": "UX Design Intern",
+                "orgAndYear": "Design Studio Co. • 2024"
+            },
+            {
+                "title": "Freelance Designer",
+                "orgAndYear": "Self-employed • 2022 – 2023"
+            }
+        ]
+    },
+    "blog": {
+        "title": "Blog",
+        "description": "Thoughts on UX design, interaction design, and design thinking.",
+        "emptyTitle": "No blog posts yet",
+        "emptyDescription": "Check back soon for articles on design thinking and UX best practices.",
+        "breadcrumbHome": "Home",
+        "breadcrumbBlog": "Blog",
+        "by": "By",
+        "subscribe": "Subscribe to updates",
+        "subscribeDescription": "Get notified when I publish new articles or projects.",
+        "subscribePlaceholder": "your@email.com",
+        "subscribeButton": "Subscribe",
+        "subscribeSuccess": "Thanks for subscribing! Check your email to confirm.",
+        "subscribeError": "Something went wrong. Please try again.",
+        "subscribeNote": "No spam, unsubscribe at any time.",
+        "rss": "RSS Feed",
+        "relatedArticles": "Related Articles",
+        "prev": "Previous",
+        "next": "Next"
+    },
+    "lab": {
+        "title": "Lab",
+        "description": "A collection of interactive experiments and UI components. These are the building blocks that power this portfolio.",
+        "magneticButtons": {
+            "title": "Magnetic Buttons",
+            "description": "Buttons that subtly follow your mouse movement. Hover over them to see the effect.",
+            "hover": "Hover Me",
+            "secondary": "Secondary",
+            "ghost": "Ghost"
+        },
+        "tiltCards": {
+            "title": "3D Card Tilt",
+            "description": "Cards that tilt in 3D space following cursor position. Move your mouse over the card.",
+            "design": "Design",
+            "designDesc": "Beautiful interfaces with thoughtful interactions",
+            "performance": "Performance",
+            "performanceDesc": "Optimized for speed and smooth animations",
+            "accessibility": "Accessibility",
+            "accessibilityDesc": "Inclusive design for all users"
+        },
+        "glassMorphism": {
+            "title": "Glass Morphism",
+            "description": "Modern frosted glass UI effects with blur and transparency.",
+            "glassCard": "Glass Card",
+            "glassCardDesc": "This card uses backdrop-blur for a frosted glass effect",
+            "heavyGlass": "Heavy Glass",
+            "heavyGlassDesc": "More opaque background with stronger blur"
+        },
+        "animations": {
+            "title": "Animation Playground",
+            "description": "Smooth animations and transitions used throughout the site.",
+            "fadeIn": "Fade In",
+            "scaleIn": "Scale In",
+            "float": "Float"
+        },
+        "about": {
+            "title": "About These Experiments",
+            "description": "All these interactive components are built with React, TypeScript, and Framer Motion. They're designed to enhance user experience without compromising performance or accessibility.",
+            "features": [
+                "Custom cursor enhances navigation on desktop",
+                "Magnetic buttons provide subtle tactile feedback",
+                "3D tilt cards add depth and engagement",
+                "All animations respect prefers-reduced-motion"
+            ]
+        }
+    },
+    "projects": {
+        "title": "Projects",
+        "description": "Case studies and design work from academic and personal projects.",
+        "searchPlaceholder": "Search projects...",
+        "all": "All",
+        "empty": "No projects found matching your criteria.",
+        "clearFilters": "Clear filters"
+    },
+    "project": {
+        "backToProjects": "← Back to Projects",
+        "role": "Role",
+        "timeline": "Timeline",
+        "tools": "Tools",
+        "shareHelpful": "Found this helpful? Share it!",
+        "relatedProjects": "Related Projects",
+        "relatedProjectsDescription": "Explore more projects with similar themes and approaches"
+    },
+    "notFound": {
+        "title": "Page not found",
+        "description": "Sorry, we couldn't find the page you're looking for. Perhaps you've mistyped the URL or the page has been moved.",
+        "goHome": "Go back home",
+        "viewProjects": "View projects",
+        "tryPopular": "Or try these popular pages:"
+    },
+    "languageToggle": {
+        "toEnglish": "EN",
+        "toChinese": "中文",
+        "ariaLabelToEnglish": "Switch language to English",
+        "ariaLabelToChinese": "切换到中文"
+    }
+}
