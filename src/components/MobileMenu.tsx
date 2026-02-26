@@ -3,26 +3,25 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/cn";
 import { siteConfig } from "@/lib/site";
-import type { Dictionary } from "@/lib/i18n";
 
 interface MobileMenuProps {
-  dict: Dictionary;
   navLabels: Record<string, string>;
-  lang?: string;
 }
 
-export function MobileMenu({ dict, navLabels, lang }: MobileMenuProps) {
+export function MobileMenu({ navLabels }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("mobileMenu");
 
   return (
     <div className="md:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-background/40 backdrop-blur-md text-foreground shadow-sm shadow-black/5 transition-all duration-200 motion-reduce:transition-none hover:bg-muted/40 hover:border-border focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
-        aria-label={isOpen ? dict.mobileMenu.close : dict.mobileMenu.open}
+        aria-label={isOpen ? t("close") : t("open")}
         aria-expanded={isOpen}
       >
         {isOpen ? (

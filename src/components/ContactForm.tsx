@@ -18,35 +18,37 @@ export function ContactForm({ dict }: ContactFormProps) {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
 
+    const [honeypot, setHoneypot] = useState("");
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitting(true);
         setError("");
 
         try {
-            const formEndpoint = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT;
-            
-            if (!formEndpoint) {
-                throw new Error("Contact form endpoint not configured");
-            }
-            
-            const response = await fetch(formEndpoint, {
+            const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json",
+                    Accept: "application/json",
                 },
-                body: JSON.stringify(formState),
+                body: JSON.stringify({ ...formState, _gotcha: honeypot }),
             });
 
-            if (response.ok) {
+            const data = await response.json();
+
+            if (response.ok && data.success) {
                 setSubmitted(true);
                 setFormState({ name: "", email: "", subject: "", message: "" });
             } else {
-                throw new Error("Failed to send message");
+                throw new Error(data.error || "Failed to send message");
             }
         } catch (err) {
-            setError("Failed to send message. Please try again or email me directly.");
+            setError(
+                err instanceof Error
+                    ? err.message
+                    : "Failed to send message. Please try again or email me directly."
+            );
             console.error(err);
         } finally {
             setSubmitting(false);
@@ -200,6 +202,18 @@ export function ContactForm({ dict }: ContactFormProps) {
                         "transition-all duration-200",
                         "resize-none"
                     )}
+                />
+            </div>
+
+            {/* Honeypot — hidden from real users */}
+            <div className="hidden" aria-hidden="true">
+                <input
+                    type="text"
+                    name="_gotcha"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
                 />
             </div>
 

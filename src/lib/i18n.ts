@@ -294,6 +294,8 @@ const dictionaries = {
       subscribeNote: "No spam, unsubscribe at any time.",
       rss: "RSS Feed",
       relatedArticles: "Related Articles",
+      prev: "Previous",
+      next: "Next",
     },
     lab: {
       title: "Lab",
@@ -652,6 +654,8 @@ const dictionaries = {
       subscribeNote: "无垃圾邮件，随时退订。",
       rss: "RSS 订阅",
       relatedArticles: "相关文章",
+      prev: "上一篇",
+      next: "下一篇",
     },
     lab: {
       title: "实验室",

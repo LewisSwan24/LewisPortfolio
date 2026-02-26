@@ -1,18 +1,40 @@
+const createNextIntlPlugin = require("next-intl/plugin");
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
 /** @type {import('next').NextConfig} */
+
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
 const nextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     formats: ["image/avif", "image/webp"],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 60 * 60 * 24, // 24 hours cache for optimized images
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
   },
   // Add cache headers for static assets
   async headers() {
     return [
       {
-        // Cache static assets
-        source: "/:all*(svg|jpg|png|woff2)",
+        // Cache static assets for 1 year
+        source: "/:all*(svg|jpg|png|webp|avif|woff2|ico)",
         headers: [
           {
             key: "Cache-Control",
@@ -21,8 +43,8 @@ const nextConfig = {
         ],
       },
       {
-        // Cache JavaScript and CSS
-        source: "/:all*.(js|css)",
+        // Cache JavaScript and CSS with immutable
+        source: "/_next/static/:path*",
         headers: [
           {
             key: "Cache-Control",
@@ -31,12 +53,28 @@ const nextConfig = {
         ],
       },
       {
-        // Revalidate pages every hour (ISR)
+        // Security headers for all pages
         source: "/:path*",
         headers: [
           {
-            key: "Cache-Control",
-            value: "public, max-age=0, must-revalidate",
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
           },
         ],
       },
@@ -44,10 +82,16 @@ const nextConfig = {
   },
   // Compression
   compress: true,
-  // Production source maps
+  // Production source maps disabled for smaller bundles
   productionBrowserSourceMaps: false,
   // Trailing slash for consistency
   trailingSlash: false,
+  // Strict React mode for better development
+  reactStrictMode: true,
+  // Power optimization: reduce unused polyfills
+  experimental: {
+    optimizePackageImports: ["yet-another-react-lightbox"],
+  },
 };
 
-module.exports = nextConfig;
+module.exports = withNextIntl(withBundleAnalyzer(nextConfig));

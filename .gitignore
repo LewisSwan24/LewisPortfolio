@@ -39,3 +39,11 @@ Thumbs.db
 
 # Testing
 coverage
+
+# BMAD Method
+_bmad/
+_bmad-output/
+docs/
+
+# Agent workflows
+.agent/

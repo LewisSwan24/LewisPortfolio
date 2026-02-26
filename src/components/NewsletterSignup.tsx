@@ -13,10 +13,11 @@ export function NewsletterSignup({ className, dict }: NewsletterSignupProps) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [honeypot, setHoneypot] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !email.includes('@')) {
       setStatus('error');
       setMessage('Please enter a valid email address');
@@ -25,23 +26,25 @@ export function NewsletterSignup({ className, dict }: NewsletterSignupProps) {
 
     setStatus('loading');
 
-    // This is a placeholder - integrate with your newsletter service
-    // Examples: ConvertKit, Mailchimp, Buttondown, etc.
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Example integration:
-      // const response = await fetch('/api/subscribe', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email }),
-      // });
-      
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, honeypot }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setStatus('error');
+        setMessage(data.error || 'Something went wrong. Please try again.');
+        return;
+      }
+
       setStatus('success');
-      setMessage('Thanks for subscribing! Check your email to confirm.');
+      setMessage(data.message || 'Thanks for subscribing!');
       setEmail('');
-    } catch (error) {
+    } catch {
       setStatus('error');
       setMessage('Something went wrong. Please try again.');
     }
@@ -57,6 +60,17 @@ export function NewsletterSignup({ className, dict }: NewsletterSignupProps) {
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-3">
+        {/* Honeypot field — hidden from real users, bots will fill it */}
+        <input
+          type="text"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          className="absolute opacity-0 h-0 w-0 overflow-hidden"
+          aria-hidden="true"
+        />
         <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="email"
@@ -66,8 +80,8 @@ export function NewsletterSignup({ className, dict }: NewsletterSignupProps) {
             className="flex-1 px-4 py-2 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent"
             disabled={status === 'loading' || status === 'success'}
           />
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={status === 'loading' || status === 'success'}
             className="shrink-0"
           >

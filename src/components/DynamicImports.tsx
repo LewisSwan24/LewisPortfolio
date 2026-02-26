@@ -44,6 +44,27 @@ export const DynamicSkillsVisualization = dynamic(
   }
 );
 
+export const DynamicCountUp = dynamic(
+  () => import('./effects/CountUp').then((mod) => mod.CountUp),
+  {
+    ssr: false,
+  }
+);
+
+export const DynamicContactForm = dynamic(
+  () => import('./ContactForm').then((mod) => mod.ContactForm),
+  {
+    loading: () => <Skeleton className="h-64 w-full" />,
+  }
+);
+
+export const DynamicResumeTimeline = dynamic(
+  () => import('./ResumeTimeline').then((mod) => mod.ResumeTimeline),
+  {
+    loading: () => <Skeleton className="h-96 w-full" />,
+  }
+);
+
 interface DynamicWrapperProps {
   children: React.ReactNode;
   fallback?: React.ReactNode;

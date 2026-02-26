@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="50%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+    <linearGradient id="circle1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="circle2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="circle3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Connection circles -->
+  <circle cx="800" cy="250" r="120" stroke="url(#circle1)" stroke-width="3" fill="none" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="920" cy="370" r="100" stroke="url(#circle2)" stroke-width="3" fill="none" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="750" cy="400" r="90" stroke="url(#circle3)" stroke-width="3" fill="none" opacity="0.5" filter="url(#glow)"/>
+  <!-- Connection lines between circles -->
+  <line x1="800" y1="370" x2="920" y2="370" stroke="#fff" stroke-width="1" opacity="0.15"/>
+  <line x1="800" y1="250" x2="750" y2="400" stroke="#fff" stroke-width="1" opacity="0.12"/>
+  <line x1="920" y1="370" x2="750" y2="400" stroke="#fff" stroke-width="1" opacity="0.1"/>
+  <!-- People dots at intersections -->
+  <circle cx="800" cy="250" r="12" fill="#f97316" opacity="0.7"/>
+  <circle cx="920" cy="370" r="10" fill="#8b5cf6" opacity="0.7"/>
+  <circle cx="750" cy="400" r="10" fill="#10b981" opacity="0.7"/>
+  <circle cx="860" cy="300" r="8" fill="#06b6d4" opacity="0.6"/>
+  <circle cx="830" cy="400" r="7" fill="#fbbf24" opacity="0.5"/>
+  <!-- Smaller floating circles -->
+  <circle cx="650" cy="180" r="40" stroke="#f97316" stroke-width="1" fill="none" opacity="0.2"/>
+  <circle cx="1050" cy="200" r="50" stroke="#8b5cf6" stroke-width="1" fill="none" opacity="0.15"/>
+  <circle cx="1000" cy="500" r="35" stroke="#10b981" stroke-width="1" fill="none" opacity="0.2"/>
+  <circle cx="600" cy="450" r="30" stroke="#06b6d4" stroke-width="1" fill="none" opacity="0.15"/>
+  <!-- Floating particles -->
+  <circle cx="500" cy="120" r="3" fill="#f97316" opacity="0.5"/>
+  <circle cx="1100" cy="300" r="4" fill="#8b5cf6" opacity="0.4"/>
+  <circle cx="550" cy="530" r="3" fill="#10b981" opacity="0.4"/>
+  <!-- Title -->
+  <text x="100" y="260" font-family="Inter, system-ui, sans-serif" font-size="52" font-weight="700" fill="#ffffff" letter-spacing="-1">Connect</text>
+  <text x="100" y="320" font-family="Inter, system-ui, sans-serif" font-size="52" font-weight="700" fill="#ffffff" letter-spacing="-1">Circles</text>
+  <text x="100" y="365" font-family="Inter, system-ui, sans-serif" font-size="20" fill="#fb923c" opacity="0.9">Social Wellbeing for International Students</text>
+  <text x="100" y="395" font-family="Inter, system-ui, sans-serif" font-size="16" fill="#ffffff" opacity="0.5">Product Design · Social Design · User Research</text>
+  <rect x="100" y="420" width="160" height="3" rx="1.5" fill="url(#warm)" opacity="0.8"/>
+</svg>

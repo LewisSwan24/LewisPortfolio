@@ -48,6 +48,7 @@ export { Typewriter } from "./effects/Typewriter";
 export { PageTransition, FadeIn, SlideUp, StaggerChildren } from "./effects/PageTransition";
 export { PageTransitionWrapper } from "./effects/PageTransitionWrapper";
 export { HeroTypewriter } from "./effects/HeroTypewriter";
+export { CountUp } from "./effects/CountUp";
 
 // Motion Components
 export * from "./motion";

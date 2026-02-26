@@ -3,10 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/cn";
 import { siteConfig } from "@/lib/site";
-import type { Dictionary, Language } from "@/lib/i18n";
 import { Container } from "@/components/ui/Container";
 import { SearchModal } from "@/components/navigation/SearchModal";
 
@@ -32,11 +32,6 @@ const LanguageToggle = dynamic(() => import("@/components/providers/LanguageTogg
   ),
 });
 
-interface NavbarProps {
-  lang: Language;
-  dict: Dictionary;
-}
-
 interface SearchItem {
   type: "project" | "blog";
   slug: string;
@@ -45,11 +40,12 @@ interface SearchItem {
   tags: string[];
 }
 
-interface NavbarPropsWithSearch extends NavbarProps {
+interface NavbarProps {
   searchItems?: SearchItem[];
 }
 
-export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) {
+export function Navbar({ searchItems = [] }: NavbarProps) {
+  const t = useTranslations();
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
@@ -81,12 +77,12 @@ export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) 
   }, [isMoreOpen]);
 
   const navLabels: Record<string, string> = {
-    "/": dict.nav.home,
-    "/projects": dict.nav.projects,
-    "/about": dict.nav.about,
-    "/contact": dict.nav.contact,
-    "/resume": dict.nav.resume,
-    "/blog": dict.nav.blog || "Blog",
+    "/": t("nav.home"),
+    "/projects": t("nav.projects"),
+    "/about": t("nav.about"),
+    "/contact": t("nav.contact"),
+    "/resume": t("nav.resume"),
+    "/blog": t("nav.blog"),
   };
 
   return (
@@ -137,7 +133,7 @@ export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) 
                   </span>
                 </Link>
               ))}
-              
+
               {/* More dropdown for remaining links */}
               {siteConfig.navLinks.length > 4 && (
                 <div className="relative" ref={moreDropdownRef}>
@@ -148,7 +144,7 @@ export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) 
                     className="relative rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
                   >
                     <span className="flex items-center">
-                      {dict.nav.more ?? "More"}
+                      {t("nav.more")}
                       <svg className={cn("ml-1 h-4 w-4 transition-transform", isMoreOpen && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
@@ -195,13 +191,13 @@ export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) 
 
               {/* Theme and Language */}
               <div className="hidden sm:flex items-center gap-1 rounded-lg border border-border/60 bg-background/40 backdrop-blur-md shadow-sm shadow-black/5">
-                <LanguageToggle lang={lang} dict={dict} />
+                <LanguageToggle />
                 <div className="h-5 w-px bg-border/60" />
                 <ThemeToggle />
               </div>
-              
+
               {/* Mobile menu */}
-              <MobileMenu dict={dict} navLabels={navLabels} lang={lang} />
+              <MobileMenu navLabels={navLabels} />
             </div>
           </div>
         </Container>
@@ -211,8 +207,8 @@ export function Navbar({ lang, dict, searchItems = [] }: NavbarPropsWithSearch) 
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
         items={searchItems}
-        placeholder={dict.search?.placeholder || "Search projects and blog posts..."}
-        noResultsText={dict.search?.noResults || "No results found"}
+        placeholder={t("search.placeholder")}
+        noResultsText={t("search.noResults")}
       />
     </header>
   );

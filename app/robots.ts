@@ -11,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "Googlebot",
-        allow: "/",
+        allow: ["/", "/zh/"],
         disallow: ["/api/"],
       },
       {

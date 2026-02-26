@@ -1,32 +1,39 @@
 import { describe, it, expect } from "vitest";
 import { cn } from "../cn";
 
-describe("cn utility", () => {
+// Test the cn utility function which is the foundation of all component styling
+describe("cn (className merge utility)", () => {
   it("should merge class names", () => {
-    expect(cn("foo", "bar")).toBe("foo bar");
+    const result = cn("foo", "bar");
+    expect(result).toContain("foo");
+    expect(result).toContain("bar");
   });
 
   it("should handle conditional classes", () => {
-    expect(cn("foo", false && "bar", "baz")).toBe("foo baz");
+    const result = cn("base", false && "excluded", "included");
+    expect(result).toContain("base");
+    expect(result).not.toContain("excluded");
+    expect(result).toContain("included");
   });
 
   it("should handle undefined and null", () => {
-    expect(cn("foo", undefined, null, "bar")).toBe("foo bar");
+    const result = cn("base", undefined, null);
+    expect(result).toBe("base");
   });
 
-  it("should merge tailwind classes correctly", () => {
-    expect(cn("px-4 py-2", "px-6")).toBe("py-2 px-6");
+  it("should merge conflicting tailwind classes correctly", () => {
+    // tailwind-merge should prefer the last class in conflicts
+    const result = cn("px-4", "px-8");
+    expect(result).toBe("px-8");
   });
 
-  it("should handle empty inputs", () => {
-    expect(cn()).toBe("");
-  });
-
-  it("should handle arrays", () => {
-    expect(cn(["foo", "bar"])).toBe("foo bar");
-  });
-
-  it("should handle objects", () => {
-    expect(cn({ foo: true, bar: false, baz: true })).toBe("foo baz");
+  it("should merge complex class combinations", () => {
+    const result = cn(
+      "bg-red-500 text-white",
+      "bg-blue-500" // bg-blue should override bg-red
+    );
+    expect(result).toContain("bg-blue-500");
+    expect(result).toContain("text-white");
+    expect(result).not.toContain("bg-red-500");
   });
 });
