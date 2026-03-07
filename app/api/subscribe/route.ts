@@ -1,26 +1,6 @@
 import { NextResponse } from "next/server";
-
-// Rate limiting: simple in-memory store (resets on cold start)
-const submissions = new Map<string, { count: number; lastReset: number }>();
-const RATE_LIMIT = 3; // max subscriptions per IP per window
-const RATE_WINDOW = 60 * 60 * 1000; // 1 hour
-
-function isRateLimited(ip: string): boolean {
-    const now = Date.now();
-    const record = submissions.get(ip);
-
-    if (!record || now - record.lastReset > RATE_WINDOW) {
-        submissions.set(ip, { count: 1, lastReset: now });
-        return false;
-    }
-
-    if (record.count >= RATE_LIMIT) {
-        return true;
-    }
-
-    record.count++;
-    return false;
-}
+import { isRateLimited, getClientIp } from "@/lib/rate-limit";
+import { isValidEmail } from "@/lib/validators";
 
 export async function POST(request: Request) {
     try {
@@ -34,12 +14,9 @@ export async function POST(request: Request) {
         }
 
         // Rate limiting
-        const ip =
-            request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-            request.headers.get("x-real-ip") ||
-            "unknown";
+        const ip = getClientIp(request);
 
-        if (isRateLimited(ip)) {
+        if (isRateLimited(ip, { name: "subscribe", maxRequests: 3, windowMs: 60 * 60 * 1000 })) {
             return NextResponse.json(
                 { error: "Too many requests. Please try again later." },
                 { status: 429 }
@@ -54,8 +31,7 @@ export async function POST(request: Request) {
             );
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
+        if (!isValidEmail(email)) {
             return NextResponse.json(
                 { error: "Invalid email format." },
                 { status: 400 }
@@ -67,7 +43,7 @@ export async function POST(request: Request) {
         // - Buttondown API: https://api.buttondown.email/v1/subscribers
         // - ConvertKit API: https://api.convertkit.com/v3/forms/{form_id}/subscribe
         // - Mailchimp API: https://usX.api.mailchimp.com/3.0/lists/{list_id}/members
-        console.log(`[Newsletter] New subscriber: ${email} from IP: ${ip}`);
+        console.log(`[Newsletter] New subscriber registered at ${new Date().toISOString()}`);
 
         // Example Buttondown integration (uncomment when API key is set):
         // const buttondownKey = process.env.BUTTONDOWN_API_KEY;
@@ -93,7 +69,8 @@ export async function POST(request: Request) {
             success: true,
             message: "Thanks for subscribing!",
         });
-    } catch {
+    } catch (error) {
+        console.error("[Newsletter] Subscription error:", error instanceof Error ? error.message : "Unknown error");
         return NextResponse.json(
             { error: "Something went wrong. Please try again." },
             { status: 500 }

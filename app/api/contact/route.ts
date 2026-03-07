@@ -1,43 +1,13 @@
 import { NextResponse } from "next/server";
-
-// Rate limiting: simple in-memory store (use Redis/KV in production)
-const rateLimit = new Map<string, { count: number; lastReset: number }>();
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-const MAX_REQUESTS = 3; // max 3 submissions per minute
-
-function isRateLimited(ip: string): boolean {
-    const now = Date.now();
-    const entry = rateLimit.get(ip);
-
-    if (!entry || now - entry.lastReset > RATE_LIMIT_WINDOW) {
-        rateLimit.set(ip, { count: 1, lastReset: now });
-        return false;
-    }
-
-    if (entry.count >= MAX_REQUESTS) {
-        return true;
-    }
-
-    entry.count++;
-    return false;
-}
-
-// Validation helpers
-function isValidEmail(email: string): boolean {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function sanitize(str: string): string {
-    return str.replace(/[<>]/g, "").trim();
-}
+import { isRateLimited, getClientIp } from "@/lib/rate-limit";
+import { isValidEmail, sanitize } from "@/lib/validators";
 
 export async function POST(request: Request) {
     try {
         // Rate limiting
-        const forwarded = request.headers.get("x-forwarded-for");
-        const ip = forwarded?.split(",")[0]?.trim() || "anonymous";
+        const ip = getClientIp(request);
 
-        if (isRateLimited(ip)) {
+        if (isRateLimited(ip, { name: "contact", maxRequests: 3, windowMs: 60 * 1000 })) {
             return NextResponse.json(
                 { error: "Too many requests. Please try again later." },
                 { status: 429 }
@@ -86,7 +56,7 @@ export async function POST(request: Request) {
         };
 
         // Try external form endpoint first (Formspree, etc.)
-        const formEndpoint = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT;
+        const formEndpoint = process.env.CONTACT_FORM_ENDPOINT;
 
         if (formEndpoint && !formEndpoint.includes("your-form-id")) {
             const response = await fetch(formEndpoint, {
@@ -112,9 +82,9 @@ export async function POST(request: Request) {
         // Fallback: Log the message (in production, integrate with email service)
         console.log("=== Contact Form Submission ===");
         console.log("Name:", sanitizedData.name);
-        console.log("Email:", sanitizedData.email);
+        console.log("Email: [REDACTED]");
         console.log("Subject:", sanitizedData.subject);
-        console.log("Message:", sanitizedData.message);
+        console.log("Message: [REDACTED]");
         console.log("Timestamp:", new Date().toISOString());
         console.log("==============================");
 
