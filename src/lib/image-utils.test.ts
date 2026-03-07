@@ -23,15 +23,17 @@ describe('image-utils', () => {
       expect(props.alt).toBe('Alt text')
       expect(props.quality).toBe(90)
       expect(props.placeholder).toBe('blur')
-      expect((props as any).width).toBe(1200)
-      expect((props as any).height).toBe(630)
+      // Type guard: default returns SizedImageProps (no fill option)
+      expect('width' in props && props.width).toBe(1200)
+      expect('height' in props && props.height).toBe(630)
     })
 
     it('should return fill props when fill option is true', () => {
       const props = getImageProps('/image.jpg', 'Alt text', { fill: true })
-      expect((props as any).fill).toBe(true)
-      expect((props as any).width).toBeUndefined()
-      expect((props as any).height).toBeUndefined()
+      // Type guard: fill option returns FillImageProps
+      expect('fill' in props && props.fill).toBe(true)
+      expect('width' in props).toBe(false)
+      expect('height' in props).toBe(false)
       expect(props.sizes).toBe('(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw')
     })
 

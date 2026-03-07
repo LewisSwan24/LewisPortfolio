@@ -27,18 +27,19 @@ test.describe("Portfolio Homepage", () => {
     });
 
     test("should toggle theme", async ({ page }) => {
-        // Find theme toggle button
         const themeToggle = page.locator('button[aria-label*="theme"], button[aria-label*="Theme"]');
-
-        // Get initial theme
         const html = page.locator("html");
 
-        // Click toggle
-        if (await themeToggle.count() > 0) {
-            await themeToggle.first().click();
-            // Theme should change (check class changes)
-            await page.waitForTimeout(500);
-        }
+        // Get initial theme class
+        const initialClass = await html.getAttribute("class") || "";
+
+        await expect(themeToggle.first()).toBeVisible();
+        await themeToggle.first().click();
+        await page.waitForSelector('html:not([class="' + initialClass + '"])', { timeout: 2000 }).catch(() => { });
+
+        // Theme class should have changed
+        const newClass = await html.getAttribute("class") || "";
+        expect(newClass).not.toBe(initialClass);
     });
 
     test("should have skip link for accessibility", async ({ page }) => {
@@ -73,10 +74,9 @@ test.describe("Projects Page", () => {
         // Navigate to a project
         await page.locator('a[href^="/projects/"]').first().click();
 
-        // TOC should exist on desktop
+        // TOC should exist in the DOM (may be hidden on mobile viewports)
         const toc = page.locator('[class*="toc"], nav[aria-label*="table"]');
-        // TOC might be hidden on mobile, so just check it exists in DOM
-        await expect(toc.first()).toBeDefined();
+        await expect(toc.first()).toBeAttached();
     });
 });
 
@@ -187,14 +187,11 @@ test.describe("Search Modal", () => {
     test("should open search with keyboard shortcut", async ({ page }) => {
         await page.goto("/");
 
-        // Try Ctrl+K
+        // Try Ctrl+K to open search
         await page.keyboard.press("Control+k");
-        await page.waitForTimeout(500);
 
         const searchInput = page.locator('input[type="search"], input[placeholder*="Search"], input[role="combobox"]');
-        if (await searchInput.count() > 0) {
-            await expect(searchInput.first()).toBeVisible();
-        }
+        await expect(searchInput.first()).toBeVisible({ timeout: 2000 });
     });
 });
 

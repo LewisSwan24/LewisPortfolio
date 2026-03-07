@@ -122,9 +122,19 @@ export function generateArticleSchema(article: {
 }
 
 /**
+ * JSON-LD structured data types
+ */
+type JsonLdSchema =
+    | ReturnType<typeof generatePersonSchema>
+    | ReturnType<typeof generateWebSiteSchema>
+    | ReturnType<typeof generateProjectSchema>
+    | ReturnType<typeof generateBreadcrumbSchema>
+    | ReturnType<typeof generateArticleSchema>;
+
+/**
  * Helper to inject structured data into page
  */
-export function StructuredData({ data }: { data: Record<string, any> }) {
+export function StructuredData({ data }: { data: JsonLdSchema }) {
     return (
         <script
             type="application/ld+json"

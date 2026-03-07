@@ -45,5 +45,17 @@ _bmad/
 _bmad-output/
 docs/
 
-# Agent workflows
+# Trellis AI Workflow
+.trellis/
+
+# Agent workflows & Superpowers
 .agent/
+
+# ChatDev (external tool reference)
+ChatDev/
+
+# Gemini CLI (Trellis commands etc.)
+.gemini/
+
+# ChatDev logs
+chatdev-logs/
