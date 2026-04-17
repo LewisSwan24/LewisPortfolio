@@ -59,3 +59,7 @@ ChatDev/
 
 # ChatDev logs
 chatdev-logs/
+
+# Gemini/Agent generated files
+AGENTS.md
+global_workflow.md.resolved

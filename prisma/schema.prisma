@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id               String           @id @default(cuid())
+  email            String           @unique
+  name             String?
+  avatar           String?
+  role             Role             @default(USER)
+  createdAt        DateTime         @default(now())
+  posts            BlogPost[]
+  comments         Comment[]
+  reactions        Reaction[]
+  guestbookEntries GuestbookEntry[]
+}
+
+model BlogPost {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  content     String     @db.Text
+  excerpt     String?
+  coverImage  String?
+  published   Boolean    @default(false)
+  tags        String[]
+  views       Int        @default(0)
+  likes       Int        @default(0)
+  readingTime Int        @default(0)
+  authorId    String
+  author      User       @relation(fields: [authorId], references: [id])
+  comments    Comment[]
+  reactions   Reaction[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  content     String   @db.Text
+  techStack   String[]
+  demoUrl     String?
+  githubUrl   String?
+  coverImage  String?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  content   String
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id])
+  postId    String
+  post      BlogPost  @relation(fields: [postId], references: [id])
+  parentId  String?
+  parent    Comment?  @relation("ReplyTo", fields: [parentId], references: [id])
+  replies   Comment[] @relation("ReplyTo")
+  createdAt DateTime  @default(now())
+}
+
+model Reaction {
+  id        String   @id @default(cuid())
+  emoji     String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  postId    String
+  post      BlogPost @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId, emoji])
+}
+
+model GuestbookEntry {
+  id        String   @id @default(cuid())
+  message   String
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Newsletter {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
