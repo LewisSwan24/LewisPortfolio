@@ -43,7 +43,11 @@ coverage
 # BMAD Method
 _bmad/
 _bmad-output/
-docs/
+
+# Ignore archived junk (workflow dashboards, old setup notes) but keep spec docs
+docs/archive/
+!docs/superpowers/
+!docs/superpowers/**
 
 # Trellis AI Workflow
 .trellis/
@@ -63,3 +67,6 @@ chatdev-logs/
 # Gemini/Agent generated files
 AGENTS.md
 global_workflow.md.resolved
+
+# Brainstorm sessions
+.superpowers/
