@@ -9,21 +9,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+        parchment: "var(--bg-parchment)",
+        ivory: "var(--bg-ivory)",
+        sand: "var(--bg-sand)",
+        primary: "var(--text-primary)",
+        secondary: "var(--text-secondary)",
+        tertiary: "var(--text-tertiary)",
+        "border-cream": "var(--border-cream)",
+        "border-warm": "var(--border-warm)",
+        moss: {
+          DEFAULT: "var(--accent-moss)",
+          hover: "var(--accent-moss-hover)",
         },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        border: "hsl(var(--border))",
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
+        success: "var(--success)",
+        error: "var(--error)",
+        focus: "var(--focus)",
+        // Backwards-compat aliases for pre-redesign components swept in later sprints
+        background: "var(--bg-parchment)",
+        foreground: "var(--text-primary)",
+        muted: { DEFAULT: "var(--bg-sand)", foreground: "var(--text-secondary)" },
+        card: { DEFAULT: "var(--bg-ivory)", foreground: "var(--text-primary)" },
+        border: "var(--border-cream)",
+        accent: { DEFAULT: "var(--accent-moss)", foreground: "var(--bg-ivory)" },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
