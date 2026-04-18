@@ -4,15 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-
-const ThemeToggle = dynamic(
-  () => import("@/components/providers/ThemeToggle").then((m) => ({ default: m.ThemeToggle })),
-  {
-    ssr: false,
-    loading: () => <div className="tool" aria-hidden="true" style={{ width: 36, height: 32 }} />,
-  },
-);
+import { ThemeToggle } from "@/components/providers/ThemeToggle";
 
 const NAV_ITEMS: Array<{ key: "work" | "about" | "resume" | "writing" | "contact"; href: string }> = [
   { key: "work", href: "/projects" },

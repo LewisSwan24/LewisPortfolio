@@ -11,7 +11,6 @@ import { BackToTop } from "@/components/navigation/BackToTop";
 import { ErrorBoundary } from "@/components/providers/ErrorBoundary";
 import { PageTransition } from "@/components/effects/PageTransition";
 import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
-import { AutoThemeSwitch } from "@/components/providers/AutoThemeSwitch";
 import { KeyboardShortcutsModal } from "@/components/providers/KeyboardShortcutsModal";
 import { Analytics } from "@vercel/analytics/react";
 import {
@@ -47,7 +46,7 @@ export default async function LocaleLayout({
     return (
         <NextIntlClientProvider messages={messages}>
             <ThemeProvider
-                attribute="class"
+                attribute={["class", "data-theme"]}
                 defaultTheme="light"
                 enableSystem={false}
                 disableTransitionOnChange
@@ -65,7 +64,6 @@ export default async function LocaleLayout({
                     <Footer />
                 </div>
                 <BackToTop />
-                <AutoThemeSwitch />
                 <KeyboardShortcutsModal />
                 <PerformanceMonitor />
                 <Analytics />
