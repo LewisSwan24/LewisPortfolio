@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lewis Dong — Interaction Designer · Portfolio</title>
+<meta name="description" content="Lewis Dong — Interaction Designer. Master's at UQ, graduating 2026. A portfolio of research-led, end-to-end design work."/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="assets/tokens.css"/>
+<link rel="stylesheet" href="assets/app.css"/>
+<link rel="stylesheet" href="assets/page.css"/>
+
+<script>
+  // Tweakable defaults (EDITMODE-compatible block)
+  window.__TWEAKS = /*EDITMODE-BEGIN*/{
+    "tone": "warm",
+    "heroVariant": "deck",
+    "theme": "light",
+    "lang": "auto"
+  }/*EDITMODE-END*/;
+
+  // Language detection: navigator.language, with manual override via localStorage
+  (function() {
+    const stored = localStorage.getItem("lewis.lang");
+    const pref = window.__TWEAKS.lang;
+    let lang;
+    if (stored) lang = stored;
+    else if (pref && pref !== "auto") lang = pref;
+    else lang = (navigator.language || "en").toLowerCase().startsWith("zh") ? "zh" : "en";
+    document.documentElement.lang = lang;
+    window.__INITIAL_LANG = lang;
+  })();
+
+  // Theme
+  (function() {
+    const stored = localStorage.getItem("lewis.theme");
+    const theme = stored || window.__TWEAKS.theme || "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    window.__INITIAL_THEME = theme;
+  })();
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="assets/strings.js"></script>
+<script type="text/babel" src="assets/hero.jsx"></script>
+<script type="text/babel" src="assets/viz.jsx"></script>
+<script type="text/babel" src="assets/pages.jsx"></script>
+
+<script type="text/babel">
+// ============================================================
+// Shell: nav, footer, router, lang + theme + tweaks state
+// ============================================================
+const { useState, useEffect, useCallback } = React;
+
+function useHashRoute() {
+  const [hash, setHash] = useState(window.location.hash || "#/");
+  useEffect(() => {
+    const on = () => {
+      setHash(window.location.hash || "#/");
+      window.scrollTo({ top: 0, behavior: "instant" });
+    };
+    window.addEventListener("hashchange", on);
+    return () => window.removeEventListener("hashchange", on);
+  }, []);
+  return hash;
+}
+
+function App() {
+  const [lang, setLang] = useState(window.__INITIAL_LANG || "en");
+  const [theme, setTheme] = useState(window.__INITIAL_THEME || "light");
+  const [heroVariant, setHeroVariant] = useState(window.__TWEAKS.heroVariant || "deck");
+  const [tone, setTone] = useState(window.__TWEAKS.tone || "warm");
+  const [tweaksOn, setTweaksOn] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const hash = useHashRoute();
+
+  const t = useCallback((k) => {
+    const s = window.STRINGS[lang] && window.STRINGS[lang][k];
+    return s !== undefined ? s : (window.STRINGS.en[k] || k);
+  }, [lang]);
+
+  // Persist language
+  useEffect(() => {
+    localStorage.setItem("lewis.lang", lang);
+    document.documentElement.lang = lang;
+    document.title = lang === "zh" ? "董宇哲 Lewis —— 交互设计师 · 作品集" : "Lewis Dong — Interaction Designer · Portfolio";
+  }, [lang]);
+
+  // Theme
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("lewis.theme", theme);
+  }, [theme]);
+
+  // Tone class (on <html>)
+  useEffect(() => {
+    document.documentElement.setAttribute("data-tone", tone);
+  }, [tone]);
+
+  // Scroll state
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
+
+  // Tweaks protocol
+  useEffect(() => {
+    const listener = (e) => {
+      if (!e.data || typeof e.data !== "object") return;
+      if (e.data.type === "__activate_edit_mode") setTweaksOn(true);
+      if (e.data.type === "__deactivate_edit_mode") setTweaksOn(false);
+    };
+    window.addEventListener("message", listener);
+    window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+    return () => window.removeEventListener("message", listener);
+  }, []);
+
+  const setTweak = (key, val) => {
+    if (key === "tone") setTone(val);
+    if (key === "heroVariant") setHeroVariant(val);
+    if (key === "theme") setTheme(val);
+    window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { [key]: val } }, "*");
+  };
+
+  // Route
+  let page;
+  if (hash === "#/" || hash === "") {
+    page = <PAGES.PageHome t={t} lang={lang} heroVariant={heroVariant}/>;
+  } else if (hash === "#/work") {
+    page = <PAGES.PageWork t={t} lang={lang}/>;
+  } else if (hash.startsWith("#/case/")) {
+    const slug = hash.replace("#/case/", "");
+    page = <PAGES.PageCase t={t} lang={lang} slug={slug}/>;
+  } else if (hash === "#/about") {
+    page = <PAGES.PageAbout t={t} lang={lang}/>;
+  } else if (hash === "#/resume") {
+    page = <PAGES.PageResume t={t} lang={lang}/>;
+  } else if (hash === "#/contact") {
+    page = <PAGES.PageContact t={t} lang={lang}/>;
+  } else {
+    page = <PAGES.PageHome t={t} lang={lang} heroVariant={heroVariant}/>;
+  }
+
+  const current = hash === "#/" || hash === "" ? "home"
+    : hash === "#/work" || hash.startsWith("#/case/") ? "work"
+    : hash.replace("#/", "");
+
+  return (
+    <>
+      <Nav t={t} lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} current={current} scrolled={scrolled}/>
+      {page}
+      <Footer t={t} lang={lang}/>
+      {tweaksOn && (
+        <Tweaks
+          t={t}
+          tone={tone} heroVariant={heroVariant} theme={theme}
+          setTweak={setTweak}
+        />
+      )}
+    </>
+  );
+}
+
+function Nav({ t, lang, setLang, theme, setTheme, current, scrolled }) {
+  return (
+    <nav className="nav" data-scrolled={scrolled}>
+      <div className="container nav-inner">
+        <a href="#/" className="nav-brand">
+          <span className="dot"></span>
+          <span>{t("brand.name")}</span>
+          <em>{t("brand.tagline")}</em>
+        </a>
+        <div className="nav-links">
+          <a href="#/work" aria-current={current === "work" ? "page" : undefined}>{t("nav.work")}</a>
+          <a href="#/about" aria-current={current === "about" ? "page" : undefined}>{t("nav.about")}</a>
+          <a href="#/resume" aria-current={current === "resume" ? "page" : undefined}>{t("nav.resume")}</a>
+          <a href="#/contact" aria-current={current === "contact" ? "page" : undefined}>{t("nav.contact")}</a>
+        </div>
+        <div className="nav-tools">
+          <button className="lang-switch" onClick={() => setLang(lang === "en" ? "zh" : "en")}
+            aria-label="Toggle language">
+            <span className={lang === "en" ? "active" : ""}>EN</span>
+            <span> / </span>
+            <span className={lang === "zh" ? "active" : ""}>中</span>
+          </button>
+          <button className="theme-switch" onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            aria-label="Toggle theme">
+            {theme === "light" ? "◐" : "◑"}
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function Footer({ t, lang }) {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-grid">
+          <div className="footer-signature">
+            {t("foot.signature")} <em>{t("foot.signature.em")}</em>
+          </div>
+          <div>
+            <h4>{t("foot.site")}</h4>
+            <ul>
+              <li><a href="#/">{lang === "en" ? "Home" : "首页"}</a></li>
+              <li><a href="#/work">{t("nav.work")}</a></li>
+              <li><a href="#/about">{t("nav.about")}</a></li>
+              <li><a href="#/resume">{t("nav.resume")}</a></li>
+              <li><a href="#/contact">{t("nav.contact")}</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>{t("foot.elsewhere")}</h4>
+            <ul>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Read.cv</a></li>
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Calendly</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <ul>
+              <li><a href="mailto:hello@lewisdong.com">hello@lewisdong.com</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-meta">
+          <span>© 2026 Lewis Dong. {t("foot.meta.built")}</span>
+          <span>{t("foot.meta.version")}</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function Tweaks({ t, tone, heroVariant, theme, setTweak }) {
+  return (
+    <aside className="tweaks active" role="dialog" aria-label="Tweaks">
+      <h4>{t("tw.title")} <em>{t("tw.title.em")}</em></h4>
+      <div className="tweak-row">
+        <label>{t("tw.hero")}</label>
+        <div className="tweak-seg">
+          {[["deck", "tw.hero.deck"], ["grid", "tw.hero.grid"], ["type", "tw.hero.type"]].map(([v,k]) => (
+            <button key={v} className={heroVariant === v ? "active" : ""} onClick={() => setTweak("heroVariant", v)}>
+              {t(k)}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="tweak-row">
+        <label>{t("tw.tone")}</label>
+        <div className="tweak-seg">
+          {[["warm","tw.tone.warm"], ["sharp","tw.tone.sharp"], ["quiet","tw.tone.quiet"]].map(([v,k]) => (
+            <button key={v} className={tone === v ? "active" : ""} onClick={() => setTweak("tone", v)}>
+              {t(k)}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="tweak-row">
+        <label>{t("tw.theme")}</label>
+        <div className="tweak-seg">
+          {[["light","tw.theme.light"], ["dark","tw.theme.dark"]].map(([v,k]) => (
+            <button key={v} className={theme === v ? "active" : ""} onClick={() => setTweak("theme", v)}>
+              {t(k)}
+            </button>
+          ))}
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+// Boot
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+</script>
+</body>
+</html>
