@@ -17,6 +17,8 @@ const newsreader = Newsreader({
   style: ["normal", "italic"],
   variable: "--font-newsreader",
   display: "swap",
+  adjustFontFallback: false,
+  fallback: ["Georgia", "Cambria", "Times New Roman", "serif"],
 });
 
 const inter = Inter({

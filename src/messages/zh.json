@@ -341,11 +341,13 @@
     "relatedProjectsDescription": "探索更多主题和方法相似的项目"
   },
   "notFound": {
-    "title": "页面未找到",
-    "description": "抱歉，未找到你访问的页面。可能链接有误或页面已移动。",
-    "goHome": "返回首页",
-    "viewProjects": "查看项目",
-    "tryPopular": "或者试试这些热门页面："
+    "kicker": "404",
+    "title": "这页走丢了。",
+    "description": "链接可能拼错了，或者页面已经搬家。总之这儿没什么值得停留 —— 挑一个入口回到正轨。",
+    "hand": "也不怪你。",
+    "goHome": "回到首页",
+    "viewProjects": "看看作品",
+    "tryPopular": "或者跳去"
   },
   "languageToggle": {
     "toEnglish": "EN",

@@ -1,64 +1,73 @@
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { getCurrentDictionary } from "@/lib/i18n-compat";
+import { getTranslations } from "next-intl/server";
 
 export default async function NotFound() {
-  const { dict } = await getCurrentDictionary();
+  const t = await getTranslations();
+
+  const quick = [
+    { href: "/", label: t("nav.home") },
+    { href: "/projects", label: t("nav.projects") },
+    { href: "/blog", label: t("nav.blog") },
+    { href: "/about", label: t("nav.about") },
+    { href: "/contact", label: t("nav.contact") },
+    { href: "/resume", label: t("nav.resume") },
+  ];
 
   return (
-    <section className="min-h-[70vh] flex items-center">
-      <Container>
-        <div className="max-w-2xl mx-auto text-center">
-          {/* Animated 404 */}
-          <div className="relative mb-8">
-            <h1 className="text-[150px] sm:text-[200px] font-bold text-muted/20 select-none leading-none">
-              404
-            </h1>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-6xl animate-bounce">🔍</span>
-            </div>
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-            {dict.notFound.title}
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
-            {dict.notFound.description}
-          </p>
-
-          {/* Main Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button href="/">{dict.notFound.goHome}</Button>
-            <Button href="/projects" variant="secondary">
-              {dict.notFound.viewProjects}
-            </Button>
-          </div>
-
-          {/* Quick Links */}
-          <div className="pt-8 border-t border-border">
-            <p className="text-sm text-muted-foreground mb-4">
-              {dict.notFound.tryPopular}
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { href: "/about", label: dict.nav.about },
-                { href: "/blog", label: dict.nav.blog || "Blog" },
-                { href: "/contact", label: dict.nav.contact },
-                { href: "/resume", label: dict.nav.resume },
-              ].map((link: any) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="px-4 py-2 rounded-full border border-border text-sm text-muted-foreground hover:text-foreground hover:border-accent transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+    <main className="page" data-screen-label="— 404">
+      <section className="container cs-hero">
+        <div className="eyebrow" style={{ marginBottom: 12 }}>
+          {t("notFound.kicker")}
         </div>
-      </Container>
-    </section>
+        <h1>{t("notFound.title")}</h1>
+        <p className="sub">{t("notFound.description")}</p>
+
+        <div
+          className="hand"
+          style={{ fontSize: 28, display: "inline-block", marginBottom: 32 }}
+        >
+          {t("notFound.hand")}
+        </div>
+
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <Link href="/" className="btn btn-primary">
+            {t("notFound.goHome")} <span className="arrow">→</span>
+          </Link>
+          <Link href="/projects" className="btn btn-ghost">
+            {t("notFound.viewProjects")}
+          </Link>
+        </div>
+
+        <div
+          style={{
+            marginTop: 64,
+            paddingTop: 32,
+            borderTop: "1px solid var(--border)",
+          }}
+        >
+          <div className="label" style={{ marginBottom: 20 }}>
+            {t("notFound.tryPopular")}
+          </div>
+          <ul
+            style={{
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              display: "flex",
+              gap: 8,
+              flexWrap: "wrap",
+            }}
+          >
+            {quick.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="tag">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </main>
   );
 }

@@ -3,135 +3,183 @@ import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
 import { siteConfig } from "@/lib/site";
 
 export const runtime = "nodejs";
-
-export const size = {
-  width: 1200,
-  height: 630,
-};
+export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export function generateStaticParams() {
-  const slugs = getProjectSlugs();
-  return slugs.map((slug) => ({ slug }));
+  return getProjectSlugs().map((slug) => ({ slug }));
 }
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+async function loadGoogleFont(family: string, text: string) {
+  const url = `https://fonts.googleapis.com/css2?family=${family}&text=${encodeURIComponent(
+    text
+  )}`;
+  const css = await (
+    await fetch(url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+      },
+    })
+  ).text();
+  const match = css.match(/src: url\((.+?)\) format\('(truetype|opentype|woff)'\)/);
+  if (!match) throw new Error(`Font ${family} TTF not found`);
+  const resp = await fetch(match[1]);
+  return resp.arrayBuffer();
+}
+
+const PAPER_100 = "#F5F2EC";
+const PAPER_300 = "#D9D2C3";
+const PAPER_500 = "#8A8170";
+const PAPER_600 = "#5E5749";
+const PAPER_800 = "#25231D";
+const TERRA = "#C9523A";
+
 export default async function Image({ params }: Props) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
-
   const title = project?.title || "Project";
   const oneLiner = project?.oneLiner || "";
+  const name = siteConfig.name.toUpperCase();
+  const kicker = `CASE STUDY · ${slug.toUpperCase()}`;
+
+  const alphabet =
+    title +
+    oneLiner +
+    name +
+    kicker +
+    " — PORTFOLIO / V4 CASE STUDY " +
+    siteConfig.url.replace(/^https?:\/\//, "") +
+    `/projects/${slug}` +
+    "abcdefghijklmnopqrstuvwxyz0123456789 ·—";
+
+  const [displayItalic, mono] = await Promise.all([
+    loadGoogleFont("Fraunces:ital,wght@1,400", alphabet).catch(() => null),
+    loadGoogleFont("JetBrains+Mono:wght@500", alphabet).catch(() => null),
+  ]);
+
+  const fonts: any[] = [];
+  if (displayItalic)
+    fonts.push({
+      name: "Fraunces",
+      data: displayItalic,
+      style: "italic",
+      weight: 400,
+    });
+  if (mono)
+    fonts.push({
+      name: "JetBrainsMono",
+      data: mono,
+      style: "normal",
+      weight: 500,
+    });
 
   return new ImageResponse(
     (
       <div
         style={{
-          height: "100%",
           width: "100%",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "flex-end",
-          backgroundColor: "#fafafa",
-          fontFamily: "system-ui, sans-serif",
-          padding: "60px 80px",
+          justifyContent: "space-between",
+          padding: "72px 88px",
+          backgroundColor: PAPER_100,
+          fontFamily: "JetBrainsMono",
         }}
       >
-        {/* Top bar */}
         <div
           style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "8px",
-            backgroundColor: "#3b82f6",
-          }}
-        />
-
-        {/* Site name badge */}
-        <div
-          style={{
-            position: "absolute",
-            top: "60px",
-            left: "80px",
             display: "flex",
             alignItems: "center",
-            gap: "12px",
+            gap: 14,
+            fontFamily: "JetBrainsMono",
+            fontSize: 18,
+            letterSpacing: "0.22em",
+            color: PAPER_600,
           }}
         >
           <div
             style={{
-              width: "12px",
-              height: "12px",
-              backgroundColor: "#3b82f6",
-              borderRadius: "50%",
+              width: 10,
+              height: 10,
+              borderRadius: 999,
+              backgroundColor: TERRA,
             }}
           />
-          <div
-            style={{
-              fontSize: 20,
-              color: "#525252",
-              fontWeight: 500,
-            }}
-          >
-            {siteConfig.name}
-          </div>
+          <div>{name}</div>
+          <div style={{ color: PAPER_500 }}>·</div>
+          <div style={{ color: PAPER_500 }}>{kicker}</div>
         </div>
 
-        {/* Content */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            maxWidth: "900px",
-          }}
-        >
-          {/* Project title */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div
             style={{
-              fontSize: 56,
-              fontWeight: 700,
-              color: "#171717",
-              marginBottom: "24px",
-              lineHeight: 1.2,
+              fontFamily: "Fraunces",
+              fontStyle: "italic",
+              fontSize: 104,
+              lineHeight: 1.04,
+              letterSpacing: "-0.03em",
+              color: PAPER_800,
+              display: "flex",
+              maxWidth: 980,
             }}
           >
             {title}
           </div>
+          {oneLiner && (
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 20 }}>
+              <div
+                style={{
+                  width: 56,
+                  height: 2,
+                  marginTop: 18,
+                  backgroundColor: TERRA,
+                  flexShrink: 0,
+                }}
+              />
+              <div
+                style={{
+                  fontFamily: "Fraunces",
+                  fontStyle: "italic",
+                  fontSize: 30,
+                  lineHeight: 1.35,
+                  color: PAPER_600,
+                  maxWidth: 900,
+                  display: "flex",
+                }}
+              >
+                {oneLiner}
+              </div>
+            </div>
+          )}
+        </div>
 
-          {/* One liner */}
-          <div
-            style={{
-              fontSize: 24,
-              color: "#525252",
-              lineHeight: 1.5,
-            }}
-          >
-            {oneLiner}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderTop: `1px solid ${PAPER_300}`,
+            paddingTop: 20,
+            fontFamily: "JetBrainsMono",
+            fontSize: 14,
+            color: PAPER_500,
+            letterSpacing: "0.18em",
+          }}
+        >
+          <div>— PORTFOLIO / V4</div>
+          <div>
+            {siteConfig.url.replace(/^https?:\/\//, "")}/projects/{slug}
           </div>
         </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size, fonts: fonts.length ? fonts : undefined }
   );
 }
 
-export function generateImageMetadata() {
-  const slugs = getProjectSlugs();
-  return slugs.map((slug) => {
-    const project = getProjectBySlug(slug);
-    return {
-      id: slug,
-      alt: project?.title || "Project",
-      size,
-      contentType,
-    };
-  });
-}
