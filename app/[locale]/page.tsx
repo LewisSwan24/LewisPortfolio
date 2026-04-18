@@ -26,15 +26,16 @@ export default async function HomePage() {
     { number: 78, suffix: "%", label: dict.home.stats.findabilityRate },
   ];
 
+  const heroStats = stats.map(s => ({ value: `${s.number}${s.suffix}`, label: s.label }));
+
   return (
     <>
       <HeroSection
-        greeting={dict.home.greeting}
-        openToOpportunities={dict.cta.openToOpportunities}
-        viewProjects={dict.cta.viewProjects}
-        getInTouch={dict.cta.getInTouch || "Get in Touch"}
-        findMeOn={dict.home.findMeOn}
-        scroll={dict.common.scroll}
+        availabilityLabel={dict.cta.openToOpportunities}
+        headlineLead={dict.home.greeting}
+        headlineEmphasis={dict.home.name}
+        subHeadline={dict.home.subHeadline}
+        stats={heroStats}
       />
 
       <AnimatedSection className="py-24">

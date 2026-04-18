@@ -40,6 +40,8 @@
     },
     "home": {
         "greeting": "Hi, I'm ",
+        "name": "Lewis",
+        "subHeadline": "UX Designer & Interaction Design student at the University of Queensland, crafting human-centered digital experiences.",
         "findMeOn": "Find me on",
         "portfolioLabel": "Portfolio",
         "featuredProjects": "Featured Projects",

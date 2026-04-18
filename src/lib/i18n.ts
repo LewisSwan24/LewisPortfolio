@@ -45,6 +45,8 @@ const dictionaries = {
     },
     home: {
       greeting: "Hi, I'm ",
+      name: "Lewis",
+      subHeadline: "UX Designer & Interaction Design student at the University of Queensland, crafting human-centered digital experiences.",
       findMeOn: "Find me on",
       portfolioLabel: "Portfolio",
       featuredProjects: "Featured Projects",
@@ -417,6 +419,8 @@ const dictionaries = {
     },
     home: {
       greeting: "你好，我是",
+      name: "Lewis",
+      subHeadline: "UX 设计师 & 昆士兰大学交互设计在读研究生，致力于打造以人为本的数字体验。",
       findMeOn: "社交平台",
       portfolioLabel: "作品集",
       featuredProjects: "精选项目",
