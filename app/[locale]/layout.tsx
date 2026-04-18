@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { siteConfig } from "@/lib/site";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { Navbar } from "@/components/layout/Navbar";
+import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { BackToTop } from "@/components/navigation/BackToTop";
@@ -78,7 +78,7 @@ export default async function LocaleLayout({
                 <StructuredData data={generateWebSiteSchema()} />
                 <SkipLink />
                 <div className="flex min-h-screen flex-col">
-                    <Navbar searchItems={searchItems} />
+                    <Navigation />
                     <main id="main-content" className="flex-1">
                         <ErrorBoundary>
                             <PageTransition>{children}</PageTransition>
