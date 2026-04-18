@@ -1,8 +1,7 @@
 import StatCard from '@/components/admin/StatCard';
 
-/**
- * Admin dashboard overview page.
- */
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage() {
   // Mock data - in production use Prisma
   const stats = { views: 1240, posts: 15, comments: 42, subscribers: 120 };

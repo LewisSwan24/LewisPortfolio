@@ -1,6 +1,5 @@
-/**
- * Blog Posts management page.
- */
+export const dynamic = 'force-dynamic';
+
 export default function PostsPage() {
   const posts = [
     { id: '1', title: 'Getting started with Next.js 15', status: 'Published', date: '2023-10-01', views: 200 }

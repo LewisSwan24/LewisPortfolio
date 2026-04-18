@@ -1,6 +1,5 @@
-/**
- * Projects management page.
- */
+export const dynamic = 'force-dynamic';
+
 export default function ProjectsPage() {
   return (
     <div style={{ padding: '2rem' }}>
