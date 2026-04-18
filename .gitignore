@@ -74,6 +74,9 @@ global_workflow.md.resolved
 # Brainstorm sessions
 .superpowers/
 
+# Stray portfolio HTML exports dropped in repo root (local only)
+/Lewis Dong Portfolio*.html
+
 # Design & generated docs (local only)
 DESIGN.md
 docs/architecture.md
