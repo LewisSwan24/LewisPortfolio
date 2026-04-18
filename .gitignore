@@ -40,6 +40,9 @@ Thumbs.db
 # Testing
 coverage
 
+# Playwright MCP artifacts (console logs, snapshots, yaml traces)
+.playwright-mcp/
+
 # BMAD Method
 _bmad/
 _bmad-output/
