@@ -22,7 +22,10 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => {
+        try { localStorage.setItem("theme-manual", "1"); } catch {}
+        setTheme(theme === "dark" ? "light" : "dark");
+      }}
       className="flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition-all duration-200 motion-reduce:transition-none hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >

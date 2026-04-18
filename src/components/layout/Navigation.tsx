@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const ThemeToggle = dynamic(
@@ -25,9 +25,7 @@ const NAV_ITEMS: Array<{ key: "work" | "about" | "resume" | "writing" | "contact
 export function Navigation() {
   const t = useTranslations();
   const pathname = usePathname();
-  const router = useRouter();
   const locale = useLocale();
-  const [, startTransition] = useTransition();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -43,11 +41,9 @@ export function Navigation() {
     return pathname || "/";
   })();
 
-  const switchLocale = (next: "en" | "zh") => {
-    if (next === locale) return;
-    const newPath = next === "en" ? stripped || "/" : `/zh${stripped === "/" ? "" : stripped}`;
-    startTransition(() => router.push(newPath));
-  };
+  const tail = stripped === "/" ? "" : stripped;
+  const otherLocale: "en" | "zh" = locale === "en" ? "zh" : "en";
+  const switchHref = otherLocale === "en" ? (tail || "/") : `/zh${tail}`;
 
   const isCurrent = (href: string) => {
     const norm = stripped === "" ? "/" : stripped;
@@ -78,11 +74,11 @@ export function Navigation() {
 
         <div className="pd-nav-tools">
           <div className="pd-lang" role="group" aria-label="Language">
-            <button type="button" onClick={() => switchLocale(locale === "en" ? "zh" : "en")}>
+            <a href={switchHref} data-locale-switch>
               <span className={locale === "en" ? "active" : ""}>{t("nav.lang.en")}</span>
               <span aria-hidden="true"> / </span>
               <span className={locale === "zh" ? "active" : ""}>{t("nav.lang.zh")}</span>
-            </button>
+            </a>
           </div>
           <ThemeToggle />
         </div>
