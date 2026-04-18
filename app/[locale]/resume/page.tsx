@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { ResumeActions } from "./ResumeActions";
 
-export const metadata: Metadata = {
-  title: "Résumé",
-  description: "The one-page version — experience, education, skills.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations();
+  const locale = (await getLocale()) as "en" | "zh";
+  const title = t("resume.kicker");
+  const description =
+    locale === "zh"
+      ? "经历、教育、能力——一页纸的诚实版本。"
+      : "The one-page version — experience, education, skills.";
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/resume", locale),
+    openGraph: buildOpenGraph({ title, description, path: "/resume", locale }),
+    twitter: buildTwitter({ title, description }),
+  };
+}
 
 const SKILLS: Array<{ en: string; zh: string; v: number }> = [
   { en: "User research", zh: "用户研究", v: 92 },

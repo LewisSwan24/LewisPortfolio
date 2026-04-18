@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "The shortest path is the direct one. Email is fastest.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations();
+  const locale = (await getLocale()) as "en" | "zh";
+  const title = t("contact.kicker");
+  const description = t("contact.body");
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/contact", locale),
+    openGraph: buildOpenGraph({ title, description, path: "/contact", locale }),
+    twitter: buildTwitter({ title, description }),
+  };
+}
 
 export default async function ContactPage() {
   const t = await getTranslations();

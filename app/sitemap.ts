@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 import { getProjectSlugs } from "@/lib/projects";
+import { getAllBlogPosts } from "@/lib/blog";
 
 const locales = ["en", "zh"] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
 
   // Helper: generate alternates for a given path
@@ -55,5 +56,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticRoutes, ...projectRoutes];
+  const blogPosts = await getAllBlogPosts();
+  const blogRoutes: MetadataRoute.Sitemap = blogPosts.flatMap((post) =>
+    locales.map((locale) => ({
+      url:
+        locale === "en"
+          ? `${baseUrl}/blog/${post.slug}`
+          : `${baseUrl}/zh/blog/${post.slug}`,
+      lastModified: post.date ? new Date(post.date) : new Date(),
+      changeFrequency: "monthly" as const,
+      priority: locale === "en" ? 0.7 : 0.63,
+      alternates: withAlternates(`/blog/${post.slug}`),
+    }))
+  );
+
+  return [...staticRoutes, ...projectRoutes, ...blogRoutes];
 }

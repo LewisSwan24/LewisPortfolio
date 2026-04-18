@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { getAllBlogPosts, getAllBlogTags } from "@/lib/blog";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { BlogIndex } from "./BlogIndex";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
+  const locale = (await getLocale()) as "en" | "zh";
+  const title = t("blog.title");
+  const description = t("blog.description");
   return {
-    title: t("blog.title"),
-    description: t("blog.description"),
+    title,
+    description,
+    alternates: buildAlternates("/blog", locale),
+    openGraph: buildOpenGraph({ title, description, path: "/blog", locale }),
+    twitter: buildTwitter({ title, description }),
   };
 }
 

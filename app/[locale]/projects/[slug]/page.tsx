@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
 
 type Slug = "connect" | "spectra" | "ai" | "circles";
@@ -19,9 +20,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (!SLUGS.includes(slug as Slug)) return { title: "Project Not Found" };
   const t = await getTranslations();
+  const locale = (await getLocale()) as "en" | "zh";
+  const title = t(`proj.${slug}.title`);
+  const description = t(`proj.${slug}.sub`);
+  const path = `/projects/${slug}`;
   return {
-    title: t(`proj.${slug}.title`),
-    description: t(`proj.${slug}.sub`),
+    title,
+    description,
+    alternates: buildAlternates(path, locale),
+    openGraph: buildOpenGraph({ title, description, path, locale, type: "article" }),
+    twitter: buildTwitter({ title, description }),
   };
 }
 

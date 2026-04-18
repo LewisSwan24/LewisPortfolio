@@ -1,7 +1,29 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import { siteConfig } from "@/lib/site";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = (await getLocale()) as "en" | "zh";
+  const title =
+    locale === "zh"
+      ? "董宇哲 Lewis · 交互设计 / UX 设计师"
+      : `${siteConfig.name} · ${siteConfig.title}`;
+  const description =
+    locale === "zh"
+      ? "昆士兰大学交互设计硕士在读，常驻布里斯班。通过可用性测试、AI 工具、原型设计与可访问性打造以研究驱动的体验。"
+      : siteConfig.description;
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/", locale),
+    openGraph: buildOpenGraph({ title, description, path: "/", locale }),
+    twitter: buildTwitter({ title, description }),
+  };
+}
 
 type ProjKey = "connect" | "spectra" | "ai" | "circles";
 

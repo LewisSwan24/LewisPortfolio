@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: "UX designer and Interaction Design master's candidate at UQ.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations();
+  const locale = (await getLocale()) as "en" | "zh";
+  const title = t("about.kicker");
+  const description = t("about.p1");
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/about", locale),
+    openGraph: buildOpenGraph({ title, description, path: "/about", locale }),
+    twitter: buildTwitter({ title, description }),
+  };
+}
 
 export default async function AboutPage() {
   const t = await getTranslations();

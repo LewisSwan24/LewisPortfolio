@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono, Newsreader, Caveat } from "next/font/google";
+import { getLocale } from "next-intl/server";
 import "@/styles/globals.css";
 import { siteConfig } from "@/lib/site";
 
@@ -55,13 +56,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
   return (
     <html
+      lang={locale}
       className={`${fraunces.variable} ${newsreader.variable} ${inter.variable} ${mono.variable} ${caveat.variable}`}
       data-theme="light"
       suppressHydrationWarning

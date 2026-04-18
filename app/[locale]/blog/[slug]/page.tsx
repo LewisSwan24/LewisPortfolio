@@ -10,6 +10,7 @@ import {
   generateBreadcrumbSchema,
   StructuredData,
 } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -24,9 +25,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return { title: "Post Not Found" };
+  const locale = (await getLocale()) as "en" | "zh";
+  const title = post.metadata.title;
+  const description = post.metadata.excerpt;
+  const path = `/blog/${slug}`;
   return {
-    title: post.metadata.title,
-    description: post.metadata.excerpt,
+    title,
+    description,
+    alternates: buildAlternates(path, locale),
+    openGraph: buildOpenGraph({
+      title,
+      description,
+      path,
+      locale,
+      type: "article",
+      publishedTime: post.metadata.date,
+      tags: post.metadata.tags,
+    }),
+    twitter: buildTwitter({ title, description }),
   };
 }
 
