@@ -8,7 +8,6 @@ export { Prose } from "./ui/Prose";
 export { ViewToggle } from "./ui/ViewToggle";
 
 // Layout Components
-export { Navbar } from "./layout/Navbar";
 export { Footer } from "./layout/Footer";
 export { SkipLink, VisuallyHidden, LiveRegion } from "./layout/SkipLink";
 export { MobileMenu } from "./layout/MobileMenu";
