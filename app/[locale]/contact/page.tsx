@@ -66,7 +66,9 @@ export default async function ContactPage() {
               >
                 <li>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/lewis-dong"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       color: "var(--text)",
                       textDecoration: "none",
@@ -78,7 +80,9 @@ export default async function ContactPage() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://read.cv/lewisdong"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       color: "var(--text)",
                       textDecoration: "none",
@@ -90,7 +94,9 @@ export default async function ContactPage() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://calendly.com/lewisdong"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       color: "var(--text)",
                       textDecoration: "none",
