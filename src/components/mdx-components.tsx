@@ -2,7 +2,7 @@ import { cn } from "@/lib/cn";
 import GithubSlugger from "github-slugger";
 import { isValidElement } from "react";
 import Image from "next/image";
-import { ImageGallery } from "./ImageGallery";
+import { DynamicImageGallery } from "./DynamicImports";
 import { CodeBlock } from "./CodeBlock";
 import { getBlurDataURL } from "@/lib/image-utils";
 
@@ -135,7 +135,6 @@ export function getMdxComponents(): MDXComponents {
         </span>
       );
     },
-    // Add ImageGallery for project showcases
-    ImageGallery,
+    ImageGallery: DynamicImageGallery,
   };
 }
