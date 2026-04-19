@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
+import { Breadcrumb } from "@/components/layout/Breadcrumb";
+import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
 
 type Slug = "connect" | "spectra" | "ai" | "circles";
 const SLUGS: Slug[] = ["connect", "spectra", "ai", "circles"];
@@ -66,9 +68,27 @@ export default async function CasePage({ params }: Props) {
   const prevSlug = SLUGS[(idx - 1 + SLUGS.length) % SLUGS.length];
   const projectLinks = PROJECT_LINKS[k];
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const projectTitle = t(`proj.${k}.title`);
+
   return (
     <main className="page" data-screen-label={`03 Case · ${k}`}>
+      <StructuredData
+        data={generateBreadcrumbSchema([
+          { name: t("nav.home"), url: siteUrl },
+          { name: t("nav.projects"), url: `${siteUrl}/projects` },
+          { name: projectTitle, url: `${siteUrl}/projects/${k}` },
+        ])}
+      />
       <section className="container cs-hero">
+        <Breadcrumb
+          className="cs-breadcrumb"
+          items={[
+            { label: t("nav.home"), href: "/" },
+            { label: t("nav.projects"), href: "/projects" },
+            { label: projectTitle },
+          ]}
+        />
         <Link className="cs-back" href="/projects">
           {t("cs.back")}
         </Link>

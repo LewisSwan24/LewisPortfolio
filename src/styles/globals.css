@@ -1098,6 +1098,15 @@ html { scroll-behavior: smooth; }
    CASE STUDY — sprint 3
    ============================================================ */
 .cs-hero { padding: var(--s-7) 0 var(--s-8); }
+.cs-breadcrumb {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-3);
+  margin-bottom: var(--s-4);
+}
+.cs-breadcrumb a { color: var(--text-3); text-decoration: none; }
+.cs-breadcrumb a:hover { color: var(--accent); }
+.cs-breadcrumb svg { color: var(--text-4, var(--text-3)); }
 .cs-back {
   font-family: var(--font-ui);
   font-size: 14px;

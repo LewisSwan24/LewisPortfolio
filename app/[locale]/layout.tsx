@@ -17,6 +17,7 @@ import {
     StructuredData,
     generatePersonSchema,
     generateWebSiteSchema,
+    generateOrganizationSchema,
 } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -52,6 +53,7 @@ export default async function LocaleLayout({
                 disableTransitionOnChange
             >
                 <StructuredData data={generatePersonSchema()} />
+                <StructuredData data={generateOrganizationSchema()} />
                 <StructuredData data={generateWebSiteSchema()} />
                 <SkipLink />
                 <div className="flex min-h-screen flex-col">

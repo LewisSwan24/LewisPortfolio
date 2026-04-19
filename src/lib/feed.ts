@@ -3,44 +3,49 @@ import { siteConfig } from "./site";
 import { getAllProjects } from "./projects";
 import { getAllBlogPosts } from "./blog";
 
-export async function generateRSSFeed() {
+type FeedLocale = "en" | "zh";
+
+export async function generateRSSFeed(locale: FeedLocale = "en") {
+  const prefix = locale === "zh" ? "/zh" : "";
+  const feedUrl = `${siteConfig.url}${prefix}`;
+
   const feed = new Feed({
     title: `${siteConfig.name} - ${siteConfig.title}`,
     description: siteConfig.description,
-    id: siteConfig.url,
-    link: siteConfig.url,
-    language: "en",
+    id: feedUrl,
+    link: feedUrl,
+    language: locale === "zh" ? "zh-CN" : "en",
     image: `${siteConfig.url}/favicon.svg`,
     favicon: `${siteConfig.url}/favicon.svg`,
     copyright: `All rights reserved ${new Date().getFullYear()}, ${siteConfig.name}`,
     author: {
       name: siteConfig.author.name,
       email: siteConfig.author.email,
-      link: siteConfig.url,
+      link: feedUrl,
     },
   });
 
   const projects = getAllProjects();
   const blogPosts = await getAllBlogPosts();
 
-  // Add projects
   projects.forEach((project) => {
+    const url = `${siteConfig.url}${prefix}/projects/${project.slug}`;
     feed.addItem({
       title: project.title,
-      id: `${siteConfig.url}/projects/${project.slug}`,
-      link: `${siteConfig.url}/projects/${project.slug}`,
+      id: url,
+      link: url,
       description: project.oneLiner,
       date: new Date(project.date),
       category: project.tags.map((tag) => ({ name: tag })),
     });
   });
 
-  // Add blog posts
   blogPosts.forEach((post) => {
+    const url = `${siteConfig.url}${prefix}/blog/${post.slug}`;
     feed.addItem({
       title: post.title,
-      id: `${siteConfig.url}/blog/${post.slug}`,
-      link: `${siteConfig.url}/blog/${post.slug}`,
+      id: url,
+      link: url,
       description: post.excerpt,
       date: new Date(post.date),
       category: post.tags.map((tag) => ({ name: tag })),

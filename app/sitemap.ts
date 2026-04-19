@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 import { getProjectSlugs } from "@/lib/projects";
@@ -5,16 +7,24 @@ import { getAllBlogPosts } from "@/lib/blog";
 
 const locales = ["en", "zh"] as const;
 
+function safeStatMtime(filePath: string): Date | null {
+  try {
+    return fs.statSync(filePath).mtime;
+  } catch {
+    return null;
+  }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
+  const buildTime = new Date();
 
-  // Helper: generate alternates for a given path
-  function withAlternates(path: string) {
+  function withAlternates(relPath: string) {
     return {
       languages: {
-        en: `${baseUrl}${path}`,
-        zh: `${baseUrl}/zh${path}`,
-        "x-default": `${baseUrl}${path}`,
+        en: `${baseUrl}${relPath}`,
+        zh: `${baseUrl}/zh${relPath}`,
+        "x-default": `${baseUrl}${relPath}`,
       },
     };
   }
@@ -29,27 +39,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const staticRoutes: MetadataRoute.Sitemap = staticPaths.flatMap(
-    ({ path, changeFrequency, priority }) =>
+    ({ path: relPath, changeFrequency, priority }) =>
       locales.map((locale) => ({
         url:
           locale === "en"
-            ? `${baseUrl}${path || "/"}`
-            : `${baseUrl}/zh${path || ""}`,
-        lastModified: new Date(),
+            ? `${baseUrl}${relPath || "/"}`
+            : `${baseUrl}/zh${relPath || ""}`,
+        lastModified: buildTime,
         changeFrequency,
         priority: locale === "en" ? priority : priority * 0.9,
-        alternates: withAlternates(path || "/"),
+        alternates: withAlternates(relPath || "/"),
       }))
   );
 
   const projectSlugs = getProjectSlugs();
+  const projectPageMtime =
+    safeStatMtime(path.join(process.cwd(), "app/[locale]/projects/[slug]/page.tsx")) || buildTime;
   const projectRoutes: MetadataRoute.Sitemap = projectSlugs.flatMap((slug) =>
     locales.map((locale) => ({
       url:
         locale === "en"
           ? `${baseUrl}/projects/${slug}`
           : `${baseUrl}/zh/projects/${slug}`,
-      lastModified: new Date(),
+      lastModified: projectPageMtime,
       changeFrequency: "monthly" as const,
       priority: locale === "en" ? 0.8 : 0.72,
       alternates: withAlternates(`/projects/${slug}`),
@@ -57,18 +69,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const blogPosts = await getAllBlogPosts();
-  const blogRoutes: MetadataRoute.Sitemap = blogPosts.flatMap((post) =>
-    locales.map((locale) => ({
+  const blogDir = path.join(process.cwd(), "content/blog");
+  const blogRoutes: MetadataRoute.Sitemap = blogPosts.flatMap((post) => {
+    const mtime = safeStatMtime(path.join(blogDir, `${post.slug}.mdx`));
+    const frontmatterDate = post.date ? new Date(post.date) : null;
+    const lastModified =
+      mtime && frontmatterDate
+        ? mtime > frontmatterDate
+          ? mtime
+          : frontmatterDate
+        : mtime || frontmatterDate || buildTime;
+    return locales.map((locale) => ({
       url:
         locale === "en"
           ? `${baseUrl}/blog/${post.slug}`
           : `${baseUrl}/zh/blog/${post.slug}`,
-      lastModified: post.date ? new Date(post.date) : new Date(),
+      lastModified,
       changeFrequency: "monthly" as const,
       priority: locale === "en" ? 0.7 : 0.63,
       alternates: withAlternates(`/blog/${post.slug}`),
-    }))
-  );
+    }));
+  });
 
-  return [...staticRoutes, ...projectRoutes, ...blogRoutes];
+  const feedRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/feed.xml`,
+      lastModified: buildTime,
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/zh/feed.xml`,
+      lastModified: buildTime,
+      changeFrequency: "weekly" as const,
+      priority: 0.45,
+    },
+  ];
+
+  return [...staticRoutes, ...projectRoutes, ...blogRoutes, ...feedRoutes];
 }

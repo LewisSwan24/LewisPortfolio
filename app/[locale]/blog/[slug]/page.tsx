@@ -15,6 +15,7 @@ import { TOC } from "@/components/TOC";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { AuthorBio } from "@/components/AuthorBio";
+import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { extractTOC } from "@/lib/toc";
 import { siteConfig } from "@/lib/site";
 
@@ -85,6 +86,8 @@ export default async function BlogPostPage({ params }: Props) {
           date: post.metadata.date,
           author: post.metadata.author,
           tags: post.metadata.tags,
+          image: `${siteUrl}/${locale}/blog/${slug}/opengraph-image`,
+          articleBody: post.content,
         })}
       />
       <StructuredData
@@ -96,6 +99,14 @@ export default async function BlogPostPage({ params }: Props) {
       />
       <main className="page" data-screen-label={`06 Post · ${slug}`}>
         <section className="container cs-hero">
+          <Breadcrumb
+            className="cs-breadcrumb"
+            items={[
+              { label: t("blog.breadcrumbHome"), href: "/" },
+              { label: t("blog.breadcrumbBlog"), href: "/blog" },
+              { label: post.metadata.title },
+            ]}
+          />
           <Link className="cs-back" href="/blog">
             ← {t("nav.blog")}
           </Link>
