@@ -33,6 +33,35 @@ export function generatePersonSchema() {
     };
 }
 
+// Extended Person schema for the /resume page — adds occupation, address, email, work samples
+export function generateResumePersonSchema() {
+    const url = siteConfig.url || process.env.NEXT_PUBLIC_SITE_URL;
+    return {
+        ...generatePersonSchema(),
+        email: `mailto:${siteConfig.author.email}`,
+        address: {
+            "@type": "PostalAddress",
+            addressLocality: siteConfig.author.location,
+        },
+        hasOccupation: {
+            "@type": "Occupation",
+            name: "Interaction Designer",
+            occupationLocation: {
+                "@type": "City",
+                name: siteConfig.author.location,
+            },
+            skills:
+                "User research, Information architecture, Interaction design, Prototyping, Usability testing, Accessibility",
+        },
+        workExample: [
+            { "@type": "CreativeWork", name: "UQ Connect", url: `${url}/projects/connect` },
+            { "@type": "CreativeWork", name: "Spectra Lens", url: `${url}/projects/spectra` },
+            { "@type": "CreativeWork", name: "AI Interview Assistant", url: `${url}/projects/ai` },
+            { "@type": "CreativeWork", name: "Connect Circles", url: `${url}/projects/circles` },
+        ],
+    };
+}
+
 // WebSite schema
 export function generateWebSiteSchema() {
     return {
@@ -126,6 +155,7 @@ export function generateArticleSchema(article: {
  */
 type JsonLdSchema =
     | ReturnType<typeof generatePersonSchema>
+    | ReturnType<typeof generateResumePersonSchema>
     | ReturnType<typeof generateWebSiteSchema>
     | ReturnType<typeof generateProjectSchema>
     | ReturnType<typeof generateBreadcrumbSchema>

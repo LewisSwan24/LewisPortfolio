@@ -8,6 +8,19 @@ import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/Proj
 type Slug = "connect" | "spectra" | "ai" | "circles";
 const SLUGS: Slug[] = ["connect", "spectra", "ai", "circles"];
 
+interface ProjectLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
+  connect: [],
+  spectra: [],
+  ai: [],
+  circles: [],
+};
+
 export function generateStaticParams() {
   return SLUGS.map((slug) => ({ slug }));
 }
@@ -48,7 +61,10 @@ export default async function CasePage({ params }: Props) {
   const t = await getTranslations();
   const locale = await getLocale();
   const isZh = locale === "zh";
-  const nextSlug = SLUGS[(SLUGS.indexOf(k) + 1) % SLUGS.length];
+  const idx = SLUGS.indexOf(k);
+  const nextSlug = SLUGS[(idx + 1) % SLUGS.length];
+  const prevSlug = SLUGS[(idx - 1 + SLUGS.length) % SLUGS.length];
+  const projectLinks = PROJECT_LINKS[k];
 
   return (
     <main className="page" data-screen-label={`03 Case · ${k}`}>
@@ -78,6 +94,29 @@ export default async function CasePage({ params }: Props) {
             <dt>{t("cs.tools")}</dt>
             <dd>{t(`cs.${k}.toolsVal`)}</dd>
           </div>
+          {projectLinks.length > 0 && (
+            <div>
+              <dt>{isZh ? "链接" : "Links"}</dt>
+              <dd>
+                <ul className="cs-links">
+                  {projectLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                      >
+                        {link.label}
+                        {link.external && (
+                          <span aria-hidden className="cs-links-arrow">↗</span>
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )}
         </dl>
         <figure className="cs-cover">
           <CoverViz slug={k} />
@@ -201,6 +240,15 @@ export default async function CasePage({ params }: Props) {
               <div className="label">{t(`cs.${k}.ou.label`)}</div>
             </div>
             <div className="cs-row-body">
+              <div className="cs-impact" role="figure" aria-label={t("cs.impactLabel")}>
+                <div className="cs-impact-eyebrow">{t("cs.impactLabel")}</div>
+                <p className="cs-impact-headline">
+                  <span className="cs-impact-num">{t(`cs.${k}.ou.m1.v`)}</span>
+                  <span className="cs-impact-label">
+                    {t(`cs.${k}.ou.m1.label`)}
+                  </span>
+                </p>
+              </div>
               <dl className="cs-metrics">
                 {([1, 2, 3] as const).map((i) => {
                   const v = t(`cs.${k}.ou.m${i}.v`);
@@ -234,23 +282,43 @@ export default async function CasePage({ params }: Props) {
         </div>
 
         <div
-          className="cs-section"
+          className="cs-section cs-related-section"
           style={{ borderTop: "1px solid var(--border)", paddingTop: 48 }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 24,
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="label" style={{ marginBottom: 20 }}>
+            {t("cs.related")}
+          </div>
+          <div className="cs-related">
+            <Link
+              href={`/projects/${prevSlug}`}
+              className="cs-related-card cs-related-prev"
+            >
+              <div className="cs-related-eyebrow">← {t("cs.prev")}</div>
+              <div className="cs-related-viz" aria-hidden>
+                <CoverViz slug={prevSlug} />
+              </div>
+              <div className="cs-related-meta">
+                <h4>{t(`proj.${prevSlug}.title`)}</h4>
+                <p>{t(`proj.${prevSlug}.sub`)}</p>
+              </div>
+            </Link>
+            <Link
+              href={`/projects/${nextSlug}`}
+              className="cs-related-card cs-related-next"
+            >
+              <div className="cs-related-eyebrow">{t("cs.next")} →</div>
+              <div className="cs-related-viz" aria-hidden>
+                <CoverViz slug={nextSlug} />
+              </div>
+              <div className="cs-related-meta">
+                <h4>{t(`proj.${nextSlug}.title`)}</h4>
+                <p>{t(`proj.${nextSlug}.sub`)}</p>
+              </div>
+            </Link>
+          </div>
+          <div className="cs-related-foot">
             <Link href="/projects" className="btn btn-ghost">
               ← {t("nav.work")}
-            </Link>
-            <Link href={`/projects/${nextSlug}`} className="btn btn-primary">
-              {t("cs.next")} · {t(`proj.${nextSlug}.title`)} →
             </Link>
           </div>
         </div>

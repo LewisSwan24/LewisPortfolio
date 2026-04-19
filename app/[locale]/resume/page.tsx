@@ -1,6 +1,8 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import { StructuredData, generateResumePersonSchema } from "@/lib/seo";
 import { ResumeActions } from "./ResumeActions";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,13 +22,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const SKILLS: Array<{ en: string; zh: string; v: number }> = [
-  { en: "User research", zh: "用户研究", v: 92 },
-  { en: "Information architecture", zh: "信息架构", v: 88 },
-  { en: "Interaction design", zh: "交互设计", v: 85 },
-  { en: "Prototyping (Figma, Framer)", zh: "原型（Figma / Framer）", v: 90 },
-  { en: "HTML / CSS / React", zh: "HTML / CSS / React", v: 72 },
-  { en: "Usability testing", zh: "可用性测试", v: 88 },
+const SKILLS: Array<{ en: string; zh: string; v: number; href?: string }> = [
+  { en: "User research", zh: "用户研究", v: 92, href: "/projects/circles" },
+  { en: "Information architecture", zh: "信息架构", v: 88, href: "/projects/connect" },
+  { en: "Interaction design", zh: "交互设计", v: 85, href: "/projects/spectra" },
+  { en: "Prototyping (Figma, Framer)", zh: "原型（Figma / Framer）", v: 90, href: "/projects/ai" },
+  { en: "HTML / CSS / React", zh: "HTML / CSS / React", v: 72, href: "/blog/designing-for-ai" },
+  { en: "Usability testing", zh: "可用性测试", v: 88, href: "/projects/spectra" },
 ];
 
 export default async function ResumePage() {
@@ -36,6 +38,7 @@ export default async function ResumePage() {
 
   return (
     <main className="page" data-screen-label="05 Resume">
+      <StructuredData data={generateResumePersonSchema()} />
       <section className="container res-hero">
         <div>
           <div className="label">{t("resume.kicker")}</div>
@@ -184,17 +187,35 @@ export default async function ResumePage() {
           <aside className="res-side">
             <div className="res-side-card">
               <h4>{t("resume.section.skills")}</h4>
-              {SKILLS.map((s) => (
-                <div className="res-skill" key={s.en}>
-                  <div className="row">
-                    <span>{isZh ? s.zh : s.en}</span>
-                    <span>{s.v}</span>
+              {SKILLS.map((s) => {
+                const inner = (
+                  <>
+                    <div className="row">
+                      <span>{isZh ? s.zh : s.en}</span>
+                      <span>{s.v}</span>
+                    </div>
+                    <div className="bar">
+                      <i style={{ width: `${s.v}%` }} />
+                    </div>
+                  </>
+                );
+                return s.href ? (
+                  <Link
+                    href={s.href}
+                    key={s.en}
+                    className="res-skill res-skill-link"
+                    aria-label={`${isZh ? s.zh : s.en} — ${
+                      isZh ? "查看证明" : "see proof"
+                    }`}
+                  >
+                    {inner}
+                  </Link>
+                ) : (
+                  <div className="res-skill" key={s.en}>
+                    {inner}
                   </div>
-                  <div className="bar">
-                    <i style={{ width: `${s.v}%` }} />
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             <div className="res-side-card">
               <h4>{isZh ? "工具" : "Tools"}</h4>

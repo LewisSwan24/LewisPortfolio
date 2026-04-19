@@ -11,6 +11,12 @@ import {
   StructuredData,
 } from "@/lib/seo";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import { TOC } from "@/components/TOC";
+import { ShareButtons } from "@/components/ShareButtons";
+import { ReadingProgress } from "@/components/ReadingProgress";
+import { AuthorBio } from "@/components/AuthorBio";
+import { extractTOC } from "@/lib/toc";
+import { siteConfig } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -65,9 +71,12 @@ export default async function BlogPostPage({ params }: Props) {
     isZh ? "zh-CN" : "en-US",
     { year: "numeric", month: "long", day: "numeric" }
   );
+  const tocItems = extractTOC(post.content);
+  const postUrl = `${siteUrl}/${locale}/blog/${slug}`;
 
   return (
     <>
+      <ReadingProgress />
       <StructuredData
         data={generateArticleSchema({
           title: post.metadata.title,
@@ -122,9 +131,39 @@ export default async function BlogPostPage({ params }: Props) {
         </section>
 
         <section className="container">
-          <article className="blog-article">
-            <MDXRemote source={post.content} components={getMdxComponents()} />
-          </article>
+          <div className="blog-layout">
+            <div className="blog-toc-col">
+              <TOC items={tocItems} />
+            </div>
+            <div className="blog-article-col">
+              <article className="blog-article">
+                <MDXRemote source={post.content} components={getMdxComponents()} />
+              </article>
+
+              <div className="blog-share">
+                <ShareButtons
+                  url={postUrl}
+                  title={post.metadata.title}
+                  description={post.metadata.excerpt}
+                />
+              </div>
+
+              <AuthorBio
+                name={siteConfig.author.name}
+                tagline={
+                  isZh
+                    ? "昆士兰大学交互设计硕士在读 · 研究驱动的 UX 设计师"
+                    : "Master of Interaction Design candidate at UQ · research-led UX designer"
+                }
+                email={siteConfig.author.email}
+                linkedin={siteConfig.social.linkedin}
+                github={siteConfig.social.github}
+                contactLabel={isZh ? "邮件" : "Email"}
+                linkedinLabel="LinkedIn"
+                githubLabel="GitHub"
+              />
+            </div>
+          </div>
 
           {(prev || next) && (
             <nav

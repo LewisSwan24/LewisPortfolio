@@ -5,6 +5,7 @@ import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
+import { getAllBlogPosts } from "@/lib/blog";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
@@ -74,6 +75,9 @@ export default async function HomePage() {
   const t = await getTranslations();
   const locale = await getLocale();
   const isZh = locale === "zh";
+  const allPosts = await getAllBlogPosts();
+  const latestPosts = allPosts.slice(0, 3);
+  const dateLocale = isZh ? "zh-CN" : "en-US";
 
   return (
     <main className="page" data-screen-label="01 Home">
@@ -157,6 +161,46 @@ export default async function HomePage() {
           <FeatItem n="04" k="circles" href="/projects/circles" flip t={t} viz={<VizCircles />} />
         </div>
       </section>
+
+      {latestPosts.length > 0 && (
+        <section className="section container">
+          <div className="feat-head">
+            <div>
+              <div className="label">{t("home.latest.label")}</div>
+              <h2 className="h-display h2">{t("home.latest.title")}</h2>
+            </div>
+            <Link href="/blog" className="feat-cta">
+              {t("home.latest.cta")} <span>→</span>
+            </Link>
+          </div>
+          <div className="latest-list">
+            {latestPosts.map((post) => {
+              const dateFmt = new Date(post.date).toLocaleDateString(
+                dateLocale,
+                { year: "numeric", month: "short", day: "numeric" }
+              );
+              return (
+                <Link
+                  className="latest-item"
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                >
+                  <div className="latest-meta">
+                    <span>{dateFmt}</span>
+                    <span aria-hidden>·</span>
+                    <span>{post.readingTime}</span>
+                  </div>
+                  <h3 className="latest-title">{post.title}</h3>
+                  <p className="latest-excerpt">{post.excerpt}</p>
+                  {post.tags[0] && (
+                    <span className="latest-tag">{post.tags[0]}</span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       <section className="container">
         <div className="end-cta">

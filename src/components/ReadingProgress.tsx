@@ -32,7 +32,7 @@ export function ReadingProgress({ className = "" }: ReadingProgressProps) {
 
     return (
         <div
-            className={`fixed top-0 left-0 right-0 z-50 h-1 bg-muted/30 ${className}`}
+            className={`fixed top-0 left-0 right-0 z-50 h-[3px] bg-transparent pointer-events-none ${className}`}
             role="progressbar"
             aria-valuenow={Math.round(progress)}
             aria-valuemin={0}
@@ -40,8 +40,8 @@ export function ReadingProgress({ className = "" }: ReadingProgressProps) {
             aria-label="Reading progress"
         >
             <div
-                className="h-full bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] transition-all duration-150 ease-out"
-                style={{ width: `${progress}%` }}
+                className="h-full transition-[width] duration-150 ease-out motion-reduce:transition-none"
+                style={{ width: `${progress}%`, background: "var(--accent)" }}
             />
         </div>
     );

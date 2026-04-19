@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
@@ -43,6 +44,14 @@ export default async function AboutPage() {
             </>
           )}
         </h1>
+        <div className="about-actions">
+          <Link href="/resume" className="btn btn-primary">
+            {t("about.cv")} <span className="arrow">↓</span>
+          </Link>
+          <Link href="/contact" className="btn btn-ghost">
+            {t("hero.cta.note")}
+          </Link>
+        </div>
       </section>
 
       <section className="container">

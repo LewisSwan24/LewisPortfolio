@@ -97,6 +97,8 @@
     "tools": "Tools",
     "next": "Next project",
     "prev": "Previous",
+    "related": "Continue reading",
+    "impactLabel": "Headline result",
     "connect": {
       "hero": { "title": "UQ Connect", "sub": "Rebuilding the information architecture of a student portal serving 50,000 students." },
       "roleVal": "Solo UX Researcher & Designer",
@@ -349,6 +351,11 @@
       "treeTestParticipants": "Tree Test Participants",
       "taskSuccessRate": "Task Success Rate",
       "findabilityRate": "Findability Rate"
+    },
+    "latest": {
+      "label": "From the journal",
+      "title": "Latest writing.",
+      "cta": "Read the journal"
     }
   },
   "about": {
@@ -398,11 +405,12 @@
       "3": { "t": "Ship the unglamorous parts.", "b": "Empty states, errors, load states — that's where respect for the user lives." },
       "4": { "t": "Disagree in writing.", "b": "A memo survives the meeting. A whiteboard doesn't." }
     },
+    "cv": "Download CV",
     "tl": {
       "label": "Briefly",
-      "y2026": "Graduating. Looking for a seat at a serious team.",
-      "y2025": "Spectra Lens. UQ Design Showcase, selected.",
-      "y2024": "Began UQ Master's in Interaction Design.",
+      "y2026": "Graduating in Jun. Looking for a seat at a serious team.",
+      "y2025": "Spectra selected for UQ Design Showcase. Continuing Connect Circles fieldwork; coursework deepens into research methods and IA.",
+      "y2024": "Began UQ Master's. Mar–Jun: UQ Connect IA redesign. Aug–Nov: Spectra Lens AR accessibility. Oct→: Connect Circles co-design.",
       "y2020": "Four years in a previous career I'll happily explain in person."
     }
   },
