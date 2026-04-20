@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { NewsletterSignup } from "@/components/content/NewsletterSignup";
 
 export type PostItem = {
   slug: string;
@@ -134,6 +135,12 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
           })
         )}
       </section>
+
+      {!empty && (
+        <section className="container" style={{ marginTop: 64 }}>
+          <NewsletterSignup />
+        </section>
+      )}
     </main>
   );
 }

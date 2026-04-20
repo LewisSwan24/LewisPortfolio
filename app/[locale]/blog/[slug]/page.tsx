@@ -13,11 +13,24 @@ import {
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { TOC } from "@/components/TOC";
 import { ShareButtons } from "@/components/ShareButtons";
-import { ReadingProgress } from "@/components/ReadingProgress";
+import { ReadingProgressChapters } from "@/components/content/ReadingProgressChapters";
+import { RelatedPosts } from "@/components/content/RelatedPosts";
+import { NewsletterSignup } from "@/components/content/NewsletterSignup";
+import { Comments } from "@/components/content/Comments";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { extractTOC } from "@/lib/toc";
 import { siteConfig } from "@/lib/site";
+
+const giscus = {
+  repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
+  repoId: process.env.NEXT_PUBLIC_GISCUS_REPO_ID,
+  category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
+  categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
+};
+const giscusEnabled = Boolean(
+  giscus.repo && giscus.repoId && giscus.category && giscus.categoryId
+);
 
 interface Props {
   params: Promise<{ slug: string; locale: string }>;
@@ -77,7 +90,9 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      <ReadingProgress />
+      <ReadingProgressChapters
+        chapters={tocItems.map((t) => ({ id: t.id, title: t.text, level: t.level }))}
+      />
       <StructuredData
         data={generateArticleSchema({
           title: post.metadata.title,
@@ -173,6 +188,22 @@ export default async function BlogPostPage({ params }: Props) {
                 linkedinLabel="LinkedIn"
                 githubLabel="GitHub"
               />
+
+              <RelatedPosts posts={all} currentSlug={slug} className="mt-16" />
+
+              <div className="mt-12">
+                <NewsletterSignup />
+              </div>
+
+              {giscusEnabled && (
+                <Comments
+                  repo={giscus.repo!}
+                  repoId={giscus.repoId!}
+                  category={giscus.category!}
+                  categoryId={giscus.categoryId!}
+                  lang={isZh ? "zh-CN" : "en"}
+                />
+              )}
             </div>
           </div>
 

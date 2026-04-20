@@ -8,9 +8,10 @@ interface CommentsProps {
   repoId: string;
   category: string;
   categoryId: string;
+  lang?: string;
 }
 
-export function Comments({ repo, repoId, category, categoryId }: CommentsProps) {
+export function Comments({ repo, repoId, category, categoryId, lang = "en" }: CommentsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
 
@@ -32,7 +33,7 @@ export function Comments({ repo, repoId, category, categoryId }: CommentsProps) 
     scriptElem.setAttribute("data-emit-metadata", "0");
     scriptElem.setAttribute("data-input-position", "bottom");
     scriptElem.setAttribute("data-theme", resolvedTheme === "dark" ? "dark" : "light");
-    scriptElem.setAttribute("data-lang", "en");
+    scriptElem.setAttribute("data-lang", lang);
 
     ref.current.appendChild(scriptElem);
 
@@ -41,7 +42,7 @@ export function Comments({ repo, repoId, category, categoryId }: CommentsProps) 
         ref.current.innerHTML = "";
       }
     };
-  }, [repo, repoId, category, categoryId, resolvedTheme]);
+  }, [repo, repoId, category, categoryId, resolvedTheme, lang]);
 
   return <div ref={ref} className="giscus mt-12 pt-8 border-t border-border" />;
 }
