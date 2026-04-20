@@ -35,7 +35,6 @@ export { ReadingProgressChapters } from "./content/ReadingProgressChapters";
 export { ResumeTimeline } from "./content/ResumeTimeline";
 export { getMdxComponents } from "./content/mdx-components";
 export { ImageGallery } from "./content/ImageGallery";
-export { BlogListWithFilters } from "./content/BlogListWithFilters";
 
 // Effects Components
 export { AnimatedSection } from "./effects/AnimatedSection";
