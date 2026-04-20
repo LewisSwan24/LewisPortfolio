@@ -40,5 +40,22 @@ Thumbs.db
 # Testing
 coverage
 
+# Playwright MCP artifacts (console logs, snapshots, yaml traces)
+.playwright-mcp/
+
 # Local tool caches
 .worktrees/
+
+# Stray portfolio HTML exports dropped in repo root (local only)
+/Lewis Dong Portfolio*.html
+
+# Design & generated docs (local only)
+DESIGN.md
+docs/architecture.md
+docs/code-review-report.md
+docs/component-inventory.md
+docs/development-guide.md
+docs/index.md
+docs/project-overview.md
+docs/project-scan-report.json
+docs/source-tree-analysis.md

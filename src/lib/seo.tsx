@@ -33,7 +33,55 @@ export function generatePersonSchema() {
     };
 }
 
-// WebSite schema
+// Extended Person schema for the /resume page — adds occupation, address, email, work samples
+export function generateResumePersonSchema() {
+    const url = siteConfig.url || process.env.NEXT_PUBLIC_SITE_URL;
+    return {
+        ...generatePersonSchema(),
+        email: `mailto:${siteConfig.author.email}`,
+        address: {
+            "@type": "PostalAddress",
+            addressLocality: siteConfig.author.location,
+        },
+        hasOccupation: {
+            "@type": "Occupation",
+            name: "Interaction Designer",
+            occupationLocation: {
+                "@type": "City",
+                name: siteConfig.author.location,
+            },
+            skills:
+                "User research, Information architecture, Interaction design, Prototyping, Usability testing, Accessibility",
+        },
+        workExample: [
+            { "@type": "CreativeWork", name: "UQ Connect", url: `${url}/projects/connect` },
+            { "@type": "CreativeWork", name: "Spectra Lens", url: `${url}/projects/spectra` },
+            { "@type": "CreativeWork", name: "AI Interview Assistant", url: `${url}/projects/ai` },
+            { "@type": "CreativeWork", name: "Connect Circles", url: `${url}/projects/circles` },
+        ],
+    };
+}
+
+export function generateOrganizationSchema() {
+    const url = siteConfig.url || process.env.NEXT_PUBLIC_SITE_URL;
+    return {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: siteConfig.name,
+        url,
+        logo: `${url}/favicon.svg`,
+        sameAs: [
+            siteConfig.social.linkedin,
+            siteConfig.social.github,
+            siteConfig.social.dribbble,
+        ].filter(Boolean),
+        founder: {
+            "@type": "Person",
+            name: siteConfig.author.name,
+        },
+    };
+}
+
 export function generateWebSiteSchema() {
     return {
         "@context": "https://schema.org",
@@ -96,13 +144,24 @@ export function generateArticleSchema(article: {
     date: string;
     author: string;
     tags: string[];
+    image?: string;
+    articleBody?: string;
 }) {
+    const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${article.slug}`;
+    const image =
+        article.image ||
+        `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${article.slug}/opengraph-image`;
+    const body = article.articleBody
+        ? article.articleBody.replace(/\s+/g, " ").trim().slice(0, 5000)
+        : undefined;
     return {
         "@context": "https://schema.org",
         "@type": "Article",
         headline: article.title,
         description: article.excerpt,
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${article.slug}`,
+        url,
+        image,
+        ...(body ? { articleBody: body } : {}),
         datePublished: article.date,
         dateModified: article.date,
         author: {
@@ -116,7 +175,7 @@ export function generateArticleSchema(article: {
         keywords: article.tags.join(", "),
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${article.slug}`,
+            "@id": url,
         },
     };
 }
@@ -126,6 +185,8 @@ export function generateArticleSchema(article: {
  */
 type JsonLdSchema =
     | ReturnType<typeof generatePersonSchema>
+    | ReturnType<typeof generateResumePersonSchema>
+    | ReturnType<typeof generateOrganizationSchema>
     | ReturnType<typeof generateWebSiteSchema>
     | ReturnType<typeof generateProjectSchema>
     | ReturnType<typeof generateBreadcrumbSchema>

@@ -3,90 +3,156 @@ import { siteConfig } from "@/lib/site";
 
 export const runtime = "edge";
 
-export const alt = `${siteConfig.name} - ${siteConfig.title}`;
-export const size = {
-  width: 1200,
-  height: 630,
-};
+export const alt = `${siteConfig.name} — practice log, est. 2024`;
+export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+async function loadGoogleFont(family: string, text: string) {
+  const url = `https://fonts.googleapis.com/css2?family=${family}&text=${encodeURIComponent(
+    text
+  )}`;
+  const css = await (
+    await fetch(url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+      },
+    })
+  ).text();
+  const match = css.match(/src: url\((.+?)\) format\('(truetype|opentype|woff)'\)/);
+  if (!match) throw new Error(`Font ${family} TTF not found`);
+  const resp = await fetch(match[1]);
+  return resp.arrayBuffer();
+}
+
+const PAPER_100 = "#F5F2EC";
+const PAPER_300 = "#D9D2C3";
+const PAPER_500 = "#8A8170";
+const PAPER_600 = "#5E5749";
+const PAPER_800 = "#25231D";
+const TERRA = "#C9523A";
+
 export default async function Image() {
+  const headline = "Practice log,\nest. 2024.";
+  const sub = "UX + Interaction Design · Brisbane, AU";
+  const name = siteConfig.name.toUpperCase();
+
+  const alphabet =
+    headline +
+    sub +
+    name +
+    " · PRACTICE LOG — PORTFOLIO / V4 " +
+    siteConfig.url.replace(/^https?:\/\//, "") +
+    "abcdefghijklmnopqrstuvwxyz0123456789";
+
+  const [displayItalic, mono] = await Promise.all([
+    loadGoogleFont("Fraunces:ital,wght@1,400", alphabet).catch(() => null),
+    loadGoogleFont("JetBrains+Mono:wght@500", alphabet).catch(() => null),
+  ]);
+
+  const fonts: any[] = [];
+  if (displayItalic)
+    fonts.push({
+      name: "Fraunces",
+      data: displayItalic,
+      style: "italic",
+      weight: 400,
+    });
+  if (mono)
+    fonts.push({
+      name: "JetBrainsMono",
+      data: mono,
+      style: "normal",
+      weight: 500,
+    });
+
   return new ImageResponse(
     (
       <div
         style={{
-          height: "100%",
           width: "100%",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#fafafa",
-          fontFamily: "system-ui, sans-serif",
+          justifyContent: "space-between",
+          padding: "72px 88px",
+          backgroundColor: PAPER_100,
+          fontFamily: "JetBrainsMono",
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            padding: "40px 80px",
-            maxWidth: "900px",
+            gap: 14,
+            fontFamily: "JetBrainsMono",
+            fontSize: 18,
+            letterSpacing: "0.22em",
+            color: PAPER_600,
           }}
         >
-          {/* Accent bar */}
           <div
             style={{
-              width: "80px",
-              height: "6px",
-              backgroundColor: "#3b82f6",
-              borderRadius: "3px",
-              marginBottom: "32px",
+              width: 10,
+              height: 10,
+              borderRadius: 999,
+              backgroundColor: TERRA,
             }}
           />
+          <div>{name}</div>
+          <div style={{ color: PAPER_500 }}>·</div>
+          <div style={{ color: PAPER_500 }}>PRACTICE LOG</div>
+        </div>
 
-          {/* Name */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div
             style={{
-              fontSize: 64,
-              fontWeight: 700,
-              color: "#171717",
-              marginBottom: "16px",
-              textAlign: "center",
+              fontFamily: "Fraunces",
+              fontStyle: "italic",
+              fontSize: 120,
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
+              color: PAPER_800,
+              whiteSpace: "pre-wrap",
+              display: "flex",
             }}
           >
-            {siteConfig.name}
+            {headline}
           </div>
 
-          {/* Title */}
-          <div
-            style={{
-              fontSize: 32,
-              color: "#525252",
-              marginBottom: "24px",
-              textAlign: "center",
-            }}
-          >
-            {siteConfig.title}
+          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+            <div style={{ width: 56, height: 2, backgroundColor: TERRA }} />
+            <div
+              style={{
+                fontFamily: "JetBrainsMono",
+                fontSize: 22,
+                color: PAPER_600,
+                letterSpacing: "0.01em",
+              }}
+            >
+              {sub}
+            </div>
           </div>
+        </div>
 
-          {/* Description */}
-          <div
-            style={{
-              fontSize: 20,
-              color: "#737373",
-              textAlign: "center",
-              lineHeight: 1.5,
-            }}
-          >
-            {siteConfig.description}
-          </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderTop: `1px solid ${PAPER_300}`,
+            paddingTop: 20,
+            fontFamily: "JetBrainsMono",
+            fontSize: 14,
+            color: PAPER_500,
+            letterSpacing: "0.18em",
+          }}
+        >
+          <div>— PORTFOLIO / V4</div>
+          <div>{siteConfig.url.replace(/^https?:\/\//, "")}</div>
         </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size, fonts: fonts.length ? fonts : undefined }
   );
 }

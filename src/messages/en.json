@@ -1,385 +1,559 @@
 {
-    "nav": {
-        "home": "Home",
-        "projects": "Projects",
-        "about": "About",
-        "contact": "Contact",
-        "resume": "Resume",
-        "blog": "Blog",
-        "more": "More"
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "resume": "Resume",
+    "blog": "Blog",
+    "more": "More",
+    "work": "Work",
+    "writing": "Writing",
+    "lang": { "en": "EN", "zh": "中" }
+  },
+  "brand": {
+    "name": "Lewis Dong",
+    "tagline": "practice log, est. 2024"
+  },
+  "hero": {
+    "eyebrow": "UX Designer · Master's in Interaction Design, UQ",
+    "headline": {
+      "a": "Hi, I'm Lewis.",
+      "b": "A UX designer and Interaction Design master's candidate at UQ,",
+      "c": "building human-centred digital experiences."
     },
-    "search": {
-        "placeholder": "Search projects and blog posts...",
-        "noResults": "No results found",
-        "recentSearches": "Recent searches"
+    "deck": {
+      "label": "The practice log —",
+      "hint": "Drag or click an entry to open"
     },
-    "common": {
-        "featured": "Featured",
-        "viewCaseStudy": "View Case Study",
-        "scroll": "Scroll"
-    },
-    "cta": {
-        "letsTalk": "Let's Talk",
-        "openToOpportunities": "Open to opportunities",
-        "viewProjects": "View Projects",
-        "viewAll": "View All →",
-        "downloadResume": "Download Resume",
-        "getInTouch": "Get In Touch"
-    },
-    "skipLink": "Skip to main content",
-    "footer": {
-        "navigation": "Navigation",
-        "getInTouch": "Get In Touch",
-        "downloadResume": "Download Resume",
-        "builtWith": "Built with",
-        "allRightsReserved": "All rights reserved."
-    },
-    "mobileMenu": {
-        "open": "Open menu",
-        "close": "Close menu"
-    },
-    "home": {
-        "greeting": "Hi, I'm ",
-        "findMeOn": "Find me on",
-        "portfolioLabel": "Portfolio",
-        "featuredProjects": "Featured Projects",
-        "featuredProjectsDescription": "Selected case studies showcasing my design process and problem-solving approach.",
-        "expertise": "Expertise",
-        "skillsAndTools": "Skills & Tools",
-        "skillsAndToolsDescription": "Core competencies developed through academic study and hands-on projects.",
-        "letsWorkTogether": "Let's Work Together",
-        "letsWorkTogetherDescription": "I'm currently looking for internship opportunities and excited to contribute to meaningful design projects.",
-        "featuredProjectsEmpty": "Featured projects coming soon.",
-        "stats": {
-            "userInterviews": "User Interviews",
-            "treeTestParticipants": "Tree Test Participants",
-            "taskSuccessRate": "Task Success Rate",
-            "findabilityRate": "Findability Rate"
-        }
-    },
-    "about": {
-        "badge": "About Me",
-        "title": {
-            "prefix": "Crafting ",
-            "highlight": "meaningful",
-            "suffix": " digital experiences"
-        },
-        "intro": {
-            "p1": "I'm currently pursuing a Master of Interaction Design at The University of Queensland, where I'm developing expertise in user research, prototyping, and human-centered design methodologies.",
-            "p2": "My approach combines analytical thinking with creative problem-solving. I believe that great design emerges from deeply understanding user needs and iterating towards solutions that are both functional and delightful."
-        },
-        "profilePhoto": "Profile Photo",
-        "sections": {
-            "philosophy": {
-                "label": "Philosophy",
-                "title": "Design Principles",
-                "description": "Core values that guide every design decision I make."
-            },
-            "toolbox": {
-                "label": "Skills",
-                "title": "My Toolbox",
-                "description": "Technologies and tools I work with regularly."
-            },
-            "journey": {
-                "label": "Journey",
-                "title": "My Path",
-                "description": "Key milestones in my design journey."
-            },
-            "personal": {
-                "label": "Personal",
-                "title": "Beyond Design",
-                "description": "A few things about me outside of work."
-            }
-        },
-        "designPrinciples": [
-            {
-                "icon": "👤",
-                "title": "User-Centered",
-                "description": "Every design decision starts with understanding real user needs through research and empathy."
-            },
-            {
-                "icon": "🔄",
-                "title": "Iterative Process",
-                "description": "Embrace continuous improvement through prototyping, testing, and refinement cycles."
-            },
-            {
-                "icon": "♿",
-                "title": "Accessible by Default",
-                "description": "Design inclusive experiences that work for everyone, regardless of ability or context."
-            },
-            {
-                "icon": "📊",
-                "title": "Evidence-Based",
-                "description": "Ground design choices in data, research findings, and validated user feedback."
-            }
-        ],
-        "toolCategories": [
-            {
-                "name": "Design",
-                "tools": [
-                    "Figma",
-                    "Adobe XD",
-                    "Sketch",
-                    "Framer",
-                    "Photoshop",
-                    "Illustrator"
-                ]
-            },
-            {
-                "name": "Research",
-                "tools": [
-                    "Miro",
-                    "Notion",
-                    "Maze",
-                    "Hotjar",
-                    "UserTesting",
-                    "Optimal Workshop"
-                ]
-            },
-            {
-                "name": "Development",
-                "tools": [
-                    "HTML/CSS",
-                    "JavaScript",
-                    "React",
-                    "TypeScript",
-                    "Tailwind CSS",
-                    "Next.js"
-                ]
-            }
-        ],
-        "timeline": [
-            {
-                "year": "2024",
-                "title": "Master of Interaction Design",
-                "org": "The University of Queensland",
-                "description": "Advanced study in human-computer interaction, UX research, and design thinking."
-            },
-            {
-                "year": "2023",
-                "title": "Started Design Journey",
-                "org": "Self-directed Learning",
-                "description": "Began exploring UX/UI design through online courses and personal projects."
-            }
-        ],
-        "funFacts": [
-            {
-                "emoji": "📚",
-                "label": "Avid reader"
-            },
-            {
-                "emoji": "☕",
-                "label": "Coffee enthusiast"
-            },
-            {
-                "emoji": "🎮",
-                "label": "Casual gamer"
-            },
-            {
-                "emoji": "🌏",
-                "label": "Love exploring"
-            }
-        ]
-    },
-    "contact": {
-        "hero": {
-            "title": {
-                "prefix": "Let's ",
-                "highlight": "Create",
-                "suffix": " Something Amazing"
-            },
-            "description": "I'm always open to discussing new projects, design opportunities, or just having a friendly chat about UX and design."
-        },
-        "methods": {
-            "email": {
-                "title": "Email",
-                "description": "Drop me a line anytime",
-                "action": "Send Email"
-            },
-            "linkedin": {
-                "title": "LinkedIn",
-                "description": "Let's connect professionally",
-                "value": "View Profile",
-                "action": "Connect"
-            },
-            "location": {
-                "title": "Location",
-                "description": "Based in"
-            }
-        },
-        "form": {
-            "label": "Message",
-            "title": "Send a Message",
-            "description": "Fill out the form below and I'll get back to you as soon as possible.",
-            "fields": {
-                "name": {
-                    "label": "Name",
-                    "placeholder": "John Doe"
-                },
-                "email": {
-                    "label": "Email",
-                    "placeholder": "john@example.com"
-                },
-                "subject": {
-                    "label": "Subject",
-                    "placeholder": "What's this about?"
-                },
-                "message": {
-                    "label": "Message",
-                    "placeholder": "Tell me about your project, idea, or just say hello..."
-                }
-            },
-            "noticeUnconfigured": "Form submission is not configured yet. For now, please email me directly.",
-            "submit": "Send Message"
-        },
-        "faq": {
-            "label": "FAQ",
-            "title": "Frequently Asked",
-            "items": [
-                {
-                    "q": "What's your typical response time?",
-                    "a": "I usually respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn."
-                },
-                {
-                    "q": "Are you available for freelance work?",
-                    "a": "I'm currently focused on my studies but open to interesting projects. Let's chat about what you have in mind!"
-                },
-                {
-                    "q": "What kind of projects interest you?",
-                    "a": "I'm passionate about user-centered design, accessibility, and creating delightful digital experiences. Mobile apps, web platforms, and design systems all excite me."
-                }
-            ]
-        }
-    },
-    "resume": {
-        "title": "Resume",
-        "description": "Download my resume to learn more about my experience and qualifications.",
-        "cardTitle": "{name}'s Resume",
-        "cardMeta": "PDF format • Last updated December 2024",
-        "downloadPdf": "Download Resume (PDF)",
-        "downloadPdfShort": "Download PDF",
-        "getInTouch": "Get in Touch",
-        "printHint": "Tip: Use your browser's print function (Ctrl/Cmd + P) to save this page as a PDF",
-        "overview": {
-            "education": "Education",
-            "experienceHighlights": "Experience Highlights"
-        },
-        "sections": {
-            "education": "Education",
-            "experience": "Experience",
-            "skills": "Skills",
-            "certifications": "Certifications",
-            "awards": "Awards & Recognition"
-        },
-        "education": {
-            "degree": "Master of Interaction Design",
-            "institutionAndYears": "The University of Queensland • 2023 – Present"
-        },
-        "experience": [
-            {
-                "title": "UX Design Intern",
-                "orgAndYear": "Design Studio Co. • 2024"
-            },
-            {
-                "title": "Freelance Designer",
-                "orgAndYear": "Self-employed • 2022 – 2023"
-            }
-        ]
-    },
-    "blog": {
-        "title": "Blog",
-        "description": "Thoughts on UX design, interaction design, and design thinking.",
-        "emptyTitle": "No blog posts yet",
-        "emptyDescription": "Check back soon for articles on design thinking and UX best practices.",
-        "breadcrumbHome": "Home",
-        "breadcrumbBlog": "Blog",
-        "by": "By",
-        "subscribe": "Subscribe to updates",
-        "subscribeDescription": "Get notified when I publish new articles or projects.",
-        "subscribePlaceholder": "your@email.com",
-        "subscribeButton": "Subscribe",
-        "subscribeSuccess": "Thanks for subscribing! Check your email to confirm.",
-        "subscribeError": "Something went wrong. Please try again.",
-        "subscribeNote": "No spam, unsubscribe at any time.",
-        "rss": "RSS Feed",
-        "relatedArticles": "Related Articles",
-        "prev": "Previous",
-        "next": "Next"
-    },
-    "lab": {
-        "title": "Lab",
-        "description": "A collection of interactive experiments and UI components. These are the building blocks that power this portfolio.",
-        "magneticButtons": {
-            "title": "Magnetic Buttons",
-            "description": "Buttons that subtly follow your mouse movement. Hover over them to see the effect.",
-            "hover": "Hover Me",
-            "secondary": "Secondary",
-            "ghost": "Ghost"
-        },
-        "tiltCards": {
-            "title": "3D Card Tilt",
-            "description": "Cards that tilt in 3D space following cursor position. Move your mouse over the card.",
-            "design": "Design",
-            "designDesc": "Beautiful interfaces with thoughtful interactions",
-            "performance": "Performance",
-            "performanceDesc": "Optimized for speed and smooth animations",
-            "accessibility": "Accessibility",
-            "accessibilityDesc": "Inclusive design for all users"
-        },
-        "glassMorphism": {
-            "title": "Glass Morphism",
-            "description": "Modern frosted glass UI effects with blur and transparency.",
-            "glassCard": "Glass Card",
-            "glassCardDesc": "This card uses backdrop-blur for a frosted glass effect",
-            "heavyGlass": "Heavy Glass",
-            "heavyGlassDesc": "More opaque background with stronger blur"
-        },
-        "animations": {
-            "title": "Animation Playground",
-            "description": "Smooth animations and transitions used throughout the site.",
-            "fadeIn": "Fade In",
-            "scaleIn": "Scale In",
-            "float": "Float"
-        },
-        "about": {
-            "title": "About These Experiments",
-            "description": "All these interactive components are built with React, TypeScript, and Framer Motion. They're designed to enhance user experience without compromising performance or accessibility.",
-            "features": [
-                "Custom cursor enhances navigation on desktop",
-                "Magnetic buttons provide subtle tactile feedback",
-                "3D tilt cards add depth and engagement",
-                "All animations respect prefers-reduced-motion"
-            ]
-        }
-    },
-    "projects": {
-        "title": "Projects",
-        "description": "Case studies and design work from academic and personal projects.",
-        "searchPlaceholder": "Search projects...",
-        "all": "All",
-        "empty": "No projects found matching your criteria.",
-        "clearFilters": "Clear filters"
-    },
-    "project": {
-        "backToProjects": "← Back to Projects",
-        "role": "Role",
-        "timeline": "Timeline",
-        "tools": "Tools",
-        "shareHelpful": "Found this helpful? Share it!",
-        "relatedProjects": "Related Projects",
-        "relatedProjectsDescription": "Explore more projects with similar themes and approaches"
-    },
-    "notFound": {
-        "title": "Page not found",
-        "description": "Sorry, we couldn't find the page you're looking for. Perhaps you've mistyped the URL or the page has been moved.",
-        "goHome": "Go back home",
-        "viewProjects": "View projects",
-        "tryPopular": "Or try these popular pages:"
-    },
-    "languageToggle": {
-        "toEnglish": "EN",
-        "toChinese": "中文",
-        "ariaLabelToEnglish": "Switch language to English",
-        "ariaLabelToChinese": "切换到中文"
+    "cta": { "work": "See the work", "note": "Write to me" }
+  },
+  "now": {
+    "label": "Currently",
+    "reading": { "label": "Reading", "val": "Weiss on loneliness; Ryan & Deci on self-determination" },
+    "building": { "label": "Building", "val": "Connect Circles — slow-match social for int'l students" },
+    "learning": { "label": "Learning", "val": "Motion design fundamentals, in Rive" },
+    "location": { "label": "Location", "val": "Brisbane, AU — open to Sydney / Singapore / SF" }
+  },
+  "approach": {
+    "label": "How I work",
+    "title": { "text": "Research in, artefact out.", "em": "Every time." },
+    "body": "I don't hand off sketches and hope. I run the interviews, synthesise the signals, draft the IA, prototype the interactions, then sit beside real users and watch it break. The work only counts when it ships.",
+    "step": {
+      "1": { "t": "Listen", "b": "50+ interviews, 300+ participants across studies." },
+      "2": { "t": "Synthesise", "b": "Affinity maps, JTBD, tree tests — structured reasoning." },
+      "3": { "t": "Prototype", "b": "Figma, Framer, HTML/CSS/React — I build at the fidelity needed." },
+      "4": { "t": "Ship", "b": "Usability test, iterate, hand off with rationale intact." }
     }
+  },
+  "feat": { "label": "Selected work", "title": "Four projects, end-to-end.", "footer": "Full index" },
+  "proj": {
+    "connect": {
+      "kicker": "Flagship · Information Architecture",
+      "title": "UQ Connect",
+      "sub": "Rebuilding a student portal 50,000 students already hated.",
+      "role": "UX Researcher & Designer",
+      "date": "2024 · 4 months",
+      "m1": "Findability 58 → 84%",
+      "m2": "Task success 72 → 94%",
+      "m3": "SUS 61 → 78"
+    },
+    "spectra": {
+      "kicker": "Flagship · Accessibility / AR",
+      "title": "Spectra Lens",
+      "sub": "An AR lens that tells colourblind users what the world is actually showing them.",
+      "role": "Lead UX Designer",
+      "date": "2024 · 4 months",
+      "m1": "Success 75 → 92%",
+      "m2": "3.1s avg. recognition",
+      "m3": "4.2 / 5 satisfaction"
+    },
+    "ai": {
+      "kicker": "AI · EdTech",
+      "title": "AI Interview Assistant",
+      "sub": "Rehearsing the hardest conversation of your career, without an audience.",
+      "role": "UX Designer & Researcher",
+      "date": "2024 · 5 months",
+      "m1": "+84% confidence gain",
+      "m2": "−68% anxiety",
+      "m3": "4.5 / 5 satisfaction"
+    },
+    "circles": {
+      "kicker": "In progress · Social",
+      "title": "Connect Circles",
+      "sub": "Friendship by quality, not quantity — a slow-match app for international students.",
+      "role": "Product Designer",
+      "date": "2024 · ongoing",
+      "m1": "15 depth interviews",
+      "m2": "2-week diary study",
+      "m3": "3 co-design workshops"
+    }
+  },
+  "cs": {
+    "back": "← All work",
+    "role": "Role",
+    "time": "Timeline",
+    "team": "Team",
+    "tools": "Tools",
+    "next": "Next project",
+    "prev": "Previous",
+    "related": "Continue reading",
+    "impactLabel": "Headline result",
+    "connect": {
+      "hero": { "title": "UQ Connect", "sub": "Rebuilding the information architecture of a student portal serving 50,000 students." },
+      "roleVal": "Solo UX Researcher & Designer",
+      "timeVal": "March – June 2024",
+      "teamVal": "Independent, advised by faculty",
+      "toolsVal": "Figma · OptimalSort · Treejack · Maze",
+      "ch": {
+        "label": "The problem",
+        "title": "Twelve top-level categories, most of them opaque.",
+        "p": "New students arrived at a portal written in staff-facing language — \"HiQ\", \"SI-net\", \"mySI-net\" — and had to guess. The search bar didn't forgive typos or synonyms. The mobile experience collapsed to a hamburger that hid 80+ links."
+      },
+      "re": {
+        "label": "Research",
+        "title": "Fifty students, three methods, one month.",
+        "m1": { "t": "24 participants", "b": "Open card sort on 42 common tasks." },
+        "m2": { "t": "10 participants", "b": "Task-based think-aloud on the live portal." },
+        "m3": { "t": "50 participants", "b": "Tree test, baseline vs. two alternatives." },
+        "quote": "I just Google 'UQ how to drop a subject'. I never start on the portal.",
+        "quoteWho": "P07, second-year undergrad"
+      },
+      "sy": {
+        "label": "Synthesis",
+        "title": "The portal was organised by who owns the information, not who needs it.",
+        "p": "Affinity mapping revealed that student mental models clustered around five life-stages: arriving, studying, belonging, supporting myself, moving on. We collapsed twelve staff-oriented buckets into six task-oriented ones, with \"I'm new\" promoted to the front door."
+      },
+      "id": {
+        "label": "IA decisions",
+        "p": "Three alternative trees were tested; the winning one preserved a fallback alphabetical index for power users while leading with the task-first structure. Every category name went through a plain-language review with two non-UQ reviewers."
+      },
+      "pr": {
+        "label": "Prototype",
+        "p": "A Figma prototype covered the top 15 tasks end-to-end at mid-fidelity. The navigation shell and the \"I'm new\" landing were built to high fidelity to validate reading flow on mobile."
+      },
+      "te": {
+        "label": "Usability test",
+        "p": "Eight students, moderated, remote. We found a naming collision between \"Money\" and \"My account\" that had only shown up at high fidelity — renamed on the spot; the re-run confirmed the fix."
+      },
+      "ou": {
+        "label": "Outcome",
+        "m1": { "label": "Findability", "v": "58 → 84%" },
+        "m2": { "label": "Task success", "v": "72 → 94%" },
+        "m3": { "label": "SUS score", "v": "61 → 78" },
+        "p": "The redesigned IA is being adopted in phases by the UQ digital team. The tree test protocol and plain-language review have been reused on two subsequent university projects."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "The research phase was longer than planned — I would budget for that again. The most valuable decision was insisting on a plain-language review from non-UQ readers; it caught four category names that sounded fine to anyone steeped in the institution."
+      }
+    },
+    "spectra": {
+      "hero": { "title": "Spectra Lens", "sub": "Letting colourblind users read the world on their own time." },
+      "roleVal": "Lead UX Designer",
+      "timeVal": "August – November 2024",
+      "teamVal": "Solo, advised by accessibility faculty",
+      "toolsVal": "Figma · Adobe XD · Maze · Miro",
+      "ch": {
+        "label": "The problem",
+        "title": "Eight percent of men see the world in fewer colours — and almost every app assumes they don't.",
+        "p": "Traffic signals, food freshness, data dashboards, medication — everyday tasks silently assume full colour perception. For the 8% of men and 0.5% of women with colour vision deficiency, each one becomes a small negotiation: memorise a workaround, ask a stranger, or guess. Existing tools felt clinical and stigmatising — built for a clinic, not a Tuesday morning."
+      },
+      "re": {
+        "label": "Research",
+        "title": "Twelve users, five apps, one persistent answer.",
+        "m1": { "t": "12 participants", "b": "Semi-structured interviews across three CVD subtypes (deuter-, protan-, tritan-anomaly)." },
+        "m2": { "t": "5 apps", "b": "Heuristic review of existing colour-ID tools against accessibility and social-friction criteria." },
+        "m3": { "t": "2 workshops", "b": "Co-design sessions mapping daily colour moments and rapid sketch-ideation." },
+        "quote": "The moment I pull out the app, the conversation stops. I'd rather guess than explain.",
+        "quoteWho": "P04, deuteranomaly, second-year PhD"
+      },
+      "sy": {
+        "label": "Synthesis",
+        "title": "Users don't need the colour named — they need the decision made.",
+        "p": "Three themes dominated the data: speed (decisions have a 2–3 second window before they feel awkward), context (users want to know if the food is bad, not that it's 'muddy green'), and privacy (most don't want to identify as colourblind in public). Every existing app optimised for naming colours. None optimised for acting on them."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "We chose an AR overlay over a full-screen filter because the overlay preserves context — users still see the world, just with a low-opacity annotation layer. Audio feedback became opt-in rather than default after co-design sessions flagged public audibility of the app as a concern. The whole interaction was compressed to a single-tap camera mode: no menu, no account, no colour dictionary to memorise."
+      },
+      "pr": {
+        "label": "Prototype",
+        "p": "A Figma high-fidelity prototype simulated realistic AR camera behaviour, with three feedback modes (overlay, audio, haptic) and a one-screen settings surface. We deliberately kept a 'quick mode' for the most common scenarios (traffic, clothing, food) to test whether discoverability or depth mattered more."
+      },
+      "te": {
+        "label": "Usability test",
+        "p": "Eight participants, moderated, in real environments — a cafeteria, a pedestrian crossing, their own wardrobes. The overlay's initial 40% opacity obscured important texture detail in food; we dropped it to 20% and added haptic confirmation. In noisy environments, voice feedback was slower than reading the overlay — users overwhelmingly preferred silent default with audio as a toggle."
+      },
+      "ou": {
+        "label": "Outcome",
+        "m1": { "label": "Task success", "v": "75 → 92%" },
+        "m2": { "label": "Time to colour", "v": "3.1s avg." },
+        "m3": { "label": "Satisfaction", "v": "4.2 / 5" },
+        "p": "Selected for the UQ Design Showcase 2024 and recommended for a disability-service pilot. The accessibility advisory board reused the co-design protocol on a campus wayfinding audit the following semester."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "AR accessibility is still under-served because 'accessibility' is too often read as 'screen reader'. The biggest lesson was cognitive load — every piece of information the overlay added was a piece the user had to ignore later. Next time I'd prototype the zero-state (what the camera looks like when it says nothing) before designing the affordances."
+      }
+    },
+    "ai": {
+      "hero": { "title": "AI Interview Assistant", "sub": "Rehearsing the hardest conversation of your career — without an audience." },
+      "roleVal": "UX Designer & Researcher",
+      "timeVal": "February – June 2024",
+      "teamVal": "Solo, with input from two career counsellors",
+      "toolsVal": "Figma · FigJam · Lookback · ChatGPT API",
+      "ch": {
+        "label": "The problem",
+        "title": "78% of job-seekers feel underprepared — and coaching is out of reach for two-thirds of them.",
+        "p": "Interview prep has a clear market divide: senior candidates pay for coaches, everyone else reads question lists. Survey respondents told us that nervousness, not content, was the thing standing between them and a job. Existing platforms optimised for either peer practice (unreliable quality) or video courses (no feedback loop). Nobody was tackling the emotional shape of the problem."
+      },
+      "re": {
+        "label": "Research",
+        "title": "85 survey responses, 15 interviews, six incumbents.",
+        "m1": { "t": "85 participants", "b": "Cross-seniority survey on preparation habits and pain points." },
+        "m2": { "t": "15 participants", "b": "In-depth interviews with recent interviewees — offered and still-searching." },
+        "m3": { "t": "6 incumbents", "b": "Competitive teardown of Pramp, Yoodli, Big Interview, Google Interview Warmup, and two others." },
+        "quote": "I know what to say. I just can't say it with someone watching.",
+        "quoteWho": "P11, senior candidate, still searching"
+      },
+      "sy": {
+        "label": "Synthesis",
+        "title": "Content is table stakes. The product has to manage anxiety.",
+        "p": "The critical insight was that anxiety, not knowledge, gated performance. Users wanted realistic practice — not robotic — but didn't want to be judged while being wrong. That meant two things: the AI persona had to be warmer than a recruiter, and feedback had to arrive after the session, never mid-sentence. Every competitor we reviewed violated one of these."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "Three non-negotiables: a named AI persona (\"Alex\") with natural pacing and pause, post-session feedback by default, and three session-length presets (5 / 10 / 20 min) rather than open-ended. We explicitly rejected body-language analysis after research showed it deepened the self-consciousness that was already the problem."
+      },
+      "pr": {
+        "label": "Prototype",
+        "p": "An interactive Figma prototype simulated the full loop: voice input via speech-to-text, three interview types (behavioural, technical, case), and a detailed post-session report with a calibrated tone — constructive framing, specific rather than generic praise. A 'confidence boost' mode offered easier questions for users who wanted a ramp before a real session."
+      },
+      "te": {
+        "label": "Usability test",
+        "p": "Twelve moderated sessions over two weeks, plus an A/B test on feedback timing — inline vs. post-session. Post-session won by 34% on satisfaction; inline feedback was felt as interruption, even when useful. Users asked for the AI to pause longer between questions; we added a natural beat and saw perceived realism rise."
+      },
+      "ou": {
+        "label": "Outcome",
+        "m1": { "label": "Confidence", "v": "+84% gain" },
+        "m2": { "label": "Anxiety", "v": "−68%" },
+        "m3": { "label": "Satisfaction", "v": "4.5 / 5" },
+        "p": "Beta tested with 50 users over four weeks; average 3.2 sessions per user — well above our retention target of 2. The feedback-timing finding was the most surprising outcome, and it became a design principle we've carried into subsequent learning-tool projects."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "Designing with AI isn't designing a chatbot; it's designing a relationship. The persona's warmth, pacing, and word choice did more work than any single feature. The next direction I'd push is emotional calibration — letting users set how gentle or rigorous the session feels, not as a difficulty slider but as a tone."
+      }
+    },
+    "circles": {
+      "hero": { "title": "Connect Circles", "sub": "Friendship by quality, not quantity — a slow-match app for international students." },
+      "roleVal": "Product Designer",
+      "timeVal": "October 2024 – ongoing",
+      "teamVal": "Solo, with co-design across eight international students",
+      "toolsVal": "Figma · FigJam · Notion · Discord",
+      "ch": {
+        "label": "The problem",
+        "title": "67% of international students report loneliness in their first semester — and apps make it worse.",
+        "p": "Moving countries for study collapses an entire social scaffolding. Language barriers, unfamiliar norms, and academic pressure combine so that meeting new people feels simultaneously urgent and exhausting. The apps students use — Meetup, Bumble BFF, Hey! VINA — optimise for matching volume, exactly the metric that scales the emotional cost. Students told us they'd rather have one deep friendship than ten casual matches, and no existing product was designed around that preference."
+      },
+      "re": {
+        "label": "Research",
+        "title": "Three cultural regions, three methods, one stubborn pattern.",
+        "m1": { "t": "15 participants", "b": "Semi-structured interviews across East Asian, South Asian, and European student cohorts." },
+        "m2": { "t": "8 participants", "b": "Two-week diary study logging social interactions and emotional before/after." },
+        "m3": { "t": "8 participants", "b": "Co-design workshop exploring ideal features, dealbreakers, and cultural considerations." },
+        "quote": "I don't want more friends. I want one person I can stop pretending around.",
+        "quoteWho": "P03, first-semester postgrad"
+      },
+      "sy": {
+        "label": "Synthesis",
+        "title": "The market is built on volume. Users are asking for depth.",
+        "p": "Four themes held across cultures: depth beats breadth; shared vulnerability is the formation mechanism; first meetings need a shared activity, not a coffee date; and socialising norms vary enough that any one default will alienate someone. The design implication is almost the opposite of a dating app — slow down, give fewer matches, make them earn the next step."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "Four directions were shortlisted from co-design: small-group 'circles' of three to five people (not pairs), structured vulnerability prompts to accelerate closeness, cultural-bridge hints on communication style, and slow matching with gradual information reveal. Real-time chat was deliberately de-scoped from v1 — the hypothesis is that less messaging and more shared context produces stronger ties."
+      },
+      "pr": {
+        "label": "Prototype",
+        "p": "A mid-fidelity Figma prototype is in development covering onboarding (preference and comfort capture), circle match demonstration, activity suggestions with RSVP, in-app conversation prompts, and post-activity reflection. It is privacy-preserving by default — no public profile, no swipe surface."
+      },
+      "te": {
+        "label": "Testing plan",
+        "p": "Preference testing and moderated usability sessions are planned for February 2025 with target cohorts. The primary measure is not usability (we already know the flows work) but perceived safety, cultural fit, and willingness to actually use the product across an eight-week window."
+      },
+      "ou": {
+        "label": "Current state",
+        "m1": { "label": "Depth interviews", "v": "15 completed" },
+        "m2": { "label": "Diary study", "v": "2 weeks, n=8" },
+        "m3": { "label": "Co-design", "v": "3 workshops" },
+        "p": "Research is complete; ideation synthesis is done and prototype work began late 2024. The project continues as an ongoing research-through-design exploration of technology-mediated friendship for international students."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "Designing for social wellbeing is the first time I've had to actively refuse growth metrics. Every conventional indicator — matches, messages, session time — works against the goal. The hardest design question right now is what the north-star metric should be when the desired outcome is 'one good friendship over a semester', and how to instrument for that without turning a relationship into a KPI."
+      }
+    }
+  },
+  "foot": {
+    "signature": { "text": "A portfolio is a long answer to the question", "em": "what do you actually do all day." },
+    "elsewhere": "Elsewhere",
+    "site": "Site",
+    "write": "Write",
+    "meta": { "built": "Hand-built with Next.js, Tailwind, and a lot of revisions.", "version": "v4 · updated April 2026" }
+  },
+  "tw": {
+    "title": { "text": "Tweaks", "em": "designer view" },
+    "tone": { "label": "Tone", "warm": "Warm", "sharp": "Sharp", "quiet": "Quiet" },
+    "hero": { "label": "Hero variant", "deck": "Practice deck", "grid": "Margin grid", "type": "Type specimen" },
+    "theme": { "label": "Theme", "light": "Light", "dark": "Dark" }
+  },
+  "search": {
+    "placeholder": "Search projects and blog posts...",
+    "noResults": "No results found",
+    "recentSearches": "Recent searches"
+  },
+  "common": { "featured": "Featured", "viewCaseStudy": "View Case Study", "scroll": "Scroll" },
+  "cta": {
+    "letsTalk": "Let's Talk",
+    "openToOpportunities": "Open to opportunities",
+    "viewProjects": "View Projects",
+    "viewAll": "View All →",
+    "downloadResume": "Download Resume",
+    "getInTouch": "Get In Touch"
+  },
+  "skipLink": "Skip to main content",
+  "footer": {
+    "navigation": "Navigation",
+    "getInTouch": "Get In Touch",
+    "downloadResume": "Download Resume",
+    "builtWith": "Built with",
+    "allRightsReserved": "All rights reserved."
+  },
+  "mobileMenu": { "open": "Open menu", "close": "Close menu" },
+  "home": {
+    "greeting": "Hi, I'm ",
+    "name": "Lewis",
+    "subHeadline": "UX Designer & Interaction Design student at the University of Queensland, crafting human-centered digital experiences.",
+    "findMeOn": "Find me on",
+    "portfolioLabel": "Portfolio",
+    "featuredProjects": "Featured Projects",
+    "featuredProjectsDescription": "Selected case studies showcasing my design process and problem-solving approach.",
+    "expertise": "Expertise",
+    "skillsAndTools": "Skills & Tools",
+    "skillsAndToolsDescription": "Core competencies developed through academic study and hands-on projects.",
+    "letsWorkTogether": "Let's Work Together",
+    "letsWorkTogetherDescription": "I'm currently looking for internship opportunities and excited to contribute to meaningful design projects.",
+    "featuredProjectsEmpty": "Featured projects coming soon.",
+    "stats": {
+      "userInterviews": "User Interviews",
+      "treeTestParticipants": "Tree Test Participants",
+      "taskSuccessRate": "Task Success Rate",
+      "findabilityRate": "Findability Rate"
+    },
+    "latest": {
+      "label": "From the journal",
+      "title": "Latest writing.",
+      "cta": "Read the journal"
+    }
+  },
+  "about": {
+    "badge": "About Me",
+    "title": { "prefix": "Crafting ", "highlight": "meaningful", "suffix": " digital experiences" },
+    "intro": {
+      "p1": "I'm currently pursuing a Master of Interaction Design at The University of Queensland, where I'm developing expertise in user research, prototyping, and human-centered design methodologies.",
+      "p2": "My approach combines analytical thinking with creative problem-solving. I believe that great design emerges from deeply understanding user needs and iterating towards solutions that are both functional and delightful."
+    },
+    "profilePhoto": "Profile Photo",
+    "sections": {
+      "philosophy": { "label": "Philosophy", "title": "Design Principles", "description": "Core values that guide every design decision I make." },
+      "toolbox": { "label": "Skills", "title": "My Toolbox", "description": "Technologies and tools I work with regularly." },
+      "journey": { "label": "Journey", "title": "My Path", "description": "Key milestones in my design journey." },
+      "personal": { "label": "Personal", "title": "Beyond Design", "description": "A few things about me outside of work." }
+    },
+    "designPrinciples": [
+      { "icon": "👤", "title": "User-Centered", "description": "Every design decision starts with understanding real user needs through research and empathy." },
+      { "icon": "🔄", "title": "Iterative Process", "description": "Embrace continuous improvement through prototyping, testing, and refinement cycles." },
+      { "icon": "♿", "title": "Accessible by Default", "description": "Design inclusive experiences that work for everyone, regardless of ability or context." },
+      { "icon": "📊", "title": "Evidence-Based", "description": "Ground design choices in data, research findings, and validated user feedback." }
+    ],
+    "toolCategories": [
+      { "name": "Design", "tools": ["Figma", "Adobe XD", "Sketch", "Framer", "Photoshop", "Illustrator"] },
+      { "name": "Research", "tools": ["Miro", "Notion", "Maze", "Hotjar", "UserTesting", "Optimal Workshop"] },
+      { "name": "Development", "tools": ["HTML/CSS", "JavaScript", "React", "TypeScript", "Tailwind CSS", "Next.js"] }
+    ],
+    "timeline": [
+      { "year": "2024", "title": "Master of Interaction Design", "org": "The University of Queensland", "description": "Advanced study in human-computer interaction, UX research, and design thinking." },
+      { "year": "2023", "title": "Started Design Journey", "org": "Self-directed Learning", "description": "Began exploring UX/UI design through online courses and personal projects." }
+    ],
+    "funFacts": [
+      { "emoji": "📚", "label": "Avid reader" },
+      { "emoji": "☕", "label": "Coffee enthusiast" },
+      { "emoji": "🎮", "label": "Casual gamer" },
+      { "emoji": "🌏", "label": "Love exploring" }
+    ],
+    "kicker": "About",
+    "headline": { "text": "I make digital things people can actually find their way through.", "em": "people" },
+    "p1": "I'm finishing my Master of Interaction Design at the University of Queensland. Before that, I spent four years in a different discipline entirely, which is to say I got used to being the person in the room who has to translate between strangers.",
+    "p2": "My work sits where research, architecture and craft overlap. I'm most useful on messy, high-stakes problems — the ones where nobody agrees what the product should be yet — because I enjoy the part everyone else finds tedious: reading interview transcripts at 1am until the pattern shows up.",
+    "p3": "Outside the studio I cook with too much garlic, read non-fiction about cities, and occasionally attempt to learn Japanese. I reply to every email that isn't a recruiter mass-send.",
+    "philo": {
+      "label": "What I believe",
+      "1": { "t": "Research is not decoration.", "b": "If a study didn't change the design, the study wasn't necessary." },
+      "2": { "t": "Clarity over cleverness.", "b": "The best interaction is the one the user never notices solving their problem." },
+      "3": { "t": "Ship the unglamorous parts.", "b": "Empty states, errors, load states — that's where respect for the user lives." },
+      "4": { "t": "Disagree in writing.", "b": "A memo survives the meeting. A whiteboard doesn't." }
+    },
+    "cv": "Download CV",
+    "tl": {
+      "label": "Briefly",
+      "y2026": "Graduating in Jun. Looking for a seat at a serious team.",
+      "y2025": "Spectra selected for UQ Design Showcase. Continuing Connect Circles fieldwork; coursework deepens into research methods and IA.",
+      "y2024": "Began UQ Master's. Mar–Jun: UQ Connect IA redesign. Aug–Nov: Spectra Lens AR accessibility. Oct→: Connect Circles co-design.",
+      "y2020": "Four years in a previous career I'll happily explain in person."
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": { "prefix": "Let's ", "highlight": "Create", "suffix": " Something Amazing" },
+      "description": "I'm always open to discussing new projects, design opportunities, or just having a friendly chat about UX and design."
+    },
+    "methods": {
+      "email": { "title": "Email", "description": "Drop me a line anytime", "action": "Send Email" },
+      "linkedin": { "title": "LinkedIn", "description": "Let's connect professionally", "value": "View Profile", "action": "Connect" },
+      "location": { "title": "Location", "description": "Based in" }
+    },
+    "form": {
+      "label": "Message",
+      "title": "Send a Message",
+      "description": "Fill out the form below and I'll get back to you as soon as possible.",
+      "fields": {
+        "name": { "label": "Name", "placeholder": "John Doe" },
+        "email": { "label": "Email", "placeholder": "john@example.com" },
+        "subject": { "label": "Subject", "placeholder": "What's this about?" },
+        "message": { "label": "Message", "placeholder": "Tell me about your project, idea, or just say hello..." }
+      },
+      "noticeUnconfigured": "Form submission is not configured yet. For now, please email me directly.",
+      "submit": "Send Message"
+    },
+    "faq": {
+      "label": "FAQ",
+      "title": "Frequently Asked",
+      "items": [
+        { "q": "What's your typical response time?", "a": "I usually respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn." },
+        { "q": "Are you available for freelance work?", "a": "I'm currently focused on my studies but open to interesting projects. Let's chat about what you have in mind!" },
+        { "q": "What kind of projects interest you?", "a": "I'm passionate about user-centered design, accessibility, and creating delightful digital experiences. Mobile apps, web platforms, and design systems all excite me." }
+      ]
+    },
+    "kicker": "Contact",
+    "headline": { "text": "The shortest path is the one.", "em": "direct" },
+    "body": "No form. Email is fastest. I reply within 48 hours on weekdays, often sooner. If you'd like a video call, the Calendly link is honest — I only show slots I can actually take.",
+    "email": "hello@lewisdong.com",
+    "cal": "Book 20 minutes",
+    "fit": {
+      "label": "Good fits",
+      "1": "UX / Product / Interaction internships, 2026 – 2027",
+      "2": "Research-led work where shipping is still the goal",
+      "3": "Small teams where the designer is in the room for decisions"
+    },
+    "notfit": {
+      "label": "Less good fits",
+      "1": "Unpaid 'portfolio-building' opportunities",
+      "2": "Projects where research is decoration",
+      "3": "Crypto, surveillance, gambling"
+    }
+  },
+  "resume": {
+    "title": "Resume",
+    "description": "Download my resume to learn more about my experience and qualifications.",
+    "cardTitle": "{name}'s Resume",
+    "cardMeta": "PDF format • Last updated December 2024",
+    "downloadPdf": "Download Resume (PDF)",
+    "downloadPdfShort": "Download PDF",
+    "getInTouch": "Get in Touch",
+    "printHint": "Tip: Use your browser's print function (Ctrl/Cmd + P) to save this page as a PDF",
+    "overview": { "education": "Education", "experienceHighlights": "Experience Highlights" },
+    "sections": { "education": "Education", "experience": "Experience", "skills": "Skills", "certifications": "Certifications", "awards": "Awards & Recognition" },
+    "education": { "degree": "Master of Interaction Design", "institutionAndYears": "The University of Queensland • 2023 – Present" },
+    "experience": [
+      { "title": "UX Design Intern", "orgAndYear": "Design Studio Co. • 2024" },
+      { "title": "Freelance Designer", "orgAndYear": "Self-employed • 2022 – 2023" }
+    ],
+    "kicker": "Résumé",
+    "headline": "The one-page version.",
+    "download": "Download PDF",
+    "print": "Print",
+    "section": { "exp": "Experience", "edu": "Education", "skills": "Skills", "awards": "Awards & Selected" }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Thoughts on UX design, interaction design, and design thinking.",
+    "emptyTitle": "No blog posts yet",
+    "emptyDescription": "Check back soon for articles on design thinking and UX best practices.",
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blog",
+    "by": "By",
+    "subscribe": "Subscribe to updates",
+    "subscribeDescription": "Get notified when I publish new articles or projects.",
+    "subscribePlaceholder": "your@email.com",
+    "subscribeButton": "Subscribe",
+    "subscribeSuccess": "Thanks for subscribing! Check your email to confirm.",
+    "subscribeError": "Something went wrong. Please try again.",
+    "subscribeNote": "No spam, unsubscribe at any time.",
+    "rss": "RSS Feed",
+    "relatedArticles": "Related Articles",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "lab": {
+    "title": "Lab",
+    "description": "A collection of interactive experiments and UI components. These are the building blocks that power this portfolio.",
+    "magneticButtons": { "title": "Magnetic Buttons", "description": "Buttons that subtly follow your mouse movement. Hover over them to see the effect.", "hover": "Hover Me", "secondary": "Secondary", "ghost": "Ghost" },
+    "tiltCards": { "title": "3D Card Tilt", "description": "Cards that tilt in 3D space following cursor position. Move your mouse over the card.", "design": "Design", "designDesc": "Beautiful interfaces with thoughtful interactions", "performance": "Performance", "performanceDesc": "Optimized for speed and smooth animations", "accessibility": "Accessibility", "accessibilityDesc": "Inclusive design for all users" },
+    "glassMorphism": { "title": "Glass Morphism", "description": "Modern frosted glass UI effects with blur and transparency.", "glassCard": "Glass Card", "glassCardDesc": "This card uses backdrop-blur for a frosted glass effect", "heavyGlass": "Heavy Glass", "heavyGlassDesc": "More opaque background with stronger blur" },
+    "animations": { "title": "Animation Playground", "description": "Smooth animations and transitions used throughout the site.", "fadeIn": "Fade In", "scaleIn": "Scale In", "float": "Float" },
+    "about": {
+      "title": "About These Experiments",
+      "description": "All these interactive components are built with React, TypeScript, and Framer Motion. They're designed to enhance user experience without compromising performance or accessibility.",
+      "features": [
+        "Custom cursor enhances navigation on desktop",
+        "Magnetic buttons provide subtle tactile feedback",
+        "3D tilt cards add depth and engagement",
+        "All animations respect prefers-reduced-motion"
+      ]
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Case studies and design work from academic and personal projects.",
+    "searchPlaceholder": "Search projects...",
+    "all": "All",
+    "empty": "No projects found matching your criteria.",
+    "clearFilters": "Clear filters"
+  },
+  "project": {
+    "backToProjects": "← Back to Projects",
+    "role": "Role",
+    "timeline": "Timeline",
+    "tools": "Tools",
+    "shareHelpful": "Found this helpful? Share it!",
+    "relatedProjects": "Related Projects",
+    "relatedProjectsDescription": "Explore more projects with similar themes and approaches"
+  },
+  "notFound": {
+    "kicker": "404",
+    "title": "This page took a wrong turn.",
+    "description": "The URL might be mistyped, or the page has moved. Either way, nothing here worth staying for — let's get you back on track.",
+    "hand": "happens to the best of us.",
+    "goHome": "Back to home",
+    "viewProjects": "See the work",
+    "tryPopular": "Or jump to"
+  },
+  "languageToggle": {
+    "toEnglish": "EN",
+    "toChinese": "中文",
+    "ariaLabelToEnglish": "Switch language to English",
+    "ariaLabelToChinese": "切换到中文"
+  }
 }

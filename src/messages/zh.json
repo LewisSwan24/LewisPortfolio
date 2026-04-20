@@ -1,385 +1,479 @@
 {
-    "nav": {
-        "home": "首页",
-        "projects": "项目",
-        "about": "关于",
-        "contact": "联系",
-        "resume": "简历",
-        "blog": "博客",
-        "more": "更多"
+  "nav": {
+    "home": "首页",
+    "projects": "项目",
+    "about": "关于",
+    "contact": "联系",
+    "resume": "简历",
+    "blog": "博客",
+    "more": "更多",
+    "work": "作品",
+    "writing": "写作",
+    "lang": { "en": "EN", "zh": "中" }
+  },
+  "brand": {
+    "name": "董宇哲 Lewis",
+    "tagline": "设计实践日志，2024 起"
+  },
+  "hero": {
+    "eyebrow": "UX 设计师 · 昆士兰大学交互设计硕士在读",
+    "headline": {
+      "a": "你好，我是 Lewis。",
+      "b": "UX 设计师，昆士兰大学交互设计在读研究生，",
+      "c": "致力于打造以人为本的数字体验。"
     },
-    "search": {
-        "placeholder": "搜索项目和博客文章...",
-        "noResults": "未找到结果",
-        "recentSearches": "最近搜索"
+    "deck": {
+      "label": "实践日志 —",
+      "hint": "拖动或点击任意一张查看"
     },
-    "common": {
-        "featured": "精选",
-        "viewCaseStudy": "查看案例",
-        "scroll": "滚动"
-    },
-    "cta": {
-        "letsTalk": "聊聊合作",
-        "openToOpportunities": "正在寻找机会",
-        "viewProjects": "查看项目",
-        "viewAll": "查看全部 →",
-        "downloadResume": "下载简历",
-        "getInTouch": "联系我"
-    },
-    "skipLink": "跳到主要内容",
-    "footer": {
-        "navigation": "导航",
-        "getInTouch": "联系",
-        "downloadResume": "下载简历",
-        "builtWith": "技术栈",
-        "allRightsReserved": "保留所有权利。"
-    },
-    "mobileMenu": {
-        "open": "打开菜单",
-        "close": "关闭菜单"
-    },
-    "home": {
-        "greeting": "你好，我是",
-        "findMeOn": "社交平台",
-        "portfolioLabel": "作品集",
-        "featuredProjects": "精选项目",
-        "featuredProjectsDescription": "精选案例展示我的设计过程与解决问题能力。",
-        "expertise": "能力",
-        "skillsAndTools": "技能与工具",
-        "skillsAndToolsDescription": "通过课程与项目实践形成的核心能力。",
-        "letsWorkTogether": "一起合作",
-        "letsWorkTogetherDescription": "我正在寻找实习机会，期待参与有意义的设计项目。",
-        "featuredProjectsEmpty": "精选项目即将上线。",
-        "stats": {
-            "userInterviews": "用户访谈",
-            "treeTestParticipants": "树测参与者",
-            "taskSuccessRate": "任务成功率",
-            "findabilityRate": "可发现率"
-        }
-    },
-    "about": {
-        "badge": "关于我",
-        "title": {
-            "prefix": "打造",
-            "highlight": "有意义的",
-            "suffix": "数字体验"
-        },
-        "intro": {
-            "p1": "我目前正在昆士兰大学攻读交互设计硕士，在学习中不断提升用户研究、原型制作与以人为本的设计方法能力。",
-            "p2": "我的方法结合了分析性思维与创造性的解决问题能力。我相信优秀的设计来自对用户需求的深入理解，并通过持续迭代打磨出既实用又令人愉悦的方案。"
-        },
-        "profilePhoto": "个人照片",
-        "sections": {
-            "philosophy": {
-                "label": "理念",
-                "title": "设计原则",
-                "description": "指导我每一个设计决策的核心价值。"
-            },
-            "toolbox": {
-                "label": "技能",
-                "title": "工具箱",
-                "description": "我经常使用的技术与工具。"
-            },
-            "journey": {
-                "label": "经历",
-                "title": "我的路径",
-                "description": "设计旅程中的关键里程碑。"
-            },
-            "personal": {
-                "label": "个人",
-                "title": "设计之外",
-                "description": "工作之外关于我的一些小事。"
-            }
-        },
-        "designPrinciples": [
-            {
-                "icon": "👤",
-                "title": "以用户为中心",
-                "description": "每一次设计决策都从理解真实用户需求开始，通过研究与共情找到关键洞察。"
-            },
-            {
-                "icon": "🔄",
-                "title": "迭代式流程",
-                "description": "通过原型、测试与不断优化的循环持续改进，逐步接近更好的解决方案。"
-            },
-            {
-                "icon": "♿",
-                "title": "默认可访问",
-                "description": "设计包容性的体验，让不同能力与不同情境的用户都能顺畅使用。"
-            },
-            {
-                "icon": "📊",
-                "title": "以证据为依据",
-                "description": "用数据、研究结论与验证过的反馈来支撑设计选择。"
-            }
-        ],
-        "toolCategories": [
-            {
-                "name": "设计",
-                "tools": [
-                    "Figma",
-                    "Adobe XD",
-                    "Sketch",
-                    "Framer",
-                    "Photoshop",
-                    "Illustrator"
-                ]
-            },
-            {
-                "name": "研究",
-                "tools": [
-                    "Miro",
-                    "Notion",
-                    "Maze",
-                    "Hotjar",
-                    "UserTesting",
-                    "Optimal Workshop"
-                ]
-            },
-            {
-                "name": "开发",
-                "tools": [
-                    "HTML/CSS",
-                    "JavaScript",
-                    "React",
-                    "TypeScript",
-                    "Tailwind CSS",
-                    "Next.js"
-                ]
-            }
-        ],
-        "timeline": [
-            {
-                "year": "2024",
-                "title": "交互设计硕士",
-                "org": "昆士兰大学",
-                "description": "深入学习人机交互、UX 研究与设计思维。"
-            },
-            {
-                "year": "2023",
-                "title": "开始设计之旅",
-                "org": "自学",
-                "description": "通过线上课程与个人项目探索 UX/UI 设计。"
-            }
-        ],
-        "funFacts": [
-            {
-                "emoji": "📚",
-                "label": "爱读书"
-            },
-            {
-                "emoji": "☕",
-                "label": "咖啡爱好者"
-            },
-            {
-                "emoji": "🎮",
-                "label": "休闲玩家"
-            },
-            {
-                "emoji": "🌏",
-                "label": "喜欢探索"
-            }
-        ]
-    },
-    "contact": {
-        "hero": {
-            "title": {
-                "prefix": "一起",
-                "highlight": "创造",
-                "suffix": "精彩体验"
-            },
-            "description": "我很乐意聊聊新的项目与设计机会，也欢迎就 UX 与设计来一次轻松的交流。"
-        },
-        "methods": {
-            "email": {
-                "title": "邮箱",
-                "description": "随时给我发邮件",
-                "action": "发送邮件"
-            },
-            "linkedin": {
-                "title": "领英",
-                "description": "职业联系",
-                "value": "查看主页",
-                "action": "添加联系"
-            },
-            "location": {
-                "title": "所在地",
-                "description": "常驻"
-            }
-        },
-        "form": {
-            "label": "留言",
-            "title": "发送消息",
-            "description": "填写下方表单，我会尽快回复你。",
-            "fields": {
-                "name": {
-                    "label": "姓名",
-                    "placeholder": "张三"
-                },
-                "email": {
-                    "label": "邮箱",
-                    "placeholder": "you@example.com"
-                },
-                "subject": {
-                    "label": "主题",
-                    "placeholder": "想聊什么？"
-                },
-                "message": {
-                    "label": "内容",
-                    "placeholder": "告诉我你的项目想法，或者简单打个招呼…"
-                }
-            },
-            "noticeUnconfigured": "表单尚未配置，请直接发邮件给我。",
-            "submit": "发送"
-        },
-        "faq": {
-            "label": "常见问题",
-            "title": "常见问题",
-            "items": [
-                {
-                    "q": "一般多久会回复？",
-                    "a": "我通常会在 24–48 小时内回复邮件。如有紧急事项，也可以通过领英联系我。"
-                },
-                {
-                    "q": "可以接自由职业项目吗？",
-                    "a": "我目前以学习为主，但也愿意了解有趣的项目。欢迎聊聊你的想法！"
-                },
-                {
-                    "q": "你更感兴趣的项目类型是什么？",
-                    "a": "我关注以用户为中心的设计、可访问性以及令人愉悦的数字体验。移动端、Web 平台与设计系统相关项目都很吸引我。"
-                }
-            ]
-        }
-    },
-    "resume": {
-        "title": "简历",
-        "description": "下载简历，了解更多我的经历与能力。",
-        "cardTitle": "{name}的简历",
-        "cardMeta": "PDF格式 • 最后更新：2024年12月",
-        "downloadPdf": "下载简历（PDF）",
-        "downloadPdfShort": "下载 PDF",
-        "getInTouch": "联系我",
-        "printHint": "提示：使用浏览器的打印功能（Ctrl/Cmd + P）可将此页保存为 PDF",
-        "overview": {
-            "education": "教育经历",
-            "experienceHighlights": "经历亮点"
-        },
-        "sections": {
-            "education": "教育经历",
-            "experience": "工作经历",
-            "skills": "技能",
-            "certifications": "证书",
-            "awards": "获奖与荣誉"
-        },
-        "education": {
-            "degree": "交互设计硕士",
-            "institutionAndYears": "昆士兰大学 • 2023 – 至今"
-        },
-        "experience": [
-            {
-                "title": "UX 设计实习生",
-                "orgAndYear": "设计工作室 • 2024"
-            },
-            {
-                "title": "自由职业设计师",
-                "orgAndYear": "自由职业 • 2022 – 2023"
-            }
-        ]
-    },
-    "blog": {
-        "title": "博客",
-        "description": "关于 UX 设计、交互设计与设计思维的思考。",
-        "emptyTitle": "暂无博客文章",
-        "emptyDescription": "敬请期待关于设计思维和 UX 最佳实践的文章。",
-        "breadcrumbHome": "首页",
-        "breadcrumbBlog": "博客",
-        "by": "作者",
-        "subscribe": "订阅更新",
-        "subscribeDescription": "新文章或项目发布时会通知你。",
-        "subscribePlaceholder": "your@email.com",
-        "subscribeButton": "订阅",
-        "subscribeSuccess": "感谢订阅！请查看邮箱确认。",
-        "subscribeError": "出了点问题，请重试。",
-        "subscribeNote": "无垃圾邮件，随时退订。",
-        "rss": "RSS 订阅",
-        "relatedArticles": "相关文章",
-        "prev": "上一篇",
-        "next": "下一篇"
-    },
-    "lab": {
-        "title": "实验室",
-        "description": "一系列交互实验和 UI 组件的合集，它们是构建本作品集的基础模块。",
-        "magneticButtons": {
-            "title": "磁性按钮",
-            "description": "按钮会微妙地跟随鼠标移动，将鼠标悬停在上方查看效果。",
-            "hover": "悬停试试",
-            "secondary": "次要",
-            "ghost": "透明"
-        },
-        "tiltCards": {
-            "title": "3D 倾斜卡片",
-            "description": "卡片在 3D 空间中跟随光标位置倾斜，将鼠标移到卡片上方。",
-            "design": "设计",
-            "designDesc": "精心打磨的交互界面",
-            "performance": "性能",
-            "performanceDesc": "为速度和流畅动画而优化",
-            "accessibility": "无障碍",
-            "accessibilityDesc": "面向所有用户的包容性设计"
-        },
-        "glassMorphism": {
-            "title": "毛玻璃效果",
-            "description": "使用模糊和透明度的现代磨砂玻璃 UI 效果。",
-            "glassCard": "玻璃卡片",
-            "glassCardDesc": "这张卡片使用了 backdrop-blur 实现磨砂玻璃效果",
-            "heavyGlass": "深度玻璃",
-            "heavyGlassDesc": "更不透明的背景和更强的模糊效果"
-        },
-        "animations": {
-            "title": "动画演示",
-            "description": "贯穿整个网站的流畅动画和过渡效果。",
-            "fadeIn": "淡入",
-            "scaleIn": "缩放进入",
-            "float": "浮动"
-        },
-        "about": {
-            "title": "关于这些实验",
-            "description": "所有这些交互组件都使用 React、TypeScript 和 Framer Motion 构建，旨在增强用户体验而不影响性能或可访问性。",
-            "features": [
-                "自定义光标增强桌面端导航",
-                "磁性按钮提供微妙的触觉反馈",
-                "3D 倾斜卡片增加深度和参与感",
-                "所有动画尊重 prefers-reduced-motion 设置"
-            ]
-        }
-    },
-    "projects": {
-        "title": "项目",
-        "description": "来自课程与个人项目的案例研究与设计作品。",
-        "searchPlaceholder": "搜索项目…",
-        "all": "全部",
-        "empty": "没有找到符合条件的项目。",
-        "clearFilters": "清除筛选"
-    },
-    "project": {
-        "backToProjects": "← 返回项目列表",
-        "role": "角色",
-        "timeline": "周期",
-        "tools": "工具",
-        "shareHelpful": "觉得有帮助？分享给朋友！",
-        "relatedProjects": "相关项目",
-        "relatedProjectsDescription": "探索更多主题和方法相似的项目"
-    },
-    "notFound": {
-        "title": "页面未找到",
-        "description": "抱歉，未找到你访问的页面。可能链接有误或页面已移动。",
-        "goHome": "返回首页",
-        "viewProjects": "查看项目",
-        "tryPopular": "或者试试这些热门页面："
-    },
-    "languageToggle": {
-        "toEnglish": "EN",
-        "toChinese": "中文",
-        "ariaLabelToEnglish": "切换到英文",
-        "ariaLabelToChinese": "切换到中文"
+    "cta": { "work": "看看作品", "note": "给我写信" }
+  },
+  "now": {
+    "label": "此刻在做",
+    "reading": { "label": "在读", "val": "Weiss 论孤独；Ryan & Deci 自我决定论" },
+    "building": { "label": "在做", "val": "Connect Circles —— 国际学生「慢匹配」社交 App" },
+    "learning": { "label": "在学", "val": "Rive 里的动效设计基本功" },
+    "location": { "label": "位置", "val": "澳洲布里斯班 · 可远程 / 悉尼 / 新加坡 / 旧金山" }
+  },
+  "approach": {
+    "label": "工作方式",
+    "title": { "text": "研究进去，成品出来。", "em": "每一次都如此。" },
+    "body": "我不画完草图就交给别人去收尾。访谈我来跑、信号我来梳、IA 我来搭、原型我来做，然后坐在真实用户旁边看它是如何被戳穿的。事情只有做完才算数。",
+    "step": {
+      "1": { "t": "倾听", "b": "50+ 次访谈，跨研究累计 300+ 参与者。" },
+      "2": { "t": "综合", "b": "亲和图、JTBD、树测试 —— 结构化地推理。" },
+      "3": { "t": "原型", "b": "Figma、Framer、HTML/CSS/React —— 需要多高保真就做多高。" },
+      "4": { "t": "交付", "b": "可用性测试、迭代、附带完整推理地交接。" }
     }
+  },
+  "feat": { "label": "精选作品", "title": "四个项目，从 0 到上线。", "footer": "完整列表" },
+  "proj": {
+    "connect": {
+      "kicker": "旗舰 · 信息架构",
+      "title": "UQ Connect",
+      "sub": "为 5 万名已经受够了它的学生，重做门户站。",
+      "role": "UX 研究 & 设计",
+      "date": "2024 · 4 个月",
+      "m1": "可发现率 58 → 84%",
+      "m2": "任务成功 72 → 94%",
+      "m3": "SUS 61 → 78"
+    },
+    "spectra": {
+      "kicker": "旗舰 · 无障碍 / AR",
+      "title": "Spectra Lens",
+      "sub": "一个 AR 镜头，让色盲用户看见世界真正呈现的样子。",
+      "role": "首席 UX 设计师",
+      "date": "2024 · 4 个月",
+      "m1": "成功率 75 → 92%",
+      "m2": "平均识别 3.1 秒",
+      "m3": "满意度 4.2 / 5"
+    },
+    "ai": {
+      "kicker": "AI · 教育科技",
+      "title": "AI 面试助手",
+      "sub": "在没有观众的房间里，彩排人生里最难的一场对话。",
+      "role": "UX 设计 & 研究",
+      "date": "2024 · 5 个月",
+      "m1": "信心提升 +84%",
+      "m2": "焦虑下降 −68%",
+      "m3": "满意度 4.5 / 5"
+    },
+    "circles": {
+      "kicker": "进行中 · 社交",
+      "title": "Connect Circles",
+      "sub": "友谊看质量不是数量 —— 为国际学生设计的慢匹配 App。",
+      "role": "产品设计师",
+      "date": "2024 · 进行中",
+      "m1": "15 次深度访谈",
+      "m2": "2 周日记研究",
+      "m3": "3 场共创工作坊"
+    }
+  },
+  "cs": {
+    "back": "← 所有作品",
+    "role": "角色",
+    "time": "周期",
+    "team": "团队",
+    "tools": "工具",
+    "next": "下一项目",
+    "prev": "上一项目",
+    "related": "继续阅读",
+    "impactLabel": "关键结果",
+    "connect": {
+      "hero": { "title": "UQ Connect", "sub": "为 5 万名学生在用的大学门户站，重做一套信息架构。" },
+      "roleVal": "独立 UX 研究 & 设计",
+      "timeVal": "2024 年 3 – 6 月",
+      "teamVal": "独立完成，导师指导",
+      "toolsVal": "Figma · OptimalSort · Treejack · Maze",
+      "ch": {
+        "label": "问题",
+        "title": "十二个顶层类，大多数都语义不清。",
+        "p": "新生来到一个完全按行政部门语言命名的门户 —— 「HiQ」「SI-net」「mySI-net」—— 只能靠猜。搜索不容忍错拼也不识别同义词。移动端被压成一个汉堡菜单，里面塞着 80+ 条链接。"
+      },
+      "re": {
+        "label": "研究",
+        "title": "五十名学生，三种方法，一个月。",
+        "m1": { "t": "24 位参与者", "b": "针对 42 个常见任务的开放式卡片分类。" },
+        "m2": { "t": "10 位参与者", "b": "在当前门户上进行任务式出声思考。" },
+        "m3": { "t": "50 位参与者", "b": "树测试：原版 vs. 两个候选方案。" },
+        "quote": "我其实都是 Google「昆大怎么退课」，从来不会去门户找。",
+        "quoteWho": "P07，大二本科生"
+      },
+      "sy": {
+        "label": "综合",
+        "title": "门户是按「信息归谁管」组织的，不是按「谁需要它」。",
+        "p": "亲和图整理出学生的心理模型，围绕五个生活阶段聚合：到校、学习、归属、自立、离开。我们把原来的 12 个部门分类压成 6 个任务分类，「我是新生」被放到首屏最显眼的位置。"
+      },
+      "id": { "label": "IA 决策", "p": "我们测试了三个候选树；获胜的方案保留了一个按字母索引的备用通道给熟手，同时把任务优先的结构放在第一入口。每一个分类名都交给两位非昆大背景的读者做了「白话复审」。" },
+      "pr": { "label": "原型", "p": "一份 Figma 原型覆盖了 Top 15 任务的中保真端到端流程。导航外壳和「我是新生」着陆页做到了高保真，用来验证移动端的阅读流。" },
+      "te": { "label": "可用性测试", "p": "8 位学生，有主持的远程测试。高保真下才暴露出的问题：「Money」和「My account」在命名上会混淆 —— 当场改名，重跑一轮确认修好。" },
+      "ou": {
+        "label": "成果",
+        "m1": { "label": "可发现率", "v": "58 → 84%" },
+        "m2": { "label": "任务成功", "v": "72 → 94%" },
+        "m3": { "label": "SUS 分数", "v": "61 → 78" },
+        "p": "这套新 IA 正在被昆大数字化团队分阶段落地。这套树测试协议和「白话复审」机制已经被沿用到另外两个大学项目里。"
+      },
+      "rf": { "label": "反思", "p": "研究阶段比原计划长 —— 下次我会提前预算进去。最有价值的决定是坚持让非昆大背景的读者做白话复审，它逮住了四个在机构内听着没问题、出了校园就莫名其妙的分类名。" }
+    },
+    "spectra": {
+      "hero": { "title": "Spectra Lens", "sub": "让色觉障碍用户按自己的节奏读懂这个世界。" },
+      "roleVal": "首席 UX 设计师",
+      "timeVal": "2024 年 8 – 11 月",
+      "teamVal": "独立，辅以无障碍研究方向的指导",
+      "toolsVal": "Figma · Adobe XD · Maze · Miro",
+      "ch": {
+        "label": "问题",
+        "title": "8% 的男性看到的世界颜色更少 —— 而几乎每个 app 都默认他们没事。",
+        "p": "红绿灯、食物新鲜度、数据仪表盘、药品包装，日常任务默认使用者有完整的色觉。对于 8% 的男性和 0.5% 的女性色弱用户，每件这样的小事都变成了一次私下的协商：记个变通办法、问陌生人，或者干脆猜。现有工具大多像诊所器械 —— 适用于临床，而不是一个普通的周二早晨。"
+      },
+      "re": {
+        "label": "研究",
+        "title": "12 位用户、5 款 app，一个反复出现的答案。",
+        "m1": { "t": "12 位参与者", "b": "跨三种色觉偏差类型的半结构化访谈（绿色盲、红色盲、蓝黄色盲）。" },
+        "m2": { "t": "5 款 app", "b": "启发式评估现有色彩识别工具的无障碍与社交摩擦指标。" },
+        "m3": { "t": "2 场工作坊", "b": "共创工作坊，绘制日常色彩时刻并快速草图探索解决方案。" },
+        "quote": "我一掏出 app，对话就卡住了。我宁愿猜，也不愿解释。",
+        "quoteWho": "P04，绿色盲，博士二年级"
+      },
+      "sy": {
+        "label": "综合",
+        "title": "用户不需要颜色的名字 —— 他们需要的是决定。",
+        "p": "三条洞察主导了数据：速度（决定的自然窗口只有 2–3 秒）、语境（用户想知道食物是否变质，而不是它「有点偏绿」）、隐私（大多数人不愿在公开场合显得「色盲」）。现有 app 都在优化命名，没有一个在优化行动。"
+      },
+      "id": { "label": "设计决策", "p": "我们选了 AR 叠加而不是全屏滤镜，因为叠加能保留语境 —— 用户仍然看到真实世界，只是多了一层低不透明度的标注。共创工作坊结束后，语音反馈从默认改为可选；因为许多人担心 app 在公共场合过于声张。整个交互被压缩为单键摄像头模式：没有菜单，没有账户，也不用记配色字典。" },
+      "pr": { "label": "原型", "p": "Figma 高保真原型模拟了真实 AR 摄像头行为，含三种反馈模式（视觉、语音、触感）和单屏设置。我们特意保留了「快速模式」覆盖最常见场景（交通、服装、食物），用以测试发现性与深度哪个更重要。" },
+      "te": { "label": "可用性测试", "p": "8 位参与者在真实环境中测试 —— 食堂、斑马线、他们自己的衣橱。最初的 40% 叠加不透明度遮住了食物的纹理 —— 降到 20% 并加入了触感确认。嘈杂环境下语音反馈比直接读叠加更慢，用户普遍选择了静音默认 + 语音可切换。" },
+      "ou": {
+        "label": "成果",
+        "m1": { "label": "任务成功率", "v": "75 → 92%" },
+        "m2": { "label": "识别用时", "v": "平均 3.1 秒" },
+        "m3": { "label": "满意度", "v": "4.2 / 5" },
+        "p": "入选 UQ Design Showcase 2024，被推荐进入学校无障碍服务的小范围试点。无障碍顾问委员会下学期把共创流程复用到了校园导视的审计上。"
+      },
+      "rf": { "label": "反思", "p": "AR 无障碍至今仍被低估，因为「无障碍」常常被直接读成「屏幕阅读器」。这一次最大的教训是认知负荷 —— 叠加层上多出的每一条信息，都是用户之后需要忽略的一条。下一次我会先设计「零态」（摄像头什么都不说时的样子），再去设计可交互元素。" }
+    },
+    "ai": {
+      "hero": { "title": "AI 面试助手", "sub": "在没有观众的房间里，彩排人生里最难的一场对话。" },
+      "roleVal": "UX 设计师兼研究员",
+      "timeVal": "2024 年 2 – 6 月",
+      "teamVal": "独立，两位职业顾问参与",
+      "toolsVal": "Figma · FigJam · Lookback · ChatGPT API",
+      "ch": {
+        "label": "问题",
+        "title": "78% 的求职者觉得自己没准备好 —— 而三分之二的人请不起教练。",
+        "p": "求职面试的准备市场有一道明显的分界：资深求职者买得起教练，其他人只能读题库。调研显示，卡在候选人和工作之间的不是知识，而是紧张。现有平台要么靠同辈互练（质量不稳定），要么提供录播课（没有反馈环）。没有人在处理这个问题的情绪侧。"
+      },
+      "re": {
+        "label": "研究",
+        "title": "85 份问卷、15 场访谈、6 个现有对手。",
+        "m1": { "t": "85 位参与者", "b": "跨资历的问卷，聚焦准备习惯与痛点。" },
+        "m2": { "t": "15 位参与者", "b": "对近期面试者（录取者与仍在寻找者各半）的深度访谈。" },
+        "m3": { "t": "6 款现有 app", "b": "对 Pramp、Yoodli、Big Interview、Google Interview Warmup 等六款平台的竞品拆解。" },
+        "quote": "我知道该说什么。只是有人盯着我看时，我就说不出来。",
+        "quoteWho": "P11，资深候选人，仍在求职"
+      },
+      "sy": {
+        "label": "综合",
+        "title": "内容只是门槛，产品必须管理焦虑。",
+        "p": "最关键的一条洞察是：卡住表现的是焦虑，不是知识。用户想要真实感 —— 但不想在犯错时被评判。这意味着两件事：AI 的语气要比一个招聘官温和，反馈要在整场结束后到达，永远不在句中插入。所有现有竞品都至少违反了其中一条。"
+      },
+      "id": { "label": "设计决策", "p": "三条不退让的决定：一个有名字（Alex）且带自然停顿的 AI 角色、默认在会话结束后才给反馈、以及三档固定时长（5 / 10 / 20 分钟）而不是任意长度。研究显示身体语言分析会加深用户本已严重的自我意识，我们明确地放弃了这个方向。" },
+      "pr": { "label": "原型", "p": "一个可交互的 Figma 原型跑通了完整闭环：语音输入转文字、三种面试类型（行为 / 技术 / 案例），会话结束后给出语气经过校准的详细报告 —— 用建设性框架表达，给具体的反馈而不是空泛的赞美。「信心补给」模式提供更容易的问题，供用户在真正练习前作为暖身。" },
+      "te": { "label": "可用性测试", "p": "两周内 12 场有节制测试，另加一次反馈时机的 A/B 测试：句中反馈对比会话结束后反馈。后者在满意度上高出 34% —— 句中反馈即便有用，也被感知为打断。多位用户请求 AI 在提问之间停顿更久；加上自然停顿后，感知真实度上升。" },
+      "ou": {
+        "label": "成果",
+        "m1": { "label": "信心", "v": "+84% 提升" },
+        "m2": { "label": "焦虑", "v": "−68%" },
+        "m3": { "label": "满意度", "v": "4.5 / 5" },
+        "p": "四周 Beta 测试 50 位用户，人均 3.2 次会话 —— 远高于我们设定的留存目标 2 次。反馈时机的 A/B 结果是这个项目里最意外的产出 —— 它成了后续教育类工具项目里我们沿用的一条设计原则。"
+      },
+      "rf": { "label": "反思", "p": "和 AI 一起做设计，不是在设计一个 chatbot，而是在设计一种关系。角色的温度、语速、用词，做了比任何单个功能都多的活。下一步我会往情绪校准方向推 —— 让用户设置他们想要多温柔 / 多严格的会话，不是作为难度滑杆，而是作为一种语气偏好。" }
+    },
+    "circles": {
+      "hero": { "title": "Connect Circles", "sub": "要质量而不是数量 —— 为留学生做的慢匹配社交 app。" },
+      "roleVal": "产品设计师",
+      "timeVal": "2024 年 10 月 – 进行中",
+      "teamVal": "独立，与 8 位留学生共创",
+      "toolsVal": "Figma · FigJam · Notion · Discord",
+      "ch": {
+        "label": "问题",
+        "title": "67% 的留学生在第一学期感到孤独 —— 而现有 app 让情况更糟。",
+        "p": "跨国留学让整套社交支架一夜塌缩。语言障碍、陌生的社交规范、学业压力叠加在一起，让「认识新朋友」这件事同时显得紧迫又消耗。学生们现在用的 app —— Meetup、Bumble BFF、Hey! VINA —— 都在优化匹配数量，而那恰恰是放大情感成本的指标。他们告诉我们：宁愿要一段深厚的友谊，也不要十场客气的见面。没有一款现有产品是围绕这个偏好来设计的。"
+      },
+      "re": {
+        "label": "研究",
+        "title": "三个文化区域、三种方法、一个顽固出现的模式。",
+        "m1": { "t": "15 位参与者", "b": "横跨东亚、南亚、欧洲留学生群体的半结构化访谈。" },
+        "m2": { "t": "8 位参与者", "b": "两周日记研究，记录社交互动与前后情绪状态。" },
+        "m3": { "t": "8 位参与者", "b": "共创工作坊，探索理想功能、红线，以及文化维度的考量。" },
+        "quote": "我不想要更多朋友。我想要一个不用伪装的人。",
+        "quoteWho": "P03，研究生一年级"
+      },
+      "sy": {
+        "label": "综合",
+        "title": "市场建立在体量之上，用户要的是深度。",
+        "p": "四条洞察跨越文化差异持续浮现：深度胜过广度；共享的脆弱是关系形成的机制；第一次见面需要的是共同的活动，而不是咖啡约；社交规范差异足够大，任何一种默认都会冒犯到某一群人。设计上这几乎是婚恋 app 的反面 —— 放慢、给更少的匹配、让用户靠参与赢得下一步。"
+      },
+      "id": { "label": "设计决策", "p": "共创工作坊里筛出四个方向：3–5 人小组式的「圈子」（不是一对一）、加速亲密度的结构化脆弱提示、沟通风格上的文化桥接提示，以及逐步释放信息的慢匹配。v1 版本明确把实时聊天 de-scope 了 —— 设计假设是：更少的信息交换、更多的共享语境，会生产更结实的连接。" },
+      "pr": { "label": "原型", "p": "一个中保真 Figma 原型正在开发，覆盖引导（偏好与舒适度获取）、圈子匹配演示、活动推荐与 RSVP、对话提示、活动后反思。原型默认是隐私保护的 —— 没有公开资料、没有左右滑的界面。" },
+      "te": { "label": "测试计划", "p": "2025 年 2 月开始的偏好测试与有主持的可用性测试。主要指标不是可用性（我们已经知道流程能跑），而是感知安全度、文化适配，以及假想的八周窗口里他们是否真的愿意使用。" },
+      "ou": {
+        "label": "当前状态",
+        "m1": { "label": "深度访谈", "v": "已完成 15 位" },
+        "m2": { "label": "日记研究", "v": "两周, n=8" },
+        "m3": { "label": "共创工作坊", "v": "3 场" },
+        "p": "研究阶段已完成；综合阶段结束，原型工作于 2024 年末启动。该项目作为针对留学生的、通过设计来研究「技术介入的友谊」的持续探索。"
+      },
+      "rf": { "label": "反思", "p": "为社交健康做设计，是我第一次需要主动拒绝增长指标。每一个常规指标 —— 匹配数、消息数、停留时长 —— 都与目标相反。目前最难的设计问题是：当目标是「一学期里一段好友谊」时，北极星指标应该是什么？怎么在不把关系变成 KPI 的前提下做度量？" }
+    }
+  },
+  "foot": {
+    "signature": { "text": "作品集是一个很长的答案，回答的是", "em": "你平时到底在做什么。" },
+    "elsewhere": "别处",
+    "site": "站点",
+    "write": "写作",
+    "meta": { "built": "用 Next.js、Tailwind 手搓。改了很多版。", "version": "v4 · 2026 年 4 月更新" }
+  },
+  "tw": {
+    "title": { "text": "调参", "em": "设计师视图" },
+    "tone": { "label": "语气", "warm": "温暖", "sharp": "锐利", "quiet": "安静" },
+    "hero": { "label": "Hero 变体", "deck": "实践卡组", "grid": "手稿栅格", "type": "字体样张" },
+    "theme": { "label": "主题", "light": "明", "dark": "暗" }
+  },
+  "search": { "placeholder": "搜索项目和博客文章...", "noResults": "未找到结果", "recentSearches": "最近搜索" },
+  "common": { "featured": "精选", "viewCaseStudy": "查看案例", "scroll": "滚动" },
+  "cta": { "letsTalk": "聊聊合作", "openToOpportunities": "正在寻找机会", "viewProjects": "查看项目", "viewAll": "查看全部 →", "downloadResume": "下载简历", "getInTouch": "联系我" },
+  "skipLink": "跳到主要内容",
+  "footer": { "navigation": "导航", "getInTouch": "联系", "downloadResume": "下载简历", "builtWith": "技术栈", "allRightsReserved": "保留所有权利。" },
+  "mobileMenu": { "open": "打开菜单", "close": "关闭菜单" },
+  "home": {
+    "greeting": "你好，我是",
+    "name": "Lewis",
+    "subHeadline": "UX 设计师 & 昆士兰大学交互设计在读研究生，致力于打造以人为本的数字体验。",
+    "findMeOn": "社交平台",
+    "portfolioLabel": "作品集",
+    "featuredProjects": "精选项目",
+    "featuredProjectsDescription": "精选案例展示我的设计过程与解决问题能力。",
+    "expertise": "能力",
+    "skillsAndTools": "技能与工具",
+    "skillsAndToolsDescription": "通过课程与项目实践形成的核心能力。",
+    "letsWorkTogether": "一起合作",
+    "letsWorkTogetherDescription": "我正在寻找实习机会，期待参与有意义的设计项目。",
+    "featuredProjectsEmpty": "精选项目即将上线。",
+    "stats": { "userInterviews": "用户访谈", "treeTestParticipants": "树测参与者", "taskSuccessRate": "任务成功率", "findabilityRate": "可发现率" },
+    "latest": {
+      "label": "笔记本里",
+      "title": "最近写的几篇。",
+      "cta": "去博客看看"
+    }
+  },
+  "about": {
+    "badge": "关于我",
+    "title": { "prefix": "打造", "highlight": "有意义的", "suffix": "数字体验" },
+    "intro": {
+      "p1": "我目前正在昆士兰大学攻读交互设计硕士，在学习中不断提升用户研究、原型制作与以人为本的设计方法能力。",
+      "p2": "我的方法结合了分析性思维与创造性的解决问题能力。我相信优秀的设计来自对用户需求的深入理解，并通过持续迭代打磨出既实用又令人愉悦的方案。"
+    },
+    "profilePhoto": "个人照片",
+    "sections": {
+      "philosophy": { "label": "理念", "title": "设计原则", "description": "指导我每一个设计决策的核心价值。" },
+      "toolbox": { "label": "技能", "title": "工具箱", "description": "我经常使用的技术与工具。" },
+      "journey": { "label": "经历", "title": "我的路径", "description": "设计旅程中的关键里程碑。" },
+      "personal": { "label": "个人", "title": "设计之外", "description": "工作之外关于我的一些小事。" }
+    },
+    "designPrinciples": [
+      { "icon": "👤", "title": "以用户为中心", "description": "每一次设计决策都从理解真实用户需求开始，通过研究与共情找到关键洞察。" },
+      { "icon": "🔄", "title": "迭代式流程", "description": "通过原型、测试与不断优化的循环持续改进，逐步接近更好的解决方案。" },
+      { "icon": "♿", "title": "默认可访问", "description": "设计包容性的体验，让不同能力与不同情境的用户都能顺畅使用。" },
+      { "icon": "📊", "title": "以证据为依据", "description": "用数据、研究结论与验证过的反馈来支撑设计选择。" }
+    ],
+    "toolCategories": [
+      { "name": "设计", "tools": ["Figma", "Adobe XD", "Sketch", "Framer", "Photoshop", "Illustrator"] },
+      { "name": "研究", "tools": ["Miro", "Notion", "Maze", "Hotjar", "UserTesting", "Optimal Workshop"] },
+      { "name": "开发", "tools": ["HTML/CSS", "JavaScript", "React", "TypeScript", "Tailwind CSS", "Next.js"] }
+    ],
+    "timeline": [
+      { "year": "2024", "title": "交互设计硕士", "org": "昆士兰大学", "description": "深入学习人机交互、UX 研究与设计思维。" },
+      { "year": "2023", "title": "开始设计之旅", "org": "自学", "description": "通过线上课程与个人项目探索 UX/UI 设计。" }
+    ],
+    "funFacts": [
+      { "emoji": "📚", "label": "爱读书" },
+      { "emoji": "☕", "label": "咖啡爱好者" },
+      { "emoji": "🎮", "label": "休闲玩家" },
+      { "emoji": "🌏", "label": "喜欢探索" }
+    ],
+    "kicker": "关于",
+    "headline": { "text": "我做的是「让人能找到路」的数字产品。", "em": "人" },
+    "p1": "我在昆士兰大学读交互设计硕士，明年毕业。在此之前我在完全不同的领域待过四年，这段经历的副产品，就是让我习惯了在房间里做那个要在陌生人之间翻译的人。",
+    "p2": "我的工作站在研究、信息架构和手艺三件事的重叠处。我最能派上用场的，是那些乱糟糟、高风险、所有人还在为「这到底该是个什么产品」吵架的阶段 —— 因为我享受别人觉得乏味的那部分：凌晨一点把访谈转写读到模式自己浮现出来。",
+    "p3": "工作外我做菜放太多蒜，读关于城市的非虚构，偶尔尝试学日语。只要不是群发给招聘候选人的邮件，我都会回。",
+    "philo": {
+      "label": "我相信的事",
+      "1": { "t": "研究不是装饰。", "b": "如果一次研究没有改变设计，那次研究就没必要做。" },
+      "2": { "t": "清晰胜过聪明。", "b": "最好的交互是用户根本没注意到它解决了问题。" },
+      "3": { "t": "把不光鲜的部分也做完。", "b": "空状态、错误、加载 —— 对用户的尊重就住在那些地方。" },
+      "4": { "t": "分歧要写下来。", "b": "备忘录能活过会议。白板不行。" }
+    },
+    "cv": "下载简历",
+    "tl": {
+      "label": "简要",
+      "y2026": "6 月毕业。在找一个认真的团队。",
+      "y2025": "Spectra 入选昆大设计年展。继续 Connect Circles 田野；课程深入到研究方法与 IA。",
+      "y2024": "进入昆大交互设计硕士项目。3–6 月：UQ Connect 信息架构重设计。8–11 月：Spectra Lens AR 无障碍。10 月起：Connect Circles 共创研究。",
+      "y2020": "前一段四年的职业经历，当面可以详谈。"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": { "prefix": "一起", "highlight": "创造", "suffix": "精彩体验" },
+      "description": "我很乐意聊聊新的项目与设计机会，也欢迎就 UX 与设计来一次轻松的交流。"
+    },
+    "methods": {
+      "email": { "title": "邮箱", "description": "随时给我发邮件", "action": "发送邮件" },
+      "linkedin": { "title": "领英", "description": "职业联系", "value": "查看主页", "action": "添加联系" },
+      "location": { "title": "所在地", "description": "常驻" }
+    },
+    "form": {
+      "label": "留言",
+      "title": "发送消息",
+      "description": "填写下方表单，我会尽快回复你。",
+      "fields": {
+        "name": { "label": "姓名", "placeholder": "张三" },
+        "email": { "label": "邮箱", "placeholder": "you@example.com" },
+        "subject": { "label": "主题", "placeholder": "想聊什么？" },
+        "message": { "label": "内容", "placeholder": "告诉我你的项目想法，或者简单打个招呼…" }
+      },
+      "noticeUnconfigured": "表单尚未配置，请直接发邮件给我。",
+      "submit": "发送"
+    },
+    "faq": {
+      "label": "常见问题",
+      "title": "常见问题",
+      "items": [
+        { "q": "一般多久会回复？", "a": "我通常会在 24–48 小时内回复邮件。如有紧急事项，也可以通过领英联系我。" },
+        { "q": "可以接自由职业项目吗？", "a": "我目前以学习为主，但也愿意了解有趣的项目。欢迎聊聊你的想法！" },
+        { "q": "你更感兴趣的项目类型是什么？", "a": "我关注以用户为中心的设计、可访问性以及令人愉悦的数字体验。移动端、Web 平台与设计系统相关项目都很吸引我。" }
+      ]
+    },
+    "kicker": "联络",
+    "headline": { "text": "最短的路径，就是那一条。", "em": "直接" },
+    "body": "不放表单。邮件最快。工作日 48 小时内一定回复，通常更快。想视频就点 Calendly —— 上面放的是我真的能接的时间，不是装点门面。",
+    "email": "hello@lewisdong.com",
+    "cal": "预约 20 分钟",
+    "fit": { "label": "适合聊", "1": "UX / 产品 / 交互 实习，2026 – 2027", "2": "以研究驱动、但终点是上线的项目", "3": "设计师能参与决策的小团队" },
+    "notfit": { "label": "不太适合", "1": "「用作品换作品」的无偿机会", "2": "把研究当装饰的项目", "3": "加密货币、监控、博彩" }
+  },
+  "resume": {
+    "title": "简历",
+    "description": "下载简历，了解更多我的经历与能力。",
+    "cardTitle": "{name}的简历",
+    "cardMeta": "PDF格式 • 最后更新：2024年12月",
+    "downloadPdf": "下载简历（PDF）",
+    "downloadPdfShort": "下载 PDF",
+    "getInTouch": "联系我",
+    "printHint": "提示：使用浏览器的打印功能（Ctrl/Cmd + P）可将此页保存为 PDF",
+    "overview": { "education": "教育经历", "experienceHighlights": "经历亮点" },
+    "sections": { "education": "教育经历", "experience": "工作经历", "skills": "技能", "certifications": "证书", "awards": "获奖与荣誉" },
+    "education": { "degree": "交互设计硕士", "institutionAndYears": "昆士兰大学 • 2023 – 至今" },
+    "experience": [
+      { "title": "UX 设计实习生", "orgAndYear": "设计工作室 • 2024" },
+      { "title": "自由职业设计师", "orgAndYear": "自由职业 • 2022 – 2023" }
+    ],
+    "kicker": "简历",
+    "headline": "浓缩的一页版本。",
+    "download": "下载 PDF",
+    "print": "打印",
+    "section": { "exp": "经历", "edu": "教育", "skills": "技能", "awards": "奖项与入选" }
+  },
+  "blog": {
+    "title": "博客",
+    "description": "关于 UX 设计、交互设计与设计思维的思考。",
+    "emptyTitle": "暂无博客文章",
+    "emptyDescription": "敬请期待关于设计思维和 UX 最佳实践的文章。",
+    "breadcrumbHome": "首页",
+    "breadcrumbBlog": "博客",
+    "by": "作者",
+    "subscribe": "订阅更新",
+    "subscribeDescription": "新文章或项目发布时会通知你。",
+    "subscribePlaceholder": "your@email.com",
+    "subscribeButton": "订阅",
+    "subscribeSuccess": "感谢订阅！请查看邮箱确认。",
+    "subscribeError": "出了点问题，请重试。",
+    "subscribeNote": "无垃圾邮件，随时退订。",
+    "rss": "RSS 订阅",
+    "relatedArticles": "相关文章",
+    "prev": "上一篇",
+    "next": "下一篇"
+  },
+  "lab": {
+    "title": "实验室",
+    "description": "一系列交互实验和 UI 组件的合集，它们是构建本作品集的基础模块。",
+    "magneticButtons": { "title": "磁性按钮", "description": "按钮会微妙地跟随鼠标移动，将鼠标悬停在上方查看效果。", "hover": "悬停试试", "secondary": "次要", "ghost": "透明" },
+    "tiltCards": { "title": "3D 倾斜卡片", "description": "卡片在 3D 空间中跟随光标位置倾斜，将鼠标移到卡片上方。", "design": "设计", "designDesc": "精心打磨的交互界面", "performance": "性能", "performanceDesc": "为速度和流畅动画而优化", "accessibility": "无障碍", "accessibilityDesc": "面向所有用户的包容性设计" },
+    "glassMorphism": { "title": "毛玻璃效果", "description": "使用模糊和透明度的现代磨砂玻璃 UI 效果。", "glassCard": "玻璃卡片", "glassCardDesc": "这张卡片使用了 backdrop-blur 实现磨砂玻璃效果", "heavyGlass": "深度玻璃", "heavyGlassDesc": "更不透明的背景和更强的模糊效果" },
+    "animations": { "title": "动画演示", "description": "贯穿整个网站的流畅动画和过渡效果。", "fadeIn": "淡入", "scaleIn": "缩放进入", "float": "浮动" },
+    "about": {
+      "title": "关于这些实验",
+      "description": "所有这些交互组件都使用 React、TypeScript 和 Framer Motion 构建，旨在增强用户体验而不影响性能或可访问性。",
+      "features": [
+        "自定义光标增强桌面端导航",
+        "磁性按钮提供微妙的触觉反馈",
+        "3D 倾斜卡片增加深度和参与感",
+        "所有动画尊重 prefers-reduced-motion 设置"
+      ]
+    }
+  },
+  "projects": {
+    "title": "项目",
+    "description": "来自课程与个人项目的案例研究与设计作品。",
+    "searchPlaceholder": "搜索项目…",
+    "all": "全部",
+    "empty": "没有找到符合条件的项目。",
+    "clearFilters": "清除筛选"
+  },
+  "project": {
+    "backToProjects": "← 返回项目列表",
+    "role": "角色",
+    "timeline": "周期",
+    "tools": "工具",
+    "shareHelpful": "觉得有帮助？分享给朋友！",
+    "relatedProjects": "相关项目",
+    "relatedProjectsDescription": "探索更多主题和方法相似的项目"
+  },
+  "notFound": {
+    "kicker": "404",
+    "title": "这页走丢了。",
+    "description": "链接可能拼错了，或者页面已经搬家。总之这儿没什么值得停留 —— 挑一个入口回到正轨。",
+    "hand": "也不怪你。",
+    "goHome": "回到首页",
+    "viewProjects": "看看作品",
+    "tryPopular": "或者跳去"
+  },
+  "languageToggle": {
+    "toEnglish": "EN",
+    "toChinese": "中文",
+    "ariaLabelToEnglish": "切换到英文",
+    "ariaLabelToChinese": "切换到中文"
+  }
 }

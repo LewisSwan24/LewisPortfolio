@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono, Newsreader, Caveat } from "next/font/google";
+import { getLocale } from "next-intl/server";
 import "@/styles/globals.css";
 import { siteConfig } from "@/lib/site";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["400", "500"],
+  style: ["normal", "italic"],
   variable: "--font-serif",
   display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
+  display: "swap",
+  adjustFontFallback: false,
+  fallback: ["Georgia", "Cambria", "Times New Roman", "serif"],
 });
 
 const inter = Inter({
@@ -24,6 +36,13 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-caveat",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -37,14 +56,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
   return (
     <html
-      className={`${fraunces.variable} ${inter.variable} ${mono.variable}`}
+      lang={locale}
+      className={`${fraunces.variable} ${newsreader.variable} ${inter.variable} ${mono.variable} ${caveat.variable}`}
+      data-theme="light"
       suppressHydrationWarning
     >
       <body className="font-sans antialiased">
