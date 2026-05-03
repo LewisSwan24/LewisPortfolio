@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -19,6 +18,7 @@ export function Navigation() {
   const pathname = usePathname();
   const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -46,25 +46,37 @@ export function Navigation() {
   return (
     <header className="pd-nav" data-scrolled={scrolled ? "true" : "false"}>
       <div className="pd-nav-inner">
-        <Link href="/" className="pd-nav-brand" aria-label={t("brand.name")}>
+        <a href="/" className="pd-nav-brand" aria-label={t("brand.name")}>
           <span className="dot" aria-hidden="true" />
           <span>{t("brand.name")}</span>
           <em>{t("brand.tagline")}</em>
-        </Link>
+        </a>
 
         <nav className="pd-nav-links" aria-label="Primary">
           {NAV_ITEMS.map((item) => (
-            <Link
+            <a
               key={item.href}
               href={item.href}
               aria-current={isCurrent(item.href) ? "page" : undefined}
             >
               {t(`nav.${item.key}`)}
-            </Link>
+            </a>
           ))}
         </nav>
 
         <div className="pd-nav-tools">
+          <button
+            type="button"
+            className="pd-mobile-toggle"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </button>
           <div className="pd-lang" role="group" aria-label="Language">
             <a href={switchHref} data-locale-switch>
               <span className={locale === "en" ? "active" : ""}>{t("nav.lang.en")}</span>
@@ -75,6 +87,21 @@ export function Navigation() {
           <ThemeToggle />
         </div>
       </div>
+      {mobileOpen && (
+        <div className="pd-mobile-menu" id="mobile-navigation">
+          <nav aria-label="Mobile primary">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                aria-current={isCurrent(item.href) ? "page" : undefined}
+              >
+                {t(`nav.${item.key}`)}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

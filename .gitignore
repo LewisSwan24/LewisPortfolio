@@ -39,6 +39,8 @@ Thumbs.db
 
 # Testing
 coverage
+test-results/
+playwright-report/
 
 # Playwright MCP artifacts (console logs, snapshots, yaml traces)
 .playwright-mcp/
@@ -47,16 +49,12 @@ coverage
 _bmad/
 _bmad-output/
 
-# Ignore archived junk (workflow dashboards, old setup notes) but keep spec docs
-docs/archive/
-!docs/superpowers/
-!docs/superpowers/**
-
 # Trellis AI Workflow
 .trellis/
 
 # Agent workflows & Superpowers
 .agent/
+.claude/
 
 # ChatDev (external tool reference)
 ChatDev/
@@ -79,11 +77,4 @@ global_workflow.md.resolved
 
 # Design & generated docs (local only)
 DESIGN.md
-docs/architecture.md
-docs/code-review-report.md
-docs/component-inventory.md
-docs/development-guide.md
-docs/index.md
-docs/project-overview.md
-docs/project-scan-report.json
-docs/source-tree-analysis.md
+/docs/

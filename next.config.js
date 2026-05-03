@@ -89,6 +89,21 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: "/",
+          destination: "/en",
+        },
+        {
+          source:
+            "/:path((?!api(?:/|$)|booking(?:/|$)|guestbook(?:/|$)|dashboard(?:/|$)|posts(?:/|$)|en(?:/|$)|zh(?:/|$)|_next(?:/|$)|_vercel(?:/|$)|opengraph-image(?:/|$)|.*\\..*).*)",
+          destination: "/en/:path",
+        },
+      ],
+    };
+  },
   // Compression
   compress: true,
   // Production source maps disabled for smaller bundles

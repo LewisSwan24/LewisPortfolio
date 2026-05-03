@@ -1,11 +1,9 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 export function ResumeActions() {
   const t = useTranslations();
-  const locale = useLocale();
-  const isZh = locale === "zh";
 
   return (
     <div className="res-actions">
@@ -16,15 +14,9 @@ export function ResumeActions() {
       >
         {t("resume.print")}
       </button>
-      <button
-        className="btn btn-primary"
-        type="button"
-        onClick={() =>
-          alert(isZh ? "这里会下载 PDF。" : "PDF download would trigger here.")
-        }
-      >
-        {t("resume.download")} <span className="arrow">↓</span>
-      </button>
+      <a className="btn btn-primary" href="/resume.pdf" download>
+        {t("resume.download")} <span className="arrow">-&gt;</span>
+      </a>
     </div>
   );
 }

@@ -6,6 +6,13 @@ import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
+import {
+  getCaseDepth,
+  getCaseInterviewScan,
+  getCaseReaderGuide,
+  getCaseSummary,
+  type ProofLocale,
+} from "@/lib/portfolio-proof";
 
 type Slug = "connect" | "spectra" | "ai" | "circles";
 const SLUGS: Slug[] = ["connect", "spectra", "ai", "circles"];
@@ -70,6 +77,11 @@ export default async function CasePage({ params }: Props) {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const projectTitle = t(`proj.${k}.title`);
+  const proofLocale: ProofLocale = isZh ? "zh" : "en";
+  const caseSummary = getCaseSummary(k, proofLocale);
+  const caseDepth = getCaseDepth(k, proofLocale);
+  const caseInterviewScan = getCaseInterviewScan(k, proofLocale);
+  const caseReaderGuide = getCaseReaderGuide(k, proofLocale);
 
   return (
     <main className="page" data-screen-label={`03 Case · ${k}`}>
@@ -138,12 +150,258 @@ export default async function CasePage({ params }: Props) {
             </div>
           )}
         </dl>
+        <nav className="case-reader" aria-label="Case reader">
+          <div className="case-reader-head">
+            <div className="label">Case reader</div>
+            <p>Choose a route, then jump to the proof.</p>
+          </div>
+          <div className="case-reader-links">
+            {caseReaderGuide.sections
+              .filter((section) => section.id !== "related-projects")
+              .map((section) => (
+                <a key={section.id} href={`#${section.id}`}>
+                  <span>{section.label}</span>
+                  <small>{section.description}</small>
+                </a>
+              ))}
+          </div>
+          <div className="case-reader-modes" aria-label="Review modes">
+            {caseReaderGuide.modes.map((mode) => {
+              const firstAnchor = mode.anchorIds[0];
+              return (
+                <a key={mode.id} href={`#${firstAnchor}`}>
+                  <strong>{mode.label}</strong>
+                  <span>{mode.description}</span>
+                  <small>
+                    {mode.anchorIds
+                      .map((anchorId) =>
+                        caseReaderGuide.sections.find((section) => section.id === anchorId)?.label
+                      )
+                      .filter(Boolean)
+                      .join(" / ")}
+                  </small>
+                </a>
+              );
+            })}
+          </div>
+          <div className="case-reader-prompts">
+            <h2>Ask me about</h2>
+            <ul>
+              {caseReaderGuide.prompts.map((prompt) => (
+                <li key={prompt.question}>
+                  <a href={`#${prompt.anchorId}`}>{prompt.question}</a>
+                  <p>{prompt.reason}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+        <div id="snapshot" className="case-anchor" aria-hidden />
+        <aside className="case-summary" aria-label={isZh ? "案例摘要" : "Case summary"}>
+          <div className="case-summary-head">
+            <div className="label">{isZh ? "案例摘要" : "Case summary"}</div>
+            <p>{caseSummary.challenge}</p>
+          </div>
+          <div className="case-summary-grid">
+            <div>
+              <h3>{isZh ? "我的角色" : "My role"}</h3>
+              <p>{caseSummary.role}</p>
+            </div>
+            <div>
+              <h3>{isZh ? "方法" : "Methods"}</h3>
+              <ul>
+                {caseSummary.methods.map((method) => (
+                  <li key={method}>{method}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3>{isZh ? "证据" : "Evidence collected"}</h3>
+              <ul>
+                {caseSummary.evidence.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3>{isZh ? "结果" : "Outcome"}</h3>
+              <p>{caseSummary.outcome}</p>
+            </div>
+            <div className="case-summary-next">
+              <h3>{isZh ? "下一步我会做什么" : "What I would do next"}</h3>
+              <p>{caseSummary.next}</p>
+            </div>
+          </div>
+        </aside>
+        <div id="interviewer-scan" className="case-anchor" aria-hidden />
+        <aside className="case-interview-scan" aria-label="2-minute interviewer scan">
+          <div className="case-interview-scan-head">
+            <div className="label">2-minute interviewer scan</div>
+            <h2>What this case proves</h2>
+            <p>{caseInterviewScan.proves}</p>
+          </div>
+          <div className="case-interview-scan-grid">
+            <div>
+              <h3>What to inspect</h3>
+              <ul>
+                {caseInterviewScan.inspect.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3>Interview questions</h3>
+              <ul>
+                {caseInterviewScan.questions.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3>Best-fit teams</h3>
+              <ul>
+                {caseInterviewScan.bestFit.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </aside>
+        <div id="artifact" className="case-anchor" aria-hidden />
         <figure className="cs-cover">
           <CoverViz slug={k} />
         </figure>
       </section>
 
-      <section className="container">
+      <section className="container case-depth" aria-label="Interview-ready case depth">
+        <div id="case-depth-overview" className="case-depth-block case-depth-intro">
+          <div>
+            <div className="label">Case depth</div>
+            <h2>Interview-ready case depth</h2>
+          </div>
+          <p>
+            The following notes make the work easier to inspect in a portfolio
+            review: what I chose, what evidence moved the design, what changed
+            between iterations, and what still needs validation.
+          </p>
+        </div>
+
+        <div id="decision-timeline" className="case-depth-block">
+          <div className="case-depth-head">
+            <div className="label">Decision log</div>
+            <h2>Decision timeline</h2>
+          </div>
+          <ol className="case-decision-list">
+            {caseDepth.decisions.map((decision, index) => (
+              <li className="case-decision" key={decision.label}>
+                <span className="case-depth-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3>{decision.label}</h3>
+                  <dl className="case-depth-dl">
+                    <div>
+                      <dt>Choice</dt>
+                      <dd>{decision.choice}</dd>
+                    </div>
+                    <div>
+                      <dt>Evidence</dt>
+                      <dd>{decision.evidence}</dd>
+                    </div>
+                    <div>
+                      <dt>Trade-off</dt>
+                      <dd>{decision.tradeoff}</dd>
+                    </div>
+                    <div>
+                      <dt>Impact</dt>
+                      <dd>{decision.impact}</dd>
+                    </div>
+                  </dl>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div id="evidence-board" className="case-depth-block">
+          <div className="case-depth-head">
+            <div className="label">Evidence</div>
+            <h2>Research evidence board</h2>
+          </div>
+          <div className="case-evidence-board">
+            {caseDepth.evidence.map((item) => (
+              <article className="case-evidence-item" key={`${item.method}-${item.question}`}>
+                <div className="case-evidence-meta">
+                  <span>{item.method}</span>
+                  <span>{item.sample}</span>
+                </div>
+                <h3>{item.question}</h3>
+                <dl className="case-depth-dl">
+                  <div>
+                    <dt>Finding</dt>
+                    <dd>{item.finding}</dd>
+                  </div>
+                  <div>
+                    <dt>Design implication</dt>
+                    <dd>{item.implication}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div id="iteration-gallery" className="case-depth-block">
+          <div className="case-depth-head">
+            <div className="label">Iterations</div>
+            <h2>Iteration gallery</h2>
+          </div>
+          <div className="case-iteration-gallery">
+            {caseDepth.iterations.map((iteration) => (
+              <article className="case-iteration-item" key={iteration.version}>
+                <span>{iteration.version}</span>
+                <h3>{iteration.change}</h3>
+                <p>{iteration.reason}</p>
+                <strong>{iteration.improvement}</strong>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div id="outcome-limits" className="case-depth-block case-limits">
+          <div className="case-depth-head">
+            <div className="label">Limits</div>
+            <h2>Outcome limits</h2>
+          </div>
+          <div className="case-limits-grid">
+            {caseDepth.limits.map((limit) => (
+              <article key={limit.constraint}>
+                <h3>{limit.constraint}</h3>
+                <dl className="case-depth-dl">
+                  <div>
+                    <dt>Why it matters</dt>
+                    <dd>{limit.whyItMatters}</dd>
+                  </div>
+                  <div>
+                    <dt>Next validation</dt>
+                    <dd>{limit.nextValidation}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div id="interview-takeaway" className="case-depth-block case-takeaway">
+          <div>
+            <div className="label">Portfolio readout</div>
+            <h2>Interview takeaway</h2>
+          </div>
+          <p>{caseDepth.takeaway}</p>
+        </div>
+      </section>
+
+      <section id="long-form" className="container">
         <div className="cs-section">
           <div className="cs-row">
             <div className="cs-row-side">
@@ -302,6 +560,7 @@ export default async function CasePage({ params }: Props) {
         </div>
 
         <div
+          id="related-projects"
           className="cs-section cs-related-section"
           style={{ borderTop: "1px solid var(--border)", paddingTop: 48 }}
         >

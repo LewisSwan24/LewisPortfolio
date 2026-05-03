@@ -3,6 +3,11 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { StructuredData, generateResumePersonSchema } from "@/lib/seo";
+import {
+  getHiringConversion,
+  getRoleFit,
+  type ProofLocale,
+} from "@/lib/portfolio-proof";
 import { ResumeActions } from "./ResumeActions";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -35,6 +40,9 @@ export default async function ResumePage() {
   const t = await getTranslations();
   const locale = await getLocale();
   const isZh = locale === "zh";
+  const proofLocale: ProofLocale = isZh ? "zh" : "en";
+  const roleFit = getRoleFit(proofLocale);
+  const hiringConversion = getHiringConversion(proofLocale);
 
   return (
     <main className="page" data-screen-label="05 Resume">
@@ -185,6 +193,42 @@ export default async function ResumePage() {
           </div>
 
           <aside className="res-side">
+            <div className="res-side-card role-fit-card">
+              <h4>{isZh ? "最匹配岗位" : "Best-fit roles"}</h4>
+              <p className="role-fit-availability">{roleFit.availability}</p>
+              <div className="role-fit-tags">
+                {roleFit.roles.map((role) => (
+                  <span className="tag" key={role}>
+                    {role}
+                  </span>
+                ))}
+              </div>
+              <h5>{isZh ? "适合的团队" : "Best-fit teams"}</h5>
+              <ul className="role-fit-list">
+                {roleFit.bestFit.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="role-fit-links">
+                {roleFit.proofLinks.map((link) => (
+                  <Link href={link.href} key={link.href}>
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="res-side-card resume-proof-card">
+              <h4>Proof-linked resume</h4>
+              <p>{hiringConversion.hero.status}</p>
+              <h5>Best cases to inspect</h5>
+              <div className="resume-proof-links">
+                {hiringConversion.proofRoutes.map((route) => (
+                  <Link href={route.href} key={route.href}>
+                    {route.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <div className="res-side-card">
               <h4>{t("resume.section.skills")}</h4>
               {SKILLS.map((s) => {

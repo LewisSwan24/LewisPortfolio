@@ -1,6 +1,12 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import {
+  getHiringConversion,
+  getRoleFit,
+  type ProofLocale,
+} from "@/lib/portfolio-proof";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
@@ -21,6 +27,9 @@ export default async function ContactPage() {
   const locale = await getLocale();
   const isZh = locale === "zh";
   const email = t("contact.email");
+  const proofLocale: ProofLocale = isZh ? "zh" : "en";
+  const roleFit = getRoleFit(proofLocale);
+  const hiringConversion = getHiringConversion(proofLocale);
 
   return (
     <main className="page" data-screen-label="06 Contact">
@@ -124,6 +133,55 @@ export default async function ContactPage() {
             </ul>
           </div>
         </div>
+
+        <section className="contact-use" aria-labelledby="contact-use-title">
+          <div>
+            <div className="label">{isZh ? "使用方式" : "Use this portfolio for"}</div>
+            <h2 id="contact-use-title">
+              {isZh ? "快速判断我是否适合你的 UX / Product Design 团队。" : "Quickly decide whether I fit your UX or product design team."}
+            </h2>
+            <p>{roleFit.availability}</p>
+          </div>
+          <div className="contact-use-body">
+            <div className="role-fit-tags">
+              {roleFit.roles.map((role) => (
+                <span className="tag" key={role}>
+                  {role}
+                </span>
+              ))}
+            </div>
+            <ul className="role-fit-list">
+              {roleFit.bestFit.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <div className="contact-use-links">
+              {roleFit.proofLinks.map((link) => (
+                <Link href={link.href} key={link.href}>
+                  {link.label}
+                </Link>
+              ))}
+              <a href={`mailto:${email}`}>{isZh ? "直接发邮件" : "Email me directly"}</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="contact-next-step" aria-labelledby="contact-next-step-title">
+          <div>
+            <div className="label">Hiring next step</div>
+            <h2 id="contact-next-step-title">{hiringConversion.closingPrompt.title}</h2>
+            <p className="contact-next-status">{hiringConversion.hero.status}</p>
+            <p>{hiringConversion.closingPrompt.body}</p>
+          </div>
+          <div className="contact-next-step-links">
+            {hiringConversion.proofRoutes.map((route) => (
+              <Link href={route.href} key={route.href}>
+                {route.title}
+              </Link>
+            ))}
+            <a href={`mailto:${email}`}>Email me directly</a>
+          </div>
+        </section>
       </section>
     </main>
   );

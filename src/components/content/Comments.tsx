@@ -16,7 +16,8 @@ export function Comments({ repo, repoId, category, categoryId, lang = "en" }: Co
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
-    if (!ref.current) return;
+    const container = ref.current;
+    if (!container) return;
 
     const scriptElem = document.createElement("script");
     scriptElem.src = "https://giscus.app/client.js";
@@ -35,12 +36,10 @@ export function Comments({ repo, repoId, category, categoryId, lang = "en" }: Co
     scriptElem.setAttribute("data-theme", resolvedTheme === "dark" ? "dark" : "light");
     scriptElem.setAttribute("data-lang", lang);
 
-    ref.current.appendChild(scriptElem);
+    container.appendChild(scriptElem);
 
     return () => {
-      if (ref.current) {
-        ref.current.innerHTML = "";
-      }
+      container.innerHTML = "";
     };
   }, [repo, repoId, category, categoryId, resolvedTheme, lang]);
 

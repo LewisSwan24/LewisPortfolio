@@ -1,7 +1,18 @@
 import createMiddleware from "next-intl/middleware";
+import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "./src/i18n/routing";
 
-export default createMiddleware(routing);
+const handleI18nRouting = createMiddleware(routing);
+
+export default function middleware(request: NextRequest) {
+    const { pathname } = request.nextUrl;
+
+    if (!/^\/(en|zh)(\/|$)/.test(pathname)) {
+        return NextResponse.next();
+    }
+
+    return handleI18nRouting(request);
+}
 
 export const config = {
     // Match all pathnames except for:

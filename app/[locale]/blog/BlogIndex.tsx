@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { NewsletterSignup } from "@/components/content/NewsletterSignup";
@@ -110,7 +109,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
               { year: "numeric", month: "short", day: "numeric" }
             );
             return (
-              <Link className="idx-flag" href={`/blog/${p.slug}`} key={p.slug}>
+              <a className="idx-flag" href={`/blog/${p.slug}`} key={p.slug}>
                 <div className="idx-flag-n">{n}</div>
                 <div className="idx-flag-body">
                   <div className="eyebrow">{date}</div>
@@ -130,7 +129,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
                     {isZh ? "读它" : "Read it"} →
                   </div>
                 </div>
-              </Link>
+              </a>
             );
           })
         )}

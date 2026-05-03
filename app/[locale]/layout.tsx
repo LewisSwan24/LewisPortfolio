@@ -1,5 +1,5 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { siteConfig } from "@/lib/site";
@@ -12,6 +12,8 @@ import { ErrorBoundary } from "@/components/providers/ErrorBoundary";
 import { PageTransition } from "@/components/effects/PageTransition";
 import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
 import { KeyboardShortcutsModal } from "@/components/providers/KeyboardShortcutsModal";
+import { SearchProvider } from "@/components/SearchProvider";
+import { getAllBlogPosts } from "@/lib/blog";
 import { Analytics } from "@vercel/analytics/react";
 import {
     StructuredData,
@@ -43,6 +45,24 @@ export default async function LocaleLayout({
 
     // Load messages for NextIntlClientProvider
     const messages = await getMessages();
+    const t = await getTranslations();
+    const blogPosts = await getAllBlogPosts();
+    const searchItems = [
+        ...(["connect", "spectra", "ai", "circles"] as const).map((slug) => ({
+            type: "project" as const,
+            slug,
+            title: t(`proj.${slug}.title`),
+            description: t(`proj.${slug}.sub`),
+            tags: [t(`proj.${slug}.kicker`), t(`proj.${slug}.m1`), t(`proj.${slug}.m2`), t(`proj.${slug}.m3`)],
+        })),
+        ...blogPosts.map((post) => ({
+            type: "blog" as const,
+            slug: post.slug,
+            title: post.title,
+            description: post.excerpt,
+            tags: post.tags,
+        })),
+    ];
 
     return (
         <NextIntlClientProvider messages={messages}>
@@ -52,23 +72,25 @@ export default async function LocaleLayout({
                 enableSystem={false}
                 disableTransitionOnChange
             >
-                <StructuredData data={generatePersonSchema()} />
-                <StructuredData data={generateOrganizationSchema()} />
-                <StructuredData data={generateWebSiteSchema()} />
-                <SkipLink />
-                <div className="flex min-h-screen flex-col">
-                    <Navigation />
-                    <main id="main-content" className="flex-1">
-                        <ErrorBoundary>
-                            <PageTransition>{children}</PageTransition>
-                        </ErrorBoundary>
-                    </main>
-                    <Footer />
-                </div>
-                <BackToTop />
-                <KeyboardShortcutsModal />
-                <PerformanceMonitor />
-                <Analytics />
+                <SearchProvider items={searchItems}>
+                    <StructuredData data={generatePersonSchema()} />
+                    <StructuredData data={generateOrganizationSchema()} />
+                    <StructuredData data={generateWebSiteSchema()} />
+                    <SkipLink />
+                    <div className="flex min-h-screen flex-col">
+                        <Navigation />
+                        <main id="main-content" className="flex-1">
+                            <ErrorBoundary>
+                                <PageTransition>{children}</PageTransition>
+                            </ErrorBoundary>
+                        </main>
+                        <Footer />
+                    </div>
+                    <BackToTop />
+                    <KeyboardShortcutsModal />
+                    <PerformanceMonitor />
+                    <Analytics />
+                </SearchProvider>
             </ThemeProvider>
         </NextIntlClientProvider>
     );
