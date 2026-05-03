@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
 import {
+  getEvidenceMatrix,
   getHiringConversion,
   getProjectEvidence,
   type ProofLocale,
@@ -43,6 +45,7 @@ export function WorkIndex() {
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const evidence = getProjectEvidence(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
+  const evidenceMatrix = getEvidenceMatrix(proofLocale);
   const evidenceBySlug = new Map(evidence.map((item) => [item.slug, item]));
   const [filter, setFilter] = useState<FilterId>("all");
 
@@ -107,6 +110,9 @@ export function WorkIndex() {
             Each route points to the strongest proof for a common UX/Product
             Design hiring signal.
           </p>
+          <a className="work-shortlist-room-link" href="/hire">
+            Interview decision
+          </a>
         </div>
         <div className="work-shortlist-grid">
           {hiringConversion.proofRoutes.map((route) => (
@@ -117,6 +123,10 @@ export function WorkIndex() {
             </a>
           ))}
         </div>
+      </section>
+
+      <section className="container">
+        <EvidenceMatrix capabilities={evidenceMatrix} />
       </section>
 
       <section className="container work-evidence-section">

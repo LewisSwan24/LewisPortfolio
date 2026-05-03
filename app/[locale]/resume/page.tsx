@@ -2,9 +2,11 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { StructuredData, generateResumePersonSchema } from "@/lib/seo";
 import {
   getHiringConversion,
+  getHiringRoleFits,
   getRoleFit,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
@@ -42,6 +44,7 @@ export default async function ResumePage() {
   const isZh = locale === "zh";
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const roleFit = getRoleFit(proofLocale);
+  const hiringRoleFits = getHiringRoleFits(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
 
   return (
@@ -227,8 +230,15 @@ export default async function ResumePage() {
                     {route.title}
                   </Link>
                 ))}
+                <Link href="/hire">Interview decision</Link>
               </div>
             </div>
+            <HiringRoleFitPanel
+              roles={hiringRoleFits}
+              title="Role fit, with proof."
+              intro="Use the resume as a map into the strongest portfolio evidence."
+              compact
+            />
             <div className="res-side-card">
               <h4>{t("resume.section.skills")}</h4>
               {SKILLS.map((s) => {

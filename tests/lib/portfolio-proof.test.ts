@@ -3,11 +3,15 @@ import {
   getCapabilityPillars,
   getCareerSnapshot,
   getCaseDepth,
+  getCaseInterviewPack,
   getCaseInterviewScan,
   getCaseReaderGuide,
   getCaseSummary,
+  getEvidenceMatrix,
   getHiringConversion,
   getHiringPaths,
+  getHiringRoleFits,
+  getInterviewDecisionRoom,
   getProjectEvidence,
   getRoleFit,
   type ProjectEvidenceSlug,
@@ -193,5 +197,136 @@ describe("portfolio proof content", () => {
       const guide = getCaseReaderGuide(slug as ProjectEvidenceSlug, "en");
       expect(guide.sections.some((section) => section.id === anchor)).toBe(true);
     }
+  });
+
+  it("provides hiring role fits for priority openings", () => {
+    const roleFits = getHiringRoleFits("en");
+    const ids = roleFits.map((role) => role.id);
+
+    expect(ids).toEqual(["ux-product", "ux-research", "ai-ux", "accessibility"]);
+
+    for (const role of roleFits) {
+      expect(role.label.length).toBeGreaterThan(4);
+      expect(role.fit.length).toBeGreaterThan(20);
+      expect(role.proofLinks.length).toBeGreaterThanOrEqual(2);
+      expect(role.bestCases.length).toBeGreaterThanOrEqual(1);
+      expect(role.risk.length).toBeGreaterThan(12);
+      expect(role.interviewAngle.length).toBeGreaterThan(12);
+
+      for (const href of role.proofLinks.map((link) => link.href)) {
+        expect(href).toMatch(/^\/projects\/(connect|spectra|ai|circles)(#.+)?$/);
+      }
+    }
+  });
+
+  it("evidence matrix routes point to valid reader anchors", () => {
+    const matrix = getEvidenceMatrix("en");
+
+    expect(matrix.length).toBeGreaterThanOrEqual(6);
+
+    for (const capability of matrix) {
+      expect(capability.label.length).toBeGreaterThan(4);
+      expect(capability.summary.length).toBeGreaterThan(12);
+
+      for (const [slug, proof] of Object.entries(capability.cases)) {
+        if (!proof || proof.strength === "none") continue;
+
+        expect(proof.href).toMatch(/^\/projects\/(connect|spectra|ai|circles)#/);
+        const [, hrefSlug, anchor] = proof.href.match(/^\/projects\/([^#]+)#(.+)$/) ?? [];
+        expect(hrefSlug).toBe(slug);
+
+        const guide = getCaseReaderGuide(slug as ProjectEvidenceSlug, "en");
+        expect(guide.sections.some((section) => section.id === anchor)).toBe(true);
+      }
+    }
+  });
+
+  it("case interview packs route to valid reader anchors", () => {
+    for (const slug of projectEvidenceSlugs) {
+      const pack = getCaseInterviewPack(slug, "en");
+      const guide = getCaseReaderGuide(slug, "en");
+      const anchors = new Set(guide.sections.map((section) => section.id));
+
+      expect(pack.answers.length).toBeGreaterThanOrEqual(3);
+      expect(pack.managerFollowUp.question.length).toBeGreaterThan(12);
+
+      for (const answer of [...pack.answers, pack.managerFollowUp]) {
+        expect(answer.question.length).toBeGreaterThan(12);
+        expect(answer.answer.length).toBeGreaterThan(20);
+        expect(answer.boundary.length).toBeGreaterThan(12);
+        expect(answer.evidenceHref).toMatch(new RegExp(`^/projects/${slug}#`));
+
+        const anchor = answer.evidenceHref.split("#")[1];
+        expect(anchors.has(anchor)).toBe(true);
+      }
+    }
+  });
+
+  it("hiring decision ids stay stable across locales", () => {
+    expect(getHiringRoleFits("zh").map((role) => role.id)).toEqual(
+      getHiringRoleFits("en").map((role) => role.id)
+    );
+
+    expect(getEvidenceMatrix("zh").map((capability) => capability.id)).toEqual(
+      getEvidenceMatrix("en").map((capability) => capability.id)
+    );
+
+    for (const slug of projectEvidenceSlugs) {
+      expect(getCaseInterviewPack(slug, "zh").answers.map((answer) => answer.id)).toEqual(
+        getCaseInterviewPack(slug, "en").answers.map((answer) => answer.id)
+      );
+    }
+  });
+
+  it("provides interview decision room data", () => {
+    const room = getInterviewDecisionRoom("en");
+
+    expect(room.brief.headline.length).toBeGreaterThan(20);
+    expect(room.brief.status.length).toBeGreaterThan(12);
+    expect(room.brief.signals.length).toBeGreaterThanOrEqual(3);
+    expect(room.brief.primaryAction.href).toBe("/contact");
+    expect(room.brief.secondaryAction.href).toBe("/resume");
+
+    expect(room.evidenceBrief.length).toBeGreaterThanOrEqual(5);
+    expect(room.questionBank.length).toBeGreaterThanOrEqual(5);
+    expect(room.boundaries.length).toBeGreaterThanOrEqual(4);
+  });
+
+  it("interview decision evidence links point to valid anchors", () => {
+    const room = getInterviewDecisionRoom("en");
+
+    for (const item of room.evidenceBrief) {
+      expect(item.href).toMatch(new RegExp(`^/projects/${item.caseSlug}#`));
+
+      const anchor = item.href.split("#")[1];
+      const guide = getCaseReaderGuide(item.caseSlug, "en");
+      expect(guide.sections.some((section) => section.id === anchor)).toBe(true);
+    }
+
+    for (const item of room.questionBank) {
+      expect(item.href).toMatch(new RegExp(`^/projects/${item.caseSlug}#`));
+
+      const anchor = item.href.split("#")[1];
+      const guide = getCaseReaderGuide(item.caseSlug, "en");
+      expect(guide.sections.some((section) => section.id === anchor)).toBe(true);
+    }
+  });
+
+  it("interview decision ids stay stable across locales", () => {
+    const en = getInterviewDecisionRoom("en");
+    const zh = getInterviewDecisionRoom("zh");
+
+    expect(zh.brief.signals.map((signal) => signal.label)).toEqual(
+      en.brief.signals.map((signal) => signal.label)
+    );
+    expect(zh.evidenceBrief.map((item) => item.id)).toEqual(
+      en.evidenceBrief.map((item) => item.id)
+    );
+    expect(zh.questionBank.map((item) => item.id)).toEqual(
+      en.questionBank.map((item) => item.id)
+    );
+    expect(zh.boundaries.map((item) => item.id)).toEqual(
+      en.boundaries.map((item) => item.id)
+    );
   });
 });

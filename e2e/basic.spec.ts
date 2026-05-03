@@ -1,7 +1,7 @@
 import { expect, test, type Locator } from "@playwright/test";
 
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|circles)#(decision-timeline|evidence-board|interviewer-scan)$/;
+    /\/projects\/(connect|spectra|ai|circles)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 async function expectAnchoredCaseProofLink(link: Locator) {
     await expect(link).toBeVisible();
@@ -48,6 +48,22 @@ test.describe("Portfolio Homepage", () => {
 
     test("hiring proof links should point to case anchors", async ({ page }) => {
         await expectAnchoredCaseProofLink(page.locator(".hiring-proof-desk a[href*='#']").first());
+    });
+
+    test("should expose role fit decision panel", async ({ page }) => {
+        const roleFit = page.locator(".hiring-role-fit").first();
+
+        await expect(roleFit.getByText("Role fit", { exact: true })).toBeVisible();
+        await expect(roleFit.getByText("UX/Product Design")).toBeVisible();
+        await expect(roleFit.getByText("UX Research")).toBeVisible();
+        await expect(roleFit.locator("a[href*='#']").first()).toBeVisible();
+    });
+
+    test("homepage should link to the interview decision room", async ({ page }) => {
+        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
+            "href",
+            "/hire",
+        );
     });
 
     test("should have working navigation", async ({ page }) => {
@@ -106,6 +122,27 @@ test.describe("Projects Page", () => {
 
     test("work shortlist proof links should point to case anchors", async ({ page }) => {
         await expectAnchoredCaseProofLink(page.locator(".work-shortlist-section a[href*='#']").first());
+    });
+
+    test("work page should expose an evidence matrix", async ({ page }) => {
+        const matrix = page.locator(".evidence-matrix-section");
+
+        await expect(matrix.getByText("Evidence matrix")).toBeVisible();
+        await expect(matrix.getByText("Information architecture")).toBeVisible();
+        await expect(matrix.getByRole("columnheader", { name: "UQ Connect" })).toBeVisible();
+        await expect(matrix.locator("a[href*='#']").first()).toBeVisible();
+
+        await page.setViewportSize({ width: 390, height: 844 });
+        await expect(
+            matrix.locator(".evidence-matrix-mobile-label").filter({ hasText: "AI Coach" }).first(),
+        ).toBeVisible();
+    });
+
+    test("work page should link to the interview decision room", async ({ page }) => {
+        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
+            "href",
+            "/hire",
+        );
     });
 
     test("should navigate to project detail", async ({ page }) => {
@@ -180,6 +217,19 @@ test.describe("Projects Page", () => {
 
         await expect(prompts.getByText(/Ask me about/i)).toBeVisible();
         await expect(prompts.getByRole("link").first()).toBeVisible();
+    });
+
+    test("case detail should expose interview answer routes", async ({ page }) => {
+        await page.goto("/projects/connect");
+
+        const pack = page.locator(".case-interview-pack");
+
+        await expect(pack.getByText("Interview pack")).toBeVisible();
+        await expect(pack.getByText(/Questions I can answer/i)).toBeVisible();
+        await expect(pack.getByRole("link", { name: /Inspect the evidence/i }).first()).toHaveAttribute(
+            "href",
+            /#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway)/,
+        );
     });
 
     test("case reader should not overflow on mobile", async ({ page }) => {
@@ -309,6 +359,26 @@ test.describe("Blog Detail Page", () => {
     });
 });
 
+test.describe("Hire Page", () => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto("/hire");
+    });
+
+    test("should render the interview decision room", async ({ page }) => {
+        await expect(page.locator("main[data-screen-label='05 Hire']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1 })).toContainText("Interview");
+        await expect(page.getByText("Evidence brief", { exact: true })).toBeVisible();
+        await expect(page.getByText("Interview questions", { exact: true })).toBeVisible();
+        await expect(page.getByText("What I would not overclaim")).toBeVisible();
+        await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
+    });
+
+    test("hire proof links should point to case anchors", async ({ page }) => {
+        await expectAnchoredCaseProofLink(page.locator(".interview-evidence-brief a[href*='#']").first());
+        await expectAnchoredCaseProofLink(page.locator(".interview-question-bank a[href*='#']").first());
+    });
+});
+
 test.describe("Contact Page", () => {
     test("should display direct contact options", async ({ page }) => {
         await page.goto("/contact");
@@ -342,6 +412,24 @@ test.describe("Contact Page", () => {
 
         await expectAnchoredCaseProofLink(page.locator(".contact-next-step a[href*='#']").first());
     });
+
+    test("contact should explain role-aware reasons to reach out", async ({ page }) => {
+        await page.goto("/contact");
+
+        const roleFit = page.locator(".hiring-role-fit").first();
+
+        await expect(roleFit.getByText("Role fit", { exact: true })).toBeVisible();
+        await expect(roleFit.getByText(/Best interview angle/i).first()).toBeVisible();
+    });
+
+    test("contact should link to the interview decision room", async ({ page }) => {
+        await page.goto("/contact");
+
+        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
+            "href",
+            "/hire",
+        );
+    });
 });
 
 test.describe("Resume Page", () => {
@@ -371,6 +459,24 @@ test.describe("Resume Page", () => {
         await page.goto("/resume");
 
         await expectAnchoredCaseProofLink(page.locator(".resume-proof-card a[href*='#']").first());
+    });
+
+    test("resume should expose role fit proof routes", async ({ page }) => {
+        await page.goto("/resume");
+
+        const roleFit = page.locator(".hiring-role-fit").first();
+
+        await expect(roleFit.getByText("Role fit", { exact: true })).toBeVisible();
+        await expect(roleFit.getByRole("link").first()).toHaveAttribute("href", /\/projects\/.+#/);
+    });
+
+    test("resume should link to the interview decision room", async ({ page }) => {
+        await page.goto("/resume");
+
+        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
+            "href",
+            "/hire",
+        );
     });
 });
 
@@ -407,7 +513,7 @@ test.describe("Responsive Design", () => {
     test("primary hiring pages should not overflow on mobile", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 844 });
 
-        for (const route of ["/", "/projects", "/resume", "/contact", "/projects/connect", "/projects/spectra"]) {
+        for (const route of ["/", "/projects", "/hire", "/resume", "/contact", "/projects/connect", "/projects/spectra"]) {
             await page.goto(route);
 
             const hasHorizontalOverflow = await page.evaluate(

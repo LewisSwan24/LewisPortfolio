@@ -1324,6 +1324,491 @@ html { scroll-behavior: smooth; }
   .hiring-guide { padding: 0 20px var(--s-7); }
 }
 
+/* HIRING DECISION SYSTEM */
+.hiring-role-fit,
+.evidence-matrix-section,
+.case-interview-pack {
+  max-width: 100%;
+  min-width: 0;
+}
+.hiring-role-fit {
+  padding: var(--s-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, var(--surface) 88%, var(--bg-alt));
+}
+.hiring-role-fit.is-compact {
+  padding: var(--s-4);
+}
+.hiring-role-fit-head,
+.evidence-matrix-head,
+.case-interview-pack-head {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--s-5);
+  align-items: end;
+  padding-bottom: var(--s-4);
+  border-bottom: 1px dashed var(--border);
+}
+.hiring-role-fit-head h2,
+.evidence-matrix-head h2,
+.case-interview-pack-head h2 {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+.case-interview-pack-head h2 {
+  font-size: clamp(24px, 3vw, 36px);
+}
+.hiring-role-fit-head p,
+.evidence-matrix-head p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+.hiring-role-fit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.hiring-role-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.hiring-role-card h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+.hiring-role-card p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.hiring-role-links {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+}
+.hiring-role-links a,
+.evidence-matrix-cell,
+.case-interview-answer a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 38%, transparent);
+}
+.hiring-role-links a:hover,
+.hiring-role-links a:focus-visible,
+.evidence-matrix-cell:hover,
+.evidence-matrix-cell:focus-visible,
+.case-interview-answer a:hover,
+.case-interview-answer a:focus-visible {
+  border-bottom-color: var(--accent);
+}
+.hiring-role-card dl {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+}
+.hiring-role-card dt,
+.evidence-matrix-cell small,
+.case-interview-answer small {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.evidence-matrix-mobile-label {
+  display: none;
+}
+.hiring-role-card dd {
+  margin: 6px 0 0;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.evidence-matrix-section {
+  padding: var(--s-5) 0;
+}
+.evidence-matrix {
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.evidence-matrix-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.2fr) repeat(4, minmax(0, 1fr));
+}
+.evidence-matrix-row.is-header {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.evidence-matrix-row > * {
+  min-width: 0;
+  padding: var(--s-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.evidence-matrix-capability {
+  display: grid;
+  gap: 6px;
+  background: color-mix(in srgb, var(--bg-alt) 70%, var(--surface));
+}
+.evidence-matrix-capability strong {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 400;
+}
+.evidence-matrix-capability span,
+.evidence-matrix-cell span {
+  color: var(--text-2);
+  line-height: 1.45;
+}
+.evidence-matrix-cell {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  background: var(--surface);
+  transition: background var(--dur-2) var(--ease-out);
+}
+.evidence-matrix-cell:hover,
+.evidence-matrix-cell:focus-visible {
+  background: var(--bg-alt);
+}
+.evidence-matrix-cell.is-primary .evidence-matrix-strength {
+  color: var(--accent);
+}
+.evidence-matrix-empty {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  color: var(--text-4);
+  background: color-mix(in srgb, var(--bg-alt) 55%, var(--surface));
+}
+.case-interview-pack {
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--border);
+}
+.case-interview-pack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.case-interview-answer {
+  min-width: 0;
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-alt) 68%, var(--surface));
+}
+.case-interview-answer h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.case-interview-answer p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+@media (max-width: 1100px) {
+  .hiring-role-fit-grid,
+  .case-interview-pack-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .hiring-role-fit {
+    padding: var(--s-3);
+  }
+  .hiring-role-fit-head,
+  .evidence-matrix-head,
+  .case-interview-pack-head,
+  .hiring-role-fit-grid,
+  .case-interview-pack-grid {
+    grid-template-columns: 1fr;
+  }
+  .evidence-matrix {
+    display: grid;
+    gap: var(--s-3);
+    border: 0;
+  }
+  .evidence-matrix-row,
+  .evidence-matrix-row.is-header {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .evidence-matrix-row.is-header {
+    display: none;
+  }
+  .evidence-matrix-cell,
+  .evidence-matrix-empty,
+  .evidence-matrix-capability {
+    border: 1px solid var(--border);
+  }
+  .evidence-matrix-mobile-label {
+    display: block;
+    color: var(--text-3);
+  }
+}
+
+/* INTERVIEW DECISION ROOM */
+.interview-room-page,
+.interview-room-hero,
+.interview-evidence-brief,
+.interview-question-bank,
+.interview-boundary-notes,
+.interview-room-close {
+  max-width: 100%;
+}
+.interview-room-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr);
+  gap: var(--s-6);
+  align-items: end;
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-5);
+}
+.interview-room-hero-copy {
+  min-width: 0;
+}
+.interview-room-hero h1 {
+  margin: var(--s-3) 0 var(--s-4);
+  max-width: 940px;
+  font-family: var(--font-display);
+  font-size: clamp(44px, 7vw, 96px);
+  font-weight: 400;
+  line-height: 0.98;
+}
+.interview-room-hero-copy > p {
+  max-width: 720px;
+  color: var(--text-2);
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.45;
+}
+.interview-room-status {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+  color: var(--text-1) !important;
+  font-family: var(--font-ui);
+  font-size: 0.95rem !important;
+  line-height: 1.55 !important;
+}
+.interview-room-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+.interview-room-signal-card {
+  min-width: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 72%, var(--bg));
+}
+.interview-room-signal {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.interview-room-signal small,
+.interview-evidence-item small,
+.interview-question-card small,
+.interview-boundary-card small {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+.interview-room-signal strong {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.interview-room-signal span {
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.interview-section-head {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--s-5);
+  align-items: end;
+  padding-bottom: var(--s-3);
+  border-bottom: 1px dashed var(--border);
+}
+.interview-section-head h2,
+.interview-room-close h2 {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+.interview-section-head p,
+.interview-room-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+.interview-evidence-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.interview-evidence-item,
+.interview-question-card,
+.interview-boundary-card {
+  min-width: 0;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.interview-evidence-item {
+  display: grid;
+  align-content: start;
+  gap: var(--s-2);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--dur-2) var(--ease-out);
+}
+.interview-evidence-item:hover,
+.interview-evidence-item:focus-visible {
+  background: var(--bg-alt);
+}
+.interview-evidence-item h3,
+.interview-question-card h3,
+.interview-boundary-card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.interview-evidence-item p,
+.interview-question-card p,
+.interview-boundary-card p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.interview-evidence-item span {
+  color: var(--accent);
+  line-height: 1.45;
+}
+.interview-question-grid,
+.interview-boundary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.interview-question-card,
+.interview-boundary-card {
+  display: grid;
+  align-content: start;
+  gap: var(--s-2);
+}
+.interview-question-card a,
+.interview-boundary-card a {
+  width: fit-content;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 38%, transparent);
+}
+.interview-question-card a:hover,
+.interview-question-card a:focus-visible,
+.interview-boundary-card a:hover,
+.interview-boundary-card a:focus-visible {
+  border-bottom-color: var(--accent);
+}
+.interview-room-close {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--s-5);
+  align-items: end;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 980px) {
+  .interview-room-hero,
+  .interview-room-close {
+    grid-template-columns: 1fr;
+  }
+  .interview-room-signal-card {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .interview-question-grid,
+  .interview-boundary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .interview-room-hero {
+    padding-top: var(--s-5);
+  }
+  .interview-room-hero h1 {
+    font-size: clamp(38px, 13vw, 56px);
+  }
+  .interview-room-signal-card,
+  .interview-section-head,
+  .interview-evidence-list,
+  .interview-question-grid,
+  .interview-boundary-grid {
+    grid-template-columns: 1fr;
+  }
+  .interview-evidence-list,
+  .interview-question-grid,
+  .interview-boundary-grid {
+    border: 0;
+    gap: var(--s-3);
+  }
+  .interview-evidence-item,
+  .interview-question-card,
+  .interview-boundary-card {
+    border: 1px solid var(--border);
+  }
+}
+
 /* APPROACH */
 .approach {
   display: grid; grid-template-columns: 5fr 7fr;
@@ -1521,6 +2006,16 @@ html { scroll-behavior: smooth; }
   max-width: 42em;
   color: var(--text-2);
   line-height: 1.6;
+}
+.work-shortlist-room-link {
+  width: fit-content;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 38%, transparent);
+}
+.work-shortlist-room-link:hover,
+.work-shortlist-room-link:focus-visible {
+  border-bottom-color: var(--accent);
 }
 .work-shortlist-grid {
   display: grid;

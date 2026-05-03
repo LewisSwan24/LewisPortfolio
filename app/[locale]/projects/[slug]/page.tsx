@@ -4,10 +4,12 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
+import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
 import {
   getCaseDepth,
+  getCaseInterviewPack,
   getCaseInterviewScan,
   getCaseReaderGuide,
   getCaseSummary,
@@ -82,6 +84,7 @@ export default async function CasePage({ params }: Props) {
   const caseDepth = getCaseDepth(k, proofLocale);
   const caseInterviewScan = getCaseInterviewScan(k, proofLocale);
   const caseReaderGuide = getCaseReaderGuide(k, proofLocale);
+  const caseInterviewPack = getCaseInterviewPack(k, proofLocale);
 
   return (
     <main className="page" data-screen-label={`03 Case · ${k}`}>
@@ -195,6 +198,7 @@ export default async function CasePage({ params }: Props) {
               ))}
             </ul>
           </div>
+          <CaseInterviewPack pack={caseInterviewPack} />
         </nav>
         <div id="snapshot" className="case-anchor" aria-hidden />
         <aside className="case-summary" aria-label={isZh ? "案例摘要" : "Case summary"}>

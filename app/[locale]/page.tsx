@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
+import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -11,6 +12,7 @@ import {
   getCareerSnapshot,
   getHiringConversion,
   getHiringPaths,
+  getHiringRoleFits,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
@@ -90,6 +92,7 @@ export default async function HomePage() {
   const pillars = getCapabilityPillars(proofLocale);
   const hiringPaths = getHiringPaths(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
+  const roleFits = getHiringRoleFits(proofLocale);
 
   return (
     <main className="page" data-screen-label="01 Home">
@@ -159,6 +162,9 @@ export default async function HomePage() {
             >
               {hiringConversion.closingPrompt.secondaryAction.label}
             </Link>
+            <Link href="/hire" className="btn btn-ghost">
+              Interview decision
+            </Link>
           </div>
         </div>
 
@@ -186,6 +192,14 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="section container">
+        <HiringRoleFitPanel
+          roles={roleFits}
+          title="Match the opening to the strongest proof."
+          intro="Pick the role signal first, then inspect the exact case evidence."
+        />
       </section>
 
       <section className="section container proof-front-door">

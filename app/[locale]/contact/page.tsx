@@ -1,9 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
+import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import {
   getHiringConversion,
+  getHiringRoleFits,
   getRoleFit,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
@@ -29,6 +31,7 @@ export default async function ContactPage() {
   const email = t("contact.email");
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const roleFit = getRoleFit(proofLocale);
+  const hiringRoleFits = getHiringRoleFits(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
 
   return (
@@ -180,8 +183,16 @@ export default async function ContactPage() {
               </Link>
             ))}
             <a href={`mailto:${email}`}>Email me directly</a>
+            <Link href="/hire">Interview decision</Link>
           </div>
         </section>
+
+        <HiringRoleFitPanel
+          roles={hiringRoleFits}
+          title="Best reasons to contact me."
+          intro="Each role fit links to evidence, so the next step can be specific."
+          compact
+        />
       </section>
     </main>
   );
