@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
+import { ContactRoleContext } from "@/components/hiring/ContactRoleContext";
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import { getProofUiLabels } from "@/lib/proof";
 import {
   getHiringConversion,
   getHiringRoleFits,
@@ -24,15 +26,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function ContactPage() {
+interface ContactPageProps {
+  searchParams?: Promise<{ role?: string }>;
+}
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
   const t = await getTranslations();
   const locale = await getLocale();
   const isZh = locale === "zh";
+  const query = await searchParams;
   const email = t("contact.email");
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const roleFit = getRoleFit(proofLocale);
   const hiringRoleFits = getHiringRoleFits(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
+  const proofLabels = getProofUiLabels(proofLocale);
 
   return (
     <main className="page" data-screen-label="06 Contact">
@@ -52,6 +60,8 @@ export default async function ContactPage() {
         <p className="prose" style={{ marginTop: 32 }}>
           {t("contact.body")}
         </p>
+
+        <ContactRoleContext role={query?.role} locale={proofLocale} />
 
         <div className="contact-card">
           <div>
@@ -191,6 +201,7 @@ export default async function ContactPage() {
           roles={hiringRoleFits}
           title="Best reasons to contact me."
           intro="Each role fit links to evidence, so the next step can be specific."
+          labels={proofLabels}
           compact
         />
       </section>

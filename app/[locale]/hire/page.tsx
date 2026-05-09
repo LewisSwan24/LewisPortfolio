@@ -6,7 +6,9 @@ import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNot
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
 import { InterviewEvidenceBrief } from "@/components/hiring/InterviewEvidenceBrief";
 import { InterviewQuestionBank } from "@/components/hiring/InterviewQuestionBank";
+import { RolePacketNav } from "@/components/hiring/RolePacketComponents";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import { getProofUiLabels, getRolePackets } from "@/lib/proof";
 import {
   getHiringRoleFits,
   getInterviewDecisionRoom,
@@ -34,29 +36,36 @@ export default async function HirePage() {
   const proofLocale: ProofLocale = locale === "zh" ? "zh" : "en";
   const room = getInterviewDecisionRoom(proofLocale);
   const roleFits = getHiringRoleFits(proofLocale);
+  const rolePackets = getRolePackets(proofLocale);
+  const proofLabels = getProofUiLabels(proofLocale);
 
   return (
     <main className="page interview-room-page" data-screen-label="05 Hire">
       <InterviewDecisionBrief brief={room.brief} />
 
       <section className="section container">
+        <RolePacketNav packets={rolePackets} labels={proofLabels} />
+      </section>
+
+      <section className="section container">
         <HiringRoleFitPanel
           roles={roleFits}
           title="Match the opening to the proof."
           intro="Pick the role signal first, then inspect the exact case evidence before the call."
+          labels={proofLabels}
         />
       </section>
 
       <section className="section container">
-        <InterviewEvidenceBrief items={room.evidenceBrief} />
+        <InterviewEvidenceBrief items={room.evidenceBrief} labels={proofLabels} />
       </section>
 
       <section className="section container">
-        <InterviewQuestionBank items={room.questionBank} />
+        <InterviewQuestionBank items={room.questionBank} labels={proofLabels} />
       </section>
 
       <section className="section container">
-        <InterviewBoundaryNotes notes={room.boundaries} />
+        <InterviewBoundaryNotes notes={room.boundaries} labels={proofLabels} />
       </section>
 
       <section className="section container interview-room-close">

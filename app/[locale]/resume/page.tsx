@@ -4,6 +4,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { StructuredData, generateResumePersonSchema } from "@/lib/seo";
+import { getProofUiLabels } from "@/lib/proof";
 import {
   getHiringConversion,
   getHiringRoleFits,
@@ -46,6 +47,7 @@ export default async function ResumePage() {
   const roleFit = getRoleFit(proofLocale);
   const hiringRoleFits = getHiringRoleFits(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
+  const proofLabels = getProofUiLabels(proofLocale);
 
   return (
     <main className="page" data-screen-label="05 Resume">
@@ -237,6 +239,7 @@ export default async function ResumePage() {
               roles={hiringRoleFits}
               title="Role fit, with proof."
               intro="Use the resume as a map into the strongest portfolio evidence."
+              labels={proofLabels}
               compact
             />
             <div className="res-side-card">

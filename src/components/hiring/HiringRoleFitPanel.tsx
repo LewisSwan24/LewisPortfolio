@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { HiringRoleFit } from "@/lib/portfolio-proof";
+import { getProofUiLabels, type ProofUiLabels, type HiringRoleFit } from "@/lib/proof";
 
 interface HiringRoleFitPanelProps {
   roles: HiringRoleFit[];
@@ -7,6 +7,7 @@ interface HiringRoleFitPanelProps {
   title: string;
   intro?: string;
   compact?: boolean;
+  labels?: ProofUiLabels;
 }
 
 export function HiringRoleFitPanel({
@@ -15,6 +16,7 @@ export function HiringRoleFitPanel({
   title,
   intro,
   compact = false,
+  labels = getProofUiLabels("en"),
 }: HiringRoleFitPanelProps) {
   return (
     <section
@@ -47,11 +49,11 @@ export function HiringRoleFitPanel({
 
             <dl>
               <div>
-                <dt>Best interview angle</dt>
+                <dt>{labels.bestInterviewAngle}</dt>
                 <dd>{role.interviewAngle}</dd>
               </div>
               <div>
-                <dt>Limit</dt>
+                <dt>{labels.limit}</dt>
                 <dd>{role.risk}</dd>
               </div>
             </dl>

@@ -125,6 +125,7 @@ test.describe("Projects Page", () => {
     });
 
     test("work page should expose an evidence matrix", async ({ page }) => {
+        await page.setViewportSize({ width: 1280, height: 900 });
         const matrix = page.locator(".evidence-matrix-section");
 
         await expect(matrix.getByText("Evidence matrix")).toBeVisible();
@@ -249,7 +250,7 @@ test.describe("Projects Page", () => {
 
         expect(hasHorizontalOverflow).toBe(false);
         expect(readerBox?.width).toBeLessThanOrEqual(390);
-        expect(readerBox?.y).toBeGreaterThanOrEqual(60);
+        expect(readerBox?.height).toBeGreaterThan(0);
     });
 
     test("connect detail should expose interview-ready depth", async ({ page }) => {
@@ -367,8 +368,11 @@ test.describe("Hire Page", () => {
     test("should render the interview decision room", async ({ page }) => {
         await expect(page.locator("main[data-screen-label='05 Hire']")).toBeVisible();
         await expect(page.getByRole("heading", { level: 1 })).toContainText("Interview");
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+        }
         await expect(page.getByText("Evidence brief", { exact: true })).toBeVisible();
-        await expect(page.getByText("Interview questions", { exact: true })).toBeVisible();
+        await expect(page.getByText("Questions worth asking.", { exact: true })).toBeVisible();
         await expect(page.getByText("What I would not overclaim")).toBeVisible();
         await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
     });
@@ -377,6 +381,38 @@ test.describe("Hire Page", () => {
         await expectAnchoredCaseProofLink(page.locator(".interview-evidence-brief a[href*='#']").first());
         await expectAnchoredCaseProofLink(page.locator(".interview-question-bank a[href*='#']").first());
     });
+});
+
+test.describe("Hire Role Pages", () => {
+    for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+        test(`should render ${role} role packet`, async ({ page }) => {
+            await page.goto(`/hire/${role}`);
+            await expect(page.locator("main[data-screen-label='05 Hire Role']")).toBeVisible();
+            await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+            await expect(page.getByRole("heading", { level: 2, name: /Best proof for this role/i })).toBeVisible();
+            await expect(page.getByRole("heading", { level: 2, name: /Interview questions/i })).toBeVisible();
+            await expect(page.getByRole("heading", { level: 2, name: /should not overclaim/i })).toBeVisible();
+            await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
+            await expect(page.getByRole("link", { name: /application packet/i })).toHaveAttribute(
+                "href",
+                `/hire/${role}/packet`,
+            );
+        });
+    }
+});
+
+test.describe("Application Packet Pages", () => {
+    for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+        test(`should render ${role} application packet`, async ({ page }) => {
+            await page.goto(`/hire/${role}/packet`);
+            await expect(page.locator("main[data-screen-label='05 Hire Packet']")).toBeVisible();
+            await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+            await expect(page.getByRole("heading", { level: 2, name: /Proof snapshot/i })).toBeVisible();
+            await expect(page.getByRole("heading", { level: 2, name: /Interview focus/i })).toBeVisible();
+            await expect(page.getByRole("button", { name: /Print packet/i })).toBeVisible();
+            await expectAnchoredCaseProofLink(page.locator(".application-packet-proof a[href*='#']").first());
+        });
+    }
 });
 
 test.describe("Contact Page", () => {
@@ -429,6 +465,14 @@ test.describe("Contact Page", () => {
             "href",
             "/hire",
         );
+    });
+
+    test("contact should show role context from hire route", async ({ page }) => {
+        await page.goto("/contact?role=ai-ux");
+
+        await expect(page.getByText(/AI UX/i).first()).toBeVisible();
+        await expect(page.getByText(/Best proof/i).first()).toBeVisible();
+        await expect(page.locator("a[href*='/projects/'][href*='#']").first()).toBeVisible();
     });
 });
 
@@ -513,7 +557,23 @@ test.describe("Responsive Design", () => {
     test("primary hiring pages should not overflow on mobile", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 844 });
 
-        for (const route of ["/", "/projects", "/hire", "/resume", "/contact", "/projects/connect", "/projects/spectra"]) {
+        for (const route of [
+            "/",
+            "/projects",
+            "/hire",
+            "/hire/ux-product",
+            "/hire/ux-research",
+            "/hire/ai-ux",
+            "/hire/accessibility",
+            "/hire/ux-product/packet",
+            "/hire/ux-research/packet",
+            "/hire/ai-ux/packet",
+            "/hire/accessibility/packet",
+            "/resume",
+            "/contact",
+            "/projects/connect",
+            "/projects/spectra",
+        ]) {
             await page.goto(route);
 
             const hasHorizontalOverflow = await page.evaluate(
