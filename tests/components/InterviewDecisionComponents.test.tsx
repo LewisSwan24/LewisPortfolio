@@ -84,7 +84,7 @@ describe("interview decision components", () => {
   it("renders question bank evidence routes", () => {
     render(<InterviewQuestionBank items={questions} />);
 
-    expect(screen.getByText("Interview questions")).toBeInTheDocument();
+    expect(screen.getByText("Interview questions to ask")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Inspect evidence" })).toHaveAttribute(
       "href",
       "/projects/connect#evidence-board"

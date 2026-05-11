@@ -13,6 +13,7 @@ const packetCopy = {
     summaryPrefix: "A one-page recruiter packet for",
     roleRoom: "Open full role room",
     contact: "Contact Lewis for this role",
+    next: "Open next-step plan",
     resume: "Open resume",
   },
   zh: {
@@ -20,6 +21,7 @@ const packetCopy = {
     summaryPrefix: "给招聘读者的一页岗位申请包：",
     roleRoom: "打开完整岗位页",
     contact: "按这个岗位联系 Lewis",
+    next: "打开下一步计划",
     resume: "查看简历",
   },
 } as const;
@@ -30,6 +32,7 @@ function packetActions(role: HiringRoleId, locale: ProofLocale): ApplicationPack
   return [
     { kind: "role-room", label: copy.roleRoom, href: `/hire/${role}` },
     { kind: "contact", label: copy.contact, href: `/contact?role=${role}` },
+    { kind: "next", label: copy.next, href: `/hire/${role}/next` },
     { kind: "resume", label: copy.resume, href: "/resume" },
   ];
 }

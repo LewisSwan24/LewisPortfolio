@@ -35,6 +35,29 @@ export interface ProofUiLabels {
   packetBoundaries: string;
   packetActions: string;
   printPacket: string;
+  followThrough: string;
+  openFollowThrough: string;
+  sendableEmail: string;
+  copyEmail: string;
+  copiedEmail: string;
+  openMailClient: string;
+  preCallEvidence: string;
+  meetingAgenda: string;
+  decisionQuestions: string;
+  proofMaintenance: string;
+  maintenanceReviewQueue: string;
+  maintenanceCoverage: string;
+  maintenanceMissing: string;
+  maintenanceFresh: string;
+  maintenanceWatch: string;
+  maintenanceStale: string;
+  maintenanceGenerated: string;
+  maintenanceClaim: string;
+  maintenanceRole: string;
+  maintenanceSurface: string;
+  maintenanceReviewed: string;
+  maintenanceNextReview: string;
+  maintenanceStatus: string;
   groupLabels: Record<InterviewQuestionBankItem["group"], string>;
 }
 
@@ -77,6 +100,29 @@ const labels: Record<ProofLocale, ProofUiLabels> = {
     packetBoundaries: "Boundaries",
     packetActions: "Packet actions",
     printPacket: "Print packet",
+    followThrough: "Follow-through",
+    openFollowThrough: "Open next-step plan",
+    sendableEmail: "Sendable email",
+    copyEmail: "Copy email",
+    copiedEmail: "Copied",
+    openMailClient: "Open mail client",
+    preCallEvidence: "Pre-call evidence",
+    meetingAgenda: "Interview agenda",
+    decisionQuestions: "Decision questions",
+    proofMaintenance: "Proof maintenance",
+    maintenanceReviewQueue: "Review queue",
+    maintenanceCoverage: "Coverage",
+    maintenanceMissing: "Missing review metadata",
+    maintenanceFresh: "Fresh",
+    maintenanceWatch: "Watch",
+    maintenanceStale: "Stale",
+    maintenanceGenerated: "Generated",
+    maintenanceClaim: "Claim",
+    maintenanceRole: "Role",
+    maintenanceSurface: "Surface",
+    maintenanceReviewed: "Reviewed",
+    maintenanceNextReview: "Next review",
+    maintenanceStatus: "Status",
     groupLabels: {
       product: "Product judgment",
       research: "Research rigor",
@@ -122,6 +168,29 @@ const labels: Record<ProofLocale, ProofUiLabels> = {
     packetBoundaries: "边界",
     packetActions: "申请包操作",
     printPacket: "打印申请包",
+    followThrough: "后续推进",
+    openFollowThrough: "打开下一步计划",
+    sendableEmail: "可发送邮件",
+    copyEmail: "复制邮件",
+    copiedEmail: "已复制",
+    openMailClient: "打开邮件客户端",
+    preCallEvidence: "面试前证据",
+    meetingAgenda: "面试议程",
+    decisionQuestions: "决策问题",
+    proofMaintenance: "证明维护",
+    maintenanceReviewQueue: "复查队列",
+    maintenanceCoverage: "覆盖范围",
+    maintenanceMissing: "缺少复查元数据",
+    maintenanceFresh: "新鲜",
+    maintenanceWatch: "观察",
+    maintenanceStale: "过期",
+    maintenanceGenerated: "生成时间",
+    maintenanceClaim: "主张",
+    maintenanceRole: "岗位",
+    maintenanceSurface: "页面",
+    maintenanceReviewed: "已复查",
+    maintenanceNextReview: "下次复查",
+    maintenanceStatus: "状态",
     groupLabels: {
       product: "产品判断",
       research: "研究严谨性",

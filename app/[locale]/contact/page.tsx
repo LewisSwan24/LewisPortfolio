@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { ContactRoleContext } from "@/components/hiring/ContactRoleContext";
+import { FollowThroughContactContext } from "@/components/hiring/FollowThroughComponents";
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
@@ -27,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 interface ContactPageProps {
-  searchParams?: Promise<{ role?: string }>;
+  searchParams?: Promise<{ role?: string; intent?: string }>;
 }
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
@@ -62,6 +63,12 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </p>
 
         <ContactRoleContext role={query?.role} locale={proofLocale} />
+        <FollowThroughContactContext
+          role={query?.role}
+          intent={query?.intent}
+          locale={proofLocale}
+          labels={proofLabels}
+        />
 
         <div className="contact-card">
           <div>

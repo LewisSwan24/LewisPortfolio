@@ -310,11 +310,12 @@ export type ApplicationPacketRoute = `/hire/${HiringRoleId}/packet`;
 
 export type ApplicationPacketActionHref =
   | `/hire/${HiringRoleId}`
+  | `/hire/${HiringRoleId}/next`
   | `/contact?role=${HiringRoleId}`
   | "/resume";
 
 export interface ApplicationPacketAction {
-  kind: "role-room" | "contact" | "resume";
+  kind: "role-room" | "contact" | "next" | "resume";
   label: string;
   href: ApplicationPacketActionHref;
 }
@@ -337,4 +338,411 @@ export interface ApplicationPacket {
   interviewFocus: string[];
   boundaries: string[];
   actions: ApplicationPacketAction[];
+}
+
+export type FollowThroughRoute = `/hire/${HiringRoleId}/next`;
+
+export type FollowThroughActionHref =
+  | FollowThroughRoute
+  | ApplicationPacketRoute
+  | `/hire/${HiringRoleId}`
+  | `/contact?role=${HiringRoleId}&intent=interview`
+  | "/resume"
+  | `mailto:${string}`;
+
+export interface FollowThroughAction {
+  kind: "mailto" | "copy-email" | "packet" | "role-room" | "contact" | "resume";
+  label: string;
+  href?: FollowThroughActionHref;
+}
+
+export interface FollowThroughEvidenceItem {
+  id: string;
+  label: string;
+  href: CaseReaderHref;
+  reason: string;
+}
+
+export interface FollowThroughBrief {
+  id: HiringRoleId;
+  route: FollowThroughRoute;
+  label: string;
+  headline: string;
+  summary: string;
+  emailSubject: string;
+  emailBody: string;
+  preCallEvidence: FollowThroughEvidenceItem[];
+  meetingAgenda: string[];
+  decisionQuestions: string[];
+  boundaries: string[];
+  actions: FollowThroughAction[];
+}
+
+export type ProofFreshnessStatus = "fresh" | "watch" | "stale";
+
+export type ProofMaintenanceSurface =
+  | "role-room"
+  | "application-packet"
+  | "follow-through"
+  | "role-comparison"
+  | "interview-agenda"
+  | "review-room"
+  | "contact";
+
+export interface ProofMaintenanceEntry {
+  id: string;
+  roleId: HiringRoleId;
+  claimId: string;
+  surface: ProofMaintenanceSurface;
+  href:
+    | CaseReaderHref
+    | `/hire/${HiringRoleId}`
+    | ApplicationPacketRoute
+    | FollowThroughRoute
+    | "/hire/compare"
+    | "/hire/interview"
+    | "/hire/review"
+    | `/contact?role=${HiringRoleId}`;
+  reviewedAt: string;
+  nextReviewAt: string;
+  status: ProofFreshnessStatus;
+  ownerNote: string;
+}
+
+export interface ProofMaintenanceReport {
+  generatedAt: string;
+  entries: ProofMaintenanceEntry[];
+  fresh: ProofMaintenanceEntry[];
+  watch: ProofMaintenanceEntry[];
+  stale: ProofMaintenanceEntry[];
+  missingReview: string[];
+}
+
+export type ProofValidationSeverity = "error" | "warning";
+
+export interface ProofValidationIssue {
+  id: string;
+  severity: ProofValidationSeverity;
+  area: string;
+  message: string;
+  locale?: ProofLocale;
+  roleId?: HiringRoleId;
+  href?: string;
+}
+
+export interface ProofValidationReport {
+  generatedAt: string;
+  ok: boolean;
+  checkedRoutes: string[];
+  checkedAnchors: number;
+  checkedLocales: ProofLocale[];
+  maintenanceEntries: number;
+  issues: ProofValidationIssue[];
+  errors: ProofValidationIssue[];
+  warnings: ProofValidationIssue[];
+}
+
+export type ProofHandoffStatus = "ready" | "blocked";
+
+export interface ProofHandoffRole {
+  id: HiringRoleId;
+  label: string;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  claimCount: number;
+  strongestCases: ProjectEvidenceSlug[];
+  proofAnchors: CaseReaderHref[];
+}
+
+export interface ProofHandoffValidationSummary {
+  ok: boolean;
+  checkedRoutes: number;
+  checkedAnchors: number;
+  errors: number;
+  warnings: number;
+}
+
+export interface ProofHandoffMaintenanceSummary {
+  total: number;
+  fresh: number;
+  watch: number;
+  stale: number;
+  missingReview: number;
+}
+
+export interface ProofHandoffManifest {
+  generatedAt: string;
+  status: ProofHandoffStatus;
+  roles: ProofHandoffRole[];
+  validation: ProofHandoffValidationSummary;
+  maintenance: ProofHandoffMaintenanceSummary;
+  commands: string[];
+}
+
+export type ProofHandoffExportFormat = "markdown";
+
+export interface ProofHandoffExport {
+  generatedAt: string;
+  format: ProofHandoffExportFormat;
+  filename: string;
+  content: string;
+}
+
+export type ProofReleaseBundleArtifactKind = "handoff-markdown" | "release-manifest";
+export type ProofReleaseBundleArtifactFormat = "markdown" | "json";
+
+export interface ProofReleaseBundleArtifact {
+  kind: ProofReleaseBundleArtifactKind;
+  filename: string;
+  format: ProofReleaseBundleArtifactFormat;
+  bytes: number;
+}
+
+export interface ProofReleaseBundleSummary {
+  roles: number;
+  routes: number;
+  anchors: number;
+  maintenanceEntries: number;
+}
+
+export interface ProofReleaseBundle {
+  generatedAt: string;
+  label: string;
+  status: ProofHandoffStatus;
+  outputDir: string;
+  handoff: ProofHandoffExport;
+  artifacts: ProofReleaseBundleArtifact[];
+  commands: string[];
+  summary: ProofReleaseBundleSummary;
+}
+
+export type ProofReviewSignalId =
+  | "validation"
+  | "maintenance"
+  | "handoff"
+  | "export"
+  | "bundle";
+
+export type ProofReviewCommandStatus = "ready" | "blocked";
+
+export interface ProofReviewAction {
+  label: string;
+  href: string;
+}
+
+export interface ProofReviewHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  status: string;
+  primaryAction: ProofReviewAction;
+  secondaryAction: ProofReviewAction;
+}
+
+export interface ProofReviewSignal {
+  id: ProofReviewSignalId;
+  label: string;
+  value: string;
+  detail: string;
+  status: ProofReviewCommandStatus;
+}
+
+export interface ProofReviewCommand {
+  command: string;
+  label: string;
+  detail: string;
+  status: ProofReviewCommandStatus;
+}
+
+export interface ProofReviewRoleCard {
+  id: HiringRoleId;
+  label: string;
+  fitThesis: string;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  contactRoute: `/contact?role=${HiringRoleId}`;
+  strongestCases: ProjectEvidenceSlug[];
+  claimCount: number;
+  proofAnchorCount: number;
+  anchorHrefs: CaseReaderHref[];
+  primaryClaim: string;
+}
+
+export interface ProofReviewAnchorLedgerItem {
+  id: string;
+  roleId: HiringRoleId;
+  roleLabel: string;
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface ProofReviewReadingStep {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+  href: string;
+  actionLabel: string;
+}
+
+export interface ProofReviewBundlePanel {
+  label: string;
+  outputDir: string;
+  handoffFilename: string;
+  manifestFilename: string;
+  summary: string;
+}
+
+export interface ProofReviewClose {
+  title: string;
+  body: string;
+  primaryAction: ProofReviewAction;
+  secondaryAction: ProofReviewAction;
+}
+
+export interface ProofReviewRoom {
+  generatedAt: string;
+  locale: ProofLocale;
+  status: ProofHandoffStatus;
+  hero: ProofReviewHero;
+  signals: ProofReviewSignal[];
+  commands: ProofReviewCommand[];
+  roles: ProofReviewRoleCard[];
+  anchorLedger: ProofReviewAnchorLedgerItem[];
+  readingSequence: ProofReviewReadingStep[];
+  bundle: ProofReviewBundlePanel;
+  close: ProofReviewClose;
+}
+
+export interface RoleComparisonAction {
+  label: string;
+  href: string;
+}
+
+export interface RoleComparisonHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: RoleComparisonAction;
+  secondaryAction: RoleComparisonAction;
+}
+
+export interface RoleComparisonCriterion {
+  id: string;
+  label: string;
+  question: string;
+}
+
+export interface RoleComparisonProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface RoleComparisonLane {
+  id: HiringRoleId;
+  label: string;
+  fitThesis: string;
+  strongestCases: ProjectEvidenceSlug[];
+  claimCount: number;
+  anchorCount: number;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  contactRoute: `/contact?role=${HiringRoleId}`;
+  reviewRoute: "/hire/review";
+  strongestProof: RoleComparisonProof;
+  interviewQuestion: string;
+  recommendedNextStep: string;
+}
+
+export interface RoleComparisonDecisionStep {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+}
+
+export interface RoleComparisonClose {
+  title: string;
+  body: string;
+  primaryAction: RoleComparisonAction;
+  secondaryAction: RoleComparisonAction;
+}
+
+export interface RoleComparisonBoard {
+  locale: ProofLocale;
+  hero: RoleComparisonHero;
+  criteria: RoleComparisonCriterion[];
+  roles: RoleComparisonLane[];
+  decisionSequence: RoleComparisonDecisionStep[];
+  hireRoute: "/hire";
+  reviewRoute: "/hire/review";
+  close: RoleComparisonClose;
+}
+
+export interface InterviewAgendaAction {
+  label: string;
+  href: string;
+}
+
+export interface InterviewAgendaHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: InterviewAgendaAction;
+  secondaryAction: InterviewAgendaAction;
+}
+
+export interface InterviewAgendaPhase {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+}
+
+export interface InterviewAgendaProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface InterviewAgendaRolePrep {
+  id: HiringRoleId;
+  label: string;
+  fitThesis: string;
+  proof: InterviewAgendaProof;
+  firstQuestion: string;
+  agendaItems: string[];
+  decisionQuestions: string[];
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  contactRoute: `/contact?role=${HiringRoleId}&intent=interview`;
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+}
+
+export interface InterviewAgendaClose {
+  title: string;
+  body: string;
+  primaryAction: InterviewAgendaAction;
+  secondaryAction: InterviewAgendaAction;
+}
+
+export interface InterviewAgendaBoard {
+  locale: ProofLocale;
+  hero: InterviewAgendaHero;
+  agendaPhases: InterviewAgendaPhase[];
+  roles: InterviewAgendaRolePrep[];
+  hireRoute: "/hire";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: InterviewAgendaClose;
 }

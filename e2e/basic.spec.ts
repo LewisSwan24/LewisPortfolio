@@ -375,6 +375,18 @@ test.describe("Hire Page", () => {
         await expect(page.getByText("Questions worth asking.", { exact: true })).toBeVisible();
         await expect(page.getByText("What I would not overclaim")).toBeVisible();
         await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
+        await expect(page.getByRole("link", { name: /Proof review room/i })).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+        await expect(page.getByRole("link", { name: /Compare role paths/i })).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i })).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
     });
 
     test("hire proof links should point to case anchors", async ({ page }) => {
@@ -397,6 +409,14 @@ test.describe("Hire Role Pages", () => {
                 "href",
                 `/hire/${role}/packet`,
             );
+            await expect(page.getByRole("link", { name: /next-step plan/i })).toHaveAttribute(
+                "href",
+                `/hire/${role}/next`,
+            );
+            await expect(page.getByRole("link", { name: /Proof review room/i })).toHaveAttribute(
+                "href",
+                "/hire/review",
+            );
         });
     }
 });
@@ -410,9 +430,124 @@ test.describe("Application Packet Pages", () => {
             await expect(page.getByRole("heading", { level: 2, name: /Proof snapshot/i })).toBeVisible();
             await expect(page.getByRole("heading", { level: 2, name: /Interview focus/i })).toBeVisible();
             await expect(page.getByRole("button", { name: /Print packet/i })).toBeVisible();
+            await expect(page.getByRole("link", { name: /next-step plan/i })).toHaveAttribute(
+                "href",
+                `/hire/${role}/next`,
+            );
             await expectAnchoredCaseProofLink(page.locator(".application-packet-proof a[href*='#']").first());
         });
     }
+});
+
+test.describe("Follow-through Pages", () => {
+    for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+        test(`should render ${role} follow-through plan`, async ({ page }) => {
+            await page.goto(`/hire/${role}/next`);
+            await expect(page.locator("main[data-screen-label='05 Hire Follow-Through']")).toBeVisible();
+            await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+            await expect(page.getByRole("heading", { level: 2, name: /Sendable email/i })).toBeVisible();
+            await expect(page.getByRole("button", { name: /Copy email/i })).toBeVisible();
+            await expect(page.getByRole("link", { name: /Open mail client/i })).toHaveAttribute(
+                "href",
+                /^mailto:/,
+            );
+            await expect(page.getByRole("heading", { level: 2, name: /Pre-call evidence/i })).toBeVisible();
+            await expectAnchoredCaseProofLink(page.locator(".follow-through-evidence a[href*='#']").first());
+        });
+    }
+});
+
+test.describe("Proof Review Room", () => {
+    test("should render the recruiter proof review room", async ({ page }) => {
+        await page.goto("/hire/review");
+        await expect(page.locator("main[data-screen-label='22 Proof Review']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Proof review room/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Command checklist/i })).toBeVisible();
+        await expect(page.getByText("pnpm proof:bundle")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role coverage/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Compare role paths/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}']`).first()).toBeVisible();
+        }
+        await expect(page.getByRole("heading", { level: 2, name: /Proof anchor ledger/i })).toBeVisible();
+        await expectAnchoredCaseProofLink(page.locator(".proof-review-anchor-ledger a[href*='#']").first());
+    });
+});
+
+test.describe("Role Comparison Board", () => {
+    test("should render role comparison lanes", async ({ page }) => {
+        await page.goto("/hire/compare");
+        await expect(page.locator("main[data-screen-label='23 Role Compare']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Compare role paths/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Comparison criteria/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role lanes/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Open proof review/i })).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
+
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.getByText(role).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}']`).first()).toBeVisible();
+        }
+
+        await expectAnchoredCaseProofLink(page.locator(".role-comparison-proof a[href*='#']").first());
+    });
+});
+
+test.describe("Interview Agenda Board", () => {
+    test("should render role-aware interview prep", async ({ page }) => {
+        await page.goto("/hire/interview");
+        await expect(page.locator("main[data-screen-label='24 Interview Agenda']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Interview agenda/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Agenda phases/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role prep/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Compare role paths/i })).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Open proof review/i })).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.getByText(role).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}&intent=interview']`).first()).toBeVisible();
+        }
+
+        await expectAnchoredCaseProofLink(page.locator(".interview-agenda-proof a[href*='#']").first());
+    });
+});
+
+test.describe("Proof Maintenance", () => {
+    test("maintenance route should stay out of public navigation by default", async ({ page }) => {
+        await page.goto("/");
+        await expect(page.locator("a[href*='maintenance/proof']")).toHaveCount(0);
+
+        await page.goto("/maintenance/proof");
+        await expect(page.locator("main[data-screen-label='17 Proof Maintenance']")).toHaveCount(0);
+        await expect(page.getByText(/not found|404/i).first()).toBeVisible();
+    });
 });
 
 test.describe("Contact Page", () => {
@@ -473,6 +608,20 @@ test.describe("Contact Page", () => {
         await expect(page.getByText(/AI UX/i).first()).toBeVisible();
         await expect(page.getByText(/Best proof/i).first()).toBeVisible();
         await expect(page.locator("a[href*='/projects/'][href*='#']").first()).toBeVisible();
+    });
+
+    test("contact should show interview follow-through context", async ({ page }) => {
+        await page.goto("/contact?role=ai-ux&intent=interview");
+
+        await expect(page.getByText(/Follow-through/i).first()).toBeVisible();
+        await expect(page.getByRole("link", { name: /next-step plan/i })).toHaveAttribute(
+            "href",
+            "/hire/ai-ux/next",
+        );
+        await expect(page.getByRole("link", { name: /application packet/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/ai-ux/packet",
+        );
     });
 });
 
@@ -561,6 +710,9 @@ test.describe("Responsive Design", () => {
             "/",
             "/projects",
             "/hire",
+            "/hire/review",
+            "/hire/compare",
+            "/hire/interview",
             "/hire/ux-product",
             "/hire/ux-research",
             "/hire/ai-ux",
@@ -569,6 +721,10 @@ test.describe("Responsive Design", () => {
             "/hire/ux-research/packet",
             "/hire/ai-ux/packet",
             "/hire/accessibility/packet",
+            "/hire/ux-product/next",
+            "/hire/ux-research/next",
+            "/hire/ai-ux/next",
+            "/hire/accessibility/next",
             "/resume",
             "/contact",
             "/projects/connect",

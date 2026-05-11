@@ -38,6 +38,12 @@ export default async function HirePage() {
   const roleFits = getHiringRoleFits(proofLocale);
   const rolePackets = getRolePackets(proofLocale);
   const proofLabels = getProofUiLabels(proofLocale);
+  const proofReviewLabel =
+    proofLocale === "zh" ? "Proof review room" : "Proof review room";
+  const compareRolesLabel =
+    proofLocale === "zh" ? "Compare role paths" : "Compare role paths";
+  const interviewAgendaLabel =
+    proofLocale === "zh" ? "Interview agenda" : "Interview agenda";
 
   return (
     <main className="page interview-room-page" data-screen-label="05 Hire">
@@ -80,6 +86,15 @@ export default async function HirePage() {
         <div className="interview-room-actions">
           <Link className="btn btn-primary" href="/contact">
             Contact Lewis
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/review">
+            {proofReviewLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/compare">
+            {compareRolesLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/interview">
+            {interviewAgendaLabel}
           </Link>
           <Link className="btn btn-ghost" href="/projects">
             Browse work

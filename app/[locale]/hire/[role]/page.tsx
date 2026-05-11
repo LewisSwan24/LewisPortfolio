@@ -53,6 +53,8 @@ export default async function HireRolePage({ params }: Props) {
   const proofLocale: ProofLocale = locale === "zh" ? "zh" : "en";
   const packet = getRolePacket(role as HiringRoleId, proofLocale);
   const labels = getProofUiLabels(proofLocale);
+  const proofReviewLabel =
+    proofLocale === "zh" ? "Proof review room" : "Proof review room";
 
   if (!packet) notFound();
 
@@ -85,8 +87,14 @@ export default async function HireRolePage({ params }: Props) {
           <Link className="btn btn-ghost" href={`/hire/${packet.id}/packet`}>
             {labels.openApplicationPacket}
           </Link>
+          <Link className="btn btn-ghost" href={`/hire/${packet.id}/next`}>
+            {labels.openFollowThrough}
+          </Link>
           <Link className="btn btn-ghost" href="/hire">
             {labels.generalHireRoom}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/review">
+            {proofReviewLabel}
           </Link>
           <Link className="btn btn-ghost" href={`/projects/${packet.strongestCases[0]}`}>
             {labels.strongestCase}

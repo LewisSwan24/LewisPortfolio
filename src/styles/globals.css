@@ -1924,6 +1924,1139 @@ html { scroll-behavior: smooth; }
   }
 }
 
+/* APPLICATION FOLLOW-THROUGH */
+.follow-through-page,
+.follow-through {
+  max-width: 100%;
+}
+.follow-through {
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+}
+.follow-through-hero,
+.follow-through-email {
+  display: grid;
+  gap: var(--s-4);
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--border);
+}
+.follow-through-hero {
+  grid-template-columns: minmax(0, 7fr) minmax(240px, 3fr);
+  align-items: end;
+}
+.follow-through-hero h1 {
+  margin: var(--s-3) 0 var(--s-4);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 82px);
+  font-weight: 400;
+  line-height: 0.98;
+}
+.follow-through-hero p,
+.follow-through-email p,
+.follow-through-list li {
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.follow-through-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.follow-through-section {
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--border);
+}
+.follow-through-section h2 {
+  margin: 0 0 var(--s-4);
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+.follow-through-evidence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.follow-through-evidence-item {
+  display: grid;
+  gap: var(--s-2);
+  min-width: 0;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
+}
+.follow-through-evidence-item h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.follow-through-list {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+  padding-left: 1.25rem;
+  max-width: 860px;
+}
+.follow-through-contact-context {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr);
+  gap: var(--s-4);
+  align-items: end;
+  margin-top: var(--s-5);
+  padding: var(--s-4);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+@media (max-width: 900px) {
+  .follow-through-hero,
+  .follow-through-evidence,
+  .follow-through-contact-context {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* PROOF MAINTENANCE */
+.proof-maintenance-page,
+.proof-maintenance {
+  max-width: 100%;
+}
+.proof-maintenance {
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+}
+.proof-maintenance-hero {
+  display: grid;
+  gap: var(--s-4);
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--border);
+}
+.proof-maintenance-hero h1 {
+  margin: var(--s-3) 0 var(--s-4);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 82px);
+  font-weight: 400;
+  line-height: 0.98;
+}
+.proof-maintenance-hero p,
+.proof-maintenance-row p {
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.proof-maintenance-buckets {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-3);
+  margin: var(--s-5) 0;
+  padding: 0;
+  list-style: none;
+}
+.proof-maintenance-bucket {
+  display: grid;
+  gap: var(--s-2);
+  min-width: 0;
+  padding: var(--s-4);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.proof-maintenance-bucket span {
+  color: var(--text-3);
+  font-size: 0.85rem;
+}
+.proof-maintenance-bucket strong {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 400;
+  line-height: 1;
+}
+.proof-maintenance-section {
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--border);
+}
+.proof-maintenance-section h2 {
+  margin: 0 0 var(--s-4);
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+.proof-maintenance-table {
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.proof-maintenance-row {
+  display: grid;
+  grid-template-columns:
+    minmax(220px, 2fr)
+    minmax(100px, 0.8fr)
+    minmax(150px, 0.9fr)
+    minmax(110px, 0.8fr)
+    minmax(110px, 0.8fr)
+    minmax(90px, 0.7fr);
+  gap: var(--s-3);
+  align-items: start;
+  min-width: 0;
+  padding: var(--s-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.proof-maintenance-row-head {
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+.proof-maintenance-entry-link {
+  color: inherit;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.proof-maintenance-row p {
+  margin: var(--s-2) 0 0;
+  font-size: 0.92rem;
+}
+@media (max-width: 900px) {
+  .proof-maintenance-buckets,
+  .proof-maintenance-row {
+    grid-template-columns: 1fr;
+  }
+  .proof-maintenance-row-head {
+    display: none;
+  }
+}
+
+/* PROOF REVIEW ROOM */
+.proof-review-page,
+.proof-review-room {
+  max-width: 100%;
+}
+.proof-review-room {
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+}
+.proof-review-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(320px, 5fr);
+  gap: var(--s-6);
+  align-items: end;
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--border);
+}
+.proof-review-hero-copy {
+  min-width: 0;
+}
+.proof-review-hero h1 {
+  margin: var(--s-3) 0 var(--s-4);
+  max-width: 980px;
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6.4vw, 92px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+.proof-review-hero-copy > p,
+.proof-review-section-head p,
+.proof-review-command p,
+.proof-review-role-card p,
+.proof-review-anchor p,
+.proof-review-anchor span,
+.proof-review-step p,
+.proof-review-bundle p,
+.proof-review-close p {
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.proof-review-hero-copy > p {
+  max-width: 780px;
+  font-size: clamp(17px, 2vw, 22px);
+}
+.proof-review-status {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+  color: var(--accent-ink) !important;
+  font-family: var(--font-ui);
+  font-size: 0.96rem !important;
+}
+.proof-review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+.proof-review-signals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+.proof-review-signal {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  min-height: 138px;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.proof-review-signal span,
+.proof-review-command span,
+.proof-review-command strong,
+.proof-review-role-card small,
+.proof-review-anchor small,
+.proof-review-step span,
+.proof-review-bundle dt {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.proof-review-signal strong {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text);
+}
+.proof-review-signal p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.proof-review-signal small {
+  width: fit-content;
+  margin-top: auto;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-ink);
+}
+.proof-review-section {
+  padding: var(--s-6) 0;
+  border-bottom: 1px solid var(--border);
+}
+.proof-review-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-5);
+  align-items: end;
+  padding-bottom: var(--s-4);
+  border-bottom: 1px dashed var(--border);
+}
+.proof-review-section-head h2,
+.proof-review-bundle h2,
+.proof-review-close h2 {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+.proof-review-section-head p {
+  margin: 0;
+  max-width: 760px;
+}
+.proof-review-command-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.proof-review-command {
+  display: grid;
+  align-content: start;
+  gap: var(--s-2);
+  min-width: 0;
+  min-height: 210px;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.proof-review-command code {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px 7px;
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--accent-ink);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.proof-review-command strong {
+  color: var(--text);
+}
+.proof-review-command p {
+  margin: 0;
+}
+.proof-review-command span {
+  margin-top: auto;
+  color: var(--accent);
+}
+.proof-review-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.proof-review-role-card {
+  display: grid;
+  gap: var(--s-4);
+  min-width: 0;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.proof-review-role-card h3,
+.proof-review-anchor h3,
+.proof-review-step h3 {
+  margin: var(--s-2) 0;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.proof-review-role-card p {
+  margin: 0;
+}
+.proof-review-role-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.proof-review-role-stats div {
+  min-width: 0;
+  padding: var(--s-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.proof-review-role-stats dt {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.proof-review-role-stats dd {
+  margin: var(--s-2) 0 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.proof-review-role-claim {
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--border);
+  color: var(--accent-ink) !important;
+}
+.proof-review-role-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: auto;
+}
+.proof-review-anchor-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.proof-review-anchor {
+  display: grid;
+  align-content: start;
+  gap: var(--s-2);
+  min-width: 0;
+  min-height: 260px;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--dur-2) var(--ease-out);
+}
+.proof-review-anchor:hover,
+.proof-review-anchor:focus-visible {
+  background: var(--bg-alt);
+}
+.proof-review-anchor small {
+  overflow-wrap: anywhere;
+}
+.proof-review-anchor p,
+.proof-review-anchor span {
+  margin: 0;
+}
+.proof-review-anchor span {
+  color: var(--accent-ink);
+}
+.proof-review-sequence {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+.proof-review-step {
+  display: grid;
+  align-content: start;
+  gap: var(--s-2);
+  min-width: 0;
+  min-height: 230px;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.proof-review-step p {
+  margin: 0;
+}
+.proof-review-step a {
+  width: fit-content;
+  margin-top: auto;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.proof-review-step a:hover,
+.proof-review-step a:focus-visible {
+  border-bottom-color: var(--accent);
+}
+.proof-review-bundle,
+.proof-review-close {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-5);
+  align-items: end;
+  padding: var(--s-6) 0;
+  border-bottom: 1px solid var(--border);
+}
+.proof-review-bundle dl {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.proof-review-bundle dl div {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.8fr) minmax(0, 2fr);
+  gap: var(--s-3);
+  padding: var(--s-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.proof-review-bundle dd {
+  margin: 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.proof-review-close {
+  border-bottom: 0;
+}
+@media (max-width: 1100px) {
+  .proof-review-command-list,
+  .proof-review-anchor-ledger,
+  .proof-review-sequence {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .proof-review-hero,
+  .proof-review-section-head,
+  .proof-review-bundle,
+  .proof-review-close {
+    grid-template-columns: 1fr;
+  }
+  .proof-review-room {
+    padding-top: var(--s-6);
+  }
+}
+@media (max-width: 720px) {
+  .proof-review-hero h1 {
+    font-size: clamp(38px, 13vw, 58px);
+  }
+  .proof-review-signals,
+  .proof-review-command-list,
+  .proof-review-role-grid,
+  .proof-review-anchor-ledger,
+  .proof-review-sequence {
+    grid-template-columns: 1fr;
+    border: 0;
+    gap: var(--s-3);
+  }
+  .proof-review-signal,
+  .proof-review-command,
+  .proof-review-role-card,
+  .proof-review-anchor,
+  .proof-review-step {
+    min-height: 0;
+    border: 1px solid var(--border);
+  }
+  .proof-review-role-stats,
+  .proof-review-bundle dl div {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ROLE COMPARISON BOARD */
+.role-comparison-page,
+.role-comparison-board {
+  max-width: 100%;
+}
+.role-comparison-board {
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+}
+.role-comparison-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(320px, 5fr);
+  gap: var(--s-6);
+  align-items: end;
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--border);
+}
+.role-comparison-hero h1 {
+  margin: var(--s-3) 0 var(--s-4);
+  max-width: 960px;
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6.4vw, 92px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+.role-comparison-hero p,
+.role-comparison-section-head p,
+.role-comparison-criterion p,
+.role-comparison-lane p,
+.role-comparison-step p,
+.role-comparison-close p {
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.role-comparison-hero > div > p {
+  max-width: 780px;
+  font-size: clamp(17px, 2vw, 22px);
+}
+.role-comparison-actions,
+.role-comparison-route-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+.role-comparison-summary {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+.role-comparison-summary li {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(90px, 0.7fr) auto;
+  gap: var(--s-3);
+  align-items: center;
+  min-width: 0;
+  padding: var(--s-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.role-comparison-summary span,
+.role-comparison-summary strong,
+.role-comparison-summary a,
+.role-comparison-criterion span,
+.role-comparison-lane small,
+.role-comparison-proof .label,
+.role-comparison-boundary strong,
+.role-comparison-question strong,
+.role-comparison-step span {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.role-comparison-summary span,
+.role-comparison-summary strong,
+.role-comparison-lane small,
+.role-comparison-boundary strong,
+.role-comparison-question strong,
+.role-comparison-step span {
+  color: var(--text-3);
+}
+.role-comparison-summary a {
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.role-comparison-section {
+  padding: var(--s-6) 0;
+  border-bottom: 1px solid var(--border);
+}
+.role-comparison-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-5);
+  align-items: end;
+  padding-bottom: var(--s-4);
+  border-bottom: 1px dashed var(--border);
+}
+.role-comparison-section-head h2,
+.role-comparison-close h2 {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+.role-comparison-section-head p {
+  margin: 0;
+  max-width: 760px;
+}
+.role-comparison-criteria {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.role-comparison-criterion {
+  min-width: 0;
+  min-height: 150px;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.role-comparison-criterion p {
+  margin: var(--s-3) 0 0;
+}
+.role-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.role-comparison-lane {
+  display: grid;
+  gap: var(--s-4);
+  min-width: 0;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.role-comparison-lane h3,
+.role-comparison-proof h4,
+.role-comparison-step h3 {
+  margin: var(--s-2) 0;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.role-comparison-lane p {
+  margin: 0;
+}
+.role-comparison-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.role-comparison-stats div {
+  min-width: 0;
+  padding: var(--s-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.role-comparison-stats dt {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.role-comparison-stats dd {
+  margin: var(--s-2) 0 0;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.role-comparison-proof,
+.role-comparison-boundary,
+.role-comparison-question {
+  display: grid;
+  gap: var(--s-2);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--border);
+}
+.role-comparison-proof h4 {
+  color: var(--text);
+}
+.role-comparison-proof a {
+  width: fit-content;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.role-comparison-proof a:hover,
+.role-comparison-proof a:focus-visible {
+  border-bottom-color: var(--accent);
+}
+.role-comparison-boundary p {
+  color: var(--accent-ink);
+}
+.role-comparison-route-actions {
+  margin-top: auto;
+}
+.role-comparison-sequence {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+.role-comparison-step {
+  display: grid;
+  align-content: start;
+  gap: var(--s-2);
+  min-width: 0;
+  min-height: 220px;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.role-comparison-close {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-5);
+  align-items: end;
+  padding: var(--s-6) 0 0;
+}
+@media (max-width: 1100px) {
+  .role-comparison-criteria,
+  .role-comparison-sequence {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .role-comparison-hero,
+  .role-comparison-section-head,
+  .role-comparison-close {
+    grid-template-columns: 1fr;
+  }
+  .role-comparison-board {
+    padding-top: var(--s-6);
+  }
+}
+@media (max-width: 720px) {
+  .role-comparison-hero h1 {
+    font-size: clamp(38px, 13vw, 58px);
+  }
+  .role-comparison-summary li {
+    grid-template-columns: 1fr;
+  }
+  .role-comparison-criteria,
+  .role-comparison-grid,
+  .role-comparison-sequence {
+    grid-template-columns: 1fr;
+    border: 0;
+    gap: var(--s-3);
+  }
+  .role-comparison-criterion,
+  .role-comparison-lane,
+  .role-comparison-step {
+    min-height: 0;
+    border: 1px solid var(--border);
+  }
+  .role-comparison-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* INTERVIEW AGENDA BOARD */
+.interview-agenda-page,
+.interview-agenda-board {
+  max-width: 100%;
+}
+.interview-agenda-board {
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+}
+.interview-agenda-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(320px, 5fr);
+  gap: var(--s-6);
+  align-items: end;
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--border);
+}
+.interview-agenda-hero h1 {
+  margin: var(--s-3) 0 var(--s-4);
+  max-width: 940px;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 5rem, 5.75rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+.interview-agenda-hero p,
+.interview-agenda-section-head p,
+.interview-agenda-phase p,
+.interview-agenda-role p,
+.interview-agenda-close p {
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.interview-agenda-hero > div > p {
+  max-width: 780px;
+  font-size: 1.25rem;
+}
+.interview-agenda-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+.interview-agenda-summary {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+.interview-agenda-summary li {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(90px, 0.7fr) auto;
+  gap: var(--s-3);
+  align-items: center;
+  min-width: 0;
+  padding: var(--s-3);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.interview-agenda-summary span,
+.interview-agenda-summary strong,
+.interview-agenda-summary a,
+.interview-agenda-phase span,
+.interview-agenda-role small,
+.interview-agenda-proof .label,
+.interview-agenda-question strong,
+.interview-agenda-boundary strong,
+.interview-agenda-mini-list strong {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.interview-agenda-summary span,
+.interview-agenda-summary strong,
+.interview-agenda-phase span,
+.interview-agenda-role small,
+.interview-agenda-question strong,
+.interview-agenda-boundary strong,
+.interview-agenda-mini-list strong {
+  color: var(--text-3);
+}
+.interview-agenda-summary a,
+.interview-agenda-proof a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.interview-agenda-summary a {
+  white-space: nowrap;
+}
+.interview-agenda-section {
+  padding: var(--s-6) 0;
+  border-bottom: 1px solid var(--border);
+}
+.interview-agenda-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-5);
+  align-items: end;
+  padding-bottom: var(--s-4);
+  border-bottom: 1px dashed var(--border);
+}
+.interview-agenda-section-head h2,
+.interview-agenda-close h2 {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.75rem, 3rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+.interview-agenda-section-head p {
+  margin: 0;
+  max-width: 760px;
+}
+.interview-agenda-phases {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  list-style: none;
+}
+.interview-agenda-phase {
+  display: grid;
+  align-content: start;
+  gap: var(--s-2);
+  min-width: 0;
+  min-height: 210px;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.interview-agenda-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.interview-agenda-role {
+  display: grid;
+  gap: var(--s-4);
+  min-width: 0;
+  padding: var(--s-4);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.interview-agenda-role h3,
+.interview-agenda-phase h3,
+.interview-agenda-proof h4 {
+  margin: var(--s-2) 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.9rem, 2rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+.interview-agenda-proof,
+.interview-agenda-question,
+.interview-agenda-boundary,
+.interview-agenda-mini-list {
+  display: grid;
+  gap: var(--s-2);
+  min-width: 0;
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--border);
+}
+.interview-agenda-proof a {
+  width: fit-content;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.interview-agenda-proof a:hover,
+.interview-agenda-proof a:focus-visible {
+  border-bottom-color: var(--accent);
+}
+.interview-agenda-boundary p {
+  color: var(--accent-ink);
+}
+.interview-agenda-mini-list ul {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text-2);
+}
+.interview-agenda-role-head,
+.interview-agenda-proof,
+.interview-agenda-question,
+.interview-agenda-boundary,
+.interview-agenda-mini-list,
+.interview-agenda-close {
+  overflow-wrap: anywhere;
+}
+.interview-agenda-close {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-5);
+  align-items: end;
+  padding: var(--s-6) 0 0;
+}
+@media (max-width: 1100px) {
+  .interview-agenda-phases {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .interview-agenda-hero,
+  .interview-agenda-section-head,
+  .interview-agenda-close {
+    grid-template-columns: 1fr;
+  }
+  .interview-agenda-board {
+    padding-top: var(--s-6);
+  }
+}
+@media (max-width: 720px) {
+  .interview-agenda-hero h1 {
+    font-size: clamp(2.35rem, 3.5rem, 3.625rem);
+  }
+  .interview-agenda-hero > div > p {
+    font-size: 1.05rem;
+  }
+  .interview-agenda-summary li {
+    grid-template-columns: 1fr;
+  }
+  .interview-agenda-phases,
+  .interview-agenda-role-grid {
+    grid-template-columns: 1fr;
+    border: 0;
+    gap: var(--s-3);
+  }
+  .interview-agenda-phase,
+  .interview-agenda-role {
+    min-height: 0;
+    border: 1px solid var(--border);
+  }
+}
+
 /* APPROACH */
 .approach {
   display: grid; grid-template-columns: 5fr 7fr;
