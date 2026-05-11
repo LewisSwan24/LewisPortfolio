@@ -389,6 +389,7 @@ export type ProofMaintenanceSurface =
   | "hiring-scorecard"
   | "hiring-shortlist"
   | "hiring-debrief"
+  | "hiring-decision"
   | "review-room"
   | "contact";
 
@@ -407,10 +408,12 @@ export interface ProofMaintenanceEntry {
     | "/hire/scorecard"
     | "/hire/shortlist"
     | "/hire/debrief"
+    | "/hire/decision"
     | "/hire/review"
     | `/contact?role=${HiringRoleId}`
     | `/contact?role=${HiringRoleId}&intent=scorecard`
-    | `/contact?role=${HiringRoleId}&intent=debrief`;
+    | `/contact?role=${HiringRoleId}&intent=debrief`
+    | `/contact?role=${HiringRoleId}&intent=decision`;
   reviewedAt: string;
   nextReviewAt: string;
   status: ProofFreshnessStatus;
@@ -946,4 +949,74 @@ export interface HiringManagerDebriefBoard {
   compareRoute: "/hire/compare";
   reviewRoute: "/hire/review";
   close: HiringManagerDebriefClose;
+}
+
+export interface HiringDecisionPackAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringDecisionPackHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringDecisionPackAction;
+  secondaryAction: HiringDecisionPackAction;
+}
+
+export interface HiringDecisionPackSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringDecisionPackProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringDecisionPackRole {
+  id: HiringRoleId;
+  label: string;
+  decisionSignal: string;
+  finalRecommendation: string;
+  remainingRisk: string;
+  closeQuestion: string;
+  nextAction: string;
+  proof: HiringDecisionPackProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=decision`;
+}
+
+export interface HiringDecisionPackClose {
+  title: string;
+  body: string;
+  primaryAction: HiringDecisionPackAction;
+  secondaryAction: HiringDecisionPackAction;
+}
+
+export interface HiringDecisionPack {
+  locale: ProofLocale;
+  hero: HiringDecisionPackHero;
+  summary: HiringDecisionPackSummaryItem[];
+  roles: HiringDecisionPackRole[];
+  hireRoute: "/hire";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringDecisionPackClose;
 }

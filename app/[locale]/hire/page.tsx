@@ -50,6 +50,8 @@ export default async function HirePage() {
     proofLocale === "zh" ? "Shortlist memo" : "Shortlist memo";
   const debriefLabel =
     proofLocale === "zh" ? "Manager debrief" : "Manager debrief";
+  const decisionLabel =
+    proofLocale === "zh" ? "Decision pack" : "Decision pack";
 
   return (
     <main className="page interview-room-page" data-screen-label="05 Hire">
@@ -110,6 +112,9 @@ export default async function HirePage() {
           </Link>
           <Link className="btn btn-ghost" href="/hire/debrief">
             {debriefLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/decision">
+            {decisionLabel}
           </Link>
           <Link className="btn btn-ghost" href="/projects">
             Browse work

@@ -147,6 +147,19 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
       "Confirm the hiring manager debrief still points this role to the right proof anchor, boundary, manager brief, second-round question, and next action.",
   }));
 
+  const decisionEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-decision`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-decision`,
+    surface: "hiring-decision",
+    href: "/hire/decision",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring decision pack still points this role to the right proof anchor, remaining risk, close question, and next action.",
+  }));
+
   return [
     ...roleEntries,
     ...applicationEntries,
@@ -157,6 +170,7 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
     ...scorecardEntries,
     ...shortlistEntries,
     ...debriefEntries,
+    ...decisionEntries,
   ];
 }
 

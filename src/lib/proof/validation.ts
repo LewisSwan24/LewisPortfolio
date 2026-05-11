@@ -62,6 +62,7 @@ function isValidProofRoute(href: string) {
   if (href === "/hire/scorecard") return true;
   if (href === "/hire/shortlist") return true;
   if (href === "/hire/debrief") return true;
+  if (href === "/hire/decision") return true;
 
   return hiringRoleIds.some(
     (role) =>
@@ -71,7 +72,8 @@ function isValidProofRoute(href: string) {
       href === `/contact?role=${role}` ||
       href === `/contact?role=${role}&intent=interview` ||
       href === `/contact?role=${role}&intent=scorecard` ||
-      href === `/contact?role=${role}&intent=debrief`
+      href === `/contact?role=${role}&intent=debrief` ||
+      href === `/contact?role=${role}&intent=decision`
   );
 }
 
@@ -235,6 +237,11 @@ export function getProofValidationReport(
       .filter((entry) => entry.surface === "hiring-debrief")
       .map((entry) => entry.roleId)
   );
+  const maintainedDecisionRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-decision")
+      .map((entry) => entry.roleId)
+  );
 
   checkedRoutes.add("/hire/review");
   checkedRoutes.add("/hire/compare");
@@ -242,6 +249,7 @@ export function getProofValidationReport(
   checkedRoutes.add("/hire/scorecard");
   checkedRoutes.add("/hire/shortlist");
   checkedRoutes.add("/hire/debrief");
+  checkedRoutes.add("/hire/decision");
 
   for (const key of Array.from(roleClaimKeys)) {
     if (!maintainedRoleClaimKeys.has(key)) {
@@ -346,6 +354,17 @@ export function getProofValidationReport(
         message: `Missing maintenance entry for /hire/debrief manager debrief lane ${role}.`,
         roleId: role,
         href: "/hire/debrief",
+      });
+    }
+
+    if (!maintainedDecisionRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-decision-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/decision decision pack lane ${role}.`,
+        roleId: role,
+        href: "/hire/decision",
       });
     }
   }

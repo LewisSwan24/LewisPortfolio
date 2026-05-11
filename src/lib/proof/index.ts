@@ -7,6 +7,7 @@ export * from "./interview-room";
 export * from "./events";
 export * from "./locale";
 export { getApplicationPacket, getApplicationPackets } from "./application-packets";
+export { getHiringDecisionPack } from "./hiring-decision";
 export { getHiringManagerDebrief } from "./hiring-debrief";
 export { getHiringScorecardBoard } from "./hiring-scorecard";
 export { getHiringShortlistMemo } from "./hiring-shortlist";
