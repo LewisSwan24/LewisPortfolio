@@ -52,8 +52,8 @@ run(`${pnpm} proof:handoff`);
 const generatedAt = new Date().toISOString().slice(0, 10);
 const roleIds = extractRoleIds(readProjectFile("src/lib/proof/anchors.ts"));
 const claimIds = extractClaimIds(readProjectFile("src/lib/proof/role-packets.ts"));
-const routes = roleIds.length * 3 + 9;
-const maintenanceTotal = claimIds.size + roleIds.length * 11;
+const routes = roleIds.length * 3 + 10;
+const maintenanceTotal = claimIds.size + roleIds.length * 12;
 
 console.log("\n# Proof Handoff Manifest");
 console.log("");
@@ -88,6 +88,7 @@ console.log("- Debrief route: `/hire/debrief`");
 console.log("- Decision route: `/hire/decision`");
 console.log("- Offer route: `/hire/offer`");
 console.log("- Onboarding route: `/hire/onboarding`");
+console.log("- Kickoff route: `/hire/kickoff`");
 console.log("- Review route: `/hire/review`");
 console.log("");
 console.log("## Roles");

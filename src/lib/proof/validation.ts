@@ -65,6 +65,7 @@ function isValidProofRoute(href: string) {
   if (href === "/hire/decision") return true;
   if (href === "/hire/offer") return true;
   if (href === "/hire/onboarding") return true;
+  if (href === "/hire/kickoff") return true;
 
   return hiringRoleIds.some(
     (role) =>
@@ -77,7 +78,8 @@ function isValidProofRoute(href: string) {
       href === `/contact?role=${role}&intent=debrief` ||
       href === `/contact?role=${role}&intent=decision` ||
       href === `/contact?role=${role}&intent=offer` ||
-      href === `/contact?role=${role}&intent=onboarding`
+      href === `/contact?role=${role}&intent=onboarding` ||
+      href === `/contact?role=${role}&intent=kickoff`
   );
 }
 
@@ -256,6 +258,11 @@ export function getProofValidationReport(
       .filter((entry) => entry.surface === "hiring-onboarding")
       .map((entry) => entry.roleId)
   );
+  const maintainedKickoffRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-kickoff")
+      .map((entry) => entry.roleId)
+  );
 
   checkedRoutes.add("/hire/review");
   checkedRoutes.add("/hire/compare");
@@ -266,6 +273,7 @@ export function getProofValidationReport(
   checkedRoutes.add("/hire/decision");
   checkedRoutes.add("/hire/offer");
   checkedRoutes.add("/hire/onboarding");
+  checkedRoutes.add("/hire/kickoff");
 
   for (const key of Array.from(roleClaimKeys)) {
     if (!maintainedRoleClaimKeys.has(key)) {
@@ -403,6 +411,17 @@ export function getProofValidationReport(
         message: `Missing maintenance entry for /hire/onboarding onboarding readiness lane ${role}.`,
         roleId: role,
         href: "/hire/onboarding",
+      });
+    }
+
+    if (!maintainedKickoffRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-kickoff-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/kickoff kickoff alignment lane ${role}.`,
+        roleId: role,
+        href: "/hire/kickoff",
       });
     }
   }

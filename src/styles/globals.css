@@ -6488,3 +6488,247 @@ html { scroll-behavior: smooth; }
     min-width: 0;
   }
 }
+
+.hiring-kickoff-page,
+.hiring-kickoff-board {
+  background: var(--bg);
+}
+
+.hiring-kickoff-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-kickoff-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-kickoff-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-kickoff-hero p,
+.hiring-kickoff-section-head p,
+.hiring-kickoff-summary-item p,
+.hiring-kickoff-role p,
+.hiring-kickoff-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-kickoff-hero > div > p {
+  max-width: 46rem;
+  font-size: 17px;
+}
+
+.hiring-kickoff-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-kickoff-role .hiring-kickoff-actions {
+  margin-top: 0;
+}
+
+.hiring-kickoff-role-summary,
+.hiring-kickoff-summary-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-kickoff-role-summary li,
+.hiring-kickoff-summary-item,
+.hiring-kickoff-role {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-kickoff-role-summary li,
+.hiring-kickoff-summary-item {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-kickoff-role-summary span,
+.hiring-kickoff-role-summary strong,
+.hiring-kickoff-role-summary a,
+.hiring-kickoff-summary-item span,
+.hiring-kickoff-role small,
+.hiring-kickoff-brief strong,
+.hiring-kickoff-metric strong,
+.hiring-kickoff-question strong,
+.hiring-kickoff-artifact strong,
+.hiring-kickoff-risk strong,
+.hiring-kickoff-next strong {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-kickoff-role-summary span,
+.hiring-kickoff-role-summary strong,
+.hiring-kickoff-role small,
+.hiring-kickoff-brief strong,
+.hiring-kickoff-metric strong,
+.hiring-kickoff-question strong,
+.hiring-kickoff-artifact strong,
+.hiring-kickoff-risk strong,
+.hiring-kickoff-next strong {
+  color: var(--text-3);
+}
+
+.hiring-kickoff-role-summary a,
+.hiring-kickoff-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-kickoff-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-kickoff-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-kickoff-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-kickoff-section-head h2,
+.hiring-kickoff-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-kickoff-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-kickoff-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-kickoff-role h3,
+.hiring-kickoff-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-kickoff-proof,
+.hiring-kickoff-brief,
+.hiring-kickoff-metric,
+.hiring-kickoff-question,
+.hiring-kickoff-artifact,
+.hiring-kickoff-risk,
+.hiring-kickoff-next {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-kickoff-role-head,
+.hiring-kickoff-proof,
+.hiring-kickoff-brief,
+.hiring-kickoff-metric,
+.hiring-kickoff-question,
+.hiring-kickoff-artifact,
+.hiring-kickoff-risk,
+.hiring-kickoff-next,
+.hiring-kickoff-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-kickoff-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-kickoff-hero,
+  .hiring-kickoff-section-head,
+  .hiring-kickoff-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-kickoff-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-kickoff-hero {
+    gap: 28px;
+  }
+
+  .hiring-kickoff-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-kickoff-section-head h2,
+  .hiring-kickoff-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-kickoff-role-summary,
+  .hiring-kickoff-summary-grid,
+  .hiring-kickoff-role-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-kickoff-summary-item,
+  .hiring-kickoff-role {
+    min-width: 0;
+  }
+}
