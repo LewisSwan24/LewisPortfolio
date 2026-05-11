@@ -7,6 +7,7 @@ import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/Proj
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
+import { getProofUiLabels } from "@/lib/proof";
 import {
   getCapabilityPillars,
   getCareerSnapshot,
@@ -93,6 +94,7 @@ export default async function HomePage() {
   const hiringPaths = getHiringPaths(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
   const roleFits = getHiringRoleFits(proofLocale);
+  const proofLabels = getProofUiLabels(proofLocale);
 
   return (
     <main className="page" data-screen-label="01 Home">
@@ -199,6 +201,7 @@ export default async function HomePage() {
           roles={roleFits}
           title="Match the opening to the strongest proof."
           intro="Pick the role signal first, then inspect the exact case evidence."
+          labels={proofLabels}
         />
       </section>
 

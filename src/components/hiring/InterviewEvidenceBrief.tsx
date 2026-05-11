@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getProofUiLabels, type ProofUiLabels } from "@/lib/proof";
 import type {
   InterviewEvidenceBriefItem,
   ProjectEvidenceSlug,
@@ -13,20 +14,21 @@ const caseLabels: Record<ProjectEvidenceSlug, string> = {
 
 interface InterviewEvidenceBriefProps {
   items: InterviewEvidenceBriefItem[];
+  labels?: ProofUiLabels;
 }
 
-export function InterviewEvidenceBrief({ items }: InterviewEvidenceBriefProps) {
+export function InterviewEvidenceBrief({
+  items,
+  labels = getProofUiLabels("en"),
+}: InterviewEvidenceBriefProps) {
   return (
     <section className="interview-evidence-brief" aria-labelledby="interview-evidence-title">
       <div className="interview-section-head">
         <div>
-          <div className="label">Evidence brief</div>
-          <h2 id="interview-evidence-title">What to inspect before the call.</h2>
+          <div className="label">{labels.evidenceBrief}</div>
+          <h2 id="interview-evidence-title">{labels.evidenceBriefTitle}</h2>
         </div>
-        <p>
-          Each proof point links to a case section instead of asking the reader
-          to browse everything.
-        </p>
+        <p>{labels.evidenceBriefIntro}</p>
       </div>
       <div className="interview-evidence-list">
         {items.map((item) => (

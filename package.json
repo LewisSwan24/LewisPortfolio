@@ -11,7 +11,12 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "analyze": "cross-env ANALYZE=true next build"
+    "analyze": "cross-env ANALYZE=true next build",
+    "proof:maintenance": "node scripts/proof-maintenance-report.mjs",
+    "proof:validate": "node scripts/proof-validate.mjs",
+    "proof:handoff": "node scripts/proof-handoff.mjs",
+    "proof:export": "node scripts/proof-export.mjs",
+    "proof:bundle": "node scripts/proof-bundle.mjs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
