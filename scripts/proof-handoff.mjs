@@ -61,8 +61,8 @@ const roleIds = extractRoleIds(anchorsSource);
 const claimIds = extractClaimIds(rolePacketsSource);
 const reviewedAt = extractConst(maintenanceSource, "reviewedAt");
 const nextReviewAt = extractConst(maintenanceSource, "nextReviewAt");
-const routes = roleIds.length * 3 + 7;
-const maintenanceTotal = claimIds.size + roleIds.length * 9;
+const routes = roleIds.length * 3 + 8;
+const maintenanceTotal = claimIds.size + roleIds.length * 10;
 
 console.log("\nProof handoff manifest");
 console.log("Status: ready");
@@ -79,3 +79,4 @@ console.log("Scorecard route: /hire/scorecard");
 console.log("Shortlist route: /hire/shortlist");
 console.log("Debrief route: /hire/debrief");
 console.log("Decision route: /hire/decision");
+console.log("Offer route: /hire/offer");

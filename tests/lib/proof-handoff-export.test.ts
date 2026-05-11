@@ -10,13 +10,14 @@ describe("proof handoff export", () => {
     expect(exportArtifact.content).toContain("# Proof Handoff Manifest");
     expect(exportArtifact.content).toContain("Status: ready");
     expect(exportArtifact.content).toContain("pnpm proof:validate");
-    expect(exportArtifact.content).toContain("Maintenance: 48 total");
+    expect(exportArtifact.content).toContain("Maintenance: 52 total");
     expect(exportArtifact.content).toContain("/hire/compare");
     expect(exportArtifact.content).toContain("/hire/interview");
     expect(exportArtifact.content).toContain("/hire/scorecard");
     expect(exportArtifact.content).toContain("/hire/shortlist");
     expect(exportArtifact.content).toContain("/hire/debrief");
     expect(exportArtifact.content).toContain("/hire/decision");
+    expect(exportArtifact.content).toContain("/hire/offer");
   });
 
   it("includes every role route in the markdown", () => {

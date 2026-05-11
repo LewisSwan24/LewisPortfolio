@@ -160,6 +160,19 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
       "Confirm the hiring decision pack still points this role to the right proof anchor, remaining risk, close question, and next action.",
   }));
 
+  const offerEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-offer`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-offer`,
+    surface: "hiring-offer",
+    href: "/hire/offer",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring offer readiness pack still points this role to the right proof anchor, validation note, onboarding focus, readiness question, and next action.",
+  }));
+
   return [
     ...roleEntries,
     ...applicationEntries,
@@ -171,6 +184,7 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
     ...shortlistEntries,
     ...debriefEntries,
     ...decisionEntries,
+    ...offerEntries,
   ];
 }
 

@@ -155,6 +155,9 @@ export function InterviewAgendaView({ board }: InterviewAgendaViewProps) {
             <Link className="btn btn-ghost" href="/hire/decision">
               Decision pack
             </Link>
+            <Link className="btn btn-ghost" href="/hire/offer">
+              Offer readiness
+            </Link>
           </div>
         </div>
         <ul className="interview-agenda-summary" aria-label="Interview agenda role summary">
@@ -198,6 +201,9 @@ export function InterviewAgendaView({ board }: InterviewAgendaViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/decision">
             Decision pack
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/offer">
+            Offer readiness
           </Link>
         </div>
       </section>

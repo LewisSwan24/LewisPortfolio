@@ -390,6 +390,7 @@ export type ProofMaintenanceSurface =
   | "hiring-shortlist"
   | "hiring-debrief"
   | "hiring-decision"
+  | "hiring-offer"
   | "review-room"
   | "contact";
 
@@ -409,11 +410,13 @@ export interface ProofMaintenanceEntry {
     | "/hire/shortlist"
     | "/hire/debrief"
     | "/hire/decision"
+    | "/hire/offer"
     | "/hire/review"
     | `/contact?role=${HiringRoleId}`
     | `/contact?role=${HiringRoleId}&intent=scorecard`
     | `/contact?role=${HiringRoleId}&intent=debrief`
-    | `/contact?role=${HiringRoleId}&intent=decision`;
+    | `/contact?role=${HiringRoleId}&intent=decision`
+    | `/contact?role=${HiringRoleId}&intent=offer`;
   reviewedAt: string;
   nextReviewAt: string;
   status: ProofFreshnessStatus;
@@ -1019,4 +1022,76 @@ export interface HiringDecisionPack {
   compareRoute: "/hire/compare";
   reviewRoute: "/hire/review";
   close: HiringDecisionPackClose;
+}
+
+export interface HiringOfferReadinessAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringOfferReadinessHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringOfferReadinessAction;
+  secondaryAction: HiringOfferReadinessAction;
+}
+
+export interface HiringOfferReadinessSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringOfferReadinessProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringOfferReadinessRole {
+  id: HiringRoleId;
+  label: string;
+  offerSignal: string;
+  validationNote: string;
+  onboardingFocus: string;
+  readinessQuestion: string;
+  nextAction: string;
+  proof: HiringOfferReadinessProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=offer`;
+}
+
+export interface HiringOfferReadinessClose {
+  title: string;
+  body: string;
+  primaryAction: HiringOfferReadinessAction;
+  secondaryAction: HiringOfferReadinessAction;
+}
+
+export interface HiringOfferReadinessPack {
+  locale: ProofLocale;
+  hero: HiringOfferReadinessHero;
+  summary: HiringOfferReadinessSummaryItem[];
+  roles: HiringOfferReadinessRole[];
+  hireRoute: "/hire";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringOfferReadinessClose;
 }

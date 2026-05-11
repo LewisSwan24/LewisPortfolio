@@ -168,6 +168,9 @@ export function HiringScorecardView({ board }: HiringScorecardViewProps) {
             <Link className="btn btn-ghost" href="/hire/decision">
               Decision pack
             </Link>
+            <Link className="btn btn-ghost" href="/hire/offer">
+              Offer readiness
+            </Link>
           </div>
         </div>
         <ul className="hiring-scorecard-summary" aria-label="Hiring scorecard role summary">
@@ -208,6 +211,9 @@ export function HiringScorecardView({ board }: HiringScorecardViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/decision">
             Decision pack
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/offer">
+            Offer readiness
           </Link>
         </div>
       </section>

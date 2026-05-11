@@ -6012,3 +6012,239 @@ html { scroll-behavior: smooth; }
     min-width: 0;
   }
 }
+
+.hiring-offer-page,
+.hiring-offer-board {
+  background: var(--bg);
+}
+
+.hiring-offer-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-offer-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-offer-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-offer-hero p,
+.hiring-offer-section-head p,
+.hiring-offer-summary-item p,
+.hiring-offer-role p,
+.hiring-offer-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-offer-hero > div > p {
+  max-width: 46rem;
+  font-size: 17px;
+}
+
+.hiring-offer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-offer-role .hiring-offer-actions {
+  margin-top: 0;
+}
+
+.hiring-offer-role-summary,
+.hiring-offer-summary-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-offer-role-summary li,
+.hiring-offer-summary-item,
+.hiring-offer-role {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-offer-role-summary li,
+.hiring-offer-summary-item {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-offer-role-summary span,
+.hiring-offer-role-summary strong,
+.hiring-offer-role-summary a,
+.hiring-offer-summary-item span,
+.hiring-offer-role small,
+.hiring-offer-validation strong,
+.hiring-offer-onboarding strong,
+.hiring-offer-question strong,
+.hiring-offer-next strong {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-offer-role-summary span,
+.hiring-offer-role-summary strong,
+.hiring-offer-role small,
+.hiring-offer-validation strong,
+.hiring-offer-onboarding strong,
+.hiring-offer-question strong,
+.hiring-offer-next strong {
+  color: var(--text-3);
+}
+
+.hiring-offer-role-summary a,
+.hiring-offer-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-offer-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-offer-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-offer-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-offer-section-head h2,
+.hiring-offer-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-offer-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-offer-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-offer-role h3,
+.hiring-offer-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-offer-proof,
+.hiring-offer-validation,
+.hiring-offer-onboarding,
+.hiring-offer-question,
+.hiring-offer-next {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-offer-role-head,
+.hiring-offer-proof,
+.hiring-offer-validation,
+.hiring-offer-onboarding,
+.hiring-offer-question,
+.hiring-offer-next,
+.hiring-offer-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-offer-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-offer-hero,
+  .hiring-offer-section-head,
+  .hiring-offer-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-offer-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-offer-hero {
+    gap: 28px;
+  }
+
+  .hiring-offer-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-offer-section-head h2,
+  .hiring-offer-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-offer-role-summary,
+  .hiring-offer-summary-grid,
+  .hiring-offer-role-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-offer-summary-item,
+  .hiring-offer-role {
+    min-width: 0;
+  }
+}
