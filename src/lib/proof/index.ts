@@ -9,6 +9,7 @@ export * from "./locale";
 export { getApplicationPacket, getApplicationPackets } from "./application-packets";
 export { getHiringDecisionPack } from "./hiring-decision";
 export { getHiringManagerDebrief } from "./hiring-debrief";
+export { getHiringOnboardingReadiness } from "./hiring-onboarding";
 export { getHiringOfferReadiness } from "./hiring-offer";
 export { getHiringScorecardBoard } from "./hiring-scorecard";
 export { getHiringShortlistMemo } from "./hiring-shortlist";

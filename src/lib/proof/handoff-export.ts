@@ -55,6 +55,7 @@ function renderMarkdown(manifest: ProofHandoffManifest) {
     "- Debrief route: `/hire/debrief`",
     "- Decision route: `/hire/decision`",
     "- Offer route: `/hire/offer`",
+    "- Onboarding route: `/hire/onboarding`",
     "- Review route: `/hire/review`",
     "",
     "## Roles",

@@ -1,0 +1,1 @@
+export { HiringOnboardingView } from "./HiringOnboardingView";

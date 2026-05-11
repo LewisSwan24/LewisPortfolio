@@ -391,6 +391,7 @@ export type ProofMaintenanceSurface =
   | "hiring-debrief"
   | "hiring-decision"
   | "hiring-offer"
+  | "hiring-onboarding"
   | "review-room"
   | "contact";
 
@@ -411,12 +412,14 @@ export interface ProofMaintenanceEntry {
     | "/hire/debrief"
     | "/hire/decision"
     | "/hire/offer"
+    | "/hire/onboarding"
     | "/hire/review"
     | `/contact?role=${HiringRoleId}`
     | `/contact?role=${HiringRoleId}&intent=scorecard`
     | `/contact?role=${HiringRoleId}&intent=debrief`
     | `/contact?role=${HiringRoleId}&intent=decision`
-    | `/contact?role=${HiringRoleId}&intent=offer`;
+    | `/contact?role=${HiringRoleId}&intent=offer`
+    | `/contact?role=${HiringRoleId}&intent=onboarding`;
   reviewedAt: string;
   nextReviewAt: string;
   status: ProofFreshnessStatus;
@@ -1094,4 +1097,79 @@ export interface HiringOfferReadinessPack {
   compareRoute: "/hire/compare";
   reviewRoute: "/hire/review";
   close: HiringOfferReadinessClose;
+}
+
+export interface HiringOnboardingReadinessAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringOnboardingReadinessHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringOnboardingReadinessAction;
+  secondaryAction: HiringOnboardingReadinessAction;
+}
+
+export interface HiringOnboardingReadinessSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringOnboardingReadinessProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringOnboardingReadinessRole {
+  id: HiringRoleId;
+  label: string;
+  onboardingSignal: string;
+  firstWeekFocus: string;
+  firstThirtyDaysOutcome: string;
+  onboardingRisk: string;
+  managerQuestion: string;
+  nextAction: string;
+  proof: HiringOnboardingReadinessProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=onboarding`;
+}
+
+export interface HiringOnboardingReadinessClose {
+  title: string;
+  body: string;
+  primaryAction: HiringOnboardingReadinessAction;
+  secondaryAction: HiringOnboardingReadinessAction;
+}
+
+export interface HiringOnboardingReadinessPack {
+  locale: ProofLocale;
+  hero: HiringOnboardingReadinessHero;
+  summary: HiringOnboardingReadinessSummaryItem[];
+  roles: HiringOnboardingReadinessRole[];
+  hireRoute: "/hire";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringOnboardingReadinessClose;
 }

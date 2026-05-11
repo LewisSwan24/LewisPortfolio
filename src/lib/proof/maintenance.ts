@@ -173,6 +173,19 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
       "Confirm the hiring offer readiness pack still points this role to the right proof anchor, validation note, onboarding focus, readiness question, and next action.",
   }));
 
+  const onboardingEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-onboarding`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-onboarding`,
+    surface: "hiring-onboarding",
+    href: "/hire/onboarding",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring onboarding readiness pack still points this role to the right proof anchor, first-week focus, first-30-days outcome, onboarding risk, manager question, and next action.",
+  }));
+
   return [
     ...roleEntries,
     ...applicationEntries,
@@ -185,6 +198,7 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
     ...debriefEntries,
     ...decisionEntries,
     ...offerEntries,
+    ...onboardingEntries,
   ];
 }
 
