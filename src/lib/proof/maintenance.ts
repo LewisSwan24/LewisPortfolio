@@ -199,6 +199,19 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
       "Confirm the hiring kickoff alignment pack still points this role to the right proof anchor, first project brief, success metric, stakeholder question, delivery artifact, risk guardrail, and next action.",
   }));
 
+  const impactEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-impact`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-impact`,
+    surface: "hiring-impact",
+    href: "/hire/impact",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring impact review pack still points this role to the right proof anchor, review metric, first-month evidence, stakeholder checkpoint, delivery review, risk watch, and next milestone.",
+  }));
+
   return [
     ...roleEntries,
     ...applicationEntries,
@@ -213,6 +226,7 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
     ...offerEntries,
     ...onboardingEntries,
     ...kickoffEntries,
+    ...impactEntries,
   ];
 }
 

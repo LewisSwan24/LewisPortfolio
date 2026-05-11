@@ -191,6 +191,9 @@ export function HiringOfferView({ pack }: HiringOfferViewProps) {
             <Link className="btn btn-ghost" href="/hire/kickoff">
               Kickoff plan
             </Link>
+            <Link className="btn btn-ghost" href="/hire/impact">
+              Impact review
+            </Link>
           </div>
         </div>
         <ul className="hiring-offer-role-summary" aria-label="Hiring offer role summary">
@@ -228,6 +231,9 @@ export function HiringOfferView({ pack }: HiringOfferViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/kickoff">
             Kickoff plan
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/impact">
+            Impact review
           </Link>
         </div>
       </section>

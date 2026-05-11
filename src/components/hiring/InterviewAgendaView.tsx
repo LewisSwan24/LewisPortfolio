@@ -164,6 +164,9 @@ export function InterviewAgendaView({ board }: InterviewAgendaViewProps) {
             <Link className="btn btn-ghost" href="/hire/kickoff">
               Kickoff plan
             </Link>
+            <Link className="btn btn-ghost" href="/hire/impact">
+              Impact review
+            </Link>
           </div>
         </div>
         <ul className="interview-agenda-summary" aria-label="Interview agenda role summary">
@@ -216,6 +219,9 @@ export function InterviewAgendaView({ board }: InterviewAgendaViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/kickoff">
             Kickoff plan
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/impact">
+            Impact review
           </Link>
         </div>
       </section>

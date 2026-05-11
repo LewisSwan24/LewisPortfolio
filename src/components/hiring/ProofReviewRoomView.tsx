@@ -275,6 +275,9 @@ export function ProofReviewRoomView({ room }: ProofReviewRoomViewProps) {
             <Link className="btn btn-ghost" href="/hire/kickoff">
               Kickoff plan
             </Link>
+            <Link className="btn btn-ghost" href="/hire/impact">
+              Impact review
+            </Link>
           </div>
         </div>
         <ProofReviewSignals signals={room.signals} />
@@ -329,6 +332,9 @@ export function ProofReviewRoomView({ room }: ProofReviewRoomViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/kickoff">
             Kickoff plan
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/impact">
+            Impact review
           </Link>
         </div>
       </section>

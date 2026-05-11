@@ -208,6 +208,9 @@ export function RoleComparisonView({ board }: RoleComparisonViewProps) {
             <Link className="btn btn-ghost" href="/hire/kickoff">
               Kickoff plan
             </Link>
+            <Link className="btn btn-ghost" href="/hire/impact">
+              Impact review
+            </Link>
           </div>
         </div>
         <ul className="role-comparison-summary" aria-label="Role comparison summary">
@@ -264,6 +267,9 @@ export function RoleComparisonView({ board }: RoleComparisonViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/kickoff">
             Kickoff plan
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/impact">
+            Impact review
           </Link>
         </div>
       </section>

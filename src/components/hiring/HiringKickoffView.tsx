@@ -207,6 +207,9 @@ export function HiringKickoffView({ pack }: HiringKickoffViewProps) {
             <Link className="btn btn-ghost" href={pack.reviewRoute}>
               Open proof review
             </Link>
+            <Link className="btn btn-ghost" href="/hire/impact">
+              Impact review
+            </Link>
           </div>
         </div>
         <ul className="hiring-kickoff-role-summary" aria-label="Hiring kickoff role summary">
@@ -238,6 +241,9 @@ export function HiringKickoffView({ pack }: HiringKickoffViewProps) {
           </Link>
           <Link className="btn btn-ghost" href={pack.reviewRoute}>
             Open proof review
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/impact">
+            Impact review
           </Link>
         </div>
       </section>

@@ -393,6 +393,7 @@ export type ProofMaintenanceSurface =
   | "hiring-offer"
   | "hiring-onboarding"
   | "hiring-kickoff"
+  | "hiring-impact"
   | "review-room"
   | "contact";
 
@@ -415,6 +416,7 @@ export interface ProofMaintenanceEntry {
     | "/hire/offer"
     | "/hire/onboarding"
     | "/hire/kickoff"
+    | "/hire/impact"
     | "/hire/review"
     | `/contact?role=${HiringRoleId}`
     | `/contact?role=${HiringRoleId}&intent=scorecard`
@@ -422,7 +424,8 @@ export interface ProofMaintenanceEntry {
     | `/contact?role=${HiringRoleId}&intent=decision`
     | `/contact?role=${HiringRoleId}&intent=offer`
     | `/contact?role=${HiringRoleId}&intent=onboarding`
-    | `/contact?role=${HiringRoleId}&intent=kickoff`;
+    | `/contact?role=${HiringRoleId}&intent=kickoff`
+    | `/contact?role=${HiringRoleId}&intent=impact`;
   reviewedAt: string;
   nextReviewAt: string;
   status: ProofFreshnessStatus;
@@ -1253,4 +1256,84 @@ export interface HiringKickoffAlignmentPack {
   compareRoute: "/hire/compare";
   reviewRoute: "/hire/review";
   close: HiringKickoffAlignmentClose;
+}
+
+export interface HiringImpactReviewAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringImpactReviewHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringImpactReviewAction;
+  secondaryAction: HiringImpactReviewAction;
+}
+
+export interface HiringImpactReviewSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringImpactReviewProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringImpactReviewRole {
+  id: HiringRoleId;
+  label: string;
+  impactSignal: string;
+  reviewMetric: string;
+  firstMonthEvidence: string;
+  stakeholderCheckpoint: string;
+  deliveryReview: string;
+  riskWatch: string;
+  nextMilestone: string;
+  proof: HiringImpactReviewProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=impact`;
+}
+
+export interface HiringImpactReviewClose {
+  title: string;
+  body: string;
+  primaryAction: HiringImpactReviewAction;
+  secondaryAction: HiringImpactReviewAction;
+}
+
+export interface HiringImpactReviewPack {
+  locale: ProofLocale;
+  hero: HiringImpactReviewHero;
+  summary: HiringImpactReviewSummaryItem[];
+  roles: HiringImpactReviewRole[];
+  hireRoute: "/hire";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringImpactReviewClose;
 }
