@@ -25,6 +25,9 @@ describe("proof validation report", () => {
     expect(report.checkedRoutes).toContain("/hire/review");
     expect(report.checkedRoutes).toContain("/hire/compare");
     expect(report.checkedRoutes).toContain("/hire/interview");
+    expect(report.checkedRoutes).toContain("/hire/scorecard");
+    expect(report.checkedRoutes).toContain("/hire/shortlist");
+    expect(report.checkedRoutes).toContain("/hire/debrief");
 
     expect(report.maintenanceEntries).toBe(getProofMaintenanceEntries().length);
     expect(report.checkedAnchors).toBeGreaterThanOrEqual(20);

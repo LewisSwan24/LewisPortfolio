@@ -44,6 +44,12 @@ export default async function HirePage() {
     proofLocale === "zh" ? "Compare role paths" : "Compare role paths";
   const interviewAgendaLabel =
     proofLocale === "zh" ? "Interview agenda" : "Interview agenda";
+  const scorecardLabel =
+    proofLocale === "zh" ? "Hiring scorecard" : "Hiring scorecard";
+  const shortlistLabel =
+    proofLocale === "zh" ? "Shortlist memo" : "Shortlist memo";
+  const debriefLabel =
+    proofLocale === "zh" ? "Manager debrief" : "Manager debrief";
 
   return (
     <main className="page interview-room-page" data-screen-label="05 Hire">
@@ -95,6 +101,15 @@ export default async function HirePage() {
           </Link>
           <Link className="btn btn-ghost" href="/hire/interview">
             {interviewAgendaLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/scorecard">
+            {scorecardLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/shortlist">
+            {shortlistLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/debrief">
+            {debriefLabel}
           </Link>
           <Link className="btn btn-ghost" href="/projects">
             Browse work

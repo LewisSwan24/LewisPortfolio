@@ -254,6 +254,15 @@ export function ProofReviewRoomView({ room }: ProofReviewRoomViewProps) {
             <Link className="btn btn-ghost" href="/hire/interview">
               Interview agenda
             </Link>
+            <Link className="btn btn-ghost" href="/hire/scorecard">
+              Hiring scorecard
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/shortlist">
+              Shortlist memo
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/debrief">
+              Manager debrief
+            </Link>
           </div>
         </div>
         <ProofReviewSignals signals={room.signals} />
@@ -287,6 +296,15 @@ export function ProofReviewRoomView({ room }: ProofReviewRoomViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/interview">
             Interview agenda
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/scorecard">
+            Hiring scorecard
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/shortlist">
+            Shortlist memo
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/debrief">
+            Manager debrief
           </Link>
         </div>
       </section>

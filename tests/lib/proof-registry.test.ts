@@ -191,7 +191,7 @@ describe("proof registry", () => {
     }
   });
 
-  it("maintenance entries cover application, follow-through, review, compare, and agenda routes", () => {
+  it("maintenance entries cover application, follow-through, review, compare, agenda, scorecard, shortlist, and debrief routes", () => {
     const hrefs = new Set(getProofMaintenanceEntries().map((entry) => entry.href));
 
     for (const packet of getApplicationPackets("en")) {
@@ -205,6 +205,9 @@ describe("proof registry", () => {
     expect(hrefs.has("/hire/review")).toBe(true);
     expect(hrefs.has("/hire/compare")).toBe(true);
     expect(hrefs.has("/hire/interview")).toBe(true);
+    expect(hrefs.has("/hire/scorecard")).toBe(true);
+    expect(hrefs.has("/hire/shortlist")).toBe(true);
+    expect(hrefs.has("/hire/debrief")).toBe(true);
   });
 
   it("maintenance report exposes status buckets", () => {

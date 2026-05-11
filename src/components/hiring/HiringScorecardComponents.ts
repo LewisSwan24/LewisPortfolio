@@ -1,0 +1,1 @@
+export { HiringScorecardView } from "./HiringScorecardView";

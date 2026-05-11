@@ -386,6 +386,9 @@ export type ProofMaintenanceSurface =
   | "follow-through"
   | "role-comparison"
   | "interview-agenda"
+  | "hiring-scorecard"
+  | "hiring-shortlist"
+  | "hiring-debrief"
   | "review-room"
   | "contact";
 
@@ -401,8 +404,13 @@ export interface ProofMaintenanceEntry {
     | FollowThroughRoute
     | "/hire/compare"
     | "/hire/interview"
+    | "/hire/scorecard"
+    | "/hire/shortlist"
+    | "/hire/debrief"
     | "/hire/review"
-    | `/contact?role=${HiringRoleId}`;
+    | `/contact?role=${HiringRoleId}`
+    | `/contact?role=${HiringRoleId}&intent=scorecard`
+    | `/contact?role=${HiringRoleId}&intent=debrief`;
   reviewedAt: string;
   nextReviewAt: string;
   status: ProofFreshnessStatus;
@@ -745,4 +753,197 @@ export interface InterviewAgendaBoard {
   compareRoute: "/hire/compare";
   reviewRoute: "/hire/review";
   close: InterviewAgendaClose;
+}
+
+export interface HiringScorecardAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringScorecardHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringScorecardAction;
+  secondaryAction: HiringScorecardAction;
+}
+
+export interface HiringScorecardCriterion {
+  id: string;
+  label: string;
+  question: string;
+}
+
+export interface HiringScorecardProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringScorecardRole {
+  id: HiringRoleId;
+  label: string;
+  fitThesis: string;
+  recommendation: string;
+  proof: HiringScorecardProof;
+  scorePrompts: string[];
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=scorecard`;
+}
+
+export interface HiringScorecardClose {
+  title: string;
+  body: string;
+  primaryAction: HiringScorecardAction;
+  secondaryAction: HiringScorecardAction;
+}
+
+export interface HiringScorecardBoard {
+  locale: ProofLocale;
+  hero: HiringScorecardHero;
+  criteria: HiringScorecardCriterion[];
+  roles: HiringScorecardRole[];
+  hireRoute: "/hire";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringScorecardClose;
+}
+
+export interface HiringShortlistAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringShortlistHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringShortlistAction;
+  secondaryAction: HiringShortlistAction;
+}
+
+export interface HiringShortlistSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringShortlistProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringShortlistRole {
+  id: HiringRoleId;
+  label: string;
+  decisionLabel: string;
+  shortlistThesis: string;
+  proof: HiringShortlistProof;
+  managerNote: string;
+  nextAction: string;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=scorecard`;
+}
+
+export interface HiringShortlistClose {
+  title: string;
+  body: string;
+  primaryAction: HiringShortlistAction;
+  secondaryAction: HiringShortlistAction;
+}
+
+export interface HiringShortlistMemo {
+  locale: ProofLocale;
+  hero: HiringShortlistHero;
+  summary: HiringShortlistSummaryItem[];
+  roles: HiringShortlistRole[];
+  hireRoute: "/hire";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringShortlistClose;
+}
+
+export interface HiringManagerDebriefAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringManagerDebriefHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringManagerDebriefAction;
+  secondaryAction: HiringManagerDebriefAction;
+}
+
+export interface HiringManagerDebriefSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringManagerDebriefProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringManagerDebriefRole {
+  id: HiringRoleId;
+  label: string;
+  managerBrief: string;
+  debriefThesis: string;
+  proof: HiringManagerDebriefProof;
+  secondRoundQuestion: string;
+  nextAction: string;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=debrief`;
+}
+
+export interface HiringManagerDebriefClose {
+  title: string;
+  body: string;
+  primaryAction: HiringManagerDebriefAction;
+  secondaryAction: HiringManagerDebriefAction;
+}
+
+export interface HiringManagerDebriefBoard {
+  locale: ProofLocale;
+  hero: HiringManagerDebriefHero;
+  summary: HiringManagerDebriefSummaryItem[];
+  roles: HiringManagerDebriefRole[];
+  hireRoute: "/hire";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringManagerDebriefClose;
 }

@@ -108,6 +108,45 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
       "Confirm the interview agenda still points this role to the right first question, proof anchor, packet, and follow-through plan.",
   }));
 
+  const scorecardEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-scorecard`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-scorecard`,
+    surface: "hiring-scorecard",
+    href: "/hire/scorecard",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring scorecard still points this role to the right proof anchor, boundary, prompts, and next action.",
+  }));
+
+  const shortlistEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-shortlist`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-shortlist`,
+    surface: "hiring-shortlist",
+    href: "/hire/shortlist",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring shortlist memo still points this role to the right proof anchor, boundary, manager note, and next action.",
+  }));
+
+  const debriefEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-debrief`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-debrief`,
+    surface: "hiring-debrief",
+    href: "/hire/debrief",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring manager debrief still points this role to the right proof anchor, boundary, manager brief, second-round question, and next action.",
+  }));
+
   return [
     ...roleEntries,
     ...applicationEntries,
@@ -115,6 +154,9 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
     ...reviewRoomEntries,
     ...comparisonEntries,
     ...agendaEntries,
+    ...scorecardEntries,
+    ...shortlistEntries,
+    ...debriefEntries,
   ];
 }
 

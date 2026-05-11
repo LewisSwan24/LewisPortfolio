@@ -143,6 +143,15 @@ export function InterviewAgendaView({ board }: InterviewAgendaViewProps) {
             <Link className="btn btn-ghost" href={board.reviewRoute}>
               Proof review room
             </Link>
+            <Link className="btn btn-ghost" href="/hire/scorecard">
+              Hiring scorecard
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/shortlist">
+              Shortlist memo
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/debrief">
+              Manager debrief
+            </Link>
           </div>
         </div>
         <ul className="interview-agenda-summary" aria-label="Interview agenda role summary">
@@ -174,6 +183,15 @@ export function InterviewAgendaView({ board }: InterviewAgendaViewProps) {
           </Link>
           <Link className="btn btn-ghost" href={board.compareRoute}>
             Compare roles again
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/scorecard">
+            Hiring scorecard
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/shortlist">
+            Shortlist memo
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/debrief">
+            Manager debrief
           </Link>
         </div>
       </section>

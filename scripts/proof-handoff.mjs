@@ -61,8 +61,8 @@ const roleIds = extractRoleIds(anchorsSource);
 const claimIds = extractClaimIds(rolePacketsSource);
 const reviewedAt = extractConst(maintenanceSource, "reviewedAt");
 const nextReviewAt = extractConst(maintenanceSource, "nextReviewAt");
-const routes = roleIds.length * 3 + 3;
-const maintenanceTotal = claimIds.size + roleIds.length * 5;
+const routes = roleIds.length * 3 + 6;
+const maintenanceTotal = claimIds.size + roleIds.length * 8;
 
 console.log("\nProof handoff manifest");
 console.log("Status: ready");
@@ -75,3 +75,6 @@ console.log("Run before handoff: pnpm proof:validate");
 console.log(`Role routes: ${roleIds.map((role) => `/hire/${role}`).join(", ")}`);
 console.log("Compare route: /hire/compare");
 console.log("Interview route: /hire/interview");
+console.log("Scorecard route: /hire/scorecard");
+console.log("Shortlist route: /hire/shortlist");
+console.log("Debrief route: /hire/debrief");

@@ -59,6 +59,9 @@ function isValidProofRoute(href: string) {
   if (href === "/hire/review") return true;
   if (href === "/hire/compare") return true;
   if (href === "/hire/interview") return true;
+  if (href === "/hire/scorecard") return true;
+  if (href === "/hire/shortlist") return true;
+  if (href === "/hire/debrief") return true;
 
   return hiringRoleIds.some(
     (role) =>
@@ -66,7 +69,9 @@ function isValidProofRoute(href: string) {
       href === packetRoute(role) ||
       href === followThroughRoute(role) ||
       href === `/contact?role=${role}` ||
-      href === `/contact?role=${role}&intent=interview`
+      href === `/contact?role=${role}&intent=interview` ||
+      href === `/contact?role=${role}&intent=scorecard` ||
+      href === `/contact?role=${role}&intent=debrief`
   );
 }
 
@@ -215,10 +220,28 @@ export function getProofValidationReport(
       .filter((entry) => entry.surface === "interview-agenda")
       .map((entry) => entry.roleId)
   );
+  const maintainedScorecardRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-scorecard")
+      .map((entry) => entry.roleId)
+  );
+  const maintainedShortlistRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-shortlist")
+      .map((entry) => entry.roleId)
+  );
+  const maintainedDebriefRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-debrief")
+      .map((entry) => entry.roleId)
+  );
 
   checkedRoutes.add("/hire/review");
   checkedRoutes.add("/hire/compare");
   checkedRoutes.add("/hire/interview");
+  checkedRoutes.add("/hire/scorecard");
+  checkedRoutes.add("/hire/shortlist");
+  checkedRoutes.add("/hire/debrief");
 
   for (const key of Array.from(roleClaimKeys)) {
     if (!maintainedRoleClaimKeys.has(key)) {
@@ -290,6 +313,39 @@ export function getProofValidationReport(
         message: `Missing maintenance entry for /hire/interview agenda card ${role}.`,
         roleId: role,
         href: "/hire/interview",
+      });
+    }
+
+    if (!maintainedScorecardRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-scorecard-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/scorecard scorecard lane ${role}.`,
+        roleId: role,
+        href: "/hire/scorecard",
+      });
+    }
+
+    if (!maintainedShortlistRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-shortlist-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/shortlist shortlist memo lane ${role}.`,
+        roleId: role,
+        href: "/hire/shortlist",
+      });
+    }
+
+    if (!maintainedDebriefRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-debrief-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/debrief manager debrief lane ${role}.`,
+        roleId: role,
+        href: "/hire/debrief",
       });
     }
   }
