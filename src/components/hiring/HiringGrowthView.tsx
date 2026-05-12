@@ -219,6 +219,12 @@ export function HiringGrowthView({ pack }: HiringGrowthViewProps) {
             <Link className="btn btn-ghost" href={pack.reviewRoute}>
               Open proof review
             </Link>
+            <Link className="btn btn-ghost" href="/hire/retention">
+              Retention readiness
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/partnership">
+              Partnership operating
+            </Link>
           </div>
         </div>
         <ul className="hiring-growth-role-summary" aria-label="Hiring growth role summary">
@@ -250,6 +256,12 @@ export function HiringGrowthView({ pack }: HiringGrowthViewProps) {
           </Link>
           <Link className="btn btn-ghost" href={pack.reviewRoute}>
             Open proof review
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/retention">
+            Retention readiness
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/partnership">
+            Partnership operating
           </Link>
         </div>
       </section>

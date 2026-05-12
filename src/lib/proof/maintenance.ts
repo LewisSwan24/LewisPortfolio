@@ -225,6 +225,32 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
       "Confirm the hiring growth roadmap pack still points this role to the right proof anchor, growth signal, 90-day outcome, team leverage, capability transfer, operating rhythm, risk to monitor, and next review.",
   }));
 
+  const retentionEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-retention`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-retention`,
+    surface: "hiring-retention",
+    href: "/hire/retention",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring retention readiness pack still points this role to the right proof anchor, retention signal, long-term fit, manager support, team dependency, durability risk, review cadence, and next retention question.",
+  }));
+
+  const partnershipEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-partnership`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-partnership`,
+    surface: "hiring-partnership",
+    href: "/hire/partnership",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring partnership operating pack still points this role to the right proof anchor, partnership signal, operating agreement, manager touchpoint, team ritual, escalation rule, success review, and next partnership action.",
+  }));
+
   return [
     ...roleEntries,
     ...applicationEntries,
@@ -241,6 +267,8 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
     ...kickoffEntries,
     ...impactEntries,
     ...growthEntries,
+    ...retentionEntries,
+    ...partnershipEntries,
   ];
 }
 

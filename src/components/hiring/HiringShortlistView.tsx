@@ -183,6 +183,12 @@ export function HiringShortlistView({ memo }: HiringShortlistViewProps) {
             <Link className="btn btn-ghost" href="/hire/growth">
               Growth roadmap
             </Link>
+            <Link className="btn btn-ghost" href="/hire/retention">
+              Retention readiness
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/partnership">
+              Partnership operating
+            </Link>
           </div>
         </div>
         <ul className="hiring-shortlist-role-summary" aria-label="Hiring shortlist role summary">
@@ -235,6 +241,12 @@ export function HiringShortlistView({ memo }: HiringShortlistViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/growth">
             Growth roadmap
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/retention">
+            Retention readiness
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/partnership">
+            Partnership operating
           </Link>
         </div>
       </section>

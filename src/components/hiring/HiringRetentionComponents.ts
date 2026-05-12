@@ -1,0 +1,1 @@
+export { HiringRetentionView } from "./HiringRetentionView";

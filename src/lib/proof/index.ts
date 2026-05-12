@@ -14,6 +14,8 @@ export { getHiringKickoffAlignment } from "./hiring-kickoff";
 export { getHiringManagerDebrief } from "./hiring-debrief";
 export { getHiringOnboardingReadiness } from "./hiring-onboarding";
 export { getHiringOfferReadiness } from "./hiring-offer";
+export { getHiringPartnershipOperatingPack } from "./hiring-partnership";
+export { getHiringRetentionReadiness } from "./hiring-retention";
 export { getHiringScorecardBoard } from "./hiring-scorecard";
 export { getHiringShortlistMemo } from "./hiring-shortlist";
 export { getInterviewAgendaBoard } from "./interview-agenda";

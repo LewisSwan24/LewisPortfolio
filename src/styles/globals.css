@@ -7220,3 +7220,491 @@ html { scroll-behavior: smooth; }
     min-width: 0;
   }
 }
+
+.hiring-retention-page,
+.hiring-retention-board {
+  background: var(--bg);
+}
+
+.hiring-retention-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-retention-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-retention-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-retention-hero p,
+.hiring-retention-section-head p,
+.hiring-retention-summary-item p,
+.hiring-retention-role p,
+.hiring-retention-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-retention-hero > div > p {
+  max-width: 46rem;
+  font-size: 17px;
+}
+
+.hiring-retention-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-retention-role .hiring-retention-actions {
+  margin-top: 0;
+}
+
+.hiring-retention-role-summary,
+.hiring-retention-summary-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-retention-role-summary li,
+.hiring-retention-summary-item,
+.hiring-retention-role {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-retention-role-summary li,
+.hiring-retention-summary-item {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-retention-role-summary span,
+.hiring-retention-role-summary strong,
+.hiring-retention-role-summary a,
+.hiring-retention-summary-item span,
+.hiring-retention-role small,
+.hiring-retention-fit strong,
+.hiring-retention-support strong,
+.hiring-retention-dependency strong,
+.hiring-retention-risk strong,
+.hiring-retention-cadence strong,
+.hiring-retention-question strong {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-retention-role-summary span,
+.hiring-retention-role-summary strong,
+.hiring-retention-role small,
+.hiring-retention-fit strong,
+.hiring-retention-support strong,
+.hiring-retention-dependency strong,
+.hiring-retention-risk strong,
+.hiring-retention-cadence strong,
+.hiring-retention-question strong {
+  color: var(--text-3);
+}
+
+.hiring-retention-role-summary a,
+.hiring-retention-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-retention-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-retention-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-retention-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-retention-section-head h2,
+.hiring-retention-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-retention-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-retention-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-retention-role h3,
+.hiring-retention-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-retention-proof,
+.hiring-retention-fit,
+.hiring-retention-support,
+.hiring-retention-dependency,
+.hiring-retention-risk,
+.hiring-retention-cadence,
+.hiring-retention-question {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-retention-role-head,
+.hiring-retention-proof,
+.hiring-retention-fit,
+.hiring-retention-support,
+.hiring-retention-dependency,
+.hiring-retention-risk,
+.hiring-retention-cadence,
+.hiring-retention-question,
+.hiring-retention-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-retention-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-retention-hero,
+  .hiring-retention-section-head,
+  .hiring-retention-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-retention-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-retention-hero {
+    gap: 28px;
+  }
+
+  .hiring-retention-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-retention-section-head h2,
+  .hiring-retention-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-retention-role-summary,
+  .hiring-retention-summary-grid,
+  .hiring-retention-role-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-retention-summary-item,
+  .hiring-retention-role {
+    min-width: 0;
+  }
+}
+
+.hiring-partnership-page,
+.hiring-partnership-board {
+  background: var(--bg);
+}
+
+.hiring-partnership-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-partnership-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-partnership-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-partnership-hero p,
+.hiring-partnership-section-head p,
+.hiring-partnership-summary-item p,
+.hiring-partnership-role p,
+.hiring-partnership-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-partnership-hero > div > p {
+  max-width: 46rem;
+  font-size: 17px;
+}
+
+.hiring-partnership-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-partnership-role .hiring-partnership-actions {
+  margin-top: 0;
+}
+
+.hiring-partnership-role-summary,
+.hiring-partnership-summary-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-partnership-role-summary li,
+.hiring-partnership-summary-item,
+.hiring-partnership-role {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-partnership-role-summary li,
+.hiring-partnership-summary-item {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-partnership-role-summary span,
+.hiring-partnership-role-summary strong,
+.hiring-partnership-role-summary a,
+.hiring-partnership-summary-item span,
+.hiring-partnership-role small,
+.hiring-partnership-agreement strong,
+.hiring-partnership-touchpoint strong,
+.hiring-partnership-ritual strong,
+.hiring-partnership-escalation strong,
+.hiring-partnership-review strong,
+.hiring-partnership-action strong {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-partnership-role-summary span,
+.hiring-partnership-role-summary strong,
+.hiring-partnership-role small,
+.hiring-partnership-agreement strong,
+.hiring-partnership-touchpoint strong,
+.hiring-partnership-ritual strong,
+.hiring-partnership-escalation strong,
+.hiring-partnership-review strong,
+.hiring-partnership-action strong {
+  color: var(--text-3);
+}
+
+.hiring-partnership-role-summary a,
+.hiring-partnership-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-partnership-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-partnership-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-partnership-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-partnership-section-head h2,
+.hiring-partnership-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-partnership-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-partnership-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-partnership-role h3,
+.hiring-partnership-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-partnership-proof,
+.hiring-partnership-agreement,
+.hiring-partnership-touchpoint,
+.hiring-partnership-ritual,
+.hiring-partnership-escalation,
+.hiring-partnership-review,
+.hiring-partnership-action {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-partnership-role-head,
+.hiring-partnership-proof,
+.hiring-partnership-agreement,
+.hiring-partnership-touchpoint,
+.hiring-partnership-ritual,
+.hiring-partnership-escalation,
+.hiring-partnership-review,
+.hiring-partnership-action,
+.hiring-partnership-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-partnership-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-partnership-hero,
+  .hiring-partnership-section-head,
+  .hiring-partnership-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-partnership-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-partnership-hero {
+    gap: 28px;
+  }
+
+  .hiring-partnership-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-partnership-section-head h2,
+  .hiring-partnership-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-partnership-role-summary,
+  .hiring-partnership-summary-grid,
+  .hiring-partnership-role-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-partnership-summary-item,
+  .hiring-partnership-role {
+    min-width: 0;
+  }
+}

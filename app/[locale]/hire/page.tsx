@@ -62,6 +62,10 @@ export default async function HirePage() {
     proofLocale === "zh" ? "Impact review" : "Impact review";
   const growthLabel =
     proofLocale === "zh" ? "Growth roadmap" : "Growth roadmap";
+  const retentionLabel =
+    proofLocale === "zh" ? "Retention readiness" : "Retention readiness";
+  const partnershipLabel =
+    proofLocale === "zh" ? "Partnership operating" : "Partnership operating";
 
   return (
     <main className="page interview-room-page" data-screen-label="05 Hire">
@@ -140,6 +144,12 @@ export default async function HirePage() {
           </Link>
           <Link className="btn btn-ghost" href="/hire/growth">
             {growthLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/retention">
+            {retentionLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/partnership">
+            {partnershipLabel}
           </Link>
           <Link className="btn btn-ghost" href="/projects">
             Browse work

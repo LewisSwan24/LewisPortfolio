@@ -395,6 +395,8 @@ export type ProofMaintenanceSurface =
   | "hiring-kickoff"
   | "hiring-impact"
   | "hiring-growth"
+  | "hiring-retention"
+  | "hiring-partnership"
   | "review-room"
   | "contact";
 
@@ -419,6 +421,8 @@ export interface ProofMaintenanceEntry {
     | "/hire/kickoff"
     | "/hire/impact"
     | "/hire/growth"
+    | "/hire/retention"
+    | "/hire/partnership"
     | "/hire/review"
     | `/contact?role=${HiringRoleId}`
     | `/contact?role=${HiringRoleId}&intent=scorecard`
@@ -428,7 +432,9 @@ export interface ProofMaintenanceEntry {
     | `/contact?role=${HiringRoleId}&intent=onboarding`
     | `/contact?role=${HiringRoleId}&intent=kickoff`
     | `/contact?role=${HiringRoleId}&intent=impact`
-    | `/contact?role=${HiringRoleId}&intent=growth`;
+    | `/contact?role=${HiringRoleId}&intent=growth`
+    | `/contact?role=${HiringRoleId}&intent=retention`
+    | `/contact?role=${HiringRoleId}&intent=partnership`;
   reviewedAt: string;
   nextReviewAt: string;
   status: ProofFreshnessStatus;
@@ -1421,4 +1427,174 @@ export interface HiringGrowthRoadmapPack {
   compareRoute: "/hire/compare";
   reviewRoute: "/hire/review";
   close: HiringGrowthRoadmapClose;
+}
+
+export interface HiringRetentionReadinessAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringRetentionReadinessHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringRetentionReadinessAction;
+  secondaryAction: HiringRetentionReadinessAction;
+}
+
+export interface HiringRetentionReadinessSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringRetentionReadinessProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringRetentionReadinessRole {
+  id: HiringRoleId;
+  label: string;
+  retentionSignal: string;
+  longTermFit: string;
+  managerSupport: string;
+  teamDependency: string;
+  durabilityRisk: string;
+  reviewCadence: string;
+  nextRetentionQuestion: string;
+  proof: HiringRetentionReadinessProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=retention`;
+}
+
+export interface HiringRetentionReadinessClose {
+  title: string;
+  body: string;
+  primaryAction: HiringRetentionReadinessAction;
+  secondaryAction: HiringRetentionReadinessAction;
+}
+
+export interface HiringRetentionReadinessPack {
+  locale: ProofLocale;
+  hero: HiringRetentionReadinessHero;
+  summary: HiringRetentionReadinessSummaryItem[];
+  roles: HiringRetentionReadinessRole[];
+  hireRoute: "/hire";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringRetentionReadinessClose;
+}
+
+export interface HiringPartnershipOperatingAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringPartnershipOperatingHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringPartnershipOperatingAction;
+  secondaryAction: HiringPartnershipOperatingAction;
+}
+
+export interface HiringPartnershipOperatingSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringPartnershipOperatingProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringPartnershipOperatingRole {
+  id: HiringRoleId;
+  label: string;
+  partnershipSignal: string;
+  operatingAgreement: string;
+  managerTouchpoint: string;
+  teamRitual: string;
+  escalationRule: string;
+  successReview: string;
+  nextPartnershipAction: string;
+  proof: HiringPartnershipOperatingProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=partnership`;
+}
+
+export interface HiringPartnershipOperatingClose {
+  title: string;
+  body: string;
+  primaryAction: HiringPartnershipOperatingAction;
+  secondaryAction: HiringPartnershipOperatingAction;
+}
+
+export interface HiringPartnershipOperatingPack {
+  locale: ProofLocale;
+  hero: HiringPartnershipOperatingHero;
+  summary: HiringPartnershipOperatingSummaryItem[];
+  roles: HiringPartnershipOperatingRole[];
+  hireRoute: "/hire";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringPartnershipOperatingClose;
 }
