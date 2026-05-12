@@ -9,8 +9,8 @@ describe("proof release bundle", () => {
     expect(bundle.status).toBe("ready");
     expect(bundle.outputDir).toBe("docs/proof-release/2026-05-10");
     expect(bundle.summary.roles).toBe(4);
-    expect(bundle.summary.routes).toBe(23);
-    expect(bundle.summary.maintenanceEntries).toBe(64);
+    expect(bundle.summary.routes).toBe(24);
+    expect(bundle.summary.maintenanceEntries).toBe(68);
     expect(bundle.summary.anchors).toBeGreaterThan(0);
     expect(bundle.commands).toContain("pnpm proof:bundle");
   });

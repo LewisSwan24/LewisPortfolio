@@ -394,6 +394,7 @@ export type ProofMaintenanceSurface =
   | "hiring-onboarding"
   | "hiring-kickoff"
   | "hiring-impact"
+  | "hiring-growth"
   | "review-room"
   | "contact";
 
@@ -417,6 +418,7 @@ export interface ProofMaintenanceEntry {
     | "/hire/onboarding"
     | "/hire/kickoff"
     | "/hire/impact"
+    | "/hire/growth"
     | "/hire/review"
     | `/contact?role=${HiringRoleId}`
     | `/contact?role=${HiringRoleId}&intent=scorecard`
@@ -425,7 +427,8 @@ export interface ProofMaintenanceEntry {
     | `/contact?role=${HiringRoleId}&intent=offer`
     | `/contact?role=${HiringRoleId}&intent=onboarding`
     | `/contact?role=${HiringRoleId}&intent=kickoff`
-    | `/contact?role=${HiringRoleId}&intent=impact`;
+    | `/contact?role=${HiringRoleId}&intent=impact`
+    | `/contact?role=${HiringRoleId}&intent=growth`;
   reviewedAt: string;
   nextReviewAt: string;
   status: ProofFreshnessStatus;
@@ -1336,4 +1339,86 @@ export interface HiringImpactReviewPack {
   compareRoute: "/hire/compare";
   reviewRoute: "/hire/review";
   close: HiringImpactReviewClose;
+}
+
+export interface HiringGrowthRoadmapAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringGrowthRoadmapHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringGrowthRoadmapAction;
+  secondaryAction: HiringGrowthRoadmapAction;
+}
+
+export interface HiringGrowthRoadmapSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringGrowthRoadmapProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringGrowthRoadmapRole {
+  id: HiringRoleId;
+  label: string;
+  growthSignal: string;
+  ninetyDayOutcome: string;
+  teamLeverage: string;
+  capabilityTransfer: string;
+  operatingRhythm: string;
+  riskToMonitor: string;
+  nextReview: string;
+  proof: HiringGrowthRoadmapProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=growth`;
+}
+
+export interface HiringGrowthRoadmapClose {
+  title: string;
+  body: string;
+  primaryAction: HiringGrowthRoadmapAction;
+  secondaryAction: HiringGrowthRoadmapAction;
+}
+
+export interface HiringGrowthRoadmapPack {
+  locale: ProofLocale;
+  hero: HiringGrowthRoadmapHero;
+  summary: HiringGrowthRoadmapSummaryItem[];
+  roles: HiringGrowthRoadmapRole[];
+  hireRoute: "/hire";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringGrowthRoadmapClose;
 }

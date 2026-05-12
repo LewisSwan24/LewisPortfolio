@@ -191,6 +191,9 @@ export function HiringDecisionView({ pack }: HiringDecisionViewProps) {
             <Link className="btn btn-ghost" href="/hire/impact">
               Impact review
             </Link>
+            <Link className="btn btn-ghost" href="/hire/growth">
+              Growth roadmap
+            </Link>
           </div>
         </div>
         <ul className="hiring-decision-role-summary" aria-label="Hiring decision role summary">
@@ -234,6 +237,9 @@ export function HiringDecisionView({ pack }: HiringDecisionViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/impact">
             Impact review
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/growth">
+            Growth roadmap
           </Link>
         </div>
       </section>

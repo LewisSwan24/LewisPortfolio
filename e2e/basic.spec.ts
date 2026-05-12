@@ -419,6 +419,10 @@ test.describe("Hire Page", () => {
             "href",
             "/hire/impact",
         );
+        await expect(page.getByRole("link", { name: /Growth roadmap/i })).toHaveAttribute(
+            "href",
+            "/hire/growth",
+        );
     });
 
     test("hire proof links should point to case anchors", async ({ page }) => {
@@ -1133,6 +1137,10 @@ test.describe("Hiring Impact Review", () => {
             "href",
             "/hire/review",
         );
+        await expect(page.getByRole("link", { name: /Growth roadmap/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/growth",
+        );
 
         for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
             await expect(page.getByText(role).first()).toBeVisible();
@@ -1143,6 +1151,70 @@ test.describe("Hiring Impact Review", () => {
         }
 
         await expectAnchoredCaseProofLink(page.locator(".hiring-impact-proof a[href*='#']").first());
+    });
+});
+
+test.describe("Hiring Growth Roadmap", () => {
+    test("should render 90-day growth lanes", async ({ page }) => {
+        await page.goto("/hire/growth");
+        await expect(page.locator("main[data-screen-label='33 Hiring Growth']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Growth roadmap pack/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Growth summary/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role growth lanes/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Impact review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/impact",
+        );
+        await expect(page.getByRole("link", { name: /Kickoff plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/kickoff",
+        );
+        await expect(page.getByRole("link", { name: /Onboarding plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/onboarding",
+        );
+        await expect(page.getByRole("link", { name: /Offer readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/offer",
+        );
+        await expect(page.getByRole("link", { name: /Decision pack/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/decision",
+        );
+        await expect(page.getByRole("link", { name: /Manager debrief/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/debrief",
+        );
+        await expect(page.getByRole("link", { name: /Shortlist memo/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/shortlist",
+        );
+        await expect(page.getByRole("link", { name: /Hiring scorecard/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/scorecard",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
+        await expect(page.getByRole("link", { name: /Compare role paths/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Open proof review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.getByText(role).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}&intent=growth']`).first()).toBeVisible();
+        }
+
+        await expectAnchoredCaseProofLink(page.locator(".hiring-growth-proof a[href*='#']").first());
     });
 });
 
@@ -1329,6 +1401,7 @@ test.describe("Responsive Design", () => {
             "/hire/onboarding",
             "/hire/kickoff",
             "/hire/impact",
+            "/hire/growth",
             "/hire/ux-product",
             "/hire/ux-research",
             "/hire/ai-ux",

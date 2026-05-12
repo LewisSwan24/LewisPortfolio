@@ -67,6 +67,7 @@ function isValidProofRoute(href: string) {
   if (href === "/hire/onboarding") return true;
   if (href === "/hire/kickoff") return true;
   if (href === "/hire/impact") return true;
+  if (href === "/hire/growth") return true;
 
   return hiringRoleIds.some(
     (role) =>
@@ -81,7 +82,8 @@ function isValidProofRoute(href: string) {
       href === `/contact?role=${role}&intent=offer` ||
       href === `/contact?role=${role}&intent=onboarding` ||
       href === `/contact?role=${role}&intent=kickoff` ||
-      href === `/contact?role=${role}&intent=impact`
+      href === `/contact?role=${role}&intent=impact` ||
+      href === `/contact?role=${role}&intent=growth`
   );
 }
 
@@ -270,6 +272,11 @@ export function getProofValidationReport(
       .filter((entry) => entry.surface === "hiring-impact")
       .map((entry) => entry.roleId)
   );
+  const maintainedGrowthRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-growth")
+      .map((entry) => entry.roleId)
+  );
 
   checkedRoutes.add("/hire/review");
   checkedRoutes.add("/hire/compare");
@@ -282,6 +289,7 @@ export function getProofValidationReport(
   checkedRoutes.add("/hire/onboarding");
   checkedRoutes.add("/hire/kickoff");
   checkedRoutes.add("/hire/impact");
+  checkedRoutes.add("/hire/growth");
 
   for (const key of Array.from(roleClaimKeys)) {
     if (!maintainedRoleClaimKeys.has(key)) {
@@ -441,6 +449,17 @@ export function getProofValidationReport(
         message: `Missing maintenance entry for /hire/impact early impact lane ${role}.`,
         roleId: role,
         href: "/hire/impact",
+      });
+    }
+
+    if (!maintainedGrowthRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-growth-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/growth growth roadmap lane ${role}.`,
+        roleId: role,
+        href: "/hire/growth",
       });
     }
   }

@@ -188,6 +188,9 @@ export function HiringDebriefView({ board }: HiringDebriefViewProps) {
             <Link className="btn btn-ghost" href="/hire/impact">
               Impact review
             </Link>
+            <Link className="btn btn-ghost" href="/hire/growth">
+              Growth roadmap
+            </Link>
           </div>
         </div>
         <ul className="hiring-debrief-role-summary" aria-label="Hiring debrief role summary">
@@ -234,6 +237,9 @@ export function HiringDebriefView({ board }: HiringDebriefViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/impact">
             Impact review
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/growth">
+            Growth roadmap
           </Link>
         </div>
       </section>

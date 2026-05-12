@@ -1,0 +1,1 @@
+export { HiringGrowthView } from "./HiringGrowthView";

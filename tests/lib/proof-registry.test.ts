@@ -191,7 +191,7 @@ describe("proof registry", () => {
     }
   });
 
-  it("maintenance entries cover application, follow-through, review, compare, agenda, scorecard, shortlist, debrief, decision, offer, onboarding, kickoff, and impact routes", () => {
+  it("maintenance entries cover application, follow-through, review, compare, agenda, scorecard, shortlist, debrief, decision, offer, onboarding, kickoff, impact, and growth routes", () => {
     const hrefs = new Set(getProofMaintenanceEntries().map((entry) => entry.href));
 
     for (const packet of getApplicationPackets("en")) {
@@ -213,6 +213,7 @@ describe("proof registry", () => {
     expect(hrefs.has("/hire/onboarding")).toBe(true);
     expect(hrefs.has("/hire/kickoff")).toBe(true);
     expect(hrefs.has("/hire/impact")).toBe(true);
+    expect(hrefs.has("/hire/growth")).toBe(true);
   });
 
   it("maintenance report exposes status buckets", () => {

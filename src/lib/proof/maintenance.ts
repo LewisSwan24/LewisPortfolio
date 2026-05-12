@@ -212,6 +212,19 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
       "Confirm the hiring impact review pack still points this role to the right proof anchor, review metric, first-month evidence, stakeholder checkpoint, delivery review, risk watch, and next milestone.",
   }));
 
+  const growthEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-growth`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-growth`,
+    surface: "hiring-growth",
+    href: "/hire/growth",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring growth roadmap pack still points this role to the right proof anchor, growth signal, 90-day outcome, team leverage, capability transfer, operating rhythm, risk to monitor, and next review.",
+  }));
+
   return [
     ...roleEntries,
     ...applicationEntries,
@@ -227,6 +240,7 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
     ...onboardingEntries,
     ...kickoffEntries,
     ...impactEntries,
+    ...growthEntries,
   ];
 }
 

@@ -100,9 +100,9 @@ const bundleManifest = {
   outputDir,
   summary: {
     roles: roleIds.length,
-    routes: roleIds.length * 3 + 11,
+    routes: roleIds.length * 3 + 12,
     anchors: countProofAnchors(),
-    maintenanceEntries: claimIds.size + roleIds.length * 13,
+    maintenanceEntries: claimIds.size + roleIds.length * 14,
   },
   commands: [
     "pnpm proof:validate",

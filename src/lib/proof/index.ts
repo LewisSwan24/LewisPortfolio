@@ -8,6 +8,7 @@ export * from "./events";
 export * from "./locale";
 export { getApplicationPacket, getApplicationPackets } from "./application-packets";
 export { getHiringDecisionPack } from "./hiring-decision";
+export { getHiringGrowthRoadmap } from "./hiring-growth";
 export { getHiringImpactReview } from "./hiring-impact";
 export { getHiringKickoffAlignment } from "./hiring-kickoff";
 export { getHiringManagerDebrief } from "./hiring-debrief";
