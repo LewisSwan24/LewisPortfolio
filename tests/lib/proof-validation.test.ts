@@ -36,6 +36,11 @@ describe("proof validation report", () => {
     expect(report.checkedRoutes).toContain("/hire/growth");
     expect(report.checkedRoutes).toContain("/hire/retention");
     expect(report.checkedRoutes).toContain("/hire/partnership");
+    expect(report.checkedRoutes).toContain("/hire/command");
+    expect(report.checkedRoutes).toContain("/hire/briefing");
+    expect(report.checkedRoutes).toContain("/hire/readiness");
+    expect(report.checkedRoutes).toContain("/hire/action");
+    expect(report.checkedRoutes).toContain("/hire/tracker");
 
     expect(report.maintenanceEntries).toBe(getProofMaintenanceEntries().length);
     expect(report.checkedAnchors).toBeGreaterThanOrEqual(20);

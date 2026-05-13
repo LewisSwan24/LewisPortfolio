@@ -66,6 +66,16 @@ export default async function HirePage() {
     proofLocale === "zh" ? "Retention readiness" : "Retention readiness";
   const partnershipLabel =
     proofLocale === "zh" ? "Partnership operating" : "Partnership operating";
+  const commandLabel =
+    proofLocale === "zh" ? "Hiring command" : "Hiring command";
+  const briefingLabel =
+    proofLocale === "zh" ? "Hiring briefing" : "Hiring briefing";
+  const readinessLabel =
+    proofLocale === "zh" ? "Hiring readiness" : "Hiring readiness";
+  const actionLabel =
+    proofLocale === "zh" ? "Hiring action" : "Hiring action";
+  const trackerLabel =
+    proofLocale === "zh" ? "Hiring tracker" : "Hiring tracker";
 
   return (
     <main className="page interview-room-page" data-screen-label="05 Hire">
@@ -150,6 +160,21 @@ export default async function HirePage() {
           </Link>
           <Link className="btn btn-ghost" href="/hire/partnership">
             {partnershipLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/command">
+            {commandLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/briefing">
+            {briefingLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/readiness">
+            {readinessLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/action">
+            {actionLabel}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/tracker">
+            {trackerLabel}
           </Link>
           <Link className="btn btn-ghost" href="/projects">
             Browse work

@@ -431,6 +431,26 @@ test.describe("Hire Page", () => {
             "href",
             "/hire/partnership",
         );
+        await expect(page.getByRole("link", { name: /Hiring command/i })).toHaveAttribute(
+            "href",
+            "/hire/command",
+        );
+        await expect(page.getByRole("link", { name: /Hiring briefing/i })).toHaveAttribute(
+            "href",
+            "/hire/briefing",
+        );
+        await expect(page.getByRole("link", { name: /Hiring readiness/i })).toHaveAttribute(
+            "href",
+            "/hire/readiness",
+        );
+        await expect(page.getByRole("link", { name: /Hiring action/i })).toHaveAttribute(
+            "href",
+            "/hire/action",
+        );
+        await expect(page.getByRole("link", { name: /Hiring tracker/i })).toHaveAttribute(
+            "href",
+            "/hire/tracker",
+        );
     });
 
     test("hire proof links should point to case anchors", async ({ page }) => {
@@ -1365,6 +1385,26 @@ test.describe("Hiring Partnership Operating", () => {
             "href",
             "/hire/review",
         );
+        await expect(page.getByRole("link", { name: /Hiring command/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/command",
+        );
+        await expect(page.getByRole("link", { name: /Hiring briefing/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/briefing",
+        );
+        await expect(page.getByRole("link", { name: /Hiring readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/readiness",
+        );
+        await expect(page.getByRole("link", { name: /Hiring action/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/action",
+        );
+        await expect(page.getByRole("link", { name: /Hiring tracker/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/tracker",
+        );
 
         for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
             await expect(page.getByText(role).first()).toBeVisible();
@@ -1375,6 +1415,468 @@ test.describe("Hiring Partnership Operating", () => {
         }
 
         await expectAnchoredCaseProofLink(page.locator(".hiring-partnership-proof a[href*='#']").first());
+    });
+});
+
+test.describe("Hiring Command Center", () => {
+    test("should render the manager command sequence", async ({ page }) => {
+        await page.goto("/hire/command");
+        await expect(page.locator("main[data-screen-label='36 Hiring Command']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Hiring Command Center/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Command summary/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Command sequence/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role command lanes/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Operating checkpoints/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Partnership operating/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/partnership",
+        );
+        await expect(page.getByRole("link", { name: /Retention readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/retention",
+        );
+        await expect(page.getByRole("link", { name: /Growth roadmap/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/growth",
+        );
+        await expect(page.getByRole("link", { name: /Impact review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/impact",
+        );
+        await expect(page.getByRole("link", { name: /Kickoff plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/kickoff",
+        );
+        await expect(page.getByRole("link", { name: /Onboarding plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/onboarding",
+        );
+        await expect(page.getByRole("link", { name: /Offer readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/offer",
+        );
+        await expect(page.getByRole("link", { name: /Decision pack/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/decision",
+        );
+        await expect(page.getByRole("link", { name: /Manager debrief/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/debrief",
+        );
+        await expect(page.getByRole("link", { name: /Shortlist memo/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/shortlist",
+        );
+        await expect(page.getByRole("link", { name: /Hiring scorecard/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/scorecard",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
+        await expect(page.getByRole("link", { name: /Compare role paths/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Open proof review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+        await expect(page.getByRole("link", { name: /Hiring briefing/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/briefing",
+        );
+        await expect(page.getByRole("link", { name: /Hiring readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/readiness",
+        );
+
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.getByText(role).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}&intent=command']`).first()).toBeVisible();
+        }
+
+        await expectAnchoredCaseProofLink(page.locator(".hiring-command-proof a[href*='#']").first());
+    });
+});
+
+test.describe("Hiring Briefing Room", () => {
+    test("should render stakeholder-ready hiring briefings", async ({ page }) => {
+        await page.goto("/hire/briefing");
+        await expect(page.locator("main[data-screen-label='37 Hiring Briefing']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Hiring Briefing Room/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Briefing summary/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Stakeholder briefs/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role briefing lanes/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Briefing artifacts/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Hiring command/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/command",
+        );
+        await expect(page.getByRole("link", { name: /Hiring readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/readiness",
+        );
+        await expect(page.getByRole("link", { name: /Hiring action/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/action",
+        );
+        await expect(page.getByRole("link", { name: /Hiring tracker/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/tracker",
+        );
+        await expect(page.getByRole("link", { name: /Partnership operating/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/partnership",
+        );
+        await expect(page.getByRole("link", { name: /Retention readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/retention",
+        );
+        await expect(page.getByRole("link", { name: /Growth roadmap/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/growth",
+        );
+        await expect(page.getByRole("link", { name: /Impact review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/impact",
+        );
+        await expect(page.getByRole("link", { name: /Kickoff plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/kickoff",
+        );
+        await expect(page.getByRole("link", { name: /Onboarding plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/onboarding",
+        );
+        await expect(page.getByRole("link", { name: /Offer readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/offer",
+        );
+        await expect(page.getByRole("link", { name: /Decision pack/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/decision",
+        );
+        await expect(page.getByRole("link", { name: /Manager debrief/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/debrief",
+        );
+        await expect(page.getByRole("link", { name: /Shortlist memo/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/shortlist",
+        );
+        await expect(page.getByRole("link", { name: /Hiring scorecard/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/scorecard",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
+        await expect(page.getByRole("link", { name: /Compare role paths/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Open proof review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.getByText(role).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}&intent=briefing']`).first()).toBeVisible();
+        }
+
+        await expectAnchoredCaseProofLink(page.locator(".hiring-briefing-proof a[href*='#']").first());
+    });
+});
+
+test.describe("Hiring Readiness Gate", () => {
+    test("should render decision-ready role readiness gates", async ({ page }) => {
+        await page.goto("/hire/readiness");
+        await expect(page.locator("main[data-screen-label='38 Hiring Readiness']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Hiring Readiness Gate/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Readiness summary/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Gate checks/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role readiness lanes/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Readiness artifacts/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Hiring briefing/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/briefing",
+        );
+        await expect(page.getByRole("link", { name: /Hiring command/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/command",
+        );
+        await expect(page.getByRole("link", { name: /Hiring action/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/action",
+        );
+        await expect(page.getByRole("link", { name: /Hiring tracker/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/tracker",
+        );
+        await expect(page.getByRole("link", { name: /Partnership operating/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/partnership",
+        );
+        await expect(page.getByRole("link", { name: /Retention readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/retention",
+        );
+        await expect(page.getByRole("link", { name: /Growth roadmap/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/growth",
+        );
+        await expect(page.getByRole("link", { name: /Impact review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/impact",
+        );
+        await expect(page.getByRole("link", { name: /Kickoff plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/kickoff",
+        );
+        await expect(page.getByRole("link", { name: /Onboarding plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/onboarding",
+        );
+        await expect(page.getByRole("link", { name: /Offer readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/offer",
+        );
+        await expect(page.getByRole("link", { name: /Decision pack/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/decision",
+        );
+        await expect(page.getByRole("link", { name: /Manager debrief/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/debrief",
+        );
+        await expect(page.getByRole("link", { name: /Shortlist memo/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/shortlist",
+        );
+        await expect(page.getByRole("link", { name: /Hiring scorecard/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/scorecard",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
+        await expect(page.getByRole("link", { name: /Compare role paths/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Open proof review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.getByText(role).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}&intent=readiness']`).first()).toBeVisible();
+        }
+
+        await expectAnchoredCaseProofLink(page.locator(".hiring-readiness-proof a[href*='#']").first());
+    });
+});
+
+test.describe("Hiring Action Board", () => {
+    test("should render proof-backed next actions for each role", async ({ page }) => {
+        await page.goto("/hire/action");
+        await expect(page.locator("main[data-screen-label='39 Hiring Action']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Hiring Action Board/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Action summary/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Action sequence/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role action lanes/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Action artifacts/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Hiring readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/readiness",
+        );
+        await expect(page.getByRole("link", { name: /Hiring tracker/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/tracker",
+        );
+        await expect(page.getByRole("link", { name: /Hiring briefing/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/briefing",
+        );
+        await expect(page.getByRole("link", { name: /Hiring command/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/command",
+        );
+        await expect(page.getByRole("link", { name: /Partnership operating/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/partnership",
+        );
+        await expect(page.getByRole("link", { name: /Retention readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/retention",
+        );
+        await expect(page.getByRole("link", { name: /Growth roadmap/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/growth",
+        );
+        await expect(page.getByRole("link", { name: /Impact review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/impact",
+        );
+        await expect(page.getByRole("link", { name: /Kickoff plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/kickoff",
+        );
+        await expect(page.getByRole("link", { name: /Onboarding plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/onboarding",
+        );
+        await expect(page.getByRole("link", { name: /Offer readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/offer",
+        );
+        await expect(page.getByRole("link", { name: /Decision pack/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/decision",
+        );
+        await expect(page.getByRole("link", { name: /Manager debrief/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/debrief",
+        );
+        await expect(page.getByRole("link", { name: /Shortlist memo/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/shortlist",
+        );
+        await expect(page.getByRole("link", { name: /Hiring scorecard/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/scorecard",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
+        await expect(page.getByRole("link", { name: /Compare role paths/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Open proof review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.getByText(role).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}&intent=action']`).first()).toBeVisible();
+        }
+
+        await expectAnchoredCaseProofLink(page.locator(".hiring-action-proof a[href*='#']").first());
+    });
+});
+
+test.describe("Hiring Follow-up Tracker", () => {
+    test("should render proof-backed follow-up tracking for each role", async ({ page }) => {
+        await page.goto("/hire/tracker");
+        await expect(page.locator("main[data-screen-label='40 Hiring Tracker']")).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1, name: /Hiring Follow-up Tracker/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Tracker summary/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Follow-up stages/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Role tracker lanes/i })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 2, name: /Tracker artifacts/i })).toBeVisible();
+        await expect(page.getByRole("link", { name: /Hiring action/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/action",
+        );
+        await expect(page.getByRole("link", { name: /Hiring readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/readiness",
+        );
+        await expect(page.getByRole("link", { name: /Hiring briefing/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/briefing",
+        );
+        await expect(page.getByRole("link", { name: /Hiring command/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/command",
+        );
+        await expect(page.getByRole("link", { name: /Partnership operating/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/partnership",
+        );
+        await expect(page.getByRole("link", { name: /Retention readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/retention",
+        );
+        await expect(page.getByRole("link", { name: /Growth roadmap/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/growth",
+        );
+        await expect(page.getByRole("link", { name: /Impact review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/impact",
+        );
+        await expect(page.getByRole("link", { name: /Kickoff plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/kickoff",
+        );
+        await expect(page.getByRole("link", { name: /Onboarding plan/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/onboarding",
+        );
+        await expect(page.getByRole("link", { name: /Offer readiness/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/offer",
+        );
+        await expect(page.getByRole("link", { name: /Decision pack/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/decision",
+        );
+        await expect(page.getByRole("link", { name: /Manager debrief/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/debrief",
+        );
+        await expect(page.getByRole("link", { name: /Shortlist memo/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/shortlist",
+        );
+        await expect(page.getByRole("link", { name: /Hiring scorecard/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/scorecard",
+        );
+        await expect(page.getByRole("link", { name: /Interview agenda/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/interview",
+        );
+        await expect(page.getByRole("link", { name: /Compare role paths/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/compare",
+        );
+        await expect(page.getByRole("link", { name: /Open proof review/i }).first()).toHaveAttribute(
+            "href",
+            "/hire/review",
+        );
+
+        for (const role of ["ux-product", "ux-research", "ai-ux", "accessibility"]) {
+            await expect(page.getByText(role).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/packet']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/hire/${role}/next']`).first()).toBeVisible();
+            await expect(page.locator(`a[href='/contact?role=${role}&intent=tracker']`).first()).toBeVisible();
+        }
+
+        await expectAnchoredCaseProofLink(page.locator(".hiring-tracker-proof a[href*='#']").first());
     });
 });
 
@@ -1543,7 +2045,7 @@ test.describe("404 Page", () => {
 
 test.describe("Responsive Design", () => {
     test("primary hiring pages should not overflow on mobile", async ({ page }) => {
-        test.setTimeout(60000);
+        test.setTimeout(120000);
         await page.setViewportSize({ width: 390, height: 844 });
 
         for (const route of [
@@ -1564,6 +2066,11 @@ test.describe("Responsive Design", () => {
             "/hire/growth",
             "/hire/retention",
             "/hire/partnership",
+            "/hire/command",
+            "/hire/briefing",
+            "/hire/readiness",
+            "/hire/action",
+            "/hire/tracker",
             "/hire/ux-product",
             "/hire/ux-research",
             "/hire/ai-ux",

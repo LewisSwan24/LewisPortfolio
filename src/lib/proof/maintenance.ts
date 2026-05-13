@@ -251,6 +251,71 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
       "Confirm the hiring partnership operating pack still points this role to the right proof anchor, partnership signal, operating agreement, manager touchpoint, team ritual, escalation rule, success review, and next partnership action.",
   }));
 
+  const commandEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-command`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-command`,
+    surface: "hiring-command",
+    href: "/hire/command",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring command center still points this role to the right proof anchor, command sequence, decision focus, manager risk, team handoff, escalation trigger, and next command action.",
+  }));
+
+  const briefingEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-briefing`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-briefing`,
+    surface: "hiring-briefing",
+    href: "/hire/briefing",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring briefing room still points this role to the right proof anchor, stakeholder context, opening context, evidence to inspect, risk to resolve, handoff note, follow-up owner, and next briefing action.",
+  }));
+
+  const readinessEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-readiness`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-readiness`,
+    surface: "hiring-readiness",
+    href: "/hire/readiness",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring readiness gate still points this role to the right proof anchor, readiness score, proven evidence, validation gap, stakeholder owner, decision gate, recommended route, and next readiness action.",
+  }));
+
+  const actionEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-action`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-action`,
+    surface: "hiring-action",
+    href: "/hire/action",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring action board still points this role to the right proof anchor, readiness score, action owner, first action, route to open, fallback, and next action.",
+  }));
+
+  const trackerEntries: ProofMaintenanceEntry[] = getRolePackets("en").map((packet) => ({
+    id: `${packet.id}-hiring-tracker`,
+    roleId: packet.id,
+    claimId: `${packet.id}-hiring-tracker`,
+    surface: "hiring-tracker",
+    href: "/hire/tracker",
+    reviewedAt,
+    nextReviewAt,
+    status: "fresh",
+    ownerNote:
+      "Confirm the hiring follow-up tracker still points this role to the right proof anchor, owner, due window, evidence dependency, escalation path, and closeout signal.",
+  }));
+
   return [
     ...roleEntries,
     ...applicationEntries,
@@ -269,6 +334,11 @@ function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
     ...growthEntries,
     ...retentionEntries,
     ...partnershipEntries,
+    ...commandEntries,
+    ...briefingEntries,
+    ...readinessEntries,
+    ...actionEntries,
+    ...trackerEntries,
   ];
 }
 

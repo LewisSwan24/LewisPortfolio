@@ -176,6 +176,21 @@ export function InterviewAgendaView({ board }: InterviewAgendaViewProps) {
             <Link className="btn btn-ghost" href="/hire/partnership">
               Partnership operating
             </Link>
+            <Link className="btn btn-ghost" href="/hire/command">
+              Hiring command
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/briefing">
+              Hiring briefing
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/readiness">
+              Hiring readiness
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/action">
+              Hiring action
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/tracker">
+              Hiring tracker
+            </Link>
           </div>
         </div>
         <ul className="interview-agenda-summary" aria-label="Interview agenda role summary">
@@ -240,6 +255,21 @@ export function InterviewAgendaView({ board }: InterviewAgendaViewProps) {
           </Link>
           <Link className="btn btn-ghost" href="/hire/partnership">
             Partnership operating
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/command">
+            Hiring command
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/briefing">
+            Hiring briefing
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/readiness">
+            Hiring readiness
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/action">
+            Hiring action
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/tracker">
+            Hiring tracker
           </Link>
         </div>
       </section>

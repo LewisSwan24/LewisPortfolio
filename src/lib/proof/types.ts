@@ -397,6 +397,11 @@ export type ProofMaintenanceSurface =
   | "hiring-growth"
   | "hiring-retention"
   | "hiring-partnership"
+  | "hiring-command"
+  | "hiring-briefing"
+  | "hiring-readiness"
+  | "hiring-action"
+  | "hiring-tracker"
   | "review-room"
   | "contact";
 
@@ -423,6 +428,11 @@ export interface ProofMaintenanceEntry {
     | "/hire/growth"
     | "/hire/retention"
     | "/hire/partnership"
+    | "/hire/command"
+    | "/hire/briefing"
+    | "/hire/readiness"
+    | "/hire/action"
+    | "/hire/tracker"
     | "/hire/review"
     | `/contact?role=${HiringRoleId}`
     | `/contact?role=${HiringRoleId}&intent=scorecard`
@@ -434,7 +444,12 @@ export interface ProofMaintenanceEntry {
     | `/contact?role=${HiringRoleId}&intent=impact`
     | `/contact?role=${HiringRoleId}&intent=growth`
     | `/contact?role=${HiringRoleId}&intent=retention`
-    | `/contact?role=${HiringRoleId}&intent=partnership`;
+    | `/contact?role=${HiringRoleId}&intent=partnership`
+    | `/contact?role=${HiringRoleId}&intent=command`
+    | `/contact?role=${HiringRoleId}&intent=briefing`
+    | `/contact?role=${HiringRoleId}&intent=readiness`
+    | `/contact?role=${HiringRoleId}&intent=action`
+    | `/contact?role=${HiringRoleId}&intent=tracker`;
   reviewedAt: string;
   nextReviewAt: string;
   status: ProofFreshnessStatus;
@@ -1597,4 +1612,649 @@ export interface HiringPartnershipOperatingPack {
   compareRoute: "/hire/compare";
   reviewRoute: "/hire/review";
   close: HiringPartnershipOperatingClose;
+}
+
+export type HiringCommandCenterSharedRoute =
+  | "/hire/review"
+  | "/hire/compare"
+  | "/hire/interview"
+  | "/hire/scorecard"
+  | "/hire/shortlist"
+  | "/hire/debrief"
+  | "/hire/decision"
+  | "/hire/offer"
+  | "/hire/onboarding"
+  | "/hire/kickoff"
+  | "/hire/impact"
+  | "/hire/growth"
+  | "/hire/retention"
+  | "/hire/partnership";
+
+export interface HiringCommandCenterAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringCommandCenterHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringCommandCenterAction;
+  secondaryAction: HiringCommandCenterAction;
+}
+
+export interface HiringCommandCenterSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringCommandCenterSequenceStep {
+  id: string;
+  label: string;
+  route: HiringCommandCenterSharedRoute;
+  actionLabel: string;
+  managerQuestion: string;
+  proofFocus: string;
+  completionSignal: string;
+}
+
+export interface HiringCommandCenterCheckpoint {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+  route: HiringCommandCenterSharedRoute;
+  proofHref: CaseReaderHref;
+}
+
+export interface HiringCommandCenterProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringCommandCenterRole {
+  id: HiringRoleId;
+  label: string;
+  currentSignal: string;
+  decisionFocus: string;
+  openingMove: string;
+  proofGate: string;
+  managerRisk: string;
+  teamHandoff: string;
+  followUpRitual: string;
+  escalationTrigger: string;
+  nextCommandAction: string;
+  proof: HiringCommandCenterProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=command`;
+}
+
+export interface HiringCommandCenterClose {
+  title: string;
+  body: string;
+  primaryAction: HiringCommandCenterAction;
+  secondaryAction: HiringCommandCenterAction;
+}
+
+export interface HiringCommandCenterPack {
+  locale: ProofLocale;
+  hero: HiringCommandCenterHero;
+  summary: HiringCommandCenterSummaryItem[];
+  sequence: HiringCommandCenterSequenceStep[];
+  roles: HiringCommandCenterRole[];
+  checkpoints: HiringCommandCenterCheckpoint[];
+  hireRoute: "/hire";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringCommandCenterClose;
+}
+
+export type HiringBriefingRoomSharedRoute =
+  | "/hire/command"
+  | HiringCommandCenterSharedRoute;
+
+export interface HiringBriefingRoomAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringBriefingRoomHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringBriefingRoomAction;
+  secondaryAction: HiringBriefingRoomAction;
+}
+
+export interface HiringBriefingRoomSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringBriefingRoomStakeholderBrief {
+  id: string;
+  label: string;
+  goal: string;
+  readingFocus: string;
+  questionToAsk: string;
+  decisionToMake: string;
+  route: HiringBriefingRoomSharedRoute;
+  actionLabel: string;
+}
+
+export interface HiringBriefingRoomArtifact {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+  route: HiringBriefingRoomSharedRoute;
+  actionLabel: string;
+  proofLabel: string;
+  proofHref: CaseReaderHref;
+}
+
+export interface HiringBriefingRoomProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringBriefingRoomRole {
+  id: HiringRoleId;
+  label: string;
+  briefingSignal: string;
+  stakeholderContext: string;
+  openingContext: string;
+  evidenceToInspect: string;
+  decisionQuestion: string;
+  riskToResolve: string;
+  handoffNote: string;
+  followUpOwner: string;
+  nextBriefingAction: string;
+  proof: HiringBriefingRoomProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  briefingRoute: "/hire/briefing";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=briefing`;
+}
+
+export interface HiringBriefingRoomClose {
+  title: string;
+  body: string;
+  primaryAction: HiringBriefingRoomAction;
+  secondaryAction: HiringBriefingRoomAction;
+}
+
+export interface HiringBriefingRoomPack {
+  locale: ProofLocale;
+  hero: HiringBriefingRoomHero;
+  summary: HiringBriefingRoomSummaryItem[];
+  stakeholders: HiringBriefingRoomStakeholderBrief[];
+  roles: HiringBriefingRoomRole[];
+  artifacts: HiringBriefingRoomArtifact[];
+  hireRoute: "/hire";
+  briefingRoute: "/hire/briefing";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringBriefingRoomClose;
+}
+
+export type HiringReadinessGateSharedRoute =
+  | "/hire/readiness"
+  | "/hire/briefing"
+  | HiringBriefingRoomSharedRoute;
+
+export type HiringReadinessScore = "Ready" | "Validate" | "Monitor";
+
+export interface HiringReadinessGateAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringReadinessGateHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringReadinessGateAction;
+  secondaryAction: HiringReadinessGateAction;
+}
+
+export interface HiringReadinessGateSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringReadinessGateCheck {
+  id: string;
+  label: string;
+  title: string;
+  signal: string;
+  passCondition: string;
+  failureMode: string;
+  nextRoute: string;
+  route: HiringReadinessGateSharedRoute;
+  actionLabel: string;
+}
+
+export interface HiringReadinessGateArtifact {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+  route: HiringReadinessGateSharedRoute;
+  actionLabel: string;
+  proofLabel: string;
+  proofHref: CaseReaderHref;
+}
+
+export interface HiringReadinessGateProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringReadinessGateRole {
+  id: HiringRoleId;
+  label: string;
+  readinessSignal: string;
+  readinessScore: HiringReadinessScore;
+  provenEvidence: string;
+  validationGap: string;
+  stakeholderOwner: string;
+  decisionGate: string;
+  recommendedRoute: HiringReadinessGateSharedRoute;
+  recruiterNote: string;
+  interviewNote: string;
+  onboardingNote: string;
+  nextReadinessAction: string;
+  proof: HiringReadinessGateProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  readinessRoute: "/hire/readiness";
+  briefingRoute: "/hire/briefing";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=readiness`;
+}
+
+export interface HiringReadinessGateClose {
+  title: string;
+  body: string;
+  primaryAction: HiringReadinessGateAction;
+  secondaryAction: HiringReadinessGateAction;
+}
+
+export interface HiringReadinessGatePack {
+  locale: ProofLocale;
+  hero: HiringReadinessGateHero;
+  summary: HiringReadinessGateSummaryItem[];
+  gates: HiringReadinessGateCheck[];
+  roles: HiringReadinessGateRole[];
+  artifacts: HiringReadinessGateArtifact[];
+  hireRoute: "/hire";
+  readinessRoute: "/hire/readiness";
+  briefingRoute: "/hire/briefing";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringReadinessGateClose;
+}
+
+export type HiringActionBoardSharedRoute =
+  | "/hire/action"
+  | HiringReadinessGateSharedRoute;
+
+export interface HiringActionBoardAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringActionBoardHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringActionBoardAction;
+  secondaryAction: HiringActionBoardAction;
+}
+
+export interface HiringActionBoardSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringActionBoardStep {
+  id: string;
+  label: string;
+  title: string;
+  owner: string;
+  action: string;
+  proofFocus: string;
+  successSignal: string;
+  route: HiringActionBoardSharedRoute;
+  actionLabel: string;
+}
+
+export interface HiringActionBoardArtifact {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+  route: HiringActionBoardSharedRoute;
+  actionLabel: string;
+  proofLabel: string;
+  proofHref: CaseReaderHref;
+}
+
+export interface HiringActionBoardProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringActionBoardRole {
+  id: HiringRoleId;
+  label: string;
+  readinessScore: HiringReadinessScore;
+  actionState: string;
+  actionOwner: string;
+  firstAction: string;
+  proofToOpen: string;
+  routeToOpen: HiringActionBoardSharedRoute;
+  recruiterAction: string;
+  managerAction: string;
+  panelAction: string;
+  onboardingAction: string;
+  fallbackAction: string;
+  successSignal: string;
+  blockingRisk: string;
+  nextAction: string;
+  proof: HiringActionBoardProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  actionRoute: "/hire/action";
+  readinessRoute: "/hire/readiness";
+  briefingRoute: "/hire/briefing";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=action`;
+}
+
+export interface HiringActionBoardClose {
+  title: string;
+  body: string;
+  primaryAction: HiringActionBoardAction;
+  secondaryAction: HiringActionBoardAction;
+}
+
+export interface HiringActionBoardPack {
+  locale: ProofLocale;
+  hero: HiringActionBoardHero;
+  summary: HiringActionBoardSummaryItem[];
+  sequence: HiringActionBoardStep[];
+  roles: HiringActionBoardRole[];
+  artifacts: HiringActionBoardArtifact[];
+  hireRoute: "/hire";
+  actionRoute: "/hire/action";
+  readinessRoute: "/hire/readiness";
+  briefingRoute: "/hire/briefing";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringActionBoardClose;
+}
+
+export type HiringFollowUpTrackerSharedRoute =
+  | "/hire/tracker"
+  | HiringActionBoardSharedRoute;
+
+export type HiringFollowUpTrackerStatus = "Ready" | "Waiting" | "Blocked";
+
+export interface HiringFollowUpTrackerAction {
+  label: string;
+  href: string;
+}
+
+export interface HiringFollowUpTrackerHero {
+  eyebrow: string;
+  headline: string;
+  subhead: string;
+  primaryAction: HiringFollowUpTrackerAction;
+  secondaryAction: HiringFollowUpTrackerAction;
+}
+
+export interface HiringFollowUpTrackerSummaryItem {
+  id: string;
+  label: string;
+  value: string;
+  detail: string;
+}
+
+export interface HiringFollowUpTrackerStage {
+  id: string;
+  label: string;
+  title: string;
+  owner: string;
+  followUpAction: string;
+  trackingSignal: string;
+  closeoutRule: string;
+  route: HiringFollowUpTrackerSharedRoute;
+  actionLabel: string;
+}
+
+export interface HiringFollowUpTrackerArtifact {
+  id: string;
+  label: string;
+  title: string;
+  body: string;
+  route: HiringFollowUpTrackerSharedRoute;
+  actionLabel: string;
+  proofLabel: string;
+  proofHref: CaseReaderHref;
+}
+
+export interface HiringFollowUpTrackerProof {
+  claim: string;
+  evidence: string;
+  boundary: string;
+  href: CaseReaderHref;
+}
+
+export interface HiringFollowUpTrackerRole {
+  id: HiringRoleId;
+  label: string;
+  trackerStatus: HiringFollowUpTrackerStatus;
+  trackerStatusDetail: string;
+  followUpOwner: string;
+  dueWindow: string;
+  evidenceDependency: string;
+  routeToReview: HiringFollowUpTrackerSharedRoute;
+  nextFollowUp: string;
+  escalationPath: string;
+  closeoutSignal: string;
+  followUpRisk: string;
+  proof: HiringFollowUpTrackerProof;
+  roleRoute: `/hire/${HiringRoleId}`;
+  packetRoute: ApplicationPacketRoute;
+  followThroughRoute: FollowThroughRoute;
+  trackerRoute: "/hire/tracker";
+  actionRoute: "/hire/action";
+  readinessRoute: "/hire/readiness";
+  briefingRoute: "/hire/briefing";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  contactRoute: `/contact?role=${HiringRoleId}&intent=tracker`;
+}
+
+export interface HiringFollowUpTrackerClose {
+  title: string;
+  body: string;
+  primaryAction: HiringFollowUpTrackerAction;
+  secondaryAction: HiringFollowUpTrackerAction;
+}
+
+export interface HiringFollowUpTrackerPack {
+  locale: ProofLocale;
+  hero: HiringFollowUpTrackerHero;
+  summary: HiringFollowUpTrackerSummaryItem[];
+  stages: HiringFollowUpTrackerStage[];
+  roles: HiringFollowUpTrackerRole[];
+  artifacts: HiringFollowUpTrackerArtifact[];
+  hireRoute: "/hire";
+  trackerRoute: "/hire/tracker";
+  actionRoute: "/hire/action";
+  readinessRoute: "/hire/readiness";
+  briefingRoute: "/hire/briefing";
+  commandRoute: "/hire/command";
+  partnershipRoute: "/hire/partnership";
+  retentionRoute: "/hire/retention";
+  growthRoute: "/hire/growth";
+  impactRoute: "/hire/impact";
+  kickoffRoute: "/hire/kickoff";
+  onboardingRoute: "/hire/onboarding";
+  offerRoute: "/hire/offer";
+  decisionRoute: "/hire/decision";
+  debriefRoute: "/hire/debrief";
+  shortlistRoute: "/hire/shortlist";
+  scorecardRoute: "/hire/scorecard";
+  interviewRoute: "/hire/interview";
+  compareRoute: "/hire/compare";
+  reviewRoute: "/hire/review";
+  close: HiringFollowUpTrackerClose;
 }

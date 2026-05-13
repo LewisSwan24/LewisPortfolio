@@ -1,0 +1,1 @@
+export { HiringTrackerView } from "./HiringTrackerView";

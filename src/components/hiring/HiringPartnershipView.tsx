@@ -195,6 +195,21 @@ export function HiringPartnershipView({ pack }: HiringPartnershipViewProps) {
             <Link className="btn btn-ghost" href={pack.hero.secondaryAction.href}>
               {pack.hero.secondaryAction.label}
             </Link>
+            <Link className="btn btn-ghost" href="/hire/command">
+              Hiring command
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/briefing">
+              Hiring briefing
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/readiness">
+              Hiring readiness
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/action">
+              Hiring action
+            </Link>
+            <Link className="btn btn-ghost" href="/hire/tracker">
+              Hiring tracker
+            </Link>
             <Link className="btn btn-ghost" href={pack.growthRoute}>
               Growth roadmap
             </Link>
@@ -259,6 +274,21 @@ export function HiringPartnershipView({ pack }: HiringPartnershipViewProps) {
           </Link>
           <Link className="btn btn-ghost" href={pack.close.secondaryAction.href}>
             {pack.close.secondaryAction.label}
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/command">
+            Hiring command
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/briefing">
+            Hiring briefing
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/readiness">
+            Hiring readiness
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/action">
+            Hiring action
+          </Link>
+          <Link className="btn btn-ghost" href="/hire/tracker">
+            Hiring tracker
           </Link>
           <Link className="btn btn-ghost" href={pack.reviewRoute}>
             Open proof review

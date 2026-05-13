@@ -3724,7 +3724,10 @@ html { scroll-behavior: smooth; }
   .case-reader-prompts ul { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .case-reader { padding: var(--s-3); }
+  .case-reader {
+    width: calc(100% - 1px);
+    padding: var(--s-3);
+  }
   .case-reader-links {
     display: flex;
     overflow-x: auto;
@@ -4168,6 +4171,9 @@ html { scroll-behavior: smooth; }
   gap: var(--s-6);
   align-items: start;
 }
+.cs-row > * {
+  min-width: 0;
+}
 .cs-row-side .label { margin-top: 4px; }
 .cs-row-body h2 {
   font-family: var(--font-display);
@@ -4235,6 +4241,11 @@ html { scroll-behavior: smooth; }
   font-variant-numeric: tabular-nums;
 }
 .cs-metrics dd em { font-style: italic; color: var(--accent); }
+@media (max-width: 640px) {
+  .cs-metrics {
+    grid-template-columns: 1fr;
+  }
+}
 
 .cs-tree {
   display: grid;
@@ -7705,6 +7716,1522 @@ html { scroll-behavior: smooth; }
 
   .hiring-partnership-summary-item,
   .hiring-partnership-role {
+    min-width: 0;
+  }
+}
+
+.hiring-command-page,
+.hiring-command-board {
+  background: var(--bg);
+}
+
+.hiring-command-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-command-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-command-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-command-hero p,
+.hiring-command-section-head p,
+.hiring-command-summary-item p,
+.hiring-command-step p,
+.hiring-command-step dd,
+.hiring-command-role p,
+.hiring-command-checkpoint p,
+.hiring-command-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-command-hero > div > p {
+  max-width: 48rem;
+  font-size: 17px;
+}
+
+.hiring-command-actions,
+.hiring-command-checkpoint-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-command-role .hiring-command-actions,
+.hiring-command-checkpoint-actions {
+  margin-top: 0;
+}
+
+.hiring-command-role-summary,
+.hiring-command-summary-grid,
+.hiring-command-checkpoint-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-command-role-summary li,
+.hiring-command-summary-item,
+.hiring-command-step,
+.hiring-command-role,
+.hiring-command-checkpoint {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-command-role-summary li,
+.hiring-command-summary-item,
+.hiring-command-checkpoint {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-command-role-summary span,
+.hiring-command-role-summary strong,
+.hiring-command-role-summary a,
+.hiring-command-summary-item span,
+.hiring-command-step small,
+.hiring-command-step dt,
+.hiring-command-role small,
+.hiring-command-focus strong,
+.hiring-command-move strong,
+.hiring-command-gate strong,
+.hiring-command-risk strong,
+.hiring-command-handoff strong,
+.hiring-command-ritual strong,
+.hiring-command-escalation strong,
+.hiring-command-next strong,
+.hiring-command-checkpoint small {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-command-role-summary span,
+.hiring-command-role-summary strong,
+.hiring-command-step small,
+.hiring-command-step dt,
+.hiring-command-role small,
+.hiring-command-focus strong,
+.hiring-command-move strong,
+.hiring-command-gate strong,
+.hiring-command-risk strong,
+.hiring-command-handoff strong,
+.hiring-command-ritual strong,
+.hiring-command-escalation strong,
+.hiring-command-next strong,
+.hiring-command-checkpoint small {
+  color: var(--text-3);
+}
+
+.hiring-command-role-summary a,
+.hiring-command-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-command-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-command-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-command-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-command-section-head h2,
+.hiring-command-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-command-sequence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hiring-command-step {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+}
+
+.hiring-command-step h3,
+.hiring-command-checkpoint h3,
+.hiring-command-role h3,
+.hiring-command-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-command-step dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.hiring-command-step dl div {
+  display: grid;
+  gap: 6px;
+}
+
+.hiring-command-step dd {
+  margin: 0;
+}
+
+.hiring-command-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-command-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-command-proof,
+.hiring-command-focus,
+.hiring-command-move,
+.hiring-command-gate,
+.hiring-command-risk,
+.hiring-command-handoff,
+.hiring-command-ritual,
+.hiring-command-escalation,
+.hiring-command-next {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-command-role-head,
+.hiring-command-step,
+.hiring-command-proof,
+.hiring-command-focus,
+.hiring-command-move,
+.hiring-command-gate,
+.hiring-command-risk,
+.hiring-command-handoff,
+.hiring-command-ritual,
+.hiring-command-escalation,
+.hiring-command-next,
+.hiring-command-checkpoint,
+.hiring-command-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-command-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-command-hero,
+  .hiring-command-section-head,
+  .hiring-command-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-command-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-command-hero {
+    gap: 28px;
+  }
+
+  .hiring-command-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-command-section-head h2,
+  .hiring-command-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-command-role-summary,
+  .hiring-command-summary-grid,
+  .hiring-command-sequence-grid,
+  .hiring-command-role-grid,
+  .hiring-command-checkpoint-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-command-summary-item,
+  .hiring-command-step,
+  .hiring-command-role,
+  .hiring-command-checkpoint {
+    min-width: 0;
+  }
+}
+
+.hiring-briefing-page,
+.hiring-briefing-board {
+  background: var(--bg);
+}
+
+.hiring-briefing-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-briefing-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-briefing-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-briefing-hero p,
+.hiring-briefing-section-head p,
+.hiring-briefing-summary-item p,
+.hiring-briefing-stakeholder p,
+.hiring-briefing-stakeholder dd,
+.hiring-briefing-role p,
+.hiring-briefing-artifact p,
+.hiring-briefing-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-briefing-hero > div > p {
+  max-width: 48rem;
+  font-size: 17px;
+}
+
+.hiring-briefing-actions,
+.hiring-briefing-artifact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-briefing-role .hiring-briefing-actions,
+.hiring-briefing-artifact-actions {
+  margin-top: 0;
+}
+
+.hiring-briefing-role-summary,
+.hiring-briefing-summary-grid,
+.hiring-briefing-stakeholder-grid,
+.hiring-briefing-artifact-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-briefing-role-summary li,
+.hiring-briefing-summary-item,
+.hiring-briefing-stakeholder,
+.hiring-briefing-role,
+.hiring-briefing-artifact {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-briefing-role-summary li,
+.hiring-briefing-summary-item,
+.hiring-briefing-stakeholder,
+.hiring-briefing-artifact {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-briefing-role-summary span,
+.hiring-briefing-role-summary strong,
+.hiring-briefing-role-summary a,
+.hiring-briefing-summary-item span,
+.hiring-briefing-stakeholder small,
+.hiring-briefing-stakeholder dt,
+.hiring-briefing-role small,
+.hiring-briefing-context strong,
+.hiring-briefing-opening strong,
+.hiring-briefing-evidence strong,
+.hiring-briefing-question strong,
+.hiring-briefing-risk strong,
+.hiring-briefing-handoff strong,
+.hiring-briefing-owner strong,
+.hiring-briefing-next strong,
+.hiring-briefing-artifact small {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-briefing-role-summary span,
+.hiring-briefing-role-summary strong,
+.hiring-briefing-stakeholder small,
+.hiring-briefing-stakeholder dt,
+.hiring-briefing-role small,
+.hiring-briefing-context strong,
+.hiring-briefing-opening strong,
+.hiring-briefing-evidence strong,
+.hiring-briefing-question strong,
+.hiring-briefing-risk strong,
+.hiring-briefing-handoff strong,
+.hiring-briefing-owner strong,
+.hiring-briefing-next strong,
+.hiring-briefing-artifact small {
+  color: var(--text-3);
+}
+
+.hiring-briefing-role-summary a,
+.hiring-briefing-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-briefing-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-briefing-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-briefing-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-briefing-section-head h2,
+.hiring-briefing-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-briefing-stakeholder h3,
+.hiring-briefing-artifact h3,
+.hiring-briefing-role h3,
+.hiring-briefing-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-briefing-stakeholder dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.hiring-briefing-stakeholder dl div {
+  display: grid;
+  gap: 6px;
+}
+
+.hiring-briefing-stakeholder dd {
+  margin: 0;
+}
+
+.hiring-briefing-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-briefing-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-briefing-proof,
+.hiring-briefing-context,
+.hiring-briefing-opening,
+.hiring-briefing-evidence,
+.hiring-briefing-question,
+.hiring-briefing-risk,
+.hiring-briefing-handoff,
+.hiring-briefing-owner,
+.hiring-briefing-next {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-briefing-role-head,
+.hiring-briefing-stakeholder,
+.hiring-briefing-artifact,
+.hiring-briefing-proof,
+.hiring-briefing-context,
+.hiring-briefing-opening,
+.hiring-briefing-evidence,
+.hiring-briefing-question,
+.hiring-briefing-risk,
+.hiring-briefing-handoff,
+.hiring-briefing-owner,
+.hiring-briefing-next,
+.hiring-briefing-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-briefing-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-briefing-hero,
+  .hiring-briefing-section-head,
+  .hiring-briefing-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-briefing-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-briefing-hero {
+    gap: 28px;
+  }
+
+  .hiring-briefing-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-briefing-section-head h2,
+  .hiring-briefing-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-briefing-role-summary,
+  .hiring-briefing-summary-grid,
+  .hiring-briefing-stakeholder-grid,
+  .hiring-briefing-role-grid,
+  .hiring-briefing-artifact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-briefing-summary-item,
+  .hiring-briefing-stakeholder,
+  .hiring-briefing-role,
+  .hiring-briefing-artifact {
+    min-width: 0;
+  }
+}
+
+.hiring-readiness-page,
+.hiring-readiness-board {
+  background: var(--bg);
+}
+
+.hiring-readiness-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-readiness-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-readiness-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-readiness-hero p,
+.hiring-readiness-section-head p,
+.hiring-readiness-summary-item p,
+.hiring-readiness-gate p,
+.hiring-readiness-gate dd,
+.hiring-readiness-role p,
+.hiring-readiness-artifact p,
+.hiring-readiness-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-readiness-hero > div > p {
+  max-width: 48rem;
+  font-size: 17px;
+}
+
+.hiring-readiness-actions,
+.hiring-readiness-artifact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-readiness-role .hiring-readiness-actions,
+.hiring-readiness-artifact-actions {
+  margin-top: 0;
+}
+
+.hiring-readiness-role-summary,
+.hiring-readiness-summary-grid,
+.hiring-readiness-gate-grid,
+.hiring-readiness-artifact-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-readiness-role-summary li,
+.hiring-readiness-summary-item,
+.hiring-readiness-gate,
+.hiring-readiness-role,
+.hiring-readiness-artifact {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-readiness-role-summary li,
+.hiring-readiness-summary-item,
+.hiring-readiness-gate,
+.hiring-readiness-artifact {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-readiness-role-summary span,
+.hiring-readiness-role-summary strong,
+.hiring-readiness-role-summary a,
+.hiring-readiness-summary-item span,
+.hiring-readiness-gate small,
+.hiring-readiness-gate dt,
+.hiring-readiness-role small,
+.hiring-readiness-evidence strong,
+.hiring-readiness-gap strong,
+.hiring-readiness-owner strong,
+.hiring-readiness-gate-note strong,
+.hiring-readiness-recruiter strong,
+.hiring-readiness-interview strong,
+.hiring-readiness-onboarding strong,
+.hiring-readiness-next strong,
+.hiring-readiness-artifact small {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-readiness-role-summary span,
+.hiring-readiness-role-summary strong,
+.hiring-readiness-gate small,
+.hiring-readiness-gate dt,
+.hiring-readiness-role small,
+.hiring-readiness-evidence strong,
+.hiring-readiness-gap strong,
+.hiring-readiness-owner strong,
+.hiring-readiness-gate-note strong,
+.hiring-readiness-recruiter strong,
+.hiring-readiness-interview strong,
+.hiring-readiness-onboarding strong,
+.hiring-readiness-next strong,
+.hiring-readiness-artifact small {
+  color: var(--text-3);
+}
+
+.hiring-readiness-role-summary a,
+.hiring-readiness-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-readiness-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-readiness-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-readiness-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-readiness-section-head h2,
+.hiring-readiness-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-readiness-gate h3,
+.hiring-readiness-artifact h3,
+.hiring-readiness-role h3,
+.hiring-readiness-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-readiness-gate dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.hiring-readiness-gate dl div {
+  display: grid;
+  gap: 6px;
+}
+
+.hiring-readiness-gate dd {
+  margin: 0;
+}
+
+.hiring-readiness-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-readiness-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-readiness-role-head strong {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.hiring-readiness-proof,
+.hiring-readiness-evidence,
+.hiring-readiness-gap,
+.hiring-readiness-owner,
+.hiring-readiness-gate-note,
+.hiring-readiness-recruiter,
+.hiring-readiness-interview,
+.hiring-readiness-onboarding,
+.hiring-readiness-next {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-readiness-role-head,
+.hiring-readiness-gate,
+.hiring-readiness-artifact,
+.hiring-readiness-proof,
+.hiring-readiness-evidence,
+.hiring-readiness-gap,
+.hiring-readiness-owner,
+.hiring-readiness-gate-note,
+.hiring-readiness-recruiter,
+.hiring-readiness-interview,
+.hiring-readiness-onboarding,
+.hiring-readiness-next,
+.hiring-readiness-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-readiness-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-readiness-hero,
+  .hiring-readiness-section-head,
+  .hiring-readiness-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-readiness-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-readiness-hero {
+    gap: 28px;
+  }
+
+  .hiring-readiness-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-readiness-section-head h2,
+  .hiring-readiness-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-readiness-role-summary,
+  .hiring-readiness-summary-grid,
+  .hiring-readiness-gate-grid,
+  .hiring-readiness-role-grid,
+  .hiring-readiness-artifact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-readiness-summary-item,
+  .hiring-readiness-gate,
+  .hiring-readiness-role,
+  .hiring-readiness-artifact {
+    min-width: 0;
+  }
+}
+
+.hiring-action-page,
+.hiring-action-board {
+  background: var(--bg);
+}
+
+.hiring-action-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-action-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-action-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-action-hero p,
+.hiring-action-section-head p,
+.hiring-action-summary-item p,
+.hiring-action-step p,
+.hiring-action-step dd,
+.hiring-action-role p,
+.hiring-action-artifact p,
+.hiring-action-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-action-hero > div > p {
+  max-width: 48rem;
+  font-size: 17px;
+}
+
+.hiring-action-actions,
+.hiring-action-artifact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-action-role .hiring-action-actions,
+.hiring-action-artifact-actions {
+  margin-top: 0;
+}
+
+.hiring-action-role-summary,
+.hiring-action-summary-grid,
+.hiring-action-step-grid,
+.hiring-action-artifact-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-action-role-summary li,
+.hiring-action-summary-item,
+.hiring-action-step,
+.hiring-action-role,
+.hiring-action-artifact {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-action-role-summary li,
+.hiring-action-summary-item,
+.hiring-action-step,
+.hiring-action-artifact {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-action-role-summary span,
+.hiring-action-role-summary strong,
+.hiring-action-role-summary a,
+.hiring-action-summary-item span,
+.hiring-action-step small,
+.hiring-action-step dt,
+.hiring-action-role small,
+.hiring-action-owner strong,
+.hiring-action-first strong,
+.hiring-action-open strong,
+.hiring-action-route strong,
+.hiring-action-recruiter strong,
+.hiring-action-manager strong,
+.hiring-action-panel strong,
+.hiring-action-onboarding strong,
+.hiring-action-fallback strong,
+.hiring-action-success strong,
+.hiring-action-risk strong,
+.hiring-action-next strong,
+.hiring-action-artifact small {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-action-role-summary span,
+.hiring-action-role-summary strong,
+.hiring-action-step small,
+.hiring-action-step dt,
+.hiring-action-role small,
+.hiring-action-owner strong,
+.hiring-action-first strong,
+.hiring-action-open strong,
+.hiring-action-route strong,
+.hiring-action-recruiter strong,
+.hiring-action-manager strong,
+.hiring-action-panel strong,
+.hiring-action-onboarding strong,
+.hiring-action-fallback strong,
+.hiring-action-success strong,
+.hiring-action-risk strong,
+.hiring-action-next strong,
+.hiring-action-artifact small {
+  color: var(--text-3);
+}
+
+.hiring-action-role-summary a,
+.hiring-action-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-action-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-action-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-action-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-action-section-head h2,
+.hiring-action-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-action-step h3,
+.hiring-action-artifact h3,
+.hiring-action-role h3,
+.hiring-action-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-action-step dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.hiring-action-step dl div {
+  display: grid;
+  gap: 6px;
+}
+
+.hiring-action-step dd {
+  margin: 0;
+}
+
+.hiring-action-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-action-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-action-role-head strong {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.hiring-action-proof,
+.hiring-action-owner,
+.hiring-action-first,
+.hiring-action-open,
+.hiring-action-route,
+.hiring-action-recruiter,
+.hiring-action-manager,
+.hiring-action-panel,
+.hiring-action-onboarding,
+.hiring-action-fallback,
+.hiring-action-success,
+.hiring-action-risk,
+.hiring-action-next {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-action-role-head,
+.hiring-action-step,
+.hiring-action-artifact,
+.hiring-action-proof,
+.hiring-action-owner,
+.hiring-action-first,
+.hiring-action-open,
+.hiring-action-route,
+.hiring-action-recruiter,
+.hiring-action-manager,
+.hiring-action-panel,
+.hiring-action-onboarding,
+.hiring-action-fallback,
+.hiring-action-success,
+.hiring-action-risk,
+.hiring-action-next,
+.hiring-action-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-action-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-action-hero,
+  .hiring-action-section-head,
+  .hiring-action-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-action-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-action-hero {
+    gap: 28px;
+  }
+
+  .hiring-action-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-action-section-head h2,
+  .hiring-action-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-action-role-summary,
+  .hiring-action-summary-grid,
+  .hiring-action-step-grid,
+  .hiring-action-role-grid,
+  .hiring-action-artifact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-action-summary-item,
+  .hiring-action-step,
+  .hiring-action-role,
+  .hiring-action-artifact {
+    min-width: 0;
+  }
+}
+
+.hiring-tracker-page,
+.hiring-tracker-board {
+  background: var(--bg);
+}
+
+.hiring-tracker-board {
+  padding-block: var(--s-8);
+}
+
+.hiring-tracker-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 44px;
+  align-items: start;
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.hiring-tracker-hero h1 {
+  max-width: 11em;
+  margin: 10px 0 16px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 0.98;
+  color: var(--text);
+}
+
+.hiring-tracker-hero p,
+.hiring-tracker-section-head p,
+.hiring-tracker-summary-item p,
+.hiring-tracker-stage p,
+.hiring-tracker-stage dd,
+.hiring-tracker-role p,
+.hiring-tracker-artifact p,
+.hiring-tracker-close p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.hiring-tracker-hero > div > p {
+  max-width: 48rem;
+  font-size: 17px;
+}
+
+.hiring-tracker-actions,
+.hiring-tracker-artifact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.hiring-tracker-role .hiring-tracker-actions,
+.hiring-tracker-artifact-actions {
+  margin-top: 0;
+}
+
+.hiring-tracker-role-summary,
+.hiring-tracker-summary-grid,
+.hiring-tracker-stage-grid,
+.hiring-tracker-artifact-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.hiring-tracker-role-summary li,
+.hiring-tracker-summary-item,
+.hiring-tracker-stage,
+.hiring-tracker-role,
+.hiring-tracker-artifact {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.hiring-tracker-role-summary li,
+.hiring-tracker-summary-item,
+.hiring-tracker-stage,
+.hiring-tracker-artifact {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.hiring-tracker-role-summary span,
+.hiring-tracker-role-summary strong,
+.hiring-tracker-role-summary a,
+.hiring-tracker-summary-item span,
+.hiring-tracker-stage small,
+.hiring-tracker-stage dt,
+.hiring-tracker-role small,
+.hiring-tracker-owner strong,
+.hiring-tracker-window strong,
+.hiring-tracker-dependency strong,
+.hiring-tracker-route strong,
+.hiring-tracker-next strong,
+.hiring-tracker-escalation strong,
+.hiring-tracker-closeout strong,
+.hiring-tracker-risk strong,
+.hiring-tracker-artifact small {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hiring-tracker-role-summary span,
+.hiring-tracker-role-summary strong,
+.hiring-tracker-stage small,
+.hiring-tracker-stage dt,
+.hiring-tracker-role small,
+.hiring-tracker-owner strong,
+.hiring-tracker-window strong,
+.hiring-tracker-dependency strong,
+.hiring-tracker-route strong,
+.hiring-tracker-next strong,
+.hiring-tracker-escalation strong,
+.hiring-tracker-closeout strong,
+.hiring-tracker-risk strong,
+.hiring-tracker-artifact small {
+  color: var(--text-3);
+}
+
+.hiring-tracker-role-summary a,
+.hiring-tracker-proof a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hiring-tracker-summary-item strong {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-tracker-section {
+  margin-top: var(--s-7);
+}
+
+.hiring-tracker-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+  gap: 22px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.hiring-tracker-section-head h2,
+.hiring-tracker-close h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hiring-tracker-stage h3,
+.hiring-tracker-artifact h3,
+.hiring-tracker-role h3,
+.hiring-tracker-proof h4 {
+  margin: 4px 0 8px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.hiring-tracker-stage dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.hiring-tracker-stage dl div {
+  display: grid;
+  gap: 6px;
+}
+
+.hiring-tracker-stage dd {
+  margin: 0;
+}
+
+.hiring-tracker-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-tracker-role {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.hiring-tracker-role-head strong {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.hiring-tracker-proof,
+.hiring-tracker-owner,
+.hiring-tracker-window,
+.hiring-tracker-dependency,
+.hiring-tracker-route,
+.hiring-tracker-next,
+.hiring-tracker-escalation,
+.hiring-tracker-closeout,
+.hiring-tracker-risk {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.hiring-tracker-role-head,
+.hiring-tracker-stage,
+.hiring-tracker-artifact,
+.hiring-tracker-proof,
+.hiring-tracker-owner,
+.hiring-tracker-window,
+.hiring-tracker-dependency,
+.hiring-tracker-route,
+.hiring-tracker-next,
+.hiring-tracker-escalation,
+.hiring-tracker-closeout,
+.hiring-tracker-risk,
+.hiring-tracker-close {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hiring-tracker-close {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: var(--s-7);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 980px) {
+  .hiring-tracker-hero,
+  .hiring-tracker-section-head,
+  .hiring-tracker-close {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .hiring-tracker-board {
+    padding-block: var(--s-6);
+  }
+
+  .hiring-tracker-hero {
+    gap: 28px;
+  }
+
+  .hiring-tracker-hero h1 {
+    font-size: 42px;
+  }
+
+  .hiring-tracker-section-head h2,
+  .hiring-tracker-close h2 {
+    font-size: 32px;
+  }
+
+  .hiring-tracker-role-summary,
+  .hiring-tracker-summary-grid,
+  .hiring-tracker-stage-grid,
+  .hiring-tracker-role-grid,
+  .hiring-tracker-artifact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-tracker-summary-item,
+  .hiring-tracker-stage,
+  .hiring-tracker-role,
+  .hiring-tracker-artifact {
     min-width: 0;
   }
 }

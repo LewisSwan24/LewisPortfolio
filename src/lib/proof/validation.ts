@@ -70,6 +70,11 @@ function isValidProofRoute(href: string) {
   if (href === "/hire/growth") return true;
   if (href === "/hire/retention") return true;
   if (href === "/hire/partnership") return true;
+  if (href === "/hire/command") return true;
+  if (href === "/hire/briefing") return true;
+  if (href === "/hire/readiness") return true;
+  if (href === "/hire/action") return true;
+  if (href === "/hire/tracker") return true;
 
   return hiringRoleIds.some(
     (role) =>
@@ -87,7 +92,12 @@ function isValidProofRoute(href: string) {
       href === `/contact?role=${role}&intent=impact` ||
       href === `/contact?role=${role}&intent=growth` ||
       href === `/contact?role=${role}&intent=retention` ||
-      href === `/contact?role=${role}&intent=partnership`
+      href === `/contact?role=${role}&intent=partnership` ||
+      href === `/contact?role=${role}&intent=command` ||
+      href === `/contact?role=${role}&intent=briefing` ||
+      href === `/contact?role=${role}&intent=readiness` ||
+      href === `/contact?role=${role}&intent=action` ||
+      href === `/contact?role=${role}&intent=tracker`
   );
 }
 
@@ -291,6 +301,31 @@ export function getProofValidationReport(
       .filter((entry) => entry.surface === "hiring-partnership")
       .map((entry) => entry.roleId)
   );
+  const maintainedCommandRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-command")
+      .map((entry) => entry.roleId)
+  );
+  const maintainedBriefingRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-briefing")
+      .map((entry) => entry.roleId)
+  );
+  const maintainedReadinessRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-readiness")
+      .map((entry) => entry.roleId)
+  );
+  const maintainedActionRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-action")
+      .map((entry) => entry.roleId)
+  );
+  const maintainedTrackerRoles = new Set(
+    maintenanceEntries
+      .filter((entry) => entry.surface === "hiring-tracker")
+      .map((entry) => entry.roleId)
+  );
 
   checkedRoutes.add("/hire/review");
   checkedRoutes.add("/hire/compare");
@@ -306,6 +341,11 @@ export function getProofValidationReport(
   checkedRoutes.add("/hire/growth");
   checkedRoutes.add("/hire/retention");
   checkedRoutes.add("/hire/partnership");
+  checkedRoutes.add("/hire/command");
+  checkedRoutes.add("/hire/briefing");
+  checkedRoutes.add("/hire/readiness");
+  checkedRoutes.add("/hire/action");
+  checkedRoutes.add("/hire/tracker");
 
   for (const key of Array.from(roleClaimKeys)) {
     if (!maintainedRoleClaimKeys.has(key)) {
@@ -498,6 +538,61 @@ export function getProofValidationReport(
         message: `Missing maintenance entry for /hire/partnership partnership operating lane ${role}.`,
         roleId: role,
         href: "/hire/partnership",
+      });
+    }
+
+    if (!maintainedCommandRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-command-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/command command lane ${role}.`,
+        roleId: role,
+        href: "/hire/command",
+      });
+    }
+
+    if (!maintainedBriefingRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-briefing-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/briefing briefing lane ${role}.`,
+        roleId: role,
+        href: "/hire/briefing",
+      });
+    }
+
+    if (!maintainedReadinessRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-readiness-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/readiness readiness lane ${role}.`,
+        roleId: role,
+        href: "/hire/readiness",
+      });
+    }
+
+    if (!maintainedActionRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-action-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/action action lane ${role}.`,
+        roleId: role,
+        href: "/hire/action",
+      });
+    }
+
+    if (!maintainedTrackerRoles.has(role)) {
+      addIssue(issues, {
+        id: `${role}-hiring-tracker-maintenance-missing`,
+        severity: "error",
+        area: "maintenance",
+        message: `Missing maintenance entry for /hire/tracker tracker lane ${role}.`,
+        roleId: role,
+        href: "/hire/tracker",
       });
     }
   }

@@ -1,0 +1,1 @@
+export { HiringCommandView } from "./HiringCommandView";
