@@ -17,6 +17,7 @@ import {
   type ProjectEvidenceSlug,
   projectEvidenceSlugs,
 } from "@/lib/portfolio-proof";
+import type { CaseReaderAnchorId } from "@/lib/proof";
 
 describe("portfolio proof content", () => {
   it("covers every portfolio project with evidence metadata", () => {
@@ -256,7 +257,7 @@ describe("portfolio proof content", () => {
         expect(answer.boundary.length).toBeGreaterThan(12);
         expect(answer.evidenceHref).toMatch(new RegExp(`^/projects/${slug}#`));
 
-        const anchor = answer.evidenceHref.split("#")[1];
+        const anchor = answer.evidenceHref.split("#")[1] as CaseReaderAnchorId;
         expect(anchors.has(anchor)).toBe(true);
       }
     }

@@ -4,6 +4,7 @@ import { getHiringGrowthRoadmap } from "./hiring-growth";
 import { getHiringImpactReview } from "./hiring-impact";
 import { getHiringKickoffAlignment } from "./hiring-kickoff";
 import { getHiringOnboardingReadiness } from "./hiring-onboarding";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringGrowthRoadmapRole,
@@ -158,13 +159,16 @@ function buildRetentionRole(
   return {
     id: packet.id,
     label: packet.label,
-    retentionSignal: `${copy.signalPrefix}: ${growthRole.nextReview}`,
-    longTermFit: `${copy.fitPrefix}: ${growthRole.ninetyDayOutcome}`,
-    managerSupport: `${copy.supportPrefix}: ${managerSupport}`,
-    teamDependency: `${copy.dependencyPrefix}: ${teamDependency}`,
-    durabilityRisk: `${copy.riskPrefix}: ${growthRole.riskToMonitor || impactRole.riskWatch}`,
-    reviewCadence: `${copy.cadencePrefix}: ${reviewCadence}`,
-    nextRetentionQuestion: `${copy.questionPrefix}: ${nextQuestion}`,
+    retentionSignal: prefixedProofCopy(copy.signalPrefix, growthRole.nextReview),
+    longTermFit: prefixedProofCopy(copy.fitPrefix, growthRole.ninetyDayOutcome),
+    managerSupport: prefixedProofCopy(copy.supportPrefix, managerSupport),
+    teamDependency: prefixedProofCopy(copy.dependencyPrefix, teamDependency),
+    durabilityRisk: prefixedProofCopy(
+      copy.riskPrefix,
+      growthRole.riskToMonitor || impactRole.riskWatch
+    ),
+    reviewCadence: prefixedProofCopy(copy.cadencePrefix, reviewCadence),
+    nextRetentionQuestion: prefixedProofCopy(copy.questionPrefix, nextQuestion),
     proof: {
       claim: growthRole.proof.claim,
       evidence: growthRole.proof.evidence,

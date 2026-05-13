@@ -5,6 +5,7 @@ import type {
   RoleComparisonDecisionStep,
   RoleComparisonLane,
 } from "@/lib/proof";
+import { HiringRouteShelf } from "./HiringRouteShelf";
 
 interface RoleComparisonViewProps {
   board: RoleComparisonBoard;
@@ -187,54 +188,6 @@ export function RoleComparisonView({ board }: RoleComparisonViewProps) {
             <Link className="btn btn-ghost" href="/hire/interview">
               Interview agenda
             </Link>
-            <Link className="btn btn-ghost" href="/hire/scorecard">
-              Hiring scorecard
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/shortlist">
-              Shortlist memo
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/debrief">
-              Manager debrief
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/decision">
-              Decision pack
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/offer">
-              Offer readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/onboarding">
-              Onboarding plan
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/kickoff">
-              Kickoff plan
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/impact">
-              Impact review
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/growth">
-              Growth roadmap
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/retention">
-              Retention readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/partnership">
-              Partnership operating
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/command">
-              Hiring command
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/briefing">
-              Hiring briefing
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/readiness">
-              Hiring readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/action">
-              Hiring action
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/tracker">
-              Hiring tracker
-            </Link>
           </div>
         </div>
         <ul className="role-comparison-summary" aria-label="Role comparison summary">
@@ -242,7 +195,7 @@ export function RoleComparisonView({ board }: RoleComparisonViewProps) {
             <li key={role.id}>
               <span>{role.label}</span>
               <strong>{role.claimCount} claims</strong>
-              <a href={role.strongestProof.href}>First anchor</a>
+              <span>First anchor</span>
             </li>
           ))}
         </ul>
@@ -251,6 +204,28 @@ export function RoleComparisonView({ board }: RoleComparisonViewProps) {
       <RoleComparisonCriteria criteria={board.criteria} />
       <RoleComparisonLanes roles={board.roles} />
       <RoleComparisonDecisionSequence steps={board.decisionSequence} />
+      <HiringRouteShelf
+        links={[
+          { label: "Proof review room", href: board.reviewRoute },
+          { label: "Interview agenda", href: "/hire/interview" },
+          { label: "Hiring scorecard", href: "/hire/scorecard" },
+          { label: "Shortlist memo", href: "/hire/shortlist" },
+          { label: "Manager debrief", href: "/hire/debrief" },
+          { label: "Decision pack", href: "/hire/decision" },
+          { label: "Offer readiness", href: "/hire/offer" },
+          { label: "Onboarding plan", href: "/hire/onboarding" },
+          { label: "Kickoff plan", href: "/hire/kickoff" },
+          { label: "Impact review", href: "/hire/impact" },
+          { label: "Growth roadmap", href: "/hire/growth" },
+          { label: "Retention readiness", href: "/hire/retention" },
+          { label: "Partnership operating", href: "/hire/partnership" },
+          { label: "Hiring command", href: "/hire/command" },
+          { label: "Hiring briefing", href: "/hire/briefing" },
+          { label: "Hiring readiness", href: "/hire/readiness" },
+          { label: "Hiring action", href: "/hire/action" },
+          { label: "Hiring tracker", href: "/hire/tracker" },
+        ]}
+      />
 
       <section className="role-comparison-close" aria-labelledby="role-comparison-close-title">
         <div>
@@ -261,63 +236,6 @@ export function RoleComparisonView({ board }: RoleComparisonViewProps) {
         <div className="role-comparison-actions">
           <Link className="btn btn-primary" href={board.close.primaryAction.href}>
             {board.close.primaryAction.label}
-          </Link>
-          <Link className="btn btn-ghost" href={board.close.secondaryAction.href}>
-            {board.close.secondaryAction.label}
-          </Link>
-          <Link className="btn btn-ghost" href={board.reviewRoute}>
-            Proof review room
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/interview">
-            Interview agenda
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/scorecard">
-            Hiring scorecard
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/shortlist">
-            Shortlist memo
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/debrief">
-            Manager debrief
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/decision">
-            Decision pack
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/offer">
-            Offer readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/onboarding">
-            Onboarding plan
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/kickoff">
-            Kickoff plan
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/impact">
-            Impact review
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/growth">
-            Growth roadmap
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/retention">
-            Retention readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/partnership">
-            Partnership operating
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/command">
-            Hiring command
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/briefing">
-            Hiring briefing
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/readiness">
-            Hiring readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/action">
-            Hiring action
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/tracker">
-            Hiring tracker
           </Link>
         </div>
       </section>

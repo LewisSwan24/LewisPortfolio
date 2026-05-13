@@ -2,6 +2,7 @@ import { getApplicationPacket } from "./application-packets";
 import { getFollowThroughBrief } from "./follow-through";
 import { getHiringOnboardingReadiness } from "./hiring-onboarding";
 import { getHiringOfferReadiness } from "./hiring-offer";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringKickoffAlignmentPack,
@@ -147,12 +148,12 @@ function buildKickoffRole(role: HiringRoleId, locale: ProofLocale): HiringKickof
   return {
     id: packet.id,
     label: packet.label,
-    kickoffSignal: `${copy.signalPrefix}: ${onboardingRole.onboardingSignal}`,
-    firstProjectBrief: `${copy.briefPrefix}: ${firstProjectSource}`,
-    successMetric: `${copy.metricPrefix}: ${successMetricSource}`,
+    kickoffSignal: prefixedProofCopy(copy.signalPrefix, onboardingRole.onboardingSignal),
+    firstProjectBrief: prefixedProofCopy(copy.briefPrefix, firstProjectSource),
+    successMetric: prefixedProofCopy(copy.metricPrefix, successMetricSource),
     stakeholderQuestion,
-    deliveryArtifact: `${copy.artifactPrefix}: ${deliveryArtifactSource}`,
-    riskGuardrail: `${copy.guardrailPrefix}: ${riskSource}`,
+    deliveryArtifact: prefixedProofCopy(copy.artifactPrefix, deliveryArtifactSource),
+    riskGuardrail: prefixedProofCopy(copy.guardrailPrefix, riskSource),
     nextAction: `${copy.nextActionPrefix} ${stakeholderQuestion}`,
     proof: {
       claim: onboardingRole.proof.claim,

@@ -3,6 +3,7 @@ import { getFollowThroughBrief } from "./follow-through";
 import { getHiringImpactReview } from "./hiring-impact";
 import { getHiringKickoffAlignment } from "./hiring-kickoff";
 import { getHiringOnboardingReadiness } from "./hiring-onboarding";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringGrowthRoadmapPack,
@@ -148,13 +149,16 @@ function buildGrowthRole(
   return {
     id: packet.id,
     label: packet.label,
-    growthSignal: `${copy.signalPrefix}: ${impactRole.nextMilestone}`,
-    ninetyDayOutcome: `${copy.outcomePrefix}: ${impactRole.firstMonthEvidence}`,
-    teamLeverage: `${copy.leveragePrefix}: ${kickoffRole.deliveryArtifact}`,
-    capabilityTransfer: `${copy.transferPrefix}: ${onboardingRole.firstThirtyDaysOutcome}`,
-    operatingRhythm: `${copy.rhythmPrefix}: ${operatingRhythm}`,
-    riskToMonitor: `${copy.riskPrefix}: ${impactRole.riskWatch}`,
-    nextReview: `${copy.reviewPrefix}: ${nextReview}`,
+    growthSignal: prefixedProofCopy(copy.signalPrefix, impactRole.nextMilestone),
+    ninetyDayOutcome: prefixedProofCopy(copy.outcomePrefix, impactRole.firstMonthEvidence),
+    teamLeverage: prefixedProofCopy(copy.leveragePrefix, kickoffRole.deliveryArtifact),
+    capabilityTransfer: prefixedProofCopy(
+      copy.transferPrefix,
+      onboardingRole.firstThirtyDaysOutcome
+    ),
+    operatingRhythm: prefixedProofCopy(copy.rhythmPrefix, operatingRhythm),
+    riskToMonitor: prefixedProofCopy(copy.riskPrefix, impactRole.riskWatch),
+    nextReview: prefixedProofCopy(copy.reviewPrefix, nextReview),
     proof: {
       claim: impactRole.proof.claim,
       evidence: impactRole.proof.evidence,

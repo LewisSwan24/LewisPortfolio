@@ -7,6 +7,7 @@ import type {
   ProofReviewRoom,
   ProofReviewSignal,
 } from "@/lib/proof";
+import { HiringRouteShelf } from "./HiringRouteShelf";
 
 interface ProofReviewRoomViewProps {
   room: ProofReviewRoom;
@@ -257,51 +258,6 @@ export function ProofReviewRoomView({ room }: ProofReviewRoomViewProps) {
             <Link className="btn btn-ghost" href="/hire/scorecard">
               Hiring scorecard
             </Link>
-            <Link className="btn btn-ghost" href="/hire/shortlist">
-              Shortlist memo
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/debrief">
-              Manager debrief
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/decision">
-              Decision pack
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/offer">
-              Offer readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/onboarding">
-              Onboarding plan
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/kickoff">
-              Kickoff plan
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/impact">
-              Impact review
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/growth">
-              Growth roadmap
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/retention">
-              Retention readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/partnership">
-              Partnership operating
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/command">
-              Hiring command
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/briefing">
-              Hiring briefing
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/readiness">
-              Hiring readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/action">
-              Hiring action
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/tracker">
-              Hiring tracker
-            </Link>
           </div>
         </div>
         <ProofReviewSignals signals={room.signals} />
@@ -312,6 +268,28 @@ export function ProofReviewRoomView({ room }: ProofReviewRoomViewProps) {
       <ProofReviewAnchorLedger anchors={room.anchorLedger} />
       <ProofReviewReadingSequence steps={room.readingSequence} />
       <ProofReviewBundle room={room} />
+      <HiringRouteShelf
+        links={[
+          { label: "Compare role paths", href: "/hire/compare" },
+          { label: "Interview agenda", href: "/hire/interview" },
+          { label: "Hiring scorecard", href: "/hire/scorecard" },
+          { label: "Shortlist memo", href: "/hire/shortlist" },
+          { label: "Manager debrief", href: "/hire/debrief" },
+          { label: "Decision pack", href: "/hire/decision" },
+          { label: "Offer readiness", href: "/hire/offer" },
+          { label: "Onboarding plan", href: "/hire/onboarding" },
+          { label: "Kickoff plan", href: "/hire/kickoff" },
+          { label: "Impact review", href: "/hire/impact" },
+          { label: "Growth roadmap", href: "/hire/growth" },
+          { label: "Retention readiness", href: "/hire/retention" },
+          { label: "Partnership operating", href: "/hire/partnership" },
+          { label: "Hiring command", href: "/hire/command" },
+          { label: "Hiring briefing", href: "/hire/briefing" },
+          { label: "Hiring readiness", href: "/hire/readiness" },
+          { label: "Hiring action", href: "/hire/action" },
+          { label: "Hiring tracker", href: "/hire/tracker" },
+        ]}
+      />
 
       <section className="proof-review-close" aria-labelledby="proof-review-close-title">
         <div>
@@ -326,63 +304,6 @@ export function ProofReviewRoomView({ room }: ProofReviewRoomViewProps) {
             aria-label={`${room.close.primaryAction.label} after proof review`}
           >
             {room.close.primaryAction.label}
-          </Link>
-          <Link className="btn btn-ghost" href={room.close.secondaryAction.href}>
-            {room.close.secondaryAction.label}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/compare">
-            Compare role paths
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/interview">
-            Interview agenda
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/scorecard">
-            Hiring scorecard
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/shortlist">
-            Shortlist memo
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/debrief">
-            Manager debrief
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/decision">
-            Decision pack
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/offer">
-            Offer readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/onboarding">
-            Onboarding plan
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/kickoff">
-            Kickoff plan
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/impact">
-            Impact review
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/growth">
-            Growth roadmap
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/retention">
-            Retention readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/partnership">
-            Partnership operating
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/command">
-            Hiring command
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/briefing">
-            Hiring briefing
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/readiness">
-            Hiring readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/action">
-            Hiring action
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/tracker">
-            Hiring tracker
           </Link>
         </div>
       </section>

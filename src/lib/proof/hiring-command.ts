@@ -4,6 +4,7 @@ import { getHiringGrowthRoadmap } from "./hiring-growth";
 import { getHiringImpactReview } from "./hiring-impact";
 import { getHiringPartnershipOperatingPack } from "./hiring-partnership";
 import { getHiringRetentionReadiness } from "./hiring-retention";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringCommandCenterCheckpoint,
@@ -175,7 +176,7 @@ const commandCopy = {
         id: "operate-partnership",
         label: "Operate partnership",
         route: "/hire/partnership",
-        actionLabel: "Partnership operating",
+        actionLabel: "Open partnership route",
         managerQuestion: "What working agreement keeps the partnership useful?",
         proofFocus: "Operating agreement, manager touchpoint, team ritual, and escalation rule.",
         completionSignal: "The role lane has a practical operating agreement and review loop.",
@@ -389,7 +390,7 @@ const commandCopy = {
         id: "operate-partnership",
         label: "Operate partnership",
         route: "/hire/partnership",
-        actionLabel: "Partnership operating",
+        actionLabel: "Open partnership route",
         managerQuestion: "什么 working agreement 能让 partnership 持续有效？",
         proofFocus: "Operating agreement、manager touchpoint、team ritual 和 escalation rule。",
         completionSignal: "Role lane 有 practical operating agreement 和 review loop。",
@@ -489,15 +490,21 @@ function buildCommandRole(
   return {
     id: packet.id,
     label: packet.label,
-    currentSignal: `${copy.signalPrefix}: ${partnershipRole.partnershipSignal}`,
-    decisionFocus: `${copy.focusPrefix}: ${decisionQuestion}`,
-    openingMove: `${copy.movePrefix}: ${openingMove}`,
-    proofGate: `${copy.gatePrefix}: ${proofGate}`,
-    managerRisk: `${copy.riskPrefix}: ${retentionRole.durabilityRisk}`,
-    teamHandoff: `${copy.handoffPrefix}: ${teamHandoff}`,
-    followUpRitual: `${copy.ritualPrefix}: ${partnershipRole.teamRitual}`,
-    escalationTrigger: `${copy.escalationPrefix}: ${partnershipRole.escalationRule}`,
-    nextCommandAction: `${copy.actionPrefix}: ${partnershipRole.nextPartnershipAction}`,
+    currentSignal: prefixedProofCopy(copy.signalPrefix, partnershipRole.partnershipSignal),
+    decisionFocus: prefixedProofCopy(copy.focusPrefix, decisionQuestion),
+    openingMove: prefixedProofCopy(copy.movePrefix, openingMove),
+    proofGate: prefixedProofCopy(copy.gatePrefix, proofGate),
+    managerRisk: prefixedProofCopy(copy.riskPrefix, retentionRole.durabilityRisk),
+    teamHandoff: prefixedProofCopy(copy.handoffPrefix, teamHandoff),
+    followUpRitual: prefixedProofCopy(copy.ritualPrefix, partnershipRole.teamRitual),
+    escalationTrigger: prefixedProofCopy(
+      copy.escalationPrefix,
+      partnershipRole.escalationRule
+    ),
+    nextCommandAction: prefixedProofCopy(
+      copy.actionPrefix,
+      partnershipRole.nextPartnershipAction
+    ),
     proof: {
       claim: partnershipRole.proof.claim,
       evidence: partnershipRole.proof.evidence,

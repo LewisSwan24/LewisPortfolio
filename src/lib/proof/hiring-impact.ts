@@ -3,6 +3,7 @@ import { getFollowThroughBrief } from "./follow-through";
 import { getHiringKickoffAlignment } from "./hiring-kickoff";
 import { getHiringOnboardingReadiness } from "./hiring-onboarding";
 import { getHiringOfferReadiness } from "./hiring-offer";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringImpactReviewPack,
@@ -143,12 +144,15 @@ function buildImpactRole(role: HiringRoleId, locale: ProofLocale): HiringImpactR
   return {
     id: packet.id,
     label: packet.label,
-    impactSignal: `${copy.signalPrefix}: ${kickoffRole.successMetric}`,
-    reviewMetric: `${copy.metricPrefix}: ${kickoffRole.successMetric}`,
-    firstMonthEvidence: `${copy.evidencePrefix}: ${onboardingRole.firstThirtyDaysOutcome}`,
+    impactSignal: prefixedProofCopy(copy.signalPrefix, kickoffRole.successMetric),
+    reviewMetric: prefixedProofCopy(copy.metricPrefix, kickoffRole.successMetric),
+    firstMonthEvidence: prefixedProofCopy(
+      copy.evidencePrefix,
+      onboardingRole.firstThirtyDaysOutcome
+    ),
     stakeholderCheckpoint,
-    deliveryReview: `${copy.deliveryPrefix}: ${kickoffRole.deliveryArtifact}`,
-    riskWatch: `${copy.riskPrefix}: ${kickoffRole.riskGuardrail}`,
+    deliveryReview: prefixedProofCopy(copy.deliveryPrefix, kickoffRole.deliveryArtifact),
+    riskWatch: prefixedProofCopy(copy.riskPrefix, kickoffRole.riskGuardrail),
     nextMilestone: `${copy.milestonePrefix} ${nextMilestone}`,
     proof: {
       claim: kickoffRole.proof.claim,

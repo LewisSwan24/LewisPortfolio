@@ -1,6 +1,7 @@
 import { getApplicationPacket } from "./application-packets";
 import { getFollowThroughBrief } from "./follow-through";
 import { getHiringBriefingRoom } from "./hiring-briefing";
+import { prefixedProofCopy, stripInheritedProofLabels } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringBriefingRoomRole,
@@ -326,23 +327,8 @@ const recommendedRouteLabels: Partial<Record<HiringReadinessGateSharedRoute, str
   "/hire/onboarding": "onboarding plan",
 };
 
-const inheritedLabelPattern =
-  /^(?:Readiness signal|Briefing signal|Partnership signal|Retention signal|Next review|Next briefing action|Next partnership action|Next retention question|Stakeholder context|Decision question|Risk to resolve|Handoff note|Follow-up owner|Manager touchpoint|Operating agreement|Long-term fit|90-day outcome|First-month evidence|First-30-days outcome|Proven evidence|Validation gap|Recruiter note|Interview note|Onboarding note|Decision gate):\s*/i;
-
-function stripInheritedLabels(value: string): string {
-  let normalized = value.trim();
-  let previous = "";
-
-  while (normalized && normalized !== previous) {
-    previous = normalized;
-    normalized = normalized.replace(inheritedLabelPattern, "").trim();
-  }
-
-  return normalized;
-}
-
 function prefixed(prefix: string, value: string): string {
-  return `${prefix}: ${stripInheritedLabels(value)}`;
+  return prefixedProofCopy(prefix, value);
 }
 
 function routeLabel(route: HiringReadinessGateSharedRoute): string {
@@ -432,7 +418,7 @@ function buildReadinessRole(
     followThrough.decisionQuestions[0] ??
     applicationPacket.interviewFocus[0] ??
     briefingRole.decisionQuestion;
-  const decisionQuestion = stripInheritedLabels(briefingRole.decisionQuestion);
+  const decisionQuestion = stripInheritedProofLabels(briefingRole.decisionQuestion);
   const recommendedRoute = recommendedRoutes[role];
   const score = readinessScores[role];
 

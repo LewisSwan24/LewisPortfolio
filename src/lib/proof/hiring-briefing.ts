@@ -3,6 +3,7 @@ import { getFollowThroughBrief } from "./follow-through";
 import { getHiringGrowthRoadmap } from "./hiring-growth";
 import { getHiringPartnershipOperatingPack } from "./hiring-partnership";
 import { getHiringRetentionReadiness } from "./hiring-retention";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringBriefingRoomArtifact,
@@ -362,15 +363,18 @@ function buildBriefingRole(
   return {
     id: packet.id,
     label: packet.label,
-    briefingSignal: `${copy.signalPrefix}: ${partnershipRole.partnershipSignal}`,
-    stakeholderContext: `${copy.stakeholderPrefix}: ${packet.fitThesis}`,
-    openingContext: `${copy.openingPrefix}: ${openingContext}`,
-    evidenceToInspect: `${copy.evidencePrefix}: ${evidenceToInspect}`,
-    decisionQuestion: `${copy.questionPrefix}: ${decisionQuestion}`,
-    riskToResolve: `${copy.riskPrefix}: ${retentionRole.durabilityRisk}`,
-    handoffNote: `${copy.handoffPrefix}: ${handoffNote}`,
-    followUpOwner: `${copy.ownerPrefix}: ${followUpOwner}`,
-    nextBriefingAction: `${copy.actionPrefix}: ${partnershipRole.nextPartnershipAction}`,
+    briefingSignal: prefixedProofCopy(copy.signalPrefix, partnershipRole.partnershipSignal),
+    stakeholderContext: prefixedProofCopy(copy.stakeholderPrefix, packet.fitThesis),
+    openingContext: prefixedProofCopy(copy.openingPrefix, openingContext),
+    evidenceToInspect: prefixedProofCopy(copy.evidencePrefix, evidenceToInspect),
+    decisionQuestion: prefixedProofCopy(copy.questionPrefix, decisionQuestion),
+    riskToResolve: prefixedProofCopy(copy.riskPrefix, retentionRole.durabilityRisk),
+    handoffNote: prefixedProofCopy(copy.handoffPrefix, handoffNote),
+    followUpOwner: prefixedProofCopy(copy.ownerPrefix, followUpOwner),
+    nextBriefingAction: prefixedProofCopy(
+      copy.actionPrefix,
+      partnershipRole.nextPartnershipAction
+    ),
     proof: {
       claim: partnershipRole.proof.claim,
       evidence: partnershipRole.proof.evidence,

@@ -1,6 +1,7 @@
 import { getApplicationPacket } from "./application-packets";
 import { getFollowThroughBrief } from "./follow-through";
 import { getHiringOfferReadiness } from "./hiring-offer";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringOnboardingReadinessPack,
@@ -141,10 +142,10 @@ function buildOnboardingRole(
   return {
     id: packet.id,
     label: packet.label,
-    onboardingSignal: `${copy.signalPrefix}: ${offerRole.offerSignal}`,
-    firstWeekFocus: `${copy.weekPrefix}: ${firstWeekFocus}`,
-    firstThirtyDaysOutcome: `${copy.thirtyPrefix}: ${firstThirtyDaysOutcome}`,
-    onboardingRisk: `${copy.riskPrefix}: ${onboardingRisk}`,
+    onboardingSignal: prefixedProofCopy(copy.signalPrefix, offerRole.offerSignal),
+    firstWeekFocus: prefixedProofCopy(copy.weekPrefix, firstWeekFocus),
+    firstThirtyDaysOutcome: prefixedProofCopy(copy.thirtyPrefix, firstThirtyDaysOutcome),
+    onboardingRisk: prefixedProofCopy(copy.riskPrefix, onboardingRisk),
     managerQuestion,
     nextAction: `${copy.nextActionPrefix} ${followThrough.meetingAgenda[0] ?? offerRole.nextAction}`,
     proof: {

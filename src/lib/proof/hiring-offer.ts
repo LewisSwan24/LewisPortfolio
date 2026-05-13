@@ -1,6 +1,7 @@
 import { getApplicationPacket } from "./application-packets";
 import { getFollowThroughBrief } from "./follow-through";
 import { getHiringDecisionPack } from "./hiring-decision";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringOfferReadinessPack,
@@ -132,9 +133,9 @@ function buildOfferRole(role: HiringRoleId, locale: ProofLocale): HiringOfferRea
   return {
     id: packet.id,
     label: packet.label,
-    offerSignal: `${copy.signalPrefix}: ${decisionRole.finalRecommendation}`,
-    validationNote: `${copy.validationPrefix}: ${decisionRole.remainingRisk}`,
-    onboardingFocus: `${copy.onboardingPrefix}: ${onboardingFocus}`,
+    offerSignal: prefixedProofCopy(copy.signalPrefix, decisionRole.finalRecommendation),
+    validationNote: prefixedProofCopy(copy.validationPrefix, decisionRole.remainingRisk),
+    onboardingFocus: prefixedProofCopy(copy.onboardingPrefix, onboardingFocus),
     readinessQuestion,
     nextAction: `${copy.nextActionPrefix} ${followThrough.decisionQuestions[0] ?? decisionRole.nextAction}`,
     proof: {

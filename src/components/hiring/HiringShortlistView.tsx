@@ -4,6 +4,7 @@ import type {
   HiringShortlistRole,
   HiringShortlistSummaryItem,
 } from "@/lib/proof";
+import { HiringRouteShelf } from "./HiringRouteShelf";
 
 interface HiringShortlistViewProps {
   memo: HiringShortlistMemo;
@@ -92,18 +93,6 @@ function HiringShortlistRoleCard({ role }: { role: HiringShortlistRole }) {
         >
           Follow-through
         </Link>
-        <Link className="btn btn-ghost" href={role.scorecardRoute}>
-          Scorecard
-        </Link>
-        <Link className="btn btn-ghost" href={role.interviewRoute}>
-          Interview
-        </Link>
-        <Link className="btn btn-ghost" href={role.compareRoute}>
-          Compare
-        </Link>
-        <Link className="btn btn-ghost" href={role.reviewRoute}>
-          Review
-        </Link>
         <Link className="btn btn-primary" href={role.contactRoute}>
           Contact
         </Link>
@@ -159,51 +148,6 @@ export function HiringShortlistView({ memo }: HiringShortlistViewProps) {
             <Link className="btn btn-ghost" href={memo.compareRoute}>
               Compare role paths
             </Link>
-            <Link className="btn btn-ghost" href={memo.reviewRoute}>
-              Open proof review
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/debrief">
-              Manager debrief
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/decision">
-              Decision pack
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/offer">
-              Offer readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/onboarding">
-              Onboarding plan
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/kickoff">
-              Kickoff plan
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/impact">
-              Impact review
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/growth">
-              Growth roadmap
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/retention">
-              Retention readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/partnership">
-              Partnership operating
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/command">
-              Hiring command
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/briefing">
-              Hiring briefing
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/readiness">
-              Hiring readiness
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/action">
-              Hiring action
-            </Link>
-            <Link className="btn btn-ghost" href="/hire/tracker">
-              Hiring tracker
-            </Link>
           </div>
         </div>
         <ul className="hiring-shortlist-role-summary" aria-label="Hiring shortlist role summary">
@@ -211,7 +155,7 @@ export function HiringShortlistView({ memo }: HiringShortlistViewProps) {
             <li key={role.id}>
               <span>{role.label}</span>
               <strong>{role.id}</strong>
-              <a href={role.proof.href}>Proof anchor</a>
+              <span>Proof ready</span>
             </li>
           ))}
         </ul>
@@ -219,6 +163,25 @@ export function HiringShortlistView({ memo }: HiringShortlistViewProps) {
 
       <HiringShortlistSummary summary={memo.summary} />
       <HiringShortlistRoles roles={memo.roles} />
+      <HiringRouteShelf
+        links={[
+          { label: "Open proof review", href: memo.reviewRoute },
+          { label: "Manager debrief", href: "/hire/debrief" },
+          { label: "Decision pack", href: "/hire/decision" },
+          { label: "Offer readiness", href: "/hire/offer" },
+          { label: "Onboarding plan", href: "/hire/onboarding" },
+          { label: "Kickoff plan", href: "/hire/kickoff" },
+          { label: "Impact review", href: "/hire/impact" },
+          { label: "Growth roadmap", href: "/hire/growth" },
+          { label: "Retention readiness", href: "/hire/retention" },
+          { label: "Partnership operating", href: "/hire/partnership" },
+          { label: "Hiring command", href: "/hire/command" },
+          { label: "Hiring briefing", href: "/hire/briefing" },
+          { label: "Hiring readiness", href: "/hire/readiness" },
+          { label: "Hiring action", href: "/hire/action" },
+          { label: "Hiring tracker", href: "/hire/tracker" },
+        ]}
+      />
 
       <section className="hiring-shortlist-close" aria-labelledby="hiring-shortlist-close-title">
         <div>
@@ -229,54 +192,6 @@ export function HiringShortlistView({ memo }: HiringShortlistViewProps) {
         <div className="hiring-shortlist-actions">
           <Link className="btn btn-primary" href={memo.close.primaryAction.href}>
             {memo.close.primaryAction.label}
-          </Link>
-          <Link className="btn btn-ghost" href={memo.close.secondaryAction.href}>
-            {memo.close.secondaryAction.label}
-          </Link>
-          <Link className="btn btn-ghost" href={memo.interviewRoute}>
-            Interview agenda
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/debrief">
-            Manager debrief
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/decision">
-            Decision pack
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/offer">
-            Offer readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/onboarding">
-            Onboarding plan
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/kickoff">
-            Kickoff plan
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/impact">
-            Impact review
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/growth">
-            Growth roadmap
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/retention">
-            Retention readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/partnership">
-            Partnership operating
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/command">
-            Hiring command
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/briefing">
-            Hiring briefing
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/readiness">
-            Hiring readiness
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/action">
-            Hiring action
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/tracker">
-            Hiring tracker
           </Link>
         </div>
       </section>

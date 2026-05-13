@@ -114,7 +114,7 @@ const actionCopy = {
         body:
           "A short contact note that names role context, proof anchor, and the first question to resolve.",
         route: "/hire/action",
-        actionLabel: "Open action board",
+        actionLabel: "Open outreach note",
         proofLabel: "Outreach proof",
       },
       {
@@ -124,7 +124,7 @@ const actionCopy = {
         body:
           "A manager-facing note that turns readiness state into a route, validation gap, and decision.",
         route: "/hire/readiness",
-        actionLabel: "Open readiness gate",
+        actionLabel: "Open manager note",
         proofLabel: "Manager proof",
       },
       {
@@ -272,7 +272,7 @@ const actionCopy = {
         body:
           "一条简短 contact note，命名 role context、proof anchor 和 first question。",
         route: "/hire/action",
-        actionLabel: "Open action board",
+        actionLabel: "Open outreach note",
         proofLabel: "Outreach proof",
       },
       {
@@ -282,7 +282,7 @@ const actionCopy = {
         body:
           "面向 manager 的 note，把 readiness state 转成 route、validation gap 和 decision。",
         route: "/hire/readiness",
-        actionLabel: "Open readiness gate",
+        actionLabel: "Open manager note",
         proofLabel: "Manager proof",
       },
       {

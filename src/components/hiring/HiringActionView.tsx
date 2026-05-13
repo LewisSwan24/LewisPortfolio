@@ -6,6 +6,7 @@ import type {
   HiringActionBoardStep,
   HiringActionBoardSummaryItem,
 } from "@/lib/proof";
+import { HiringRouteShelf } from "./HiringRouteShelf";
 
 interface HiringActionViewProps {
   pack: HiringActionBoardPack;
@@ -193,60 +194,6 @@ function HiringActionRoleCard({ role }: { role: HiringActionBoardRole }) {
         <Link className="btn btn-ghost" href={role.routeToOpen}>
           Recommended route
         </Link>
-        <Link className="btn btn-ghost" href={role.actionRoute}>
-          Action
-        </Link>
-        <Link className="btn btn-ghost" href={role.readinessRoute}>
-          Readiness
-        </Link>
-        <Link className="btn btn-ghost" href={role.briefingRoute}>
-          Briefing
-        </Link>
-        <Link className="btn btn-ghost" href={role.commandRoute}>
-          Command
-        </Link>
-        <Link className="btn btn-ghost" href={role.partnershipRoute}>
-          Partnership
-        </Link>
-        <Link className="btn btn-ghost" href={role.retentionRoute}>
-          Retention
-        </Link>
-        <Link className="btn btn-ghost" href={role.growthRoute}>
-          Growth
-        </Link>
-        <Link className="btn btn-ghost" href={role.impactRoute}>
-          Impact
-        </Link>
-        <Link className="btn btn-ghost" href={role.kickoffRoute}>
-          Kickoff
-        </Link>
-        <Link className="btn btn-ghost" href={role.onboardingRoute}>
-          Onboarding
-        </Link>
-        <Link className="btn btn-ghost" href={role.offerRoute}>
-          Offer
-        </Link>
-        <Link className="btn btn-ghost" href={role.decisionRoute}>
-          Decision
-        </Link>
-        <Link className="btn btn-ghost" href={role.debriefRoute}>
-          Debrief
-        </Link>
-        <Link className="btn btn-ghost" href={role.shortlistRoute}>
-          Shortlist
-        </Link>
-        <Link className="btn btn-ghost" href={role.scorecardRoute}>
-          Scorecard
-        </Link>
-        <Link className="btn btn-ghost" href={role.interviewRoute}>
-          Interview
-        </Link>
-        <Link className="btn btn-ghost" href={role.compareRoute}>
-          Compare
-        </Link>
-        <Link className="btn btn-ghost" href={role.reviewRoute}>
-          Review
-        </Link>
         <Link
           className="btn btn-primary"
           href={role.contactRoute}
@@ -347,51 +294,6 @@ export function HiringActionView({ pack }: HiringActionViewProps) {
             <Link className="btn btn-ghost" href={pack.briefingRoute}>
               Hiring briefing
             </Link>
-            <Link className="btn btn-ghost" href={pack.commandRoute}>
-              Hiring command
-            </Link>
-            <Link className="btn btn-ghost" href={pack.partnershipRoute}>
-              Partnership operating
-            </Link>
-            <Link className="btn btn-ghost" href={pack.retentionRoute}>
-              Retention readiness
-            </Link>
-            <Link className="btn btn-ghost" href={pack.growthRoute}>
-              Growth roadmap
-            </Link>
-            <Link className="btn btn-ghost" href={pack.impactRoute}>
-              Impact review
-            </Link>
-            <Link className="btn btn-ghost" href={pack.kickoffRoute}>
-              Kickoff plan
-            </Link>
-            <Link className="btn btn-ghost" href={pack.onboardingRoute}>
-              Onboarding plan
-            </Link>
-            <Link className="btn btn-ghost" href={pack.offerRoute}>
-              Offer readiness
-            </Link>
-            <Link className="btn btn-ghost" href={pack.decisionRoute}>
-              Decision pack
-            </Link>
-            <Link className="btn btn-ghost" href={pack.debriefRoute}>
-              Manager debrief
-            </Link>
-            <Link className="btn btn-ghost" href={pack.shortlistRoute}>
-              Shortlist memo
-            </Link>
-            <Link className="btn btn-ghost" href={pack.scorecardRoute}>
-              Hiring scorecard
-            </Link>
-            <Link className="btn btn-ghost" href={pack.interviewRoute}>
-              Interview agenda
-            </Link>
-            <Link className="btn btn-ghost" href={pack.compareRoute}>
-              Compare role paths
-            </Link>
-            <Link className="btn btn-ghost" href={pack.reviewRoute}>
-              Open proof review
-            </Link>
           </div>
         </div>
         <ul className="hiring-action-role-summary" aria-label="Hiring action role summary">
@@ -399,7 +301,7 @@ export function HiringActionView({ pack }: HiringActionViewProps) {
             <li key={role.id}>
               <span>{role.label}</span>
               <strong>{role.readinessScore}</strong>
-              <a href={role.proof.href}>Proof anchor</a>
+              <span>Proof ready</span>
             </li>
           ))}
         </ul>
@@ -409,6 +311,28 @@ export function HiringActionView({ pack }: HiringActionViewProps) {
       <HiringActionSequence sequence={pack.sequence} />
       <HiringActionRoles roles={pack.roles} />
       <HiringActionArtifacts artifacts={pack.artifacts} />
+      <HiringRouteShelf
+        links={[
+          { label: "Hiring tracker", href: "/hire/tracker" },
+          { label: "Hiring readiness", href: pack.readinessRoute },
+          { label: "Hiring briefing", href: pack.briefingRoute },
+          { label: "Hiring command", href: pack.commandRoute },
+          { label: "Partnership operating", href: pack.partnershipRoute },
+          { label: "Retention readiness", href: pack.retentionRoute },
+          { label: "Growth roadmap", href: pack.growthRoute },
+          { label: "Impact review", href: pack.impactRoute },
+          { label: "Kickoff plan", href: pack.kickoffRoute },
+          { label: "Onboarding plan", href: pack.onboardingRoute },
+          { label: "Offer readiness", href: pack.offerRoute },
+          { label: "Decision pack", href: pack.decisionRoute },
+          { label: "Manager debrief", href: pack.debriefRoute },
+          { label: "Shortlist memo", href: pack.shortlistRoute },
+          { label: "Hiring scorecard", href: pack.scorecardRoute },
+          { label: "Interview agenda", href: pack.interviewRoute },
+          { label: "Compare role paths", href: pack.compareRoute },
+          { label: "Open proof review", href: pack.reviewRoute },
+        ]}
+      />
 
       <section className="hiring-action-close" aria-labelledby="hiring-action-close-title">
         <div>
@@ -419,15 +343,6 @@ export function HiringActionView({ pack }: HiringActionViewProps) {
         <div className="hiring-action-actions">
           <Link className="btn btn-primary" href={pack.close.primaryAction.href}>
             {pack.close.primaryAction.label}
-          </Link>
-          <Link className="btn btn-ghost" href={pack.close.secondaryAction.href}>
-            {pack.close.secondaryAction.label}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/tracker">
-            Hiring tracker
-          </Link>
-          <Link className="btn btn-ghost" href={pack.reviewRoute}>
-            Open proof review
           </Link>
         </div>
       </section>

@@ -14,7 +14,7 @@ describe("interview agenda components", () => {
       "href",
       "/hire/compare"
     );
-    expect(screen.getByRole("link", { name: /Open proof review/i })).toHaveAttribute(
+    expect(screen.getAllByRole("link", { name: /Proof review room/i })[0]).toHaveAttribute(
       "href",
       "/hire/review"
     );

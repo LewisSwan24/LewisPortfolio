@@ -114,7 +114,7 @@ const trackerCopy = {
         body:
           "A short note naming the follow-up owner, route to review, proof dependency, and due window.",
         route: "/hire/tracker",
-        actionLabel: "Open tracker",
+        actionLabel: "Open owner note",
         proofLabel: "Owner proof",
       },
       {
@@ -134,7 +134,7 @@ const trackerCopy = {
         body:
           "A proof-review note that converts a blocked lane into one boundary question and resolution path.",
         route: "/hire/review",
-        actionLabel: "Open proof review",
+        actionLabel: "Open escalation note",
         proofLabel: "Escalation proof",
       },
       {
@@ -260,7 +260,7 @@ const trackerCopy = {
         body:
           "一条短 note，命名 follow-up owner、route to review、proof dependency 和 due window。",
         route: "/hire/tracker",
-        actionLabel: "Open tracker",
+        actionLabel: "Open owner note",
         proofLabel: "Owner proof",
       },
       {
@@ -280,7 +280,7 @@ const trackerCopy = {
         body:
           "一条 proof-review note，把 blocked lane 转成一个 boundary question 和 resolution path。",
         route: "/hire/review",
-        actionLabel: "Open proof review",
+        actionLabel: "Open escalation note",
         proofLabel: "Escalation proof",
       },
       {

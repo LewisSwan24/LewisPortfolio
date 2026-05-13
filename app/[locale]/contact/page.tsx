@@ -181,7 +181,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   {link.label}
                 </Link>
               ))}
-              <a href={`mailto:${email}`}>{isZh ? "直接发邮件" : "Email me directly"}</a>
             </div>
           </div>
         </section>

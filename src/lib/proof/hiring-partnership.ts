@@ -1,6 +1,7 @@
 import { getApplicationPacket } from "./application-packets";
 import { getFollowThroughBrief } from "./follow-through";
 import { getHiringRetentionReadiness } from "./hiring-retention";
+import { prefixedProofCopy } from "./label-utils";
 import { getRolePackets } from "./role-packets";
 import type {
   HiringPartnershipOperatingPack,
@@ -140,13 +141,16 @@ function buildPartnershipRole(
   return {
     id: packet.id,
     label: packet.label,
-    partnershipSignal: `${copy.signalPrefix}: ${retentionRole.retentionSignal}`,
-    operatingAgreement: `${copy.agreementPrefix}: ${retentionRole.longTermFit}`,
-    managerTouchpoint: `${copy.touchpointPrefix}: ${managerTouchpoint}`,
-    teamRitual: `${copy.ritualPrefix}: ${teamRitual}`,
-    escalationRule: `${copy.escalationPrefix}: ${escalationRule}`,
-    successReview: `${copy.reviewPrefix}: ${successReview}`,
-    nextPartnershipAction: `${copy.actionPrefix}: ${retentionRole.nextRetentionQuestion}`,
+    partnershipSignal: prefixedProofCopy(copy.signalPrefix, retentionRole.retentionSignal),
+    operatingAgreement: prefixedProofCopy(copy.agreementPrefix, retentionRole.longTermFit),
+    managerTouchpoint: prefixedProofCopy(copy.touchpointPrefix, managerTouchpoint),
+    teamRitual: prefixedProofCopy(copy.ritualPrefix, teamRitual),
+    escalationRule: prefixedProofCopy(copy.escalationPrefix, escalationRule),
+    successReview: prefixedProofCopy(copy.reviewPrefix, successReview),
+    nextPartnershipAction: prefixedProofCopy(
+      copy.actionPrefix,
+      retentionRole.nextRetentionQuestion
+    ),
     proof: {
       claim: retentionRole.proof.claim,
       evidence: retentionRole.proof.evidence,
