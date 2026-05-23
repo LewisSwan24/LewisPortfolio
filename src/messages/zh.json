@@ -18,15 +18,16 @@
   "hero": {
     "eyebrow": "UX 设计师 · 昆士兰大学交互设计硕士在读",
     "headline": {
-      "a": "你好，我是 Lewis。",
-      "b": "UX 设计师，昆士兰大学交互设计在读研究生，",
-      "c": "致力于打造以人为本的数字体验。"
+      "a": "研究驱动的",
+      "b": "产品设计，",
+      "c": "少一点噪音。"
     },
+    "body": "我把混乱的产品问题，整理成更清楚的界面、原型和决策。",
     "deck": {
       "label": "实践日志 —",
       "hint": "拖动或点击任意一张查看"
     },
-    "cta": { "work": "看看作品", "note": "给我写信" }
+    "cta": { "work": "查看精选作品", "note": "开始聊一聊" }
   },
   "now": {
     "label": "此刻在做",
@@ -40,7 +41,7 @@
     "title": { "text": "研究进去，成品出来。", "em": "每一次都如此。" },
     "body": "我不画完草图就交给别人去收尾。访谈我来跑、信号我来梳、IA 我来搭、原型我来做，然后坐在真实用户旁边看它是如何被戳穿的。事情只有做完才算数。",
     "step": {
-      "1": { "t": "倾听", "b": "50+ 次访谈，跨研究累计 300+ 参与者。" },
+      "1": { "t": "倾听", "b": "访谈记录、任务证据，以及那些容易被忽略的真实信号。" },
       "2": { "t": "综合", "b": "亲和图、JTBD、树测试 —— 结构化地推理。" },
       "3": { "t": "原型", "b": "Figma、Framer、HTML/CSS/React —— 需要多高保真就做多高。" },
       "4": { "t": "交付", "b": "可用性测试、迭代、附带完整推理地交接。" }
@@ -354,19 +355,6 @@
       "linkedin": { "title": "领英", "description": "职业联系", "value": "查看主页", "action": "添加联系" },
       "location": { "title": "所在地", "description": "常驻" }
     },
-    "form": {
-      "label": "留言",
-      "title": "发送消息",
-      "description": "填写下方表单，我会尽快回复你。",
-      "fields": {
-        "name": { "label": "姓名", "placeholder": "张三" },
-        "email": { "label": "邮箱", "placeholder": "you@example.com" },
-        "subject": { "label": "主题", "placeholder": "想聊什么？" },
-        "message": { "label": "内容", "placeholder": "告诉我你的项目想法，或者简单打个招呼…" }
-      },
-      "noticeUnconfigured": "表单尚未配置，请直接发邮件给我。",
-      "submit": "发送"
-    },
     "faq": {
       "label": "常见问题",
       "title": "常见问题",
@@ -379,7 +367,7 @@
     "kicker": "联络",
     "headline": { "text": "最短的路径，就是那一条。", "em": "直接" },
     "body": "不放表单。邮件最快。工作日 48 小时内一定回复，通常更快。想视频就点 Calendly —— 上面放的是我真的能接的时间，不是装点门面。",
-    "email": "hello@lewisdong.com",
+    "email": "24kplo@gmail.com",
     "cal": "预约 20 分钟",
     "fit": { "label": "适合聊", "1": "UX / 产品 / 交互 实习，2026 – 2027", "2": "以研究驱动、但终点是上线的项目", "3": "设计师能参与决策的小团队" },
     "notfit": { "label": "不太适合", "1": "「用作品换作品」的无偿机会", "2": "把研究当装饰的项目", "3": "加密货币、监控、博彩" }
@@ -401,7 +389,7 @@
       { "title": "自由职业设计师", "orgAndYear": "自由职业 • 2022 – 2023" }
     ],
     "kicker": "简历",
-    "headline": "浓缩的一页版本。",
+    "headline": "经历",
     "download": "下载 PDF",
     "print": "打印",
     "section": { "exp": "经历", "edu": "教育", "skills": "技能", "awards": "奖项与入选" }
@@ -414,13 +402,6 @@
     "breadcrumbHome": "首页",
     "breadcrumbBlog": "博客",
     "by": "作者",
-    "subscribe": "订阅更新",
-    "subscribeDescription": "新文章或项目发布时会通知你。",
-    "subscribePlaceholder": "your@email.com",
-    "subscribeButton": "订阅",
-    "subscribeSuccess": "感谢订阅！请查看邮箱确认。",
-    "subscribeError": "出了点问题，请重试。",
-    "subscribeNote": "无垃圾邮件，随时退订。",
     "rss": "RSS 订阅",
     "relatedArticles": "相关文章",
     "prev": "上一篇",

@@ -1,0 +1,1 @@
+export { HiringBriefingView } from "./HiringBriefingView";

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import Fuse from "fuse.js";
 import { cn } from "@/lib/cn";
 
@@ -31,7 +30,6 @@ export function SearchModal({
   const [results, setResults] = useState<SearchItem[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
 
   const fuse = useMemo(
     () =>
@@ -104,8 +102,8 @@ export function SearchModal({
 
   const navigateToResult = (item: SearchItem) => {
     const path = item.type === "project" ? `/projects/${item.slug}` : `/blog/${item.slug}`;
-    router.push(path);
     onClose();
+    window.location.href = path;
   };
 
   if (!isOpen) return null;

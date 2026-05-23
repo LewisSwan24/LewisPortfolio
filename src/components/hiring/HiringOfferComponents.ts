@@ -1,0 +1,1 @@
+export { HiringOfferView } from "./HiringOfferView";

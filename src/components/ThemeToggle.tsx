@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -15,21 +15,35 @@ export function ThemeToggle() {
     return (
       <button
         className="h-9 w-9 rounded-lg"
-        aria-label="Toggle theme"
+        aria-label="Loading color mode"
+        disabled
       />
     );
   }
 
+  const currentTheme =
+    theme === "dark" || theme === "light" ? theme : resolvedTheme === "dark" ? "dark" : "light";
+  const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+  const switchTheme = () => {
+    try {
+      localStorage.setItem("theme-manual", "1");
+      localStorage.setItem("theme", nextTheme);
+    } catch {}
+
+    document.documentElement.dataset.theme = nextTheme;
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(nextTheme);
+    setTheme(nextTheme);
+  };
+
   return (
     <button
-      onClick={() => {
-        try { localStorage.setItem("theme-manual", "1"); } catch {}
-        setTheme(theme === "dark" ? "light" : "dark");
-      }}
+      onClick={switchTheme}
       className="flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition-all duration-200 motion-reduce:transition-none hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      aria-label={`Switch theme to ${nextTheme} mode`}
     >
-      {theme === "dark" ? (
+      {currentTheme === "dark" ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

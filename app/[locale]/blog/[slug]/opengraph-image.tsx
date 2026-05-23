@@ -34,11 +34,11 @@ async function loadGoogleFont(family: string, text: string) {
   return resp.arrayBuffer();
 }
 
-const PAPER_100 = "#F5F2EC";
-const PAPER_300 = "#D9D2C3";
-const PAPER_500 = "#8A8170";
-const PAPER_600 = "#5E5749";
-const PAPER_800 = "#25231D";
+const PAPER_100 = "#EFE8DA";
+const PAPER_300 = "#D6CDBC";
+const PAPER_500 = "#8E8578";
+const PAPER_600 = "#756D61";
+const PAPER_800 = "#161412";
 const TERRA = "#C9523A";
 
 export default async function Image({ params }: Props) {
@@ -184,4 +184,3 @@ export default async function Image({ params }: Props) {
     { ...size, fonts: fonts.length ? fonts : undefined }
   );
 }
-

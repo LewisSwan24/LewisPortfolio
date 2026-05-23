@@ -1,25 +1,28 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const e2ePort = process.env.E2E_PORT ?? "3100";
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${e2ePort}`;
+
 /**
  * Playwright configuration for Portfolio E2E tests
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
     testDir: "./e2e",
-    /* Run tests in files in parallel */
-    fullyParallel: true,
+    /* Keep Next dev route compilation stable during local flow tests. */
+    fullyParallel: false,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
     /* Retry on CI only */
     retries: process.env.CI ? 2 : 0,
-    /* Opt out of parallel tests on CI. */
-    workers: process.env.CI ? 1 : undefined,
+    /* Next dev can race while compiling routes on demand, especially on Windows. */
+    workers: 1,
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
     reporter: "html",
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
         /* Base URL to use in actions like `await page.goto('/')`. */
-        baseURL: "http://localhost:3000",
+        baseURL,
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry",
@@ -54,10 +57,12 @@ export default defineConfig({
     ],
 
     /* Run your local dev server before starting the tests */
-    webServer: {
-        command: "pnpm dev",
-        url: "http://localhost:3000",
-        reuseExistingServer: !process.env.CI,
-        timeout: 120 * 1000,
-    },
+    webServer: process.env.PLAYWRIGHT_BASE_URL
+        ? undefined
+        : {
+            command: `pnpm dev --hostname 127.0.0.1 --port ${e2ePort}`,
+            url: baseURL,
+            reuseExistingServer: process.env.E2E_REUSE_SERVER === "1",
+            timeout: 120 * 1000,
+        },
 });

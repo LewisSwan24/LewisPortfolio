@@ -2,10 +2,20 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
+import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
+import { getProofUiLabels } from "@/lib/proof";
+import {
+  getCapabilityPillars,
+  getCareerSnapshot,
+  getHiringConversion,
+  getHiringPaths,
+  getHiringRoleFits,
+  type ProofLocale,
+} from "@/lib/portfolio-proof";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
@@ -78,6 +88,13 @@ export default async function HomePage() {
   const allPosts = await getAllBlogPosts();
   const latestPosts = allPosts.slice(0, 3);
   const dateLocale = isZh ? "zh-CN" : "en-US";
+  const proofLocale: ProofLocale = isZh ? "zh" : "en";
+  const snapshot = getCareerSnapshot(proofLocale);
+  const pillars = getCapabilityPillars(proofLocale);
+  const hiringPaths = getHiringPaths(proofLocale);
+  const hiringConversion = getHiringConversion(proofLocale);
+  const roleFits = getHiringRoleFits(proofLocale);
+  const proofLabels = getProofUiLabels(proofLocale);
 
   return (
     <main className="page" data-screen-label="01 Home">
@@ -92,13 +109,20 @@ export default async function HomePage() {
               <br />
               {t("hero.headline.c")}
             </h1>
+            <p className="hero-lede">{t("hero.body")}</p>
             <div className="hero-ctas">
               <Link href="/projects" className="btn btn-primary">
                 {t("hero.cta.work")} <span className="arrow">→</span>
               </Link>
               <Link href="/contact" className="btn btn-ghost">
-                {t("hero.cta.note")}
+                {t("hero.cta.note")} <span className="arrow">→</span>
               </Link>
+            </div>
+            <div className="hero-focus-strip" aria-label={isZh ? "当前关注方向" : "Current focus"}>
+              <span>{isZh ? "当前关注" : "Current focus"}</span>
+              <strong>{isZh ? "UX 研究" : "UX research"}</strong>
+              <strong>{isZh ? "交互设计" : "Interaction design"}</strong>
+              <strong>{isZh ? "产品清晰度" : "Product clarity"}</strong>
             </div>
           </div>
           <div className="hero-visual">
@@ -107,17 +131,127 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="container">
-        <div className="now">
-          <div className="now-label">
-            <span className="dot" />
-            <span className="text">{t("now.label")}</span>
+      <section
+        className="section container hiring-proof-desk"
+        aria-labelledby="hiring-proof-title"
+      >
+        <div className="hiring-proof-head">
+          <div>
+            <div className="label">Hiring signal</div>
+            <h2 id="hiring-proof-title">{hiringConversion.hero.headline}</h2>
+            <p className="hiring-proof-status">{hiringConversion.hero.status}</p>
+            <p>{hiringConversion.hero.subhead}</p>
           </div>
-          {(["reading", "building", "learning", "location"] as const).map((k) => (
-            <div className="now-item" key={k}>
-              <h4>{t(`now.${k}.label`)}</h4>
-              <p>{t(`now.${k}.val`)}</p>
+          <div className="hiring-proof-actions">
+            <Link
+              href={hiringConversion.closingPrompt.primaryAction.href}
+              className="btn btn-primary"
+            >
+              {hiringConversion.closingPrompt.primaryAction.label}
+            </Link>
+            <Link
+              href={hiringConversion.closingPrompt.secondaryAction.href}
+              className="btn btn-ghost"
+            >
+              {hiringConversion.closingPrompt.secondaryAction.label}
+            </Link>
+            <Link href="/hire" className="btn btn-ghost">
+              Interview decision
+            </Link>
+          </div>
+        </div>
+
+        <div className="hiring-signal-grid">
+          {hiringConversion.signals.map((signal) => (
+            <div className="hiring-signal" key={signal.label}>
+              <strong>{signal.value}</strong>
+              <span>{signal.label}</span>
+              <p>{signal.detail}</p>
             </div>
+          ))}
+        </div>
+
+        <div className="proof-route-board">
+          <div className="label">Best cases to inspect</div>
+          <div className="proof-route-grid">
+            {hiringConversion.proofRoutes.map((route, index) => (
+              <Link className="proof-route-card" href={route.href} key={route.href}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <small>{route.audience}</small>
+                <h3>{route.title}</h3>
+                <p>{route.claim}</p>
+                <em>{route.evidence}</em>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section container">
+        <HiringRoleFitPanel
+          roles={roleFits}
+          title="Match the opening to the strongest proof."
+          intro="Pick the role signal first, then inspect the exact case evidence."
+          labels={proofLabels}
+        />
+      </section>
+
+      <section className="section container proof-front-door">
+        <div className="proof-intro">
+          <div className="label">{isZh ? "证据概览" : "Evidence at a glance"}</div>
+          <h2 className="h-display h2">{snapshot.headline}</h2>
+          <p className="prose">{snapshot.summary}</p>
+          <p className="proof-status">{snapshot.status}</p>
+        </div>
+
+        <div className="proof-stats" aria-label={isZh ? "作品集证据数据" : "Portfolio evidence stats"}>
+          {snapshot.stats.map((stat) => (
+            <div className="proof-stat" key={stat.label}>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+              <p>{stat.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="capability-map" aria-labelledby="capability-map-title">
+          <div>
+            <div className="label">{isZh ? "能力地图" : "Capability map"}</div>
+            <h3 id="capability-map-title">{isZh ? "从研究到交付的证据路径" : "Proof paths from research to delivery"}</h3>
+          </div>
+          <div className="capability-list">
+            {pillars.map((pillar, index) => (
+              <Link className="capability-card" href={pillar.href} key={pillar.id}>
+                <span className="capability-index">{String(index + 1).padStart(2, "0")}</span>
+                <h4>{pillar.title}</h4>
+                <p>{pillar.summary}</p>
+                <small>{pillar.proof}</small>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="container hiring-guide">
+        <div className="hiring-guide-head">
+          <div>
+            <div className="label">{isZh ? "招聘方阅读路径" : "Start here if you are hiring"}</div>
+            <h2>{isZh ? "按你有的时间，直接进入对应证明。" : "Use the portfolio at the speed you actually have."}</h2>
+          </div>
+          <p>
+            {isZh
+              ? "这不是一条固定浏览路线，而是给招聘方和设计经理的快速入口。你可以先扫信号，也可以直接打开最相关的案例。"
+              : "This is a practical route map for recruiters and design managers: skim the signal, inspect the strongest proof, or read the craft in depth."}
+          </p>
+        </div>
+        <div className="hiring-guide-list">
+          {hiringPaths.map((path, index) => (
+            <Link className="hiring-guide-item" href={path.href} key={path.time}>
+              <span className="hiring-guide-index">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{path.time}</strong>
+              <h3>{path.title}</h3>
+              <p>{path.action}</p>
+            </Link>
           ))}
         </div>
       </section>

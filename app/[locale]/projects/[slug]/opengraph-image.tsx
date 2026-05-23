@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
-import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
+import { getProjectBySlug } from "@/lib/projects";
+import { CURRENT_PROJECT_SLUGS, PROJECT_OG_COPY } from "@/lib/project-routes";
 import { siteConfig } from "@/lib/site";
 
 export const runtime = "nodejs";
@@ -7,7 +8,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export function generateStaticParams() {
-  return getProjectSlugs().map((slug) => ({ slug }));
+  return CURRENT_PROJECT_SLUGS.map((slug) => ({ slug }));
 }
 
 interface Props {
@@ -32,18 +33,19 @@ async function loadGoogleFont(family: string, text: string) {
   return resp.arrayBuffer();
 }
 
-const PAPER_100 = "#F5F2EC";
-const PAPER_300 = "#D9D2C3";
-const PAPER_500 = "#8A8170";
-const PAPER_600 = "#5E5749";
-const PAPER_800 = "#25231D";
+const PAPER_100 = "#EFE8DA";
+const PAPER_300 = "#D6CDBC";
+const PAPER_500 = "#8E8578";
+const PAPER_600 = "#756D61";
+const PAPER_800 = "#161412";
 const TERRA = "#C9523A";
 
 export default async function Image({ params }: Props) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
-  const title = project?.title || "Project";
-  const oneLiner = project?.oneLiner || "";
+  const liveCopy = slug in PROJECT_OG_COPY ? PROJECT_OG_COPY[slug as keyof typeof PROJECT_OG_COPY] : null;
+  const title = project?.title || liveCopy?.title || "Project";
+  const oneLiner = project?.oneLiner || liveCopy?.oneLiner || "";
   const name = siteConfig.name.toUpperCase();
   const kicker = `CASE STUDY · ${slug.toUpperCase()}`;
 
@@ -182,4 +184,3 @@ export default async function Image({ params }: Props) {
     { ...size, fonts: fonts.length ? fonts : undefined }
   );
 }
-

@@ -1,10 +1,10 @@
 export const tokens = {
-  bg: { parchment: "#f5f4ed", ivory: "#faf9f5", sand: "#e8e6dc" },
-  text: { primary: "#141413", secondary: "#5e5d59", tertiary: "#87867f" },
-  border: { cream: "#f0eee6", warm: "#e8e6dc" },
-  accent: { moss: "#4a5d3a", mossHover: "#3d4d2f" },
+  bg: { parchment: "#efe8da", ivory: "#f7f4ec", sand: "#e7dfd1" },
+  text: { primary: "#161412", secondary: "#756d61", tertiary: "#8e8578" },
+  border: { cream: "#d6cdbc", warm: "#b8ad9d" },
+  accent: { moss: "#c9523a", mossHover: "#a63f2a" },
   semantic: { success: "#166534", error: "#b53333", focus: "#3898ec" },
-  dark: { surface: "#30302e", bg: "#141413" },
+  dark: { surface: "#30302e", bg: "#161412" },
 } as const;
 
 export type Tokens = typeof tokens;
