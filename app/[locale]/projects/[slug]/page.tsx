@@ -7,6 +7,7 @@ import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/Proj
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
+import { CURRENT_PROJECT_SLUGS, type CurrentProjectSlug } from "@/lib/project-routes";
 import {
   getCaseDepth,
   getCaseInterviewPack,
@@ -16,8 +17,8 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type Slug = "connect" | "spectra" | "ai" | "circles";
-const SLUGS: Slug[] = ["connect", "spectra", "ai", "circles"];
+type Slug = CurrentProjectSlug;
+const SLUGS = [...CURRENT_PROJECT_SLUGS];
 
 interface ProjectLink {
   label: string;

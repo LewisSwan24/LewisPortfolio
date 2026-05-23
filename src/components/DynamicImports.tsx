@@ -51,13 +51,6 @@ export const DynamicCountUp = dynamic(
   }
 );
 
-export const DynamicContactForm = dynamic(
-  () => import('./ContactForm').then((mod) => mod.ContactForm),
-  {
-    loading: () => <Skeleton className="h-64 w-full" />,
-  }
-);
-
 export const DynamicResumeTimeline = dynamic(
   () => import('./ResumeTimeline').then((mod) => mod.ResumeTimeline),
   {

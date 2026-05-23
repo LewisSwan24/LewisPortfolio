@@ -109,34 +109,25 @@ export default async function HomePage() {
               <br />
               {t("hero.headline.c")}
             </h1>
-            <p className="hero-hiring-status">{hiringConversion.hero.status}</p>
+            <p className="hero-lede">{t("hero.body")}</p>
             <div className="hero-ctas">
               <Link href="/projects" className="btn btn-primary">
                 {t("hero.cta.work")} <span className="arrow">→</span>
               </Link>
               <Link href="/contact" className="btn btn-ghost">
-                {t("hero.cta.note")}
+                {t("hero.cta.note")} <span className="arrow">→</span>
               </Link>
+            </div>
+            <div className="hero-focus-strip" aria-label={isZh ? "当前关注方向" : "Current focus"}>
+              <span>{isZh ? "当前关注" : "Current focus"}</span>
+              <strong>{isZh ? "UX 研究" : "UX research"}</strong>
+              <strong>{isZh ? "交互设计" : "Interaction design"}</strong>
+              <strong>{isZh ? "产品清晰度" : "Product clarity"}</strong>
             </div>
           </div>
           <div className="hero-visual">
             <PracticeDeck />
           </div>
-        </div>
-      </section>
-
-      <section className="container">
-        <div className="now">
-          <div className="now-label">
-            <span className="dot" />
-            <span className="text">{t("now.label")}</span>
-          </div>
-          {(["reading", "building", "learning", "location"] as const).map((k) => (
-            <div className="now-item" key={k}>
-              <h4>{t(`now.${k}.label`)}</h4>
-              <p>{t(`now.${k}.val`)}</p>
-            </div>
-          ))}
         </div>
       </section>
 

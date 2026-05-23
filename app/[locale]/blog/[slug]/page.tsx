@@ -15,7 +15,6 @@ import { TOC } from "@/components/TOC";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ReadingProgressChapters } from "@/components/content/ReadingProgressChapters";
 import { RelatedPosts } from "@/components/content/RelatedPosts";
-import { NewsletterSignup } from "@/components/content/NewsletterSignup";
 import { Comments } from "@/components/content/Comments";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -190,10 +189,6 @@ export default async function BlogPostPage({ params }: Props) {
               />
 
               <RelatedPosts posts={all} currentSlug={slug} className="mt-16" />
-
-              <div className="mt-12">
-                <NewsletterSignup />
-              </div>
 
               {giscusEnabled && (
                 <Comments

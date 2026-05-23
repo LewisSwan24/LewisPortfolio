@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
+import { VizAI, VizCircles, VizConnect, VizSpectra } from "@/components/viz/ProjectViz";
 import {
   getEvidenceMatrix,
   getHiringConversion,
@@ -12,6 +13,7 @@ import {
 
 type ProjKey = "connect" | "spectra" | "ai" | "circles";
 type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social";
+type Localized = { en: string; zh: string };
 
 interface Item {
   n: string;
@@ -20,6 +22,8 @@ interface Item {
   role: string;
   year: string;
   dur: string;
+  problem: Localized;
+  changed: Localized;
 }
 
 const FILTERS: Array<{ id: FilterId; en: string; zh: string }> = [
@@ -32,11 +36,54 @@ const FILTERS: Array<{ id: FilterId; en: string; zh: string }> = [
 ];
 
 const ITEMS: Item[] = [
-  { n: "01", k: "connect", tags: ["flag", "research"], role: "Solo", year: "2024", dur: "4 mo" },
-  { n: "02", k: "spectra", tags: ["flag", "acc", "research"], role: "Lead", year: "2024", dur: "4 mo" },
-  { n: "03", k: "ai", tags: ["ai", "research"], role: "Designer", year: "2024", dur: "5 mo" },
-  { n: "04", k: "circles", tags: ["social", "research"], role: "Solo", year: "2024–", dur: "ongoing" },
+  {
+    n: "01",
+    k: "connect",
+    tags: ["flag", "research"],
+    role: "Solo",
+    year: "2024",
+    dur: "4 mo",
+    problem: { en: "Disjointed structure and hard-to-find information", zh: "结构割裂，关键信息难找" },
+    changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
+  },
+  {
+    n: "02",
+    k: "spectra",
+    tags: ["flag", "acc", "research"],
+    role: "Lead",
+    year: "2024",
+    dur: "4 mo",
+    problem: { en: "Colour cues failed in real environments", zh: "真实环境里的颜色线索不可靠" },
+    changed: { en: "Live colour naming and haptic feedback model", zh: "实时颜色命名和触觉反馈模型" },
+  },
+  {
+    n: "03",
+    k: "ai",
+    tags: ["ai", "research"],
+    role: "Designer",
+    year: "2024",
+    dur: "5 mo",
+    problem: { en: "Feedback arrived too late or felt unsafe", zh: "反馈来得太晚，或者让人不安心" },
+    changed: { en: "Timed coaching and a confidence loop", zh: "分时机的指导和信心循环" },
+  },
+  {
+    n: "04",
+    k: "circles",
+    tags: ["social", "research"],
+    role: "Solo",
+    year: "2024–",
+    dur: "ongoing",
+    problem: { en: "Quantity metrics missed loneliness", zh: "数量指标没抓住孤独感" },
+    changed: { en: "Small recurring circles over one-off matching", zh: "用小而持续的小组替代一次性匹配" },
+  },
 ];
+
+function WorkPreview({ project }: { project: ProjKey }) {
+  if (project === "connect") return <VizConnect />;
+  if (project === "spectra") return <VizSpectra />;
+  if (project === "ai") return <VizAI />;
+  return <VizCircles />;
+}
 
 export function WorkIndex() {
   const t = useTranslations();
@@ -46,7 +93,6 @@ export function WorkIndex() {
   const evidence = getProjectEvidence(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
   const evidenceMatrix = getEvidenceMatrix(proofLocale);
-  const evidenceBySlug = new Map(evidence.map((item) => [item.slug, item]));
   const [filter, setFilter] = useState<FilterId>("all");
 
   const shown = filter === "all" ? ITEMS : ITEMS.filter((i) => i.tags.includes(filter));
@@ -56,27 +102,8 @@ export function WorkIndex() {
       <section className="container idx-hero">
         <div className="label">{t("nav.work")}</div>
         <h1 className="h-display h1" style={{ marginTop: 16 }}>
-          {isZh ? (
-            <>
-              四个项目。<em>全部已上线或在上线路上。</em>
-            </>
-          ) : (
-            <>
-              Four projects. <em>Every one shipped or shipping.</em>
-            </>
-          )}
+          {isZh ? "精选作品" : "Selected work"}
         </h1>
-        <div className="idx-meta">
-          <span>
-            {isZh ? "最近上线" : "Last shipped"} <b>Jun 2024</b>
-          </span>
-          <span>
-            {isZh ? "进行中" : "In progress"} <b>1</b>
-          </span>
-          <span>
-            {isZh ? "量化成果" : "Measured outcomes"} <b>3 / 4</b>
-          </span>
-        </div>
       </section>
 
       <section className="container">
@@ -96,6 +123,41 @@ export function WorkIndex() {
             >
               {isZh ? f.zh : f.en}
             </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="container work-index-board" aria-labelledby="work-index-title">
+        <h2 id="work-index-title" className="sr-only">
+          {isZh ? "项目清单" : "Project list"}
+        </h2>
+        <div className="work-index-head" aria-hidden="true">
+          <span>{isZh ? "项目" : "Project"}</span>
+          <span>{isZh ? "角色" : "Role"}</span>
+          <span>{isZh ? "问题" : "Problem"}</span>
+          <span>{isZh ? "改变了什么" : "What changed"}</span>
+          <span />
+        </div>
+        <div className="work-index-list">
+          {shown.map((i) => (
+            <a className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
+              <div className="work-index-project">
+                <div className="work-index-thumb" aria-hidden="true">
+                  <WorkPreview project={i.k} />
+                </div>
+                <div>
+                  <h3>{t(`proj.${i.k}.title`)}</h3>
+                  <p>{t(`proj.${i.k}.kicker`)}</p>
+                </div>
+              </div>
+              <div className="work-index-role">
+                <strong>{t(`proj.${i.k}.role`)}</strong>
+                <span>{i.year} · {i.dur}</span>
+              </div>
+              <p className="work-index-copy">{isZh ? i.problem.zh : i.problem.en}</p>
+              <p className="work-index-copy">{isZh ? i.changed.zh : i.changed.en}</p>
+              <span className="work-index-arrow" aria-hidden="true">→</span>
+            </a>
           ))}
         </div>
       </section>
@@ -176,44 +238,6 @@ export function WorkIndex() {
         </div>
       </section>
 
-      <section className="container">
-        {shown.map((i) => (
-          <a className="idx-flag" href={`/projects/${i.k}`} key={i.k}>
-            <div className="idx-flag-n">
-              {i.n}
-              {i.tags.includes("flag") && (
-                <div style={{ marginTop: 10, color: "var(--accent)" }}>
-                  ★ {isZh ? "旗舰" : "Flagship"}
-                </div>
-              )}
-            </div>
-            <div className="idx-flag-body">
-              <div className="eyebrow">{t(`proj.${i.k}.kicker`)}</div>
-              <h3 className="idx-flag-title">{t(`proj.${i.k}.title`)}</h3>
-              <p>{t(`proj.${i.k}.sub`)}</p>
-              {evidenceBySlug.get(i.k) && (
-                <p className="idx-flag-proof">{evidenceBySlug.get(i.k)?.proves}</p>
-              )}
-              <div className="idx-flag-tags">
-                <span className="tag tag-accent">{t(`proj.${i.k}.m1`)}</span>
-                <span className="tag">{t(`proj.${i.k}.m2`)}</span>
-                <span className="tag">{t(`proj.${i.k}.m3`)}</span>
-              </div>
-            </div>
-            <div className="idx-flag-side">
-              <div>
-                {t("cs.role")} · <b>{t(`proj.${i.k}.role`)}</b>
-              </div>
-              <div>
-                {t("cs.time")} · <b>{t(`proj.${i.k}.date`)}</b>
-              </div>
-              <div style={{ marginTop: 8, color: "var(--accent)" }}>
-                {t("feat.footer")} →
-              </div>
-            </div>
-          </a>
-        ))}
-      </section>
     </main>
   );
 }

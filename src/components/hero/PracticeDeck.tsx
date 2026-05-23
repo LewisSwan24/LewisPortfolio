@@ -310,7 +310,7 @@ function DeckSketch() {
         <text x="218" y="166" fontFamily="var(--font-hand)" fontSize="13" fill="currentColor">haptic</text>
         <path d="M210 162 L170 162" stroke="currentColor" strokeWidth="0.8" />
         <text x="14" y="190" fontFamily="var(--font-mono)" fontSize="9" fill="currentColor" opacity="0.7">
-          spectra-lens · viewer · v3 · 0909
+          spectra · viewer · v3 · 0909
         </text>
       </svg>
     </div>

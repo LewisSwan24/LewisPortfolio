@@ -8,6 +8,53 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
+const legacyProjectRedirects = [
+  ["uq-connect", "connect"],
+  ["spectra-lens", "spectra"],
+  ["ai-interview-assistant", "ai"],
+  ["connect-circles", "circles"],
+].flatMap(([from, to]) => [
+  {
+    source: `/projects/${from}`,
+    destination: `/projects/${to}`,
+    permanent: true,
+  },
+  {
+    source: `/zh/projects/${from}`,
+    destination: `/zh/projects/${to}`,
+    permanent: true,
+  },
+]);
+
+function disabledSurfaceRedirects() {
+  return [
+    {
+      source: "/test-route",
+      destination: "/en",
+      permanent: false,
+    },
+    {
+      source: "/en/test-route",
+      destination: "/",
+      permanent: false,
+    },
+    {
+      source: "/zh/test-route",
+      destination: "/zh",
+      permanent: false,
+    },
+    { source: "/booking", destination: "/en/contact", permanent: false },
+    { source: "/en/booking", destination: "/en/contact", permanent: false },
+    { source: "/zh/booking", destination: "/zh/contact", permanent: false },
+    { source: "/guestbook", destination: "/en/contact", permanent: false },
+    { source: "/en/guestbook", destination: "/en/contact", permanent: false },
+    { source: "/zh/guestbook", destination: "/zh/contact", permanent: false },
+    { source: "/dashboard", destination: "/en", permanent: false },
+    { source: "/posts", destination: "/en/blog", permanent: false },
+    { source: "/login", destination: "/en", permanent: false },
+  ];
+}
+
 const nextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
@@ -103,6 +150,9 @@ const nextConfig = {
         },
       ],
     };
+  },
+  async redirects() {
+    return [...legacyProjectRedirects, ...disabledSurfaceRedirects()];
   },
   // Compression
   compress: true,

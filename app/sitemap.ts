@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
-import { getProjectSlugs } from "@/lib/projects";
+import { CURRENT_PROJECT_SLUGS } from "@/lib/project-routes";
 import { getAllBlogPosts } from "@/lib/blog";
 
 const locales = ["en", "zh"] as const;
@@ -52,10 +52,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }))
   );
 
-  const projectSlugs = getProjectSlugs();
   const projectPageMtime =
     safeStatMtime(path.join(process.cwd(), "app/[locale]/projects/[slug]/page.tsx")) || buildTime;
-  const projectRoutes: MetadataRoute.Sitemap = projectSlugs.flatMap((slug) =>
+  const projectRoutes: MetadataRoute.Sitemap = CURRENT_PROJECT_SLUGS.flatMap((slug) =>
     locales.map((locale) => ({
       url:
         locale === "en"

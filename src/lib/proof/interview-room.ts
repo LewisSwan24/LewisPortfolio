@@ -4,9 +4,9 @@ import type { InterviewDecisionRoom, ProofLocale } from "./types";
 const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
   brief: {
     eyebrow: "Interview decision room",
-    headline: "Interview Lewis when you need research to become product direction.",
+    headline: "Why I'll help your team.",
     subhead:
-      "A fast hiring dossier for role fit, strongest evidence, interview questions, and honest boundaries.",
+      "A decision page for role fit, strongest proof, interview questions, and honest boundaries.",
     status:
       "UQ Master of Interaction Design candidate in Brisbane. Open to 2026 internships and graduate UX/Product roles.",
     signals: [

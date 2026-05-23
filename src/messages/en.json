@@ -18,15 +18,16 @@
   "hero": {
     "eyebrow": "UX Designer · Master's in Interaction Design, UQ",
     "headline": {
-      "a": "Hi, I'm Lewis.",
-      "b": "A UX designer and Interaction Design master's candidate at UQ,",
-      "c": "building human-centred digital experiences."
+      "a": "Research-led",
+      "b": "product design,",
+      "c": "without the noise."
     },
+    "body": "I shape messy product questions into clearer interfaces, prototypes, and decisions.",
     "deck": {
       "label": "The practice log —",
       "hint": "Drag or click an entry to open"
     },
-    "cta": { "work": "See the work", "note": "Write to me" }
+    "cta": { "work": "View selected work", "note": "Start a conversation" }
   },
   "now": {
     "label": "Currently",
@@ -40,7 +41,7 @@
     "title": { "text": "Research in, artefact out.", "em": "Every time." },
     "body": "I don't hand off sketches and hope. I run the interviews, synthesise the signals, draft the IA, prototype the interactions, then sit beside real users and watch it break. The work only counts when it ships.",
     "step": {
-      "1": { "t": "Listen", "b": "50+ interviews, 300+ participants across studies." },
+      "1": { "t": "Listen", "b": "Field notes, transcripts, task evidence, and the quiet signals people almost miss." },
       "2": { "t": "Synthesise", "b": "Affinity maps, JTBD, tree tests — structured reasoning." },
       "3": { "t": "Prototype", "b": "Figma, Framer, HTML/CSS/React — I build at the fidelity needed." },
       "4": { "t": "Ship", "b": "Usability test, iterate, hand off with rationale intact." }
@@ -424,19 +425,6 @@
       "linkedin": { "title": "LinkedIn", "description": "Let's connect professionally", "value": "View Profile", "action": "Connect" },
       "location": { "title": "Location", "description": "Based in" }
     },
-    "form": {
-      "label": "Message",
-      "title": "Send a Message",
-      "description": "Fill out the form below and I'll get back to you as soon as possible.",
-      "fields": {
-        "name": { "label": "Name", "placeholder": "John Doe" },
-        "email": { "label": "Email", "placeholder": "john@example.com" },
-        "subject": { "label": "Subject", "placeholder": "What's this about?" },
-        "message": { "label": "Message", "placeholder": "Tell me about your project, idea, or just say hello..." }
-      },
-      "noticeUnconfigured": "Form submission is not configured yet. For now, please email me directly.",
-      "submit": "Send Message"
-    },
     "faq": {
       "label": "FAQ",
       "title": "Frequently Asked",
@@ -449,7 +437,7 @@
     "kicker": "Contact",
     "headline": { "text": "The shortest path is the one.", "em": "direct" },
     "body": "No form. Email is fastest. I reply within 48 hours on weekdays, often sooner. If you'd like a video call, the Calendly link is honest — I only show slots I can actually take.",
-    "email": "hello@lewisdong.com",
+    "email": "24kplo@gmail.com",
     "cal": "Book 20 minutes",
     "fit": {
       "label": "Good fits",
@@ -481,7 +469,7 @@
       { "title": "Freelance Designer", "orgAndYear": "Self-employed • 2022 – 2023" }
     ],
     "kicker": "Résumé",
-    "headline": "The one-page version.",
+    "headline": "Experience",
     "download": "Download PDF",
     "print": "Print",
     "section": { "exp": "Experience", "edu": "Education", "skills": "Skills", "awards": "Awards & Selected" }
@@ -494,13 +482,6 @@
     "breadcrumbHome": "Home",
     "breadcrumbBlog": "Blog",
     "by": "By",
-    "subscribe": "Subscribe to updates",
-    "subscribeDescription": "Get notified when I publish new articles or projects.",
-    "subscribePlaceholder": "your@email.com",
-    "subscribeButton": "Subscribe",
-    "subscribeSuccess": "Thanks for subscribing! Check your email to confirm.",
-    "subscribeError": "Something went wrong. Please try again.",
-    "subscribeNote": "No spam, unsubscribe at any time.",
     "rss": "RSS Feed",
     "relatedArticles": "Related Articles",
     "prev": "Previous",

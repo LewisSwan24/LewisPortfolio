@@ -29,7 +29,7 @@ export function VizConnect() {
               fontFamily="var(--font-ui)"
               fontSize="9"
               textAnchor="middle"
-              fill="#5E5749"
+              fill="#756D61"
             >
               {s}
             </text>
@@ -41,7 +41,7 @@ export function VizConnect() {
         </text>
         {["I'm new", "Study", "Belong", "Pay", "Life", "Leave"].map((s, i) => (
           <g key={s}>
-            <rect x={300} y={50 + i * 22} width="180" height="18" fill="#FAF7F1" stroke="#A63F2A" strokeWidth="1" />
+            <rect x={300} y={50 + i * 22} width="180" height="18" fill="#F7F4EC" stroke="#A63F2A" strokeWidth="1" />
             <text x={312} y={63 + i * 22} fontFamily="var(--font-ui)" fontSize="11" fill="#3A362D">
               {s}
             </text>
@@ -93,8 +93,8 @@ export function VizSpectra() {
           SPECTRA LENS · VIEWFINDER
         </text>
 
-        <rect x="140" y="60" width="240" height="300" rx="18" stroke="#F5F2EC" strokeWidth="1.2" fill="none" />
-        <rect x="190" y="72" width="60" height="5" rx="2.5" fill="#F5F2EC" />
+        <rect x="140" y="60" width="240" height="300" rx="18" stroke="#EFE8DA" strokeWidth="1.2" fill="none" />
+        <rect x="190" y="72" width="60" height="5" rx="2.5" fill="#EFE8DA" />
 
         <defs>
           <clipPath id="spectra-left-half">
@@ -116,22 +116,22 @@ export function VizSpectra() {
           <circle cx="305" cy="150" r="28" fill="#C9523A" />
           <circle cx="325" cy="220" r="28" fill="#B8873E" />
           <circle cx="305" cy="290" r="28" fill="#5B6B4A" />
-          <rect x="275" y="140" width="22" height="18" fill="#FAF7F1" stroke="#25231D" strokeWidth="0.5" />
+          <rect x="275" y="140" width="22" height="18" fill="#F7F4EC" stroke="#25231D" strokeWidth="0.5" />
           <text x="286" y="152" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#25231D">STOP</text>
-          <rect x="345" y="210" width="20" height="18" fill="#FAF7F1" stroke="#25231D" strokeWidth="0.5" />
+          <rect x="345" y="210" width="20" height="18" fill="#F7F4EC" stroke="#25231D" strokeWidth="0.5" />
           <text x="355" y="222" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#25231D">WAIT</text>
-          <rect x="275" y="280" width="20" height="18" fill="#FAF7F1" stroke="#25231D" strokeWidth="0.5" />
+          <rect x="275" y="280" width="20" height="18" fill="#F7F4EC" stroke="#25231D" strokeWidth="0.5" />
           <text x="285" y="292" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#25231D">GO</text>
         </g>
 
-        <line x1="260" y1="90" x2="260" y2="310" stroke="#F5F2EC" strokeWidth="0.6" strokeDasharray="3 3" />
+        <line x1="260" y1="90" x2="260" y2="310" stroke="#EFE8DA" strokeWidth="0.6" strokeDasharray="3 3" />
 
         <text x="150" y="340" fontFamily="var(--font-mono)" fontSize="9" fill="#8A8170" letterSpacing="1">RAW</text>
         <text x="370" y="340" fontFamily="var(--font-mono)" fontSize="9" fill="#8A8170" letterSpacing="1" textAnchor="end">
           ASSISTED
         </text>
 
-        <text x="30" y="382" fontFamily="var(--font-display)" fontStyle="italic" fontSize="22" fill="#F5F2EC">
+        <text x="30" y="382" fontFamily="var(--font-display)" fontStyle="italic" fontSize="22" fill="#EFE8DA">
           3.1s avg. recognition
         </text>
       </svg>
@@ -196,7 +196,7 @@ export function VizAI() {
         <line x1="30" y1="160" x2="490" y2="160" stroke="#7A2D1C" strokeWidth="0.4" opacity="0.3" />
 
         <g transform="translate(30, 240)">
-          <rect x="0" y="0" width="460" height="110" fill="#FAF7F1" stroke="#E89678" strokeWidth="1" rx="4" />
+          <rect x="0" y="0" width="460" height="110" fill="#F7F4EC" stroke="#E89678" strokeWidth="1" rx="4" />
           <text x="16" y="28" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#7A2D1C">
             REAL-TIME FEEDBACK
           </text>
@@ -232,7 +232,7 @@ export function VizCircles() {
   return (
     <div className="viz viz-circles">
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
-        <text x="30" y="30" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#5E5749">
+        <text x="30" y="30" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#756D61">
           CONNECT CIRCLES · CO-DESIGN WS2 · STICKY CLUSTERS
         </text>
 
@@ -244,7 +244,7 @@ export function VizCircles() {
         </g>
         <g>
           <ellipse cx="350" cy="200" rx="120" ry="110" fill="none" stroke="#8B7355" strokeWidth="1" strokeDasharray="4 3" />
-          <text x="350" y="100" fontFamily="var(--font-display)" fontStyle="italic" fontSize="18" textAnchor="middle" fill="#5E5749">
+          <text x="350" y="100" fontFamily="var(--font-display)" fontStyle="italic" fontSize="18" textAnchor="middle" fill="#756D61">
             shared identity
           </text>
         </g>
@@ -256,8 +256,8 @@ export function VizCircles() {
               y="-12"
               width={s.big ? 64 : 56}
               height="22"
-              fill={s.big ? "#FBEFE9" : "#F5F2EC"}
-              stroke={s.big ? "#E89678" : "#D9D2C3"}
+              fill={s.big ? "#FBEFE9" : "#EFE8DA"}
+              stroke={s.big ? "#E89678" : "#D6CDBC"}
               strokeWidth="0.8"
               rx="1"
             />

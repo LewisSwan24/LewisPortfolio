@@ -6,12 +6,17 @@ import { FollowThroughContactContext } from "@/components/hiring/FollowThroughCo
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
+import { siteConfig } from "@/lib/site";
 import {
   getHiringConversion,
   getHiringRoleFits,
   getRoleFit,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
+
+function readableUrl(url: string) {
+  return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
@@ -36,7 +41,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const locale = await getLocale();
   const isZh = locale === "zh";
   const query = await searchParams;
-  const email = t("contact.email");
+  const email = siteConfig.author.email;
+  const linkedin = siteConfig.social.linkedin;
+  const github = siteConfig.social.github;
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const roleFit = getRoleFit(proofLocale);
   const hiringRoleFits = getHiringRoleFits(proofLocale);
@@ -46,21 +53,54 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   return (
     <main className="page" data-screen-label="06 Contact">
       <section className="container contact-hero">
-        <div className="label">{t("contact.kicker")}</div>
-        <h1 className="h-display h1" style={{ marginTop: 16 }}>
-          {isZh ? (
-            <>
-              最短的路径，<em>就是直接那一条。</em>
-            </>
-          ) : (
-            <>
-              The shortest path is the <em>direct</em> one.
-            </>
-          )}
-        </h1>
-        <p className="prose" style={{ marginTop: 32 }}>
-          {t("contact.body")}
-        </p>
+        <div className="contact-hero-copy">
+          <div className="label">{t("contact.kicker")}</div>
+          <h1 className="h-display h1">
+            {isZh ? (
+              <>
+                一起做点<em>讲得通的事。</em>
+              </>
+            ) : (
+              <>
+                Let&apos;s build something that makes <em>sense.</em>
+              </>
+            )}
+          </h1>
+          <p className="prose">
+            {isZh
+              ? "把岗位、问题，或你想让我准备的问题发来。我会带着最相关的案例和判断回复。"
+              : "Send the role, the problem, or the question you want me to prepare for. I will reply with the most relevant case and a clear next step."}
+          </p>
+          <ul className="contact-method-list" aria-label={isZh ? "联系方式" : "Contact methods"}>
+            <li>
+              <span aria-hidden="true">@</span>
+              <a href={`mailto:${email}`}>{email}</a>
+            </li>
+            <li>
+              <span aria-hidden="true">in</span>
+              <a href={linkedin} target="_blank" rel="noopener noreferrer">
+                {readableUrl(linkedin)}
+              </a>
+            </li>
+            <li>
+              <span aria-hidden="true">gh</span>
+              <a href={github} target="_blank" rel="noopener noreferrer">
+                {readableUrl(github)}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <aside className="contact-note-card" aria-label={isZh ? "最佳联系方式" : "Best way to reach me"}>
+          <div className="contact-note-label">
+            {isZh ? "最好这样联系我" : "Best way to reach me"}
+          </div>
+          <p>
+            {isZh
+              ? "告诉我你想解决的问题，我会带着一条清楚的证据路径回复。"
+              : "Tell me the problem you are trying to solve, and I will reply with a useful evidence path."}
+          </p>
+          <span>{isZh ? "具体一点 → 回复更快" : "specificity → speed"}</span>
+        </aside>
 
         <ContactRoleContext role={query?.role} locale={proofLocale} />
         <FollowThroughContactContext
@@ -69,90 +109,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           locale={proofLocale}
           labels={proofLabels}
         />
-
-        <div className="contact-card">
-          <div>
-            <div className="label" style={{ marginBottom: 24 }}>
-              Email
-            </div>
-            <a className="contact-big-link" href={`mailto:${email}`}>
-              {email}
-            </a>
-            <div style={{ marginTop: 32 }}>
-              <div className="label" style={{ marginBottom: 16 }}>
-                {isZh ? "别处" : "Elsewhere"}
-              </div>
-              <ul
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  display: "grid",
-                  gap: 10,
-                  fontFamily: "var(--font-ui)",
-                  fontSize: 15,
-                }}
-              >
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/lewis-dong"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      color: "var(--text)",
-                      textDecoration: "none",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    LinkedIn · lewis-dong
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://read.cv/lewisdong"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      color: "var(--text)",
-                      textDecoration: "none",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    Read.cv · lewisdong
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://calendly.com/lewisdong"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      color: "var(--text)",
-                      textDecoration: "none",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    {t("contact.cal")} · calendly.com/lewisdong
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="contact-fit">
-            <h4 className="ok">{t("contact.fit.label")}</h4>
-            <ul>
-              <li>{t("contact.fit.1")}</li>
-              <li>{t("contact.fit.2")}</li>
-              <li>{t("contact.fit.3")}</li>
-            </ul>
-            <h4 className="no">{t("contact.notfit.label")}</h4>
-            <ul>
-              <li>{t("contact.notfit.1")}</li>
-              <li>{t("contact.notfit.2")}</li>
-              <li>{t("contact.notfit.3")}</li>
-            </ul>
-          </div>
-        </div>
 
         <section className="contact-use" aria-labelledby="contact-use-title">
           <div>
