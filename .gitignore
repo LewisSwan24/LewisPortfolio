@@ -55,6 +55,7 @@ _bmad-output/
 # Agent workflows & Superpowers
 .agent/
 .claude/
+.worktrees/
 
 # ChatDev (external tool reference)
 ChatDev/
