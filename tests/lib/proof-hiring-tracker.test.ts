@@ -114,7 +114,7 @@ describe("hiring follow-up tracker", () => {
   it("keeps Chinese tracker content structurally aligned", () => {
     const pack = getHiringFollowUpTracker("zh");
 
-    expect(pack.hero.headline).toContain("Follow-up");
+    expect(pack.hero.headline).toContain("跟进");
     expect(pack.roles).toHaveLength(4);
     expect(pack.summary).toHaveLength(4);
     expect(pack.stages).toHaveLength(5);

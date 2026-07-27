@@ -7,27 +7,29 @@ import type {
   HiringActionBoardSummaryItem,
 } from "@/lib/proof";
 import { HiringRouteShelf } from "./HiringRouteShelf";
+import { getHiringViewCopy } from "./hiringViewCopy";
 
 interface HiringActionViewProps {
   pack: HiringActionBoardPack;
 }
 
+type HiringViewCopy = ReturnType<typeof getHiringViewCopy>;
+
 function HiringActionSummary({
   summary,
+  copy,
 }: {
   summary: HiringActionBoardSummaryItem[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section className="hiring-action-section" aria-labelledby="hiring-action-summary-title">
       <div className="hiring-action-section-head">
         <div>
-          <div className="label">Action frame</div>
-          <h2 id="hiring-action-summary-title">Action summary</h2>
+          <div className="label">{copy.action.summaryEyebrow}</div>
+          <h2 id="hiring-action-summary-title">{copy.action.summaryTitle}</h2>
         </div>
-        <p>
-          Use this board after readiness is known and the hiring reader needs
-          the owner, route, proof anchor, and fallback for the next move.
-        </p>
+        <p>{copy.action.summaryIntro}</p>
       </div>
       <div className="hiring-action-summary-grid">
         {summary.map((item) => (
@@ -42,7 +44,13 @@ function HiringActionSummary({
   );
 }
 
-function HiringActionSequence({ sequence }: { sequence: HiringActionBoardStep[] }) {
+function HiringActionSequence({
+  sequence,
+  copy,
+}: {
+  sequence: HiringActionBoardStep[];
+  copy: HiringViewCopy;
+}) {
   return (
     <section
       className="hiring-action-section"
@@ -51,13 +59,10 @@ function HiringActionSequence({ sequence }: { sequence: HiringActionBoardStep[] 
     >
       <div className="hiring-action-section-head">
         <div>
-          <div className="label">Action sequence</div>
-          <h2 id="hiring-action-sequence-title">Action sequence</h2>
+          <div className="label">{copy.action.sequenceEyebrow}</div>
+          <h2 id="hiring-action-sequence-title">{copy.action.sequenceTitle}</h2>
         </div>
-        <p>
-          Each action names an owner, first move, proof focus, success signal,
-          and route so the hiring reader can keep momentum without guessing.
-        </p>
+        <p>{copy.action.sequenceIntro}</p>
       </div>
       <div className="hiring-action-step-grid">
         {sequence.map((step) => (
@@ -66,19 +71,19 @@ function HiringActionSequence({ sequence }: { sequence: HiringActionBoardStep[] 
             <h3>{step.title}</h3>
             <dl>
               <div>
-                <dt>Owner</dt>
+                <dt>{copy.action.actionOwner}</dt>
                 <dd>{step.owner}</dd>
               </div>
               <div>
-                <dt>Action</dt>
+                <dt>{copy.action.firstAction}</dt>
                 <dd>{step.action}</dd>
               </div>
               <div>
-                <dt>Proof focus</dt>
+                <dt>{copy.action.proofFocus}</dt>
                 <dd>{step.proofFocus}</dd>
               </div>
               <div>
-                <dt>Success signal</dt>
+                <dt>{copy.action.successSignal}</dt>
                 <dd>{step.successSignal}</dd>
               </div>
             </dl>
@@ -92,80 +97,86 @@ function HiringActionSequence({ sequence }: { sequence: HiringActionBoardStep[] 
   );
 }
 
-function HiringActionRoleCard({ role }: { role: HiringActionBoardRole }) {
+function HiringActionRoleCard({
+  role,
+  copy,
+}: {
+  role: HiringActionBoardRole;
+  copy: HiringViewCopy;
+}) {
   return (
     <article className="hiring-action-role">
       <div className="hiring-action-role-head">
         <small>{role.id}</small>
         <h3>{role.label}</h3>
         <p>{role.actionState}</p>
-        <strong>{role.readinessScore}</strong>
+        <strong>{copy.readinessStatus(role.readinessScore)}</strong>
       </div>
 
       <div className="hiring-action-proof">
-        <div className="label">Proof for action</div>
+        <div className="label">{copy.action.proofForAction}</div>
         <h4>{role.proof.claim}</h4>
         <p>{role.proof.evidence}</p>
-        <Link href={role.proof.href}>Inspect proof anchor</Link>
+        <Link href={role.proof.href}>{copy.inspectProofAnchor}</Link>
       </div>
 
       <div className="hiring-action-owner">
-        <strong>Action owner</strong>
+        <strong>{copy.action.actionOwner}</strong>
         <p>{role.actionOwner}</p>
       </div>
 
       <div className="hiring-action-first">
-        <strong>First action</strong>
+        <strong>{copy.action.firstAction}</strong>
         <p>{role.firstAction}</p>
       </div>
 
       <div className="hiring-action-open">
-        <strong>Proof to open</strong>
+        <strong>{copy.action.proofToOpen}</strong>
         <p>{role.proofToOpen}</p>
       </div>
 
       <div className="hiring-action-route">
-        <strong>Route to open</strong>
+        <strong>{copy.action.routeToOpen}</strong>
         <p>{role.routeToOpen}</p>
       </div>
 
       <div className="hiring-action-recruiter">
-        <strong>Recruiter action</strong>
+        <strong>{copy.action.recruiterAction}</strong>
         <p>{role.recruiterAction}</p>
       </div>
 
       <div className="hiring-action-manager">
-        <strong>Manager action</strong>
+        <strong>{copy.action.managerAction}</strong>
         <p>{role.managerAction}</p>
       </div>
 
       <div className="hiring-action-panel">
-        <strong>Panel action</strong>
+        <strong>{copy.action.panelAction}</strong>
         <p>{role.panelAction}</p>
       </div>
 
       <div className="hiring-action-onboarding">
-        <strong>Onboarding action</strong>
+        <strong>{copy.action.onboardingAction}</strong>
         <p>{role.onboardingAction}</p>
       </div>
 
       <div className="hiring-action-fallback">
-        <strong>Fallback action</strong>
+        <strong>{copy.action.fallbackAction}</strong>
         <p>{role.fallbackAction}</p>
       </div>
 
       <div className="hiring-action-success">
-        <strong>Success signal</strong>
+        <strong>{copy.action.successSignal}</strong>
         <p>{role.successSignal}</p>
       </div>
 
       <div className="hiring-action-risk">
-        <strong>Blocking risk</strong>
+        <strong>{copy.action.blockingRisk}</strong>
         <p>{role.blockingRisk}</p>
       </div>
 
       <div className="hiring-action-next">
-        <strong>Next action</strong>
+        <strong>{copy.nextAction}</strong>
         <p>{role.nextAction}</p>
       </div>
 
@@ -175,38 +186,44 @@ function HiringActionRoleCard({ role }: { role: HiringActionBoardRole }) {
           href={role.roleRoute}
           aria-label={`Open ${role.id} role room`}
         >
-          Role
+          {copy.role}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.packetRoute}
           aria-label={`Open ${role.id} packet`}
         >
-          Packet
+          {copy.packet}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.followThroughRoute}
           aria-label={`Open ${role.id} follow-through`}
         >
-          Follow-through
+          {copy.followThrough}
         </Link>
         <Link className="btn btn-ghost" href={role.routeToOpen}>
-          Recommended route
+          {copy.recommendedRoute}
         </Link>
         <Link
           className="btn btn-primary"
           href={role.contactRoute}
           aria-label={`Contact ${role.id} action`}
         >
-          Contact
+          {copy.contact}
         </Link>
       </div>
     </article>
   );
 }
 
-function HiringActionRoles({ roles }: { roles: HiringActionBoardRole[] }) {
+function HiringActionRoles({
+  roles,
+  copy,
+}: {
+  roles: HiringActionBoardRole[];
+  copy: HiringViewCopy;
+}) {
   return (
     <section
       className="hiring-action-section"
@@ -215,17 +232,14 @@ function HiringActionRoles({ roles }: { roles: HiringActionBoardRole[] }) {
     >
       <div className="hiring-action-section-head">
         <div>
-          <div className="label">Role lanes</div>
-          <h2 id="hiring-action-roles-title">Role action lanes</h2>
+          <div className="label">{copy.action.rolesEyebrow}</div>
+          <h2 id="hiring-action-roles-title">{copy.action.rolesTitle}</h2>
         </div>
-        <p>
-          Each lane turns readiness into owner, first action, proof to open,
-          route to open, success signal, blocking risk, and fallback.
-        </p>
+        <p>{copy.action.rolesIntro}</p>
       </div>
       <div className="hiring-action-role-grid">
         {roles.map((role) => (
-          <HiringActionRoleCard role={role} key={role.id} />
+          <HiringActionRoleCard copy={copy} role={role} key={role.id} />
         ))}
       </div>
     </section>
@@ -234,8 +248,10 @@ function HiringActionRoles({ roles }: { roles: HiringActionBoardRole[] }) {
 
 function HiringActionArtifacts({
   artifacts,
+  copy,
 }: {
   artifacts: HiringActionBoardArtifact[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section
@@ -244,13 +260,10 @@ function HiringActionArtifacts({
     >
       <div className="hiring-action-section-head">
         <div>
-          <div className="label">Reusable actions</div>
-          <h2 id="hiring-action-artifacts-title">Action artifacts</h2>
+          <div className="label">{copy.action.artifactsEyebrow}</div>
+          <h2 id="hiring-action-artifacts-title">{copy.action.artifactsTitle}</h2>
         </div>
-        <p>
-          These artifacts package role action, proof anchor, and owner into
-          short notes for recruiter, manager, panel, and onboarding handoff.
-        </p>
+        <p>{copy.action.artifactsIntro}</p>
       </div>
       <div className="hiring-action-artifact-grid">
         {artifacts.map((artifact) => (
@@ -274,6 +287,8 @@ function HiringActionArtifacts({
 }
 
 export function HiringActionView({ pack }: HiringActionViewProps) {
+  const copy = getHiringViewCopy(pack.locale);
+
   return (
     <article className="hiring-action-board container" aria-labelledby="hiring-action-title">
       <header className="hiring-action-hero">
@@ -289,28 +304,28 @@ export function HiringActionView({ pack }: HiringActionViewProps) {
               {pack.hero.secondaryAction.label}
             </Link>
             <Link className="btn btn-ghost" href="/hire/tracker">
-              Hiring tracker
+              {copy.routeLabel("/hire/tracker", "Hiring tracker")}
             </Link>
             <Link className="btn btn-ghost" href={pack.briefingRoute}>
-              Hiring briefing
+              {copy.routeLabel(pack.briefingRoute, "Hiring briefing")}
             </Link>
           </div>
         </div>
-        <ul className="hiring-action-role-summary" aria-label="Hiring action role summary">
+        <ul className="hiring-action-role-summary" aria-label={copy.roleSummary}>
           {pack.roles.map((role) => (
             <li key={role.id}>
               <span>{role.label}</span>
-              <strong>{role.readinessScore}</strong>
-              <span>Proof ready</span>
+              <strong>{copy.readinessStatus(role.readinessScore)}</strong>
+              <span>{copy.proofReady}</span>
             </li>
           ))}
         </ul>
       </header>
 
-      <HiringActionSummary summary={pack.summary} />
-      <HiringActionSequence sequence={pack.sequence} />
-      <HiringActionRoles roles={pack.roles} />
-      <HiringActionArtifacts artifacts={pack.artifacts} />
+      <HiringActionSummary copy={copy} summary={pack.summary} />
+      <HiringActionSequence copy={copy} sequence={pack.sequence} />
+      <HiringActionRoles copy={copy} roles={pack.roles} />
+      <HiringActionArtifacts artifacts={pack.artifacts} copy={copy} />
       <HiringRouteShelf
         links={[
           { label: "Hiring tracker", href: "/hire/tracker" },
@@ -336,7 +351,7 @@ export function HiringActionView({ pack }: HiringActionViewProps) {
 
       <section className="hiring-action-close" aria-labelledby="hiring-action-close-title">
         <div>
-          <div className="label">Next action</div>
+          <div className="label">{copy.nextAction}</div>
           <h2 id="hiring-action-close-title">{pack.close.title}</h2>
           <p>{pack.close.body}</p>
         </div>

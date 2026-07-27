@@ -8,8 +8,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "Growth Roadmap Pack | Lewis Dong"
-      : "Growth Roadmap Pack | Interview Lewis";
+      ? "Growth Roadmap Pack"
+      : "Growth Roadmap Pack";
   const description =
     "A 90-day growth roadmap pack for extending Lewis Dong's proof anchor, first-month impact, team leverage, capability transfer, operating rhythm, risk watch, and next review.";
   const path = "/hire/growth";

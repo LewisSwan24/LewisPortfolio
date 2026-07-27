@@ -89,7 +89,7 @@ describe("hiring briefing room", () => {
   it("keeps Chinese briefing content structurally aligned", () => {
     const pack = getHiringBriefingRoom("zh");
 
-    expect(pack.hero.headline).toContain("Briefing");
+    expect(pack.hero.headline).toContain("简报");
     expect(pack.roles).toHaveLength(4);
     expect(pack.summary).toHaveLength(4);
     expect(pack.stakeholders).toHaveLength(5);

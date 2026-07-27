@@ -170,235 +170,318 @@ const actionCopy = {
   },
   zh: {
     hero: {
-      eyebrow: "Stage 39 hiring action",
-      headline: "面向 proof-backed next steps 的 Hiring Action Board。",
+      eyebrow: "第 39 阶段 · 招聘行动板",
+      headline: "把证据和准备度转成下一步行动。",
       subhead:
-        "一个 action board，把 readiness score 转成 recruiter、manager、interview、onboarding 和 proof-review 的下一步动作。",
+        "一个行动板，把准备度评分转成招聘方、经理、面试小组、入职伙伴和证据评审的下一步动作。",
       primaryAction: { label: "联系 Lewis", href: "/contact" },
-      secondaryAction: { label: "Hiring readiness", href: "/hire/readiness" },
+      secondaryAction: { label: "准备度检查", href: "/hire/readiness" },
     },
     summary: [
       {
         id: "action-routes",
-        label: "Action routes",
+        label: "行动路径",
         value: "18",
         detail:
-          "这个 board 把 action、readiness、briefing、command 和所有 shared hiring proof route 放进同一条 workflow。",
+          "这个页面把行动、准备度、简报、控制台和招聘证据路径放进同一套工作流。",
       },
       {
         id: "role-actions",
-        label: "Role actions",
+        label: "岗位动作",
         value: "4",
         detail:
-          "每条 role lane 都命名 owner、first action、proof anchor、route、fallback 和 success signal。",
+          "每条岗位路径都明确负责人、第一步行动、证据锚点、打开路径、备选动作和成功信号。",
       },
       {
         id: "action-owners",
-        label: "Owner types",
+        label: "负责人类型",
         value: "5",
         detail:
-          "Recruiter、hiring manager、interview panel、onboarding partner 和 proof reviewer 都有具体 next move。",
+          "招聘方、招聘经理、面试小组、入职伙伴和证据评审人都有具体下一步。",
       },
       {
         id: "release-proof",
-        label: "Release proof",
-        value: "Tracked",
+        label: "发布证据",
+        value: "已追踪",
         detail:
-          "Action lanes 会进入 proof maintenance、validation、handoff export、release bundle 和 browser route sweep。",
+          "行动路径会纳入证据维护、验证、交接导出、发布包和浏览器路径巡检。",
       },
     ],
     sequence: [
       {
         id: "recruiter-outreach",
-        label: "Action 01",
-        title: "Recruiter outreach",
-        owner: "Recruiter",
-        action: "打开 role lane，检查 proof anchor，并带着 role context 联系 Lewis。",
-        proofFocus: "Role-specific proof claim、evidence 和 boundary。",
-        successSignal: "第一条 message 明确 role、proof anchor 和要解决的问题。",
+        label: "行动 01",
+        title: "招聘方首次沟通",
+        owner: "招聘方",
+        action: "打开岗位路径，检查证据锚点，并带着岗位背景联系 Lewis。",
+        proofFocus: "岗位对应的证据主张、证据内容和边界。",
+        successSignal: "第一条消息明确岗位、证据锚点和要解决的问题。",
         route: "/hire/action",
-        actionLabel: "Open action board",
+        actionLabel: "打开行动板",
       },
       {
         id: "manager-validation",
-        label: "Action 02",
-        title: "Manager validation",
-        owner: "Hiring manager",
-        action: "打开 recommended route，判断 validation gap 是否可以接受。",
-        proofFocus: "Readiness score、decision gate 和 route to open。",
-        successSignal: "Manager 不必重读所有 surface，也能说 ready、validate 或 monitor。",
+        label: "行动 02",
+        title: "经理验证",
+        owner: "招聘经理",
+        action: "打开推荐路径，判断剩余验证缺口是否可以接受。",
+        proofFocus: "准备度评分、决策门槛和应打开的路径。",
+        successSignal: "经理不必重读所有页面，也能判断通过、继续验证或观察。",
         route: "/hire/readiness",
-        actionLabel: "Open readiness gate",
+        actionLabel: "打开准备度检查",
       },
       {
         id: "panel-prompt",
-        label: "Action 03",
-        title: "Interview panel prompt",
-        owner: "Interview panel",
-        action: "用 role question 形成第一轮 interview prompt 和 evidence follow-up。",
-        proofFocus: "Interview note、proof boundary 和 follow-through route。",
-        successSignal: "Interview 测试真实不确定性，而不是重复讲项目。",
+        label: "行动 03",
+        title: "面试小组提示",
+        owner: "面试小组",
+        action: "用岗位问题形成第一轮面试提示和证据追问。",
+        proofFocus: "面试记录、证据边界和后续跟进路径。",
+        successSignal: "面试验证真实不确定性，而不是重复讲项目。",
         route: "/hire/interview",
-        actionLabel: "Open interview agenda",
+        actionLabel: "打开面试议程",
       },
       {
         id: "onboarding-handoff",
-        label: "Action 04",
-        title: "Onboarding handoff",
-        owner: "Onboarding partner",
-        action: "把 readiness score 转成 first-week expectation 和 support boundary。",
-        proofFocus: "Onboarding note、partnership route 和 first-week action。",
-        successSignal: "First project 有明确 support owner 和 proof-linked expectation。",
+        label: "行动 04",
+        title: "入职交接",
+        owner: "入职伙伴",
+        action: "把准备度评分转成第一周预期和支持边界。",
+        proofFocus: "入职记录、协作路径和第一周行动。",
+        successSignal: "第一个项目有明确支持负责人和证据关联预期。",
         route: "/hire/onboarding",
-        actionLabel: "Open onboarding plan",
+        actionLabel: "打开入职计划",
       },
       {
         id: "proof-review-fallback",
-        label: "Action 05",
-        title: "Proof review fallback",
-        owner: "Proof reviewer",
-        action: "如果 lane 被卡住，先打开 proof review，检查 anchor，再推进。",
-        proofFocus: "Anchor freshness、boundary clarity 和 fallback route。",
-        successSignal: "Blocked lane 只有一个 proof issue 要解决，而不是 vague concern。",
+        label: "行动 05",
+        title: "证据评审备选路径",
+        owner: "证据评审人",
+        action: "如果路径被卡住，先打开证据评审，检查证据锚点，再继续推进。",
+        proofFocus: "证据新鲜度、边界清晰度和备选路径。",
+        successSignal: "被卡住的路径只有一个明确证据问题，而不是泛泛的担心。",
         route: "/hire/review",
-        actionLabel: "Open proof review",
+        actionLabel: "打开证据评审",
       },
     ],
     artifacts: [
       {
         id: "outreach-note",
-        label: "Artifact 01",
-        title: "Recruiter outreach note",
+        label: "材料 01",
+        title: "招聘方沟通记录",
         body:
-          "一条简短 contact note，命名 role context、proof anchor 和 first question。",
+          "一条简短联系记录，说明岗位背景、证据锚点和第一轮要解决的问题。",
         route: "/hire/action",
-        actionLabel: "Open outreach note",
-        proofLabel: "Outreach proof",
+        actionLabel: "打开沟通记录",
+        proofLabel: "沟通证据",
       },
       {
         id: "manager-action-note",
-        label: "Artifact 02",
-        title: "Manager action note",
+        label: "材料 02",
+        title: "经理行动记录",
         body:
-          "面向 manager 的 note，把 readiness state 转成 route、validation gap 和 decision。",
+          "面向经理的记录，把准备度状态转成打开路径、验证缺口和决策。",
         route: "/hire/readiness",
-        actionLabel: "Open manager note",
-        proofLabel: "Manager proof",
+        actionLabel: "打开经理记录",
+        proofLabel: "经理证据",
       },
       {
         id: "panel-prompt-note",
-        label: "Artifact 03",
-        title: "Panel prompt note",
+        label: "材料 03",
+        title: "面试小组提示记录",
         body:
-          "面向 panel 的 note，把 proof boundary 转成 focused interview prompt。",
+          "面向面试小组的记录，把证据边界转成聚焦的面试提示。",
         route: "/hire/interview",
-        actionLabel: "Open panel route",
-        proofLabel: "Panel proof",
+        actionLabel: "打开面试路径",
+        proofLabel: "面试证据",
       },
       {
         id: "handoff-note",
-        label: "Artifact 04",
-        title: "Onboarding action note",
+        label: "材料 04",
+        title: "入职行动记录",
         body:
-          "一条 handoff note，把 readiness score 连接到 first-week expectation 和 support owner。",
+          "一条交接记录，把准备度评分连接到第一周预期和支持负责人。",
         route: "/hire/onboarding",
-        actionLabel: "Open handoff route",
-        proofLabel: "Handoff proof",
+        actionLabel: "打开交接路径",
+        proofLabel: "交接证据",
       },
     ],
-    statePrefix: "Action state",
-    ownerPrefix: "Action owner",
-    firstPrefix: "First action",
-    proofPrefix: "Proof to open",
-    recruiterPrefix: "Recruiter action",
-    managerPrefix: "Manager action",
-    panelPrefix: "Panel action",
-    onboardingPrefix: "Onboarding action",
-    fallbackPrefix: "Fallback action",
-    signalPrefix: "Success signal",
-    riskPrefix: "Blocking risk",
-    nextPrefix: "Next action",
+    statePrefix: "行动状态",
+    ownerPrefix: "行动负责人",
+    firstPrefix: "第一步行动",
+    proofPrefix: "要打开的证据",
+    recruiterPrefix: "招聘方动作",
+    managerPrefix: "经理动作",
+    panelPrefix: "面试小组动作",
+    onboardingPrefix: "入职动作",
+    fallbackPrefix: "备选动作",
+    signalPrefix: "成功信号",
+    riskPrefix: "阻塞风险",
+    nextPrefix: "下一步行动",
     close: {
-      title: "当 readiness 需要一个具体 next move 时，使用 action board。",
+      title: "准备度需要具体下一步时，使用行动板。",
       body:
-        "选择 role lane，确认 owner，打开 route；如果 proof question 仍然 blocked，就使用 fallback。",
+        "选择岗位路径，确认负责人，打开对应页面；如果证据问题仍被卡住，就使用备选动作。",
       primaryAction: { label: "联系 Lewis", href: "/contact" },
-      secondaryAction: { label: "Hiring readiness", href: "/hire/readiness" },
+      secondaryAction: { label: "准备度检查", href: "/hire/readiness" },
     },
   },
 } as const;
 
-const routeLabels: Record<HiringActionBoardSharedRoute, string> = {
-  "/hire/action": "action board",
-  "/hire/readiness": "readiness gate",
-  "/hire/briefing": "briefing room",
-  "/hire/command": "command center",
-  "/hire/partnership": "partnership operating pack",
-  "/hire/retention": "retention readiness pack",
-  "/hire/growth": "growth roadmap",
-  "/hire/impact": "impact review",
-  "/hire/kickoff": "kickoff plan",
-  "/hire/onboarding": "onboarding plan",
-  "/hire/offer": "offer readiness pack",
-  "/hire/decision": "decision pack",
-  "/hire/debrief": "manager debrief",
-  "/hire/shortlist": "shortlist memo",
-  "/hire/scorecard": "hiring scorecard",
-  "/hire/interview": "interview agenda",
-  "/hire/compare": "role comparison",
-  "/hire/review": "proof review",
+const routeLabels: Record<ProofLocale, Record<HiringActionBoardSharedRoute, string>> = {
+  en: {
+    "/hire/action": "action board",
+    "/hire/readiness": "readiness gate",
+    "/hire/briefing": "briefing room",
+    "/hire/command": "command center",
+    "/hire/partnership": "partnership operating pack",
+    "/hire/retention": "retention readiness pack",
+    "/hire/growth": "growth roadmap",
+    "/hire/impact": "impact review",
+    "/hire/kickoff": "kickoff plan",
+    "/hire/onboarding": "onboarding plan",
+    "/hire/offer": "offer readiness pack",
+    "/hire/decision": "decision pack",
+    "/hire/debrief": "manager debrief",
+    "/hire/shortlist": "shortlist memo",
+    "/hire/scorecard": "hiring scorecard",
+    "/hire/interview": "interview agenda",
+    "/hire/compare": "role comparison",
+    "/hire/review": "proof review",
+  },
+  zh: {
+    "/hire/action": "行动板",
+    "/hire/readiness": "准备度检查",
+    "/hire/briefing": "招聘简报",
+    "/hire/command": "招聘控制台",
+    "/hire/partnership": "协作运行包",
+    "/hire/retention": "留任准备包",
+    "/hire/growth": "成长路线图",
+    "/hire/impact": "影响复盘",
+    "/hire/kickoff": "启动计划",
+    "/hire/onboarding": "入职计划",
+    "/hire/offer": "Offer 准备包",
+    "/hire/decision": "决策包",
+    "/hire/debrief": "经理复盘",
+    "/hire/shortlist": "候选摘要",
+    "/hire/scorecard": "招聘评分板",
+    "/hire/interview": "面试议程",
+    "/hire/compare": "岗位比较",
+    "/hire/review": "证据评审",
+  },
 };
 
-function actionState(score: HiringReadinessScore, route: HiringActionBoardSharedRoute): string {
+function readinessLabel(locale: ProofLocale, score: HiringReadinessScore): string {
+  if (locale === "zh") {
+    if (score === "Ready") return "可推进";
+    if (score === "Validate") return "需验证";
+    return "继续观察";
+  }
+
+  return score;
+}
+
+function actionState(
+  score: HiringReadinessScore,
+  route: HiringActionBoardSharedRoute,
+  locale: ProofLocale
+): string {
+  const routeName = routeLabels[locale][route];
+
   if (score === "Ready") {
-    return `Ready to open the ${routeLabels[route]} with a proof-backed owner and first action.`;
+    return locale === "zh"
+      ? `可以打开${routeName}，并带着证据、负责人和第一步行动推进。`
+      : `Ready to open the ${routeName} with a proof-backed owner and first action.`;
   }
 
   if (score === "Validate") {
-    return `Validate the remaining question in the ${routeLabels[route]} before advancing.`;
+    return locale === "zh"
+      ? `推进前先在${routeName}里验证剩余问题。`
+      : `Validate the remaining question in the ${routeName} before advancing.`;
   }
 
-  return `Monitor the lane in the ${routeLabels[route]} until the proof boundary is clearer.`;
+  return locale === "zh"
+    ? `先在${routeName}里观察这条路径，直到证据边界更清楚。`
+    : `Monitor the lane in the ${routeName} until the proof boundary is clearer.`;
 }
 
-function ownerFor(score: HiringReadinessScore): string {
+function ownerFor(score: HiringReadinessScore, locale: ProofLocale): string {
+  if (locale === "zh") {
+    if (score === "Ready") return "招聘方和招聘经理";
+    if (score === "Validate") return "招聘经理和面试小组";
+    return "证据评审人和招聘经理";
+  }
+
   if (score === "Ready") return "Recruiter plus hiring manager";
   if (score === "Validate") return "Hiring manager plus interview panel";
   return "Proof reviewer plus hiring manager";
 }
 
-function firstAction(role: HiringReadinessGateRole): string {
+function firstAction(role: HiringReadinessGateRole, locale: ProofLocale): string {
+  const routeName = routeLabels[locale][role.recommendedRoute];
+
   if (role.readinessScore === "Ready") {
-    return `Open the ${routeLabels[role.recommendedRoute]} and contact Lewis with the role context.`;
+    return locale === "zh"
+      ? `打开${routeName}，并带着岗位背景联系 Lewis。`
+      : `Open the ${routeName} and contact Lewis with the role context.`;
   }
 
   if (role.readinessScore === "Validate") {
-    return `Open the ${routeLabels[role.recommendedRoute]} and test the decision gate before outreach.`;
+    return locale === "zh"
+      ? `打开${routeName}，先验证决策门槛，再发出沟通。`
+      : `Open the ${routeName} and test the decision gate before outreach.`;
   }
 
-  return `Open the ${routeLabels[role.recommendedRoute]} and inspect the proof boundary before moving forward.`;
+  return locale === "zh"
+    ? `打开${routeName}，先检查证据边界，再决定是否推进。`
+    : `Open the ${routeName} and inspect the proof boundary before moving forward.`;
 }
 
-function buildActionRole(role: HiringReadinessGateRole): HiringActionBoardRole {
+function buildActionRole(
+  role: HiringReadinessGateRole,
+  locale: ProofLocale
+): HiringActionBoardRole {
   const routeToOpen = role.recommendedRoute;
+  const routeName = routeLabels[locale][routeToOpen];
 
   return {
     id: role.id,
     label: role.label,
     readinessScore: role.readinessScore,
-    actionState: actionState(role.readinessScore, routeToOpen),
-    actionOwner: ownerFor(role.readinessScore),
-    firstAction: firstAction(role),
+    actionState: actionState(role.readinessScore, routeToOpen, locale),
+    actionOwner: ownerFor(role.readinessScore, locale),
+    firstAction: firstAction(role, locale),
     proofToOpen: `${role.proof.claim} ${role.proof.evidence}`,
     routeToOpen,
-    recruiterAction: `Use the proof anchor to write a role-specific outreach note for ${role.label}.`,
-    managerAction: `Use the decision gate to choose ${role.readinessScore}, validation, or fallback for ${role.label}.`,
-    panelAction: `Use the interview note to test the real uncertainty for ${role.label}.`,
-    onboardingAction: `Use the onboarding note to name first-week support for ${role.label}.`,
-    fallbackAction: `If blocked, open proof review and inspect the boundary before contacting Lewis.`,
-    successSignal: `The next message names ${role.label}, the proof anchor, the owner, and the route to open.`,
+    recruiterAction:
+      locale === "zh"
+        ? `用证据锚点为 ${role.label} 写一条岗位定制沟通记录。`
+        : `Use the proof anchor to write a role-specific outreach note for ${role.label}.`,
+    managerAction:
+      locale === "zh"
+        ? `用决策门槛为 ${role.label} 选择${readinessLabel(locale, role.readinessScore)}、继续验证或备选动作。`
+        : `Use the decision gate to choose ${role.readinessScore}, validation, or fallback for ${role.label}.`,
+    panelAction:
+      locale === "zh"
+        ? `用面试记录验证 ${role.label} 的真实不确定性。`
+        : `Use the interview note to test the real uncertainty for ${role.label}.`,
+    onboardingAction:
+      locale === "zh"
+        ? `用入职记录为 ${role.label} 明确第一周支持。`
+        : `Use the onboarding note to name first-week support for ${role.label}.`,
+    fallbackAction:
+      locale === "zh"
+        ? "如果被卡住，先打开证据评审，检查边界后再联系 Lewis。"
+        : "If blocked, open proof review and inspect the boundary before contacting Lewis.",
+    successSignal:
+      locale === "zh"
+        ? `下一条消息明确 ${role.label}、证据锚点、负责人和要打开的${routeName}。`
+        : `The next message names ${role.label}, the proof anchor, the owner, and the route to open.`,
     blockingRisk: role.validationGap,
-    nextAction: `Open the ${routeLabels[routeToOpen]} and resolve the decision gate.`,
+    nextAction:
+      locale === "zh"
+        ? `打开${routeName}，并解决决策门槛。`
+        : `Open the ${routeName} and resolve the decision gate.`,
     proof: {
       claim: role.proof.claim,
       evidence: role.proof.evidence,
@@ -455,7 +538,7 @@ function buildActionArtifacts(
 export function getHiringActionBoard(locale: ProofLocale): HiringActionBoardPack {
   const copy = actionCopy[locale];
   const readiness = getHiringReadinessGate(locale);
-  const roles = readiness.roles.map(buildActionRole);
+  const roles = readiness.roles.map((role) => buildActionRole(role, locale));
 
   return {
     locale,

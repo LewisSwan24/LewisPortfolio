@@ -51,10 +51,10 @@ const scorecardCopy = {
   },
   zh: {
     hero: {
-      eyebrow: "Stage 25 hiring scorecard",
-      headline: "用于 shortlist 决策的招聘评分板。",
+      eyebrow: "第 25 阶段 · 招聘评分卡",
+      headline: "用于候选决策的招聘评分板。",
       subhead:
-        "一个 proof-backed 评分板，用来在第一次沟通后评估岗位匹配，而不是用自动化系统隐藏判断。",
+        "一个有证据支撑的评分板，用来在第一次沟通后评估岗位匹配，而不是用自动化系统隐藏判断。",
       primaryAction: { label: "联系 Lewis", href: "/contact" },
       secondaryAction: { label: "面试议程", href: "/hire/interview" },
     },
@@ -62,12 +62,12 @@ const scorecardCopy = {
       {
         id: "role-fit",
         label: "岗位匹配",
-        question: "当前岗位是否匹配最强的 proof-backed 岗位路径？",
+        question: "当前岗位是否匹配最强的有证据支撑的岗位路径？",
       },
       {
         id: "evidence",
         label: "证据",
-        question: "哪个案例锚点支持 shortlist 决策？",
+        question: "哪个案例锚点支持候选决策？",
       },
       {
         id: "boundary",
@@ -80,13 +80,13 @@ const scorecardCopy = {
         question: "评分后招聘方应该打开哪条下一步路径？",
       },
     ],
-    recommendation: "如果证据锚点匹配岗位问题，并且边界可以接受，就适合进入 shortlist。",
+    recommendation: "如果证据锚点匹配岗位问题，并且边界可以接受，就适合进入候选名单。",
     close: {
       title: "第一次聚焦沟通后使用这个评分板。",
       body:
-        "这个评分板是 decision aid：选择最接近的岗位路径，打开一个证据锚点，再带着剩余验证问题联系 Lewis。",
+        "这个评分板是决策辅助工具：选择最接近的岗位路径，打开一个证据锚点，再带着剩余验证问题联系 Lewis。",
       primaryAction: { label: "联系 Lewis", href: "/contact" },
-      secondaryAction: { label: "打开 proof review", href: "/hire/review" },
+      secondaryAction: { label: "打开证据评审", href: "/hire/review" },
     },
   },
 } as const;

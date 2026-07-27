@@ -7,27 +7,29 @@ import type {
   HiringReadinessGateSummaryItem,
 } from "@/lib/proof";
 import { HiringRouteShelf } from "./HiringRouteShelf";
+import { getHiringViewCopy } from "./hiringViewCopy";
 
 interface HiringReadinessViewProps {
   pack: HiringReadinessGatePack;
 }
 
+type HiringViewCopy = ReturnType<typeof getHiringViewCopy>;
+
 function HiringReadinessSummary({
   summary,
+  copy,
 }: {
   summary: HiringReadinessGateSummaryItem[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section className="hiring-readiness-section" aria-labelledby="hiring-readiness-summary-title">
       <div className="hiring-readiness-section-head">
         <div>
-          <div className="label">Readiness frame</div>
-          <h2 id="hiring-readiness-summary-title">Readiness summary</h2>
+          <div className="label">{copy.readiness.summaryEyebrow}</div>
+          <h2 id="hiring-readiness-summary-title">{copy.readiness.summaryTitle}</h2>
         </div>
-        <p>
-          Use this gate when the proof has been briefed and the hiring reader
-          needs a clear go, validate, or monitor path for a specific role lane.
-        </p>
+        <p>{copy.readiness.summaryIntro}</p>
       </div>
       <div className="hiring-readiness-summary-grid">
         {summary.map((item) => (
@@ -42,7 +44,13 @@ function HiringReadinessSummary({
   );
 }
 
-function HiringReadinessGates({ gates }: { gates: HiringReadinessGateCheck[] }) {
+function HiringReadinessGates({
+  gates,
+  copy,
+}: {
+  gates: HiringReadinessGateCheck[];
+  copy: HiringViewCopy;
+}) {
   return (
     <section
       className="hiring-readiness-section"
@@ -51,13 +59,10 @@ function HiringReadinessGates({ gates }: { gates: HiringReadinessGateCheck[] }) 
     >
       <div className="hiring-readiness-section-head">
         <div>
-          <div className="label">Decision gates</div>
-          <h2 id="hiring-readiness-gates-title">Gate checks</h2>
+          <div className="label">{copy.readiness.gatesEyebrow}</div>
+          <h2 id="hiring-readiness-gates-title">{copy.readiness.gatesTitle}</h2>
         </div>
-        <p>
-          Each check turns a broad positive signal into a concrete pass
-          condition, failure mode, and route to open next.
-        </p>
+        <p>{copy.readiness.gatesIntro}</p>
       </div>
       <div className="hiring-readiness-gate-grid">
         {gates.map((gate) => (
@@ -66,19 +71,19 @@ function HiringReadinessGates({ gates }: { gates: HiringReadinessGateCheck[] }) 
             <h3>{gate.title}</h3>
             <dl>
               <div>
-                <dt>Signal</dt>
+                <dt>{copy.readiness.signal}</dt>
                 <dd>{gate.signal}</dd>
               </div>
               <div>
-                <dt>Pass condition</dt>
+                <dt>{copy.readiness.passCondition}</dt>
                 <dd>{gate.passCondition}</dd>
               </div>
               <div>
-                <dt>Failure mode</dt>
+                <dt>{copy.readiness.failureMode}</dt>
                 <dd>{gate.failureMode}</dd>
               </div>
               <div>
-                <dt>Next route</dt>
+                <dt>{copy.readiness.nextRoute}</dt>
                 <dd>{gate.nextRoute}</dd>
               </div>
             </dl>
@@ -92,60 +97,66 @@ function HiringReadinessGates({ gates }: { gates: HiringReadinessGateCheck[] }) 
   );
 }
 
-function HiringReadinessRoleCard({ role }: { role: HiringReadinessGateRole }) {
+function HiringReadinessRoleCard({
+  role,
+  copy,
+}: {
+  role: HiringReadinessGateRole;
+  copy: HiringViewCopy;
+}) {
   return (
     <article className="hiring-readiness-role">
       <div className="hiring-readiness-role-head">
         <small>{role.id}</small>
         <h3>{role.label}</h3>
         <p>{role.readinessSignal}</p>
-        <strong>{role.readinessScore}</strong>
+        <strong>{copy.readinessStatus(role.readinessScore)}</strong>
       </div>
 
       <div className="hiring-readiness-proof">
-        <div className="label">Proof for readiness</div>
+        <div className="label">{copy.readiness.proofForReadiness}</div>
         <h4>{role.proof.claim}</h4>
         <p>{role.proof.evidence}</p>
-        <Link href={role.proof.href}>Inspect proof anchor</Link>
+        <Link href={role.proof.href}>{copy.inspectProofAnchor}</Link>
       </div>
 
       <div className="hiring-readiness-evidence">
-        <strong>Proven evidence</strong>
+        <strong>{copy.readiness.provenEvidence}</strong>
         <p>{role.provenEvidence}</p>
       </div>
 
       <div className="hiring-readiness-gap">
-        <strong>Validation gap</strong>
+        <strong>{copy.readiness.validationGap}</strong>
         <p>{role.validationGap}</p>
       </div>
 
       <div className="hiring-readiness-owner">
-        <strong>Stakeholder owner</strong>
+        <strong>{copy.readiness.stakeholderOwner}</strong>
         <p>{role.stakeholderOwner}</p>
       </div>
 
       <div className="hiring-readiness-gate-note">
-        <strong>Decision gate</strong>
+        <strong>{copy.readiness.decisionGate}</strong>
         <p>{role.decisionGate}</p>
       </div>
 
       <div className="hiring-readiness-recruiter">
-        <strong>Recruiter note</strong>
+        <strong>{copy.readiness.recruiterNote}</strong>
         <p>{role.recruiterNote}</p>
       </div>
 
       <div className="hiring-readiness-interview">
-        <strong>Interview note</strong>
+        <strong>{copy.readiness.interviewNote}</strong>
         <p>{role.interviewNote}</p>
       </div>
 
       <div className="hiring-readiness-onboarding">
-        <strong>Onboarding note</strong>
+        <strong>{copy.readiness.onboardingNote}</strong>
         <p>{role.onboardingNote}</p>
       </div>
 
       <div className="hiring-readiness-next">
-        <strong>Next readiness action</strong>
+        <strong>{copy.readiness.nextReadinessAction}</strong>
         <p>{role.nextReadinessAction}</p>
       </div>
 
@@ -155,38 +166,44 @@ function HiringReadinessRoleCard({ role }: { role: HiringReadinessGateRole }) {
           href={role.roleRoute}
           aria-label={`Open ${role.id} role room`}
         >
-          Role
+          {copy.role}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.packetRoute}
           aria-label={`Open ${role.id} packet`}
         >
-          Packet
+          {copy.packet}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.followThroughRoute}
           aria-label={`Open ${role.id} follow-through`}
         >
-          Follow-through
+          {copy.followThrough}
         </Link>
         <Link className="btn btn-ghost" href={role.recommendedRoute}>
-          Recommended route
+          {copy.recommendedRoute}
         </Link>
         <Link
           className="btn btn-primary"
           href={role.contactRoute}
           aria-label={`Contact ${role.id} readiness`}
         >
-          Contact
+          {copy.contact}
         </Link>
       </div>
     </article>
   );
 }
 
-function HiringReadinessRoles({ roles }: { roles: HiringReadinessGateRole[] }) {
+function HiringReadinessRoles({
+  roles,
+  copy,
+}: {
+  roles: HiringReadinessGateRole[];
+  copy: HiringViewCopy;
+}) {
   return (
     <section
       className="hiring-readiness-section"
@@ -195,17 +212,14 @@ function HiringReadinessRoles({ roles }: { roles: HiringReadinessGateRole[] }) {
     >
       <div className="hiring-readiness-section-head">
         <div>
-          <div className="label">Role lanes</div>
-          <h2 id="hiring-readiness-roles-title">Role readiness lanes</h2>
+          <div className="label">{copy.readiness.rolesEyebrow}</div>
+          <h2 id="hiring-readiness-roles-title">{copy.readiness.rolesTitle}</h2>
         </div>
-        <p>
-          Each lane names the readiness state, proven evidence, validation gap,
-          owner, decision gate, route, and next action for the hiring reader.
-        </p>
+        <p>{copy.readiness.rolesIntro}</p>
       </div>
       <div className="hiring-readiness-role-grid">
         {roles.map((role) => (
-          <HiringReadinessRoleCard role={role} key={role.id} />
+          <HiringReadinessRoleCard copy={copy} role={role} key={role.id} />
         ))}
       </div>
     </section>
@@ -214,8 +228,10 @@ function HiringReadinessRoles({ roles }: { roles: HiringReadinessGateRole[] }) {
 
 function HiringReadinessArtifacts({
   artifacts,
+  copy,
 }: {
   artifacts: HiringReadinessGateArtifact[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section
@@ -224,13 +240,10 @@ function HiringReadinessArtifacts({
     >
       <div className="hiring-readiness-section-head">
         <div>
-          <div className="label">Reusable decisions</div>
-          <h2 id="hiring-readiness-artifacts-title">Readiness artifacts</h2>
+          <div className="label">{copy.readiness.artifactsEyebrow}</div>
+          <h2 id="hiring-readiness-artifacts-title">{copy.readiness.artifactsTitle}</h2>
         </div>
-        <p>
-          These artifacts package readiness state, route, and proof anchor into
-          short notes for recruiter, manager, and onboarding handoff.
-        </p>
+        <p>{copy.readiness.artifactsIntro}</p>
       </div>
       <div className="hiring-readiness-artifact-grid">
         {artifacts.map((artifact) => (
@@ -254,6 +267,8 @@ function HiringReadinessArtifacts({
 }
 
 export function HiringReadinessView({ pack }: HiringReadinessViewProps) {
+  const copy = getHiringViewCopy(pack.locale);
+
   return (
     <article className="hiring-readiness-board container" aria-labelledby="hiring-readiness-title">
       <header className="hiring-readiness-hero">
@@ -269,28 +284,28 @@ export function HiringReadinessView({ pack }: HiringReadinessViewProps) {
               {pack.hero.secondaryAction.label}
             </Link>
             <Link className="btn btn-ghost" href="/hire/action">
-              Hiring action
+              {copy.routeLabel("/hire/action", "Hiring action")}
             </Link>
             <Link className="btn btn-ghost" href="/hire/tracker">
-              Hiring tracker
+              {copy.routeLabel("/hire/tracker", "Hiring tracker")}
             </Link>
           </div>
         </div>
-        <ul className="hiring-readiness-role-summary" aria-label="Hiring readiness role summary">
+        <ul className="hiring-readiness-role-summary" aria-label={copy.roleSummary}>
           {pack.roles.map((role) => (
             <li key={role.id}>
               <span>{role.label}</span>
-              <strong>{role.readinessScore}</strong>
-              <span>Proof ready</span>
+              <strong>{copy.readinessStatus(role.readinessScore)}</strong>
+              <span>{copy.proofReady}</span>
             </li>
           ))}
         </ul>
       </header>
 
-      <HiringReadinessSummary summary={pack.summary} />
-      <HiringReadinessGates gates={pack.gates} />
-      <HiringReadinessRoles roles={pack.roles} />
-      <HiringReadinessArtifacts artifacts={pack.artifacts} />
+      <HiringReadinessSummary copy={copy} summary={pack.summary} />
+      <HiringReadinessGates copy={copy} gates={pack.gates} />
+      <HiringReadinessRoles copy={copy} roles={pack.roles} />
+      <HiringReadinessArtifacts artifacts={pack.artifacts} copy={copy} />
       <HiringRouteShelf
         links={[
           { label: "Hiring action", href: "/hire/action" },
@@ -316,7 +331,7 @@ export function HiringReadinessView({ pack }: HiringReadinessViewProps) {
 
       <section className="hiring-readiness-close" aria-labelledby="hiring-readiness-close-title">
         <div>
-          <div className="label">Next action</div>
+          <div className="label">{copy.nextAction}</div>
           <h2 id="hiring-readiness-close-title">{pack.close.title}</h2>
           <p>{pack.close.body}</p>
         </div>

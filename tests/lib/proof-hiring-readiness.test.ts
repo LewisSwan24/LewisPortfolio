@@ -114,7 +114,7 @@ describe("hiring readiness gate", () => {
   it("keeps Chinese readiness-gate content structurally aligned", () => {
     const pack = getHiringReadinessGate("zh");
 
-    expect(pack.hero.headline).toContain("Readiness");
+    expect(pack.hero.headline).toContain("判断");
     expect(pack.roles).toHaveLength(4);
     expect(pack.summary).toHaveLength(4);
     expect(pack.gates).toHaveLength(4);

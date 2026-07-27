@@ -7,27 +7,29 @@ import type {
   HiringCommandCenterSummaryItem,
 } from "@/lib/proof";
 import { HiringRouteShelf } from "./HiringRouteShelf";
+import { getHiringViewCopy } from "./hiringViewCopy";
 
 interface HiringCommandViewProps {
   pack: HiringCommandCenterPack;
 }
 
+type HiringViewCopy = ReturnType<typeof getHiringViewCopy>;
+
 function HiringCommandSummary({
   summary,
+  copy,
 }: {
   summary: HiringCommandCenterSummaryItem[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section className="hiring-command-section" aria-labelledby="hiring-command-summary-title">
       <div className="hiring-command-section-head">
         <div>
-          <div className="label">Command frame</div>
-          <h2 id="hiring-command-summary-title">Command summary</h2>
+          <div className="label">{copy.command.summaryEyebrow}</div>
+          <h2 id="hiring-command-summary-title">{copy.command.summaryTitle}</h2>
         </div>
-        <p>
-          Use one board to choose a proof route, inspect a role lane, and keep
-          the same evidence signal alive from review through partnership.
-        </p>
+        <p>{copy.command.summaryIntro}</p>
       </div>
       <div className="hiring-command-summary-grid">
         {summary.map((item) => (
@@ -44,8 +46,10 @@ function HiringCommandSummary({
 
 function HiringCommandSequence({
   sequence,
+  copy,
 }: {
   sequence: HiringCommandCenterSequenceStep[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section
@@ -55,13 +59,10 @@ function HiringCommandSequence({
     >
       <div className="hiring-command-section-head">
         <div>
-          <div className="label">Route order</div>
-          <h2 id="hiring-command-sequence-title">Command sequence</h2>
+          <div className="label">{copy.command.sequenceEyebrow}</div>
+          <h2 id="hiring-command-sequence-title">{copy.command.sequenceTitle}</h2>
         </div>
-        <p>
-          Each step names the manager question, proof focus, completion signal,
-          and route to open when that moment is the real blocker.
-        </p>
+        <p>{copy.command.sequenceIntro}</p>
       </div>
       <div className="hiring-command-sequence-grid">
         {sequence.map((step, index) => (
@@ -70,15 +71,15 @@ function HiringCommandSequence({
             <h3>{step.label}</h3>
             <dl>
               <div>
-                <dt>Manager question</dt>
+                <dt>{copy.managerQuestion}</dt>
                 <dd>{step.managerQuestion}</dd>
               </div>
               <div>
-                <dt>Proof focus</dt>
+                <dt>{copy.proofFocus}</dt>
                 <dd>{step.proofFocus}</dd>
               </div>
               <div>
-                <dt>Completion signal</dt>
+                <dt>{copy.completionSignal}</dt>
                 <dd>{step.completionSignal}</dd>
               </div>
             </dl>
@@ -92,7 +93,13 @@ function HiringCommandSequence({
   );
 }
 
-function HiringCommandRoleCard({ role }: { role: HiringCommandCenterRole }) {
+function HiringCommandRoleCard({
+  role,
+  copy,
+}: {
+  role: HiringCommandCenterRole;
+  copy: HiringViewCopy;
+}) {
   return (
     <article className="hiring-command-role">
       <div className="hiring-command-role-head">
@@ -102,49 +109,49 @@ function HiringCommandRoleCard({ role }: { role: HiringCommandCenterRole }) {
       </div>
 
       <div className="hiring-command-proof">
-        <div className="label">Proof before command action</div>
+        <div className="label">{copy.command.proofBeforeAction}</div>
         <h4>{role.proof.claim}</h4>
         <p>{role.proof.evidence}</p>
-        <Link href={role.proof.href}>Inspect proof anchor</Link>
+        <Link href={role.proof.href}>{copy.inspectProofAnchor}</Link>
       </div>
 
       <div className="hiring-command-focus">
-        <strong>Decision focus</strong>
+        <strong>{copy.decisionFocus}</strong>
         <p>{role.decisionFocus}</p>
       </div>
 
       <div className="hiring-command-move">
-        <strong>Opening move</strong>
+        <strong>{copy.openingMove}</strong>
         <p>{role.openingMove}</p>
       </div>
 
       <div className="hiring-command-gate">
-        <strong>Proof gate</strong>
+        <strong>{copy.command.proofGate}</strong>
         <p>{role.proofGate}</p>
       </div>
 
       <div className="hiring-command-risk">
-        <strong>Manager risk</strong>
+        <strong>{copy.command.managerRisk}</strong>
         <p>{role.managerRisk}</p>
       </div>
 
       <div className="hiring-command-handoff">
-        <strong>Team handoff</strong>
+        <strong>{copy.command.teamHandoff}</strong>
         <p>{role.teamHandoff}</p>
       </div>
 
       <div className="hiring-command-ritual">
-        <strong>Follow-up ritual</strong>
+        <strong>{copy.command.followUpRitual}</strong>
         <p>{role.followUpRitual}</p>
       </div>
 
       <div className="hiring-command-escalation">
-        <strong>Escalation trigger</strong>
+        <strong>{copy.command.escalationTrigger}</strong>
         <p>{role.escalationTrigger}</p>
       </div>
 
       <div className="hiring-command-next">
-        <strong>Next command action</strong>
+        <strong>{copy.command.nextCommandAction}</strong>
         <p>{role.nextCommandAction}</p>
       </div>
 
@@ -154,35 +161,41 @@ function HiringCommandRoleCard({ role }: { role: HiringCommandCenterRole }) {
           href={role.roleRoute}
           aria-label={`Open ${role.id} role room`}
         >
-          Role
+          {copy.role}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.packetRoute}
           aria-label={`Open ${role.id} packet`}
         >
-          Packet
+          {copy.packet}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.followThroughRoute}
           aria-label={`Open ${role.id} follow-through`}
         >
-          Follow-through
+          {copy.followThrough}
         </Link>
         <Link
           className="btn btn-primary"
           href={role.contactRoute}
           aria-label={`Contact ${role.id} command`}
         >
-          Contact
+          {copy.contact}
         </Link>
       </div>
     </article>
   );
 }
 
-function HiringCommandRoles({ roles }: { roles: HiringCommandCenterRole[] }) {
+function HiringCommandRoles({
+  roles,
+  copy,
+}: {
+  roles: HiringCommandCenterRole[];
+  copy: HiringViewCopy;
+}) {
   return (
     <section
       className="hiring-command-section"
@@ -191,17 +204,14 @@ function HiringCommandRoles({ roles }: { roles: HiringCommandCenterRole[] }) {
     >
       <div className="hiring-command-section-head">
         <div>
-          <div className="label">Role lanes</div>
-          <h2 id="hiring-command-roles-title">Role command lanes</h2>
+          <div className="label">{copy.command.rolesEyebrow}</div>
+          <h2 id="hiring-command-roles-title">{copy.command.rolesTitle}</h2>
         </div>
-        <p>
-          Each lane pulls together the current signal, decision focus, proof gate,
-          manager risk, team handoff, ritual, escalation trigger, and next action.
-        </p>
+        <p>{copy.command.rolesIntro}</p>
       </div>
       <div className="hiring-command-role-grid">
         {roles.map((role) => (
-          <HiringCommandRoleCard role={role} key={role.id} />
+          <HiringCommandRoleCard copy={copy} role={role} key={role.id} />
         ))}
       </div>
     </section>
@@ -210,8 +220,10 @@ function HiringCommandRoles({ roles }: { roles: HiringCommandCenterRole[] }) {
 
 function HiringCommandCheckpoints({
   checkpoints,
+  copy,
 }: {
   checkpoints: HiringCommandCenterCheckpoint[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section
@@ -220,13 +232,10 @@ function HiringCommandCheckpoints({
     >
       <div className="hiring-command-section-head">
         <div>
-          <div className="label">Operating guardrails</div>
-          <h2 id="hiring-command-checkpoints-title">Operating checkpoints</h2>
+          <div className="label">{copy.command.checkpointsEyebrow}</div>
+          <h2 id="hiring-command-checkpoints-title">{copy.command.checkpointsTitle}</h2>
         </div>
-        <p>
-          These checkpoints keep the command center from becoming another list:
-          proof first, risk named, expectations planned, continuity reviewed.
-        </p>
+        <p>{copy.command.checkpointsIntro}</p>
       </div>
       <div className="hiring-command-checkpoint-grid">
         {checkpoints.map((checkpoint) => (
@@ -236,10 +245,10 @@ function HiringCommandCheckpoints({
             <p>{checkpoint.body}</p>
             <div className="hiring-command-checkpoint-actions">
               <Link className="btn btn-ghost" href={checkpoint.route}>
-                Open route
+                {copy.openRoute}
               </Link>
               <Link className="btn btn-ghost" href={checkpoint.proofHref}>
-                Proof anchor
+                {copy.proofAnchor}
               </Link>
             </div>
           </article>
@@ -250,6 +259,8 @@ function HiringCommandCheckpoints({
 }
 
 export function HiringCommandView({ pack }: HiringCommandViewProps) {
+  const copy = getHiringViewCopy(pack.locale);
+
   return (
     <article className="hiring-command-board container" aria-labelledby="hiring-command-title">
       <header className="hiring-command-hero">
@@ -265,28 +276,28 @@ export function HiringCommandView({ pack }: HiringCommandViewProps) {
               {pack.hero.secondaryAction.label}
             </Link>
             <Link className="btn btn-ghost" href="/hire/briefing">
-              Hiring briefing
+              {copy.routeLabel("/hire/briefing", "Hiring briefing")}
             </Link>
             <Link className="btn btn-ghost" href="/hire/readiness">
-              Hiring readiness
+              {copy.routeLabel("/hire/readiness", "Hiring readiness")}
             </Link>
           </div>
         </div>
-        <ul className="hiring-command-role-summary" aria-label="Hiring command role summary">
+        <ul className="hiring-command-role-summary" aria-label={copy.roleSummary}>
           {pack.roles.map((role) => (
             <li key={role.id}>
               <span>{role.label}</span>
               <strong>{role.id}</strong>
-              <span>Proof ready</span>
+              <span>{copy.proofReady}</span>
             </li>
           ))}
         </ul>
       </header>
 
-      <HiringCommandSummary summary={pack.summary} />
-      <HiringCommandSequence sequence={pack.sequence} />
-      <HiringCommandRoles roles={pack.roles} />
-      <HiringCommandCheckpoints checkpoints={pack.checkpoints} />
+      <HiringCommandSummary copy={copy} summary={pack.summary} />
+      <HiringCommandSequence copy={copy} sequence={pack.sequence} />
+      <HiringCommandRoles copy={copy} roles={pack.roles} />
+      <HiringCommandCheckpoints checkpoints={pack.checkpoints} copy={copy} />
       <HiringRouteShelf
         links={[
           { label: "Hiring briefing", href: "/hire/briefing" },
@@ -312,7 +323,7 @@ export function HiringCommandView({ pack }: HiringCommandViewProps) {
 
       <section className="hiring-command-close" aria-labelledby="hiring-command-close-title">
         <div>
-          <div className="label">Next action</div>
+          <div className="label">{copy.nextAction}</div>
           <h2 id="hiring-command-close-title">{pack.close.title}</h2>
           <p>{pack.close.body}</p>
         </div>

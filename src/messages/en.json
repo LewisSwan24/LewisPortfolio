@@ -76,15 +76,15 @@
       "role": "UX Designer & Researcher",
       "date": "2024 · 5 months",
       "m1": "+84% confidence gain",
-      "m2": "−68% anxiety",
+      "m2": "−28% anxiety",
       "m3": "4.5 / 5 satisfaction"
     },
     "circles": {
-      "kicker": "In progress · Social",
+      "kicker": "Research-through-design · Social",
       "title": "Connect Circles",
       "sub": "Friendship by quality, not quantity — a slow-match app for international students.",
       "role": "Product Designer",
-      "date": "2024 · ongoing",
+      "date": "Research complete · next validation defined",
       "m1": "15 depth interviews",
       "m2": "2-week diary study",
       "m3": "3 co-design workshops"
@@ -238,7 +238,7 @@
       "ou": {
         "label": "Outcome",
         "m1": { "label": "Confidence", "v": "+84% gain" },
-        "m2": { "label": "Anxiety", "v": "−68%" },
+        "m2": { "label": "Anxiety", "v": "−28%" },
         "m3": { "label": "Satisfaction", "v": "4.5 / 5" },
         "p": "Beta tested with 50 users over four weeks; average 3.2 sessions per user — well above our retention target of 2. The feedback-timing finding was the most surprising outcome, and it became a design principle we've carried into subsequent learning-tool projects."
       },
@@ -250,7 +250,7 @@
     "circles": {
       "hero": { "title": "Connect Circles", "sub": "Friendship by quality, not quantity — a slow-match app for international students." },
       "roleVal": "Product Designer",
-      "timeVal": "October 2024 – ongoing",
+      "timeVal": "October 2024 – current research-through-design case",
       "teamVal": "Solo, with co-design across eight international students",
       "toolsVal": "Figma · FigJam · Notion · Discord",
       "ch": {
@@ -278,18 +278,18 @@
       },
       "pr": {
         "label": "Prototype",
-        "p": "A mid-fidelity Figma prototype is in development covering onboarding (preference and comfort capture), circle match demonstration, activity suggestions with RSVP, in-app conversation prompts, and post-activity reflection. It is privacy-preserving by default — no public profile, no swipe surface."
+        "p": "The next prototype scope is defined around onboarding (preference and comfort capture), circle match demonstration, activity suggestions with RSVP, in-app conversation prompts, and post-activity reflection. It is privacy-preserving by default — no public profile, no swipe surface."
       },
       "te": {
         "label": "Testing plan",
-        "p": "Preference testing and moderated usability sessions are planned for February 2025 with target cohorts. The primary measure is not usability (we already know the flows work) but perceived safety, cultural fit, and willingness to actually use the product across an eight-week window."
+        "p": "The next validation step is preference testing and moderated usability sessions with target cohorts. The primary measure is not only usability, but perceived safety, cultural fit, and willingness to actually use the product across an eight-week window."
       },
       "ou": {
         "label": "Current state",
         "m1": { "label": "Depth interviews", "v": "15 completed" },
         "m2": { "label": "Diary study", "v": "2 weeks, n=8" },
         "m3": { "label": "Co-design", "v": "3 workshops" },
-        "p": "Research is complete; ideation synthesis is done and prototype work began late 2024. The project continues as an ongoing research-through-design exploration of technology-mediated friendship for international students."
+        "p": "Research and synthesis are complete; the current case defines the product direction, prototype scope, and validation plan. The project continues as an ongoing research-through-design exploration of technology-mediated friendship for international students."
       },
       "rf": {
         "label": "Reflection",
@@ -315,7 +315,7 @@
     "noResults": "No results found",
     "recentSearches": "Recent searches"
   },
-  "common": { "featured": "Featured", "viewCaseStudy": "View Case Study", "scroll": "Scroll" },
+  "common": { "featured": "Featured", "viewCaseStudy": "View Case Study", "scroll": "Scroll", "conceptCover": "Concept cover", "evidenceInside": "Evidence inside" },
   "cta": {
     "letsTalk": "Let's Talk",
     "openToOpportunities": "Open to opportunities",
@@ -355,7 +355,7 @@
     },
     "latest": {
       "label": "From the journal",
-      "title": "Latest writing.",
+      "title": "Selected writing.",
       "cta": "Read the journal"
     }
   },
@@ -456,9 +456,9 @@
     "title": "Resume",
     "description": "Download my resume to learn more about my experience and qualifications.",
     "cardTitle": "{name}'s Resume",
-    "cardMeta": "PDF format • Last updated December 2024",
-    "downloadPdf": "Download Resume (PDF)",
-    "downloadPdfShort": "Download PDF",
+    "cardMeta": "Web resume • Updated June 2026",
+    "downloadPdf": "Request resume PDF",
+    "downloadPdfShort": "Request PDF",
     "getInTouch": "Get in Touch",
     "printHint": "Tip: Use your browser's print function (Ctrl/Cmd + P) to save this page as a PDF",
     "overview": { "education": "Education", "experienceHighlights": "Experience Highlights" },
@@ -470,7 +470,8 @@
     ],
     "kicker": "Résumé",
     "headline": "Experience",
-    "download": "Download PDF",
+    "download": "Request PDF",
+    "contact": "Contact for PDF",
     "print": "Print",
     "section": { "exp": "Experience", "edu": "Education", "skills": "Skills", "awards": "Awards & Selected" }
   },

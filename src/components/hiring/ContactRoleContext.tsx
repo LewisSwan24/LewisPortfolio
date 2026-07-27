@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { localizeInternalHref } from "@/lib/locale-href";
 import {
   getProofUiLabels,
   getRolePacket,
@@ -28,11 +29,16 @@ export function ContactRoleContext({ role, locale }: ContactRoleContextProps) {
       <div className="contact-role-context-links">
         <strong>{labels.bestProof}</strong>
         {packet.proofClaims.slice(0, 2).map((claim) => (
-          <Link href={claim.strongestAnchor} key={claim.id}>
+          <Link
+            href={localizeInternalHref(claim.strongestAnchor, locale)}
+            key={claim.id}
+          >
             {claim.claim}
           </Link>
         ))}
-        <Link href={packet.route}>{labels.openRolePacket}</Link>
+        <Link href={localizeInternalHref(packet.route, locale)}>
+          {labels.openRolePacket}
+        </Link>
       </div>
     </section>
   );

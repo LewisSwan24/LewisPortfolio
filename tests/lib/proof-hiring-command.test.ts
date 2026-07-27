@@ -74,7 +74,7 @@ describe("hiring command center", () => {
   it("keeps Chinese command-center content structurally aligned", () => {
     const pack = getHiringCommandCenter("zh");
 
-    expect(pack.hero.headline).toContain("Command");
+    expect(pack.hero.headline).toContain("招聘证据");
     expect(pack.roles).toHaveLength(4);
     expect(pack.summary).toHaveLength(4);
     expect(pack.sequence.map((step) => step.route)).toEqual(commandSequenceRoutes);

@@ -33,20 +33,28 @@ export function Navigation() {
     return pathname || "/";
   })();
 
-  const tail = stripped === "/" ? "" : stripped;
-  const otherLocale: "en" | "zh" = locale === "en" ? "zh" : "en";
-  const switchHref = otherLocale === "en" ? (tail || "/") : `/zh${tail}`;
+  const currentPath = stripped === "" ? "/" : stripped;
+  const currentLocale: "en" | "zh" = locale === "zh" ? "zh" : "en";
+  const otherLocale: "en" | "zh" = currentLocale === "en" ? "zh" : "en";
+  const localizeHref = (href: string, targetLocale: "en" | "zh" = currentLocale) => {
+    const normalizedHref = href === "" ? "/" : href;
+    return targetLocale === "zh"
+      ? normalizedHref === "/"
+        ? "/zh"
+        : `/zh${normalizedHref}`
+      : normalizedHref;
+  };
+  const switchHref = localizeHref(currentPath, otherLocale);
 
   const isCurrent = (href: string) => {
-    const norm = stripped === "" ? "/" : stripped;
-    if (href === "/") return norm === "/";
-    return norm === href || norm.startsWith(href + "/");
+    if (href === "/") return currentPath === "/";
+    return currentPath === href || currentPath.startsWith(href + "/");
   };
 
   return (
     <header className="pd-nav" data-scrolled={scrolled ? "true" : "false"}>
       <div className="pd-nav-inner">
-        <a href="/" className="pd-nav-brand" aria-label={t("brand.name")}>
+        <a href={localizeHref("/")} className="pd-nav-brand" aria-label={t("brand.name")}>
           <span className="dot" aria-hidden="true" />
           <span>{t("brand.name")}</span>
           <em>{t("brand.tagline")}</em>
@@ -56,7 +64,7 @@ export function Navigation() {
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={localizeHref(item.href)}
               aria-current={isCurrent(item.href) ? "page" : undefined}
             >
               {t(`nav.${item.key}`)}
@@ -79,9 +87,9 @@ export function Navigation() {
           </button>
           <div className="pd-lang" role="group" aria-label="Language">
             <a href={switchHref} data-locale-switch>
-              <span className={locale === "en" ? "active" : ""}>{t("nav.lang.en")}</span>
+              <span className={currentLocale === "en" ? "active" : ""}>{t("nav.lang.en")}</span>
               <span aria-hidden="true"> / </span>
-              <span className={locale === "zh" ? "active" : ""}>{t("nav.lang.zh")}</span>
+              <span className={currentLocale === "zh" ? "active" : ""}>{t("nav.lang.zh")}</span>
             </a>
           </div>
           <ThemeToggle />
@@ -93,7 +101,7 @@ export function Navigation() {
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.href}
-                href={item.href}
+                href={localizeHref(item.href)}
                 aria-current={isCurrent(item.href) ? "page" : undefined}
               >
                 {t(`nav.${item.key}`)}

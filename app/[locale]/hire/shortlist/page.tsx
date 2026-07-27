@@ -8,8 +8,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "Hiring Shortlist Memo | Lewis Dong"
-      : "Hiring Shortlist Memo | Interview Lewis";
+      ? "Hiring Shortlist Memo"
+      : "Hiring Shortlist Memo";
   const description =
     "A recruiter-facing shortlist memo for sharing Lewis Dong's role-fit proof, scorecard boundary, and next action with a hiring manager.";
   const path = "/hire/shortlist";

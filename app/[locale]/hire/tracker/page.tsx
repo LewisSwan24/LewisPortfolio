@@ -8,10 +8,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "Hiring Follow-up Tracker | Lewis Dong"
-      : "Hiring Follow-up Tracker | Interview Lewis";
+      ? "招聘跟进追踪"
+      : "Hiring Follow-up Tracker";
   const description =
-    "A hiring follow-up tracker for turning Lewis Dong role actions into owner, due window, evidence dependency, escalation, and closeout signals.";
+    locale === "zh"
+      ? "招聘跟进追踪页，把 Lewis Dong 的岗位行动转成负责人、截止窗口、证据依赖、升级路径和收尾信号。"
+      : "A hiring follow-up tracker for turning Lewis Dong role actions into owner, due window, evidence dependency, escalation, and closeout signals.";
   const path = "/hire/tracker";
 
   return {

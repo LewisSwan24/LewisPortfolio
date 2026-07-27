@@ -8,10 +8,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "Hiring Briefing Room | Lewis Dong"
-      : "Hiring Briefing Room | Interview Lewis";
+      ? "招聘简报"
+      : "Hiring Briefing Room";
   const description =
-    "A hiring briefing room for turning Lewis Dong's proof routes into stakeholder-ready handoff notes for recruiters, hiring managers, design leads, interview panels, and onboarding partners.";
+    locale === "zh"
+      ? "招聘简报页，把 Lewis Dong 的证据路径转成招聘方、招聘经理、设计负责人、面试小组和入职伙伴可接手的交接记录。"
+      : "A hiring briefing room for turning Lewis Dong's proof routes into stakeholder-ready handoff notes for recruiters, hiring managers, design leads, interview panels, and onboarding partners.";
   const path = "/hire/briefing";
 
   return {

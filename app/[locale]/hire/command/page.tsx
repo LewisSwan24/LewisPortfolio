@@ -8,10 +8,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "Hiring Command Center | Lewis Dong"
-      : "Hiring Command Center | Interview Lewis";
+      ? "招聘控制台"
+      : "Hiring Command Center";
   const description =
-    "A hiring command center for choosing the next proof route, inspecting the strongest role lane, and carrying Lewis Dong's evidence from interview review through partnership operating.";
+    locale === "zh"
+      ? "招聘控制台，用来选择下一条证据路径，检查最强岗位路径，并把 Lewis Dong 的证据从面试评审延续到协作运行。"
+      : "A hiring command center for choosing the next proof route, inspecting the strongest role lane, and carrying Lewis Dong's evidence from interview review through partnership operating.";
   const path = "/hire/command";
 
   return {

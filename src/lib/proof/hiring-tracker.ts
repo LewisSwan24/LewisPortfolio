@@ -158,172 +158,195 @@ const trackerCopy = {
   },
   zh: {
     hero: {
-      eyebrow: "Stage 40 hiring tracker",
-      headline: "面向 proof-backed momentum 的 Hiring Follow-up Tracker。",
+      eyebrow: "第 40 阶段 · 跟进追踪",
+      headline: "把行动路径转成可跟进的节奏。",
       subhead:
-        "一个 follow-up tracker，把 action-board lane 转成 owner、due window、status、evidence dependency、escalation 和 closeout signal。",
+        "一个跟进追踪页，把行动板里的路径转成负责人、截止窗口、状态、证据依赖、升级路径和收尾信号。",
       primaryAction: { label: "联系 Lewis", href: "/contact" },
-      secondaryAction: { label: "Hiring action", href: "/hire/action" },
+      secondaryAction: { label: "行动板", href: "/hire/action" },
     },
     summary: [
       {
         id: "tracked-lanes",
-        label: "Tracked lanes",
+        label: "已追踪路径",
         value: "4",
         detail:
-          "每个 hiring role 都有 follow-up owner、status、due window、proof dependency、escalation path 和 closeout signal。",
+          "每个招聘角色都有跟进负责人、状态、截止窗口、证据依赖、升级路径和收尾信号。",
       },
       {
         id: "tracker-statuses",
-        label: "Tracker statuses",
+        label: "跟进状态",
         value: "3",
         detail:
-          "Ready、Waiting、Blocked 把 action-board readiness 转成实际 follow-up queue。",
+          "可推进、等待中、被阻塞三种状态会把行动板准备度转成实际跟进队列。",
       },
       {
         id: "follow-up-routes",
-        label: "Follow-up routes",
+        label: "跟进路径",
         value: "19",
         detail:
-          "Tracker 会链接 action、readiness、briefing、command、长期 hiring surfaces、role packets 和 proof review。",
+          "追踪页会连接行动、准备度、简报、控制台、长期招聘页面、岗位材料和证据评审。",
       },
       {
         id: "release-proof",
-        label: "Release proof",
-        value: "Tracked",
+        label: "发布证据",
+        value: "已追踪",
         detail:
-          "Tracker lanes 会进入 validation、proof maintenance、handoff export、release bundle 和 browser route sweep。",
+          "跟进路径会纳入验证、证据维护、交接导出、发布包和浏览器路径巡检。",
       },
     ],
     stages: [
       {
         id: "capture-owner",
-        label: "Track 01",
-        title: "Capture the owner",
-        owner: "Recruiter",
-        followUpAction: "打开 action board 后，把 lane 分配给明确 follow-up owner。",
-        trackingSignal: "这个 lane 有一个人负责下一条 message。",
-        closeoutRule: "只有 owner 打开 proof anchor 和 route 后才能 close。",
+        label: "跟进 01",
+        title: "确认负责人",
+        owner: "招聘方",
+        followUpAction: "打开行动板后，把路径分配给明确的跟进负责人。",
+        trackingSignal: "这条路径有一个人负责下一条消息。",
+        closeoutRule: "只有负责人打开证据锚点和对应路径后才能收尾。",
         route: "/hire/action",
-        actionLabel: "Open action board",
+        actionLabel: "打开行动板",
       },
       {
         id: "check-dependency",
-        label: "Track 02",
-        title: "Check evidence dependency",
-        owner: "Hiring manager",
-        followUpAction: "确认哪个 proof anchor、decision gate 或 validation gap 控制下一步。",
-        trackingSignal: "Lane 命名具体 evidence dependency，而不是泛泛的担心。",
-        closeoutRule: "Dependency 被接受、解决或升级到 proof review 后才能 close。",
+        label: "跟进 02",
+        title: "检查证据依赖",
+        owner: "招聘经理",
+        followUpAction: "确认哪个证据锚点、决策门槛或验证缺口控制下一步。",
+        trackingSignal: "路径命名具体证据依赖，而不是泛泛的担心。",
+        closeoutRule: "依赖被接受、解决或升级到证据评审后才能收尾。",
         route: "/hire/readiness",
-        actionLabel: "Open readiness gate",
+        actionLabel: "打开准备度检查",
       },
       {
         id: "schedule-response",
-        label: "Track 03",
-        title: "Schedule the response",
-        owner: "Recruiter plus panel",
-        followUpAction: "设置 response window，并发送 role-specific prompt 或 follow-up。",
-        trackingSignal: "Due window 可见，并绑定到一个 route。",
-        closeoutRule: "Response 带有 role、proof anchor 和 next question 后才能 close。",
+        label: "跟进 03",
+        title: "安排回应窗口",
+        owner: "招聘方和面试小组",
+        followUpAction: "设置回应窗口，并发送岗位定制提示或跟进消息。",
+        trackingSignal: "截止窗口可见，并绑定到一个路径。",
+        closeoutRule: "回应带有岗位、证据锚点和下一步问题后才能收尾。",
         route: "/hire/interview",
-        actionLabel: "Open interview agenda",
+        actionLabel: "打开面试议程",
       },
       {
         id: "escalate-blocker",
-        label: "Track 04",
-        title: "Escalate the blocker",
-        owner: "Proof reviewer",
-        followUpAction: "如果 lane 被卡住，先打开 proof review，检查 boundary，再继续发 message。",
-        trackingSignal: "Escalation path 指向具体 proof，并说明要改变什么。",
-        closeoutRule: "Blocker 有一个 documented resolution path 后才能 close。",
+        label: "跟进 04",
+        title: "升级阻塞点",
+        owner: "证据评审人",
+        followUpAction: "如果路径被卡住，先打开证据评审，检查边界，再继续发消息。",
+        trackingSignal: "升级路径指向具体证据，并说明要改变什么。",
+        closeoutRule: "阻塞点有一个记录过的解决路径后才能收尾。",
         route: "/hire/review",
-        actionLabel: "Open proof review",
+        actionLabel: "打开证据评审",
       },
       {
         id: "close-loop",
-        label: "Track 05",
-        title: "Close the loop",
-        owner: "Hiring manager",
-        followUpAction: "记录 closeout signal，并把 lane 移到 onboarding、decision 或 archive。",
-        trackingSignal: "Lane 有明确 owner、outcome 和 next hiring route。",
-        closeoutRule: "Lane 不再需要另一个无人负责的 follow-up 后才能 close。",
+        label: "跟进 05",
+        title: "闭环记录",
+        owner: "招聘经理",
+        followUpAction: "记录收尾信号，并把路径移到入职、决策或归档。",
+        trackingSignal: "路径有明确负责人、结果和下一条招聘路径。",
+        closeoutRule: "路径不再需要另一个无人负责的跟进后才能收尾。",
         route: "/hire/tracker",
-        actionLabel: "Open tracker",
+        actionLabel: "打开追踪页",
       },
     ],
     artifacts: [
       {
         id: "owner-note",
-        label: "Artifact 01",
-        title: "Owner note",
+        label: "材料 01",
+        title: "负责人记录",
         body:
-          "一条短 note，命名 follow-up owner、route to review、proof dependency 和 due window。",
+          "一条短记录，说明跟进负责人、要复查的路径、证据依赖和截止窗口。",
         route: "/hire/tracker",
-        actionLabel: "Open owner note",
-        proofLabel: "Owner proof",
+        actionLabel: "打开负责人记录",
+        proofLabel: "负责人证据",
       },
       {
         id: "dependency-note",
-        label: "Artifact 02",
-        title: "Evidence dependency note",
+        label: "材料 02",
+        title: "证据依赖记录",
         body:
-          "一条 manager note，说明哪个 proof anchor 或 validation gap 控制下一步 follow-up。",
+          "一条经理记录，说明哪个证据锚点或验证缺口控制下一步跟进。",
         route: "/hire/readiness",
-        actionLabel: "Open readiness",
-        proofLabel: "Dependency proof",
+        actionLabel: "打开准备度",
+        proofLabel: "依赖证据",
       },
       {
         id: "escalation-note",
-        label: "Artifact 03",
-        title: "Escalation note",
+        label: "材料 03",
+        title: "升级记录",
         body:
-          "一条 proof-review note，把 blocked lane 转成一个 boundary question 和 resolution path。",
+          "一条证据评审记录，把被阻塞的路径转成一个边界问题和解决路径。",
         route: "/hire/review",
-        actionLabel: "Open escalation note",
-        proofLabel: "Escalation proof",
+        actionLabel: "打开升级记录",
+        proofLabel: "升级证据",
       },
       {
         id: "closeout-note",
-        label: "Artifact 04",
-        title: "Closeout note",
+        label: "材料 04",
+        title: "收尾记录",
         body:
-          "一条 final note，记录 closeout signal，以及 decision、onboarding 或 archive 的下一条 route。",
+          "一条最终记录，写明收尾信号，以及决策、入职或归档的下一条路径。",
         route: "/hire/action",
-        actionLabel: "Open action",
-        proofLabel: "Closeout proof",
+        actionLabel: "打开行动",
+        proofLabel: "收尾证据",
       },
     ],
     close: {
-      title: "当 action lane 需要 ownership 和可见 closeout rule 时，使用 tracker。",
+      title: "行动路径需要负责人和可见收尾规则时，使用追踪页。",
       body:
-        "打开 lane，确认 owner 和 due window，检查 proof dependency；只有 route 或 blocker 明确后才 close。",
+        "打开路径，确认负责人和截止窗口，检查证据依赖；只有路径或阻塞点明确后才收尾。",
       primaryAction: { label: "联系 Lewis", href: "/contact" },
-      secondaryAction: { label: "Hiring action", href: "/hire/action" },
+      secondaryAction: { label: "行动板", href: "/hire/action" },
     },
   },
 } as const;
 
-const routeLabels: Record<HiringFollowUpTrackerSharedRoute, string> = {
-  "/hire/tracker": "follow-up tracker",
-  "/hire/action": "action board",
-  "/hire/readiness": "readiness gate",
-  "/hire/briefing": "briefing room",
-  "/hire/command": "command center",
-  "/hire/partnership": "partnership operating pack",
-  "/hire/retention": "retention readiness pack",
-  "/hire/growth": "growth roadmap",
-  "/hire/impact": "impact review",
-  "/hire/kickoff": "kickoff plan",
-  "/hire/onboarding": "onboarding plan",
-  "/hire/offer": "offer readiness pack",
-  "/hire/decision": "decision pack",
-  "/hire/debrief": "manager debrief",
-  "/hire/shortlist": "shortlist memo",
-  "/hire/scorecard": "hiring scorecard",
-  "/hire/interview": "interview agenda",
-  "/hire/compare": "role comparison",
-  "/hire/review": "proof review",
+const routeLabels: Record<ProofLocale, Record<HiringFollowUpTrackerSharedRoute, string>> = {
+  en: {
+    "/hire/tracker": "follow-up tracker",
+    "/hire/action": "action board",
+    "/hire/readiness": "readiness gate",
+    "/hire/briefing": "briefing room",
+    "/hire/command": "command center",
+    "/hire/partnership": "partnership operating pack",
+    "/hire/retention": "retention readiness pack",
+    "/hire/growth": "growth roadmap",
+    "/hire/impact": "impact review",
+    "/hire/kickoff": "kickoff plan",
+    "/hire/onboarding": "onboarding plan",
+    "/hire/offer": "offer readiness pack",
+    "/hire/decision": "decision pack",
+    "/hire/debrief": "manager debrief",
+    "/hire/shortlist": "shortlist memo",
+    "/hire/scorecard": "hiring scorecard",
+    "/hire/interview": "interview agenda",
+    "/hire/compare": "role comparison",
+    "/hire/review": "proof review",
+  },
+  zh: {
+    "/hire/tracker": "跟进追踪页",
+    "/hire/action": "行动板",
+    "/hire/readiness": "准备度检查",
+    "/hire/briefing": "招聘简报",
+    "/hire/command": "招聘控制台",
+    "/hire/partnership": "协作运行包",
+    "/hire/retention": "留任准备包",
+    "/hire/growth": "成长路线图",
+    "/hire/impact": "影响复盘",
+    "/hire/kickoff": "启动计划",
+    "/hire/onboarding": "入职计划",
+    "/hire/offer": "Offer 准备包",
+    "/hire/decision": "决策包",
+    "/hire/debrief": "经理复盘",
+    "/hire/shortlist": "候选摘要",
+    "/hire/scorecard": "招聘评分板",
+    "/hire/interview": "面试议程",
+    "/hire/compare": "岗位比较",
+    "/hire/review": "证据评审",
+  },
 };
 
 const inheritedLabelPattern =
@@ -339,40 +362,82 @@ function trackerStatus(role: HiringActionBoardRole): HiringFollowUpTrackerStatus
   return "Blocked";
 }
 
-function statusDetail(status: HiringFollowUpTrackerStatus, route: HiringFollowUpTrackerSharedRoute): string {
+function statusLabel(locale: ProofLocale, status: HiringFollowUpTrackerStatus): string {
+  if (locale === "zh") {
+    if (status === "Ready") return "可推进";
+    if (status === "Waiting") return "等待中";
+    return "被阻塞";
+  }
+
+  return status;
+}
+
+function statusDetail(
+  status: HiringFollowUpTrackerStatus,
+  route: HiringFollowUpTrackerSharedRoute,
+  locale: ProofLocale
+): string {
+  const routeName = routeLabels[locale][route];
+
   if (status === "Ready") {
-    return `Ready for follow-up after opening the ${routeLabels[route]}.`;
+    return locale === "zh"
+      ? `打开${routeName}后即可跟进。`
+      : `Ready for follow-up after opening the ${routeName}.`;
   }
 
   if (status === "Waiting") {
-    return `Waiting on one proof dependency before the ${routeLabels[route]} can advance.`;
+    return locale === "zh"
+      ? `${routeName}推进前，还在等待一个证据依赖。`
+      : `Waiting on one proof dependency before the ${routeName} can advance.`;
   }
 
-  return `Blocked until proof review clarifies the dependency behind the ${routeLabels[route]}.`;
+  return locale === "zh"
+    ? `在证据评审澄清${routeName}背后的依赖前，这条路径保持阻塞。`
+    : `Blocked until proof review clarifies the dependency behind the ${routeName}.`;
 }
 
-function dueWindow(status: HiringFollowUpTrackerStatus): string {
+function dueWindow(status: HiringFollowUpTrackerStatus, locale: ProofLocale): string {
+  if (locale === "zh") {
+    if (status === "Ready") return "下一次沟通窗口";
+    if (status === "Waiting") return "经理验证后";
+    return "证据评审后";
+  }
+
   if (status === "Ready") return "Next outreach window";
   if (status === "Waiting") return "After manager validation";
   return "After proof review";
 }
 
-function buildTrackerRole(role: HiringActionBoardRole): HiringFollowUpTrackerRole {
+function buildTrackerRole(
+  role: HiringActionBoardRole,
+  locale: ProofLocale
+): HiringFollowUpTrackerRole {
   const status = trackerStatus(role);
   const routeToReview = role.routeToOpen;
+  const routeName = routeLabels[locale][routeToReview];
+  const readableStatus = statusLabel(locale, status);
 
   return {
     id: role.id,
     label: role.label,
     trackerStatus: status,
-    trackerStatusDetail: statusDetail(status, routeToReview),
+    trackerStatusDetail: statusDetail(status, routeToReview, locale),
     followUpOwner: role.actionOwner,
-    dueWindow: dueWindow(status),
+    dueWindow: dueWindow(status, locale),
     evidenceDependency: stripInheritedLabel(role.blockingRisk),
     routeToReview,
-    nextFollowUp: `Open the ${routeLabels[routeToReview]} and send the next ${role.label} follow-up with the proof anchor attached.`,
-    escalationPath: `If ${role.label} remains ${status.toLowerCase()}, open proof review before sending another message.`,
-    closeoutSignal: `Close when ${role.label} has an owner, proof anchor, route, and next hiring decision recorded.`,
+    nextFollowUp:
+      locale === "zh"
+        ? `打开${routeName}，并带着证据锚点发送 ${role.label} 的下一次跟进。`
+        : `Open the ${routeName} and send the next ${role.label} follow-up with the proof anchor attached.`,
+    escalationPath:
+      locale === "zh"
+        ? `如果 ${role.label} 仍然${readableStatus}，先打开证据评审，再发送下一条消息。`
+        : `If ${role.label} remains ${status.toLowerCase()}, open proof review before sending another message.`,
+    closeoutSignal:
+      locale === "zh"
+        ? `${role.label} 记录了负责人、证据锚点、路径和下一步招聘决策后再收尾。`
+        : `Close when ${role.label} has an owner, proof anchor, route, and next hiring decision recorded.`,
     followUpRisk: stripInheritedLabel(role.fallbackAction),
     proof: {
       claim: role.proof.claim,
@@ -431,7 +496,7 @@ function buildTrackerArtifacts(
 export function getHiringFollowUpTracker(locale: ProofLocale): HiringFollowUpTrackerPack {
   const copy = trackerCopy[locale];
   const actionBoard = getHiringActionBoard(locale);
-  const roles = actionBoard.roles.map(buildTrackerRole);
+  const roles = actionBoard.roles.map((role) => buildTrackerRole(role, locale));
 
   return {
     locale,

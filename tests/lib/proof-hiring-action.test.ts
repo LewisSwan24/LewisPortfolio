@@ -123,7 +123,7 @@ describe("hiring action board", () => {
   it("keeps Chinese action-board content structurally aligned", () => {
     const pack = getHiringActionBoard("zh");
 
-    expect(pack.hero.headline).toContain("Action");
+    expect(pack.hero.headline).toContain("行动");
     expect(pack.roles).toHaveLength(4);
     expect(pack.summary).toHaveLength(4);
     expect(pack.sequence).toHaveLength(5);

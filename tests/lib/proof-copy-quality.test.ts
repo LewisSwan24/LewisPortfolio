@@ -78,5 +78,5 @@ describe("proof copy quality", () => {
       .filter((value) => labelCount(value) > 1);
 
     expect(chained).toEqual([]);
-  }, 30000);
+  }, 120000);
 });

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Role Packet Not Found" };
   }
 
-  const title = `${packet.label} | Interview Lewis`;
+  const title = `${packet.label}`;
   const description = packet.fitThesis;
   const path = `/hire/${role}`;
 

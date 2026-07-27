@@ -8,10 +8,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "Hiring Readiness Gate | Lewis Dong"
-      : "Hiring Readiness Gate | Interview Lewis";
+      ? "招聘准备度检查"
+      : "Hiring Readiness Gate";
   const description =
-    "A hiring readiness gate for deciding whether each Lewis Dong role lane is ready for contact, interview, decision, onboarding, or proof review.";
+    locale === "zh"
+      ? "招聘准备度检查页，用来判断 Lewis Dong 的每条岗位路径是否适合联系、面试、决策、入职或证据评审。"
+      : "A hiring readiness gate for deciding whether each Lewis Dong role lane is ready for contact, interview, decision, onboarding, or proof review.";
   const path = "/hire/readiness";
 
   return {

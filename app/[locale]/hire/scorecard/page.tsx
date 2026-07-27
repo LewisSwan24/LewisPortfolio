@@ -8,10 +8,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "Hiring Scorecard | Lewis Dong"
-      : "Hiring Scorecard | Interview Lewis";
+      ? "招聘评分板"
+      : "Hiring Scorecard";
   const description =
-    "A recruiter-facing scorecard for turning Lewis Dong's role-fit proof, first-call agenda, and boundaries into a shortlist decision.";
+    locale === "zh"
+      ? "面向招聘方的评分板，把 Lewis Dong 的岗位匹配证据、首次沟通议程和边界转成候选决策。"
+      : "A recruiter-facing scorecard for turning Lewis Dong's role-fit proof, first-call agenda, and boundaries into a shortlist decision.";
   const path = "/hire/scorecard";
 
   return {

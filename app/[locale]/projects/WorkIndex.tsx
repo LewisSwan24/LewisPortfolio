@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
 import { VizAI, VizCircles, VizConnect, VizSpectra } from "@/components/viz/ProjectViz";
 import {
@@ -94,6 +95,22 @@ export function WorkIndex() {
   const hiringConversion = getHiringConversion(proofLocale);
   const evidenceMatrix = getEvidenceMatrix(proofLocale);
   const [filter, setFilter] = useState<FilterId>("all");
+  const pageCopy = isZh
+    ? {
+        conceptVisual: "概念视觉",
+        shortlistLabel: "招聘方短名单",
+        shortlistTitle: "按岗位需求选择最相关案例。",
+        shortlistBody: "每条路径都指向常见 UX / 产品设计招聘信号下最强的证据。",
+        interviewDecision: "招聘决策页",
+      }
+    : {
+        conceptVisual: "Concept visual",
+        shortlistLabel: "Recruiter shortlist",
+        shortlistTitle: "Choose the case that matches your opening.",
+        shortlistBody:
+          "Each route points to the strongest proof for a common UX/Product Design hiring signal.",
+        interviewDecision: "Interview decision",
+      };
 
   const shown = filter === "all" ? ITEMS : ITEMS.filter((i) => i.tags.includes(filter));
 
@@ -140,10 +157,11 @@ export function WorkIndex() {
         </div>
         <div className="work-index-list">
           {shown.map((i) => (
-            <a className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
+            <Link className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
               <div className="work-index-project">
                 <div className="work-index-thumb" aria-hidden="true">
                   <WorkPreview project={i.k} />
+                  <span className="work-index-thumb-label">{pageCopy.conceptVisual}</span>
                 </div>
                 <div>
                   <h3>{t(`proj.${i.k}.title`)}</h3>
@@ -157,7 +175,7 @@ export function WorkIndex() {
               <p className="work-index-copy">{isZh ? i.problem.zh : i.problem.en}</p>
               <p className="work-index-copy">{isZh ? i.changed.zh : i.changed.en}</p>
               <span className="work-index-arrow" aria-hidden="true">→</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -165,30 +183,27 @@ export function WorkIndex() {
       <section className="container work-shortlist-section">
         <div className="work-shortlist-head">
           <div>
-            <div className="label">Recruiter shortlist</div>
-            <h2>Choose the case that matches your opening.</h2>
+            <div className="label">{pageCopy.shortlistLabel}</div>
+            <h2>{pageCopy.shortlistTitle}</h2>
           </div>
-          <p>
-            Each route points to the strongest proof for a common UX/Product
-            Design hiring signal.
-          </p>
-          <a className="work-shortlist-room-link" href="/hire">
-            Interview decision
-          </a>
+          <p>{pageCopy.shortlistBody}</p>
+          <Link className="work-shortlist-room-link" href="/hire">
+            {pageCopy.interviewDecision}
+          </Link>
         </div>
         <div className="work-shortlist-grid">
           {hiringConversion.proofRoutes.map((route) => (
-            <a className="work-shortlist-card" href={route.href} key={route.href}>
+            <Link className="work-shortlist-card" href={route.href} key={route.href}>
               <small>{route.audience}</small>
               <h3>{route.title}</h3>
               <p>{route.claim}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
 
       <section className="container">
-        <EvidenceMatrix capabilities={evidenceMatrix} />
+        <EvidenceMatrix capabilities={evidenceMatrix} locale={proofLocale} />
       </section>
 
       <section className="container work-evidence-section">
@@ -209,7 +224,7 @@ export function WorkIndex() {
         </div>
         <div className="work-evidence-grid">
           {evidence.map((item, index) => (
-            <a className="work-evidence-card" href={item.href} key={item.slug}>
+            <Link className="work-evidence-card" href={item.href} key={item.slug}>
               <div className="work-evidence-top">
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{t(`proj.${item.slug}.title`)}</strong>
@@ -233,7 +248,7 @@ export function WorkIndex() {
                   <dd>{item.proves}</dd>
                 </div>
               </dl>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

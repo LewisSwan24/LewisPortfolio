@@ -3,7 +3,7 @@ export const siteConfig = {
   title: "Graduate Interaction Designer (Full-time) · UX Designer · UX Researcher",
   description:
     "UQ Master of Interaction Design student in Brisbane crafting research-driven experiences through usability testing, AI, prototyping, and accessibility.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://lewisdong.vercel.app",
   author: {
     name: "Lewis Dong",
     email: "24kplo@gmail.com",

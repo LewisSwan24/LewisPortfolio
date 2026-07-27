@@ -162,146 +162,146 @@ const readinessCopy = {
   },
   zh: {
     hero: {
-      eyebrow: "Stage 38 hiring readiness",
-      headline: "面向 decision-ready role lanes 的 Hiring Readiness Gate。",
+      eyebrow: "第 38 阶段 · 招聘准备度",
+      headline: "把岗位路径转成可推进、需验证或继续观察的判断。",
       subhead:
-        "一个 readiness gate，把 stakeholder briefings 转成每个招聘方向的 contact、interview、offer、onboarding 或 proof-review decision。",
+        "一个准备度检查页，把读者简报转成每个招聘方向的联系、面试、Offer、入职或证据评审判断。",
       primaryAction: { label: "联系 Lewis", href: "/contact" },
-      secondaryAction: { label: "Hiring briefing", href: "/hire/briefing" },
+      secondaryAction: { label: "招聘简报", href: "/hire/briefing" },
     },
     summary: [
       {
         id: "readiness-routes",
-        label: "Readiness routes",
+        label: "准备度路径",
         value: "17",
         detail:
-          "这个 gate 把 readiness、briefing、command 和所有 shared hiring proof route 放进同一条 decision path。",
+          "这个检查页把准备度、简报、控制台和所有共享招聘证据路径放进同一条决策路径。",
       },
       {
         id: "role-lanes",
-        label: "Role lanes",
+        label: "岗位路径",
         value: "4",
         detail:
-          "每条 role lane 都说明已证明什么、还要验证什么、谁负责下一步，以及应该打开哪条 route。",
+          "每条岗位路径都说明已证明什么、还要验证什么、谁负责下一步，以及应该打开哪条路径。",
       },
       {
         id: "decision-states",
-        label: "Decision states",
+        label: "决策状态",
         value: "3",
         detail:
-          "Ready、Validate 和 Monitor 三种状态说明下一步应该是 contact、interview 还是 proof review。",
+          "可推进、需验证和继续观察三种状态说明下一步应该是联系、面试还是证据评审。",
       },
       {
         id: "release-proof",
-        label: "Release proof",
-        value: "Tracked",
+        label: "发布证据",
+        value: "已追踪",
         detail:
-          "Readiness lanes 会进入 proof maintenance、validation、handoff export、release bundle 和 browser route sweep。",
+          "准备度路径会进入证据维护、验证、交接导出、发布包和浏览器路径巡检。",
       },
     ],
     gates: [
       {
         id: "proof-ready",
-        label: "Gate 01",
-        title: "Proof ready",
-        signal: "Role lane 有明确 proof anchor 和清晰 boundary。",
-        passCondition: "Stakeholder 不需要跳到其他页面补上下文，也能检查 anchor。",
-        failureMode: "Reader 看到了 claims，但不知道哪条 evidence 可以 settle 它们。",
-        nextRoute: "Open proof review or the role packet.",
+        label: "门槛 01",
+        title: "证据就绪",
+        signal: "岗位路径有明确证据锚点和清晰边界。",
+        passCondition: "读者不需要跳到其他页面补上下文，也能检查锚点。",
+        failureMode: "读者看到了主张，但不知道哪条证据可以支撑它们。",
+        nextRoute: "打开证据评审或岗位材料包。",
         route: "/hire/review",
-        actionLabel: "Open proof review",
+        actionLabel: "打开证据评审",
       },
       {
         id: "conversation-ready",
-        label: "Gate 02",
-        title: "Conversation ready",
-        signal: "Role lane 有 question、owner 和 contact intent。",
-        passCondition: "Recruiter 或 manager 可以用一条 role-specific note 开始下一次对话。",
-        failureMode: "Next step 只是 generic contact request，而不是 role-shaped decision。",
-        nextRoute: "Open briefing or contact Lewis.",
+        label: "门槛 02",
+        title: "沟通就绪",
+        signal: "岗位路径有问题、负责人和联系意图。",
+        passCondition: "招聘方或经理可以用一条岗位定制记录开始下一次对话。",
+        failureMode: "下一步只是泛泛联系请求，而不是岗位形态明确的判断。",
+        nextRoute: "打开招聘简报或联系 Lewis。",
         route: "/hire/briefing",
-        actionLabel: "Open briefing",
+        actionLabel: "打开招聘简报",
       },
       {
         id: "decision-ready",
-        label: "Gate 03",
-        title: "Decision ready",
-        signal: "Remaining risk 已经明确，并且连接到 decision route。",
-        passCondition: "Manager 不必重读所有 surface，也能选择 close、validate 或 redirect。",
-        failureMode: "Lane 看起来很强，但 decision risk 还没有被命名。",
-        nextRoute: "Open decision pack.",
+        label: "门槛 03",
+        title: "决策就绪",
+        signal: "剩余风险已经明确，并且连接到决策路径。",
+        passCondition: "经理不必重读所有页面，也能选择收尾、继续验证或调整方向。",
+        failureMode: "路径看起来很强，但决策风险还没有被命名。",
+        nextRoute: "打开决策包。",
         route: "/hire/decision",
-        actionLabel: "Open decision pack",
+        actionLabel: "打开决策包",
       },
       {
         id: "handoff-ready",
-        label: "Gate 04",
-        title: "Handoff ready",
-        signal: "First operating expectation 和 owner 已经命名。",
-        passCondition: "Team 可以把同一个 proof signal 带进 onboarding 和 partnership。",
-        failureMode: "Hire 看起来 strong，但 first-week expectation 仍然模糊。",
-        nextRoute: "Open onboarding or partnership operating.",
+        label: "门槛 04",
+        title: "交接就绪",
+        signal: "第一条运行预期和负责人已经命名。",
+        passCondition: "团队可以把同一个证据信号带进入职和协作。",
+        failureMode: "候选人看起来很强，但第一周预期仍然模糊。",
+        nextRoute: "打开入职计划或协作运行包。",
         route: "/hire/onboarding",
-        actionLabel: "Open onboarding plan",
+        actionLabel: "打开入职计划",
       },
     ],
     artifacts: [
       {
         id: "readiness-score-note",
-        label: "Artifact 01",
-        title: "Readiness score note",
+        label: "材料 01",
+        title: "准备度评分记录",
         body:
-          "快速说明这条 role lane 是 ready now、needs validation，还是 should be monitored。",
+          "快速说明这条岗位路径现在可推进、需要验证，还是应该继续观察。",
         route: "/hire/readiness",
-        actionLabel: "Open readiness gate",
-        proofLabel: "Readiness proof",
+        actionLabel: "打开准备度检查",
+        proofLabel: "准备度证据",
       },
       {
         id: "recruiter-contact-note",
-        label: "Artifact 02",
-        title: "Recruiter contact note",
+        label: "材料 02",
+        title: "招聘方联系记录",
         body:
-          "Recruiter-facing note，把 role proof 转成 contact reason 和 first screening path。",
+          "面向招聘方的记录，把岗位证据转成联系理由和第一轮筛选路径。",
         route: "/hire/briefing",
-        actionLabel: "Open recruiter brief",
-        proofLabel: "Contact proof",
+        actionLabel: "打开招聘方简报",
+        proofLabel: "联系证据",
       },
       {
         id: "manager-decision-note",
-        label: "Artifact 03",
-        title: "Manager decision note",
+        label: "材料 03",
+        title: "经理决策记录",
         body:
-          "Manager-facing note，命名 decision gate、validation gap 和 next route。",
+          "面向经理的记录，命名决策门、验证缺口和下一条路径。",
         route: "/hire/decision",
-        actionLabel: "Open decision note",
-        proofLabel: "Decision proof",
+        actionLabel: "打开决策记录",
+        proofLabel: "决策证据",
       },
       {
         id: "onboarding-readiness-note",
-        label: "Artifact 04",
-        title: "Onboarding readiness note",
+        label: "材料 04",
+        title: "入职准备记录",
         body:
-          "Handoff note，把 readiness 转成 first-week expectations 和 partnership cadence。",
+          "一条交接记录，把准备度转成第一周预期和协作节奏。",
         route: "/hire/onboarding",
-        actionLabel: "Open onboarding note",
-        proofLabel: "Handoff proof",
+        actionLabel: "打开入职记录",
+        proofLabel: "交接证据",
       },
     ],
-    signalPrefix: "Readiness signal",
-    evidencePrefix: "Proven evidence",
-    gapPrefix: "Validation gap",
-    ownerPrefix: "Stakeholder owner",
-    gatePrefix: "Decision gate",
-    recruiterPrefix: "Recruiter note",
-    interviewPrefix: "Interview note",
-    onboardingPrefix: "Onboarding note",
-    actionPrefix: "Next readiness action",
+    signalPrefix: "准备度信号",
+    evidencePrefix: "已证明证据",
+    gapPrefix: "验证缺口",
+    ownerPrefix: "负责读者",
+    gatePrefix: "决策门",
+    recruiterPrefix: "招聘方记录",
+    interviewPrefix: "面试记录",
+    onboardingPrefix: "入职记录",
+    actionPrefix: "下一步准备度行动",
     close: {
-      title: "当 hiring reader 需要 go/no-go path 时，使用 readiness gate。",
+      title: "当招聘读者需要推进或不推进路径时，使用准备度检查。",
       body:
-        "选择 role lane，检查 readiness state，并在开始下一次 hiring conversation 前打开 recommended route。",
+        "选择岗位路径，检查准备度状态，并在开始下一次招聘对话前打开推荐路径。",
       primaryAction: { label: "联系 Lewis", href: "/contact" },
-      secondaryAction: { label: "Hiring briefing", href: "/hire/briefing" },
+      secondaryAction: { label: "招聘简报", href: "/hire/briefing" },
     },
   },
 } as const;
@@ -320,19 +320,30 @@ const recommendedRoutes: Record<HiringRoleId, HiringReadinessGateSharedRoute> = 
   accessibility: "/hire/onboarding",
 };
 
-const recommendedRouteLabels: Partial<Record<HiringReadinessGateSharedRoute, string>> = {
-  "/hire/decision": "decision pack",
-  "/hire/interview": "interview agenda",
-  "/hire/review": "proof review",
-  "/hire/onboarding": "onboarding plan",
+const recommendedRouteLabels: Record<
+  ProofLocale,
+  Partial<Record<HiringReadinessGateSharedRoute, string>>
+> = {
+  en: {
+    "/hire/decision": "decision pack",
+    "/hire/interview": "interview agenda",
+    "/hire/review": "proof review",
+    "/hire/onboarding": "onboarding plan",
+  },
+  zh: {
+    "/hire/decision": "决策包",
+    "/hire/interview": "面试议程",
+    "/hire/review": "证据评审",
+    "/hire/onboarding": "入职计划",
+  },
 };
 
 function prefixed(prefix: string, value: string): string {
   return prefixedProofCopy(prefix, value);
 }
 
-function routeLabel(route: HiringReadinessGateSharedRoute): string {
-  return recommendedRouteLabels[route] ?? "next hiring route";
+function routeLabel(route: HiringReadinessGateSharedRoute, locale: ProofLocale): string {
+  return recommendedRouteLabels[locale][route] ?? (locale === "zh" ? "下一条招聘路径" : "next hiring route");
 }
 
 function readinessSignal(
@@ -341,18 +352,18 @@ function readinessSignal(
   decisionQuestion: string,
   locale: ProofLocale
 ): string {
-  const label = routeLabel(route);
+  const label = routeLabel(route, locale);
 
   if (locale === "zh") {
     if (score === "Ready") {
-      return `这条 lane 可以进入 ${label}，proof anchor 和 validation gap 都已经清楚。`;
+      return `这条路径可以进入${label}，证据锚点和验证缺口都已经清楚。`;
     }
 
     if (score === "Validate") {
-      return `先用 interview 验证这个 question，再进入 ${label}: ${decisionQuestion}`;
+      return `先用面试验证这个问题，再进入${label}: ${decisionQuestion}`;
     }
 
-    return `先留在 proof review，直到这个 question 有更清楚的 answer: ${decisionQuestion}`;
+    return `先留在证据评审，直到这个问题有更清楚的答案: ${decisionQuestion}`;
   }
 
   if (score === "Ready") {
@@ -370,10 +381,10 @@ function stakeholderOwner(
   route: HiringReadinessGateSharedRoute,
   locale: ProofLocale
 ): string {
-  const label = routeLabel(route);
+  const label = routeLabel(route, locale);
 
   if (locale === "zh") {
-    return `Recruiter 先检查 proof anchor，hiring manager 负责 ${label} decision。`;
+    return `招聘方先检查证据锚点，招聘经理负责${label}判断。`;
   }
 
   return `Recruiter screens the proof anchor; hiring manager owns the ${label} decision.`;
@@ -384,10 +395,11 @@ function onboardingReadinessNote(
   score: HiringReadinessScore,
   locale: ProofLocale
 ): string {
-  const label = routeLabel(route);
+  const label = routeLabel(route, locale);
 
   if (locale === "zh") {
-    return `把 ${score} state 带进 ${label}，并在 first-week plan 里写清 validation boundary。`;
+    const state = score === "Ready" ? "可推进" : score === "Validate" ? "需验证" : "继续观察";
+    return `把${state}状态带进${label}，并在第一周计划里写清验证边界。`;
   }
 
   return `Carry the ${score} state into the ${label} and name the validation boundary in the first-week plan.`;
@@ -444,9 +456,13 @@ function buildReadinessRole(
       score,
       locale
     )}`,
-    nextReadinessAction: `${copy.actionPrefix}: Open the ${routeLabel(
-      recommendedRoute
-    )} and resolve: ${decisionQuestion}`,
+    nextReadinessAction:
+      locale === "zh"
+        ? `${copy.actionPrefix}: 打开${routeLabel(recommendedRoute, locale)}并解决: ${decisionQuestion}`
+        : `${copy.actionPrefix}: Open the ${routeLabel(
+            recommendedRoute,
+            locale
+          )} and resolve: ${decisionQuestion}`,
     proof: {
       claim: briefingRole.proof.claim,
       evidence: briefingRole.proof.evidence,

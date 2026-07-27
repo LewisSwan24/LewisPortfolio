@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { getTranslations } from "next-intl/server";
 
 export default async function NotFound() {

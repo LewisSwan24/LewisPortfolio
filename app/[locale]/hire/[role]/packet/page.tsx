@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!packet) return { title: "Application Packet Not Found" };
 
-  const title = `${packet.label} Application Packet | Lewis Dong`;
+  const title = `${packet.label} Application Packet`;
   const description = packet.summary;
   const path = `/hire/${role}/packet`;
 

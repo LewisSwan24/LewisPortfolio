@@ -8,8 +8,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "Retention Readiness Pack | Lewis Dong"
-      : "Retention Readiness Pack | Interview Lewis";
+      ? "Retention Readiness Pack"
+      : "Retention Readiness Pack";
   const description =
     "A retention readiness pack for extending Lewis Dong's 90-day growth roadmap into long-term fit, manager support, team dependency, durability risk, review cadence, and the next retention question.";
   const path = "/hire/retention";

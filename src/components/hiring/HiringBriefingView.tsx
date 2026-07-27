@@ -7,27 +7,29 @@ import type {
   HiringBriefingRoomSummaryItem,
 } from "@/lib/proof";
 import { HiringRouteShelf } from "./HiringRouteShelf";
+import { getHiringViewCopy } from "./hiringViewCopy";
 
 interface HiringBriefingViewProps {
   pack: HiringBriefingRoomPack;
 }
 
+type HiringViewCopy = ReturnType<typeof getHiringViewCopy>;
+
 function HiringBriefingSummary({
   summary,
+  copy,
 }: {
   summary: HiringBriefingRoomSummaryItem[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section className="hiring-briefing-section" aria-labelledby="hiring-briefing-summary-title">
       <div className="hiring-briefing-section-head">
         <div>
-          <div className="label">Briefing frame</div>
-          <h2 id="hiring-briefing-summary-title">Briefing summary</h2>
+          <div className="label">{copy.briefing.summaryEyebrow}</div>
+          <h2 id="hiring-briefing-summary-title">{copy.briefing.summaryTitle}</h2>
         </div>
-        <p>
-          Use this room when the hiring proof is ready, but each stakeholder needs
-          a different reading path, decision question, and next route.
-        </p>
+        <p>{copy.briefing.summaryIntro}</p>
       </div>
       <div className="hiring-briefing-summary-grid">
         {summary.map((item) => (
@@ -44,8 +46,10 @@ function HiringBriefingSummary({
 
 function HiringBriefingStakeholders({
   stakeholders,
+  copy,
 }: {
   stakeholders: HiringBriefingRoomStakeholderBrief[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section
@@ -55,13 +59,10 @@ function HiringBriefingStakeholders({
     >
       <div className="hiring-briefing-section-head">
         <div>
-          <div className="label">Audience routes</div>
-          <h2 id="hiring-briefing-stakeholders-title">Stakeholder briefs</h2>
+          <div className="label">{copy.briefing.stakeholdersEyebrow}</div>
+          <h2 id="hiring-briefing-stakeholders-title">{copy.briefing.stakeholdersTitle}</h2>
         </div>
-        <p>
-          Each brief names the reader, the proof focus, the question to ask, and
-          the decision they should make before opening the next surface.
-        </p>
+        <p>{copy.briefing.stakeholdersIntro}</p>
       </div>
       <div className="hiring-briefing-stakeholder-grid">
         {stakeholders.map((stakeholder) => (
@@ -70,15 +71,15 @@ function HiringBriefingStakeholders({
             <h3>{stakeholder.goal}</h3>
             <dl>
               <div>
-                <dt>Reading focus</dt>
+                <dt>{copy.briefing.readingFocus}</dt>
                 <dd>{stakeholder.readingFocus}</dd>
               </div>
               <div>
-                <dt>Question to ask</dt>
+                <dt>{copy.briefing.questionToAsk}</dt>
                 <dd>{stakeholder.questionToAsk}</dd>
               </div>
               <div>
-                <dt>Decision to make</dt>
+                <dt>{copy.briefing.decisionToMake}</dt>
                 <dd>{stakeholder.decisionToMake}</dd>
               </div>
             </dl>
@@ -92,7 +93,13 @@ function HiringBriefingStakeholders({
   );
 }
 
-function HiringBriefingRoleCard({ role }: { role: HiringBriefingRoomRole }) {
+function HiringBriefingRoleCard({
+  role,
+  copy,
+}: {
+  role: HiringBriefingRoomRole;
+  copy: HiringViewCopy;
+}) {
   return (
     <article className="hiring-briefing-role">
       <div className="hiring-briefing-role-head">
@@ -102,49 +109,49 @@ function HiringBriefingRoleCard({ role }: { role: HiringBriefingRoomRole }) {
       </div>
 
       <div className="hiring-briefing-proof">
-        <div className="label">Proof for this briefing</div>
+        <div className="label">{copy.briefing.proofForBriefing}</div>
         <h4>{role.proof.claim}</h4>
         <p>{role.proof.evidence}</p>
-        <Link href={role.proof.href}>Inspect proof anchor</Link>
+        <Link href={role.proof.href}>{copy.inspectProofAnchor}</Link>
       </div>
 
       <div className="hiring-briefing-context">
-        <strong>Stakeholder context</strong>
+        <strong>{copy.briefing.stakeholderContext}</strong>
         <p>{role.stakeholderContext}</p>
       </div>
 
       <div className="hiring-briefing-opening">
-        <strong>Opening context</strong>
+        <strong>{copy.briefing.openingContext}</strong>
         <p>{role.openingContext}</p>
       </div>
 
       <div className="hiring-briefing-evidence">
-        <strong>Evidence to inspect</strong>
+        <strong>{copy.briefing.evidenceToInspect}</strong>
         <p>{role.evidenceToInspect}</p>
       </div>
 
       <div className="hiring-briefing-question">
-        <strong>Decision question</strong>
+        <strong>{copy.briefing.decisionQuestion}</strong>
         <p>{role.decisionQuestion}</p>
       </div>
 
       <div className="hiring-briefing-risk">
-        <strong>Risk to resolve</strong>
+        <strong>{copy.briefing.riskToResolve}</strong>
         <p>{role.riskToResolve}</p>
       </div>
 
       <div className="hiring-briefing-handoff">
-        <strong>Handoff note</strong>
+        <strong>{copy.briefing.handoffNote}</strong>
         <p>{role.handoffNote}</p>
       </div>
 
       <div className="hiring-briefing-owner">
-        <strong>Follow-up owner</strong>
+        <strong>{copy.briefing.followUpOwner}</strong>
         <p>{role.followUpOwner}</p>
       </div>
 
       <div className="hiring-briefing-next">
-        <strong>Next briefing action</strong>
+        <strong>{copy.briefing.nextBriefingAction}</strong>
         <p>{role.nextBriefingAction}</p>
       </div>
 
@@ -154,35 +161,41 @@ function HiringBriefingRoleCard({ role }: { role: HiringBriefingRoomRole }) {
           href={role.roleRoute}
           aria-label={`Open ${role.id} role room`}
         >
-          Role
+          {copy.role}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.packetRoute}
           aria-label={`Open ${role.id} packet`}
         >
-          Packet
+          {copy.packet}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.followThroughRoute}
           aria-label={`Open ${role.id} follow-through`}
         >
-          Follow-through
+          {copy.followThrough}
         </Link>
         <Link
           className="btn btn-primary"
           href={role.contactRoute}
           aria-label={`Contact ${role.id} briefing`}
         >
-          Contact
+          {copy.contact}
         </Link>
       </div>
     </article>
   );
 }
 
-function HiringBriefingRoles({ roles }: { roles: HiringBriefingRoomRole[] }) {
+function HiringBriefingRoles({
+  roles,
+  copy,
+}: {
+  roles: HiringBriefingRoomRole[];
+  copy: HiringViewCopy;
+}) {
   return (
     <section
       className="hiring-briefing-section"
@@ -191,18 +204,14 @@ function HiringBriefingRoles({ roles }: { roles: HiringBriefingRoomRole[] }) {
     >
       <div className="hiring-briefing-section-head">
         <div>
-          <div className="label">Role lanes</div>
-          <h2 id="hiring-briefing-roles-title">Role briefing lanes</h2>
+          <div className="label">{copy.briefing.rolesEyebrow}</div>
+          <h2 id="hiring-briefing-roles-title">{copy.briefing.rolesTitle}</h2>
         </div>
-        <p>
-          Each lane turns the command-center signal into stakeholder context,
-          opening context, evidence, decision question, risk, handoff, owner, and
-          next action.
-        </p>
+        <p>{copy.briefing.rolesIntro}</p>
       </div>
       <div className="hiring-briefing-role-grid">
         {roles.map((role) => (
-          <HiringBriefingRoleCard role={role} key={role.id} />
+          <HiringBriefingRoleCard copy={copy} role={role} key={role.id} />
         ))}
       </div>
     </section>
@@ -211,8 +220,10 @@ function HiringBriefingRoles({ roles }: { roles: HiringBriefingRoomRole[] }) {
 
 function HiringBriefingArtifacts({
   artifacts,
+  copy,
 }: {
   artifacts: HiringBriefingRoomArtifact[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section
@@ -221,13 +232,10 @@ function HiringBriefingArtifacts({
     >
       <div className="hiring-briefing-section-head">
         <div>
-          <div className="label">Reusable handoff</div>
-          <h2 id="hiring-briefing-artifacts-title">Briefing artifacts</h2>
+          <div className="label">{copy.briefing.artifactsEyebrow}</div>
+          <h2 id="hiring-briefing-artifacts-title">{copy.briefing.artifactsTitle}</h2>
         </div>
-        <p>
-          These artifacts package the route, proof anchor, and practical handoff
-          note a stakeholder can reuse without rereading the entire portfolio.
-        </p>
+        <p>{copy.briefing.artifactsIntro}</p>
       </div>
       <div className="hiring-briefing-artifact-grid">
         {artifacts.map((artifact) => (
@@ -251,6 +259,8 @@ function HiringBriefingArtifacts({
 }
 
 export function HiringBriefingView({ pack }: HiringBriefingViewProps) {
+  const copy = getHiringViewCopy(pack.locale);
+
   return (
     <article className="hiring-briefing-board container" aria-labelledby="hiring-briefing-title">
       <header className="hiring-briefing-hero">
@@ -266,28 +276,28 @@ export function HiringBriefingView({ pack }: HiringBriefingViewProps) {
               {pack.hero.secondaryAction.label}
             </Link>
             <Link className="btn btn-ghost" href="/hire/readiness">
-              Hiring readiness
+              {copy.routeLabel("/hire/readiness", "Hiring readiness")}
             </Link>
             <Link className="btn btn-ghost" href="/hire/action">
-              Hiring action
+              {copy.routeLabel("/hire/action", "Hiring action")}
             </Link>
           </div>
         </div>
-        <ul className="hiring-briefing-role-summary" aria-label="Hiring briefing role summary">
+        <ul className="hiring-briefing-role-summary" aria-label={copy.roleSummary}>
           {pack.roles.map((role) => (
             <li key={role.id}>
               <span>{role.label}</span>
               <strong>{role.id}</strong>
-              <span>Proof ready</span>
+              <span>{copy.proofReady}</span>
             </li>
           ))}
         </ul>
       </header>
 
-      <HiringBriefingSummary summary={pack.summary} />
-      <HiringBriefingStakeholders stakeholders={pack.stakeholders} />
-      <HiringBriefingRoles roles={pack.roles} />
-      <HiringBriefingArtifacts artifacts={pack.artifacts} />
+      <HiringBriefingSummary copy={copy} summary={pack.summary} />
+      <HiringBriefingStakeholders copy={copy} stakeholders={pack.stakeholders} />
+      <HiringBriefingRoles copy={copy} roles={pack.roles} />
+      <HiringBriefingArtifacts artifacts={pack.artifacts} copy={copy} />
       <HiringRouteShelf
         links={[
           { label: "Hiring readiness", href: "/hire/readiness" },
@@ -313,7 +323,7 @@ export function HiringBriefingView({ pack }: HiringBriefingViewProps) {
 
       <section className="hiring-briefing-close" aria-labelledby="hiring-briefing-close-title">
         <div>
-          <div className="label">Next action</div>
+          <div className="label">{copy.nextAction}</div>
           <h2 id="hiring-briefing-close-title">{pack.close.title}</h2>
           <p>{pack.close.body}</p>
         </div>

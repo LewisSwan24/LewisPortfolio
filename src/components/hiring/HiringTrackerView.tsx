@@ -7,28 +7,29 @@ import type {
   HiringFollowUpTrackerSummaryItem,
 } from "@/lib/proof";
 import { HiringRouteShelf } from "./HiringRouteShelf";
+import { getHiringViewCopy } from "./hiringViewCopy";
 
 interface HiringTrackerViewProps {
   pack: HiringFollowUpTrackerPack;
 }
 
+type HiringViewCopy = ReturnType<typeof getHiringViewCopy>;
+
 function HiringTrackerSummary({
   summary,
+  copy,
 }: {
   summary: HiringFollowUpTrackerSummaryItem[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section className="hiring-tracker-section" aria-labelledby="hiring-tracker-summary-title">
       <div className="hiring-tracker-section-head">
         <div>
-          <div className="label">Tracker frame</div>
-          <h2 id="hiring-tracker-summary-title">Tracker summary</h2>
+          <div className="label">{copy.tracker.summaryEyebrow}</div>
+          <h2 id="hiring-tracker-summary-title">{copy.tracker.summaryTitle}</h2>
         </div>
-        <p>
-          Use this tracker after the action board is open and the hiring reader
-          needs ownership, due window, dependency, escalation, and closeout in
-          one place.
-        </p>
+        <p>{copy.tracker.summaryIntro}</p>
       </div>
       <div className="hiring-tracker-summary-grid">
         {summary.map((item) => (
@@ -45,8 +46,10 @@ function HiringTrackerSummary({
 
 function HiringTrackerStages({
   stages,
+  copy,
 }: {
   stages: HiringFollowUpTrackerStage[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section
@@ -56,13 +59,10 @@ function HiringTrackerStages({
     >
       <div className="hiring-tracker-section-head">
         <div>
-          <div className="label">Follow-up sequence</div>
-          <h2 id="hiring-tracker-stages-title">Follow-up stages</h2>
+          <div className="label">{copy.tracker.stagesEyebrow}</div>
+          <h2 id="hiring-tracker-stages-title">{copy.tracker.stagesTitle}</h2>
         </div>
-        <p>
-          Each stage names the owner, follow-up action, tracking signal, route,
-          and closeout rule so the lane does not stay unowned.
-        </p>
+        <p>{copy.tracker.stagesIntro}</p>
       </div>
       <div className="hiring-tracker-stage-grid">
         {stages.map((stage) => (
@@ -71,19 +71,19 @@ function HiringTrackerStages({
             <h3>{stage.title}</h3>
             <dl>
               <div>
-                <dt>Owner</dt>
+                <dt>{copy.tracker.followUpOwner}</dt>
                 <dd>{stage.owner}</dd>
               </div>
               <div>
-                <dt>Follow-up action</dt>
+                <dt>{copy.tracker.followUpAction}</dt>
                 <dd>{stage.followUpAction}</dd>
               </div>
               <div>
-                <dt>Tracking signal</dt>
+                <dt>{copy.tracker.trackingSignal}</dt>
                 <dd>{stage.trackingSignal}</dd>
               </div>
               <div>
-                <dt>Closeout rule</dt>
+                <dt>{copy.closeoutRule}</dt>
                 <dd>{stage.closeoutRule}</dd>
               </div>
             </dl>
@@ -97,60 +97,66 @@ function HiringTrackerStages({
   );
 }
 
-function HiringTrackerRoleCard({ role }: { role: HiringFollowUpTrackerRole }) {
+function HiringTrackerRoleCard({
+  role,
+  copy,
+}: {
+  role: HiringFollowUpTrackerRole;
+  copy: HiringViewCopy;
+}) {
   return (
     <article className="hiring-tracker-role">
       <div className="hiring-tracker-role-head">
         <small>{role.id}</small>
         <h3>{role.label}</h3>
         <p>{role.trackerStatusDetail}</p>
-        <strong>{role.trackerStatus}</strong>
+        <strong>{copy.trackerStatus(role.trackerStatus)}</strong>
       </div>
 
       <div className="hiring-tracker-proof">
-        <div className="label">Proof dependency</div>
+        <div className="label">{copy.tracker.proofDependency}</div>
         <h4>{role.proof.claim}</h4>
         <p>{role.proof.evidence}</p>
-        <Link href={role.proof.href}>Inspect proof anchor</Link>
+        <Link href={role.proof.href}>{copy.inspectProofAnchor}</Link>
       </div>
 
       <div className="hiring-tracker-owner">
-        <strong>Follow-up owner</strong>
+        <strong>{copy.tracker.followUpOwner}</strong>
         <p>{role.followUpOwner}</p>
       </div>
 
       <div className="hiring-tracker-window">
-        <strong>Due window</strong>
+        <strong>{copy.tracker.dueWindow}</strong>
         <p>{role.dueWindow}</p>
       </div>
 
       <div className="hiring-tracker-dependency">
-        <strong>Evidence dependency</strong>
+        <strong>{copy.tracker.evidenceDependency}</strong>
         <p>{role.evidenceDependency}</p>
       </div>
 
       <div className="hiring-tracker-route">
-        <strong>Route to review</strong>
+        <strong>{copy.tracker.routeToReview}</strong>
         <p>{role.routeToReview}</p>
       </div>
 
       <div className="hiring-tracker-next">
-        <strong>Next follow-up</strong>
+        <strong>{copy.tracker.nextFollowUp}</strong>
         <p>{role.nextFollowUp}</p>
       </div>
 
       <div className="hiring-tracker-escalation">
-        <strong>Escalation path</strong>
+        <strong>{copy.tracker.escalationPath}</strong>
         <p>{role.escalationPath}</p>
       </div>
 
       <div className="hiring-tracker-closeout">
-        <strong>Closeout signal</strong>
+        <strong>{copy.tracker.closeoutSignal}</strong>
         <p>{role.closeoutSignal}</p>
       </div>
 
       <div className="hiring-tracker-risk">
-        <strong>Follow-up risk</strong>
+        <strong>{copy.tracker.followUpRisk}</strong>
         <p>{role.followUpRisk}</p>
       </div>
 
@@ -160,38 +166,44 @@ function HiringTrackerRoleCard({ role }: { role: HiringFollowUpTrackerRole }) {
           href={role.roleRoute}
           aria-label={`Open ${role.id} role room`}
         >
-          Role
+          {copy.role}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.packetRoute}
           aria-label={`Open ${role.id} packet`}
         >
-          Packet
+          {copy.packet}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.followThroughRoute}
           aria-label={`Open ${role.id} follow-through`}
         >
-          Follow-through
+          {copy.followThrough}
         </Link>
         <Link className="btn btn-ghost" href={role.routeToReview}>
-          Review route
+          {copy.reviewRoute}
         </Link>
         <Link
           className="btn btn-primary"
           href={role.contactRoute}
           aria-label={`Contact ${role.id} tracker`}
         >
-          Contact
+          {copy.contact}
         </Link>
       </div>
     </article>
   );
 }
 
-function HiringTrackerRoles({ roles }: { roles: HiringFollowUpTrackerRole[] }) {
+function HiringTrackerRoles({
+  roles,
+  copy,
+}: {
+  roles: HiringFollowUpTrackerRole[];
+  copy: HiringViewCopy;
+}) {
   return (
     <section
       className="hiring-tracker-section"
@@ -200,17 +212,14 @@ function HiringTrackerRoles({ roles }: { roles: HiringFollowUpTrackerRole[] }) {
     >
       <div className="hiring-tracker-section-head">
         <div>
-          <div className="label">Role lanes</div>
-          <h2 id="hiring-tracker-roles-title">Role tracker lanes</h2>
+          <div className="label">{copy.tracker.rolesEyebrow}</div>
+          <h2 id="hiring-tracker-roles-title">{copy.tracker.rolesTitle}</h2>
         </div>
-        <p>
-          Each lane turns action state into a visible owner, due window,
-          dependency, escalation path, closeout signal, and proof anchor.
-        </p>
+        <p>{copy.tracker.rolesIntro}</p>
       </div>
       <div className="hiring-tracker-role-grid">
         {roles.map((role) => (
-          <HiringTrackerRoleCard role={role} key={role.id} />
+          <HiringTrackerRoleCard copy={copy} role={role} key={role.id} />
         ))}
       </div>
     </section>
@@ -219,8 +228,10 @@ function HiringTrackerRoles({ roles }: { roles: HiringFollowUpTrackerRole[] }) {
 
 function HiringTrackerArtifacts({
   artifacts,
+  copy,
 }: {
   artifacts: HiringFollowUpTrackerArtifact[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section
@@ -229,13 +240,10 @@ function HiringTrackerArtifacts({
     >
       <div className="hiring-tracker-section-head">
         <div>
-          <div className="label">Reusable follow-ups</div>
-          <h2 id="hiring-tracker-artifacts-title">Tracker artifacts</h2>
+          <div className="label">{copy.tracker.artifactsEyebrow}</div>
+          <h2 id="hiring-tracker-artifacts-title">{copy.tracker.artifactsTitle}</h2>
         </div>
-        <p>
-          These artifacts package owner, dependency, escalation, and closeout
-          notes so follow-up is auditable instead of implied.
-        </p>
+        <p>{copy.tracker.artifactsIntro}</p>
       </div>
       <div className="hiring-tracker-artifact-grid">
         {artifacts.map((artifact) => (
@@ -259,6 +267,8 @@ function HiringTrackerArtifacts({
 }
 
 export function HiringTrackerView({ pack }: HiringTrackerViewProps) {
+  const copy = getHiringViewCopy(pack.locale);
+
   return (
     <article className="hiring-tracker-board container" aria-labelledby="hiring-tracker-title">
       <header className="hiring-tracker-hero">
@@ -274,28 +284,28 @@ export function HiringTrackerView({ pack }: HiringTrackerViewProps) {
               {pack.hero.secondaryAction.label}
             </Link>
             <Link className="btn btn-ghost" href={pack.readinessRoute}>
-              Hiring readiness
+              {copy.routeLabel(pack.readinessRoute, "Hiring readiness")}
             </Link>
             <Link className="btn btn-ghost" href={pack.briefingRoute}>
-              Hiring briefing
+              {copy.routeLabel(pack.briefingRoute, "Hiring briefing")}
             </Link>
           </div>
         </div>
-        <ul className="hiring-tracker-role-summary" aria-label="Tracked role statuses">
+        <ul className="hiring-tracker-role-summary" aria-label={copy.roleSummary}>
           {pack.roles.map((role) => (
             <li key={role.id}>
               <span>{role.id}</span>
-              <strong>{role.trackerStatus}</strong>
-              <span>Contact ready</span>
+              <strong>{copy.trackerStatus(role.trackerStatus)}</strong>
+              <span>{copy.contactReady}</span>
             </li>
           ))}
         </ul>
       </header>
 
-      <HiringTrackerSummary summary={pack.summary} />
-      <HiringTrackerStages stages={pack.stages} />
-      <HiringTrackerRoles roles={pack.roles} />
-      <HiringTrackerArtifacts artifacts={pack.artifacts} />
+      <HiringTrackerSummary copy={copy} summary={pack.summary} />
+      <HiringTrackerStages copy={copy} stages={pack.stages} />
+      <HiringTrackerRoles copy={copy} roles={pack.roles} />
+      <HiringTrackerArtifacts artifacts={pack.artifacts} copy={copy} />
       <HiringRouteShelf
         links={[
           { label: "Hiring action", href: pack.actionRoute },
@@ -321,7 +331,7 @@ export function HiringTrackerView({ pack }: HiringTrackerViewProps) {
 
       <section className="hiring-tracker-close" aria-labelledby="hiring-tracker-close-title">
         <div>
-          <div className="label">Closeout rule</div>
+          <div className="label">{copy.closeoutRule}</div>
           <h2 id="hiring-tracker-close-title">{pack.close.title}</h2>
           <p>{pack.close.body}</p>
         </div>

@@ -18,9 +18,11 @@ import {
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
-    locale === "zh" ? "Interview Lewis" : "Interview Lewis | Hiring Decision Room";
+    locale === "zh" ? "面试 Lewis | 招聘决策页" : "Interview Lewis | Hiring Decision Room";
   const description =
-    "A fast hiring dossier for Lewis Dong: role fit, strongest evidence, interview questions, and boundaries.";
+    locale === "zh"
+      ? "Lewis Dong 的快速招聘档案：岗位匹配、最强证据、面试问题和边界。"
+      : "A fast hiring dossier for Lewis Dong: role fit, strongest evidence, interview questions, and boundaries.";
 
   return {
     title,
@@ -38,44 +40,134 @@ export default async function HirePage() {
   const roleFits = getHiringRoleFits(proofLocale);
   const rolePackets = getRolePackets(proofLocale);
   const proofLabels = getProofUiLabels(proofLocale);
+  const pageCopy =
+    proofLocale === "zh"
+      ? {
+          roleTitle: "把岗位需求匹配到证据。",
+          roleIntro: "先看岗位信号，再进入通话前最相关的案例证据。",
+          nextStep: "下一步",
+          moreTools: "更多决策工具",
+          closeTitle: "带一个案例和一个问题进入面试。",
+          closeBody:
+            "最快路径是：扫一遍岗位匹配，检查一个证据锚点，然后提出与你团队最相关的问题。",
+          contact: "联系 Lewis",
+          browseWork: "查看作品",
+          resume: "查看简历",
+          proofReview: "证据评审页",
+          compareRoles: "比较岗位路径",
+          interviewAgenda: "面试议程",
+          scorecard: "招聘评分卡",
+          shortlist: "候选摘要",
+          debrief: "经理复盘",
+          decision: "决策包",
+          offer: "Offer 准备",
+          onboarding: "入职计划",
+          kickoff: "启动计划",
+          impact: "影响复盘",
+          growth: "成长路线",
+          retention: "留存准备",
+          partnership: "协作方式",
+          command: "招聘控制台",
+          briefing: "招聘简报",
+          readiness: "准备度检查",
+          action: "行动板",
+          tracker: "跟进追踪",
+        }
+      : {
+          roleTitle: "Match the opening to the proof.",
+          roleIntro: "Pick the role signal first, then inspect the exact case evidence before the call.",
+          nextStep: "Next step",
+          moreTools: "More decision tools",
+          closeTitle: "Bring one case and one question to the interview.",
+          closeBody:
+            "The fastest route is: scan role fit, inspect one proof anchor, then ask the question that matches your team.",
+          contact: "Contact Lewis",
+          browseWork: "Browse work",
+          resume: "Resume",
+          proofReview: "Proof review room",
+          compareRoles: "Compare role paths",
+          interviewAgenda: "Interview agenda",
+          scorecard: "Hiring scorecard",
+          shortlist: "Shortlist memo",
+          debrief: "Manager debrief",
+          decision: "Decision pack",
+          offer: "Offer readiness",
+          onboarding: "Onboarding plan",
+          kickoff: "Kickoff plan",
+          impact: "Impact review",
+          growth: "Growth roadmap",
+          retention: "Retention readiness",
+          partnership: "Partnership operating",
+          command: "Hiring command",
+          briefing: "Hiring briefing",
+          readiness: "Hiring readiness",
+          action: "Hiring action",
+          tracker: "Hiring tracker",
+        };
   const proofReviewLabel =
-    proofLocale === "zh" ? "Proof review room" : "Proof review room";
+    pageCopy.proofReview;
   const compareRolesLabel =
-    proofLocale === "zh" ? "Compare role paths" : "Compare role paths";
+    pageCopy.compareRoles;
   const interviewAgendaLabel =
-    proofLocale === "zh" ? "Interview agenda" : "Interview agenda";
+    pageCopy.interviewAgenda;
   const scorecardLabel =
-    proofLocale === "zh" ? "Hiring scorecard" : "Hiring scorecard";
+    pageCopy.scorecard;
   const shortlistLabel =
-    proofLocale === "zh" ? "Shortlist memo" : "Shortlist memo";
+    pageCopy.shortlist;
   const debriefLabel =
-    proofLocale === "zh" ? "Manager debrief" : "Manager debrief";
+    pageCopy.debrief;
   const decisionLabel =
-    proofLocale === "zh" ? "Decision pack" : "Decision pack";
+    pageCopy.decision;
   const offerLabel =
-    proofLocale === "zh" ? "Offer readiness" : "Offer readiness";
+    pageCopy.offer;
   const onboardingLabel =
-    proofLocale === "zh" ? "Onboarding plan" : "Onboarding plan";
+    pageCopy.onboarding;
   const kickoffLabel =
-    proofLocale === "zh" ? "Kickoff plan" : "Kickoff plan";
+    pageCopy.kickoff;
   const impactLabel =
-    proofLocale === "zh" ? "Impact review" : "Impact review";
+    pageCopy.impact;
   const growthLabel =
-    proofLocale === "zh" ? "Growth roadmap" : "Growth roadmap";
+    pageCopy.growth;
   const retentionLabel =
-    proofLocale === "zh" ? "Retention readiness" : "Retention readiness";
+    pageCopy.retention;
   const partnershipLabel =
-    proofLocale === "zh" ? "Partnership operating" : "Partnership operating";
+    pageCopy.partnership;
   const commandLabel =
-    proofLocale === "zh" ? "Hiring command" : "Hiring command";
+    pageCopy.command;
   const briefingLabel =
-    proofLocale === "zh" ? "Hiring briefing" : "Hiring briefing";
+    pageCopy.briefing;
   const readinessLabel =
-    proofLocale === "zh" ? "Hiring readiness" : "Hiring readiness";
+    pageCopy.readiness;
   const actionLabel =
-    proofLocale === "zh" ? "Hiring action" : "Hiring action";
+    pageCopy.action;
   const trackerLabel =
-    proofLocale === "zh" ? "Hiring tracker" : "Hiring tracker";
+    pageCopy.tracker;
+  const primaryActions = [
+    { href: "/contact", label: pageCopy.contact, variant: "btn-primary" },
+    { href: "/hire/review", label: proofReviewLabel, variant: "btn-ghost" },
+    { href: "/hire/compare", label: compareRolesLabel, variant: "btn-ghost" },
+    { href: "/hire/interview", label: interviewAgendaLabel, variant: "btn-ghost" },
+    { href: "/resume", label: pageCopy.resume, variant: "btn-ghost" },
+  ];
+  const secondaryActions = [
+    { href: "/hire/scorecard", label: scorecardLabel },
+    { href: "/hire/shortlist", label: shortlistLabel },
+    { href: "/hire/debrief", label: debriefLabel },
+    { href: "/hire/decision", label: decisionLabel },
+    { href: "/hire/offer", label: offerLabel },
+    { href: "/hire/onboarding", label: onboardingLabel },
+    { href: "/hire/kickoff", label: kickoffLabel },
+    { href: "/hire/impact", label: impactLabel },
+    { href: "/hire/growth", label: growthLabel },
+    { href: "/hire/retention", label: retentionLabel },
+    { href: "/hire/partnership", label: partnershipLabel },
+    { href: "/hire/command", label: commandLabel },
+    { href: "/hire/briefing", label: briefingLabel },
+    { href: "/hire/readiness", label: readinessLabel },
+    { href: "/hire/action", label: actionLabel },
+    { href: "/hire/tracker", label: trackerLabel },
+    { href: "/projects", label: pageCopy.browseWork },
+  ];
 
   return (
     <main className="page interview-room-page" data-screen-label="05 Hire">
@@ -88,8 +180,9 @@ export default async function HirePage() {
       <section className="section container">
         <HiringRoleFitPanel
           roles={roleFits}
-          title="Match the opening to the proof."
-          intro="Pick the role signal first, then inspect the exact case evidence before the call."
+          locale={proofLocale}
+          title={pageCopy.roleTitle}
+          intro={pageCopy.roleIntro}
           labels={proofLabels}
         />
       </section>
@@ -108,80 +201,28 @@ export default async function HirePage() {
 
       <section className="section container interview-room-close">
         <div>
-          <div className="label">Next step</div>
-          <h2>Bring one case and one question to the interview.</h2>
-          <p>
-            The fastest route is: scan role fit, inspect one proof anchor, then ask
-            the question that matches your team.
-          </p>
+          <div className="label">{pageCopy.nextStep}</div>
+          <h2>{pageCopy.closeTitle}</h2>
+          <p>{pageCopy.closeBody}</p>
         </div>
-        <div className="interview-room-actions">
-          <Link className="btn btn-primary" href="/contact">
-            Contact Lewis
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/review">
-            {proofReviewLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/compare">
-            {compareRolesLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/interview">
-            {interviewAgendaLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/scorecard">
-            {scorecardLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/shortlist">
-            {shortlistLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/debrief">
-            {debriefLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/decision">
-            {decisionLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/offer">
-            {offerLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/onboarding">
-            {onboardingLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/kickoff">
-            {kickoffLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/impact">
-            {impactLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/growth">
-            {growthLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/retention">
-            {retentionLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/partnership">
-            {partnershipLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/command">
-            {commandLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/briefing">
-            {briefingLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/readiness">
-            {readinessLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/action">
-            {actionLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/hire/tracker">
-            {trackerLabel}
-          </Link>
-          <Link className="btn btn-ghost" href="/projects">
-            Browse work
-          </Link>
-          <Link className="btn btn-ghost" href="/resume">
-            Resume
-          </Link>
+        <div>
+          <div className="interview-room-actions interview-room-primary-actions">
+            {primaryActions.map((action) => (
+              <Link className={`btn ${action.variant}`} href={action.href} key={action.href}>
+                {action.label}
+              </Link>
+            ))}
+          </div>
+          <details className="interview-room-more-links">
+            <summary>{pageCopy.moreTools}</summary>
+            <div className="interview-room-actions interview-room-more-grid">
+              {secondaryActions.map((action) => (
+                <Link className="btn btn-ghost" href={action.href} key={action.href}>
+                  {action.label}
+                </Link>
+              ))}
+            </div>
+          </details>
         </div>
       </section>
     </main>

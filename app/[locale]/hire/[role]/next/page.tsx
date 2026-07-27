@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!brief) return { title: "Follow-Through Not Found" };
 
-  const title = `${brief.label} Follow-Through | Lewis Dong`;
+  const title = `${brief.label} Follow-Through`;
   const description = brief.summary;
   const path = `/hire/${role}/next`;
 

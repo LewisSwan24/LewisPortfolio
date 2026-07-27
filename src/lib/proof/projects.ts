@@ -312,78 +312,78 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
   },
   zh: {
     hero: {
-      headline: "Research-led UX/Product Designer for teams that need evidence before polish.",
+      headline: "先找证据，再做精细化：研究驱动的 UX / 产品设计师。",
       subhead:
-        "I turn ambiguous product problems into tested information architecture, inclusive interactions, AI feedback flows, and social wellbeing concepts.",
+        "我把模糊的产品问题，转化为经过验证的信息架构、包容性交互、AI 反馈流程与社交健康产品方向。",
       status:
-        "Open to 2026 internships and graduate UX/Product Design roles in research-led product teams.",
+        "开放 2026 实习与毕业生 UX / 产品设计岗位，期待研究驱动的产品团队。",
     },
     signals: [
       {
         value: "240+",
-        label: "research participants",
-        detail: "Across surveys, interviews, card sorts, tree testing, diary studies, and usability sessions.",
+        label: "研究参与者",
+        detail: "覆盖问卷、访谈、卡片分类、树测试、日记研究与可用性测试。",
       },
       {
         value: "4",
-        label: "end-to-end cases",
-        detail: "Information architecture, accessibility, AI feedback, and social wellbeing product directions.",
+        label: "端到端案例",
+        detail: "涵盖信息架构、无障碍、AI 反馈与社交健康产品方向。",
       },
       {
         value: "3",
-        label: "measured outcome stories",
-        detail: "Findability, task success, recognition confidence, anxiety, and satisfaction signals.",
+        label: "可量化成果案例",
+        detail: "呈现可发现性、任务成功率、识别信心、焦虑与满意度等信号。",
       },
       {
         value: "2026",
-        label: "availability",
-        detail: "Open to internships, graduate roles, and research-led UX/Product Design teams.",
+        label: "可入职时间",
+        detail: "开放实习、毕业生岗位与研究驱动的 UX / 产品设计团队机会。",
       },
     ],
     proofRoutes: [
       {
-        audience: "IA / service complexity",
-        title: "Information architecture and research rigor",
+        audience: "信息架构 / 复杂服务",
+        title: "信息架构与研究严谨度",
         claim:
-          "Best proof that I can restructure a complex student service around user mental models.",
+          "证明我能围绕用户心智模型，重构复杂的学生服务。",
         evidence:
-          "UQ Connect links task analysis, card sorting, tree testing, and findability outcomes.",
+          "UQ Connect 串联任务分析、卡片分类、树测试与可发现性结果。",
         href: "/projects/connect#decision-timeline",
       },
       {
-        audience: "Accessibility / inclusive design",
-        title: "Accessibility and inclusive interaction design",
+        audience: "无障碍 / 包容性设计",
+        title: "无障碍与包容性交互设计",
         claim:
-          "Best proof that I can turn accessibility research into a practical product interaction model.",
+          "证明我能把无障碍研究转化为可实施的产品交互模型。",
         evidence:
-          "Spectra Lens combines colourblind-user interviews, multi-modal feedback, privacy decisions, and field testing.",
+          "Spectra Lens 结合色觉障碍用户访谈、多模态反馈、隐私决策与实地测试。",
         href: "/projects/spectra#evidence-board",
       },
       {
-        audience: "AI UX / trust",
-        title: "AI UX and feedback timing",
+        audience: "AI UX / 信任",
+        title: "AI UX 与反馈时机",
         claim:
-          "Best proof that I can design AI assistance with user control, emotional safety, and useful feedback timing.",
+          "证明我能兼顾用户控制、情绪安全与有效反馈时机来设计 AI 辅助体验。",
         evidence:
-          "AI Interview Assistant focuses on post-session feedback, tone control, anxiety reduction, and trust boundaries.",
+          "AI 面试助手聚焦会后反馈、语气控制、焦虑缓解与信任边界。",
         href: "/projects/ai#interviewer-scan",
       },
       {
-        audience: "Social wellbeing / ambiguous problems",
-        title: "Social wellbeing product framing",
+        audience: "社交健康 / 模糊问题",
+        title: "社交健康产品框架",
         claim:
-          "Best proof that I can frame a soft social problem without collapsing it into generic engagement metrics.",
+          "证明我能定义柔性的社会问题，而不把它简化成通用互动指标。",
         evidence:
-          "Connect Circles uses interviews, diary study, and theory synthesis to define slow matching and relationship depth.",
+          "Connect Circles 用访谈、日记研究与理论综合，定义慢匹配和关系深度。",
         href: "/projects/circles#evidence-board",
       },
     ],
     closingPrompt: {
-      title: "Use this portfolio as a fast hiring screen.",
+      title: "把这份作品集当作快速招聘判断工具。",
       body:
-        "Start with the proof route that matches your opening, then use the resume and contact page to decide whether to start a conversation.",
-      primaryAction: { label: "Contact Lewis", href: "/contact" },
-      secondaryAction: { label: "Read the resume", href: "/resume" },
+        "从最符合岗位的证据路径开始，再通过简历和联系页决定是否开启对话。",
+      primaryAction: { label: "联系 Lewis", href: "/contact" },
+      secondaryAction: { label: "查看简历", href: "/resume" },
     },
   },
 };

@@ -5,27 +5,29 @@ import type {
   HiringScorecardRole,
 } from "@/lib/proof";
 import { HiringRouteShelf } from "./HiringRouteShelf";
+import { getHiringViewCopy } from "./hiringViewCopy";
 
 interface HiringScorecardViewProps {
   board: HiringScorecardBoard;
 }
 
+type HiringViewCopy = ReturnType<typeof getHiringViewCopy>;
+
 function HiringScorecardCriteria({
   criteria,
+  copy,
 }: {
   criteria: HiringScorecardCriterion[];
+  copy: HiringViewCopy;
 }) {
   return (
     <section className="hiring-scorecard-section" aria-labelledby="hiring-scorecard-criteria-title">
       <div className="hiring-scorecard-section-head">
         <div>
-          <div className="label">Decision frame</div>
-          <h2 id="hiring-scorecard-criteria-title">Score criteria</h2>
+          <div className="label">{copy.scorecard.criteriaEyebrow}</div>
+          <h2 id="hiring-scorecard-criteria-title">{copy.scorecard.criteriaTitle}</h2>
         </div>
-        <p>
-          Score only what the proof can support. Each criterion keeps the shortlist
-          decision tied to a role need, evidence anchor, boundary, and next action.
-        </p>
+        <p>{copy.scorecard.criteriaIntro}</p>
       </div>
       <div className="hiring-scorecard-criteria">
         {criteria.map((criterion) => (
@@ -39,7 +41,13 @@ function HiringScorecardCriteria({
   );
 }
 
-function HiringScorecardRoleCard({ role }: { role: HiringScorecardRole }) {
+function HiringScorecardRoleCard({
+  role,
+  copy,
+}: {
+  role: HiringScorecardRole;
+  copy: HiringViewCopy;
+}) {
   return (
     <article className="hiring-scorecard-role">
       <div className="hiring-scorecard-role-head">
@@ -49,24 +57,24 @@ function HiringScorecardRoleCard({ role }: { role: HiringScorecardRole }) {
       </div>
 
       <div className="hiring-scorecard-recommendation">
-        <strong>Recommendation rule</strong>
+        <strong>{copy.scorecard.recommendationRule}</strong>
         <p>{role.recommendation}</p>
       </div>
 
       <div className="hiring-scorecard-proof">
-        <div className="label">Evidence to score</div>
+        <div className="label">{copy.scorecard.evidenceToScore}</div>
         <h4>{role.proof.claim}</h4>
         <p>{role.proof.evidence}</p>
-        <Link href={role.proof.href}>Inspect proof anchor</Link>
+        <Link href={role.proof.href}>{copy.inspectProofAnchor}</Link>
       </div>
 
       <div className="hiring-scorecard-boundary">
-        <strong>Boundary before shortlist</strong>
+        <strong>{copy.scorecard.boundaryBeforeShortlist}</strong>
         <p>{role.proof.boundary}</p>
       </div>
 
       <div className="hiring-scorecard-prompts">
-        <strong>Score prompts</strong>
+        <strong>{copy.scorecard.scorePrompts}</strong>
         <ul>
           {role.scorePrompts.map((prompt) => (
             <li key={prompt}>{prompt}</li>
@@ -80,31 +88,37 @@ function HiringScorecardRoleCard({ role }: { role: HiringScorecardRole }) {
           href={role.roleRoute}
           aria-label={`Open ${role.id} role room`}
         >
-          Role
+          {copy.role}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.packetRoute}
           aria-label={`Open ${role.id} packet`}
         >
-          Packet
+          {copy.packet}
         </Link>
         <Link
           className="btn btn-ghost"
           href={role.followThroughRoute}
           aria-label={`Open ${role.id} follow-through`}
         >
-          Follow-through
+          {copy.followThrough}
         </Link>
         <Link className="btn btn-primary" href={role.contactRoute}>
-          Contact
+          {copy.contact}
         </Link>
       </div>
     </article>
   );
 }
 
-function HiringScorecardRoles({ roles }: { roles: HiringScorecardRole[] }) {
+function HiringScorecardRoles({
+  roles,
+  copy,
+}: {
+  roles: HiringScorecardRole[];
+  copy: HiringViewCopy;
+}) {
   return (
     <section
       className="hiring-scorecard-section"
@@ -113,17 +127,14 @@ function HiringScorecardRoles({ roles }: { roles: HiringScorecardRole[] }) {
     >
       <div className="hiring-scorecard-section-head">
         <div>
-          <div className="label">Role lanes</div>
-          <h2 id="hiring-scorecard-roles-title">Role scorecards</h2>
+          <div className="label">{copy.scorecard.rolesEyebrow}</div>
+          <h2 id="hiring-scorecard-roles-title">{copy.scorecard.rolesTitle}</h2>
         </div>
-        <p>
-          Each lane keeps the shortlist decision inspectable: role thesis, proof
-          anchor, boundary, prompts, and route actions stay in one place.
-        </p>
+        <p>{copy.scorecard.rolesIntro}</p>
       </div>
       <div className="hiring-scorecard-role-grid">
         {roles.map((role) => (
-          <HiringScorecardRoleCard role={role} key={role.id} />
+          <HiringScorecardRoleCard copy={copy} role={role} key={role.id} />
         ))}
       </div>
     </section>
@@ -131,6 +142,8 @@ function HiringScorecardRoles({ roles }: { roles: HiringScorecardRole[] }) {
 }
 
 export function HiringScorecardView({ board }: HiringScorecardViewProps) {
+  const copy = getHiringViewCopy(board.locale);
+
   return (
     <article className="hiring-scorecard-board container" aria-labelledby="hiring-scorecard-title">
       <header className="hiring-scorecard-hero">
@@ -146,26 +159,26 @@ export function HiringScorecardView({ board }: HiringScorecardViewProps) {
               {board.hero.secondaryAction.label}
             </Link>
             <Link className="btn btn-ghost" href={board.compareRoute}>
-              Compare role paths
+              {copy.routeLabel(board.compareRoute, "Compare role paths")}
             </Link>
             <Link className="btn btn-ghost" href={board.reviewRoute}>
-              Open proof review
+              {copy.routeLabel(board.reviewRoute, "Open proof review")}
             </Link>
           </div>
         </div>
-        <ul className="hiring-scorecard-summary" aria-label="Hiring scorecard role summary">
+        <ul className="hiring-scorecard-summary" aria-label={copy.roleSummary}>
           {board.roles.map((role) => (
             <li key={role.id}>
               <span>{role.label}</span>
               <strong>{role.id}</strong>
-              <span>Proof ready</span>
+              <span>{copy.proofReady}</span>
             </li>
           ))}
         </ul>
       </header>
 
-      <HiringScorecardCriteria criteria={board.criteria} />
-      <HiringScorecardRoles roles={board.roles} />
+      <HiringScorecardCriteria copy={copy} criteria={board.criteria} />
+      <HiringScorecardRoles copy={copy} roles={board.roles} />
       <HiringRouteShelf
         links={[
           { label: "Shortlist memo", href: "/hire/shortlist" },
@@ -188,7 +201,7 @@ export function HiringScorecardView({ board }: HiringScorecardViewProps) {
 
       <section className="hiring-scorecard-close" aria-labelledby="hiring-scorecard-close-title">
         <div>
-          <div className="label">Next action</div>
+          <div className="label">{copy.nextAction}</div>
           <h2 id="hiring-scorecard-close-title">{board.close.title}</h2>
           <p>{board.close.body}</p>
         </div>

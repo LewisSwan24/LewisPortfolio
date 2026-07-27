@@ -48,7 +48,7 @@ export const resumeData: ResumeData = {
         email: "24kplo@gmail.com",
         location: "Brisbane, Australia",
         github: "https://github.com/LewisSwan24",
-        website: "https://portfolio-j4imt7s0v-lewisswan24s-projects.vercel.app",
+        website: "https://lewisdong.vercel.app",
     },
 
     summary:
