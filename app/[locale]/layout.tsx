@@ -9,7 +9,6 @@ import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { BackToTop } from "@/components/navigation/BackToTop";
 import { ErrorBoundary } from "@/components/providers/ErrorBoundary";
-import { PageTransition } from "@/components/effects/PageTransition";
 import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
 import { KeyboardShortcutsModal } from "@/components/providers/KeyboardShortcutsModal";
 import { SearchProvider } from "@/components/SearchProvider";
@@ -79,11 +78,11 @@ export default async function LocaleLayout({
                     <SkipLink />
                     <div className="flex min-h-screen flex-col">
                         <Navigation />
-                        <main id="main-content" className="flex-1">
+                        <div id="main-content" className="flex-1" tabIndex={-1}>
                             <ErrorBoundary>
-                                <PageTransition>{children}</PageTransition>
+                                {children}
                             </ErrorBoundary>
-                        </main>
+                        </div>
                         <Footer />
                     </div>
                     <BackToTop />

@@ -572,8 +572,6 @@ html { scroll-behavior: smooth; }
 }
 .quote cite { font-style: normal; font-family: var(--font-ui); font-size: 13px; color: var(--text-3); letter-spacing: 0.02em; }
 
-.page { animation: page-in var(--dur-4) var(--ease-out) both; }
-
 /* NAV */
 .pd-nav {
   position: sticky; top: 0; z-index: 50;
