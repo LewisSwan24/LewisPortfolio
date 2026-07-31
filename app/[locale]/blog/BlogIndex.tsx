@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { getFilterableBlogTags } from "@/lib/blog-topics";
 
 export type PostItem = {
   slug: string;
@@ -18,8 +19,10 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
   const locale = useLocale();
   const isZh = locale === "zh";
   const [active, setActive] = useState<string>("all");
+  const filterableTags = getFilterableBlogTags(posts, tags);
+  const canFilter = filterableTags.length > 0;
 
-  const shown = active === "all" ? posts : posts.filter((p) => p.tags.includes(active));
+  const shown = !canFilter || active === "all" ? posts : posts.filter((p) => p.tags.includes(active));
   const empty = posts.length === 0;
 
   return (
@@ -41,9 +44,11 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
           <span>
             {isZh ? "文章" : "Posts"} <b>{posts.length}</b>
           </span>
-          <span>
-            {isZh ? "话题" : "Topics"} <b>{tags.length}</b>
-          </span>
+          {canFilter && (
+            <span>
+              {isZh ? "话题" : "Topics"} <b>{filterableTags.length}</b>
+            </span>
+          )}
           <a
             href="/feed.xml"
             target="_blank"
@@ -55,29 +60,27 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
         </div>
       </section>
 
-      {!empty && (
+      {!empty && canFilter && (
         <section className="container">
           <div
             className="idx-filters"
-            role="tablist"
+            role="group"
             aria-label={isZh ? "筛选文章" : "Filter posts"}
           >
             <button
               className={`idx-filter ${active === "all" ? "active" : ""}`}
               onClick={() => setActive("all")}
-              role="tab"
-              aria-selected={active === "all"}
+              aria-pressed={active === "all"}
               type="button"
             >
               {isZh ? "全部" : "All"}
             </button>
-            {tags.map((tag) => (
+            {filterableTags.map((tag) => (
               <button
                 key={tag}
                 className={`idx-filter ${active === tag ? "active" : ""}`}
                 onClick={() => setActive(tag)}
-                role="tab"
-                aria-selected={active === tag}
+                aria-pressed={active === tag}
                 type="button"
               >
                 {tag}
