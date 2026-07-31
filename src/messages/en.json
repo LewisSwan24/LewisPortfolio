@@ -39,15 +39,15 @@
   "approach": {
     "label": "How I work",
     "title": { "text": "Research in, artefact out.", "em": "Every time." },
-    "body": "I don't hand off sketches and hope. I run the interviews, synthesise the signals, draft the IA, prototype the interactions, then sit beside real users and watch it break. The work only counts when it ships.",
+    "body": "I don't hand off sketches and hope. I run the interviews, synthesise the signals, draft the IA, prototype the interactions, then sit beside real users and watch it break. The work earns confidence when research changes the next decision.",
     "step": {
       "1": { "t": "Listen", "b": "Field notes, transcripts, task evidence, and the quiet signals people almost miss." },
       "2": { "t": "Synthesise", "b": "Affinity maps, JTBD, tree tests — structured reasoning." },
       "3": { "t": "Prototype", "b": "Figma, Framer, HTML/CSS/React — I build at the fidelity needed." },
-      "4": { "t": "Ship", "b": "Usability test, iterate, hand off with rationale intact." }
+      "4": { "t": "Validate", "b": "Usability test, iterate, and document the rationale and open questions for the next decision." }
     }
   },
-  "feat": { "label": "Selected work", "title": "Four projects, end-to-end.", "footer": "Full index" },
+  "feat": { "label": "Selected work", "title": "Four projects, from evidence to next decision.", "footer": "Full index" },
   "proj": {
     "connect": {
       "kicker": "Flagship · Information Architecture",
