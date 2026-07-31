@@ -476,8 +476,8 @@ html { scroll-behavior: smooth; }
 }
 @media (max-width: 640px) { .container { padding: 0 20px; } }
 
-.section { padding: var(--s-9) 0; }
-.section-tight { padding: var(--s-8) 0; }
+.section { padding-block: var(--s-9); }
+.section-tight { padding-block: var(--s-8); }
 
 .label {
   font-family: var(--font-ui);
@@ -3567,7 +3567,7 @@ html { scroll-behavior: smooth; }
 /* ============================================================
    PROJECTS LIST PAGE — sprint 3
    ============================================================ */
-.idx-hero { padding: var(--s-8) 0 var(--s-7); }
+.idx-hero { padding-block: var(--s-8) var(--s-7); }
 .idx-hero .h-display {
   max-width: 12em;
   font-size: clamp(44px, 5vw, 66px);
@@ -4528,7 +4528,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 }
 
 .case-depth {
-  padding: 0 0 var(--s-8);
+  padding-block: 0 var(--s-8);
 }
 .case-depth-block {
   display: grid;
@@ -4869,7 +4869,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 /* ============================================================
    ABOUT — sprint 3
    ============================================================ */
-.about-hero { padding: var(--s-8) 0 var(--s-7); }
+.about-hero { padding-block: var(--s-8) var(--s-7); }
 .about-hero .h-display { max-width: 14em; }
 .about-grid {
   display: grid;
@@ -4940,7 +4940,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
    RESUME — sprint 3
    ============================================================ */
 .res-hero {
-  padding: var(--s-8) 0 var(--s-6);
+  padding-block: var(--s-8) var(--s-6);
   display: flex; justify-content: space-between; align-items: end;
   flex-wrap: wrap; gap: var(--s-5);
   border-bottom: 1px solid var(--border);
