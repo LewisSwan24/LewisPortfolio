@@ -223,23 +223,27 @@ export default async function ResumePage() {
               </div>
             </div>
             <div className="res-side-card resume-proof-card">
-              <h4>Proof-linked resume</h4>
+              <h4>{isZh ? "简历，连到证据。" : "Proof-linked resume"}</h4>
               <p>{hiringConversion.hero.status}</p>
-              <h5>Best cases to inspect</h5>
+              <h5>{isZh ? "最值得先看的案例" : "Best cases to inspect"}</h5>
               <div className="resume-proof-links">
                 {hiringConversion.proofRoutes.map((route) => (
                   <Link href={route.href} key={route.href}>
                     {route.title}
                   </Link>
                 ))}
-                <Link href="/hire">Interview decision</Link>
+                <Link href="/hire">{isZh ? "面试判断" : "Interview decision"}</Link>
               </div>
             </div>
             <HiringRoleFitPanel
               roles={hiringRoleFits}
               locale={proofLocale}
-              title="Role fit, with proof."
-              intro="Use the resume as a map into the strongest portfolio evidence."
+              title={isZh ? "岗位匹配，有证据。" : "Role fit, with proof."}
+              intro={
+                isZh
+                  ? "把简历当作通往最有力案例证据的索引。"
+                  : "Use the resume as a map into the strongest portfolio evidence."
+              }
               labels={proofLabels}
               compact
             />
