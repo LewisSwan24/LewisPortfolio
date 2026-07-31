@@ -4,6 +4,8 @@ import matter from "gray-matter";
 
 const blogDirectory = path.join(process.cwd(), "content/blog");
 
+export type BlogSourceLanguage = "en" | "zh";
+
 export interface BlogPost {
     slug: string;
     title: string;
@@ -12,6 +14,7 @@ export interface BlogPost {
     tags: string[];
     author: string;
     readingTime: string;
+    sourceLanguage: BlogSourceLanguage;
     published: boolean;
 }
 
@@ -61,6 +64,7 @@ export async function getBlogPost(slug: string): Promise<{
                 tags: data.tags || [],
                 author: data.author || "Lewis Dong",
                 readingTime: `${readingTime} min read`,
+                sourceLanguage: data.sourceLanguage === "zh" ? "zh" : "en",
                 published: data.published !== false,
             },
             content,

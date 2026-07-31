@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { getFilterableBlogTags } from "@/lib/blog-topics";
+import {
+  formatBlogOriginalLanguage,
+  formatBlogReadingTime,
+} from "@/lib/blog-presentation";
 
 export type PostItem = {
   slug: string;
@@ -12,6 +16,7 @@ export type PostItem = {
   excerpt: string;
   tags: string[];
   readingTime: string;
+  sourceLanguage: "en" | "zh";
 };
 
 export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }) {
@@ -111,11 +116,18 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
               isZh ? "zh-CN" : "en-US",
               { year: "numeric", month: "short", day: "numeric" }
             );
+            const originalLanguage = formatBlogOriginalLanguage(
+              p.sourceLanguage,
+              isZh ? "zh" : "en"
+            );
             return (
               <Link className="idx-flag" href={`/blog/${p.slug}`} key={p.slug}>
                 <div className="idx-flag-n">{n}</div>
                 <div className="idx-flag-body">
-                  <div className="eyebrow">{date}</div>
+                  <div className="eyebrow">
+                    {date}
+                    {originalLanguage && ` · ${originalLanguage}`}
+                  </div>
                   <h3 className="idx-flag-title">{p.title}</h3>
                   <p>{p.excerpt}</p>
                   <div className="idx-flag-tags">
@@ -127,7 +139,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
                   </div>
                 </div>
                 <div className="idx-flag-side">
-                  <div>{p.readingTime}</div>
+                  <div>{formatBlogReadingTime(p.readingTime, isZh ? "zh" : "en")}</div>
                   <div style={{ marginTop: 8, color: "var(--accent)" }}>
                     {isZh ? "读它" : "Read it"} →
                   </div>

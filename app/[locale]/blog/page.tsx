@@ -29,6 +29,7 @@ export default async function BlogPage() {
     excerpt: p.excerpt,
     tags: p.tags,
     readingTime: p.readingTime,
+    sourceLanguage: p.sourceLanguage,
   }));
 
   return <BlogIndex posts={postsData} tags={tags} />;

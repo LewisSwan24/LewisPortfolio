@@ -21,6 +21,10 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { extractTOC } from "@/lib/toc";
 import { siteConfig } from "@/lib/site";
 import { buildArticleShareUrl } from "@/lib/share-url";
+import {
+  formatBlogOriginalLanguage,
+  formatBlogReadingTime,
+} from "@/lib/blog-presentation";
 
 const giscus = {
   repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
@@ -85,6 +89,13 @@ export default async function BlogPostPage({ params }: Props) {
     isZh ? "zh-CN" : "en-US",
     { year: "numeric", month: "long", day: "numeric" }
   );
+  const originalLanguage = formatBlogOriginalLanguage(
+    post.metadata.sourceLanguage,
+    isZh ? "zh" : "en"
+  );
+  const heroEyebrow = [post.metadata.tags[0], originalLanguage]
+    .filter((value): value is string => Boolean(value))
+    .join(" · ");
   const tocItems = extractTOC(post.content);
   const postUrl = buildArticleShareUrl(siteConfig.url, locale, slug);
 
@@ -126,9 +137,9 @@ export default async function BlogPostPage({ params }: Props) {
           <Link className="cs-back" href="/blog">
             ← {t("nav.blog")}
           </Link>
-          {post.metadata.tags[0] && (
+          {heroEyebrow && (
             <div className="eyebrow" style={{ marginBottom: 12 }}>
-              {post.metadata.tags[0]}
+              {heroEyebrow}
             </div>
           )}
           <h1>{post.metadata.title}</h1>
@@ -140,7 +151,7 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
             <div>
               <dt>{isZh ? "阅读时长" : "Reading time"}</dt>
-              <dd>{post.metadata.readingTime}</dd>
+              <dd>{formatBlogReadingTime(post.metadata.readingTime, isZh ? "zh" : "en")}</dd>
             </div>
             <div>
               <dt>{isZh ? "作者" : "Author"}</dt>

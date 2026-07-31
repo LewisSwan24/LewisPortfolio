@@ -58,4 +58,11 @@ describe("blog", () => {
       expect(post.readingTime).toMatch(/min read/);
     }
   });
+
+  it("declares the original language for every post", async () => {
+    const posts = await getAllBlogPosts();
+    for (const post of posts) {
+      expect(post.sourceLanguage).toBe("en");
+    }
+  });
 });
