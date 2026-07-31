@@ -717,7 +717,7 @@ html { scroll-behavior: smooth; }
 
 /* HERO — Practice Deck */
 .hero {
-  padding: var(--s-7) 0 var(--s-9);
+  padding-block: var(--s-7) var(--s-9);
   position: relative;
   overflow: hidden;
 }
