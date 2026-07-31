@@ -7,6 +7,10 @@ import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
 import {
+  formatBlogOriginalLanguage,
+  formatBlogReadingTime,
+} from "@/lib/blog-presentation";
+import {
   getHiringConversion,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
@@ -235,6 +239,10 @@ export default async function HomePage() {
                 dateLocale,
                 { year: "numeric", month: "short", day: "numeric" }
               );
+              const originalLanguage = formatBlogOriginalLanguage(
+                post.sourceLanguage,
+                proofLocale
+              );
               return (
                 <Link
                   className="latest-item"
@@ -243,8 +251,14 @@ export default async function HomePage() {
                 >
                   <div className="latest-meta">
                     <span>{dateFmt}</span>
+                    {originalLanguage && (
+                      <>
+                        <span aria-hidden>·</span>
+                        <span>{originalLanguage}</span>
+                      </>
+                    )}
                     <span aria-hidden>·</span>
-                    <span>{post.readingTime}</span>
+                    <span>{formatBlogReadingTime(post.readingTime, proofLocale)}</span>
                   </div>
                   <h3 className="latest-title">{post.title}</h3>
                   <p className="latest-excerpt">{post.excerpt}</p>
