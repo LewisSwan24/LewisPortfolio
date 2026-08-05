@@ -20,19 +20,29 @@ test.describe("Portfolio Homepage", () => {
     });
 
     test("should display the current hero", async ({ page }) => {
-        await expect(page.getByRole("heading", { level: 1 })).toContainText("Lewis");
+        await expect(page.getByRole("heading", { level: 1 })).toContainText("Research-led");
     });
 
+    // The old "Evidence at a glance" / "Capability map" sections were removed
+    // when the homepage was condensed; the hiring signal grid replaced them.
     test("should surface career evidence", async ({ page }) => {
-        await expect(page.getByText("Evidence at a glance")).toBeVisible();
-        await expect(page.getByText("Capability map")).toBeVisible();
+        const signals = page.locator(".hiring-signal-grid .hiring-signal");
+
+        await expect(signals.first()).toBeVisible();
+        expect(await signals.count()).toBeGreaterThanOrEqual(3);
+        await expect(page.locator(".hiring-proof-status")).toContainText(/2026/);
     });
 
+    // Replaces the removed timed reading paths ("15-second scan" and friends).
+    // The surviving way in for a recruiter is the proof route board.
     test("should guide hiring readers", async ({ page }) => {
-        await expect(page.getByText("Start here if you are hiring")).toBeVisible();
-        await expect(page.getByText("15-second scan")).toBeVisible();
-        await expect(page.getByText("2-minute case check")).toBeVisible();
-        await expect(page.getByText("10-minute deep read")).toBeVisible();
+        const board = page.locator(".proof-route-board");
+
+        await expect(board.getByText(/Best cases to inspect/i)).toBeVisible();
+
+        const routes = board.locator(".proof-route-card");
+        expect(await routes.count()).toBeGreaterThanOrEqual(3);
+        await expect(routes.first()).toBeVisible();
     });
 
     test("should present a clear hiring conversion path", async ({ page }) => {
@@ -50,13 +60,16 @@ test.describe("Portfolio Homepage", () => {
         await expectAnchoredCaseProofLink(page.locator(".hiring-proof-desk a[href*='#']").first());
     });
 
-    test("should expose role fit decision panel", async ({ page }) => {
-        const roleFit = page.locator(".hiring-role-fit").first();
+    // The role-fit panel moved off the homepage to /hire, /resume and /contact,
+    // which have their own coverage. What the homepage must still do is offer
+    // the three conversion routes.
+    test("should offer the hiring conversion actions", async ({ page }) => {
+        const actions = page.locator(".hiring-proof-actions");
 
-        await expect(roleFit.getByText("Role fit", { exact: true })).toBeVisible();
-        await expect(roleFit.getByText("UX/Product Design")).toBeVisible();
-        await expect(roleFit.getByText("UX Research")).toBeVisible();
-        await expect(roleFit.locator("a[href*='#']").first()).toBeVisible();
+        for (const href of ["/contact", "/resume", "/hire"]) {
+            await expect(actions.locator(`a[href='${href}']`)).toBeVisible();
+        }
+        await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
     });
 
     test("homepage should link to the interview decision room", async ({ page }) => {
@@ -105,7 +118,8 @@ test.describe("Projects Page", () => {
     });
 
     test("should display projects list", async ({ page }) => {
-        await expect(page.locator("a.idx-flag[href^='/projects/']").first()).toBeVisible();
+        // The work index switched from a.idx-flag to a.work-index-row.
+        await expect(page.locator("a.work-index-row[href^='/projects/']").first()).toBeVisible();
     });
 
     test("should display the evidence map", async ({ page }) => {
@@ -146,18 +160,27 @@ test.describe("Projects Page", () => {
         );
     });
 
+    // waitForURL rather than an immediate toHaveURL: clicking straight after
+    // load races the Next Link handler and swallows the navigation.
     test("should navigate to project detail", async ({ page }) => {
-        await page.locator("a.idx-flag[href^='/projects/']").first().click();
+        const firstCase = page.locator("a.work-index-row[href^='/projects/']").first();
+        await expect(firstCase).toBeVisible();
+        await firstCase.click();
 
-        await expect(page).toHaveURL(/\/projects\/.+/);
+        await page.waitForURL(/\/projects\/.+/);
         await expect(page.locator("main[data-screen-label^='03 Case']")).toBeVisible();
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-        await expect(page.getByText("Case summary")).toBeVisible();
-        await expect(page.getByText("What I would do next")).toBeVisible();
+        // exact: a case figcaption also contains these phrases, which trips
+        // Playwright strict mode on a substring match.
+        await expect(page.getByText("Case summary", { exact: true })).toBeVisible();
+        await expect(page.getByText("What I would do next", { exact: true })).toBeVisible();
     });
 
     test("project detail should have breadcrumb navigation", async ({ page }) => {
-        await page.locator("a.idx-flag[href^='/projects/']").first().click();
+        const firstCase = page.locator("a.work-index-row[href^='/projects/']").first();
+        await expect(firstCase).toBeVisible();
+        await firstCase.click();
+        await page.waitForURL(/\/projects\/.+/);
 
         await expect(page.getByRole("navigation", { name: /breadcrumb/i })).toBeVisible();
     });
@@ -339,12 +362,15 @@ test.describe("Accessibility", () => {
 });
 
 test.describe("Blog Detail Page", () => {
+    // Wait for hydration before clicking: a bare goto + immediate click races
+    // the Next Link handler and the navigation gets swallowed.
     test("should navigate to blog post and display content", async ({ page }) => {
-        await page.goto("/blog");
+        await page.goto("/blog", { waitUntil: "networkidle" });
         const firstPost = page.locator("a.idx-flag[href^='/blog/']").first();
         if ((await firstPost.count()) > 0) {
+            await expect(firstPost).toBeVisible();
             await firstPost.click();
-            await expect(page).toHaveURL(/\/blog\/.+/);
+            await page.waitForURL(/\/blog\/.+/);
             await expect(page.locator("main[data-screen-label^='06 Post']")).toBeVisible();
             await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
         }
@@ -367,7 +393,9 @@ test.describe("Hire Page", () => {
 
     test("should render the interview decision room", async ({ page }) => {
         await expect(page.locator("main[data-screen-label='05 Hire']")).toBeVisible();
-        await expect(page.getByRole("heading", { level: 1 })).toContainText("Interview");
+        // The h1 is the decision-brief headline ("Why I'll help your team."),
+        // not the word "Interview"; assert the section content instead of copy.
+        await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
         await expect(page.getByText("Evidence brief", { exact: true })).toBeVisible();
         await expect(page.getByText("Questions worth asking.", { exact: true })).toBeVisible();
         await expect(page.getByText("What I would not overclaim")).toBeVisible();
@@ -413,17 +441,23 @@ test.describe("Proof Maintenance", () => {
 });
 
 test.describe("Contact Page", () => {
+    // Calendly booking was dropped from the contact page, so email is now the
+    // only direct channel asserted here.
     test("should display direct contact options", async ({ page }) => {
         await page.goto("/contact");
 
-        await expect(page.locator("a[href^='mailto:']").first()).toBeVisible();
-        await expect(page.locator("a[href*='calendly.com']").first()).toBeVisible();
+        await expect(page.locator(".contact-method-list a[href^='mailto:']").first()).toBeVisible();
     });
 
+    // .contact-big-link was removed with the contact rewrite; the address now
+    // lives in the method list.
     test("should expose the contact email", async ({ page }) => {
         await page.goto("/contact");
 
-        await expect(page.locator(".contact-big-link")).toContainText("@");
+        await expect(page.locator("a[href^='mailto:']").first()).toHaveAttribute(
+            "href",
+            /^mailto:.+@.+\..+/,
+        );
     });
 
     test("should explain how to use the portfolio", async ({ page }) => {
@@ -573,45 +607,23 @@ test.describe("Responsive Design", () => {
         test.setTimeout(120000);
         await page.setViewportSize({ width: 390, height: 844 });
 
+        // The 19 /hire/* leaf routes and the /hire/[role] tree were deleted and
+        // now 301 to /hire, so checking them here just re-measured /hire.
         for (const route of [
             "/",
             "/projects",
             "/hire",
-            "/hire/review",
-            "/hire/compare",
-            "/hire/interview",
-            "/hire/scorecard",
-            "/hire/shortlist",
-            "/hire/debrief",
-            "/hire/decision",
-            "/hire/offer",
-            "/hire/onboarding",
-            "/hire/kickoff",
-            "/hire/impact",
-            "/hire/growth",
-            "/hire/retention",
-            "/hire/partnership",
-            "/hire/command",
-            "/hire/briefing",
-            "/hire/readiness",
-            "/hire/action",
-            "/hire/tracker",
-            "/hire/ux-product",
-            "/hire/ux-research",
-            "/hire/ai-ux",
-            "/hire/accessibility",
-            "/hire/ux-product/packet",
-            "/hire/ux-research/packet",
-            "/hire/ai-ux/packet",
-            "/hire/accessibility/packet",
-            "/hire/ux-product/next",
-            "/hire/ux-research/next",
-            "/hire/ai-ux/next",
-            "/hire/accessibility/next",
             "/resume",
             "/contact",
+            "/blog",
+            "/about",
             "/projects/connect",
             "/projects/spectra",
+            "/projects/ai",
+            "/projects/circles",
+            "/zh",
+            "/zh/projects",
+            "/zh/hire",
         ]) {
             await page.goto(route);
 
@@ -622,16 +634,19 @@ test.describe("Responsive Design", () => {
             expect(hasHorizontalOverflow, `${route} should not overflow horizontally`).toBe(false);
 
             if (route === "/projects") {
-                const titleFitsContainer = await page
-                    .locator("main[data-screen-label='02 Work'] h1")
-                    .evaluate((element) => element.scrollWidth <= element.clientWidth + 1);
-                const emphasisRightEdge = await page
-                    .locator("main[data-screen-label='02 Work'] h1 em")
-                    .evaluate((element) => element.getBoundingClientRect().right);
+                // The work title is now plain text ("Selected work"); the <em>
+                // it used to contain is gone, so measure the h1 itself.
+                const title = page.locator("main[data-screen-label='02 Work'] h1");
+                const titleFitsContainer = await title.evaluate(
+                    (element) => element.scrollWidth <= element.clientWidth + 1,
+                );
+                const titleRightEdge = await title.evaluate(
+                    (element) => element.getBoundingClientRect().right,
+                );
                 const viewportWidth = await page.evaluate(() => document.documentElement.clientWidth);
 
                 expect(titleFitsContainer, "Work mobile title should fit its container").toBe(true);
-                expect(emphasisRightEdge, "Work mobile emphasized title should stay inside viewport").toBeLessThanOrEqual(
+                expect(titleRightEdge, "Work mobile title should stay inside viewport").toBeLessThanOrEqual(
                     viewportWidth + 1,
                 );
             }
