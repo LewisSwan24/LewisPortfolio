@@ -1,9 +1,10 @@
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
-import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
+import { VizConnect, VizSpectra, VizAI, VizCircles, VizMaze } from "@/components/viz/ProjectViz";
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
@@ -27,11 +28,80 @@ interface ProjectLink {
   external?: boolean;
 }
 
+interface CaseMediaImage {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  altZh: string;
+  caption: string;
+  captionZh: string;
+}
+
+interface CaseMedia {
+  images: CaseMediaImage[];
+  video?: { src: string; poster: string; caption: string; captionZh: string };
+}
+
+/**
+ * Photographic evidence, for cases that have a physical artefact. Only
+ * MazeRunners does — the rest are screen work whose artefact is the cover viz.
+ */
+const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
+  maze: {
+    images: [
+      {
+        src: "/projects/maze/01-exhibition-setup.png",
+        width: 900,
+        height: 520,
+        alt: "The MazeRunners table set up at the exhibition with players around it",
+        altZh: "MazeRunners 在展览现场的桌面布置，玩家围在四周",
+        caption: "Exhibition setup, mid-round.",
+        captionZh: "展览现场，回合进行中。",
+      },
+      {
+        src: "/projects/maze/02-bracelet-finger-sleeve.png",
+        width: 900,
+        height: 520,
+        alt: "Close-up of the wearable finger sleeve that delivers vibration feedback",
+        altZh: "提供震动反馈的可穿戴手指套特写",
+        caption: "The finger sleeve — where the trap actually lands.",
+        captionZh: "手指套 —— 陷阱真正落在这里。",
+      },
+      {
+        src: "/projects/maze/03-wiring-layer.png",
+        width: 900,
+        height: 520,
+        alt: "The wiring layer underneath the maze board",
+        altZh: "迷宫板下方的接线层",
+        caption: "Wiring layer under the board.",
+        captionZh: "板子底下的接线层。",
+      },
+      {
+        src: "/projects/maze/04-engineering-overview.png",
+        width: 1536,
+        height: 1024,
+        alt: "Annotated engineering overview of sensors, controllers, and feedback hardware",
+        altZh: "带标注的工程总览：传感器、控制器与反馈硬件",
+        caption: "Annotated overview: sensors, controllers, feedback.",
+        captionZh: "带标注的总览：传感器、控制器、反馈。",
+      },
+    ],
+    video: {
+      src: "/projects/maze/05-planb-circuit.mp4",
+      poster: "/projects/maze/05-planb-circuit-thumbnail.jpg",
+      caption: "The PlanB feedback circuit running.",
+      captionZh: "PlanB 反馈电路运行录像。",
+    },
+  },
+};
+
 const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   connect: [],
   spectra: [],
   ai: [],
   circles: [],
+  maze: [],
 };
 
 export function generateStaticParams() {
@@ -63,6 +133,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function CoverViz({ slug }: { slug: Slug }) {
+  if (slug === "maze") return <VizMaze />;
   if (slug === "connect") return <VizConnect />;
   if (slug === "spectra") return <VizSpectra />;
   if (slug === "ai") return <VizAI />;
@@ -360,6 +431,46 @@ export default async function CasePage({ params }: Props) {
           <figcaption>{pageCopy.coverCaption}</figcaption>
         </figure>
       </section>
+
+      {CASE_MEDIA[k] && (
+        <section className="container case-build-evidence" aria-label={isZh ? "实物证据" : "Build evidence"}>
+          <div className="case-build-head">
+            <div className="label">{isZh ? "实物证据" : "Build evidence"}</div>
+            <p>
+              {isZh
+                ? "以下是实际搭建与展出的照片和电路运行录像，不是渲染图。"
+                : "Photographs of the actual build and a clip of the circuit running — not renders."}
+            </p>
+          </div>
+          <div className="case-build-grid">
+            {CASE_MEDIA[k]!.images.map((image) => (
+              <figure key={image.src}>
+                <Image
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  alt={isZh ? image.altZh : image.alt}
+                  sizes="(max-width: 720px) 100vw, 50vw"
+                />
+                <figcaption>{isZh ? image.captionZh : image.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+          {CASE_MEDIA[k]!.video && (
+            <figure className="case-build-video">
+              <video
+                controls
+                preload="none"
+                poster={CASE_MEDIA[k]!.video!.poster}
+                src={CASE_MEDIA[k]!.video!.src}
+              />
+              <figcaption>
+                {isZh ? CASE_MEDIA[k]!.video!.captionZh : CASE_MEDIA[k]!.video!.caption}
+              </figcaption>
+            </figure>
+          )}
+        </section>
+      )}
 
       <section className="container case-depth" aria-label={pageCopy.caseDepthAria}>
         <div id="case-depth-overview" className="case-depth-block case-depth-intro">

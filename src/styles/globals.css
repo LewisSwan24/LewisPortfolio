@@ -9965,3 +9965,57 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
     min-width: 0;
   }
 }
+
+/* Build evidence gallery — only rendered for cases with a physical artefact. */
+.case-build-evidence {
+  margin-top: var(--s-8, 4rem);
+}
+
+.case-build-head {
+  max-width: 60ch;
+  margin-bottom: var(--s-6, 2rem);
+}
+
+.case-build-head p {
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+.case-build-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-5, 1.5rem);
+}
+
+.case-build-grid figure,
+.case-build-video {
+  margin: 0;
+  min-width: 0;
+}
+
+.case-build-grid img,
+.case-build-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+
+.case-build-grid figcaption,
+.case-build-video figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.case-build-video {
+  margin-top: var(--s-5, 1.5rem);
+}
+
+@media (max-width: 720px) {
+  .case-build-grid {
+    grid-template-columns: 1fr;
+  }
+}

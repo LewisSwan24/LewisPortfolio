@@ -47,7 +47,7 @@
       "4": { "t": "Ship", "b": "Usability test, iterate, hand off with rationale intact." }
     }
   },
-  "feat": { "label": "Selected work", "title": "Four projects, end-to-end.", "footer": "Full index" },
+  "feat": { "label": "Selected work", "title": "Five projects, end-to-end.", "footer": "Full index" },
   "proj": {
     "connect": {
       "kicker": "Flagship · Information Architecture",
@@ -88,6 +88,16 @@
       "m1": "Depth interviews",
       "m2": "Two-week diary study",
       "m3": "Co-design workshops"
+    },
+    "maze": {
+      "kicker": "Flagship · Physical computing",
+      "title": "MazeRunners",
+      "sub": "A maze that hits back — sensors, haptics, and a browser console in one loop.",
+      "role": "Design Technologist",
+      "date": "2025 · built & exhibited",
+      "m1": "Arduino Mega · 10 IR sensors",
+      "m2": "Vibration replaced electric shock",
+      "m3": "Web Serial live + demo console"
     }
   },
   "cs": {
@@ -294,6 +304,55 @@
       "rf": {
         "label": "Reflection",
         "p": "Designing for social wellbeing is the first time I've had to actively refuse growth metrics. Every conventional indicator — matches, messages, session time — works against the goal. The hardest design question right now is what the north-star metric should be when the desired outcome is 'one good friendship over a semester', and how to instrument for that without turning a relationship into a KPI."
+      }
+    },
+    "maze": {
+      "hero": { "title": "MazeRunners", "sub": "A physical maze wired so that a ball, a score, a buzz on your finger, and a browser console all describe the same moment." },
+      "roleVal": "Design technologist & interaction prototyper",
+      "timeVal": "2025 · built and exhibited",
+      "teamVal": "Team project; I owned firmware, sensing, feedback, and the web console",
+      "toolsVal": "Arduino Mega · Arduino C/C++ · FC-51 IR · TM1637 · Web Serial · JS Canvas",
+      "ch": {
+        "label": "The problem",
+        "title": "A maze is furniture until it answers you.",
+        "p": "The brief was a physical maze game for a public exhibition. The failure mode showed up in the first build: a nice object that people pushed a ball around while nothing happened. Scoring lived in someone's head, traps were painted lines, and the only feedback was other players laughing. The design problem was not the maze — it was making the system notice events and answer them fast enough that a stranger learns the rules without being told."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Working out what the system must sense, and what it must never do.",
+        "m1": { "t": "Sensor mapping", "b": "Ten FC-51 IR sensors assigned across trap, diagnostic, spare, and finish zones, each needing its own trigger behaviour." },
+        "m2": { "t": "Safety review", "b": "The original trap concept was a mild electric shock. Unsupervised exhibition play made per-person consent and calibration impossible." },
+        "m3": { "t": "Feedback inventory", "b": "Score, timer, vibration, lights, audio, and a browser console — each a channel that could carry or muddy the same event." },
+        "quote": "People don't read the score display. They feel the buzz and look up.",
+        "quoteWho": "Observation from exhibition play"
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "One event, many channels, one round state machine.",
+        "p": "Everything hangs off a single round state machine. A ball breaks an IR beam, round state advances, and that one event fans out: score and timer displays update, a vibration pulse fires in the player's finger sleeve, the LED strip and speaker respond, and the browser console logs it. Subsystems reacting independently is exactly what made the first build feel like unrelated gadgets screwed to plywood."
+      },
+      "id": {
+        "label": "Technical decisions",
+        "p": "Vibration replaced the electric shock: relay-driven motors in wearable finger sleeves keep the sensation on the body without a risk that needs supervision. Each IR sensor got debounce and a cooldown window, because raw reads double- and triple-fired on a single pass and broke agreement between score, timer, and haptics. Platform tilt moved to its own SafeTouchServoController with hold-to-move behaviour, so servo motion stopped competing with time-sensitive sensor polling and a servo fault could not take down the round."
+      },
+      "pr": {
+        "label": "The web console",
+        "p": "A browser-based system console connects over Web Serial and mirrors the maze live: score and timer HUD, hardware bay, event log, and feedback simulation on a canvas. It also runs standalone in demo mode, because the hardware is not in the room during development — or in a portfolio, or an interview. Regression tests cover serial sync, feedback sync, servo response, and audio parity so the demo cannot quietly drift away from what the firmware does."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "Bench testing tuned debounce and cooldown until one ball pass produced exactly one game event. Parity tests caught drift whenever the firmware or the console was edited alone. Group play at the exhibition then surfaced what the bench could not: players reacted to vibration and audio faster than to the score display, and the finger sleeves had to be fitted for people rather than self-fitted — the setup ritual turned out to be part of the interaction."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": { "label": "State", "v": "One round state machine" },
+        "m2": { "label": "Feedback", "v": "5 synchronised channels" },
+        "m3": { "label": "Control", "v": "Live + demo console" },
+        "p": "A working, exhibited system: firmware modules for game state, IR sensing, player chain input, vibration and audio; a two-controller hardware split; and a browser console with parity tests. Evidence status — this is a university project built for one exhibition. Play was observed, not instrumented, so I can describe what players reacted to but cannot quantify which channel carried the most information."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "The strongest lesson was that on hardware, timing is design. Debounce sounds like an electronics detail until a double-fire makes the score disagree with the buzz on your finger, and the player stops trusting the system. The weakest part is that I proved the loop works without measuring which parts of it mattered — rebuilding it, I would log every sensor event and feedback fire from day one, then start switching channels off to find out which ones players were actually using."
       }
     }
   },

@@ -23,7 +23,9 @@ describe("portfolio proof content", () => {
   it("covers every portfolio project with evidence metadata", () => {
     const projects = getProjectEvidence("en");
 
-    expect(projects).toHaveLength(4);
+    // Bound to the slug registry rather than a literal, so adding a case does
+    // not require editing a count here.
+    expect(projects).toHaveLength(projectEvidenceSlugs.length);
     expect(projects.map((project) => project.slug)).toEqual(projectEvidenceSlugs);
 
     for (const project of projects) {

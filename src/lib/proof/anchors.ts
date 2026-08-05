@@ -1,6 +1,12 @@
 import type { HiringRoleId, ProjectEvidenceSlug } from "./types";
 
-export const projectEvidenceSlugs = ["connect", "spectra", "ai", "circles"] as const;
+export const projectEvidenceSlugs = [
+  "connect",
+  "spectra",
+  "ai",
+  "circles",
+  "maze",
+] as const satisfies readonly ProjectEvidenceSlug[];
 
 export const hiringRoleIds = [
   "ux-product",
@@ -16,4 +22,5 @@ export const projectLabels: Record<ProjectEvidenceSlug, string> = {
   spectra: "Spectra Lens",
   ai: "AI Coach",
   circles: "Connect Circles",
+  maze: "MazeRunners",
 };

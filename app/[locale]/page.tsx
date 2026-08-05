@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
-import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
+import { VizConnect, VizSpectra, VizAI, VizCircles, VizMaze } from "@/components/viz/ProjectViz";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles";
+type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze";
 
 interface FeatItemProps {
   n: string;
@@ -211,10 +211,13 @@ export default async function HomePage() {
         </div>
 
         <div className="feat-list">
-          <FeatItem n="01" k="connect" href="/projects/connect" t={t} viz={<VizConnect />} />
-          <FeatItem n="02" k="spectra" href="/projects/spectra" flip t={t} viz={<VizSpectra />} />
-          <FeatItem n="03" k="ai" href="/projects/ai" t={t} viz={<VizAI />} />
-          <FeatItem n="04" k="circles" href="/projects/circles" flip t={t} viz={<VizCircles />} />
+          {/* MazeRunners leads: it is the only case backed by a working physical
+              build, so it differentiates hardest against screen-only portfolios. */}
+          <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze />} />
+          <FeatItem n="02" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect />} />
+          <FeatItem n="03" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra />} />
+          <FeatItem n="04" k="ai" href="/projects/ai" flip t={t} viz={<VizAI />} />
+          <FeatItem n="05" k="circles" href="/projects/circles" t={t} viz={<VizCircles />} />
         </div>
       </section>
 

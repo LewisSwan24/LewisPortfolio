@@ -1,4 +1,4 @@
-export type ProjectEvidenceSlug = "connect" | "spectra" | "ai" | "circles";
+export type ProjectEvidenceSlug = "connect" | "spectra" | "ai" | "circles" | "maze";
 export type ProofLocale = "en" | "zh";
 
 export interface CareerSnapshotStat {

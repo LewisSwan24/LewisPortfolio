@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
-import { VizAI, VizCircles, VizConnect, VizSpectra } from "@/components/viz/ProjectViz";
+import { VizAI, VizCircles, VizConnect, VizMaze, VizSpectra } from "@/components/viz/ProjectViz";
 import {
   getEvidenceMatrix,
   getHiringConversion,
@@ -12,8 +12,8 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles";
-type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social";
+type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze";
+type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social" | "hardware";
 type Localized = { en: string; zh: string };
 
 interface Item {
@@ -34,11 +34,28 @@ const FILTERS: Array<{ id: FilterId; en: string; zh: string }> = [
   { id: "acc", en: "Accessibility", zh: "无障碍" },
   { id: "ai", en: "AI / ML", zh: "AI" },
   { id: "social", en: "Social", zh: "社交" },
+  { id: "hardware", en: "Hardware", zh: "硬件" },
 ];
 
 const ITEMS: Item[] = [
   {
     n: "01",
+    k: "maze",
+    tags: ["flag", "hardware"],
+    role: "Design tech",
+    year: "2025",
+    dur: "Built",
+    problem: {
+      en: "A physical maze that noticed nothing and answered nothing",
+      zh: "一台什么都察觉不到、也不会回应的实体迷宫",
+    },
+    changed: {
+      en: "One sensor event driving score, haptics, light, audio, and a web console",
+      zh: "一个传感器事件同时驱动计分、震动、灯光、音效与网页控制台",
+    },
+  },
+  {
+    n: "02",
     k: "connect",
     tags: ["flag", "research"],
     role: "Solo",
@@ -48,7 +65,7 @@ const ITEMS: Item[] = [
     changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
   },
   {
-    n: "02",
+    n: "03",
     k: "spectra",
     tags: ["flag", "acc", "research"],
     role: "Lead",
@@ -58,7 +75,7 @@ const ITEMS: Item[] = [
     changed: { en: "Live colour naming and haptic feedback model", zh: "实时颜色命名和触觉反馈模型" },
   },
   {
-    n: "03",
+    n: "04",
     k: "ai",
     tags: ["ai", "research"],
     role: "Designer",
@@ -68,7 +85,7 @@ const ITEMS: Item[] = [
     changed: { en: "Timed coaching and a confidence loop", zh: "分时机的指导和信心循环" },
   },
   {
-    n: "04",
+    n: "05",
     k: "circles",
     tags: ["social", "research"],
     role: "Solo",
@@ -80,6 +97,7 @@ const ITEMS: Item[] = [
 ];
 
 function WorkPreview({ project }: { project: ProjKey }) {
+  if (project === "maze") return <VizMaze />;
   if (project === "connect") return <VizConnect />;
   if (project === "spectra") return <VizSpectra />;
   if (project === "ai") return <VizAI />;

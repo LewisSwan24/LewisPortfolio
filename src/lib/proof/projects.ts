@@ -188,6 +188,26 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       outcome: "Research complete; prototype direction defined around slow matching, small groups, and shared vulnerability. Nothing built or user-tested yet.",
       proves: "I can handle ambiguous social problems, synthesize academic theory, and resist shallow growth metrics.",
     },
+    {
+      slug: "maze",
+      href: "/projects/maze",
+      problemType: "Physical computing and hardware-web interaction",
+      challenge:
+        "A physical maze is a passive object. Making it behave like a responsive multiplayer system meant wiring sensing, feedback, and game state together so players could see, hear, and feel every event.",
+      methods: [
+        "firmware state machines",
+        "sensor debounce and cooldown tuning",
+        "haptic feedback design",
+        "Web Serial console",
+        "regression tests for firmware/web parity",
+      ],
+      sample:
+        "Built and exhibited. Arduino Mega, ten FC-51 IR sensors, TM1637 score and timer displays, relay-driven vibration motors, an RGB strip, servos, and a browser console; validated through group play at a public exhibition.",
+      outcome:
+        "A working system rather than a mockup: a ball passes a sensor, round state advances, and score, timer, haptics, lights, audio, and the browser console update together. Vibration replaced an electric-shock concept on safety grounds.",
+      proves:
+        "I can carry an interaction idea down to firmware and back up to a browser UI, and make calibration and safety calls on real hardware.",
+    },
   ],
   zh: [
     {
@@ -229,6 +249,20 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       sample: "进行中的课程项目。跨文化群体访谈、两周日记研究与共创工作坊；样本量未正式记录。",
       outcome: "研究完成；原型方向围绕慢匹配、小组关系与共享脆弱性展开。目前尚未开发，也未做用户测试。",
       proves: "证明我能处理模糊的社会问题，综合学术理论，并抵抗浅层增长指标。",
+    },
+    {
+      slug: "maze",
+      href: "/projects/maze",
+      problemType: "物理计算与软硬件交互",
+      challenge:
+        "实体迷宫本身是被动的。要让它像一个会回应的多人系统，必须把感测、反馈和游戏状态接在一起，让玩家看得见、听得见、也感觉得到每一个事件。",
+      methods: ["固件状态机", "传感器去抖与冷却调校", "触觉反馈设计", "Web Serial 控制台", "固件与网页行为一致性的回归测试"],
+      sample:
+        "已完成搭建并展出。Arduino Mega、10 个 FC-51 红外传感器、TM1637 计分与计时显示、继电器驱动的震动马达、RGB 灯带、舵机，以及一个浏览器控制台；在公开展览的多人游玩中验证。",
+      outcome:
+        "这是一套真的能跑的系统，不是效果图：球经过传感器，回合状态推进，计分、计时、震动、灯光、音效与浏览器控制台同步更新。出于安全考虑，用震动取代了原本的电击方案。",
+      proves:
+        "证明我能把一个交互想法一路做到固件，再接回浏览器界面，并在真实硬件上做校准与安全取舍。",
     },
   ],
 };
