@@ -302,12 +302,20 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     ],
     proofRoutes: [
       {
+        audience: "Design technology / prototyping",
+        title: "Hardware, firmware, and interaction in one loop",
+        claim: "Best proof that I can build the thing, not only specify it.",
+        evidence:
+          "MazeRunners wires IR sensing, firmware state, haptics, audio, and a Web Serial console into one system — built and exhibited.",
+        href: "/projects/maze#decision-timeline",
+      },
+      {
         audience: "IA / service complexity",
         title: "Information architecture and research rigor",
         claim:
           "Best proof that I can restructure a complex student service around user mental models.",
         evidence:
-          "UQ Connect links task analysis, card sorting, tree testing, and findability outcomes.",
+          "UQ Connect links task analysis, card sorting, and tree testing to a task-led structure.",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -378,12 +386,20 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     ],
     proofRoutes: [
       {
+        audience: "设计技术 / 原型开发",
+        title: "硬件、固件与交互接成同一个闭环",
+        claim: "证明我不只是写规格，而是真的做得出来。",
+        evidence:
+          "MazeRunners 把红外感测、固件状态、震动、音效与 Web Serial 控制台接成一套系统 —— 已搭建并展出。",
+        href: "/projects/maze#decision-timeline",
+      },
+      {
         audience: "信息架构 / 复杂服务",
         title: "信息架构与研究严谨度",
         claim:
           "证明我能围绕用户心智模型，重构复杂的学生服务。",
         evidence:
-          "UQ Connect 串联任务分析、卡片分类、树测试与可发现性结果。",
+          "UQ Connect 串联任务分析、卡片分类与树测试，产出以任务为主的结构。",
         href: "/projects/connect#decision-timeline",
       },
       {

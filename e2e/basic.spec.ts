@@ -1,7 +1,7 @@
 import { expect, test, type Locator } from "@playwright/test";
 
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|circles)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|spectra|ai|circles|maze)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 async function expectAnchoredCaseProofLink(link: Locator) {
     await expect(link).toBeVisible();
@@ -185,16 +185,9 @@ test.describe("Projects Page", () => {
         await expect(page.getByRole("navigation", { name: /breadcrumb/i })).toBeVisible();
     });
 
-    test("case detail should show interviewer scan", async ({ page }) => {
-        await page.goto("/projects/connect");
-        const scan = page.locator(".case-interview-scan");
-
-        await expect(scan.getByText("2-minute interviewer scan")).toBeVisible();
-        await expect(scan.getByText(/What this case proves/i)).toBeVisible();
-        await expect(scan.getByText(/What to inspect/i)).toBeVisible();
-        await expect(scan.getByText(/Interview questions/i)).toBeVisible();
-    });
-
+    // The 2-minute interviewer scan, the case reader nav and its prompt list
+    // were removed: all three restated the interview pack. The pack is now the
+    // single interview surface and is covered below.
     test("case detail should expose stable reader anchors", async ({ page }) => {
         await page.goto("/projects/connect");
 
@@ -214,35 +207,6 @@ test.describe("Projects Page", () => {
         }
     });
 
-    test("case detail should provide reader navigation", async ({ page }) => {
-        await page.goto("/projects/connect");
-
-        const reader = page.getByRole("navigation", { name: "Case reader" });
-
-        await expect(reader).toBeVisible();
-        await expect(reader.getByRole("link", { name: /^Snapshot/i })).toBeVisible();
-        await expect(reader.getByRole("link", { name: /^Decisions/i })).toBeVisible();
-        await expect(reader.getByRole("link", { name: /^Evidence/i })).toBeVisible();
-
-        await reader.getByRole("link", { name: /^Decisions/i }).click();
-        await expect(page).toHaveURL(/#decision-timeline$/);
-        await expect(page.locator("#decision-timeline")).toBeInViewport();
-    });
-
-    test("case detail should expose review modes and interview prompts", async ({ page }) => {
-        await page.goto("/projects/spectra");
-
-        await expect(page.getByText("2-minute scan").first()).toBeVisible();
-        await expect(page.getByText("Design manager review")).toBeVisible();
-        await expect(page.getByText("Research evidence review")).toBeVisible();
-        await expect(page.getByText("Interview prep")).toBeVisible();
-
-        const prompts = page.locator(".case-reader-prompts");
-
-        await expect(prompts.getByText(/Ask me about/i)).toBeVisible();
-        await expect(prompts.getByRole("link").first()).toBeVisible();
-    });
-
     test("case detail should expose interview answer routes", async ({ page }) => {
         await page.goto("/projects/connect");
 
@@ -256,49 +220,41 @@ test.describe("Projects Page", () => {
         );
     });
 
-    test("case reader should not overflow on mobile", async ({ page }) => {
+    test("case page should not overflow on mobile", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 844 });
         await page.goto("/projects/connect");
 
-        const reader = page.getByRole("navigation", { name: "Case reader" });
-
-        await expect(reader).toBeVisible();
-        await expect(reader.locator("a").first()).toBeVisible();
-        await reader.scrollIntoViewIfNeeded();
+        const pack = page.locator(".case-interview-pack");
+        await expect(pack).toBeVisible();
+        await pack.scrollIntoViewIfNeeded();
 
         const hasHorizontalOverflow = await page.evaluate(
             () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         );
-        const readerBox = await reader.boundingBox();
+        const packBox = await pack.boundingBox();
 
         expect(hasHorizontalOverflow).toBe(false);
-        expect(readerBox?.width).toBeLessThanOrEqual(390);
-        expect(readerBox?.height).toBeGreaterThan(0);
+        expect(packBox?.width).toBeLessThanOrEqual(390);
+        expect(packBox?.height).toBeGreaterThan(0);
     });
 
+    // The structured decision/evidence/iteration blocks were removed as
+    // duplicates of the narrative. Depth is now proven by the narrative itself
+    // plus the surviving limits block.
     test("connect detail should expose interview-ready depth", async ({ page }) => {
         await page.goto("/projects/connect");
-        const caseDepth = page.locator(".case-depth");
 
-        await expect(caseDepth.getByText("Decision timeline")).toBeVisible();
-        await expect(caseDepth.getByText("Research evidence board")).toBeVisible();
-        await expect(caseDepth.getByText("Iteration gallery")).toBeVisible();
-        await expect(caseDepth.getByText("Interview takeaway")).toBeVisible();
-        await expect(caseDepth.getByText(/task-oriented IA/i).first()).toBeVisible();
-        await expect(caseDepth.getByText(/tree testing/i).first()).toBeVisible();
-        await expect(caseDepth.getByText(/findability/i).first()).toBeVisible();
+        await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/task-first/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/tree test/i).first()).toBeVisible();
     });
 
     test("spectra detail should expose inclusive design depth", async ({ page }) => {
         await page.goto("/projects/spectra");
-        const caseDepth = page.locator(".case-depth");
 
-        await expect(caseDepth.getByText("Decision timeline")).toBeVisible();
-        await expect(caseDepth.getByText("Research evidence board")).toBeVisible();
-        await expect(caseDepth.getByText("Interview takeaway")).toBeVisible();
-        await expect(caseDepth.getByText(/multi-modal feedback/i).first()).toBeVisible();
-        await expect(caseDepth.getByText(/privacy/i).first()).toBeVisible();
-        await expect(caseDepth.getByText(/field testing/i).first()).toBeVisible();
+        await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/colourblind/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/privacy/i).first()).toBeVisible();
     });
 
     test("project detail should keep related visuals inside their cards", async ({ page }) => {
@@ -480,13 +436,13 @@ test.describe("Contact Page", () => {
         await expectAnchoredCaseProofLink(page.locator(".contact-next-step a[href*='#']").first());
     });
 
-    test("contact should explain role-aware reasons to reach out", async ({ page }) => {
+    // Role fit now lives only on /hire; contact links there instead of
+    // restating all twelve role blocks.
+    test("contact should not restate the role fit panel", async ({ page }) => {
         await page.goto("/contact");
 
-        const roleFit = page.locator(".hiring-role-fit").first();
-
-        await expect(roleFit.getByText("Role fit", { exact: true })).toBeVisible();
-        await expect(roleFit.getByText(/Best interview angle/i).first()).toBeVisible();
+        await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
+        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toBeVisible();
     });
 
     test("contact should link to the interview decision room", async ({ page }) => {
@@ -554,13 +510,13 @@ test.describe("Resume Page", () => {
         await expectAnchoredCaseProofLink(page.locator(".resume-proof-card a[href*='#']").first());
     });
 
-    test("resume should expose role fit proof routes", async ({ page }) => {
+    // Role fit now lives only on /hire; the resume links to the proof routes
+    // and to /hire rather than restating the panel.
+    test("resume should not restate the role fit panel", async ({ page }) => {
         await page.goto("/resume");
 
-        const roleFit = page.locator(".hiring-role-fit").first();
-
-        await expect(roleFit.getByText("Role fit", { exact: true })).toBeVisible();
-        await expect(roleFit.getByRole("link").first()).toHaveAttribute("href", /\/projects\/.+#/);
+        await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
+        await expect(page.locator(".resume-proof-card a[href*='#']").first()).toBeVisible();
     });
 
     test("resume should link to the interview decision room", async ({ page }) => {

@@ -3,13 +3,11 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { ContactRoleContext } from "@/components/hiring/ContactRoleContext";
 import { FollowThroughContactContext } from "@/components/hiring/FollowThroughComponents";
-import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
 import { siteConfig } from "@/lib/site";
 import {
   getHiringConversion,
-  getHiringRoleFits,
   getRoleFit,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
@@ -46,7 +44,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const github = siteConfig.social.github;
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const roleFit = getRoleFit(proofLocale);
-  const hiringRoleFits = getHiringRoleFits(proofLocale);
   const hiringConversion = getHiringConversion(proofLocale);
   const proofLabels = getProofUiLabels(proofLocale);
 
@@ -163,18 +160,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </div>
         </section>
 
-        <HiringRoleFitPanel
-          roles={hiringRoleFits}
-          locale={proofLocale}
-          title={isZh ? "最值得联系我的理由。" : "Best reasons to contact me."}
-          intro={
-            isZh
-              ? "每项岗位匹配都链接到具体证据，让下一步更明确。"
-              : "Each role fit links to evidence, so the next step can be specific."
-          }
-          labels={proofLabels}
-          compact
-        />
       </section>
     </main>
   );

@@ -13,8 +13,6 @@ import { CURRENT_PROJECT_SLUGS, type CurrentProjectSlug } from "@/lib/project-ro
 import {
   getCaseDepth,
   getCaseInterviewPack,
-  getCaseInterviewScan,
-  getCaseReaderGuide,
   getCaseSummary,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
@@ -158,8 +156,6 @@ export default async function CasePage({ params }: Props) {
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const caseSummary = getCaseSummary(k, proofLocale);
   const caseDepth = getCaseDepth(k, proofLocale);
-  const caseInterviewScan = getCaseInterviewScan(k, proofLocale);
-  const caseReaderGuide = getCaseReaderGuide(k, proofLocale);
   const caseInterviewPack = getCaseInterviewPack(k, proofLocale);
   const pageCopy = isZh
     ? {
@@ -307,54 +303,14 @@ export default async function CasePage({ params }: Props) {
             </div>
           )}
         </dl>
-        <nav className="case-reader" aria-label={pageCopy.caseReaderAria}>
-          <div className="case-reader-head">
-            <div className="label">{pageCopy.caseReaderLabel}</div>
-            <p>{pageCopy.caseReaderIntro}</p>
-          </div>
-          <div className="case-reader-links">
-            {caseReaderGuide.sections
-              .filter((section) => section.id !== "related-projects")
-              .map((section) => (
-                <a key={section.id} href={`#${section.id}`}>
-                  <span>{section.label}</span>
-                  <small>{section.description}</small>
-                </a>
-              ))}
-          </div>
-          <div className="case-reader-modes" aria-label={pageCopy.reviewModesAria}>
-            {caseReaderGuide.modes.map((mode) => {
-              const firstAnchor = mode.anchorIds[0];
-              return (
-                <a key={mode.id} href={`#${firstAnchor}`}>
-                  <strong>{mode.label}</strong>
-                  <span>{mode.description}</span>
-                  <small>
-                    {mode.anchorIds
-                      .map((anchorId) =>
-                        caseReaderGuide.sections.find((section) => section.id === anchorId)?.label
-                      )
-                      .filter(Boolean)
-                      .join(" / ")}
-                  </small>
-                </a>
-              );
-            })}
-          </div>
-          <div className="case-reader-prompts">
-            <h2>{pageCopy.askMeAbout}</h2>
-            <ul>
-              {caseReaderGuide.prompts.map((prompt) => (
-                <li key={prompt.question}>
-                  <a href={`#${prompt.anchorId}`}>{prompt.question}</a>
-                  <p>{prompt.reason}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <CaseInterviewPack pack={caseInterviewPack} locale={proofLocale} />
-        </nav>
+        {/* One interview surface, not three. The reader nav, its mode list and
+            its prompt list all restated what the interview pack already answers
+            with evidence links, so only the pack survives. */}
+        <CaseInterviewPack pack={caseInterviewPack} locale={proofLocale} />
         <div id="snapshot" className="case-anchor" aria-hidden />
+        {/* The 2-minute scan block was removed; its anchor now resolves to the
+            case summary so existing proof links still land on something. */}
+        <div id="interviewer-scan" className="case-anchor" aria-hidden />
         <aside className="case-summary" aria-label={isZh ? "案例摘要" : "Case summary"}>
           <div className="case-summary-head">
             <div className="label">{isZh ? "案例摘要" : "Case summary"}</div>
@@ -388,40 +344,6 @@ export default async function CasePage({ params }: Props) {
             <div className="case-summary-next">
               <h3>{isZh ? "下一步我会做什么" : "What I would do next"}</h3>
               <p>{caseSummary.next}</p>
-            </div>
-          </div>
-        </aside>
-        <div id="interviewer-scan" className="case-anchor" aria-hidden />
-        <aside className="case-interview-scan" aria-label={pageCopy.interviewerScanAria}>
-          <div className="case-interview-scan-head">
-            <div className="label">{pageCopy.interviewerScanLabel}</div>
-            <h2>{pageCopy.whatThisCaseProves}</h2>
-            <p>{caseInterviewScan.proves}</p>
-          </div>
-          <div className="case-interview-scan-grid">
-            <div>
-              <h3>{pageCopy.whatToInspect}</h3>
-              <ul>
-                {caseInterviewScan.inspect.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3>{pageCopy.interviewQuestions}</h3>
-              <ul>
-                {caseInterviewScan.questions.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3>{pageCopy.bestFitTeams}</h3>
-              <ul>
-                {caseInterviewScan.bestFit.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
             </div>
           </div>
         </aside>
@@ -473,96 +395,6 @@ export default async function CasePage({ params }: Props) {
       )}
 
       <section className="container case-depth" aria-label={pageCopy.caseDepthAria}>
-        <div id="case-depth-overview" className="case-depth-block case-depth-intro">
-          <div>
-            <div className="label">{pageCopy.caseDepthLabel}</div>
-            <h2>{pageCopy.caseDepthTitle}</h2>
-          </div>
-          <p>{pageCopy.caseDepthIntro}</p>
-        </div>
-
-        <div id="decision-timeline" className="case-depth-block">
-          <div className="case-depth-head">
-            <div className="label">{pageCopy.decisionLogLabel}</div>
-            <h2>{pageCopy.decisionTimeline}</h2>
-          </div>
-          <ol className="case-decision-list">
-            {caseDepth.decisions.map((decision, index) => (
-              <li className="case-decision" key={decision.label}>
-                <span className="case-depth-index">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3>{decision.label}</h3>
-                  <dl className="case-depth-dl">
-                    <div>
-                      <dt>{pageCopy.choice}</dt>
-                      <dd>{decision.choice}</dd>
-                    </div>
-                    <div>
-                      <dt>{pageCopy.evidence}</dt>
-                      <dd>{decision.evidence}</dd>
-                    </div>
-                    <div>
-                      <dt>{pageCopy.tradeoff}</dt>
-                      <dd>{decision.tradeoff}</dd>
-                    </div>
-                    <div>
-                      <dt>{pageCopy.impact}</dt>
-                      <dd>{decision.impact}</dd>
-                    </div>
-                  </dl>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div id="evidence-board" className="case-depth-block">
-          <div className="case-depth-head">
-            <div className="label">{pageCopy.researchEvidenceLabel}</div>
-            <h2>{pageCopy.researchEvidenceBoard}</h2>
-          </div>
-          <div className="case-evidence-board">
-            {caseDepth.evidence.map((item) => (
-              <article className="case-evidence-item" key={`${item.method}-${item.question}`}>
-                <div className="case-evidence-meta">
-                  <span>{item.method}</span>
-                  <span>{item.sample}</span>
-                </div>
-                <h3>{item.question}</h3>
-                <dl className="case-depth-dl">
-                  <div>
-                    <dt>{pageCopy.finding}</dt>
-                    <dd>{item.finding}</dd>
-                  </div>
-                  <div>
-                    <dt>{pageCopy.designImplication}</dt>
-                    <dd>{item.implication}</dd>
-                  </div>
-                </dl>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div id="iteration-gallery" className="case-depth-block">
-          <div className="case-depth-head">
-            <div className="label">{pageCopy.iterationsLabel}</div>
-            <h2>{pageCopy.iterationGallery}</h2>
-          </div>
-          <div className="case-iteration-gallery">
-            {caseDepth.iterations.map((iteration) => (
-              <article className="case-iteration-item" key={iteration.version}>
-                <span>{iteration.version}</span>
-                <h3>{iteration.change}</h3>
-                <p>{iteration.reason}</p>
-                <strong>{iteration.improvement}</strong>
-              </article>
-            ))}
-          </div>
-        </div>
-
         <div id="outcome-limits" className="case-depth-block case-limits">
           <div className="case-depth-head">
             <div className="label">{pageCopy.limitsLabel}</div>
@@ -587,13 +419,6 @@ export default async function CasePage({ params }: Props) {
           </div>
         </div>
 
-        <div id="interview-takeaway" className="case-depth-block case-takeaway">
-          <div>
-            <div className="label">{pageCopy.portfolioReadout}</div>
-            <h2>{pageCopy.interviewTakeaway}</h2>
-          </div>
-          <p>{caseDepth.takeaway}</p>
-        </div>
       </section>
 
       <section id="long-form" className="container">
@@ -609,6 +434,9 @@ export default async function CasePage({ params }: Props) {
           </div>
         </div>
 
+        {/* The structured evidence board was removed as a duplicate of this
+            narrative; its anchor moves here so proof links keep working. */}
+        <div id="evidence-board" className="case-anchor" aria-hidden />
         <div className="cs-section">
           <div className="cs-row">
             <div className="cs-row-side">
@@ -674,6 +502,9 @@ export default async function CasePage({ params }: Props) {
           </div>
         </div>
 
+        {/* The decision timeline duplicated these technical decisions.
+            Its anchor moves here so proof links keep working. */}
+        <div id="decision-timeline" className="case-anchor" aria-hidden />
         <div className="cs-section">
           <div className="cs-row">
             <div className="cs-row-side">
@@ -696,6 +527,9 @@ export default async function CasePage({ params }: Props) {
           </div>
         </div>
 
+        {/* The iteration gallery duplicated this testing narrative.
+            Its anchor moves here so proof links keep working. */}
+        <div id="iteration-gallery" className="case-anchor" aria-hidden />
         <div className="cs-section">
           <div className="cs-row">
             <div className="cs-row-side">
@@ -743,6 +577,9 @@ export default async function CasePage({ params }: Props) {
           </div>
         </div>
 
+        {/* The structured interview takeaway duplicated this reflection.
+            Its anchor moves here so proof links keep working. */}
+        <div id="interview-takeaway" className="case-anchor" aria-hidden />
         <div className="cs-section">
           <div className="cs-row">
             <div className="cs-row-side">

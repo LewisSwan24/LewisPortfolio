@@ -19,6 +19,12 @@ import {
 } from "@/lib/portfolio-proof";
 import type { CaseReaderAnchorId } from "@/lib/proof";
 
+// Derived from the slug registry so adding a case does not silently invalidate
+// these patterns the way hard-coded slug alternations did.
+const SLUG_ALT = projectEvidenceSlugs.join("|");
+const CASE_HREF = new RegExp(`^/projects/(${SLUG_ALT})(#.+)?$`);
+const CASE_ANCHOR_HREF = new RegExp(`^/projects/(${SLUG_ALT})#`);
+
 describe("portfolio proof content", () => {
   it("covers every portfolio project with evidence metadata", () => {
     const projects = getProjectEvidence("en");
@@ -129,7 +135,7 @@ describe("portfolio proof content", () => {
     expect(conversion.closingPrompt.primaryAction.href).toBe("/contact");
 
     for (const route of conversion.proofRoutes) {
-      expect(route.href).toMatch(/^\/projects\/(connect|spectra|ai|circles)(#.+)?$/);
+      expect(route.href).toMatch(CASE_HREF);
       expect(route.audience.length).toBeGreaterThan(8);
       expect(route.claim.length).toBeGreaterThan(12);
       expect(route.evidence.length).toBeGreaterThan(12);
@@ -202,7 +208,7 @@ describe("portfolio proof content", () => {
     const conversion = getHiringConversion("en");
 
     for (const route of conversion.proofRoutes) {
-      expect(route.href).toMatch(/^\/projects\/(connect|spectra|ai|circles)#/);
+      expect(route.href).toMatch(CASE_ANCHOR_HREF);
 
       const [, slug, anchor] = route.href.match(/^\/projects\/([^#]+)#(.+)$/) ?? [];
       expect(slug).toBeTruthy();
@@ -228,7 +234,7 @@ describe("portfolio proof content", () => {
       expect(role.interviewAngle.length).toBeGreaterThan(12);
 
       for (const href of role.proofLinks.map((link) => link.href)) {
-        expect(href).toMatch(/^\/projects\/(connect|spectra|ai|circles)(#.+)?$/);
+        expect(href).toMatch(CASE_HREF);
       }
     }
   });
@@ -245,7 +251,7 @@ describe("portfolio proof content", () => {
       for (const [slug, proof] of Object.entries(capability.cases)) {
         if (!proof || proof.strength === "none") continue;
 
-        expect(proof.href).toMatch(/^\/projects\/(connect|spectra|ai|circles)#/);
+        expect(proof.href).toMatch(CASE_ANCHOR_HREF);
         const [, hrefSlug, anchor] = proof.href.match(/^\/projects\/([^#]+)#(.+)$/) ?? [];
         expect(hrefSlug).toBe(slug);
 

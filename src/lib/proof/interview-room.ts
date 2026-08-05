@@ -18,7 +18,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Proof depth",
-        value: "4 end-to-end cases",
+        value: "5 end-to-end cases",
         detail:
           "IA, accessibility, AI coaching, and social wellbeing with methods and limits shown.",
       },
@@ -74,24 +74,14 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/circles#evidence-board",
     },
     {
-      id: "measurement-proof",
-      capability: "Measurement and validation",
-      caseSlug: "connect",
+      id: "hardware-proof",
+      capability: "Physical computing and build",
+      caseSlug: "maze",
       proof:
-        "Findability and task success constrained the IA claim before the interface was polished.",
+        "MazeRunners runs on hardware I wired and programmed: sensing, firmware state, haptics, and a browser console in one loop.",
       whyItMatters:
-        "Shows evidence discipline: the claim is tied to measured behavior and stated limits.",
-      href: "/projects/connect#outcome-limits",
-    },
-    {
-      id: "communication-proof",
-      capability: "Communication and facilitation",
-      caseSlug: "circles",
-      proof:
-        "Co-design workshops and decision framing turned social research into inspectable product choices.",
-      whyItMatters:
-        "Shows how Lewis can make ambiguous qualitative evidence usable for a team.",
-      href: "/projects/circles#interview-takeaway",
+        "Shows the work survives contact with reality, not only with a prototyping tool.",
+      href: "/projects/maze#outcome-limits",
     },
   ],
   questionBank: [
@@ -136,12 +126,12 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/connect#outcome-limits",
     },
     {
-      id: "manager-followup-spectra",
+      id: "hardware-constraint-maze",
       group: "product",
-      question: "How did privacy and public context change the AR product direction?",
-      proves: "Product judgment beyond visual craft.",
-      caseSlug: "spectra",
-      href: "/projects/spectra#interview-takeaway",
+      question: "Where did hardware constraints change the interaction, not just the build?",
+      proves: "Systems thinking across sensing, firmware, feedback, and safety.",
+      caseSlug: "maze",
+      href: "/projects/maze#decision-timeline",
     },
   ],
   boundaries: [
@@ -156,9 +146,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
     },
     {
       id: "prototype-metrics",
-      claim: "Measured outcomes show direction and learning quality.",
+      claim: "The cases describe methods and decisions, not measured business impact.",
       boundary:
-        "Some metrics are study or prototype metrics, not post-launch business metrics.",
+        "Sample sizes were not formally recorded, so I quote what I observed rather than effect sizes.",
       validation:
         "I would define production telemetry before claiming durable product impact.",
       href: "/projects/spectra#outcome-limits",
@@ -210,7 +200,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "证据深度",
-        value: "4 个端到端案例",
+        value: "5 个端到端案例",
         detail:
           "覆盖 IA、无障碍、AI 辅导和社交健康，并展示方法与限制。",
       },
@@ -266,24 +256,14 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/circles#evidence-board",
     },
     {
-      id: "measurement-proof",
-      capability: "测量与验证",
-      caseSlug: "connect",
+      id: "hardware-proof",
+      capability: "物理计算与实作",
+      caseSlug: "maze",
       proof:
-        "可发现性和任务成功率在视觉 polish 前约束了 IA claim。",
+        "MazeRunners 跑在我自己接线与编程的硬件上：感测、固件状态、震动反馈与浏览器控制台接在同一个闭环里。",
       whyItMatters:
-        "证明 claim 绑定到行为证据和明确限制，而不是只靠叙事。",
-      href: "/projects/connect#outcome-limits",
-    },
-    {
-      id: "communication-proof",
-      capability: "沟通与引导",
-      caseSlug: "circles",
-      proof:
-        "共创工作坊和决策框架把社交研究转成可检查的产品选择。",
-      whyItMatters:
-        "证明我能让模糊的定性证据变成团队可使用的判断材料。",
-      href: "/projects/circles#interview-takeaway",
+        "证明这些工作经得起真实世界的碰撞，而不只是经得起原型工具。",
+      href: "/projects/maze#outcome-limits",
     },
   ],
   questionBank: [
@@ -328,12 +308,12 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/connect#outcome-limits",
     },
     {
-      id: "manager-followup-spectra",
+      id: "hardware-constraint-maze",
       group: "product",
-      question: "隐私和公共场景如何改变 AR 产品方向？",
-      proves: "超越视觉 craft 的产品判断。",
-      caseSlug: "spectra",
-      href: "/projects/spectra#interview-takeaway",
+      question: "硬件约束在哪些地方改变了交互本身，而不只是改变了实现方式？",
+      proves: "跨感测、固件、反馈与安全的系统思考。",
+      caseSlug: "maze",
+      href: "/projects/maze#decision-timeline",
     },
   ],
   boundaries: [
@@ -348,9 +328,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     },
     {
       id: "prototype-metrics",
-      claim: "量化结果证明方向和学习质量。",
+      claim: "这些案例讲的是方法与决策，不是可量化的业务影响。",
       boundary:
-        "部分指标来自研究或原型测试，不是上线后的业务指标。",
+        "样本量没有正式记录，所以我只讲我观察到的现象，不报效应量。",
       validation:
         "在声称长期产品影响前，我会先定义生产 telemetry。",
       href: "/projects/spectra#outcome-limits",
