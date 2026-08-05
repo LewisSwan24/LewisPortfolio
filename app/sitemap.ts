@@ -16,7 +16,7 @@ function safeStatMtime(filePath: string): Date | null {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = siteConfig.url;
+  const baseUrl = siteConfig.url.replace(/\/$/, "");
   const buildTime = new Date();
 
   function withAlternates(relPath: string) {

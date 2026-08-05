@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ProofLocale, ProofUiLabels } from "@/lib/proof";
 import { getFollowThroughBrief } from "@/lib/proof";
+import { localizeInternalHref } from "@/lib/locale-href";
 
 interface FollowThroughContactContextProps {
   role?: string;
@@ -31,10 +32,16 @@ export function FollowThroughContactContext({
         <p>{brief.summary}</p>
       </div>
       <div className="follow-through-actions">
-        <Link className="btn btn-primary" href={brief.route}>
+        <Link
+          className="btn btn-primary"
+          href={localizeInternalHref(brief.route, locale)}
+        >
           {labels.openFollowThrough}
         </Link>
-        <Link className="btn btn-ghost" href={`/hire/${brief.id}/packet`}>
+        <Link
+          className="btn btn-ghost"
+          href={localizeInternalHref(`/hire/${brief.id}/packet`, locale)}
+        >
           {labels.openApplicationPacket}
         </Link>
       </div>

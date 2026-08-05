@@ -75,10 +75,10 @@ export function VizConnect() {
         ))}
 
         <text x="30" y="372" fontFamily="var(--font-display)" fontStyle="italic" fontSize="28" fill="#3A362D">
-          58% → 84%
+          12 → 6
         </text>
         <text x="30" y="390" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8A8170">
-          findability · tree test · n=50
+          top-level categories · card sort · tree test
         </text>
       </svg>
     </div>
@@ -132,7 +132,7 @@ export function VizSpectra() {
         </text>
 
         <text x="30" y="382" fontFamily="var(--font-display)" fontStyle="italic" fontSize="22" fill="#EFE8DA">
-          3.1s avg. recognition
+          answer the decision, not the hue
         </text>
       </svg>
     </div>

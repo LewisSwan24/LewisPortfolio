@@ -55,9 +55,9 @@
       "sub": "Rebuilding a student portal 50,000 students already hated.",
       "role": "UX Researcher & Designer",
       "date": "2024 · 4 months",
-      "m1": "Findability 58 → 84%",
-      "m2": "Task success 72 → 94%",
-      "m3": "SUS 61 → 78"
+      "m1": "12 staff-led buckets → 6 task-led",
+      "m2": "Card sort · tree test · think-aloud",
+      "m3": "Plain-language naming review"
     },
     "spectra": {
       "kicker": "Flagship · Accessibility / AR",
@@ -65,9 +65,9 @@
       "sub": "An AR lens that tells colourblind users what the world is actually showing them.",
       "role": "Lead UX Designer",
       "date": "2024 · 4 months",
-      "m1": "Success 75 → 92%",
-      "m2": "3.1s avg. recognition",
-      "m3": "4.2 / 5 satisfaction"
+      "m1": "Interviews across CVD subtypes",
+      "m2": "Tested in real environments",
+      "m3": "Silent by default, audio opt-in"
     },
     "ai": {
       "kicker": "AI · EdTech",
@@ -75,19 +75,19 @@
       "sub": "Rehearsing the hardest conversation of your career, without an audience.",
       "role": "UX Designer & Researcher",
       "date": "2024 · 5 months",
-      "m1": "+84% confidence gain",
-      "m2": "−68% anxiety",
-      "m3": "4.5 / 5 satisfaction"
+      "m1": "Feedback after, not during",
+      "m2": "Timing A/B: inline vs. post-session",
+      "m3": "Tone and anxiety guardrails"
     },
     "circles": {
-      "kicker": "In progress · Social",
+      "kicker": "Research-through-design · Social",
       "title": "Connect Circles",
       "sub": "Friendship by quality, not quantity — a slow-match app for international students.",
       "role": "Product Designer",
-      "date": "2024 · ongoing",
-      "m1": "15 depth interviews",
-      "m2": "2-week diary study",
-      "m3": "3 co-design workshops"
+      "date": "Research complete · next validation defined",
+      "m1": "Depth interviews",
+      "m2": "Two-week diary study",
+      "m3": "Co-design workshops"
     }
   },
   "cs": {
@@ -99,7 +99,7 @@
     "next": "Next project",
     "prev": "Previous",
     "related": "Continue reading",
-    "impactLabel": "Headline result",
+    "impactLabel": "What it produced",
     "connect": {
       "hero": { "title": "UQ Connect", "sub": "Rebuilding the information architecture of a student portal serving 50,000 students." },
       "roleVal": "Solo UX Researcher & Designer",
@@ -113,10 +113,10 @@
       },
       "re": {
         "label": "Research",
-        "title": "Fifty students, three methods, one month.",
-        "m1": { "t": "24 participants", "b": "Open card sort on 42 common tasks." },
-        "m2": { "t": "10 participants", "b": "Task-based think-aloud on the live portal." },
-        "m3": { "t": "50 participants", "b": "Tree test, baseline vs. two alternatives." },
+        "title": "Three methods, one month.",
+        "m1": { "t": "Open card sort", "b": "Students grouped and named the portal's most common tasks in their own words." },
+        "m2": { "t": "Think-aloud", "b": "Task-based sessions on the live portal, watching where people gave up or left for Google." },
+        "m3": { "t": "Tree test", "b": "The existing structure against two alternative trees." },
         "quote": "I just Google 'UQ how to drop a subject'. I never start on the portal.",
         "quoteWho": "P07, second-year undergrad"
       },
@@ -135,14 +135,14 @@
       },
       "te": {
         "label": "Usability test",
-        "p": "Eight students, moderated, remote. We found a naming collision between \"Money\" and \"My account\" that had only shown up at high fidelity — renamed on the spot; the re-run confirmed the fix."
+        "p": "Moderated remote sessions surfaced a naming collision between \"Money\" and \"My account\" that had only shown up at high fidelity — renamed on the spot, and the re-run confirmed people stopped hesitating there."
       },
       "ou": {
-        "label": "Outcome",
-        "m1": { "label": "Findability", "v": "58 → 84%" },
-        "m2": { "label": "Task success", "v": "72 → 94%" },
-        "m3": { "label": "SUS score", "v": "61 → 78" },
-        "p": "The redesigned IA is being adopted in phases by the UQ digital team. The tree test protocol and plain-language review have been reused on two subsequent university projects."
+        "label": "What it produced",
+        "m1": { "label": "Structure", "v": "12 → 6 categories" },
+        "m2": { "label": "Front door", "v": "\"I'm new\" promoted" },
+        "m3": { "label": "Fallback", "v": "A–Z index kept" },
+        "p": "The deliverable was a tested information architecture: a task-first tree, plain-language category names, and a mid-fidelity prototype covering the top tasks end to end. Evidence status — this is university project work, not a shipped portal. I can walk through the card-sort groupings, the tree-test tasks, and why each category name changed; I have not measured impact on the live product."
       },
       "rf": {
         "label": "Reflection",
@@ -162,17 +162,17 @@
       },
       "re": {
         "label": "Research",
-        "title": "Twelve users, five apps, one persistent answer.",
-        "m1": { "t": "12 participants", "b": "Semi-structured interviews across three CVD subtypes (deuter-, protan-, tritan-anomaly)." },
-        "m2": { "t": "5 apps", "b": "Heuristic review of existing colour-ID tools against accessibility and social-friction criteria." },
-        "m3": { "t": "2 workshops", "b": "Co-design sessions mapping daily colour moments and rapid sketch-ideation." },
+        "title": "One persistent answer, from three directions.",
+        "m1": { "t": "Interviews", "b": "Semi-structured sessions across CVD subtypes (deuter-, protan-, tritan-anomaly)." },
+        "m2": { "t": "Heuristic review", "b": "Existing colour-ID tools judged against accessibility and social-friction criteria." },
+        "m3": { "t": "Co-design", "b": "Sessions mapping daily colour moments, then rapid sketch-ideation." },
         "quote": "The moment I pull out the app, the conversation stops. I'd rather guess than explain.",
         "quoteWho": "P04, deuteranomaly, second-year PhD"
       },
       "sy": {
         "label": "Synthesis",
         "title": "Users don't need the colour named — they need the decision made.",
-        "p": "Three themes dominated the data: speed (decisions have a 2–3 second window before they feel awkward), context (users want to know if the food is bad, not that it's 'muddy green'), and privacy (most don't want to identify as colourblind in public). Every existing app optimised for naming colours. None optimised for acting on them."
+        "p": "Three themes dominated the interviews: speed (a colour decision has a short window before it feels awkward to bystanders), context (users want to know if the food is bad, not that it's 'muddy green'), and privacy (most don't want to identify as colourblind in public). Every app I reviewed optimised for naming colours. None optimised for acting on them."
       },
       "id": {
         "label": "Design decisions",
@@ -184,14 +184,14 @@
       },
       "te": {
         "label": "Usability test",
-        "p": "Eight participants, moderated, in real environments — a cafeteria, a pedestrian crossing, their own wardrobes. The overlay's initial 40% opacity obscured important texture detail in food; we dropped it to 20% and added haptic confirmation. In noisy environments, voice feedback was slower than reading the overlay — users overwhelmingly preferred silent default with audio as a toggle."
+        "p": "Moderated sessions in real environments — a cafeteria, a pedestrian crossing, participants' own wardrobes. The overlay's initial opacity obscured texture detail in food, so I lowered it and added haptic confirmation. In noisy places, voice feedback was slower than simply reading the overlay, and participants preferred a silent default with audio as a toggle."
       },
       "ou": {
-        "label": "Outcome",
-        "m1": { "label": "Task success", "v": "75 → 92%" },
-        "m2": { "label": "Time to colour", "v": "3.1s avg." },
-        "m3": { "label": "Satisfaction", "v": "4.2 / 5" },
-        "p": "Selected for the UQ Design Showcase 2024 and recommended for a disability-service pilot. The accessibility advisory board reused the co-design protocol on a campus wayfinding audit the following semester."
+        "label": "What it produced",
+        "m1": { "label": "Interaction", "v": "One-tap camera mode" },
+        "m2": { "label": "Default", "v": "Silent, audio opt-in" },
+        "m3": { "label": "Output", "v": "Decision, not colour name" },
+        "p": "The deliverable was a high-fidelity AR prototype and the interaction model behind it: annotate rather than filter, answer the decision rather than name the hue, and never make the user announce their colour vision in public. Evidence status — university project work with a small, self-recruited sample. The direction is supported by what those participants did in context; it has not been validated at scale or with clinical measures."
       },
       "rf": {
         "label": "Reflection",
@@ -206,15 +206,15 @@
       "toolsVal": "Figma · FigJam · Lookback · ChatGPT API",
       "ch": {
         "label": "The problem",
-        "title": "78% of job-seekers feel underprepared — and coaching is out of reach for two-thirds of them.",
-        "p": "Interview prep has a clear market divide: senior candidates pay for coaches, everyone else reads question lists. Survey respondents told us that nervousness, not content, was the thing standing between them and a job. Existing platforms optimised for either peer practice (unreliable quality) or video courses (no feedback loop). Nobody was tackling the emotional shape of the problem."
+        "title": "Candidates don't fail on content. They fail on nerves — and coaching costs money.",
+        "p": "Interview prep has a clear market divide: senior candidates pay for coaches, everyone else reads question lists. Survey respondents told me that nervousness, not content, was the thing standing between them and a job. Existing platforms optimised for either peer practice (unreliable quality) or video courses (no feedback loop). Nobody was tackling the emotional shape of the problem."
       },
       "re": {
         "label": "Research",
-        "title": "85 survey responses, 15 interviews, six incumbents.",
-        "m1": { "t": "85 participants", "b": "Cross-seniority survey on preparation habits and pain points." },
-        "m2": { "t": "15 participants", "b": "In-depth interviews with recent interviewees — offered and still-searching." },
-        "m3": { "t": "6 incumbents", "b": "Competitive teardown of Pramp, Yoodli, Big Interview, Google Interview Warmup, and two others." },
+        "title": "A survey, interviews, and a teardown of the incumbents.",
+        "m1": { "t": "Survey", "b": "Cross-seniority questions on preparation habits and pain points." },
+        "m2": { "t": "Interviews", "b": "In-depth sessions with recent interviewees — both offered and still searching." },
+        "m3": { "t": "Competitive teardown", "b": "Pramp, Yoodli, Big Interview, Google Interview Warmup and others, read for what they optimise." },
         "quote": "I know what to say. I just can't say it with someone watching.",
         "quoteWho": "P11, senior candidate, still searching"
       },
@@ -233,14 +233,14 @@
       },
       "te": {
         "label": "Usability test",
-        "p": "Twelve moderated sessions over two weeks, plus an A/B test on feedback timing — inline vs. post-session. Post-session won by 34% on satisfaction; inline feedback was felt as interruption, even when useful. Users asked for the AI to pause longer between questions; we added a natural beat and saw perceived realism rise."
+        "p": "Moderated sessions over two weeks, plus a side-by-side comparison of feedback timing — inline versus post-session. Post-session was preferred clearly and consistently; inline feedback was experienced as interruption even when the content was useful. Participants also asked the AI to pause longer between questions, so I added a natural beat."
       },
       "ou": {
-        "label": "Outcome",
-        "m1": { "label": "Confidence", "v": "+84% gain" },
-        "m2": { "label": "Anxiety", "v": "−68%" },
-        "m3": { "label": "Satisfaction", "v": "4.5 / 5" },
-        "p": "Beta tested with 50 users over four weeks; average 3.2 sessions per user — well above our retention target of 2. The feedback-timing finding was the most surprising outcome, and it became a design principle we've carried into subsequent learning-tool projects."
+        "label": "What it produced",
+        "m1": { "label": "Timing", "v": "Feedback after the session" },
+        "m2": { "label": "Persona", "v": "Warmer than a recruiter" },
+        "m3": { "label": "Rejected", "v": "Body-language analysis" },
+        "p": "The deliverable was an interaction model for AI coaching: when the system speaks, how it frames a weakness, and where it deliberately stays quiet. The timing finding was the most useful result, because it is a principle rather than a feature. Evidence status — university project work; the preference for post-session feedback comes from a small moderated sample, and I have not run it as a controlled experiment or measured real interview outcomes."
       },
       "rf": {
         "label": "Reflection",
@@ -250,20 +250,20 @@
     "circles": {
       "hero": { "title": "Connect Circles", "sub": "Friendship by quality, not quantity — a slow-match app for international students." },
       "roleVal": "Product Designer",
-      "timeVal": "October 2024 – ongoing",
-      "teamVal": "Solo, with co-design across eight international students",
+      "timeVal": "October 2024 – current research-through-design case",
+      "teamVal": "Solo, with co-design alongside international students",
       "toolsVal": "Figma · FigJam · Notion · Discord",
       "ch": {
         "label": "The problem",
-        "title": "67% of international students report loneliness in their first semester — and apps make it worse.",
-        "p": "Moving countries for study collapses an entire social scaffolding. Language barriers, unfamiliar norms, and academic pressure combine so that meeting new people feels simultaneously urgent and exhausting. The apps students use — Meetup, Bumble BFF, Hey! VINA — optimise for matching volume, exactly the metric that scales the emotional cost. Students told us they'd rather have one deep friendship than ten casual matches, and no existing product was designed around that preference."
+        "title": "Loneliness in the first semester is common — and the apps make it worse.",
+        "p": "Moving countries for study collapses an entire social scaffolding. Language barriers, unfamiliar norms, and academic pressure combine so that meeting new people feels simultaneously urgent and exhausting. The apps students use — Meetup, Bumble BFF, Hey! VINA — optimise for matching volume, exactly the metric that scales the emotional cost. The students I spoke to said they'd rather have one deep friendship than ten casual matches, and no existing product was designed around that preference."
       },
       "re": {
         "label": "Research",
         "title": "Three cultural regions, three methods, one stubborn pattern.",
-        "m1": { "t": "15 participants", "b": "Semi-structured interviews across East Asian, South Asian, and European student cohorts." },
-        "m2": { "t": "8 participants", "b": "Two-week diary study logging social interactions and emotional before/after." },
-        "m3": { "t": "8 participants", "b": "Co-design workshop exploring ideal features, dealbreakers, and cultural considerations." },
+        "m1": { "t": "Interviews", "b": "Semi-structured sessions across East Asian, South Asian, and European student cohorts." },
+        "m2": { "t": "Diary study", "b": "Two weeks logging social interactions and how participants felt before and after each one." },
+        "m3": { "t": "Co-design", "b": "Workshops on ideal features, dealbreakers, and cultural considerations." },
         "quote": "I don't want more friends. I want one person I can stop pretending around.",
         "quoteWho": "P03, first-semester postgrad"
       },
@@ -278,18 +278,18 @@
       },
       "pr": {
         "label": "Prototype",
-        "p": "A mid-fidelity Figma prototype is in development covering onboarding (preference and comfort capture), circle match demonstration, activity suggestions with RSVP, in-app conversation prompts, and post-activity reflection. It is privacy-preserving by default — no public profile, no swipe surface."
+        "p": "The next prototype scope is defined around onboarding (preference and comfort capture), circle match demonstration, activity suggestions with RSVP, in-app conversation prompts, and post-activity reflection. It is privacy-preserving by default — no public profile, no swipe surface."
       },
       "te": {
         "label": "Testing plan",
-        "p": "Preference testing and moderated usability sessions are planned for February 2025 with target cohorts. The primary measure is not usability (we already know the flows work) but perceived safety, cultural fit, and willingness to actually use the product across an eight-week window."
+        "p": "The next validation step is preference testing and moderated usability sessions with target cohorts. The primary measure is not only usability, but perceived safety, cultural fit, and willingness to actually use the product across an eight-week window."
       },
       "ou": {
         "label": "Current state",
-        "m1": { "label": "Depth interviews", "v": "15 completed" },
-        "m2": { "label": "Diary study", "v": "2 weeks, n=8" },
-        "m3": { "label": "Co-design", "v": "3 workshops" },
-        "p": "Research is complete; ideation synthesis is done and prototype work began late 2024. The project continues as an ongoing research-through-design exploration of technology-mediated friendship for international students."
+        "m1": { "label": "Unit", "v": "Circles of 3–5, not pairs" },
+        "m2": { "label": "Pace", "v": "Slow match, gradual reveal" },
+        "m3": { "label": "De-scoped", "v": "Real-time chat in v1" },
+        "p": "Research and synthesis are complete; the case defines the product direction, prototype scope, and validation plan. Evidence status — this is an in-progress research-through-design project. Nothing has been built or tested with users yet, so everything here is a stated hypothesis rather than a result, and the validation plan above is the honest next step."
       },
       "rf": {
         "label": "Reflection",
@@ -315,7 +315,7 @@
     "noResults": "No results found",
     "recentSearches": "Recent searches"
   },
-  "common": { "featured": "Featured", "viewCaseStudy": "View Case Study", "scroll": "Scroll" },
+  "common": { "featured": "Featured", "viewCaseStudy": "View Case Study", "scroll": "Scroll", "conceptCover": "Concept cover", "evidenceInside": "Evidence inside" },
   "cta": {
     "letsTalk": "Let's Talk",
     "openToOpportunities": "Open to opportunities",
@@ -355,7 +355,7 @@
     },
     "latest": {
       "label": "From the journal",
-      "title": "Latest writing.",
+      "title": "Selected writing.",
       "cta": "Read the journal"
     }
   },
@@ -456,9 +456,9 @@
     "title": "Resume",
     "description": "Download my resume to learn more about my experience and qualifications.",
     "cardTitle": "{name}'s Resume",
-    "cardMeta": "PDF format • Last updated December 2024",
-    "downloadPdf": "Download Resume (PDF)",
-    "downloadPdfShort": "Download PDF",
+    "cardMeta": "Web resume • Updated June 2026",
+    "downloadPdf": "Request resume PDF",
+    "downloadPdfShort": "Request PDF",
     "getInTouch": "Get in Touch",
     "printHint": "Tip: Use your browser's print function (Ctrl/Cmd + P) to save this page as a PDF",
     "overview": { "education": "Education", "experienceHighlights": "Experience Highlights" },
@@ -470,7 +470,8 @@
     ],
     "kicker": "Résumé",
     "headline": "Experience",
-    "download": "Download PDF",
+    "download": "Request PDF",
+    "contact": "Contact for PDF",
     "print": "Print",
     "section": { "exp": "Experience", "edu": "Education", "skills": "Skills", "awards": "Awards & Selected" }
   },

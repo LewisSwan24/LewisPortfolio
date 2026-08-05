@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { getProofUiLabels, type ProofUiLabels, type HiringRoleFit } from "@/lib/proof";
+import {
+  getProofUiLabels,
+  type ProofLocale,
+  type ProofUiLabels,
+  type HiringRoleFit,
+} from "@/lib/proof";
+import { localizeInternalHref } from "@/lib/locale-href";
 
 interface HiringRoleFitPanelProps {
   roles: HiringRoleFit[];
@@ -8,6 +14,7 @@ interface HiringRoleFitPanelProps {
   intro?: string;
   compact?: boolean;
   labels?: ProofUiLabels;
+  locale?: ProofLocale;
 }
 
 export function HiringRoleFitPanel({
@@ -17,6 +24,7 @@ export function HiringRoleFitPanel({
   intro,
   compact = false,
   labels = getProofUiLabels("en"),
+  locale = "en",
 }: HiringRoleFitPanelProps) {
   return (
     <section
@@ -41,7 +49,10 @@ export function HiringRoleFitPanel({
 
             <div className="hiring-role-links">
               {role.proofLinks.map((link) => (
-                <Link href={link.href} key={link.href}>
+                <Link
+                  href={localizeInternalHref(link.href, locale)}
+                  key={link.href}
+                >
                   {link.label}
                 </Link>
               ))}

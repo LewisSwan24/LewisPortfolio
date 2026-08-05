@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";

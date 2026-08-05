@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
+import { localizeInternalHref } from "@/lib/locale-href";
 
 interface BreadcrumbItem {
     label: string;
@@ -9,9 +10,10 @@ interface BreadcrumbItem {
 interface BreadcrumbProps {
     items: BreadcrumbItem[];
     className?: string;
+    locale?: string;
 }
 
-export function Breadcrumb({ items, className }: BreadcrumbProps) {
+export function Breadcrumb({ items, className, locale = "en" }: BreadcrumbProps) {
     return (
         <nav
             aria-label="Breadcrumb"
@@ -51,7 +53,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
                                 </span>
                             ) : (
                                 <Link
-                                    href={item.href}
+                                    href={localizeInternalHref(item.href, locale)}
                                     className={cn(
                                         "text-muted-foreground hover:text-foreground transition-colors",
                                         "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded"

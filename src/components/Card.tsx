@@ -62,6 +62,14 @@ export function Card({ project, dict, className, viewMode = 'grid' }: CardProps)
               </span>
             </div>
           )}
+          <div className="absolute bottom-3 right-3 flex flex-col items-end gap-1">
+            <span className="rounded-full border border-white/20 bg-black/65 px-2.5 py-1 text-[11px] font-medium text-white shadow-sm backdrop-blur-sm">
+              {dict?.common.conceptCover ?? "Concept cover"}
+            </span>
+            <span className="rounded-full border border-white/15 bg-black/50 px-2.5 py-1 text-[11px] font-medium text-white/85 shadow-sm backdrop-blur-sm">
+              {dict?.common.evidenceInside ?? "Evidence inside"}
+            </span>
+          </div>
         </div>
       )}
 

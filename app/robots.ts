@@ -4,6 +4,11 @@ import { siteConfig } from "@/lib/site";
 const hiddenPaths = [
   "/booking",
   "/guestbook",
+  // Internal proof-maintenance dashboard: reachable, never linked, and absent
+  // from the sitemap. Keep it out of the index rather than let it rank.
+  "/maintenance",
+  "/en/maintenance",
+  "/zh/maintenance",
   "/lab",
   "/en/lab",
   "/zh/lab",
@@ -16,6 +21,8 @@ const hiddenPaths = [
 ];
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = siteConfig.url.replace(/\/$/, "");
+
   return {
     rules: [
       {
@@ -37,7 +44,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/"],
       },
     ],
-    sitemap: `${siteConfig.url}/sitemap.xml`,
-    host: siteConfig.url,
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   };
 }

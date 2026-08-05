@@ -1,15 +1,23 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import type { BlogPost } from "@/lib/blog";
+import { localizeInternalHref } from "@/lib/locale-href";
 
 interface RelatedPostsProps {
   posts: BlogPost[];
   currentSlug: string;
   className?: string;
   dict?: Record<string, any>;
+  locale?: string;
 }
 
-export function RelatedPosts({ posts, currentSlug, className, dict }: RelatedPostsProps) {
+export function RelatedPosts({
+  posts,
+  currentSlug,
+  className,
+  dict,
+  locale = "en",
+}: RelatedPostsProps) {
   const relatedPosts = posts
     .filter((post) => post.slug !== currentSlug)
     .slice(0, 3);
@@ -24,7 +32,7 @@ export function RelatedPosts({ posts, currentSlug, className, dict }: RelatedPos
         {relatedPosts.map((post) => (
           <Link
             key={post.slug}
-            href={`/blog/${post.slug}`}
+            href={localizeInternalHref(`/blog/${post.slug}`, locale)}
             className="group block rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-accent/50 hover:shadow-layered"
           >
             <div className="space-y-3">

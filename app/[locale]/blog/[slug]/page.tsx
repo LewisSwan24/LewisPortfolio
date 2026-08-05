@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -20,6 +20,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { extractTOC } from "@/lib/toc";
 import { siteConfig } from "@/lib/site";
+import { buildArticleShareUrl } from "@/lib/share-url";
 
 const giscus = {
   repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
@@ -79,13 +80,13 @@ export default async function BlogPostPage({ params }: Props) {
   const prev = idx > 0 ? all[idx - 1] : null;
   const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const siteUrl = siteConfig.url;
   const dateFmt = new Date(post.metadata.date).toLocaleDateString(
     isZh ? "zh-CN" : "en-US",
     { year: "numeric", month: "long", day: "numeric" }
   );
   const tocItems = extractTOC(post.content);
-  const postUrl = `${siteUrl}/${locale}/blog/${slug}`;
+  const postUrl = buildArticleShareUrl(siteConfig.url, locale, slug);
 
   return (
     <>
@@ -115,6 +116,7 @@ export default async function BlogPostPage({ params }: Props) {
         <section className="container cs-hero">
           <Breadcrumb
             className="cs-breadcrumb"
+            locale={locale}
             items={[
               { label: t("blog.breadcrumbHome"), href: "/" },
               { label: t("blog.breadcrumbBlog"), href: "/blog" },
@@ -188,7 +190,12 @@ export default async function BlogPostPage({ params }: Props) {
                 githubLabel="GitHub"
               />
 
-              <RelatedPosts posts={all} currentSlug={slug} className="mt-16" />
+              <RelatedPosts
+                posts={all}
+                currentSlug={slug}
+                className="mt-16"
+                locale={locale}
+              />
 
               {giscusEnabled && (
                 <Comments

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
+import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { ContactRoleContext } from "@/components/hiring/ContactRoleContext";
 import { FollowThroughContactContext } from "@/components/hiring/FollowThroughComponents";
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
@@ -143,7 +143,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
         <section className="contact-next-step" aria-labelledby="contact-next-step-title">
           <div>
-            <div className="label">Hiring next step</div>
+            <div className="label">
+              {isZh ? "招聘下一步" : "Hiring next step"}
+            </div>
             <h2 id="contact-next-step-title">{hiringConversion.closingPrompt.title}</h2>
             <p className="contact-next-status">{hiringConversion.hero.status}</p>
             <p>{hiringConversion.closingPrompt.body}</p>
@@ -154,15 +156,22 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 {route.title}
               </Link>
             ))}
-            <a href={`mailto:${email}`}>Email me directly</a>
-            <Link href="/hire">Interview decision</Link>
+            <a href={`mailto:${email}`}>
+              {isZh ? "直接发邮件" : "Email me directly"}
+            </a>
+            <Link href="/hire">{isZh ? "面试判断" : "Interview decision"}</Link>
           </div>
         </section>
 
         <HiringRoleFitPanel
           roles={hiringRoleFits}
-          title="Best reasons to contact me."
-          intro="Each role fit links to evidence, so the next step can be specific."
+          locale={proofLocale}
+          title={isZh ? "最值得联系我的理由。" : "Best reasons to contact me."}
+          intro={
+            isZh
+              ? "每项岗位匹配都链接到具体证据，让下一步更明确。"
+              : "Each role fit links to evidence, so the next step can be specific."
+          }
           labels={proofLabels}
           compact
         />

@@ -1,9 +1,47 @@
+const PRODUCTION_SITE_URL = "https://lewisdong.vercel.app";
+
+/**
+ * The absolute origin every canonical, sitemap, robots, OG and JSON-LD URL is
+ * built from.
+ *
+ * Deliberately defensive: an unset or loopback NEXT_PUBLIC_SITE_URL in a
+ * deployed build poisons all of those surfaces at once — a canonical pointing at
+ * localhost makes the site effectively unindexable — so a loopback value is only
+ * honoured outside production builds.
+ */
+export function resolveSiteUrl(
+  raw: string | undefined = process.env.NEXT_PUBLIC_SITE_URL,
+  nodeEnv: string | undefined = process.env.NODE_ENV
+): string {
+  const trimmed = raw?.trim();
+  if (!trimmed) return PRODUCTION_SITE_URL;
+
+  let parsed: URL;
+  try {
+    parsed = new URL(trimmed);
+  } catch {
+    return PRODUCTION_SITE_URL;
+  }
+
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    return PRODUCTION_SITE_URL;
+  }
+
+  const isLoopback =
+    parsed.hostname === "localhost" ||
+    parsed.hostname === "127.0.0.1" ||
+    parsed.hostname === "[::1]";
+  if (isLoopback && nodeEnv === "production") return PRODUCTION_SITE_URL;
+
+  return parsed.origin;
+}
+
 export const siteConfig = {
   name: "Lewis Dong",
   title: "Graduate Interaction Designer (Full-time) · UX Designer · UX Researcher",
   description:
     "UQ Master of Interaction Design student in Brisbane crafting research-driven experiences through usability testing, AI, prototyping, and accessibility.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  url: resolveSiteUrl(),
   author: {
     name: "Lewis Dong",
     email: "24kplo@gmail.com",

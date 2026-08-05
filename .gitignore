@@ -45,6 +45,12 @@ playwright-report/
 # Playwright MCP artifacts (console logs, snapshots, yaml traces)
 .playwright-mcp/
 
+# Local audit/crawl artifacts and tool indexes. Large, machine-specific, and
+# otherwise swept into the index by `git add -A`.
+output/
+.codegraph/
+.cursor/
+
 # BMAD Method
 _bmad/
 _bmad-output/

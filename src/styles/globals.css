@@ -47,9 +47,10 @@
     --border:         var(--paper-300);
     --border-strong:  var(--paper-400);
     --text:           var(--paper-900);
-    --text-2:         var(--paper-600);
-    --text-3:         var(--paper-500);
-    --text-4:         var(--paper-400);
+    /* Small UI copy remains AA-readable against --bg (#EFE8DA). */
+    --text-2:         #5F584F;
+    --text-3:         #665F55;
+    --text-4:         #6D655A;
     --accent:         var(--terra-500);
     --accent-ink:     var(--terra-700);
     --ink:            var(--paper-900);
@@ -252,6 +253,7 @@
     line-height: 1.02;
     color: var(--text);
     margin: 0;
+    overflow-wrap: anywhere;
   }
   .h-display em { font-style: italic; color: var(--text); }
   .h1-ld { font-size: clamp(44px, 8vw, 104px); }
@@ -588,7 +590,16 @@ html { scroll-behavior: smooth; }
   width: 100%; max-width: var(--grid-max); margin: 0 auto;
   padding: 0 var(--grid-margin);
 }
-@media (max-width: 640px) { .pd-nav-inner { padding: 0 20px; height: 60px; } }
+@media (max-width: 640px) {
+  .pd-nav-inner { padding: 0 20px; height: 60px; }
+  .pd-nav-brand {
+    gap: 7px;
+    font-size: 18px;
+    white-space: nowrap;
+  }
+  .pd-nav-brand em { display: none; }
+  .pd-nav-tools { gap: 4px; }
+}
 .pd-nav-brand {
   display: inline-flex; align-items: baseline; gap: 10px;
   text-decoration: none; color: var(--text);
@@ -728,6 +739,7 @@ html { scroll-behavior: smooth; }
   font-size: clamp(56px, 6vw, 86px);
   line-height: 1.02;
   letter-spacing: 0;
+  overflow-wrap: anywhere;
 }
 .hero-text .eyebrow {
   margin-bottom: var(--s-5);
@@ -1675,6 +1687,35 @@ html { scroll-behavior: smooth; }
   gap: var(--s-2);
   margin-top: var(--s-4);
 }
+.interview-room-primary-actions {
+  margin-top: 0;
+}
+.interview-room-more-links {
+  margin-top: var(--s-3);
+  font-family: var(--font-ui);
+  color: var(--text-2);
+}
+.interview-room-more-links summary {
+  width: max-content;
+  max-width: 100%;
+  cursor: pointer;
+  color: var(--accent-ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  list-style-position: inside;
+}
+.interview-room-more-links[open] summary {
+  color: var(--text);
+}
+.interview-room-more-grid {
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--border);
+}
+.interview-room-more-grid .btn {
+  padding: 8px 11px;
+  font-size: 0.82rem;
+}
 .interview-room-signal-card {
   min-width: 0;
   border-top: 1px solid var(--border);
@@ -1834,7 +1875,14 @@ html { scroll-behavior: smooth; }
     padding-top: var(--s-5);
   }
   .interview-room-hero h1 {
-    font-size: clamp(38px, 13vw, 56px);
+    max-width: 100%;
+    font-size: clamp(34px, 12vw, 52px);
+    overflow-wrap: anywhere;
+  }
+  .interview-room-hero-copy > p,
+  .interview-room-status {
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
   .interview-room-signal-card,
   .interview-section-head,
@@ -2860,16 +2908,22 @@ html { scroll-behavior: smooth; }
 /* HIRING SHARED ROUTE SHELF */
 .hiring-route-shelf {
   display: grid;
-  grid-template-columns: minmax(170px, 0.26fr) minmax(0, 1fr);
+  grid-template-columns: minmax(190px, 0.32fr) minmax(0, 1fr);
   gap: var(--s-4);
   align-items: start;
   margin-top: var(--s-7);
-  padding: var(--s-4) 0;
+  padding: var(--s-4);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
 }
 
-.hiring-route-shelf > span {
+.hiring-route-shelf-head {
+  min-width: 0;
+}
+
+.hiring-route-shelf-head span {
+  display: block;
   font-family: var(--font-ui);
   font-size: 11px;
   font-weight: 700;
@@ -2878,7 +2932,21 @@ html { scroll-behavior: smooth; }
   color: var(--text-3);
 }
 
-.hiring-route-shelf > div {
+.hiring-route-shelf-head p {
+  margin: var(--s-3) 0 0;
+  color: var(--text-2);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.hiring-route-shelf-body {
+  display: grid;
+  gap: var(--s-3);
+  min-width: 0;
+}
+
+.hiring-route-shelf-primary,
+.hiring-route-shelf-more > div {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 16px;
@@ -2900,9 +2968,35 @@ html { scroll-behavior: smooth; }
   border-bottom-color: var(--accent);
 }
 
+.hiring-route-shelf-more {
+  font-family: var(--font-ui);
+  color: var(--text-2);
+}
+
+.hiring-route-shelf-more summary {
+  width: max-content;
+  max-width: 100%;
+  cursor: pointer;
+  color: var(--accent-ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+  list-style-position: inside;
+}
+
+.hiring-route-shelf-more[open] summary {
+  color: var(--text);
+}
+
+.hiring-route-shelf-more > div {
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px dashed var(--border);
+}
+
 @media (max-width: 720px) {
   .hiring-route-shelf {
     grid-template-columns: 1fr;
+    padding: var(--s-3);
   }
 }
 
@@ -3571,6 +3665,21 @@ html { scroll-behavior: smooth; }
 .work-index-thumb .viz {
   padding: 10px;
 }
+.work-index-thumb-label {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 4px 7px;
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--text-2);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  line-height: 1;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+}
 .work-index-project h3 {
   margin: 0 0 5px;
   font-family: var(--font-display);
@@ -3635,6 +3744,11 @@ html { scroll-behavior: smooth; }
   }
   .work-index-project {
     grid-template-columns: 1fr;
+  }
+  .work-index-thumb-label {
+    right: 10px;
+    bottom: 10px;
+    font-size: 11px;
   }
   .work-index-arrow {
     grid-column: 2;
@@ -3911,7 +4025,9 @@ html { scroll-behavior: smooth; }
 /* ============================================================
    CASE STUDY — sprint 3
    ============================================================ */
-.cs-hero { padding: var(--s-7) 0 var(--s-8); }
+.cs-hero {
+  padding: var(--s-7) var(--grid-margin) var(--s-8);
+}
 .cs-breadcrumb {
   font-family: var(--font-ui);
   font-size: 13px;
@@ -3931,11 +4047,17 @@ html { scroll-behavior: smooth; }
 .cs-back:hover { color: var(--accent); }
 .cs-hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(48px, 8vw, 120px);
-  line-height: 0.95;
+  max-width: 15ch;
+  font-size: clamp(44px, 6.5vw, 88px);
+  line-height: 1;
   letter-spacing: -0.03em;
   margin: 0 0 var(--s-5);
   font-weight: 400;
+  text-wrap: balance;
+}
+main[data-screen-label^="06 Post"] .cs-hero h1 {
+  max-width: 20ch;
+  font-size: clamp(42px, 5.2vw, 72px);
 }
 .cs-hero .sub {
   font-family: var(--font-display);
@@ -4138,21 +4260,50 @@ html { scroll-behavior: smooth; }
   .case-reader-prompts ul { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
+  .hero {
+    overflow: clip;
+  }
+
+  .idx-hero .h-display,
+  .cs-hero h1,
+  .contact-hero-copy .h-display {
+    max-width: 100%;
+    font-size: clamp(38px, 13vw, 56px);
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-text .h-display {
+    max-width: 100%;
+    font-size: clamp(44px, 12vw, 52px);
+    line-height: 1.02;
+  }
+
+  .hero-text .eyebrow,
+  .hero-lede {
+    max-width: 100%;
+  }
+
+  .hero-ctas .btn {
+    min-width: 0;
+    flex: 1 1 150px;
+    justify-content: center;
+  }
+
   .case-reader {
     width: calc(100% - 1px);
     padding: var(--s-3);
   }
   .case-reader-links {
-    display: flex;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow-x: visible;
     max-width: 100%;
     border-left: none;
-    scroll-snap-type: x proximity;
   }
   .case-reader-links a {
-    flex: 0 0 72%;
+    min-height: 64px;
     border-left: 1px solid var(--border);
-    scroll-snap-align: start;
   }
 }
 
@@ -4351,6 +4502,32 @@ html { scroll-behavior: smooth; }
   background: var(--surface-2);
 }
 .cs-cover .viz { inset: 0; padding: 60px; }
+.cs-cover figcaption {
+  position: absolute;
+  left: var(--s-4);
+  right: var(--s-4);
+  bottom: var(--s-4);
+  max-width: 620px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--text-2);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
+}
+@media (max-width: 640px) {
+  .cs-cover .viz { padding: 28px; }
+  .cs-cover figcaption {
+    left: var(--s-3);
+    right: var(--s-3);
+    bottom: var(--s-3);
+    font-size: 0.75rem;
+  }
+}
 
 .case-depth {
   padding: 0 0 var(--s-8);
@@ -4771,6 +4948,15 @@ html { scroll-behavior: smooth; }
   border-bottom: 1px solid var(--border);
 }
 .res-actions { display: flex; gap: 10px; }
+@media (max-width: 640px) {
+  .res-actions {
+    width: 100%;
+  }
+  .res-actions .btn {
+    flex: 1 1 140px;
+    justify-content: center;
+  }
+}
 
 .res-body {
   display: grid;
@@ -4952,7 +5138,10 @@ html { scroll-behavior: smooth; }
   grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr);
   gap: var(--s-7);
   align-items: center;
-  padding: var(--s-8) 0 var(--s-7);
+  padding: var(--s-8) var(--grid-margin) var(--s-7);
+}
+.contact-hero > :nth-child(n + 3) {
+  grid-column: 1 / -1;
 }
 .contact-hero-copy {
   min-width: 0;
@@ -5208,6 +5397,12 @@ html { scroll-behavior: smooth; }
 @media (max-width: 820px) {
   .contact-hero {
     grid-template-columns: 1fr;
+  }
+  .contact-hero-copy .h-display {
+    max-width: 100%;
+    font-size: clamp(38px, 13vw, 56px);
+    line-height: 1.05;
+    overflow-wrap: anywhere;
   }
   .contact-note-card {
     transform: none;
