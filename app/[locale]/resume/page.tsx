@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
@@ -237,6 +237,7 @@ export default async function ResumePage() {
             </div>
             <HiringRoleFitPanel
               roles={hiringRoleFits}
+              locale={proofLocale}
               title="Role fit, with proof."
               intro="Use the resume as a map into the strongest portfolio evidence."
               labels={proofLabels}

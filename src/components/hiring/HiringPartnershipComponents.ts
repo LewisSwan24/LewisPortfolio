@@ -1,1 +1,0 @@
-export { HiringPartnershipView } from "./HiringPartnershipView";

@@ -10,6 +10,7 @@ const caseLabels: Record<ProjectEvidenceSlug, string> = {
   spectra: "Spectra Lens",
   ai: "AI Coach",
   circles: "Connect Circles",
+  maze: "MazeRunners",
 };
 
 interface InterviewQuestionBankProps {

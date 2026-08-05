@@ -23,7 +23,9 @@ describe("portfolio proof content", () => {
   it("covers every portfolio project with evidence metadata", () => {
     const projects = getProjectEvidence("en");
 
-    expect(projects).toHaveLength(4);
+    // Bound to the slug registry rather than a literal, so adding a case does
+    // not require editing a count here.
+    expect(projects).toHaveLength(projectEvidenceSlugs.length);
     expect(projects.map((project) => project.slug)).toEqual(projectEvidenceSlugs);
 
     for (const project of projects) {
@@ -132,6 +134,17 @@ describe("portfolio proof content", () => {
       expect(route.claim.length).toBeGreaterThan(12);
       expect(route.evidence.length).toBeGreaterThan(12);
     }
+  });
+
+  it("keeps the Chinese hiring conversion free of sentence-level English copy", () => {
+    const conversion = getHiringConversion("zh");
+    const visibleCopy = JSON.stringify(conversion);
+
+    expect(visibleCopy).not.toMatch(
+      /\b(?:Research-led|I turn|Open to|Best proof|Use this portfolio|Contact Lewis|Read the resume)\b/
+    );
+    expect(conversion.hero.headline).toMatch(/设计|研究|证据/);
+    expect(conversion.closingPrompt.primaryAction.label).toMatch(/联系/);
   });
 
   it("provides interviewer scans for every case", () => {
@@ -313,11 +326,12 @@ describe("portfolio proof content", () => {
     }
   });
 
-  it("interview decision ids stay stable across locales", () => {
+  it("interview decision structure stays stable while labels localize", () => {
     const en = getInterviewDecisionRoom("en");
     const zh = getInterviewDecisionRoom("zh");
 
-    expect(zh.brief.signals.map((signal) => signal.label)).toEqual(
+    expect(zh.brief.signals).toHaveLength(en.brief.signals.length);
+    expect(zh.brief.signals.map((signal) => signal.label)).not.toEqual(
       en.brief.signals.map((signal) => signal.label)
     );
     expect(zh.evidenceBrief.map((item) => item.id)).toEqual(

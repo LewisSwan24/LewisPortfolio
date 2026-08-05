@@ -1,5 +1,42 @@
 import { describe, it, expect } from "vitest";
-import { siteConfig } from "../site";
+import { siteConfig, resolveSiteUrl } from "../site";
+
+const PROD = "https://lewisdong.vercel.app";
+
+describe("resolveSiteUrl", () => {
+    it("falls back to the production origin when the env var is unset or blank", () => {
+        expect(resolveSiteUrl(undefined, "production")).toBe(PROD);
+        expect(resolveSiteUrl("", "production")).toBe(PROD);
+        expect(resolveSiteUrl("   ", "production")).toBe(PROD);
+    });
+
+    // The original defect: a loopback value shipped to production poisoned
+    // canonical, sitemap, robots, OG and JSON-LD URLs all at once.
+    it("refuses loopback origins in production builds", () => {
+        expect(resolveSiteUrl("http://localhost:3000", "production")).toBe(PROD);
+        expect(resolveSiteUrl("http://127.0.0.1:3000", "production")).toBe(PROD);
+    });
+
+    it("still honours loopback origins outside production", () => {
+        expect(resolveSiteUrl("http://localhost:3000", "development")).toBe(
+            "http://localhost:3000"
+        );
+    });
+
+    it("ignores malformed or non-http values", () => {
+        expect(resolveSiteUrl("not a url", "production")).toBe(PROD);
+        expect(resolveSiteUrl("ftp://example.com", "production")).toBe(PROD);
+    });
+
+    it("normalises a valid origin and strips any trailing path", () => {
+        expect(resolveSiteUrl("https://example.com/", "production")).toBe(
+            "https://example.com"
+        );
+        expect(resolveSiteUrl("https://example.com/base", "production")).toBe(
+            "https://example.com"
+        );
+    });
+});
 
 describe("siteConfig", () => {
     it("should have required personal info", () => {

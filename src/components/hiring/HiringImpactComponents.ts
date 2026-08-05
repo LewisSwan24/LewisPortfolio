@@ -1,1 +1,0 @@
-export { HiringImpactView } from "./HiringImpactView";

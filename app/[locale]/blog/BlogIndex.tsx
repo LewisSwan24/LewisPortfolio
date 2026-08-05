@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 
 export type PostItem = {
   slug: string;
@@ -108,7 +109,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
               { year: "numeric", month: "short", day: "numeric" }
             );
             return (
-              <a className="idx-flag" href={`/blog/${p.slug}`} key={p.slug}>
+              <Link className="idx-flag" href={`/blog/${p.slug}`} key={p.slug}>
                 <div className="idx-flag-n">{n}</div>
                 <div className="idx-flag-body">
                   <div className="eyebrow">{date}</div>
@@ -128,7 +129,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
                     {isZh ? "读它" : "Read it"} →
                   </div>
                 </div>
-              </a>
+              </Link>
             );
           })
         )}

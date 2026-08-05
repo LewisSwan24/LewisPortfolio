@@ -1,12 +1,14 @@
-import Link from "next/link";
+import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
-import { VizConnect, VizSpectra, VizAI, VizCircles } from "@/components/viz/ProjectViz";
+import { VizConnect, VizSpectra, VizAI, VizCircles, VizMaze } from "@/components/viz/ProjectViz";
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 import { CURRENT_PROJECT_SLUGS, type CurrentProjectSlug } from "@/lib/project-routes";
 import {
   getCaseDepth,
@@ -26,11 +28,80 @@ interface ProjectLink {
   external?: boolean;
 }
 
+interface CaseMediaImage {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  altZh: string;
+  caption: string;
+  captionZh: string;
+}
+
+interface CaseMedia {
+  images: CaseMediaImage[];
+  video?: { src: string; poster: string; caption: string; captionZh: string };
+}
+
+/**
+ * Photographic evidence, for cases that have a physical artefact. Only
+ * MazeRunners does — the rest are screen work whose artefact is the cover viz.
+ */
+const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
+  maze: {
+    images: [
+      {
+        src: "/projects/maze/01-exhibition-setup.png",
+        width: 900,
+        height: 520,
+        alt: "The MazeRunners table set up at the exhibition with players around it",
+        altZh: "MazeRunners 在展览现场的桌面布置，玩家围在四周",
+        caption: "Exhibition setup, mid-round.",
+        captionZh: "展览现场，回合进行中。",
+      },
+      {
+        src: "/projects/maze/02-bracelet-finger-sleeve.png",
+        width: 900,
+        height: 520,
+        alt: "Close-up of the wearable finger sleeve that delivers vibration feedback",
+        altZh: "提供震动反馈的可穿戴手指套特写",
+        caption: "The finger sleeve — where the trap actually lands.",
+        captionZh: "手指套 —— 陷阱真正落在这里。",
+      },
+      {
+        src: "/projects/maze/03-wiring-layer.png",
+        width: 900,
+        height: 520,
+        alt: "The wiring layer underneath the maze board",
+        altZh: "迷宫板下方的接线层",
+        caption: "Wiring layer under the board.",
+        captionZh: "板子底下的接线层。",
+      },
+      {
+        src: "/projects/maze/04-engineering-overview.png",
+        width: 1536,
+        height: 1024,
+        alt: "Annotated engineering overview of sensors, controllers, and feedback hardware",
+        altZh: "带标注的工程总览：传感器、控制器与反馈硬件",
+        caption: "Annotated overview: sensors, controllers, feedback.",
+        captionZh: "带标注的总览：传感器、控制器、反馈。",
+      },
+    ],
+    video: {
+      src: "/projects/maze/05-planb-circuit.mp4",
+      poster: "/projects/maze/05-planb-circuit-thumbnail.jpg",
+      caption: "The PlanB feedback circuit running.",
+      captionZh: "PlanB 反馈电路运行录像。",
+    },
+  },
+};
+
 const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   connect: [],
   spectra: [],
   ai: [],
   circles: [],
+  maze: [],
 };
 
 export function generateStaticParams() {
@@ -49,16 +120,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = t(`proj.${slug}.title`);
   const description = t(`proj.${slug}.sub`);
   const path = `/projects/${slug}`;
+  // Per-case card rendered by ./opengraph-image.tsx, so a shared case link
+  // previews with that case's title rather than the generic site card.
+  const image = `/${locale}${path}/opengraph-image`;
   return {
     title,
     description,
     alternates: buildAlternates(path, locale),
-    openGraph: buildOpenGraph({ title, description, path, locale, type: "article" }),
-    twitter: buildTwitter({ title, description }),
+    openGraph: buildOpenGraph({ title, description, path, locale, type: "article", image }),
+    twitter: buildTwitter({ title, description, image }),
   };
 }
 
 function CoverViz({ slug }: { slug: Slug }) {
+  if (slug === "maze") return <VizMaze />;
   if (slug === "connect") return <VizConnect />;
   if (slug === "spectra") return <VizSpectra />;
   if (slug === "ai") return <VizAI />;
@@ -78,7 +153,7 @@ export default async function CasePage({ params }: Props) {
   const prevSlug = SLUGS[(idx - 1 + SLUGS.length) % SLUGS.length];
   const projectLinks = PROJECT_LINKS[k];
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const siteUrl = siteConfig.url;
   const projectTitle = t(`proj.${k}.title`);
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const caseSummary = getCaseSummary(k, proofLocale);
@@ -86,6 +161,83 @@ export default async function CasePage({ params }: Props) {
   const caseInterviewScan = getCaseInterviewScan(k, proofLocale);
   const caseReaderGuide = getCaseReaderGuide(k, proofLocale);
   const caseInterviewPack = getCaseInterviewPack(k, proofLocale);
+  const pageCopy = isZh
+    ? {
+        caseReaderAria: "案例阅读路径",
+        caseReaderLabel: "案例阅读器",
+        caseReaderIntro: "选择一种阅读路径，再跳到对应证据。",
+        reviewModesAria: "阅读模式",
+        askMeAbout: "可以问我",
+        interviewerScanAria: "2 分钟面试官速览",
+        interviewerScanLabel: "2 分钟面试官速览",
+        whatThisCaseProves: "这个案例证明什么",
+        whatToInspect: "建议检查",
+        interviewQuestions: "面试问题",
+        bestFitTeams: "最适合的团队",
+        coverCaption:
+          "概念视觉图。真实证据、方法、指标和限制写在案例摘要与下方深度说明中。",
+        caseDepthAria: "面试可用的案例深度",
+        caseDepthLabel: "案例深度",
+        caseDepthTitle: "面试可用的案例深度",
+        caseDepthIntro:
+          "下面的说明帮助招聘方更快检查作品集：我做了什么选择、哪些证据推动了设计、迭代之间改变了什么，以及还需要验证什么。",
+        decisionLogLabel: "决策记录",
+        decisionTimeline: "决策时间线",
+        choice: "选择",
+        evidence: "证据",
+        tradeoff: "取舍",
+        impact: "影响",
+        researchEvidenceLabel: "证据",
+        researchEvidenceBoard: "研究证据板",
+        finding: "发现",
+        designImplication: "设计影响",
+        iterationsLabel: "迭代",
+        iterationGallery: "迭代展示",
+        limitsLabel: "限制",
+        outcomeLimits: "结果限制",
+        whyItMatters: "为什么重要",
+        nextValidation: "下一步验证",
+        portfolioReadout: "作品集结论",
+        interviewTakeaway: "面试要点",
+      }
+    : {
+        caseReaderAria: "Case reader",
+        caseReaderLabel: "Case reader",
+        caseReaderIntro: "Choose a route, then jump to the proof.",
+        reviewModesAria: "Review modes",
+        askMeAbout: "Ask me about",
+        interviewerScanAria: "2-minute interviewer scan",
+        interviewerScanLabel: "2-minute interviewer scan",
+        whatThisCaseProves: "What this case proves",
+        whatToInspect: "What to inspect",
+        interviewQuestions: "Interview questions",
+        bestFitTeams: "Best-fit teams",
+        coverCaption:
+          "Concept visual. The evidence, methods, metrics, and limits are documented in the case summary and depth sections.",
+        caseDepthAria: "Interview-ready case depth",
+        caseDepthLabel: "Case depth",
+        caseDepthTitle: "Interview-ready case depth",
+        caseDepthIntro:
+          "The following notes make the work easier to inspect in a portfolio review: what I chose, what evidence moved the design, what changed between iterations, and what still needs validation.",
+        decisionLogLabel: "Decision log",
+        decisionTimeline: "Decision timeline",
+        choice: "Choice",
+        evidence: "Evidence",
+        tradeoff: "Trade-off",
+        impact: "Impact",
+        researchEvidenceLabel: "Evidence",
+        researchEvidenceBoard: "Research evidence board",
+        finding: "Finding",
+        designImplication: "Design implication",
+        iterationsLabel: "Iterations",
+        iterationGallery: "Iteration gallery",
+        limitsLabel: "Limits",
+        outcomeLimits: "Outcome limits",
+        whyItMatters: "Why it matters",
+        nextValidation: "Next validation",
+        portfolioReadout: "Portfolio readout",
+        interviewTakeaway: "Interview takeaway",
+      };
 
   return (
     <main className="page" data-screen-label={`03 Case · ${k}`}>
@@ -99,6 +251,7 @@ export default async function CasePage({ params }: Props) {
       <section className="container cs-hero">
         <Breadcrumb
           className="cs-breadcrumb"
+          locale={locale}
           items={[
             { label: t("nav.home"), href: "/" },
             { label: t("nav.projects"), href: "/projects" },
@@ -154,10 +307,10 @@ export default async function CasePage({ params }: Props) {
             </div>
           )}
         </dl>
-        <nav className="case-reader" aria-label="Case reader">
+        <nav className="case-reader" aria-label={pageCopy.caseReaderAria}>
           <div className="case-reader-head">
-            <div className="label">Case reader</div>
-            <p>Choose a route, then jump to the proof.</p>
+            <div className="label">{pageCopy.caseReaderLabel}</div>
+            <p>{pageCopy.caseReaderIntro}</p>
           </div>
           <div className="case-reader-links">
             {caseReaderGuide.sections
@@ -169,7 +322,7 @@ export default async function CasePage({ params }: Props) {
                 </a>
               ))}
           </div>
-          <div className="case-reader-modes" aria-label="Review modes">
+          <div className="case-reader-modes" aria-label={pageCopy.reviewModesAria}>
             {caseReaderGuide.modes.map((mode) => {
               const firstAnchor = mode.anchorIds[0];
               return (
@@ -189,7 +342,7 @@ export default async function CasePage({ params }: Props) {
             })}
           </div>
           <div className="case-reader-prompts">
-            <h2>Ask me about</h2>
+            <h2>{pageCopy.askMeAbout}</h2>
             <ul>
               {caseReaderGuide.prompts.map((prompt) => (
                 <li key={prompt.question}>
@@ -199,7 +352,7 @@ export default async function CasePage({ params }: Props) {
               ))}
             </ul>
           </div>
-          <CaseInterviewPack pack={caseInterviewPack} />
+          <CaseInterviewPack pack={caseInterviewPack} locale={proofLocale} />
         </nav>
         <div id="snapshot" className="case-anchor" aria-hidden />
         <aside className="case-summary" aria-label={isZh ? "案例摘要" : "Case summary"}>
@@ -239,15 +392,15 @@ export default async function CasePage({ params }: Props) {
           </div>
         </aside>
         <div id="interviewer-scan" className="case-anchor" aria-hidden />
-        <aside className="case-interview-scan" aria-label="2-minute interviewer scan">
+        <aside className="case-interview-scan" aria-label={pageCopy.interviewerScanAria}>
           <div className="case-interview-scan-head">
-            <div className="label">2-minute interviewer scan</div>
-            <h2>What this case proves</h2>
+            <div className="label">{pageCopy.interviewerScanLabel}</div>
+            <h2>{pageCopy.whatThisCaseProves}</h2>
             <p>{caseInterviewScan.proves}</p>
           </div>
           <div className="case-interview-scan-grid">
             <div>
-              <h3>What to inspect</h3>
+              <h3>{pageCopy.whatToInspect}</h3>
               <ul>
                 {caseInterviewScan.inspect.map((item) => (
                   <li key={item}>{item}</li>
@@ -255,7 +408,7 @@ export default async function CasePage({ params }: Props) {
               </ul>
             </div>
             <div>
-              <h3>Interview questions</h3>
+              <h3>{pageCopy.interviewQuestions}</h3>
               <ul>
                 {caseInterviewScan.questions.map((item) => (
                   <li key={item}>{item}</li>
@@ -263,7 +416,7 @@ export default async function CasePage({ params }: Props) {
               </ul>
             </div>
             <div>
-              <h3>Best-fit teams</h3>
+              <h3>{pageCopy.bestFitTeams}</h3>
               <ul>
                 {caseInterviewScan.bestFit.map((item) => (
                   <li key={item}>{item}</li>
@@ -275,26 +428,63 @@ export default async function CasePage({ params }: Props) {
         <div id="artifact" className="case-anchor" aria-hidden />
         <figure className="cs-cover">
           <CoverViz slug={k} />
+          <figcaption>{pageCopy.coverCaption}</figcaption>
         </figure>
       </section>
 
-      <section className="container case-depth" aria-label="Interview-ready case depth">
+      {CASE_MEDIA[k] && (
+        <section className="container case-build-evidence" aria-label={isZh ? "实物证据" : "Build evidence"}>
+          <div className="case-build-head">
+            <div className="label">{isZh ? "实物证据" : "Build evidence"}</div>
+            <p>
+              {isZh
+                ? "以下是实际搭建与展出的照片和电路运行录像，不是渲染图。"
+                : "Photographs of the actual build and a clip of the circuit running — not renders."}
+            </p>
+          </div>
+          <div className="case-build-grid">
+            {CASE_MEDIA[k]!.images.map((image) => (
+              <figure key={image.src}>
+                <Image
+                  src={image.src}
+                  width={image.width}
+                  height={image.height}
+                  alt={isZh ? image.altZh : image.alt}
+                  sizes="(max-width: 720px) 100vw, 50vw"
+                />
+                <figcaption>{isZh ? image.captionZh : image.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+          {CASE_MEDIA[k]!.video && (
+            <figure className="case-build-video">
+              <video
+                controls
+                preload="none"
+                poster={CASE_MEDIA[k]!.video!.poster}
+                src={CASE_MEDIA[k]!.video!.src}
+              />
+              <figcaption>
+                {isZh ? CASE_MEDIA[k]!.video!.captionZh : CASE_MEDIA[k]!.video!.caption}
+              </figcaption>
+            </figure>
+          )}
+        </section>
+      )}
+
+      <section className="container case-depth" aria-label={pageCopy.caseDepthAria}>
         <div id="case-depth-overview" className="case-depth-block case-depth-intro">
           <div>
-            <div className="label">Case depth</div>
-            <h2>Interview-ready case depth</h2>
+            <div className="label">{pageCopy.caseDepthLabel}</div>
+            <h2>{pageCopy.caseDepthTitle}</h2>
           </div>
-          <p>
-            The following notes make the work easier to inspect in a portfolio
-            review: what I chose, what evidence moved the design, what changed
-            between iterations, and what still needs validation.
-          </p>
+          <p>{pageCopy.caseDepthIntro}</p>
         </div>
 
         <div id="decision-timeline" className="case-depth-block">
           <div className="case-depth-head">
-            <div className="label">Decision log</div>
-            <h2>Decision timeline</h2>
+            <div className="label">{pageCopy.decisionLogLabel}</div>
+            <h2>{pageCopy.decisionTimeline}</h2>
           </div>
           <ol className="case-decision-list">
             {caseDepth.decisions.map((decision, index) => (
@@ -306,19 +496,19 @@ export default async function CasePage({ params }: Props) {
                   <h3>{decision.label}</h3>
                   <dl className="case-depth-dl">
                     <div>
-                      <dt>Choice</dt>
+                      <dt>{pageCopy.choice}</dt>
                       <dd>{decision.choice}</dd>
                     </div>
                     <div>
-                      <dt>Evidence</dt>
+                      <dt>{pageCopy.evidence}</dt>
                       <dd>{decision.evidence}</dd>
                     </div>
                     <div>
-                      <dt>Trade-off</dt>
+                      <dt>{pageCopy.tradeoff}</dt>
                       <dd>{decision.tradeoff}</dd>
                     </div>
                     <div>
-                      <dt>Impact</dt>
+                      <dt>{pageCopy.impact}</dt>
                       <dd>{decision.impact}</dd>
                     </div>
                   </dl>
@@ -330,8 +520,8 @@ export default async function CasePage({ params }: Props) {
 
         <div id="evidence-board" className="case-depth-block">
           <div className="case-depth-head">
-            <div className="label">Evidence</div>
-            <h2>Research evidence board</h2>
+            <div className="label">{pageCopy.researchEvidenceLabel}</div>
+            <h2>{pageCopy.researchEvidenceBoard}</h2>
           </div>
           <div className="case-evidence-board">
             {caseDepth.evidence.map((item) => (
@@ -343,11 +533,11 @@ export default async function CasePage({ params }: Props) {
                 <h3>{item.question}</h3>
                 <dl className="case-depth-dl">
                   <div>
-                    <dt>Finding</dt>
+                    <dt>{pageCopy.finding}</dt>
                     <dd>{item.finding}</dd>
                   </div>
                   <div>
-                    <dt>Design implication</dt>
+                    <dt>{pageCopy.designImplication}</dt>
                     <dd>{item.implication}</dd>
                   </div>
                 </dl>
@@ -358,8 +548,8 @@ export default async function CasePage({ params }: Props) {
 
         <div id="iteration-gallery" className="case-depth-block">
           <div className="case-depth-head">
-            <div className="label">Iterations</div>
-            <h2>Iteration gallery</h2>
+            <div className="label">{pageCopy.iterationsLabel}</div>
+            <h2>{pageCopy.iterationGallery}</h2>
           </div>
           <div className="case-iteration-gallery">
             {caseDepth.iterations.map((iteration) => (
@@ -375,8 +565,8 @@ export default async function CasePage({ params }: Props) {
 
         <div id="outcome-limits" className="case-depth-block case-limits">
           <div className="case-depth-head">
-            <div className="label">Limits</div>
-            <h2>Outcome limits</h2>
+            <div className="label">{pageCopy.limitsLabel}</div>
+            <h2>{pageCopy.outcomeLimits}</h2>
           </div>
           <div className="case-limits-grid">
             {caseDepth.limits.map((limit) => (
@@ -384,11 +574,11 @@ export default async function CasePage({ params }: Props) {
                 <h3>{limit.constraint}</h3>
                 <dl className="case-depth-dl">
                   <div>
-                    <dt>Why it matters</dt>
+                    <dt>{pageCopy.whyItMatters}</dt>
                     <dd>{limit.whyItMatters}</dd>
                   </div>
                   <div>
-                    <dt>Next validation</dt>
+                    <dt>{pageCopy.nextValidation}</dt>
                     <dd>{limit.nextValidation}</dd>
                   </div>
                 </dl>
@@ -399,8 +589,8 @@ export default async function CasePage({ params }: Props) {
 
         <div id="interview-takeaway" className="case-depth-block case-takeaway">
           <div>
-            <div className="label">Portfolio readout</div>
-            <h2>Interview takeaway</h2>
+            <div className="label">{pageCopy.portfolioReadout}</div>
+            <h2>{pageCopy.interviewTakeaway}</h2>
           </div>
           <p>{caseDepth.takeaway}</p>
         </div>

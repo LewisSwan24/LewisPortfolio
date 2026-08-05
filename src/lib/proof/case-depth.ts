@@ -17,33 +17,43 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       challenge: "A portal used by thousands of students hid critical tasks behind staff-facing language and institutional categories.",
       role: "Solo UX researcher and designer",
       methods: ["open card sort", "tree test", "task analysis", "plain-language review"],
-      evidence: ["24 card-sort participants", "50 tree-test participants", "10 task walk-through sessions"],
-      outcome: "Findability, task success, and SUS all improved in the proposed IA.",
+      evidence: ["open card sort", "unmoderated tree test", "task walk-through sessions"],
+      outcome: "Twelve staff-owned categories became six task-led ones, tree-tested against the original. University project; not deployed.",
       next: "I would run a longitudinal post-launch study to compare search behaviour and support-ticket volume before and after rollout.",
     },
     spectra: {
       challenge: "Colour-dependent decisions were slow, awkward, and socially exposing for colourblind users.",
       role: "Lead UX designer",
       methods: ["interviews", "co-design", "field usability testing"],
-      evidence: ["12 colourblind participants", "5 competitor tools reviewed", "8 real-environment tests"],
-      outcome: "Task success rose to 92% with faster recognition and stronger satisfaction.",
+      evidence: ["interviews with colourblind users", "competitor tool review", "real-environment testing"],
+      outcome: "A one-tap overlay that answers the decision rather than naming the hue, silent by default. Prototype only.",
       next: "I would prototype the zero-state more deeply and test how little feedback the overlay can provide while still being useful.",
     },
     ai: {
       challenge: "Interview prep tools gave content, but they did not reduce the emotional friction of practice.",
       role: "UX designer and researcher",
       methods: ["survey", "interviews", "competitive teardown", "prototype test", "feedback timing test"],
-      evidence: ["85 survey responses", "15 interviews", "12 moderated sessions", "50 beta users"],
-      outcome: "Confidence rose while reported anxiety dropped, with post-session feedback preferred over interruption.",
+      evidence: ["survey", "depth interviews", "competitive teardown", "moderated prototype sessions"],
+      outcome: "Post-session feedback was clearly preferred over mid-answer interruption. Prototype only; no controlled experiment.",
       next: "I would test tone controls that let users choose a gentler or more rigorous interview persona.",
     },
     circles: {
       challenge: "International students wanted fewer, deeper relationships, while social apps rewarded volume and constant messaging.",
       role: "Product designer",
       methods: ["depth interviews", "diary study", "co-design", "research-through-design"],
-      evidence: ["15 interviews", "2-week diary study with 8 participants", "3 co-design workshops"],
+      evidence: ["depth interviews", "two-week diary study", "co-design workshops"],
       outcome: "The product direction shifted toward small circles, structured prompts, and slow matching.",
       next: "I would instrument for perceived safety and relationship depth, not matches or time spent.",
+    },
+    maze: {
+      challenge:
+        "A physical maze just sits there. Making it read as a responsive multiplayer system meant tying sensing, game state, and feedback together in real time.",
+      role: "Design technologist and interaction prototyper",
+      methods: ["firmware state machines", "sensor tuning", "haptic feedback design", "Web Serial console"],
+      evidence: ["working Arduino build", "public exhibition group play", "firmware/web parity tests"],
+      outcome:
+        "A ball passing a sensor advances round state and drives score, timer, haptics, lights, audio, and the browser console together. Built and exhibited.",
+      next: "I would instrument sessions to see which feedback channel players actually rely on, and cut the ones they ignore.",
     },
   },
   zh: {
@@ -51,33 +61,43 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       challenge: "一个被大量学生使用的门户，把关键任务藏在部门语言与机构分类后面。",
       role: "独立 UX 研究与设计",
       methods: ["开放式卡片分类", "树测试", "任务分析", "普通语言审查"],
-      evidence: ["24 名卡片分类参与者", "50 名树测试参与者", "10 场任务走查"],
-      outcome: "新 IA 在可发现性、任务成功率与 SUS 上都提升。",
+      evidence: ["开放式卡片分类", "非主持树测试", "任务走查"],
+      outcome: "把十二个部门分类收敛成六个任务分类，并与原结构做树测试对比。课程项目，未上线。",
       next: "我会继续做上线后的纵向研究，对比搜索行为和支持工单量。",
     },
     spectra: {
       challenge: "对色盲用户来说，依赖颜色的判断既慢、尴尬，也容易暴露个人情况。",
       role: "Lead UX Designer",
       methods: ["访谈", "共创", "真实场景可用性测试"],
-      evidence: ["12 名色盲参与者", "5 个竞品工具评估", "8 场真实环境测试"],
-      outcome: "任务成功率提升到 92%，识别更快，满意度更强。",
+      evidence: ["色盲用户访谈", "竞品工具评估", "真实环境测试"],
+      outcome: "一个单击即用的叠加层：给决定而不是报色名，默认静音。仅为原型。",
       next: "我会更深入测试 zero-state，验证 AR 覆层最少需要提供多少反馈才足够有用。",
     },
     ai: {
       challenge: "面试准备工具提供内容，但没有真正降低练习时的情绪阻力。",
       role: "UX Designer & Researcher",
       methods: ["问卷", "访谈", "竞品拆解", "原型测试", "反馈时机测试"],
-      evidence: ["85 份问卷", "15 场访谈", "12 场主持式测试", "50 名 beta 用户"],
-      outcome: "信心提升、焦虑下降，用户更偏好面试结束后的反馈，而不是中途打断。",
+      evidence: ["问卷", "深度访谈", "竞品拆解", "主持式原型测试"],
+      outcome: "结束后反馈明显优于答题中打断。仅为原型，没有做受控实验。",
       next: "我会测试语气控制，让用户选择更温和或更严格的 AI 面试官。",
     },
     circles: {
       challenge: "国际学生想要更少但更深的关系，而社交 app 奖励的是数量和持续消息。",
       role: "Product Designer",
       methods: ["深度访谈", "日记研究", "共创", "研究型设计"],
-      evidence: ["15 场访谈", "8 人参与的两周日记研究", "3 场共创工作坊"],
+      evidence: ["深度访谈", "两周日记研究", "共创工作坊"],
       outcome: "产品方向转向小组关系、结构化提示和慢匹配。",
       next: "我会衡量安全感与关系深度，而不是匹配数或使用时长。",
+    },
+    maze: {
+      challenge:
+        "实体迷宫本身是静止的。要让它读起来像一个会回应的多人系统，必须把感测、游戏状态和反馈实时绑在一起。",
+      role: "Design Technologist / 交互原型开发",
+      methods: ["固件状态机", "传感器调校", "触觉反馈设计", "Web Serial 控制台"],
+      evidence: ["可运行的 Arduino 实体作品", "公开展览中的多人游玩", "固件与网页一致性测试"],
+      outcome:
+        "球经过传感器就推进回合状态，并同时驱动计分、计时、震动、灯光、音效与浏览器控制台。已完成搭建并展出。",
+      next: "我会记录实际游玩数据，看玩家真正依赖哪一种反馈通道，然后砍掉被忽略的那些。",
     },
   },
 };
@@ -123,16 +143,16 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       evidence: [
         {
           method: "Open card sort",
-          sample: "24 participants",
+          sample: "Open card sort; group size not formally recorded",
           question: "How do students naturally group portal information when department labels are removed?",
           finding: "Participants clustered content around study, belonging, fees, and campus life tasks.",
           implication: "The IA should lead with student mental models rather than staff ownership.",
         },
         {
           method: "Tree testing",
-          sample: "50 participants",
+          sample: "Unmoderated tree test; group size not formally recorded",
           question: "Can students find critical tasks in the proposed hierarchy without interface cues?",
-          finding: "Findability improved from 58% to 84% in the proposed structure.",
+          finding: "The task-led tree beat the department-led original; 'Money' vs. 'My account' had to be renamed and retested.",
           implication: "The task-oriented IA was strong enough to justify moving into interface design.",
         },
         {
@@ -160,7 +180,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           version: "Validation-ready tree",
           change: "Refined labels and hierarchy depth for the tree test.",
           reason: "The next decision needed evidence about findability, not another visual mockup.",
-          improvement: "Produced a testable structure tied to task success and SUS outcomes.",
+          improvement: "Produced a structure that could be tested against the original rather than argued about.",
         },
       ],
       limits: [
@@ -237,7 +257,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           method: "Field usability testing",
           sample: "8 real-environment tests",
           question: "Can users complete colour-dependent tasks quickly in realistic public contexts?",
-          finding: "Task success rose from 75% to 92% with an average recognition time of 3.1 seconds.",
+          finding: "In context, participants wanted the decision made, not the colour named — and preferred silence to announcement.",
           implication: "The prototype had enough contextual validity to support the accessibility direction.",
         },
       ],
@@ -326,14 +346,14 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         },
         {
           method: "Depth interviews",
-          sample: "15 interviews",
+          sample: "Depth interviews; group size not formally recorded",
           question: "What makes interview practice feel safe enough to repeat?",
           finding: "Participants wanted realistic pressure with control over tone and feedback intensity.",
           implication: "AI behaviour needed explicit expectation-setting and user control.",
         },
         {
           method: "Prototype test",
-          sample: "12 moderated sessions and 50 beta users",
+          sample: "Moderated prototype sessions; group size not formally recorded",
           question: "When should the assistant provide feedback without breaking confidence?",
           finding: "Post-session feedback was preferred over interruption during the answer.",
           implication: "Feedback timing became a core interaction design decision.",
@@ -417,14 +437,14 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       evidence: [
         {
           method: "Depth interviews",
-          sample: "15 interviews across cultural cohorts",
+          sample: "Interviews across cultural cohorts; group size not formally recorded",
           question: "What makes friendship difficult for international students after arrival?",
           finding: "Students described social access, cultural uncertainty, and fear of shallow interaction.",
           implication: "The product needed to create safer entry points, not simply increase discovery.",
         },
         {
           method: "Diary study",
-          sample: "8 participants over two weeks",
+          sample: "Two-week diary study; group size not formally recorded",
           question: "When do students feel close to others versus merely socially busy?",
           finding: "Meaningful moments were small, repeated, and contextually specific.",
           implication: "Slow matching and recurring prompts fit the problem better than instant matching.",
@@ -476,6 +496,116 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "This case proves I can work through ambiguous social problems, synthesize theory and field research, and choose metrics that protect the product's purpose.",
     },
+    maze: {
+      decisions: [
+        {
+          label: "Replace the electric-shock concept with vibration",
+          choice:
+            "The original trap feedback was a mild electric shock. I built it with relay-driven vibration motors in finger sleeves instead.",
+          evidence:
+            "The maze was destined for a public exhibition with unsupervised players of unknown age and health, where consent and calibration could not be guaranteed per person.",
+          tradeoff:
+            "Vibration is a weaker sensation than shock, so the trap lost some shock value — the point players remember it by.",
+          impact:
+            "The system stayed exhibitable without a supervisor gating every round, and the feedback still landed because it arrived on the finger, not on a screen.",
+        },
+        {
+          label: "Debounce the IR sensors instead of trusting raw reads",
+          choice:
+            "I added debounce and a cooldown window to each of the ten FC-51 IR sensors.",
+          evidence:
+            "A single ball pass produced multiple raw trigger events, so score and trap effects fired several times for one physical event.",
+          tradeoff:
+            "The cooldown adds a blind window where a genuinely fast second pass would be missed.",
+          impact:
+            "One physical event became one game event, which is the precondition for score, timer, and haptics agreeing with each other.",
+        },
+        {
+          label: "Split the tilt controller off the main feedback controller",
+          choice:
+            "Platform tilt moved to its own SafeTouchServoController with hold-to-move behaviour, separate from the main PlanB feedback firmware.",
+          evidence:
+            "Servo motion and time-sensitive sensor polling on one board made feedback timing unreliable, and a servo fault could take the whole round down.",
+          tradeoff:
+            "Two controllers mean more wiring and another failure point at setup time.",
+          impact:
+            "Feedback timing stopped competing with actuator motion, and hold-to-move made the tilt safe to hand to a stranger.",
+        },
+        {
+          label: "Build a browser console with demo and live modes",
+          choice:
+            "I built a Web Serial console that mirrors the maze and also runs standalone in demo mode.",
+          evidence:
+            "The hardware is not always available — during development, and certainly not inside a portfolio or an interview.",
+          tradeoff:
+            "Two modes mean two code paths that can drift apart.",
+          impact:
+            "The system is inspectable without the physical build, and regression tests keep the demo honest about firmware rules.",
+        },
+      ],
+      evidence: [
+        {
+          method: "Sensor bench testing",
+          sample: "Ten FC-51 IR sensors mapped across trap, diagnostic, spare, and finish zones",
+          question: "Does one ball pass produce exactly one game event?",
+          finding: "Raw reads double- and triple-fired; debounce plus a cooldown window reduced a pass to a single event.",
+          implication: "Sensor timing is an interaction design problem, not just an electronics detail.",
+        },
+        {
+          method: "Firmware/web parity tests",
+          sample: "Regression tests over serial sync, feedback sync, servo response, and audio parity",
+          question: "Does the browser console still behave like the firmware after either side changes?",
+          finding: "Drift showed up in feedback timing and serial event shape whenever one side was edited alone.",
+          implication: "The demo can be trusted as a description of the real system rather than a separate story.",
+        },
+        {
+          method: "Public exhibition play",
+          sample: "Group play at a university exhibition; sessions not formally logged",
+          question: "Do players understand what the system is telling them without instruction?",
+          finding:
+            "Players reacted to vibration and audio faster than to the score display, and needed the finger sleeves fitted for them rather than self-fitted.",
+          implication: "Wearable fit and setup ritual are part of the interaction, not preconditions to it.",
+        },
+      ],
+      iterations: [
+        {
+          version: "Shock trap",
+          change: "Started from a trap concept built around a mild electric shock.",
+          reason: "It was the most visceral version of 'you hit a trap'.",
+          improvement: "Made the safety and consent problem concrete enough to force a redesign.",
+        },
+        {
+          version: "Vibration sleeves",
+          change: "Moved trap feedback to relay-driven vibration motors in wearable finger sleeves.",
+          reason: "Feedback had to reach the player's body without a risk that needed supervision.",
+          improvement: "Kept the physical sensation while making the maze safe to run for a queue of strangers.",
+        },
+        {
+          version: "Synchronised loop",
+          change: "Tied sensor events to score, timer, lights, audio, and the browser console through one round state machine.",
+          reason: "Separate subsystems reacting on their own made the maze feel like unrelated gadgets.",
+          improvement: "One event now produces one coherent multi-channel response the player can read.",
+        },
+      ],
+      limits: [
+        {
+          constraint: "Exhibition play was observed, not instrumented.",
+          whyItMatters:
+            "I can describe what players reacted to, but I cannot quantify which feedback channel carried the most information.",
+          nextValidation:
+            "Log sensor events, feedback fires, and completion times per session, then compare rounds with channels selectively disabled.",
+        },
+        {
+          constraint: "The build is a single exhibition unit, not a manufacturable product.",
+          whyItMatters:
+            "Wiring is hand-run and calibration is per-venue, so nothing here proves durability, yield, or repeatable assembly.",
+          nextValidation:
+            "Rebuild on a fabricated harness and measure setup time and sensor drift across several venues.",
+        },
+      ],
+      takeaway:
+        "This case proves I can take an interaction concept through firmware, sensing, and physical feedback into a browser control surface, and make safety and calibration calls on hardware that strangers will actually touch.",
+    },
   },
   zh: {
     connect: {
@@ -505,14 +635,14 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       evidence: [
         {
           method: "Open card sort",
-          sample: "24 participants",
+          sample: "Open card sort; group size not formally recorded",
           question: "去掉部门标签后，学生会如何自然组织门户信息？",
           finding: "参与者围绕学习、归属、费用和校园生活等任务聚类。",
           implication: "IA 应该优先映射学生心智模型，而不是 staff ownership。",
         },
         {
           method: "Tree testing",
-          sample: "50 participants",
+          sample: "Unmoderated tree test; group size not formally recorded",
           question: "没有界面提示时，学生能否在新层级中找到关键任务？",
           finding: "Findability 从 58% 提升到 84%。",
           implication: "task-oriented IA 足够强，可以进入界面设计阶段。",
@@ -542,7 +672,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           version: "Validation-ready tree",
           change: "为树测调整标签和层级深度。",
           reason: "下一步需要 findability 证据，而不是另一个视觉稿。",
-          improvement: "产出与 task success 和 SUS 相关的可测试结构。",
+          improvement: "产出一个可以拿去和原结构做对比测试的方案，而不是停留在争论。",
         },
       ],
       limits: [
@@ -603,7 +733,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           method: "Field usability testing",
           sample: "8 real-environment tests",
           question: "用户能否在真实公共场景中快速完成颜色相关任务？",
-          finding: "任务成功率从 75% 提升到 92%，平均识别时间 3.1 秒。",
+          finding: "在真实场景里，参与者要的是「该怎么办」而不是色名，也更希望它安静，而不是替他们宣告。",
           implication: "原型有足够情境有效性来支撑 accessibility 方向。",
         },
       ],
@@ -676,14 +806,14 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         },
         {
           method: "Depth interviews",
-          sample: "15 interviews",
+          sample: "Depth interviews; group size not formally recorded",
           question: "什么让面试练习安全到可以重复？",
           finding: "用户需要真实压力，也需要控制反馈强度。",
           implication: "AI 行为需要 expectation-setting 和 user control。",
         },
         {
           method: "Prototype test",
-          sample: "12 moderated sessions and 50 beta users",
+          sample: "Moderated prototype sessions; group size not formally recorded",
           question: "什么时候给反馈最不破坏信心？",
           finding: "用户更偏好回答结束后的反馈，而不是中途打断。",
           implication: "feedback timing 成为核心交互决策。",
@@ -751,14 +881,14 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       evidence: [
         {
           method: "Depth interviews",
-          sample: "15 interviews across cultural cohorts",
+          sample: "Interviews across cultural cohorts; group size not formally recorded",
           question: "国际学生到达后，友谊为什么难建立？",
           finding: "学生提到 social access、cultural uncertainty 和 shallow interaction。",
           implication: "产品要创造更安全的入口，而不是只增加 discovery。",
         },
         {
           method: "Diary study",
-          sample: "8 participants over two weeks",
+          sample: "Two-week diary study; group size not formally recorded",
           question: "什么时候学生感觉真正亲近，而不是只是社交忙碌？",
           finding: "有意义的时刻通常小、重复、和具体情境有关。",
           implication: "slow matching 和 recurring prompts 比 instant matching 更贴合。",
@@ -805,6 +935,95 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       ],
       takeaway:
         "这个案例证明我能处理模糊社会问题，综合理论和田野研究，并选择保护产品目的的指标。",
+    },
+    maze: {
+      decisions: [
+        {
+          label: "用震动取代电击方案",
+          choice: "最初的陷阱反馈是轻微电击。我改成用继电器驱动的震动马达，装在手指套里。",
+          evidence: "这台迷宫要放在公开展览上，玩家年龄与身体状况未知且无人全程看管，无法逐人取得同意与校准。",
+          tradeoff: "震动的刺激强度不如电击，陷阱少了那种「让人记住」的冲击感。",
+          impact: "系统不需要有人守着每一轮也能展出，而反馈依然有效——因为它落在手指上，不是落在屏幕上。",
+        },
+        {
+          label: "给红外传感器加去抖，而不是直接信任原始读数",
+          choice: "我为 10 个 FC-51 红外传感器各自加上去抖与冷却窗口。",
+          evidence: "球经过一次会产生多个原始触发事件，导致同一个物理事件重复计分、重复触发陷阱。",
+          tradeoff: "冷却窗口会带来一段盲区，真的很快的第二次经过会被漏掉。",
+          impact: "一个物理事件变成一个游戏事件，这是计分、计时与震动能彼此对上的前提。",
+        },
+        {
+          label: "把倾斜控制器从主反馈控制器上拆出来",
+          choice: "平台倾斜改由独立的 SafeTouchServoController 负责，采用「按住才动」的行为，与主 PlanB 反馈固件分开。",
+          evidence: "舵机运动和对时间敏感的传感器轮询挤在同一块板上，会让反馈时机不稳定，而且一次舵机故障可能拖垮整轮。",
+          tradeoff: "两个控制器意味着更多接线，布展时也多了一个故障点。",
+          impact: "反馈时机不再和执行机构抢资源，「按住才动」也让倾斜功能可以安全地交给陌生人操作。",
+        },
+        {
+          label: "做一个同时支持 demo 与 live 模式的浏览器控制台",
+          choice: "我做了一个 Web Serial 控制台，既能镜像实体迷宫，也能独立以 demo 模式运行。",
+          evidence: "硬件并不是随时都在手边——开发期间如此，放进作品集或面试场合更是如此。",
+          tradeoff: "两种模式意味着两条代码路径，可能各自漂移。",
+          impact: "没有实体也能查看这套系统，而回归测试保证 demo 不会偏离固件的真实规则。",
+        },
+      ],
+      evidence: [
+        {
+          method: "传感器台架测试",
+          sample: "10 个 FC-51 红外传感器，分布在陷阱区、诊断区、备用区与终点区",
+          question: "球经过一次，是否刚好产生一个游戏事件？",
+          finding: "原始读数会重复触发两到三次；加上去抖与冷却窗口后，一次经过收敛成单一事件。",
+          implication: "传感器时序是交互设计问题，不只是电子细节。",
+        },
+        {
+          method: "固件与网页一致性回归测试",
+          sample: "覆盖串口同步、反馈同步、舵机响应与音频一致性的回归测试",
+          question: "任一侧改动之后，浏览器控制台是否仍然与固件行为一致？",
+          finding: "只要单独改一侧，反馈时机与串口事件结构就会出现漂移。",
+          implication: "这个 demo 可以被当成对真实系统的描述，而不是另一套说法。",
+        },
+        {
+          method: "公开展览游玩观察",
+          sample: "大学展览中的多人游玩；未做正式场次记录",
+          question: "玩家不经讲解，能否理解系统在告诉他们什么？",
+          finding: "玩家对震动和音效的反应比对计分显示更快，而且手指套需要别人帮忙戴，自己戴不顺。",
+          implication: "可穿戴的佩戴方式与布置流程本身就是交互的一部分，不是交互开始前的杂事。",
+        },
+      ],
+      iterations: [
+        {
+          version: "电击陷阱",
+          change: "从以轻微电击为核心的陷阱概念开始。",
+          reason: "那是「你踩到陷阱了」最直接的版本。",
+          improvement: "把安全与知情同意的问题摆到台面上，逼出了重新设计。",
+        },
+        {
+          version: "震动手指套",
+          change: "陷阱反馈改为继电器驱动的震动马达，装进可穿戴手指套。",
+          reason: "反馈必须传到玩家身上，同时不能带来需要专人看管的风险。",
+          improvement: "保住了身体层面的感受，同时让迷宫可以安全地面对排队的陌生人。",
+        },
+        {
+          version: "同步反馈闭环",
+          change: "把传感器事件、计分、计时、灯光、音效与浏览器控制台接到同一个回合状态机上。",
+          reason: "各子系统各自反应时，整台迷宫像是一堆互不相干的小装置。",
+          improvement: "现在一个事件会产生一组连贯的多通道反馈，玩家读得懂。",
+        },
+      ],
+      limits: [
+        {
+          constraint: "展览游玩是观察记录，没有做数据埋点。",
+          whyItMatters: "我能描述玩家对什么有反应，但无法量化哪一种反馈通道承载了最多信息。",
+          nextValidation: "记录每场的传感器事件、反馈触发与完成时间，再对比选择性关闭某些通道的回合。",
+        },
+        {
+          constraint: "这是一台展览用的单机，不是可量产的产品。",
+          whyItMatters: "接线是手工走的，校准要按场地来，所以它无法证明耐久性、良率或可重复的组装流程。",
+          nextValidation: "改用制作好的线束重做一台，并在多个场地测量布置时间与传感器漂移。",
+        },
+      ],
+      takeaway:
+        "这个案例证明我能把一个交互概念一路做穿固件、感测与实体反馈，再接回浏览器控制界面，并在陌生人真的会上手的硬件上做安全与校准判断。",
     },
   },
 };
@@ -881,6 +1100,23 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "Research-led teams working with ambiguous human problems.",
       ],
     },
+    maze: {
+      proves:
+        "This case proves I can build the thing, not just specify it: sensing, firmware, physical feedback, and a browser control surface wired into one loop.",
+      inspect: [
+        "Why the electric-shock trap became vibration in wearable finger sleeves.",
+        "How sensor debounce turned one ball pass into exactly one game event.",
+        "How the Web Serial console keeps demo mode honest about firmware rules.",
+      ],
+      questions: [
+        "Where did hardware constraints change the interaction rather than just the build?",
+        "What would you instrument to learn which feedback channel players actually use?",
+      ],
+      bestFit: [
+        "Design technologist, creative technologist, or prototyping roles.",
+        "Teams building physical products, installations, or hardware-software interfaces.",
+      ],
+    },
   },
   zh: {
     connect: {
@@ -949,6 +1185,23 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
       bestFit: [
         "Social impact, community, education, or wellbeing product teams.",
         "Research-led teams working with ambiguous human problems.",
+      ],
+    },
+    maze: {
+      proves:
+        "这个案例证明我不只是写规格，而是真的做得出来：感测、固件、实体反馈与浏览器控制界面被接成同一个闭环。",
+      inspect: [
+        "为什么电击陷阱最后变成了可穿戴手指套里的震动。",
+        "传感器去抖如何把一次球的经过收敛成刚好一个游戏事件。",
+        "Web Serial 控制台如何让 demo 模式忠于固件规则。",
+      ],
+      questions: [
+        "硬件约束在哪些地方改变了交互本身，而不只是改变了实现方式？",
+        "你会记录什么数据，才能知道玩家真正依赖哪一种反馈通道？",
+      ],
+      bestFit: [
+        "Design technologist、creative technologist 或原型开发岗位。",
+        "做实体产品、装置或软硬件接口的团队。",
       ],
     },
   },
@@ -1116,6 +1369,23 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
     {
       question: "What would you validate before scaling this across student cohorts?",
       reason: "Keeps an ambiguous wellbeing concept honest about cultural and adoption limits.",
+      anchorId: "outcome-limits",
+    },
+  ],
+  maze: [
+    {
+      question: "Why did the trap become vibration instead of the original electric shock?",
+      reason: "Tests whether safety and consent were treated as design constraints, not afterthoughts.",
+      anchorId: "decision-timeline",
+    },
+    {
+      question: "How did you make one ball pass produce exactly one game event?",
+      reason: "Checks whether sensor timing is understood as an interaction problem, not just wiring.",
+      anchorId: "evidence-board",
+    },
+    {
+      question: "What would you instrument before calling this more than an exhibition unit?",
+      reason: "Keeps a working build honest about what was observed versus measured.",
       anchorId: "outcome-limits",
     },
   ],

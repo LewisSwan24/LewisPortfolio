@@ -22,6 +22,8 @@ const dictionaries = {
       featured: "Featured",
       viewCaseStudy: "View Case Study",
       scroll: "Scroll",
+      conceptCover: "Concept cover",
+      evidenceInside: "Evidence inside",
     },
     cta: {
       letsTalk: "Let's Talk",
@@ -236,9 +238,10 @@ const dictionaries = {
       description:
         "Download my resume to learn more about my experience and qualifications.",
       cardTitle: "{name}'s Resume",
-      cardMeta: "PDF format • Last updated December 2024",
-      downloadPdf: "Download Resume (PDF)",
-      downloadPdfShort: "Download PDF",
+      cardMeta: "Web resume • Updated June 2026",
+      downloadPdf: "Request resume PDF",
+      downloadPdfShort: "Request PDF",
+      contact: "Contact for PDF",
       getInTouch: "Get in Touch",
       printHint: "Tip: Use your browser's print function (Ctrl/Cmd + P) to save this page as a PDF",
       overview: {
@@ -371,6 +374,8 @@ const dictionaries = {
       featured: "精选",
       viewCaseStudy: "查看案例",
       scroll: "滚动",
+      conceptCover: "概念封面",
+      evidenceInside: "证据在案例内",
     },
     cta: {
       letsTalk: "聊聊合作",
@@ -575,9 +580,10 @@ const dictionaries = {
       title: "简历",
       description: "下载简历，了解更多我的经历与能力。",
       cardTitle: "{name}的简历",
-      cardMeta: "PDF格式 • 最后更新：2024年12月",
-      downloadPdf: "下载简历（PDF）",
-      downloadPdfShort: "下载 PDF",
+      cardMeta: "网页简历 • 2026年6月更新",
+      downloadPdf: "索取简历 PDF",
+      downloadPdfShort: "索取 PDF",
+      contact: "索取 PDF",
       getInTouch: "联系我",
       printHint: "提示：使用浏览器的打印功能（Ctrl/Cmd + P）可将此页保存为 PDF",
       overview: {

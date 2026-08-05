@@ -193,9 +193,201 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
   ],
 };
 
+const zhInterviewDecisionRoom: InterviewDecisionRoom = {
+  brief: {
+    eyebrow: "面试决策页",
+    headline: "我能怎样帮助你的团队。",
+    subhead:
+      "用一页看清岗位匹配、最强证据、可追问问题和需要诚实说明的边界。",
+    status:
+      "昆士兰大学交互设计硕士在读，常驻布里斯班。开放 2026 实习与毕业生 UX / Product 岗位。",
+    signals: [
+      {
+        label: "岗位匹配",
+        value: "UX/Product + 研究驱动团队",
+        detail:
+          "最适合需要结构化模糊问题、证据判断和产品判断的团队。",
+      },
+      {
+        label: "证据深度",
+        value: "4 个端到端案例",
+        detail:
+          "覆盖 IA、无障碍、AI 辅导和社交健康，并展示方法与限制。",
+      },
+      {
+        label: "面试准备度",
+        value: "已准备问题路径",
+        detail:
+          "主要 claim 都能链接到案例锚点和可辩护的回答路径。",
+      },
+    ],
+    primaryAction: { label: "联系 Lewis", href: "/contact" },
+    secondaryAction: { label: "查看简历", href: "/resume" },
+  },
+  evidenceBrief: [
+    {
+      id: "ia-proof",
+      capability: "信息架构",
+      caseSlug: "connect",
+      proof:
+        "UQ Connect 把学生门户从部门归属重构为围绕任务成功的结构。",
+      whyItMatters:
+        "证明我能把复杂服务信息转成研究驱动的产品结构判断。",
+      href: "/projects/connect#decision-timeline",
+    },
+    {
+      id: "accessibility-proof",
+      capability: "无障碍与包容性设计",
+      caseSlug: "spectra",
+      proof:
+        "Spectra Lens 把色觉障碍用户研究转化成多模态 AR 反馈。",
+      whyItMatters:
+        "证明无障碍约束能变成实际交互行为，而不只是 checklist。",
+      href: "/projects/spectra#evidence-board",
+    },
+    {
+      id: "ai-trust-proof",
+      capability: "AI UX 与信任",
+      caseSlug: "ai",
+      proof:
+        "AI coach 把反馈移到面试之后，以保护用户主动权、节奏和压力边界。",
+      whyItMatters:
+        "证明我能判断 AI 应该在哪里介入，以及在哪里保持安静。",
+      href: "/projects/ai#decision-timeline",
+    },
+    {
+      id: "social-research-proof",
+      capability: "研究问题定义",
+      caseSlug: "circles",
+      proof:
+        "Connect Circles 用访谈、日记研究和理论综合重构归属感问题。",
+      whyItMatters:
+        "证明我能把模糊问题收敛成产品方向，同时不压扁人的语境。",
+      href: "/projects/circles#evidence-board",
+    },
+    {
+      id: "measurement-proof",
+      capability: "测量与验证",
+      caseSlug: "connect",
+      proof:
+        "可发现性和任务成功率在视觉 polish 前约束了 IA claim。",
+      whyItMatters:
+        "证明 claim 绑定到行为证据和明确限制，而不是只靠叙事。",
+      href: "/projects/connect#outcome-limits",
+    },
+    {
+      id: "communication-proof",
+      capability: "沟通与引导",
+      caseSlug: "circles",
+      proof:
+        "共创工作坊和决策框架把社交研究转成可检查的产品选择。",
+      whyItMatters:
+        "证明我能让模糊的定性证据变成团队可使用的判断材料。",
+      href: "/projects/circles#interview-takeaway",
+    },
+  ],
+  questionBank: [
+    {
+      id: "product-tradeoff-connect",
+      group: "product",
+      question: "研究如何改变最终 IA 方向？",
+      proves: "研究综合、取舍推理和产品方向判断。",
+      caseSlug: "connect",
+      href: "/projects/connect#evidence-board",
+    },
+    {
+      id: "research-method-circles",
+      group: "research",
+      question: "当归属感问题还很模糊时，你如何选择研究方法？",
+      proves: "方法选择、样本逻辑和不确定性下的综合能力。",
+      caseSlug: "circles",
+      href: "/projects/circles#evidence-board",
+    },
+    {
+      id: "accessibility-feedback-spectra",
+      group: "accessibility",
+      question: "为什么需要多模态反馈，而不只是颜色标签？",
+      proves: "包容性设计判断和约束驱动的交互设计。",
+      caseSlug: "spectra",
+      href: "/projects/spectra#decision-timeline",
+    },
+    {
+      id: "ai-intervention-timing",
+      group: "ai",
+      question: "AI 应该在高压力面试流程的哪里介入？",
+      proves: "AI 信任、主动权、节奏和情绪安全推理。",
+      caseSlug: "ai",
+      href: "/projects/ai#decision-timeline",
+    },
+    {
+      id: "validation-limits-connect",
+      group: "limits",
+      question: "门户 IA 大规模上线前还需要验证什么？",
+      proves: "边界意识、测量成熟度和下一步规划。",
+      caseSlug: "connect",
+      href: "/projects/connect#outcome-limits",
+    },
+    {
+      id: "manager-followup-spectra",
+      group: "product",
+      question: "隐私和公共场景如何改变 AR 产品方向？",
+      proves: "超越视觉 craft 的产品判断。",
+      caseSlug: "spectra",
+      href: "/projects/spectra#interview-takeaway",
+    },
+  ],
+  boundaries: [
+    {
+      id: "academic-context",
+      claim: "这些案例证明的是设计判断和证据处理能力。",
+      boundary:
+        "它们不应被当成大规模生产系统 ownership 的证明。",
+      validation:
+        "我会尽早和工程配合，验证交付约束。",
+      href: "/projects/connect#outcome-limits",
+    },
+    {
+      id: "prototype-metrics",
+      claim: "量化结果证明方向和学习质量。",
+      boundary:
+        "部分指标来自研究或原型测试，不是上线后的业务指标。",
+      validation:
+        "在声称长期产品影响前，我会先定义生产 telemetry。",
+      href: "/projects/spectra#outcome-limits",
+    },
+    {
+      id: "ai-long-term-confidence",
+      claim: "AI 案例证明的是信任敏感的交互判断。",
+      boundary:
+        "首次使用的信心提升不等于长期 coaching 效果。",
+      validation:
+        "在声称长期行为改变前，需要做纵向验证。",
+      href: "/projects/ai#outcome-limits",
+    },
+    {
+      id: "accessibility-audit-scope",
+      claim: "无障碍案例证明的是包容性设计方向。",
+      boundary:
+        "它不是覆盖所有障碍类型、环境或设备的通用审计。",
+      validation:
+        "最终合规 claim 前，需要扩大参与者覆盖并做辅助技术 review。",
+      href: "/projects/spectra#evidence-board",
+    },
+    {
+      id: "social-product-scale",
+      claim: "Connect Circles 证明的是深度优先的产品框架。",
+      boundary:
+        "它还没有证明网络效应、留存或规模化社区健康。",
+      validation:
+        "优化增长机制前，需要验证重复 cohort 使用。",
+      href: "/projects/circles#outcome-limits",
+    },
+  ],
+};
+
 const interviewDecisionRooms: Record<ProofLocale, InterviewDecisionRoom> = {
   en: sharedInterviewDecisionRoom,
-  zh: sharedInterviewDecisionRoom,
+  zh: zhInterviewDecisionRoom,
 };
 
 

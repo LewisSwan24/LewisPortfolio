@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
-import { VizAI, VizCircles, VizConnect, VizSpectra } from "@/components/viz/ProjectViz";
+import { VizAI, VizCircles, VizConnect, VizMaze, VizSpectra } from "@/components/viz/ProjectViz";
 import {
   getEvidenceMatrix,
   getHiringConversion,
@@ -11,8 +12,8 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles";
-type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social";
+type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze";
+type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social" | "hardware";
 type Localized = { en: string; zh: string };
 
 interface Item {
@@ -33,11 +34,28 @@ const FILTERS: Array<{ id: FilterId; en: string; zh: string }> = [
   { id: "acc", en: "Accessibility", zh: "无障碍" },
   { id: "ai", en: "AI / ML", zh: "AI" },
   { id: "social", en: "Social", zh: "社交" },
+  { id: "hardware", en: "Hardware", zh: "硬件" },
 ];
 
 const ITEMS: Item[] = [
   {
     n: "01",
+    k: "maze",
+    tags: ["flag", "hardware"],
+    role: "Design tech",
+    year: "2025",
+    dur: "Built",
+    problem: {
+      en: "A physical maze that noticed nothing and answered nothing",
+      zh: "一台什么都察觉不到、也不会回应的实体迷宫",
+    },
+    changed: {
+      en: "One sensor event driving score, haptics, light, audio, and a web console",
+      zh: "一个传感器事件同时驱动计分、震动、灯光、音效与网页控制台",
+    },
+  },
+  {
+    n: "02",
     k: "connect",
     tags: ["flag", "research"],
     role: "Solo",
@@ -47,7 +65,7 @@ const ITEMS: Item[] = [
     changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
   },
   {
-    n: "02",
+    n: "03",
     k: "spectra",
     tags: ["flag", "acc", "research"],
     role: "Lead",
@@ -57,7 +75,7 @@ const ITEMS: Item[] = [
     changed: { en: "Live colour naming and haptic feedback model", zh: "实时颜色命名和触觉反馈模型" },
   },
   {
-    n: "03",
+    n: "04",
     k: "ai",
     tags: ["ai", "research"],
     role: "Designer",
@@ -67,7 +85,7 @@ const ITEMS: Item[] = [
     changed: { en: "Timed coaching and a confidence loop", zh: "分时机的指导和信心循环" },
   },
   {
-    n: "04",
+    n: "05",
     k: "circles",
     tags: ["social", "research"],
     role: "Solo",
@@ -79,6 +97,7 @@ const ITEMS: Item[] = [
 ];
 
 function WorkPreview({ project }: { project: ProjKey }) {
+  if (project === "maze") return <VizMaze />;
   if (project === "connect") return <VizConnect />;
   if (project === "spectra") return <VizSpectra />;
   if (project === "ai") return <VizAI />;
@@ -94,6 +113,22 @@ export function WorkIndex() {
   const hiringConversion = getHiringConversion(proofLocale);
   const evidenceMatrix = getEvidenceMatrix(proofLocale);
   const [filter, setFilter] = useState<FilterId>("all");
+  const pageCopy = isZh
+    ? {
+        conceptVisual: "概念视觉",
+        shortlistLabel: "招聘方短名单",
+        shortlistTitle: "按岗位需求选择最相关案例。",
+        shortlistBody: "每条路径都指向常见 UX / 产品设计招聘信号下最强的证据。",
+        interviewDecision: "招聘决策页",
+      }
+    : {
+        conceptVisual: "Concept visual",
+        shortlistLabel: "Recruiter shortlist",
+        shortlistTitle: "Choose the case that matches your opening.",
+        shortlistBody:
+          "Each route points to the strongest proof for a common UX/Product Design hiring signal.",
+        interviewDecision: "Interview decision",
+      };
 
   const shown = filter === "all" ? ITEMS : ITEMS.filter((i) => i.tags.includes(filter));
 
@@ -140,10 +175,11 @@ export function WorkIndex() {
         </div>
         <div className="work-index-list">
           {shown.map((i) => (
-            <a className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
+            <Link className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
               <div className="work-index-project">
                 <div className="work-index-thumb" aria-hidden="true">
                   <WorkPreview project={i.k} />
+                  <span className="work-index-thumb-label">{pageCopy.conceptVisual}</span>
                 </div>
                 <div>
                   <h3>{t(`proj.${i.k}.title`)}</h3>
@@ -157,7 +193,7 @@ export function WorkIndex() {
               <p className="work-index-copy">{isZh ? i.problem.zh : i.problem.en}</p>
               <p className="work-index-copy">{isZh ? i.changed.zh : i.changed.en}</p>
               <span className="work-index-arrow" aria-hidden="true">→</span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -165,30 +201,27 @@ export function WorkIndex() {
       <section className="container work-shortlist-section">
         <div className="work-shortlist-head">
           <div>
-            <div className="label">Recruiter shortlist</div>
-            <h2>Choose the case that matches your opening.</h2>
+            <div className="label">{pageCopy.shortlistLabel}</div>
+            <h2>{pageCopy.shortlistTitle}</h2>
           </div>
-          <p>
-            Each route points to the strongest proof for a common UX/Product
-            Design hiring signal.
-          </p>
-          <a className="work-shortlist-room-link" href="/hire">
-            Interview decision
-          </a>
+          <p>{pageCopy.shortlistBody}</p>
+          <Link className="work-shortlist-room-link" href="/hire">
+            {pageCopy.interviewDecision}
+          </Link>
         </div>
         <div className="work-shortlist-grid">
           {hiringConversion.proofRoutes.map((route) => (
-            <a className="work-shortlist-card" href={route.href} key={route.href}>
+            <Link className="work-shortlist-card" href={route.href} key={route.href}>
               <small>{route.audience}</small>
               <h3>{route.title}</h3>
               <p>{route.claim}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
 
       <section className="container">
-        <EvidenceMatrix capabilities={evidenceMatrix} />
+        <EvidenceMatrix capabilities={evidenceMatrix} locale={proofLocale} />
       </section>
 
       <section className="container work-evidence-section">
@@ -209,7 +242,7 @@ export function WorkIndex() {
         </div>
         <div className="work-evidence-grid">
           {evidence.map((item, index) => (
-            <a className="work-evidence-card" href={item.href} key={item.slug}>
+            <Link className="work-evidence-card" href={item.href} key={item.slug}>
               <div className="work-evidence-top">
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{t(`proj.${item.slug}.title`)}</strong>
@@ -233,7 +266,7 @@ export function WorkIndex() {
                   <dd>{item.proves}</dd>
                 </div>
               </dl>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

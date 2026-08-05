@@ -75,10 +75,10 @@ export function VizConnect() {
         ))}
 
         <text x="30" y="372" fontFamily="var(--font-display)" fontStyle="italic" fontSize="28" fill="#3A362D">
-          58% → 84%
+          12 → 6
         </text>
         <text x="30" y="390" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8A8170">
-          findability · tree test · n=50
+          top-level categories · card sort · tree test
         </text>
       </svg>
     </div>
@@ -132,7 +132,7 @@ export function VizSpectra() {
         </text>
 
         <text x="30" y="382" fontFamily="var(--font-display)" fontStyle="italic" fontSize="22" fill="#EFE8DA">
-          3.1s avg. recognition
+          answer the decision, not the hue
         </text>
       </svg>
     </div>
@@ -280,6 +280,89 @@ export function VizCircles() {
 
         <text x="30" y="382" fontFamily="var(--font-display)" fontStyle="italic" fontSize="20" fill="#3A362D">
           design meetups around <tspan fontWeight="600">doing</tspan>, not introducing.
+        </text>
+      </svg>
+    </div>
+  );
+}
+
+export function VizMaze() {
+  // One sensor event entering the round state machine, then fanning out to
+  // every feedback channel at once — the whole point of the case.
+  const channels = ["SCORE", "TIMER", "HAPTIC", "LIGHT", "AUDIO"];
+
+  return (
+    <div className="viz viz-maze">
+      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="paper-m" width="40" height="40" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="520" height="400" fill="url(#paper-m)" opacity="0.5" />
+
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+          ONE PASS · ONE EVENT
+        </text>
+
+        <circle cx="46" cy="120" r="7" fill="#A63F2A" />
+        <path d="M 56 120 L 116 120" stroke="#8B7355" strokeWidth="0.8" strokeDasharray="3 3" />
+
+        <line x1="128" y1="88" x2="128" y2="152" stroke="#A63F2A" strokeWidth="1.4" />
+        <text x="128" y="80" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#A63F2A">
+          IR
+        </text>
+        <text x="128" y="168" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#8B7355">
+          debounce
+        </text>
+
+        <rect x="176" y="94" width="104" height="52" fill="#F7F4EC" stroke="#25231D" strokeWidth="1" />
+        <text x="228" y="116" fontFamily="var(--font-ui)" fontSize="11" textAnchor="middle" fill="#25231D">
+          round state
+        </text>
+        <text x="228" y="132" fontFamily="var(--font-mono)" fontSize="9" textAnchor="middle" fill="#756D61">
+          advance
+        </text>
+        <path d="M 138 120 L 174 120" stroke="#25231D" strokeWidth="1" />
+
+        {channels.map((c, i) => {
+          const y = 66 + i * 42;
+          return (
+            <g key={c}>
+              <path
+                d={`M 282 120 C 322 120, 322 ${y + 11}, 356 ${y + 11}`}
+                stroke="#A63F2A"
+                strokeWidth="0.9"
+                fill="none"
+              />
+              <rect x="356" y={y} width="128" height="22" fill="#F7F4EC" stroke="#A63F2A" strokeWidth="0.9" />
+              <text x="368" y={y + 15} fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#3A362D">
+                {c}
+              </text>
+            </g>
+          );
+        })}
+
+        <rect
+          x="176"
+          y="196"
+          width="104"
+          height="34"
+          fill="none"
+          stroke="#8B7355"
+          strokeWidth="0.8"
+          strokeDasharray="2 2"
+        />
+        <text x="228" y="217" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#756D61">
+          WEB SERIAL
+        </text>
+        <path d="M 228 148 L 228 194" stroke="#8B7355" strokeWidth="0.8" strokeDasharray="2 2" />
+
+        <text x="30" y="352" fontFamily="var(--font-display)" fontStyle="italic" fontSize="22" fill="#25231D">
+          the buzz lands before the score does
+        </text>
+        <text x="30" y="378" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          arduino mega · 10 sensors · exhibited
         </text>
       </svg>
     </div>

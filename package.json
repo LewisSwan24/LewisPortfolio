@@ -14,7 +14,7 @@
     "blog:new": "node scripts/content-automation.mjs blog:new",
     "blog:publish": "node scripts/content-automation.mjs blog:publish",
     "content:validate": "node scripts/content-automation.mjs content:validate",
-    "automation:check": "pnpm content:validate && pnpm proof:validate && pnpm test --run src/lib/__tests__/blog.test.ts tests/scripts/content-automation.test.ts",
+    "automation:check": "pnpm content:validate && pnpm proof:validate && vitest run src/lib/__tests__/blog.test.ts tests/scripts/content-automation.test.ts",
     "proof:maintenance": "node scripts/proof-maintenance-report.mjs",
     "proof:validate": "node scripts/proof-validate.mjs",
     "proof:handoff": "node scripts/proof-handoff.mjs",

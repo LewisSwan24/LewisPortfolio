@@ -403,6 +403,46 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
         "I would still watch retention, but not let engagement volume override the wellbeing purpose.",
     },
   },
+  maze: {
+    answers: [
+      {
+        id: "maze-safety-tradeoff",
+        question: "Why did the trap become vibration instead of an electric shock?",
+        answer:
+          "I would explain that a public exhibition means unsupervised players of unknown age and health, so per-person consent and calibration were impossible; relay-driven vibration in finger sleeves kept the sensation on the body without the risk.",
+        evidenceHref: "/projects/maze#decision-timeline",
+        boundary:
+          "I would admit vibration is the weaker sensation, and that I traded some memorability for being able to run the maze unattended.",
+      },
+      {
+        id: "maze-sensor-timing",
+        question: "How did you make one ball pass produce one game event?",
+        answer:
+          "I would walk through debounce plus a cooldown window on each of the ten IR sensors, and why raw reads double-firing stopped score, timer, and haptics from agreeing with each other.",
+        evidenceHref: "/projects/maze#evidence-board",
+        boundary:
+          "The cooldown creates a blind window, so a genuinely fast second pass is missed — a deliberate trade, not an oversight.",
+      },
+      {
+        id: "maze-web-bridge",
+        question: "Why build a browser console for a physical build?",
+        answer:
+          "I would show the Web Serial console mirroring the maze live, plus a demo mode that runs without hardware, with regression tests keeping the two honest about firmware rules.",
+        evidenceHref: "/projects/maze#iteration-gallery",
+        boundary:
+          "Two modes can drift; the parity tests exist precisely because I could not trust them to stay aligned by hand.",
+      },
+    ],
+    managerFollowUp: {
+      id: "maze-manager-follow-up",
+      question: "What does this prove that a screen-only case study does not?",
+      answer:
+        "I would say it proves I can carry an idea across the whole stack — sensing, firmware state machines, physical feedback, and a browser control surface — and make calibration and safety calls on hardware strangers will actually touch.",
+      evidenceHref: "/projects/maze#interview-takeaway",
+      boundary:
+        "It is one exhibition unit with hand-run wiring, so it proves build capability and system thinking, not manufacturability.",
+    },
+  },
 };
 
 const caseInterviewPacks: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseInterviewPack>> = {

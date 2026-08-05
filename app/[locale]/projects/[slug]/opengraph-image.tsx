@@ -1,9 +1,11 @@
 import { ImageResponse } from "next/og";
-import { getProjectBySlug } from "@/lib/projects";
 import { CURRENT_PROJECT_SLUGS, PROJECT_OG_COPY } from "@/lib/project-routes";
 import { siteConfig } from "@/lib/site";
 
-export const runtime = "nodejs";
+// Edge, matching app/opengraph-image.tsx. Under the nodejs runtime this route
+// returned 500 for every slug: @vercel/og resolves its bundled font through
+// fileURLToPath, which throws on the packaged path. Nothing here needs Node.
+export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -42,10 +44,15 @@ const TERRA = "#C9523A";
 
 export default async function Image({ params }: Props) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
-  const liveCopy = slug in PROJECT_OG_COPY ? PROJECT_OG_COPY[slug as keyof typeof PROJECT_OG_COPY] : null;
-  const title = project?.title || liveCopy?.title || "Project";
-  const oneLiner = project?.oneLiner || liveCopy?.oneLiner || "";
+  // Static copy only. This route previously read content/projects/<slug>.mdx at
+  // request time, which cannot resolve on a serverless deploy (and never matched
+  // the live short slugs anyway) — the filesystem hop only added failure modes.
+  const copy =
+    slug in PROJECT_OG_COPY
+      ? PROJECT_OG_COPY[slug as keyof typeof PROJECT_OG_COPY]
+      : null;
+  const title = copy?.title || "Project";
+  const oneLiner = copy?.oneLiner || "";
   const name = siteConfig.name.toUpperCase();
   const kicker = `CASE STUDY · ${slug.toUpperCase()}`;
 
@@ -175,9 +182,13 @@ export default async function Image({ params }: Props) {
           }}
         >
           <div>— PORTFOLIO / V4</div>
-          <div>
-            {siteConfig.url.replace(/^https?:\/\//, "")}/projects/{slug}
-          </div>
+          {/*
+            Single interpolated child on purpose. Satori throws
+            "Expected <div> to have explicit display: flex ... if it has more
+            than one child node" when this is split into several JSX children,
+            which is what made every case OG card return 500.
+          */}
+          <div>{`${siteConfig.url.replace(/^https?:\/\//, "")}/projects/${slug}`}</div>
         </div>
       </div>
     ),

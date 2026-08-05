@@ -26,6 +26,16 @@ const legacyProjectRedirects = [
   },
 ]);
 
+// The hiring section used to fan out into 19 leaf routes plus a /hire/[role]
+// tree. Nothing linked to them, the sitemap never listed them, and they were
+// crawlable. They are deleted; anything still pointing at one lands on /hire.
+// `:path+` (one or more) rather than `:path*` so /hire itself is not caught.
+const retiredHiringRedirects = ["", "/en", "/zh"].map((prefix) => ({
+  source: `${prefix}/hire/:path+`,
+  destination: `${prefix || "/en"}/hire`,
+  permanent: true,
+}));
+
 function disabledSurfaceRedirects() {
   return [
     {
@@ -152,7 +162,11 @@ const nextConfig = {
     };
   },
   async redirects() {
-    return [...legacyProjectRedirects, ...disabledSurfaceRedirects()];
+    return [
+      ...legacyProjectRedirects,
+      ...retiredHiringRedirects,
+      ...disabledSurfaceRedirects(),
+    ];
   },
   // Compression
   compress: true,

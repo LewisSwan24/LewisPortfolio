@@ -4,6 +4,16 @@ import { siteConfig } from "./site";
  * Generate JSON-LD structured data for SEO
  */
 
+/**
+ * Every URL below must be absolute. Reading process.env.NEXT_PUBLIC_SITE_URL
+ * directly emitted literal "undefined/..." URLs in production whenever the
+ * variable was unset, so all of these resolve through siteConfig instead.
+ */
+const base = siteConfig.url.replace(/\/$/, "");
+
+/** 1200x630 OG card rendered by app/opengraph-image.tsx. */
+const socialImage = `${base}/opengraph-image`;
+
 // Person schema for the site owner
 export function generatePersonSchema() {
     return {
@@ -12,8 +22,8 @@ export function generatePersonSchema() {
         name: siteConfig.author.name,
         jobTitle: "Interaction Designer",
         description: siteConfig.description,
-        url: siteConfig.url || process.env.NEXT_PUBLIC_SITE_URL,
-        image: `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.png`,
+        url: base,
+        image: socialImage,
         sameAs: [
             siteConfig.social.linkedin,
             siteConfig.social.github,
@@ -35,7 +45,7 @@ export function generatePersonSchema() {
 
 // Extended Person schema for the /resume page — adds occupation, address, email, work samples
 export function generateResumePersonSchema() {
-    const url = siteConfig.url || process.env.NEXT_PUBLIC_SITE_URL;
+    const url = base;
     return {
         ...generatePersonSchema(),
         email: `mailto:${siteConfig.author.email}`,
@@ -63,7 +73,7 @@ export function generateResumePersonSchema() {
 }
 
 export function generateOrganizationSchema() {
-    const url = siteConfig.url || process.env.NEXT_PUBLIC_SITE_URL;
+    const url = base;
     return {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -88,7 +98,7 @@ export function generateWebSiteSchema() {
         "@type": "WebSite",
         name: siteConfig.name,
         description: siteConfig.description,
-        url: process.env.NEXT_PUBLIC_SITE_URL,
+        url: base,
         author: {
             "@type": "Person",
             name: siteConfig.author.name,
@@ -111,8 +121,8 @@ export function generateProjectSchema(project: {
         "@type": "CreativeWork",
         name: project.title,
         description: project.oneLiner,
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/projects/${project.slug}`,
-        image: `${process.env.NEXT_PUBLIC_SITE_URL}${project.cover}`,
+        url: `${base}/projects/${project.slug}`,
+        image: `${base}${project.cover}`,
         keywords: project.tags.join(", "),
         datePublished: project.timeframe,
         author: {
@@ -147,10 +157,8 @@ export function generateArticleSchema(article: {
     image?: string;
     articleBody?: string;
 }) {
-    const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${article.slug}`;
-    const image =
-        article.image ||
-        `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${article.slug}/opengraph-image`;
+    const url = `${base}/blog/${article.slug}`;
+    const image = article.image || `${base}/blog/${article.slug}/opengraph-image`;
     const body = article.articleBody
         ? article.articleBody.replace(/\s+/g, " ").trim().slice(0, 5000)
         : undefined;
