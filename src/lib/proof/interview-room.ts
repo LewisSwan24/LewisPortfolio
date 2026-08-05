@@ -154,31 +154,13 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/spectra#outcome-limits",
     },
     {
-      id: "ai-long-term-confidence",
-      claim: "The AI work shows trust-aware interaction decisions.",
+      id: "scope-of-build",
+      claim: "MazeRunners proves I can build and ship a working system.",
       boundary:
-        "First-use confidence is not the same as long-term coaching efficacy.",
+        "It is one hand-wired exhibition unit, so it says nothing about manufacturability or long-term durability.",
       validation:
-        "I would run longitudinal validation before claiming durable behavior change.",
-      href: "/projects/ai#outcome-limits",
-    },
-    {
-      id: "accessibility-audit-scope",
-      claim: "The accessibility case shows inclusive design direction.",
-      boundary:
-        "It is not a universal audit across every impairment, environment, or device.",
-      validation:
-        "I would broaden participant coverage and assistive-tech review before final compliance claims.",
-      href: "/projects/spectra#evidence-board",
-    },
-    {
-      id: "social-product-scale",
-      claim: "Connect Circles shows depth-first product framing.",
-      boundary:
-        "It does not yet prove network effects, retention, or scaled community health.",
-      validation:
-        "I would validate repeated cohort use before optimizing growth mechanics.",
-      href: "/projects/circles#outcome-limits",
+        "I would rebuild on a fabricated harness and measure setup time and sensor drift across venues.",
+      href: "/projects/maze#outcome-limits",
     },
   ],
 };
@@ -336,31 +318,13 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/spectra#outcome-limits",
     },
     {
-      id: "ai-long-term-confidence",
-      claim: "AI 案例证明的是信任敏感的交互判断。",
+      id: "scope-of-build",
+      claim: "MazeRunners 证明我能把一套系统真的做出来并让它运行。",
       boundary:
-        "首次使用的信心提升不等于长期 coaching 效果。",
+        "它是一台手工接线的展览单机，不能用来说明可量产性或长期耐久度。",
       validation:
-        "在声称长期行为改变前，需要做纵向验证。",
-      href: "/projects/ai#outcome-limits",
-    },
-    {
-      id: "accessibility-audit-scope",
-      claim: "无障碍案例证明的是包容性设计方向。",
-      boundary:
-        "它不是覆盖所有障碍类型、环境或设备的通用审计。",
-      validation:
-        "最终合规 claim 前，需要扩大参与者覆盖并做辅助技术 review。",
-      href: "/projects/spectra#evidence-board",
-    },
-    {
-      id: "social-product-scale",
-      claim: "Connect Circles 证明的是深度优先的产品框架。",
-      boundary:
-        "它还没有证明网络效应、留存或规模化社区健康。",
-      validation:
-        "优化增长机制前，需要验证重复 cohort 使用。",
-      href: "/projects/circles#outcome-limits",
+        "我会改用制作好的线束重做一台，并在多个场地测量布置时间与传感器漂移。",
+      href: "/projects/maze#outcome-limits",
     },
   ],
 };

@@ -5,7 +5,6 @@ import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
 import { InterviewEvidenceBrief } from "@/components/hiring/InterviewEvidenceBrief";
-import { InterviewQuestionBank } from "@/components/hiring/InterviewQuestionBank";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
 import {
@@ -91,10 +90,9 @@ export default async function HirePage() {
         <InterviewEvidenceBrief items={room.evidenceBrief} labels={proofLabels} />
       </section>
 
-      <section className="section container">
-        <InterviewQuestionBank items={room.questionBank} labels={proofLabels} />
-      </section>
-
+      {/* The flat question list is gone: every role fit above already carries an
+          "ask me about" angle, and each case page answers its own questions with
+          evidence links. Repeating them here added six headings and no answers. */}
       <section className="section container">
         <InterviewBoundaryNotes notes={room.boundaries} labels={proofLabels} />
       </section>

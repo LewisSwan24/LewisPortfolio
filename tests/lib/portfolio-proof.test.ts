@@ -309,7 +309,9 @@ describe("portfolio proof content", () => {
 
     expect(room.evidenceBrief.length).toBeGreaterThanOrEqual(5);
     expect(room.questionBank.length).toBeGreaterThanOrEqual(5);
-    expect(room.boundaries.length).toBeGreaterThanOrEqual(4);
+    // Per-case limits live on each case page's outcome-limits block; /hire
+    // carries only the general boundaries, so this floor is deliberately low.
+    expect(room.boundaries.length).toBeGreaterThanOrEqual(3);
   });
 
   it("interview decision evidence links point to valid anchors", () => {

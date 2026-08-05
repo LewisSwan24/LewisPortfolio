@@ -353,7 +353,9 @@ test.describe("Hire Page", () => {
         // not the word "Interview"; assert the section content instead of copy.
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
         await expect(page.getByText("Evidence brief", { exact: true })).toBeVisible();
-        await expect(page.getByText("Questions worth asking.", { exact: true })).toBeVisible();
+        // The flat question bank was removed; role fit carries the per-role
+        // "ask me about" angle instead.
+        await expect(page.locator(".hiring-role-fit")).toBeVisible();
         await expect(page.getByText("What I would not overclaim")).toBeVisible();
         await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
     });
@@ -381,7 +383,7 @@ test.describe("Hire Page", () => {
 
     test("hire proof links should point to case anchors", async ({ page }) => {
         await expectAnchoredCaseProofLink(page.locator(".interview-evidence-brief a[href*='#']").first());
-        await expectAnchoredCaseProofLink(page.locator(".interview-question-bank a[href*='#']").first());
+        await expectAnchoredCaseProofLink(page.locator(".hiring-role-fit a[href*='#']").first());
     });
 });
 

@@ -15,10 +15,10 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
       "Best fit when the team needs research to become product direction, IA, flows, and measurable iteration.",
     proofLinks: [
       { label: "UQ Connect IA decision", href: "/projects/connect#decision-timeline" },
+      { label: "MazeRunners hardware trade-offs", href: "/projects/maze#decision-timeline" },
       { label: "Connect Circles product framing", href: "/projects/circles#evidence-board" },
-      { label: "Resume proof path", href: "/projects/connect#interview-takeaway" },
     ],
-    bestCases: ["connect", "circles"],
+    bestCases: ["connect", "maze", "circles"],
     risk:
       "I am strongest when product ambiguity needs structure; I would pair with engineering early for production constraints.",
     interviewAngle: "Ask how I turn research signals into scoped product decisions.",
@@ -70,9 +70,68 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
   },
 ];
 
+/**
+ * Both locales previously pointed at the English array, so /zh/hire rendered
+ * twelve blocks of untranslated English.
+ */
+const zhHiringRoleFits: HiringRoleFit[] = [
+  {
+    id: "ux-product",
+    label: "UX / 产品设计",
+    fit: "适合需要把研究变成产品方向、信息架构、流程与可迭代决策的团队。",
+    proofLinks: [
+      { label: "UQ Connect 的 IA 决策", href: "/projects/connect#decision-timeline" },
+      { label: "MazeRunners 的软硬件取舍", href: "/projects/maze#decision-timeline" },
+      { label: "Connect Circles 的产品框架", href: "/projects/circles#evidence-board" },
+    ],
+    bestCases: ["connect", "maze", "circles"],
+    risk: "我最强的地方是把模糊的产品问题结构化；生产环境的约束我会尽早找工程一起看。",
+    interviewAngle: "可以问我怎么把研究信号收敛成有范围的产品决策。",
+  },
+  {
+    id: "ux-research",
+    label: "UX 研究",
+    fit: "适合需要混合方法、谨慎取样，并且要让研究真的改变产品决策的团队。",
+    proofLinks: [
+      { label: "Connect 的研究证据", href: "/projects/connect#evidence-board" },
+      { label: "Circles 的日记研究", href: "/projects/circles#evidence-board" },
+      { label: "研究的限制", href: "/projects/circles#outcome-limits" },
+    ],
+    bestCases: ["connect", "circles"],
+    risk: "多数项目是课程或自发项目，所以我会讲清楚哪些有证据、哪些还需要实地验证。",
+    interviewAngle: "可以问我在问题还很模糊时怎么选方法。",
+  },
+  {
+    id: "ai-ux",
+    label: "AI 交互设计",
+    fit: "适合需要围绕时机、控制感、信任与情绪安全来设计 AI 辅助的团队。",
+    proofLinks: [
+      { label: "AI 反馈时机", href: "/projects/ai#decision-timeline" },
+      { label: "AI 信任证据", href: "/projects/ai#evidence-board" },
+      { label: "AI 的限制", href: "/projects/ai#outcome-limits" },
+    ],
+    bestCases: ["ai"],
+    risk: "我先把 AI 当成产品交互问题；在放大任何结论之前，我会拿真实用户验证模型行为。",
+    interviewAngle: "可以问我 AI 应该在哪里介入、又该在哪里闭嘴。",
+  },
+  {
+    id: "accessibility",
+    label: "无障碍 / 包容性设计",
+    fit: "适合需要把包容性研究落成实际交互决策、而不只是合规话术的团队。",
+    proofLinks: [
+      { label: "Spectra 的无障碍证据", href: "/projects/spectra#evidence-board" },
+      { label: "Spectra 的隐私决策", href: "/projects/spectra#decision-timeline" },
+      { label: "Spectra 的实地限制", href: "/projects/spectra#outcome-limits" },
+    ],
+    bestCases: ["spectra"],
+    risk: "我不会用一个小样本去宣称通用无障碍；正式上线前需要把验证扩展到更多场景。",
+    interviewAngle: "可以问我包容性设计的取舍怎么改变了核心交互模型。",
+  },
+];
+
 const hiringRoleFits: Record<ProofLocale, HiringRoleFit[]> = {
   en: sharedHiringRoleFits,
-  zh: sharedHiringRoleFits,
+  zh: zhHiringRoleFits,
 };
 
 const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
