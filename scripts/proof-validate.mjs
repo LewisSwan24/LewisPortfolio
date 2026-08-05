@@ -26,9 +26,13 @@ function run(label, command) {
 
 console.log("Proof validation gate");
 
-run("Running proof registry and validation tests...", [
-  `${pnpm} test --run tests/lib/proof-registry.test.ts tests/lib/proof-validation.test.ts`,
-].join(" "));
+// Call vitest directly rather than through `pnpm test --run`: pnpm 9 (which CI
+// pins) parses --run as its own option and aborts with "Unknown option: 'run'",
+// while pnpm 10 forwards it. Invoking the binary is version-agnostic.
+run(
+  "Running proof registry and validation tests...",
+  "vitest run tests/lib/proof-registry.test.ts tests/lib/proof-validation.test.ts"
+);
 
 run("Running proof maintenance report...", `${pnpm} proof:maintenance`);
 
