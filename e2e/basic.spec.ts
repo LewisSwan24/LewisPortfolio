@@ -223,6 +223,26 @@ test.describe("Projects Page", () => {
         );
     });
 
+    // The showcase pulls a 31 MB audio track and three videos, so the iframe
+    // must stay unmounted until someone actually asks for it.
+    test("maze demo should load only on click", async ({ page }) => {
+        await page.goto("/projects/maze");
+
+        const demo = page.locator(".case-demo");
+        await expect(demo).toBeVisible();
+        await expect(demo.locator("iframe")).toHaveCount(0);
+
+        await demo.locator(".case-demo-poster").click();
+        await expect(demo.locator("iframe")).toHaveAttribute("src", /maze-runners\.vercel\.app/);
+    });
+
+    test("cases without a playable build should not show a demo", async ({ page }) => {
+        for (const slug of ["connect", "spectra", "ai", "circles"]) {
+            await page.goto(`/projects/${slug}`);
+            await expect(page.locator(".case-demo")).toHaveCount(0);
+        }
+    });
+
     test("case page should not overflow on mobile", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 844 });
         await page.goto("/projects/connect");

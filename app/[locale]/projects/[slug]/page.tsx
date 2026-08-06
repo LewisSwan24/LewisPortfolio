@@ -6,6 +6,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { VizConnect, VizSpectra, VizAI, VizCircles, VizMaze } from "@/components/viz/ProjectViz";
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
+import { DemoEmbed } from "@/components/case/DemoEmbed";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
@@ -91,6 +92,17 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
       caption: "The PlanB feedback circuit running.",
       captionZh: "PlanB 反馈电路运行录像。",
     },
+  },
+};
+
+/**
+ * Playable builds, for cases where the thing itself can be handed to a reader.
+ * MazeRunners' showcase runs in demo mode with no hardware attached.
+ */
+const CASE_DEMO: Partial<Record<Slug, { src: string; poster: string }>> = {
+  maze: {
+    src: "https://maze-runners.vercel.app",
+    poster: "/projects/maze/01-exhibition-setup.png",
   },
 };
 
@@ -392,6 +404,27 @@ export default async function CasePage({ params }: Props) {
             </figure>
           )}
         </section>
+      )}
+
+      {CASE_DEMO[k] && (
+        <DemoEmbed
+          src={CASE_DEMO[k]!.src}
+          poster={CASE_DEMO[k]!.poster}
+          title={isZh ? "MazeRunners 互动 demo" : "MazeRunners interactive demo"}
+          posterAlt={
+            isZh
+              ? "MazeRunners 展览现场，点击开始互动 demo"
+              : "MazeRunners at the exhibition; click to start the interactive demo"
+          }
+          label={isZh ? "自己玩玩看" : "Play it yourself"}
+          blurb={
+            isZh
+              ? "这是驱动实体迷宫的同一套控制台，跑在 demo 模式下，不需要接硬体。按 Start 开一局，再按 Trap Test，看计分、震动通道和事件日志同时反应。"
+              : "This is the same console that drives the physical maze, running in demo mode with no hardware attached. Hit Start, then Trap Test, and watch the score, the haptic channels, and the event log all answer the same event."
+          }
+          action={isZh ? "载入互动 demo" : "Load the interactive demo"}
+          openLabel={isZh ? "在新分页打开 ↗" : "Open in a new tab ↗"}
+        />
       )}
 
       <section className="container case-depth" aria-label={pageCopy.caseDepthAria}>
