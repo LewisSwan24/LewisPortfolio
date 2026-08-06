@@ -11,10 +11,10 @@ import type {
 
 const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
   en: {
-    headline: "Research-led UX designer turning ambiguity into tested product direction.",
+    headline: "Interaction designer who takes an idea all the way to something that runs.",
     summary:
-      "I am looking for UX/Product Design internships and graduate roles where research changes the product, not just the slide deck.",
-    status: "UQ Master of Interaction Design candidate, Brisbane. Open to 2026 internships and graduate UX roles.",
+      "I am looking for interaction and product design internships and graduate roles on teams that want a designer who can build, not only specify.",
+    status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; open to internships and graduate roles.",
     stats: [
       {
         value: "5",
@@ -40,10 +40,10 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     ],
   },
   zh: {
-    headline: "研究驱动的 UX 设计师，把模糊问题变成可测试、可交付的产品方向。",
+    headline: "会把东西真的做出来的交互设计师，而不只是交一份稿。",
     summary:
-      "我正在寻找 UX / Product Design 实习与毕业生岗位，尤其适合研究真的会影响产品决策的团队。",
-    status: "昆士兰大学交互设计硕士在读，布里斯班。开放 2026 实习与毕业生 UX 岗位。",
+      "我在找交互 / 产品设计的实习与毕业生岗位，尤其适合希望设计师能自己把想法推到能跑的团队。",
+    status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，实习与全职都在看。",
     stats: [
       {
         value: "5",
@@ -271,11 +271,11 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
 const hiringConversions: Record<ProofLocale, HiringConversion> = {
   en: {
     hero: {
-      headline: "Research-led UX/Product Designer for teams that need evidence before polish.",
+      headline: "An interaction and product designer who builds the thing, not just the deck.",
       subhead:
-        "I turn ambiguous product problems into tested information architecture, inclusive interactions, AI feedback flows, and social wellbeing concepts.",
+        "I take ambiguous product problems through research, information architecture, and inclusive interaction decisions — then use Claude Code and Codex to get them running, so what you review is a working prototype rather than a description of one.",
       status:
-        "Open to 2026 internships and graduate UX/Product Design roles in research-led product teams.",
+        "Graduating late 2026. Open to internships and graduate UX, product, and design-technologist roles.",
     },
     signals: [
       {
@@ -356,11 +356,11 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
   },
   zh: {
     hero: {
-      headline: "先找证据，再做精细化：研究驱动的 UX / 产品设计师。",
+      headline: "会把东西真的做出来的交互设计师，而不只是交一份稿。",
       subhead:
-        "我把模糊的产品问题，转化为经过验证的信息架构、包容性交互、AI 反馈流程与社交健康产品方向。",
+        "我把模糊的产品问题走完研究、信息架构与包容性交互决策，再用 Claude Code 和 Codex 把它推到能跑——所以你看到的是一个能用的原型，而不是对原型的描述。",
       status:
-        "开放 2026 实习与毕业生 UX / 产品设计岗位，期待研究驱动的产品团队。",
+        "2026 年底毕业。实习与毕业生的交互、产品、design technologist 岗位都在看。",
     },
     signals: [
       {

@@ -20,7 +20,10 @@ test.describe("Portfolio Homepage", () => {
     });
 
     test("should display the current hero", async ({ page }) => {
-        await expect(page.getByRole("heading", { level: 1 })).toContainText("Research-led");
+        // Two-layer positioning: the headline states the capability with no tool
+        // names, the lede underneath names the tools.
+        await expect(page.getByRole("heading", { level: 1 })).toContainText(/actually use/i);
+        await expect(page.locator(".hero-lede")).toContainText(/Claude Code|Codex/);
     });
 
     // The old "Evidence at a glance" / "Capability map" sections were removed
@@ -48,7 +51,7 @@ test.describe("Portfolio Homepage", () => {
     test("should present a clear hiring conversion path", async ({ page }) => {
         const proofDesk = page.locator(".hiring-proof-desk");
 
-        await expect(proofDesk.getByText(/Open to 2026 internships/i)).toBeVisible();
+        await expect(proofDesk.getByText(/2026.*internships|internships.*2026/i)).toBeVisible();
         await expect(proofDesk.getByText(/Best cases to inspect/i)).toBeVisible();
         await expect(proofDesk.getByText(/Information architecture/i).first()).toBeVisible();
         await expect(proofDesk.getByText(/Accessibility/i).first()).toBeVisible();
@@ -429,7 +432,7 @@ test.describe("Contact Page", () => {
         const nextStep = page.locator(".contact-next-step");
 
         await expect(nextStep.getByText("Hiring next step")).toBeVisible();
-        await expect(nextStep.getByText(/Open to 2026 internships/i)).toBeVisible();
+        await expect(nextStep.getByText(/2026.*internships|internships.*2026/i)).toBeVisible();
     });
 
     test("contact proof links should point to case anchors", async ({ page }) => {

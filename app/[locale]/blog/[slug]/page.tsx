@@ -179,8 +179,8 @@ export default async function BlogPostPage({ params }: Props) {
                 name={siteConfig.author.name}
                 tagline={
                   isZh
-                    ? "昆士兰大学交互设计硕士在读 · 研究驱动的 UX 设计师"
-                    : "Master of Interaction Design candidate at UQ · research-led UX designer"
+                    ? "昆士兰大学交互设计硕士在读 · 交互设计师，也自己把设计做出来"
+                    : "Master of Interaction Design candidate at UQ · interaction designer who builds what he designs"
                 }
                 email={siteConfig.author.email}
                 linkedin={siteConfig.social.linkedin}

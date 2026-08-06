@@ -16,13 +16,13 @@
     "tagline": "practice log, est. 2024"
   },
   "hero": {
-    "eyebrow": "UX Designer · Master's in Interaction Design, UQ",
+    "eyebrow": "Interaction & Product Designer · Master's in Interaction Design, UQ",
     "headline": {
-      "a": "Research-led",
-      "b": "product design,",
-      "c": "without the noise."
+      "a": "From idea to",
+      "b": "something you can",
+      "c": "actually use."
     },
-    "body": "I shape messy product questions into clearer interfaces, prototypes, and decisions.",
+    "body": "I design interactions and then build them. Claude Code and Codex get me from a spec to a running prototype quickly enough that testing happens on the real thing instead of a picture of it.",
     "deck": {
       "label": "The practice log —",
       "hint": "Drag or click an entry to open"
@@ -32,9 +32,9 @@
   "now": {
     "label": "Currently",
     "reading": { "label": "Reading", "val": "Weiss on loneliness; Ryan & Deci on self-determination" },
-    "building": { "label": "Building", "val": "Connect Circles — slow-match social for int'l students" },
-    "learning": { "label": "Learning", "val": "Motion design fundamentals, in Rive" },
-    "location": { "label": "Location", "val": "Brisbane, AU — open to Sydney / Singapore / SF" }
+    "building": { "label": "Building", "val": "Vigil — a phishing-detection tool, spec through usability testing" },
+    "learning": { "label": "Learning", "val": "Where AI coding agents help a designer, and where they slow one down" },
+    "location": { "label": "Location", "val": "Brisbane, AU — graduating late 2026, open to internships and graduate roles" }
   },
   "approach": {
     "label": "How I work",
