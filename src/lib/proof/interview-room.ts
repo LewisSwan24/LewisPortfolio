@@ -18,9 +18,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Proof depth",
-        value: "6 end-to-end cases",
+        value: "7 end-to-end cases",
         detail:
-          "IA, accessibility, AI coaching, social wellbeing, a hardware build, and an AI-oversight study — methods and limits shown.",
+          "IA, accessibility, AI coaching, social wellbeing, a hardware build, an AI-oversight study, and a generative production pipeline — methods and limits shown.",
       },
       {
         label: "Interview readiness",
@@ -192,9 +192,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "证据深度",
-        value: "6 个端到端案例",
+        value: "7 个端到端案例",
         detail:
-          "覆盖 IA、无障碍、AI 辅导、社交健康、一台硬件作品，以及一项 AI 监督研究，并展示方法与限制。",
+          "覆盖 IA、无障碍、AI 辅导、社交健康、一台硬件作品、一项 AI 监督研究，以及一条生成式生产管线，并展示方法与限制。",
       },
       {
         label: "面试准备度",

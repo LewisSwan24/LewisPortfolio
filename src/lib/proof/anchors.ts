@@ -7,6 +7,7 @@ export const projectEvidenceSlugs = [
   "circles",
   "maze",
   "vigil",
+  "hoop",
 ] as const satisfies readonly ProjectEvidenceSlug[];
 
 export const hiringRoleIds = [
@@ -25,4 +26,5 @@ export const projectLabels: Record<ProjectEvidenceSlug, string> = {
   circles: "Connect Circles",
   maze: "MazeRunners",
   vigil: "Vigil",
+  hoop: "Hoop Dream",
 };

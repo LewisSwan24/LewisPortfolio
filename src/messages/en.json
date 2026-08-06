@@ -47,7 +47,7 @@
       "4": { "t": "Ship", "b": "Usability test, iterate, hand off with rationale intact." }
     }
   },
-  "feat": { "label": "Selected work", "title": "Six projects, end-to-end.", "footer": "Full index" },
+  "feat": { "label": "Selected work", "title": "Seven projects, end-to-end.", "footer": "Full index" },
   "proj": {
     "connect": {
       "kicker": "Flagship · Information Architecture",
@@ -108,6 +108,16 @@
       "m1": "140 messages · 87.9% accurate",
       "m2": "Confidence built as weak evidence",
       "m3": "Six variants, three open questions"
+    },
+    "hoop": {
+      "kicker": "Generative production · Narrative systems",
+      "title": "Hoop Dream",
+      "sub": "A basketball life from twelve to retirement, and a pipeline that kept 299 generated assets in one style.",
+      "role": "Design + art direction",
+      "date": "2026 · playable, DEMO v0.6",
+      "m1": "299 assets · 6 batches · 1 gate",
+      "m2": "146 career nodes, not a calendar",
+      "m3": "1,975 tests over the systems"
     }
   },
   "cs": {
@@ -412,6 +422,55 @@
       "rf": {
         "label": "Reflection",
         "p": "What surprised me is where the failure mode of an AI-assisted workflow actually sits. It is not bugs — the code was fine. It is that everything the workflow produces is plausible: a competent visual pass, a fluent explanation for an email, a reasonable-looking spread of confidence values. Plausible is exactly what you cannot catch by reading quickly. The three decisions I am proudest of here are all rejections, and all three came from checking generated output against its own data rather than against my taste. The weakest part is the obvious one: I have designed the conditions for a study worth running, and have not yet run it."
+      }
+    },
+    "hoop": {
+      "hero": { "title": "Hoop Dream", "sub": "A career simulation that runs from a neighbourhood court at twelve through to retirement — and the production pipeline that kept 299 generated assets looking like one world." },
+      "roleVal": "Designer, art director and technical director, through an AI production pipeline",
+      "timeVal": "2026 · playable, self-labelled DEMO v0.6",
+      "teamVal": "Solo",
+      "toolsVal": "Phaser · TypeScript · Vite · Tailwind · Vitest · Claude Code · Codex",
+      "ch": {
+        "label": "The problem",
+        "title": "Generating the art is cheap. Making 299 pieces agree is not.",
+        "p": "A career-simulation RPG needs hundreds of assets — portraits, scenes, story CGs, UI icons, court diagrams — before it reads as one world rather than a folder of pictures. Generation removed the cost of producing them and left the harder problem completely intact: each batch is independently plausible, and the drift only becomes visible once they sit on the same screen, by which point there are hundreds of files to reconcile."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Deciding what the world is, and what it is not.",
+        "m1": { "t": "Art bible", "b": "Three reference documents — pixel players, organic scenes, flat logos — written before any asset was generated, so batch prompts had something to cite." },
+        "m2": { "t": "Reference teardown", "b": "NBA 2K MyCareer for the career arc, Punch Club for attribute decay, New Star Soccer for life outside the game, Stardew Valley for daily-loop satisfaction. Naming what to borrow from each kept the scope from becoming 'a basketball game'." },
+        "m3": { "t": "A rejected list", "b": "Photoreal, 3D, anime, neon, random text, real trademarks. Written down as out of bounds, because a generator produces all of them happily on a slightly different prompt." },
+        "quote": "Style gate: PASS. Reviewed against the existing runtime anchors and art bible rules.",
+        "quoteWho": "The production log, on the batch of 299"
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Coherence as a property of the pipeline, not of each asset.",
+        "p": "Every batch follows the same path: prompts cite the art bible, output is reviewed against assets already running in the game, and the production log records counts per batch — 64 portraits, 40 scenes, 73 CGs, 72 UI icons, 18 court and tactics, 32 static VFX. That makes the whole set auditable. Anyone can ask which batch a given asset came from and which rules it was checked against, which is not a question you can answer about art that was generated ad hoc."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "A career from twelve to retirement runs on 146 discrete nodes in eight kinds — training, match, story, relationship, risk, reward, rest, legacy — rather than a simulated calendar, because calendar-based career sims spend most of their runtime on repetition and bury the interesting decisions in maintenance clicking. Action combinations carry consequences instead of just numbers: repeated training raises readiness while raising body risk and pressure and lowering team trust. The visual language is reverse-engineered from Anthropic's product design — warm parchment, terracotta accent, exclusively warm-toned neutrals — because a game about one person's whole life needed a surface that reads as unhurried rather than as a sports UI of cold blues. That derivation is stated in the design document; it is a transfer exercise, not an invention."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "Claude Code and Codex wrote the implementation against a spec that was frozen first, which is what made the volume survivable — draft, contracts, seasons, off-season, retirement, New Game+ and tactical matches all landed as systems rather than as scripted scenes. Save data carries a schema version, so an old save is migrated rather than silently broken when a chapter lands. The discipline that mattered was not speed but sequencing: rules before output, every time."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "355 test files and 1,975 tests cover the career, contract, injury, season and save systems. At this size that is a design constraint rather than a boast — without it, adding a chapter quietly breaks a contract rule three chapters earlier, and you find out from a player instead of from CI. The art pipeline went through its own iteration: the earliest assets were fine individually and did not agree with each other, which is what moved production from ad-hoc generation to art bible, batch prompts, style gate and log."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": { "label": "assets through one style gate", "v": "299" },
+        "m2": { "label": "Career", "v": "146 nodes → 10 chapters" },
+        "m3": { "label": "Tests", "v": "355 files → 1,975 passing" },
+        "p": "A publicly playable ten-chapter career sim, built on a pipeline where coherence is enforced rather than hoped for. Evidence status — the game labels itself DEMO v0.6, and there has been no player research. Everything here is systems design and production discipline; whether the pacing works for someone who is not me is untested. The first load is also large and mobile QA is thin, which matters because a phone is where this audience would meet it."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "The useful discovery was that the rejected list did more work than the positive description. 'Warm, simplified, flat symbolic UI' is an opinion two people can hold and still disagree about a specific image. 'Not photoreal, not 3D, not anime, not neon, no random text, no real trademarks' is a test — you can hand it to someone else and get the same answer. When production volume goes up, the rules that survive are the ones that can be checked without you in the room."
       }
     }
   },

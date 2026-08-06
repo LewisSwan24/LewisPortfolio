@@ -11,6 +11,7 @@ import {
   VizCircles,
   VizMaze,
   VizVigil,
+  VizHoop,
 } from "@/components/viz/ProjectViz";
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { DemoEmbed } from "@/components/case/DemoEmbed";
@@ -158,6 +159,48 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
       },
     ],
   },
+  hoop: {
+    label: "The build, running",
+    labelZh: "跑起来的样子",
+    blurb:
+      "Captured from the public deployment, not mocked up: the menu, the two-step character creation, and the first career node with its status, attributes, relationships and actions all live.",
+    blurbZh:
+      "这些是从线上公开版本抓的，不是效果图：主菜单、两步角色创建，以及第一个生涯节点——状态、六维属性、关系网和可选行动全部是真的。",
+    images: [
+      {
+        src: "/projects/hoop/01-main-menu.png",
+        width: 1280,
+        height: 800,
+        alt: "Hoop Dream main menu, with the title set in a large terracotta serif on warm parchment",
+        altZh: "Hoop Dream 主菜单，赤陶色衬线大标题落在暖色羊皮纸底上",
+        caption:
+          "The menu carries its own honesty label: DEMO v0.6, PROTOTYPE.",
+        captionZh: "主菜单上自己挂着诚实标签：DEMO v0.6、PROTOTYPE。",
+      },
+      {
+        src: "/projects/hoop/02-character-creation.png",
+        width: 1280,
+        height: 800,
+        alt: "Character creation with a name field, four playing styles, and six attributes each at 15 of 40",
+        altZh: "角色创建：姓名输入、四种打法风格，以及六项各 15/40 的属性",
+        caption:
+          "Four archetypes against six attributes. START JOURNEY stays disabled until the name is filled — validation, not a broken button.",
+        captionZh:
+          "四种原型对六维属性。姓名没填之前「开始旅程」一直是灰的——那是校验，不是按钮坏了。",
+      },
+      {
+        src: "/projects/hoop/04-career-node.png",
+        width: 1280,
+        height: 800,
+        alt: "The first career node: status and attribute rails on the left, a narrative modal in the centre, training and life actions on the right",
+        altZh: "第一个生涯节点：左侧状态与属性条，中间剧情弹窗，右侧训练与生活行动",
+        caption:
+          "One node of 146. Status, six attributes, eight relationships and the action menu are all wired to the same career state.",
+        captionZh:
+          "146 个节点里的第一个。状态、六维属性、八段关系与行动菜单，全部接在同一份生涯状态上。",
+      },
+    ],
+  },
 };
 
 interface CaseDemo {
@@ -214,6 +257,22 @@ const CASE_DEMO: Partial<Record<Slug, CaseDemo>> = {
     action: "Load the interactive prototype",
     actionZh: "载入互动原型",
   },
+  hoop: {
+    src: "https://hoop-dream.vercel.app",
+    poster: "/projects/hoop/01-main-menu.png",
+    title: "Hoop Dream, playable",
+    titleZh: "Hoop Dream 可玩版本",
+    posterAlt: "The Hoop Dream main menu; click to play the build in the page",
+    posterAltZh: "Hoop Dream 主菜单，点击即可在页面里直接玩",
+    label: "Play a career",
+    labelZh: "自己开一段生涯",
+    blurb:
+      "The public build, in the page. Create a player — the name is required, and the archetype you pick propagates into the six attributes — then walk into the first node and spend an action. Everything past that point is the same systems the tests cover.",
+    blurbZh:
+      "线上版本，直接嵌在页面里。创建一名球员——姓名必填，选的打法风格会传导进六维属性——然后进第一个节点花掉一次行动。从那里往后，跑的都是测试覆盖的同一批系统。",
+    action: "Load the playable build",
+    actionZh: "载入可玩版本",
+  },
 };
 
 const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
@@ -223,6 +282,7 @@ const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   circles: [],
   maze: [],
   vigil: [],
+  hoop: [],
 };
 
 export function generateStaticParams() {
@@ -256,6 +316,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function CoverViz({ slug }: { slug: Slug }) {
   if (slug === "maze") return <VizMaze />;
   if (slug === "vigil") return <VizVigil />;
+  if (slug === "hoop") return <VizHoop />;
   if (slug === "connect") return <VizConnect />;
   if (slug === "spectra") return <VizSpectra />;
   if (slug === "ai") return <VizAI />;

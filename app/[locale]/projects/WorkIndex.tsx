@@ -11,6 +11,7 @@ import {
   VizMaze,
   VizSpectra,
   VizVigil,
+  VizHoop,
 } from "@/components/viz/ProjectViz";
 import {
   getEvidenceMatrix,
@@ -19,7 +20,7 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil";
+type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil" | "hoop";
 type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social" | "hardware";
 type Localized = { en: string; zh: string };
 
@@ -79,6 +80,22 @@ const ITEMS: Item[] = [
   },
   {
     n: "03",
+    k: "hoop",
+    tags: ["ai", "hardware"],
+    role: "Design + art dir",
+    year: "2026",
+    dur: "Playable",
+    problem: {
+      en: "Hundreds of generated assets that each looked fine and did not agree",
+      zh: "几百张单看都不错、彼此却对不上的生成资产",
+    },
+    changed: {
+      en: "An art bible and a style gate, so coherence came from the pipeline",
+      zh: "一份美术圣经加一道风格闸门，让一致性来自管线本身",
+    },
+  },
+  {
+    n: "04",
     k: "connect",
     tags: ["flag", "research"],
     role: "Solo",
@@ -88,7 +105,7 @@ const ITEMS: Item[] = [
     changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
   },
   {
-    n: "04",
+    n: "05",
     k: "spectra",
     tags: ["flag", "acc", "research"],
     role: "Lead",
@@ -98,7 +115,7 @@ const ITEMS: Item[] = [
     changed: { en: "Live colour naming and haptic feedback model", zh: "实时颜色命名和触觉反馈模型" },
   },
   {
-    n: "05",
+    n: "06",
     k: "ai",
     tags: ["ai", "research"],
     role: "Designer",
@@ -108,7 +125,7 @@ const ITEMS: Item[] = [
     changed: { en: "Timed coaching and a confidence loop", zh: "分时机的指导和信心循环" },
   },
   {
-    n: "06",
+    n: "07",
     k: "circles",
     tags: ["social", "research"],
     role: "Solo",
@@ -122,6 +139,7 @@ const ITEMS: Item[] = [
 function WorkPreview({ project }: { project: ProjKey }) {
   if (project === "maze") return <VizMaze />;
   if (project === "vigil") return <VizVigil />;
+  if (project === "hoop") return <VizHoop />;
   if (project === "connect") return <VizConnect />;
   if (project === "spectra") return <VizSpectra />;
   if (project === "ai") return <VizAI />;

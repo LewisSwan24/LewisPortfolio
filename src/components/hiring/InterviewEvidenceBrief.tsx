@@ -12,6 +12,7 @@ const caseLabels: Record<ProjectEvidenceSlug, string> = {
   circles: "Connect Circles",
   maze: "MazeRunners",
   vigil: "Vigil",
+  hoop: "Hoop Dream",
 };
 
 interface InterviewEvidenceBriefProps {

@@ -69,6 +69,26 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         "Six variants built and running, a working React build behind them, and a five-participant test protocol ready to run. No participants yet — the three design questions are still open.",
       next: "I would run the five hallway sessions, then a counterbalanced study on whichever question survives them.",
     },
+    hoop: {
+      challenge:
+        "A career-simulation RPG needs hundreds of art assets to read as one world. Generating them is now cheap; keeping 299 of them stylistically coherent is the actual problem.",
+      role: "Designer, art director and technical director, working through an AI production pipeline",
+      methods: [
+        "art bible",
+        "prompt-per-batch production",
+        "style gate review",
+        "narrative systems design",
+        "regression testing at scale",
+      ],
+      evidence: [
+        "299 assets generated across six batches against a written art bible",
+        "a style gate with an explicit rejected-style list",
+        "1,975 tests over the career, contract, injury and save systems",
+      ],
+      outcome:
+        "A playable ten-chapter career sim running publicly, on a pipeline where every asset batch is reviewed against the same written rules. Self-labelled DEMO v0.6; no player research yet.",
+      next: "I would put it in front of players who do not already follow basketball, and watch where the systems stop explaining themselves.",
+    },
   },
   zh: {
     connect: {
@@ -126,6 +146,20 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       outcome:
         "六个变体已经跑起来，背后有一版可运行的 React 实现，五人测试脚本也已就绪。目前还没有受试者——三个设计问题都还没有答案。",
       next: "我会先跑完五场走廊测试，再针对活下来的那个问题做一次对照实验。",
+    },
+    hoop: {
+      challenge:
+        "一个生涯模拟 RPG 需要几百张美术资产，才撑得起「这是同一个世界」。生成它们现在很便宜，难的是让 299 张保持在同一种风格里。",
+      role: "设计、美术方向与技术方向都由我定，通过一套 AI 生产管线实现",
+      methods: ["美术圣经", "按批次写 prompt 生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
+      evidence: [
+        "六个批次共 299 张资产，全部对照一份写下来的美术圣经",
+        "一道风格闸门，附明确的「拒绝风格」清单",
+        "覆盖生涯、合同、伤病与存档系统的 1975 个测试",
+      ],
+      outcome:
+        "一个公开可玩、十章生涯的模拟游戏，背后是一条「每批资产都按同一套成文规则审一遍」的管线。游戏自标 DEMO v0.6，还没有做过玩家研究。",
+      next: "我会把它交给本来不看篮球的人玩，看这些系统在哪一步开始讲不清自己。",
     },
   },
 };
@@ -768,6 +802,124 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "This case proves I can turn a research brief into a running system — corpus, variants, protocol, and a validation gate that fails the build when the material stops being usable — and that I can direct an AI coding workflow without handing it the design argument.",
     },
+    hoop: {
+      decisions: [
+        {
+          label: "Write the art bible before generating any assets",
+          choice:
+            "Three reference documents — pixel players, organic scenes, flat logos — were written first, and every batch prompt cites them.",
+          evidence:
+            "Generated art drifts. Each batch is independently plausible, and the drift only becomes visible once they sit in the same screen, by which point you have hundreds of files to reconcile.",
+          tradeoff:
+            "Writing the rules before seeing output means committing to a look you have not yet proven works.",
+          impact:
+            "299 assets across six batches share one palette and one linework language, because the rules existed before the volume did.",
+        },
+        {
+          label: "Gate batches on style, and name what is rejected",
+          choice:
+            "Each batch passes a style gate reviewed against existing runtime anchors, with an explicit rejected list: photoreal, 3D, anime, neon, random text, real trademarks.",
+          evidence:
+            "A generator will happily produce any of those on a slightly different prompt, and each is individually defensible in isolation.",
+          tradeoff:
+            "A gate rejects work that took real time to produce, and it is tempting to let a near-miss through when the batch is already late.",
+          impact:
+            "The rejected list is the load-bearing half. Saying what the world is not turned out to be more actionable than describing what it is.",
+        },
+        {
+          label: "Compress a lifetime into 146 nodes rather than a calendar",
+          choice:
+            "A career from age twelve to retirement runs across 146 nodes in eight kinds — training, match, story, relationship, risk, reward, rest, legacy — instead of simulating days.",
+          evidence:
+            "Calendar-based career sims spend most of their runtime on repetition, and the interesting decisions get buried in maintenance clicking.",
+          tradeoff:
+            "Discrete nodes lose the texture of a season grinding on; the player never feels time passing the slow way.",
+          impact:
+            "Every node has to earn its place, and action combinations carry consequences — repeated training raises readiness while raising body risk and pressure and lowering team trust.",
+        },
+        {
+          label: "Derive the visual language from a product, and say so",
+          choice:
+            "The palette and typographic system are reverse-engineered from Anthropic's product design — warm parchment, terracotta accent, exclusively warm-toned neutrals — and documented as such.",
+          evidence:
+            "A game about one person's whole life needed a surface that reads as unhurried and literary rather than as a sports UI full of cold blues and energy gradients.",
+          tradeoff:
+            "It is a borrowed language, not an invented one, and a reader who recognises the source will notice.",
+          impact:
+            "Stating the derivation in the design document is what makes it a transfer exercise instead of an uncredited copy.",
+        },
+      ],
+      evidence: [
+        {
+          method: "Batch production log",
+          sample: "Six batches: 64 portraits, 40 scenes, 73 CGs, 72 UI icons, 18 court/tactics, 32 static VFX",
+          question: "Can generated art hold one style across a volume no one would draw by hand?",
+          finding: "299 assets passed the style gate against the art bible anchors; the log records counts per stage, not just a total.",
+          implication:
+            "The pipeline is auditable — anyone can ask which batch an asset came from and what rules it was checked against.",
+        },
+        {
+          method: "Automated regression suite",
+          sample: "355 test files, 1,975 tests, run against the career, contract, injury, season and save systems",
+          question: "Does a systems-heavy career sim stay correct while content keeps landing?",
+          finding: "All 1,975 pass; save data carries a schema version so old saves are migrated rather than silently broken.",
+          implication:
+            "Scale here is a design constraint, not a bragging point — without it, adding a chapter quietly breaks a contract rule three chapters earlier.",
+        },
+        {
+          method: "Playable build check",
+          sample: "The public deployment, played from the main menu through character creation into the first career node",
+          question: "Does the loop actually run for someone arriving cold?",
+          finding:
+            "Character creation gates on a required name, archetype choice propagates into the six attributes, and the first node opens with status, relationships and actions all populated.",
+          implication: "The systems are wired end to end, not mocked at the seams.",
+        },
+      ],
+      iterations: [
+        {
+          version: "Concept",
+          change: "Framed as a pixel-art career sim, referencing NBA 2K MyCareer, Punch Club, New Star Soccer and Stardew Valley.",
+          reason: "Each reference solves one piece: career arc, attribute decay, off-court life, daily-loop satisfaction.",
+          improvement: "Named what to borrow from each, which kept the scope from becoming 'a basketball game'.",
+        },
+        {
+          version: "Systems build",
+          change: "Draft, contracts, seasons, off-season, retirement, New Game+ and tactical matches all landed as systems.",
+          reason: "A career sim is only as interesting as the consequences it can carry across a decade of in-game time.",
+          improvement: "A career can now run from youth to retirement and be sealed into a Legacy that affects the next run.",
+        },
+        {
+          version: "Art pipeline",
+          change: "Moved from ad-hoc asset generation to art bible, batch prompts, style gate and a production log.",
+          reason: "The first assets were fine individually and did not agree with each other.",
+          improvement: "Coherence became a property of the process rather than something re-litigated per asset.",
+        },
+      ],
+      limits: [
+        {
+          constraint: "No player research. The game self-labels DEMO v0.6.",
+          whyItMatters:
+            "Everything here is systems design and production discipline. Whether the pacing works for someone who is not me is untested.",
+          nextValidation:
+            "Sit five people who do not follow basketball in front of chapter one and watch where the systems stop explaining themselves.",
+        },
+        {
+          constraint: "The first load is large and mobile QA is thin.",
+          whyItMatters:
+            "A 3.8 MB JavaScript bundle is a real barrier on a phone, which is where a Chinese audience would meet it.",
+          nextValidation: "Code-split the bundle and run device QA before calling it a public beta.",
+        },
+        {
+          constraint: "The visual language is derived, not invented.",
+          whyItMatters:
+            "It is a transfer exercise from an existing product's design system, and presenting it as original would be dishonest.",
+          nextValidation:
+            "Push the system somewhere the source could not go — the basketball-specific screens are where it would have to stop being borrowed.",
+        },
+      ],
+      takeaway:
+        "This case proves I can run generative production at a volume that would otherwise be incoherent — by writing the rules first, gating on them, and naming what gets rejected — while keeping a systems-heavy build correct under 1,975 tests.",
+    },
   },
   zh: {
     connect: {
@@ -1292,6 +1444,106 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "这个案例证明我能把一份研究 brief 变成一套真的跑得起来的系统——语料、变体、测试脚本，以及一道材料一旦失效就让 build 挂掉的验证闸门——同时证明我能指挥 AI 写代码，而不把设计论证一并交出去。",
     },
+    hoop: {
+      decisions: [
+        {
+          label: "先写美术圣经，再开始生成",
+          choice: "先写三份参考文档——像素球员、有机场景、扁平队徽——之后每一批的 prompt 都引用它们。",
+          evidence:
+            "生成的美术会漂。每一批单独看都说得过去，漂移只有在它们同框的时候才看得出来——而那时候你已经有几百个文件要收拾了。",
+          tradeoff: "在看到产出之前就把规则定死，等于对一个还没被验证过的风格先下注。",
+          impact: "六个批次 299 张资产共用同一套配色和同一种线条语言，因为规则比产量先存在。",
+        },
+        {
+          label: "按批次过风格闸门，并且写清楚拒绝什么",
+          choice:
+            "每一批都要对照已有的运行时锚点过一道风格闸门，并附明确的拒绝清单：写实照片、3D、动漫、霓虹、随机文字、真实商标。",
+          evidence: "只要 prompt 稍微变一点，生成器会很乐意给你上面任何一种，而且每一种单独看都站得住。",
+          tradeoff: "闸门会打掉真的花了时间做出来的东西；批次已经晚了的时候，人很容易想放一个「差一点」的过去。",
+          impact: "拒绝清单才是承重的那一半。说清楚这个世界「不是什么」，比描述它「是什么」更能落地。",
+        },
+        {
+          label: "用 146 个节点压缩一生，而不是模拟日历",
+          choice:
+            "从 12 岁到退役的生涯，跑在 146 个节点上，分八种类型——训练、比赛、剧情、关系、风险、奖励、休息、传承——而不是一天一天地模拟。",
+          evidence: "以日历为单位的生涯模拟，大部分运行时间都花在重复上，真正有意思的决定被埋在维护性点击里。",
+          tradeoff: "离散节点会丢掉「一个赛季慢慢磨过去」的质感，玩家感受不到时间用慢的方式流逝。",
+          impact:
+            "每个节点都得挣得自己的位置，而行动的组合会留下后果——反复训练会抬高竞技状态，同时抬高身体风险和压力、拉低队友信任。",
+        },
+        {
+          label: "视觉语言是从一个产品反推的，而且明说",
+          choice:
+            "配色与字体系统是从 Anthropic 的产品设计反推出来的——羊皮纸底色、赤陶强调色、全部暖调中性色——并且在设计文档里写明来源。",
+          evidence: "一个讲「一个人的一生」的游戏，需要的表层是从容的、带文学感的，而不是一套塞满冷蓝和能量渐变的体育 UI。",
+          tradeoff: "这是借来的语言，不是发明出来的；认得出来源的人一眼就会认出来。",
+          impact: "把来源写进设计文档，才让它成为一次迁移练习，而不是一次没署名的挪用。",
+        },
+      ],
+      evidence: [
+        {
+          method: "批次生产记录",
+          sample: "六个批次：头像 64、场景 40、CG 73、UI 图标 72、球场战术 18、静态特效 32",
+          question: "生成的美术，能不能在一个没人会手绘完的量级上保持同一种风格？",
+          finding: "299 张资产全部对照美术圣经的锚点过了风格闸门；记录写的是每个阶段的数量，不只是一个总数。",
+          implication: "这条管线是可审计的——任何人都能问某张图出自哪一批、按哪套规则查过。",
+        },
+        {
+          method: "自动化回归测试",
+          sample: "355 个测试文件、1975 个测试，覆盖生涯、合同、伤病、赛季与存档系统",
+          question: "一个系统很重的生涯模拟，在内容持续落地的同时还能保持正确吗？",
+          finding: "1975 个全过；存档数据带 schema 版本号，旧存档会被迁移，而不是悄悄坏掉。",
+          implication: "这里的规模是一个设计约束，不是拿来炫的——没有它，加一章会安静地弄坏三章之前的一条合同规则。",
+        },
+        {
+          method: "可玩性实测",
+          sample: "线上公开版本，从主菜单一路走过角色创建，进到第一个生涯节点",
+          question: "对一个刚进来、什么都不知道的人，这个循环真的跑得起来吗？",
+          finding:
+            "角色创建卡在「姓名必填」上，打法风格的选择会传导进六维属性，第一个节点打开时状态、关系网和可选行动全部就位。",
+          implication: "这些系统是端到端接通的，接缝处没有拿假数据糊过去。",
+        },
+      ],
+      iterations: [
+        {
+          version: "概念",
+          change: "定位成像素风生涯模拟，参考 NBA 2K MyCareer、Punch Club、New Star Soccer 与 Stardew Valley。",
+          reason: "每个参考各解决一块：生涯弧、属性衰减、场外生活、日常循环的满足感。",
+          improvement: "先说清楚各自要借什么，scope 才没有膨胀成「做一个篮球游戏」。",
+        },
+        {
+          version: "系统搭建",
+          change: "选秀、合同、赛季、休赛期、退役、New Game+ 与战术比赛全部作为系统落地。",
+          reason: "一个生涯模拟有多好玩，取决于它能把后果扛过多长的游戏时间。",
+          improvement: "现在一段生涯可以从少年走到退役，并被封存成 Legacy，影响下一周目。",
+        },
+        {
+          version: "美术管线",
+          change: "从零散生成，改成美术圣经 + 批次 prompt + 风格闸门 + 生产记录。",
+          reason: "最早那批资产单看都不错，但它们彼此对不上。",
+          improvement: "一致性变成流程的属性，而不是每张图都要重新吵一次的事。",
+        },
+      ],
+      limits: [
+        {
+          constraint: "没有做过玩家研究。游戏自己标的是 DEMO v0.6。",
+          whyItMatters: "这里的一切都是系统设计和生产纪律。这套节奏对一个不是我的人管不管用，还没测过。",
+          nextValidation: "找五个平时不看篮球的人玩第一章，看这些系统在哪一步开始讲不清自己。",
+        },
+        {
+          constraint: "首包偏大，移动端真机 QA 不足。",
+          whyItMatters: "3.8 MB 的 JS 首包在手机上是实打实的门槛——而华语玩家恰恰主要在手机上遇到它。",
+          nextValidation: "先做代码分包，再补真机 QA，然后才谈公开测试。",
+        },
+        {
+          constraint: "视觉语言是反推来的，不是原创的。",
+          whyItMatters: "它是从一个既有产品的设计系统迁移过来的；把它说成原创就是不诚实。",
+          nextValidation: "把这套系统推到来源到不了的地方——篮球特有的那些界面，就是它必须停止「借」的位置。",
+        },
+      ],
+      takeaway:
+        "这个案例证明我能在一个「本来一定会失控」的量级上跑生成式生产——靠先写规则、按规则设闸门、并且写清楚什么会被拒——同时让一个系统很重的实现在 1975 个测试下保持正确。",
+    },
   },
 };
 
@@ -1401,6 +1653,23 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "Teams that need a designer who can specify a system precisely enough to be built fast.",
       ],
     },
+    hoop: {
+      proves:
+        "This case proves I can run generative production at a volume that would otherwise go incoherent, and keep a systems-heavy build correct while content keeps landing.",
+      inspect: [
+        "Why the art bible was written before any asset was generated, not after the drift showed up.",
+        "Why the rejected-style list turned out to be the load-bearing half of the style gate.",
+        "Why a career runs on 146 discrete nodes instead of a simulated calendar.",
+      ],
+      questions: [
+        "How do you keep hundreds of generated assets looking like one world?",
+        "The visual language is derived from another product's design system — how do you think about that?",
+      ],
+      bestFit: [
+        "Teams shipping generative content pipelines who need coherence, not just throughput.",
+        "Games, narrative systems, or any product where content volume is the design problem.",
+      ],
+    },
   },
   zh: {
     connect: {
@@ -1503,6 +1772,23 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
       bestFit: [
         "AI UX、人机协作与 trust & safety 团队。",
         "需要一个能把系统说清楚到可以被快速实现的设计师的团队。",
+      ],
+    },
+    hoop: {
+      proves:
+        "这个案例证明我能在一个本来一定会失控的量级上跑生成式生产，并且在内容持续落地的同时，让一个系统很重的实现保持正确。",
+      inspect: [
+        "为什么美术圣经写在生成之前，而不是等风格漂了才补。",
+        "为什么「拒绝清单」才是风格闸门里承重的那一半。",
+        "为什么一段生涯跑在 146 个离散节点上，而不是模拟日历。",
+      ],
+      questions: [
+        "几百张生成的资产，你怎么让它们看起来还是同一个世界？",
+        "这套视觉语言是从别人的产品设计系统反推来的——你怎么看这件事？",
+      ],
+      bestFit: [
+        "在做生成式内容管线、要的是一致性而不只是产能的团队。",
+        "游戏、叙事系统，或任何「内容体量本身就是设计问题」的产品。",
       ],
     },
   },
@@ -1704,6 +1990,23 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
     {
       question: "Nobody has run it yet. What does the case actually prove today?",
       reason: "Keeps an unfinished project honest about the line between built and validated.",
+      anchorId: "outcome-limits",
+    },
+  ],
+  hoop: [
+    {
+      question: "Why write the art bible before generating a single asset?",
+      reason: "Tests whether coherence was designed into the process or patched in afterwards.",
+      anchorId: "decision-timeline",
+    },
+    {
+      question: "What did the rejected-style list catch that a positive description would not?",
+      reason: "Checks whether the style gate is a real constraint or a restatement of taste.",
+      anchorId: "evidence-board",
+    },
+    {
+      question: "It says DEMO v0.6 and has no player research. What is it evidence of?",
+      reason: "Keeps a large, polished build honest about what volume alone proves.",
       anchorId: "outcome-limits",
     },
   ],

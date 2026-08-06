@@ -5,6 +5,7 @@ export const CURRENT_PROJECT_SLUGS = [
   "circles",
   "maze",
   "vigil",
+  "hoop",
 ] as const;
 
 export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
@@ -46,5 +47,9 @@ export const PROJECT_OG_COPY: Record<
   vigil: {
     title: "Vigil",
     oneLiner: "A review desk for deciding when to trust an email classifier that is wrong 12% of the time.",
+  },
+  hoop: {
+    title: "Hoop Dream",
+    oneLiner: "A Chinese basketball career RPG, and a production pipeline for 299 generated assets.",
   },
 };

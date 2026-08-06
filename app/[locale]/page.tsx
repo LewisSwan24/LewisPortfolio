@@ -9,6 +9,7 @@ import {
   VizCircles,
   VizMaze,
   VizVigil,
+  VizHoop,
 } from "@/components/viz/ProjectViz";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -37,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil";
+type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil" | "hoop";
 
 interface FeatItemProps {
   n: string;
@@ -224,10 +225,11 @@ export default async function HomePage() {
               of the positioning. */}
           <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze />} />
           <FeatItem n="02" k="vigil" href="/projects/vigil" flip t={t} viz={<VizVigil />} />
-          <FeatItem n="03" k="connect" href="/projects/connect" t={t} viz={<VizConnect />} />
-          <FeatItem n="04" k="spectra" href="/projects/spectra" flip t={t} viz={<VizSpectra />} />
-          <FeatItem n="05" k="ai" href="/projects/ai" t={t} viz={<VizAI />} />
-          <FeatItem n="06" k="circles" href="/projects/circles" flip t={t} viz={<VizCircles />} />
+          <FeatItem n="03" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop />} />
+          <FeatItem n="04" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect />} />
+          <FeatItem n="05" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra />} />
+          <FeatItem n="06" k="ai" href="/projects/ai" flip t={t} viz={<VizAI />} />
+          <FeatItem n="07" k="circles" href="/projects/circles" t={t} viz={<VizCircles />} />
         </div>
       </section>
 

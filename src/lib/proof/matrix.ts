@@ -557,6 +557,46 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
         "Until participants run it, every variant argument here is reasoning rather than evidence, and the case says so.",
     },
   },
+  hoop: {
+    answers: [
+      {
+        id: "hoop-style-coherence",
+        question: "How do you keep hundreds of generated assets looking like one world?",
+        answer:
+          "I would show the order: art bible first, then batch prompts that cite it, then a style gate reviewed against existing runtime anchors, then a production log recording counts per batch. 299 assets across six batches went through that, and coherence became a property of the process rather than an argument re-run per asset.",
+        evidenceHref: "/projects/hoop#decision-timeline",
+        boundary:
+          "It buys stylistic consistency, not artistry — this is a provisional production batch, and the log labels it that way.",
+      },
+      {
+        id: "hoop-rejected-list",
+        question: "What actually made the style gate work?",
+        answer:
+          "The rejected list, more than the positive description. Naming photoreal, 3D, anime, neon, random text and real trademarks as out of bounds gave a reviewable test, where 'warm and simplified' only gave an opinion. A generator will produce any of those on a slightly different prompt, and each looks defensible until it sits next to the rest.",
+        evidenceHref: "/projects/hoop#evidence-board",
+        boundary:
+          "A rejected list only covers failure modes already seen. It would need extending the first time a batch failed in a new direction.",
+      },
+      {
+        id: "hoop-derived-language",
+        question: "The visual language comes from another product's design system. How do you think about that?",
+        answer:
+          "I would say it plainly, because the design document does: the palette and type system are reverse-engineered from Anthropic's product design, and the reason is that a game about one person's whole life needed something unhurried and literary rather than a sports UI of cold blues. Presenting a transfer exercise as original invention is the part that would be dishonest.",
+        evidenceHref: "/projects/hoop#iteration-gallery",
+        boundary:
+          "It is borrowed, and it stops being defensible at the basketball-specific screens, where the source has nothing to say.",
+      },
+    ],
+    managerFollowUp: {
+      id: "hoop-manager-follow-up",
+      question: "It is large and polished but has no players. Why is it in the portfolio?",
+      answer:
+        "Because the interesting problem is production discipline at volume, and that is visible without players: rules written before output, a gate that rejects, a log that makes every batch auditable, and 1,975 tests keeping a systems-heavy build correct while content lands. The game self-labels DEMO v0.6 and the case claims no more than that.",
+      evidenceHref: "/projects/hoop#outcome-limits",
+      boundary:
+        "Volume proves process, not that the pacing works for anyone but me — that needs playtests I have not run.",
+    },
+  },
 };
 
 const caseInterviewPacks: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseInterviewPack>> = {

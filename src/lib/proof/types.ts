@@ -4,7 +4,8 @@ export type ProjectEvidenceSlug =
   | "ai"
   | "circles"
   | "maze"
-  | "vigil";
+  | "vigil"
+  | "hoop";
 export type ProofLocale = "en" | "zh";
 
 export interface CareerSnapshotStat {

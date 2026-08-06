@@ -478,3 +478,91 @@ export function VizVigil() {
     </div>
   );
 }
+
+export function VizHoop() {
+  // The case's actual argument: volume only stays coherent because every batch
+  // clears the same written gate. Counts transcribed from the project's own
+  // stage15 production log.
+  const batches = [
+    { label: "PORTRAITS", n: 64 },
+    { label: "SCENES", n: 40 },
+    { label: "CGS", n: 73 },
+    { label: "UI ICONS", n: 72 },
+    { label: "COURT", n: 18 },
+    { label: "VFX", n: 32 },
+  ];
+  const scale = (n: number) => (n / 73) * 132;
+
+  return (
+    <div className="viz viz-hoop">
+      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="paper-h" width="40" height="40" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="520" height="400" fill="url(#paper-h)" opacity="0.5" />
+
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+          SIX BATCHES · ONE STYLE GATE
+        </text>
+
+        {batches.map((batch, i) => {
+          const y = 62 + i * 26;
+          return (
+            <g key={batch.label}>
+              <text x="30" y={y + 9} fontFamily="var(--font-mono)" fontSize="8.5" fill="#756D61">
+                {batch.label}
+              </text>
+              <rect x="118" y={y} width={scale(batch.n)} height="12" fill="#A63F2A" opacity="0.24" />
+              <text
+                x={118 + scale(batch.n) + 8}
+                y={y + 10}
+                fontFamily="var(--font-mono)"
+                fontSize="9"
+                fill="#3A362D"
+              >
+                {batch.n}
+              </text>
+            </g>
+          );
+        })}
+
+        {/* The gate every batch has to clear. */}
+        <line x1="300" y1="52" x2="300" y2="230" stroke="#25231D" strokeWidth="1.2" />
+        <text
+          x="300"
+          y="246"
+          fontFamily="var(--font-mono)"
+          fontSize="8.5"
+          textAnchor="middle"
+          fill="#25231D"
+        >
+          STYLE GATE
+        </text>
+
+        <path d="M 306 141 L 386 141" stroke="#25231D" strokeWidth="1" />
+        <text x="396" y="132" fontFamily="var(--font-display)" fontSize="40" fill="#25231D">
+          299
+        </text>
+        <text x="396" y="152" fontFamily="var(--font-mono)" fontSize="8.5" fill="#8B7355">
+          PASSED
+        </text>
+
+        <text x="30" y="288" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
+          REJECTED: PHOTOREAL · 3D · ANIME · NEON · RANDOM TEXT · REAL MARKS
+        </text>
+
+        <text x="30" y="336" fontFamily="var(--font-display)" fontStyle="italic" fontSize="22" fill="#25231D">
+          saying what it is not did more work
+        </text>
+        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          146 career nodes · 10 chapters · 1,975 tests
+        </text>
+        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          the rules were written before the volume existed
+        </text>
+      </svg>
+    </div>
+  );
+}

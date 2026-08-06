@@ -17,10 +17,10 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; open to internships and graduate roles.",
     stats: [
       {
-        value: "6",
+        value: "7",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI coaching, social wellbeing, a physical interaction system, and an AI-oversight interface study.",
+          "Information architecture, accessibility, AI coaching, social wellbeing, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "6",
@@ -46,10 +46,10 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，实习与全职都在看。",
     stats: [
       {
-        value: "6",
+        value: "7",
         label: "端到端案例",
         detail:
-          "信息架构、无障碍、AI 面试辅导、国际学生社交健康、一个软硬件结合的互动系统，以及一项关于「人如何监督 AI」的界面研究。",
+          "信息架构、无障碍、AI 面试辅导、国际学生社交健康、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "6",
@@ -229,6 +229,26 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "I can specify a system precisely enough for an AI coding workflow to build it fast, and still own the judgement that decides whether it measures anything.",
     },
+    {
+      slug: "hoop",
+      href: "/projects/hoop",
+      problemType: "Generative production at volume, and narrative systems design",
+      challenge:
+        "A career-simulation RPG needs hundreds of art assets to read as one world. Generating them is cheap now; keeping 299 of them stylistically coherent is the actual problem.",
+      methods: [
+        "art bible",
+        "prompt-per-batch production",
+        "style gate review",
+        "narrative systems design",
+        "regression testing at scale",
+      ],
+      sample:
+        "Publicly playable, self-labelled DEMO v0.6. 299 assets across six batches, a ten-chapter career on 146 nodes, and 1,975 tests over the career, contract, injury and save systems. No player research.",
+      outcome:
+        "A working career sim where coherence is a property of the pipeline rather than of individual assets: rules written first, a style gate with an explicit rejected list, and a production log that makes every batch auditable.",
+      proves:
+        "I can run generative production at a volume that would otherwise go incoherent, and keep a systems-heavy build correct while content keeps landing.",
+    },
   ],
   zh: [
     {
@@ -299,6 +319,19 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "证明我能把一套系统说清楚到 AI 可以快速实现，同时把「它到底测不测得到东西」这个判断留在自己手里。",
     },
+    {
+      slug: "hoop",
+      href: "/projects/hoop",
+      problemType: "大体量生成式生产与叙事系统设计",
+      challenge:
+        "一个生涯模拟 RPG 需要几百张美术资产，才撑得起「这是同一个世界」。现在生成它们很便宜，难的是让 299 张保持在同一种风格里。",
+      methods: ["美术圣经", "按批次写 prompt 生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
+      sample:
+        "线上公开可玩，游戏自标 DEMO v0.6。六个批次共 299 张资产、十章生涯跑在 146 个节点上、覆盖生涯与合同与伤病与存档系统的 1975 个测试。没有做过玩家研究。",
+      outcome:
+        "一个真的能玩的生涯模拟，而它的一致性来自管线而不是单张资产：规则先写、风格闸门附明确的拒绝清单、生产记录让每一批都可审计。",
+      proves: "证明我能在一个本来一定会失控的量级上跑生成式生产，并在内容持续落地的同时让实现保持正确。",
+    },
   ],
 };
 
@@ -314,10 +347,10 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "5",
+        value: "7",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI feedback, social wellbeing, a physical interaction system, and an AI-oversight interface study.",
+          "Information architecture, accessibility, AI feedback, social wellbeing, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "6",
@@ -399,10 +432,10 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "6",
+        value: "7",
         label: "端到端案例",
         detail:
-          "涵盖信息架构、无障碍、AI 反馈、社交健康、一个软硬件结合的互动系统，以及一项关于「人如何监督 AI」的界面研究。",
+          "涵盖信息架构、无障碍、AI 反馈、社交健康、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "6",

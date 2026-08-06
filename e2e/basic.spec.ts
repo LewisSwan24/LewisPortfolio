@@ -1,7 +1,7 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|circles|maze|vigil)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|spectra|ai|circles|maze|vigil|hoop)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 /**
  * Next's dev server sometimes issues a full reload while it compiles a route for
@@ -293,14 +293,45 @@ test.describe("Projects Page", () => {
     // attribute, which is set regardless, while CSP silently refused to load
     // either frame. These assert the headers that actually decide it, so the
     // check does not depend on an external service being up.
+    test("hoop case should render, embed the live build, and stay honest", async ({ page }) => {
+        await gotoStable(page, "/projects/hoop");
+
+        await expect(page.getByRole("heading", { level: 1, name: "Hoop Dream" })).toBeVisible();
+
+        // Screens captured from the public deployment are this case's artefact.
+        const evidence = page.locator(".case-build-evidence");
+        await expect(evidence).toBeVisible();
+        await expect(evidence.locator("img")).toHaveCount(3);
+
+        // Click-to-load, same contract as the other two demos.
+        const demo = page.locator(".case-demo");
+        await expect(demo.locator("iframe")).toHaveCount(0);
+        await demo.locator(".case-demo-poster").click();
+        await expect(demo.locator("iframe")).toHaveAttribute(
+            "src",
+            "https://hoop-dream.vercel.app",
+        );
+
+        // A big polished build with no players has to say so.
+        await expect(page.locator(".case-limits")).toContainText(/no player research/i);
+    });
+
+    test("zh hoop case should be translated, not fall back to English", async ({ page }) => {
+        await gotoStable(page, "/zh/projects/hoop");
+
+        await expect(page.locator(".case-summary")).toContainText("美术圣经");
+        await expect(page.locator(".case-build-evidence .label")).toHaveText("跑起来的样子");
+    });
+
     test("CSP should permit the case-page embeds it relies on", async ({ page }) => {
         const casePage = await page.goto("/projects/maze");
         const csp = casePage!.headers()["content-security-policy"] ?? "";
 
         // Without an explicit frame-src, this falls back to default-src 'self'
-        // and the cross-origin showcase is blocked before a request is made.
+        // and a cross-origin embed is blocked before a request is even made.
         expect(csp).toContain("frame-src");
         expect(csp).toContain("https://maze-runners.vercel.app");
+        expect(csp).toContain("https://hoop-dream.vercel.app");
         // We still refuse to be framed by anyone else.
         expect(csp).toContain("frame-ancestors 'none'");
 
