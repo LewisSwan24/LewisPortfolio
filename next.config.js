@@ -139,8 +139,32 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
+            // frame-src is explicit. Without it, it falls back to default-src
+            // 'self', and the browser refuses to even request the MazeRunners
+            // showcase for the case-page embed — no request at all, just an
+            // error frame. frame-ancestors stays 'none': nobody frames us.
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://avatars.githubusercontent.com https://images.unsplash.com; font-src 'self'; connect-src 'self' https://vitals.vercel-insights.com; frame-ancestors 'none';",
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://avatars.githubusercontent.com https://images.unsplash.com; font-src 'self'; connect-src 'self' https://vitals.vercel-insights.com; frame-src 'self' https://maze-runners.vercel.app; frame-ancestors 'none';",
+          },
+        ],
+      },
+      {
+        // The Vigil prototype is served from our own origin and embedded in its
+        // own case page, so it has to permit being framed by us. The blanket
+        // X-Frame-Options: DENY and frame-ancestors 'none' above block that;
+        // both are relaxed to same-origin here and nowhere else. Its own policy
+        // is tighter than the site default: the file is self-contained and
+        // makes no network calls, so connect-src is 'none'.
+        source: "/projects/vigil/prototype.html",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+          {
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-ancestors 'self';",
           },
         ],
       },

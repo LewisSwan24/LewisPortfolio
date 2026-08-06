@@ -160,14 +160,59 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
   },
 };
 
+interface CaseDemo {
+  src: string;
+  poster: string;
+  title: string;
+  titleZh: string;
+  posterAlt: string;
+  posterAltZh: string;
+  label: string;
+  labelZh: string;
+  blurb: string;
+  blurbZh: string;
+  action: string;
+  actionZh: string;
+}
+
 /**
  * Playable builds, for cases where the thing itself can be handed to a reader.
- * MazeRunners' showcase runs in demo mode with no hardware attached.
+ * MazeRunners' showcase runs in demo mode with no hardware attached; Vigil's
+ * prototype is a single self-contained file with no network calls at all, so it
+ * ships from our own origin rather than needing a second deployment.
  */
-const CASE_DEMO: Partial<Record<Slug, { src: string; poster: string }>> = {
+const CASE_DEMO: Partial<Record<Slug, CaseDemo>> = {
   maze: {
     src: "https://maze-runners.vercel.app",
     poster: "/projects/maze/01-exhibition-setup.png",
+    title: "MazeRunners interactive demo",
+    titleZh: "MazeRunners 互动 demo",
+    posterAlt: "MazeRunners at the exhibition; click to start the interactive demo",
+    posterAltZh: "MazeRunners 展览现场，点击开始互动 demo",
+    label: "Play it yourself",
+    labelZh: "自己玩玩看",
+    blurb:
+      "This is the same console that drives the physical maze, running in demo mode with no hardware attached. Hit Start, then Trap Test, and watch the score, the haptic channels, and the event log all answer the same event.",
+    blurbZh:
+      "这是驱动实体迷宫的同一套控制台，跑在 demo 模式下，不用接硬件。按 Start 开一局，再按 Trap Test，看计分、震动通道和事件日志同时反应。",
+    action: "Load the interactive demo",
+    actionZh: "载入互动 demo",
+  },
+  vigil: {
+    src: "/projects/vigil/prototype.html",
+    poster: "/projects/vigil/02-review-q1percent-q3inline.png",
+    title: "Vigil interactive prototype",
+    titleZh: "Vigil 互动原型",
+    posterAlt: "The Vigil review screen; click to open the interactive prototype",
+    posterAltZh: "Vigil 的复核界面，点击打开互动原型",
+    label: "Flip the variants yourself",
+    labelZh: "自己切切看六个变体",
+    blurb:
+      "The six variants under evaluation, in one self-contained file. Press the gear at the bottom left, or the backtick key, to switch how confidence is shown, when the verdict appears, and where the evidence sits. Worth watching what changes in your own reading when the number becomes a band.",
+    blurbZh:
+      "正在评估的六个变体，全部在这一个独立文件里。按左下角的齿轮或反引号键，就能切换置信度怎么显示、判定什么时候出现、证据摆在哪。可以留意一下：当那个数字变成一个档位，你自己的读法会怎么变。",
+    action: "Load the interactive prototype",
+    actionZh: "载入互动原型",
   },
 };
 
@@ -476,20 +521,12 @@ export default async function CasePage({ params }: Props) {
         <DemoEmbed
           src={CASE_DEMO[k]!.src}
           poster={CASE_DEMO[k]!.poster}
-          title={isZh ? "MazeRunners 互动 demo" : "MazeRunners interactive demo"}
-          posterAlt={
-            isZh
-              ? "MazeRunners 展览现场，点击开始互动 demo"
-              : "MazeRunners at the exhibition; click to start the interactive demo"
-          }
-          label={isZh ? "自己玩玩看" : "Play it yourself"}
-          blurb={
-            isZh
-              ? "这是驱动实体迷宫的同一套控制台，跑在 demo 模式下，不需要接硬体。按 Start 开一局，再按 Trap Test，看计分、震动通道和事件日志同时反应。"
-              : "This is the same console that drives the physical maze, running in demo mode with no hardware attached. Hit Start, then Trap Test, and watch the score, the haptic channels, and the event log all answer the same event."
-          }
-          action={isZh ? "载入互动 demo" : "Load the interactive demo"}
-          openLabel={isZh ? "在新分页打开 ↗" : "Open in a new tab ↗"}
+          title={isZh ? CASE_DEMO[k]!.titleZh : CASE_DEMO[k]!.title}
+          posterAlt={isZh ? CASE_DEMO[k]!.posterAltZh : CASE_DEMO[k]!.posterAlt}
+          label={isZh ? CASE_DEMO[k]!.labelZh : CASE_DEMO[k]!.label}
+          blurb={isZh ? CASE_DEMO[k]!.blurbZh : CASE_DEMO[k]!.blurb}
+          action={isZh ? CASE_DEMO[k]!.actionZh : CASE_DEMO[k]!.action}
+          openLabel={isZh ? "在新标签页打开 ↗" : "Open in a new tab ↗"}
         />
       )}
 

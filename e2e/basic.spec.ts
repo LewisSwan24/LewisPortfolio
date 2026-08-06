@@ -255,10 +255,61 @@ test.describe("Projects Page", () => {
     });
 
     test("cases without a playable build should not show a demo", async ({ page }) => {
-        for (const slug of ["connect", "spectra", "ai", "circles", "vigil"]) {
+        for (const slug of ["connect", "spectra", "ai", "circles"]) {
             await page.goto(`/projects/${slug}`);
             await expect(page.locator(".case-demo")).toHaveCount(0);
         }
+    });
+
+    // Same click-to-load contract as MazeRunners, but this prototype is served
+    // from our own origin, so the test also proves the file actually shipped.
+    test("vigil prototype should load only on click, from our own origin", async ({ page }) => {
+        await gotoStable(page, "/projects/vigil");
+
+        const demo = page.locator(".case-demo");
+        await expect(demo).toBeVisible();
+        await expect(demo.locator("iframe")).toHaveCount(0);
+
+        await demo.locator(".case-demo-poster").click();
+        await expect(demo.locator("iframe")).toHaveAttribute(
+            "src",
+            "/projects/vigil/prototype.html",
+        );
+
+        // A real prototype, not a 404 rendered inside a frame. The prototype
+        // opens on its briefing screen, so assert that rather than the review
+        // pane behind it.
+        await expect(
+            page.frameLocator(".case-demo iframe").getByText(/last check before the inbox/i),
+        ).toBeVisible();
+    });
+
+    test("the embedded prototype should stay out of the search index", async ({ page }) => {
+        const robots = await page.goto("/robots.txt");
+        expect(await robots!.text()).toContain("/projects/vigil/prototype.html");
+    });
+
+    // Both demos were once shipped broken: the tests asserted the iframe src
+    // attribute, which is set regardless, while CSP silently refused to load
+    // either frame. These assert the headers that actually decide it, so the
+    // check does not depend on an external service being up.
+    test("CSP should permit the case-page embeds it relies on", async ({ page }) => {
+        const casePage = await page.goto("/projects/maze");
+        const csp = casePage!.headers()["content-security-policy"] ?? "";
+
+        // Without an explicit frame-src, this falls back to default-src 'self'
+        // and the cross-origin showcase is blocked before a request is made.
+        expect(csp).toContain("frame-src");
+        expect(csp).toContain("https://maze-runners.vercel.app");
+        // We still refuse to be framed by anyone else.
+        expect(csp).toContain("frame-ancestors 'none'");
+
+        const prototype = await page.goto("/projects/vigil/prototype.html");
+        expect(prototype!.status()).toBe(200);
+        expect(prototype!.headers()["x-frame-options"]).toBe("SAMEORIGIN");
+        expect(prototype!.headers()["content-security-policy"]).toContain(
+            "frame-ancestors 'self'",
+        );
     });
 
     test("vigil case should render and stay honest about not being tested", async ({ page }) => {

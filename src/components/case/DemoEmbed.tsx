@@ -40,12 +40,10 @@ export function DemoEmbed({
 
       <div className="case-demo-frame">
         {live ? (
-          <iframe
-            src={src}
-            title={title}
-            allow="autoplay; fullscreen; serial"
-            loading="lazy"
-          />
+          /* No loading="lazy" here: mounting is already gated behind the click,
+             so deferring a second time means someone asks for the demo and gets
+             an empty frame until they happen to scroll it into view. */
+          <iframe src={src} title={title} allow="autoplay; fullscreen; serial" />
         ) : (
           <button type="button" className="case-demo-poster" onClick={() => setLive(true)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
