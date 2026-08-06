@@ -262,7 +262,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "人对 AI 的监督",
       caseSlug: "vigil",
       proof:
-        "Vigil 把分类器的信度刻意做成弱证据，而且一旦这个性质失效，它自己的 build 就会挂掉。",
+        "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这个性质失效，它自己的 build 就会挂掉。",
       whyItMatters:
         "证明我做得了 AI UX 里更难的那一半：让人继续复核，而不是顺着它点下去。",
       href: "/projects/vigil#decision-timeline",

@@ -20,6 +20,8 @@ export function generatePersonSchema() {
         "@context": "https://schema.org",
         "@type": "Person",
         name: siteConfig.author.name,
+        // Both names in the graph, so a search for either one resolves here.
+        alternateName: siteConfig.author.nameZh,
         jobTitle: "Interaction Designer",
         description: siteConfig.description,
         url: base,

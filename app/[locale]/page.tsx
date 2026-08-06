@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "董宇哲 Lewis · 交互设计 / UX 设计师"
+      ? "董子铭（Lewis Dong）· 交互设计师 / 产品设计师"
       : `${siteConfig.name} · ${siteConfig.title}`;
   const description =
     locale === "zh"

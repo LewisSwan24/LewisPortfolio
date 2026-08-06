@@ -44,6 +44,10 @@ export const siteConfig = {
   url: resolveSiteUrl(),
   author: {
     name: "Lewis Dong",
+    // Legal/Chinese name. Carried into structured data as alternateName so a
+    // Chinese-language search for 董子铭 resolves to this site, and used for the
+    // signature on /zh surfaces.
+    nameZh: "董子铭",
     email: "24kplo@gmail.com",
     location: "Brisbane, Australia",
   },

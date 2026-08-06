@@ -74,7 +74,7 @@ const ITEMS: Item[] = [
     },
     changed: {
       en: "Confidence built as weak evidence, so the number cannot replace reading the message",
-      zh: "把信度做成弱证据，让那个数字无法取代真的去读那封信",
+      zh: "把置信度做成弱证据，让那个数字无法取代真的去读那封信",
     },
   },
   {
