@@ -17,10 +17,10 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; open to internships and graduate roles.",
     stats: [
       {
-        value: "5",
+        value: "6",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI coaching, social wellbeing, and a physical interaction system.",
+          "Information architecture, accessibility, AI coaching, social wellbeing, a physical interaction system, and an AI-oversight interface study.",
       },
       {
         value: "6",
@@ -46,9 +46,10 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，实习与全职都在看。",
     stats: [
       {
-        value: "5",
+        value: "6",
         label: "端到端案例",
-        detail: "信息架构、无障碍、AI 面试辅导、国际学生社交健康，以及一个软硬件结合的互动系统。",
+        detail:
+          "信息架构、无障碍、AI 面试辅导、国际学生社交健康、一个软硬件结合的互动系统，以及一项关于「人如何监督 AI」的界面研究。",
       },
       {
         value: "6",
@@ -208,6 +209,26 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "I can carry an interaction idea down to firmware and back up to a browser UI, and make calibration and safety calls on real hardware.",
     },
+    {
+      slug: "vigil",
+      href: "/projects/vigil",
+      problemType: "Human oversight of AI, built through an AI-assisted workflow",
+      challenge:
+        "A phishing classifier that is right 88% of the time still needs a human on the other side. The interface decides whether that person genuinely checks the call or clicks through it.",
+      methods: [
+        "spec freeze",
+        "synthetic stimulus design",
+        "A/B variant prototyping",
+        "measured contrast auditing",
+        "usability test protocol design",
+      ],
+      sample:
+        "In progress. A 140-message synthetic corpus with an authored 87.9%-accurate classifier and a validated error profile; six interface variants across three questions; a five-participant protocol written but not yet run.",
+      outcome:
+        "Six variants running behind a working React build, with the corpus gated so confidence cannot predict the classifier's mistakes. The three design questions are still open, and the predictions were recorded before any testing.",
+      proves:
+        "I can specify a system precisely enough for an AI coding workflow to build it fast, and still own the judgement that decides whether it measures anything.",
+    },
   ],
   zh: [
     {
@@ -264,6 +285,20 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "证明我能把一个交互想法一路做到固件，再接回浏览器界面，并在真实硬件上做校准与安全取舍。",
     },
+    {
+      slug: "vigil",
+      href: "/projects/vigil",
+      problemType: "人对 AI 的监督，用 AI 辅助流程做出来",
+      challenge:
+        "一个准确率 88% 的钓鱼邮件分类器，另一端仍然需要一个人。而界面决定了这个人是真的在复核，还是一路点过去。",
+      methods: ["规格冻结", "合成刺激材料设计", "A/B 变体原型", "对比度实测审计", "可用性测试脚本设计"],
+      sample:
+        "进行中。140 封合成邮件、一个准确率 87.9% 的自建分类器与经过验证的错误分布；三个设计问题、六个界面变体；五人测试脚本已写好，尚未执行。",
+      outcome:
+        "六个变体已经跑起来，背后是一版可运行的 React 实现；语料设有闸门，确保信度无法预测分类器错在哪里。三个设计问题都还开着，而预测在测试之前就已写下。",
+      proves:
+        "证明我能把一套系统说清楚到 AI 可以快速实现，同时把「它到底测不测得到东西」这个判断留在自己手里。",
+    },
   ],
 };
 
@@ -282,7 +317,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         value: "5",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI feedback, social wellbeing, and a physical interaction system.",
+          "Information architecture, accessibility, AI feedback, social wellbeing, a physical interaction system, and an AI-oversight interface study.",
       },
       {
         value: "6",
@@ -329,12 +364,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       },
       {
         audience: "AI UX / trust",
-        title: "AI UX and feedback timing",
+        title: "Designing against over-trust in an AI",
         claim:
-          "Best proof that I can design AI assistance with user control, emotional safety, and useful feedback timing.",
+          "Best proof that I can design the conditions under which a person genuinely checks an AI rather than deferring to it.",
         evidence:
-          "AI Interview Assistant focuses on post-session feedback, tone control, anxiety reduction, and trust boundaries.",
-        href: "/projects/ai#interviewer-scan",
+          "Vigil builds the classifier's confidence as deliberately weak evidence, and the build fails if that stops being true.",
+        href: "/projects/vigil#decision-timeline",
       },
       {
         audience: "Social wellbeing / ambiguous problems",
@@ -364,9 +399,10 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "5",
+        value: "6",
         label: "端到端案例",
-        detail: "涵盖信息架构、无障碍、AI 反馈、社交健康，以及一个软硬件结合的互动系统。",
+        detail:
+          "涵盖信息架构、无障碍、AI 反馈、社交健康、一个软硬件结合的互动系统，以及一项关于「人如何监督 AI」的界面研究。",
       },
       {
         value: "6",
@@ -413,12 +449,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       },
       {
         audience: "AI UX / 信任",
-        title: "AI UX 与反馈时机",
+        title: "设计出「不轻易相信 AI」这件事",
         claim:
-          "证明我能兼顾用户控制、情绪安全与有效反馈时机来设计 AI 辅助体验。",
+          "证明我能设计出让人真的去复核 AI、而不是顺着它点下去的条件。",
         evidence:
-          "AI 面试助手聚焦会后反馈、语气控制、焦虑缓解与信任边界。",
-        href: "/projects/ai#interviewer-scan",
+          "Vigil 把分类器的信度刻意做成弱证据，而且一旦这个性质失效，build 直接挂掉。",
+        href: "/projects/vigil#decision-timeline",
       },
       {
         audience: "社交健康 / 模糊问题",

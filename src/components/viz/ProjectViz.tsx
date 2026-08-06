@@ -368,3 +368,113 @@ export function VizMaze() {
     </div>
   );
 }
+
+export function VizVigil() {
+  // The one fact the whole case turns on: the classifier's confidence spans
+  // almost the same range whether it is right or wrong, so a reviewer cannot
+  // read the number instead of the message. Drawn as ranges rather than
+  // individual dots, because ranges are what the corpus actually validates.
+  const x = (confidence: number) => 60 + ((confidence - 0.55) / 0.45) * 410;
+  const ticks = [0.6, 0.7, 0.8, 0.9, 1.0];
+  const namedErrors = [
+    { confidence: 0.89, label: "em_128" },
+    { confidence: 0.91, label: "em_052" },
+  ];
+
+  return (
+    <div className="viz viz-vigil">
+      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="paper-v" width="40" height="40" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="520" height="400" fill="url(#paper-v)" opacity="0.5" />
+
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+          CONFIDENCE · WHERE THE CLASSIFIER LANDS
+        </text>
+
+        {/* The overlap is the argument: both bands occupy the same stretch. */}
+        <rect x={x(0.61)} y="86" width={x(0.91) - x(0.61)} height="128" fill="#A63F2A" opacity="0.07" />
+
+        <rect
+          x={x(0.58)}
+          y="98"
+          width={x(0.97) - x(0.58)}
+          height="26"
+          fill="#F7F4EC"
+          stroke="#25231D"
+          strokeWidth="1"
+        />
+        <text x={x(0.58) + 10} y="115" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#3A362D">
+          123 CALLS IT GOT RIGHT
+        </text>
+
+        <rect
+          x={x(0.61)}
+          y="176"
+          width={x(0.91) - x(0.61)}
+          height="26"
+          fill="#F7F4EC"
+          stroke="#A63F2A"
+          strokeWidth="1.2"
+        />
+        <text x={x(0.61) + 10} y="193" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#A63F2A">
+          17 IT GOT WRONG
+        </text>
+
+        {namedErrors.map((error) => (
+          <g key={error.label}>
+            <line
+              x1={x(error.confidence)}
+              y1="176"
+              x2={x(error.confidence)}
+              y2="228"
+              stroke="#A63F2A"
+              strokeWidth="1"
+            />
+            <circle cx={x(error.confidence)} cy="189" r="3.4" fill="#A63F2A" />
+            <text
+              x={x(error.confidence)}
+              y="242"
+              fontFamily="var(--font-mono)"
+              fontSize="8"
+              textAnchor="middle"
+              fill="#A63F2A"
+            >
+              {error.label}
+            </text>
+          </g>
+        ))}
+
+        <line x1="60" y1="272" x2="470" y2="272" stroke="#8B7355" strokeWidth="0.8" />
+        {ticks.map((tick) => (
+          <g key={tick}>
+            <line x1={x(tick)} y1="272" x2={x(tick)} y2="278" stroke="#8B7355" strokeWidth="0.8" />
+            <text
+              x={x(tick)}
+              y="292"
+              fontFamily="var(--font-mono)"
+              fontSize="9"
+              textAnchor="middle"
+              fill="#756D61"
+            >
+              {tick.toFixed(1)}
+            </text>
+          </g>
+        ))}
+
+        <text x="30" y="336" fontFamily="var(--font-display)" fontStyle="italic" fontSize="22" fill="#25231D">
+          the number can&apos;t tell you when it&apos;s wrong
+        </text>
+        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          140 messages · 87.9% accurate · error-ranking auc 0.72
+        </text>
+        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          the build fails if that number climbs past 0.75
+        </text>
+      </svg>
+    </div>
+  );
+}

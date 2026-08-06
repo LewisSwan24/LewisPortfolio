@@ -1,4 +1,11 @@
-export const CURRENT_PROJECT_SLUGS = ["connect", "spectra", "ai", "circles", "maze"] as const;
+export const CURRENT_PROJECT_SLUGS = [
+  "connect",
+  "spectra",
+  "ai",
+  "circles",
+  "maze",
+  "vigil",
+] as const;
 
 export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
 
@@ -35,5 +42,9 @@ export const PROJECT_OG_COPY: Record<
   maze: {
     title: "MazeRunners",
     oneLiner: "A sensor-driven physical maze wired to haptics, audio, and a browser console.",
+  },
+  vigil: {
+    title: "Vigil",
+    oneLiner: "A review desk for deciding when to trust an email classifier that is wrong 12% of the time.",
   },
 };

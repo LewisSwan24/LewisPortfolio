@@ -1,7 +1,25 @@
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|circles|maze)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|spectra|ai|circles|maze|vigil)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+
+/**
+ * Next's dev server sometimes issues a full reload while it compiles a route for
+ * the first time, which cancels an in-flight goto with "interrupted by another
+ * navigation". WebKit hits it most. The page itself is fine — retry rather than
+ * report a product failure that does not exist.
+ */
+async function gotoStable(page: Page, url: string) {
+    for (let attempt = 0; ; attempt += 1) {
+        try {
+            await page.goto(url);
+            return;
+        } catch (error) {
+            const interrupted = String(error).includes("interrupted by another navigation");
+            if (!interrupted || attempt >= 2) throw error;
+        }
+    }
+}
 
 async function expectAnchoredCaseProofLink(link: Locator) {
     await expect(link).toBeVisible();
@@ -237,10 +255,33 @@ test.describe("Projects Page", () => {
     });
 
     test("cases without a playable build should not show a demo", async ({ page }) => {
-        for (const slug of ["connect", "spectra", "ai", "circles"]) {
+        for (const slug of ["connect", "spectra", "ai", "circles", "vigil"]) {
             await page.goto(`/projects/${slug}`);
             await expect(page.locator(".case-demo")).toHaveCount(0);
         }
+    });
+
+    test("vigil case should render and stay honest about not being tested", async ({ page }) => {
+        await page.goto("/projects/vigil");
+
+        await expect(page.getByRole("heading", { level: 1, name: "Vigil" })).toBeVisible();
+
+        // The variant screenshots are this case's artefact, the way the build
+        // photographs are MazeRunners'.
+        const evidence = page.locator(".case-build-evidence");
+        await expect(evidence).toBeVisible();
+        await expect(evidence.locator("img")).toHaveCount(4);
+
+        // Standing rule for this portfolio: an unvalidated case has to say so.
+        // If this ever fails because the copy softened, that is the bug.
+        await expect(page.locator(".case-limits")).toContainText(/no participant has run it yet/i);
+    });
+
+    test("zh vigil case should be translated, not fall back to English", async ({ page }) => {
+        await gotoStable(page, "/zh/projects/vigil");
+
+        await expect(page.locator(".case-summary")).toContainText("分类器");
+        await expect(page.locator(".case-build-evidence .label")).toHaveText("正在被测试的变体");
     });
 
     test("case page should not overflow on mobile", async ({ page }) => {
@@ -415,7 +456,7 @@ test.describe("Proof Maintenance", () => {
         await page.goto("/");
         await expect(page.locator("a[href*='maintenance/proof']")).toHaveCount(0);
 
-        await page.goto("/maintenance/proof");
+        await gotoStable(page, "/maintenance/proof");
         await expect(page.locator("main[data-screen-label='17 Proof Maintenance']")).toHaveCount(0);
         await expect(page.getByText(/not found|404/i).first()).toBeVisible();
     });

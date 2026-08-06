@@ -11,9 +11,17 @@ const projectLabels: Record<ProjectEvidenceSlug, string> = {
   ai: "AI Coach",
   circles: "Connect Circles",
   maze: "MazeRunners",
+  vigil: "Vigil",
 };
 
-const projectOrder: ProjectEvidenceSlug[] = ["connect", "spectra", "ai", "circles", "maze"];
+const projectOrder: ProjectEvidenceSlug[] = [
+  "connect",
+  "spectra",
+  "ai",
+  "circles",
+  "maze",
+  "vigil",
+];
 
 interface EvidenceMatrixProps {
   capabilities: EvidenceMatrixCapability[];

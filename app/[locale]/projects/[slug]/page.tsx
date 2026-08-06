@@ -4,7 +4,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
-import { VizConnect, VizSpectra, VizAI, VizCircles, VizMaze } from "@/components/viz/ProjectViz";
+import {
+  VizConnect,
+  VizSpectra,
+  VizAI,
+  VizCircles,
+  VizMaze,
+  VizVigil,
+} from "@/components/viz/ProjectViz";
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { DemoEmbed } from "@/components/case/DemoEmbed";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -38,16 +45,25 @@ interface CaseMediaImage {
 }
 
 interface CaseMedia {
+  label: string;
+  labelZh: string;
+  blurb: string;
+  blurbZh: string;
   images: CaseMediaImage[];
   video?: { src: string; poster: string; caption: string; captionZh: string };
 }
 
 /**
- * Photographic evidence, for cases that have a physical artefact. Only
- * MazeRunners does — the rest are screen work whose artefact is the cover viz.
+ * Artefact evidence, for cases where there is something to look at beyond the
+ * cover viz: MazeRunners has photographs of the physical build, Vigil has the
+ * variants themselves. The rest carry their argument in prose.
  */
 const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
   maze: {
+    label: "Build evidence",
+    labelZh: "实物证据",
+    blurb: "Photographs of the actual build and a clip of the circuit running — not renders.",
+    blurbZh: "以下是实际搭建与展出的照片和电路运行录像，不是渲染图。",
     images: [
       {
         src: "/projects/maze/01-exhibition-setup.png",
@@ -93,6 +109,55 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
       captionZh: "PlanB 反馈电路运行录像。",
     },
   },
+  vigil: {
+    label: "The variants under test",
+    labelZh: "正在被测试的变体",
+    blurb:
+      "Screens generated from the running prototype by a script, so each image is a pure function of its URL and can be regenerated after any change.",
+    blurbZh:
+      "这些截图由脚本从跑起来的原型直接生成——每张图都是 URL 的纯函数，任何改动之后都可以重新生成一遍。",
+    images: [
+      {
+        src: "/projects/vigil/02-review-q1percent-q3inline.png",
+        width: 1440,
+        height: 900,
+        alt: "The review screen showing a precise confidence figure and cue spans highlighted inline in the message",
+        altZh: "复核界面：显示精确信度数值，线索直接在邮件正文里高亮",
+        caption: "Q1 percent + Q3 inline. The evidence is marked where it sits.",
+        captionZh: "Q1 精确百分比 + Q3 内文高亮。证据标在它所在的位置。",
+      },
+      {
+        src: "/projects/vigil/03-review-q1band-q3list.png",
+        width: 1440,
+        height: 900,
+        alt: "The same message with a coarse confidence band and the cues collected in a side list instead of highlighted",
+        altZh: "同一封邮件：信度改为粗略分档，线索集中在侧栏列表而非正文高亮",
+        caption: "Q1 band + Q3 list. Same message, same cues, nothing marked until asked.",
+        captionZh: "Q1 分档 + Q3 侧栏列表。同一封信、同样的线索，不问就不标。",
+      },
+      {
+        src: "/projects/vigil/05-gate-disagree.png",
+        width: 1440,
+        height: 900,
+        alt: "The gate variant after the reviewer has committed, with the classifier disagreeing and the panel reading 'One of you is wrong'",
+        altZh: "Q2 先判后揭的变体：使用者判断之后，分类器给出相反结论，面板写着「One of you is wrong」",
+        caption:
+          "The hardest message in the set: every authentication check passes, the classifier reports no indicators, and it is impersonation.",
+        captionZh:
+          "整组里最难的一封：每一项认证检查都通过，分类器报告零线索，而它其实是冒用身分。",
+      },
+      {
+        src: "/projects/vigil/06-summary.png",
+        width: 1440,
+        height: 900,
+        alt: "The summary screen with a two-by-two table of whether the reviewer took the classifier's word against whether it was right",
+        altZh: "总结页：一张 2×2 表格，交叉呈现「是否采信分类器」与「分类器是否正确」",
+        caption:
+          "The payoff screen. Bottom right — caught the classifier's mistake — is the cell the interface exists to grow.",
+        captionZh: "收益页。右下角「抓到了分类器的错误」，正是这个界面存在的意义。",
+      },
+    ],
+  },
 };
 
 /**
@@ -112,6 +177,7 @@ const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   ai: [],
   circles: [],
   maze: [],
+  vigil: [],
 };
 
 export function generateStaticParams() {
@@ -144,6 +210,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function CoverViz({ slug }: { slug: Slug }) {
   if (slug === "maze") return <VizMaze />;
+  if (slug === "vigil") return <VizVigil />;
   if (slug === "connect") return <VizConnect />;
   if (slug === "spectra") return <VizSpectra />;
   if (slug === "ai") return <VizAI />;
@@ -367,14 +434,13 @@ export default async function CasePage({ params }: Props) {
       </section>
 
       {CASE_MEDIA[k] && (
-        <section className="container case-build-evidence" aria-label={isZh ? "实物证据" : "Build evidence"}>
+        <section
+          className="container case-build-evidence"
+          aria-label={isZh ? CASE_MEDIA[k]!.labelZh : CASE_MEDIA[k]!.label}
+        >
           <div className="case-build-head">
-            <div className="label">{isZh ? "实物证据" : "Build evidence"}</div>
-            <p>
-              {isZh
-                ? "以下是实际搭建与展出的照片和电路运行录像，不是渲染图。"
-                : "Photographs of the actual build and a clip of the circuit running — not renders."}
-            </p>
+            <div className="label">{isZh ? CASE_MEDIA[k]!.labelZh : CASE_MEDIA[k]!.label}</div>
+            <p>{isZh ? CASE_MEDIA[k]!.blurbZh : CASE_MEDIA[k]!.blurb}</p>
           </div>
           <div className="case-build-grid">
             {CASE_MEDIA[k]!.images.map((image) => (

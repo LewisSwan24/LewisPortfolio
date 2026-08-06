@@ -1,169 +1,80 @@
 ---
-title: "Designing for AI: Lessons from Building Smart Interfaces"
-date: "2025-01-20"
-excerpt: "Artificial intelligence is reshaping how we design user experiences. Here are key principles I've learned from designing AI-powered interfaces that feel natural and helpful."
+title: "What the AI didn't decide"
+date: "2026-08-06"
+excerpt: "I wrote the spec and let Claude Code and Codex build a research prototype. Six interface variants existed within days. This is the log of what that bought me, and of the three decisions the workflow could not have made for me."
 tags:
-  - AI Design
-  - UX Design
+  - AI-assisted design
+  - Design process
   - Human-AI Interaction
-  - Design Principles
+  - Prototyping
 author: "Lewis Dong"
 published: true
 ---
 
-## Introduction
+I have been building [Vigil](/projects/vigil), a browser-based email review desk for studying how people oversee an AI that screens for phishing. The reviewer sees a message, sees what a classifier made of it, and decides whether that judgement holds. The classifier is wrong about twelve percent of the time, on purpose.
 
-Over the past year, I've had the opportunity to design several AI-powered interfaces, from interview preparation tools to accessibility assistants. Working with AI has challenged many of my traditional design assumptions and taught me valuable lessons about creating human-centered intelligent systems.
+I did not write the code. Claude Code and Codex wrote the corpus pipeline, the clickable prototype, and the React implementation, from a spec I froze before any of it started. That worked, and it worked fast. What follows is the honest version of what it cost — because the interesting part is not the speed, it is the three things I had to reject, and what they had in common.
 
-In this post, I'll share the key principles I've developed for designing AI interfaces that users actually enjoy using.
+## The setup
 
-## The AI Design Challenge
+The division of labour was written down before the first line of code, in a file the whole project still runs on: I make every decision that is a judgement call, the tooling writes everything that is an implementation of one. Spec, data schema, event schema and config schema were frozen first. Only then did anything get built.
 
-Designing for AI is fundamentally different from traditional interface design. You're not just designing buttons and screens—you're designing a relationship between humans and an intelligent system that can make decisions, generate content, and learn over time.
+That ordering is the whole technique. A frozen spec is what makes a coding agent useful rather than merely productive — it turns "build me a thing" into a series of questions with checkable answers.
 
-This introduces unique challenges:
+What it bought was optionality. The study needed three design questions, each with two variants: how the classifier's confidence is displayed, when its verdict appears, and how its evidence is presented. Six interfaces. In a hand-built project I would have argued myself down to four, because the fifth and sixth are where you start trading a variant against a weekend. Here the marginal cost of the sixth was low enough that I never had to have that argument. All six exist, all six are switchable at runtime, and the losing ones stay in the config as conditions for the next study.
 
-- **Unpredictability**: AI outputs aren't deterministic
-- **Trust**: Users need to understand and trust AI decisions
-- **Control**: Users need appropriate levels of agency
-- **Transparency**: The "black box" problem of AI systems
+That is a real gain and I do not want to undersell it. Now the other side.
 
-## Core Design Principles
+## Rejection one: the first visual pass
 
-### 1. Set Appropriate Expectations
+The first interface came back competent. White cards on a grey field, a safe blue accent, six uppercase letterspaced labels on a single screen, `system-ui` throughout. Nothing was wrong with it. I could have shipped it and nobody would have filed a bug.
 
-**The Principle**: Be clear about what the AI can and cannot do.
+It also looked like software rather than like a decision, which is a problem when the entire subject of the study is whether someone treats a classifier's output as authority. A tinted verdict card lends the machine credibility it has not earned. A safe blue accent is the default of every generated interface on the internet, which is precisely why it reads as unconsidered.
 
-**My Experience**: In my AI Interview Assistant project, early versions set unrealistic expectations. Users thought the AI could guarantee interview success. After adding clear messaging about the tool being "practice support" rather than "interview insurance," user satisfaction improved significantly.
+The second pass has an argument behind it: **the tool speaks in monospace, the message speaks in prose**. Everything the system says — headers, verdict, cue labels, counts — is set as instrument output. The message body is the only thing in a text face, because it is the only thing written by a human and under examination. The verdict is carried by weight and a rule rather than by colour, so the reader has to actually read the word. There is no success green anywhere, because a "legitimate" verdict is a claim to be checked, not a result to celebrate.
 
-**Implementation Tips**:
-- Use onboarding to explain AI capabilities
-- Include contextual hints about limitations
-- Set realistic success metrics
+Monospace turned out to be load-bearing rather than decorative, too. Impersonation hides in the sender address — a lookalike domain differing by one transposed letter — and a proportional face closes up exactly the letter pairs the attack depends on.
 
-### 2. Maintain Human Agency
+None of that is a thing a prompt produces. It comes from having a position about what the interface is *for*.
 
-**The Principle**: Users should always feel in control, not controlled by AI.
+## Rejection two: the corpus that passed every test and was useless
 
-**My Experience**: Early iterations of the Spectra Lens AR feature automatically identified colors without user initiation. Users felt surveilled. Adding a manual trigger button increased comfort and usage by 40%.
+This is the one I think about.
 
-**Implementation Tips**:
-- Make AI actions require user initiation when possible
-- Provide easy ways to override AI suggestions
-- Allow users to customize AI behavior
+The pipeline generated 140 messages and a classifier that got 87.9% of them right — inside the target band, with the error distribution I had asked for: false positives clustering in marketing mail, false negatives in social-engineering messages carrying no links to flag. Every validation the script ran came back green. Character offsets for the highlighting were exact. Reruns were byte-identical.
 
-### 3. Design for Uncertainty
+Then I looked at the confidence numbers next to the errors. Every correct call sat at 0.84 or above. Every error sat at 0.82 or below.
 
-**The Principle**: AI will make mistakes. Design interfaces that handle uncertainty gracefully.
+A participant could have caught all seventeen mistakes by reading a number and never reading an email. Two of my three design questions — how confidence is shown, and how evidence is presented — would have measured nothing at all, because the task they were meant to make hard would have been trivially solvable. The corpus was perfect and the study was dead.
 
-**My Experience**: In interview practice sessions, the AI speech analysis sometimes misinterpreted accents or technical jargon. Instead of showing incorrect feedback, we added confidence scores and fallback states.
+The fix was to resample confidence in strata and then encode the property as a hard gate: the build script now computes how well confidence ranks the classifier's own errors, and refuses to write the corpus if that rises past an AUC of 0.75. It currently sits at 0.72, with seven errors carrying high confidence and thirty-six correct calls carrying low confidence.
 
-**Implementation Tips**:
-- Show confidence levels for AI outputs
-- Provide easy correction mechanisms
-- Design graceful degradation paths
+The lesson I actually took: **write the validation gate before you generate the content**, not after. Everything I had asked the script to check, it checked. The defect was in what I had not thought to ask, and generated material will sail straight through that gap every time, because nothing in it has an instinct that something looks too clean.
 
-### 4. Make AI Transparent
+## Rejection three: the explanation that described a different email
 
-**The Principle**: Users should understand *why* the AI responded a certain way.
+Each message carries a one-line rationale from the classifier — the human-readable version of why it called what it called. The first implementation drew from a pool of plausible sentences.
 
-**My Experience**: When the interview assistant gave feedback, users initially couldn't tell if it was helpful or arbitrary. Adding explanations like "You used 12 filler words in 2 minutes" made feedback actionable.
+Spot-checking, I found a message explained as coming from an external sender with an attachment or a sign-in prompt. It had neither.
 
-**Implementation Tips**:
-- Explain AI reasoning in human terms
-- Show the data that led to conclusions
-- Allow users to explore "behind the curtain"
+For most products that is a copy bug. Here it is fatal: the study's subject *is* explanation quality. A participant who catches one explanation being decorative has correctly learned that none of them mean anything, and every measurement after that moment is contaminated. So rationales are now assembled from the cues actually present in each message. They read more formulaic. That is the right trade.
 
-### 5. Personalize Thoughtfully
+## What the three have in common
 
-**The Principle**: Use AI's personalization capabilities, but respect privacy and avoid creepiness.
+None of them were bugs. The code was fine throughout. All three were **plausible**: a competent visual pass, a well-formed explanation, a confidence distribution that looked like a classifier's.
 
-**My Experience**: The AI interview tool could theoretically track everything users said. We consciously limited data collection to only what's necessary for the service, making this explicit in our privacy design.
+Plausible output is the failure mode of this way of working, and it is worse than broken output, because broken output announces itself. Plausible output survives a read-through. It survives a demo. It gets caught only when you compare it against something outside itself — its own data, or a position you held before you saw it.
 
-**Implementation Tips**:
-- Collect only necessary data
-- Make personalization opt-in when possible
-- Provide clear privacy controls
+So the practice I have ended up with is narrower than "review the AI's work," which is advice too vague to act on:
 
-## Practical Design Patterns
+- **Gates before generation.** Any property the material must have gets written as a check that fails the build, before there is material to check.
+- **Read output against its own data, not against taste.** All three rejections came from putting a generated artefact next to the record it claimed to describe. None came from it looking wrong.
+- **Write predictions down first.** Before flipping a single variant I recorded which one I expected to win in each of the three questions, and the bet each prediction was making. Predictions written afterwards always agree with the result, which makes them worthless as evidence that any reasoning happened. Two of mine bet on adding friction; one bets the other way. If they turn out wrong, that stays in the file.
 
-### Progressive AI Disclosure
+## Where it actually stands
 
-Don't overwhelm users with AI features all at once. Introduce capabilities progressively:
+Six variants run. The React build carries durable logging and CSV export, 101 unit tests over the decision and scoring rules, and 176 assertions across all eight variant combinations in the prototype. Text contrast across the palette is measured with a script rather than eyeballed; one token failed at 4.41 and was reworked before it shipped.
 
-1. **First**: Basic AI assistance with clear boundaries
-2. **Then**: Advanced features as users build trust
-3. **Finally**: Full AI customization for power users
+Nobody outside the project has used it. The five-person protocol is written — fifteen minutes each, rotating variant assignments, an observation list drawn from the three open questions — and it has not been run. So the three design questions are still open, and everything above is design reasoning plus machine verification, not user evidence.
 
-### Human-in-the-Loop Design
-
-For critical decisions, always include human oversight:
-
-- **AI Suggests**: Present AI-generated options
-- **Human Decides**: User makes the final choice
-- **AI Learns**: System improves from the decision
-
-### Conversational UI Best Practices
-
-When designing chat-based AI interfaces:
-
-- **Typing indicators**: Show when AI is "thinking"
-- **Message formatting**: Use rich formatting for complex information
-- **Context preservation**: Help users understand conversation flow
-- **Error recovery**: Graceful handling of misunderstood inputs
-
-## Measuring AI UX Success
-
-Traditional UX metrics aren't always sufficient for AI interfaces. I track:
-
-### Trust Indicators
-- Repeat usage rate
-- Feature adoption depth
-- User feedback sentiment
-
-### Control Metrics
-- Override rate (how often users correct AI)
-- Customization usage
-- Setting adjustment frequency
-
-### Understanding Measures
-- Task completion rates
-- Error recovery success
-- Time to value (how quickly users get benefits)
-
-## Common Pitfalls to Avoid
-
-### 1. The "Black Box" Trap
-
-Don't hide AI complexity so much that users can't understand or trust the system.
-
-### 2. Over-Automation
-
-Not everything should be automated. Some user tasks provide value through the doing, not just the outcome.
-
-### 3. False Anthropomorphism
-
-Making AI seem too human can create unrealistic expectations and user disappointment.
-
-### 4. Ignoring Edge Cases
-
-AI fails in unexpected ways. Design for failure modes, not just happy paths.
-
-## The Future of AI Design
-
-As AI capabilities expand, I believe the most successful interfaces will:
-
-- **Augment** human capabilities rather than replace them
-- **Adapt** to individual users while respecting privacy
-- **Explain** themselves in ways that build genuine understanding
-- **Fail** gracefully and learn from mistakes
-
-## Conclusion
-
-Designing for AI requires a shift in thinking from creating fixed interfaces to designing evolving relationships between users and intelligent systems. The principles I've shared—setting expectations, maintaining agency, designing for uncertainty, ensuring transparency, and personalizing thoughtfully—have helped me create AI experiences that users trust and enjoy.
-
-As AI becomes more prevalent in our designs, our responsibility as designers grows. We're not just designing tools anymore; we're designing the future of human-computer collaboration.
-
----
-
-*What AI design challenges have you encountered? I'd love to hear your experiences and insights.*
+Which is the last thing the workflow does not do for you. It will happily build every variant you can name. It will not tell you which one is right, and it cannot go and find out.

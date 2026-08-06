@@ -1,4 +1,4 @@
-import { hiringRoleIds } from "./anchors";
+import { hiringRoleIds, projectEvidenceSlugs } from "./anchors";
 import { getApplicationPackets } from "./application-packets";
 import { getCaseReaderGuide } from "./case-depth";
 import { getFollowThroughBriefs } from "./follow-through";
@@ -16,7 +16,10 @@ import type {
 } from "./types";
 
 const locales: ProofLocale[] = ["en", "zh"];
-const projectSlugs: ProjectEvidenceSlug[] = ["connect", "spectra", "ai", "circles"];
+// Derived rather than hand-listed: the literal that used to sit here still said
+// connect/spectra/ai/circles after MazeRunners shipped, so every /projects/maze
+// anchor silently failed validation instead of being checked.
+const projectSlugs: readonly ProjectEvidenceSlug[] = projectEvidenceSlugs;
 
 function addIssue(
   issues: ProofValidationIssue[],

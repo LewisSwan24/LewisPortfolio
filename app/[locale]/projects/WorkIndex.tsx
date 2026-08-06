@@ -4,7 +4,14 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
-import { VizAI, VizCircles, VizConnect, VizMaze, VizSpectra } from "@/components/viz/ProjectViz";
+import {
+  VizAI,
+  VizCircles,
+  VizConnect,
+  VizMaze,
+  VizSpectra,
+  VizVigil,
+} from "@/components/viz/ProjectViz";
 import {
   getEvidenceMatrix,
   getHiringConversion,
@@ -12,7 +19,7 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze";
+type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil";
 type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social" | "hardware";
 type Localized = { en: string; zh: string };
 
@@ -56,6 +63,22 @@ const ITEMS: Item[] = [
   },
   {
     n: "02",
+    k: "vigil",
+    tags: ["flag", "ai", "research"],
+    role: "Design + direction",
+    year: "2026",
+    dur: "In progress",
+    problem: {
+      en: "A classifier that is wrong 12% of the time, and a reviewer who stops checking",
+      zh: "一个有 12% 会判错的分类器，和一个逐渐不再复核的人",
+    },
+    changed: {
+      en: "Confidence built as weak evidence, so the number cannot replace reading the message",
+      zh: "把信度做成弱证据，让那个数字无法取代真的去读那封信",
+    },
+  },
+  {
+    n: "03",
     k: "connect",
     tags: ["flag", "research"],
     role: "Solo",
@@ -65,7 +88,7 @@ const ITEMS: Item[] = [
     changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
   },
   {
-    n: "03",
+    n: "04",
     k: "spectra",
     tags: ["flag", "acc", "research"],
     role: "Lead",
@@ -75,7 +98,7 @@ const ITEMS: Item[] = [
     changed: { en: "Live colour naming and haptic feedback model", zh: "实时颜色命名和触觉反馈模型" },
   },
   {
-    n: "04",
+    n: "05",
     k: "ai",
     tags: ["ai", "research"],
     role: "Designer",
@@ -85,7 +108,7 @@ const ITEMS: Item[] = [
     changed: { en: "Timed coaching and a confidence loop", zh: "分时机的指导和信心循环" },
   },
   {
-    n: "05",
+    n: "06",
     k: "circles",
     tags: ["social", "research"],
     role: "Solo",
@@ -98,6 +121,7 @@ const ITEMS: Item[] = [
 
 function WorkPreview({ project }: { project: ProjKey }) {
   if (project === "maze") return <VizMaze />;
+  if (project === "vigil") return <VizVigil />;
   if (project === "connect") return <VizConnect />;
   if (project === "spectra") return <VizSpectra />;
   if (project === "ai") return <VizAI />;

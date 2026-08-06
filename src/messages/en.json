@@ -47,7 +47,7 @@
       "4": { "t": "Ship", "b": "Usability test, iterate, hand off with rationale intact." }
     }
   },
-  "feat": { "label": "Selected work", "title": "Five projects, end-to-end.", "footer": "Full index" },
+  "feat": { "label": "Selected work", "title": "Six projects, end-to-end.", "footer": "Full index" },
   "proj": {
     "connect": {
       "kicker": "Flagship · Information Architecture",
@@ -98,6 +98,16 @@
       "m1": "Arduino Mega · 10 IR sensors",
       "m2": "Vibration replaced electric shock",
       "m3": "Web Serial live + demo console"
+    },
+    "vigil": {
+      "kicker": "Flagship · Human oversight of AI",
+      "title": "Vigil",
+      "sub": "A review desk for deciding when to trust a classifier that is wrong 12% of the time.",
+      "role": "Design + direction",
+      "date": "2026 · in progress",
+      "m1": "140 messages · 87.9% accurate",
+      "m2": "Confidence built as weak evidence",
+      "m3": "Six variants, three open questions"
     }
   },
   "cs": {
@@ -353,6 +363,55 @@
       "rf": {
         "label": "Reflection",
         "p": "The strongest lesson was that on hardware, timing is design. Debounce sounds like an electronics detail until a double-fire makes the score disagree with the buzz on your finger, and the player stops trusting the system. The weakest part is that I proved the loop works without measuring which parts of it mattered — rebuilding it, I would log every sensor event and feedback fire from day one, then start switching channels off to find out which ones players were actually using."
+      }
+    },
+    "vigil": {
+      "hero": { "title": "Vigil", "sub": "An email review desk built to find out whether an interface can keep someone checking an AI that is wrong 12% of the time." },
+      "roleVal": "Designer and technical director; Claude Code and Codex wrote the code to my spec",
+      "timeVal": "2026 · in progress, phase 3 of 5",
+      "teamVal": "Solo, working through an AI coding workflow; brief sourced from a UQ research lab",
+      "toolsVal": "React · TypeScript · Zustand · Dexie · Python · Claude Code · Codex",
+      "ch": {
+        "label": "The problem",
+        "title": "Oversight is the easiest thing in the world to fake.",
+        "p": "The brief was to design interfaces that help a person oversee an AI screening email for phishing. The trap is in that sentence. Give someone a queue, a verdict and a confidence score, and they will clear it — quickly, agreeably, and without reading much. Throughput looks fine. The interface looks like it worked. What actually has to be designed is not a review screen but the conditions under which reviewing happens at all, and those conditions live in details as small as whether a number is rendered as 0.91 or as HIGH."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Before designing the interface, I had to build something worth reviewing.",
+        "m1": { "t": "The material", "b": "Public phishing corpora are 2002–2015 mail, carry real personal data, and cannot guarantee the character offsets that cue highlighting needs. I wrote 140 messages inside a fictional company instead." },
+        "m2": { "t": "A fallible AI", "b": "No model — a scripted classifier at 87.9%, with its 17 errors placed deliberately: false positives cluster in marketing mail, false negatives in social-engineering messages that carry no links to flag." },
+        "m3": { "t": "The leak I nearly shipped", "b": "In the first build every correct call sat at 0.84 or above and every error at 0.82 or below. A reviewer could have caught all seventeen errors by reading a number instead of an email." },
+        "quote": "One of you is wrong.",
+        "quoteWho": "The classifier panel, when your call and its call disagree"
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Useful and unreliable at the same time — and provably so.",
+        "p": "Everything hangs on one property: the classifier has to be genuinely helpful and genuinely untrustworthy at once. Confidence is stratified so it ranks the classifier's own errors barely better than chance — an AUC of 0.72 — and the build script refuses to write the corpus if that ever climbs past 0.75. Seven errors carry high confidence; thirty-six correct calls carry low confidence. Someone reading only the number cannot shortcut to the answer, which is the single condition under which comparing two interfaces measures anything at all."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "Three questions, six variants, all switchable at runtime. How confidence is shown: a precise figure, or a three-step band. When the verdict appears: on open, or only after the reviewer commits to their own call. How evidence is presented: highlighted in the message, or listed beside it. Each variant carries a written argument and a written risk, and my predicted winner for each is on record, dated before I flipped a single one. The interface also refuses things a real security console has — no search, no batch actions, no severity tiers, no reassuring green anywhere. Every one of them would help an operator and blur the measurement."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "I did not write the code. Claude Code and Codex built the corpus pipeline, the single-file prototype and the React implementation from a frozen spec, and they were fast — six variants exist because building the sixth cost hours instead of weeks. What did not delegate was the judgement. The first visual pass came back competent and generic: white cards on grey, a safe blue accent, six letterspaced labels on one screen. It looked like software rather than like a decision, and rejecting it is where the interface actually started. The same applies to a generated explanation that described cues the email did not contain — the tooling produced it fluently, and only reading the output against its own data caught it."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "Not yet run with people, and this case says so plainly. The protocol is written: fifteen minutes each, five participants on a rotating variant assignment so every variant gets watched at least twice, with the observation list drawn from the three open questions rather than from a generic script. What holds the build together in the meantime is machine checking — 176 assertions across all eight variant combinations, 101 unit tests over the same decision and scoring rules in the React build, and a palette whose text contrast is measured with a script rather than eyeballed — one token failed at 4.41 and was reworked before it shipped."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": { "label": "confidence as a predictor of the AI's errors", "v": "0.72 AUC" },
+        "m2": { "label": "Corpus", "v": "140 messages → 87.9% accurate" },
+        "m3": { "label": "Variants built", "v": "3 questions → 6 interfaces" },
+        "p": "A running system with the study still ahead of it: a validated corpus, six switchable interfaces, a React build with durable logging and CSV export, and a test protocol ready to run. Evidence status — nobody outside the project has used it. Everything here is design reasoning and machine verification, not user evidence. The three design questions are open, my predictions are recorded, and the gap between those predictions and the result is the next thing this case will contain."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "What surprised me is where the failure mode of an AI-assisted workflow actually sits. It is not bugs — the code was fine. It is that everything the workflow produces is plausible: a competent visual pass, a fluent explanation for an email, a reasonable-looking spread of confidence values. Plausible is exactly what you cannot catch by reading quickly. The three decisions I am proudest of here are all rejections, and all three came from checking generated output against its own data rather than against my taste. The weakest part is the obvious one: I have designed the conditions for a study worth running, and have not yet run it."
       }
     }
   },

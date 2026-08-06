@@ -18,9 +18,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Proof depth",
-        value: "5 end-to-end cases",
+        value: "6 end-to-end cases",
         detail:
-          "IA, accessibility, AI coaching, and social wellbeing with methods and limits shown.",
+          "IA, accessibility, AI coaching, social wellbeing, a hardware build, and an AI-oversight study — methods and limits shown.",
       },
       {
         label: "Interview readiness",
@@ -82,6 +82,16 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       whyItMatters:
         "Shows the work survives contact with reality, not only with a prototyping tool.",
       href: "/projects/maze#outcome-limits",
+    },
+    {
+      id: "ai-oversight-proof",
+      capability: "Human oversight of AI",
+      caseSlug: "vigil",
+      proof:
+        "Vigil makes the classifier's confidence deliberately weak evidence, and fails its own build if that stops being true.",
+      whyItMatters:
+        "Shows the harder half of AI UX: designing so a person keeps checking rather than deferring.",
+      href: "/projects/vigil#decision-timeline",
     },
   ],
   questionBank: [
@@ -182,9 +192,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "证据深度",
-        value: "5 个端到端案例",
+        value: "6 个端到端案例",
         detail:
-          "覆盖 IA、无障碍、AI 辅导和社交健康，并展示方法与限制。",
+          "覆盖 IA、无障碍、AI 辅导、社交健康、一台硬件作品，以及一项 AI 监督研究，并展示方法与限制。",
       },
       {
         label: "面试准备度",
@@ -246,6 +256,16 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       whyItMatters:
         "证明这些工作经得起真实世界的碰撞，而不只是经得起原型工具。",
       href: "/projects/maze#outcome-limits",
+    },
+    {
+      id: "ai-oversight-proof",
+      capability: "人对 AI 的监督",
+      caseSlug: "vigil",
+      proof:
+        "Vigil 把分类器的信度刻意做成弱证据，而且一旦这个性质失效，它自己的 build 就会挂掉。",
+      whyItMatters:
+        "证明我做得了 AI UX 里更难的那一半：让人继续复核，而不是顺着它点下去。",
+      href: "/projects/vigil#decision-timeline",
     },
   ],
   questionBank: [

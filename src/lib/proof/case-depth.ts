@@ -55,6 +55,20 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         "A ball passing a sensor advances round state and drives score, timer, haptics, lights, audio, and the browser console together. Built and exhibited.",
       next: "I would instrument sessions to see which feedback channel players actually rely on, and cut the ones they ignore.",
     },
+    vigil: {
+      challenge:
+        "A phishing classifier that is right 88% of the time still needs a human on the other side of it — and the interface decides whether that human genuinely checks the call or just clicks through it.",
+      role: "Designer and technical director; I specified, Claude Code and Codex built to the spec",
+      methods: ["spec freeze", "synthetic stimulus design", "A/B variant prototyping", "contrast auditing", "usability test protocol design"],
+      evidence: [
+        "140-email synthetic corpus with a validated error profile",
+        "six switchable interface variants across three questions",
+        "predictions recorded in writing before any testing",
+      ],
+      outcome:
+        "Six variants built and running, a working React build behind them, and a five-participant test protocol ready to run. No participants yet — the three design questions are still open.",
+      next: "I would run the five hallway sessions, then a counterbalanced study on whichever question survives them.",
+    },
   },
   zh: {
     connect: {
@@ -98,6 +112,20 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       outcome:
         "球经过传感器就推进回合状态，并同时驱动计分、计时、震动、灯光、音效与浏览器控制台。已完成搭建并展出。",
       next: "我会记录实际游玩数据，看玩家真正依赖哪一种反馈通道，然后砍掉被忽略的那些。",
+    },
+    vigil: {
+      challenge:
+        "一个准确率 88% 的钓鱼邮件分类器，另一端仍然需要一个人。而界面决定了这个人是真的在复核，还是一路点过去。",
+      role: "设计与技术方向由我定；Claude Code 与 Codex 按规格实现",
+      methods: ["规格冻结", "合成刺激材料设计", "A/B 变体原型", "对比度审计", "可用性测试脚本设计"],
+      evidence: [
+        "140 封合成邮件，错误分布经过验证",
+        "三个设计问题、六个可切换变体",
+        "测试之前先把预测写下来",
+      ],
+      outcome:
+        "六个变体已经跑起来，背后有一版可运行的 React 实现，五人测试脚本也已就绪。目前还没有受试者——三个设计问题都还没有答案。",
+      next: "我会先跑完五场走廊测试，再针对活下来的那个问题做一次对照实验。",
     },
   },
 };
@@ -606,6 +634,140 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "This case proves I can take an interaction concept through firmware, sensing, and physical feedback into a browser control surface, and make safety and calibration calls on hardware that strangers will actually touch.",
     },
+    vigil: {
+      decisions: [
+        {
+          label: "Write the corpus instead of downloading one",
+          choice:
+            "All 140 messages are written from scratch inside a fictional company, rather than sampled from SpamAssassin, Nazario, or Enron.",
+          evidence:
+            "The public corpora are 2002–2015 mail, they carry real personal data, and cue highlighting needs exact character offsets that only authored text can guarantee.",
+          tradeoff:
+            "Constructed stimuli buy control at the cost of ecological validity — nothing here proves how the interface behaves against real mail.",
+          impact:
+            "Error placement, difficulty, and cue offsets all became design parameters instead of accidents of the dataset.",
+        },
+        {
+          label: "Make confidence deliberately weak evidence",
+          choice:
+            "Confidence is stratified so it cannot predict which calls the classifier got wrong, and the build script fails if that stops being true.",
+          evidence:
+            "In the first build confidence separated cleanly — correct calls all sat at 0.84 and above, errors at 0.82 and below. A participant reading only the number would have caught every error without reading a single email.",
+          tradeoff:
+            "Every future content edit now has to survive a statistical gate, which makes the corpus more expensive to change.",
+          impact:
+            "Error-ranking AUC sits at 0.72 against a 0.75 ceiling, with 7 high-confidence errors and 36 low-confidence-but-correct calls, so the interface question is askable at all.",
+        },
+        {
+          label: "Generate each rationale from that email's own cues",
+          choice:
+            "The classifier's one-line explanation is assembled from the cues actually present in the message, replacing a fixed pool of plausible sentences.",
+          evidence:
+            "A spot check found em_052 explained as an external sender with an attachment or sign-in prompt. The message had neither.",
+          tradeoff:
+            "Cue-driven rationales read more formulaic than hand-written ones.",
+          impact:
+            "Explanation quality is the thing being studied — once a participant catches the explanation being fake, every measurement after it is contaminated.",
+        },
+        {
+          label: "Record the variant predictions before testing anything",
+          choice:
+            "Which variant I expected to win, and the bet behind each, went into the repository in writing before a single variant was flipped.",
+          evidence:
+            "Predictions written after the fact always agree with the outcome, which makes them worthless as evidence of reasoning.",
+          tradeoff:
+            "It commits a wrong call to the record permanently.",
+          impact:
+            "The gap between prediction and result becomes the most useful thing the write-up can contain, in either direction.",
+        },
+      ],
+      evidence: [
+        {
+          method: "Corpus validation gate",
+          sample: "140 synthetic messages, 17 classifier errors (9 false positives, 8 false negatives)",
+          question: "Can the confidence number alone tell you which calls the classifier got wrong?",
+          finding:
+            "In the first build, yes — completely. After stratified resampling, error-ranking AUC is 0.72 with 7 high-confidence errors in the set.",
+          implication:
+            "The stimulus set had to be engineered before the interface question could be measured at all.",
+        },
+        {
+          method: "Rationale audit",
+          sample: "Spot check of generated explanations against their own message bodies",
+          question: "Does the classifier's stated reasoning match the message it is reasoning about?",
+          finding:
+            "Rationales drawn from a fixed pool described cues that were not in the email.",
+          implication:
+            "Explanation fidelity is a precondition of the study, not a polish item.",
+        },
+        {
+          method: "Contrast measurement",
+          sample: "Every text-on-surface pair in the palette, measured with a script rather than eyeballed",
+          question: "Does the palette hold WCAG AA at normal text size?",
+          finding: "One rail token failed at 4.41 and was reworked to 5.11; the palette now passes throughout.",
+          implication:
+            "Accessibility was checked with a measurement rather than an assumption, and can be re-run after any palette change.",
+        },
+        {
+          method: "Prototype smoke test",
+          sample: "176 assertions across eight variant combinations, run against the real decision code",
+          question: "Does the decision and scoring logic survive every combination of the three variants?",
+          finding: "All 176 pass; the React build carries 101 unit tests over the same rules.",
+          implication:
+            "The rewrite has a behavioural baseline, so a variant cannot quietly break scoring on the way to Phase 3.",
+        },
+      ],
+      iterations: [
+        {
+          version: "First visual pass",
+          change: "White cards on grey, a safe blue accent, six uppercase letterspaced labels on one screen, system-ui throughout.",
+          reason: "It was the default any generator reaches for, and it was competent.",
+          improvement: "Rejected. It looked like software rather than like a decision, which named the actual problem.",
+        },
+        {
+          version: "Instrument, not inbox",
+          change:
+            "Everything the system says moved to monospace; the message body is the only thing in a text face. The verdict is carried by weight and a rule rather than a tinted card.",
+          reason:
+            "A coloured verdict card lends the classifier authority it has not earned, and impersonation hides in letter pairs a proportional face closes up.",
+          improvement: "The reader has to read the word, and a lookalike domain stays legible as a lookalike.",
+        },
+        {
+          version: "Industry-convention pass",
+          change:
+            "Added authentication results with a note on what they do not prove, domain-first-seen dates, campaign clustering, and an optional note on escalation.",
+          reason:
+            "An audit against real mail-security consoles showed the interface was missing signals an analyst would expect to have.",
+          improvement:
+            "The sharpest teaching case now exists: CEO fraud sent from a real consumer account passes every authentication check over a domain registered in 1995.",
+        },
+      ],
+      limits: [
+        {
+          constraint: "No participant has run it yet.",
+          whyItMatters:
+            "All three design questions are still open. Every argument for a variant in this case is reasoning, not evidence — and the predictions are on record precisely so that stays visible.",
+          nextValidation:
+            "Five hallway sessions on the config rotation already written into the test protocol, then fill in the decision and what-it-gives-up blocks.",
+        },
+        {
+          constraint: "The corpus is synthetic and the classifier is scripted.",
+          whyItMatters:
+            "Error placement is authored, so this measures how an interface shapes oversight — not how a real detection system fails.",
+          nextValidation:
+            "The honest version needs an organisational partner and ethics approval, which is out of scope for a coursework build.",
+        },
+        {
+          constraint: "The evaluation study is designed but not run.",
+          whyItMatters:
+            "The counterbalanced comparison, the measures, and the 2×2 payoff matrix all exist on paper only.",
+          nextValidation:
+            "Recruit 8–12 participants, run both conditions per person, and report the result even if the conditions do not separate.",
+        },
+      ],
+      takeaway:
+        "This case proves I can turn a research brief into a running system — corpus, variants, protocol, and a validation gate that fails the build when the material stops being usable — and that I can direct an AI coding workflow without handing it the design argument.",
+    },
   },
   zh: {
     connect: {
@@ -1025,6 +1187,111 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "这个案例证明我能把一个交互概念一路做穿固件、感测与实体反馈，再接回浏览器控制界面，并在陌生人真的会上手的硬件上做安全与校准判断。",
     },
+    vigil: {
+      decisions: [
+        {
+          label: "语料自己写，不下载现成的",
+          choice: "140 封邮件全部在一家虚构公司的设定里从头写，没有取自 SpamAssassin、Nazario 或 Enron。",
+          evidence:
+            "公开语料都是 2002–2015 年的邮件，带真实个资，而线索高亮需要精确到字元的偏移量——只有受控撰写才保证得了。",
+          tradeoff: "构建型刺激材料换来的是控制力，代价是生态效度：这里没有任何东西能证明界面在真实邮件里的表现。",
+          impact: "错误的落点、难度分布和线索偏移全部变成可设计的参数，而不是数据集的偶然产物。",
+        },
+        {
+          label: "刻意把信度做成弱证据",
+          choice: "信度经过分层采样，无法单独预测分类器判错在哪里；一旦这个性质失效，建构脚本直接让 build 失败。",
+          evidence:
+            "第一版的信度是完全可分离的——判对的全在 0.84 以上，判错的全在 0.82 以下。使用者只读数字、一封邮件都不看，就能抓出全部 17 个错误。",
+          tradeoff: "之后每一次内容修改都得先过统计闸门，语料的改动成本变高了。",
+          impact: "错误排序 AUC 现在是 0.72（上限 0.75），含 7 个高信度错误与 36 个低信度但判对的案例——界面这个问题才问得下去。",
+        },
+        {
+          label: "解释由该封邮件自己的线索组装",
+          choice: "分类器那一句解释改成从邮件里实际存在的线索拼出来，不再从一个固定文案池里抽。",
+          evidence: "抽查发现 em_052 被解释成「外部寄件人带附件或登入提示」，但那封信两者都没有。",
+          tradeoff: "由线索驱动的解释读起来比手写的更公式化。",
+          impact: "解释品质本身就是研究对象——参与者一旦识破解释是假的，后面所有测量都被污染。",
+        },
+        {
+          label: "测试之前先把预测写下来",
+          choice: "我预期哪个变体会赢、每个赌注押的是什么，在翻动第一个变体之前就写进了仓库。",
+          evidence: "事后补的预测永远和结果一致，因此完全不能当作推理过程的证据。",
+          tradeoff: "这等于把一个可能猜错的判断永久留在记录里。",
+          impact: "预测与结果之间的落差，反而成了这份记录里最有价值的东西——无论哪个方向。",
+        },
+      ],
+      evidence: [
+        {
+          method: "语料验证闸门",
+          sample: "140 封合成邮件，17 个分类器错误（9 个误报、8 个漏报）",
+          question: "光看信度这个数字，能不能判断出分类器错在哪里？",
+          finding: "第一版完全可以。分层重采样之后，错误排序 AUC 是 0.72，其中有 7 个高信度错误。",
+          implication: "刺激材料必须先被工程化，界面这个问题才有得测。",
+        },
+        {
+          method: "解释内容审查",
+          sample: "把生成的解释逐条对回它所解释的那封邮件",
+          question: "分类器给出的理由，和它正在判断的那封信对得上吗？",
+          finding: "从固定文案池抽出来的解释，描述了邮件里根本不存在的线索。",
+          implication: "解释的可信度是研究的前提，不是收尾时的打磨项。",
+        },
+        {
+          method: "对比度实测",
+          sample: "配色里每一组文字与底色的搭配，用脚本量测，不靠肉眼",
+          question: "这套配色在正常字号下守得住 WCAG AA 吗？",
+          finding: "有一个侧栏色以 4.41 未过，调整后为 5.11；整套配色现在全数通过。",
+          implication: "无障碍是量出来的，不是假设出来的，而且改配色之后可以直接重跑。",
+        },
+        {
+          method: "原型冒烟测试",
+          sample: "八种变体组合、176 条断言，跑的是真实的决策程式码",
+          question: "三个变体的每一种组合下，决策与计分逻辑还站得住吗？",
+          finding: "176 条全过；React 版本另有 101 个单元测试覆盖同一套规则。",
+          implication: "重写有了行为基准，某个变体不会在通往 Phase 3 的路上悄悄弄坏计分。",
+        },
+      ],
+      iterations: [
+        {
+          version: "第一版视觉",
+          change: "灰底白卡片、安全的蓝色强调色、同一屏上六个大写加字距的标签、全篇 system-ui。",
+          reason: "这是任何生成器都会先给出的默认解，而且它并不差。",
+          improvement: "被否决。它看起来像一个软件，而不像一个判断——问题就出在这句话上。",
+        },
+        {
+          version: "仪器，而不是收件箱",
+          change: "系统说的每一句话改成等宽字，只有邮件正文留在文字字体里；判定靠字重与一条横线承载，不用色块卡片。",
+          reason: "着色的判定卡片会赋予分类器它并没有挣得的权威；而仿冒藏在字母对里，比例字体恰好会把那几对挤在一起。",
+          improvement: "读者必须真的去读那个词，仿冒域名也仍然看得出是仿冒。",
+        },
+        {
+          version: "行业惯例补强",
+          change: "补上认证结果与「它证明不了什么」的附注、域名首见时间、campaign 聚类提示，以及升级时的选填备注。",
+          reason: "对照真实邮件安全产品做了一次审计，发现界面缺了分析师本来就期待看到的信号。",
+          improvement:
+            "最锋利的教学案例因此成立：用真实个人邮箱寄出的 CEO 诈骗，在一个 1995 年注册的域名上通过了每一项认证检查。",
+        },
+      ],
+      limits: [
+        {
+          constraint: "目前还没有任何一个受试者跑过它。",
+          whyItMatters:
+            "三个设计问题全都还开着。这个案例里每一个支持某个变体的论证都是推理，不是证据——预测之所以留在记录里，就是为了让这件事一直看得见。",
+          nextValidation: "按已经写好的 config 轮替表跑完五场走廊测试，再回头把「选了哪个 / 为什么 / 放弃了什么」填上。",
+        },
+        {
+          constraint: "语料是合成的，分类器是脚本写死的。",
+          whyItMatters: "错误落在哪里是我安排的，所以它衡量的是界面如何塑造监督行为，而不是一个真实检测系统会怎么失败。",
+          nextValidation: "诚实的版本需要一个组织方合作与伦理审查，这超出了课程项目的范围。",
+        },
+        {
+          constraint: "评估实验设计好了，但还没跑。",
+          whyItMatters: "对照设计、测量指标、以及那张 2×2 收益矩阵，目前都只存在于纸面上。",
+          nextValidation: "招募 8–12 人，每人跑两个条件，就算两组之间没有显著差异也照样把结果写出来。",
+        },
+      ],
+      takeaway:
+        "这个案例证明我能把一份研究 brief 变成一套真的跑得起来的系统——语料、变体、测试脚本，以及一道材料一旦失效就让 build 挂掉的验证闸门——同时证明我能指挥 AI 写代码，而不把设计论证一并交出去。",
+    },
   },
 };
 
@@ -1117,6 +1384,23 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "Teams building physical products, installations, or hardware-software interfaces.",
       ],
     },
+    vigil: {
+      proves:
+        "This case proves I can design the conditions under which a study is worth running — and direct an AI coding workflow through spec, corpus, variants, and protocol without losing the design argument.",
+      inspect: [
+        "Why the classifier's confidence had to be made a deliberately weak signal before any interface question could be asked.",
+        "Why the variant predictions were written down before testing, and what each one bets on.",
+        "What the interface refuses to do: no search, no batch actions, no severity tiers, no success green.",
+      ],
+      questions: [
+        "How do you design an interface that makes someone check an AI rather than defer to it?",
+        "What did you keep for yourself when an AI wrote all the code?",
+      ],
+      bestFit: [
+        "AI UX, human-AI interaction, and trust-and-safety teams.",
+        "Teams that need a designer who can specify a system precisely enough to be built fast.",
+      ],
+    },
   },
   zh: {
     connect: {
@@ -1202,6 +1486,23 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
       bestFit: [
         "Design technologist、creative technologist 或原型开发岗位。",
         "做实体产品、装置或软硬件接口的团队。",
+      ],
+    },
+    vigil: {
+      proves:
+        "这个案例证明我能先把「这个实验值不值得做」的条件设计好，并且能带着 AI 走完规格、语料、变体到测试脚本的全程，而不把设计论证一起交出去。",
+      inspect: [
+        "为什么必须先把分类器的信度做成弱信号，界面这个问题才问得下去。",
+        "为什么变体预测要写在测试之前，以及每一个预测押的是什么。",
+        "这个界面刻意不做什么：没有搜索、没有批量操作、没有严重度分级、没有代表成功的绿色。",
+      ],
+      questions: [
+        "你怎么设计一个界面，让人真的去复核 AI，而不是顺着它点下去？",
+        "代码全部由 AI 写的时候，你把什么留给了自己？",
+      ],
+      bestFit: [
+        "AI UX、人机协作与 trust & safety 团队。",
+        "需要一个能把系统说清楚到可以被快速实现的设计师的团队。",
       ],
     },
   },
@@ -1386,6 +1687,23 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
     {
       question: "What would you instrument before calling this more than an exhibition unit?",
       reason: "Keeps a working build honest about what was observed versus measured.",
+      anchorId: "outcome-limits",
+    },
+  ],
+  vigil: [
+    {
+      question: "Why did the classifier's confidence have to be a weak signal by construction?",
+      reason: "Tests whether the study was designed to be measurable before it was designed to look good.",
+      anchorId: "decision-timeline",
+    },
+    {
+      question: "You wrote your predictions before testing. What are you betting on, and why?",
+      reason: "Checks whether design reasoning exists independently of the result.",
+      anchorId: "evidence-board",
+    },
+    {
+      question: "Nobody has run it yet. What does the case actually prove today?",
+      reason: "Keeps an unfinished project honest about the line between built and validated.",
       anchorId: "outcome-limits",
     },
   ],
