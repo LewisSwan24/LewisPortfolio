@@ -86,7 +86,7 @@ export default async function HomePage() {
   const t = await getTranslations();
   const locale = await getLocale();
   const isZh = locale === "zh";
-  const allPosts = await getAllBlogPosts();
+  const allPosts = await getAllBlogPosts(isZh ? "zh" : "en");
   const latestPosts = allPosts.slice(0, 3);
   const dateLocale = isZh ? "zh-CN" : "en-US";
   const proofLocale: ProofLocale = isZh ? "zh" : "en";

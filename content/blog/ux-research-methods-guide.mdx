@@ -1,88 +1,61 @@
 ---
-title: "A Practical Guide to UX Research Methods"
-date: "2025-01-10"
-excerpt: "Choosing the right UX research method can make or break your design process. Here's a comprehensive guide to help you select the best approach for your project."
+title: "The cheapest method caught what the expensive ones missed"
+date: "2026-01-10"
+excerpt: "Restructuring a university portal, I ran a card sort, a tree test and think-aloud sessions. The finding that changed the most labels came from two people who had never heard of the university."
 tags:
   - UX Research
+  - Information Architecture
   - Design Process
-  - User Testing
 author: "Lewis Dong"
 published: true
 ---
 
-## Introduction
+Method guides usually read as a menu: here are twelve techniques, here is when to use each. That framing is not wrong, but it skips the part that actually matters — what a given method structurally *cannot* tell you, and what you therefore still have to go and find some other way.
 
-As interaction designers, we often face the challenge of understanding our users deeply before diving into solutions. The research method you choose can significantly impact the quality of insights you gather and, ultimately, the success of your design.
+On [UQ Connect](/projects/connect) I restructured a university portal whose top level was twelve categories named after the departments that owned them: HiQ, SI-net, mySI-net, ask.UQ. I used three methods. Each answered exactly one question, and the most useful finding came from none of them.
 
-In this guide, I'll walk through the most effective UX research methods I've used in my projects, including when to use each and practical tips for getting the best results.
+## Think-aloud: where people give up
 
-## Qualitative vs. Quantitative Research
+I ran task-based sessions on the existing portal and watched where people stopped trying. The most quoted moment:
 
-Before choosing a method, understand the type of data you need:
+> "I just Google 'UQ how to drop a course'. I'd never look for it in the portal."
 
-- **Qualitative**: Rich, descriptive insights about *why* users behave a certain way
-- **Quantitative**: Numerical data about *what* and *how many* users do something
+That is not a navigation problem you fix by relabelling. It says the portal had already lost, and users had routed around it entirely. Think-aloud is good at exactly this: it shows the moment of abandonment, which no amount of structural analysis will surface — because structural analysis assumes people are still inside the structure.
 
-Most successful projects use a mix of both.
+What it cannot do is tell you what the structure should be instead. Five people giving up in five different places does not add up to an architecture.
 
-## Core Research Methods
+## Open card sort: the users' own grouping
 
-### 1. User Interviews
+So: an open card sort, where participants grouped the portal's common tasks and named the groups themselves. Affinity mapping across the results clustered around five life stages — arriving, studying, belonging, supporting myself, moving on.
 
-**When to use**: Early discovery phase, understanding user mental models
+That gave the shape. Twelve department-owned categories collapsed into six task-led ones, with "I'm new" promoted to the front door, because arriving is the stage with the least existing knowledge and the most urgency.
 
-User interviews are my go-to method for deep understanding. They allow you to:
+What a card sort cannot do is tell you whether the resulting tree works. It is a generative method producing a hypothesis — and it is very easy to fall in love with a hypothesis you watched real users build with their own hands.
 
-- Explore user motivations and pain points
-- Understand context and environment
-- Build empathy with your target audience
+## Tree test: does the structure survive contact
 
-**Pro tip**: Prepare a discussion guide but stay flexible. The best insights often come from unexpected tangents.
+So the candidate structures went into an unmoderated tree test against the original: no visual design, no search, just the hierarchy and a set of tasks. This is the only one of the three that produces a comparison rather than an anecdote.
 
-### 2. Usability Testing
+It also earned the decision I am most pleased with, which was a *hedge*. The winning tree kept an A–Z index as a secondary route. Task-led navigation is better for people who do not know the vocabulary and worse for people who do — the returning student who knows the thing is called SI-net and wants it in one hop. Keeping both is not indecision; it serves two populations the tree test could show separately.
 
-**When to use**: Evaluating prototypes or existing products
+## The one that caught the most
 
-Usability testing is essential for validating design decisions. I typically conduct:
+Every category name went to two readers with no University of Queensland background for a plain-language review. Cost: an afternoon. It caught four names that sounded fine to anyone inside the institution and meant nothing outside it.
 
-- **Moderated tests** for complex flows where I need to probe deeper
-- **Unmoderated tests** for quick validation with larger sample sizes
+None of the three "real" methods could have caught those, and it is worth being precise about why. Card-sort participants were students — they had already absorbed the institutional vocabulary, so a name that is only decodable from the inside reads as perfectly clear to them. Think-aloud drew on the same population. And a tree test measures whether people reach the right node, not whether the label would mean anything to someone who has not arrived yet — which, for a portal whose front door is "I'm new", is precisely the audience that matters most.
 
-In my Spectra Lens project, usability testing helped us achieve a 92% task success rate, up from 75% in early iterations.
+The blind spot was shared across all three methods, because it came from the sample rather than from the technique.
 
-### 3. Contextual Inquiry
+## What only showed up at higher fidelity
 
-**When to use**: Understanding real-world usage patterns
+One more, because it argues against testing structure in isolation forever. "Money" and "My account" tested fine as tree nodes, and became genuinely confusable once they sat on a screen together. Renamed, retested, gone. Some problems are not architecture problems — they only exist once things are adjacent.
 
-Observing users in their natural environment reveals insights you'd never get from interviews alone. I used this method extensively in the Connect Circles project to understand how families communicate across distances.
+## The honest boundary
 
-### 4. Surveys
+This was coursework. The IA was tested, not deployed. I can walk through how the card sort was grouped, how the tree-test tasks were written, and why each label changed. I have never measured what it did to real search behaviour or support-ticket volume, because it never went live. That is a genuine limit on what the project proves, and I would rather state it than let a reader assume otherwise.
 
-**When to use**: Validating hypotheses at scale
+## The actual takeaway
 
-Surveys work best when you know what to ask. Use them to:
+Choosing a method is less about matching a technique to a question than about knowing what each one is blind to, and covering that blind spot with something else — often something much cheaper.
 
-- Validate qualitative findings quantitatively
-- Segment your user base
-- Track satisfaction over time
-
-## Choosing the Right Method
-
-Consider these factors:
-
-1. **Project phase**: Discovery → Interviews/Contextual Inquiry; Validation → Usability Testing
-2. **Time and budget**: Unmoderated tests and surveys are more efficient
-3. **Research questions**: Open-ended questions need qualitative methods
-
-## Key Takeaways
-
-- Start with qualitative research to build understanding
-- Validate with quantitative methods before major decisions
-- Always triangulate findings from multiple sources
-- Document and share insights with your team
-
-Research isn't a checkbox—it's an ongoing conversation with your users that should inform every design decision.
-
----
-
-*What research methods have worked best for you? I'd love to hear about your experiences.*
+Three methods told me where people gave up, what grouping matched their mental model, and which of two structures performed better. All three shared one blind spot, because all three drew on the same population. Two outsiders and an afternoon covered it.

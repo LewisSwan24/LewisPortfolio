@@ -30,7 +30,7 @@ export async function generateRSSFeed(locale: FeedLocale = "en") {
   // carried pre-rename slugs, so every project link in the feed 308-redirected,
   // and they never included MazeRunners.
   const projects = getProjectEvidence(locale);
-  const blogPosts = await getAllBlogPosts();
+  const blogPosts = await getAllBlogPosts(locale);
   const generatedAt = new Date();
 
   projects.forEach((project) => {
