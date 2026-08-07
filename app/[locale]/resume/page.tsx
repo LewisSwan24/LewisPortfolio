@@ -73,8 +73,8 @@ export default async function ResumePage() {
                   </h4>
                   <p className="org">
                     {isZh
-                      ? "AI 辅助产品实践 · Vigil / Hoop Dream / MazeRunners"
-                      : "AI-assisted product practice · Vigil, Hoop Dream, MazeRunners"}
+                      ? "AI 辅助产品实践 · Vigil / Hoop Dream / 个人作品集网站"
+                      : "AI-assisted product practice · Vigil, Hoop Dream, this site"}
                   </p>
                   <ul>
                     <li>
@@ -97,55 +97,34 @@ export default async function ResumePage() {
               </div>
 
               <div className="res-entry">
-                <div className="date">2024 · 08 – 11</div>
+                <div className="date">2026 · 03 – 06</div>
                 <div>
-                  <h4>{isZh ? "首席 UX 设计师" : "Lead UX Designer"}</h4>
+                  <h4>
+                    {isZh
+                      ? "交互设计与控制层开发（小组项目）"
+                      : "Interaction design & control layer (group project)"}
+                  </h4>
                   <p className="org">
-                    Spectra Lens · {isZh ? "AR 无障碍工具" : "AR accessibility tool"}
+                    MazeRunners ·{" "}
+                    {isZh
+                      ? "接触控制的多人协作迷宫，已公开展出"
+                      : "Contact-controlled multiplayer maze, publicly exhibited"}
                   </p>
                   <ul>
                     <li>
                       {isZh
-                        ? "访谈 12 位色盲用户，覆盖 deutan / protan / tritan 三类。"
-                        : "Interviewed 12 colourblind users across deutan / protan / tritan types."}
+                        ? "设计核心机制：每种颜色的腕带由两名玩家共用，任何方向都无法单人完成，四个人必须配合。"
+                        : "Designed the core mechanic: each colour wristband is shared by two players, so no direction can be triggered alone and the four have to coordinate."}
                     </li>
                     <li>
                       {isZh
-                        ? "与目标用户共创多模态反馈；通过 8 人可用性测试验证。"
-                        : "Co-designed multi-modal feedback with target users; validated via 8-person usability test."}
+                        ? "负责控制层全部实现：Arduino 程序、电路、布线和展出用的计分网页；迷宫本体由组员完成。"
+                        : "Built the whole control layer: Arduino code, circuits, wiring, and the score webpage used at the exhibition; teammates built the maze body."}
                     </li>
                     <li>
                       {isZh
-                        ? "把多模态反馈带进真实场景做可用性测试。入选昆大 2024 设计年展。"
-                        : "Took the multi-modal feedback through usability testing in real contexts. Selected for UQ Design Showcase 2024."}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="res-entry">
-                <div className="date">2024 · 03 – 06</div>
-                <div>
-                  <h4>UX Researcher &amp; Designer</h4>
-                  <p className="org">
-                    UQ Connect ·{" "}
-                    {isZh ? "学生门户 IA 重设计" : "Student portal IA redesign"}
-                  </p>
-                  <ul>
-                    <li>
-                      {isZh
-                        ? "设计并执行树测试（n=50）、开放卡片分类（n=24）、任务分析（n=10）。"
-                        : "Designed and ran tree tests (n=50), open card sort (n=24), and task analyses (n=10)."}
-                    </li>
-                    <li>
-                      {isZh
-                        ? "把十二个部门分类收敛成六个任务分类，并与原结构做树测试对比。"
-                        : "Collapsed twelve department categories into six task categories and tree-tested the proposal against the original structure."}
-                    </li>
-                    <li>
-                      {isZh
-                        ? "把面向教职工的标签改写成学生语言：Study、Belong、Fees & finance。"
-                        : "Rewrote staff-facing labels into plain student language: Study, Belong, Fees & finance."}
+                        ? "展出期间 9 组共 36 人试玩，约 3 组通关；手写排行榜没有留档，所以没有量化数据。"
+                        : "9 groups (36 people) played during the exhibition and about 3 finished; the handwritten leaderboard was not archived, so there are no quantified metrics."}
                     </li>
                   </ul>
                 </div>
@@ -155,7 +134,7 @@ export default async function ResumePage() {
             <div className="res-section">
               <h3>{t("resume.section.edu")}</h3>
               <div className="res-entry">
-                <div className="date">2024 – 2026</div>
+                <div className="date">2025.02 – 2026.11</div>
                 <div>
                   <h4>
                     {isZh ? "交互设计硕士" : "Master of Interaction Design"}
@@ -168,26 +147,32 @@ export default async function ResumePage() {
                   <ul>
                     <li>
                       {isZh
-                        ? "研究方法、信息架构、评估、设计工作室实践。"
-                        : "Research methods, IA, evaluation, design studio practice."}
+                        ? "研究方法、信息架构、评估方法、物理计算。"
+                        : "Research methods, IA, evaluation, physical computing."}
                     </li>
-                    <li>GPA 6.7 / 7.0</li>
                   </ul>
                 </div>
               </div>
-            </div>
-
-            <div className="res-section">
-              <h3>{t("resume.section.awards")}</h3>
               <div className="res-entry">
-                <div className="date">2024</div>
+                <div className="date">2020.09 – 2024.07</div>
                 <div>
                   <h4>
                     {isZh
-                      ? "昆大设计年展 —— 入选"
-                      : "UQ Design Showcase — Selected"}
+                      ? "计算机科学学士（荣誉）"
+                      : "BSc (Hons) Computer Science"}
                   </h4>
-                  <p className="org">Spectra Lens</p>
+                  <p className="org">
+                    {isZh
+                      ? "斯旺西大学，英国威尔士"
+                      : "Swansea University, Wales, UK"}
+                  </p>
+                  <ul>
+                    <li>
+                      {isZh
+                        ? "二等一级荣誉学位（2:1）。"
+                        : "Second-class honours, upper division (2:1)."}
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

@@ -13,7 +13,7 @@
   },
   "brand": {
     "name": "Lewis Dong",
-    "tagline": "practice log, est. 2024"
+    "tagline": "practice log, est. 2026"
   },
   "hero": {
     "eyebrow": "Interaction & Product Designer · Master's in Interaction Design, UQ",
@@ -52,9 +52,9 @@
     "connect": {
       "kicker": "Flagship · Information Architecture",
       "title": "UQ Connect",
-      "sub": "Rebuilding a student portal 50,000 students already hated.",
+      "sub": "Rebuilding a student portal around student tasks, not departments.",
       "role": "UX Researcher & Designer",
-      "date": "2024 · 4 months",
+      "date": "University coursework",
       "m1": "12 staff-led buckets → 6 task-led",
       "m2": "Card sort · tree test · think-aloud",
       "m3": "Plain-language naming review"
@@ -64,7 +64,7 @@
       "title": "Spectra Lens",
       "sub": "An AR lens that tells colourblind users what the world is actually showing them.",
       "role": "Lead UX Designer",
-      "date": "2024 · 4 months",
+      "date": "University coursework",
       "m1": "Interviews across CVD subtypes",
       "m2": "Tested in real environments",
       "m3": "Silent by default, audio opt-in"
@@ -74,7 +74,7 @@
       "title": "AI Interview Assistant",
       "sub": "Rehearsing the hardest conversation of your career, without an audience.",
       "role": "UX Designer & Researcher",
-      "date": "2024 · 5 months",
+      "date": "University coursework",
       "m1": "Feedback after, not during",
       "m2": "Timing A/B: inline vs. post-session",
       "m3": "Tone and anxiety guardrails"
@@ -84,7 +84,7 @@
       "title": "MazeRunners",
       "sub": "A maze that hits back — sensors, haptics, and a browser console in one loop.",
       "role": "Design Technologist",
-      "date": "2025 · built & exhibited",
+      "date": "2026 · built & exhibited",
       "m1": "Arduino Mega · 10 IR sensors",
       "m2": "Vibration replaced electric shock",
       "m3": "Web Serial live + demo console"
@@ -121,9 +121,9 @@
     "related": "Continue reading",
     "impactLabel": "What it produced",
     "connect": {
-      "hero": { "title": "UQ Connect", "sub": "Rebuilding the information architecture of a student portal serving 50,000 students." },
+      "hero": { "title": "UQ Connect", "sub": "Rebuilding the information architecture of a university student portal." },
       "roleVal": "Solo UX Researcher & Designer",
-      "timeVal": "March – June 2024",
+      "timeVal": "University coursework",
       "teamVal": "Independent, advised by faculty",
       "toolsVal": "Figma · OptimalSort · Treejack · Maze",
       "ch": {
@@ -172,7 +172,7 @@
     "spectra": {
       "hero": { "title": "Spectra Lens", "sub": "Letting colourblind users read the world on their own time." },
       "roleVal": "Lead UX Designer",
-      "timeVal": "August – November 2024",
+      "timeVal": "University coursework",
       "teamVal": "Solo, advised by accessibility faculty",
       "toolsVal": "Figma · Adobe XD · Maze · Miro",
       "ch": {
@@ -221,7 +221,7 @@
     "ai": {
       "hero": { "title": "AI Interview Assistant", "sub": "Rehearsing the hardest conversation of your career — without an audience." },
       "roleVal": "UX Designer & Researcher",
-      "timeVal": "February – June 2024",
+      "timeVal": "University coursework",
       "teamVal": "Solo, with input from two career counsellors",
       "toolsVal": "Figma · FigJam · Lookback · ChatGPT API",
       "ch": {
@@ -270,7 +270,7 @@
     "maze": {
       "hero": { "title": "MazeRunners", "sub": "A physical maze wired so that a ball, a score, a buzz on your finger, and a browser console all describe the same moment." },
       "roleVal": "Design technologist & interaction prototyper",
-      "timeVal": "2025 · built and exhibited",
+      "timeVal": "2026 · built and exhibited",
       "teamVal": "Team project; I owned firmware, sensing, feedback, and the web console",
       "toolsVal": "Arduino Mega · Arduino C/C++ · FC-51 IR · TM1637 · Web Serial · JS Canvas",
       "ch": {
@@ -503,8 +503,8 @@
       { "name": "Development", "tools": ["HTML/CSS", "JavaScript", "React", "TypeScript", "Tailwind CSS", "Next.js"] }
     ],
     "timeline": [
-      { "year": "2024", "title": "Master of Interaction Design", "org": "The University of Queensland", "description": "Advanced study in human-computer interaction, UX research, and design thinking." },
-      { "year": "2023", "title": "Started Design Journey", "org": "Self-directed Learning", "description": "Began exploring UX/UI design through online courses and personal projects." }
+      { "year": "2025", "title": "Master of Interaction Design", "org": "The University of Queensland", "description": "Research methods, information architecture, evaluation, physical computing." },
+      { "year": "2020", "title": "BSc (Hons) Computer Science", "org": "Swansea University", "description": "Four years in Wales; graduated with a 2:1 in July 2024." }
     ],
     "funFacts": [
       { "emoji": "📚", "label": "Avid reader" },
@@ -514,7 +514,7 @@
     ],
     "kicker": "About",
     "headline": { "text": "I make digital things people can actually find their way through.", "em": "people" },
-    "p1": "I'm finishing my Master of Interaction Design at the University of Queensland. Before that, I spent four years in a different discipline entirely, which is to say I got used to being the person in the room who has to translate between strangers.",
+    "p1": "I'm finishing my Master of Interaction Design at the University of Queensland. Before that I spent four years on a Computer Science degree in Wales, which is why I'm comfortable being the person in the room who translates between designers and engineers.",
     "p2": "My work sits where research, architecture and craft overlap. I'm most useful on messy, high-stakes problems — the ones where nobody agrees what the product should be yet — because I enjoy the part everyone else finds tedious: reading interview transcripts at 1am until the pattern shows up.",
     "p3": "Outside the studio I cook with too much garlic, read non-fiction about cities, and occasionally attempt to learn Japanese. I reply to every email that isn't a recruiter mass-send.",
     "philo": {
@@ -527,10 +527,10 @@
     "cv": "Download CV",
     "tl": {
       "label": "Briefly",
-      "y2026": "Graduating in Jun. Looking for a seat at a serious team.",
-      "y2025": "Spectra selected for UQ Design Showcase. MazeRunners built and exhibited; coursework deepens into research methods and IA.",
-      "y2024": "Began UQ Master's. Mar–Jun: UQ Connect IA redesign. Aug–Nov: Spectra Lens AR accessibility.",
-      "y2020": "Four years in a previous career I'll happily explain in person."
+      "y2026": "MazeRunners built and exhibited; Vigil and Hoop Dream shipped. Graduating in Nov, looking for a serious team.",
+      "y2025": "Started the Master of Interaction Design at UQ in Feb: research methods, IA, physical computing.",
+      "y2024": "Graduated from Swansea University in Jul with a BSc (Hons) in Computer Science, 2:1.",
+      "y2020": "Moved to Wales to study Computer Science at Swansea University."
     }
   },
   "contact": {
@@ -581,10 +581,10 @@
     "printHint": "Tip: Use your browser's print function (Ctrl/Cmd + P) to save this page as a PDF",
     "overview": { "education": "Education", "experienceHighlights": "Experience Highlights" },
     "sections": { "education": "Education", "experience": "Experience", "skills": "Skills", "certifications": "Certifications", "awards": "Awards & Recognition" },
-    "education": { "degree": "Master of Interaction Design", "institutionAndYears": "The University of Queensland • 2023 – Present" },
+    "education": { "degree": "Master of Interaction Design", "institutionAndYears": "The University of Queensland • 2025 – 2026" },
     "experience": [
-      { "title": "UX Design Intern", "orgAndYear": "Design Studio Co. • 2024" },
-      { "title": "Freelance Designer", "orgAndYear": "Self-employed • 2022 – 2023" }
+      { "title": "Control layer, MazeRunners (group project)", "orgAndYear": "Built & exhibited • 2026" },
+      { "title": "Vigil & Hoop Dream (solo projects)", "orgAndYear": "Spec to build with AI tooling • 2026" }
     ],
     "kicker": "Résumé",
     "headline": "Experience",

@@ -172,7 +172,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           tradeoff:
             "Some labels became less administratively precise, but they reduced the translation work required from students.",
           impact:
-            "The navigation became easier to scan and supported the measured lift in task success.",
+            "Students stopped having to translate institutional wording into their own; how much that helped was never measured.",
         },
         {
           label: "Validate the IA before increasing visual fidelity",
@@ -357,7 +357,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           tradeoff:
             "Users received less immediate correction, but the practice felt more emotionally safe.",
           impact:
-            "The AI felt more like a coach than a critic and supported the reported confidence gain.",
+            "The AI read as a sparring partner rather than a judge who interrupts.",
         },
         {
           label: "Expose control over coaching tone",
@@ -427,7 +427,8 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       ],
       limits: [
         {
-          constraint: "The beta measured self-reported confidence and anxiety rather than hiring outcomes.",
+          constraint:
+            "What the prototype sessions surfaced was self-reported confidence and anxiety, not real hiring outcomes.",
           whyItMatters:
             "Confidence is important, but it does not prove the assistant improves real interview performance.",
           nextValidation:
@@ -822,7 +823,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           choice: "把面向教职工的标签改成 Study、Belong、Fees & finance 这类更直接的类别。",
           evidence: "卡片分类和任务分析都显示，学生按意图和紧急程度组织信息。",
           tradeoff: "一些标签牺牲了行政上的精确，但降低了学生的理解成本。",
-          impact: "导航更容易扫读，也让学生更容易一次就走到目的地。",
+          impact: "学生不用再把行政术语翻译成自己的说法；这个改善有多大，课程结束后没有再测。",
         },
         {
           label: "先验证结构，再提高视觉保真度",
@@ -834,21 +835,21 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       ],
       evidence: [
         {
-          method: "Open card sort",
-          sample: "开放式卡片分类；分组人数未正式记录",
+          method: "开放式卡片分类",
+          sample: "分组人数未正式记录",
           question: "去掉部门标签后，学生会如何自然组织门户信息？",
           finding: "参与者围绕学习、归属、费用和校园生活这几类任务聚类。",
           implication: "信息架构应该先映射学生心智模型，而不是部门归属。",
         },
         {
-          method: "Tree testing",
-          sample: "非主持树测试；分组人数未正式记录",
+          method: "树测试",
+          sample: "非主持形式；分组人数未正式记录",
           question: "没有界面提示时，学生能否在新层级中找到关键任务？",
           finding: "按任务划分的结构胜过按部门划分的原版；「Money」和「My account」必须改名重跑。",
           implication: "这套按任务组织的结构够扎实，可以进入界面设计阶段。",
         },
         {
-          method: "Task analysis",
+          method: "任务分析",
           sample: "10 场任务走查",
           question: "学生完成关键任务时在哪里犹豫？",
           finding: "当机构术语和自己的任务目标不一致时，学生会失去信心。",
@@ -916,21 +917,21 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       ],
       evidence: [
         {
-          method: "Semi-structured interviews",
+          method: "半结构化访谈",
           sample: "12 位色觉障碍参与者",
           question: "颜色依赖的任务在哪里带来摩擦、延迟或社交暴露？",
           finding: "他们要的是快、私密、不用开口问陌生人。",
           implication: "这个工具要解决的是「敢不敢下判断」和「会不会被看见」，不只是认颜色。",
         },
         {
-          method: "Co-design workshops",
-          sample: "2 场与目标用户的共创工作坊",
+          method: "共创工作坊",
+          sample: "2 场，参与者为目标用户",
           question: "哪些反馈方式有帮助，又不至于变成打扰？",
           finding: "他们更喜欢分层、克制的提示，用来确认判断而不是抢走注意力。",
           implication: "交互模型应该用多模态反馈，但要用得克制。",
         },
         {
-          method: "Field usability testing",
+          method: "真实场景可用性测试",
           sample: "8 场真实环境测试",
           question: "用户能否在真实公共场景中快速完成颜色相关任务？",
           finding: "在真实场景里，参与者要的是「该怎么办」而不是色名，也更希望它安静，而不是替他们宣告。",
@@ -998,22 +999,22 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       ],
       evidence: [
         {
-          method: "Survey",
+          method: "问卷调查",
           sample: "85 份回收问卷",
           question: "是什么阻碍求职者持续练习面试？",
           finding: "受访者说得最多的三件事：紧张、心里没底、怕被评价。",
           implication: "助手要降低情绪成本，而不是只多给几道题。",
         },
         {
-          method: "Depth interviews",
-          sample: "深度访谈；分组人数未正式记录",
+          method: "深度访谈",
+          sample: "分组人数未正式记录",
           question: "什么让面试练习安全到可以重复？",
           finding: "他们既要真实的压力，也要能自己调反馈的强度。",
           implication: "AI 的行为要先讲清楚会发生什么，再把控制权交回给人。",
         },
         {
-          method: "Prototype test",
-          sample: "主持式原型测试；分组人数未正式记录",
+          method: "原型测试",
+          sample: "主持式；分组人数未正式记录",
           question: "什么时候给反馈最不破坏信心？",
           finding: "答完再给，比中途打断更受欢迎。",
           implication: "反馈时机因此成为这个产品最核心的交互决策。",

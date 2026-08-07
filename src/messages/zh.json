@@ -13,7 +13,7 @@
   },
   "brand": {
     "name": "董子铭 Lewis Dong",
-    "tagline": "设计实践日志，2024 起"
+    "tagline": "设计实践日志，2026 起"
   },
   "hero": {
     "eyebrow": "交互 & 产品设计师 · 昆士兰大学交互设计硕士在读",
@@ -52,9 +52,9 @@
     "connect": {
       "kicker": "旗舰 · 信息架构",
       "title": "UQ Connect",
-      "sub": "为 5 万名已经受够了它的学生，重做门户站。",
+      "sub": "把一个按部门组织的学生门户，重构成按任务组织。",
       "role": "UX 研究 & 设计",
-      "date": "2024 · 4 个月",
+      "date": "课程项目",
       "m1": "12 个部门入口 → 6 个任务入口",
       "m2": "卡片分类 · 树测试 · 出声思考",
       "m3": "命名做过普通语言审查"
@@ -64,7 +64,7 @@
       "title": "Spectra Lens",
       "sub": "一个 AR 镜头，让色盲用户看见世界真正呈现的样子。",
       "role": "首席 UX 设计师",
-      "date": "2024 · 4 个月",
+      "date": "课程项目",
       "m1": "覆盖不同色觉类型的访谈",
       "m2": "在真实场景中测试",
       "m3": "默认静音，语音可选开启"
@@ -74,7 +74,7 @@
       "title": "AI 面试助手",
       "sub": "在没有观众的房间里，彩排人生里最难的一场对话。",
       "role": "UX 设计 & 研究",
-      "date": "2024 · 5 个月",
+      "date": "课程项目",
       "m1": "反馈放在练习之后，而不是过程中",
       "m2": "反馈时机对比：过程中 vs. 结束后",
       "m3": "语气与焦虑护栏"
@@ -84,7 +84,7 @@
       "title": "MazeRunners",
       "sub": "一台会回手的迷宫 —— 传感器、震动与浏览器控制台接成同一个闭环。",
       "role": "Design Technologist",
-      "date": "2025 · 已搭建并展出",
+      "date": "2026 · 已搭建并展出",
       "m1": "Arduino Mega · 10 个红外传感器",
       "m2": "用震动取代电击",
       "m3": "Web Serial 实时 + demo 控制台"
@@ -121,9 +121,9 @@
     "related": "继续阅读",
     "impactLabel": "这个案例产出了什么",
     "connect": {
-      "hero": { "title": "UQ Connect", "sub": "为 5 万名学生在用的大学门户站，重做一套信息架构。" },
+      "hero": { "title": "UQ Connect", "sub": "为一个大学学生门户重做一套信息架构。" },
       "roleVal": "独立 UX 研究 & 设计",
-      "timeVal": "2024 年 3 – 6 月",
+      "timeVal": "课程项目",
       "teamVal": "独立完成，导师指导",
       "toolsVal": "Figma · OptimalSort · Treejack · Maze",
       "ch": {
@@ -160,7 +160,7 @@
     "spectra": {
       "hero": { "title": "Spectra Lens", "sub": "让色觉障碍用户按自己的节奏读懂这个世界。" },
       "roleVal": "首席 UX 设计师",
-      "timeVal": "2024 年 8 – 11 月",
+      "timeVal": "课程项目",
       "teamVal": "独立，辅以无障碍研究方向的指导",
       "toolsVal": "Figma · Adobe XD · Maze · Miro",
       "ch": {
@@ -197,7 +197,7 @@
     "ai": {
       "hero": { "title": "AI 面试助手", "sub": "在没有观众的房间里，彩排人生里最难的一场对话。" },
       "roleVal": "UX 设计师兼研究员",
-      "timeVal": "2024 年 2 – 6 月",
+      "timeVal": "课程项目",
       "teamVal": "独立，两位职业顾问参与",
       "toolsVal": "Figma · FigJam · Lookback · ChatGPT API",
       "ch": {
@@ -234,7 +234,7 @@
     "maze": {
       "hero": { "title": "MazeRunners", "sub": "一台接好线的实体迷宫：球、分数、手指上的一下震动、浏览器控制台，说的都是同一个瞬间。" },
       "roleVal": "Design Technologist / 交互原型开发",
-      "timeVal": "2025 · 已搭建并展出",
+      "timeVal": "2026 · 已搭建并展出",
       "teamVal": "团队项目；我负责固件、感测、反馈与网页控制台",
       "toolsVal": "Arduino Mega · Arduino C/C++ · FC-51 红外 · TM1637 · Web Serial · JS Canvas",
       "ch": {
@@ -445,8 +445,8 @@
       { "name": "开发", "tools": ["HTML/CSS", "JavaScript", "React", "TypeScript", "Tailwind CSS", "Next.js"] }
     ],
     "timeline": [
-      { "year": "2024", "title": "交互设计硕士", "org": "昆士兰大学", "description": "深入学习人机交互、UX 研究与设计思维。" },
-      { "year": "2023", "title": "开始设计之旅", "org": "自学", "description": "通过线上课程与个人项目探索 UX/UI 设计。" }
+      { "year": "2025", "title": "交互设计硕士", "org": "昆士兰大学", "description": "研究方法、信息架构、评估方法、物理计算。" },
+      { "year": "2020", "title": "计算机科学学士（荣誉）", "org": "斯旺西大学", "description": "在威尔士四年，2024 年 7 月以二等一级荣誉（2:1）毕业。" }
     ],
     "funFacts": [
       { "emoji": "📚", "label": "爱读书" },
@@ -456,7 +456,7 @@
     ],
     "kicker": "关于",
     "headline": { "text": "我做的是「让人能找到路」的数字产品。", "em": "人" },
-    "p1": "我在昆士兰大学读交互设计硕士，明年毕业。在此之前我在完全不同的领域待过四年，这段经历的副产品，就是让我习惯了在房间里做那个要在陌生人之间翻译的人。",
+    "p1": "我在昆士兰大学读交互设计硕士，2026 年 11 月毕业。在这之前我在威尔士读了四年计算机科学，所以我习惯做房间里那个在设计师和工程师之间翻译的人。",
     "p2": "我的工作站在研究、信息架构和手艺三件事的重叠处。我最能派上用场的，是那些乱糟糟、高风险、所有人还在为「这到底该是个什么产品」吵架的阶段 —— 因为我享受别人觉得乏味的那部分：凌晨一点把访谈转写读到模式自己浮现出来。",
     "p3": "工作外我做菜放太多蒜，读关于城市的非虚构，偶尔尝试学日语。只要不是群发给招聘候选人的邮件，我都会回。",
     "philo": {
@@ -469,10 +469,10 @@
     "cv": "下载简历",
     "tl": {
       "label": "简要",
-      "y2026": "6 月毕业。在找一个认真的团队。",
-      "y2025": "Spectra 入选昆大设计年展。MazeRunners 完成搭建并展出；课程深入到研究方法与 IA。",
-      "y2024": "进入昆大交互设计硕士项目。3–6 月：UQ Connect 信息架构重设计。8–11 月：Spectra Lens AR 无障碍。",
-      "y2020": "前一段四年的职业经历，当面可以详谈。"
+      "y2026": "MazeRunners 完成搭建并展出，Vigil 与 Hoop Dream 上线。11 月硕士毕业，在找一个认真的团队。",
+      "y2025": "2 月进入昆士兰大学交互设计硕士项目：研究方法、信息架构、物理计算。",
+      "y2024": "7 月从斯旺西大学计算机科学本科毕业，二等一级荣誉（2:1）。",
+      "y2020": "进入斯旺西大学读计算机科学，在威尔士待了四年。"
     }
   },
   "contact": {
@@ -513,10 +513,10 @@
     "printHint": "提示：使用浏览器的打印功能（Ctrl/Cmd + P）可将此页保存为 PDF",
     "overview": { "education": "教育经历", "experienceHighlights": "经历亮点" },
     "sections": { "education": "教育经历", "experience": "工作经历", "skills": "技能", "certifications": "证书", "awards": "获奖与荣誉" },
-    "education": { "degree": "交互设计硕士", "institutionAndYears": "昆士兰大学 • 2023 – 至今" },
+    "education": { "degree": "交互设计硕士", "institutionAndYears": "昆士兰大学 • 2025 – 2026" },
     "experience": [
-      { "title": "UX 设计实习生", "orgAndYear": "设计工作室 • 2024" },
-      { "title": "自由职业设计师", "orgAndYear": "自由职业 • 2022 – 2023" }
+      { "title": "MazeRunners 控制层开发（小组项目）", "orgAndYear": "已搭建并展出 • 2026" },
+      { "title": "Vigil 与 Hoop Dream（个人项目）", "orgAndYear": "规格到实现，AI 辅助 • 2026" }
     ],
     "kicker": "简历",
     "headline": "经历",
