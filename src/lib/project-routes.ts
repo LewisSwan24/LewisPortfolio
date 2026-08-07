@@ -2,7 +2,6 @@ export const CURRENT_PROJECT_SLUGS = [
   "connect",
   "spectra",
   "ai",
-  "circles",
   "maze",
   "vigil",
   "hoop",
@@ -15,9 +14,12 @@ export const LEGACY_PROJECT_SLUG_REDIRECTS: Record<string, CurrentProjectSlug> =
   "spectra-lens": "spectra",
   "ai-interview-assistant": "ai",
   // Only slugs that were genuinely live before the rename belong here; this
-  // list mirrors legacyProjectRedirects in next.config.js. "maze" is new, so it
-  // has no legacy alias to redirect from.
-  "connect-circles": "circles",
+  // list mirrors legacyProjectRedirects in next.config.js. "maze", "vigil" and
+  // "hoop" are newer, so they have no legacy alias to redirect from.
+  //
+  // "connect-circles" -> "circles" is gone with the case itself: Connect
+  // Circles described a project that never existed, so there is no destination
+  // to send that URL to. /projects/circles now redirects to /projects.
 };
 
 export const PROJECT_OG_COPY: Record<
@@ -35,10 +37,6 @@ export const PROJECT_OG_COPY: Record<
   ai: {
     title: "AI Interview Assistant",
     oneLiner: "A calmer AI coaching loop for interview practice.",
-  },
-  circles: {
-    title: "Connect Circles",
-    oneLiner: "A slower social design direction for international student belonging.",
   },
   maze: {
     title: "MazeRunners",

@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const SKILLS: Array<{ en: string; zh: string; v: number; href?: string }> = [
-  { en: "User research", zh: "用户研究", v: 92, href: "/projects/circles" },
+  { en: "User research", zh: "用户研究", v: 92, href: "/projects/connect" },
   { en: "Information architecture", zh: "信息架构", v: 88, href: "/projects/connect" },
   { en: "Interaction design", zh: "交互设计", v: 85, href: "/projects/spectra" },
   { en: "Prototyping (Figma, Framer)", zh: "原型（Figma / Framer）", v: 90, href: "/projects/ai" },
@@ -64,32 +64,33 @@ export default async function ResumePage() {
               <h3>{t("resume.section.exp")}</h3>
 
               <div className="res-entry">
-                <div className="date">2024 · 10 – {isZh ? "至今" : "Now"}</div>
+                <div className="date">2026 · 01 – {isZh ? "至今" : "Now"}</div>
                 <div>
                   <h4>
                     {isZh
-                      ? "产品设计师（自主项目）"
-                      : "Product Designer (self-initiated)"}
+                      ? "产品与交互设计师（自主项目）"
+                      : "Product & Interaction Designer (self-initiated)"}
                   </h4>
                   <p className="org">
-                    Connect Circles ·{" "}
-                    {isZh ? "国际学生社交 App" : "International student social app"}
+                    {isZh
+                      ? "AI 辅助产品实践 · Vigil / Hoop Dream / MazeRunners"
+                      : "AI-assisted product practice · Vigil, Hoop Dream, MazeRunners"}
                   </p>
                   <ul>
                     <li>
                       {isZh
-                        ? "主导跨 3 个文化群体的 15 次深度访谈（东亚 / 南亚 / 欧洲）。"
-                        : "Led 15 depth interviews across 3 cultural cohorts (East/South Asia, Europe)."}
+                        ? "把自主选题的产品从书面规格一路带到可运行的实现：规格与设计决策由我定，再指挥 Codex 与 Claude Code 落地。"
+                        : "Took self-directed products from written spec to running build — I wrote the specification and design decisions, then directed Codex and Claude Code to implement them."}
                     </li>
                     <li>
                       {isZh
-                        ? "执行 2 周日记研究（n=8）及 3 场共创工作坊。"
-                        : "Ran a 2-week diary study (n=8) and 3 co-design workshops."}
+                        ? "Vigil：140 封合成邮件、六个可切换界面变体；预测在测试前先写下，并设了一道闸门——一旦置信度能预测分类器的错误，build 就挂掉。"
+                        : "Vigil: six switchable interface variants over a 140-email synthetic corpus, predictions recorded before testing, and a build gate that fails if confidence starts predicting the classifier's errors."}
                     </li>
                     <li>
                       {isZh
-                        ? "整合三个学术框架（Weiss / SDT / SIT）到产品方向。"
-                        : "Synthesised three academic frameworks (Weiss, SDT, SIT) into a product direction."}
+                        ? "Hoop Dream：六个批次共 299 张美术资产，靠一份成文美术圣经与一道带「拒绝风格」清单的闸门保持一致；线上公开可玩，自标 DEMO v0.6。"
+                        : "Hoop Dream: 299 art assets across six batches held to one written art bible by a style gate with an explicit rejected-style list; publicly playable, self-labelled DEMO v0.6."}
                     </li>
                   </ul>
                 </div>

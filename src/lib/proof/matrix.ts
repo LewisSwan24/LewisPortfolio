@@ -16,9 +16,9 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     proofLinks: [
       { label: "UQ Connect IA decision", href: "/projects/connect#decision-timeline" },
       { label: "MazeRunners hardware trade-offs", href: "/projects/maze#decision-timeline" },
-      { label: "Connect Circles product framing", href: "/projects/circles#evidence-board" },
+      { label: "Hoop Dream production pipeline", href: "/projects/hoop#decision-timeline" },
     ],
-    bestCases: ["connect", "maze", "circles"],
+    bestCases: ["connect", "maze", "hoop"],
     risk:
       "I am strongest when product ambiguity needs structure; I would pair with engineering early for production constraints.",
     interviewAngle: "Ask how I turn research signals into scoped product decisions.",
@@ -30,10 +30,10 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
       "Best fit when the team needs mixed methods, careful sampling, and research outputs that change product decisions.",
     proofLinks: [
       { label: "Connect research evidence", href: "/projects/connect#evidence-board" },
-      { label: "Circles diary study", href: "/projects/circles#evidence-board" },
-      { label: "Research limits", href: "/projects/circles#outcome-limits" },
+      { label: "Spectra field evidence", href: "/projects/spectra#evidence-board" },
+      { label: "Research limits", href: "/projects/connect#outcome-limits" },
     ],
-    bestCases: ["connect", "circles"],
+    bestCases: ["connect", "spectra"],
     risk:
       "Most projects are academic or self-initiated, so I am explicit about what evidence is measured and what still needs field validation.",
     interviewAngle: "Ask how I choose methods when the problem is still ambiguous.",
@@ -82,9 +82,9 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     proofLinks: [
       { label: "UQ Connect 的 IA 决策", href: "/projects/connect#decision-timeline" },
       { label: "MazeRunners 的软硬件取舍", href: "/projects/maze#decision-timeline" },
-      { label: "Connect Circles 的产品框架", href: "/projects/circles#evidence-board" },
+      { label: "Hoop Dream 的生产管线", href: "/projects/hoop#decision-timeline" },
     ],
-    bestCases: ["connect", "maze", "circles"],
+    bestCases: ["connect", "maze", "hoop"],
     risk: "我最强的地方是把模糊的产品问题结构化；生产环境的约束我会尽早找工程一起看。",
     interviewAngle: "可以问我怎么把研究信号收敛成有范围的产品决策。",
   },
@@ -94,10 +94,10 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     fit: "适合需要混合方法、谨慎取样，并且要让研究真的改变产品决策的团队。",
     proofLinks: [
       { label: "Connect 的研究证据", href: "/projects/connect#evidence-board" },
-      { label: "Circles 的日记研究", href: "/projects/circles#evidence-board" },
-      { label: "研究的限制", href: "/projects/circles#outcome-limits" },
+      { label: "Spectra 的实地证据", href: "/projects/spectra#evidence-board" },
+      { label: "研究的限制", href: "/projects/connect#outcome-limits" },
     ],
-    bestCases: ["connect", "circles"],
+    bestCases: ["connect", "spectra"],
     risk: "多数项目是课程或自发项目，所以我会讲清楚哪些有证据、哪些还需要实地验证。",
     interviewAngle: "可以问我在问题还很模糊时怎么选方法。",
   },
@@ -145,11 +145,6 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "Task analysis, card sorting, and tree testing framed the portal IA.",
         href: "/projects/connect#evidence-board",
       },
-      circles: {
-        strength: "primary",
-        proof: "Interviews, diary study, and theory synthesis reframed belonging.",
-        href: "/projects/circles#evidence-board",
-      },
       spectra: {
         strength: "supporting",
         proof: "Colourblind-user interviews shaped interaction requirements.",
@@ -171,11 +166,6 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         strength: "primary",
         proof: "Moved the portal from department ownership to task-oriented IA.",
         href: "/projects/connect#decision-timeline",
-      },
-      circles: {
-        strength: "supporting",
-        proof: "Structured social onboarding around slow circles and prompts.",
-        href: "/projects/circles#iteration-gallery",
       },
     },
   },
@@ -216,11 +206,6 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "Post-session coaching balanced usefulness, control, and stress.",
         href: "/projects/ai#decision-timeline",
       },
-      circles: {
-        strength: "supporting",
-        proof: "Product success avoided shallow engagement optimization.",
-        href: "/projects/circles#interview-takeaway",
-      },
     },
   },
   {
@@ -242,11 +227,6 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         strength: "supporting",
         proof: "Moved intervention timing away from live interruption.",
         href: "/projects/ai#decision-timeline",
-      },
-      circles: {
-        strength: "supporting",
-        proof: "Chose depth-first matching over open social discovery.",
-        href: "/projects/circles#decision-timeline",
       },
       vigil: {
         strength: "supporting",
@@ -275,11 +255,6 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "Confidence gains need durability validation beyond first use.",
         href: "/projects/ai#outcome-limits",
       },
-      circles: {
-        strength: "supporting",
-        proof: "Relationship depth needs cohort and arrival-stage validation.",
-        href: "/projects/circles#outcome-limits",
-      },
       vigil: {
         strength: "supporting",
         proof: "The build fails if confidence starts predicting the classifier's errors.",
@@ -301,11 +276,6 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         strength: "supporting",
         proof: "Inclusive rationale is framed for critique and next validation.",
         href: "/projects/spectra#interview-takeaway",
-      },
-      circles: {
-        strength: "primary",
-        proof: "Co-design workshops turned vulnerable social needs into safer concepts.",
-        href: "/projects/circles#evidence-board",
       },
     },
   },
@@ -435,46 +405,6 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
       evidenceHref: "/projects/ai#interview-takeaway",
       boundary:
         "I would validate this with anxious and confident users separately before generalizing.",
-    },
-  },
-  circles: {
-    answers: [
-      {
-        id: "circles-slow-matching",
-        question: "Why slow matching instead of maximizing more matches?",
-        answer:
-          "I would explain how interviews and diary study pointed to relational confidence and safety, not match volume, as the meaningful outcome.",
-        evidenceHref: "/projects/circles#decision-timeline",
-        boundary:
-          "I would not claim slow matching is always better; it fits the wellbeing goal and needs cohort testing.",
-      },
-      {
-        id: "circles-depth-metric",
-        question: "Why use relationship depth as a success signal?",
-        answer:
-          "I would connect the evidence to a product metric that resists shallow engagement and better reflects belonging.",
-        evidenceHref: "/projects/circles#evidence-board",
-        boundary:
-          "Relationship depth is harder to measure than activity, so it needs careful longitudinal validation.",
-      },
-      {
-        id: "circles-scaling",
-        question: "What would you validate before scaling?",
-        answer:
-          "I would test small-circle onboarding across cultural cohorts and arrival stages before scaling the matching model.",
-        evidenceHref: "/projects/circles#outcome-limits",
-        boundary:
-          "The project frames the product direction; it does not prove broad adoption yet.",
-      },
-    ],
-    managerFollowUp: {
-      id: "circles-manager-follow-up",
-      question: "How would you prevent the product from becoming another shallow social feed?",
-      answer:
-        "I would define success around perceived safety, repeat conversation quality, and belonging rather than daily activity alone.",
-      evidenceHref: "/projects/circles#interview-takeaway",
-      boundary:
-        "I would still watch retention, but not let engagement volume override the wellbeing purpose.",
     },
   },
   maze: {

@@ -42,7 +42,7 @@ function packetBase(
 const rolePackets: Record<ProofLocale, RolePacket[]> = {
   en: [
     {
-      ...packetBase("en", "ux-product", ["connect", "spectra", "circles"]),
+      ...packetBase("en", "ux-product", ["connect", "spectra", "maze"]),
       label: "UX/Product Design",
       headline: "Interview Lewis for UX/Product roles that need research to shape product direction.",
       fitThesis:
@@ -70,42 +70,20 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           nextValidation:
             "Run broader field testing across lighting, distance, device, and colour-vision profiles.",
         },
-        {
-          id: "ux-product-social-depth",
-          claim: "Lewis can resist shallow engagement metrics when the product goal is social wellbeing.",
-          evidence:
-            "Connect Circles shifted from more matches to small groups, slow matching, and relationship depth.",
-          boundary:
-            "This proves research framing and product direction, not scaled retention or network effects.",
-          strongestAnchor: "/projects/circles#interview-takeaway",
-          nextValidation:
-            "Test repeated cohort use and measure perceived safety, relationship quality, and belonging over time.",
-        },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
         ["connect", 0],
         ["spectra", 1],
-        ["circles", 0],
+        ["maze", 0],
       ]),
     },
     {
-      ...packetBase("en", "ux-research", ["circles", "connect", "ai"]),
+      ...packetBase("en", "ux-research", ["connect", "spectra", "ai"]),
       label: "UX Research",
       headline: "Interview Lewis for research roles that need synthesis to become product direction.",
       fitThesis:
         "Best fit when the role values method choice, synthesis under uncertainty, and honest limits on what the evidence proves.",
       proofClaims: [
-        {
-          id: "ux-research-ambiguous-social",
-          claim: "Lewis can choose methods for ambiguous human problems before the product shape is obvious.",
-          evidence:
-            "Connect Circles combines interviews, diary study, co-design, and theory synthesis around belonging.",
-          boundary:
-            "The work defines a defensible product direction, not a validated scaled social network.",
-          strongestAnchor: "/projects/circles#evidence-board",
-          nextValidation:
-            "Run a longitudinal cohort study across arrival stages and cultural cohorts before scale claims.",
-        },
         {
           id: "ux-research-ia-validation",
           claim: "Lewis can connect research methods to measurable decision criteria.",
@@ -130,7 +108,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
         },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
-        ["circles", 1],
+        ["spectra", 1],
         ["connect", 2],
         ["ai", 2],
       ]),
@@ -232,7 +210,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
   ],
   zh: [
     {
-      ...packetBase("zh", "ux-product", ["connect", "spectra", "circles"]),
+      ...packetBase("zh", "ux-product", ["connect", "spectra", "maze"]),
       label: "UX/Product Design",
       headline: "适合需要把研究转成产品方向的 UX/Product 岗位。",
       fitThesis:
@@ -260,42 +238,20 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           nextValidation:
             "下一步需要在光线、距离、设备和不同色觉情况中做更广泛场景测试。",
         },
-        {
-          id: "ux-product-social-depth",
-          claim: "当产品目标是社交健康时，Lewis 能抵抗浅层参与指标。",
-          evidence:
-            "Connect Circles 从更多匹配转向小组、慢匹配和关系深度。",
-          boundary:
-            "这证明研究定义和产品方向，不证明规模化留存或网络效应。",
-          strongestAnchor: "/projects/circles#interview-takeaway",
-          nextValidation:
-            "下一步需要测试重复 cohort 使用，并衡量安全感、关系质量和归属感。",
-        },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [
         ["connect", 0],
         ["spectra", 1],
-        ["circles", 0],
+        ["maze", 0],
       ]),
     },
     {
-      ...packetBase("zh", "ux-research", ["circles", "connect", "ai"]),
+      ...packetBase("zh", "ux-research", ["connect", "spectra", "ai"]),
       label: "UX Research",
       headline: "适合需要把研究综合转成产品方向的 UX Research 岗位。",
       fitThesis:
         "当岗位重视方法选择、不确定性下的综合，以及清楚说明证据边界时，这个方向最匹配。",
       proofClaims: [
-        {
-          id: "ux-research-ambiguous-social",
-          claim: "Lewis 能在产品形态还不明确时，为复杂人的问题选择研究方法。",
-          evidence:
-            "Connect Circles 围绕归属感结合访谈、日记研究、共创和理论综合。",
-          boundary:
-            "这个项目定义了可信的产品方向，不等于验证了规模化社交网络。",
-          strongestAnchor: "/projects/circles#evidence-board",
-          nextValidation:
-            "下一步需要跨到达阶段和文化群体做长期 cohort 研究。",
-        },
         {
           id: "ux-research-ia-validation",
           claim: "Lewis 能把研究方法和可衡量的决策标准连接起来。",
@@ -320,7 +276,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
         },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [
-        ["circles", 1],
+        ["spectra", 1],
         ["connect", 2],
         ["ai", 2],
       ]),

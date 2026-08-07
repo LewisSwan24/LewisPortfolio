@@ -6,7 +6,6 @@ import {
   VizConnect,
   VizSpectra,
   VizAI,
-  VizCircles,
   VizMaze,
   VizVigil,
   VizHoop,
@@ -38,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil" | "hoop";
+type ProjKey = "connect" | "spectra" | "ai" | "maze" | "vigil" | "hoop";
 
 interface FeatItemProps {
   n: string;
@@ -229,7 +228,6 @@ export default async function HomePage() {
           <FeatItem n="04" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect />} />
           <FeatItem n="05" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra />} />
           <FeatItem n="06" k="ai" href="/projects/ai" flip t={t} viz={<VizAI />} />
-          <FeatItem n="07" k="circles" href="/projects/circles" t={t} viz={<VizCircles />} />
         </div>
       </section>
 

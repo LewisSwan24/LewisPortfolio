@@ -47,7 +47,7 @@
       "4": { "t": "Ship", "b": "Usability test, iterate, hand off with rationale intact." }
     }
   },
-  "feat": { "label": "Selected work", "title": "Seven projects, end-to-end.", "footer": "Full index" },
+  "feat": { "label": "Selected work", "title": "Six projects, end-to-end.", "footer": "Full index" },
   "proj": {
     "connect": {
       "kicker": "Flagship · Information Architecture",
@@ -78,16 +78,6 @@
       "m1": "Feedback after, not during",
       "m2": "Timing A/B: inline vs. post-session",
       "m3": "Tone and anxiety guardrails"
-    },
-    "circles": {
-      "kicker": "Research-through-design · Social",
-      "title": "Connect Circles",
-      "sub": "Friendship by quality, not quantity — a slow-match app for international students.",
-      "role": "Product Designer",
-      "date": "Research complete · next validation defined",
-      "m1": "Depth interviews",
-      "m2": "Two-week diary study",
-      "m3": "Co-design workshops"
     },
     "maze": {
       "kicker": "Flagship · Physical computing",
@@ -275,55 +265,6 @@
       "rf": {
         "label": "Reflection",
         "p": "Designing with AI isn't designing a chatbot; it's designing a relationship. The persona's warmth, pacing, and word choice did more work than any single feature. The next direction I'd push is emotional calibration — letting users set how gentle or rigorous the session feels, not as a difficulty slider but as a tone."
-      }
-    },
-    "circles": {
-      "hero": { "title": "Connect Circles", "sub": "Friendship by quality, not quantity — a slow-match app for international students." },
-      "roleVal": "Product Designer",
-      "timeVal": "October 2024 – current research-through-design case",
-      "teamVal": "Solo, with co-design alongside international students",
-      "toolsVal": "Figma · FigJam · Notion · Discord",
-      "ch": {
-        "label": "The problem",
-        "title": "Loneliness in the first semester is common — and the apps make it worse.",
-        "p": "Moving countries for study collapses an entire social scaffolding. Language barriers, unfamiliar norms, and academic pressure combine so that meeting new people feels simultaneously urgent and exhausting. The apps students use — Meetup, Bumble BFF, Hey! VINA — optimise for matching volume, exactly the metric that scales the emotional cost. The students I spoke to said they'd rather have one deep friendship than ten casual matches, and no existing product was designed around that preference."
-      },
-      "re": {
-        "label": "Research",
-        "title": "Three cultural regions, three methods, one stubborn pattern.",
-        "m1": { "t": "Interviews", "b": "Semi-structured sessions across East Asian, South Asian, and European student cohorts." },
-        "m2": { "t": "Diary study", "b": "Two weeks logging social interactions and how participants felt before and after each one." },
-        "m3": { "t": "Co-design", "b": "Workshops on ideal features, dealbreakers, and cultural considerations." },
-        "quote": "I don't want more friends. I want one person I can stop pretending around.",
-        "quoteWho": "P03, first-semester postgrad"
-      },
-      "sy": {
-        "label": "Synthesis",
-        "title": "The market is built on volume. Users are asking for depth.",
-        "p": "Four themes held across cultures: depth beats breadth; shared vulnerability is the formation mechanism; first meetings need a shared activity, not a coffee date; and socialising norms vary enough that any one default will alienate someone. The design implication is almost the opposite of a dating app — slow down, give fewer matches, make them earn the next step."
-      },
-      "id": {
-        "label": "Design decisions",
-        "p": "Four directions were shortlisted from co-design: small-group 'circles' of three to five people (not pairs), structured vulnerability prompts to accelerate closeness, cultural-bridge hints on communication style, and slow matching with gradual information reveal. Real-time chat was deliberately de-scoped from v1 — the hypothesis is that less messaging and more shared context produces stronger ties."
-      },
-      "pr": {
-        "label": "Prototype",
-        "p": "The next prototype scope is defined around onboarding (preference and comfort capture), circle match demonstration, activity suggestions with RSVP, in-app conversation prompts, and post-activity reflection. It is privacy-preserving by default — no public profile, no swipe surface."
-      },
-      "te": {
-        "label": "Testing plan",
-        "p": "The next validation step is preference testing and moderated usability sessions with target cohorts. The primary measure is not only usability, but perceived safety, cultural fit, and willingness to actually use the product across an eight-week window."
-      },
-      "ou": {
-        "label": "Current state",
-        "m1": { "label": "Unit", "v": "Circles of 3–5, not pairs" },
-        "m2": { "label": "Pace", "v": "Slow match, gradual reveal" },
-        "m3": { "label": "De-scoped", "v": "Real-time chat in v1" },
-        "p": "Research and synthesis are complete; the case defines the product direction, prototype scope, and validation plan. Evidence status — this is an in-progress research-through-design project. Nothing has been built or tested with users yet, so everything here is a stated hypothesis rather than a result, and the validation plan above is the honest next step."
-      },
-      "rf": {
-        "label": "Reflection",
-        "p": "Designing for social wellbeing is the first time I've had to actively refuse growth metrics. Every conventional indicator — matches, messages, session time — works against the goal. The hardest design question right now is what the north-star metric should be when the desired outcome is 'one good friendship over a semester', and how to instrument for that without turning a relationship into a KPI."
       }
     },
     "maze": {
@@ -587,8 +528,8 @@
     "tl": {
       "label": "Briefly",
       "y2026": "Graduating in Jun. Looking for a seat at a serious team.",
-      "y2025": "Spectra selected for UQ Design Showcase. Continuing Connect Circles fieldwork; coursework deepens into research methods and IA.",
-      "y2024": "Began UQ Master's. Mar–Jun: UQ Connect IA redesign. Aug–Nov: Spectra Lens AR accessibility. Oct→: Connect Circles co-design.",
+      "y2025": "Spectra selected for UQ Design Showcase. MazeRunners built and exhibited; coursework deepens into research methods and IA.",
+      "y2024": "Began UQ Master's. Mar–Jun: UQ Connect IA redesign. Aug–Nov: Spectra Lens AR accessibility.",
       "y2020": "Four years in a previous career I'll happily explain in person."
     }
   },

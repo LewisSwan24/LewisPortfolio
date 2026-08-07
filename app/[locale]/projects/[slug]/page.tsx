@@ -8,7 +8,6 @@ import {
   VizConnect,
   VizSpectra,
   VizAI,
-  VizCircles,
   VizMaze,
   VizVigil,
   VizHoop,
@@ -279,7 +278,6 @@ const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   connect: [],
   spectra: [],
   ai: [],
-  circles: [],
   maze: [],
   vigil: [],
   hoop: [],
@@ -319,8 +317,7 @@ function CoverViz({ slug }: { slug: Slug }) {
   if (slug === "hoop") return <VizHoop />;
   if (slug === "connect") return <VizConnect />;
   if (slug === "spectra") return <VizSpectra />;
-  if (slug === "ai") return <VizAI />;
-  return <VizCircles />;
+  return <VizAI />;
 }
 
 export default async function CasePage({ params }: Props) {

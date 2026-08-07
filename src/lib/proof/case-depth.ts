@@ -37,14 +37,6 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       outcome: "Post-session feedback was clearly preferred over mid-answer interruption. Prototype only; no controlled experiment.",
       next: "I would test tone controls that let users choose a gentler or more rigorous interview persona.",
     },
-    circles: {
-      challenge: "International students wanted fewer, deeper relationships, while social apps rewarded volume and constant messaging.",
-      role: "Product designer",
-      methods: ["depth interviews", "diary study", "co-design", "research-through-design"],
-      evidence: ["depth interviews", "two-week diary study", "co-design workshops"],
-      outcome: "The product direction shifted toward small circles, structured prompts, and slow matching.",
-      next: "I would instrument for perceived safety and relationship depth, not matches or time spent.",
-    },
     maze: {
       challenge:
         "A physical maze just sits there. Making it read as a responsive multiplayer system meant tying sensing, game state, and feedback together in real time.",
@@ -114,14 +106,6 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       evidence: ["问卷", "深度访谈", "竞品拆解", "主持式原型测试"],
       outcome: "结束后反馈明显优于答题中打断。仅为原型，没有做受控实验。",
       next: "我会测试语气控制，让用户选择更温和或更严格的 AI 面试官。",
-    },
-    circles: {
-      challenge: "国际学生想要更少但更深的关系，而社交 app 奖励的是数量和持续消息。",
-      role: "Product Designer",
-      methods: ["深度访谈", "日记研究", "共创", "研究型设计"],
-      evidence: ["深度访谈", "两周日记研究", "共创工作坊"],
-      outcome: "产品方向转向小组关系、结构化提示和慢匹配。",
-      next: "我会衡量安全感与关系深度，而不是匹配数或使用时长。",
     },
     maze: {
       challenge:
@@ -459,104 +443,6 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       ],
       takeaway:
         "This case proves I can design AI interactions around trust, control, feedback timing, and emotional safety rather than treating AI as a feature layer.",
-    },
-    circles: {
-      decisions: [
-        {
-          label: "Optimize for slow matching instead of more matches",
-          choice:
-            "I framed the product around slow matching that gives relationships time to form.",
-          evidence:
-            "Interviews and diary entries showed students wanted fewer, deeper connections rather than more chats.",
-          tradeoff:
-            "The concept rejects easy growth metrics, but better matches the loneliness problem.",
-          impact:
-            "The product direction became more aligned with relationship depth than engagement volume.",
-        },
-        {
-          label: "Use small circles rather than one-to-one discovery",
-          choice:
-            "I explored small group formats to reduce the pressure of initiating friendship alone.",
-          evidence:
-            "Co-design sessions suggested that group prompts could make vulnerability feel safer.",
-          tradeoff:
-            "Groups are harder to coordinate than one-to-one matching, but can lower social risk.",
-          impact:
-            "Small circles became a structural answer to belonging, not just a feature idea.",
-        },
-        {
-          label: "Measure relationship depth instead of time spent",
-          choice:
-            "I defined success around perceived safety and relationship depth, not app usage volume.",
-          evidence:
-            "Academic frameworks and user research both pointed toward belonging quality over activity count.",
-          tradeoff:
-            "Depth metrics are harder to instrument, but they avoid rewarding shallow interaction loops.",
-          impact:
-            "The concept kept its social wellbeing purpose intact during product synthesis.",
-        },
-      ],
-      evidence: [
-        {
-          method: "Depth interviews",
-          sample: "Interviews across cultural cohorts; group size not formally recorded",
-          question: "What makes friendship difficult for international students after arrival?",
-          finding: "Students described social access, cultural uncertainty, and fear of shallow interaction.",
-          implication: "The product needed to create safer entry points, not simply increase discovery.",
-        },
-        {
-          method: "Diary study",
-          sample: "Two-week diary study; group size not formally recorded",
-          question: "When do students feel close to others versus merely socially busy?",
-          finding: "Meaningful moments were small, repeated, and contextually specific.",
-          implication: "Slow matching and recurring prompts fit the problem better than instant matching.",
-        },
-        {
-          method: "Co-design workshops",
-          sample: "3 workshops",
-          question: "Which social formats feel safe enough to try with unfamiliar peers?",
-          finding: "Small circles and guided prompts reduced the pressure of initiating alone.",
-          implication: "The product should structure vulnerability instead of expecting users to create it.",
-        },
-      ],
-      iterations: [
-        {
-          version: "Open social discovery",
-          change: "Started from a broader matching and messaging concept.",
-          reason: "This represented the dominant pattern in existing social apps.",
-          improvement: "Made clear why more discovery could worsen shallow interaction.",
-        },
-        {
-          version: "Small circle concept",
-          change: "Shifted toward small groups, prompts, and shared context.",
-          reason: "Research suggested safety and repetition mattered more than match volume.",
-          improvement: "Reduced initiation pressure and better supported belonging.",
-        },
-        {
-          version: "Depth-first prototype direction",
-          change: "Defined success around relationship depth and perceived safety.",
-          reason: "The product needed metrics that matched the social wellbeing goal.",
-          improvement: "Protected the direction from drifting into generic engagement optimization.",
-        },
-      ],
-      limits: [
-        {
-          constraint: "The project has a defined prototype direction but less measured product outcome data.",
-          whyItMatters:
-            "Research-through-design can frame a problem well, but still needs behavioural validation.",
-          nextValidation:
-            "Prototype small-circle onboarding and measure perceived safety after repeated sessions.",
-        },
-        {
-          constraint: "The research spans cultural cohorts but not every international student context.",
-          whyItMatters:
-            "Belonging needs differ across language, culture, program type, and time since arrival.",
-          nextValidation:
-            "Run segmented tests by cohort and arrival stage before generalizing the model.",
-        },
-      ],
-      takeaway:
-        "This case proves I can work through ambiguous social problems, synthesize theory and field research, and choose metrics that protect the product's purpose.",
     },
     maze: {
       decisions: [
@@ -1168,88 +1054,6 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "这个案例证明我能围绕 trust、control、feedback timing 和 emotional safety 设计 AI 交互，而不是只把 AI 当功能层。",
     },
-    circles: {
-      decisions: [
-        {
-          label: "优化 slow matching 而不是更多匹配",
-          choice: "把产品方向放在 slow matching，让关系有时间形成。",
-          evidence: "访谈和 diary study 显示，学生想要更少但更深的连接。",
-          tradeoff: "方向拒绝容易增长的指标，但更贴近 loneliness 问题。",
-          impact: "产品从 engagement volume 转向 relationship depth。",
-        },
-        {
-          label: "用 small circles 降低社交压力",
-          choice: "探索小组格式，而不是只做一对一发现。",
-          evidence: "共创显示，小组 prompts 可以让 vulnerability 更安全。",
-          tradeoff: "小组协调更难，但能降低单独发起的风险。",
-          impact: "small circles 成为 belonging 的结构性答案。",
-        },
-        {
-          label: "衡量 relationship depth",
-          choice: "把成功定义为 perceived safety 和 relationship depth，而非使用时长。",
-          evidence: "学术框架和用户研究都指向归属质量，而不是活动数量。",
-          tradeoff: "depth metrics 更难埋点，但不会奖励浅层互动。",
-          impact: "产品综合阶段保住了 social wellbeing 目的。",
-        },
-      ],
-      evidence: [
-        {
-          method: "Depth interviews",
-          sample: "Interviews across cultural cohorts; group size not formally recorded",
-          question: "国际学生到达后，友谊为什么难建立？",
-          finding: "学生提到 social access、cultural uncertainty 和 shallow interaction。",
-          implication: "产品要创造更安全的入口，而不是只增加 discovery。",
-        },
-        {
-          method: "Diary study",
-          sample: "Two-week diary study; group size not formally recorded",
-          question: "什么时候学生感觉真正亲近，而不是只是社交忙碌？",
-          finding: "有意义的时刻通常小、重复、和具体情境有关。",
-          implication: "slow matching 和 recurring prompts 比 instant matching 更贴合。",
-        },
-        {
-          method: "Co-design workshops",
-          sample: "3 workshops",
-          question: "哪些社交形式安全到愿意和陌生同伴尝试？",
-          finding: "small circles 和 guided prompts 降低了单独发起的压力。",
-          implication: "产品应该结构化 vulnerability，而不是期待用户自己创造。",
-        },
-      ],
-      iterations: [
-        {
-          version: "Open social discovery",
-          change: "从更宽泛的 matching 和 messaging 概念开始。",
-          reason: "这是现有社交 app 的主流模式。",
-          improvement: "明确了更多发现可能加剧浅层互动。",
-        },
-        {
-          version: "Small circle concept",
-          change: "转向小组、prompt 和共享情境。",
-          reason: "研究显示安全感和重复性比 match volume 更重要。",
-          improvement: "降低发起压力，更支持 belonging。",
-        },
-        {
-          version: "Depth-first prototype direction",
-          change: "围绕 relationship depth 和 perceived safety 定义成功。",
-          reason: "产品需要匹配 social wellbeing 目标的指标。",
-          improvement: "避免方向漂移到通用 engagement optimization。",
-        },
-      ],
-      limits: [
-        {
-          constraint: "项目有明确 prototype direction，但较少 measured product outcome data。",
-          whyItMatters: "research-through-design 能框定问题，但仍需要行为验证。",
-          nextValidation: "原型测试 small-circle onboarding，并在多次会话后衡量 perceived safety。",
-        },
-        {
-          constraint: "研究覆盖多个文化群体，但不是所有国际学生情境。",
-          whyItMatters: "归属需求会随语言、文化、项目类型和到达时间变化。",
-          nextValidation: "按 cohort 和 arrival stage 做分段测试，再推广模型。",
-        },
-      ],
-      takeaway:
-        "这个案例证明我能处理模糊社会问题，综合理论和田野研究，并选择保护产品目的的指标。",
-    },
     maze: {
       decisions: [
         {
@@ -1602,23 +1406,6 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "Teams designing AI assistance around trust and user agency.",
       ],
     },
-    circles: {
-      proves:
-        "This case proves I can frame an ambiguous social wellbeing problem with research, theory, and careful product boundaries.",
-      inspect: [
-        "How interviews and diary study reframed loneliness as relational confidence.",
-        "Why slow matching and small circles were chosen over open discovery.",
-        "How relationship depth became a better success signal than engagement volume.",
-      ],
-      questions: [
-        "How would you avoid optimizing this product for shallow engagement?",
-        "What would you measure before scaling to more student cohorts?",
-      ],
-      bestFit: [
-        "Social impact, community, education, or wellbeing product teams.",
-        "Research-led teams working with ambiguous human problems.",
-      ],
-    },
     maze: {
       proves:
         "This case proves I can build the thing, not just specify it: sensing, firmware, physical feedback, and a browser control surface wired into one loop.",
@@ -1721,23 +1508,6 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
       bestFit: [
         "AI UX, learning tools, coaching, or productivity teams.",
         "Teams designing AI assistance around trust and user agency.",
-      ],
-    },
-    circles: {
-      proves:
-        "This case proves I can frame an ambiguous social wellbeing problem with research, theory, and careful product boundaries.",
-      inspect: [
-        "How interviews and diary study reframed loneliness as relational confidence.",
-        "Why slow matching and small circles were chosen over open discovery.",
-        "How relationship depth became a better success signal than engagement volume.",
-      ],
-      questions: [
-        "How would you avoid optimizing this product for shallow engagement?",
-        "What would you measure before scaling to more student cohorts?",
-      ],
-      bestFit: [
-        "Social impact, community, education, or wellbeing product teams.",
-        "Research-led teams working with ambiguous human problems.",
       ],
     },
     maze: {
@@ -1939,23 +1709,6 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
     {
       question: "What would you measure to prove confidence gains are durable?",
       reason: "Checks whether AI assistance is useful beyond a short first-session response.",
-      anchorId: "outcome-limits",
-    },
-  ],
-  circles: [
-    {
-      question: "Why choose slow matching and small circles instead of more matches?",
-      reason: "Tests whether the social product avoids shallow engagement incentives.",
-      anchorId: "decision-timeline",
-    },
-    {
-      question: "Which evidence made relationship depth a better metric than activity volume?",
-      reason: "Connects interviews, diary study, and theory synthesis to product success.",
-      anchorId: "evidence-board",
-    },
-    {
-      question: "What would you validate before scaling this across student cohorts?",
-      reason: "Keeps an ambiguous wellbeing concept honest about cultural and adoption limits.",
       anchorId: "outcome-limits",
     },
   ],

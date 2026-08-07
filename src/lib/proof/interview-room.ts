@@ -18,9 +18,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Proof depth",
-        value: "7 end-to-end cases",
+        value: "6 end-to-end cases",
         detail:
-          "IA, accessibility, AI coaching, social wellbeing, a hardware build, an AI-oversight study, and a generative production pipeline — methods and limits shown.",
+          "IA, accessibility, AI coaching, a hardware build, an AI-oversight study, and a generative production pipeline — methods and limits shown.",
       },
       {
         label: "Interview readiness",
@@ -64,16 +64,6 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/ai#decision-timeline",
     },
     {
-      id: "social-research-proof",
-      capability: "Research framing",
-      caseSlug: "circles",
-      proof:
-        "Connect Circles used interviews, diary study, and theory synthesis to reframe belonging.",
-      whyItMatters:
-        "Shows ambiguity reduced into a product direction without flattening human context.",
-      href: "/projects/circles#evidence-board",
-    },
-    {
       id: "hardware-proof",
       capability: "Physical computing and build",
       caseSlug: "maze",
@@ -102,14 +92,6 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       proves: "Research synthesis, trade-off reasoning, and product direction.",
       caseSlug: "connect",
       href: "/projects/connect#evidence-board",
-    },
-    {
-      id: "research-method-circles",
-      group: "research",
-      question: "How did you choose methods when belonging was still ambiguous?",
-      proves: "Method selection, sampling logic, and synthesis under uncertainty.",
-      caseSlug: "circles",
-      href: "/projects/circles#evidence-board",
     },
     {
       id: "accessibility-feedback-spectra",
@@ -192,9 +174,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "证据深度",
-        value: "7 个端到端案例",
+        value: "6 个端到端案例",
         detail:
-          "覆盖 IA、无障碍、AI 辅导、社交健康、一台硬件作品、一项 AI 监督研究，以及一条生成式生产管线，并展示方法与限制。",
+          "覆盖 IA、无障碍、AI 辅导、一台硬件作品、一项 AI 监督研究，以及一条生成式生产管线，并展示方法与限制。",
       },
       {
         label: "面试准备度",
@@ -238,16 +220,6 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/ai#decision-timeline",
     },
     {
-      id: "social-research-proof",
-      capability: "研究问题定义",
-      caseSlug: "circles",
-      proof:
-        "Connect Circles 用访谈、日记研究和理论综合重构归属感问题。",
-      whyItMatters:
-        "证明我能把模糊问题收敛成产品方向，同时不压扁人的语境。",
-      href: "/projects/circles#evidence-board",
-    },
-    {
       id: "hardware-proof",
       capability: "物理计算与实作",
       caseSlug: "maze",
@@ -276,14 +248,6 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       proves: "研究综合、取舍推理和产品方向判断。",
       caseSlug: "connect",
       href: "/projects/connect#evidence-board",
-    },
-    {
-      id: "research-method-circles",
-      group: "research",
-      question: "当归属感问题还很模糊时，你如何选择研究方法？",
-      proves: "方法选择、样本逻辑和不确定性下的综合能力。",
-      caseSlug: "circles",
-      href: "/projects/circles#evidence-board",
     },
     {
       id: "accessibility-feedback-spectra",

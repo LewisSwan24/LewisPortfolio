@@ -17,15 +17,15 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; open to internships and graduate roles.",
     stats: [
       {
-        value: "7",
+        value: "6",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI coaching, social wellbeing, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "Information architecture, accessibility, AI coaching, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "6",
         label: "research methods used",
-        detail: "Card sorting, tree testing, think-aloud, interviews, diary study, and co-design workshops.",
+        detail: "Card sorting, tree testing, think-aloud, depth interviews, co-design, and field usability testing.",
       },
       {
         value: "1",
@@ -46,15 +46,15 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，实习与全职都在看。",
     stats: [
       {
-        value: "7",
+        value: "6",
         label: "端到端案例",
         detail:
-          "信息架构、无障碍、AI 面试辅导、国际学生社交健康、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "信息架构、无障碍、AI 面试辅导、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "6",
         label: "使用过的研究方法",
-        detail: "卡片分类、树测试、出声思考、深度访谈、日记研究与共创工作坊。",
+        detail: "卡片分类、树测试、出声思考、深度访谈、共创，以及真实场景可用性测试。",
       },
       {
         value: "1",
@@ -76,8 +76,8 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "Research framing",
       summary: "I turn broad questions into scoped studies, participant plans, and decision criteria.",
-      proof: "Connect Circles combines interviews, diary study, and co-design into a product direction.",
-      href: "/projects/circles",
+      proof: "UQ Connect pairs an open card sort with a tree test, so the structure was chosen against evidence rather than argued for.",
+      href: "/projects/connect",
     },
     {
       id: "information-architecture",
@@ -113,8 +113,8 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "研究问题定义",
       summary: "我把宽泛问题拆成研究范围、招募计划与决策标准。",
-      proof: "Connect Circles 通过访谈、日记研究与共创，把孤独感问题转成产品方向。",
-      href: "/projects/circles",
+      proof: "UQ Connect 把开放式卡片分类和树测试接在一起，让结构是被证据选出来的，而不是被论证出来的。",
+      href: "/projects/connect",
     },
     {
       id: "information-architecture",
@@ -178,16 +178,6 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       sample: "University project. Survey, depth interviews, competitive teardown, and moderated prototype sessions; sample sizes not formally recorded.",
       outcome: "An interaction model for AI coaching: feedback after the session rather than mid-answer, a persona warmer than a recruiter, and body-language analysis deliberately rejected. Prototype only.",
       proves: "I can design AI interactions around trust, control, expectation setting, and emotional pacing.",
-    },
-    {
-      slug: "circles",
-      href: "/projects/circles",
-      problemType: "Social wellbeing and research-through-design",
-      challenge: "International students wanted deeper friendship, while most social apps optimize for more matches and more messages.",
-      methods: ["depth interviews", "diary study", "co-design workshops", "concept synthesis"],
-      sample: "Ongoing university project. Interviews across cultural cohorts, a two-week diary study, and co-design workshops; sample sizes not formally recorded.",
-      outcome: "Research complete; prototype direction defined around slow matching, small groups, and shared vulnerability. Nothing built or user-tested yet.",
-      proves: "I can handle ambiguous social problems, synthesize academic theory, and resist shallow growth metrics.",
     },
     {
       slug: "maze",
@@ -282,16 +272,6 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves: "证明我能围绕信任、控制感、预期与情绪节奏设计 AI 体验。",
     },
     {
-      slug: "circles",
-      href: "/projects/circles",
-      problemType: "社交健康与研究型产品探索",
-      challenge: "国际学生想要更深的友谊，而大多数社交产品优化的是更多匹配和更多消息。",
-      methods: ["深度访谈", "日记研究", "共创工作坊", "概念综合"],
-      sample: "进行中的课程项目。跨文化群体访谈、两周日记研究与共创工作坊；样本量未正式记录。",
-      outcome: "研究完成；原型方向围绕慢匹配、小组关系与共享脆弱性展开。目前尚未开发，也未做用户测试。",
-      proves: "证明我能处理模糊的社会问题，综合学术理论，并抵抗浅层增长指标。",
-    },
-    {
       slug: "maze",
       href: "/projects/maze",
       problemType: "物理计算与软硬件交互",
@@ -347,15 +327,15 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "7",
+        value: "6",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI feedback, social wellbeing, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "Information architecture, accessibility, AI feedback, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "6",
         label: "research methods used",
-        detail: "Card sorting, tree testing, think-aloud, depth interviews, diary study, and co-design workshops.",
+        detail: "Card sorting, tree testing, think-aloud, depth interviews, co-design, and field usability testing.",
       },
       {
         value: "1",
@@ -404,15 +384,6 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
           "Vigil builds the classifier's confidence as deliberately weak evidence, and the build fails if that stops being true.",
         href: "/projects/vigil#decision-timeline",
       },
-      {
-        audience: "Social wellbeing / ambiguous problems",
-        title: "Social wellbeing product framing",
-        claim:
-          "Best proof that I can frame a soft social problem without collapsing it into generic engagement metrics.",
-        evidence:
-          "Connect Circles uses interviews, diary study, and theory synthesis to define slow matching and relationship depth.",
-        href: "/projects/circles#evidence-board",
-      },
     ],
     closingPrompt: {
       title: "Use this portfolio as a fast hiring screen.",
@@ -432,15 +403,15 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "7",
+        value: "6",
         label: "端到端案例",
         detail:
-          "涵盖信息架构、无障碍、AI 反馈、社交健康、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "涵盖信息架构、无障碍、AI 反馈、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "6",
         label: "使用过的研究方法",
-        detail: "卡片分类、树测试、出声思考、深度访谈、日记研究与共创工作坊。",
+        detail: "卡片分类、树测试、出声思考、深度访谈、共创，以及真实场景可用性测试。",
       },
       {
         value: "1",
@@ -489,15 +460,6 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
           "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这个性质失效，build 直接挂掉。",
         href: "/projects/vigil#decision-timeline",
       },
-      {
-        audience: "社交健康 / 模糊问题",
-        title: "社交健康产品框架",
-        claim:
-          "证明我能定义柔性的社会问题，而不把它简化成通用互动指标。",
-        evidence:
-          "Connect Circles 用访谈、日记研究与理论综合，定义慢匹配和关系深度。",
-        href: "/projects/circles#evidence-board",
-      },
     ],
     closingPrompt: {
       title: "把这份作品集当作快速招聘判断工具。",
@@ -516,7 +478,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     roles: ["UX Designer Intern", "Product Designer Intern", "UX Research Intern", "Graduate Interaction Designer"],
     bestFit: [
       "Teams with ambiguous problems and enough access to users to learn properly.",
-      "Products where accessibility, education, social wellbeing, or AI trust matters.",
+      "Products where accessibility, education, AI trust, or physical interaction matters.",
       "Small or mid-sized teams where design participates in product decisions.",
     ],
     proofLinks: [
@@ -531,7 +493,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     roles: ["UX Designer Intern", "Product Designer Intern", "UX Research Intern", "Graduate Interaction Designer"],
     bestFit: [
       "问题足够模糊、也有真实用户可接触的团队。",
-      "重视无障碍、教育、社交健康或 AI 信任的产品。",
+      "重视无障碍、教育、AI 信任或实体交互的产品。",
       "设计能参与产品决策的小型或中型团队。",
     ],
     proofLinks: [
@@ -554,7 +516,7 @@ const hiringPaths: Record<ProofLocale, HiringPath[]> = {
     {
       time: "2-minute case check",
       title: "Inspect the strongest proof",
-      action: "Open the evidence map and jump into the case that best matches your team: IA, accessibility, AI UX, or social wellbeing.",
+      action: "Open the evidence map and jump into the case that best matches your team: IA, accessibility, AI UX, hardware, or generative production.",
       href: "/projects",
     },
     {
@@ -574,7 +536,7 @@ const hiringPaths: Record<ProofLocale, HiringPath[]> = {
     {
       time: "2 分钟案例判断",
       title: "查看最相关证明",
-      action: "打开证据地图，按团队需要进入 IA、无障碍、AI UX 或社交健康方向的案例。",
+      action: "打开证据地图，按团队需要进入 IA、无障碍、AI UX、硬件或生成式生产方向的案例。",
       href: "/projects",
     },
     {

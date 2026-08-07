@@ -6,7 +6,6 @@ import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
 import {
   VizAI,
-  VizCircles,
   VizConnect,
   VizMaze,
   VizSpectra,
@@ -20,8 +19,8 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil" | "hoop";
-type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social" | "hardware";
+type ProjKey = "connect" | "spectra" | "ai" | "maze" | "vigil" | "hoop";
+type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "hardware";
 type Localized = { en: string; zh: string };
 
 interface Item {
@@ -41,7 +40,6 @@ const FILTERS: Array<{ id: FilterId; en: string; zh: string }> = [
   { id: "research", en: "Research-led", zh: "研究驱动" },
   { id: "acc", en: "Accessibility", zh: "无障碍" },
   { id: "ai", en: "AI / ML", zh: "AI" },
-  { id: "social", en: "Social", zh: "社交" },
   { id: "hardware", en: "Hardware", zh: "硬件" },
 ];
 
@@ -124,16 +122,6 @@ const ITEMS: Item[] = [
     problem: { en: "Feedback arrived too late or felt unsafe", zh: "反馈来得太晚，或者让人不安心" },
     changed: { en: "Timed coaching and a confidence loop", zh: "分时机的指导和信心循环" },
   },
-  {
-    n: "07",
-    k: "circles",
-    tags: ["social", "research"],
-    role: "Solo",
-    year: "2024–",
-    dur: "ongoing",
-    problem: { en: "Quantity metrics missed loneliness", zh: "数量指标没抓住孤独感" },
-    changed: { en: "Small recurring circles over one-off matching", zh: "用小而持续的小组替代一次性匹配" },
-  },
 ];
 
 function WorkPreview({ project }: { project: ProjKey }) {
@@ -142,8 +130,7 @@ function WorkPreview({ project }: { project: ProjKey }) {
   if (project === "hoop") return <VizHoop />;
   if (project === "connect") return <VizConnect />;
   if (project === "spectra") return <VizSpectra />;
-  if (project === "ai") return <VizAI />;
-  return <VizCircles />;
+  return <VizAI />;
 }
 
 export function WorkIndex() {

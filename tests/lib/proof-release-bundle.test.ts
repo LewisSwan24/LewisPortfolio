@@ -10,7 +10,9 @@ describe("proof release bundle", () => {
     expect(bundle.outputDir).toBe("docs/proof-release/2026-05-10");
     expect(bundle.summary.roles).toBe(4);
     expect(bundle.summary.routes).toBe(31);
-    expect(bundle.summary.maintenanceEntries).toBe(96);
+    // 94, not 96: maintenance roleEntries flatMap over proofClaims, and
+    // removing the two fabricated Connect Circles claims took one entry each.
+    expect(bundle.summary.maintenanceEntries).toBe(94);
     expect(bundle.summary.anchors).toBeGreaterThan(0);
     expect(bundle.commands).toContain("pnpm proof:bundle");
   });

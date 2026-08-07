@@ -12,7 +12,6 @@ const legacyProjectRedirects = [
   ["uq-connect", "connect"],
   ["spectra-lens", "spectra"],
   ["ai-interview-assistant", "ai"],
-  ["connect-circles", "circles"],
 ].flatMap(([from, to]) => [
   {
     source: `/projects/${from}`,
@@ -22,6 +21,22 @@ const legacyProjectRedirects = [
   {
     source: `/zh/projects/${from}`,
     destination: `/zh/projects/${to}`,
+    permanent: true,
+  },
+]);
+
+// Connect Circles described a project that never existed, so the case was
+// removed rather than corrected. There is no honest destination for its URLs,
+// and a 404 on a formerly indexed page is worse than landing on the work index.
+const retiredCaseRedirects = ["", "/en", "/zh"].flatMap((prefix) => [
+  {
+    source: `${prefix}/projects/circles`,
+    destination: `${prefix || "/en"}/projects`,
+    permanent: true,
+  },
+  {
+    source: `${prefix}/projects/connect-circles`,
+    destination: `${prefix || "/en"}/projects`,
     permanent: true,
   },
 ]);
@@ -188,6 +203,7 @@ const nextConfig = {
   async redirects() {
     return [
       ...legacyProjectRedirects,
+      ...retiredCaseRedirects,
       ...retiredHiringRedirects,
       ...disabledSurfaceRedirects(),
     ];

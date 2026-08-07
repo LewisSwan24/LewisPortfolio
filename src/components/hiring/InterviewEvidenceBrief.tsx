@@ -9,7 +9,6 @@ const caseLabels: Record<ProjectEvidenceSlug, string> = {
   connect: "UQ Connect",
   spectra: "Spectra Lens",
   ai: "AI Coach",
-  circles: "Connect Circles",
   maze: "MazeRunners",
   vigil: "Vigil",
   hoop: "Hoop Dream",

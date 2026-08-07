@@ -1,7 +1,7 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|circles|maze|vigil|hoop)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|spectra|ai|maze|vigil|hoop)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 /**
  * Next's dev server sometimes issues a full reload while it compiles a route for
@@ -255,7 +255,7 @@ test.describe("Projects Page", () => {
     });
 
     test("cases without a playable build should not show a demo", async ({ page }) => {
-        for (const slug of ["connect", "spectra", "ai", "circles"]) {
+        for (const slug of ["connect", "spectra", "ai"]) {
             await page.goto(`/projects/${slug}`);
             await expect(page.locator(".case-demo")).toHaveCount(0);
         }
@@ -724,7 +724,7 @@ test.describe("Responsive Design", () => {
             "/projects/connect",
             "/projects/spectra",
             "/projects/ai",
-            "/projects/circles",
+            "/projects/hoop",
             "/zh",
             "/zh/projects",
             "/zh/hire",
