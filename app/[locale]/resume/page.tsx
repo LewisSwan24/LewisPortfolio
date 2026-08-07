@@ -116,8 +116,8 @@ export default async function ResumePage() {
                     </li>
                     <li>
                       {isZh
-                        ? "识别成功率 75 → 92%，平均 3.1 秒。入选昆大 2024 设计年展。"
-                        : "Recognition success 75 → 92%, avg. 3.1s. Selected for UQ Design Showcase 2024."}
+                        ? "把多模态反馈带进真实场景做可用性测试。入选昆大 2024 设计年展。"
+                        : "Took the multi-modal feedback through usability testing in real contexts. Selected for UQ Design Showcase 2024."}
                     </li>
                   </ul>
                 </div>
@@ -139,13 +139,13 @@ export default async function ResumePage() {
                     </li>
                     <li>
                       {isZh
-                        ? "可发现率 58 → 84%，任务成功率 72 → 94%，SUS 61 → 78。"
-                        : "Findability 58 → 84%, task success 72 → 94%, SUS 61 → 78."}
+                        ? "把十二个部门分类收敛成六个任务分类，并与原结构做树测试对比。"
+                        : "Collapsed twelve department categories into six task categories and tree-tested the proposal against the original structure."}
                     </li>
                     <li>
                       {isZh
-                        ? "这套树测试协议被沿用到后续两个昆大数字化项目。"
-                        : "Tree test protocol reused on two subsequent UQ digital projects."}
+                        ? "把面向教职工的标签改写成学生语言：Study、Belong、Fees & finance。"
+                        : "Rewrote staff-facing labels into plain student language: Study, Belong, Fees & finance."}
                     </li>
                   </ul>
                 </div>

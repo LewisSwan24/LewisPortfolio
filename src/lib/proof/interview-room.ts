@@ -140,7 +140,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       id: "prototype-metrics",
       claim: "The cases describe methods and decisions, not measured business impact.",
       boundary:
-        "Sample sizes were not formally recorded, so I quote what I observed rather than effect sizes.",
+        "The before-and-after outcomes were never formally measured, so I quote methods and observations rather than effect sizes.",
       validation:
         "I would define production telemetry before claiming durable product impact.",
       href: "/projects/spectra#outcome-limits",
@@ -296,7 +296,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       id: "prototype-metrics",
       claim: "这些案例讲的是方法与决策，不是可量化的业务影响。",
       boundary:
-        "样本量没有正式记录，所以我只讲我观察到的现象，不报效应量。",
+        "前后对比的结果从来没有正式测量过，所以我只讲方法和观察到的现象，不报效应量。",
       validation:
         "在声称长期产品影响前，我会先定义生产 telemetry。",
       href: "/projects/spectra#outcome-limits",
