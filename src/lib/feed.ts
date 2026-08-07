@@ -1,7 +1,8 @@
 import { Feed } from "feed";
 import { siteConfig } from "./site";
-import { getAllProjects } from "./projects";
 import { getAllBlogPosts } from "./blog";
+import { getProjectEvidence } from "./portfolio-proof";
+import { PROJECT_OG_COPY } from "./project-routes";
 
 type FeedLocale = "en" | "zh";
 
@@ -25,18 +26,23 @@ export async function generateRSSFeed(locale: FeedLocale = "en") {
     },
   });
 
-  const projects = getAllProjects();
-  const blogPosts = await getAllBlogPosts();
+  // Sourced from the proof registry rather than the retired MDX files: those
+  // carried pre-rename slugs, so every project link in the feed 308-redirected,
+  // and they never included MazeRunners.
+  const projects = getProjectEvidence(locale);
+  const blogPosts = await getAllBlogPosts(locale);
+  const generatedAt = new Date();
 
   projects.forEach((project) => {
     const url = `${siteConfig.url}${prefix}/projects/${project.slug}`;
+    const copy = PROJECT_OG_COPY[project.slug];
     feed.addItem({
-      title: project.title,
+      title: copy.title,
       id: url,
       link: url,
-      description: project.oneLiner,
-      date: new Date(project.date),
-      category: project.tags.map((tag) => ({ name: tag })),
+      description: copy.oneLiner,
+      date: generatedAt,
+      category: [{ name: project.problemType }],
     });
   });
 

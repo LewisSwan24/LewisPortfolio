@@ -55,6 +55,40 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         "A ball passing a sensor advances round state and drives score, timer, haptics, lights, audio, and the browser console together. Built and exhibited.",
       next: "I would instrument sessions to see which feedback channel players actually rely on, and cut the ones they ignore.",
     },
+    vigil: {
+      challenge:
+        "A phishing classifier that is right 88% of the time still needs a human on the other side of it — and the interface decides whether that human genuinely checks the call or just clicks through it.",
+      role: "Designer and technical director; I specified, Claude Code and Codex built to the spec",
+      methods: ["spec freeze", "synthetic stimulus design", "A/B variant prototyping", "contrast auditing", "usability test protocol design"],
+      evidence: [
+        "140-email synthetic corpus with a validated error profile",
+        "six switchable interface variants across three questions",
+        "predictions recorded in writing before any testing",
+      ],
+      outcome:
+        "Six variants built and running, a working React build behind them, and a five-participant test protocol ready to run. No participants yet — the three design questions are still open.",
+      next: "I would run the five hallway sessions, then a counterbalanced study on whichever question survives them.",
+    },
+    hoop: {
+      challenge:
+        "A career-simulation RPG needs hundreds of art assets to read as one world. Generating them is now cheap; keeping 299 of them stylistically coherent is the actual problem.",
+      role: "Designer, art director and technical director, working through an AI production pipeline",
+      methods: [
+        "art bible",
+        "prompt-per-batch production",
+        "style gate review",
+        "narrative systems design",
+        "regression testing at scale",
+      ],
+      evidence: [
+        "299 assets generated across six batches against a written art bible",
+        "a style gate with an explicit rejected-style list",
+        "1,975 tests over the career, contract, injury and save systems",
+      ],
+      outcome:
+        "A playable ten-chapter career sim running publicly, on a pipeline where every asset batch is reviewed against the same written rules. Self-labelled DEMO v0.6; no player research yet.",
+      next: "I would put it in front of players who do not already follow basketball, and watch where the systems stop explaining themselves.",
+    },
   },
   zh: {
     connect: {
@@ -98,6 +132,34 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       outcome:
         "球经过传感器就推进回合状态，并同时驱动计分、计时、震动、灯光、音效与浏览器控制台。已完成搭建并展出。",
       next: "我会记录实际游玩数据，看玩家真正依赖哪一种反馈通道，然后砍掉被忽略的那些。",
+    },
+    vigil: {
+      challenge:
+        "一个准确率 88% 的钓鱼邮件分类器，另一端仍然需要一个人。而界面决定了这个人是真的在复核，还是一路点过去。",
+      role: "设计与技术方向由我定；Claude Code 与 Codex 按规格实现",
+      methods: ["规格冻结", "合成测试素材设计", "A/B 变体原型", "对比度审计", "可用性测试脚本设计"],
+      evidence: [
+        "140 封合成邮件，错误分布经过验证",
+        "三个设计问题、六个可切换变体",
+        "测试之前先把预测写下来",
+      ],
+      outcome:
+        "六个变体已经跑起来，背后有一版可运行的 React 实现，五人测试脚本也已就绪。目前还没有受试者——三个设计问题都还没有答案。",
+      next: "我会先跑完五场走廊测试，再针对活下来的那个问题做一次对照实验。",
+    },
+    hoop: {
+      challenge:
+        "一个生涯模拟 RPG 需要几百张美术资产，才撑得起「这是同一个世界」。生成它们现在很便宜，难的是让 299 张保持在同一种风格里。",
+      role: "设计、美术方向与技术方向都由我定，通过一套 AI 生产管线实现",
+      methods: ["美术圣经", "按批次写 prompt 生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
+      evidence: [
+        "六个批次共 299 张资产，全部对照一份写下来的美术圣经",
+        "一道风格闸门，附明确的「拒绝风格」清单",
+        "覆盖生涯、合同、伤病与存档系统的 1975 个测试",
+      ],
+      outcome:
+        "一个公开可玩、十章生涯的模拟游戏，背后是一条「每批资产都按同一套成文规则审一遍」的管线。游戏自标 DEMO v0.6，还没有做过玩家研究。",
+      next: "我会把它交给本来不看篮球的人玩，看这些系统在哪一步开始讲不清自己。",
     },
   },
 };
@@ -606,6 +668,258 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "This case proves I can take an interaction concept through firmware, sensing, and physical feedback into a browser control surface, and make safety and calibration calls on hardware that strangers will actually touch.",
     },
+    vigil: {
+      decisions: [
+        {
+          label: "Write the corpus instead of downloading one",
+          choice:
+            "All 140 messages are written from scratch inside a fictional company, rather than sampled from SpamAssassin, Nazario, or Enron.",
+          evidence:
+            "The public corpora are 2002–2015 mail, they carry real personal data, and cue highlighting needs exact character offsets that only authored text can guarantee.",
+          tradeoff:
+            "Constructed stimuli buy control at the cost of ecological validity — nothing here proves how the interface behaves against real mail.",
+          impact:
+            "Error placement, difficulty, and cue offsets all became design parameters instead of accidents of the dataset.",
+        },
+        {
+          label: "Make confidence deliberately weak evidence",
+          choice:
+            "Confidence is stratified so it cannot predict which calls the classifier got wrong, and the build script fails if that stops being true.",
+          evidence:
+            "In the first build confidence separated cleanly — correct calls all sat at 0.84 and above, errors at 0.82 and below. A participant reading only the number would have caught every error without reading a single email.",
+          tradeoff:
+            "Every future content edit now has to survive a statistical gate, which makes the corpus more expensive to change.",
+          impact:
+            "Error-ranking AUC sits at 0.72 against a 0.75 ceiling, with 7 high-confidence errors and 36 low-confidence-but-correct calls, so the interface question is askable at all.",
+        },
+        {
+          label: "Generate each rationale from that email's own cues",
+          choice:
+            "The classifier's one-line explanation is assembled from the cues actually present in the message, replacing a fixed pool of plausible sentences.",
+          evidence:
+            "A spot check found em_052 explained as an external sender with an attachment or sign-in prompt. The message had neither.",
+          tradeoff:
+            "Cue-driven rationales read more formulaic than hand-written ones.",
+          impact:
+            "Explanation quality is the thing being studied — once a participant catches the explanation being fake, every measurement after it is contaminated.",
+        },
+        {
+          label: "Record the variant predictions before testing anything",
+          choice:
+            "Which variant I expected to win, and the bet behind each, went into the repository in writing before a single variant was flipped.",
+          evidence:
+            "Predictions written after the fact always agree with the outcome, which makes them worthless as evidence of reasoning.",
+          tradeoff:
+            "It commits a wrong call to the record permanently.",
+          impact:
+            "The gap between prediction and result becomes the most useful thing the write-up can contain, in either direction.",
+        },
+      ],
+      evidence: [
+        {
+          method: "Corpus validation gate",
+          sample: "140 synthetic messages, 17 classifier errors (9 false positives, 8 false negatives)",
+          question: "Can the confidence number alone tell you which calls the classifier got wrong?",
+          finding:
+            "In the first build, yes — completely. After stratified resampling, error-ranking AUC is 0.72 with 7 high-confidence errors in the set.",
+          implication:
+            "The stimulus set had to be engineered before the interface question could be measured at all.",
+        },
+        {
+          method: "Rationale audit",
+          sample: "Spot check of generated explanations against their own message bodies",
+          question: "Does the classifier's stated reasoning match the message it is reasoning about?",
+          finding:
+            "Rationales drawn from a fixed pool described cues that were not in the email.",
+          implication:
+            "Explanation fidelity is a precondition of the study, not a polish item.",
+        },
+        {
+          method: "Contrast measurement",
+          sample: "Every text-on-surface pair in the palette, measured with a script rather than eyeballed",
+          question: "Does the palette hold WCAG AA at normal text size?",
+          finding: "One rail token failed at 4.41 and was reworked to 5.11; the palette now passes throughout.",
+          implication:
+            "Accessibility was checked with a measurement rather than an assumption, and can be re-run after any palette change.",
+        },
+        {
+          method: "Prototype smoke test",
+          sample: "176 assertions across eight variant combinations, run against the real decision code",
+          question: "Does the decision and scoring logic survive every combination of the three variants?",
+          finding: "All 176 pass; the React build carries 101 unit tests over the same rules.",
+          implication:
+            "The rewrite has a behavioural baseline, so a variant cannot quietly break scoring on the way to Phase 3.",
+        },
+      ],
+      iterations: [
+        {
+          version: "First visual pass",
+          change: "White cards on grey, a safe blue accent, six uppercase letterspaced labels on one screen, system-ui throughout.",
+          reason: "It was the default any generator reaches for, and it was competent.",
+          improvement: "Rejected. It looked like software rather than like a decision, which named the actual problem.",
+        },
+        {
+          version: "Instrument, not inbox",
+          change:
+            "Everything the system says moved to monospace; the message body is the only thing in a text face. The verdict is carried by weight and a rule rather than a tinted card.",
+          reason:
+            "A coloured verdict card lends the classifier authority it has not earned, and impersonation hides in letter pairs a proportional face closes up.",
+          improvement: "The reader has to read the word, and a lookalike domain stays legible as a lookalike.",
+        },
+        {
+          version: "Industry-convention pass",
+          change:
+            "Added authentication results with a note on what they do not prove, domain-first-seen dates, campaign clustering, and an optional note on escalation.",
+          reason:
+            "An audit against real mail-security consoles showed the interface was missing signals an analyst would expect to have.",
+          improvement:
+            "The sharpest teaching case now exists: CEO fraud sent from a real consumer account passes every authentication check over a domain registered in 1995.",
+        },
+      ],
+      limits: [
+        {
+          constraint: "No participant has run it yet.",
+          whyItMatters:
+            "All three design questions are still open. Every argument for a variant in this case is reasoning, not evidence — and the predictions are on record precisely so that stays visible.",
+          nextValidation:
+            "Five hallway sessions on the config rotation already written into the test protocol, then fill in the decision and what-it-gives-up blocks.",
+        },
+        {
+          constraint: "The corpus is synthetic and the classifier is scripted.",
+          whyItMatters:
+            "Error placement is authored, so this measures how an interface shapes oversight — not how a real detection system fails.",
+          nextValidation:
+            "The honest version needs an organisational partner and ethics approval, which is out of scope for a coursework build.",
+        },
+        {
+          constraint: "The evaluation study is designed but not run.",
+          whyItMatters:
+            "The counterbalanced comparison, the measures, and the 2×2 payoff matrix all exist on paper only.",
+          nextValidation:
+            "Recruit 8–12 participants, run both conditions per person, and report the result even if the conditions do not separate.",
+        },
+      ],
+      takeaway:
+        "This case proves I can turn a research brief into a running system — corpus, variants, protocol, and a validation gate that fails the build when the material stops being usable — and that I can direct an AI coding workflow without handing it the design argument.",
+    },
+    hoop: {
+      decisions: [
+        {
+          label: "Write the art bible before generating any assets",
+          choice:
+            "Three reference documents — pixel players, organic scenes, flat logos — were written first, and every batch prompt cites them.",
+          evidence:
+            "Generated art drifts. Each batch is independently plausible, and the drift only becomes visible once they sit in the same screen, by which point you have hundreds of files to reconcile.",
+          tradeoff:
+            "Writing the rules before seeing output means committing to a look you have not yet proven works.",
+          impact:
+            "299 assets across six batches share one palette and one linework language, because the rules existed before the volume did.",
+        },
+        {
+          label: "Gate batches on style, and name what is rejected",
+          choice:
+            "Each batch passes a style gate reviewed against existing runtime anchors, with an explicit rejected list: photoreal, 3D, anime, neon, random text, real trademarks.",
+          evidence:
+            "A generator will happily produce any of those on a slightly different prompt, and each is individually defensible in isolation.",
+          tradeoff:
+            "A gate rejects work that took real time to produce, and it is tempting to let a near-miss through when the batch is already late.",
+          impact:
+            "The rejected list is the load-bearing half. Saying what the world is not turned out to be more actionable than describing what it is.",
+        },
+        {
+          label: "Compress a lifetime into 146 nodes rather than a calendar",
+          choice:
+            "A career from age twelve to retirement runs across 146 nodes in eight kinds — training, match, story, relationship, risk, reward, rest, legacy — instead of simulating days.",
+          evidence:
+            "Calendar-based career sims spend most of their runtime on repetition, and the interesting decisions get buried in maintenance clicking.",
+          tradeoff:
+            "Discrete nodes lose the texture of a season grinding on; the player never feels time passing the slow way.",
+          impact:
+            "Every node has to earn its place, and action combinations carry consequences — repeated training raises readiness while raising body risk and pressure and lowering team trust.",
+        },
+        {
+          label: "Derive the visual language from a product, and say so",
+          choice:
+            "The palette and typographic system are reverse-engineered from Anthropic's product design — warm parchment, terracotta accent, exclusively warm-toned neutrals — and documented as such.",
+          evidence:
+            "A game about one person's whole life needed a surface that reads as unhurried and literary rather than as a sports UI full of cold blues and energy gradients.",
+          tradeoff:
+            "It is a borrowed language, not an invented one, and a reader who recognises the source will notice.",
+          impact:
+            "Stating the derivation in the design document is what makes it a transfer exercise instead of an uncredited copy.",
+        },
+      ],
+      evidence: [
+        {
+          method: "Batch production log",
+          sample: "Six batches: 64 portraits, 40 scenes, 73 CGs, 72 UI icons, 18 court/tactics, 32 static VFX",
+          question: "Can generated art hold one style across a volume no one would draw by hand?",
+          finding: "299 assets passed the style gate against the art bible anchors; the log records counts per stage, not just a total.",
+          implication:
+            "The pipeline is auditable — anyone can ask which batch an asset came from and what rules it was checked against.",
+        },
+        {
+          method: "Automated regression suite",
+          sample: "355 test files, 1,975 tests, run against the career, contract, injury, season and save systems",
+          question: "Does a systems-heavy career sim stay correct while content keeps landing?",
+          finding: "All 1,975 pass; save data carries a schema version so old saves are migrated rather than silently broken.",
+          implication:
+            "Scale here is a design constraint, not a bragging point — without it, adding a chapter quietly breaks a contract rule three chapters earlier.",
+        },
+        {
+          method: "Playable build check",
+          sample: "The public deployment, played from the main menu through character creation into the first career node",
+          question: "Does the loop actually run for someone arriving cold?",
+          finding:
+            "Character creation gates on a required name, archetype choice propagates into the six attributes, and the first node opens with status, relationships and actions all populated.",
+          implication: "The systems are wired end to end, not mocked at the seams.",
+        },
+      ],
+      iterations: [
+        {
+          version: "Concept",
+          change: "Framed as a pixel-art career sim, referencing NBA 2K MyCareer, Punch Club, New Star Soccer and Stardew Valley.",
+          reason: "Each reference solves one piece: career arc, attribute decay, off-court life, daily-loop satisfaction.",
+          improvement: "Named what to borrow from each, which kept the scope from becoming 'a basketball game'.",
+        },
+        {
+          version: "Systems build",
+          change: "Draft, contracts, seasons, off-season, retirement, New Game+ and tactical matches all landed as systems.",
+          reason: "A career sim is only as interesting as the consequences it can carry across a decade of in-game time.",
+          improvement: "A career can now run from youth to retirement and be sealed into a Legacy that affects the next run.",
+        },
+        {
+          version: "Art pipeline",
+          change: "Moved from ad-hoc asset generation to art bible, batch prompts, style gate and a production log.",
+          reason: "The first assets were fine individually and did not agree with each other.",
+          improvement: "Coherence became a property of the process rather than something re-litigated per asset.",
+        },
+      ],
+      limits: [
+        {
+          constraint: "No player research. The game self-labels DEMO v0.6.",
+          whyItMatters:
+            "Everything here is systems design and production discipline. Whether the pacing works for someone who is not me is untested.",
+          nextValidation:
+            "Sit five people who do not follow basketball in front of chapter one and watch where the systems stop explaining themselves.",
+        },
+        {
+          constraint: "The first load is large and mobile QA is thin.",
+          whyItMatters:
+            "A 3.8 MB JavaScript bundle is a real barrier on a phone, which is where a Chinese audience would meet it.",
+          nextValidation: "Code-split the bundle and run device QA before calling it a public beta.",
+        },
+        {
+          constraint: "The visual language is derived, not invented.",
+          whyItMatters:
+            "It is a transfer exercise from an existing product's design system, and presenting it as original would be dishonest.",
+          nextValidation:
+            "Push the system somewhere the source could not go — the basketball-specific screens are where it would have to stop being borrowed.",
+        },
+      ],
+      takeaway:
+        "This case proves I can run generative production at a volume that would otherwise be incoherent — by writing the rules first, gating on them, and naming what gets rejected — while keeping a systems-heavy build correct under 1,975 tests.",
+    },
   },
   zh: {
     connect: {
@@ -946,8 +1260,8 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           impact: "系统不需要有人守着每一轮也能展出，而反馈依然有效——因为它落在手指上，不是落在屏幕上。",
         },
         {
-          label: "给红外传感器加去抖，而不是直接信任原始读数",
-          choice: "我为 10 个 FC-51 红外传感器各自加上去抖与冷却窗口。",
+          label: "给红外传感器加防抖，而不是直接信任原始读数",
+          choice: "我为 10 个 FC-51 红外传感器各自加上防抖与冷却窗口。",
           evidence: "球经过一次会产生多个原始触发事件，导致同一个物理事件重复计分、重复触发陷阱。",
           tradeoff: "冷却窗口会带来一段盲区，真的很快的第二次经过会被漏掉。",
           impact: "一个物理事件变成一个游戏事件，这是计分、计时与震动能彼此对上的前提。",
@@ -972,7 +1286,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           method: "传感器台架测试",
           sample: "10 个 FC-51 红外传感器，分布在陷阱区、诊断区、备用区与终点区",
           question: "球经过一次，是否刚好产生一个游戏事件？",
-          finding: "原始读数会重复触发两到三次；加上去抖与冷却窗口后，一次经过收敛成单一事件。",
+          finding: "原始读数会重复触发两到三次；加上防抖与冷却窗口后，一次经过收敛成单一事件。",
           implication: "传感器时序是交互设计问题，不只是电子细节。",
         },
         {
@@ -1024,6 +1338,211 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       ],
       takeaway:
         "这个案例证明我能把一个交互概念一路做穿固件、感测与实体反馈，再接回浏览器控制界面，并在陌生人真的会上手的硬件上做安全与校准判断。",
+    },
+    vigil: {
+      decisions: [
+        {
+          label: "语料自己写，不下载现成的",
+          choice: "140 封邮件全部在一家虚构公司的设定里从头写，没有取自 SpamAssassin、Nazario 或 Enron。",
+          evidence:
+            "公开语料都是 2002–2015 年的邮件，带真实个资，而线索高亮需要精确到字元的偏移量——只有受控撰写才保证得了。",
+          tradeoff: "构建型测试素材换来的是控制力，代价是生态效度：这里没有任何东西能证明界面在真实邮件里的表现。",
+          impact: "错误的落点、难度分布和线索偏移全部变成可设计的参数，而不是数据集的偶然产物。",
+        },
+        {
+          label: "刻意把置信度做成弱证据",
+          choice: "置信度经过分层采样，无法单独预测分类器判错在哪里；一旦这个性质失效，建构脚本直接让 build 失败。",
+          evidence:
+            "第一版的置信度是完全可分离的——判对的全在 0.84 以上，判错的全在 0.82 以下。使用者只读数字、一封邮件都不看，就能抓出全部 17 个错误。",
+          tradeoff: "之后每一次内容修改都得先过统计闸门，语料的改动成本变高了。",
+          impact: "错误排序 AUC 现在是 0.72（上限 0.75），含 7 个高置信度错误与 36 个低置信度但判对的案例——界面这个问题才问得下去。",
+        },
+        {
+          label: "解释由该封邮件自己的线索组装",
+          choice: "分类器那一句解释改成从邮件里实际存在的线索拼出来，不再从一个固定文案池里抽。",
+          evidence: "抽查发现 em_052 被解释成「外部寄件人带附件或登入提示」，但那封信两者都没有。",
+          tradeoff: "由线索驱动的解释读起来比手写的更公式化。",
+          impact: "解释品质本身就是研究对象——参与者一旦识破解释是假的，后面所有测量都被污染。",
+        },
+        {
+          label: "测试之前先把预测写下来",
+          choice: "我预期哪个变体会赢、每个赌注押的是什么，在翻动第一个变体之前就写进了仓库。",
+          evidence: "事后补的预测永远和结果一致，因此完全不能当作推理过程的证据。",
+          tradeoff: "这等于把一个可能猜错的判断永久留在记录里。",
+          impact: "预测与结果之间的落差，反而成了这份记录里最有价值的东西——无论哪个方向。",
+        },
+      ],
+      evidence: [
+        {
+          method: "语料验证闸门",
+          sample: "140 封合成邮件，17 个分类器错误（9 个误报、8 个漏报）",
+          question: "光看置信度这个数字，能不能判断出分类器错在哪里？",
+          finding: "第一版完全可以。分层重采样之后，错误排序 AUC 是 0.72，其中有 7 个高置信度错误。",
+          implication: "测试素材必须先被工程化，界面这个问题才有得测。",
+        },
+        {
+          method: "解释内容审查",
+          sample: "把生成的解释逐条对回它所解释的那封邮件",
+          question: "分类器给出的理由，和它正在判断的那封信对得上吗？",
+          finding: "从固定文案池抽出来的解释，描述了邮件里根本不存在的线索。",
+          implication: "解释的可信度是研究的前提，不是收尾时的打磨项。",
+        },
+        {
+          method: "对比度实测",
+          sample: "配色里每一组文字与底色的搭配，用脚本量测，不靠肉眼",
+          question: "这套配色在正常字号下守得住 WCAG AA 吗？",
+          finding: "有一个侧栏色以 4.41 未过，调整后为 5.11；整套配色现在全数通过。",
+          implication: "无障碍是量出来的，不是假设出来的，而且改配色之后可以直接重跑。",
+        },
+        {
+          method: "原型冒烟测试",
+          sample: "八种变体组合、176 条断言，跑的是真实的决策程式码",
+          question: "三个变体的每一种组合下，决策与计分逻辑还站得住吗？",
+          finding: "176 条全过；React 版本另有 101 个单元测试覆盖同一套规则。",
+          implication: "重写有了行为基准，某个变体不会在通往 Phase 3 的路上悄悄弄坏计分。",
+        },
+      ],
+      iterations: [
+        {
+          version: "第一版视觉",
+          change: "灰底白卡片、安全的蓝色强调色、同一屏上六个大写加字距的标签、全篇 system-ui。",
+          reason: "这是任何生成器都会先给出的默认解，而且它并不差。",
+          improvement: "被否决。它看起来像一个软件，而不像一个判断——问题就出在这句话上。",
+        },
+        {
+          version: "仪器，而不是收件箱",
+          change: "系统说的每一句话改成等宽字，只有邮件正文留在文字字体里；判定靠字重与一条横线承载，不用色块卡片。",
+          reason: "着色的判定卡片会赋予分类器它并没有挣得的权威；而仿冒藏在字母对里，比例字体恰好会把那几对挤在一起。",
+          improvement: "读者必须真的去读那个词，仿冒域名也仍然看得出是仿冒。",
+        },
+        {
+          version: "行业惯例补强",
+          change: "补上认证结果与「它证明不了什么」的附注、域名首见时间、campaign 聚类提示，以及升级时的选填备注。",
+          reason: "对照真实邮件安全产品做了一次审计，发现界面缺了分析师本来就期待看到的信号。",
+          improvement:
+            "最锋利的教学案例因此成立：用真实个人邮箱寄出的 CEO 诈骗，在一个 1995 年注册的域名上通过了每一项认证检查。",
+        },
+      ],
+      limits: [
+        {
+          constraint: "目前还没有任何一个受试者跑过它。",
+          whyItMatters:
+            "三个设计问题全都还开着。这个案例里每一个支持某个变体的论证都是推理，不是证据——预测之所以留在记录里，就是为了让这件事一直看得见。",
+          nextValidation: "按已经写好的 config 轮替表跑完五场走廊测试，再回头把「选了哪个 / 为什么 / 放弃了什么」填上。",
+        },
+        {
+          constraint: "语料是合成的，分类器是脚本写死的。",
+          whyItMatters: "错误落在哪里是我安排的，所以它衡量的是界面如何塑造监督行为，而不是一个真实检测系统会怎么失败。",
+          nextValidation: "诚实的版本需要一个组织方合作与伦理审查，这超出了课程项目的范围。",
+        },
+        {
+          constraint: "评估实验设计好了，但还没跑。",
+          whyItMatters: "对照设计、测量指标、以及那张 2×2 收益矩阵，目前都只存在于纸面上。",
+          nextValidation: "招募 8–12 人，每人跑两个条件，就算两组之间没有显著差异也照样把结果写出来。",
+        },
+      ],
+      takeaway:
+        "这个案例证明我能把一份研究 brief 变成一套真的跑得起来的系统——语料、变体、测试脚本，以及一道材料一旦失效就让 build 挂掉的验证闸门——同时证明我能指挥 AI 写代码，而不把设计论证一并交出去。",
+    },
+    hoop: {
+      decisions: [
+        {
+          label: "先写美术圣经，再开始生成",
+          choice: "先写三份参考文档——像素球员、有机场景、扁平队徽——之后每一批的 prompt 都引用它们。",
+          evidence:
+            "生成的美术会漂。每一批单独看都说得过去，漂移只有在它们同框的时候才看得出来——而那时候你已经有几百个文件要收拾了。",
+          tradeoff: "在看到产出之前就把规则定死，等于对一个还没被验证过的风格先下注。",
+          impact: "六个批次 299 张资产共用同一套配色和同一种线条语言，因为规则比产量先存在。",
+        },
+        {
+          label: "按批次过风格闸门，并且写清楚拒绝什么",
+          choice:
+            "每一批都要对照已有的运行时锚点过一道风格闸门，并附明确的拒绝清单：写实照片、3D、动漫、霓虹、随机文字、真实商标。",
+          evidence: "只要 prompt 稍微变一点，生成器会很乐意给你上面任何一种，而且每一种单独看都站得住。",
+          tradeoff: "闸门会打掉真的花了时间做出来的东西；批次已经晚了的时候，人很容易想放一个「差一点」的过去。",
+          impact: "拒绝清单才是承重的那一半。说清楚这个世界「不是什么」，比描述它「是什么」更能落地。",
+        },
+        {
+          label: "用 146 个节点压缩一生，而不是模拟日历",
+          choice:
+            "从 12 岁到退役的生涯，跑在 146 个节点上，分八种类型——训练、比赛、剧情、关系、风险、奖励、休息、传承——而不是一天一天地模拟。",
+          evidence: "以日历为单位的生涯模拟，大部分运行时间都花在重复上，真正有意思的决定被埋在维护性点击里。",
+          tradeoff: "离散节点会丢掉「一个赛季慢慢磨过去」的质感，玩家感受不到时间用慢的方式流逝。",
+          impact:
+            "每个节点都得挣得自己的位置，而行动的组合会留下后果——反复训练会抬高竞技状态，同时抬高身体风险和压力、拉低队友信任。",
+        },
+        {
+          label: "视觉语言是从一个产品反推的，而且明说",
+          choice:
+            "配色与字体系统是从 Anthropic 的产品设计反推出来的——羊皮纸底色、赤陶强调色、全部暖调中性色——并且在设计文档里写明来源。",
+          evidence: "一个讲「一个人的一生」的游戏，需要的表层是从容的、带文学感的，而不是一套塞满冷蓝和能量渐变的体育 UI。",
+          tradeoff: "这是借来的语言，不是发明出来的；认得出来源的人一眼就会认出来。",
+          impact: "把来源写进设计文档，才让它成为一次迁移练习，而不是一次没署名的挪用。",
+        },
+      ],
+      evidence: [
+        {
+          method: "批次生产记录",
+          sample: "六个批次：头像 64、场景 40、CG 73、UI 图标 72、球场战术 18、静态特效 32",
+          question: "生成的美术，能不能在一个没人会手绘完的量级上保持同一种风格？",
+          finding: "299 张资产全部对照美术圣经的锚点过了风格闸门；记录写的是每个阶段的数量，不只是一个总数。",
+          implication: "这条管线是可审计的——任何人都能问某张图出自哪一批、按哪套规则查过。",
+        },
+        {
+          method: "自动化回归测试",
+          sample: "355 个测试文件、1975 个测试，覆盖生涯、合同、伤病、赛季与存档系统",
+          question: "一个系统很重的生涯模拟，在内容持续落地的同时还能保持正确吗？",
+          finding: "1975 个全过；存档数据带 schema 版本号，旧存档会被迁移，而不是悄悄坏掉。",
+          implication: "这里的规模是一个设计约束，不是拿来炫的——没有它，加一章会安静地弄坏三章之前的一条合同规则。",
+        },
+        {
+          method: "可玩性实测",
+          sample: "线上公开版本，从主菜单一路走过角色创建，进到第一个生涯节点",
+          question: "对一个刚进来、什么都不知道的人，这个循环真的跑得起来吗？",
+          finding:
+            "角色创建卡在「姓名必填」上，打法风格的选择会传导进六维属性，第一个节点打开时状态、关系网和可选行动全部就位。",
+          implication: "这些系统是端到端接通的，接缝处没有拿假数据糊过去。",
+        },
+      ],
+      iterations: [
+        {
+          version: "概念",
+          change: "定位成像素风生涯模拟，参考 NBA 2K MyCareer、Punch Club、New Star Soccer 与 Stardew Valley。",
+          reason: "每个参考各解决一块：生涯弧、属性衰减、场外生活、日常循环的满足感。",
+          improvement: "先说清楚各自要借什么，scope 才没有膨胀成「做一个篮球游戏」。",
+        },
+        {
+          version: "系统搭建",
+          change: "选秀、合同、赛季、休赛期、退役、New Game+ 与战术比赛全部作为系统落地。",
+          reason: "一个生涯模拟有多好玩，取决于它能把后果扛过多长的游戏时间。",
+          improvement: "现在一段生涯可以从少年走到退役，并被封存成 Legacy，影响下一周目。",
+        },
+        {
+          version: "美术管线",
+          change: "从零散生成，改成美术圣经 + 批次 prompt + 风格闸门 + 生产记录。",
+          reason: "最早那批资产单看都不错，但它们彼此对不上。",
+          improvement: "一致性变成流程的属性，而不是每张图都要重新吵一次的事。",
+        },
+      ],
+      limits: [
+        {
+          constraint: "没有做过玩家研究。游戏自己标的是 DEMO v0.6。",
+          whyItMatters: "这里的一切都是系统设计和生产纪律。这套节奏对一个不是我的人管不管用，还没测过。",
+          nextValidation: "找五个平时不看篮球的人玩第一章，看这些系统在哪一步开始讲不清自己。",
+        },
+        {
+          constraint: "首包偏大，移动端真机 QA 不足。",
+          whyItMatters: "3.8 MB 的 JS 首包在手机上是实打实的门槛——而华语玩家恰恰主要在手机上遇到它。",
+          nextValidation: "先做代码分包，再补真机 QA，然后才谈公开测试。",
+        },
+        {
+          constraint: "视觉语言是反推来的，不是原创的。",
+          whyItMatters: "它是从一个既有产品的设计系统迁移过来的；把它说成原创就是不诚实。",
+          nextValidation: "把这套系统推到来源到不了的地方——篮球特有的那些界面，就是它必须停止「借」的位置。",
+        },
+      ],
+      takeaway:
+        "这个案例证明我能在一个「本来一定会失控」的量级上跑生成式生产——靠先写规则、按规则设闸门、并且写清楚什么会被拒——同时让一个系统很重的实现在 1975 个测试下保持正确。",
     },
   },
 };
@@ -1117,6 +1636,40 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "Teams building physical products, installations, or hardware-software interfaces.",
       ],
     },
+    vigil: {
+      proves:
+        "This case proves I can design the conditions under which a study is worth running — and direct an AI coding workflow through spec, corpus, variants, and protocol without losing the design argument.",
+      inspect: [
+        "Why the classifier's confidence had to be made a deliberately weak signal before any interface question could be asked.",
+        "Why the variant predictions were written down before testing, and what each one bets on.",
+        "What the interface refuses to do: no search, no batch actions, no severity tiers, no success green.",
+      ],
+      questions: [
+        "How do you design an interface that makes someone check an AI rather than defer to it?",
+        "What did you keep for yourself when an AI wrote all the code?",
+      ],
+      bestFit: [
+        "AI UX, human-AI interaction, and trust-and-safety teams.",
+        "Teams that need a designer who can specify a system precisely enough to be built fast.",
+      ],
+    },
+    hoop: {
+      proves:
+        "This case proves I can run generative production at a volume that would otherwise go incoherent, and keep a systems-heavy build correct while content keeps landing.",
+      inspect: [
+        "Why the art bible was written before any asset was generated, not after the drift showed up.",
+        "Why the rejected-style list turned out to be the load-bearing half of the style gate.",
+        "Why a career runs on 146 discrete nodes instead of a simulated calendar.",
+      ],
+      questions: [
+        "How do you keep hundreds of generated assets looking like one world?",
+        "The visual language is derived from another product's design system — how do you think about that?",
+      ],
+      bestFit: [
+        "Teams shipping generative content pipelines who need coherence, not just throughput.",
+        "Games, narrative systems, or any product where content volume is the design problem.",
+      ],
+    },
   },
   zh: {
     connect: {
@@ -1192,7 +1745,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "这个案例证明我不只是写规格，而是真的做得出来：感测、固件、实体反馈与浏览器控制界面被接成同一个闭环。",
       inspect: [
         "为什么电击陷阱最后变成了可穿戴手指套里的震动。",
-        "传感器去抖如何把一次球的经过收敛成刚好一个游戏事件。",
+        "传感器防抖如何把一次球的经过收敛成刚好一个游戏事件。",
         "Web Serial 控制台如何让 demo 模式忠于固件规则。",
       ],
       questions: [
@@ -1202,6 +1755,40 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
       bestFit: [
         "Design technologist、creative technologist 或原型开发岗位。",
         "做实体产品、装置或软硬件接口的团队。",
+      ],
+    },
+    vigil: {
+      proves:
+        "这个案例证明我能先把「这个实验值不值得做」的条件设计好，并且能带着 AI 走完规格、语料、变体到测试脚本的全程，而不把设计论证一起交出去。",
+      inspect: [
+        "为什么必须先把分类器的置信度做成弱信号，界面这个问题才问得下去。",
+        "为什么变体预测要写在测试之前，以及每一个预测押的是什么。",
+        "这个界面刻意不做什么：没有搜索、没有批量操作、没有严重度分级、没有代表成功的绿色。",
+      ],
+      questions: [
+        "你怎么设计一个界面，让人真的去复核 AI，而不是顺着它点下去？",
+        "代码全部由 AI 写的时候，你把什么留给了自己？",
+      ],
+      bestFit: [
+        "AI UX、人机协作与 trust & safety 团队。",
+        "需要一个能把系统说清楚到可以被快速实现的设计师的团队。",
+      ],
+    },
+    hoop: {
+      proves:
+        "这个案例证明我能在一个本来一定会失控的量级上跑生成式生产，并且在内容持续落地的同时，让一个系统很重的实现保持正确。",
+      inspect: [
+        "为什么美术圣经写在生成之前，而不是等风格漂了才补。",
+        "为什么「拒绝清单」才是风格闸门里承重的那一半。",
+        "为什么一段生涯跑在 146 个离散节点上，而不是模拟日历。",
+      ],
+      questions: [
+        "几百张生成的资产，你怎么让它们看起来还是同一个世界？",
+        "这套视觉语言是从别人的产品设计系统反推来的——你怎么看这件事？",
+      ],
+      bestFit: [
+        "在做生成式内容管线、要的是一致性而不只是产能的团队。",
+        "游戏、叙事系统，或任何「内容体量本身就是设计问题」的产品。",
       ],
     },
   },
@@ -1386,6 +1973,40 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
     {
       question: "What would you instrument before calling this more than an exhibition unit?",
       reason: "Keeps a working build honest about what was observed versus measured.",
+      anchorId: "outcome-limits",
+    },
+  ],
+  vigil: [
+    {
+      question: "Why did the classifier's confidence have to be a weak signal by construction?",
+      reason: "Tests whether the study was designed to be measurable before it was designed to look good.",
+      anchorId: "decision-timeline",
+    },
+    {
+      question: "You wrote your predictions before testing. What are you betting on, and why?",
+      reason: "Checks whether design reasoning exists independently of the result.",
+      anchorId: "evidence-board",
+    },
+    {
+      question: "Nobody has run it yet. What does the case actually prove today?",
+      reason: "Keeps an unfinished project honest about the line between built and validated.",
+      anchorId: "outcome-limits",
+    },
+  ],
+  hoop: [
+    {
+      question: "Why write the art bible before generating a single asset?",
+      reason: "Tests whether coherence was designed into the process or patched in afterwards.",
+      anchorId: "decision-timeline",
+    },
+    {
+      question: "What did the rejected-style list catch that a positive description would not?",
+      reason: "Checks whether the style gate is a real constraint or a restatement of taste.",
+      anchorId: "evidence-board",
+    },
+    {
+      question: "It says DEMO v0.6 and has no player research. What is it evidence of?",
+      reason: "Keeps a large, polished build honest about what volume alone proves.",
       anchorId: "outcome-limits",
     },
   ],

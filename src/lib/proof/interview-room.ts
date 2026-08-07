@@ -18,9 +18,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Proof depth",
-        value: "4 end-to-end cases",
+        value: "7 end-to-end cases",
         detail:
-          "IA, accessibility, AI coaching, and social wellbeing with methods and limits shown.",
+          "IA, accessibility, AI coaching, social wellbeing, a hardware build, an AI-oversight study, and a generative production pipeline — methods and limits shown.",
       },
       {
         label: "Interview readiness",
@@ -74,24 +74,24 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/circles#evidence-board",
     },
     {
-      id: "measurement-proof",
-      capability: "Measurement and validation",
-      caseSlug: "connect",
+      id: "hardware-proof",
+      capability: "Physical computing and build",
+      caseSlug: "maze",
       proof:
-        "Findability and task success constrained the IA claim before the interface was polished.",
+        "MazeRunners runs on hardware I wired and programmed: sensing, firmware state, haptics, and a browser console in one loop.",
       whyItMatters:
-        "Shows evidence discipline: the claim is tied to measured behavior and stated limits.",
-      href: "/projects/connect#outcome-limits",
+        "Shows the work survives contact with reality, not only with a prototyping tool.",
+      href: "/projects/maze#outcome-limits",
     },
     {
-      id: "communication-proof",
-      capability: "Communication and facilitation",
-      caseSlug: "circles",
+      id: "ai-oversight-proof",
+      capability: "Human oversight of AI",
+      caseSlug: "vigil",
       proof:
-        "Co-design workshops and decision framing turned social research into inspectable product choices.",
+        "Vigil makes the classifier's confidence deliberately weak evidence, and fails its own build if that stops being true.",
       whyItMatters:
-        "Shows how Lewis can make ambiguous qualitative evidence usable for a team.",
-      href: "/projects/circles#interview-takeaway",
+        "Shows the harder half of AI UX: designing so a person keeps checking rather than deferring.",
+      href: "/projects/vigil#decision-timeline",
     },
   ],
   questionBank: [
@@ -136,12 +136,12 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/connect#outcome-limits",
     },
     {
-      id: "manager-followup-spectra",
+      id: "hardware-constraint-maze",
       group: "product",
-      question: "How did privacy and public context change the AR product direction?",
-      proves: "Product judgment beyond visual craft.",
-      caseSlug: "spectra",
-      href: "/projects/spectra#interview-takeaway",
+      question: "Where did hardware constraints change the interaction, not just the build?",
+      proves: "Systems thinking across sensing, firmware, feedback, and safety.",
+      caseSlug: "maze",
+      href: "/projects/maze#decision-timeline",
     },
   ],
   boundaries: [
@@ -156,39 +156,21 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
     },
     {
       id: "prototype-metrics",
-      claim: "Measured outcomes show direction and learning quality.",
+      claim: "The cases describe methods and decisions, not measured business impact.",
       boundary:
-        "Some metrics are study or prototype metrics, not post-launch business metrics.",
+        "Sample sizes were not formally recorded, so I quote what I observed rather than effect sizes.",
       validation:
         "I would define production telemetry before claiming durable product impact.",
       href: "/projects/spectra#outcome-limits",
     },
     {
-      id: "ai-long-term-confidence",
-      claim: "The AI work shows trust-aware interaction decisions.",
+      id: "scope-of-build",
+      claim: "MazeRunners proves I can build and ship a working system.",
       boundary:
-        "First-use confidence is not the same as long-term coaching efficacy.",
+        "It is one hand-wired exhibition unit, so it says nothing about manufacturability or long-term durability.",
       validation:
-        "I would run longitudinal validation before claiming durable behavior change.",
-      href: "/projects/ai#outcome-limits",
-    },
-    {
-      id: "accessibility-audit-scope",
-      claim: "The accessibility case shows inclusive design direction.",
-      boundary:
-        "It is not a universal audit across every impairment, environment, or device.",
-      validation:
-        "I would broaden participant coverage and assistive-tech review before final compliance claims.",
-      href: "/projects/spectra#evidence-board",
-    },
-    {
-      id: "social-product-scale",
-      claim: "Connect Circles shows depth-first product framing.",
-      boundary:
-        "It does not yet prove network effects, retention, or scaled community health.",
-      validation:
-        "I would validate repeated cohort use before optimizing growth mechanics.",
-      href: "/projects/circles#outcome-limits",
+        "I would rebuild on a fabricated harness and measure setup time and sensor drift across venues.",
+      href: "/projects/maze#outcome-limits",
     },
   ],
 };
@@ -210,9 +192,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "证据深度",
-        value: "4 个端到端案例",
+        value: "7 个端到端案例",
         detail:
-          "覆盖 IA、无障碍、AI 辅导和社交健康，并展示方法与限制。",
+          "覆盖 IA、无障碍、AI 辅导、社交健康、一台硬件作品、一项 AI 监督研究，以及一条生成式生产管线，并展示方法与限制。",
       },
       {
         label: "面试准备度",
@@ -266,24 +248,24 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/circles#evidence-board",
     },
     {
-      id: "measurement-proof",
-      capability: "测量与验证",
-      caseSlug: "connect",
+      id: "hardware-proof",
+      capability: "物理计算与实作",
+      caseSlug: "maze",
       proof:
-        "可发现性和任务成功率在视觉 polish 前约束了 IA claim。",
+        "MazeRunners 跑在我自己接线与编程的硬件上：感测、固件状态、震动反馈与浏览器控制台接在同一个闭环里。",
       whyItMatters:
-        "证明 claim 绑定到行为证据和明确限制，而不是只靠叙事。",
-      href: "/projects/connect#outcome-limits",
+        "证明这些工作经得起真实世界的碰撞，而不只是经得起原型工具。",
+      href: "/projects/maze#outcome-limits",
     },
     {
-      id: "communication-proof",
-      capability: "沟通与引导",
-      caseSlug: "circles",
+      id: "ai-oversight-proof",
+      capability: "人对 AI 的监督",
+      caseSlug: "vigil",
       proof:
-        "共创工作坊和决策框架把社交研究转成可检查的产品选择。",
+        "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这个性质失效，它自己的 build 就会挂掉。",
       whyItMatters:
-        "证明我能让模糊的定性证据变成团队可使用的判断材料。",
-      href: "/projects/circles#interview-takeaway",
+        "证明我做得了 AI UX 里更难的那一半：让人继续复核，而不是顺着它点下去。",
+      href: "/projects/vigil#decision-timeline",
     },
   ],
   questionBank: [
@@ -328,12 +310,12 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/connect#outcome-limits",
     },
     {
-      id: "manager-followup-spectra",
+      id: "hardware-constraint-maze",
       group: "product",
-      question: "隐私和公共场景如何改变 AR 产品方向？",
-      proves: "超越视觉 craft 的产品判断。",
-      caseSlug: "spectra",
-      href: "/projects/spectra#interview-takeaway",
+      question: "硬件约束在哪些地方改变了交互本身，而不只是改变了实现方式？",
+      proves: "跨感测、固件、反馈与安全的系统思考。",
+      caseSlug: "maze",
+      href: "/projects/maze#decision-timeline",
     },
   ],
   boundaries: [
@@ -348,39 +330,21 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     },
     {
       id: "prototype-metrics",
-      claim: "量化结果证明方向和学习质量。",
+      claim: "这些案例讲的是方法与决策，不是可量化的业务影响。",
       boundary:
-        "部分指标来自研究或原型测试，不是上线后的业务指标。",
+        "样本量没有正式记录，所以我只讲我观察到的现象，不报效应量。",
       validation:
         "在声称长期产品影响前，我会先定义生产 telemetry。",
       href: "/projects/spectra#outcome-limits",
     },
     {
-      id: "ai-long-term-confidence",
-      claim: "AI 案例证明的是信任敏感的交互判断。",
+      id: "scope-of-build",
+      claim: "MazeRunners 证明我能把一套系统真的做出来并让它运行。",
       boundary:
-        "首次使用的信心提升不等于长期 coaching 效果。",
+        "它是一台手工接线的展览单机，不能用来说明可量产性或长期耐久度。",
       validation:
-        "在声称长期行为改变前，需要做纵向验证。",
-      href: "/projects/ai#outcome-limits",
-    },
-    {
-      id: "accessibility-audit-scope",
-      claim: "无障碍案例证明的是包容性设计方向。",
-      boundary:
-        "它不是覆盖所有障碍类型、环境或设备的通用审计。",
-      validation:
-        "最终合规 claim 前，需要扩大参与者覆盖并做辅助技术 review。",
-      href: "/projects/spectra#evidence-board",
-    },
-    {
-      id: "social-product-scale",
-      claim: "Connect Circles 证明的是深度优先的产品框架。",
-      boundary:
-        "它还没有证明网络效应、留存或规模化社区健康。",
-      validation:
-        "优化增长机制前，需要验证重复 cohort 使用。",
-      href: "/projects/circles#outcome-limits",
+        "我会改用制作好的线束重做一台，并在多个场地测量布置时间与传感器漂移。",
+      href: "/projects/maze#outcome-limits",
     },
   ],
 };

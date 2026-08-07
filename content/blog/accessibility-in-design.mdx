@@ -1,97 +1,59 @@
 ---
-title: "Designing for Accessibility: Beyond Compliance"
-date: "2025-01-05"
-excerpt: "Accessibility isn't just about meeting WCAG guidelines—it's about creating inclusive experiences that work for everyone. Here's how I approach accessible design."
+title: "The accessibility constraint that wasn't in the guidelines"
+date: "2026-01-05"
+excerpt: "Designing an AR tool for colourblind users, the requirement that changed the design most had nothing to do with contrast ratios. People did not want to be seen using it."
 tags:
   - Accessibility
   - Inclusive Design
-  - Best Practices
+  - Design Process
 author: "Lewis Dong"
 published: true
 ---
 
-## Why Accessibility Matters
+Accessibility work has a default shape: check the contrast, size the touch targets, write the alt text, never encode meaning in colour alone. That list is real and I use it. But on [Spectra Lens](/projects/spectra) — an AR tool that helps colourblind users read colour in the world — the requirement that changed the design most was not on any list I could have looked up.
 
-When I started my Spectra Lens project—an AR tool for colorblind users—I realized that accessibility isn't an edge case. Approximately 8% of men and 0.5% of women have some form of color vision deficiency. That's hundreds of millions of people worldwide.
+It came out of an interview, from a second-year PhD student with deuteranopia:
 
-Designing for accessibility doesn't limit creativity; it expands it.
+> "The moment I pull out an app, the conversation stops. I'd rather guess than explain."
 
-## Common Accessibility Barriers
+Nothing in WCAG covers that. It is not a perception problem. It is what using the fix costs you socially.
 
-### Visual Barriers
+## What the interviews actually said
 
-- Low color contrast
-- Small text sizes
-- Color-only information (like red/green status indicators)
-- Missing alt text on images
+I ran semi-structured interviews across colour vision deficiency subtypes — deutan, protan, tritan — because the subtypes fail differently and I did not want to design for an average that describes nobody. Alongside that, a heuristic pass over existing colour-identification tools, and a co-design session mapping everyday colour moments.
 
-### Motor Barriers
+Three things came back that a compliance checklist does not ask about.
 
-- Small touch targets
-- Complex gestures required
-- Time-limited interactions
-- No keyboard navigation
+**The decision window is two to three seconds.** Choosing a shirt, judging whether meat has turned, reading a status light. A tool slower than that loses to guessing — and people know it, so they do not open it twice.
 
-### Cognitive Barriers
+**People want the answer, not the label.** Existing tools optimise for naming the hue precisely: "sage", "olive". Nobody in my interviews wanted the name. They wanted to know whether the food was still good. Naming is the part that is easy to build, which is why it is the part that got built.
 
-- Complex language
-- Overwhelming information density
-- Unpredictable navigation
-- No error recovery options
+**Most would rather be wrong than visibly assisted.** That is the quote above, and it was not one person. It reframed the project: the tool was competing not against other apps but against the option of quietly guessing.
 
-## Practical Tips for Accessible Design
+## What that changed
 
-### 1. Start with Semantic Structure
+**An overlay, not a filter.** The obvious build is a full-screen recolouring filter. I used a low-opacity annotation layer instead. A filter replaces the world; an overlay annotates it. The user is still looking at the real thing, and can hand the phone to someone or glance away without losing their place.
 
-Use proper heading hierarchy (H1 → H2 → H3) and semantic HTML elements. Screen readers rely on this structure to help users navigate.
+**Voice off by default.** This one came straight from the social-exposure finding. Spoken output is the accessible-by-default choice in most design systems, and here it was the feature people most wanted to be able to switch off. It ships silent, with voice as opt-in.
 
-### 2. Don't Rely on Color Alone
+**One button. No account, no colour dictionary, no setup.** Point, get the decision.
 
-Always pair color with another indicator:
-- Icons alongside colored status badges
-- Patterns in addition to colors in charts
-- Text labels with colored buttons
+**Say what to do, not what you are looking at.** "What you are looking at" is the phrasing that makes a tool feel like a diagnostic device, and a diagnostic device is exactly what nobody wanted to be seen holding.
 
-### 3. Design for Keyboard Navigation
+## What testing changed again
 
-Ensure all interactive elements are:
-- Focusable with Tab key
-- Activatable with Enter/Space
-- Have visible focus indicators
+Testing happened where the decisions happen — the canteen, a crossing, participants' own wardrobes. Two things surfaced only there.
 
-### 4. Write Meaningful Alt Text
+The overlay opacity I had settled on obscured the texture of food, which is a cue people were already using. I lowered it, and added a haptic confirmation to carry the certainty the opacity had been carrying.
 
-Good alt text describes the *purpose*, not just the appearance:
+And in noisy environments, voice feedback was slower than simply reading the overlay — the reverse of the assumption that audio is the more accessible channel. Silent default, voice on request: confirmed by behaviour rather than by principle.
 
-- **Poor**: "Image of a graph"
-- **Better**: "Bar chart showing 40% increase in user engagement over 6 months"
+## The honest boundary
 
-### 5. Test with Real Users
+This was a university project. I recruited the participants myself, the sample was small, and there is no clinical validation behind the colour model. I can describe what these participants did in real settings and why each decision followed from it. I cannot tell you it generalises, and a portfolio that implies otherwise is selling something.
 
-No amount of automated testing replaces testing with people who use assistive technologies daily.
+## What I took from it
 
-## Tools I Use
+Compliance rules are a floor, and a floor worth having — they encode failures the field has already paid for. But they describe properties of an *interface*, and the thing that decided this design was a property of the *situation*: who else is in the room when you need help.
 
-- **Contrast Checker**: WebAIM's contrast checker
-- **Screen Readers**: VoiceOver (Mac), NVDA (Windows)
-- **Accessibility Audits**: axe DevTools, Lighthouse
-- **Color Blindness Simulators**: Sim Daltonism, Color Oracle
-
-## The Business Case
-
-Accessible design isn't just ethical—it's smart business:
-
-- Larger potential user base
-- Better SEO (screen reader-friendly = search engine-friendly)
-- Reduced legal risk
-- Improved usability for everyone
-
-## Conclusion
-
-Accessibility should be woven into your design process from day one, not bolted on at the end. When we design for the extremes, we often create better experiences for everyone.
-
-The curb cut effect is real: features designed for wheelchair users benefit parents with strollers, travelers with luggage, and delivery workers with carts. The same principle applies to digital design.
-
----
-
-*Building something accessible? I'd love to hear about your approach and challenges.*
+You do not find that in a checklist. You find it by asking someone what it costs them to use the thing you built, and then believing the answer even when it contradicts a default you thought was settled.

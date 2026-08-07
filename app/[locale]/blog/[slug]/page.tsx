@@ -43,9 +43,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
-  if (!post) return { title: "Post Not Found" };
   const locale = (await getLocale()) as "en" | "zh";
+  const post = await getBlogPost(slug, locale);
+  if (!post) return { title: "Post Not Found" };
   const title = post.metadata.title;
   const description = post.metadata.excerpt;
   const path = `/blog/${slug}`;
@@ -68,14 +68,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
-  if (!post) notFound();
-
   const t = await getTranslations();
   const locale = await getLocale();
   const isZh = locale === "zh";
 
-  const all = await getAllBlogPosts();
+  const post = await getBlogPost(slug, isZh ? "zh" : "en");
+  if (!post) notFound();
+
+  const all = await getAllBlogPosts(isZh ? "zh" : "en");
   const idx = all.findIndex((p) => p.slug === slug);
   const prev = idx > 0 ? all[idx - 1] : null;
   const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
@@ -179,8 +179,8 @@ export default async function BlogPostPage({ params }: Props) {
                 name={siteConfig.author.name}
                 tagline={
                   isZh
-                    ? "昆士兰大学交互设计硕士在读 · 研究驱动的 UX 设计师"
-                    : "Master of Interaction Design candidate at UQ · research-led UX designer"
+                    ? "昆士兰大学交互设计硕士在读 · 交互设计师，也自己把设计做出来"
+                    : "Master of Interaction Design candidate at UQ · interaction designer who builds what he designs"
                 }
                 email={siteConfig.author.email}
                 linkedin={siteConfig.social.linkedin}

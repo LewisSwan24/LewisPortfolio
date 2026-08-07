@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vigil — quarantine review</title>
+<style>
+/* ---------------------------------------------------------------------------
+   The tool speaks in monospace; the message speaks in prose. That split is the
+   whole typographic idea — everything the system says is an instrument reading,
+   everything the sender wrote is human writing under examination.
+   Palette is warm near-monochrome with a single ochre signal. Verdicts are
+   carried by weight and rule rather than colour, because this interface must
+   not lend the classifier authority it has not earned.
+--------------------------------------------------------------------------- */
+:root{
+  --paper:#fbfaf8; --app:#f2f0ec; --sunk:#f6f4f0; --rail:#191817; --rail-2:#232120;
+  --line:#e4e0d9; --line-2:#cec8bd; --rail-line:#2b2825;
+  --ink:#1a1917; --ink-2:#55524c; --ink-3:#6f6b62;
+  --rail-ink:#a8a29a; --rail-dim:#8f897e; --rail-hi:#efebe4;
+  --signal:#9a5b0c; --signal-bg:#f8efe0;
+  --alarm:#9e2b1e; --alarm-bg:#f9ebe8;
+  --mark:#f6e2a4; --mark-rule:#c2941c;
+  --mono:"Cascadia Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --text:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:13px/1.5 var(--mono);background:var(--app);color:var(--ink);
+     height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.hide{display:none!important}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px;border-radius:2px}
+.rail :focus-visible{outline-color:#d6a256}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important;
+    scroll-behavior:auto!important}
+}
+
+/* ---------- sheets ---------- */
+.sheet{height:100vh;overflow:auto;display:flex;align-items:center;justify-content:center;padding:44px 24px}
+.sheet-inner{max-width:600px;width:100%}
+.brand{font-size:11px;letter-spacing:.34em;color:var(--signal);margin-bottom:26px}
+h1{font-family:var(--text);font-size:26px;line-height:1.28;font-weight:600;
+   letter-spacing:-.018em;margin-bottom:15px}
+h2{font-size:12px;letter-spacing:.06em;margin:28px 0 10px;color:var(--ink);font-weight:600}
+h2::before{content:"— "}
+.sheet p{font-family:var(--text);font-size:14px;line-height:1.62;color:var(--ink-2);margin-bottom:12px}
+.lede{font-size:15px!important;color:var(--ink)!important}
+.rule{border-left:2px solid var(--signal);padding-left:15px;margin:20px 0}
+.rule p:last-child{margin-bottom:0}
+.keydefs{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:12px 0 4px;
+         font-size:12.5px;border-top:1px solid var(--line);padding-top:14px}
+.keydefs dt{color:var(--signal);white-space:nowrap}
+.keydefs dd{font-family:var(--text);font-size:13.5px;color:var(--ink-2)}
+.go{background:var(--ink);color:var(--paper);padding:11px 24px;border-radius:2px;
+    font-size:12.5px;letter-spacing:.06em;margin-top:26px}
+.go:hover{background:var(--signal)}
+.fine{font-size:11.5px;color:var(--ink-3);margin-top:16px;line-height:1.6}
+.fine kbd{color:var(--signal)}
+
+/* ---------- review layout ---------- */
+#review{display:grid;grid-template-columns:246px minmax(0,1fr) 336px;height:100vh}
+
+/* rail */
+.rail{background:var(--rail);color:var(--rail-ink);display:flex;flex-direction:column;overflow:hidden}
+.rail-head{padding:14px 16px 12px;border-bottom:1px solid var(--rail-line)}
+.rail-title{font-size:10.5px;letter-spacing:.26em;color:var(--rail-hi)}
+.rail-sub{font-size:11px;margin-top:4px;color:var(--rail-dim)}
+.progress{height:2px;background:var(--rail-line);margin-top:12px}
+.progress i{display:block;height:100%;background:var(--signal);transition:width .3s}
+.qlist{flex:1;overflow-y:auto;padding:4px 0}
+.qitem{display:grid;grid-template-columns:34px minmax(0,1fr);gap:2px;padding:7px 14px;
+       align-items:baseline;border-left:2px solid transparent}
+.qitem.done{opacity:.34}
+.qitem.now{background:var(--rail-2);border-left-color:var(--signal)}
+.qnum{font-size:10.5px;color:#5d5851}
+.qitem.now .qnum{color:var(--signal)}
+.qsubj{font-family:var(--text);font-size:12.5px;color:var(--rail-ink);
+       white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qitem.now .qsubj{color:var(--rail-hi)}
+.qfrom{grid-column:2;font-size:10.5px;color:var(--rail-dim);
+       white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rail-foot{padding:8px 14px;border-top:1px solid var(--rail-line);font-size:10.5px;
+           color:var(--rail-dim);display:flex;align-items:center;justify-content:space-between}
+#gear{width:22px;height:22px;color:var(--rail-dim);font-size:12px;flex:none}
+#gear:hover{color:var(--rail-hi)}
+
+/* reader */
+.reader{overflow-y:auto;background:var(--app);padding:0;display:flex;flex-direction:column}
+.mail{background:var(--paper);border-right:1px solid var(--line);flex:1;
+      display:flex;flex-direction:column;max-width:none}
+
+/* real headers, aligned on a mono grid */
+.envelope{padding:20px 30px 16px;border-bottom:1px solid var(--line);background:var(--sunk)}
+.hdr{display:grid;grid-template-columns:96px minmax(0,1fr);gap:3px 0;font-size:12px}
+.hdr dt{color:var(--ink-3)}
+.hdr dd{color:var(--ink-2);word-break:break-all}
+.hdr dd b{color:var(--ink);font-weight:600}
+.hdr .subj{font-family:var(--text);font-size:15.5px;font-weight:600;color:var(--ink);
+           letter-spacing:-.01em;line-height:1.35;padding-top:5px}
+.authline{margin-top:12px;padding-top:11px;border-top:1px dotted var(--line-2);
+          font-size:11.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:0 18px}
+.authline b{font-weight:400;color:var(--ink-2)}
+.authline .ok{color:var(--ink-2)}
+.authline .bad{color:var(--alarm)}
+.authnote{width:100%;color:var(--ink-3);margin-top:5px}
+/* gateway intelligence: domain age and campaign clustering. Set in the same
+   quiet ink as the rest of the envelope - a six-day-old domain is damning, but
+   colouring it would do the reviewer's reasoning for them */
+.gwline{margin-top:7px;font-size:11.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:2px 18px}
+.gwline b{font-weight:400;color:var(--ink-2)}
+
+/* escalation note */
+.note-label{font-size:10.5px;color:var(--ink-3);margin-bottom:6px}
+.note-input{width:100%;border:1px solid var(--line-2);border-radius:2px;background:var(--paper);
+            padding:9px 10px;font:12px var(--mono);color:var(--ink)}
+.note-input::placeholder{color:var(--ink-3)}
+
+.mail-body{padding:22px 30px 26px;white-space:pre-wrap;font-family:var(--text);
+           font-size:13.5px;line-height:1.72;color:#2a2823;max-width:66ch}
+.evidence{margin:0 30px 20px;border-top:1px solid var(--line);padding-top:12px;font-size:11.5px}
+.ev-label{color:var(--ink-3);margin-bottom:7px}
+.ev-row{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:4px 14px;padding:3px 0}
+.ev-row .disp{font-family:var(--text);color:var(--signal);text-decoration:underline;
+              text-underline-offset:2px}
+.ev-row .real{color:var(--ink-3);word-break:break-all}
+.ev-flag{grid-column:2;color:var(--alarm)}
+.mail-foot{margin-top:auto;padding:12px 30px 14px;border-top:1px solid var(--line);
+           font-size:10.5px;color:var(--ink-3);letter-spacing:.04em}
+
+mark{background:transparent;color:inherit;transition:background .15s}
+.q3-inline mark{background:var(--mark);box-shadow:inset 0 -2px 0 var(--mark-rule)}
+mark.lit,mark.flash{background:var(--mark);box-shadow:inset 0 -2px 0 var(--mark-rule)}
+mark.flash{animation:pulse 1.4s}
+@keyframes pulse{0%,50%{background:#f0cf62}100%{background:var(--mark)}}
+
+/* assessment panel */
+.panel{background:var(--paper);display:flex;flex-direction:column;overflow:hidden}
+.panel-head{padding:12px 18px;border-bottom:1px solid var(--line);font-size:10.5px;
+            letter-spacing:.24em;color:var(--ink-3)}
+.panel-body{flex:1;overflow-y:auto;padding:18px}
+
+.verdict{padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.verdict.phishing{border-bottom-color:var(--alarm)}
+.v-said{font-size:11px;color:var(--ink-3);margin-bottom:5px}
+.v-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.v-word{font-size:21px;font-weight:600;letter-spacing:-.01em}
+.verdict.phishing .v-word{color:var(--alarm)}
+.v-conf{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.v-band{font-size:11.5px;letter-spacing:.1em;color:var(--ink-2);border:1px solid var(--line-2);
+        padding:2px 8px}
+.confbar{height:2px;background:var(--line);margin-top:10px}
+.confbar i{display:block;height:100%;background:var(--ink-2)}
+.verdict.phishing .confbar i{background:var(--alarm)}
+
+.why{font-family:var(--text);font-size:13px;line-height:1.6;color:var(--ink-2);
+     margin:14px 0 20px}
+.cues{border-top:1px solid var(--line)}
+.cue{display:grid;grid-template-columns:26px minmax(0,1fr);width:100%;text-align:left;
+     padding:10px 0 10px 2px;border-bottom:1px solid var(--line);gap:0 8px;align-items:start}
+.q3-list .cue{cursor:pointer}
+.q3-list .cue:hover .cue-label{color:var(--signal)}
+.cue-n{font-size:10.5px;color:var(--ink-3);padding-top:2px}
+.q3-list .cue:hover .cue-n{color:var(--signal)}
+.cue-type{display:block;font-size:10.5px;color:var(--ink-3)}
+.cue-label{display:block;font-family:var(--text);font-size:12.5px;line-height:1.45;
+           color:var(--ink);margin-top:3px}
+.cue-go{font-size:10.5px;color:var(--signal);margin-top:5px;display:none}
+.q3-list .cue[data-span="1"] .cue-go{display:block}
+.nocues{font-family:var(--text);font-size:12.5px;color:var(--ink-3);padding:12px 0;line-height:1.55}
+
+/* gate */
+.gate-q{font-family:var(--text);font-size:15px;font-weight:600;margin-bottom:6px}
+.gate-hint{font-family:var(--text);font-size:12.5px;color:var(--ink-3);margin-bottom:18px;line-height:1.55}
+.gate-btn{display:flex;justify-content:space-between;align-items:center;width:100%;
+          border:1px solid var(--line-2);border-radius:2px;padding:12px 13px;margin-bottom:8px;
+          font-family:var(--text);font-size:13.5px;background:var(--paper)}
+.gate-btn:hover{border-color:var(--signal);color:var(--signal);background:var(--signal-bg)}
+.gate-btn span{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.gate-note{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+           font-family:var(--text);font-size:12px;line-height:1.55;color:var(--ink-3)}
+.agree{font-family:var(--text);font-size:12.5px;padding:9px 12px;margin-bottom:16px;
+       line-height:1.5;border-left:2px solid var(--line-2);background:var(--sunk)}
+.agree.diff{border-left-color:var(--signal);background:var(--signal-bg);color:#6d430a}
+
+/* decision bar */
+.bar{border-top:1px solid var(--line);padding:12px 18px;background:var(--sunk);position:relative}
+.bar::before{content:"";position:absolute;left:0;right:0;top:-24px;height:24px;pointer-events:none;
+             background:linear-gradient(to top,var(--paper),transparent)}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.act{border:1px solid var(--line-2);border-radius:2px;padding:9px 6px;background:var(--paper);
+     font-size:12px;display:flex;flex-direction:column;align-items:center;gap:3px}
+.act:hover:not(:disabled){border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.act:disabled{opacity:.35;cursor:not-allowed}
+.act i{font-style:normal;font-size:10px;color:var(--ink-3)}
+.act:hover:not(:disabled) i{color:var(--line-2)}
+.act.small{padding:7px 6px;font-size:11.5px}
+.undo{width:100%;margin-top:7px;padding:6px;font-size:11px;color:var(--ink-3)}
+.undo:hover:not(:disabled){color:var(--signal)}
+.undo:disabled{opacity:.3;cursor:not-allowed}
+
+/* summary */
+.tally{font-family:var(--text);font-size:15px;line-height:1.85;color:var(--ink-2);
+       margin:18px 0 8px}
+.tally b{font-family:var(--mono);font-size:15px;color:var(--ink);font-weight:600}
+.tally .hi{color:var(--signal)}
+.matrix{width:100%;border-collapse:collapse;margin:10px 0 8px;font-size:12px}
+.matrix th{font-weight:400;color:var(--ink-3);text-align:left;padding:7px 10px;
+           border-bottom:1px solid var(--line-2)}
+.matrix th.n{text-align:right}
+.matrix td{padding:9px 10px;border-bottom:1px solid var(--line)}
+.matrix td.n{text-align:right;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.matrix td.q{color:var(--ink-3)}
+.matrix tr.key td.n{color:var(--signal);font-weight:600}
+.notable{margin-top:8px;border-top:1px solid var(--line)}
+.nrow{display:grid;grid-template-columns:76px minmax(0,1fr);gap:0 12px;padding:10px 0;
+      border-bottom:1px solid var(--line);font-size:12px;align-items:baseline}
+.ntag{font-size:10.5px;letter-spacing:.08em;color:var(--ink-3)}
+.nrow.caught .ntag{color:var(--signal)}
+.nrow.missed .ntag{color:var(--alarm)}
+.ntext{font-family:var(--text);font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.ntext b{color:var(--ink);font-weight:600}
+.ghost{border:1px solid var(--line-2);border-radius:2px;padding:10px 18px;font-size:12.5px;
+       letter-spacing:.05em;background:var(--paper);margin-left:8px}
+.ghost:hover{border-color:var(--ink)}
+
+/* toast */
+#toast{position:fixed;bottom:0;left:246px;right:336px;z-index:50;background:var(--ink);
+       color:var(--paper);padding:11px 30px;font-size:12px;display:flex;gap:16px;
+       align-items:center;opacity:0;transform:translateY(100%);pointer-events:none;
+       transition:opacity .15s,transform .15s}
+#toast.on{opacity:1;transform:translateY(0)}
+#toast b{color:#f0d9a8;font-weight:400}
+#toast .t-undo{margin-left:auto;color:#918b81;font-size:11px}
+#toast .t-undo kbd{color:var(--paper)}
+
+/* variant switcher */
+#switch{position:fixed;left:12px;bottom:44px;z-index:60;width:272px;background:var(--rail);
+        color:var(--rail-hi);padding:14px;border:1px solid var(--rail-line);font-size:11px}
+.sw-h{font-size:10px;letter-spacing:.24em;color:var(--rail-dim);margin-bottom:12px}
+.sw-g{margin-bottom:11px}
+.sw-q{color:var(--rail-dim);margin-bottom:5px}
+.sw-q b{color:var(--rail-hi);font-weight:400}
+.sw-opts{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.sw-opt{border:1px solid #35312d;padding:6px;color:var(--rail-ink);font-size:11px}
+.sw-opt:hover{border-color:#57514a;color:var(--rail-hi)}
+.sw-opt.on{background:var(--signal);border-color:var(--signal);color:#fff}
+.sw-f{border-top:1px solid var(--rail-line);padding-top:10px;display:flex;gap:6px}
+.sw-f button{font-size:10.5px;color:var(--rail-dim);border:1px solid #35312d;padding:4px 8px}
+.sw-f button:hover{color:var(--rail-hi)}
+
+@media (max-width:1220px){
+  #review{grid-template-columns:206px minmax(0,1fr) 304px}
+  #toast{left:206px;right:304px}
+  .envelope,.mail-body,.evidence,.mail-foot{padding-left:20px;padding-right:20px}
+  .evidence{margin-left:20px;margin-right:20px}
+}
+@media (max-width:980px){
+  #review{grid-template-columns:minmax(0,1fr) 300px}
+  .rail{display:none} #toast{left:0;right:300px}
+}
+@media (max-width:720px){
+  #review{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}
+  .panel{border-top:1px solid var(--line);max-height:48vh}
+  #toast{right:0} .sheet{padding:28px 18px} h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ BRIEFING ============ -->
+<section id="brief" class="sheet">
+  <div class="sheet-inner">
+    <div class="brand">V I G I L</div>
+    <h1>You are the last check before the inbox.</h1>
+    <p class="lede">Meridian Group's mail gateway holds suspicious messages in quarantine and
+      attaches a classifier's verdict to each one. Your job is not to sort mail. It is to
+      check the classifier's work.</p>
+
+    <div class="rule">
+      <p>It is right most of the time, which is the problem. It misses real attacks and it
+      holds harmless mail, and both cost something — a released phishing email takes a
+      colleague's account, a blocked real one loses work that mattered.</p>
+    </div>
+
+    <h2>What counts as phishing</h2>
+    <p>Any message where the sender is pretending to be someone they are not. That includes
+      messages with no link, no attachment and no request in them yet: an attacker opens with
+      small talk to establish a thread before asking for anything. If the identity is false,
+      the message is phishing.</p>
+
+    <h2>Reading the headers</h2>
+    <p>Each message shows its authentication results. Those verify the sending server, never
+      the person — mail sent from a real Gmail account passes every check while claiming to
+      be from anyone at all.</p>
+
+    <h2>Your four options</h2>
+    <dl class="keydefs">
+      <dt>accept &nbsp;A</dt><dd>The classifier got it right. Apply its verdict.</dd>
+      <dt>override &nbsp;O</dt><dd>It got it wrong. Apply the opposite verdict.</dd>
+      <dt>escalate &nbsp;E</dt><dd>You cannot tell. Send it to the security team.</dd>
+      <dt>skip &nbsp;S</dt><dd>Leave it in the queue and move on.</dd>
+    </dl>
+    <p class="fine"><kbd>Z</kbd> undoes your last decision. Nothing here touches a real
+      mailbox — every message is fabricated for this study.</p>
+
+    <button class="go" onclick="start()">Open the queue</button>
+    <p class="fine" id="brief-meta"></p>
+  </div>
+</section>
+
+<!-- ============ REVIEW ============ -->
+<section id="review" class="hide q3-inline">
+  <aside class="rail">
+    <div class="rail-head">
+      <div class="rail-title">QUARANTINE</div>
+      <div class="rail-sub" id="rail-sub"></div>
+      <div class="progress"><i id="prog"></i></div>
+    </div>
+    <div class="qlist" id="qlist"></div>
+    <div class="rail-foot">
+      <button id="gear" onclick="toggleSwitch()" aria-label="Design variants">&#9881;</button>
+      <span id="rail-foot"></span>
+    </div>
+  </aside>
+
+  <main class="reader" id="reader"></main>
+
+  <aside class="panel">
+    <div class="panel-head">CLASSIFIER</div>
+    <div class="panel-body" id="panel"></div>
+    <div class="bar">
+      <div id="bar-acts">
+        <div class="acts">
+          <button class="act" id="b-accept" onclick="decide('accept')">accept<i>A</i></button>
+          <button class="act" id="b-override" onclick="decide('override')">override<i>O</i></button>
+        </div>
+        <div class="acts" style="margin-top:7px">
+          <button class="act small" id="b-escalate" onclick="decide('escalate')">escalate<i>E</i></button>
+          <button class="act small" id="b-skip" onclick="decide('skip')">skip<i>S</i></button>
+        </div>
+        <button class="undo" id="b-undo" onclick="undo()">undo last decision</button>
+      </div>
+      <div id="notebox" class="hide">
+        <div class="note-label">note for the security team &middot; optional</div>
+        <input id="note-input" class="note-input" autocomplete="off"
+               placeholder="what should they look at?">
+        <div class="acts" style="margin-top:7px">
+          <button class="act small" onclick="submitEscalate()">send<i>enter</i></button>
+          <button class="act small" onclick="cancelEscalate()">back<i>esc</i></button>
+        </div>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<!-- ============ SUMMARY ============ -->
+<section id="done" class="sheet hide">
+  <div class="sheet-inner" id="done-inner"></div>
+</section>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============ VARIANT SWITCHER ============ -->
+<div id="switch" class="hide">
+  <div class="sw-h">DESIGN VARIANTS</div>
+  <div class="sw-g"><div class="sw-q"><b>Q1</b> confidence</div><div class="sw-opts">
+    <button class="sw-opt" data-k="q1" data-v="percent">figure</button>
+    <button class="sw-opt" data-k="q1" data-v="band">band</button></div></div>
+  <div class="sw-g"><div class="sw-q"><b>Q2</b> when it speaks</div><div class="sw-opts">
+    <button class="sw-opt" data-k="q2" data-v="immediate">immediate</button>
+    <button class="sw-opt" data-k="q2" data-v="after">after you</button></div></div>
+  <div class="sw-g"><div class="sw-q"><b>Q3</b> evidence</div><div class="sw-opts">
+    <button class="sw-opt" data-k="q3" data-v="inline">inline</button>
+    <button class="sw-opt" data-k="q3" data-v="list">list</button></div></div>
+  <div class="sw-g"><div class="sw-q"><b>set</b></div><div class="sw-opts">
+    <button class="sw-opt" data-k="subset" data-v="visitor">visitor 5</button>
+    <button class="sw-opt" data-k="subset" data-v="default">session 20</button></div></div>
+  <div class="sw-f">
+    <button onclick="restart()">restart</button>
+    <button onclick="copyLink()">copy locked link</button>
+  </div>
+</div>
+
+<script>
+const DATA = {"emails":[{"id":"em_001","subject":"Scheduled maintenance: HR self-service portal offline this Saturday 6:00-9:00am","sender":{"name":"Meridian IT Support","address":"it-support@meridiangroup.com.au","domain":"meridiangroup.com.au"},"replyTo":null,"receivedAt":"2026-07-23T16:02:00+10:00","bodyText":"Hi all,\n\nThe HR self-service portal will be unavailable this Saturday 6:00-9:00am while we apply security patches and roll out the quarterly platform update. No action is needed on your side — sessions will reconnect automatically once the work is complete.\n\nIf anything is still misbehaving after the window closes, please raise a ticket through the service desk rather than replying to this address.\n\nThanks for your patience,\nLiam Carter\nIT Support | Meridian Group","attachments":[],"links":[{"displayText":"Service desk","actualHref":"https://intranet.meridiangroup.com.au/servicedesk","mismatched":false}],"groundTruth":"legitimate","category":"internal","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2017-09-13","campaignSize":0},{"id":"em_004","subject":"Updated Hybrid Working Policy — effective 1 September","sender":{"name":"Sophie Nguyen","address":"sophie.nguyen@meridiangroup.com.au","domain":"meridiangroup.com.au"},"replyTo":null,"receivedAt":"2026-07-22T09:31:00+10:00","bodyText":"Hi everyone,\n\nThe refreshed Hybrid Working Policy has been published on the intranet and takes effect on 1 September. The main change: anchor days move to Tuesday and Thursday for all Brisbane teams.\n\nPlease skim it before the end of the month — it's a five-minute read. Questions to people.culture@meridiangroup.com.au.\n\nKind regards,\nSophie Nguyen\nPeople & Culture","attachments":[],"links":[{"displayText":"Read the policy","actualHref":"https://intranet.meridiangroup.com.au/policies","mismatched":false}],"groundTruth":"legitimate","category":"internal","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2017-09-13","campaignSize":0},{"id":"em_008","subject":"Project Basalt: week 31 status","sender":{"name":"Mei Lin","address":"mei.lin@meridiangroup.com.au","domain":"meridiangroup.com.au"},"replyTo":null,"receivedAt":"2026-08-01T10:20:00+10:00","bodyText":"Hi team,\n\nQuick status for week 31. Vendor contract signed; kickoff with their integration team booked. Risks remain unchanged from last week; the full RAID log is on the project page.\n\nNext checkpoint is Friday 9:30am. Flag blockers in the stand-up rather than waiting for the checkpoint.\n\nCheers,\nMei Lin\nDelivery Lead, Project Basalt","attachments":[],"links":[{"displayText":"Project page","actualHref":"https://clouddesk.com/p/auriga","mismatched":false}],"groundTruth":"legitimate","category":"internal","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2017-09-13","campaignSize":0},{"id":"em_010","subject":"Moving our 1:1 to tomorrow 9am","sender":{"name":"Hannah Cole","address":"hannah.cole@meridiangroup.com.au","domain":"meridiangroup.com.au"},"replyTo":null,"receivedAt":"2026-08-03T13:02:00+10:00","bodyText":"Hey,\n\nI've been pulled into the incident bridge this afternoon — can we shift our 1:1 to tomorrow 9am? Same link, I've updated the invite already.\n\nIf that clashes with something, shout and I'll find another slot.\n\nHannah","attachments":[],"links":[],"groundTruth":"legitimate","category":"internal","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2017-09-13","campaignSize":0},{"id":"em_012","subject":"Reminder: town hall next Thursday","sender":{"name":"Grace Whitfield","address":"comms@meridiangroup.com.au","domain":"meridiangroup.com.au"},"replyTo":null,"receivedAt":"2026-08-03T09:05:00+10:00","bodyText":"Hi all,\n\nOur next town hall is on Thursday 14 August, 10:00am at the Level 12 auditorium, with the usual livestream for remote folks. Marcus will walk through the half-year results and the product roadmap, and there's an extended Q&A this time.\n\nSubmit questions in advance through the intranet form — anonymous is fine.\n\nGrace Whitfield\nInternal Comms","attachments":[],"links":[{"displayText":"Submit a question","actualHref":"https://intranet.meridiangroup.com.au/townhall","mismatched":false}],"groundTruth":"legitimate","category":"internal","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2017-09-13","campaignSize":0},{"id":"em_020","subject":"Security snippets #15: MFA fatigue","sender":{"name":"Aisha Khan","address":"security-awareness@meridiangroup.com.au","domain":"meridiangroup.com.au"},"replyTo":null,"receivedAt":"2026-08-01T11:25:00+10:00","bodyText":"Hi all,\n\nIf you get an authentication prompt you didn't trigger, deny it and change your password. Attackers spam prompts hoping you'll tap approve just to make them stop.\n\nReport anything odd with the Report Phish button in Outlook — even if you're not sure. We'd rather triage ten false alarms than miss one real one.\n\nAisha Khan\nCyber Security","attachments":[],"links":[],"groundTruth":"legitimate","category":"internal","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2017-09-13","campaignSize":0},{"id":"em_025","subject":"Friday drinks + trivia — theme is 90s movies","sender":{"name":"Jack Doyle","address":"jack.doyle@meridiangroup.com.au","domain":"meridiangroup.com.au"},"replyTo":null,"receivedAt":"2026-07-24T14:11:00+10:00","bodyText":"Team,\n\nDrinks on Level 12 from 4:30 this Friday, plus trivia — theme is 90s movies. Partners welcome, first round on the social club.\n\nChuck a reaction on the intranet post so we get the catering roughly right.\n\nJack","attachments":[],"links":[],"groundTruth":"legitimate","category":"internal","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2017-09-13","campaignSize":0},{"id":"em_027","subject":"[CloudDesk] Daniel Okafor assigned you: Review UAT entry checklist","sender":{"name":"CloudDesk","address":"notifications@clouddesk.com","domain":"clouddesk.com"},"replyTo":null,"receivedAt":"2026-07-28T10:12:00+10:00","bodyText":"Daniel Okafor assigned you a task in Project Auriga:\n\nReview UAT entry checklist — due Thursday.\n\nOpen CloudDesk to view details, comments and attachments.","attachments":[],"links":[{"displayText":"Open task","actualHref":"https://clouddesk.com/t/48291","mismatched":false}],"groundTruth":"legitimate","category":"notification","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2011-08-24","campaignSize":0},{"id":"em_031","subject":"Rebecca Torres sent you a document to sign: Carrier Services Agreement — FY27 renewal.pdf","sender":{"name":"Signly","address":"notify@signly.com","domain":"signly.com"},"replyTo":null,"receivedAt":"2026-07-29T11:08:00+10:00","bodyText":"Rebecca Torres (Atlas Freight) has sent you a document via Signly:\n\nCarrier Services Agreement — FY27 renewal.pdf\n\nThis link is unique to you. The envelope expires in 14 days.","attachments":[],"links":[{"displayText":"Review and sign","actualHref":"https://signly.com/envelope/e9f2c1","mismatched":false}],"groundTruth":"legitimate","category":"notification","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2021-04-26","campaignSize":0},{"id":"em_032","subject":"Rebecca Torres sent you a document to sign: Rate card variation — August.pdf","sender":{"name":"Signly","address":"notify@signly.com","domain":"signly.com"},"replyTo":null,"receivedAt":"2026-08-03T10:31:00+10:00","bodyText":"Rebecca Torres (Atlas Freight) has sent you a document via Signly:\n\nRate card variation — August.pdf\n\nThis link is unique to you. The envelope expires in 14 days.","attachments":[],"links":[{"displayText":"Review and sign","actualHref":"https://signly.com/envelope/b7k410","mismatched":false}],"groundTruth":"legitimate","category":"notification","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2021-04-26","campaignSize":0},{"id":"em_036","subject":"[quote-engine] Pipeline failed on release/2.14","sender":{"name":"BuildHub","address":"ci@buildhub.io","domain":"buildhub.io"},"replyTo":null,"receivedAt":"2026-07-30T07:58:00+10:00","bodyText":"Pipeline #1882 failed on branch release/2.14.\n\nStage 'integration-tests' exited with 3 failures in the carrier-rates suite.\n\nView the full log in BuildHub.","attachments":[],"links":[{"displayText":"View pipeline","actualHref":"https://buildhub.io/meridian/quote-engine/pipelines/1882","mismatched":false}],"groundTruth":"legitimate","category":"notification","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2008-11-02","campaignSize":0},{"id":"em_042","subject":"Your payslip for July (second half) is ready","sender":{"name":"NovaPay","address":"no-reply@novapay.io","domain":"novapay.io"},"replyTo":null,"receivedAt":"2026-07-31T06:30:00+10:00","bodyText":"Hi,\n\nYour payslip for July (second half) is now available in your NovaPay account.\n\nFor security, payslips are never attached to email. Sign in through the app or portal you normally use.","attachments":[],"links":[{"displayText":"Sign in to NovaPay","actualHref":"https://app.novapay.io/payslips","mismatched":false}],"groundTruth":"legitimate","category":"notification","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2022-03-23","campaignSize":0},{"id":"em_052","subject":"Last chance: CloudDesk reporting masterclass (today)","sender":{"name":"CloudDesk Events","address":"events@clouddesk.com","domain":"clouddesk.com"},"replyTo":null,"receivedAt":"2026-07-31T09:05:00+10:00","bodyText":"Hi there,\n\nA hands-on session building the five dashboards our power users swear by — pipeline health, ageing work, team load, cycle time and SLA drift.\n\nFinal call — registrations close at 5pm AEST today and spots are limited.\n\nRegister free below. Can't make it live? Register anyway and we'll send the recording.","attachments":[],"links":[{"displayText":"Save my seat","actualHref":"https://clouddesk.com/webinars/aug-reporting","mismatched":false}],"groundTruth":"legitimate","category":"marketing","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2011-08-24","campaignSize":0},{"id":"em_055","subject":"48 hours left on TechBridge early-bird","sender":{"name":"TechBridge Conference","address":"hello@techbridgeconf.com","domain":"techbridgeconf.com"},"replyTo":null,"receivedAt":"2026-07-30T10:35:00+10:00","bodyText":"Hi,\n\nTechBridge 2026 lands in Brisbane on 9-10 October — two days of engineering leadership, platform war stories and hallway-track chaos in the best way.\n\nOnly 48 hours left before prices jump. Early-bird passes save $400 and include the workshop day.\n\nGroup discounts kick in at five tickets.","attachments":[],"links":[{"displayText":"Get early-bird pass","actualHref":"https://techbridgeconf.com/tickets","mismatched":false}],"groundTruth":"legitimate","category":"marketing","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2017-09-02","campaignSize":0},{"id":"em_058","subject":"Your week in logistics tech: Rail freight's data-sharing truce","sender":{"name":"CareerPulse","address":"digest@careerpulse.io","domain":"careerpulse.io"},"replyTo":null,"receivedAt":"2026-07-29T07:15:00+10:00","bodyText":"Your weekly digest, curated from 1,400 sources.\n\nTop story: Rail freight's data-sharing truce. Operators agree on a common telemetry format after a decade of stalemate.\n\nPlus: the quiet rise of mid-mile carriers, and a hiring-market temperature check.","attachments":[],"links":[{"displayText":"Read the digest","actualHref":"https://careerpulse.io/d/w31","mismatched":false}],"groundTruth":"legitimate","category":"marketing","campaignId":"cmp_careerpulse","auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2016-05-04","campaignSize":3},{"id":"em_063","subject":"New course: Practical Threat Modelling","sender":{"name":"Brightline Learning","address":"learn@brightlinelearning.com","domain":"brightlinelearning.com"},"replyTo":null,"receivedAt":"2026-07-24T12:00:00+10:00","bodyText":"Hi,\n\nWe've just released Practical Threat Modelling — a hands-on walkthrough of STRIDE using a fictional logistics platform as the worked example.\n\nYour organisation's licence includes this at no extra cost. Average completion time is 90 minutes.","attachments":[],"links":[{"displayText":"Start learning","actualHref":"https://brightlinelearning.com/c/tm101","mismatched":false}],"groundTruth":"legitimate","category":"marketing","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2011-02-06","campaignSize":0},{"id":"em_065","subject":"Your 18,400 points expire Friday","sender":{"name":"Solstice Hotels","address":"rewards@solsticehotels.com","domain":"solsticehotels.com"},"replyTo":null,"receivedAt":"2026-07-28T14:20:00+10:00","bodyText":"Hi,\n\n18,400 Solstice points on your account expire this Friday.\n\nLog in to your rewards account to redeem before they lapse.","attachments":[],"links":[{"displayText":"Redeem points","actualHref":"https://solsticehotels.com/rewards","mismatched":false}],"groundTruth":"legitimate","category":"marketing","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"aligned"},"domainFirstSeen":"2019-04-02","campaignSize":0},{"id":"em_085","subject":"Your password expires today","sender":{"name":"Microsoft 365","address":"security@m365-account-verify.com","domain":"m365-account-verify.com"},"replyTo":null,"receivedAt":"2026-07-28T08:02:00+10:00","bodyText":"Dear user,\n\nYour Microsoft 365 password expires today. To avoid interruption to Outlook, Teams and SharePoint, verify your account and keep your current password.\n\nThis must be completed within 24 hours or your mailbox will be suspended.\n\nMicrosoft 365 Security Team","attachments":[],"links":[{"displayText":"portal.office.com/account","actualHref":"https://m365-account-verify.com/keep?id=104","mismatched":true}],"groundTruth":"phishing","category":"credential_harvest","campaignId":"cmp_m365","auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-07-25","campaignSize":5},{"id":"em_086","subject":"Your password expires in 24 hours","sender":{"name":"Microsoft 365","address":"security@m365-account-verify.com","domain":"m365-account-verify.com"},"replyTo":null,"receivedAt":"2026-07-28T08:04:00+10:00","bodyText":"Dear user,\n\nYour Microsoft 365 password expires in 24 hours. To avoid interruption to Outlook, Teams and SharePoint, verify your account and keep your current password.\n\nThis must be completed within 24 hours or your mailbox will be suspended.\n\nMicrosoft 365 Security Team","attachments":[],"links":[{"displayText":"portal.office.com/account","actualHref":"https://m365-account-verify.com/keep?id=221","mismatched":true}],"groundTruth":"phishing","category":"credential_harvest","campaignId":"cmp_m365","auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-07-25","campaignSize":5},{"id":"em_088","subject":"Your password expires tomorrow","sender":{"name":"Microsoft 365","address":"security@m365-account-verify.com","domain":"m365-account-verify.com"},"replyTo":null,"receivedAt":"2026-07-28T08:11:00+10:00","bodyText":"Dear user,\n\nYour Microsoft 365 password expires tomorrow. To avoid interruption to Outlook, Teams and SharePoint, verify your account and keep your current password.\n\nThis must be completed within 24 hours or your mailbox will be suspended.\n\nMicrosoft 365 Security Team","attachments":[],"links":[{"displayText":"portal.office.com/account","actualHref":"https://m365-account-verify.com/keep?id=415","mismatched":true}],"groundTruth":"phishing","category":"credential_harvest","campaignId":"cmp_m365","auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-07-25","campaignSize":5},{"id":"em_090","subject":"Unusual sign-in activity detected","sender":{"name":"Meridian Security","address":"alerts@meridiangroup-security.com","domain":"meridiangroup-security.com"},"replyTo":null,"receivedAt":"2026-07-25T14:21:00+10:00","bodyText":"Dear user,\n\nWe detected a sign-in to your account from Frankfurt, Germany at 3:12am. If this wasn't you, your credentials may be compromised.\n\nReview this activity immediately to avoid account suspension.\n\nMeridian Group Security Operations","attachments":[],"links":[{"displayText":"intranet.meridiangroup.com.au/security","actualHref":"https://meridiangroup-security.com/review?case=88410","mismatched":true}],"groundTruth":"phishing","category":"credential_harvest","campaignId":"cmp_signin","auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-07-06","campaignSize":4},{"id":"em_094","subject":"Sophie Nguyen shared \"Payroll_Review_Q3.xlsx\" with you","sender":{"name":"Sophie Nguyen (via SharePoint)","address":"share@rneridiangroup.com.au","domain":"rneridiangroup.com.au"},"replyTo":null,"receivedAt":"2026-07-23T10:05:00+10:00","bodyText":"Sophie Nguyen has shared a document with you:\n\nPayroll_Review_Q3.xlsx\n\nThis link works for anyone at Meridian Group. Sign in with your work account to view.","attachments":[],"links":[{"displayText":"meridiangroup.sharepoint.com","actualHref":"https://rneridiangroup.com.au/share/x91","mismatched":true}],"groundTruth":"phishing","category":"credential_harvest","campaignId":"cmp_sharepoint","auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-06-21","campaignSize":4},{"id":"em_098","subject":"VPN client update required before Friday","sender":{"name":"IT Helpdesk","address":"support@meridian-it-helpdesk.com","domain":"meridian-it-helpdesk.com"},"replyTo":null,"receivedAt":"2026-07-22T09:10:00+10:00","bodyText":"Dear staff member,\n\nA mandatory VPN client update must be installed before Friday. Unpatched clients will lose remote access.\n\nDownload the update below and sign in with your network credentials to activate it.\n\nIT Helpdesk","attachments":[],"links":[{"displayText":"intranet.meridiangroup.com.au/vpn","actualHref":"https://meridian-it-helpdesk.com/vpn-update","mismatched":true}],"groundTruth":"phishing","category":"credential_harvest","campaignId":null,"auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-07-15","campaignSize":0},{"id":"em_109","subject":"OVERDUE: Invoice 20447 — final notice","sender":{"name":"Atlas Freight Accounts","address":"accounts@atlas-freight-billing.com","domain":"atlas-freight-billing.com"},"replyTo":null,"receivedAt":"2026-07-29T07:32:00+10:00","bodyText":"Dear Accounts Payable,\n\nInvoice 20447 for $12,840.00 remains unpaid and is now 21 days overdue. To avoid service suspension and late fees, payment must be made today.\n\nRemittance details are in the attached invoice. Note our banking details have recently changed.\n\nAtlas Freight — Accounts Receivable","attachments":[{"filename":"Invoice_20447.pdf","ext":"pdf","sizeKb":118}],"links":[],"groundTruth":"phishing","category":"invoice_fraud","campaignId":"cmp_atlasfake","auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-06-29","campaignSize":4},{"id":"em_116","subject":"Payment failed — update billing information","sender":{"name":"NovaPay Billing","address":"billing@novapay-billing.com","domain":"novapay-billing.com"},"replyTo":null,"receivedAt":"2026-08-01T07:20:00+10:00","bodyText":"Dear customer,\n\nYour organisation's NovaPay subscription payment failed. Payroll processing will be suspended in 48 hours unless billing information is updated.\n\nUpdate your payment details below to avoid disruption to employee pay.","attachments":[],"links":[{"displayText":"app.novapay.io/billing","actualHref":"https://novapay-billing.com/update?acct=M-2201","mismatched":true}],"groundTruth":"phishing","category":"invoice_fraud","campaignId":"cmp_novapayfake","auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-07-10","campaignSize":4},{"id":"em_120","subject":"PO confirmation PO-88213 — action required","sender":{"name":"Procurement Portal","address":"orders@supplier-gateway.net","domain":"supplier-gateway.net"},"replyTo":null,"receivedAt":"2026-07-26T11:05:00+10:00","bodyText":"Dear supplier partner,\n\nPurchase order PO-88213 has been generated. Review the attached order documents and confirm within 2 business days.\n\nFailure to confirm may delay payment processing.","attachments":[{"filename":"PO_PO-88213_documents.zip","ext":"zip","sizeKb":891}],"links":[],"groundTruth":"phishing","category":"invoice_fraud","campaignId":null,"auth":{"spf":"fail","dkim":"none","dmarc":"fail","note":"unaligned"},"domainFirstSeen":"2026-07-23","campaignSize":0},{"id":"em_124","subject":"Are you around?","sender":{"name":"Marcus Hale","address":"marcus.hale.meridian@gmail.com","domain":"gmail.com"},"replyTo":null,"receivedAt":"2026-07-30T14:05:00+10:00","bodyText":"Hi, are you at your desk this afternoon? Need a small favour handled discreetly before COB. Will explain shortly.\n\nMarcus\nSent from my iPhone","attachments":[],"links":[],"groundTruth":"phishing","category":"spear_phishing","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"consumer"},"domainFirstSeen":"1995-08-13","campaignSize":0},{"id":"em_128","subject":"printer on 11?","sender":{"name":"Priya Raman","address":"priya.raman.mg@outlook.com","domain":"outlook.com"},"replyTo":null,"receivedAt":"2026-07-28T15:47:00+10:00","bodyText":"Random question — is the Level 11 printer working? Trying to print boarding passes remotely and nothing's coming out. Also do you have Jack's mobile handy?\n\nPriya","attachments":[],"links":[],"groundTruth":"phishing","category":"spear_phishing","campaignId":null,"auth":{"spf":"pass","dkim":"pass","dmarc":"pass","note":"consumer"},"domainFirstSeen":"1997-02-25","campaignSize":0}],"decisions":[{"emailId":"em_001","verdict":"legitimate","confidence":0.73,"confidenceBand":"medium","cues":[],"rationale":"Link destinations match the sender's own domain; no risk indicators found.","isCorrect":true,"errorType":null},{"emailId":"em_004","verdict":"legitimate","confidence":0.94,"confidenceBand":"high","cues":[],"rationale":"Sender domain and link targets are consistent with known services.","isCorrect":true,"errorType":null},{"emailId":"em_008","verdict":"legitimate","confidence":0.96,"confidenceBand":"high","cues":[],"rationale":"Link destinations match the sender's own domain; no risk indicators found.","isCorrect":true,"errorType":null},{"emailId":"em_010","verdict":"legitimate","confidence":0.96,"confidenceBand":"high","cues":[],"rationale":"Plain message from a recognised sender, with nothing to action.","isCorrect":true,"errorType":null},{"emailId":"em_012","verdict":"legitimate","confidence":0.81,"confidenceBand":"medium","cues":[],"rationale":"Link destinations match the sender's own domain; no risk indicators found.","isCorrect":true,"errorType":null},{"emailId":"em_020","verdict":"legitimate","confidence":0.62,"confidenceBand":"low","cues":[],"rationale":"No links or attachments, and the sender matches a known contact.","isCorrect":true,"errorType":null},{"emailId":"em_025","verdict":"legitimate","confidence":0.91,"confidenceBand":"high","cues":[],"rationale":"Plain message from a recognised sender, with nothing to action.","isCorrect":true,"errorType":null},{"emailId":"em_027","verdict":"legitimate","confidence":0.85,"confidenceBand":"medium","cues":[],"rationale":"Link destinations match the sender's own domain; no risk indicators found.","isCorrect":true,"errorType":null},{"emailId":"em_031","verdict":"legitimate","confidence":0.9,"confidenceBand":"medium","cues":[],"rationale":"Sender domain and link targets are consistent with known services.","isCorrect":true,"errorType":null},{"emailId":"em_032","verdict":"legitimate","confidence":0.62,"confidenceBand":"low","cues":[],"rationale":"Link destinations match the sender's own domain; no risk indicators found.","isCorrect":true,"errorType":null},{"emailId":"em_036","verdict":"legitimate","confidence":0.86,"confidenceBand":"medium","cues":[],"rationale":"Sender domain and link targets are consistent with known services.","isCorrect":true,"errorType":null},{"emailId":"em_042","verdict":"legitimate","confidence":0.9,"confidenceBand":"medium","cues":[],"rationale":"Link destinations match the sender's own domain; no risk indicators found.","isCorrect":true,"errorType":null},{"emailId":"em_052","verdict":"phishing","confidence":0.91,"confidenceBand":"high","cues":[{"id":"cue_em_052_1","type":"urgent_language","label":"Deadline pressure phrasing","weight":0.9,"span":{"field":"bodyText","start":154,"end":204}},{"id":"cue_em_052_2","type":"too_good_offer","label":"Free-offer lure phrasing","weight":0.75,"span":{"field":"bodyText","start":229,"end":248}}],"rationale":"Held for review because it applies unusual time pressure, and it advertises an offer matching known lure patterns.","isCorrect":false,"errorType":"fp"},{"emailId":"em_055","verdict":"phishing","confidence":0.81,"confidenceBand":"medium","cues":[{"id":"cue_em_055_1","type":"urgent_language","label":"Countdown pressure phrasing","weight":0.9,"span":{"field":"bodyText","start":156,"end":194}},{"id":"cue_em_055_2","type":"too_good_offer","label":"Discount lure","weight":0.75,"span":{"field":"bodyText","start":195,"end":222}}],"rationale":"Flagged because it applies unusual time pressure, and it advertises an offer matching known lure patterns.","isCorrect":false,"errorType":"fp"},{"emailId":"em_058","verdict":"legitimate","confidence":0.84,"confidenceBand":"medium","cues":[],"rationale":"Sender domain and link targets are consistent with known services.","isCorrect":true,"errorType":null},{"emailId":"em_063","verdict":"legitimate","confidence":0.88,"confidenceBand":"medium","cues":[],"rationale":"Sender domain and link targets are consistent with known services.","isCorrect":true,"errorType":null},{"emailId":"em_065","verdict":"phishing","confidence":0.61,"confidenceBand":"low","cues":[{"id":"cue_em_065_1","type":"urgent_language","label":"Expiry pressure phrasing","weight":0.9,"span":{"field":"bodyText","start":5,"end":63}},{"id":"cue_em_065_2","type":"credential_request","label":"Login prompt in promotional email","weight":0.75,"span":{"field":"bodyText","start":65,"end":95}}],"rationale":"Held for review because it applies unusual time pressure, and it asks for sign-in, banking or payment details.","isCorrect":false,"errorType":"fp"},{"emailId":"em_085","verdict":"phishing","confidence":0.91,"confidenceBand":"high","cues":[{"id":"cue_em_085_1","type":"generic_greeting","label":"Generic greeting instead of your name","weight":0.9,"span":{"field":"bodyText","start":0,"end":9}},{"id":"cue_em_085_2","type":"urgent_language","label":"Artificial 24-hour deadline","weight":0.75,"span":{"field":"bodyText","start":164,"end":202}},{"id":"cue_em_085_3","type":"credential_request","label":"Password-retention lure","weight":0.6,"span":{"field":"bodyText","start":111,"end":161}},{"id":"cue_em_085_4","type":"spoofed_domain","label":"Sender domain is not a Microsoft domain","weight":0.5,"span":{"field":"sender","start":9,"end":32}},{"id":"cue_em_085_5","type":"suspicious_link","label":"Displayed URL differs from actual destination (m365-account-verify.com)","weight":0.45}],"rationale":"Flagged because it opens with a generic greeting rather than your name, it applies unusual time pressure, and it asks for sign-in, banking or payment details.","isCorrect":true,"errorType":null},{"emailId":"em_086","verdict":"phishing","confidence":0.91,"confidenceBand":"high","cues":[{"id":"cue_em_086_1","type":"generic_greeting","label":"Generic greeting instead of your name","weight":0.9,"span":{"field":"bodyText","start":0,"end":9}},{"id":"cue_em_086_2","type":"urgent_language","label":"Artificial 24-hour deadline","weight":0.75,"span":{"field":"bodyText","start":170,"end":208}},{"id":"cue_em_086_3","type":"credential_request","label":"Password-retention lure","weight":0.6,"span":{"field":"bodyText","start":117,"end":167}},{"id":"cue_em_086_4","type":"spoofed_domain","label":"Sender domain is not a Microsoft domain","weight":0.5,"span":{"field":"sender","start":9,"end":32}},{"id":"cue_em_086_5","type":"suspicious_link","label":"Displayed URL differs from actual destination (m365-account-verify.com)","weight":0.45}],"rationale":"Held for review because it opens with a generic greeting rather than your name, it applies unusual time pressure, and it asks for sign-in, banking or payment details.","isCorrect":true,"errorType":null},{"emailId":"em_088","verdict":"phishing","confidence":0.91,"confidenceBand":"high","cues":[{"id":"cue_em_088_1","type":"generic_greeting","label":"Generic greeting instead of your name","weight":0.9,"span":{"field":"bodyText","start":0,"end":9}},{"id":"cue_em_088_2","type":"urgent_language","label":"Artificial 24-hour deadline","weight":0.75,"span":{"field":"bodyText","start":167,"end":205}},{"id":"cue_em_088_3","type":"credential_request","label":"Password-retention lure","weight":0.6,"span":{"field":"bodyText","start":114,"end":164}},{"id":"cue_em_088_4","type":"spoofed_domain","label":"Sender domain is not a Microsoft domain","weight":0.5,"span":{"field":"sender","start":9,"end":32}},{"id":"cue_em_088_5","type":"suspicious_link","label":"Displayed URL differs from actual destination (m365-account-verify.com)","weight":0.45}],"rationale":"Flagged because it opens with a generic greeting rather than your name, it applies unusual time pressure, and it asks for sign-in, banking or payment details.","isCorrect":true,"errorType":null},{"emailId":"em_090","verdict":"phishing","confidence":0.93,"confidenceBand":"high","cues":[{"id":"cue_em_090_1","type":"generic_greeting","label":"Generic greeting instead of your name","weight":0.9,"span":{"field":"bodyText","start":0,"end":9}},{"id":"cue_em_090_2","type":"urgent_language","label":"Suspension threat pressure","weight":0.75,"span":{"field":"bodyText","start":143,"end":203}},{"id":"cue_em_090_3","type":"spoofed_domain","label":"Lookalike domain: meridiangroup-security.com is not meridiangroup.com.au","weight":0.6,"span":{"field":"sender","start":7,"end":33}},{"id":"cue_em_090_4","type":"suspicious_link","label":"Displayed URL differs from actual destination","weight":0.5}],"rationale":"Flagged because it opens with a generic greeting rather than your name, it applies unusual time pressure, and the sending domain does not belong to the organisation it claims.","isCorrect":true,"errorType":null},{"emailId":"em_094","verdict":"phishing","confidence":0.65,"confidenceBand":"low","cues":[{"id":"cue_em_094_1","type":"spoofed_domain","label":"Homoglyph domain: rneridiangroup.com.au ('rn' imitating 'm')","weight":0.9,"span":{"field":"sender","start":6,"end":27}},{"id":"cue_em_094_2","type":"credential_request","label":"Work-account sign-in prompt on external link","weight":0.75,"span":{"field":"bodyText","start":117,"end":155}},{"id":"cue_em_094_3","type":"suspicious_link","label":"Displayed URL differs from actual destination","weight":0.6}],"rationale":"Flagged because the sending domain does not belong to the organisation it claims, it asks for sign-in, banking or payment details, and a link's real destination differs from the address shown.","isCorrect":true,"errorType":null},{"emailId":"em_098","verdict":"phishing","confidence":0.94,"confidenceBand":"high","cues":[{"id":"cue_em_098_1","type":"generic_greeting","label":"Generic greeting instead of your name","weight":0.9,"span":{"field":"bodyText","start":0,"end":17}},{"id":"cue_em_098_2","type":"urgent_language","label":"Access-loss threat","weight":0.75,"span":{"field":"bodyText","start":83,"end":124}},{"id":"cue_em_098_3","type":"credential_request","label":"Credential prompt on downloaded software","weight":0.6,"span":{"field":"bodyText","start":157,"end":194}},{"id":"cue_em_098_4","type":"spoofed_domain","label":"Lookalike domain: meridian-it-helpdesk.com is not meridiangroup.com.au","weight":0.5,"span":{"field":"sender","start":8,"end":32}},{"id":"cue_em_098_5","type":"suspicious_link","label":"Displayed URL differs from actual destination (meridian-it-helpdesk.com)","weight":0.45}],"rationale":"Flagged because it opens with a generic greeting rather than your name, it applies unusual time pressure, and it asks for sign-in, banking or payment details.","isCorrect":true,"errorType":null},{"emailId":"em_109","verdict":"phishing","confidence":0.95,"confidenceBand":"high","cues":[{"id":"cue_em_109_1","type":"urgent_language","label":"Pressure phrasing in subject","weight":0.9,"span":{"field":"subject","start":0,"end":37}},{"id":"cue_em_109_2","type":"urgent_language","label":"Same-day payment demand","weight":0.75,"span":{"field":"bodyText","start":139,"end":165}},{"id":"cue_em_109_3","type":"sender_mismatch","label":"Lookalike domain: atlas-freight-billing.com (real partner uses atlasfreight.com.au)","weight":0.6,"span":{"field":"sender","start":9,"end":34}},{"id":"cue_em_109_4","type":"sender_mismatch","label":"Payment redirection claim (changed bank details)","weight":0.5,"span":{"field":"bodyText","start":221,"end":262}}],"rationale":"Held for review because it applies unusual time pressure, and the sender address does not match the person or company it claims to be.","isCorrect":true,"errorType":null},{"emailId":"em_116","verdict":"phishing","confidence":0.87,"confidenceBand":"medium","cues":[{"id":"cue_em_116_1","type":"generic_greeting","label":"Generic greeting","weight":0.9,"span":{"field":"bodyText","start":0,"end":13}},{"id":"cue_em_116_2","type":"urgent_language","label":"48-hour suspension threat","weight":0.75,"span":{"field":"bodyText","start":100,"end":121}},{"id":"cue_em_116_3","type":"spoofed_domain","label":"Lookalike domain: novapay-billing.com is not novapay.io","weight":0.6,"span":{"field":"sender","start":8,"end":27}},{"id":"cue_em_116_4","type":"credential_request","label":"Payment-detail request","weight":0.5,"span":{"field":"bodyText","start":162,"end":195}},{"id":"cue_em_116_5","type":"suspicious_link","label":"Displayed URL differs from actual destination","weight":0.45}],"rationale":"Flagged because it opens with a generic greeting rather than your name, it applies unusual time pressure, and the sending domain does not belong to the organisation it claims.","isCorrect":true,"errorType":null},{"emailId":"em_120","verdict":"phishing","confidence":0.91,"confidenceBand":"high","cues":[{"id":"cue_em_120_1","type":"generic_greeting","label":"Generic greeting","weight":0.9,"span":{"field":"bodyText","start":0,"end":21}},{"id":"cue_em_120_2","type":"unusual_attachment","label":"Unexpected .zip attachment from unknown sender","weight":0.75,"span":{"field":"bodyText","start":68,"end":103}},{"id":"cue_em_120_3","type":"urgent_language","label":"Payment-delay pressure","weight":0.6,"span":{"field":"bodyText","start":141,"end":177}},{"id":"cue_em_120_4","type":"sender_mismatch","label":"Unknown domain: supplier-gateway.net","weight":0.5,"span":{"field":"sender","start":7,"end":27}}],"rationale":"Held for review because it opens with a generic greeting rather than your name, it carries an attachment that does not fit the sender, and it applies unusual time pressure.","isCorrect":true,"errorType":null},{"emailId":"em_124","verdict":"legitimate","confidence":0.9,"confidenceBand":"medium","cues":[],"rationale":"Plain message from a recognised sender, with nothing to action.","isCorrect":false,"errorType":"fn"},{"emailId":"em_128","verdict":"legitimate","confidence":0.89,"confidenceBand":"medium","cues":[],"rationale":"Plain message from a recognised sender, with nothing to action.","isCorrect":false,"errorType":"fn"}],"subsets":{"practice":["em_001","em_085","em_055"],"visitor":["em_012","em_088","em_065","em_124","em_032"],"default":["em_004","em_008","em_010","em_020","em_025","em_027","em_031","em_036","em_042","em_052","em_058","em_063","em_086","em_090","em_094","em_098","em_109","em_116","em_120","em_128"]}};
+const E = Object.fromEntries(DATA.emails.map(e => [e.id, e]));
+const D = Object.fromEntries(DATA.decisions.map(d => [d.emailId, d]));
+
+const cfg = { q1:'percent', q2:'immediate', q3:'inline', subset:'visitor' };
+let queue = [], idx = 0, trials = [], shownAt = 0, selfCall = null, locked = false;
+
+/* ---------- url config ---------- */
+/* ?start=1 opens the queue, ?at=N jumps to a message, ?judge= pre-commits the
+   self-judgment, ?replay=accept,override,... plays a scripted session. Each
+   screenshot is then a pure function of a URL rather than a click sequence. */
+let autoStart = false, autoAt = 0, autoJudge = null, autoReplay = [], autoEsc = false;
+(function readUrl(){
+  const p = new URLSearchParams(location.search);
+  for (const k of ['q1','q2','q3','subset']) if (p.get(k)) cfg[k] = p.get(k);
+  locked = p.get('lock') === '1';
+  if (locked) document.getElementById('gear').classList.add('hide');
+  autoStart = p.get('start') === '1';
+  autoAt = Math.max(0, parseInt(p.get('at') || '0', 10) || 0);
+  autoJudge = p.get('judge');
+  autoReplay = (p.get('replay') || '').split(',').filter(Boolean);
+  autoEsc = p.get('esc') === '1';
+})();
+
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+function markUp(text, spans){
+  if (!spans.length) return esc(text);
+  spans = spans.slice().sort((a,b) => a.start - b.start);
+  let out = '', pos = 0;
+  for (const s of spans){
+    out += esc(text.slice(pos, s.start));
+    out += '<mark data-cue="' + s.cueId + '">' + esc(text.slice(s.start, s.end)) + '</mark>';
+    pos = s.end;
+  }
+  return out + esc(text.slice(pos));
+}
+const spansFor = (dec, field) => dec.cues
+  .filter(c => c.span && c.span.field === field)
+  .map(c => ({ start:c.span.start, end:c.span.end, cueId:c.id }));
+
+/* RFC-ish header date, because this pane is showing an envelope */
+function fmtDate(iso){
+  const d = new Date(iso);
+  const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+  const mon = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()];
+  const p = n => String(n).padStart(2,'0');
+  return `${day}, ${p(d.getDate())} ${mon} ${d.getFullYear()} ` +
+         `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())} +1000`;
+}
+
+/* ---------- flow ---------- */
+function start(){
+  queue = DATA.subsets[cfg.subset].slice();
+  idx = 0; trials = []; selfCall = null;
+  document.getElementById('brief').classList.add('hide');
+  document.getElementById('done').classList.add('hide');
+  document.getElementById('review').classList.remove('hide');
+  render();
+}
+function restart(){
+  document.getElementById('review').classList.add('hide');
+  document.getElementById('done').classList.add('hide');
+  document.getElementById('brief').classList.remove('hide');
+  briefMeta();
+}
+function briefMeta(){
+  const n = DATA.subsets[cfg.subset].length;
+  document.getElementById('brief-meta').textContent =
+    n + ' messages held · roughly ' + Math.max(2, Math.round(n * 0.7)) + ' minutes';
+}
+
+function render(){
+  if (idx >= queue.length) return summary();
+  const id = queue[idx], e = E[id], d = D[id];
+  shownAt = performance.now();
+  if (noteMode) cancelEscalate();   // a new message always closes the note
+  document.getElementById('review').className = 'q3-' + cfg.q3;
+
+  document.getElementById('rail-sub').textContent =
+    queue.length + ' held · ' + (queue.length - idx) + ' unreviewed';
+  document.getElementById('prog').style.width = (idx / queue.length * 100) + '%';
+  document.getElementById('qlist').innerHTML = queue.map((qid, i) => {
+    const qe = E[qid];
+    const cls = i < idx ? 'done' : i === idx ? 'now' : '';
+    return '<div class="qitem ' + cls + '">' +
+      '<div class="qnum">' + String(i + 1).padStart(2,'0') + '</div>' +
+      '<div class="qsubj">' + esc(qe.subject) + '</div>' +
+      '<div class="qfrom">' + esc(qe.sender.address) + '</div></div>';
+  }).join('');
+  document.getElementById('rail-foot').textContent = (idx + 1) + ' / ' + queue.length;
+
+  const a = e.auth;
+  const flag = v => '<b class="' + (v === 'pass' ? 'ok' : 'bad') + '">' + v + '</b>';
+  const authNote = a.note === 'consumer'
+    ? 'Sent through a consumer mail provider. These checks verify that server, not the identity claimed above.'
+    : a.note === 'unaligned'
+      ? 'The sending server is not authorised for this domain.'
+      : '';
+
+  const fsDays = Math.round((new Date(e.receivedAt) - new Date(e.domainFirstSeen)) / 86400000);
+  const fsText = fsDays < 365
+    ? '<b>' + fsDays + ' days</b> before this message'
+    : 'about <b>' + Math.round(fsDays / 365) + ' years</b> ago';
+  const gw = '<div class="gwline"><span>domain first seen ' + fsText + '</span>' +
+    (e.campaignSize >= 2
+      ? '<span>campaign &middot; <b>1 of ' + e.campaignSize + '</b> similar messages held this week</span>'
+      : '') + '</div>';
+
+  const links = e.links.length
+    ? '<div class="evidence"><div class="ev-label">links</div>' +
+      e.links.map(l => '<div class="ev-row"><span class="disp">' + esc(l.displayText) + '</span>' +
+        '<span class="real">' + esc(l.actualHref) + '</span>' +
+        (l.mismatched ? '<span class="ev-flag">destination does not match the text shown</span>' : '') +
+        '</div>').join('') + '</div>' : '';
+  const atts = e.attachments.length
+    ? '<div class="evidence"><div class="ev-label">attachments</div>' +
+      e.attachments.map(x => '<div class="ev-row"><span class="real">' + esc(x.filename) +
+        '</span><span class="real">' + x.sizeKb + ' KB</span></div>').join('') + '</div>' : '';
+
+  document.getElementById('reader').innerHTML =
+    '<article class="mail"><div class="envelope"><dl class="hdr">' +
+      '<dt>From</dt><dd><b>' + esc(e.sender.name) + '</b> &lt;' +
+        markUp(e.sender.address, spansFor(d, 'sender')) + '&gt;</dd>' +
+      (e.replyTo ? '<dt>Reply-To</dt><dd>' + esc(e.replyTo) + '</dd>' : '') +
+      '<dt>Date</dt><dd>' + fmtDate(e.receivedAt) + '</dd>' +
+      '<dt>Subject</dt><dd class="subj">' + markUp(e.subject, spansFor(d, 'subject')) + '</dd>' +
+      '</dl><div class="authline">' +
+        '<span>spf ' + flag(a.spf) + '</span><span>dkim ' + flag(a.dkim) + '</span>' +
+        '<span>dmarc ' + flag(a.dmarc) + '</span>' +
+        (authNote ? '<span class="authnote">' + authNote + '</span>' : '') +
+      '</div>' + gw + '</div>' +
+      '<div class="mail-body">' + markUp(e.bodyText, spansFor(d, 'bodyText')) + '</div>' +
+      links + atts +
+      '<div class="mail-foot">end of message · ' + esc(e.id) + '</div>' +
+    '</article>';
+  document.getElementById('reader').scrollTop = 0;
+  renderPanel();
+}
+
+function renderPanel(){
+  const d = D[queue[idx]];
+  const p = document.getElementById('panel');
+
+  if (cfg.q2 === 'after' && selfCall === null){
+    p.innerHTML =
+      '<div class="gate-q">Your call first</div>' +
+      '<div class="gate-hint">Read the message and decide for yourself. The classifier\'s ' +
+      'assessment appears once you commit.</div>' +
+      '<button class="gate-btn" onclick="judge(\'legitimate\')">looks legitimate<span>1</span></button>' +
+      '<button class="gate-btn" onclick="judge(\'phishing\')">looks like phishing<span>2</span></button>' +
+      '<p class="gate-note">The four decision actions stay locked until you commit. That keeps ' +
+      'your read of the message separate from the classifier\'s.</p>';
+    setActions(false);
+    return;
+  }
+
+  const conf = cfg.q1 === 'percent'
+    ? '<span class="v-conf">' + d.confidence.toFixed(2) + '</span>'
+    : '<span class="v-band">' + d.confidenceBand + '</span>';
+  const bar = cfg.q1 === 'percent'
+    ? '<div class="confbar"><i style="width:' + (d.confidence * 100) + '%"></i></div>' : '';
+
+  const agree = selfCall === null ? '' :
+    '<div class="agree ' + (selfCall === d.verdict ? 'same' : 'diff') + '">' +
+    (selfCall === d.verdict
+      ? 'You said <b>' + selfCall + '</b>. The classifier agrees.'
+      : 'You said <b>' + selfCall + '</b>. The classifier says <b>' + d.verdict +
+        '</b>. One of you is wrong.') + '</div>';
+
+  const cues = d.cues.length
+    ? '<div class="cues">' + d.cues.map((c, i) =>
+        '<button class="cue" data-span="' + (c.span ? 1 : 0) + '" ' +
+        'onclick="locate(\'' + c.id + '\')" ' +
+        'onmouseenter="lit(\'' + c.id + '\',1)" onmouseleave="lit(\'' + c.id + '\',0)" ' +
+        'onfocus="lit(\'' + c.id + '\',1)" onblur="lit(\'' + c.id + '\',0)">' +
+        '<span class="cue-n">' + String(i + 1).padStart(2,'0') + '</span><span>' +
+        '<span class="cue-type">' + esc(c.type.replace(/_/g,' ')) + '</span>' +
+        '<span class="cue-label">' + esc(c.label) + '</span>' +
+        '<span class="cue-go">show me where</span></span></button>').join('') + '</div>'
+    : '<p class="nocues">No risk indicators reported for this message.</p>';
+
+  p.innerHTML = agree +
+    '<div class="verdict ' + d.verdict + '"><div class="v-said">reads this as</div>' +
+      '<div class="v-row"><span class="v-word">' + d.verdict + '</span>' + conf + '</div>' +
+      bar + '</div>' +
+    '<p class="why">' + esc(d.rationale) + '</p>' + cues;
+  setActions(true);
+}
+
+function setActions(on){
+  for (const id of ['b-accept','b-override','b-escalate','b-skip'])
+    document.getElementById(id).disabled = !on;
+  document.getElementById('b-undo').disabled = trials.length === 0;
+}
+
+function judge(v){ selfCall = v; renderPanel(); }
+
+function lit(cueId, on){
+  const m = document.querySelector('mark[data-cue="' + cueId + '"]');
+  if (m) m.classList.toggle('lit', !!on);
+}
+
+function locate(cueId){
+  if (cfg.q3 !== 'list') return;
+  const m = document.querySelector('mark[data-cue="' + cueId + '"]');
+  if (!m) return;
+  m.classList.remove('flash');
+  void m.offsetWidth;
+  m.classList.add('flash');
+  m.scrollIntoView({ behavior:'smooth', block:'center' });
+  setTimeout(() => m.classList.remove('flash'), 1500);
+}
+
+let toastTimer = null;
+function toast(html){
+  const t = document.getElementById('toast');
+  t.innerHTML = html + '<span class="t-undo"><kbd>Z</kbd> to undo</span>';
+  t.classList.add('on');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('on'), 2600);
+}
+
+/* Escalation asks for an optional note - real tools do, and for the study the
+   notes are qualitative data. It is a second step, so plain accept/override
+   stay one keypress. */
+let noteMode = false;
+function decide(action){
+  if (document.getElementById('b-accept').disabled || noteMode) return;
+  if (action === 'escalate') return openNote();
+  record(action, null);
+}
+function openNote(){
+  noteMode = true;
+  document.getElementById('bar-acts').classList.add('hide');
+  document.getElementById('notebox').classList.remove('hide');
+  const inp = document.getElementById('note-input');
+  inp.value = '';
+  inp.focus();
+}
+function cancelEscalate(){
+  noteMode = false;
+  document.getElementById('bar-acts').classList.remove('hide');
+  document.getElementById('notebox').classList.add('hide');
+}
+function submitEscalate(){
+  if (!noteMode) return;
+  const note = (document.getElementById('note-input').value || '').trim();
+  cancelEscalate();
+  record('escalate', note || null);
+}
+
+function record(action, note){
+  const id = queue[idx], e = E[id], d = D[id];
+  const applied = action === 'accept' ? d.verdict
+    : action === 'override' ? (d.verdict === 'phishing' ? 'legitimate' : 'phishing')
+    : null;
+  toast({
+    accept:   'accepted &mdash; filed as <b>' + (applied || '') + '</b>',
+    override: 'overrode the classifier &mdash; filed as <b>' + (applied || '') + '</b>',
+    escalate: 'escalated to the security team' + (note ? ' with a note' : ''),
+    skip:     'skipped &mdash; left in the queue',
+  }[action]);
+  trials.push({
+    emailId: id, action, selfCall, note,
+    aiVerdict: d.verdict, aiConfidence: d.confidence, aiCorrect: d.isCorrect,
+    truth: e.groundTruth, applied,
+    correct: applied === null ? null : applied === e.groundTruth,
+    changedMind: selfCall !== null && applied !== null && selfCall !== applied,
+    rtMs: Math.round(performance.now() - shownAt)
+  });
+  idx++;
+  selfCall = null;
+  render();
+}
+
+function undo(){
+  if (!trials.length) return;
+  const prev = trials.pop();
+  idx = Math.max(0, idx - 1);
+  selfCall = prev.selfCall;
+  document.getElementById('done').classList.add('hide');
+  document.getElementById('review').classList.remove('hide');
+  render();
+}
+
+/* ---------- summary ---------- */
+function summary(){
+  document.getElementById('review').classList.add('hide');
+  document.getElementById('done').classList.remove('hide');
+
+  const judged = trials.filter(t => t.correct !== null);
+  const right = judged.filter(t => t.correct).length;
+  const aiErrs = trials.filter(t => !t.aiCorrect);
+  const caught = aiErrs.filter(t => t.action === 'override').length;
+  const falseOv = trials.filter(t => t.aiCorrect && t.action === 'override').length;
+  const acceptedWrong = aiErrs.filter(t => t.action === 'accept').length;
+  const acceptedRight = trials.filter(t => t.aiCorrect && t.action === 'accept').length;
+  const aiRight = trials.filter(t => t.aiCorrect).length;
+  const secs = Math.round(trials.reduce((a, t) => a + t.rtMs, 0) / 1000);
+  const flips = trials.filter(t => t.changedMind).length;
+  const pct = (n, d) => d ? Math.round(n / d * 100) : 0;
+
+  const notable = trials.filter(t => !t.aiCorrect || (t.aiCorrect && t.action === 'override'))
+    .map(t => {
+      const e = E[t.emailId];
+      const cls = !t.aiCorrect ? (t.action === 'override' ? 'caught' : 'missed') : 'false';
+      const tag = cls === 'caught' ? 'caught' : cls === 'missed' ? 'missed' : 'false alarm';
+      const say = cls === 'caught'
+        ? 'It was wrong and you overturned it.'
+        : cls === 'missed'
+          ? 'It was wrong — ' + (t.truth === 'phishing' ? 'real phishing it cleared' : 'safe mail it held') +
+            ' — and you ' + (t.action === 'accept' ? 'took its word' : t.action + 'ped it') + '.'
+          : 'It was right; the override would have been the error.';
+      return '<div class="nrow ' + cls + '"><span class="ntag">' + tag + '</span>' +
+        '<span class="ntext"><b>' + esc(e.subject) + '</b> — ' + say +
+        ' Confidence ' + t.aiConfidence.toFixed(2) + '.</span></div>';
+    }).join('');
+
+  document.getElementById('done-inner').innerHTML =
+    '<div class="brand">V I G I L</div><h1>Queue cleared.</h1>' +
+    '<p class="tally">' +
+      'You reviewed <b>' + trials.length + '</b> messages in <b>' +
+        (secs < 90 ? secs + 's' : Math.round(secs / 60) + 'm') + '</b>.<br>' +
+      'Of the <b>' + judged.length + '</b> you called, <b>' + right + '</b> were right — ' +
+        '<b>' + pct(right, judged.length) + '%</b>.<br>' +
+      'The classifier alone would have managed <b>' + aiRight + ' of ' + trials.length +
+        '</b> — <b>' + pct(aiRight, trials.length) + '%</b>.<br>' +
+      'It made <b>' + aiErrs.length + '</b> mistake' + (aiErrs.length === 1 ? '' : 's') +
+        ' and you overturned <b class="hi">' + caught + '</b>.' +
+      (flips ? '<br>You changed your mind after seeing it on <b>' + flips + '</b>.' : '') +
+    '</p>' +
+
+    '<h2>Where the trust went</h2>' +
+    '<table class="matrix"><tr><th></th><th class="n">it was right</th><th class="n">it was wrong</th></tr>' +
+      '<tr><td class="q">you took its word</td><td class="n">' + acceptedRight +
+        '</td><td class="n">' + acceptedWrong + '</td></tr>' +
+      '<tr class="key"><td class="q">you overrode it</td><td class="n">' + falseOv +
+        '</td><td class="n">' + caught + '</td></tr></table>' +
+    '<p class="fine">Bottom right is what this interface exists to grow. Top right is what ' +
+      'over-trust costs. Escalated and skipped messages are counted in neither.</p>' +
+
+    (notable ? '<h2>Worth a second look</h2><div class="notable">' + notable + '</div>' : '') +
+
+    '<div style="margin-top:24px"><button class="go" onclick="restart()">run it again</button>' +
+      '<button class="ghost" id="copy-btn" onclick="copyResults()">copy results</button></div>' +
+    '<p class="fine">q1 ' + cfg.q1 + ' · q2 ' + cfg.q2 + ' · q3 ' + cfg.q3 + ' · ' + cfg.subset + '</p>';
+}
+
+function copyResults(){
+  navigator.clipboard.writeText(JSON.stringify({ config:cfg, trials }, null, 2));
+  const b = document.getElementById('copy-btn');
+  b.textContent = 'copied';
+  setTimeout(() => { b.textContent = 'copy results'; }, 1400);
+}
+function copyLink(){
+  navigator.clipboard.writeText(location.origin + location.pathname + '?q1=' + cfg.q1 +
+    '&q2=' + cfg.q2 + '&q3=' + cfg.q3 + '&subset=' + cfg.subset + '&lock=1');
+}
+
+/* ---------- variant switcher ---------- */
+function toggleSwitch(){ document.getElementById('switch').classList.toggle('hide'); }
+function paintSwitch(){
+  document.querySelectorAll('.sw-opt').forEach(b =>
+    b.classList.toggle('on', cfg[b.dataset.k] === b.dataset.v));
+}
+document.querySelectorAll('.sw-opt').forEach(b => b.onclick = () => {
+  cfg[b.dataset.k] = b.dataset.v;
+  paintSwitch();
+  briefMeta();
+  if (b.dataset.k === 'subset') return restart();
+  if (!document.getElementById('review').classList.contains('hide')) render();
+});
+
+document.addEventListener('keydown', ev => {
+  /* while the note field is focused, letters are text, not shortcuts */
+  const t = ev.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')){
+    if (ev.key === 'Enter') submitEscalate();
+    else if (ev.key === 'Escape') cancelEscalate();
+    return;
+  }
+  if (ev.key === '`') return toggleSwitch();
+  if (document.getElementById('review').classList.contains('hide')) return;
+  const k = ev.key.toLowerCase();
+  if (noteMode){
+    if (ev.key === 'Escape') cancelEscalate();
+    return;
+  }
+  if (cfg.q2 === 'after' && selfCall === null){
+    if (k === '1') judge('legitimate');
+    else if (k === '2') judge('phishing');
+    return;
+  }
+  if (k === 'a') decide('accept');
+  else if (k === 'o') decide('override');
+  else if (k === 'e') decide('escalate');
+  else if (k === 's') decide('skip');
+  else if (k === 'z') undo();
+});
+
+paintSwitch();
+briefMeta();
+if (autoStart){
+  start();
+  if (autoAt){ idx = Math.min(autoAt, queue.length - 1); render(); }
+  for (const a of autoReplay){
+    if (idx >= queue.length) break;
+    if (cfg.q2 === 'after' && selfCall === null) judge(autoJudge || 'phishing');
+    /* a scripted replay runs instantly, which would report a 0-second session;
+       back-date the clock so the summary reads like a session someone sat through */
+    shownAt -= 14000 + Math.round(Math.random() * 16000);
+    if (a === 'escalate'){ decide('escalate'); submitEscalate(); }
+    else decide(a);
+  }
+  if (autoJudge && cfg.q2 === 'after' && selfCall === null) judge(autoJudge);
+  if (autoEsc) decide('escalate');   // screenshot hook: open the note field
+}
+</script>
+</body>
+</html>

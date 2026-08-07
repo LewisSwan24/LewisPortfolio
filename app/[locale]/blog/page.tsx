@@ -19,7 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function BlogPage() {
-  const posts = await getAllBlogPosts();
+  const locale = (await getLocale()) as "en" | "zh";
+  // Tags stay locale-free on purpose: they are filter keys shared across both
+  // locales, so localising them would break the filter identity.
+  const posts = await getAllBlogPosts(locale);
   const tags = await getAllBlogTags();
 
   const postsData = posts.map((p) => ({

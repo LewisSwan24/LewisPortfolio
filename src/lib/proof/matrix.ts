@@ -15,10 +15,10 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
       "Best fit when the team needs research to become product direction, IA, flows, and measurable iteration.",
     proofLinks: [
       { label: "UQ Connect IA decision", href: "/projects/connect#decision-timeline" },
+      { label: "MazeRunners hardware trade-offs", href: "/projects/maze#decision-timeline" },
       { label: "Connect Circles product framing", href: "/projects/circles#evidence-board" },
-      { label: "Resume proof path", href: "/projects/connect#interview-takeaway" },
     ],
-    bestCases: ["connect", "circles"],
+    bestCases: ["connect", "maze", "circles"],
     risk:
       "I am strongest when product ambiguity needs structure; I would pair with engineering early for production constraints.",
     interviewAngle: "Ask how I turn research signals into scoped product decisions.",
@@ -44,11 +44,11 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     fit:
       "Best fit when the team needs AI assistance designed around timing, agency, trust, and emotional safety.",
     proofLinks: [
+      { label: "Vigil: designing against over-trust", href: "/projects/vigil#decision-timeline" },
       { label: "AI feedback timing", href: "/projects/ai#decision-timeline" },
-      { label: "AI trust evidence", href: "/projects/ai#evidence-board" },
       { label: "AI limits", href: "/projects/ai#outcome-limits" },
     ],
-    bestCases: ["ai"],
+    bestCases: ["vigil", "ai"],
     risk:
       "I treat AI as a product interaction problem first and would validate model behavior with real users before scaling claims.",
     interviewAngle: "Ask where AI should intervene and where it should stay quiet.",
@@ -70,9 +70,68 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
   },
 ];
 
+/**
+ * Both locales previously pointed at the English array, so /zh/hire rendered
+ * twelve blocks of untranslated English.
+ */
+const zhHiringRoleFits: HiringRoleFit[] = [
+  {
+    id: "ux-product",
+    label: "UX / 产品设计",
+    fit: "适合需要把研究变成产品方向、信息架构、流程与可迭代决策的团队。",
+    proofLinks: [
+      { label: "UQ Connect 的 IA 决策", href: "/projects/connect#decision-timeline" },
+      { label: "MazeRunners 的软硬件取舍", href: "/projects/maze#decision-timeline" },
+      { label: "Connect Circles 的产品框架", href: "/projects/circles#evidence-board" },
+    ],
+    bestCases: ["connect", "maze", "circles"],
+    risk: "我最强的地方是把模糊的产品问题结构化；生产环境的约束我会尽早找工程一起看。",
+    interviewAngle: "可以问我怎么把研究信号收敛成有范围的产品决策。",
+  },
+  {
+    id: "ux-research",
+    label: "UX 研究",
+    fit: "适合需要混合方法、谨慎取样，并且要让研究真的改变产品决策的团队。",
+    proofLinks: [
+      { label: "Connect 的研究证据", href: "/projects/connect#evidence-board" },
+      { label: "Circles 的日记研究", href: "/projects/circles#evidence-board" },
+      { label: "研究的限制", href: "/projects/circles#outcome-limits" },
+    ],
+    bestCases: ["connect", "circles"],
+    risk: "多数项目是课程或自发项目，所以我会讲清楚哪些有证据、哪些还需要实地验证。",
+    interviewAngle: "可以问我在问题还很模糊时怎么选方法。",
+  },
+  {
+    id: "ai-ux",
+    label: "AI 交互设计",
+    fit: "适合需要围绕时机、控制感、信任与情绪安全来设计 AI 辅助的团队。",
+    proofLinks: [
+      { label: "Vigil：如何设计出「不轻易信」", href: "/projects/vigil#decision-timeline" },
+      { label: "AI 反馈时机", href: "/projects/ai#decision-timeline" },
+      { label: "AI 的限制", href: "/projects/ai#outcome-limits" },
+    ],
+    bestCases: ["vigil", "ai"],
+    risk: "我先把 AI 当成产品交互问题；在放大任何结论之前，我会拿真实用户验证模型行为。",
+    interviewAngle: "可以问我 AI 应该在哪里介入、又该在哪里闭嘴。",
+  },
+  {
+    id: "accessibility",
+    label: "无障碍 / 包容性设计",
+    fit: "适合需要把包容性研究落成实际交互决策、而不只是合规话术的团队。",
+    proofLinks: [
+      { label: "Spectra 的无障碍证据", href: "/projects/spectra#evidence-board" },
+      { label: "Spectra 的隐私决策", href: "/projects/spectra#decision-timeline" },
+      { label: "Spectra 的实地限制", href: "/projects/spectra#outcome-limits" },
+    ],
+    bestCases: ["spectra"],
+    risk: "我不会用一个小样本去宣称通用无障碍；正式上线前需要把验证扩展到更多场景。",
+    interviewAngle: "可以问我包容性设计的取舍怎么改变了核心交互模型。",
+  },
+];
+
 const hiringRoleFits: Record<ProofLocale, HiringRoleFit[]> = {
   en: sharedHiringRoleFits,
-  zh: sharedHiringRoleFits,
+  zh: zhHiringRoleFits,
 };
 
 const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
@@ -147,6 +206,11 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     label: "AI UX and trust",
     summary: "Designs AI assistance around agency, timing, confidence, and boundaries.",
     cases: {
+      vigil: {
+        strength: "primary",
+        proof: "Built confidence as weak evidence so reviewers had to read the message.",
+        href: "/projects/vigil#decision-timeline",
+      },
       ai: {
         strength: "primary",
         proof: "Post-session coaching balanced usefulness, control, and stress.",
@@ -184,6 +248,11 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "Chose depth-first matching over open social discovery.",
         href: "/projects/circles#decision-timeline",
       },
+      vigil: {
+        strength: "supporting",
+        proof: "Refused search, batch actions, and severity tiers to protect the measure.",
+        href: "/projects/vigil#decision-timeline",
+      },
     },
   },
   {
@@ -210,6 +279,11 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         strength: "supporting",
         proof: "Relationship depth needs cohort and arrival-stage validation.",
         href: "/projects/circles#outcome-limits",
+      },
+      vigil: {
+        strength: "supporting",
+        proof: "The build fails if confidence starts predicting the classifier's errors.",
+        href: "/projects/vigil#outcome-limits",
       },
     },
   },
@@ -441,6 +515,86 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
       evidenceHref: "/projects/maze#interview-takeaway",
       boundary:
         "It is one exhibition unit with hand-run wiring, so it proves build capability and system thinking, not manufacturability.",
+    },
+  },
+  vigil: {
+    answers: [
+      {
+        id: "vigil-weak-confidence",
+        question: "Why make the classifier's confidence a deliberately weak signal?",
+        answer:
+          "I would show that in the first build confidence separated perfectly — every correct call at 0.84 and above, every error at 0.82 and below — so a reviewer could have caught all 17 errors by reading a number instead of an email, and the interface comparison would have measured nothing. Stratified resampling brought error-ranking AUC to 0.72, and the build script now fails if it drifts back above 0.75.",
+        evidenceHref: "/projects/vigil#decision-timeline",
+        boundary:
+          "That is a property of an authored corpus, not a claim about how real classifiers behave.",
+      },
+      {
+        id: "vigil-predictions-first",
+        question: "You wrote down which variants you expected to win. Why?",
+        answer:
+          "I would point at the prediction table dated before the first variant was flipped, and to the shape of it: two bets on adding friction, one on removing search cost. Predictions written afterwards always agree with the result, which makes them useless as evidence that any reasoning happened.",
+        evidenceHref: "/projects/vigil#evidence-board",
+        boundary:
+          "The predictions are on record; the outcomes are not, because no one has run the test yet.",
+      },
+      {
+        id: "vigil-ai-workflow",
+        question: "An AI wrote all the code. What was actually your work?",
+        answer:
+          "I would separate the two: Claude Code and Codex wrote the corpus pipeline, the prototype, and the React build, and they were fast. What did not delegate was deciding that confidence had to be uninformative, that a rationale describing cues the email does not contain is a study-ending defect, and that this interface is an instrument rather than an inbox.",
+        evidenceHref: "/projects/vigil#iteration-gallery",
+        boundary:
+          "The first visual pass the workflow produced was competent and generic — that is the failure mode this way of working has, and the second pass is mine.",
+      },
+    ],
+    managerFollowUp: {
+      id: "vigil-manager-follow-up",
+      question: "Nobody has tested it. Why is it in the portfolio?",
+      answer:
+        "I would say it shows the part of the work that usually stays invisible: the material, the variants, the protocol, and the validation gates that decide whether a study can answer anything at all. The three design questions are marked open, and the predictions are on record so the eventual answer is checkable against them.",
+      evidenceHref: "/projects/vigil#outcome-limits",
+      boundary:
+        "Until participants run it, every variant argument here is reasoning rather than evidence, and the case says so.",
+    },
+  },
+  hoop: {
+    answers: [
+      {
+        id: "hoop-style-coherence",
+        question: "How do you keep hundreds of generated assets looking like one world?",
+        answer:
+          "I would show the order: art bible first, then batch prompts that cite it, then a style gate reviewed against existing runtime anchors, then a production log recording counts per batch. 299 assets across six batches went through that, and coherence became a property of the process rather than an argument re-run per asset.",
+        evidenceHref: "/projects/hoop#decision-timeline",
+        boundary:
+          "It buys stylistic consistency, not artistry — this is a provisional production batch, and the log labels it that way.",
+      },
+      {
+        id: "hoop-rejected-list",
+        question: "What actually made the style gate work?",
+        answer:
+          "The rejected list, more than the positive description. Naming photoreal, 3D, anime, neon, random text and real trademarks as out of bounds gave a reviewable test, where 'warm and simplified' only gave an opinion. A generator will produce any of those on a slightly different prompt, and each looks defensible until it sits next to the rest.",
+        evidenceHref: "/projects/hoop#evidence-board",
+        boundary:
+          "A rejected list only covers failure modes already seen. It would need extending the first time a batch failed in a new direction.",
+      },
+      {
+        id: "hoop-derived-language",
+        question: "The visual language comes from another product's design system. How do you think about that?",
+        answer:
+          "I would say it plainly, because the design document does: the palette and type system are reverse-engineered from Anthropic's product design, and the reason is that a game about one person's whole life needed something unhurried and literary rather than a sports UI of cold blues. Presenting a transfer exercise as original invention is the part that would be dishonest.",
+        evidenceHref: "/projects/hoop#iteration-gallery",
+        boundary:
+          "It is borrowed, and it stops being defensible at the basketball-specific screens, where the source has nothing to say.",
+      },
+    ],
+    managerFollowUp: {
+      id: "hoop-manager-follow-up",
+      question: "It is large and polished but has no players. Why is it in the portfolio?",
+      answer:
+        "Because the interesting problem is production discipline at volume, and that is visible without players: rules written before output, a gate that rejects, a log that makes every batch auditable, and 1,975 tests keeping a systems-heavy build correct while content lands. The game self-labels DEMO v0.6 and the case claims no more than that.",
+      evidenceHref: "/projects/hoop#outcome-limits",
+      boundary:
+        "Volume proves process, not that the pacing works for anyone but me — that needs playtests I have not run.",
     },
   },
 };

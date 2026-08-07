@@ -2,7 +2,15 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
-import { VizConnect, VizSpectra, VizAI, VizCircles, VizMaze } from "@/components/viz/ProjectViz";
+import {
+  VizConnect,
+  VizSpectra,
+  VizAI,
+  VizCircles,
+  VizMaze,
+  VizVigil,
+  VizHoop,
+} from "@/components/viz/ProjectViz";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -15,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "董宇哲 Lewis · 交互设计 / UX 设计师"
+      ? "董子铭（Lewis Dong）· 交互设计师 / 产品设计师"
       : `${siteConfig.name} · ${siteConfig.title}`;
   const description =
     locale === "zh"
@@ -30,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze";
+type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil" | "hoop";
 
 interface FeatItemProps {
   n: string;
@@ -79,7 +87,7 @@ export default async function HomePage() {
   const t = await getTranslations();
   const locale = await getLocale();
   const isZh = locale === "zh";
-  const allPosts = await getAllBlogPosts();
+  const allPosts = await getAllBlogPosts(isZh ? "zh" : "en");
   const latestPosts = allPosts.slice(0, 3);
   const dateLocale = isZh ? "zh-CN" : "en-US";
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
@@ -212,12 +220,16 @@ export default async function HomePage() {
 
         <div className="feat-list">
           {/* MazeRunners leads: it is the only case backed by a working physical
-              build, so it differentiates hardest against screen-only portfolios. */}
+              build, so it differentiates hardest against screen-only portfolios.
+              Vigil follows because it is the strongest evidence for the AI half
+              of the positioning. */}
           <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze />} />
-          <FeatItem n="02" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect />} />
-          <FeatItem n="03" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra />} />
-          <FeatItem n="04" k="ai" href="/projects/ai" flip t={t} viz={<VizAI />} />
-          <FeatItem n="05" k="circles" href="/projects/circles" t={t} viz={<VizCircles />} />
+          <FeatItem n="02" k="vigil" href="/projects/vigil" flip t={t} viz={<VizVigil />} />
+          <FeatItem n="03" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop />} />
+          <FeatItem n="04" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect />} />
+          <FeatItem n="05" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra />} />
+          <FeatItem n="06" k="ai" href="/projects/ai" flip t={t} viz={<VizAI />} />
+          <FeatItem n="07" k="circles" href="/projects/circles" t={t} viz={<VizCircles />} />
         </div>
       </section>
 

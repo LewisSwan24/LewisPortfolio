@@ -4,6 +4,29 @@ import matter from "gray-matter";
 
 const blogDirectory = path.join(process.cwd(), "content/blog");
 
+export type BlogLocale = "en" | "zh";
+
+/**
+ * Chinese posts live in content/blog/zh/ under the same filename, so a slug is
+ * the same URL in both locales and hreflang stays honest. The English listing
+ * is unaffected: getBlogSlugs filters on ".mdx", and a directory named "zh"
+ * does not match that.
+ *
+ * A missing translation falls back to English rather than 404ing — someone who
+ * followed a link should get the post, not a dead end.
+ */
+function resolvePostPath(slug: string, locale: BlogLocale): string | null {
+    const candidates =
+        locale === "zh"
+            ? [
+                  path.join(blogDirectory, "zh", `${slug}.mdx`),
+                  path.join(blogDirectory, `${slug}.mdx`),
+              ]
+            : [path.join(blogDirectory, `${slug}.mdx`)];
+
+    return candidates.find((candidate) => fs.existsSync(candidate)) ?? null;
+}
+
 export interface BlogPost {
     slug: string;
     title: string;
@@ -33,15 +56,18 @@ export function getBlogSlugs(): string[] {
 /**
  * Get blog post by slug
  */
-export async function getBlogPost(slug: string): Promise<{
+export async function getBlogPost(
+    slug: string,
+    locale: BlogLocale = "en"
+): Promise<{
     metadata: BlogPost;
     content: string;
 } | null> {
     try {
         const realSlug = slug.replace(/\.mdx$/, "");
-        const fullPath = path.join(blogDirectory, `${realSlug}.mdx`);
+        const fullPath = resolvePostPath(realSlug, locale);
 
-        if (!fs.existsSync(fullPath)) {
+        if (!fullPath) {
             return null;
         }
 
@@ -74,11 +100,11 @@ export async function getBlogPost(slug: string): Promise<{
 /**
  * Get all blog posts
  */
-export async function getAllBlogPosts(): Promise<BlogPost[]> {
+export async function getAllBlogPosts(locale: BlogLocale = "en"): Promise<BlogPost[]> {
     const slugs = getBlogSlugs();
     const posts = await Promise.all(
         slugs.map(async (slug) => {
-            const post = await getBlogPost(slug);
+            const post = await getBlogPost(slug, locale);
             return post?.metadata;
         })
     );

@@ -11,16 +11,16 @@ import type {
 
 const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
   en: {
-    headline: "Research-led UX designer turning ambiguity into tested product direction.",
+    headline: "Interaction designer who takes an idea all the way to something that runs.",
     summary:
-      "I am looking for UX/Product Design internships and graduate roles where research changes the product, not just the slide deck.",
-    status: "UQ Master of Interaction Design candidate, Brisbane. Open to 2026 internships and graduate UX roles.",
+      "I am looking for interaction and product design internships and graduate roles on teams that want a designer who can build, not only specify.",
+    status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; open to internships and graduate roles.",
     stats: [
       {
-        value: "5",
+        value: "7",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI coaching, social wellbeing, and a physical interaction system.",
+          "Information architecture, accessibility, AI coaching, social wellbeing, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "6",
@@ -40,15 +40,16 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     ],
   },
   zh: {
-    headline: "研究驱动的 UX 设计师，把模糊问题变成可测试、可交付的产品方向。",
+    headline: "会把东西真的做出来的交互设计师，而不只是交一份稿。",
     summary:
-      "我正在寻找 UX / Product Design 实习与毕业生岗位，尤其适合研究真的会影响产品决策的团队。",
-    status: "昆士兰大学交互设计硕士在读，布里斯班。开放 2026 实习与毕业生 UX 岗位。",
+      "我在找交互 / 产品设计的实习与毕业生岗位，尤其适合希望设计师能自己把想法推到能跑的团队。",
+    status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，实习与全职都在看。",
     stats: [
       {
-        value: "5",
+        value: "7",
         label: "端到端案例",
-        detail: "信息架构、无障碍、AI 面试辅导、国际学生社交健康，以及一个软硬件结合的互动系统。",
+        detail:
+          "信息架构、无障碍、AI 面试辅导、国际学生社交健康、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "6",
@@ -208,6 +209,46 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "I can carry an interaction idea down to firmware and back up to a browser UI, and make calibration and safety calls on real hardware.",
     },
+    {
+      slug: "vigil",
+      href: "/projects/vigil",
+      problemType: "Human oversight of AI, built through an AI-assisted workflow",
+      challenge:
+        "A phishing classifier that is right 88% of the time still needs a human on the other side. The interface decides whether that person genuinely checks the call or clicks through it.",
+      methods: [
+        "spec freeze",
+        "synthetic stimulus design",
+        "A/B variant prototyping",
+        "measured contrast auditing",
+        "usability test protocol design",
+      ],
+      sample:
+        "In progress. A 140-message synthetic corpus with an authored 87.9%-accurate classifier and a validated error profile; six interface variants across three questions; a five-participant protocol written but not yet run.",
+      outcome:
+        "Six variants running behind a working React build, with the corpus gated so confidence cannot predict the classifier's mistakes. The three design questions are still open, and the predictions were recorded before any testing.",
+      proves:
+        "I can specify a system precisely enough for an AI coding workflow to build it fast, and still own the judgement that decides whether it measures anything.",
+    },
+    {
+      slug: "hoop",
+      href: "/projects/hoop",
+      problemType: "Generative production at volume, and narrative systems design",
+      challenge:
+        "A career-simulation RPG needs hundreds of art assets to read as one world. Generating them is cheap now; keeping 299 of them stylistically coherent is the actual problem.",
+      methods: [
+        "art bible",
+        "prompt-per-batch production",
+        "style gate review",
+        "narrative systems design",
+        "regression testing at scale",
+      ],
+      sample:
+        "Publicly playable, self-labelled DEMO v0.6. 299 assets across six batches, a ten-chapter career on 146 nodes, and 1,975 tests over the career, contract, injury and save systems. No player research.",
+      outcome:
+        "A working career sim where coherence is a property of the pipeline rather than of individual assets: rules written first, a style gate with an explicit rejected list, and a production log that makes every batch auditable.",
+      proves:
+        "I can run generative production at a volume that would otherwise go incoherent, and keep a systems-heavy build correct while content keeps landing.",
+    },
   ],
   zh: [
     {
@@ -256,13 +297,40 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       problemType: "物理计算与软硬件交互",
       challenge:
         "实体迷宫本身是被动的。要让它像一个会回应的多人系统，必须把感测、反馈和游戏状态接在一起，让玩家看得见、听得见、也感觉得到每一个事件。",
-      methods: ["固件状态机", "传感器去抖与冷却调校", "触觉反馈设计", "Web Serial 控制台", "固件与网页行为一致性的回归测试"],
+      methods: ["固件状态机", "传感器防抖与冷却调校", "触觉反馈设计", "Web Serial 控制台", "固件与网页行为一致性的回归测试"],
       sample:
         "已完成搭建并展出。Arduino Mega、10 个 FC-51 红外传感器、TM1637 计分与计时显示、继电器驱动的震动马达、RGB 灯带、舵机，以及一个浏览器控制台；在公开展览的多人游玩中验证。",
       outcome:
         "这是一套真的能跑的系统，不是效果图：球经过传感器，回合状态推进，计分、计时、震动、灯光、音效与浏览器控制台同步更新。出于安全考虑，用震动取代了原本的电击方案。",
       proves:
         "证明我能把一个交互想法一路做到固件，再接回浏览器界面，并在真实硬件上做校准与安全取舍。",
+    },
+    {
+      slug: "vigil",
+      href: "/projects/vigil",
+      problemType: "人对 AI 的监督，用 AI 辅助流程做出来",
+      challenge:
+        "一个准确率 88% 的钓鱼邮件分类器，另一端仍然需要一个人。而界面决定了这个人是真的在复核，还是一路点过去。",
+      methods: ["规格冻结", "合成测试素材设计", "A/B 变体原型", "对比度实测审计", "可用性测试脚本设计"],
+      sample:
+        "进行中。140 封合成邮件、一个准确率 87.9% 的自建分类器与经过验证的错误分布；三个设计问题、六个界面变体；五人测试脚本已写好，尚未执行。",
+      outcome:
+        "六个变体已经跑起来，背后是一版可运行的 React 实现；语料设有闸门，确保置信度无法预测分类器错在哪里。三个设计问题都还开着，而预测在测试之前就已写下。",
+      proves:
+        "证明我能把一套系统说清楚到 AI 可以快速实现，同时把「它到底测不测得到东西」这个判断留在自己手里。",
+    },
+    {
+      slug: "hoop",
+      href: "/projects/hoop",
+      problemType: "大体量生成式生产与叙事系统设计",
+      challenge:
+        "一个生涯模拟 RPG 需要几百张美术资产，才撑得起「这是同一个世界」。现在生成它们很便宜，难的是让 299 张保持在同一种风格里。",
+      methods: ["美术圣经", "按批次写 prompt 生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
+      sample:
+        "线上公开可玩，游戏自标 DEMO v0.6。六个批次共 299 张资产、十章生涯跑在 146 个节点上、覆盖生涯与合同与伤病与存档系统的 1975 个测试。没有做过玩家研究。",
+      outcome:
+        "一个真的能玩的生涯模拟，而它的一致性来自管线而不是单张资产：规则先写、风格闸门附明确的拒绝清单、生产记录让每一批都可审计。",
+      proves: "证明我能在一个本来一定会失控的量级上跑生成式生产，并在内容持续落地的同时让实现保持正确。",
     },
   ],
 };
@@ -271,18 +339,18 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
 const hiringConversions: Record<ProofLocale, HiringConversion> = {
   en: {
     hero: {
-      headline: "Research-led UX/Product Designer for teams that need evidence before polish.",
+      headline: "An interaction and product designer who builds the thing, not just the deck.",
       subhead:
-        "I turn ambiguous product problems into tested information architecture, inclusive interactions, AI feedback flows, and social wellbeing concepts.",
+        "I take ambiguous product problems through research, information architecture, and inclusive interaction decisions — then use Claude Code and Codex to get them running, so what you review is a working prototype rather than a description of one.",
       status:
-        "Open to 2026 internships and graduate UX/Product Design roles in research-led product teams.",
+        "Graduating late 2026. Open to internships and graduate UX, product, and design-technologist roles.",
     },
     signals: [
       {
-        value: "5",
+        value: "7",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI feedback, social wellbeing, and a physical interaction system.",
+          "Information architecture, accessibility, AI feedback, social wellbeing, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "6",
@@ -302,12 +370,20 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     ],
     proofRoutes: [
       {
+        audience: "Design technology / prototyping",
+        title: "Hardware, firmware, and interaction in one loop",
+        claim: "Best proof that I can build the thing, not only specify it.",
+        evidence:
+          "MazeRunners wires IR sensing, firmware state, haptics, audio, and a Web Serial console into one system — built and exhibited.",
+        href: "/projects/maze#decision-timeline",
+      },
+      {
         audience: "IA / service complexity",
         title: "Information architecture and research rigor",
         claim:
           "Best proof that I can restructure a complex student service around user mental models.",
         evidence:
-          "UQ Connect links task analysis, card sorting, tree testing, and findability outcomes.",
+          "UQ Connect links task analysis, card sorting, and tree testing to a task-led structure.",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -321,12 +397,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       },
       {
         audience: "AI UX / trust",
-        title: "AI UX and feedback timing",
+        title: "Designing against over-trust in an AI",
         claim:
-          "Best proof that I can design AI assistance with user control, emotional safety, and useful feedback timing.",
+          "Best proof that I can design the conditions under which a person genuinely checks an AI rather than deferring to it.",
         evidence:
-          "AI Interview Assistant focuses on post-session feedback, tone control, anxiety reduction, and trust boundaries.",
-        href: "/projects/ai#interviewer-scan",
+          "Vigil builds the classifier's confidence as deliberately weak evidence, and the build fails if that stops being true.",
+        href: "/projects/vigil#decision-timeline",
       },
       {
         audience: "Social wellbeing / ambiguous problems",
@@ -348,17 +424,18 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
   },
   zh: {
     hero: {
-      headline: "先找证据，再做精细化：研究驱动的 UX / 产品设计师。",
+      headline: "会把东西真的做出来的交互设计师，而不只是交一份稿。",
       subhead:
-        "我把模糊的产品问题，转化为经过验证的信息架构、包容性交互、AI 反馈流程与社交健康产品方向。",
+        "我把模糊的产品问题走完研究、信息架构与包容性交互决策，再用 Claude Code 和 Codex 把它推到能跑——所以你看到的是一个能用的原型，而不是对原型的描述。",
       status:
-        "开放 2026 实习与毕业生 UX / 产品设计岗位，期待研究驱动的产品团队。",
+        "2026 年底毕业。实习与毕业生的交互、产品、design technologist 岗位都在看。",
     },
     signals: [
       {
-        value: "5",
+        value: "7",
         label: "端到端案例",
-        detail: "涵盖信息架构、无障碍、AI 反馈、社交健康，以及一个软硬件结合的互动系统。",
+        detail:
+          "涵盖信息架构、无障碍、AI 反馈、社交健康、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "6",
@@ -378,12 +455,20 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     ],
     proofRoutes: [
       {
+        audience: "设计技术 / 原型开发",
+        title: "硬件、固件与交互接成同一个闭环",
+        claim: "证明我不只是写规格，而是真的做得出来。",
+        evidence:
+          "MazeRunners 把红外感测、固件状态、震动、音效与 Web Serial 控制台接成一套系统 —— 已搭建并展出。",
+        href: "/projects/maze#decision-timeline",
+      },
+      {
         audience: "信息架构 / 复杂服务",
         title: "信息架构与研究严谨度",
         claim:
           "证明我能围绕用户心智模型，重构复杂的学生服务。",
         evidence:
-          "UQ Connect 串联任务分析、卡片分类、树测试与可发现性结果。",
+          "UQ Connect 串联任务分析、卡片分类与树测试，产出以任务为主的结构。",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -397,12 +482,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       },
       {
         audience: "AI UX / 信任",
-        title: "AI UX 与反馈时机",
+        title: "设计出「不轻易相信 AI」这件事",
         claim:
-          "证明我能兼顾用户控制、情绪安全与有效反馈时机来设计 AI 辅助体验。",
+          "证明我能设计出让人真的去复核 AI、而不是顺着它点下去的条件。",
         evidence:
-          "AI 面试助手聚焦会后反馈、语气控制、焦虑缓解与信任边界。",
-        href: "/projects/ai#interviewer-scan",
+          "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这个性质失效，build 直接挂掉。",
+        href: "/projects/vigil#decision-timeline",
       },
       {
         audience: "社交健康 / 模糊问题",

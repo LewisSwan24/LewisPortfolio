@@ -18,6 +18,10 @@ const hiddenPaths = [
   "/dashboard",
   "/posts",
   "/admin",
+  // Embedded case demo. It is meant to be read inside its case page, not ranked
+  // as a standalone result — a bare prototype in search looks like a stray file
+  // rather than like work.
+  "/projects/vigil/prototype.html",
 ];
 
 export default function robots(): MetadataRoute.Robots {

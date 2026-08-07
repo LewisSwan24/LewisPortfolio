@@ -15,7 +15,6 @@ interface ViewCounterProps {
  * For production, you should use a database or analytics service like:
  * - Vercel Analytics
  * - Google Analytics
- * - Supabase
  * - Redis
  */
 export function ViewCounter({ slug, className }: ViewCounterProps) {

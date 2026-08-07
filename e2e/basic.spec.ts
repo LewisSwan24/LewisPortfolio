@@ -1,7 +1,25 @@
-import { expect, test, type Locator } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|circles)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|spectra|ai|circles|maze|vigil|hoop)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+
+/**
+ * Next's dev server sometimes issues a full reload while it compiles a route for
+ * the first time, which cancels an in-flight goto with "interrupted by another
+ * navigation". WebKit hits it most. The page itself is fine — retry rather than
+ * report a product failure that does not exist.
+ */
+async function gotoStable(page: Page, url: string) {
+    for (let attempt = 0; ; attempt += 1) {
+        try {
+            await page.goto(url);
+            return;
+        } catch (error) {
+            const interrupted = String(error).includes("interrupted by another navigation");
+            if (!interrupted || attempt >= 2) throw error;
+        }
+    }
+}
 
 async function expectAnchoredCaseProofLink(link: Locator) {
     await expect(link).toBeVisible();
@@ -20,7 +38,10 @@ test.describe("Portfolio Homepage", () => {
     });
 
     test("should display the current hero", async ({ page }) => {
-        await expect(page.getByRole("heading", { level: 1 })).toContainText("Research-led");
+        // Two-layer positioning: the headline states the capability with no tool
+        // names, the lede underneath names the tools.
+        await expect(page.getByRole("heading", { level: 1 })).toContainText(/actually use/i);
+        await expect(page.locator(".hero-lede")).toContainText(/Claude Code|Codex/);
     });
 
     // The old "Evidence at a glance" / "Capability map" sections were removed
@@ -48,7 +69,7 @@ test.describe("Portfolio Homepage", () => {
     test("should present a clear hiring conversion path", async ({ page }) => {
         const proofDesk = page.locator(".hiring-proof-desk");
 
-        await expect(proofDesk.getByText(/Open to 2026 internships/i)).toBeVisible();
+        await expect(proofDesk.getByText(/2026.*internships|internships.*2026/i)).toBeVisible();
         await expect(proofDesk.getByText(/Best cases to inspect/i)).toBeVisible();
         await expect(proofDesk.getByText(/Information architecture/i).first()).toBeVisible();
         await expect(proofDesk.getByText(/Accessibility/i).first()).toBeVisible();
@@ -185,16 +206,9 @@ test.describe("Projects Page", () => {
         await expect(page.getByRole("navigation", { name: /breadcrumb/i })).toBeVisible();
     });
 
-    test("case detail should show interviewer scan", async ({ page }) => {
-        await page.goto("/projects/connect");
-        const scan = page.locator(".case-interview-scan");
-
-        await expect(scan.getByText("2-minute interviewer scan")).toBeVisible();
-        await expect(scan.getByText(/What this case proves/i)).toBeVisible();
-        await expect(scan.getByText(/What to inspect/i)).toBeVisible();
-        await expect(scan.getByText(/Interview questions/i)).toBeVisible();
-    });
-
+    // The 2-minute interviewer scan, the case reader nav and its prompt list
+    // were removed: all three restated the interview pack. The pack is now the
+    // single interview surface and is covered below.
     test("case detail should expose stable reader anchors", async ({ page }) => {
         await page.goto("/projects/connect");
 
@@ -214,35 +228,6 @@ test.describe("Projects Page", () => {
         }
     });
 
-    test("case detail should provide reader navigation", async ({ page }) => {
-        await page.goto("/projects/connect");
-
-        const reader = page.getByRole("navigation", { name: "Case reader" });
-
-        await expect(reader).toBeVisible();
-        await expect(reader.getByRole("link", { name: /^Snapshot/i })).toBeVisible();
-        await expect(reader.getByRole("link", { name: /^Decisions/i })).toBeVisible();
-        await expect(reader.getByRole("link", { name: /^Evidence/i })).toBeVisible();
-
-        await reader.getByRole("link", { name: /^Decisions/i }).click();
-        await expect(page).toHaveURL(/#decision-timeline$/);
-        await expect(page.locator("#decision-timeline")).toBeInViewport();
-    });
-
-    test("case detail should expose review modes and interview prompts", async ({ page }) => {
-        await page.goto("/projects/spectra");
-
-        await expect(page.getByText("2-minute scan").first()).toBeVisible();
-        await expect(page.getByText("Design manager review")).toBeVisible();
-        await expect(page.getByText("Research evidence review")).toBeVisible();
-        await expect(page.getByText("Interview prep")).toBeVisible();
-
-        const prompts = page.locator(".case-reader-prompts");
-
-        await expect(prompts.getByText(/Ask me about/i)).toBeVisible();
-        await expect(prompts.getByRole("link").first()).toBeVisible();
-    });
-
     test("case detail should expose interview answer routes", async ({ page }) => {
         await page.goto("/projects/connect");
 
@@ -256,49 +241,166 @@ test.describe("Projects Page", () => {
         );
     });
 
-    test("case reader should not overflow on mobile", async ({ page }) => {
+    // The showcase pulls a 31 MB audio track and three videos, so the iframe
+    // must stay unmounted until someone actually asks for it.
+    test("maze demo should load only on click", async ({ page }) => {
+        await page.goto("/projects/maze");
+
+        const demo = page.locator(".case-demo");
+        await expect(demo).toBeVisible();
+        await expect(demo.locator("iframe")).toHaveCount(0);
+
+        await demo.locator(".case-demo-poster").click();
+        await expect(demo.locator("iframe")).toHaveAttribute("src", /maze-runners\.vercel\.app/);
+    });
+
+    test("cases without a playable build should not show a demo", async ({ page }) => {
+        for (const slug of ["connect", "spectra", "ai", "circles"]) {
+            await page.goto(`/projects/${slug}`);
+            await expect(page.locator(".case-demo")).toHaveCount(0);
+        }
+    });
+
+    // Same click-to-load contract as MazeRunners, but this prototype is served
+    // from our own origin, so the test also proves the file actually shipped.
+    test("vigil prototype should load only on click, from our own origin", async ({ page }) => {
+        await gotoStable(page, "/projects/vigil");
+
+        const demo = page.locator(".case-demo");
+        await expect(demo).toBeVisible();
+        await expect(demo.locator("iframe")).toHaveCount(0);
+
+        await demo.locator(".case-demo-poster").click();
+        await expect(demo.locator("iframe")).toHaveAttribute(
+            "src",
+            "/projects/vigil/prototype.html",
+        );
+
+        // A real prototype, not a 404 rendered inside a frame. The prototype
+        // opens on its briefing screen, so assert that rather than the review
+        // pane behind it.
+        await expect(
+            page.frameLocator(".case-demo iframe").getByText(/last check before the inbox/i),
+        ).toBeVisible();
+    });
+
+    test("the embedded prototype should stay out of the search index", async ({ page }) => {
+        const robots = await page.goto("/robots.txt");
+        expect(await robots!.text()).toContain("/projects/vigil/prototype.html");
+    });
+
+    // Both demos were once shipped broken: the tests asserted the iframe src
+    // attribute, which is set regardless, while CSP silently refused to load
+    // either frame. These assert the headers that actually decide it, so the
+    // check does not depend on an external service being up.
+    test("hoop case should render, embed the live build, and stay honest", async ({ page }) => {
+        await gotoStable(page, "/projects/hoop");
+
+        await expect(page.getByRole("heading", { level: 1, name: "Hoop Dream" })).toBeVisible();
+
+        // Screens captured from the public deployment are this case's artefact.
+        const evidence = page.locator(".case-build-evidence");
+        await expect(evidence).toBeVisible();
+        await expect(evidence.locator("img")).toHaveCount(3);
+
+        // Click-to-load, same contract as the other two demos.
+        const demo = page.locator(".case-demo");
+        await expect(demo.locator("iframe")).toHaveCount(0);
+        await demo.locator(".case-demo-poster").click();
+        await expect(demo.locator("iframe")).toHaveAttribute(
+            "src",
+            "https://hoop-dream.vercel.app",
+        );
+
+        // A big polished build with no players has to say so.
+        await expect(page.locator(".case-limits")).toContainText(/no player research/i);
+    });
+
+    test("zh hoop case should be translated, not fall back to English", async ({ page }) => {
+        await gotoStable(page, "/zh/projects/hoop");
+
+        await expect(page.locator(".case-summary")).toContainText("美术圣经");
+        await expect(page.locator(".case-build-evidence .label")).toHaveText("跑起来的样子");
+    });
+
+    test("CSP should permit the case-page embeds it relies on", async ({ page }) => {
+        const casePage = await page.goto("/projects/maze");
+        const csp = casePage!.headers()["content-security-policy"] ?? "";
+
+        // Without an explicit frame-src, this falls back to default-src 'self'
+        // and a cross-origin embed is blocked before a request is even made.
+        expect(csp).toContain("frame-src");
+        expect(csp).toContain("https://maze-runners.vercel.app");
+        expect(csp).toContain("https://hoop-dream.vercel.app");
+        // We still refuse to be framed by anyone else.
+        expect(csp).toContain("frame-ancestors 'none'");
+
+        const prototype = await page.goto("/projects/vigil/prototype.html");
+        expect(prototype!.status()).toBe(200);
+        expect(prototype!.headers()["x-frame-options"]).toBe("SAMEORIGIN");
+        expect(prototype!.headers()["content-security-policy"]).toContain(
+            "frame-ancestors 'self'",
+        );
+    });
+
+    test("vigil case should render and stay honest about not being tested", async ({ page }) => {
+        await page.goto("/projects/vigil");
+
+        await expect(page.getByRole("heading", { level: 1, name: "Vigil" })).toBeVisible();
+
+        // The variant screenshots are this case's artefact, the way the build
+        // photographs are MazeRunners'.
+        const evidence = page.locator(".case-build-evidence");
+        await expect(evidence).toBeVisible();
+        await expect(evidence.locator("img")).toHaveCount(4);
+
+        // Standing rule for this portfolio: an unvalidated case has to say so.
+        // If this ever fails because the copy softened, that is the bug.
+        await expect(page.locator(".case-limits")).toContainText(/no participant has run it yet/i);
+    });
+
+    test("zh vigil case should be translated, not fall back to English", async ({ page }) => {
+        await gotoStable(page, "/zh/projects/vigil");
+
+        await expect(page.locator(".case-summary")).toContainText("分类器");
+        await expect(page.locator(".case-build-evidence .label")).toHaveText("正在被测试的变体");
+    });
+
+    test("case page should not overflow on mobile", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 844 });
         await page.goto("/projects/connect");
 
-        const reader = page.getByRole("navigation", { name: "Case reader" });
-
-        await expect(reader).toBeVisible();
-        await expect(reader.locator("a").first()).toBeVisible();
-        await reader.scrollIntoViewIfNeeded();
+        const pack = page.locator(".case-interview-pack");
+        await expect(pack).toBeVisible();
+        await pack.scrollIntoViewIfNeeded();
 
         const hasHorizontalOverflow = await page.evaluate(
             () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
         );
-        const readerBox = await reader.boundingBox();
+        const packBox = await pack.boundingBox();
 
         expect(hasHorizontalOverflow).toBe(false);
-        expect(readerBox?.width).toBeLessThanOrEqual(390);
-        expect(readerBox?.height).toBeGreaterThan(0);
+        expect(packBox?.width).toBeLessThanOrEqual(390);
+        expect(packBox?.height).toBeGreaterThan(0);
     });
 
+    // The structured decision/evidence/iteration blocks were removed as
+    // duplicates of the narrative. Depth is now proven by the narrative itself
+    // plus the surviving limits block.
     test("connect detail should expose interview-ready depth", async ({ page }) => {
         await page.goto("/projects/connect");
-        const caseDepth = page.locator(".case-depth");
 
-        await expect(caseDepth.getByText("Decision timeline")).toBeVisible();
-        await expect(caseDepth.getByText("Research evidence board")).toBeVisible();
-        await expect(caseDepth.getByText("Iteration gallery")).toBeVisible();
-        await expect(caseDepth.getByText("Interview takeaway")).toBeVisible();
-        await expect(caseDepth.getByText(/task-oriented IA/i).first()).toBeVisible();
-        await expect(caseDepth.getByText(/tree testing/i).first()).toBeVisible();
-        await expect(caseDepth.getByText(/findability/i).first()).toBeVisible();
+        await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/task-first/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/tree test/i).first()).toBeVisible();
     });
 
     test("spectra detail should expose inclusive design depth", async ({ page }) => {
         await page.goto("/projects/spectra");
-        const caseDepth = page.locator(".case-depth");
 
-        await expect(caseDepth.getByText("Decision timeline")).toBeVisible();
-        await expect(caseDepth.getByText("Research evidence board")).toBeVisible();
-        await expect(caseDepth.getByText("Interview takeaway")).toBeVisible();
-        await expect(caseDepth.getByText(/multi-modal feedback/i).first()).toBeVisible();
-        await expect(caseDepth.getByText(/privacy/i).first()).toBeVisible();
-        await expect(caseDepth.getByText(/field testing/i).first()).toBeVisible();
+        await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/colourblind/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/privacy/i).first()).toBeVisible();
     });
 
     test("project detail should keep related visuals inside their cards", async ({ page }) => {
@@ -397,7 +499,9 @@ test.describe("Hire Page", () => {
         // not the word "Interview"; assert the section content instead of copy.
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
         await expect(page.getByText("Evidence brief", { exact: true })).toBeVisible();
-        await expect(page.getByText("Questions worth asking.", { exact: true })).toBeVisible();
+        // The flat question bank was removed; role fit carries the per-role
+        // "ask me about" angle instead.
+        await expect(page.locator(".hiring-role-fit")).toBeVisible();
         await expect(page.getByText("What I would not overclaim")).toBeVisible();
         await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
     });
@@ -425,7 +529,7 @@ test.describe("Hire Page", () => {
 
     test("hire proof links should point to case anchors", async ({ page }) => {
         await expectAnchoredCaseProofLink(page.locator(".interview-evidence-brief a[href*='#']").first());
-        await expectAnchoredCaseProofLink(page.locator(".interview-question-bank a[href*='#']").first());
+        await expectAnchoredCaseProofLink(page.locator(".hiring-role-fit a[href*='#']").first());
     });
 });
 
@@ -434,7 +538,7 @@ test.describe("Proof Maintenance", () => {
         await page.goto("/");
         await expect(page.locator("a[href*='maintenance/proof']")).toHaveCount(0);
 
-        await page.goto("/maintenance/proof");
+        await gotoStable(page, "/maintenance/proof");
         await expect(page.locator("main[data-screen-label='17 Proof Maintenance']")).toHaveCount(0);
         await expect(page.getByText(/not found|404/i).first()).toBeVisible();
     });
@@ -471,7 +575,7 @@ test.describe("Contact Page", () => {
         const nextStep = page.locator(".contact-next-step");
 
         await expect(nextStep.getByText("Hiring next step")).toBeVisible();
-        await expect(nextStep.getByText(/Open to 2026 internships/i)).toBeVisible();
+        await expect(nextStep.getByText(/2026.*internships|internships.*2026/i)).toBeVisible();
     });
 
     test("contact proof links should point to case anchors", async ({ page }) => {
@@ -480,13 +584,13 @@ test.describe("Contact Page", () => {
         await expectAnchoredCaseProofLink(page.locator(".contact-next-step a[href*='#']").first());
     });
 
-    test("contact should explain role-aware reasons to reach out", async ({ page }) => {
+    // Role fit now lives only on /hire; contact links there instead of
+    // restating all twelve role blocks.
+    test("contact should not restate the role fit panel", async ({ page }) => {
         await page.goto("/contact");
 
-        const roleFit = page.locator(".hiring-role-fit").first();
-
-        await expect(roleFit.getByText("Role fit", { exact: true })).toBeVisible();
-        await expect(roleFit.getByText(/Best interview angle/i).first()).toBeVisible();
+        await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
+        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toBeVisible();
     });
 
     test("contact should link to the interview decision room", async ({ page }) => {
@@ -554,13 +658,13 @@ test.describe("Resume Page", () => {
         await expectAnchoredCaseProofLink(page.locator(".resume-proof-card a[href*='#']").first());
     });
 
-    test("resume should expose role fit proof routes", async ({ page }) => {
+    // Role fit now lives only on /hire; the resume links to the proof routes
+    // and to /hire rather than restating the panel.
+    test("resume should not restate the role fit panel", async ({ page }) => {
         await page.goto("/resume");
 
-        const roleFit = page.locator(".hiring-role-fit").first();
-
-        await expect(roleFit.getByText("Role fit", { exact: true })).toBeVisible();
-        await expect(roleFit.getByRole("link").first()).toHaveAttribute("href", /\/projects\/.+#/);
+        await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
+        await expect(page.locator(".resume-proof-card a[href*='#']").first()).toBeVisible();
     });
 
     test("resume should link to the interview decision room", async ({ page }) => {
