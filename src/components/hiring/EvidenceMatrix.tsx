@@ -8,7 +8,6 @@ import type {
 const projectLabels: Record<ProjectEvidenceSlug, string> = {
   connect: "UQ Connect",
   spectra: "Spectra Lens",
-  ai: "AI Coach",
   maze: "MazeRunners",
   vigil: "Vigil",
   hoop: "Hoop Dream",
@@ -17,7 +16,6 @@ const projectLabels: Record<ProjectEvidenceSlug, string> = {
 const projectOrder: ProjectEvidenceSlug[] = [
   "connect",
   "spectra",
-  "ai",
   "maze",
   "vigil",
   "hoop",

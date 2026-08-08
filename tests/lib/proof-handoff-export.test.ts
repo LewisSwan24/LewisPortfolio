@@ -10,7 +10,7 @@ describe("proof handoff export", () => {
     expect(exportArtifact.content).toContain("# Proof Handoff Manifest");
     expect(exportArtifact.content).toContain("Status: ready");
     expect(exportArtifact.content).toContain("pnpm proof:validate");
-    expect(exportArtifact.content).toContain("Maintenance: 94 total");
+    expect(exportArtifact.content).toContain("Maintenance: 92 total");
     expect(exportArtifact.content).toContain("/hire/compare");
     expect(exportArtifact.content).toContain("/hire/interview");
     expect(exportArtifact.content).toContain("/hire/scorecard");

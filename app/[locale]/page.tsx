@@ -5,7 +5,6 @@ import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import {
   VizConnect,
   VizSpectra,
-  VizAI,
   VizMaze,
   VizVigil,
   VizHoop,
@@ -37,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ProjKey = "connect" | "spectra" | "ai" | "maze" | "vigil" | "hoop";
+type ProjKey = "connect" | "spectra" | "maze" | "vigil" | "hoop";
 
 interface FeatItemProps {
   n: string;
@@ -227,7 +226,6 @@ export default async function HomePage() {
           <FeatItem n="03" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop />} />
           <FeatItem n="04" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect />} />
           <FeatItem n="05" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra />} />
-          <FeatItem n="06" k="ai" href="/projects/ai" flip t={t} viz={<VizAI />} />
         </div>
       </section>
 

@@ -8,7 +8,6 @@ import type {
 const caseLabels: Record<ProjectEvidenceSlug, string> = {
   connect: "UQ Connect",
   spectra: "Spectra Lens",
-  ai: "AI Coach",
   maze: "MazeRunners",
   vigil: "Vigil",
   hoop: "Hoop Dream",

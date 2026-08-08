@@ -1,7 +1,6 @@
 export type ProjectEvidenceSlug =
   | "connect"
   | "spectra"
-  | "ai"
   | "maze"
   | "vigil"
   | "hoop";

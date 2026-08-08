@@ -45,10 +45,9 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
       "Best fit when the team needs AI assistance designed around timing, agency, trust, and emotional safety.",
     proofLinks: [
       { label: "Vigil: designing against over-trust", href: "/projects/vigil#decision-timeline" },
-      { label: "AI feedback timing", href: "/projects/ai#decision-timeline" },
-      { label: "AI limits", href: "/projects/ai#outcome-limits" },
+      { label: "Vigil: what it does not prove yet", href: "/projects/vigil#outcome-limits" },
     ],
-    bestCases: ["vigil", "ai"],
+    bestCases: ["vigil", "connect"],
     risk:
       "I treat AI as a product interaction problem first and would validate model behavior with real users before scaling claims.",
     interviewAngle: "Ask where AI should intervene and where it should stay quiet.",
@@ -107,10 +106,9 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     fit: "适合需要围绕时机、控制感、信任与情绪安全来设计 AI 辅助的团队。",
     proofLinks: [
       { label: "Vigil：如何设计出「不轻易信」", href: "/projects/vigil#decision-timeline" },
-      { label: "AI 反馈时机", href: "/projects/ai#decision-timeline" },
-      { label: "AI 的限制", href: "/projects/ai#outcome-limits" },
+      { label: "Vigil：它还证明不了什么", href: "/projects/vigil#outcome-limits" },
     ],
-    bestCases: ["vigil", "ai"],
+    bestCases: ["vigil", "connect"],
     risk: "我先把 AI 当成产品交互问题；在放大任何结论之前，我会拿真实用户验证模型行为。",
     interviewAngle: "可以问我 AI 应该在哪里介入、又该在哪里闭嘴。",
   },
@@ -147,13 +145,8 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       spectra: {
         strength: "supporting",
-        proof: "Colourblind-user interviews shaped interaction requirements.",
+        proof: "WCAG text-spacing criteria decided which controls the extension exposes.",
         href: "/projects/spectra#evidence-board",
-      },
-      ai: {
-        strength: "supporting",
-        proof: "Interview anxiety and feedback needs shaped the AI coaching scope.",
-        href: "/projects/ai#evidence-board",
       },
     },
   },
@@ -176,13 +169,8 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       spectra: {
         strength: "primary",
-        proof: "Multi-modal feedback avoided colour-only interaction patterns.",
+        proof: "Settings save per site, so a reader sets a page once and it stays.",
         href: "/projects/spectra#decision-timeline",
-      },
-      ai: {
-        strength: "supporting",
-        proof: "Tone and feedback timing protected anxious interview practice.",
-        href: "/projects/ai#evidence-board",
       },
       connect: {
         strength: "supporting",
@@ -201,11 +189,6 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "Built confidence as weak evidence so reviewers had to read the message.",
         href: "/projects/vigil#decision-timeline",
       },
-      ai: {
-        strength: "primary",
-        proof: "Post-session coaching balanced usefulness, control, and stress.",
-        href: "/projects/ai#decision-timeline",
-      },
     },
   },
   {
@@ -220,13 +203,8 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       spectra: {
         strength: "primary",
-        proof: "Balanced AR usefulness with privacy in public contexts.",
+        proof: "Bundled the font locally so the tool works offline and leaks no browsing data.",
         href: "/projects/spectra#decision-timeline",
-      },
-      ai: {
-        strength: "supporting",
-        proof: "Moved intervention timing away from live interruption.",
-        href: "/projects/ai#decision-timeline",
       },
       vigil: {
         strength: "supporting",
@@ -249,11 +227,6 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         strength: "primary",
         proof: "Field testing exposed lighting, motion, and privacy constraints.",
         href: "/projects/spectra#outcome-limits",
-      },
-      ai: {
-        strength: "supporting",
-        proof: "Reassurance inside one session is not durable preparation.",
-        href: "/projects/ai#outcome-limits",
       },
       vigil: {
         strength: "supporting",
@@ -298,13 +271,8 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       spectra: {
         strength: "supporting",
-        proof: "色盲用户访谈定下了交互上的硬要求。",
+        proof: "WCAG 的文本间距条款决定了这个扩展开放哪几个控件。",
         href: "/projects/spectra#evidence-board",
-      },
-      ai: {
-        strength: "supporting",
-        proof: "面试焦虑和对反馈的需求，划定了这套 AI 陪练的范围。",
-        href: "/projects/ai#evidence-board",
       },
     },
   },
@@ -327,13 +295,8 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       spectra: {
         strength: "primary",
-        proof: "用多模态反馈，避开了只靠颜色区分的交互模式。",
+        proof: "设置按站点保存，读者对一个页面设一次就一直有效。",
         href: "/projects/spectra#decision-timeline",
-      },
-      ai: {
-        strength: "supporting",
-        proof: "语气和反馈时机，护住了本来就紧张的练习过程。",
-        href: "/projects/ai#evidence-board",
       },
       connect: {
         strength: "supporting",
@@ -352,11 +315,6 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "刻意把置信度做成弱证据，逼审阅者去读邮件本身。",
         href: "/projects/vigil#decision-timeline",
       },
-      ai: {
-        strength: "primary",
-        proof: "把辅导放到答完之后，在有用、可控和压力之间取平衡。",
-        href: "/projects/ai#decision-timeline",
-      },
     },
   },
   {
@@ -371,13 +329,8 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       spectra: {
         strength: "primary",
-        proof: "在公共场合里，让 AR 的有用和用户的隐私同时成立。",
+        proof: "字体打包在本地，所以离线能用，也不会泄露读者在看什么。",
         href: "/projects/spectra#decision-timeline",
-      },
-      ai: {
-        strength: "supporting",
-        proof: "把介入时机从答题中途，挪到这一轮结束之后。",
-        href: "/projects/ai#decision-timeline",
       },
       vigil: {
         strength: "supporting",
@@ -400,11 +353,6 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
         strength: "primary",
         proof: "真实场景测试暴露出光照、移动和隐私上的约束。",
         href: "/projects/spectra#outcome-limits",
-      },
-      ai: {
-        strength: "supporting",
-        proof: "一次练习里的安心，不等于长期准备好了。",
-        href: "/projects/ai#outcome-limits",
       },
       vigil: {
         strength: "supporting",
@@ -484,14 +432,14 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
         id: "spectra-colour-feedback",
         question: "Why avoid colour-only feedback as the primary interaction?",
         answer:
-          "I would explain how colourblind-user interviews required redundant feedback through labels, contrast, and multi-modal cues.",
+          "I would explain how the WCAG text-spacing criteria set the control list, and why the font is bundled rather than fetched from a CDN.",
         evidenceHref: "/projects/spectra#decision-timeline",
         boundary:
           "I would not claim one feedback model covers every colour vision profile without broader field validation.",
       },
       {
         id: "spectra-privacy",
-        question: "How did privacy change the AR product direction?",
+        question: "Why is the font bundled instead of fetched at runtime?",
         answer:
           "I would show how public-use anxiety made glanceable, user-controlled feedback more important than persistent visible assistance.",
         evidenceHref: "/projects/spectra#evidence-board",
@@ -510,52 +458,12 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
     ],
     managerFollowUp: {
       id: "spectra-manager-follow-up",
-      question: "How would you decide whether this belongs in AR or a simpler tool?",
+      question: "How would you decide whether this belongs in an extension or in the browser itself?",
       answer:
         "I would compare the value of in-context feedback against privacy cost, device friction, and recognition reliability in field tasks.",
       evidenceHref: "/projects/spectra#interview-takeaway",
       boundary:
-        "I would be willing to simplify the medium if AR created more burden than benefit.",
-    },
-  },
-  ai: {
-    answers: [
-      {
-        id: "ai-feedback-timing",
-        question: "Why move AI feedback after the session instead of live?",
-        answer:
-          "I would explain that live correction risked increasing anxiety, while post-session coaching preserved flow and reflection.",
-        evidenceHref: "/projects/ai#decision-timeline",
-        boundary:
-          "I would not assume every learner prefers post-session feedback without testing user control settings.",
-      },
-      {
-        id: "ai-trust-language",
-        question: "How did you shape trust in the feedback language?",
-        answer:
-          "I would discuss confidence language, tone control, and feedback specificity as interaction choices, not just prompt wording.",
-        evidenceHref: "/projects/ai#evidence-board",
-        boundary:
-          "The case does not prove model accuracy; it frames how feedback should be experienced and verified.",
-      },
-      {
-        id: "ai-confidence-metric",
-        question: "What would prove the AI actually improves interview readiness?",
-        answer:
-          "I would compare repeated-session confidence, perceived control, and answer quality rather than relying on one positive reaction.",
-        evidenceHref: "/projects/ai#outcome-limits",
-        boundary:
-          "Short-term reassurance is not the same as durable preparation or better interview performance.",
-      },
-    ],
-    managerFollowUp: {
-      id: "ai-manager-follow-up",
-      question: "Where should AI stay quiet in this product?",
-      answer:
-        "I would keep AI out of live moments where intervention harms agency, then give users explicit control over review depth after the session.",
-      evidenceHref: "/projects/ai#interview-takeaway",
-      boundary:
-        "I would validate this with anxious and confident users separately before generalizing.",
+        "I would drop the extension entirely if the browser shipped the same controls natively.",
     },
   },
   maze: {
@@ -731,14 +639,14 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         id: "spectra-colour-feedback",
         question: "为什么不把「只靠颜色」当成主要的反馈方式？",
         answer:
-          "我会讲色盲用户访谈提出的硬要求：反馈必须冗余 —— 标签、对比度和多模态提示要同时给，而不是换一个颜色接着让人猜。",
+          "我会讲 WCAG 的文本间距条款怎么定下了控件清单，以及字体为什么打包进扩展而不是从 CDN 取。",
         evidenceHref: "/projects/spectra#decision-timeline",
         boundary:
           "我不会说一套反馈模型能覆盖所有色觉类型，那需要更大范围的实地验证。",
       },
       {
         id: "spectra-privacy",
-        question: "隐私是怎么改变这个 AR 产品方向的？",
+        question: "字体为什么打包进扩展，而不是运行时去取？",
         answer:
           "我会讲在公共场合被看见这件事本身带来的压力：它让「一眼扫完、自己决定什么时候用」比「一直挂在眼前的辅助」重要得多。",
         evidenceHref: "/projects/spectra#evidence-board",
@@ -762,47 +670,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         "我会把「在情境里当场给出判断」的价值，和隐私成本、戴设备的麻烦、以及真实任务里的识别可靠性放在一起比。",
       evidenceHref: "/projects/spectra#interview-takeaway",
       boundary:
-        "如果 AR 带来的负担大过好处，我愿意把载体换成更简单的。",
-    },
-  },
-  ai: {
-    answers: [
-      {
-        id: "ai-feedback-timing",
-        question: "为什么把 AI 的反馈挪到练习之后，而不是当场给？",
-        answer:
-          "当场纠正会让人更紧张；答完再给，人才留得住状态，也才有空回头想自己刚才说了什么。",
-        evidenceHref: "/projects/ai#decision-timeline",
-        boundary:
-          "我不会假设所有人都偏好事后反馈 —— 这得先把「谁说了算」做成可调的设置，再拿去测。",
-      },
-      {
-        id: "ai-trust-language",
-        question: "你是怎么在反馈的措辞上处理信任的？",
-        answer:
-          "我会把「说得多有把握」「语气能不能调」「反馈具体到什么程度」当成交互决策来谈，而不是当成提示词怎么写。",
-        evidenceHref: "/projects/ai#evidence-board",
-        boundary:
-          "这个案例证明不了模型准不准；它讲的是反馈应该被怎么体验、又该怎么被核对。",
-      },
-      {
-        id: "ai-confidence-metric",
-        question: "怎样才算证明这个 AI 真的让人更准备好了？",
-        answer:
-          "比多次练习之间的信心变化、用户觉得自己有多少控制权，以及答案本身的质量 —— 而不是靠一次好评。",
-        evidenceHref: "/projects/ai#outcome-limits",
-        boundary:
-          "短期的安心、长期准备好、面试表现更好，是三件事。",
-      },
-    ],
-    managerFollowUp: {
-      id: "ai-manager-follow-up",
-      question: "在这个产品里，AI 应该在哪里闭嘴？",
-      answer:
-        "凡是介入会伤害人的自主感的当下，AI 都该退出；等这一轮结束，再把「要看多细」的控制权交回给用户。",
-      evidenceHref: "/projects/ai#interview-takeaway",
-      boundary:
-        "紧张型和自信型的用户我会分开验证，再谈能不能推广。",
+        "如果浏览器自己内建了同样的控件，我愿意直接放弃这个扩展。",
     },
   },
   maze: {

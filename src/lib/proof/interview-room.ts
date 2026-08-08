@@ -18,9 +18,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Proof depth",
-        value: "6 end-to-end cases",
+        value: "5 end-to-end cases",
         detail:
-          "IA, accessibility, AI coaching, a hardware build, an AI-oversight study, and a generative production pipeline — methods and limits shown.",
+          "IA, an accessibility extension, a hardware build, an AI-oversight study, and a generative production pipeline — methods and limits shown.",
       },
       {
         label: "Interview readiness",
@@ -48,20 +48,10 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "Accessibility and inclusive design",
       caseSlug: "spectra",
       proof:
-        "Spectra Lens translated colourblind-user research into multi-modal AR feedback.",
+        "Spectra Lens turns WCAG text-spacing guidance into a browser extension that works on pages I do not control.",
       whyItMatters:
         "Shows inclusive constraints becoming interaction behavior instead of a checklist.",
       href: "/projects/spectra#evidence-board",
-    },
-    {
-      id: "ai-trust-proof",
-      capability: "AI UX and trust",
-      caseSlug: "ai",
-      proof:
-        "The AI coach moved feedback after the interview to protect agency, timing, and stress.",
-      whyItMatters:
-        "Shows judgment about where AI should intervene and where it should stay quiet.",
-      href: "/projects/ai#decision-timeline",
     },
     {
       id: "hardware-proof",
@@ -83,6 +73,16 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
         "Shows the harder half of AI UX: designing so a person keeps checking rather than deferring.",
       href: "/projects/vigil#decision-timeline",
     },
+    {
+      id: "generative-pipeline-proof",
+      capability: "Design systems at generated scale",
+      caseSlug: "hoop",
+      proof:
+        "Hoop Dream held 299 generated assets to one written art bible through a style gate with an explicit rejected-style list.",
+      whyItMatters:
+        "Shows consistency enforced by a process rather than by taste applied one asset at a time.",
+      href: "/projects/hoop#decision-timeline",
+    },
   ],
   questionBank: [
     {
@@ -96,18 +96,10 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "accessibility-feedback-spectra",
       group: "accessibility",
-      question: "Why was multi-modal feedback necessary instead of colour labels alone?",
+      question: "How do you make injected styles win without breaking someone else's layout?",
       proves: "Inclusive design judgment and constraint-driven interaction design.",
       caseSlug: "spectra",
       href: "/projects/spectra#decision-timeline",
-    },
-    {
-      id: "ai-intervention-timing",
-      group: "ai",
-      question: "Where should AI intervene in a stressful interview workflow?",
-      proves: "AI trust, agency, timing, and emotional safety reasoning.",
-      caseSlug: "ai",
-      href: "/projects/ai#decision-timeline",
     },
     {
       id: "validation-limits-connect",
@@ -124,6 +116,14 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       proves: "Systems thinking across sensing, firmware, feedback, and safety.",
       caseSlug: "maze",
       href: "/projects/maze#decision-timeline",
+    },
+    {
+      id: "pipeline-consistency-hoop",
+      group: "product",
+      question: "How do you keep hundreds of generated assets looking like one world?",
+      proves: "Process design, written standards, and reviewing at scale.",
+      caseSlug: "hoop",
+      href: "/projects/hoop#decision-timeline",
     },
   ],
   boundaries: [
@@ -174,9 +174,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "证据深度",
-        value: "6 个端到端案例",
+        value: "5 个端到端案例",
         detail:
-          "覆盖 IA、无障碍、AI 辅导、一台硬件作品、一项 AI 监督研究，以及一条生成式生产管线，并展示方法与限制。",
+          "覆盖 IA、一个无障碍扩展、一台硬件作品、一项 AI 监督研究，以及一条生成式生产管线，并展示方法与限制。",
       },
       {
         label: "面试准备度",
@@ -204,20 +204,10 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "无障碍与包容性设计",
       caseSlug: "spectra",
       proof:
-        "Spectra Lens 把色觉障碍用户研究转化成多模态 AR 反馈。",
+        "Spectra Lens 把 WCAG 的文本间距准则做成了一个扩展，跑在我控制不了的页面上。",
       whyItMatters:
         "证明无障碍约束能变成实际交互行为，而不只是 checklist。",
       href: "/projects/spectra#evidence-board",
-    },
-    {
-      id: "ai-trust-proof",
-      capability: "AI UX 与信任",
-      caseSlug: "ai",
-      proof:
-        "AI coach 把反馈移到面试之后，以保护用户主动权、节奏和压力边界。",
-      whyItMatters:
-        "证明我能判断 AI 应该在哪里介入，以及在哪里保持安静。",
-      href: "/projects/ai#decision-timeline",
     },
     {
       id: "hardware-proof",
@@ -239,6 +229,16 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
         "证明我做得了 AI UX 里更难的那一半：让人继续复核，而不是顺着它点下去。",
       href: "/projects/vigil#decision-timeline",
     },
+    {
+      id: "generative-pipeline-proof",
+      capability: "规模化生产中的一致性",
+      caseSlug: "hoop",
+      proof:
+        "Hoop Dream 靠一份成文美术规范和一道带「拒绝清单」的风格闸门，把 299 张生成资产收在同一种风格里。",
+      whyItMatters:
+        "证明一致性可以由流程守住，而不是靠一张一张凭手感盯。",
+      href: "/projects/hoop#decision-timeline",
+    },
   ],
   questionBank: [
     {
@@ -252,18 +252,10 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "accessibility-feedback-spectra",
       group: "accessibility",
-      question: "为什么需要多模态反馈，而不只是颜色标签？",
+      question: "怎么让注入的样式赢过网站，又不把它的布局撑坏？",
       proves: "包容性设计判断和约束驱动的交互设计。",
       caseSlug: "spectra",
       href: "/projects/spectra#decision-timeline",
-    },
-    {
-      id: "ai-intervention-timing",
-      group: "ai",
-      question: "AI 应该在高压力面试流程的哪里介入？",
-      proves: "AI 信任、主动权、节奏和情绪安全推理。",
-      caseSlug: "ai",
-      href: "/projects/ai#decision-timeline",
     },
     {
       id: "validation-limits-connect",
@@ -280,6 +272,14 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       proves: "跨感测、固件、反馈与安全的系统思考。",
       caseSlug: "maze",
       href: "/projects/maze#decision-timeline",
+    },
+    {
+      id: "pipeline-consistency-hoop",
+      group: "product",
+      question: "几百张生成的资产，怎么让它们看起来像同一个世界？",
+      proves: "流程设计、成文标准，以及大规模审查。",
+      caseSlug: "hoop",
+      href: "/projects/hoop#decision-timeline",
     },
   ],
   boundaries: [

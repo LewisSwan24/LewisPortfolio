@@ -17,15 +17,15 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; open to internships and graduate roles.",
     stats: [
       {
-        value: "6",
+        value: "5",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI coaching, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "Information architecture, an accessibility browser extension, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
-        value: "6",
+        value: "4",
         label: "research methods used",
-        detail: "Card sorting, tree testing, think-aloud, depth interviews, co-design, and field usability testing.",
+        detail: "Card sorting, tree testing, task walk-throughs, and observation during a public exhibition.",
       },
       {
         value: "1",
@@ -46,15 +46,15 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，实习与全职都在看。",
     stats: [
       {
-        value: "6",
+        value: "5",
         label: "端到端案例",
         detail:
-          "信息架构、无障碍、AI 面试辅导、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "信息架构、一个无障碍浏览器扩展、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
-        value: "6",
+        value: "4",
         label: "使用过的研究方法",
-        detail: "卡片分类、树测试、出声思考、深度访谈、共创，以及真实场景可用性测试。",
+        detail: "卡片分类、树测试、任务走查，以及公开展出时的现场观察。",
       },
       {
         value: "1",
@@ -89,22 +89,22 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
     {
       id: "accessibility",
       title: "Accessibility and inclusion",
-      summary: "I design with the target group, not merely for them, and test in realistic contexts.",
-      proof: "Spectra Lens was designed and tested with colourblind users in cafeterias, crossings, and wardrobes.",
+      summary: "I turn accessibility guidance into controls people can actually reach, and keep them working in the wild.",
+      proof: "Spectra Lens turns accessibility guidance into a working extension that rewrites type and spacing on any page.",
       href: "/projects/spectra",
     },
     {
       id: "ai-ux",
       title: "AI interaction design",
       summary: "I design AI as a relationship: expectation-setting, control, feedback timing, and trust.",
-      proof: "AI Interview Assistant moved feedback after the session, because mid-answer coaching read as interruption.",
-      href: "/projects/ai",
+      proof: "Vigil treats the classifier's confidence as deliberately weak evidence, so the reviewer keeps checking instead of deferring.",
+      href: "/projects/vigil",
     },
     {
       id: "prototyping-testing",
       title: "Prototype, test, revise",
       summary: "I build at the fidelity needed to learn, then use tests to decide the next move.",
-      proof: "Spectra Lens and UQ Connect both changed direction after moderated usability sessions.",
+      proof: "UQ Connect renamed a category and re-ran the tree test after the first round showed people hesitating there.",
       href: "/projects/spectra",
     },
   ],
@@ -126,22 +126,22 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
     {
       id: "accessibility",
       title: "无障碍与包容性",
-      summary: "我和目标用户一起设计，并在真实场景中测试。",
-      proof: "Spectra Lens 与色盲用户共创，并在食堂、人行横道和他们自己的衣柜前做真实场景测试。",
+      summary: "我把无障碍准则做成用户真的够得到的控件，并让它在真实网站上持续可用。",
+      proof: "Spectra Lens 把无障碍准则做成了一个能用的扩展：一个 popup 就能改写任意页面的字体与间距。",
       href: "/projects/spectra",
     },
     {
       id: "ai-ux",
       title: "AI 交互设计",
       summary: "我把 AI 体验看成关系设计：预期、控制、反馈时机与信任。",
-      proof: "AI Interview Assistant 把反馈放到练习结束之后，因为答题过程中的提示会被当成打断。",
-      href: "/projects/ai",
+      proof: "Vigil 把分类器的信心分数刻意做成弱证据，让复核的人继续自己判断，而不是顺着它点下去。",
+      href: "/projects/vigil",
     },
     {
       id: "prototyping-testing",
       title: "原型、测试、迭代",
       summary: "我按学习目标选择原型保真度，再用测试决定下一步。",
-      proof: "Spectra Lens 与 UQ Connect 都在可用性测试后调整了关键方向。",
+      proof: "UQ Connect 在第一轮树测试发现有人卡住之后，改了分类名再跑了一次。",
       href: "/projects/spectra",
     },
   ],
@@ -162,22 +162,12 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
     {
       slug: "spectra",
       href: "/projects/spectra",
-      problemType: "Accessibility and AR decision support",
-      challenge: "Colourblind users needed fast, private interpretation of colour-dependent information in public environments.",
-      methods: ["semi-structured interviews", "heuristic review", "co-design", "field usability testing"],
-      sample: "University project. Colourblind participants across interviews, co-design, and in-context usability sessions; small self-recruited sample, outcomes not formally measured.",
-      outcome: "A one-tap AR overlay that answers the decision rather than naming the hue, silent by default with audio opt-in. Prototype only, not shipped.",
-      proves: "I can design inclusive interaction patterns with target users and change the model when context testing contradicts me.",
-    },
-    {
-      slug: "ai",
-      href: "/projects/ai",
-      problemType: "AI coaching and emotionally sensitive product design",
-      challenge: "Job seekers needed realistic interview practice without the social pressure that makes practice feel unsafe.",
-      methods: ["survey", "depth interviews", "competitive teardown", "prototype test", "A/B feedback timing"],
-      sample: "University project. Survey, depth interviews, competitive teardown, and moderated prototype sessions; outcomes not formally measured.",
-      outcome: "An interaction model for AI coaching: feedback after the session rather than mid-answer, a persona warmer than a recruiter, and body-language analysis deliberately rejected. Prototype only.",
-      proves: "I can design AI interactions around trust, control, expectation setting, and emotional pacing.",
+      problemType: "Reading accessibility, built as a browser extension",
+      challenge: "Reading long pages is hard when the typeface, spacing, and contrast are fixed by whoever built the site.",
+      methods: ["accessibility heuristics", "typographic tuning", "cross-site regression testing", "bilingual UI"],
+      sample: "Self-directed build. Chrome extension: content-script style injection, a popup control panel, OpenDyslexic bundled locally, English and Simplified Chinese locale files, Jest unit tests. No user research yet.",
+      outcome: "A working extension that rewrites type and spacing on any page from a single popup, with settings that persist per site.",
+      proves: "I can turn accessibility guidance into a shipped tool, and keep it working across sites I do not control.",
     },
     {
       slug: "maze",
@@ -254,22 +244,12 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
     {
       slug: "spectra",
       href: "/projects/spectra",
-      problemType: "无障碍与 AR 决策辅助",
-      challenge: "色盲用户需要在公共环境中快速、私密地理解依赖颜色的信息。",
-      methods: ["半结构访谈", "竞品启发式评估", "共创", "真实场景可用性测试"],
-      sample: "课程项目。参与者为色盲用户，覆盖访谈、共创与真实场景可用性测试；样本自行招募且规模较小，前后结果未正式测量。",
-      outcome: "一个单击即用的 AR 叠加层：直接回答「该怎么办」而不是报出色名，默认静音、语音改为可选。仅为原型，未上线。",
-      proves: "证明我能和目标用户一起设计包容性互动，并在真实场景测试推翻我的假设时改掉模型。",
-    },
-    {
-      slug: "ai",
-      href: "/projects/ai",
-      problemType: "AI 辅导与情绪敏感型产品设计",
-      challenge: "求职者需要真实面试练习，但又不想承受被观看与被评价的社交压力。",
-      methods: ["问卷", "深度访谈", "竞品拆解", "原型测试", "反馈时机 A/B 测试"],
-      sample: "课程项目。问卷、深度访谈、竞品拆解与主持式原型测试；前后结果未正式测量。",
-      outcome: "一套 AI 辅导的交互模型：反馈放在练习结束之后而非答题过程中，人设比真实面试官更温和，并主动放弃了肢体语言分析。仅为原型。",
-      proves: "证明我能围绕信任、控制感、预期与情绪节奏设计 AI 体验。",
+      problemType: "阅读无障碍，做成浏览器扩展",
+      challenge: "网页的字体、行距和对比度由建站的人决定，读起来吃力的人没有调整余地。",
+      methods: ["无障碍准则应用", "字体与间距调校", "跨站点回归测试", "中英双语界面"],
+      sample: "自主开发。Chrome 扩展：内容脚本注入样式、popup 控制面板、本地打包 OpenDyslexic 字体、中英双语语系文件、Jest 单元测试。尚未做过用户研究。",
+      outcome: "一个能用的扩展：从一个 popup 就能改写任意页面的字体与间距，设置按站点分别保存。",
+      proves: "证明我能把无障碍准则做成真正能用的工具，并让它在我控制不了的网站上持续可用。",
     },
     {
       slug: "maze",
@@ -372,7 +352,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         claim:
           "Best proof that I can turn accessibility research into a practical product interaction model.",
         evidence:
-          "Spectra Lens combines colourblind-user interviews, multi-modal feedback, privacy decisions, and field testing.",
+          "Spectra Lens combines accessibility guidance, cross-site injection testing, and a shipped browser extension.",
         href: "/projects/spectra#evidence-board",
       },
       {
@@ -448,7 +428,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         claim:
           "证明我能把无障碍研究转化为可实施的产品交互模型。",
         evidence:
-          "Spectra Lens 结合色觉障碍用户访谈、多模态反馈、隐私决策与实地测试。",
+          "Spectra Lens 把无障碍准则、跨站点注入测试和一个真的做出来的浏览器扩展接在一起。",
         href: "/projects/spectra#evidence-board",
       },
       {
@@ -484,7 +464,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     proofLinks: [
       { label: "Information architecture proof", href: "/projects/connect" },
       { label: "Accessibility proof", href: "/projects/spectra" },
-      { label: "AI UX proof", href: "/projects/ai" },
+      { label: "AI UX proof", href: "/projects/vigil" },
       { label: "Resume", href: "/resume" },
     ],
   },
@@ -499,7 +479,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     proofLinks: [
       { label: "信息架构证据", href: "/projects/connect" },
       { label: "无障碍证据", href: "/projects/spectra" },
-      { label: "AI UX 证据", href: "/projects/ai" },
+      { label: "AI UX 证据", href: "/projects/vigil" },
       { label: "简历", href: "/resume" },
     ],
   },

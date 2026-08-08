@@ -1,7 +1,6 @@
 export const CURRENT_PROJECT_SLUGS = [
   "connect",
   "spectra",
-  "ai",
   "maze",
   "vigil",
   "hoop",
@@ -12,7 +11,6 @@ export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
 export const LEGACY_PROJECT_SLUG_REDIRECTS: Record<string, CurrentProjectSlug> = {
   "uq-connect": "connect",
   "spectra-lens": "spectra",
-  "ai-interview-assistant": "ai",
   // Only slugs that were genuinely live before the rename belong here; this
   // list mirrors legacyProjectRedirects in next.config.js. "maze", "vigil" and
   // "hoop" are newer, so they have no legacy alias to redirect from.
@@ -32,11 +30,7 @@ export const PROJECT_OG_COPY: Record<
   },
   spectra: {
     title: "Spectra Lens",
-    oneLiner: "Private colour interpretation for real-world accessibility moments.",
-  },
-  ai: {
-    title: "AI Interview Assistant",
-    oneLiner: "A calmer AI coaching loop for interview practice.",
+    oneLiner: "A browser extension that rewrites type and spacing on any page.",
   },
   maze: {
     title: "MazeRunners",

@@ -7,7 +7,6 @@ import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import {
   VizConnect,
   VizSpectra,
-  VizAI,
   VizMaze,
   VizVigil,
   VizHoop,
@@ -277,7 +276,6 @@ const CASE_DEMO: Partial<Record<Slug, CaseDemo>> = {
 const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   connect: [],
   spectra: [],
-  ai: [],
   maze: [],
   vigil: [],
   hoop: [],
@@ -316,8 +314,7 @@ function CoverViz({ slug }: { slug: Slug }) {
   if (slug === "vigil") return <VizVigil />;
   if (slug === "hoop") return <VizHoop />;
   if (slug === "connect") return <VizConnect />;
-  if (slug === "spectra") return <VizSpectra />;
-  return <VizAI />;
+  return <VizSpectra />;
 }
 
 export default async function CasePage({ params }: Props) {

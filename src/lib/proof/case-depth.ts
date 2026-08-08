@@ -22,20 +22,12 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       next: "I would run a longitudinal post-launch study to compare search behaviour and support-ticket volume before and after rollout.",
     },
     spectra: {
-      challenge: "Colour-dependent decisions were slow, awkward, and socially exposing for colourblind users.",
-      role: "Lead UX designer",
-      methods: ["interviews", "co-design", "field usability testing"],
-      evidence: ["interviews with colourblind users", "competitor tool review", "real-environment testing"],
-      outcome: "A one-tap overlay that answers the decision rather than naming the hue, silent by default. Prototype only.",
-      next: "I would prototype the zero-state more deeply and test how little feedback the overlay can provide while still being useful.",
-    },
-    ai: {
-      challenge: "Interview prep tools gave content, but they did not reduce the emotional friction of practice.",
-      role: "UX designer and researcher",
-      methods: ["survey", "interviews", "competitive teardown", "prototype test", "feedback timing test"],
-      evidence: ["survey", "depth interviews", "competitive teardown", "moderated prototype sessions"],
-      outcome: "Post-session feedback was clearly preferred over mid-answer interruption. Prototype only; no controlled experiment.",
-      next: "I would test tone controls that let users choose a gentler or more rigorous interview persona.",
+      challenge: "Font, spacing and contrast are set by whoever built the page, so a reader who needs something different has no way in.",
+      role: "Solo design and build",
+      methods: ["WCAG text-spacing criteria", "existing-extension teardown", "cross-site injection testing"],
+      evidence: ["a working Chrome extension", "Jest coverage of the settings layer", "manual checks across documentation, news and single-page apps"],
+      outcome: "An extension that rewrites type and spacing on any page from one popup, in English and Simplified Chinese, with settings saved per site. DEMO stage.",
+      next: "I would put it in front of someone who actually reads this way and watch which controls they never touch.",
     },
     maze: {
       challenge:
@@ -92,20 +84,12 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       next: "我会继续做上线后的纵向研究，对比搜索行为和支持工单量。",
     },
     spectra: {
-      challenge: "对色盲用户来说，依赖颜色的判断既慢、尴尬，也容易暴露个人情况。",
-      role: "Lead UX Designer",
-      methods: ["访谈", "共创", "真实场景可用性测试"],
-      evidence: ["色盲用户访谈", "竞品工具评估", "真实环境测试"],
-      outcome: "一个单击即用的叠加层：给决定而不是报色名，默认静音。仅为原型。",
-      next: "我会更深入测试 zero-state，验证 AR 覆层最少需要提供多少反馈才足够有用。",
-    },
-    ai: {
-      challenge: "面试准备工具提供内容，但没有真正降低练习时的情绪阻力。",
-      role: "UX Designer & Researcher",
-      methods: ["问卷", "访谈", "竞品拆解", "原型测试", "反馈时机测试"],
-      evidence: ["问卷", "深度访谈", "竞品拆解", "主持式原型测试"],
-      outcome: "结束后反馈明显优于答题中打断。仅为原型，没有做受控实验。",
-      next: "我会测试语气控制，让用户选择更温和或更严格的 AI 面试官。",
+      challenge: "字体、行距和对比度都由建站的人决定，需要不一样的读者没有任何入口。",
+      role: "独立设计与开发",
+      methods: ["WCAG 文本间距条款", "现有扩展拆解", "跨站点注入测试"],
+      evidence: ["一个能跑的 Chrome 扩展", "Jest 覆盖设置层", "在文档站、新闻站与单页应用上的手动验证"],
+      outcome: "一个扩展：从一个 popup 就能改写任意页面的字体与间距，中英双语，设置按站点保存。DEMO 阶段。",
+      next: "我会把它交给一个真的这样读东西的人，看他们从来不碰哪几个控件。",
     },
     maze: {
       challenge:
@@ -251,199 +235,96 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
     spectra: {
       decisions: [
         {
-          label: "Use multi-modal feedback instead of colour-only correction",
+          label: "Bundle the font instead of loading it from a CDN",
           choice:
-            "I designed multi-modal feedback that combined visual overlays with clear confirmation cues.",
+            "OpenDyslexic ships inside the extension package rather than being fetched at runtime.",
           evidence:
-            "Interviews with colourblind users showed that colour labels alone were not enough in fast public decisions.",
+            "A remote font request tells a third party which pages are being read, and it fails whenever the host changes or the reader is offline.",
           tradeoff:
-            "The interface became slightly more complex, but it did not force users to rely on another colour cue.",
+            "The package is heavier, and the font can only be updated by shipping a new version.",
           impact:
-            "The design supported faster recognition while keeping the interaction inclusive for different colourblind types.",
+            "The extension works offline and leaks nothing about the reader's browsing.",
         },
         {
-          label: "Protect privacy in public contexts",
+          label: "Save settings per site, not globally",
           choice:
-            "I kept the assistance lightweight and glanceable so users would not feel exposed while using it.",
+            "Each origin keeps its own spacing and typeface state.",
           evidence:
-            "Participants described colour-dependent tasks as socially awkward when they had to ask others for help.",
+            "Loose spacing that helps on a dense documentation page is unwanted on a news site, and one global switch forces the reader to keep toggling.",
           tradeoff:
-            "The product avoided heavy explanatory screens, which meant onboarding had to be more concise.",
+            "More storage bookkeeping, and a first visit to a new site starts unstyled.",
           impact:
-            "The experience respected privacy and made the tool more plausible for real-world use.",
+            "The reader sets a site once and it stays that way.",
         },
         {
-          label: "Move validation into field testing",
+          label: "Put the controls in a popup, not a context menu",
           choice:
-            "I tested the prototype in realistic environments instead of relying only on desk-based review.",
+            "All controls live in one popup panel opened from the toolbar.",
           evidence:
-            "The core risk was whether the AR cue worked under time pressure, movement, and visual noise.",
+            "A context menu hides the range of what is adjustable behind a right-click and shows one item at a time.",
           tradeoff:
-            "Field testing was messier than controlled testing, but it revealed context-specific usability issues.",
+            "Two clicks to reach a control instead of one, and toolbar space is spent.",
           impact:
-            "The result was a more credible accessibility case with task success tied to real use conditions.",
+            "The whole set of adjustments is visible at once, so nothing has to be discovered.",
         },
       ],
       evidence: [
         {
-          method: "Semi-structured interviews",
-          sample: "12 colourblind participants",
-          question: "Where do colour-dependent tasks create friction, delay, or social exposure?",
-          finding: "Participants wanted support that was fast, private, and did not require asking strangers.",
-          implication: "The tool needed to solve confidence and privacy, not only colour identification.",
+          method: "Guideline review",
+          sample: "WCAG text-spacing criteria",
+          question: "Which typographic properties does the tool have to expose to be useful at all?",
+          finding: "Line height, letter spacing, word spacing and paragraph spacing are the ones with published thresholds.",
+          implication: "Those four became the control set, rather than a general CSS editor.",
         },
         {
-          method: "Co-design workshops",
-          sample: "2 workshops with target users",
-          question: "Which feedback modes feel helpful without becoming distracting?",
-          finding: "Users preferred layered cues that confirmed meaning without overwhelming the scene.",
-          implication: "The interaction model should use multi-modal feedback with restraint.",
+          method: "Cross-site injection testing",
+          sample: "Documentation, news, and single-page-app sites, by hand",
+          question: "Where do injected styles lose to the page's own CSS?",
+          finding: "Inline styles and high-specificity selectors override the injected layer, and single-page apps re-render it away on navigation.",
+          implication: "The content script has to re-apply on route changes, not only on load.",
         },
         {
-          method: "Field usability testing",
-          sample: "8 real-environment tests",
-          question: "Can users complete colour-dependent tasks quickly in realistic public contexts?",
-          finding: "In context, participants wanted the decision made, not the colour named — and preferred silence to announcement.",
-          implication: "The prototype had enough contextual validity to support the accessibility direction.",
+          method: "Unit tests",
+          sample: "Jest over the settings and utility layer",
+          question: "Does per-site state survive save, reload, and reset?",
+          finding: "Covered at the utility level, where the persistence logic lives.",
+          implication: "Regressions in settings behaviour surface before they reach a page.",
         },
       ],
       iterations: [
         {
-          version: "Colour label overlay",
-          change: "Started with direct colour naming and simple AR annotation.",
-          reason: "It was the clearest way to test whether recognition improved at all.",
-          improvement: "Showed that identification helped, but did not fully solve confidence or privacy.",
+          version: "Style injection",
+          change: "Started with a content script writing a stylesheet into the page.",
+          reason: "It was the smallest thing that could show whether the idea worked at all.",
+          improvement: "Worked on simple pages and failed on anything with strong specificity.",
         },
         {
-          version: "Multi-modal cue set",
-          change: "Added confirmatory cues beyond colour labels.",
-          reason: "Participants needed feedback that worked across colourblind types and noisy contexts.",
-          improvement: "Reduced reliance on colour-only interpretation and improved task confidence.",
+          version: "Popup controls",
+          change: "Added a popup panel with the four spacing controls and the typeface switch.",
+          reason: "Editing values by hand is not a tool anyone would use twice.",
+          improvement: "The adjustable range became visible instead of implied.",
         },
         {
-          version: "Field-tested interaction",
-          change: "Simplified the cue timing and visual weight after realistic tests.",
-          reason: "The overlay needed to stay useful while users were moving or scanning quickly.",
-          improvement: "Made the prototype feel more usable outside a controlled design review.",
+          version: "Per-site state and bilingual UI",
+          change: "Added per-origin persistence and English and Simplified Chinese locale files.",
+          reason: "Settings that reset every visit are worse than no settings, and I read in both languages.",
+          improvement: "It became something usable daily rather than a demonstration of injection.",
         },
       ],
       limits: [
         {
-          constraint: "Field testing covered a small number of scenarios and lighting conditions.",
-          whyItMatters:
-            "AR accessibility tools can behave differently across surfaces, lighting, distance, and motion.",
-          nextValidation:
-            "Test the interaction across more lighting conditions, device cameras, and high-pressure tasks.",
+          constraint: "Nobody who needs this has used it.",
+          whyItMatters: "Every control here is reasoned from guidelines, not from watching a reader struggle.",
+          nextValidation: "Sit with readers who rely on loose spacing or dyslexia-friendly typefaces and watch which controls they ignore.",
         },
         {
-          constraint: "The prototype tested recognition and satisfaction, not long-term dependence or trust.",
-          whyItMatters:
-            "A tool that feels useful once may still fail if users cannot trust it repeatedly.",
-          nextValidation:
-            "Run a repeated-use study that measures trust, error recovery, and abandonment over time.",
+          constraint: "It is a DEMO, not a published extension.",
+          whyItMatters: "It has never faced Chrome Web Store review, auto-update, or a site changing underneath it.",
+          nextValidation: "Publish it, then watch which sites break and how quickly.",
         },
       ],
       takeaway:
-        "This case proves I can design accessibility interactions with target users, protect privacy in public contexts, and validate inclusive decisions through field testing.",
-    },
-    ai: {
-      decisions: [
-        {
-          label: "Give feedback after the interview instead of interrupting",
-          choice:
-            "I prioritized post-session feedback so users could stay immersed during practice.",
-          evidence:
-            "Prototype testing showed interruption increased self-consciousness during already stressful practice.",
-          tradeoff:
-            "Users received less immediate correction, but the practice felt more emotionally safe.",
-          impact:
-            "The AI read as a sparring partner rather than a judge who interrupts.",
-        },
-        {
-          label: "Expose control over coaching tone",
-          choice:
-            "I shaped the concept around user control over how rigorous or gentle the AI persona should be.",
-          evidence:
-            "Interviews showed that users had different tolerance for pressure depending on confidence and stage.",
-          tradeoff:
-            "Tone control adds setup complexity, but reduces the risk of a one-size-fits-all coach.",
-          impact:
-            "The product direction treated trust as adjustable, not assumed.",
-        },
-        {
-          label: "Design for emotional safety before feature breadth",
-          choice:
-            "I focused on anxiety reduction and expectation-setting before adding more interview modes.",
-          evidence:
-            "Survey and interview data showed emotional friction was a primary barrier to practice.",
-          tradeoff:
-            "The concept became narrower, but more coherent around the core user need.",
-          impact:
-            "The resulting AI UX had clearer principles for feedback timing, control, and trust.",
-        },
-      ],
-      evidence: [
-        {
-          method: "Survey",
-          sample: "85 responses",
-          question: "What prevents job seekers from practicing interviews regularly?",
-          finding: "Users described anxiety, uncertainty, and fear of judgment as major blockers.",
-          implication: "The assistant needed to reduce emotional cost, not only provide more questions.",
-        },
-        {
-          method: "Depth interviews",
-          sample: "Depth interviews; group size not formally recorded",
-          question: "What makes interview practice feel safe enough to repeat?",
-          finding: "Participants wanted realistic pressure with control over tone and feedback intensity.",
-          implication: "AI behaviour needed explicit expectation-setting and user control.",
-        },
-        {
-          method: "Prototype test",
-          sample: "Moderated prototype sessions; group size not formally recorded",
-          question: "When should the assistant provide feedback without breaking confidence?",
-          finding: "Post-session feedback was preferred over interruption during the answer.",
-          implication: "Feedback timing became a core interaction design decision.",
-        },
-      ],
-      iterations: [
-        {
-          version: "Question generator",
-          change: "Started with basic interview prompts and answer review.",
-          reason: "This tested whether content alone created enough value.",
-          improvement: "Revealed that content was useful but did not address anxiety.",
-        },
-        {
-          version: "Coaching flow",
-          change: "Added session structure, expectation-setting, and post-session feedback.",
-          reason: "Research showed emotional pacing mattered as much as answer quality.",
-          improvement: "Made the experience feel safer and more repeatable.",
-        },
-        {
-          version: "Tone-control concept",
-          change: "Defined a path for gentle versus rigorous interviewer personas.",
-          reason: "Users differed in how much pressure helped them improve.",
-          improvement: "Turned AI trust into a controllable product variable.",
-        },
-      ],
-      limits: [
-        {
-          constraint:
-            "What the prototype sessions surfaced was self-reported confidence and anxiety, not real hiring outcomes.",
-          whyItMatters:
-            "Confidence is important, but it does not prove the assistant improves real interview performance.",
-          nextValidation:
-            "Track repeated practice quality and compare mock interview scores before and after use.",
-        },
-        {
-          constraint: "The AI persona concept was not deeply tested across cultures or seniority levels.",
-          whyItMatters:
-            "Feedback tone can feel supportive or harsh depending on user background and context.",
-          nextValidation:
-            "Run tone preference tests across user groups and interview seniority levels.",
-        },
-      ],
-      takeaway:
-        "This case proves I can design AI interactions around trust, control, feedback timing, and emotional safety rather than treating AI as a feature layer.",
+        "This case proves I can turn accessibility guidance into a working tool and keep it working on pages I do not control. It does not prove the tool has helped anyone yet.",
     },
     maze: {
       decisions: [
@@ -894,166 +775,96 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
     spectra: {
       decisions: [
         {
-          label: "用多模态反馈替代单一颜色提示",
-          choice: "把视觉叠加层和确认反馈组合起来，而不是只报一个颜色名。",
-          evidence: "色盲用户访谈显示，在需要快速判断的公共场景里，只给颜色标签仍然不够。",
-          tradeoff: "界面略复杂了一点，但用户不必再靠另一个颜色线索去反推。",
-          impact: "不同色觉类型的人都能拿到能用的判断依据。",
+          label: "字体打包进扩展，不走 CDN",
+          choice:
+            "OpenDyslexic 直接打包在扩展里，不在运行时去远端取。",
+          evidence:
+            "远端字体请求会把「谁在读哪一页」告诉第三方，而且主机一变或者断网就失效。",
+          tradeoff:
+            "安装包更大，字体也只能靠发新版本更新。",
+          impact:
+            "离线能用，也不会泄露读者的浏览行为。",
         },
         {
-          label: "在公共场合里保护隐私",
-          choice: "把辅助做得足够轻、能一眼扫完，别让用户在公共场合暴露自己。",
-          evidence: "参与者提到，为了颜色去问旁边的人，本身就是件尴尬的事。",
-          tradeoff: "解释性的界面得少写，引导也必须更克制。",
-          impact: "体验更顾及隐私，也更贴近真实的使用场合。",
+          label: "设置按站点保存，不做全局",
+          choice:
+            "每个域名各自保存自己的间距和字体状态。",
+          evidence:
+            "在密集的文档页有用的宽行距，放到新闻站就是多余的；一个全局开关只会逼读者反复切换。",
+          tradeoff:
+            "存储上要多记一层，第一次访问新站点也是没有样式的。",
+          impact:
+            "读者对一个站点设置一次，之后就一直是那样。",
         },
         {
-          label: "把验证挪到真实场景里做",
-          choice: "在真实环境测原型，而不是只在桌面上做评审。",
-          evidence: "关键风险是这些提示在时间压力、走动和视觉噪声下还能不能用。",
-          tradeoff: "真实场景更不可控，但只有它才暴露得出情境问题。",
-          impact: "无障碍上的判断因此能和「任务到底做不做得完」挂上钩。",
+          label: "控件放 popup，不放右键菜单",
+          choice:
+            "所有控件集中在工具栏打开的一个 popup 面板里。",
+          evidence:
+            "右键菜单把「能调什么」藏在一次右键后面，而且一次只显示一项。",
+          tradeoff:
+            "够到控件要点两次而不是一次，也占用了工具栏位置。",
+          impact:
+            "能调的东西一眼看全，不需要靠摸索发现。",
         },
       ],
       evidence: [
         {
-          method: "半结构化访谈",
-          sample: "12 位色觉障碍参与者",
-          question: "颜色依赖的任务在哪里带来摩擦、延迟或社交暴露？",
-          finding: "他们要的是快、私密、不用开口问陌生人。",
-          implication: "这个工具要解决的是「敢不敢下判断」和「会不会被看见」，不只是认颜色。",
+          method: "Guideline review",
+          sample: "WCAG 文本间距条款",
+          question: "这个工具至少要开放哪些排版属性，才算有用？",
+          finding: "行高、字距、词距、段距，这四项有明确阈值可依。",
+          implication: "控件就定在这四项上，而不是做成一个通用 CSS 编辑器。",
         },
         {
-          method: "共创工作坊",
-          sample: "2 场，参与者为目标用户",
-          question: "哪些反馈方式有帮助，又不至于变成打扰？",
-          finding: "他们更喜欢分层、克制的提示，用来确认判断而不是抢走注意力。",
-          implication: "交互模型应该用多模态反馈，但要用得克制。",
+          method: "Cross-site injection testing",
+          sample: "手动跑文档站、新闻站与单页应用",
+          question: "注入的样式在什么地方会输给网页自己的 CSS？",
+          finding: "内联样式和高优先级选择器会盖掉注入层；单页应用一切换路由就把它重新渲染掉了。",
+          implication: "内容脚本必须在路由变化时重新应用，不能只在页面加载时跑一次。",
         },
         {
-          method: "真实场景可用性测试",
-          sample: "8 场真实环境测试",
-          question: "用户能否在真实公共场景中快速完成颜色相关任务？",
-          finding: "在真实场景里，参与者要的是「该怎么办」而不是色名，也更希望它安静，而不是替他们宣告。",
-          implication: "原型在真实情境下站得住，足以支撑这个无障碍方向。",
+          method: "Unit tests",
+          sample: "Jest 覆盖设置与工具层",
+          question: "按站点保存的状态，经得起保存、重载和重置吗？",
+          finding: "持久化逻辑所在的工具层已经被覆盖。",
+          implication: "设置出问题会在到达页面之前就被测出来。",
         },
       ],
       iterations: [
         {
-          version: "色名叠加层",
-          change: "从直接报颜色名和简单的 AR 标注开始。",
-          reason: "先测一件事：识别到底有没有变好。",
-          improvement: "识别确实有帮助，但「敢不敢下判断」和隐私都还没解决。",
+          version: "样式注入",
+          change: "先做一个内容脚本，往页面里写一段样式表。",
+          reason: "这是能看出「这个想法成不成立」的最小实现。",
+          improvement: "简单页面能用，遇到优先级强的网站就失效。",
         },
         {
-          version: "多模态提示组",
-          change: "在颜色标签之外加上确认性的反馈。",
-          reason: "参与者需要的反馈得跨色觉类型、也扛得住嘈杂环境。",
-          improvement: "不再吊在颜色这一条路上，用户下判断时更有底。",
+          version: "popup 控件",
+          change: "加了 popup 面板，放四项间距控件和字体切换。",
+          reason: "要手改数值的东西，没人会用第二次。",
+          improvement: "「能调到什么程度」从暗示变成了看得见。",
         },
         {
-          version: "真实场景打磨版",
-          change: "真实测试之后，简化了提示的时机和视觉分量。",
-          reason: "叠加层必须在人走动、快速扫视的时候仍然好用。",
-          improvement: "原型更接近真实使用，而不只是在设计评审里好看。",
+          version: "按站点保存 + 双语界面",
+          change: "加上按域名持久化，以及中英两套语系文件。",
+          reason: "每次访问都重置的设置比没有设置更糟，而且我两种语言都读。",
+          improvement: "它从一个注入演示，变成了每天真能用的东西。",
         },
       ],
       limits: [
         {
-          constraint: "真实场景测试覆盖的场合和光照条件仍然有限。",
-          whyItMatters: "这类 AR 辅助会被表面材质、光线、距离和移动影响。",
-          nextValidation: "换更多光照条件、不同设备摄像头和更赶时间的任务再测。",
+          constraint: "真正需要它的人，一个都还没用过。",
+          whyItMatters: "这里每一个控件都是从准则推出来的，不是看着谁读得吃力才做的。",
+          nextValidation: "找那些真的依赖宽间距或阅读障碍字体的人坐下来看，他们从来不碰哪几个控件。",
         },
         {
-          constraint: "原型测了识别和满意度，没有测长期的信任。",
-          whyItMatters: "一次好用，不代表用户会一直依赖它。",
-          nextValidation: "做重复使用研究，看信任、出错后的恢复，以及放弃率。",
+          constraint: "它是 DEMO，不是已发布的扩展。",
+          whyItMatters: "它没经历过 Chrome 应用商店审核、自动更新，也没遇到过网站在它脚下改版。",
+          nextValidation: "先发出去，然后看哪些网站先坏、坏得多快。",
         },
       ],
       takeaway:
-        "这个案例证明我能和目标用户一起设计无障碍交互，在公共场合保护他们的隐私，并把包容性决策放到真实场景里验证。",
-    },
-    ai: {
-      decisions: [
-        {
-          label: "把反馈放到面试之后",
-          choice: "反馈一律等这一轮答完再给，让人在练习时能待在状态里。",
-          evidence: "原型测试显示，中途打断会让人一下子意识到「我正在被评价」。",
-          tradeoff: "少了即时纠正，但练习变得更安全、也更愿意再来一次。",
-          impact: "这个 AI 因此更像陪练，而不是随时插话的评委。",
-        },
-        {
-          label: "把语气的控制权交给用户",
-          choice: "把「温和还是严格」做成用户自己能选的方向。",
-          evidence: "访谈显示，处在不同准备阶段的人，能接受的压力完全不同。",
-          tradeoff: "多了一层设置，但避免了一套语气套所有人。",
-          impact: "信任因此变成一个可以调的产品变量，而不是碰运气。",
-        },
-        {
-          label: "先解决情绪上的安全感",
-          choice: "先做「降低紧张」和「提前讲清楚会发生什么」，而不是先堆更多模式。",
-          evidence: "问卷和访谈都指向同一件事：挡住练习的是情绪，不是内容。",
-          tradeoff: "范围窄了，但正好压在最核心的需求上。",
-          impact: "整套 AI 体验的原则因此定在三件事上：什么时候给反馈、谁说了算、凭什么信它。",
-        },
-      ],
-      evidence: [
-        {
-          method: "问卷调查",
-          sample: "85 份回收问卷",
-          question: "是什么阻碍求职者持续练习面试？",
-          finding: "受访者说得最多的三件事：紧张、心里没底、怕被评价。",
-          implication: "助手要降低情绪成本，而不是只多给几道题。",
-        },
-        {
-          method: "深度访谈",
-          sample: "分组人数未正式记录",
-          question: "什么让面试练习安全到可以重复？",
-          finding: "他们既要真实的压力，也要能自己调反馈的强度。",
-          implication: "AI 的行为要先讲清楚会发生什么，再把控制权交回给人。",
-        },
-        {
-          method: "原型测试",
-          sample: "主持式；分组人数未正式记录",
-          question: "什么时候给反馈最不破坏信心？",
-          finding: "答完再给，比中途打断更受欢迎。",
-          implication: "反馈时机因此成为这个产品最核心的交互决策。",
-        },
-      ],
-      iterations: [
-        {
-          version: "出题器",
-          change: "先从基础面试题和答案点评做起。",
-          reason: "先测一件事：光有内容够不够。",
-          improvement: "内容确实有用，但一点都没缓解紧张。",
-        },
-        {
-          version: "陪练流程",
-          change: "加上一轮练习的结构、事前的预期说明，以及答完之后才给的反馈。",
-          reason: "研究显示，情绪节奏和答案质量一样重要。",
-          improvement: "体验变得更安全，也更容易让人愿意再练一次。",
-        },
-        {
-          version: "语气可调方案",
-          change: "定义了温和与严格两种面试官人设的方向。",
-          reason: "不同的人需要的压力强度本来就不一样。",
-          improvement: "把「信不信得过它」变成用户自己能调的东西。",
-        },
-      ],
-      limits: [
-        {
-          constraint: "测的多是用户自己报的信心和紧张程度，不是真实的录用结果。",
-          whyItMatters: "信心重要，但不等于真实面试表现真的变好了。",
-          nextValidation: "跟踪重复练习的质量，并对比使用前后的模拟面试评分。",
-        },
-        {
-          constraint: "人设还没有跨文化、跨资历层级深入测过。",
-          whyItMatters: "同一句反馈，换个背景和场合，可能被听成支持，也可能被听成冒犯。",
-          nextValidation: "在不同用户群和不同面试资历上测语气偏好。",
-        },
-      ],
-      takeaway:
-        "这个案例证明我能围绕信任、控制权、反馈时机和情绪安全去设计 AI 交互，而不是把 AI 当成又一个功能开关。",
+        "这个案例证明我能把无障碍准则做成一个真能用的工具，并让它在我控制不了的页面上继续可用。它还不能证明这个工具帮到了谁。",
     },
     maze: {
       decisions: [
@@ -1375,36 +1186,19 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
     },
     spectra: {
       proves:
-        "This case proves I can translate accessibility research into inclusive interaction decisions under real-world constraints.",
+        "This case proves I can turn accessibility guidance into a working tool, and keep it working on pages I do not control.",
       inspect: [
-        "How colourblind-user interviews shaped the feedback model.",
-        "How privacy in public contexts changed the AR interaction.",
-        "How field testing exposed environment and lighting constraints.",
+        "Why the font is bundled in the extension instead of fetched from a CDN.",
+        "Why settings are saved per site rather than globally.",
+        "Where injected styles lose to a page's own CSS, and what that forced.",
       ],
       questions: [
-        "How did you prevent colour-only feedback from becoming the core interaction?",
-        "What privacy risks would you validate before shipping?",
+        "How do you make injected styles win without breaking the layout?",
+        "What would you watch first if you put this in front of a real reader?",
       ],
       bestFit: [
-        "Accessibility, health, public-space, or assistive technology teams.",
-        "Product teams that need inclusive design beyond compliance.",
-      ],
-    },
-    ai: {
-      proves:
-        "This case proves I can design AI feedback flows that protect user control, trust, and emotional safety.",
-      inspect: [
-        "Why feedback moved from live interruption to post-session coaching.",
-        "How tone and confidence language shaped user trust.",
-        "How anxiety, control, and usefulness were balanced in the flow.",
-      ],
-      questions: [
-        "Where should AI intervene, and where should it stay quiet?",
-        "How would you validate whether feedback improves confidence without increasing stress?",
-      ],
-      bestFit: [
-        "AI UX, learning tools, coaching, or productivity teams.",
-        "Teams designing AI assistance around trust and user agency.",
+        "Accessibility teams that want a designer who can also ship the tool.",
+        "Product teams where design work reaches the browser, not just the mockup.",
       ],
     },
     maze: {
@@ -1479,36 +1273,19 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
     },
     spectra: {
       proves:
-        "This case proves I can translate accessibility research into inclusive interaction decisions under real-world constraints.",
+        "这个案例证明我能把无障碍准则做成一个真能用的工具，并让它在我控制不了的页面上继续可用。",
       inspect: [
-        "How colourblind-user interviews shaped the feedback model.",
-        "How privacy in public contexts changed the AR interaction.",
-        "How field testing exposed environment and lighting constraints.",
+        "为什么字体打包进扩展，而不是从 CDN 取。",
+        "为什么设置按站点保存，而不是做成全局。",
+        "注入的样式在哪里会输给网页自己的 CSS，以及这件事逼出了什么改动。",
       ],
       questions: [
-        "How did you prevent colour-only feedback from becoming the core interaction?",
-        "What privacy risks would you validate before shipping?",
+        "怎么让注入的样式赢过网站，又不把布局撑坏？",
+        "如果把它交到一个真实读者手上，你会先看什么？",
       ],
       bestFit: [
-        "Accessibility, health, public-space, or assistive technology teams.",
-        "Product teams that need inclusive design beyond compliance.",
-      ],
-    },
-    ai: {
-      proves:
-        "This case proves I can design AI feedback flows that protect user control, trust, and emotional safety.",
-      inspect: [
-        "Why feedback moved from live interruption to post-session coaching.",
-        "How tone and confidence language shaped user trust.",
-        "How anxiety, control, and usefulness were balanced in the flow.",
-      ],
-      questions: [
-        "Where should AI intervene, and where should it stay quiet?",
-        "How would you validate whether feedback improves confidence without increasing stress?",
-      ],
-      bestFit: [
-        "AI UX, learning tools, coaching, or productivity teams.",
-        "Teams designing AI assistance around trust and user agency.",
+        "希望设计师能顺手把工具做出来的无障碍团队。",
+        "设计工作要一路做到浏览器里、而不是停在稿子上的产品团队。",
       ],
     },
     maze: {
@@ -1686,30 +1463,13 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
       anchorId: "decision-timeline",
     },
     {
-      question: "How did privacy in public contexts change the AR product model?",
+      question: "Why bundle the font instead of loading it from a CDN?",
       reason: "Tests judgment around social exposure, glanceability, and user control.",
       anchorId: "evidence-board",
     },
     {
       question: "What would field testing need to prove before shipping?",
       reason: "Grounds the outcome story in lighting, motion, and real-world constraints.",
-      anchorId: "outcome-limits",
-    },
-  ],
-  ai: [
-    {
-      question: "Why did feedback move from live interruption to post-session coaching?",
-      reason: "Tests whether the AI UX respects timing, anxiety, and user agency.",
-      anchorId: "decision-timeline",
-    },
-    {
-      question: "How did you decide what emotional safety means in an AI interview tool?",
-      reason: "Connects trust, tone, and control to a concrete interaction model.",
-      anchorId: "evidence-board",
-    },
-    {
-      question: "What would you measure to prove confidence gains are durable?",
-      reason: "Checks whether AI assistance is useful beyond a short first-session response.",
       anchorId: "outcome-limits",
     },
   ],
