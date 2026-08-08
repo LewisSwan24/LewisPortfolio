@@ -170,7 +170,7 @@ test.describe("Projects Page", () => {
 
         await page.setViewportSize({ width: 390, height: 844 });
         await expect(
-            matrix.locator(".evidence-matrix-mobile-label").filter({ hasText: "AI Coach" }).first(),
+            matrix.locator(".evidence-matrix-mobile-label").filter({ hasText: "Vigil" }).first(),
         ).toBeVisible();
     });
 
@@ -399,8 +399,10 @@ test.describe("Projects Page", () => {
         await page.goto("/projects/spectra");
 
         await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/colourblind/i).first()).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/privacy/i).first()).toBeVisible();
+        // The case is the browser extension that exists, not the AR tool the
+        // Codex-generated copy invented. Assert the build and its stated limit.
+        await expect(page.locator("#long-form").getByText(/extension/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/spacing/i).first()).toBeVisible();
     });
 
     test("project detail should keep related visuals inside their cards", async ({ page }) => {
