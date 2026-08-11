@@ -10,7 +10,10 @@ describe("proof release bundle", () => {
     expect(bundle.outputDir).toBe("docs/proof-release/2026-05-10");
     expect(bundle.summary.roles).toBe(4);
     expect(bundle.summary.routes).toBe(31);
-    expect(bundle.summary.maintenanceEntries).toBe(96);
+    // 92: maintenance roleEntries flatMaps over the English proofClaims.
+    // Removing the fabricated AI Interview Assistant took the ai-ux packet
+    // from three claims to two, and accessibility from three to two.
+    expect(bundle.summary.maintenanceEntries).toBe(92);
     expect(bundle.summary.anchors).toBeGreaterThan(0);
     expect(bundle.commands).toContain("pnpm proof:bundle");
   });

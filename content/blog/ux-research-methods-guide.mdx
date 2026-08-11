@@ -1,10 +1,10 @@
 ---
 title: "The cheapest method caught what the expensive ones missed"
 date: "2026-01-10"
-excerpt: "Restructuring a university portal, I ran a card sort, a tree test and think-aloud sessions. The finding that changed the most labels came from two people who had never heard of the university."
+excerpt: "We planned validated loneliness scales and correlation thresholds. What actually changed the product was one participant asking how to get back to the previous page."
 tags:
   - UX Research
-  - Information Architecture
+  - Usability Testing
   - Design Process
 author: "Lewis Dong"
 published: true
@@ -12,50 +12,68 @@ published: true
 
 Method guides usually read as a menu: here are twelve techniques, here is when to use each. That framing is not wrong, but it skips the part that actually matters — what a given method structurally *cannot* tell you, and what you therefore still have to go and find some other way.
 
-On [UQ Connect](/projects/connect) I restructured a university portal whose top level was twelve categories named after the departments that owned them: HiQ, SI-net, mySI-net, ask.UQ. I used three methods. Each answered exactly one question, and the most useful finding came from none of them.
+On [UQ Connect](/projects/connect) — a semester-long team project building a social platform for international students — we ran three rounds of research between August and November. We also set up more measurement apparatus than most student projects ever touch. The finding that changed the product most came from none of it, and cost nothing.
+
+## We wrote the pass mark first
+
+Before a single interview, every hypothesis got a written threshold. Not "we think students disengage when they are tired," but:
+
+> We are right if ≥70% report that participation tracks weekly energy and load, and the logs show a negative correlation at `p<.05`.
+
+Four hypotheses, four thresholds. One of them planned to use UCLA-3 for loneliness and WHO-5 for wellbeing, looking for r ≤ −0.4 between the two.
+
+I still think this was the right instinct, and I would do it again. The whole point of writing a threshold down is that it can fail. Without one, whatever the interviews return can be read as support — you go looking for quotes that fit, and interviews are generous enough to supply them.
+
+## What the interviews actually killed
+
+Thirty-three transcripts in the first round, across five interviewers, between 15 and 30 August. Two assumptions did not survive.
+
+The first was that language proficiency was the barrier. It was not. The same students, at the same level of English, went quiet in fast, loud, crowded rooms and spoke freely in small, slow ones. The barrier is pace and group size — which is a completely different product problem, because you cannot fix proficiency but you can absolutely fix format.
+
+The second was that the gap was exposure. It was follow-through. People found the events fine. They still did not go.
+
+Both are written down in the learning cards as things we got wrong, which is the only reason I can tell you about them now.
 
 ## Think-aloud: where people give up
 
-I ran task-based sessions on the existing portal and watched where people stopped trying. The most quoted moment:
+Second round, September, on a prototype that already ran. A participant clicking through campus events, thinking out loud:
 
-> "I just Google 'UQ how to drop a course'. I'd never look for it in the portal."
+> it shows I'm attending this. Oh wait, but it's still clickable, like attending and joining. And this button kind of disturbing.
 
-That is not a navigation problem you fix by relabelling. It says the portal had already lost, and users had routed around it entirely. Think-aloud is good at exactly this: it shows the moment of abandonment, which no amount of structural analysis will surface — because structural analysis assumes people are still inside the structure.
+> Not sure what the one button behind was doing. Maybe chat to someone.
 
-What it cannot do is tell you what the structure should be instead. Five people giving up in five different places does not add up to an architecture.
+> Can I go to the previous page? How can I do that?
 
-## Open card sort: the users' own grouping
+> Skill swap. Share your skills. Not sure what that is.
 
-So: an open card sort, where participants grouped the portal's common tasks and named the groups themselves. Affinity mapping across the results clustered around five life stages — arriving, studying, belonging, supporting myself, moving on.
+Four defects in one session. None of them needs a validated scale to detect, and none of them would have surfaced in a demo, because in a demo the person driving already knows where everything is.
 
-That gave the shape. Twelve department-owned categories collapsed into six task-led ones, with "I'm new" promoted to the front door, because arriving is the stage with the least existing knowledge and the most urgency.
+This is what think-aloud is uniquely good at: the moment of abandonment. Structural analysis cannot see it, because structural analysis assumes the person is still inside the structure.
 
-What a card sort cannot do is tell you whether the resulting tree works. It is a generative method producing a hypothesis — and it is very easy to fall in love with a hypothesis you watched real users build with their own hands.
+What it cannot do is tell you what to build instead. Four people stuck in four places is not a design.
 
-## Tree test: does the structure survive contact
+## The response was structural, so the answer had to be
 
-So the candidate structures went into an unmoderated tree test against the original: no visual design, no search, just the hierarchy and a set of tasks. This is the only one of the three that produces a comparison rather than an anecdote.
+On 3 October we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area.
 
-It also earned the decision I am most pleased with, which was a *hedge*. The winning tree kept an A–Z index as a secondary route. Task-led navigation is better for people who do not know the vocabulary and worse for people who do — the returning student who knows the thing is called SI-net and wants it in one hop. Keeping both is not indecision; it serves two populations the tree test could show separately.
+That is the decision I am most pleased with, and it is not a clever one. It is just the recognition that "there is no way back" and "this card contradicts its own button" are not component bugs. You cannot fix a missing return path one screen at a time. The November build started from that sheet.
 
-## The one that caught the most
+## What the expensive apparatus never produced
 
-Every category name went to two readers with no University of Queensland background for a plain-language review. Cost: an afternoon. It caught four names that sounded fine to anyone inside the institution and meant nothing outside it.
+Here is the part I would rather state than let a reader assume.
 
-None of the three "real" methods could have caught those, and it is worth being precise about why. Card-sort participants were students — they had already absorbed the institutional vocabulary, so a name that is only decodable from the inside reads as perfectly clear to them. Think-aloud drew on the same population. And a tree test measures whether people reach the right node, not whether the label would mean anything to someone who has not arrived yet — which, for a portal whose front door is "I'm new", is precisely the audience that matters most.
+We wrote the thresholds. We never formally scored the transcripts against them. There is no table anywhere in that repository showing hypothesis one passing at 74% and hypothesis three failing at 31%. What I have is a set of qualitative patterns that happen to point in the direction the thresholds anticipated — which is precisely the failure mode pre-registration is supposed to prevent.
 
-The blind spot was shared across all three methods, because it came from the sample rather than from the technique.
-
-## What only showed up at higher fidelity
-
-One more, because it argues against testing structure in isolation forever. "Money" and "My account" tested fine as tree nodes, and became genuinely confusable once they sat on a screen together. Renamed, retested, gone. Some problems are not architecture problems — they only exist once things are adjacent.
+So the honest scoreboard: the pre-written thresholds shaped what we asked, and kept us from quietly reframing misses as findings. They did not, in the end, produce a number. The cheap method produced four fixable defects in an afternoon.
 
 ## The honest boundary
 
-This was coursework. The IA was tested, not deployed. I can walk through how the card sort was grouped, how the tree-test tasks were written, and why each label changed. I have never measured what it did to real search behaviour or support-ticket volume, because it never went live. That is a genuine limit on what the project proves, and I would rather state it than let a reader assume otherwise.
+This was a course project with five people. I ran 14 of the 71 interviews and owned the front-end component system and the shared state layer; the map, the wellness hub and the matching logic were other people's work.
+
+The MVP runs on mock data. The backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. And no round recorded completion times or a fixed success criterion — which means I can tell you the September navigation defect did not recur in the November task chain, and I cannot tell you by how much anything improved.
 
 ## The actual takeaway
 
 Choosing a method is less about matching a technique to a question than about knowing what each one is blind to, and covering that blind spot with something else — often something much cheaper.
 
-Three methods told me where people gave up, what grouping matched their mental model, and which of two structures performed better. All three shared one blind spot, because all three drew on the same population. Two outsiders and an afternoon covered it.
+Set the pass mark in advance anyway. It disciplines the question even when it does not produce the number. But do not mistake the apparatus for the evidence: the thing that moved this product was one person, one prototype, and the question *how do I go back?*

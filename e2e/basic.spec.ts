@@ -1,7 +1,7 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|circles|maze|vigil|hoop)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|spectra|ai|maze|vigil|hoop)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 /**
  * Next's dev server sometimes issues a full reload while it compiles a route for
@@ -170,7 +170,7 @@ test.describe("Projects Page", () => {
 
         await page.setViewportSize({ width: 390, height: 844 });
         await expect(
-            matrix.locator(".evidence-matrix-mobile-label").filter({ hasText: "AI Coach" }).first(),
+            matrix.locator(".evidence-matrix-mobile-label").filter({ hasText: "Vigil" }).first(),
         ).toBeVisible();
     });
 
@@ -255,7 +255,7 @@ test.describe("Projects Page", () => {
     });
 
     test("cases without a playable build should not show a demo", async ({ page }) => {
-        for (const slug of ["connect", "spectra", "ai", "circles"]) {
+        for (const slug of ["connect", "spectra", "ai"]) {
             await page.goto(`/projects/${slug}`);
             await expect(page.locator(".case-demo")).toHaveCount(0);
         }
@@ -391,16 +391,18 @@ test.describe("Projects Page", () => {
         await page.goto("/projects/connect");
 
         await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/task-first/i).first()).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/tree test/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/mock data/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/think-aloud/i).first()).toBeVisible();
     });
 
     test("spectra detail should expose inclusive design depth", async ({ page }) => {
         await page.goto("/projects/spectra");
 
         await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/colourblind/i).first()).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/privacy/i).first()).toBeVisible();
+        // The case is the browser extension that exists, not the AR tool the
+        // Codex-generated copy invented. Assert the build and its stated limit.
+        await expect(page.locator("#long-form").getByText(/extension/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/spacing/i).first()).toBeVisible();
     });
 
     test("project detail should keep related visuals inside their cards", async ({ page }) => {
@@ -724,7 +726,7 @@ test.describe("Responsive Design", () => {
             "/projects/connect",
             "/projects/spectra",
             "/projects/ai",
-            "/projects/circles",
+            "/projects/hoop",
             "/zh",
             "/zh/projects",
             "/zh/hire",

@@ -7,8 +7,6 @@ import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import {
   VizConnect,
   VizSpectra,
-  VizAI,
-  VizCircles,
   VizMaze,
   VizVigil,
   VizHoop,
@@ -278,8 +276,6 @@ const CASE_DEMO: Partial<Record<Slug, CaseDemo>> = {
 const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   connect: [],
   spectra: [],
-  ai: [],
-  circles: [],
   maze: [],
   vigil: [],
   hoop: [],
@@ -318,9 +314,7 @@ function CoverViz({ slug }: { slug: Slug }) {
   if (slug === "vigil") return <VizVigil />;
   if (slug === "hoop") return <VizHoop />;
   if (slug === "connect") return <VizConnect />;
-  if (slug === "spectra") return <VizSpectra />;
-  if (slug === "ai") return <VizAI />;
-  return <VizCircles />;
+  return <VizSpectra />;
 }
 
 export default async function CasePage({ params }: Props) {
@@ -668,29 +662,37 @@ export default async function CasePage({ params }: Props) {
               {k === "connect" && (
                 <div className="cs-tree">
                   <div>
-                    <h6>
-                      {isZh ? "原版 · 12 个部门导向" : "Before · 12 staff-oriented"}
-                    </h6>
+                    <h6>{isZh ? "假设 · 进场之前" : "Assumed · before fieldwork"}</h6>
                     <ul>
-                      <li className="ko">HiQ</li>
-                      <li className="ko">SI-net</li>
-                      <li className="ko">my.UQ</li>
-                      <li className="ko">ask.UQ</li>
-                      <li className="ko">Money</li>
-                      <li className="ko">+7 more</li>
+                      <li className="ko">
+                        {isZh ? "语言能力是障碍" : "Language proficiency is the barrier"}
+                      </li>
+                      <li className="ko">{isZh ? "缺口在曝光" : "The gap is exposure"}</li>
+                      <li className="ko">
+                        {isZh ? "迎新活动本身能建立连接" : "Mixers build connections"}
+                      </li>
+                      <li className="ko">
+                        {isZh ? "给一个契合度分数就够了" : "A match score is enough"}
+                      </li>
                     </ul>
                   </div>
                   <div>
                     <h6>
-                      {isZh ? "新版 · 6 个任务导向" : "After · 6 task-oriented"}
+                      {isZh ? "发现 · 71 份逐字稿之后" : "Found · after 71 transcripts"}
                     </h6>
                     <ul>
-                      <li className="ok">{isZh ? "我是新生" : "I'm new"}</li>
-                      <li className="ok">{isZh ? "学业" : "Study"}</li>
-                      <li className="ok">{isZh ? "归属" : "Belong"}</li>
-                      <li className="ok">{isZh ? "缴费 & 财务" : "Fees & finance"}</li>
-                      <li className="ok">{isZh ? "校园生活" : "Life on campus"}</li>
-                      <li className="ok">{isZh ? "毕业离开" : "Moving on"}</li>
+                      <li className="ok">
+                        {isZh ? "障碍是节奏与人数规模" : "Pace and group size"}
+                      </li>
+                      <li className="ok">
+                        {isZh ? "缺口在跟进" : "The gap is follow-through"}
+                      </li>
+                      <li className="ok">
+                        {isZh ? "重复 + 共同任务才留得住" : "Repetition plus a shared task"}
+                      </li>
+                      <li className="ok">
+                        {isZh ? "匹配必须说明理由" : "A match has to say why"}
+                      </li>
                     </ul>
                   </div>
                 </div>

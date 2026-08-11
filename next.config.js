@@ -12,7 +12,6 @@ const legacyProjectRedirects = [
   ["uq-connect", "connect"],
   ["spectra-lens", "spectra"],
   ["ai-interview-assistant", "ai"],
-  ["connect-circles", "circles"],
 ].flatMap(([from, to]) => [
   {
     source: `/projects/${from}`,
@@ -25,6 +24,18 @@ const legacyProjectRedirects = [
     permanent: true,
   },
 ]);
+
+// Connect Circles and the AI Interview Assistant both described projects that
+// never existed, so the cases were removed rather than corrected. There is no
+// honest destination for their URLs, and a 404 on a formerly indexed page is
+// worse than landing on the work index.
+const retiredCaseRedirects = ["", "/en", "/zh"].flatMap((prefix) =>
+  ["circles", "connect-circles", "ai", "ai-interview-assistant"].map((slug) => ({
+    source: `${prefix}/projects/${slug}`,
+    destination: `${prefix || "/en"}/projects`,
+    permanent: true,
+  }))
+);
 
 // The hiring section used to fan out into 19 leaf routes plus a /hire/[role]
 // tree. Nothing linked to them, the sitemap never listed them, and they were
@@ -188,6 +199,7 @@ const nextConfig = {
   async redirects() {
     return [
       ...legacyProjectRedirects,
+      ...retiredCaseRedirects,
       ...retiredHiringRedirects,
       ...disabledSurfaceRedirects(),
     ];

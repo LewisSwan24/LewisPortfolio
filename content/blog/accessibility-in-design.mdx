@@ -1,59 +1,49 @@
 ---
-title: "The accessibility constraint that wasn't in the guidelines"
-date: "2026-01-05"
-excerpt: "Designing an AR tool for colourblind users, the requirement that changed the design most had nothing to do with contrast ratios. People did not want to be seen using it."
+title: "Accessibility guidelines are the easy part"
+date: "2026-01-08"
+excerpt: "I built a browser extension that lets a reader change type and spacing on any page. The guidelines told me which controls to build. Nothing told me how to win against a page that did not want to be changed."
 tags:
   - Accessibility
-  - Inclusive Design
+  - Front-end
   - Design Process
 author: "Lewis Dong"
 published: true
 ---
 
-Accessibility work has a default shape: check the contrast, size the touch targets, write the alt text, never encode meaning in colour alone. That list is real and I use it. But on [Spectra Lens](/projects/spectra) — an AR tool that helps colourblind users read colour in the world — the requirement that changed the design most was not on any list I could have looked up.
+Accessibility work has a default shape: check the contrast, size the touch targets, write the alt text, never encode meaning in colour alone. That list is real and I use it. But building [Spectra Lens](/projects/spectra) — a browser extension that lets a reader change type and spacing on any page — taught me that the list is the part someone else already solved for you.
 
-It came out of an interview, from a second-year PhD student with deuteranopia:
+The hard part has no guideline. You are a guest on someone else's page, and every page fights you differently.
 
-> "The moment I pull out an app, the conversation stops. I'd rather guess than explain."
+## What the guidelines did settle
 
-Nothing in WCAG covers that. It is not a perception problem. It is what using the fix costs you socially.
+WCAG's text-spacing criterion is unusually concrete. It names four properties — line height, letter spacing, word spacing, paragraph spacing — and gives thresholds a page should survive without breaking. That decided the control set. Without it I would have built a general CSS editor, which is a tool nobody wants to operate.
 
-## What the interviews actually said
+So the popup exposes those four, plus a typeface switch. Not because four felt like the right number, but because those four are the ones with published thresholds behind them.
 
-I ran semi-structured interviews across colour vision deficiency subtypes — deutan, protan, tritan — because the subtypes fail differently and I did not want to design for an average that describes nobody. Alongside that, a heuristic pass over existing colour-identification tools, and a co-design session mapping everyday colour moments.
+## What the guidelines did not settle
 
-Three things came back that a compliance checklist does not ask about.
+**Injected styles lose by default.** A stylesheet added at the end still loses to an inline `style` attribute, and loses to a selector with higher specificity. Documentation sites were fine. News sites, with their layered themes, mostly ignored me.
 
-**The decision window is two to three seconds.** Choosing a shirt, judging whether meat has turned, reading a status light. A tool slower than that loses to guessing — and people know it, so they do not open it twice.
+**Single-page apps throw your work away.** Inject on load, navigate to another route, and the framework re-renders the subtree without your styles. The content script has to watch for route changes and re-apply — which no accessibility document mentions, because it is not an accessibility problem. It is a "you do not own this page" problem.
 
-**People want the answer, not the label.** Existing tools optimise for naming the hue precisely: "sage", "olive". Nobody in my interviews wanted the name. They wanted to know whether the food was still good. Naming is the part that is easy to build, which is why it is the part that got built.
+**Global settings are the wrong default.** Loose line height helps enormously on a dense documentation page. On a news site it just makes an article twice as long to scroll. A single global toggle means the reader is constantly turning the tool on and off, which is a good way to make them stop using it. Settings save per origin instead.
 
-**Most would rather be wrong than visibly assisted.** That is the quote above, and it was not one person. It reframed the project: the tool was competing not against other apps but against the option of quietly guessing.
+## The decision I most want to be asked about
 
-## What that changed
+The OpenDyslexic font ships inside the extension package rather than being fetched from a CDN at runtime.
 
-**An overlay, not a filter.** The obvious build is a full-screen recolouring filter. I used a low-opacity annotation layer instead. A filter replaces the world; an overlay annotates it. The user is still looking at the real thing, and can hand the phone to someone or glance away without losing their place.
+A CDN would be smaller to distribute and easier to update. But a remote font request tells whoever hosts it which pages are being read, and it breaks the moment the host changes or the reader is offline. An accessibility tool that quietly reports your browsing to a third party is not one I want to have written.
 
-**Voice off by default.** This one came straight from the social-exposure finding. Spoken output is the accessible-by-default choice in most design systems, and here it was the feature people most wanted to be able to switch off. It ships silent, with voice as opt-in.
-
-**One button. No account, no colour dictionary, no setup.** Point, get the decision.
-
-**Say what to do, not what you are looking at.** "What you are looking at" is the phrasing that makes a tool feel like a diagnostic device, and a diagnostic device is exactly what nobody wanted to be seen holding.
-
-## What testing changed again
-
-Testing happened where the decisions happen — the canteen, a crossing, participants' own wardrobes. Two things surfaced only there.
-
-The overlay opacity I had settled on obscured the texture of food, which is a cue people were already using. I lowered it, and added a haptic confirmation to carry the certainty the opacity had been carrying.
-
-And in noisy environments, voice feedback was slower than simply reading the overlay — the reverse of the assumption that audio is the more accessible channel. Silent default, voice on request: confirmed by behaviour rather than by principle.
+The cost is real: the package is heavier, and updating the font means shipping a new version. I took it.
 
 ## The honest boundary
 
-This was a university project. I recruited the participants myself, the sample was small, and there is no clinical validation behind the colour model. I can describe what these participants did in real settings and why each decision followed from it. I cannot tell you it generalises, and a portfolio that implies otherwise is selling something.
+Nobody who needs this has used it.
+
+Every control here is reasoned from a guideline or from watching a page break. That is enough to build something, and nowhere near enough to claim it helps. The obvious next step is the one I have not taken: give it to someone who reads this way and watch which controls they never touch. My guess is that at least one of the four is dead weight, and I would rather find that out than keep it because a specification mentions it.
+
+It is a DEMO. It runs, the settings layer has tests, and it has never faced a store review or a site changing underneath it.
 
 ## What I took from it
 
-Compliance rules are a floor, and a floor worth having — they encode failures the field has already paid for. But they describe properties of an *interface*, and the thing that decided this design was a property of the *situation*: who else is in the room when you need help.
-
-You do not find that in a checklist. You find it by asking someone what it costs them to use the thing you built, and then believing the answer even when it contradicts a default you thought was settled.
+Compliance rules are a floor, and a floor worth having — they encode failures the field has already paid for. But they describe properties of an *interface you control*. The moment your work has to survive on someone else's page, most of the difficulty sits somewhere the checklist never looks.

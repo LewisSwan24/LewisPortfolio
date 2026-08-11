@@ -9,57 +9,50 @@ export function VizConnect() {
         </defs>
         <rect width="520" height="400" fill="url(#paper-c)" opacity="0.5" />
         <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
-          BEFORE · 12 TOP LEVELS
+          THREE ROUNDS · AUG–NOV 2025
         </text>
-        {["Study", "HiQ", "SI-net", "Money", "my.UQ", "Library", "Hub", "IT", "ask.UQ", "Calendar", "More", "Links"].map((s, i) => (
-          <g key={s}>
-            <rect
-              x={30 + (i % 4) * 50}
-              y={50 + Math.floor(i / 4) * 32}
-              width="46"
-              height="26"
-              fill="none"
-              stroke="#8B7355"
-              strokeWidth="0.8"
-              strokeDasharray="2 2"
-            />
-            <text
-              x={53 + (i % 4) * 50}
-              y={67 + Math.floor(i / 4) * 32}
-              fontFamily="var(--font-ui)"
-              fontSize="9"
-              textAnchor="middle"
-              fill="#756D61"
-            >
-              {s}
-            </text>
-          </g>
-        ))}
 
-        <text x="300" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#A63F2A">
-          AFTER · 6 TASKS
-        </text>
-        {["I'm new", "Study", "Belong", "Pay", "Life", "Leave"].map((s, i) => (
-          <g key={s}>
-            <rect x={300} y={50 + i * 22} width="180" height="18" fill="#F7F4EC" stroke="#A63F2A" strokeWidth="1" />
-            <text x={312} y={63 + i * 22} fontFamily="var(--font-ui)" fontSize="11" fill="#3A362D">
-              {s}
+        {[
+          { month: "AUG", label: "Exploratory interviews", total: 33, mine: 7 },
+          { month: "SEP", label: "Think-aloud on prototype", total: 28, mine: 5 },
+          { month: "NOV", label: "Task chain on MVP", total: 10, mine: 2 },
+        ].map((round, i) => (
+          <g key={round.month}>
+            <text x={30} y={64 + i * 84} fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#A63F2A">
+              {round.month}
             </text>
+            <text x={70} y={64 + i * 84} fontFamily="var(--font-ui)" fontSize="11" fill="#3A362D">
+              {round.label}
+            </text>
+            {Array.from({ length: round.total }).map((_, n) => (
+              <rect
+                key={n}
+                x={30 + (n % 17) * 13}
+                y={76 + i * 84 + Math.floor(n / 17) * 15}
+                width="9"
+                height="11"
+                fill={n < round.mine ? "#C9523A" : "none"}
+                stroke={n < round.mine ? "#C9523A" : "#8B7355"}
+                strokeWidth="0.8"
+              />
+            ))}
             <text
-              x={472}
-              y={63 + i * 22}
+              x={490}
+              y={86 + i * 84}
               fontFamily="var(--font-mono)"
-              fontSize="9"
+              fontSize="10"
               textAnchor="end"
               fill="#8A8170"
             >
-              0{i + 1}
+              {round.mine}/{round.total}
             </text>
           </g>
         ))}
 
-        <path d="M 250 80 C 275 80, 275 110, 295 110" stroke="#C9523A" strokeWidth="1.2" fill="none" />
-        <path d="M 290 106 L 296 110 L 290 114" stroke="#C9523A" strokeWidth="1.2" fill="none" />
+        <line x1="30" y1="228" x2="490" y2="228" stroke="#C9523A" strokeWidth="1" strokeDasharray="3 3" />
+        <text x={30} y={242} fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#C9523A">
+          3 OCT · BACK TO PAPER — REDRAWN AS 5 SCREENS
+        </text>
 
         <line x1="30" y1="340" x2="490" y2="340" stroke="#8A8170" strokeWidth="0.8" />
         {Array.from({ length: 24 }).map((_, i) => (
@@ -75,10 +68,10 @@ export function VizConnect() {
         ))}
 
         <text x="30" y="372" fontFamily="var(--font-display)" fontStyle="italic" fontSize="28" fill="#3A362D">
-          12 → 6
+          14 / 71
         </text>
         <text x="30" y="390" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8A8170">
-          top-level categories · card sort · tree test
+          interviews I ran, of the team&rsquo;s total
         </text>
       </svg>
     </div>
@@ -139,152 +132,6 @@ export function VizSpectra() {
   );
 }
 
-export function VizAI() {
-  const flagged = [9, 23, 41, 58];
-  const fillerLabels = ["um", "like", "uh", "so"];
-  return (
-    <div className="viz viz-ai">
-      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
-        <text x="30" y="30" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#7A2D1C">
-          AI INTERVIEW · SESSION 04 · 02:31
-        </text>
-
-        <g transform="translate(30, 160)">
-          {Array.from({ length: 72 }).map((_, i) => {
-            const h = 8 + Math.abs(Math.sin(i * 0.7) * 38) + Math.abs(Math.sin(i * 0.21) * 20);
-            const flag = flagged.includes(i);
-            return (
-              <rect
-                key={i}
-                x={i * 6.3}
-                y={-h / 2}
-                width="3.4"
-                height={h}
-                fill={flag ? "#C9523A" : "#7A2D1C"}
-                opacity={flag ? 1 : 0.55}
-                rx="1"
-              />
-            );
-          })}
-        </g>
-
-        {flagged.map((x, i) => (
-          <g key={i}>
-            <circle cx={30 + x * 6.3 + 1.7} cy="100" r="3" fill="#C9523A" />
-            <line
-              x1={30 + x * 6.3 + 1.7}
-              y1="104"
-              x2={30 + x * 6.3 + 1.7}
-              y2="140"
-              stroke="#C9523A"
-              strokeWidth="0.8"
-              strokeDasharray="2 2"
-            />
-            <text
-              x={30 + x * 6.3 + 1.7}
-              y="92"
-              fontFamily="var(--font-mono)"
-              fontSize="9"
-              textAnchor="middle"
-              fill="#C9523A"
-            >
-              {fillerLabels[i]}
-            </text>
-          </g>
-        ))}
-
-        <line x1="30" y1="160" x2="490" y2="160" stroke="#7A2D1C" strokeWidth="0.4" opacity="0.3" />
-
-        <g transform="translate(30, 240)">
-          <rect x="0" y="0" width="460" height="110" fill="#F7F4EC" stroke="#E89678" strokeWidth="1" rx="4" />
-          <text x="16" y="28" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#7A2D1C">
-            REAL-TIME FEEDBACK
-          </text>
-          <text x="16" y="60" fontFamily="var(--font-display)" fontSize="20" fill="#3A362D">Pace</text>
-          <rect x="16" y="70" width="120" height="3" fill="#E6DFCF" rx="1.5" />
-          <rect x="16" y="70" width="86" height="3" fill="#5B6B4A" rx="1.5" />
-          <text x="140" y="74" fontFamily="var(--font-mono)" fontSize="10" fill="#5B6B4A">142 wpm</text>
-          <text x="240" y="60" fontFamily="var(--font-display)" fontSize="20" fill="#3A362D">Fillers</text>
-          <rect x="240" y="70" width="120" height="3" fill="#E6DFCF" rx="1.5" />
-          <rect x="240" y="70" width="52" height="3" fill="#C9523A" rx="1.5" />
-          <text x="366" y="74" fontFamily="var(--font-mono)" fontSize="10" fill="#C9523A">4 in 30s</text>
-          <text x="16" y="98" fontFamily="var(--font-display)" fontStyle="italic" fontSize="14" fill="#7A2D1C">
-            Try pausing instead of &quot;um&quot;.
-          </text>
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-export function VizCircles() {
-  const stickies = [
-    { x: 120, y: 190, t: "hiking", r: -3, big: true },
-    { x: 190, y: 220, t: "cooking", r: 2, big: true },
-    { x: 140, y: 250, t: "boardgames", r: -4, big: false },
-    { x: 220, y: 180, t: "run club", r: 3, big: false },
-    { x: 230, y: 255, t: "study", r: -2, big: false },
-    { x: 310, y: 200, t: "same major", r: 1, big: false },
-    { x: 380, y: 230, t: "same country", r: -3, big: false },
-    { x: 400, y: 190, t: "same uni", r: 2, big: false },
-    { x: 350, y: 260, t: "same dorm", r: -2, big: false },
-  ];
-  return (
-    <div className="viz viz-circles">
-      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
-        <text x="30" y="30" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#756D61">
-          CONNECT CIRCLES · CO-DESIGN WS2 · STICKY CLUSTERS
-        </text>
-
-        <g>
-          <ellipse cx="170" cy="200" rx="120" ry="110" fill="none" stroke="#C9523A" strokeWidth="1" strokeDasharray="4 3" />
-          <text x="170" y="100" fontFamily="var(--font-display)" fontStyle="italic" fontSize="18" textAnchor="middle" fill="#A63F2A">
-            shared activity
-          </text>
-        </g>
-        <g>
-          <ellipse cx="350" cy="200" rx="120" ry="110" fill="none" stroke="#8B7355" strokeWidth="1" strokeDasharray="4 3" />
-          <text x="350" y="100" fontFamily="var(--font-display)" fontStyle="italic" fontSize="18" textAnchor="middle" fill="#756D61">
-            shared identity
-          </text>
-        </g>
-
-        {stickies.map((s, i) => (
-          <g key={i} transform={`translate(${s.x},${s.y}) rotate(${s.r})`}>
-            <rect
-              x="-28"
-              y="-12"
-              width={s.big ? 64 : 56}
-              height="22"
-              fill={s.big ? "#FBEFE9" : "#EFE8DA"}
-              stroke={s.big ? "#E89678" : "#D6CDBC"}
-              strokeWidth="0.8"
-              rx="1"
-            />
-            <text
-              x={s.big ? 4 : 0}
-              y="3"
-              fontFamily="var(--font-ui)"
-              fontSize={s.big ? 11 : 10}
-              textAnchor="middle"
-              fill="#3A362D"
-              fontWeight={s.big ? 500 : 400}
-            >
-              {s.t}
-            </text>
-          </g>
-        ))}
-
-        <path d="M 100 170 Q 90 140 80 150" stroke="#A63F2A" strokeWidth="1" fill="none" />
-        <text x="20" y="140" fontFamily="var(--font-hand)" fontSize="16" fill="#A63F2A">winning cluster</text>
-
-        <text x="30" y="382" fontFamily="var(--font-display)" fontStyle="italic" fontSize="20" fill="#3A362D">
-          design meetups around <tspan fontWeight="600">doing</tspan>, not introducing.
-        </text>
-      </svg>
-    </div>
-  );
-}
 
 export function VizMaze() {
   // One sensor event entering the round state machine, then fanning out to

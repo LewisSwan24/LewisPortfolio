@@ -51,13 +51,6 @@ export const DynamicCountUp = dynamic(
   }
 );
 
-export const DynamicResumeTimeline = dynamic(
-  () => import('./ResumeTimeline').then((mod) => mod.ResumeTimeline),
-  {
-    loading: () => <Skeleton className="h-96 w-full" />,
-  }
-);
-
 interface DynamicWrapperProps {
   children: React.ReactNode;
   fallback?: React.ReactNode;

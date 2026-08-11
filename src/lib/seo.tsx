@@ -69,7 +69,9 @@ export function generateResumePersonSchema() {
             { "@type": "CreativeWork", name: "UQ Connect", url: `${url}/projects/connect` },
             { "@type": "CreativeWork", name: "Spectra Lens", url: `${url}/projects/spectra` },
             { "@type": "CreativeWork", name: "AI Interview Assistant", url: `${url}/projects/ai` },
-            { "@type": "CreativeWork", name: "Connect Circles", url: `${url}/projects/circles` },
+            { "@type": "CreativeWork", name: "MazeRunners", url: `${url}/projects/maze` },
+            { "@type": "CreativeWork", name: "Vigil", url: `${url}/projects/vigil` },
+            { "@type": "CreativeWork", name: "Hoop Dream", url: `${url}/projects/hoop` },
         ],
     };
 }

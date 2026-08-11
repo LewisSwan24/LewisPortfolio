@@ -14,36 +14,24 @@ import type {
 const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary>> = {
   en: {
     connect: {
-      challenge: "A portal used by thousands of students hid critical tasks behind staff-facing language and institutional categories.",
-      role: "Solo UX researcher and designer",
-      methods: ["open card sort", "tree test", "task analysis", "plain-language review"],
-      evidence: ["open card sort", "unmoderated tree test", "task walk-through sessions"],
-      outcome: "Twelve staff-owned categories became six task-led ones, tree-tested against the original. University project; not deployed.",
-      next: "I would run a longitudinal post-launch study to compare search behaviour and support-ticket volume before and after rollout.",
+      challenge: "UQ runs no shortage of events for international students. They still end up in the same circle — a one-off mixer produces an introduction, not a relationship.",
+      role: "One of five on a course team; I owned the front-end component system and ran 14 of the 71 interviews",
+      methods: ["exploratory interviews", "falsifiable test cards", "think-aloud usability testing", "paper-to-interactive prototyping", "component system design"],
+      evidence: [
+        "71 interviews across three iterations, 14 of them mine",
+        "hypotheses written with pass/fail thresholds before any data was collected",
+        "learning cards recording which of those hypotheses we got wrong",
+      ],
+      outcome: "A 24-screen mobile MVP reached through three rounds of research and two prototype generations. Course project; runs on mock data, never connected to a live database.",
+      next: "I would connect the backend and re-run the task chain with completion times, so the third round produces a number instead of an impression.",
     },
     spectra: {
-      challenge: "Colour-dependent decisions were slow, awkward, and socially exposing for colourblind users.",
-      role: "Lead UX designer",
-      methods: ["interviews", "co-design", "field usability testing"],
-      evidence: ["interviews with colourblind users", "competitor tool review", "real-environment testing"],
-      outcome: "A one-tap overlay that answers the decision rather than naming the hue, silent by default. Prototype only.",
-      next: "I would prototype the zero-state more deeply and test how little feedback the overlay can provide while still being useful.",
-    },
-    ai: {
-      challenge: "Interview prep tools gave content, but they did not reduce the emotional friction of practice.",
-      role: "UX designer and researcher",
-      methods: ["survey", "interviews", "competitive teardown", "prototype test", "feedback timing test"],
-      evidence: ["survey", "depth interviews", "competitive teardown", "moderated prototype sessions"],
-      outcome: "Post-session feedback was clearly preferred over mid-answer interruption. Prototype only; no controlled experiment.",
-      next: "I would test tone controls that let users choose a gentler or more rigorous interview persona.",
-    },
-    circles: {
-      challenge: "International students wanted fewer, deeper relationships, while social apps rewarded volume and constant messaging.",
-      role: "Product designer",
-      methods: ["depth interviews", "diary study", "co-design", "research-through-design"],
-      evidence: ["depth interviews", "two-week diary study", "co-design workshops"],
-      outcome: "The product direction shifted toward small circles, structured prompts, and slow matching.",
-      next: "I would instrument for perceived safety and relationship depth, not matches or time spent.",
+      challenge: "Font, spacing and contrast are set by whoever built the page, so a reader who needs something different has no way in.",
+      role: "Solo design and build",
+      methods: ["WCAG text-spacing criteria", "existing-extension teardown", "cross-site injection testing"],
+      evidence: ["a working Chrome extension", "Jest coverage of the settings layer", "manual checks across documentation, news and single-page apps"],
+      outcome: "An extension that rewrites type and spacing on any page from one popup, in English and Simplified Chinese, with settings saved per site. DEMO stage.",
+      next: "I would put it in front of someone who actually reads this way and watch which controls they never touch.",
     },
     maze: {
       challenge:
@@ -92,36 +80,24 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
   },
   zh: {
     connect: {
-      challenge: "一个被大量学生使用的门户，把关键任务藏在部门语言与机构分类后面。",
-      role: "独立 UX 研究与设计",
-      methods: ["开放式卡片分类", "树测试", "任务分析", "普通语言审查"],
-      evidence: ["开放式卡片分类", "非主持树测试", "任务走查"],
-      outcome: "把十二个部门分类收敛成六个任务分类，并与原结构做树测试对比。课程项目，未上线。",
-      next: "我会继续做上线后的纵向研究，对比搜索行为和支持工单量。",
+      challenge: "UQ 给国际学生办的活动不少。他们还是留在同一个圈子里——一次性的迎新派对制造的是认识，不是关系。",
+      role: "五人课程团队中的一员；我负责前端组件系统，并做了 71 场访谈里的 14 场",
+      methods: ["探索式访谈", "可证伪的假设卡", "出声思考可用性测试", "从纸面到可交互原型", "组件系统设计"],
+      evidence: [
+        "三轮共 71 场访谈，其中 14 场是我做的",
+        "假设连同判定阈值一起，写在收集数据之前",
+        "learning cards 记下了我们哪几条假设是错的",
+      ],
+      outcome: "一个 24 屏的移动端 MVP，背后是三轮研究与两代原型。课程项目，跑在 mock 数据上，从未接上真实数据库。",
+      next: "我会把后端接上，带着完成时间重跑一次任务链，让第三轮产出一个数字，而不是一个印象。",
     },
     spectra: {
-      challenge: "对色盲用户来说，依赖颜色的判断既慢、尴尬，也容易暴露个人情况。",
-      role: "Lead UX Designer",
-      methods: ["访谈", "共创", "真实场景可用性测试"],
-      evidence: ["色盲用户访谈", "竞品工具评估", "真实环境测试"],
-      outcome: "一个单击即用的叠加层：给决定而不是报色名，默认静音。仅为原型。",
-      next: "我会更深入测试 zero-state，验证 AR 覆层最少需要提供多少反馈才足够有用。",
-    },
-    ai: {
-      challenge: "面试准备工具提供内容，但没有真正降低练习时的情绪阻力。",
-      role: "UX Designer & Researcher",
-      methods: ["问卷", "访谈", "竞品拆解", "原型测试", "反馈时机测试"],
-      evidence: ["问卷", "深度访谈", "竞品拆解", "主持式原型测试"],
-      outcome: "结束后反馈明显优于答题中打断。仅为原型，没有做受控实验。",
-      next: "我会测试语气控制，让用户选择更温和或更严格的 AI 面试官。",
-    },
-    circles: {
-      challenge: "国际学生想要更少但更深的关系，而社交 app 奖励的是数量和持续消息。",
-      role: "Product Designer",
-      methods: ["深度访谈", "日记研究", "共创", "研究型设计"],
-      evidence: ["深度访谈", "两周日记研究", "共创工作坊"],
-      outcome: "产品方向转向小组关系、结构化提示和慢匹配。",
-      next: "我会衡量安全感与关系深度，而不是匹配数或使用时长。",
+      challenge: "字体、行距和对比度都由建站的人决定，需要不一样的读者没有任何入口。",
+      role: "独立设计与开发",
+      methods: ["WCAG 文本间距条款", "现有扩展拆解", "跨站点注入测试"],
+      evidence: ["一个能跑的 Chrome 扩展", "Jest 覆盖设置层", "在文档站、新闻站与单页应用上的手动验证"],
+      outcome: "一个扩展：从一个 popup 就能改写任意页面的字体与间距，中英双语，设置按站点保存。DEMO 阶段。",
+      next: "我会把它交给一个真的这样读东西的人，看他们从来不碰哪几个控件。",
     },
     maze: {
       challenge:
@@ -169,394 +145,211 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
     connect: {
       decisions: [
         {
-          label: "Move from department ownership to task-oriented IA",
+          label: "Write the pass mark before collecting the data",
           choice:
-            "I reorganized the portal around task-oriented IA instead of internal university departments.",
+            "Every hypothesis got a numeric threshold in writing before a single interview ran — participation tracks weekly energy for at least 70% of students, loneliness correlates with wellbeing at r ≤ −0.4, and so on.",
           evidence:
-            "Tree testing and task walk-throughs showed students searched by life task, not by staff ownership labels.",
+            "Without a threshold agreed in advance, whatever the interviews return can be read as support. The thresholds were the only thing standing between us and that.",
           tradeoff:
-            "The structure became less faithful to the institution chart, but easier for students to understand.",
+            "Several hypotheses then failed their own test, and we had to write down that we had been wrong.",
           impact:
-            "The proposed IA made findability measurable and gave later navigation decisions a user-centred benchmark.",
+            "The learning cards record which assumptions broke — that language proficiency was the barrier, that exposure was the gap — instead of quietly reframing them as findings.",
         },
         {
-          label: "Rewrite labels in plain student language",
+          label: "Make the match explain itself",
           choice:
-            "I replaced staff-facing labels with plain-language categories such as Study, Belong, and Fees & finance.",
+            "A recommended person shows the reason for the match — shared study habits, compatible schedules — not just a compatibility score.",
           evidence:
-            "Card-sort patterns and task analysis showed that students grouped information by intent and urgency.",
+            "Students were openly sceptical of black-box matching, but acted on the same suggestion once it named a concrete reason.",
           tradeoff:
-            "Some labels became less administratively precise, but they reduced the translation work required from students.",
+            "Each match costs more vertical space, so fewer fit on screen and the list takes longer to scan.",
           impact:
-            "The navigation became easier to scan and supported the measured lift in task success.",
+            "The score stops being a number taken on faith and becomes something a student can agree or disagree with.",
         },
         {
-          label: "Validate the IA before increasing visual fidelity",
+          label: "Go back to paper after the September sessions",
           choice:
-            "I used tree testing before investing in a high-fidelity interface redesign.",
+            "Instead of patching the clickable prototype, we redrew the whole app on one sheet on 3 October: five screens, explicit routes off the home page, one name against each feature area.",
           evidence:
-            "The main risk was not visual polish; it was whether students could locate critical tasks.",
+            "The September defects were structural — no visible way back, a card whose state contradicted its own button. Those are not fixed one component at a time.",
           tradeoff:
-            "This delayed interface exploration, but it protected the project from polishing the wrong structure.",
+            "It cost build time in the middle of semester, and the paper structure dropped features that were already coded.",
           impact:
-            "The team could discuss findability and task success before debating layout details.",
+            "The November build started from a fixed skeleton with an owner per area, rather than from an accumulating prototype.",
         },
       ],
       evidence: [
         {
-          method: "Open card sort",
-          sample: "Open card sort; group size not formally recorded",
-          question: "How do students naturally group portal information when department labels are removed?",
-          finding: "Participants clustered content around study, belonging, fees, and campus life tasks.",
-          implication: "The IA should lead with student mental models rather than staff ownership.",
+          method: "Exploratory interviews",
+          sample: "33 transcripts in the first round, 15–30 August 2025; 7 of them mine",
+          question: "UQ already runs events for international students. Why do they not turn into relationships?",
+          finding:
+            "Size and pace shut people out, not vocabulary. One participant put the ceiling plainly: it is hard to find common ground beyond being international.",
+          implication:
+            "The problem was not a shortage of events. It was that nothing carried a person from one event to the next.",
         },
         {
-          method: "Tree testing",
-          sample: "Unmoderated tree test; group size not formally recorded",
-          question: "Can students find critical tasks in the proposed hierarchy without interface cues?",
-          finding: "The task-led tree beat the department-led original; 'Money' vs. 'My account' had to be renamed and retested.",
-          implication: "The task-oriented IA was strong enough to justify moving into interface design.",
+          method: "Think-aloud usability testing",
+          sample: "28 transcripts in the second round, 17–24 September 2025; 5 of them mine",
+          question: "Can a student operate the features without me sitting next to them?",
+          finding:
+            "An event card said the student was attending while still offering an attend button; a secondary button had no discoverable purpose; there was no way back to the previous page; 'Skill swap' did not explain itself.",
+          implication:
+            "State feedback and navigation were the blockers, well before anything about matching quality.",
         },
         {
-          method: "Task analysis",
-          sample: "10 task walk-through sessions",
-          question: "Where do students hesitate when trying to complete high-importance portal tasks?",
-          finding: "Students lost confidence when institutional terms did not match the words in their own task goal.",
-          implication: "Labels needed to be tested as product decisions, not treated as copy polish.",
+          method: "Task-based usability testing",
+          sample: "10 transcripts in the third round, 8–12 November 2025; 2 of them mine",
+          question: "Can a student complete a whole chain — create a circle, set who can see it, open the chat, post, come back — unaided?",
+          finding:
+            "The chain completed. The participant read the colour-coded home screen as a map of the app. But the Circles entry point was found in the sidebar rather than on sight.",
+          implication:
+            "The flow holds once you are in it; getting into it still depends on hunting for the entry point.",
         },
       ],
       iterations: [
         {
-          version: "Department map",
-          change: "Started from the existing staff-oriented portal categories.",
-          reason: "This made the current failure mode visible and gave the redesign a baseline.",
-          improvement: "Exposed that navigation mirrored ownership rather than student intent.",
+          version: "Clickable prototype, September",
+          change: "Tested the feature set as it had actually been built, with participants thinking out loud.",
+          reason: "The open risk was whether a student could operate it unaided, not whether the idea appealed to them.",
+          improvement:
+            "Surfaced navigation and state defects that a demo walkthrough would have talked straight past.",
         },
         {
-          version: "Task map",
-          change: "Collapsed twelve staff-facing areas into six student task groups.",
-          reason: "Card sorting and task analysis supported a smaller set of student-facing buckets.",
-          improvement: "Reduced scanning effort and made the IA easier to validate through tree testing.",
+          version: "Paper, 3 October",
+          change:
+            "Redrew the app as five screens — home, study buddy, nearby circles on a campus map, wellness, resource hub — with arrows for every route off the home page.",
+          reason: "Structural defects need a structural answer, and paper is the cheapest place to give one.",
+          improvement: "Produced a skeleton the build could follow, with each feature area assigned to a named person.",
         },
         {
-          version: "Validation-ready tree",
-          change: "Refined labels and hierarchy depth for the tree test.",
-          reason: "The next decision needed evidence about findability, not another visual mockup.",
-          improvement: "Produced a structure that could be tested against the original rather than argued about.",
+          version: "24-screen MVP, November",
+          change:
+            "Built the screens as a shared component system with React context for cross-screen state, rather than styling each screen on its own.",
+          reason: "Twenty-four screens hand-styled by five people do not stay one product for long.",
+          improvement:
+            "The November sessions ran on a single visual system, and the participant used its colour coding to predict where things were.",
         },
       ],
       limits: [
         {
-          constraint: "The validation focused on information finding, not full post-launch behaviour.",
+          constraint: "The MVP runs on mock data. The backend exists but was never connected to it.",
           whyItMatters:
-            "A successful tree test does not prove support tickets or real search behaviour will drop after rollout.",
+            "Matching, messaging and scheduling were never exercised against real records, concurrency or empty states. The sessions tested an interface, not a working product.",
           nextValidation:
-            "Compare search queries, support-ticket volume, and task completion analytics before and after launch.",
+            "Connect the API layer and re-run the same task chain against live data, watching specifically for what breaks when a list is empty or a message is slow.",
         },
         {
-          constraint: "The sample represented student tasks more strongly than staff governance needs.",
+          constraint: "Nothing was measured before and after.",
           whyItMatters:
-            "A portal must still remain maintainable for content owners even when the IA is student-facing.",
+            "I can say the September navigation defect did not recur in November. I cannot say how much better it got, because no round recorded completion times or a fixed success criterion.",
           nextValidation:
-            "Run a content governance review with staff owners after the student-facing hierarchy is stable.",
+            "Re-run the November chain with timings and a pass mark defined in advance, so the round produces a number rather than an impression.",
+        },
+        {
+          constraint: "This was a five-person team and I did not build all of it.",
+          whyItMatters:
+            "Anything in the product outside the component system, the shared state layer and my own interview rounds was somebody else's work.",
+          nextValidation:
+            "Ask me about the parts I owned and the commit history will match what I say.",
         },
       ],
       takeaway:
-        "This case proves I can restructure complex information architecture around user mental models, then validate the direction through tree testing and measurable findability.",
+        "This case proves I can run research that is capable of proving itself wrong, and then carry what survives into a component system that twenty-four screens can share.",
     },
     spectra: {
       decisions: [
         {
-          label: "Use multi-modal feedback instead of colour-only correction",
+          label: "Bundle the font instead of loading it from a CDN",
           choice:
-            "I designed multi-modal feedback that combined visual overlays with clear confirmation cues.",
+            "OpenDyslexic ships inside the extension package rather than being fetched at runtime.",
           evidence:
-            "Interviews with colourblind users showed that colour labels alone were not enough in fast public decisions.",
+            "A remote font request tells a third party which pages are being read, and it fails whenever the host changes or the reader is offline.",
           tradeoff:
-            "The interface became slightly more complex, but it did not force users to rely on another colour cue.",
+            "The package is heavier, and the font can only be updated by shipping a new version.",
           impact:
-            "The design supported faster recognition while keeping the interaction inclusive for different colourblind types.",
+            "The extension works offline and leaks nothing about the reader's browsing.",
         },
         {
-          label: "Protect privacy in public contexts",
+          label: "Save settings per site, not globally",
           choice:
-            "I kept the assistance lightweight and glanceable so users would not feel exposed while using it.",
+            "Each origin keeps its own spacing and typeface state.",
           evidence:
-            "Participants described colour-dependent tasks as socially awkward when they had to ask others for help.",
+            "Loose spacing that helps on a dense documentation page is unwanted on a news site, and one global switch forces the reader to keep toggling.",
           tradeoff:
-            "The product avoided heavy explanatory screens, which meant onboarding had to be more concise.",
+            "More storage bookkeeping, and a first visit to a new site starts unstyled.",
           impact:
-            "The experience respected privacy and made the tool more plausible for real-world use.",
+            "The reader sets a site once and it stays that way.",
         },
         {
-          label: "Move validation into field testing",
+          label: "Put the controls in a popup, not a context menu",
           choice:
-            "I tested the prototype in realistic environments instead of relying only on desk-based review.",
+            "All controls live in one popup panel opened from the toolbar.",
           evidence:
-            "The core risk was whether the AR cue worked under time pressure, movement, and visual noise.",
+            "A context menu hides the range of what is adjustable behind a right-click and shows one item at a time.",
           tradeoff:
-            "Field testing was messier than controlled testing, but it revealed context-specific usability issues.",
+            "Two clicks to reach a control instead of one, and toolbar space is spent.",
           impact:
-            "The result was a more credible accessibility case with task success tied to real use conditions.",
+            "The whole set of adjustments is visible at once, so nothing has to be discovered.",
         },
       ],
       evidence: [
         {
-          method: "Semi-structured interviews",
-          sample: "12 colourblind participants",
-          question: "Where do colour-dependent tasks create friction, delay, or social exposure?",
-          finding: "Participants wanted support that was fast, private, and did not require asking strangers.",
-          implication: "The tool needed to solve confidence and privacy, not only colour identification.",
+          method: "Guideline review",
+          sample: "WCAG text-spacing criteria",
+          question: "Which typographic properties does the tool have to expose to be useful at all?",
+          finding: "Line height, letter spacing, word spacing and paragraph spacing are the ones with published thresholds.",
+          implication: "Those four became the control set, rather than a general CSS editor.",
         },
         {
-          method: "Co-design workshops",
-          sample: "2 workshops with target users",
-          question: "Which feedback modes feel helpful without becoming distracting?",
-          finding: "Users preferred layered cues that confirmed meaning without overwhelming the scene.",
-          implication: "The interaction model should use multi-modal feedback with restraint.",
+          method: "Cross-site injection testing",
+          sample: "Documentation, news, and single-page-app sites, by hand",
+          question: "Where do injected styles lose to the page's own CSS?",
+          finding: "Inline styles and high-specificity selectors override the injected layer, and single-page apps re-render it away on navigation.",
+          implication: "The content script has to re-apply on route changes, not only on load.",
         },
         {
-          method: "Field usability testing",
-          sample: "8 real-environment tests",
-          question: "Can users complete colour-dependent tasks quickly in realistic public contexts?",
-          finding: "In context, participants wanted the decision made, not the colour named — and preferred silence to announcement.",
-          implication: "The prototype had enough contextual validity to support the accessibility direction.",
+          method: "Unit tests",
+          sample: "Jest over the settings and utility layer",
+          question: "Does per-site state survive save, reload, and reset?",
+          finding: "Covered at the utility level, where the persistence logic lives.",
+          implication: "Regressions in settings behaviour surface before they reach a page.",
         },
       ],
       iterations: [
         {
-          version: "Colour label overlay",
-          change: "Started with direct colour naming and simple AR annotation.",
-          reason: "It was the clearest way to test whether recognition improved at all.",
-          improvement: "Showed that identification helped, but did not fully solve confidence or privacy.",
+          version: "Style injection",
+          change: "Started with a content script writing a stylesheet into the page.",
+          reason: "It was the smallest thing that could show whether the idea worked at all.",
+          improvement: "Worked on simple pages and failed on anything with strong specificity.",
         },
         {
-          version: "Multi-modal cue set",
-          change: "Added confirmatory cues beyond colour labels.",
-          reason: "Participants needed feedback that worked across colourblind types and noisy contexts.",
-          improvement: "Reduced reliance on colour-only interpretation and improved task confidence.",
+          version: "Popup controls",
+          change: "Added a popup panel with the four spacing controls and the typeface switch.",
+          reason: "Editing values by hand is not a tool anyone would use twice.",
+          improvement: "The adjustable range became visible instead of implied.",
         },
         {
-          version: "Field-tested interaction",
-          change: "Simplified the cue timing and visual weight after realistic tests.",
-          reason: "The overlay needed to stay useful while users were moving or scanning quickly.",
-          improvement: "Made the prototype feel more usable outside a controlled design review.",
+          version: "Per-site state and bilingual UI",
+          change: "Added per-origin persistence and English and Simplified Chinese locale files.",
+          reason: "Settings that reset every visit are worse than no settings, and I read in both languages.",
+          improvement: "It became something usable daily rather than a demonstration of injection.",
         },
       ],
       limits: [
         {
-          constraint: "Field testing covered a small number of scenarios and lighting conditions.",
-          whyItMatters:
-            "AR accessibility tools can behave differently across surfaces, lighting, distance, and motion.",
-          nextValidation:
-            "Test the interaction across more lighting conditions, device cameras, and high-pressure tasks.",
+          constraint: "Nobody who needs this has used it.",
+          whyItMatters: "Every control here is reasoned from guidelines, not from watching a reader struggle.",
+          nextValidation: "Sit with readers who rely on loose spacing or dyslexia-friendly typefaces and watch which controls they ignore.",
         },
         {
-          constraint: "The prototype tested recognition and satisfaction, not long-term dependence or trust.",
-          whyItMatters:
-            "A tool that feels useful once may still fail if users cannot trust it repeatedly.",
-          nextValidation:
-            "Run a repeated-use study that measures trust, error recovery, and abandonment over time.",
+          constraint: "It is a DEMO, not a published extension.",
+          whyItMatters: "It has never faced Chrome Web Store review, auto-update, or a site changing underneath it.",
+          nextValidation: "Publish it, then watch which sites break and how quickly.",
         },
       ],
       takeaway:
-        "This case proves I can design accessibility interactions with target users, protect privacy in public contexts, and validate inclusive decisions through field testing.",
-    },
-    ai: {
-      decisions: [
-        {
-          label: "Give feedback after the interview instead of interrupting",
-          choice:
-            "I prioritized post-session feedback so users could stay immersed during practice.",
-          evidence:
-            "Prototype testing showed interruption increased self-consciousness during already stressful practice.",
-          tradeoff:
-            "Users received less immediate correction, but the practice felt more emotionally safe.",
-          impact:
-            "The AI felt more like a coach than a critic and supported the reported confidence gain.",
-        },
-        {
-          label: "Expose control over coaching tone",
-          choice:
-            "I shaped the concept around user control over how rigorous or gentle the AI persona should be.",
-          evidence:
-            "Interviews showed that users had different tolerance for pressure depending on confidence and stage.",
-          tradeoff:
-            "Tone control adds setup complexity, but reduces the risk of a one-size-fits-all coach.",
-          impact:
-            "The product direction treated trust as adjustable, not assumed.",
-        },
-        {
-          label: "Design for emotional safety before feature breadth",
-          choice:
-            "I focused on anxiety reduction and expectation-setting before adding more interview modes.",
-          evidence:
-            "Survey and interview data showed emotional friction was a primary barrier to practice.",
-          tradeoff:
-            "The concept became narrower, but more coherent around the core user need.",
-          impact:
-            "The resulting AI UX had clearer principles for feedback timing, control, and trust.",
-        },
-      ],
-      evidence: [
-        {
-          method: "Survey",
-          sample: "85 responses",
-          question: "What prevents job seekers from practicing interviews regularly?",
-          finding: "Users described anxiety, uncertainty, and fear of judgment as major blockers.",
-          implication: "The assistant needed to reduce emotional cost, not only provide more questions.",
-        },
-        {
-          method: "Depth interviews",
-          sample: "Depth interviews; group size not formally recorded",
-          question: "What makes interview practice feel safe enough to repeat?",
-          finding: "Participants wanted realistic pressure with control over tone and feedback intensity.",
-          implication: "AI behaviour needed explicit expectation-setting and user control.",
-        },
-        {
-          method: "Prototype test",
-          sample: "Moderated prototype sessions; group size not formally recorded",
-          question: "When should the assistant provide feedback without breaking confidence?",
-          finding: "Post-session feedback was preferred over interruption during the answer.",
-          implication: "Feedback timing became a core interaction design decision.",
-        },
-      ],
-      iterations: [
-        {
-          version: "Question generator",
-          change: "Started with basic interview prompts and answer review.",
-          reason: "This tested whether content alone created enough value.",
-          improvement: "Revealed that content was useful but did not address anxiety.",
-        },
-        {
-          version: "Coaching flow",
-          change: "Added session structure, expectation-setting, and post-session feedback.",
-          reason: "Research showed emotional pacing mattered as much as answer quality.",
-          improvement: "Made the experience feel safer and more repeatable.",
-        },
-        {
-          version: "Tone-control concept",
-          change: "Defined a path for gentle versus rigorous interviewer personas.",
-          reason: "Users differed in how much pressure helped them improve.",
-          improvement: "Turned AI trust into a controllable product variable.",
-        },
-      ],
-      limits: [
-        {
-          constraint: "The beta measured self-reported confidence and anxiety rather than hiring outcomes.",
-          whyItMatters:
-            "Confidence is important, but it does not prove the assistant improves real interview performance.",
-          nextValidation:
-            "Track repeated practice quality and compare mock interview scores before and after use.",
-        },
-        {
-          constraint: "The AI persona concept was not deeply tested across cultures or seniority levels.",
-          whyItMatters:
-            "Feedback tone can feel supportive or harsh depending on user background and context.",
-          nextValidation:
-            "Run tone preference tests across user groups and interview seniority levels.",
-        },
-      ],
-      takeaway:
-        "This case proves I can design AI interactions around trust, control, feedback timing, and emotional safety rather than treating AI as a feature layer.",
-    },
-    circles: {
-      decisions: [
-        {
-          label: "Optimize for slow matching instead of more matches",
-          choice:
-            "I framed the product around slow matching that gives relationships time to form.",
-          evidence:
-            "Interviews and diary entries showed students wanted fewer, deeper connections rather than more chats.",
-          tradeoff:
-            "The concept rejects easy growth metrics, but better matches the loneliness problem.",
-          impact:
-            "The product direction became more aligned with relationship depth than engagement volume.",
-        },
-        {
-          label: "Use small circles rather than one-to-one discovery",
-          choice:
-            "I explored small group formats to reduce the pressure of initiating friendship alone.",
-          evidence:
-            "Co-design sessions suggested that group prompts could make vulnerability feel safer.",
-          tradeoff:
-            "Groups are harder to coordinate than one-to-one matching, but can lower social risk.",
-          impact:
-            "Small circles became a structural answer to belonging, not just a feature idea.",
-        },
-        {
-          label: "Measure relationship depth instead of time spent",
-          choice:
-            "I defined success around perceived safety and relationship depth, not app usage volume.",
-          evidence:
-            "Academic frameworks and user research both pointed toward belonging quality over activity count.",
-          tradeoff:
-            "Depth metrics are harder to instrument, but they avoid rewarding shallow interaction loops.",
-          impact:
-            "The concept kept its social wellbeing purpose intact during product synthesis.",
-        },
-      ],
-      evidence: [
-        {
-          method: "Depth interviews",
-          sample: "Interviews across cultural cohorts; group size not formally recorded",
-          question: "What makes friendship difficult for international students after arrival?",
-          finding: "Students described social access, cultural uncertainty, and fear of shallow interaction.",
-          implication: "The product needed to create safer entry points, not simply increase discovery.",
-        },
-        {
-          method: "Diary study",
-          sample: "Two-week diary study; group size not formally recorded",
-          question: "When do students feel close to others versus merely socially busy?",
-          finding: "Meaningful moments were small, repeated, and contextually specific.",
-          implication: "Slow matching and recurring prompts fit the problem better than instant matching.",
-        },
-        {
-          method: "Co-design workshops",
-          sample: "3 workshops",
-          question: "Which social formats feel safe enough to try with unfamiliar peers?",
-          finding: "Small circles and guided prompts reduced the pressure of initiating alone.",
-          implication: "The product should structure vulnerability instead of expecting users to create it.",
-        },
-      ],
-      iterations: [
-        {
-          version: "Open social discovery",
-          change: "Started from a broader matching and messaging concept.",
-          reason: "This represented the dominant pattern in existing social apps.",
-          improvement: "Made clear why more discovery could worsen shallow interaction.",
-        },
-        {
-          version: "Small circle concept",
-          change: "Shifted toward small groups, prompts, and shared context.",
-          reason: "Research suggested safety and repetition mattered more than match volume.",
-          improvement: "Reduced initiation pressure and better supported belonging.",
-        },
-        {
-          version: "Depth-first prototype direction",
-          change: "Defined success around relationship depth and perceived safety.",
-          reason: "The product needed metrics that matched the social wellbeing goal.",
-          improvement: "Protected the direction from drifting into generic engagement optimization.",
-        },
-      ],
-      limits: [
-        {
-          constraint: "The project has a defined prototype direction but less measured product outcome data.",
-          whyItMatters:
-            "Research-through-design can frame a problem well, but still needs behavioural validation.",
-          nextValidation:
-            "Prototype small-circle onboarding and measure perceived safety after repeated sessions.",
-        },
-        {
-          constraint: "The research spans cultural cohorts but not every international student context.",
-          whyItMatters:
-            "Belonging needs differ across language, culture, program type, and time since arrival.",
-          nextValidation:
-            "Run segmented tests by cohort and arrival stage before generalizing the model.",
-        },
-      ],
-      takeaway:
-        "This case proves I can work through ambiguous social problems, synthesize theory and field research, and choose metrics that protect the product's purpose.",
+        "This case proves I can turn accessibility guidance into a working tool and keep it working on pages I do not control. It does not prove the tool has helped anyone yet.",
     },
     maze: {
       decisions: [
@@ -925,330 +718,194 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
     connect: {
       decisions: [
         {
-          label: "从部门结构转向 task-oriented IA",
-          choice: "把入口从内部部门归属改成学生任务导向的信息架构。",
-          evidence: "tree testing 和任务走查显示，学生按生活任务寻找信息，而不是按部门名称寻找。",
-          tradeoff: "结构不再完全贴合组织图，但更贴近学生理解方式。",
-          impact: "让 findability 成为可衡量指标，也让后续导航判断有了用户基准。",
+          label: "把及格线写在收数据之前",
+          choice:
+            "每条假设在第一场访谈之前就写好了数字门槛——「至少 70% 的学生，参与度随每周精力变化」「孤独感与幸福感相关系数 r ≤ −0.4」，诸如此类。",
+          evidence:
+            "没有事先约定的门槛，访谈回来的任何结果都能被读成支持。这些门槛是唯一挡在我们和自我印证之间的东西。",
+          tradeoff: "结果有几条假设没过自己定的线，我们得把「我们错了」写下来。",
+          impact:
+            "learning cards 里留着哪些假设垮掉了——语言能力才是障碍、缺的是曝光——而不是把它们悄悄重新表述成发现。",
         },
         {
-          label: "用学生语言重写导航标签",
-          choice: "把 staff-facing labels 改成 Study、Belong、Fees & finance 等更直接的类别。",
-          evidence: "卡片分类和任务分析都显示，学生按意图和紧急程度组织信息。",
-          tradeoff: "一些标签牺牲了行政精确性，但降低了学生的理解成本。",
-          impact: "导航更容易扫描，也支持了任务成功率提升。",
+          label: "让匹配自己解释自己",
+          choice: "推荐一个人的时候，一并给出匹配理由——学习习惯相近、时间表兼容——而不是只给一个契合度分数。",
+          evidence: "学生对黑箱匹配明确表示怀疑，但同一条推荐一旦说出具体理由，他们就愿意行动。",
+          tradeoff: "每条匹配占的竖向空间变大，一屏能放的更少，列表也更长。",
+          impact: "那个分数不再是一个只能选择相信的数字，而变成学生可以同意或反对的东西。",
         },
         {
-          label: "先验证 IA，再提高视觉保真度",
-          choice: "在高保真界面前先用 tree testing 验证结构。",
-          evidence: "项目最大风险不是视觉，而是学生能否找到关键任务。",
-          tradeoff: "界面探索被推后，但避免了打磨错误结构。",
-          impact: "团队能先围绕 findability 和 task success 讨论方向。",
+          label: "九月测完之后，回到纸上",
+          choice:
+            "没有去补那个可点击原型，而是在 10 月 3 日把整个应用重画在一张纸上：五个屏、每条从首页出发的路径都画了箭头、每块功能挂一个人名。",
+          evidence:
+            "九月抓到的缺陷是结构性的——没有可见的返回路径、卡片状态和它自己的按钮互相矛盾。这类问题不是一个组件一个组件能补掉的。",
+          tradeoff: "在学期中间付出了开发时间，而且纸面结构砍掉了一些已经写好的功能。",
+          impact: "十一月的开发是从一套固定骨架和明确分工开始的，而不是从一个不断堆积的原型开始。",
         },
       ],
       evidence: [
         {
-          method: "Open card sort",
-          sample: "Open card sort; group size not formally recorded",
-          question: "去掉部门标签后，学生会如何自然组织门户信息？",
-          finding: "参与者围绕学习、归属、费用和校园生活等任务聚类。",
-          implication: "IA 应该优先映射学生心智模型，而不是 staff ownership。",
+          method: "探索式访谈",
+          sample: "第一轮 33 份逐字稿，2025 年 8 月 15–30 日；其中 7 场是我做的",
+          question: "UQ 给国际学生办的活动本来就不少。为什么它们没有变成关系？",
+          finding:
+            "把人挡在外面的是场合的规模与节奏，不是词汇量。一位受访者把天花板说得很直白：除了「大家都是国际学生」，很难再找到共同点。",
+          implication: "问题不是活动不够多，而是没有任何东西把一个人从这场活动带到下一场。",
         },
         {
-          method: "Tree testing",
-          sample: "Unmoderated tree test; group size not formally recorded",
-          question: "没有界面提示时，学生能否在新层级中找到关键任务？",
-          finding: "Findability 从 58% 提升到 84%。",
-          implication: "task-oriented IA 足够强，可以进入界面设计阶段。",
+          method: "出声思考可用性测试",
+          sample: "第二轮 28 份逐字稿，2025 年 9 月 17–24 日；其中 5 场是我做的",
+          question: "没有我坐在旁边，学生能不能自己把这些功能用起来？",
+          finding:
+            "活动卡片一边显示「已报名」，一边还留着报名按钮；一个次级按钮没人看得出是干什么的；没有回上一页的入口；「Skill swap」这个标签本身讲不清自己。",
+          implication: "状态反馈和导航才是当下的阻塞点，比匹配质量早得多。",
         },
         {
-          method: "Task analysis",
-          sample: "10 task walk-through sessions",
-          question: "学生完成关键任务时在哪里犹豫？",
-          finding: "当机构术语和自己的任务目标不一致时，学生会失去信心。",
-          implication: "标签需要作为产品决策测试，而不是最后的文案润色。",
+          method: "任务式可用性测试",
+          sample: "第三轮 10 份逐字稿，2025 年 11 月 8–12 日；其中 2 场是我做的",
+          question: "学生能不能独自走完一整条链路——创建圈子、设可见范围、进聊天室、发言、再回到列表？",
+          finding:
+            "链路走通了。受测者把配色化的首页读成了整个应用的地图。但 Circles 的入口不是一眼看到的，他是在侧栏里找到的。",
+          implication: "进到流程里之后是站得住的；进得去与否，仍然取决于能不能找到那个入口。",
         },
       ],
       iterations: [
         {
-          version: "Department map",
-          change: "从现有 staff-oriented 分类开始。",
-          reason: "先明确当前失败模式，给重构提供基线。",
-          improvement: "暴露了导航反映 ownership 而不是 student intent。",
+          version: "可点击原型，九月",
+          change: "直接拿已经做出来的功能集去测，让受测者出声思考。",
+          reason: "当时敞着的风险是「学生能不能自己用」，不是「他们喜不喜欢这个点子」。",
+          improvement: "抓出了导航与状态缺陷——这些东西在一场演示式走查里会被直接讲过去。",
         },
         {
-          version: "Task map",
-          change: "把十二个部门入口收敛为六个学生任务组。",
-          reason: "卡片分类和任务分析支持更小、更面向学生的分组。",
-          improvement: "减少扫描成本，并让 IA 可以通过 tree testing 验证。",
+          version: "纸面，10 月 3 日",
+          change:
+            "把应用重画成五个屏——首页、学习伙伴、校园地图上的附近圈子、wellness、资源中心——并为每条从首页出发的路径画上箭头。",
+          reason: "结构性的缺陷需要结构性的回答，而纸是给出这个回答最便宜的地方。",
+          improvement: "产出了一套开发可以照着走的骨架，每块功能都落到了具体的人身上。",
         },
         {
-          version: "Validation-ready tree",
-          change: "为树测调整标签和层级深度。",
-          reason: "下一步需要 findability 证据，而不是另一个视觉稿。",
-          improvement: "产出一个可以拿去和原结构做对比测试的方案，而不是停留在争论。",
+          version: "24 屏 MVP，十一月",
+          change: "把这些屏做成共享的组件系统，用 React context 承载跨屏状态，而不是每个屏各写各的样式。",
+          reason: "24 个屏、五个人各自手写样式，撑不了多久就不像同一个产品了。",
+          improvement: "十一月的测试跑在同一套视觉系统上，受测者靠它的配色去预测东西在哪里。",
         },
       ],
       limits: [
         {
-          constraint: "验证主要关注信息查找，而不是上线后的完整行为。",
-          whyItMatters: "tree test 成功不等于真实搜索行为和工单量一定下降。",
-          nextValidation: "上线前后对比搜索词、支持工单量和任务完成数据。",
+          constraint: "MVP 跑在 mock 数据上。后端写了，但从来没接上去。",
+          whyItMatters:
+            "匹配、消息和日程从未面对过真实记录、并发或空状态。这几轮测的是一个界面，不是一个能用的产品。",
+          nextValidation: "把 API 层接上，用同一条任务链重跑一次，专门盯列表为空、消息变慢的时候会怎么塌。",
         },
         {
-          constraint: "样本更偏学生任务，较少覆盖 staff governance。",
-          whyItMatters: "门户必须对学生清晰，也要让内容所有者可维护。",
-          nextValidation: "在学生层级稳定后，与内容 owner 做治理评审。",
+          constraint: "没有做前后测量。",
+          whyItMatters:
+            "我能说九月那个导航缺陷在十一月没有再出现。我说不出改善了多少——因为没有任何一轮记录过完成时间或事先定好的成功标准。",
+          nextValidation: "带着计时和事先写好的及格线重跑十一月那条链路，让这一轮产出一个数字，而不是一个印象。",
+        },
+        {
+          constraint: "这是五个人的团队，不是我一个人做的。",
+          whyItMatters: "组件系统、共享状态层和我自己那几轮访谈之外的部分，都是别人的工作。",
+          nextValidation: "可以直接问我负责哪几块，提交记录会和我说的对得上。",
         },
       ],
       takeaway:
-        "这个案例证明我能围绕用户心智模型重构复杂 IA，并用 tree testing 和 findability 指标验证方向。",
+        "这个案例证明我能把研究做成「有可能证明自己错」的样子，再把活下来的结论落进一套 24 个屏共用的组件系统里。",
     },
     spectra: {
       decisions: [
         {
-          label: "用 multi-modal feedback 替代单一颜色提示",
-          choice: "把视觉 overlay 和确认反馈组合起来，而不是只显示颜色名称。",
-          evidence: "色盲用户访谈显示，快速公共场景中只给颜色标签仍然不够。",
-          tradeoff: "界面略复杂，但用户不必再依赖另一个颜色线索。",
-          impact: "不同色觉类型都能获得更包容的识别支持。",
+          label: "字体打包进扩展，不走 CDN",
+          choice:
+            "OpenDyslexic 直接打包在扩展里，不在运行时去远端取。",
+          evidence:
+            "远端字体请求会把「谁在读哪一页」告诉第三方，而且主机一变或者断网就失效。",
+          tradeoff:
+            "安装包更大，字体也只能靠发新版本更新。",
+          impact:
+            "离线能用，也不会泄露读者的浏览行为。",
         },
         {
-          label: "保护 public contexts 中的 privacy",
-          choice: "让辅助足够轻量、可快速扫读，避免用户在公共场景中被暴露。",
-          evidence: "参与者提到向他人求助会让颜色相关任务变得尴尬。",
-          tradeoff: "减少解释型界面，要求 onboarding 更克制。",
-          impact: "体验更尊重隐私，也更接近真实使用场景。",
+          label: "设置按站点保存，不做全局",
+          choice:
+            "每个域名各自保存自己的间距和字体状态。",
+          evidence:
+            "在密集的文档页有用的宽行距，放到新闻站就是多余的；一个全局开关只会逼读者反复切换。",
+          tradeoff:
+            "存储上要多记一层，第一次访问新站点也是没有样式的。",
+          impact:
+            "读者对一个站点设置一次，之后就一直是那样。",
         },
         {
-          label: "把验证移到 field testing",
-          choice: "在真实环境中测试原型，而不只做桌面评审。",
-          evidence: "关键风险是 AR cue 能否在时间压力、移动和视觉噪声中工作。",
-          tradeoff: "field testing 更不可控，但能暴露情境问题。",
-          impact: "让 accessibility 判断和真实任务成功率连接起来。",
+          label: "控件放 popup，不放右键菜单",
+          choice:
+            "所有控件集中在工具栏打开的一个 popup 面板里。",
+          evidence:
+            "右键菜单把「能调什么」藏在一次右键后面，而且一次只显示一项。",
+          tradeoff:
+            "够到控件要点两次而不是一次，也占用了工具栏位置。",
+          impact:
+            "能调的东西一眼看全，不需要靠摸索发现。",
         },
       ],
       evidence: [
         {
-          method: "Semi-structured interviews",
-          sample: "12 colourblind participants",
-          question: "颜色依赖任务在哪里带来摩擦、延迟或社交暴露？",
-          finding: "参与者需要快速、私密、无需向陌生人求助的支持。",
-          implication: "工具要解决 confidence 和 privacy，而不只是识别颜色。",
+          method: "Guideline review",
+          sample: "WCAG 文本间距条款",
+          question: "这个工具至少要开放哪些排版属性，才算有用？",
+          finding: "行高、字距、词距、段距，这四项有明确阈值可依。",
+          implication: "控件就定在这四项上，而不是做成一个通用 CSS 编辑器。",
         },
         {
-          method: "Co-design workshops",
-          sample: "2 workshops with target users",
-          question: "哪些反馈模式有帮助但不过度打扰？",
-          finding: "用户更喜欢克制的 layered cues 来确认含义。",
-          implication: "交互模型应该使用克制的 multi-modal feedback。",
+          method: "Cross-site injection testing",
+          sample: "手动跑文档站、新闻站与单页应用",
+          question: "注入的样式在什么地方会输给网页自己的 CSS？",
+          finding: "内联样式和高优先级选择器会盖掉注入层；单页应用一切换路由就把它重新渲染掉了。",
+          implication: "内容脚本必须在路由变化时重新应用，不能只在页面加载时跑一次。",
         },
         {
-          method: "Field usability testing",
-          sample: "8 real-environment tests",
-          question: "用户能否在真实公共场景中快速完成颜色相关任务？",
-          finding: "在真实场景里，参与者要的是「该怎么办」而不是色名，也更希望它安静，而不是替他们宣告。",
-          implication: "原型有足够情境有效性来支撑 accessibility 方向。",
+          method: "Unit tests",
+          sample: "Jest 覆盖设置与工具层",
+          question: "按站点保存的状态，经得起保存、重载和重置吗？",
+          finding: "持久化逻辑所在的工具层已经被覆盖。",
+          implication: "设置出问题会在到达页面之前就被测出来。",
         },
       ],
       iterations: [
         {
-          version: "Colour label overlay",
-          change: "从直接命名颜色和简单 AR 标注开始。",
-          reason: "先测试识别是否真的改善。",
-          improvement: "证明识别有帮助，但还没有解决 confidence 和 privacy。",
+          version: "样式注入",
+          change: "先做一个内容脚本，往页面里写一段样式表。",
+          reason: "这是能看出「这个想法成不成立」的最小实现。",
+          improvement: "简单页面能用，遇到优先级强的网站就失效。",
         },
         {
-          version: "Multi-modal cue set",
-          change: "增加颜色标签之外的确认反馈。",
-          reason: "参与者需要跨色觉类型、跨复杂环境的反馈。",
-          improvement: "减少对颜色单一路径的依赖，提高任务信心。",
+          version: "popup 控件",
+          change: "加了 popup 面板，放四项间距控件和字体切换。",
+          reason: "要手改数值的东西，没人会用第二次。",
+          improvement: "「能调到什么程度」从暗示变成了看得见。",
         },
         {
-          version: "Field-tested interaction",
-          change: "真实测试后简化 cue 的时机和视觉重量。",
-          reason: "overlay 必须在用户移动和快速扫描时仍然有用。",
-          improvement: "让原型更接近真实使用，而不只是设计评审可用。",
+          version: "按站点保存 + 双语界面",
+          change: "加上按域名持久化，以及中英两套语系文件。",
+          reason: "每次访问都重置的设置比没有设置更糟，而且我两种语言都读。",
+          improvement: "它从一个注入演示，变成了每天真能用的东西。",
         },
       ],
       limits: [
         {
-          constraint: "field testing 覆盖的场景和光照条件仍然有限。",
-          whyItMatters: "AR accessibility 工具会受表面、光线、距离和运动影响。",
-          nextValidation: "在更多光照、设备摄像头和高压力任务中测试。",
+          constraint: "真正需要它的人，一个都还没用过。",
+          whyItMatters: "这里每一个控件都是从准则推出来的，不是看着谁读得吃力才做的。",
+          nextValidation: "找那些真的依赖宽间距或阅读障碍字体的人坐下来看，他们从来不碰哪几个控件。",
         },
         {
-          constraint: "原型测试了识别和满意度，没有测试长期 trust。",
-          whyItMatters: "一次有用不代表用户会长期信任这个工具。",
-          nextValidation: "做重复使用研究，衡量 trust、错误恢复和放弃率。",
+          constraint: "它是 DEMO，不是已发布的扩展。",
+          whyItMatters: "它没经历过 Chrome 应用商店审核、自动更新，也没遇到过网站在它脚下改版。",
+          nextValidation: "先发出去，然后看哪些网站先坏、坏得多快。",
         },
       ],
       takeaway:
-        "这个案例证明我能和目标用户一起设计 accessibility 交互，保护公共场景隐私，并通过 field testing 验证包容性决策。",
-    },
-    ai: {
-      decisions: [
-        {
-          label: "把反馈放到面试后",
-          choice: "优先使用 post-session feedback，让用户在练习中保持沉浸。",
-          evidence: "原型测试显示，中途打断会提高自我意识和紧张感。",
-          tradeoff: "即时纠正减少了，但练习更安全、更可重复。",
-          impact: "AI 更像 coach，而不是随时打断的 critic。",
-        },
-        {
-          label: "让用户控制 coaching tone",
-          choice: "把温和或严格的 AI persona 控制作为方向。",
-          evidence: "访谈显示，不同阶段的用户对压力的接受度不同。",
-          tradeoff: "tone control 增加设置复杂度，但减少一刀切风险。",
-          impact: "trust 被当作可调节的产品变量。",
-        },
-        {
-          label: "先解决 emotional safety",
-          choice: "先围绕 anxiety reduction 和 expectation-setting，而不是增加更多模式。",
-          evidence: "问卷和访谈都显示情绪阻力是练习的主要障碍。",
-          tradeoff: "范围更窄，但更聚焦核心需求。",
-          impact: "AI UX 围绕 feedback timing、control 和 trust 建立原则。",
-        },
-      ],
-      evidence: [
-        {
-          method: "Survey",
-          sample: "85 responses",
-          question: "是什么阻碍求职者持续练习面试？",
-          finding: "用户把 anxiety、uncertainty 和 fear of judgment 描述为主要阻碍。",
-          implication: "助手要降低情绪成本，而不是只提供更多题目。",
-        },
-        {
-          method: "Depth interviews",
-          sample: "Depth interviews; group size not formally recorded",
-          question: "什么让面试练习安全到可以重复？",
-          finding: "用户需要真实压力，也需要控制反馈强度。",
-          implication: "AI 行为需要 expectation-setting 和 user control。",
-        },
-        {
-          method: "Prototype test",
-          sample: "Moderated prototype sessions; group size not formally recorded",
-          question: "什么时候给反馈最不破坏信心？",
-          finding: "用户更偏好回答结束后的反馈，而不是中途打断。",
-          implication: "feedback timing 成为核心交互决策。",
-        },
-      ],
-      iterations: [
-        {
-          version: "Question generator",
-          change: "从基础面试题和回答点评开始。",
-          reason: "先测试内容本身是否有足够价值。",
-          improvement: "发现内容有帮助，但没有解决 anxiety。",
-        },
-        {
-          version: "Coaching flow",
-          change: "加入 session structure、expectation-setting 和 post-session feedback。",
-          reason: "研究显示 emotional pacing 和答案质量同样重要。",
-          improvement: "让体验更安全，也更容易重复使用。",
-        },
-        {
-          version: "Tone-control concept",
-          change: "定义温和/严格 AI interviewer 的方向。",
-          reason: "用户对压力的偏好不同。",
-          improvement: "把 AI trust 变成可控制的产品变量。",
-        },
-      ],
-      limits: [
-        {
-          constraint: "beta 更多衡量自报 confidence 和 anxiety，而非真实录用结果。",
-          whyItMatters: "信心重要，但不等于真实面试表现提升。",
-          nextValidation: "跟踪重复练习质量，并比较使用前后的 mock interview score。",
-        },
-        {
-          constraint: "AI persona 尚未跨文化和资历层级深测。",
-          whyItMatters: "反馈语气会因背景和场景被理解成支持或冒犯。",
-          nextValidation: "跨用户群和面试资历测试 tone preference。",
-        },
-      ],
-      takeaway:
-        "这个案例证明我能围绕 trust、control、feedback timing 和 emotional safety 设计 AI 交互，而不是只把 AI 当功能层。",
-    },
-    circles: {
-      decisions: [
-        {
-          label: "优化 slow matching 而不是更多匹配",
-          choice: "把产品方向放在 slow matching，让关系有时间形成。",
-          evidence: "访谈和 diary study 显示，学生想要更少但更深的连接。",
-          tradeoff: "方向拒绝容易增长的指标，但更贴近 loneliness 问题。",
-          impact: "产品从 engagement volume 转向 relationship depth。",
-        },
-        {
-          label: "用 small circles 降低社交压力",
-          choice: "探索小组格式，而不是只做一对一发现。",
-          evidence: "共创显示，小组 prompts 可以让 vulnerability 更安全。",
-          tradeoff: "小组协调更难，但能降低单独发起的风险。",
-          impact: "small circles 成为 belonging 的结构性答案。",
-        },
-        {
-          label: "衡量 relationship depth",
-          choice: "把成功定义为 perceived safety 和 relationship depth，而非使用时长。",
-          evidence: "学术框架和用户研究都指向归属质量，而不是活动数量。",
-          tradeoff: "depth metrics 更难埋点，但不会奖励浅层互动。",
-          impact: "产品综合阶段保住了 social wellbeing 目的。",
-        },
-      ],
-      evidence: [
-        {
-          method: "Depth interviews",
-          sample: "Interviews across cultural cohorts; group size not formally recorded",
-          question: "国际学生到达后，友谊为什么难建立？",
-          finding: "学生提到 social access、cultural uncertainty 和 shallow interaction。",
-          implication: "产品要创造更安全的入口，而不是只增加 discovery。",
-        },
-        {
-          method: "Diary study",
-          sample: "Two-week diary study; group size not formally recorded",
-          question: "什么时候学生感觉真正亲近，而不是只是社交忙碌？",
-          finding: "有意义的时刻通常小、重复、和具体情境有关。",
-          implication: "slow matching 和 recurring prompts 比 instant matching 更贴合。",
-        },
-        {
-          method: "Co-design workshops",
-          sample: "3 workshops",
-          question: "哪些社交形式安全到愿意和陌生同伴尝试？",
-          finding: "small circles 和 guided prompts 降低了单独发起的压力。",
-          implication: "产品应该结构化 vulnerability，而不是期待用户自己创造。",
-        },
-      ],
-      iterations: [
-        {
-          version: "Open social discovery",
-          change: "从更宽泛的 matching 和 messaging 概念开始。",
-          reason: "这是现有社交 app 的主流模式。",
-          improvement: "明确了更多发现可能加剧浅层互动。",
-        },
-        {
-          version: "Small circle concept",
-          change: "转向小组、prompt 和共享情境。",
-          reason: "研究显示安全感和重复性比 match volume 更重要。",
-          improvement: "降低发起压力，更支持 belonging。",
-        },
-        {
-          version: "Depth-first prototype direction",
-          change: "围绕 relationship depth 和 perceived safety 定义成功。",
-          reason: "产品需要匹配 social wellbeing 目标的指标。",
-          improvement: "避免方向漂移到通用 engagement optimization。",
-        },
-      ],
-      limits: [
-        {
-          constraint: "项目有明确 prototype direction，但较少 measured product outcome data。",
-          whyItMatters: "research-through-design 能框定问题，但仍需要行为验证。",
-          nextValidation: "原型测试 small-circle onboarding，并在多次会话后衡量 perceived safety。",
-        },
-        {
-          constraint: "研究覆盖多个文化群体，但不是所有国际学生情境。",
-          whyItMatters: "归属需求会随语言、文化、项目类型和到达时间变化。",
-          nextValidation: "按 cohort 和 arrival stage 做分段测试，再推广模型。",
-        },
-      ],
-      takeaway:
-        "这个案例证明我能处理模糊社会问题，综合理论和田野研究，并选择保护产品目的的指标。",
+        "这个案例证明我能把无障碍准则做成一个真能用的工具，并让它在我控制不了的页面上继续可用。它还不能证明这个工具帮到了谁。",
     },
     maze: {
       decisions: [
@@ -1553,70 +1210,36 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
   en: {
     connect: {
       proves:
-        "This case proves I can use research evidence to restructure complex information architecture and validate findability.",
+        "This case proves I can run research capable of proving itself wrong, then carry what survives into a component system twenty-four screens share.",
       inspect: [
-        "How task analysis changed the navigation model.",
-        "How card sorting and tree testing shaped the final IA.",
-        "How findability and task-success metrics constrained the design.",
+        "The hypotheses that failed their own pre-written threshold, and what replaced them.",
+        "Why the team went back to paper in October instead of patching the prototype.",
+        "What the November task chain established, and what it could not.",
       ],
       questions: [
-        "How did you decide which navigation labels were user-facing enough?",
-        "What would you test next if this portal went into production?",
+        "Which of your assumptions did the research kill, and how did you find out?",
+        "You were one of five. Which parts of this are yours?",
       ],
       bestFit: [
-        "Education, service design, or complex platform teams.",
-        "UX roles where IA decisions need research evidence.",
+        "Product teams where a designer is expected to build as well as research.",
+        "Roles where research has to survive contact with a delivery deadline.",
       ],
     },
     spectra: {
       proves:
-        "This case proves I can translate accessibility research into inclusive interaction decisions under real-world constraints.",
+        "This case proves I can turn accessibility guidance into a working tool, and keep it working on pages I do not control.",
       inspect: [
-        "How colourblind-user interviews shaped the feedback model.",
-        "How privacy in public contexts changed the AR interaction.",
-        "How field testing exposed environment and lighting constraints.",
+        "Why the font is bundled in the extension instead of fetched from a CDN.",
+        "Why settings are saved per site rather than globally.",
+        "Where injected styles lose to a page's own CSS, and what that forced.",
       ],
       questions: [
-        "How did you prevent colour-only feedback from becoming the core interaction?",
-        "What privacy risks would you validate before shipping?",
+        "How do you make injected styles win without breaking the layout?",
+        "What would you watch first if you put this in front of a real reader?",
       ],
       bestFit: [
-        "Accessibility, health, public-space, or assistive technology teams.",
-        "Product teams that need inclusive design beyond compliance.",
-      ],
-    },
-    ai: {
-      proves:
-        "This case proves I can design AI feedback flows that protect user control, trust, and emotional safety.",
-      inspect: [
-        "Why feedback moved from live interruption to post-session coaching.",
-        "How tone and confidence language shaped user trust.",
-        "How anxiety, control, and usefulness were balanced in the flow.",
-      ],
-      questions: [
-        "Where should AI intervene, and where should it stay quiet?",
-        "How would you validate whether feedback improves confidence without increasing stress?",
-      ],
-      bestFit: [
-        "AI UX, learning tools, coaching, or productivity teams.",
-        "Teams designing AI assistance around trust and user agency.",
-      ],
-    },
-    circles: {
-      proves:
-        "This case proves I can frame an ambiguous social wellbeing problem with research, theory, and careful product boundaries.",
-      inspect: [
-        "How interviews and diary study reframed loneliness as relational confidence.",
-        "Why slow matching and small circles were chosen over open discovery.",
-        "How relationship depth became a better success signal than engagement volume.",
-      ],
-      questions: [
-        "How would you avoid optimizing this product for shallow engagement?",
-        "What would you measure before scaling to more student cohorts?",
-      ],
-      bestFit: [
-        "Social impact, community, education, or wellbeing product teams.",
-        "Research-led teams working with ambiguous human problems.",
+        "Accessibility teams that want a designer who can also ship the tool.",
+        "Product teams where design work reaches the browser, not just the mockup.",
       ],
     },
     maze: {
@@ -1674,70 +1297,36 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
   zh: {
     connect: {
       proves:
-        "This case proves I can use research evidence to restructure complex information architecture and validate findability.",
+        "这个案例证明我能把研究做成「有可能证明自己错」的样子，再把活下来的结论落进一套 24 个屏共用的组件系统里。",
       inspect: [
-        "How task analysis changed the navigation model.",
-        "How card sorting and tree testing shaped the final IA.",
-        "How findability and task-success metrics constrained the design.",
+        "哪几条假设没过自己事先写好的门槛，以及后来换成了什么。",
+        "十月为什么选择回到纸上重画，而不是去补那个原型。",
+        "十一月那条任务链证明了什么，又有什么是它证明不了的。",
       ],
       questions: [
-        "How did you decide which navigation labels were user-facing enough?",
-        "What would you test next if this portal went into production?",
+        "研究杀掉了你哪些假设？你是怎么发现的？",
+        "你们是五个人。这里面哪些部分是你的？",
       ],
       bestFit: [
-        "Education, service design, or complex platform teams.",
-        "UX roles where IA decisions need research evidence.",
+        "期待设计师既做研究也能动手写的产品团队。",
+        "研究必须在真实交付期限下活下来的岗位。",
       ],
     },
     spectra: {
       proves:
-        "This case proves I can translate accessibility research into inclusive interaction decisions under real-world constraints.",
+        "这个案例证明我能把无障碍准则做成一个真能用的工具，并让它在我控制不了的页面上继续可用。",
       inspect: [
-        "How colourblind-user interviews shaped the feedback model.",
-        "How privacy in public contexts changed the AR interaction.",
-        "How field testing exposed environment and lighting constraints.",
+        "为什么字体打包进扩展，而不是从 CDN 取。",
+        "为什么设置按站点保存，而不是做成全局。",
+        "注入的样式在哪里会输给网页自己的 CSS，以及这件事逼出了什么改动。",
       ],
       questions: [
-        "How did you prevent colour-only feedback from becoming the core interaction?",
-        "What privacy risks would you validate before shipping?",
+        "怎么让注入的样式赢过网站，又不把布局撑坏？",
+        "如果把它交到一个真实读者手上，你会先看什么？",
       ],
       bestFit: [
-        "Accessibility, health, public-space, or assistive technology teams.",
-        "Product teams that need inclusive design beyond compliance.",
-      ],
-    },
-    ai: {
-      proves:
-        "This case proves I can design AI feedback flows that protect user control, trust, and emotional safety.",
-      inspect: [
-        "Why feedback moved from live interruption to post-session coaching.",
-        "How tone and confidence language shaped user trust.",
-        "How anxiety, control, and usefulness were balanced in the flow.",
-      ],
-      questions: [
-        "Where should AI intervene, and where should it stay quiet?",
-        "How would you validate whether feedback improves confidence without increasing stress?",
-      ],
-      bestFit: [
-        "AI UX, learning tools, coaching, or productivity teams.",
-        "Teams designing AI assistance around trust and user agency.",
-      ],
-    },
-    circles: {
-      proves:
-        "This case proves I can frame an ambiguous social wellbeing problem with research, theory, and careful product boundaries.",
-      inspect: [
-        "How interviews and diary study reframed loneliness as relational confidence.",
-        "Why slow matching and small circles were chosen over open discovery.",
-        "How relationship depth became a better success signal than engagement volume.",
-      ],
-      questions: [
-        "How would you avoid optimizing this product for shallow engagement?",
-        "What would you measure before scaling to more student cohorts?",
-      ],
-      bestFit: [
-        "Social impact, community, education, or wellbeing product teams.",
-        "Research-led teams working with ambiguous human problems.",
+        "希望设计师能顺手把工具做出来的无障碍团队。",
+        "设计工作要一路做到浏览器里、而不是停在稿子上的产品团队。",
       ],
     },
     maze: {
@@ -1893,18 +1482,18 @@ const caseReaderModes: Record<ProofLocale, CaseReaderMode[]> = {
 const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]> = {
   connect: [
     {
-      question: "Why did you move from staff-oriented navigation to task-oriented IA?",
-      reason: "Tests whether the IA decision came from user mental models, not taste.",
+      question: "Why write a pass mark for each hypothesis before running any interviews?",
+      reason: "Tests whether the research was set up to be able to fail, or only to confirm.",
       anchorId: "decision-timeline",
     },
     {
-      question: "Which research signal most changed the final navigation labels?",
-      reason: "Connects card sorting, task analysis, and tree testing to product structure.",
+      question: "Which assumption did the interviews kill, and what did you do about it?",
+      reason: "Separates research that changed the product from research that decorated it.",
       anchorId: "evidence-board",
     },
     {
-      question: "What would you validate next before this became the university default?",
-      reason: "Checks whether measured findability is being claimed with the right limits.",
+      question: "The MVP runs on mock data. What does that mean you have not proven?",
+      reason: "Checks whether the limits of a course project are stated or glossed over.",
       anchorId: "outcome-limits",
     },
   ],
@@ -1915,47 +1504,13 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
       anchorId: "decision-timeline",
     },
     {
-      question: "How did privacy in public contexts change the AR product model?",
+      question: "Why bundle the font instead of loading it from a CDN?",
       reason: "Tests judgment around social exposure, glanceability, and user control.",
       anchorId: "evidence-board",
     },
     {
       question: "What would field testing need to prove before shipping?",
       reason: "Grounds the outcome story in lighting, motion, and real-world constraints.",
-      anchorId: "outcome-limits",
-    },
-  ],
-  ai: [
-    {
-      question: "Why did feedback move from live interruption to post-session coaching?",
-      reason: "Tests whether the AI UX respects timing, anxiety, and user agency.",
-      anchorId: "decision-timeline",
-    },
-    {
-      question: "How did you decide what emotional safety means in an AI interview tool?",
-      reason: "Connects trust, tone, and control to a concrete interaction model.",
-      anchorId: "evidence-board",
-    },
-    {
-      question: "What would you measure to prove confidence gains are durable?",
-      reason: "Checks whether AI assistance is useful beyond a short first-session response.",
-      anchorId: "outcome-limits",
-    },
-  ],
-  circles: [
-    {
-      question: "Why choose slow matching and small circles instead of more matches?",
-      reason: "Tests whether the social product avoids shallow engagement incentives.",
-      anchorId: "decision-timeline",
-    },
-    {
-      question: "Which evidence made relationship depth a better metric than activity volume?",
-      reason: "Connects interviews, diary study, and theory synthesis to product success.",
-      anchorId: "evidence-board",
-    },
-    {
-      question: "What would you validate before scaling this across student cohorts?",
-      reason: "Keeps an ambiguous wellbeing concept honest about cultural and adoption limits.",
       anchorId: "outcome-limits",
     },
   ],

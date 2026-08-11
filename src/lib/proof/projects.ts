@@ -17,15 +17,15 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; open to internships and graduate roles.",
     stats: [
       {
-        value: "7",
+        value: "5",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI coaching, social wellbeing, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "A student social platform, an accessibility browser extension, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
-        value: "6",
+        value: "4",
         label: "research methods used",
-        detail: "Card sorting, tree testing, think-aloud, interviews, diary study, and co-design workshops.",
+        detail: "Exploratory interviews, think-aloud usability testing, task-based usability testing, and observation during a public exhibition.",
       },
       {
         value: "1",
@@ -46,15 +46,15 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，实习与全职都在看。",
     stats: [
       {
-        value: "7",
+        value: "5",
         label: "端到端案例",
         detail:
-          "信息架构、无障碍、AI 面试辅导、国际学生社交健康、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "一个学生社交平台、一个无障碍浏览器扩展、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
-        value: "6",
+        value: "4",
         label: "使用过的研究方法",
-        detail: "卡片分类、树测试、出声思考、深度访谈、日记研究与共创工作坊。",
+        detail: "探索式访谈、出声思考可用性测试、任务式可用性测试，以及公开展出时的现场观察。",
       },
       {
         value: "1",
@@ -76,36 +76,36 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "Research framing",
       summary: "I turn broad questions into scoped studies, participant plans, and decision criteria.",
-      proof: "Connect Circles combines interviews, diary study, and co-design into a product direction.",
-      href: "/projects/circles",
+      proof: "UQ Connect gave every hypothesis a numeric pass mark in writing before the first interview, so the research was able to come back negative — and on several counts it did.",
+      href: "/projects/connect",
     },
     {
       id: "information-architecture",
       title: "Information architecture",
-      summary: "I restructure messy systems around user mental models, then test the structure before defending it.",
-      proof: "UQ Connect collapsed twelve staff-owned categories into six task-led ones, tree-tested against the original.",
+      summary: "I give a sprawling product a structure people can navigate, then check whether they actually can.",
+      proof: "UQ Connect went back to paper mid-build to redraw the app as five screens with every route off the home page drawn explicitly.",
       href: "/projects/connect",
     },
     {
       id: "accessibility",
       title: "Accessibility and inclusion",
-      summary: "I design with the target group, not merely for them, and test in realistic contexts.",
-      proof: "Spectra Lens was designed and tested with colourblind users in cafeterias, crossings, and wardrobes.",
+      summary: "I turn accessibility guidance into controls people can actually reach, and keep them working in the wild.",
+      proof: "Spectra Lens turns accessibility guidance into a working extension that rewrites type and spacing on any page.",
       href: "/projects/spectra",
     },
     {
       id: "ai-ux",
       title: "AI interaction design",
       summary: "I design AI as a relationship: expectation-setting, control, feedback timing, and trust.",
-      proof: "AI Interview Assistant moved feedback after the session, because mid-answer coaching read as interruption.",
-      href: "/projects/ai",
+      proof: "Vigil treats the classifier's confidence as deliberately weak evidence, so the reviewer keeps checking instead of deferring.",
+      href: "/projects/vigil",
     },
     {
       id: "prototyping-testing",
       title: "Prototype, test, revise",
       summary: "I build at the fidelity needed to learn, then use tests to decide the next move.",
-      proof: "Spectra Lens and UQ Connect both changed direction after moderated usability sessions.",
-      href: "/projects/spectra",
+      proof: "UQ Connect ran three rounds at three fidelities: exploratory interviews, think-aloud on a working prototype, then a full task chain on the MVP.",
+      href: "/projects/connect",
     },
   ],
   zh: [
@@ -113,36 +113,36 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "研究问题定义",
       summary: "我把宽泛问题拆成研究范围、招募计划与决策标准。",
-      proof: "Connect Circles 通过访谈、日记研究与共创，把孤独感问题转成产品方向。",
-      href: "/projects/circles",
+      proof: "UQ Connect 在第一场访谈之前，就把每条假设的数字及格线写了下来，让研究有可能得出否定结果——而它确实否定了好几条。",
+      href: "/projects/connect",
     },
     {
       id: "information-architecture",
       title: "信息架构",
-      summary: "我围绕用户心智模型重组复杂系统，并在为它辩护之前先做测试。",
-      proof: "UQ Connect 把十二个按部门划分的入口收敛成六个按任务划分的入口，并与原结构做树测试对比。",
+      summary: "我给一个不断膨胀的产品一套能走得通的结构，然后去验证用户是不是真的走得通。",
+      proof: "UQ Connect 在开发中途回到纸上，把整个应用重画成五个屏，并把从首页出发的每条路径都画了出来。",
       href: "/projects/connect",
     },
     {
       id: "accessibility",
       title: "无障碍与包容性",
-      summary: "我和目标用户一起设计，并在真实场景中测试。",
-      proof: "Spectra Lens 与色盲用户共创，并在食堂、人行横道和他们自己的衣柜前做真实场景测试。",
+      summary: "我把无障碍准则做成用户真的够得到的控件，并让它在真实网站上持续可用。",
+      proof: "Spectra Lens 把无障碍准则做成了一个能用的扩展：一个 popup 就能改写任意页面的字体与间距。",
       href: "/projects/spectra",
     },
     {
       id: "ai-ux",
       title: "AI 交互设计",
       summary: "我把 AI 体验看成关系设计：预期、控制、反馈时机与信任。",
-      proof: "AI Interview Assistant 把反馈放到练习结束之后，因为答题过程中的提示会被当成打断。",
-      href: "/projects/ai",
+      proof: "Vigil 把分类器的信心分数刻意做成弱证据，让复核的人继续自己判断，而不是顺着它点下去。",
+      href: "/projects/vigil",
     },
     {
       id: "prototyping-testing",
       title: "原型、测试、迭代",
       summary: "我按学习目标选择原型保真度，再用测试决定下一步。",
-      proof: "Spectra Lens 与 UQ Connect 都在可用性测试后调整了关键方向。",
-      href: "/projects/spectra",
+      proof: "UQ Connect 用三种保真度跑了三轮：探索式访谈、在可运行原型上的出声思考，最后是 MVP 上的完整任务链。",
+      href: "/projects/connect",
     },
   ],
 };
@@ -152,42 +152,22 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
     {
       slug: "connect",
       href: "/projects/connect",
-      problemType: "Information architecture for a high-traffic student portal",
-      challenge: "Students could not find critical university tasks because the portal reflected staff ownership, not student mental models.",
-      methods: ["open card sort", "tree testing", "task analysis", "plain-language review"],
-      sample: "University project. Student participants across card sort, tree test, and task-analysis sessions; sample sizes not formally recorded.",
-      outcome: "Twelve staff-owned categories collapsed to six task-led ones, with 'I'm new' promoted to the front door and an A-Z index kept as a fallback. Not deployed to the live portal.",
-      proves: "I can diagnose IA breakdowns, restructure around user mental models, and test the structure before defending it.",
+      problemType: "A social platform for international students, researched and built over one semester",
+      challenge: "UQ runs plenty of events for international students, and they still end up in the same circle. A one-off mixer produces an introduction, not a relationship.",
+      methods: ["exploratory interviews", "falsifiable test cards", "think-aloud usability testing", "task-based usability testing", "component system design"],
+      sample: "Course project, five-person team. 71 interview transcripts across three rounds between August and November 2025; 14 of them mine. No round recorded completion times or a fixed success criterion.",
+      outcome: "A 24-screen mobile MVP built on a shared component system, reached through three research rounds and a mid-build return to paper. Runs on mock data; the backend was written but never connected.",
+      proves: "I can run research set up to disconfirm itself, and carry what survives into a component system that keeps two dozen screens reading as one product.",
     },
     {
       slug: "spectra",
       href: "/projects/spectra",
-      problemType: "Accessibility and AR decision support",
-      challenge: "Colourblind users needed fast, private interpretation of colour-dependent information in public environments.",
-      methods: ["semi-structured interviews", "heuristic review", "co-design", "field usability testing"],
-      sample: "University project. Colourblind participants across interviews, co-design, and in-context usability sessions; small self-recruited sample, sizes not formally recorded.",
-      outcome: "A one-tap AR overlay that answers the decision rather than naming the hue, silent by default with audio opt-in. Prototype only, not shipped.",
-      proves: "I can design inclusive interaction patterns with target users and change the model when context testing contradicts me.",
-    },
-    {
-      slug: "ai",
-      href: "/projects/ai",
-      problemType: "AI coaching and emotionally sensitive product design",
-      challenge: "Job seekers needed realistic interview practice without the social pressure that makes practice feel unsafe.",
-      methods: ["survey", "depth interviews", "competitive teardown", "prototype test", "A/B feedback timing"],
-      sample: "University project. Survey, depth interviews, competitive teardown, and moderated prototype sessions; sample sizes not formally recorded.",
-      outcome: "An interaction model for AI coaching: feedback after the session rather than mid-answer, a persona warmer than a recruiter, and body-language analysis deliberately rejected. Prototype only.",
-      proves: "I can design AI interactions around trust, control, expectation setting, and emotional pacing.",
-    },
-    {
-      slug: "circles",
-      href: "/projects/circles",
-      problemType: "Social wellbeing and research-through-design",
-      challenge: "International students wanted deeper friendship, while most social apps optimize for more matches and more messages.",
-      methods: ["depth interviews", "diary study", "co-design workshops", "concept synthesis"],
-      sample: "Ongoing university project. Interviews across cultural cohorts, a two-week diary study, and co-design workshops; sample sizes not formally recorded.",
-      outcome: "Research complete; prototype direction defined around slow matching, small groups, and shared vulnerability. Nothing built or user-tested yet.",
-      proves: "I can handle ambiguous social problems, synthesize academic theory, and resist shallow growth metrics.",
+      problemType: "Reading accessibility, built as a browser extension",
+      challenge: "Reading long pages is hard when the typeface, spacing, and contrast are fixed by whoever built the site.",
+      methods: ["accessibility heuristics", "typographic tuning", "cross-site regression testing", "bilingual UI"],
+      sample: "Self-directed build. Chrome extension: content-script style injection, a popup control panel, OpenDyslexic bundled locally, English and Simplified Chinese locale files, Jest unit tests. No user research yet.",
+      outcome: "A working extension that rewrites type and spacing on any page from a single popup, with settings that persist per site.",
+      proves: "I can turn accessibility guidance into a shipped tool, and keep it working across sites I do not control.",
     },
     {
       slug: "maze",
@@ -254,42 +234,22 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
     {
       slug: "connect",
       href: "/projects/connect",
-      problemType: "高频学生门户的信息架构重组",
-      challenge: "学生找不到关键任务，因为门户按照部门归属组织，而不是按照学生心智模型组织。",
-      methods: ["开放式卡片分类", "树测试", "任务分析", "普通语言审查"],
-      sample: "课程项目。参与者为学生，覆盖卡片分类、树测试与任务分析；样本量未正式记录。",
-      outcome: "把十二个按部门划分的入口收敛成六个按任务划分的入口，把「我是新生」提到首屏，并保留 A-Z 索引作为兜底。未上线到真实门户。",
-      proves: "证明我能诊断 IA 断点、围绕用户心智模型重组结构，并在为方案辩护之前先做测试。",
+      problemType: "一个面向国际学生的社交平台，一学期内做完研究并做出来",
+      challenge: "UQ 给国际学生办的活动不少，他们还是留在同一个圈子里。一次性的迎新派对制造的是认识，不是关系。",
+      methods: ["探索式访谈", "可证伪的假设卡", "出声思考可用性测试", "任务式可用性测试", "组件系统设计"],
+      sample: "课程项目，五人团队。2025 年 8 月至 11 月三轮共 71 份访谈逐字稿，其中 14 场是我做的。没有任何一轮记录过完成时间或事先定好的成功标准。",
+      outcome: "一个 24 屏、建立在共享组件系统上的移动端 MVP，经过三轮研究和一次开发中途回到纸面的重画。跑在 mock 数据上；后端写了，但从未接上。",
+      proves: "证明我能把研究做成会否定自己的样子，再把活下来的结论落进一套组件系统，让二十多个屏读起来仍然是同一个产品。",
     },
     {
       slug: "spectra",
       href: "/projects/spectra",
-      problemType: "无障碍与 AR 决策辅助",
-      challenge: "色盲用户需要在公共环境中快速、私密地理解依赖颜色的信息。",
-      methods: ["半结构访谈", "竞品启发式评估", "共创", "真实场景可用性测试"],
-      sample: "课程项目。参与者为色盲用户，覆盖访谈、共创与真实场景可用性测试；样本自行招募且规模较小，未正式记录。",
-      outcome: "一个单击即用的 AR 叠加层：直接回答「该怎么办」而不是报出色名，默认静音、语音改为可选。仅为原型，未上线。",
-      proves: "证明我能和目标用户一起设计包容性互动，并在真实场景测试推翻我的假设时改掉模型。",
-    },
-    {
-      slug: "ai",
-      href: "/projects/ai",
-      problemType: "AI 辅导与情绪敏感型产品设计",
-      challenge: "求职者需要真实面试练习，但又不想承受被观看与被评价的社交压力。",
-      methods: ["问卷", "深度访谈", "竞品拆解", "原型测试", "反馈时机 A/B 测试"],
-      sample: "课程项目。问卷、深度访谈、竞品拆解与主持式原型测试；样本量未正式记录。",
-      outcome: "一套 AI 辅导的交互模型：反馈放在练习结束之后而非答题过程中，人设比真实面试官更温和，并主动放弃了肢体语言分析。仅为原型。",
-      proves: "证明我能围绕信任、控制感、预期与情绪节奏设计 AI 体验。",
-    },
-    {
-      slug: "circles",
-      href: "/projects/circles",
-      problemType: "社交健康与研究型产品探索",
-      challenge: "国际学生想要更深的友谊，而大多数社交产品优化的是更多匹配和更多消息。",
-      methods: ["深度访谈", "日记研究", "共创工作坊", "概念综合"],
-      sample: "进行中的课程项目。跨文化群体访谈、两周日记研究与共创工作坊；样本量未正式记录。",
-      outcome: "研究完成；原型方向围绕慢匹配、小组关系与共享脆弱性展开。目前尚未开发，也未做用户测试。",
-      proves: "证明我能处理模糊的社会问题，综合学术理论，并抵抗浅层增长指标。",
+      problemType: "阅读无障碍，做成浏览器扩展",
+      challenge: "网页的字体、行距和对比度由建站的人决定，读起来吃力的人没有调整余地。",
+      methods: ["无障碍准则应用", "字体与间距调校", "跨站点回归测试", "中英双语界面"],
+      sample: "自主开发。Chrome 扩展：内容脚本注入样式、popup 控制面板、本地打包 OpenDyslexic 字体、中英双语语系文件、Jest 单元测试。尚未做过用户研究。",
+      outcome: "一个能用的扩展：从一个 popup 就能改写任意页面的字体与间距，设置按站点分别保存。",
+      proves: "证明我能把无障碍准则做成真正能用的工具，并让它在我控制不了的网站上持续可用。",
     },
     {
       slug: "maze",
@@ -347,15 +307,15 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "7",
+        value: "6",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI feedback, social wellbeing, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "A student social platform, accessibility, AI feedback, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "6",
         label: "research methods used",
-        detail: "Card sorting, tree testing, think-aloud, depth interviews, diary study, and co-design workshops.",
+        detail: "Depth interviews, falsifiable test cards, think-aloud, task-based usability testing, competitor teardown, and field observation.",
       },
       {
         value: "1",
@@ -378,12 +338,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         href: "/projects/maze#decision-timeline",
       },
       {
-        audience: "IA / service complexity",
-        title: "Information architecture and research rigor",
+        audience: "Research rigor / product structure",
+        title: "Research that can prove itself wrong",
         claim:
-          "Best proof that I can restructure a complex student service around user mental models.",
+          "Best proof that I run studies capable of returning a negative, then act on the result.",
         evidence:
-          "UQ Connect links task analysis, card sorting, and tree testing to a task-led structure.",
+          "UQ Connect set a numeric pass mark per hypothesis before fieldwork; several failed, and the learning cards say so.",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -392,7 +352,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         claim:
           "Best proof that I can turn accessibility research into a practical product interaction model.",
         evidence:
-          "Spectra Lens combines colourblind-user interviews, multi-modal feedback, privacy decisions, and field testing.",
+          "Spectra Lens combines accessibility guidance, cross-site injection testing, and a shipped browser extension.",
         href: "/projects/spectra#evidence-board",
       },
       {
@@ -403,15 +363,6 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         evidence:
           "Vigil builds the classifier's confidence as deliberately weak evidence, and the build fails if that stops being true.",
         href: "/projects/vigil#decision-timeline",
-      },
-      {
-        audience: "Social wellbeing / ambiguous problems",
-        title: "Social wellbeing product framing",
-        claim:
-          "Best proof that I can frame a soft social problem without collapsing it into generic engagement metrics.",
-        evidence:
-          "Connect Circles uses interviews, diary study, and theory synthesis to define slow matching and relationship depth.",
-        href: "/projects/circles#evidence-board",
       },
     ],
     closingPrompt: {
@@ -432,15 +383,15 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "7",
+        value: "6",
         label: "端到端案例",
         detail:
-          "涵盖信息架构、无障碍、AI 反馈、社交健康、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "涵盖一个学生社交平台、无障碍、AI 反馈、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "6",
         label: "使用过的研究方法",
-        detail: "卡片分类、树测试、出声思考、深度访谈、日记研究与共创工作坊。",
+        detail: "深度访谈、可证伪的假设卡、出声思考、任务式可用性测试、竞品拆解，以及真实场景观察。",
       },
       {
         value: "1",
@@ -463,12 +414,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         href: "/projects/maze#decision-timeline",
       },
       {
-        audience: "信息架构 / 复杂服务",
-        title: "信息架构与研究严谨度",
+        audience: "研究严谨度 / 产品结构",
+        title: "能证明自己错的研究",
         claim:
-          "证明我能围绕用户心智模型，重构复杂的学生服务。",
+          "证明我做的研究有可能得出否定结果，并且我会按结果行动。",
         evidence:
-          "UQ Connect 串联任务分析、卡片分类与树测试，产出以任务为主的结构。",
+          "UQ Connect 在进场之前就为每条假设定了数字及格线；有几条没过，learning cards 把这件事写了下来。",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -477,7 +428,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         claim:
           "证明我能把无障碍研究转化为可实施的产品交互模型。",
         evidence:
-          "Spectra Lens 结合色觉障碍用户访谈、多模态反馈、隐私决策与实地测试。",
+          "Spectra Lens 把无障碍准则、跨站点注入测试和一个真的做出来的浏览器扩展接在一起。",
         href: "/projects/spectra#evidence-board",
       },
       {
@@ -488,15 +439,6 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         evidence:
           "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这个性质失效，build 直接挂掉。",
         href: "/projects/vigil#decision-timeline",
-      },
-      {
-        audience: "社交健康 / 模糊问题",
-        title: "社交健康产品框架",
-        claim:
-          "证明我能定义柔性的社会问题，而不把它简化成通用互动指标。",
-        evidence:
-          "Connect Circles 用访谈、日记研究与理论综合，定义慢匹配和关系深度。",
-        href: "/projects/circles#evidence-board",
       },
     ],
     closingPrompt: {
@@ -516,13 +458,13 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     roles: ["UX Designer Intern", "Product Designer Intern", "UX Research Intern", "Graduate Interaction Designer"],
     bestFit: [
       "Teams with ambiguous problems and enough access to users to learn properly.",
-      "Products where accessibility, education, social wellbeing, or AI trust matters.",
+      "Products where accessibility, education, AI trust, or physical interaction matters.",
       "Small or mid-sized teams where design participates in product decisions.",
     ],
     proofLinks: [
       { label: "Information architecture proof", href: "/projects/connect" },
       { label: "Accessibility proof", href: "/projects/spectra" },
-      { label: "AI UX proof", href: "/projects/ai" },
+      { label: "AI UX proof", href: "/projects/vigil" },
       { label: "Resume", href: "/resume" },
     ],
   },
@@ -531,13 +473,13 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     roles: ["UX Designer Intern", "Product Designer Intern", "UX Research Intern", "Graduate Interaction Designer"],
     bestFit: [
       "问题足够模糊、也有真实用户可接触的团队。",
-      "重视无障碍、教育、社交健康或 AI 信任的产品。",
+      "重视无障碍、教育、AI 信任或实体交互的产品。",
       "设计能参与产品决策的小型或中型团队。",
     ],
     proofLinks: [
       { label: "信息架构证据", href: "/projects/connect" },
       { label: "无障碍证据", href: "/projects/spectra" },
-      { label: "AI UX 证据", href: "/projects/ai" },
+      { label: "AI UX 证据", href: "/projects/vigil" },
       { label: "简历", href: "/resume" },
     ],
   },
@@ -554,7 +496,7 @@ const hiringPaths: Record<ProofLocale, HiringPath[]> = {
     {
       time: "2-minute case check",
       title: "Inspect the strongest proof",
-      action: "Open the evidence map and jump into the case that best matches your team: IA, accessibility, AI UX, or social wellbeing.",
+      action: "Open the evidence map and jump into the case that best matches your team: IA, accessibility, AI UX, hardware, or generative production.",
       href: "/projects",
     },
     {
@@ -574,7 +516,7 @@ const hiringPaths: Record<ProofLocale, HiringPath[]> = {
     {
       time: "2 分钟案例判断",
       title: "查看最相关证明",
-      action: "打开证据地图，按团队需要进入 IA、无障碍、AI UX 或社交健康方向的案例。",
+      action: "打开证据地图，按团队需要进入 IA、无障碍、AI UX、硬件或生成式生产方向的案例。",
       href: "/projects",
     },
     {

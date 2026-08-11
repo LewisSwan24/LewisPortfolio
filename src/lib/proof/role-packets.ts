@@ -42,7 +42,7 @@ function packetBase(
 const rolePackets: Record<ProofLocale, RolePacket[]> = {
   en: [
     {
-      ...packetBase("en", "ux-product", ["connect", "spectra", "circles"]),
+      ...packetBase("en", "ux-product", ["connect", "spectra", "maze"]),
       label: "UX/Product Design",
       headline: "Interview Lewis for UX/Product roles that need research to shape product direction.",
       fitThesis:
@@ -50,150 +50,117 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       proofClaims: [
         {
           id: "ux-product-ia",
-          claim: "Lewis can turn messy service information into measurable product structure.",
+          claim: "Lewis lets research change the product, including when that means restarting.",
           evidence:
-            "UQ Connect reframed a student portal around task success, findability, and student-language labels.",
+            "UQ Connect went back to paper mid-build after usability sessions exposed structural navigation defects, then rebuilt twenty-four screens off that sheet.",
           boundary:
-            "This proves prototype and research-direction quality, not ownership of a university-wide production rollout.",
+            "This shows research-to-decision quality on a course project, not ownership of a shipped product.",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "Validate at scale with production search logs, support-ticket patterns, and a larger tree test.",
+            "Connect the backend and re-run the same task chain against live data, with timings and a pass mark set in advance.",
         },
         {
           id: "ux-product-inclusive-tradeoffs",
           claim: "Lewis can make interaction decisions from inclusive constraints instead of visual taste alone.",
           evidence:
-            "Spectra Lens used colourblind-user research to choose multi-modal feedback and user-controlled public use.",
+            "Spectra Lens took WCAG text-spacing criteria and turned them into four controls a reader can actually reach.",
           boundary:
             "This is inclusive product direction evidence, not a full accessibility certification across devices.",
           strongestAnchor: "/projects/spectra#decision-timeline",
           nextValidation:
-            "Run broader field testing across lighting, distance, device, and colour-vision profiles.",
-        },
-        {
-          id: "ux-product-social-depth",
-          claim: "Lewis can resist shallow engagement metrics when the product goal is social wellbeing.",
-          evidence:
-            "Connect Circles shifted from more matches to small groups, slow matching, and relationship depth.",
-          boundary:
-            "This proves research framing and product direction, not scaled retention or network effects.",
-          strongestAnchor: "/projects/circles#interview-takeaway",
-          nextValidation:
-            "Test repeated cohort use and measure perceived safety, relationship quality, and belonging over time.",
+            "Put it in front of readers who rely on loose spacing and watch which controls they never touch.",
         },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
         ["connect", 0],
         ["spectra", 1],
-        ["circles", 0],
+        ["maze", 0],
       ]),
     },
     {
-      ...packetBase("en", "ux-research", ["circles", "connect", "ai"]),
+      ...packetBase("en", "ux-research", ["connect", "spectra", "maze"]),
       label: "UX Research",
       headline: "Interview Lewis for research roles that need synthesis to become product direction.",
       fitThesis:
         "Best fit when the role values method choice, synthesis under uncertainty, and honest limits on what the evidence proves.",
       proofClaims: [
         {
-          id: "ux-research-ambiguous-social",
-          claim: "Lewis can choose methods for ambiguous human problems before the product shape is obvious.",
-          evidence:
-            "Connect Circles combines interviews, diary study, co-design, and theory synthesis around belonging.",
-          boundary:
-            "The work defines a defensible product direction, not a validated scaled social network.",
-          strongestAnchor: "/projects/circles#evidence-board",
-          nextValidation:
-            "Run a longitudinal cohort study across arrival stages and cultural cohorts before scale claims.",
-        },
-        {
           id: "ux-research-ia-validation",
-          claim: "Lewis can connect research methods to measurable decision criteria.",
+          claim: "Lewis writes the pass mark before the fieldwork, so a study can come back negative.",
           evidence:
-            "UQ Connect uses card sort, tree test, and task analysis to constrain IA decisions with findability evidence.",
+            "UQ Connect set a numeric threshold per hypothesis in advance; the learning cards then record which ones failed, including the assumption that language proficiency was the barrier.",
           boundary:
-            "The metrics show direction and prototype improvement, not live operational impact.",
+            "The thresholds were set but never formally scored against the transcripts, so the disconfirmation is qualitative.",
           strongestAnchor: "/projects/connect#outcome-limits",
           nextValidation:
-            "Compare pre/post launch search behavior, task completion, and support demand.",
+            "Score the transcripts against the stated thresholds and report which hypotheses pass, fail, or remain undecided.",
         },
         {
-          id: "ux-research-ai-emotion",
-          claim: "Lewis can research emotionally sensitive AI experiences without reducing them to satisfaction scores.",
+          id: "ux-research-observation",
+          claim: "Lewis can run observation when the setting will not allow clean instrumentation.",
           evidence:
-            "AI Interview Assistant separates confidence, anxiety, feedback timing, and user control.",
+            "MazeRunners was watched across 9 groups and 36 people at a public exhibition; the useful signal was who took the lead and where groups stalled.",
           boundary:
-            "Short-term confidence is not the same as durable interview performance.",
-          strongestAnchor: "/projects/ai#evidence-board",
+            "The handwritten leaderboard was never archived, so completion times and drop counts do not exist as data.",
+          strongestAnchor: "/projects/maze#outcome-limits",
           nextValidation:
-            "Measure repeated-session answer quality, perceived control, and real interview readiness over time.",
+            "Log completion time, drops, trap triggers, and rule-learning time so the next run produces a dataset.",
         },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
-        ["circles", 1],
+        ["spectra", 1],
         ["connect", 2],
-        ["ai", 2],
+        ["maze", 2],
       ]),
     },
     {
-      ...packetBase("en", "ai-ux", ["ai", "spectra", "connect"]),
+      ...packetBase("en", "ai-ux", ["vigil", "spectra", "connect"]),
       label: "AI UX / Human-AI Interaction",
       headline: "Interview Lewis for AI UX roles where trust, timing, and agency matter.",
       fitThesis:
         "Best fit when the product needs judgment about where AI should intervene, explain itself, or stay quiet.",
       proofClaims: [
         {
-          id: "ai-ux-feedback-timing",
-          claim: "Lewis can reason about AI intervention timing in stressful workflows.",
+          id: "ai-ux-weak-evidence",
+          claim: "Lewis can design so a person keeps judging instead of deferring to the model.",
           evidence:
-            "AI Interview Assistant moved feedback after the session to protect flow, agency, and emotional safety.",
+            "Vigil shows the classifier's confidence as deliberately weak evidence, and the build fails if that number ever starts predicting the model's errors.",
           boundary:
-            "The case frames AI interaction quality; it does not prove model accuracy or long-term coaching efficacy.",
-          strongestAnchor: "/projects/ai#decision-timeline",
+            "The interface is built and the protocol is written, but no participants have run it yet.",
+          strongestAnchor: "/projects/vigil#decision-timeline",
           nextValidation:
-            "Test longitudinal practice sessions and compare answer quality, control, and stress across user groups.",
+            "Run the five-person hallway test, then a counterbalanced study on whichever question survives it.",
         },
         {
-          id: "ai-ux-control-privacy",
-          claim: "Lewis can design intelligent assistance around user control and public context.",
+          id: "ai-ux-falsifiable-questions",
+          claim: "Lewis can turn a vague trust problem into questions that can be answered with evidence.",
           evidence:
-            "Spectra Lens prioritized glanceable, user-controlled feedback because public assistive use can feel exposing.",
+            "Vigil splits over-trust into three questions - how confidence is shown, when the verdict appears, how evidence is presented - each with two working variants and a prediction written before testing.",
           boundary:
-            "The privacy model is a product direction, not a completed legal or clinical accessibility audit.",
-          strongestAnchor: "/projects/spectra#interview-takeaway",
+            "Predictions are recorded, not confirmed; the case proves the instrument, not the answers.",
+          strongestAnchor: "/projects/vigil#evidence-board",
           nextValidation:
-            "Field test real public contexts and compare whether assistance reduces or increases user burden.",
-        },
-        {
-          id: "ai-ux-evidence-discipline",
-          claim: "Lewis can keep AI claims tied to evidence and visible limits.",
-          evidence:
-            "The proof system separates claims, anchors, and boundaries instead of presenting AI outcomes as magic.",
-          boundary:
-            "The portfolio shows interaction judgment, not machine-learning engineering ownership.",
-          strongestAnchor: "/projects/ai#outcome-limits",
-          nextValidation:
-            "Add repeated-session and calibration metrics before making durable performance claims.",
+            "Compare the recorded predictions against what participants actually do, and report where they were wrong.",
         },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
-        ["ai", 0],
-        ["ai", 1],
+        ["vigil", 0],
+        ["vigil", 1],
         ["spectra", 1],
       ]),
     },
     {
-      ...packetBase("en", "accessibility", ["spectra", "connect", "ai"]),
+      ...packetBase("en", "accessibility", ["spectra", "connect", "maze"]),
       label: "Accessibility / Inclusive Design",
       headline: "Interview Lewis for inclusive design roles that turn constraints into product behavior.",
       fitThesis:
-        "Best fit when the work needs target-user research, accessible interaction choices, and clear validation boundaries.",
+        "Best fit when the work needs accessibility guidance turned into shipped behaviour, with honest limits on what has been validated.",
       proofClaims: [
         {
           id: "accessibility-multimodal-feedback",
           claim: "Lewis can translate accessibility needs into interaction patterns, not just checklist language.",
           evidence:
-            "Spectra Lens uses redundant labels, contrast, and multi-modal cues for colourblind users.",
+            "Spectra Lens bundles its font locally so the tool works offline and leaks nothing about what the reader opens.",
           boundary:
             "The case is strong inclusive design evidence, not a universal audit across all impairment contexts.",
           strongestAnchor: "/projects/spectra#decision-timeline",
@@ -202,37 +169,26 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
         },
         {
           id: "accessibility-plain-language",
-          claim: "Lewis can improve access through language and information architecture.",
+          claim: "Lewis treats unclear labels and dead ends as defects, not polish.",
           evidence:
-            "UQ Connect replaced staff-facing categories with student-language labels and task-oriented structure.",
+            "UQ Connect's September sessions logged 'Skill swap — not sure what that is' and 'Can I go to the previous page?' as blockers, and the October restructure answered both.",
           boundary:
-            "The IA evidence needs production validation before claiming full service accessibility impact.",
+            "This is language and navigation clarity for a general student audience; it is not an assistive-technology audit.",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "Test with students using assistive technology and compare support-seeking behavior after launch.",
-        },
-        {
-          id: "accessibility-ai-control",
-          claim: "Lewis can protect agency in AI experiences where users may feel judged or exposed.",
-          evidence:
-            "AI Interview Assistant separates practice, feedback timing, and tone control to reduce pressure.",
-          boundary:
-            "The design addresses emotional accessibility, not a clinical anxiety intervention.",
-          strongestAnchor: "/projects/ai#interview-takeaway",
-          nextValidation:
-            "Validate with anxious and confident users separately before generalizing the interaction model.",
+            "Run the same task chain with screen-reader and keyboard-only users, who were never part of any round.",
         },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
         ["spectra", 0],
         ["connect", 0],
-        ["ai", 0],
+        ["vigil", 0],
       ]),
     },
   ],
   zh: [
     {
-      ...packetBase("zh", "ux-product", ["connect", "spectra", "circles"]),
+      ...packetBase("zh", "ux-product", ["connect", "spectra", "maze"]),
       label: "UX/Product Design",
       headline: "适合需要把研究转成产品方向的 UX/Product 岗位。",
       fitThesis:
@@ -240,140 +196,107 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       proofClaims: [
         {
           id: "ux-product-ia",
-          claim: "Lewis 能把混乱的服务信息转成可衡量的产品结构。",
+          claim: "Lewis 会让研究真的改变产品，包括推翻重来。",
           evidence:
-            "UQ Connect 围绕任务成功率、可发现性和学生语言重新组织学生门户。",
+            "UQ Connect 在可用性测试暴露出结构性导航缺陷之后，开发中途回到纸上重画，再照着那张纸重建二十四个屏。",
           boundary:
-            "这证明的是原型和研究方向质量，不等于已经拥有全校级生产上线结果。",
+            "这证明的是课程项目里「从研究到决策」的质量，不等于拥有一个已上线产品。",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "下一步需要用生产搜索日志、支持请求和更大规模树测试验证。",
+            "把后端接上，用同一条任务链对着真实数据重跑一次，并带上计时与事先写好的及格线。",
         },
         {
           id: "ux-product-inclusive-tradeoffs",
           claim: "Lewis 能从包容性约束出发做交互取舍，而不是只靠视觉偏好。",
           evidence:
-            "Spectra Lens 基于色盲用户研究选择多模态反馈和用户可控的公共场景使用方式。",
+            "Spectra Lens 把 WCAG 的文本间距条款，变成了读者真的够得到的四个控件。",
           boundary:
             "这是包容性产品方向证据，不是覆盖所有设备的完整无障碍认证。",
           strongestAnchor: "/projects/spectra#decision-timeline",
           nextValidation:
             "下一步需要在光线、距离、设备和不同色觉情况中做更广泛场景测试。",
         },
-        {
-          id: "ux-product-social-depth",
-          claim: "当产品目标是社交健康时，Lewis 能抵抗浅层参与指标。",
-          evidence:
-            "Connect Circles 从更多匹配转向小组、慢匹配和关系深度。",
-          boundary:
-            "这证明研究定义和产品方向，不证明规模化留存或网络效应。",
-          strongestAnchor: "/projects/circles#interview-takeaway",
-          nextValidation:
-            "下一步需要测试重复 cohort 使用，并衡量安全感、关系质量和归属感。",
-        },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [
         ["connect", 0],
         ["spectra", 1],
-        ["circles", 0],
+        ["maze", 0],
       ]),
     },
     {
-      ...packetBase("zh", "ux-research", ["circles", "connect", "ai"]),
+      ...packetBase("zh", "ux-research", ["connect", "spectra", "maze"]),
       label: "UX Research",
       headline: "适合需要把研究综合转成产品方向的 UX Research 岗位。",
       fitThesis:
         "当岗位重视方法选择、不确定性下的综合，以及清楚说明证据边界时，这个方向最匹配。",
       proofClaims: [
         {
-          id: "ux-research-ambiguous-social",
-          claim: "Lewis 能在产品形态还不明确时，为复杂人的问题选择研究方法。",
-          evidence:
-            "Connect Circles 围绕归属感结合访谈、日记研究、共创和理论综合。",
-          boundary:
-            "这个项目定义了可信的产品方向，不等于验证了规模化社交网络。",
-          strongestAnchor: "/projects/circles#evidence-board",
-          nextValidation:
-            "下一步需要跨到达阶段和文化群体做长期 cohort 研究。",
-        },
-        {
           id: "ux-research-ia-validation",
-          claim: "Lewis 能把研究方法和可衡量的决策标准连接起来。",
+          claim: "Lewis 把及格线写在进场之前，让一项研究有可能得出否定结果。",
           evidence:
-            "UQ Connect 用卡片分类、树测试和任务分析约束信息架构决策。",
+            "UQ Connect 事先为每条假设定了数字门槛；learning cards 随后记下哪几条没过，包括「语言能力是障碍」这条。",
           boundary:
-            "这些指标证明方向和原型改进，不等于已经证明线上运营影响。",
+            "门槛定了，但从未真的拿逐字稿逐条打分，所以这个否定是定性的。",
           strongestAnchor: "/projects/connect#outcome-limits",
           nextValidation:
-            "下一步需要比较上线前后的搜索行为、任务完成和支持需求。",
+            "拿逐字稿对照当初写下的门槛逐条打分，报出哪些通过、哪些没过、哪些仍无法判定。",
         },
         {
-          id: "ux-research-ai-emotion",
-          claim: "Lewis 能研究情绪敏感的 AI 体验，而不是只看满意度。",
+          id: "ux-research-observation",
+          claim: "Lewis 能在无法干净埋点的场合用观察法拿到有用信号。",
           evidence:
-            "AI Interview Assistant 拆分了信心、焦虑、反馈时机和控制感。",
+            "MazeRunners 在公开展出时被观察了 9 组共 36 人；真正有用的信号是谁自然成为领导者、以及小组在哪一步卡住。",
           boundary:
-            "短期信心提升不等于长期面试表现提升。",
-          strongestAnchor: "/projects/ai#evidence-board",
+            "手写排行榜没有留档，所以完成时间和掉球次数根本不存在于数据里。",
+          strongestAnchor: "/projects/maze#outcome-limits",
           nextValidation:
-            "下一步需要长期衡量回答质量、控制感和真实面试准备度。",
+            "记录完成时间、掉球、陷阱触发与规则学习时长，让下一次跑完就有数据集。",
         },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [
-        ["circles", 1],
+        ["spectra", 1],
         ["connect", 2],
-        ["ai", 2],
+        ["maze", 2],
       ]),
     },
     {
-      ...packetBase("zh", "ai-ux", ["ai", "spectra", "connect"]),
+      ...packetBase("zh", "ai-ux", ["vigil", "spectra", "connect"]),
       label: "AI UX / Human-AI Interaction",
       headline: "适合重视信任、反馈时机和用户主动权的 AI UX 岗位。",
       fitThesis:
         "当产品需要判断 AI 何时介入、何时解释、何时保持安静时，这个方向最匹配。",
       proofClaims: [
         {
-          id: "ai-ux-feedback-timing",
-          claim: "Lewis 能判断压力型流程中 AI 介入的时机。",
+          id: "ai-ux-weak-evidence",
+          claim: "Lewis 能把界面设计成让人继续自己判断，而不是顺着模型点下去。",
           evidence:
-            "AI Interview Assistant 把反馈移到面试后，以保护流程、主动权和情绪安全。",
+            "Vigil 把分类器的信心分数刻意做成弱证据；一旦这个数字变得能预测模型哪里错，构建就直接失败。",
           boundary:
-            "这个案例证明 AI 交互判断，不证明模型准确率或长期辅导效果。",
-          strongestAnchor: "/projects/ai#decision-timeline",
+            "界面已经做出来、测试脚本也写好了，但还没有受试者跑过。",
+          strongestAnchor: "/projects/vigil#decision-timeline",
           nextValidation:
-            "下一步需要长期练习测试，并比较回答质量、控制感和压力变化。",
+            "先跑五人走廊测试，再针对活下来的那个问题做一次平衡顺序的对照研究。",
         },
         {
-          id: "ai-ux-control-privacy",
-          claim: "Lewis 能围绕用户控制感和公共场景设计智能辅助。",
+          id: "ai-ux-falsifiable-questions",
+          claim: "Lewis 能把模糊的信任问题，拆成可以用证据回答的具体问题。",
           evidence:
-            "Spectra Lens 重视 glanceable、用户可控的反馈，因为公共辅助使用可能让人暴露。",
+            "Vigil 把「人会不会过度信任 AI」拆成三个问题：信心怎么显示、结论何时出现、证据怎么摆；每个问题都做了两个能跑的变体，预测在测试之前先写下来。",
           boundary:
-            "隐私模型是产品方向，不是法律或临床无障碍审计。",
-          strongestAnchor: "/projects/spectra#interview-takeaway",
+            "预测只是记录下来了，还没有被验证；这个案例证明的是测量工具，不是答案。",
+          strongestAnchor: "/projects/vigil#evidence-board",
           nextValidation:
-            "下一步需要在真实公共场景中测试辅助到底降低还是增加用户负担。",
-        },
-        {
-          id: "ai-ux-evidence-discipline",
-          claim: "Lewis 能让 AI 体验主张保持证据和边界清晰。",
-          evidence:
-            "作品集把 claim、anchor 和 boundary 分开，而不是把 AI 结果包装成魔法。",
-          boundary:
-            "作品集证明交互判断，不证明机器学习工程 ownership。",
-          strongestAnchor: "/projects/ai#outcome-limits",
-          nextValidation:
-            "下一步需要补充重复使用和校准指标，再声称长期表现提升。",
+            "把记录的预测和受试者的实际行为对照，并如实报告哪些预测错了。",
         },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [
-        ["ai", 0],
-        ["ai", 1],
+        ["vigil", 0],
+        ["vigil", 1],
         ["spectra", 1],
       ]),
     },
     {
-      ...packetBase("zh", "accessibility", ["spectra", "connect", "ai"]),
+      ...packetBase("zh", "accessibility", ["spectra", "connect", "maze"]),
       label: "Accessibility / Inclusive Design",
       headline: "适合把包容性约束转成产品行为的无障碍与包容性设计岗位。",
       fitThesis:
@@ -383,7 +306,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "accessibility-multimodal-feedback",
           claim: "Lewis 能把无障碍需求转成具体交互模式，而不只是 checklist。",
           evidence:
-            "Spectra Lens 为色盲用户使用冗余标签、对比和多模态提示。",
+            "Spectra Lens 把字体打包在本地，所以离线能用，也不会泄露读者打开了什么页面。",
           boundary:
             "这个案例是强包容性设计证据，不是所有障碍情境的通用审计。",
           strongestAnchor: "/projects/spectra#decision-timeline",
@@ -392,31 +315,20 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
         },
         {
           id: "accessibility-plain-language",
-          claim: "Lewis 能通过语言和信息架构提升可访问性。",
+          claim: "Lewis 把「看不懂的标签」和「走不回去的死路」当缺陷处理，不当润色。",
           evidence:
-            "UQ Connect 用学生语言和任务导向结构替代 staff-facing 分类。",
+            "UQ Connect 九月的测试把「Skill swap——不知道这是什么」和「我怎么回上一页？」记为阻塞项，十月的结构重画把两者都回答了。",
           boundary:
-            "信息架构证据还需要生产验证，才能声称完整服务可访问性影响。",
+            "这是面向一般学生的语言与导航清晰度，不是一次辅助技术审计。",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "下一步需要和使用辅助技术的学生测试，并比较上线后的支持行为。",
-        },
-        {
-          id: "accessibility-ai-control",
-          claim: "Lewis 能在可能让用户感到被评价的 AI 体验中保护主动权。",
-          evidence:
-            "AI Interview Assistant 拆分练习、反馈时机和语气控制来降低压力。",
-          boundary:
-            "这个设计处理情绪可访问性，不是临床焦虑干预。",
-          strongestAnchor: "/projects/ai#interview-takeaway",
-          nextValidation:
-            "下一步需要分别验证焦虑用户和自信用户，再推广交互模型。",
+            "让屏幕阅读器用户和纯键盘用户跑同一条任务链——他们从来没有出现在任何一轮里。",
         },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [
         ["spectra", 0],
         ["connect", 0],
-        ["ai", 0],
+        ["vigil", 0],
       ]),
     },
   ],

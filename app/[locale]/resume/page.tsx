@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const SKILLS: Array<{ en: string; zh: string; v: number; href?: string }> = [
-  { en: "User research", zh: "用户研究", v: 92, href: "/projects/circles" },
+  { en: "User research", zh: "用户研究", v: 92, href: "/projects/connect" },
   { en: "Information architecture", zh: "信息架构", v: 88, href: "/projects/connect" },
   { en: "Interaction design", zh: "交互设计", v: 85, href: "/projects/spectra" },
   { en: "Prototyping (Figma, Framer)", zh: "原型（Figma / Framer）", v: 90, href: "/projects/ai" },
@@ -64,87 +64,67 @@ export default async function ResumePage() {
               <h3>{t("resume.section.exp")}</h3>
 
               <div className="res-entry">
-                <div className="date">2024 · 10 – {isZh ? "至今" : "Now"}</div>
+                <div className="date">2026 · 01 – {isZh ? "至今" : "Now"}</div>
                 <div>
                   <h4>
                     {isZh
-                      ? "产品设计师（自主项目）"
-                      : "Product Designer (self-initiated)"}
+                      ? "产品与交互设计师（自主项目）"
+                      : "Product & Interaction Designer (self-initiated)"}
                   </h4>
                   <p className="org">
-                    Connect Circles ·{" "}
-                    {isZh ? "国际学生社交 App" : "International student social app"}
+                    {isZh
+                      ? "AI 辅助产品实践 · Vigil / Hoop Dream / 个人作品集网站"
+                      : "AI-assisted product practice · Vigil, Hoop Dream, this site"}
                   </p>
                   <ul>
                     <li>
                       {isZh
-                        ? "主导跨 3 个文化群体的 15 次深度访谈（东亚 / 南亚 / 欧洲）。"
-                        : "Led 15 depth interviews across 3 cultural cohorts (East/South Asia, Europe)."}
+                        ? "把自主选题的产品从书面规格一路带到可运行的实现：规格与设计决策由我定，再指挥 Codex 与 Claude Code 落地。"
+                        : "Took self-directed products from written spec to running build — I wrote the specification and design decisions, then directed Codex and Claude Code to implement them."}
                     </li>
                     <li>
                       {isZh
-                        ? "执行 2 周日记研究（n=8）及 3 场共创工作坊。"
-                        : "Ran a 2-week diary study (n=8) and 3 co-design workshops."}
+                        ? "Vigil：140 封合成邮件、六个可切换界面变体；预测在测试前先写下，并设了一道闸门——一旦置信度能预测分类器的错误，build 就挂掉。"
+                        : "Vigil: six switchable interface variants over a 140-email synthetic corpus, predictions recorded before testing, and a build gate that fails if confidence starts predicting the classifier's errors."}
                     </li>
                     <li>
                       {isZh
-                        ? "整合三个学术框架（Weiss / SDT / SIT）到产品方向。"
-                        : "Synthesised three academic frameworks (Weiss, SDT, SIT) into a product direction."}
+                        ? "Hoop Dream：六个批次共 299 张美术资产，靠一份成文美术圣经与一道带「拒绝风格」清单的闸门保持一致；线上公开可玩，自标 DEMO v0.6。"
+                        : "Hoop Dream: 299 art assets across six batches held to one written art bible by a style gate with an explicit rejected-style list; publicly playable, self-labelled DEMO v0.6."}
                     </li>
                   </ul>
                 </div>
               </div>
 
               <div className="res-entry">
-                <div className="date">2024 · 08 – 11</div>
+                <div className="date">2026 · 03 – 06</div>
                 <div>
-                  <h4>{isZh ? "首席 UX 设计师" : "Lead UX Designer"}</h4>
+                  <h4>
+                    {isZh
+                      ? "交互设计与控制层开发（小组项目）"
+                      : "Interaction design & control layer (group project)"}
+                  </h4>
                   <p className="org">
-                    Spectra Lens · {isZh ? "AR 无障碍工具" : "AR accessibility tool"}
+                    MazeRunners ·{" "}
+                    {isZh
+                      ? "接触控制的多人协作迷宫，已公开展出"
+                      : "Contact-controlled multiplayer maze, publicly exhibited"}
                   </p>
                   <ul>
                     <li>
                       {isZh
-                        ? "访谈 12 位色盲用户，覆盖 deutan / protan / tritan 三类。"
-                        : "Interviewed 12 colourblind users across deutan / protan / tritan types."}
+                        ? "设计核心机制：每种颜色的腕带由两名玩家共用，任何方向都无法单人完成，四个人必须配合。"
+                        : "Designed the core mechanic: each colour wristband is shared by two players, so no direction can be triggered alone and the four have to coordinate."}
                     </li>
                     <li>
                       {isZh
-                        ? "与目标用户共创多模态反馈；通过 8 人可用性测试验证。"
-                        : "Co-designed multi-modal feedback with target users; validated via 8-person usability test."}
+                        ? "负责控制层全部实现：Arduino 程序、电路、布线和展出用的计分网页；迷宫本体由组员完成。"
+                        : "Built the whole control layer: Arduino code, circuits, wiring, and the score webpage used at the exhibition; teammates built the maze body."}
                     </li>
                     <li>
                       {isZh
-                        ? "识别成功率 75 → 92%，平均 3.1 秒。入选昆大 2024 设计年展。"
-                        : "Recognition success 75 → 92%, avg. 3.1s. Selected for UQ Design Showcase 2024."}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="res-entry">
-                <div className="date">2024 · 03 – 06</div>
-                <div>
-                  <h4>UX Researcher &amp; Designer</h4>
-                  <p className="org">
-                    UQ Connect ·{" "}
-                    {isZh ? "学生门户 IA 重设计" : "Student portal IA redesign"}
-                  </p>
-                  <ul>
-                    <li>
-                      {isZh
-                        ? "设计并执行树测试（n=50）、开放卡片分类（n=24）、任务分析（n=10）。"
-                        : "Designed and ran tree tests (n=50), open card sort (n=24), and task analyses (n=10)."}
-                    </li>
-                    <li>
-                      {isZh
-                        ? "可发现率 58 → 84%，任务成功率 72 → 94%，SUS 61 → 78。"
-                        : "Findability 58 → 84%, task success 72 → 94%, SUS 61 → 78."}
-                    </li>
-                    <li>
-                      {isZh
-                        ? "这套树测试协议被沿用到后续两个昆大数字化项目。"
-                        : "Tree test protocol reused on two subsequent UQ digital projects."}
+                        ? "展出期间 9 组共 36 人试玩，约 3 组通关；手写排行榜没有留档，所以没有量化数据。"
+                        : "9 groups (36 people) played during the exhibition and about 3 finished; the handwritten leaderboard was not archived, so there are no quantified metrics."}
                     </li>
                   </ul>
                 </div>
@@ -154,7 +134,7 @@ export default async function ResumePage() {
             <div className="res-section">
               <h3>{t("resume.section.edu")}</h3>
               <div className="res-entry">
-                <div className="date">2024 – 2026</div>
+                <div className="date">2025.02 – 2026.11</div>
                 <div>
                   <h4>
                     {isZh ? "交互设计硕士" : "Master of Interaction Design"}
@@ -167,26 +147,32 @@ export default async function ResumePage() {
                   <ul>
                     <li>
                       {isZh
-                        ? "研究方法、信息架构、评估、设计工作室实践。"
-                        : "Research methods, IA, evaluation, design studio practice."}
+                        ? "研究方法、信息架构、评估方法、物理计算。"
+                        : "Research methods, IA, evaluation, physical computing."}
                     </li>
-                    <li>GPA 6.7 / 7.0</li>
                   </ul>
                 </div>
               </div>
-            </div>
-
-            <div className="res-section">
-              <h3>{t("resume.section.awards")}</h3>
               <div className="res-entry">
-                <div className="date">2024</div>
+                <div className="date">2020.09 – 2024.07</div>
                 <div>
                   <h4>
                     {isZh
-                      ? "昆大设计年展 —— 入选"
-                      : "UQ Design Showcase — Selected"}
+                      ? "计算机科学学士（荣誉）"
+                      : "BSc (Hons) Computer Science"}
                   </h4>
-                  <p className="org">Spectra Lens</p>
+                  <p className="org">
+                    {isZh
+                      ? "斯旺西大学，英国威尔士"
+                      : "Swansea University, Wales, UK"}
+                  </p>
+                  <ul>
+                    <li>
+                      {isZh
+                        ? "二等一级荣誉学位（2:1）。"
+                        : "Second-class honours, upper division (2:1)."}
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -273,7 +259,7 @@ export default async function ResumePage() {
                   lineHeight: 1.7,
                 }}
               >
-                Figma · Framer · Protopie · Maze · OptimalSort · Treejack · Otter · Dovetail · Notion · Rive · Miro · VS Code
+                Figma · Framer · Protopie · Maze · Otter · Dovetail · Notion · Rive · Miro · VS Code
               </p>
             </div>
             <div className="res-side-card">

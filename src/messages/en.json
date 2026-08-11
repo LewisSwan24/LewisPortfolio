@@ -9,11 +9,14 @@
     "more": "More",
     "work": "Work",
     "writing": "Writing",
-    "lang": { "en": "EN", "zh": "中" }
+    "lang": {
+      "en": "EN",
+      "zh": "中"
+    }
   },
   "brand": {
     "name": "Lewis Dong",
-    "tagline": "practice log, est. 2024"
+    "tagline": "practice log, est. 2026"
   },
   "hero": {
     "eyebrow": "Interaction & Product Designer · Master's in Interaction Design, UQ",
@@ -27,74 +30,88 @@
       "label": "The practice log —",
       "hint": "Drag or click an entry to open"
     },
-    "cta": { "work": "View selected work", "note": "Start a conversation" }
+    "cta": {
+      "work": "View selected work",
+      "note": "Start a conversation"
+    }
   },
   "now": {
     "label": "Currently",
-    "reading": { "label": "Reading", "val": "Weiss on loneliness; Ryan & Deci on self-determination" },
-    "building": { "label": "Building", "val": "Vigil — a phishing-detection tool, spec through usability testing" },
-    "learning": { "label": "Learning", "val": "Where AI coding agents help a designer, and where they slow one down" },
-    "location": { "label": "Location", "val": "Brisbane, AU — graduating late 2026, open to internships and graduate roles" }
+    "reading": {
+      "label": "Reading",
+      "val": "Weiss on loneliness; Ryan & Deci on self-determination"
+    },
+    "building": {
+      "label": "Building",
+      "val": "Vigil — a phishing-detection tool, spec through usability testing"
+    },
+    "learning": {
+      "label": "Learning",
+      "val": "Where AI coding agents help a designer, and where they slow one down"
+    },
+    "location": {
+      "label": "Location",
+      "val": "Brisbane, AU — graduating late 2026, open to internships and graduate roles"
+    }
   },
   "approach": {
     "label": "How I work",
-    "title": { "text": "Research in, artefact out.", "em": "Every time." },
+    "title": {
+      "text": "Research in, artefact out.",
+      "em": "Every time."
+    },
     "body": "I don't hand off sketches and hope. I run the interviews, synthesise the signals, draft the IA, prototype the interactions, then sit beside real users and watch it break. The work only counts when it ships.",
     "step": {
-      "1": { "t": "Listen", "b": "Field notes, transcripts, task evidence, and the quiet signals people almost miss." },
-      "2": { "t": "Synthesise", "b": "Affinity maps, JTBD, tree tests — structured reasoning." },
-      "3": { "t": "Prototype", "b": "Figma, Framer, HTML/CSS/React — I build at the fidelity needed." },
-      "4": { "t": "Ship", "b": "Usability test, iterate, hand off with rationale intact." }
+      "1": {
+        "t": "Listen",
+        "b": "Field notes, transcripts, task evidence, and the quiet signals people almost miss."
+      },
+      "2": {
+        "t": "Synthesise",
+        "b": "Affinity maps, JTBD, test cards — structured reasoning."
+      },
+      "3": {
+        "t": "Prototype",
+        "b": "Figma, Framer, HTML/CSS/React — I build at the fidelity needed."
+      },
+      "4": {
+        "t": "Ship",
+        "b": "Usability test, iterate, hand off with rationale intact."
+      }
     }
   },
-  "feat": { "label": "Selected work", "title": "Seven projects, end-to-end.", "footer": "Full index" },
+  "feat": {
+    "label": "Selected work",
+    "title": "Five projects, end-to-end.",
+    "footer": "Full index"
+  },
   "proj": {
     "connect": {
-      "kicker": "Flagship · Information Architecture",
+      "kicker": "Team project · Research and build",
       "title": "UQ Connect",
-      "sub": "Rebuilding a student portal 50,000 students already hated.",
-      "role": "UX Researcher & Designer",
-      "date": "2024 · 4 months",
-      "m1": "12 staff-led buckets → 6 task-led",
-      "m2": "Card sort · tree test · think-aloud",
-      "m3": "Plain-language naming review"
+      "sub": "A social platform for international students — three rounds of research, one semester of building.",
+      "role": "Front-end system & research",
+      "date": "Aug–Nov 2025, coursework",
+      "m1": "71 interview transcripts, 14 mine",
+      "m2": "Exploratory · think-aloud · task-based",
+      "m3": "24-screen MVP on mock data"
     },
     "spectra": {
-      "kicker": "Flagship · Accessibility / AR",
+      "kicker": "Accessibility · Browser extension",
       "title": "Spectra Lens",
-      "sub": "An AR lens that tells colourblind users what the world is actually showing them.",
-      "role": "Lead UX Designer",
-      "date": "2024 · 4 months",
-      "m1": "Interviews across CVD subtypes",
-      "m2": "Tested in real environments",
-      "m3": "Silent by default, audio opt-in"
-    },
-    "ai": {
-      "kicker": "AI · EdTech",
-      "title": "AI Interview Assistant",
-      "sub": "Rehearsing the hardest conversation of your career, without an audience.",
-      "role": "UX Designer & Researcher",
-      "date": "2024 · 5 months",
-      "m1": "Feedback after, not during",
-      "m2": "Timing A/B: inline vs. post-session",
-      "m3": "Tone and anxiety guardrails"
-    },
-    "circles": {
-      "kicker": "Research-through-design · Social",
-      "title": "Connect Circles",
-      "sub": "Friendship by quality, not quantity — a slow-match app for international students.",
-      "role": "Product Designer",
-      "date": "Research complete · next validation defined",
-      "m1": "Depth interviews",
-      "m2": "Two-week diary study",
-      "m3": "Co-design workshops"
+      "sub": "A browser extension that lets a reader change type and spacing on a page the author locked down.",
+      "role": "Solo design and build",
+      "date": "2026 · DEMO",
+      "m1": "Content-script style injection",
+      "m2": "OpenDyslexic bundled locally",
+      "m3": "English and Simplified Chinese"
     },
     "maze": {
       "kicker": "Flagship · Physical computing",
       "title": "MazeRunners",
       "sub": "A maze that hits back — sensors, haptics, and a browser console in one loop.",
       "role": "Design Technologist",
-      "date": "2025 · built & exhibited",
+      "date": "2026 · built & exhibited",
       "m1": "Arduino Mega · 10 IR sensors",
       "m2": "Vibration replaced electric shock",
       "m3": "Web Serial live + demo console"
@@ -131,205 +148,152 @@
     "related": "Continue reading",
     "impactLabel": "What it produced",
     "connect": {
-      "hero": { "title": "UQ Connect", "sub": "Rebuilding the information architecture of a student portal serving 50,000 students." },
-      "roleVal": "Solo UX Researcher & Designer",
-      "timeVal": "March – June 2024",
-      "teamVal": "Independent, advised by faculty",
-      "toolsVal": "Figma · OptimalSort · Treejack · Maze",
+      "hero": {
+        "title": "UQ Connect",
+        "sub": "A social platform for international students, researched and built over one semester."
+      },
+      "roleVal": "Front-end component system, shared state, 14 of 71 interviews",
+      "timeVal": "August–November 2025, university coursework",
+      "teamVal": "Five-person course team",
+      "toolsVal": "React · TypeScript · Tailwind · Figma Make · Paper",
       "ch": {
         "label": "The problem",
-        "title": "Twelve top-level categories, most of them opaque.",
-        "p": "New students arrived at a portal written in staff-facing language — \"HiQ\", \"SI-net\", \"mySI-net\" — and had to guess. The search bar didn't forgive typos or synonyms. The mobile experience collapsed to a hamburger that hid 80+ links."
+        "title": "The events already exist. The relationships do not.",
+        "p": "UQ runs no shortage of events for international students, and students still end up in the same circle. A first-round participant named the ceiling exactly: it is hard to find common ground beyond being international. Large mixers were too loud to hold a conversation in, and event descriptions did not say what would actually happen or what the room would feel like — so a one-off produced an introduction and nothing after it."
       },
       "re": {
         "label": "Research",
-        "title": "Three methods, one month.",
-        "m1": { "t": "Open card sort", "b": "Students grouped and named the portal's most common tasks in their own words." },
-        "m2": { "t": "Think-aloud", "b": "Task-based sessions on the live portal, watching where people gave up or left for Google." },
-        "m3": { "t": "Tree test", "b": "The existing structure against two alternative trees." },
-        "quote": "I just Google 'UQ how to drop a subject'. I never start on the portal.",
-        "quoteWho": "P07, second-year undergrad"
+        "title": "Three rounds, three fidelities, seventy-one transcripts.",
+        "m1": {
+          "t": "Exploratory interviews",
+          "b": "33 transcripts in August, 7 of them mine, on why the events that already exist fail to connect people."
+        },
+        "m2": {
+          "t": "Think-aloud usability testing",
+          "b": "28 transcripts in September, 5 mine, on a prototype that already ran — watching where people stalled."
+        },
+        "m3": {
+          "t": "Task-based usability testing",
+          "b": "10 transcripts in November, 2 mine, on the built MVP: one chain, start to finish, unaided."
+        },
+        "quote": "Can I go to the previous page? How can I do that?",
+        "quoteWho": "Iteration 2 participant, 17 September 2025"
       },
       "sy": {
         "label": "Synthesis",
-        "title": "The portal was organised by who owns the information, not who needs it.",
-        "p": "Affinity mapping revealed that student mental models clustered around five life-stages: arriving, studying, belonging, supporting myself, moving on. We collapsed twelve staff-oriented buckets into six task-oriented ones, with \"I'm new\" promoted to the front door."
+        "title": "The barrier was pace and group size, not language.",
+        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, which is the only reason we could tell when we were wrong. Two assumptions did not survive. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go."
       },
       "id": {
-        "label": "IA decisions",
-        "p": "Three alternative trees were tested; the winning one preserved a fallback alphabetical index for power users while leading with the task-first structure. Every category name went through a plain-language review with two non-UQ reviewers."
+        "label": "Design decisions",
+        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly sceptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan."
       },
       "pr": {
         "label": "Prototype",
-        "p": "A Figma prototype covered the top 15 tasks end-to-end at mid-fidelity. The navigation shell and the \"I'm new\" landing were built to high fidelity to validate reading flow on mobile."
+        "p": "On 3 October, after the September sessions, we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area. The November build started from that sheet, as a shared component system with React context for cross-screen state rather than twenty-four independently styled screens."
       },
       "te": {
         "label": "Usability test",
-        "p": "Moderated remote sessions surfaced a naming collision between \"Money\" and \"My account\" that had only shown up at high fidelity — renamed on the spot, and the re-run confirmed people stopped hesitating there."
+        "p": "In November a participant completed the full chain unaided — create a circle, set who can see it, open the chat, post, return to the list — and read the colour-coded home screen as a map of the app. The entry point to Circles was still not obvious: he found it in the sidebar rather than on sight."
       },
       "ou": {
         "label": "What it produced",
-        "m1": { "label": "Structure", "v": "12 → 6 categories" },
-        "m2": { "label": "Front door", "v": "\"I'm new\" promoted" },
-        "m3": { "label": "Fallback", "v": "A–Z index kept" },
-        "p": "The deliverable was a tested information architecture: a task-first tree, plain-language category names, and a mid-fidelity prototype covering the top tasks end to end. Evidence status — this is university project work, not a shipped portal. I can walk through the card-sort groupings, the tree-test tasks, and why each category name changed; I have not measured impact on the live product."
+        "m1": {
+          "label": "Build",
+          "v": "24-screen MVP"
+        },
+        "m2": {
+          "label": "Research",
+          "v": "71 transcripts, 3 rounds"
+        },
+        "m3": {
+          "label": "My share",
+          "v": "14 interviews, front-end system"
+        },
+        "p": "A 24-screen mobile MVP on a shared component system, reached through three research rounds and a mid-build return to paper. Evidence status — course project, five-person team. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, and ran 14 of the 71 interviews; the map, the wellness hub and the matching logic were other people's work. The MVP runs on mock data: the backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. No round recorded completion times or a fixed success criterion, so I can say the September navigation defect did not recur in November, and I cannot say by how much anything improved."
       },
       "rf": {
         "label": "Reflection",
-        "p": "The research phase was longer than planned — I would budget for that again. The most valuable decision was insisting on a plain-language review from non-UQ readers; it caught four category names that sounded fine to anyone steeped in the institution."
+        "p": "We wrote pass marks and never formally scored them. The thresholds still did real work — they disciplined what we asked, and stopped us reframing misses as findings — but the disconfirmation ended up qualitative, which is the exact failure mode writing them down is meant to prevent. Next time I score the transcripts against the thresholds and publish the table, pass or fail."
       }
     },
     "spectra": {
-      "hero": { "title": "Spectra Lens", "sub": "Letting colourblind users read the world on their own time." },
-      "roleVal": "Lead UX Designer",
-      "timeVal": "August – November 2024",
-      "teamVal": "Solo, advised by accessibility faculty",
-      "toolsVal": "Figma · Adobe XD · Maze · Miro",
+      "hero": {
+        "title": "Spectra Lens",
+        "sub": "Giving the reader control over type the page author fixed."
+      },
+      "roleVal": "Solo design and build",
+      "timeVal": "2026 · DEMO stage",
+      "teamVal": "Solo",
+      "toolsVal": "Chrome Extension APIs · JavaScript · Jest",
       "ch": {
         "label": "The problem",
-        "title": "Eight percent of men see the world in fewer colours — and almost every app assumes they don't.",
-        "p": "Traffic signals, food freshness, data dashboards, medication — everyday tasks silently assume full colour perception. For the 8% of men and 0.5% of women with colour vision deficiency, each one becomes a small negotiation: memorise a workaround, ask a stranger, or guess. Existing tools felt clinical and stigmatising — built for a clinic, not a Tuesday morning."
+        "title": "The page decides how hard it is to read, and the reader has no say.",
+        "p": "Font, line height, letter spacing and contrast are all set by whoever built the site. A reader who needs looser spacing or a different typeface has no way in. Browser zoom scales everything at once, which breaks layouts and does not touch the typeface at all. Reader modes strip the page down but only work where the site cooperates."
       },
       "re": {
-        "label": "Research",
-        "title": "One persistent answer, from three directions.",
-        "m1": { "t": "Interviews", "b": "Semi-structured sessions across CVD subtypes (deuter-, protan-, tritan-anomaly)." },
-        "m2": { "t": "Heuristic review", "b": "Existing colour-ID tools judged against accessibility and social-friction criteria." },
-        "m3": { "t": "Co-design", "b": "Sessions mapping daily colour moments, then rapid sketch-ideation." },
-        "quote": "The moment I pull out the app, the conversation stops. I'd rather guess than explain.",
-        "quoteWho": "P04, deuteranomaly, second-year PhD"
+        "label": "What I looked at",
+        "title": "Guidelines first, then what already exists.",
+        "m1": {
+          "t": "Accessibility guidance",
+          "b": "WCAG text-spacing criteria as the starting point for what the controls should cover."
+        },
+        "m2": {
+          "t": "Existing extensions",
+          "b": "How other reading tools handle injection, persistence, and sites that fight back."
+        },
+        "m3": {
+          "t": "Typeface research",
+          "b": "Why OpenDyslexic exists, what it claims, and what the evidence for it actually is."
+        },
+        "quote": "No user research yet. This case is about what I built and why, not about what it did for anyone.",
+        "quoteWho": "Stated limit"
       },
       "sy": {
-        "label": "Synthesis",
-        "title": "Users don't need the colour named — they need the decision made.",
-        "p": "Three themes dominated the interviews: speed (a colour decision has a short window before it feels awkward to bystanders), context (users want to know if the food is bad, not that it's 'muddy green'), and privacy (most don't want to identify as colourblind in public). Every app I reviewed optimised for naming colours. None optimised for acting on them."
+        "label": "The shape of the problem",
+        "title": "It has to work on pages that were never built to allow it.",
+        "p": "Injecting styles into someone else’s page is the whole difficulty. Sites use their own specificity, their own class names, and sometimes inline styles that override anything added later. Anything I inject has to win without breaking layout, and it has to come back the next time that site is opened."
       },
       "id": {
         "label": "Design decisions",
-        "p": "We chose an AR overlay over a full-screen filter because the overlay preserves context — users still see the world, just with a low-opacity annotation layer. Audio feedback became opt-in rather than default after co-design sessions flagged public audibility of the app as a concern. The whole interaction was compressed to a single-tap camera mode: no menu, no account, no colour dictionary to memorise."
+        "p": "The font is bundled in the extension rather than pulled from a CDN: it works offline, it does not tell a third party which pages are being read, and it cannot break when a remote host changes. Settings save per site, because someone who needs looser spacing on a dense documentation page usually does not want it on a news site. The controls sit in a popup rather than a context menu, so the whole set is visible at once instead of hidden behind a right-click."
       },
       "pr": {
-        "label": "Prototype",
-        "p": "A Figma high-fidelity prototype simulated realistic AR camera behaviour, with three feedback modes (overlay, audio, haptic) and a one-screen settings surface. We deliberately kept a 'quick mode' for the most common scenarios (traffic, clothing, food) to test whether discoverability or depth mattered more."
+        "label": "Build",
+        "p": "A Chrome extension: a content script that injects the style layer, a popup panel holding the controls, a background script keeping settings in sync, and locale files for English and Simplified Chinese. Jest covers the utility layer where the settings logic lives."
       },
       "te": {
-        "label": "Usability test",
-        "p": "Moderated sessions in real environments — a cafeteria, a pedestrian crossing, participants' own wardrobes. The overlay's initial opacity obscured texture detail in food, so I lowered it and added haptic confirmation. In noisy places, voice feedback was slower than simply reading the overlay, and participants preferred a silent default with audio as a toggle."
+        "label": "Testing",
+        "p": "Cross-site checks by hand — documentation, news, and single-page apps — to find where injected styles lose to the site’s own CSS. Unit tests cover the settings and utility functions. No participants have used it."
       },
       "ou": {
         "label": "What it produced",
-        "m1": { "label": "Interaction", "v": "One-tap camera mode" },
-        "m2": { "label": "Default", "v": "Silent, audio opt-in" },
-        "m3": { "label": "Output", "v": "Decision, not colour name" },
-        "p": "The deliverable was a high-fidelity AR prototype and the interaction model behind it: annotate rather than filter, answer the decision rather than name the hue, and never make the user announce their colour vision in public. Evidence status — university project work with a small, self-recruited sample. The direction is supported by what those participants did in context; it has not been validated at scale or with clinical measures."
+        "m1": {
+          "label": "Form",
+          "v": "Chrome extension"
+        },
+        "m2": {
+          "label": "Font",
+          "v": "Bundled, not remote"
+        },
+        "m3": {
+          "label": "Scope",
+          "v": "Settings per site"
+        },
+        "p": "A working extension that rewrites type and spacing on any page from one popup, in two languages, with settings that persist per site. Evidence status — this is a DEMO. It runs, it is tested at the utility level, and it has never been put in front of a reader who needs it."
       },
       "rf": {
         "label": "Reflection",
-        "p": "AR accessibility is still under-served because 'accessibility' is too often read as 'screen reader'. The biggest lesson was cognitive load — every piece of information the overlay added was a piece the user had to ignore later. Next time I'd prototype the zero-state (what the camera looks like when it says nothing) before designing the affordances."
-      }
-    },
-    "ai": {
-      "hero": { "title": "AI Interview Assistant", "sub": "Rehearsing the hardest conversation of your career — without an audience." },
-      "roleVal": "UX Designer & Researcher",
-      "timeVal": "February – June 2024",
-      "teamVal": "Solo, with input from two career counsellors",
-      "toolsVal": "Figma · FigJam · Lookback · ChatGPT API",
-      "ch": {
-        "label": "The problem",
-        "title": "Candidates don't fail on content. They fail on nerves — and coaching costs money.",
-        "p": "Interview prep has a clear market divide: senior candidates pay for coaches, everyone else reads question lists. Survey respondents told me that nervousness, not content, was the thing standing between them and a job. Existing platforms optimised for either peer practice (unreliable quality) or video courses (no feedback loop). Nobody was tackling the emotional shape of the problem."
-      },
-      "re": {
-        "label": "Research",
-        "title": "A survey, interviews, and a teardown of the incumbents.",
-        "m1": { "t": "Survey", "b": "Cross-seniority questions on preparation habits and pain points." },
-        "m2": { "t": "Interviews", "b": "In-depth sessions with recent interviewees — both offered and still searching." },
-        "m3": { "t": "Competitive teardown", "b": "Pramp, Yoodli, Big Interview, Google Interview Warmup and others, read for what they optimise." },
-        "quote": "I know what to say. I just can't say it with someone watching.",
-        "quoteWho": "P11, senior candidate, still searching"
-      },
-      "sy": {
-        "label": "Synthesis",
-        "title": "Content is table stakes. The product has to manage anxiety.",
-        "p": "The critical insight was that anxiety, not knowledge, gated performance. Users wanted realistic practice — not robotic — but didn't want to be judged while being wrong. That meant two things: the AI persona had to be warmer than a recruiter, and feedback had to arrive after the session, never mid-sentence. Every competitor we reviewed violated one of these."
-      },
-      "id": {
-        "label": "Design decisions",
-        "p": "Three non-negotiables: a named AI persona (\"Alex\") with natural pacing and pause, post-session feedback by default, and three session-length presets (5 / 10 / 20 min) rather than open-ended. We explicitly rejected body-language analysis after research showed it deepened the self-consciousness that was already the problem."
-      },
-      "pr": {
-        "label": "Prototype",
-        "p": "An interactive Figma prototype simulated the full loop: voice input via speech-to-text, three interview types (behavioural, technical, case), and a detailed post-session report with a calibrated tone — constructive framing, specific rather than generic praise. A 'confidence boost' mode offered easier questions for users who wanted a ramp before a real session."
-      },
-      "te": {
-        "label": "Usability test",
-        "p": "Moderated sessions over two weeks, plus a side-by-side comparison of feedback timing — inline versus post-session. Post-session was preferred clearly and consistently; inline feedback was experienced as interruption even when the content was useful. Participants also asked the AI to pause longer between questions, so I added a natural beat."
-      },
-      "ou": {
-        "label": "What it produced",
-        "m1": { "label": "Timing", "v": "Feedback after the session" },
-        "m2": { "label": "Persona", "v": "Warmer than a recruiter" },
-        "m3": { "label": "Rejected", "v": "Body-language analysis" },
-        "p": "The deliverable was an interaction model for AI coaching: when the system speaks, how it frames a weakness, and where it deliberately stays quiet. The timing finding was the most useful result, because it is a principle rather than a feature. Evidence status — university project work; the preference for post-session feedback comes from a small moderated sample, and I have not run it as a controlled experiment or measured real interview outcomes."
-      },
-      "rf": {
-        "label": "Reflection",
-        "p": "Designing with AI isn't designing a chatbot; it's designing a relationship. The persona's warmth, pacing, and word choice did more work than any single feature. The next direction I'd push is emotional calibration — letting users set how gentle or rigorous the session feels, not as a difficulty slider but as a tone."
-      }
-    },
-    "circles": {
-      "hero": { "title": "Connect Circles", "sub": "Friendship by quality, not quantity — a slow-match app for international students." },
-      "roleVal": "Product Designer",
-      "timeVal": "October 2024 – current research-through-design case",
-      "teamVal": "Solo, with co-design alongside international students",
-      "toolsVal": "Figma · FigJam · Notion · Discord",
-      "ch": {
-        "label": "The problem",
-        "title": "Loneliness in the first semester is common — and the apps make it worse.",
-        "p": "Moving countries for study collapses an entire social scaffolding. Language barriers, unfamiliar norms, and academic pressure combine so that meeting new people feels simultaneously urgent and exhausting. The apps students use — Meetup, Bumble BFF, Hey! VINA — optimise for matching volume, exactly the metric that scales the emotional cost. The students I spoke to said they'd rather have one deep friendship than ten casual matches, and no existing product was designed around that preference."
-      },
-      "re": {
-        "label": "Research",
-        "title": "Three cultural regions, three methods, one stubborn pattern.",
-        "m1": { "t": "Interviews", "b": "Semi-structured sessions across East Asian, South Asian, and European student cohorts." },
-        "m2": { "t": "Diary study", "b": "Two weeks logging social interactions and how participants felt before and after each one." },
-        "m3": { "t": "Co-design", "b": "Workshops on ideal features, dealbreakers, and cultural considerations." },
-        "quote": "I don't want more friends. I want one person I can stop pretending around.",
-        "quoteWho": "P03, first-semester postgrad"
-      },
-      "sy": {
-        "label": "Synthesis",
-        "title": "The market is built on volume. Users are asking for depth.",
-        "p": "Four themes held across cultures: depth beats breadth; shared vulnerability is the formation mechanism; first meetings need a shared activity, not a coffee date; and socialising norms vary enough that any one default will alienate someone. The design implication is almost the opposite of a dating app — slow down, give fewer matches, make them earn the next step."
-      },
-      "id": {
-        "label": "Design decisions",
-        "p": "Four directions were shortlisted from co-design: small-group 'circles' of three to five people (not pairs), structured vulnerability prompts to accelerate closeness, cultural-bridge hints on communication style, and slow matching with gradual information reveal. Real-time chat was deliberately de-scoped from v1 — the hypothesis is that less messaging and more shared context produces stronger ties."
-      },
-      "pr": {
-        "label": "Prototype",
-        "p": "The next prototype scope is defined around onboarding (preference and comfort capture), circle match demonstration, activity suggestions with RSVP, in-app conversation prompts, and post-activity reflection. It is privacy-preserving by default — no public profile, no swipe surface."
-      },
-      "te": {
-        "label": "Testing plan",
-        "p": "The next validation step is preference testing and moderated usability sessions with target cohorts. The primary measure is not only usability, but perceived safety, cultural fit, and willingness to actually use the product across an eight-week window."
-      },
-      "ou": {
-        "label": "Current state",
-        "m1": { "label": "Unit", "v": "Circles of 3–5, not pairs" },
-        "m2": { "label": "Pace", "v": "Slow match, gradual reveal" },
-        "m3": { "label": "De-scoped", "v": "Real-time chat in v1" },
-        "p": "Research and synthesis are complete; the case defines the product direction, prototype scope, and validation plan. Evidence status — this is an in-progress research-through-design project. Nothing has been built or tested with users yet, so everything here is a stated hypothesis rather than a result, and the validation plan above is the honest next step."
-      },
-      "rf": {
-        "label": "Reflection",
-        "p": "Designing for social wellbeing is the first time I've had to actively refuse growth metrics. Every conventional indicator — matches, messages, session time — works against the goal. The hardest design question right now is what the north-star metric should be when the desired outcome is 'one good friendship over a semester', and how to instrument for that without turning a relationship into a KPI."
+        "p": "Building this changed what I think accessibility work is. The guidelines are the easy part; the hard part is that you are a guest on someone else’s page and every site fights you differently. The obvious next step is also the one I have not taken: give it to someone who actually reads this way and watch which controls they never touch."
       }
     },
     "maze": {
-      "hero": { "title": "MazeRunners", "sub": "A physical maze wired so that a ball, a score, a buzz on your finger, and a browser console all describe the same moment." },
+      "hero": {
+        "title": "MazeRunners",
+        "sub": "A physical maze wired so that a ball, a score, a buzz on your finger, and a browser console all describe the same moment."
+      },
       "roleVal": "Design technologist & interaction prototyper",
-      "timeVal": "2025 · built and exhibited",
+      "timeVal": "2026 · built and exhibited",
       "teamVal": "Team project; I owned firmware, sensing, feedback, and the web console",
       "toolsVal": "Arduino Mega · Arduino C/C++ · FC-51 IR · TM1637 · Web Serial · JS Canvas",
       "ch": {
@@ -340,9 +304,18 @@
       "re": {
         "label": "Groundwork",
         "title": "Working out what the system must sense, and what it must never do.",
-        "m1": { "t": "Sensor mapping", "b": "Ten FC-51 IR sensors assigned across trap, diagnostic, spare, and finish zones, each needing its own trigger behaviour." },
-        "m2": { "t": "Safety review", "b": "The original trap concept was a mild electric shock. Unsupervised exhibition play made per-person consent and calibration impossible." },
-        "m3": { "t": "Feedback inventory", "b": "Score, timer, vibration, lights, audio, and a browser console — each a channel that could carry or muddy the same event." },
+        "m1": {
+          "t": "Sensor mapping",
+          "b": "Ten FC-51 IR sensors assigned across trap, diagnostic, spare, and finish zones, each needing its own trigger behaviour."
+        },
+        "m2": {
+          "t": "Safety review",
+          "b": "The original trap concept was a mild electric shock. Unsupervised exhibition play made per-person consent and calibration impossible."
+        },
+        "m3": {
+          "t": "Feedback inventory",
+          "b": "Score, timer, vibration, lights, audio, and a browser console — each a channel that could carry or muddy the same event."
+        },
         "quote": "People don't read the score display. They feel the buzz and look up.",
         "quoteWho": "Observation from exhibition play"
       },
@@ -365,9 +338,18 @@
       },
       "ou": {
         "label": "What it produced",
-        "m1": { "label": "State", "v": "One round state machine" },
-        "m2": { "label": "Feedback", "v": "5 synchronised channels" },
-        "m3": { "label": "Control", "v": "Live + demo console" },
+        "m1": {
+          "label": "State",
+          "v": "One round state machine"
+        },
+        "m2": {
+          "label": "Feedback",
+          "v": "5 synchronised channels"
+        },
+        "m3": {
+          "label": "Control",
+          "v": "Live + demo console"
+        },
         "p": "A working, exhibited system: firmware modules for game state, IR sensing, player chain input, vibration and audio; a two-controller hardware split; and a browser console with parity tests. Evidence status — this is a university project built for one exhibition. Play was observed, not instrumented, so I can describe what players reacted to but cannot quantify which channel carried the most information."
       },
       "rf": {
@@ -376,7 +358,10 @@
       }
     },
     "vigil": {
-      "hero": { "title": "Vigil", "sub": "An email review desk built to find out whether an interface can keep someone checking an AI that is wrong 12% of the time." },
+      "hero": {
+        "title": "Vigil",
+        "sub": "An email review desk built to find out whether an interface can keep someone checking an AI that is wrong 12% of the time."
+      },
       "roleVal": "Designer and technical director; Claude Code and Codex wrote the code to my spec",
       "timeVal": "2026 · in progress, phase 3 of 5",
       "teamVal": "Solo, working through an AI coding workflow; brief sourced from a UQ research lab",
@@ -389,9 +374,18 @@
       "re": {
         "label": "Groundwork",
         "title": "Before designing the interface, I had to build something worth reviewing.",
-        "m1": { "t": "The material", "b": "Public phishing corpora are 2002–2015 mail, carry real personal data, and cannot guarantee the character offsets that cue highlighting needs. I wrote 140 messages inside a fictional company instead." },
-        "m2": { "t": "A fallible AI", "b": "No model — a scripted classifier at 87.9%, with its 17 errors placed deliberately: false positives cluster in marketing mail, false negatives in social-engineering messages that carry no links to flag." },
-        "m3": { "t": "The leak I nearly shipped", "b": "In the first build every correct call sat at 0.84 or above and every error at 0.82 or below. A reviewer could have caught all seventeen errors by reading a number instead of an email." },
+        "m1": {
+          "t": "The material",
+          "b": "Public phishing corpora are 2002–2015 mail, carry real personal data, and cannot guarantee the character offsets that cue highlighting needs. I wrote 140 messages inside a fictional company instead."
+        },
+        "m2": {
+          "t": "A fallible AI",
+          "b": "No model — a scripted classifier at 87.9%, with its 17 errors placed deliberately: false positives cluster in marketing mail, false negatives in social-engineering messages that carry no links to flag."
+        },
+        "m3": {
+          "t": "The leak I nearly shipped",
+          "b": "In the first build every correct call sat at 0.84 or above and every error at 0.82 or below. A reviewer could have caught all seventeen errors by reading a number instead of an email."
+        },
         "quote": "One of you is wrong.",
         "quoteWho": "The classifier panel, when your call and its call disagree"
       },
@@ -414,9 +408,18 @@
       },
       "ou": {
         "label": "What it produced",
-        "m1": { "label": "confidence as a predictor of the AI's errors", "v": "0.72 AUC" },
-        "m2": { "label": "Corpus", "v": "140 messages → 87.9% accurate" },
-        "m3": { "label": "Variants built", "v": "3 questions → 6 interfaces" },
+        "m1": {
+          "label": "confidence as a predictor of the AI's errors",
+          "v": "0.72 AUC"
+        },
+        "m2": {
+          "label": "Corpus",
+          "v": "140 messages → 87.9% accurate"
+        },
+        "m3": {
+          "label": "Variants built",
+          "v": "3 questions → 6 interfaces"
+        },
         "p": "A running system with the study still ahead of it: a validated corpus, six switchable interfaces, a React build with durable logging and CSV export, and a test protocol ready to run. Evidence status — nobody outside the project has used it. Everything here is design reasoning and machine verification, not user evidence. The three design questions are open, my predictions are recorded, and the gap between those predictions and the result is the next thing this case will contain."
       },
       "rf": {
@@ -425,7 +428,10 @@
       }
     },
     "hoop": {
-      "hero": { "title": "Hoop Dream", "sub": "A career simulation that runs from a neighbourhood court at twelve through to retirement — and the production pipeline that kept 299 generated assets looking like one world." },
+      "hero": {
+        "title": "Hoop Dream",
+        "sub": "A career simulation that runs from a neighbourhood court at twelve through to retirement — and the production pipeline that kept 299 generated assets looking like one world."
+      },
       "roleVal": "Designer, art director and technical director, through an AI production pipeline",
       "timeVal": "2026 · playable, self-labelled DEMO v0.6",
       "teamVal": "Solo",
@@ -438,9 +444,18 @@
       "re": {
         "label": "Groundwork",
         "title": "Deciding what the world is, and what it is not.",
-        "m1": { "t": "Art bible", "b": "Three reference documents — pixel players, organic scenes, flat logos — written before any asset was generated, so batch prompts had something to cite." },
-        "m2": { "t": "Reference teardown", "b": "NBA 2K MyCareer for the career arc, Punch Club for attribute decay, New Star Soccer for life outside the game, Stardew Valley for daily-loop satisfaction. Naming what to borrow from each kept the scope from becoming 'a basketball game'." },
-        "m3": { "t": "A rejected list", "b": "Photoreal, 3D, anime, neon, random text, real trademarks. Written down as out of bounds, because a generator produces all of them happily on a slightly different prompt." },
+        "m1": {
+          "t": "Art bible",
+          "b": "Three reference documents — pixel players, organic scenes, flat logos — written before any asset was generated, so batch prompts had something to cite."
+        },
+        "m2": {
+          "t": "Reference teardown",
+          "b": "NBA 2K MyCareer for the career arc, Punch Club for attribute decay, New Star Soccer for life outside the game, Stardew Valley for daily-loop satisfaction. Naming what to borrow from each kept the scope from becoming 'a basketball game'."
+        },
+        "m3": {
+          "t": "A rejected list",
+          "b": "Photoreal, 3D, anime, neon, random text, real trademarks. Written down as out of bounds, because a generator produces all of them happily on a slightly different prompt."
+        },
         "quote": "Style gate: PASS. Reviewed against the existing runtime anchors and art bible rules.",
         "quoteWho": "The production log, on the batch of 299"
       },
@@ -463,9 +478,18 @@
       },
       "ou": {
         "label": "What it produced",
-        "m1": { "label": "assets through one style gate", "v": "299" },
-        "m2": { "label": "Career", "v": "146 nodes → 10 chapters" },
-        "m3": { "label": "Tests", "v": "355 files → 1,975 passing" },
+        "m1": {
+          "label": "assets through one style gate",
+          "v": "299"
+        },
+        "m2": {
+          "label": "Career",
+          "v": "146 nodes → 10 chapters"
+        },
+        "m3": {
+          "label": "Tests",
+          "v": "355 files → 1,975 passing"
+        },
         "p": "A publicly playable ten-chapter career sim, built on a pipeline where coherence is enforced rather than hoped for. Evidence status — the game labels itself DEMO v0.6, and there has been no player research. Everything here is systems design and production discipline; whether the pacing works for someone who is not me is untested. The first load is also large and mobile QA is thin, which matters because a phone is where this audience would meet it."
       },
       "rf": {
@@ -475,24 +499,53 @@
     }
   },
   "foot": {
-    "signature": { "text": "A portfolio is a long answer to the question", "em": "what do you actually do all day." },
+    "signature": {
+      "text": "A portfolio is a long answer to the question",
+      "em": "what do you actually do all day."
+    },
     "elsewhere": "Elsewhere",
     "site": "Site",
     "write": "Write",
-    "meta": { "built": "Hand-built with Next.js, Tailwind, and a lot of revisions.", "version": "v4 · updated April 2026" }
+    "meta": {
+      "built": "Hand-built with Next.js, Tailwind, and a lot of revisions.",
+      "version": "v4 · updated April 2026"
+    }
   },
   "tw": {
-    "title": { "text": "Tweaks", "em": "designer view" },
-    "tone": { "label": "Tone", "warm": "Warm", "sharp": "Sharp", "quiet": "Quiet" },
-    "hero": { "label": "Hero variant", "deck": "Practice deck", "grid": "Margin grid", "type": "Type specimen" },
-    "theme": { "label": "Theme", "light": "Light", "dark": "Dark" }
+    "title": {
+      "text": "Tweaks",
+      "em": "designer view"
+    },
+    "tone": {
+      "label": "Tone",
+      "warm": "Warm",
+      "sharp": "Sharp",
+      "quiet": "Quiet"
+    },
+    "hero": {
+      "label": "Hero variant",
+      "deck": "Practice deck",
+      "grid": "Margin grid",
+      "type": "Type specimen"
+    },
+    "theme": {
+      "label": "Theme",
+      "light": "Light",
+      "dark": "Dark"
+    }
   },
   "search": {
     "placeholder": "Search projects and blog posts...",
     "noResults": "No results found",
     "recentSearches": "Recent searches"
   },
-  "common": { "featured": "Featured", "viewCaseStudy": "View Case Study", "scroll": "Scroll", "conceptCover": "Concept cover", "evidenceInside": "Evidence inside" },
+  "common": {
+    "featured": "Featured",
+    "viewCaseStudy": "View Case Study",
+    "scroll": "Scroll",
+    "conceptCover": "Concept cover",
+    "evidenceInside": "Evidence inside"
+  },
   "cta": {
     "letsTalk": "Let's Talk",
     "openToOpportunities": "Open to opportunities",
@@ -509,7 +562,10 @@
     "builtWith": "Built with",
     "allRightsReserved": "All rights reserved."
   },
-  "mobileMenu": { "open": "Open menu", "close": "Close menu" },
+  "mobileMenu": {
+    "open": "Open menu",
+    "close": "Close menu"
+  },
   "home": {
     "greeting": "Hi, I'm ",
     "name": "Lewis",
@@ -526,9 +582,7 @@
     "featuredProjectsEmpty": "Featured projects coming soon.",
     "stats": {
       "userInterviews": "User Interviews",
-      "treeTestParticipants": "Tree Test Participants",
-      "taskSuccessRate": "Task Success Rate",
-      "findabilityRate": "Findability Rate"
+      "taskSuccessRate": "Task Success Rate"
     },
     "latest": {
       "label": "From the journal",
@@ -538,95 +592,226 @@
   },
   "about": {
     "badge": "About Me",
-    "title": { "prefix": "Crafting ", "highlight": "meaningful", "suffix": " digital experiences" },
+    "title": {
+      "prefix": "Crafting ",
+      "highlight": "meaningful",
+      "suffix": " digital experiences"
+    },
     "intro": {
       "p1": "I'm currently pursuing a Master of Interaction Design at The University of Queensland, where I'm developing expertise in user research, prototyping, and human-centered design methodologies.",
       "p2": "My approach combines analytical thinking with creative problem-solving. I believe that great design emerges from deeply understanding user needs and iterating towards solutions that are both functional and delightful."
     },
     "profilePhoto": "Profile Photo",
     "sections": {
-      "philosophy": { "label": "Philosophy", "title": "Design Principles", "description": "Core values that guide every design decision I make." },
-      "toolbox": { "label": "Skills", "title": "My Toolbox", "description": "Technologies and tools I work with regularly." },
-      "journey": { "label": "Journey", "title": "My Path", "description": "Key milestones in my design journey." },
-      "personal": { "label": "Personal", "title": "Beyond Design", "description": "A few things about me outside of work." }
+      "philosophy": {
+        "label": "Philosophy",
+        "title": "Design Principles",
+        "description": "Core values that guide every design decision I make."
+      },
+      "toolbox": {
+        "label": "Skills",
+        "title": "My Toolbox",
+        "description": "Technologies and tools I work with regularly."
+      },
+      "journey": {
+        "label": "Journey",
+        "title": "My Path",
+        "description": "Key milestones in my design journey."
+      },
+      "personal": {
+        "label": "Personal",
+        "title": "Beyond Design",
+        "description": "A few things about me outside of work."
+      }
     },
     "designPrinciples": [
-      { "icon": "👤", "title": "User-Centered", "description": "Every design decision starts with understanding real user needs through research and empathy." },
-      { "icon": "🔄", "title": "Iterative Process", "description": "Embrace continuous improvement through prototyping, testing, and refinement cycles." },
-      { "icon": "♿", "title": "Accessible by Default", "description": "Design inclusive experiences that work for everyone, regardless of ability or context." },
-      { "icon": "📊", "title": "Evidence-Based", "description": "Ground design choices in data, research findings, and validated user feedback." }
+      {
+        "icon": "👤",
+        "title": "User-Centered",
+        "description": "Every design decision starts with understanding real user needs through research and empathy."
+      },
+      {
+        "icon": "🔄",
+        "title": "Iterative Process",
+        "description": "Embrace continuous improvement through prototyping, testing, and refinement cycles."
+      },
+      {
+        "icon": "♿",
+        "title": "Accessible by Default",
+        "description": "Design inclusive experiences that work for everyone, regardless of ability or context."
+      },
+      {
+        "icon": "📊",
+        "title": "Evidence-Based",
+        "description": "Ground design choices in data, research findings, and validated user feedback."
+      }
     ],
     "toolCategories": [
-      { "name": "Design", "tools": ["Figma", "Adobe XD", "Sketch", "Framer", "Photoshop", "Illustrator"] },
-      { "name": "Research", "tools": ["Miro", "Notion", "Maze", "Hotjar", "UserTesting", "Optimal Workshop"] },
-      { "name": "Development", "tools": ["HTML/CSS", "JavaScript", "React", "TypeScript", "Tailwind CSS", "Next.js"] }
+      {
+        "name": "Design",
+        "tools": [
+          "Figma",
+          "Adobe XD",
+          "Sketch",
+          "Framer",
+          "Photoshop",
+          "Illustrator"
+        ]
+      },
+      {
+        "name": "Research",
+        "tools": [
+          "Miro",
+          "Notion",
+          "Maze",
+          "Hotjar",
+          "UserTesting",
+          "Optimal Workshop"
+        ]
+      },
+      {
+        "name": "Development",
+        "tools": [
+          "HTML/CSS",
+          "JavaScript",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "Next.js"
+        ]
+      }
     ],
     "timeline": [
-      { "year": "2024", "title": "Master of Interaction Design", "org": "The University of Queensland", "description": "Advanced study in human-computer interaction, UX research, and design thinking." },
-      { "year": "2023", "title": "Started Design Journey", "org": "Self-directed Learning", "description": "Began exploring UX/UI design through online courses and personal projects." }
+      {
+        "year": "2025",
+        "title": "Master of Interaction Design",
+        "org": "The University of Queensland",
+        "description": "Research methods, information architecture, evaluation, physical computing."
+      },
+      {
+        "year": "2020",
+        "title": "BSc (Hons) Computer Science",
+        "org": "Swansea University",
+        "description": "Four years in Wales; graduated with a 2:1 in July 2024."
+      }
     ],
     "funFacts": [
-      { "emoji": "📚", "label": "Avid reader" },
-      { "emoji": "☕", "label": "Coffee enthusiast" },
-      { "emoji": "🎮", "label": "Casual gamer" },
-      { "emoji": "🌏", "label": "Love exploring" }
+      {
+        "emoji": "📚",
+        "label": "Avid reader"
+      },
+      {
+        "emoji": "☕",
+        "label": "Coffee enthusiast"
+      },
+      {
+        "emoji": "🎮",
+        "label": "Casual gamer"
+      },
+      {
+        "emoji": "🌏",
+        "label": "Love exploring"
+      }
     ],
     "kicker": "About",
-    "headline": { "text": "I make digital things people can actually find their way through.", "em": "people" },
-    "p1": "I'm finishing my Master of Interaction Design at the University of Queensland. Before that, I spent four years in a different discipline entirely, which is to say I got used to being the person in the room who has to translate between strangers.",
+    "headline": {
+      "text": "I make digital things people can actually find their way through.",
+      "em": "people"
+    },
+    "p1": "I'm finishing my Master of Interaction Design at the University of Queensland. Before that I spent four years on a Computer Science degree in Wales, which is why I'm comfortable being the person in the room who translates between designers and engineers.",
     "p2": "My work sits where research, architecture and craft overlap. I'm most useful on messy, high-stakes problems — the ones where nobody agrees what the product should be yet — because I enjoy the part everyone else finds tedious: reading interview transcripts at 1am until the pattern shows up.",
     "p3": "Outside the studio I cook with too much garlic, read non-fiction about cities, and occasionally attempt to learn Japanese. I reply to every email that isn't a recruiter mass-send.",
     "philo": {
-      "label": "What I believe",
-      "1": { "t": "Research is not decoration.", "b": "If a study didn't change the design, the study wasn't necessary." },
-      "2": { "t": "Clarity over cleverness.", "b": "The best interaction is the one the user never notices solving their problem." },
-      "3": { "t": "Ship the unglamorous parts.", "b": "Empty states, errors, load states — that's where respect for the user lives." },
-      "4": { "t": "Disagree in writing.", "b": "A memo survives the meeting. A whiteboard doesn't." }
+      "1": {
+        "t": "Research is not decoration.",
+        "b": "If a study didn't change the design, the study wasn't necessary."
+      },
+      "2": {
+        "t": "Clarity over cleverness.",
+        "b": "The best interaction is the one the user never notices solving their problem."
+      },
+      "3": {
+        "t": "Ship the unglamorous parts.",
+        "b": "Empty states, errors, load states — that's where respect for the user lives."
+      },
+      "4": {
+        "t": "Disagree in writing.",
+        "b": "A memo survives the meeting. A whiteboard doesn't."
+      },
+      "label": "What I believe"
     },
     "cv": "Download CV",
     "tl": {
       "label": "Briefly",
-      "y2026": "Graduating in Jun. Looking for a seat at a serious team.",
-      "y2025": "Spectra selected for UQ Design Showcase. Continuing Connect Circles fieldwork; coursework deepens into research methods and IA.",
-      "y2024": "Began UQ Master's. Mar–Jun: UQ Connect IA redesign. Aug–Nov: Spectra Lens AR accessibility. Oct→: Connect Circles co-design.",
-      "y2020": "Four years in a previous career I'll happily explain in person."
+      "y2026": "MazeRunners built and exhibited; Vigil and Hoop Dream shipped. Graduating in Nov, looking for a serious team.",
+      "y2025": "Started the Master of Interaction Design at UQ in Feb: research methods, IA, physical computing.",
+      "y2024": "Graduated from Swansea University in Jul with a BSc (Hons) in Computer Science, 2:1.",
+      "y2020": "Moved to Wales to study Computer Science at Swansea University."
     }
   },
   "contact": {
     "hero": {
-      "title": { "prefix": "Let's ", "highlight": "Create", "suffix": " Something Amazing" },
+      "title": {
+        "prefix": "Let's ",
+        "highlight": "Create",
+        "suffix": " Something Amazing"
+      },
       "description": "I'm always open to discussing new projects, design opportunities, or just having a friendly chat about UX and design."
     },
     "methods": {
-      "email": { "title": "Email", "description": "Drop me a line anytime", "action": "Send Email" },
-      "linkedin": { "title": "LinkedIn", "description": "Let's connect professionally", "value": "View Profile", "action": "Connect" },
-      "location": { "title": "Location", "description": "Based in" }
+      "email": {
+        "title": "Email",
+        "description": "Drop me a line anytime",
+        "action": "Send Email"
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "description": "Let's connect professionally",
+        "value": "View Profile",
+        "action": "Connect"
+      },
+      "location": {
+        "title": "Location",
+        "description": "Based in"
+      }
     },
     "faq": {
       "label": "FAQ",
       "title": "Frequently Asked",
       "items": [
-        { "q": "What's your typical response time?", "a": "I usually respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn." },
-        { "q": "Are you available for freelance work?", "a": "I'm currently focused on my studies but open to interesting projects. Let's chat about what you have in mind!" },
-        { "q": "What kind of projects interest you?", "a": "I'm passionate about user-centered design, accessibility, and creating delightful digital experiences. Mobile apps, web platforms, and design systems all excite me." }
+        {
+          "q": "What's your typical response time?",
+          "a": "I usually respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn."
+        },
+        {
+          "q": "Are you available for freelance work?",
+          "a": "I'm currently focused on my studies but open to interesting projects. Let's chat about what you have in mind!"
+        },
+        {
+          "q": "What kind of projects interest you?",
+          "a": "I'm passionate about user-centered design, accessibility, and creating delightful digital experiences. Mobile apps, web platforms, and design systems all excite me."
+        }
       ]
     },
     "kicker": "Contact",
-    "headline": { "text": "The shortest path is the one.", "em": "direct" },
+    "headline": {
+      "text": "The shortest path is the one.",
+      "em": "direct"
+    },
     "body": "No form. Email is fastest. I reply within 48 hours on weekdays, often sooner. If you'd like a video call, the Calendly link is honest — I only show slots I can actually take.",
     "email": "24kplo@gmail.com",
     "cal": "Book 20 minutes",
     "fit": {
-      "label": "Good fits",
       "1": "UX / Product / Interaction internships, 2026 – 2027",
       "2": "Research-led work where shipping is still the goal",
-      "3": "Small teams where the designer is in the room for decisions"
+      "3": "Small teams where the designer is in the room for decisions",
+      "label": "Good fits"
     },
     "notfit": {
-      "label": "Less good fits",
       "1": "Unpaid 'portfolio-building' opportunities",
       "2": "Projects where research is decoration",
-      "3": "Crypto, surveillance, gambling"
+      "3": "Crypto, surveillance, gambling",
+      "label": "Less good fits"
     }
   },
   "resume": {
@@ -638,19 +823,42 @@
     "downloadPdfShort": "Request PDF",
     "getInTouch": "Get in Touch",
     "printHint": "Tip: Use your browser's print function (Ctrl/Cmd + P) to save this page as a PDF",
-    "overview": { "education": "Education", "experienceHighlights": "Experience Highlights" },
-    "sections": { "education": "Education", "experience": "Experience", "skills": "Skills", "certifications": "Certifications", "awards": "Awards & Recognition" },
-    "education": { "degree": "Master of Interaction Design", "institutionAndYears": "The University of Queensland • 2023 – Present" },
+    "overview": {
+      "education": "Education",
+      "experienceHighlights": "Experience Highlights"
+    },
+    "sections": {
+      "education": "Education",
+      "experience": "Experience",
+      "skills": "Skills",
+      "certifications": "Certifications",
+      "awards": "Awards & Recognition"
+    },
+    "education": {
+      "degree": "Master of Interaction Design",
+      "institutionAndYears": "The University of Queensland • 2025 – 2026"
+    },
     "experience": [
-      { "title": "UX Design Intern", "orgAndYear": "Design Studio Co. • 2024" },
-      { "title": "Freelance Designer", "orgAndYear": "Self-employed • 2022 – 2023" }
+      {
+        "title": "Control layer, MazeRunners (group project)",
+        "orgAndYear": "Built & exhibited • 2026"
+      },
+      {
+        "title": "Vigil & Hoop Dream (solo projects)",
+        "orgAndYear": "Spec to build with AI tooling • 2026"
+      }
     ],
     "kicker": "Résumé",
     "headline": "Experience",
     "download": "Request PDF",
     "contact": "Contact for PDF",
     "print": "Print",
-    "section": { "exp": "Experience", "edu": "Education", "skills": "Skills", "awards": "Awards & Selected" }
+    "section": {
+      "exp": "Experience",
+      "edu": "Education",
+      "skills": "Skills",
+      "awards": "Awards & Selected"
+    }
   },
   "blog": {
     "title": "Blog",
@@ -668,10 +876,38 @@
   "lab": {
     "title": "Lab",
     "description": "A collection of interactive experiments and UI components. These are the building blocks that power this portfolio.",
-    "magneticButtons": { "title": "Magnetic Buttons", "description": "Buttons that subtly follow your mouse movement. Hover over them to see the effect.", "hover": "Hover Me", "secondary": "Secondary", "ghost": "Ghost" },
-    "tiltCards": { "title": "3D Card Tilt", "description": "Cards that tilt in 3D space following cursor position. Move your mouse over the card.", "design": "Design", "designDesc": "Beautiful interfaces with thoughtful interactions", "performance": "Performance", "performanceDesc": "Optimized for speed and smooth animations", "accessibility": "Accessibility", "accessibilityDesc": "Inclusive design for all users" },
-    "glassMorphism": { "title": "Glass Morphism", "description": "Modern frosted glass UI effects with blur and transparency.", "glassCard": "Glass Card", "glassCardDesc": "This card uses backdrop-blur for a frosted glass effect", "heavyGlass": "Heavy Glass", "heavyGlassDesc": "More opaque background with stronger blur" },
-    "animations": { "title": "Animation Playground", "description": "Smooth animations and transitions used throughout the site.", "fadeIn": "Fade In", "scaleIn": "Scale In", "float": "Float" },
+    "magneticButtons": {
+      "title": "Magnetic Buttons",
+      "description": "Buttons that subtly follow your mouse movement. Hover over them to see the effect.",
+      "hover": "Hover Me",
+      "secondary": "Secondary",
+      "ghost": "Ghost"
+    },
+    "tiltCards": {
+      "title": "3D Card Tilt",
+      "description": "Cards that tilt in 3D space following cursor position. Move your mouse over the card.",
+      "design": "Design",
+      "designDesc": "Beautiful interfaces with thoughtful interactions",
+      "performance": "Performance",
+      "performanceDesc": "Optimized for speed and smooth animations",
+      "accessibility": "Accessibility",
+      "accessibilityDesc": "Inclusive design for all users"
+    },
+    "glassMorphism": {
+      "title": "Glass Morphism",
+      "description": "Modern frosted glass UI effects with blur and transparency.",
+      "glassCard": "Glass Card",
+      "glassCardDesc": "This card uses backdrop-blur for a frosted glass effect",
+      "heavyGlass": "Heavy Glass",
+      "heavyGlassDesc": "More opaque background with stronger blur"
+    },
+    "animations": {
+      "title": "Animation Playground",
+      "description": "Smooth animations and transitions used throughout the site.",
+      "fadeIn": "Fade In",
+      "scaleIn": "Scale In",
+      "float": "Float"
+    },
     "about": {
       "title": "About These Experiments",
       "description": "All these interactive components are built with React, TypeScript, and Framer Motion. They're designed to enhance user experience without compromising performance or accessibility.",

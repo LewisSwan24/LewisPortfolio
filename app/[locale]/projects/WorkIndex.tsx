@@ -5,8 +5,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
 import {
-  VizAI,
-  VizCircles,
   VizConnect,
   VizMaze,
   VizSpectra,
@@ -20,8 +18,8 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type ProjKey = "connect" | "spectra" | "ai" | "circles" | "maze" | "vigil" | "hoop";
-type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "social" | "hardware";
+type ProjKey = "connect" | "spectra" | "maze" | "vigil" | "hoop";
+type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "hardware";
 type Localized = { en: string; zh: string };
 
 interface Item {
@@ -41,7 +39,6 @@ const FILTERS: Array<{ id: FilterId; en: string; zh: string }> = [
   { id: "research", en: "Research-led", zh: "研究驱动" },
   { id: "acc", en: "Accessibility", zh: "无障碍" },
   { id: "ai", en: "AI / ML", zh: "AI" },
-  { id: "social", en: "Social", zh: "社交" },
   { id: "hardware", en: "Hardware", zh: "硬件" },
 ];
 
@@ -99,40 +96,20 @@ const ITEMS: Item[] = [
     k: "connect",
     tags: ["flag", "research"],
     role: "Solo",
-    year: "2024",
-    dur: "4 mo",
+    year: "Coursework",
+    dur: "Not shipped",
     problem: { en: "Disjointed structure and hard-to-find information", zh: "结构割裂，关键信息难找" },
     changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
   },
   {
     n: "05",
     k: "spectra",
-    tags: ["flag", "acc", "research"],
-    role: "Lead",
-    year: "2024",
-    dur: "4 mo",
-    problem: { en: "Colour cues failed in real environments", zh: "真实环境里的颜色线索不可靠" },
-    changed: { en: "Live colour naming and haptic feedback model", zh: "实时颜色命名和触觉反馈模型" },
-  },
-  {
-    n: "06",
-    k: "ai",
-    tags: ["ai", "research"],
-    role: "Designer",
-    year: "2024",
-    dur: "5 mo",
-    problem: { en: "Feedback arrived too late or felt unsafe", zh: "反馈来得太晚，或者让人不安心" },
-    changed: { en: "Timed coaching and a confidence loop", zh: "分时机的指导和信心循环" },
-  },
-  {
-    n: "07",
-    k: "circles",
-    tags: ["social", "research"],
-    role: "Solo",
-    year: "2024–",
-    dur: "ongoing",
-    problem: { en: "Quantity metrics missed loneliness", zh: "数量指标没抓住孤独感" },
-    changed: { en: "Small recurring circles over one-off matching", zh: "用小而持续的小组替代一次性匹配" },
+    tags: ["acc"],
+    role: "Solo build",
+    year: "2026",
+    dur: "Shipped",
+    problem: { en: "Type and spacing are fixed by whoever built the page", zh: "字体和行距由建站的人决定，读的人改不了" },
+    changed: { en: "A browser extension that rewrites both from one popup", zh: "一个浏览器扩展，从一个 popup 就能改写两者" },
   },
 ];
 
@@ -141,9 +118,7 @@ function WorkPreview({ project }: { project: ProjKey }) {
   if (project === "vigil") return <VizVigil />;
   if (project === "hoop") return <VizHoop />;
   if (project === "connect") return <VizConnect />;
-  if (project === "spectra") return <VizSpectra />;
-  if (project === "ai") return <VizAI />;
-  return <VizCircles />;
+  return <VizSpectra />;
 }
 
 export function WorkIndex() {
