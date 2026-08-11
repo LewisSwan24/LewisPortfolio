@@ -20,12 +20,12 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
         value: "5",
         label: "end-to-end cases",
         detail:
-          "Information architecture, an accessibility browser extension, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "A student social platform, an accessibility browser extension, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "4",
         label: "research methods used",
-        detail: "Card sorting, tree testing, task walk-throughs, and observation during a public exhibition.",
+        detail: "Exploratory interviews, think-aloud usability testing, task-based usability testing, and observation during a public exhibition.",
       },
       {
         value: "1",
@@ -49,12 +49,12 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
         value: "5",
         label: "端到端案例",
         detail:
-          "信息架构、一个无障碍浏览器扩展、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "一个学生社交平台、一个无障碍浏览器扩展、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "4",
         label: "使用过的研究方法",
-        detail: "卡片分类、树测试、任务走查，以及公开展出时的现场观察。",
+        detail: "探索式访谈、出声思考可用性测试、任务式可用性测试，以及公开展出时的现场观察。",
       },
       {
         value: "1",
@@ -76,14 +76,14 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "Research framing",
       summary: "I turn broad questions into scoped studies, participant plans, and decision criteria.",
-      proof: "UQ Connect pairs an open card sort with a tree test, so the structure was chosen against evidence rather than argued for.",
+      proof: "UQ Connect gave every hypothesis a numeric pass mark in writing before the first interview, so the research was able to come back negative — and on several counts it did.",
       href: "/projects/connect",
     },
     {
       id: "information-architecture",
       title: "Information architecture",
-      summary: "I restructure messy systems around user mental models, then test the structure before defending it.",
-      proof: "UQ Connect collapsed twelve staff-owned categories into six task-led ones, tree-tested against the original.",
+      summary: "I give a sprawling product a structure people can navigate, then check whether they actually can.",
+      proof: "UQ Connect went back to paper mid-build to redraw the app as five screens with every route off the home page drawn explicitly.",
       href: "/projects/connect",
     },
     {
@@ -104,8 +104,8 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "prototyping-testing",
       title: "Prototype, test, revise",
       summary: "I build at the fidelity needed to learn, then use tests to decide the next move.",
-      proof: "UQ Connect renamed a category and re-ran the tree test after the first round showed people hesitating there.",
-      href: "/projects/spectra",
+      proof: "UQ Connect ran three rounds at three fidelities: exploratory interviews, think-aloud on a working prototype, then a full task chain on the MVP.",
+      href: "/projects/connect",
     },
   ],
   zh: [
@@ -113,14 +113,14 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "研究问题定义",
       summary: "我把宽泛问题拆成研究范围、招募计划与决策标准。",
-      proof: "UQ Connect 把开放式卡片分类和树测试接在一起，让结构是被证据选出来的，而不是被论证出来的。",
+      proof: "UQ Connect 在第一场访谈之前，就把每条假设的数字及格线写了下来，让研究有可能得出否定结果——而它确实否定了好几条。",
       href: "/projects/connect",
     },
     {
       id: "information-architecture",
       title: "信息架构",
-      summary: "我围绕用户心智模型重组复杂系统，并在为它辩护之前先做测试。",
-      proof: "UQ Connect 把十二个按部门划分的入口收敛成六个按任务划分的入口，并与原结构做树测试对比。",
+      summary: "我给一个不断膨胀的产品一套能走得通的结构，然后去验证用户是不是真的走得通。",
+      proof: "UQ Connect 在开发中途回到纸上，把整个应用重画成五个屏，并把从首页出发的每条路径都画了出来。",
       href: "/projects/connect",
     },
     {
@@ -141,8 +141,8 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "prototyping-testing",
       title: "原型、测试、迭代",
       summary: "我按学习目标选择原型保真度，再用测试决定下一步。",
-      proof: "UQ Connect 在第一轮树测试发现有人卡住之后，改了分类名再跑了一次。",
-      href: "/projects/spectra",
+      proof: "UQ Connect 用三种保真度跑了三轮：探索式访谈、在可运行原型上的出声思考，最后是 MVP 上的完整任务链。",
+      href: "/projects/connect",
     },
   ],
 };
@@ -152,12 +152,12 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
     {
       slug: "connect",
       href: "/projects/connect",
-      problemType: "Information architecture for a high-traffic student portal",
-      challenge: "Students could not find critical university tasks because the portal reflected staff ownership, not student mental models.",
-      methods: ["open card sort", "tree testing", "task analysis", "plain-language review"],
-      sample: "University project. Student participants across card sort, tree test, and task-analysis sessions; outcomes not formally measured.",
-      outcome: "Twelve staff-owned categories collapsed to six task-led ones, with 'I'm new' promoted to the front door and an A-Z index kept as a fallback. Not deployed to the live portal.",
-      proves: "I can diagnose IA breakdowns, restructure around user mental models, and test the structure before defending it.",
+      problemType: "A social platform for international students, researched and built over one semester",
+      challenge: "UQ runs plenty of events for international students, and they still end up in the same circle. A one-off mixer produces an introduction, not a relationship.",
+      methods: ["exploratory interviews", "falsifiable test cards", "think-aloud usability testing", "task-based usability testing", "component system design"],
+      sample: "Course project, five-person team. 71 interview transcripts across three rounds between August and November 2025; 14 of them mine. No round recorded completion times or a fixed success criterion.",
+      outcome: "A 24-screen mobile MVP built on a shared component system, reached through three research rounds and a mid-build return to paper. Runs on mock data; the backend was written but never connected.",
+      proves: "I can run research set up to disconfirm itself, and carry what survives into a component system that keeps two dozen screens reading as one product.",
     },
     {
       slug: "spectra",
@@ -234,12 +234,12 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
     {
       slug: "connect",
       href: "/projects/connect",
-      problemType: "高频学生门户的信息架构重组",
-      challenge: "学生找不到关键任务，因为门户按照部门归属组织，而不是按照学生心智模型组织。",
-      methods: ["开放式卡片分类", "树测试", "任务分析", "普通语言审查"],
-      sample: "课程项目。参与者为学生，覆盖卡片分类、树测试与任务分析；前后结果未正式测量。",
-      outcome: "把十二个按部门划分的入口收敛成六个按任务划分的入口，把「我是新生」提到首屏，并保留 A-Z 索引作为兜底。未上线到真实门户。",
-      proves: "证明我能诊断 IA 断点、围绕用户心智模型重组结构，并在为方案辩护之前先做测试。",
+      problemType: "一个面向国际学生的社交平台，一学期内做完研究并做出来",
+      challenge: "UQ 给国际学生办的活动不少，他们还是留在同一个圈子里。一次性的迎新派对制造的是认识，不是关系。",
+      methods: ["探索式访谈", "可证伪的假设卡", "出声思考可用性测试", "任务式可用性测试", "组件系统设计"],
+      sample: "课程项目，五人团队。2025 年 8 月至 11 月三轮共 71 份访谈逐字稿，其中 14 场是我做的。没有任何一轮记录过完成时间或事先定好的成功标准。",
+      outcome: "一个 24 屏、建立在共享组件系统上的移动端 MVP，经过三轮研究和一次开发中途回到纸面的重画。跑在 mock 数据上；后端写了，但从未接上。",
+      proves: "证明我能把研究做成会否定自己的样子，再把活下来的结论落进一套组件系统，让二十多个屏读起来仍然是同一个产品。",
     },
     {
       slug: "spectra",
@@ -310,12 +310,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         value: "6",
         label: "end-to-end cases",
         detail:
-          "Information architecture, accessibility, AI feedback, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "A student social platform, accessibility, AI feedback, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
       },
       {
         value: "6",
         label: "research methods used",
-        detail: "Card sorting, tree testing, think-aloud, depth interviews, co-design, and field usability testing.",
+        detail: "Depth interviews, falsifiable test cards, think-aloud, task-based usability testing, competitor teardown, and field observation.",
       },
       {
         value: "1",
@@ -338,12 +338,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         href: "/projects/maze#decision-timeline",
       },
       {
-        audience: "IA / service complexity",
-        title: "Information architecture and research rigor",
+        audience: "Research rigor / product structure",
+        title: "Research that can prove itself wrong",
         claim:
-          "Best proof that I can restructure a complex student service around user mental models.",
+          "Best proof that I run studies capable of returning a negative, then act on the result.",
         evidence:
-          "UQ Connect links task analysis, card sorting, and tree testing to a task-led structure.",
+          "UQ Connect set a numeric pass mark per hypothesis before fieldwork; several failed, and the learning cards say so.",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -386,12 +386,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         value: "6",
         label: "端到端案例",
         detail:
-          "涵盖信息架构、无障碍、AI 反馈、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "涵盖一个学生社交平台、无障碍、AI 反馈、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
       },
       {
         value: "6",
         label: "使用过的研究方法",
-        detail: "卡片分类、树测试、出声思考、深度访谈、共创，以及真实场景可用性测试。",
+        detail: "深度访谈、可证伪的假设卡、出声思考、任务式可用性测试、竞品拆解，以及真实场景观察。",
       },
       {
         value: "1",
@@ -414,12 +414,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         href: "/projects/maze#decision-timeline",
       },
       {
-        audience: "信息架构 / 复杂服务",
-        title: "信息架构与研究严谨度",
+        audience: "研究严谨度 / 产品结构",
+        title: "能证明自己错的研究",
         claim:
-          "证明我能围绕用户心智模型，重构复杂的学生服务。",
+          "证明我做的研究有可能得出否定结果，并且我会按结果行动。",
         evidence:
-          "UQ Connect 串联任务分析、卡片分类与树测试，产出以任务为主的结构。",
+          "UQ Connect 在进场之前就为每条假设定了数字及格线；有几条没过，learning cards 把这件事写了下来。",
         href: "/projects/connect#decision-timeline",
       },
       {

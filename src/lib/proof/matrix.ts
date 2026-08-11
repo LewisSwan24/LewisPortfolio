@@ -14,7 +14,7 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     fit:
       "Best fit when the team needs research to become product direction, IA, flows, and measurable iteration.",
     proofLinks: [
-      { label: "UQ Connect IA decision", href: "/projects/connect#decision-timeline" },
+      { label: "UQ Connect: back to paper", href: "/projects/connect#decision-timeline" },
       { label: "MazeRunners hardware trade-offs", href: "/projects/maze#decision-timeline" },
       { label: "Hoop Dream production pipeline", href: "/projects/hoop#decision-timeline" },
     ],
@@ -79,7 +79,7 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     label: "UX / 产品设计",
     fit: "适合需要把研究变成产品方向、信息架构、流程与可迭代决策的团队。",
     proofLinks: [
-      { label: "UQ Connect 的 IA 决策", href: "/projects/connect#decision-timeline" },
+      { label: "UQ Connect：回到纸上", href: "/projects/connect#decision-timeline" },
       { label: "MazeRunners 的软硬件取舍", href: "/projects/maze#decision-timeline" },
       { label: "Hoop Dream 的生产管线", href: "/projects/hoop#decision-timeline" },
     ],
@@ -140,7 +140,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "Task analysis, card sorting, and tree testing framed the portal IA.",
+        proof: "Every hypothesis carried a numeric pass mark written before fieldwork; several failed it.",
         href: "/projects/connect#evidence-board",
       },
       spectra: {
@@ -153,11 +153,11 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
   {
     id: "information-architecture",
     label: "Information architecture",
-    summary: "Structures complex information around user mental models and findability.",
+    summary: "Gives a sprawling product a structure people can navigate, then checks whether they can.",
     cases: {
       connect: {
         strength: "primary",
-        proof: "Moved the portal from department ownership to task-oriented IA.",
+        proof: "Redrew twenty-four screens as five on paper, mid-build, with every route off the home page.",
         href: "/projects/connect#decision-timeline",
       },
     },
@@ -220,7 +220,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "Tree testing bounds what the IA claims; nothing was measured after the coursework.",
+        proof: "The MVP ran on mock data and no round was timed, so the case claims a direction, not a measured gain.",
         href: "/projects/connect#outcome-limits",
       },
       spectra: {
@@ -266,7 +266,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "任务分析、卡片分类和树测试共同框定了门户的信息架构。",
+        proof: "每条假设都带着进场前写好的数字及格线；有几条没过。",
         href: "/projects/connect#evidence-board",
       },
       spectra: {
@@ -279,11 +279,11 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
   {
     id: "information-architecture",
     label: "信息架构",
-    summary: "围绕用户心智模型和「找不找得到」来组织复杂信息。",
+    summary: "给一个不断膨胀的产品一套能走得通的结构，再去验证用户是不是真的走得通。",
     cases: {
       connect: {
         strength: "primary",
-        proof: "把门户从按部门归属组织，改成按学生任务组织。",
+        proof: "开发中途在纸上把二十四个屏重画成五个，并画出从首页出发的每条路径。",
         href: "/projects/connect#decision-timeline",
       },
     },
@@ -346,7 +346,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "树测试划定了这套信息架构能说到哪里；课程结束后没有再测。",
+        proof: "MVP 跑在 mock 数据上，也没有任何一轮计时，所以这个案例说的是方向，不是测出来的提升。",
         href: "/projects/connect#outcome-limits",
       },
       spectra: {
@@ -389,41 +389,41 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
   connect: {
     answers: [
       {
-        id: "connect-ia-shift",
-        question: "Why did you move from department labels to task-oriented IA?",
+        id: "connect-paper-reset",
+        question: "You had a working prototype in September. Why go back to paper in October?",
         answer:
-          "I would explain how task walk-throughs and tree testing showed students searched by life task, not by staff ownership.",
+          "Because the defects were structural, not cosmetic. A student could not find a way back to the previous page, and an event card claimed she was attending while still offering her an attend button. You do not fix that one component at a time, so we redrew the whole app on one sheet — five screens, every route off the home page, a name against each area — and built from that.",
         evidenceHref: "/projects/connect#decision-timeline",
         boundary:
-          "I would not claim the final IA fits every university service without another production tree test.",
+          "I can show the sequence, not the causation. The paper sheet records the new structure; it does not record why each change was made.",
       },
       {
-        id: "connect-research-signal",
-        question: "Which research signal most changed the final structure?",
+        id: "connect-failed-hypothesis",
+        question: "Which of your assumptions did the research kill?",
         answer:
-          "I would point to the card-sort groupings and to where task walk-throughs stalled, which is what made plain student language more defensible than org-chart labels.",
+          "That language proficiency was the barrier. It was not. Students held back in fast, loud, crowded settings and contributed freely in small paced ones, at the same level of English — the barrier is pace and group size. We had also assumed the gap was exposure, and it was follow-through: people found events fine and still did not go.",
         evidenceHref: "/projects/connect#evidence-board",
         boundary:
-          "I would separate evidence-backed labels from labels that still need real search log validation.",
+          "These came from interview patterns, not from an instrumented study. The thresholds we set in advance were never formally scored against the transcripts.",
       },
       {
-        id: "connect-validation",
-        question: "What would you validate next before launch?",
+        id: "connect-mock-data-limit",
+        question: "The MVP runs on mock data. What does that mean you have not proven?",
         answer:
-          "I would run a larger tree test and production-search review to confirm critical student tasks stay findable at scale.",
+          "Almost everything about the product, as opposed to the interface. Matching, messaging and scheduling were never exercised against real records, concurrency, or an empty state. The November sessions show a person can operate the screens; they say nothing about whether the thing underneath works.",
         evidenceHref: "/projects/connect#outcome-limits",
         boundary:
-          "The case proves a direction, not a measured outcome and not a university-wide rollout.",
+          "No round recorded completion times or a fixed success criterion, so I cannot put a number on any of it either.",
       },
     ],
     managerFollowUp: {
       id: "connect-manager-follow-up",
-      question: "How would you defend the IA trade-off to stakeholders?",
+      question: "You were one of five. How do I know which parts are yours?",
       answer:
-        "I would show that administrative precision lost value the moment students could not find critical services, then frame the IA as a service decision that can be tested rather than argued.",
+        "Ask, and the commit history will match what I say. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, ran 14 of the 71 interviews, and co-wrote the test and learning cards. The map feature, the wellness hub and the study-buddy matching logic were other people's.",
       evidenceHref: "/projects/connect#interview-takeaway",
       boundary:
-        "I would still keep stakeholder language available in search and support tooling where it helps staff operations.",
+        "It was a course team under a deadline, so ownership blurred at the edges — I reviewed and touched code I did not design.",
     },
   },
   spectra: {
@@ -596,41 +596,41 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
   connect: {
     answers: [
       {
-        id: "connect-ia-shift",
-        question: "为什么从部门标签转向任务导向的信息架构？",
+        id: "connect-paper-reset",
+        question: "九月你们已经有能跑的原型了，十月为什么还要回到纸上？",
         answer:
-          "我会讲任务走查和树测试看到的同一件事：学生按自己要办的事去找，不按哪个部门负责去找。",
+          "因为抓到的缺陷是结构性的，不是表面的。受测者找不到回上一页的路；活动卡片一边显示她已报名，一边还给她一个报名按钮。这种问题不是一个组件一个组件补得掉的，所以我们把整个应用重画在一张纸上——五个屏、每条从首页出发的路径、每块功能挂一个人名——然后照着这张纸重做。",
         evidenceHref: "/projects/connect#decision-timeline",
         boundary:
-          "我不会说这套结构换到任何一所大学的服务体系都成立 —— 那需要在真实环境里再跑一次树测试。",
+          "我能给出的是顺序，不是因果。那张纸记录了新结构，但没有记录每处改动的理由。",
       },
       {
-        id: "connect-research-signal",
-        question: "哪一个研究信号最终改变了结构？",
+        id: "connect-failed-hypothesis",
+        question: "研究杀掉了你哪一条假设？",
         answer:
-          "我会指两处：卡片分类的聚类方式，以及任务走查里学生卡住的位置。正是这两处，让「用学生的话写标签」比「照组织图写标签」更站得住。",
+          "「语言能力是障碍」这条。不是。同样的英文水平，学生在快节奏、嘈杂、人多的场合会闭嘴，在小而慢的场合却讲得很自然——真正的障碍是节奏和人数规模。我们另一条假设也塌了：以为缺口在曝光，其实在跟进——大家都看得到活动，还是没去。",
         evidenceHref: "/projects/connect#evidence-board",
         boundary:
-          "我会把有证据支撑的标签，和还需要真实搜索日志验证的标签分开讲。",
+          "这些来自访谈里的模式，不是被埋点测量出来的。我们事先定的那些阈值，从来没有真的拿逐字稿去逐条打分。",
       },
       {
-        id: "connect-validation",
-        question: "上线之前你接下来会验证什么？",
+        id: "connect-mock-data-limit",
+        question: "MVP 跑在 mock 数据上。这意味着你没有证明什么？",
         answer:
-          "跑一次样本更大的树测试，再拉一遍真实搜索日志，确认关键任务在规模上来之后还找得到。",
+          "除了界面之外，关于这个产品的几乎所有事。匹配、消息和日程从来没有面对过真实记录、并发或空状态。十一月那几场证明的是一个人能操作这些屏；至于底下那套东西能不能跑，它一句话都没说。",
         evidenceHref: "/projects/connect#outcome-limits",
         boundary:
-          "这个案例证明的是方向，不是一个测出来的结果，也不是全校范围的落地。",
+          "而且没有任何一轮记录过完成时间或事先定好的成功标准，所以我也给不出任何数字。",
       },
     ],
     managerFollowUp: {
       id: "connect-manager-follow-up",
-      question: "面对利益相关方，你怎么为这个取舍辩护？",
+      question: "你们是五个人。我怎么知道哪些部分是你的？",
       answer:
-        "我会先说清楚一件事：当学生找不到关键服务的那一刻，行政上的精确就不再值钱了。然后把这套信息架构讲成一个可以拿去测、而不是拿来吵的服务决策。",
+        "直接问，提交记录会和我说的对得上。我负责前端组件系统和共享状态层，写了一部分后端路由与控制器，做了 71 场访谈里的 14 场，并参与撰写 test cards 与 learning cards。地图、wellness hub 和学习伙伴匹配逻辑是别人的。",
       evidenceHref: "/projects/connect#interview-takeaway",
       boundary:
-        "对内的部门说法我会留在搜索和客服工具里 —— 那些地方它确实帮得上教职工。",
+        "这是一个赶期限的课程团队，边界处会糊——我也 review 过、动过一些不是我设计的代码。",
     },
   },
   spectra: {

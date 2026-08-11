@@ -9,57 +9,50 @@ export function VizConnect() {
         </defs>
         <rect width="520" height="400" fill="url(#paper-c)" opacity="0.5" />
         <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
-          BEFORE · 12 TOP LEVELS
+          THREE ROUNDS · AUG–NOV 2025
         </text>
-        {["Study", "HiQ", "SI-net", "Money", "my.UQ", "Library", "Hub", "IT", "ask.UQ", "Calendar", "More", "Links"].map((s, i) => (
-          <g key={s}>
-            <rect
-              x={30 + (i % 4) * 50}
-              y={50 + Math.floor(i / 4) * 32}
-              width="46"
-              height="26"
-              fill="none"
-              stroke="#8B7355"
-              strokeWidth="0.8"
-              strokeDasharray="2 2"
-            />
-            <text
-              x={53 + (i % 4) * 50}
-              y={67 + Math.floor(i / 4) * 32}
-              fontFamily="var(--font-ui)"
-              fontSize="9"
-              textAnchor="middle"
-              fill="#756D61"
-            >
-              {s}
-            </text>
-          </g>
-        ))}
 
-        <text x="300" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#A63F2A">
-          AFTER · 6 TASKS
-        </text>
-        {["I'm new", "Study", "Belong", "Pay", "Life", "Leave"].map((s, i) => (
-          <g key={s}>
-            <rect x={300} y={50 + i * 22} width="180" height="18" fill="#F7F4EC" stroke="#A63F2A" strokeWidth="1" />
-            <text x={312} y={63 + i * 22} fontFamily="var(--font-ui)" fontSize="11" fill="#3A362D">
-              {s}
+        {[
+          { month: "AUG", label: "Exploratory interviews", total: 33, mine: 7 },
+          { month: "SEP", label: "Think-aloud on prototype", total: 28, mine: 5 },
+          { month: "NOV", label: "Task chain on MVP", total: 10, mine: 2 },
+        ].map((round, i) => (
+          <g key={round.month}>
+            <text x={30} y={64 + i * 84} fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#A63F2A">
+              {round.month}
             </text>
+            <text x={70} y={64 + i * 84} fontFamily="var(--font-ui)" fontSize="11" fill="#3A362D">
+              {round.label}
+            </text>
+            {Array.from({ length: round.total }).map((_, n) => (
+              <rect
+                key={n}
+                x={30 + (n % 17) * 13}
+                y={76 + i * 84 + Math.floor(n / 17) * 15}
+                width="9"
+                height="11"
+                fill={n < round.mine ? "#C9523A" : "none"}
+                stroke={n < round.mine ? "#C9523A" : "#8B7355"}
+                strokeWidth="0.8"
+              />
+            ))}
             <text
-              x={472}
-              y={63 + i * 22}
+              x={490}
+              y={86 + i * 84}
               fontFamily="var(--font-mono)"
-              fontSize="9"
+              fontSize="10"
               textAnchor="end"
               fill="#8A8170"
             >
-              0{i + 1}
+              {round.mine}/{round.total}
             </text>
           </g>
         ))}
 
-        <path d="M 250 80 C 275 80, 275 110, 295 110" stroke="#C9523A" strokeWidth="1.2" fill="none" />
-        <path d="M 290 106 L 296 110 L 290 114" stroke="#C9523A" strokeWidth="1.2" fill="none" />
+        <line x1="30" y1="228" x2="490" y2="228" stroke="#C9523A" strokeWidth="1" strokeDasharray="3 3" />
+        <text x={30} y={242} fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#C9523A">
+          3 OCT · BACK TO PAPER — REDRAWN AS 5 SCREENS
+        </text>
 
         <line x1="30" y1="340" x2="490" y2="340" stroke="#8A8170" strokeWidth="0.8" />
         {Array.from({ length: 24 }).map((_, i) => (
@@ -75,10 +68,10 @@ export function VizConnect() {
         ))}
 
         <text x="30" y="372" fontFamily="var(--font-display)" fontStyle="italic" fontSize="28" fill="#3A362D">
-          12 → 6
+          14 / 71
         </text>
         <text x="30" y="390" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8A8170">
-          top-level categories · card sort · tree test
+          interviews I ran, of the team&rsquo;s total
         </text>
       </svg>
     </div>

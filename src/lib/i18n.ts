@@ -64,9 +64,7 @@ const dictionaries = {
       featuredProjectsEmpty: "Featured projects coming soon.",
       stats: {
         userInterviews: "User Interviews",
-        treeTestParticipants: "Tree Test Participants",
         taskSuccessRate: "Task Success Rate",
-        findabilityRate: "Findability Rate",
       },
     },
     about: {
@@ -413,9 +411,7 @@ const dictionaries = {
       featuredProjectsEmpty: "精选项目即将上线。",
       stats: {
         userInterviews: "用户访谈",
-        treeTestParticipants: "树测参与者",
         taskSuccessRate: "任务成功率",
-        findabilityRate: "可发现率",
       },
     },
     about: {

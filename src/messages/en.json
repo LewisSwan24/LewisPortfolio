@@ -68,7 +68,7 @@
       },
       "2": {
         "t": "Synthesise",
-        "b": "Affinity maps, JTBD, tree tests — structured reasoning."
+        "b": "Affinity maps, JTBD, test cards — structured reasoning."
       },
       "3": {
         "t": "Prototype",
@@ -87,14 +87,14 @@
   },
   "proj": {
     "connect": {
-      "kicker": "Flagship · Information Architecture",
+      "kicker": "Team project · Research and build",
       "title": "UQ Connect",
-      "sub": "Rebuilding a student portal around student tasks, not departments.",
-      "role": "UX Researcher & Designer",
-      "date": "University coursework",
-      "m1": "12 staff-led buckets → 6 task-led",
-      "m2": "Card sort · tree test · think-aloud",
-      "m3": "Plain-language naming review"
+      "sub": "A social platform for international students — three rounds of research, one semester of building.",
+      "role": "Front-end system & research",
+      "date": "Aug–Nov 2025, coursework",
+      "m1": "71 interview transcripts, 14 mine",
+      "m2": "Exploratory · think-aloud · task-based",
+      "m3": "24-screen MVP on mock data"
     },
     "spectra": {
       "kicker": "Accessibility · Browser extension",
@@ -150,71 +150,71 @@
     "connect": {
       "hero": {
         "title": "UQ Connect",
-        "sub": "Rebuilding the information architecture of a university student portal."
+        "sub": "A social platform for international students, researched and built over one semester."
       },
-      "roleVal": "Solo UX Researcher & Designer",
-      "timeVal": "University coursework",
-      "teamVal": "Independent, advised by faculty",
-      "toolsVal": "Figma · OptimalSort · Treejack · Maze",
+      "roleVal": "Front-end component system, shared state, 14 of 71 interviews",
+      "timeVal": "August–November 2025, university coursework",
+      "teamVal": "Five-person course team",
+      "toolsVal": "React · TypeScript · Tailwind · Figma Make · Paper",
       "ch": {
         "label": "The problem",
-        "title": "Twelve top-level categories, most of them opaque.",
-        "p": "New students arrived at a portal written in staff-facing language — \"HiQ\", \"SI-net\", \"mySI-net\" — and had to guess. The search bar didn't forgive typos or synonyms. The mobile experience collapsed to a hamburger that hid 80+ links."
+        "title": "The events already exist. The relationships do not.",
+        "p": "UQ runs no shortage of events for international students, and students still end up in the same circle. A first-round participant named the ceiling exactly: it is hard to find common ground beyond being international. Large mixers were too loud to hold a conversation in, and event descriptions did not say what would actually happen or what the room would feel like — so a one-off produced an introduction and nothing after it."
       },
       "re": {
         "label": "Research",
-        "title": "Three methods, one month.",
+        "title": "Three rounds, three fidelities, seventy-one transcripts.",
         "m1": {
-          "t": "Open card sort",
-          "b": "Students grouped and named the portal's most common tasks in their own words."
+          "t": "Exploratory interviews",
+          "b": "33 transcripts in August, 7 of them mine, on why the events that already exist fail to connect people."
         },
         "m2": {
-          "t": "Think-aloud",
-          "b": "Task-based sessions on the live portal, watching where people gave up or left for Google."
+          "t": "Think-aloud usability testing",
+          "b": "28 transcripts in September, 5 mine, on a prototype that already ran — watching where people stalled."
         },
         "m3": {
-          "t": "Tree test",
-          "b": "The existing structure against two alternative trees."
+          "t": "Task-based usability testing",
+          "b": "10 transcripts in November, 2 mine, on the built MVP: one chain, start to finish, unaided."
         },
-        "quote": "I just Google 'UQ how to drop a subject'. I never start on the portal.",
-        "quoteWho": "P07, second-year undergrad"
+        "quote": "Can I go to the previous page? How can I do that?",
+        "quoteWho": "Iteration 2 participant, 17 September 2025"
       },
       "sy": {
         "label": "Synthesis",
-        "title": "The portal was organised by who owns the information, not who needs it.",
-        "p": "Affinity mapping revealed that student mental models clustered around five life-stages: arriving, studying, belonging, supporting myself, moving on. We collapsed twelve staff-oriented buckets into six task-oriented ones, with \"I'm new\" promoted to the front door."
+        "title": "The barrier was pace and group size, not language.",
+        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, which is the only reason we could tell when we were wrong. Two assumptions did not survive. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go."
       },
       "id": {
-        "label": "IA decisions",
-        "p": "Three alternative trees were tested; the winning one preserved a fallback alphabetical index for power users while leading with the task-first structure. Every category name went through a plain-language review with two non-UQ reviewers."
+        "label": "Design decisions",
+        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly sceptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan."
       },
       "pr": {
         "label": "Prototype",
-        "p": "A Figma prototype covered the top 15 tasks end-to-end at mid-fidelity. The navigation shell and the \"I'm new\" landing were built to high fidelity to validate reading flow on mobile."
+        "p": "On 3 October, after the September sessions, we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area. The November build started from that sheet, as a shared component system with React context for cross-screen state rather than twenty-four independently styled screens."
       },
       "te": {
         "label": "Usability test",
-        "p": "Moderated remote sessions surfaced a naming collision between \"Money\" and \"My account\" that had only shown up at high fidelity — renamed on the spot, and the re-run confirmed people stopped hesitating there."
+        "p": "In November a participant completed the full chain unaided — create a circle, set who can see it, open the chat, post, return to the list — and read the colour-coded home screen as a map of the app. The entry point to Circles was still not obvious: he found it in the sidebar rather than on sight."
       },
       "ou": {
         "label": "What it produced",
         "m1": {
-          "label": "Structure",
-          "v": "12 → 6 categories"
+          "label": "Build",
+          "v": "24-screen MVP"
         },
         "m2": {
-          "label": "Front door",
-          "v": "\"I'm new\" promoted"
+          "label": "Research",
+          "v": "71 transcripts, 3 rounds"
         },
         "m3": {
-          "label": "Fallback",
-          "v": "A–Z index kept"
+          "label": "My share",
+          "v": "14 interviews, front-end system"
         },
-        "p": "The deliverable was a tested information architecture: a task-first tree, plain-language category names, and a mid-fidelity prototype covering the top tasks end to end. Evidence status — this is university project work, not a shipped portal. I can walk through the card-sort groupings, the tree-test tasks, and why each category name changed; I have not measured impact on the live product."
+        "p": "A 24-screen mobile MVP on a shared component system, reached through three research rounds and a mid-build return to paper. Evidence status — course project, five-person team. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, and ran 14 of the 71 interviews; the map, the wellness hub and the matching logic were other people's work. The MVP runs on mock data: the backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. No round recorded completion times or a fixed success criterion, so I can say the September navigation defect did not recur in November, and I cannot say by how much anything improved."
       },
       "rf": {
         "label": "Reflection",
-        "p": "The research phase was longer than planned — I would budget for that again. The most valuable decision was insisting on a plain-language review from non-UQ readers; it caught four category names that sounded fine to anyone steeped in the institution."
+        "p": "We wrote pass marks and never formally scored them. The thresholds still did real work — they disciplined what we asked, and stopped us reframing misses as findings — but the disconfirmation ended up qualitative, which is the exact failure mode writing them down is meant to prevent. Next time I score the transcripts against the thresholds and publish the table, pass or fail."
       }
     },
     "spectra": {
@@ -582,9 +582,7 @@
     "featuredProjectsEmpty": "Featured projects coming soon.",
     "stats": {
       "userInterviews": "User Interviews",
-      "treeTestParticipants": "Tree Test Participants",
-      "taskSuccessRate": "Task Success Rate",
-      "findabilityRate": "Findability Rate"
+      "taskSuccessRate": "Task Success Rate"
     },
     "latest": {
       "label": "From the journal",

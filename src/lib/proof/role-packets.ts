@@ -50,14 +50,14 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       proofClaims: [
         {
           id: "ux-product-ia",
-          claim: "Lewis can turn messy service information into measurable product structure.",
+          claim: "Lewis lets research change the product, including when that means restarting.",
           evidence:
-            "UQ Connect reframed a student portal around task success, findability, and student-language labels.",
+            "UQ Connect went back to paper mid-build after usability sessions exposed structural navigation defects, then rebuilt twenty-four screens off that sheet.",
           boundary:
-            "This proves prototype and research-direction quality, not ownership of a university-wide production rollout.",
+            "This shows research-to-decision quality on a course project, not ownership of a shipped product.",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "Validate at scale with production search logs, support-ticket patterns, and a larger tree test.",
+            "Connect the backend and re-run the same task chain against live data, with timings and a pass mark set in advance.",
         },
         {
           id: "ux-product-inclusive-tradeoffs",
@@ -86,14 +86,14 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       proofClaims: [
         {
           id: "ux-research-ia-validation",
-          claim: "Lewis can connect research methods to measurable decision criteria.",
+          claim: "Lewis writes the pass mark before the fieldwork, so a study can come back negative.",
           evidence:
-            "UQ Connect uses card sort, tree test, and task analysis to constrain IA decisions with findability evidence.",
+            "UQ Connect set a numeric threshold per hypothesis in advance; the learning cards then record which ones failed, including the assumption that language proficiency was the barrier.",
           boundary:
-            "The metrics show direction and prototype improvement, not live operational impact.",
+            "The thresholds were set but never formally scored against the transcripts, so the disconfirmation is qualitative.",
           strongestAnchor: "/projects/connect#outcome-limits",
           nextValidation:
-            "Compare pre/post launch search behavior, task completion, and support demand.",
+            "Score the transcripts against the stated thresholds and report which hypotheses pass, fail, or remain undecided.",
         },
         {
           id: "ux-research-observation",
@@ -169,14 +169,14 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
         },
         {
           id: "accessibility-plain-language",
-          claim: "Lewis can improve access through language and information architecture.",
+          claim: "Lewis treats unclear labels and dead ends as defects, not polish.",
           evidence:
-            "UQ Connect replaced staff-facing categories with student-language labels and task-oriented structure.",
+            "UQ Connect's September sessions logged 'Skill swap — not sure what that is' and 'Can I go to the previous page?' as blockers, and the October restructure answered both.",
           boundary:
-            "The IA evidence needs production validation before claiming full service accessibility impact.",
+            "This is language and navigation clarity for a general student audience; it is not an assistive-technology audit.",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "Test with students using assistive technology and compare support-seeking behavior after launch.",
+            "Run the same task chain with screen-reader and keyboard-only users, who were never part of any round.",
         },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
@@ -196,14 +196,14 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       proofClaims: [
         {
           id: "ux-product-ia",
-          claim: "Lewis 能把混乱的服务信息转成可衡量的产品结构。",
+          claim: "Lewis 会让研究真的改变产品，包括推翻重来。",
           evidence:
-            "UQ Connect 围绕任务成功率、可发现性和学生语言重新组织学生门户。",
+            "UQ Connect 在可用性测试暴露出结构性导航缺陷之后，开发中途回到纸上重画，再照着那张纸重建二十四个屏。",
           boundary:
-            "这证明的是原型和研究方向质量，不等于已经拥有全校级生产上线结果。",
+            "这证明的是课程项目里「从研究到决策」的质量，不等于拥有一个已上线产品。",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "下一步需要用生产搜索日志、支持请求和更大规模树测试验证。",
+            "把后端接上，用同一条任务链对着真实数据重跑一次，并带上计时与事先写好的及格线。",
         },
         {
           id: "ux-product-inclusive-tradeoffs",
@@ -232,14 +232,14 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       proofClaims: [
         {
           id: "ux-research-ia-validation",
-          claim: "Lewis 能把研究方法和可衡量的决策标准连接起来。",
+          claim: "Lewis 把及格线写在进场之前，让一项研究有可能得出否定结果。",
           evidence:
-            "UQ Connect 用卡片分类、树测试和任务分析约束信息架构决策。",
+            "UQ Connect 事先为每条假设定了数字门槛；learning cards 随后记下哪几条没过，包括「语言能力是障碍」这条。",
           boundary:
-            "这些指标证明方向和原型改进，不等于已经证明线上运营影响。",
+            "门槛定了，但从未真的拿逐字稿逐条打分，所以这个否定是定性的。",
           strongestAnchor: "/projects/connect#outcome-limits",
           nextValidation:
-            "下一步需要比较上线前后的搜索行为、任务完成和支持需求。",
+            "拿逐字稿对照当初写下的门槛逐条打分，报出哪些通过、哪些没过、哪些仍无法判定。",
         },
         {
           id: "ux-research-observation",
@@ -315,14 +315,14 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
         },
         {
           id: "accessibility-plain-language",
-          claim: "Lewis 能通过语言和信息架构提升可访问性。",
+          claim: "Lewis 把「看不懂的标签」和「走不回去的死路」当缺陷处理，不当润色。",
           evidence:
-            "UQ Connect 用学生语言和任务导向结构替代 staff-facing 分类。",
+            "UQ Connect 九月的测试把「Skill swap——不知道这是什么」和「我怎么回上一页？」记为阻塞项，十月的结构重画把两者都回答了。",
           boundary:
-            "信息架构证据还需要生产验证，才能声称完整服务可访问性影响。",
+            "这是面向一般学生的语言与导航清晰度，不是一次辅助技术审计。",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "下一步需要和使用辅助技术的学生测试，并比较上线后的支持行为。",
+            "让屏幕阅读器用户和纯键盘用户跑同一条任务链——他们从来没有出现在任何一轮里。",
         },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [

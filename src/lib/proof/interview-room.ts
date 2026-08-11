@@ -38,9 +38,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "Information architecture",
       caseSlug: "connect",
       proof:
-        "UQ Connect reframed a student portal around task success rather than department ownership.",
+        "UQ Connect stopped mid-build and redrew twenty-four screens as five on paper, with every route off the home page.",
       whyItMatters:
-        "Shows research-to-structure product judgment for complex service information.",
+        "Shows a designer willing to answer a structural defect with structure, not with patches.",
       href: "/projects/connect#decision-timeline",
     },
     {
@@ -104,7 +104,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "validation-limits-connect",
       group: "limits",
-      question: "What would you validate before launching the portal IA at scale?",
+      question: "The MVP runs on mock data. What does that mean you have not proven?",
       proves: "Boundary setting, measurement maturity, and next-step planning.",
       caseSlug: "connect",
       href: "/projects/connect#outcome-limits",
@@ -194,9 +194,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "信息架构",
       caseSlug: "connect",
       proof:
-        "UQ Connect 把学生门户从部门归属重构为围绕任务成功的结构。",
+        "UQ Connect 在开发中途停下来，在纸上把二十四个屏重画成五个，并画出从首页出发的每条路径。",
       whyItMatters:
-        "证明我能把复杂服务信息转成研究驱动的产品结构判断。",
+        "证明我面对结构性缺陷会用结构去回答，而不是打补丁。",
       href: "/projects/connect#decision-timeline",
     },
     {
@@ -260,7 +260,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "validation-limits-connect",
       group: "limits",
-      question: "门户 IA 大规模上线前还需要验证什么？",
+      question: "MVP 跑在 mock 数据上。这意味着你没有证明什么？",
       proves: "边界意识、测量成熟度和下一步规划。",
       caseSlug: "connect",
       href: "/projects/connect#outcome-limits",

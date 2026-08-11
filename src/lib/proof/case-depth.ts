@@ -14,12 +14,16 @@ import type {
 const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary>> = {
   en: {
     connect: {
-      challenge: "A portal used by thousands of students hid critical tasks behind staff-facing language and institutional categories.",
-      role: "Solo UX researcher and designer",
-      methods: ["open card sort", "tree test", "task analysis", "plain-language review"],
-      evidence: ["open card sort", "unmoderated tree test", "task walk-through sessions"],
-      outcome: "Twelve staff-owned categories became six task-led ones, tree-tested against the original. University project; not deployed.",
-      next: "I would run a longitudinal post-launch study to compare search behaviour and support-ticket volume before and after rollout.",
+      challenge: "UQ runs no shortage of events for international students. They still end up in the same circle — a one-off mixer produces an introduction, not a relationship.",
+      role: "One of five on a course team; I owned the front-end component system and ran 14 of the 71 interviews",
+      methods: ["exploratory interviews", "falsifiable test cards", "think-aloud usability testing", "paper-to-interactive prototyping", "component system design"],
+      evidence: [
+        "71 interviews across three iterations, 14 of them mine",
+        "hypotheses written with pass/fail thresholds before any data was collected",
+        "learning cards recording which of those hypotheses we got wrong",
+      ],
+      outcome: "A 24-screen mobile MVP reached through three rounds of research and two prototype generations. Course project; runs on mock data, never connected to a live database.",
+      next: "I would connect the backend and re-run the task chain with completion times, so the third round produces a number instead of an impression.",
     },
     spectra: {
       challenge: "Font, spacing and contrast are set by whoever built the page, so a reader who needs something different has no way in.",
@@ -76,12 +80,16 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
   },
   zh: {
     connect: {
-      challenge: "一个被大量学生使用的门户，把关键任务藏在部门语言与机构分类后面。",
-      role: "独立 UX 研究与设计",
-      methods: ["开放式卡片分类", "树测试", "任务分析", "普通语言审查"],
-      evidence: ["开放式卡片分类", "非主持树测试", "任务走查"],
-      outcome: "把十二个部门分类收敛成六个任务分类，并与原结构做树测试对比。课程项目，未上线。",
-      next: "我会继续做上线后的纵向研究，对比搜索行为和支持工单量。",
+      challenge: "UQ 给国际学生办的活动不少。他们还是留在同一个圈子里——一次性的迎新派对制造的是认识，不是关系。",
+      role: "五人课程团队中的一员；我负责前端组件系统，并做了 71 场访谈里的 14 场",
+      methods: ["探索式访谈", "可证伪的假设卡", "出声思考可用性测试", "从纸面到可交互原型", "组件系统设计"],
+      evidence: [
+        "三轮共 71 场访谈，其中 14 场是我做的",
+        "假设连同判定阈值一起，写在收集数据之前",
+        "learning cards 记下了我们哪几条假设是错的",
+      ],
+      outcome: "一个 24 屏的移动端 MVP，背后是三轮研究与两代原型。课程项目，跑在 mock 数据上，从未接上真实数据库。",
+      next: "我会把后端接上，带着完成时间重跑一次任务链，让第三轮产出一个数字，而不是一个印象。",
     },
     spectra: {
       challenge: "字体、行距和对比度都由建站的人决定，需要不一样的读者没有任何入口。",
@@ -137,100 +145,117 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
     connect: {
       decisions: [
         {
-          label: "Move from department ownership to task-oriented IA",
+          label: "Write the pass mark before collecting the data",
           choice:
-            "I reorganized the portal around task-oriented IA instead of internal university departments.",
+            "Every hypothesis got a numeric threshold in writing before a single interview ran — participation tracks weekly energy for at least 70% of students, loneliness correlates with wellbeing at r ≤ −0.4, and so on.",
           evidence:
-            "Tree testing and task walk-throughs showed students searched by life task, not by staff ownership labels.",
+            "Without a threshold agreed in advance, whatever the interviews return can be read as support. The thresholds were the only thing standing between us and that.",
           tradeoff:
-            "The structure became less faithful to the institution chart, but easier for students to understand.",
+            "Several hypotheses then failed their own test, and we had to write down that we had been wrong.",
           impact:
-            "The proposed IA made findability measurable and gave later navigation decisions a user-centred benchmark.",
+            "The learning cards record which assumptions broke — that language proficiency was the barrier, that exposure was the gap — instead of quietly reframing them as findings.",
         },
         {
-          label: "Rewrite labels in plain student language",
+          label: "Make the match explain itself",
           choice:
-            "I replaced staff-facing labels with plain-language categories such as Study, Belong, and Fees & finance.",
+            "A recommended person shows the reason for the match — shared study habits, compatible schedules — not just a compatibility score.",
           evidence:
-            "Card-sort patterns and task analysis showed that students grouped information by intent and urgency.",
+            "Students were openly sceptical of black-box matching, but acted on the same suggestion once it named a concrete reason.",
           tradeoff:
-            "Some labels became less administratively precise, but they reduced the translation work required from students.",
+            "Each match costs more vertical space, so fewer fit on screen and the list takes longer to scan.",
           impact:
-            "Students stopped having to translate institutional wording into their own; how much that helped was never measured.",
+            "The score stops being a number taken on faith and becomes something a student can agree or disagree with.",
         },
         {
-          label: "Validate the IA before increasing visual fidelity",
+          label: "Go back to paper after the September sessions",
           choice:
-            "I used tree testing before investing in a high-fidelity interface redesign.",
+            "Instead of patching the clickable prototype, we redrew the whole app on one sheet on 3 October: five screens, explicit routes off the home page, one name against each feature area.",
           evidence:
-            "The main risk was not visual polish; it was whether students could locate critical tasks.",
+            "The September defects were structural — no visible way back, a card whose state contradicted its own button. Those are not fixed one component at a time.",
           tradeoff:
-            "This delayed interface exploration, but it protected the project from polishing the wrong structure.",
+            "It cost build time in the middle of semester, and the paper structure dropped features that were already coded.",
           impact:
-            "The team could discuss findability and task success before debating layout details.",
+            "The November build started from a fixed skeleton with an owner per area, rather than from an accumulating prototype.",
         },
       ],
       evidence: [
         {
-          method: "Open card sort",
-          sample: "Open card sort; group size not formally recorded",
-          question: "How do students naturally group portal information when department labels are removed?",
-          finding: "Participants clustered content around study, belonging, fees, and campus life tasks.",
-          implication: "The IA should lead with student mental models rather than staff ownership.",
+          method: "Exploratory interviews",
+          sample: "33 transcripts in the first round, 15–30 August 2025; 7 of them mine",
+          question: "UQ already runs events for international students. Why do they not turn into relationships?",
+          finding:
+            "Size and pace shut people out, not vocabulary. One participant put the ceiling plainly: it is hard to find common ground beyond being international.",
+          implication:
+            "The problem was not a shortage of events. It was that nothing carried a person from one event to the next.",
         },
         {
-          method: "Tree testing",
-          sample: "Unmoderated tree test; group size not formally recorded",
-          question: "Can students find critical tasks in the proposed hierarchy without interface cues?",
-          finding: "The task-led tree beat the department-led original; 'Money' vs. 'My account' had to be renamed and retested.",
-          implication: "The task-oriented IA was strong enough to justify moving into interface design.",
+          method: "Think-aloud usability testing",
+          sample: "28 transcripts in the second round, 17–24 September 2025; 5 of them mine",
+          question: "Can a student operate the features without me sitting next to them?",
+          finding:
+            "An event card said the student was attending while still offering an attend button; a secondary button had no discoverable purpose; there was no way back to the previous page; 'Skill swap' did not explain itself.",
+          implication:
+            "State feedback and navigation were the blockers, well before anything about matching quality.",
         },
         {
-          method: "Task analysis",
-          sample: "10 task walk-through sessions",
-          question: "Where do students hesitate when trying to complete high-importance portal tasks?",
-          finding: "Students lost confidence when institutional terms did not match the words in their own task goal.",
-          implication: "Labels needed to be tested as product decisions, not treated as copy polish.",
+          method: "Task-based usability testing",
+          sample: "10 transcripts in the third round, 8–12 November 2025; 2 of them mine",
+          question: "Can a student complete a whole chain — create a circle, set who can see it, open the chat, post, come back — unaided?",
+          finding:
+            "The chain completed. The participant read the colour-coded home screen as a map of the app. But the Circles entry point was found in the sidebar rather than on sight.",
+          implication:
+            "The flow holds once you are in it; getting into it still depends on hunting for the entry point.",
         },
       ],
       iterations: [
         {
-          version: "Department map",
-          change: "Started from the existing staff-oriented portal categories.",
-          reason: "This made the current failure mode visible and gave the redesign a baseline.",
-          improvement: "Exposed that navigation mirrored ownership rather than student intent.",
+          version: "Clickable prototype, September",
+          change: "Tested the feature set as it had actually been built, with participants thinking out loud.",
+          reason: "The open risk was whether a student could operate it unaided, not whether the idea appealed to them.",
+          improvement:
+            "Surfaced navigation and state defects that a demo walkthrough would have talked straight past.",
         },
         {
-          version: "Task map",
-          change: "Collapsed twelve staff-facing areas into six student task groups.",
-          reason: "Card sorting and task analysis supported a smaller set of student-facing buckets.",
-          improvement: "Reduced scanning effort and made the IA easier to validate through tree testing.",
+          version: "Paper, 3 October",
+          change:
+            "Redrew the app as five screens — home, study buddy, nearby circles on a campus map, wellness, resource hub — with arrows for every route off the home page.",
+          reason: "Structural defects need a structural answer, and paper is the cheapest place to give one.",
+          improvement: "Produced a skeleton the build could follow, with each feature area assigned to a named person.",
         },
         {
-          version: "Validation-ready tree",
-          change: "Refined labels and hierarchy depth for the tree test.",
-          reason: "The next decision needed evidence about findability, not another visual mockup.",
-          improvement: "Produced a structure that could be tested against the original rather than argued about.",
+          version: "24-screen MVP, November",
+          change:
+            "Built the screens as a shared component system with React context for cross-screen state, rather than styling each screen on its own.",
+          reason: "Twenty-four screens hand-styled by five people do not stay one product for long.",
+          improvement:
+            "The November sessions ran on a single visual system, and the participant used its colour coding to predict where things were.",
         },
       ],
       limits: [
         {
-          constraint: "The validation focused on information finding, not full post-launch behaviour.",
+          constraint: "The MVP runs on mock data. The backend exists but was never connected to it.",
           whyItMatters:
-            "A successful tree test does not prove support tickets or real search behaviour will drop after rollout.",
+            "Matching, messaging and scheduling were never exercised against real records, concurrency or empty states. The sessions tested an interface, not a working product.",
           nextValidation:
-            "Compare search queries, support-ticket volume, and task completion analytics before and after launch.",
+            "Connect the API layer and re-run the same task chain against live data, watching specifically for what breaks when a list is empty or a message is slow.",
         },
         {
-          constraint: "The sample represented student tasks more strongly than staff governance needs.",
+          constraint: "Nothing was measured before and after.",
           whyItMatters:
-            "A portal must still remain maintainable for content owners even when the IA is student-facing.",
+            "I can say the September navigation defect did not recur in November. I cannot say how much better it got, because no round recorded completion times or a fixed success criterion.",
           nextValidation:
-            "Run a content governance review with staff owners after the student-facing hierarchy is stable.",
+            "Re-run the November chain with timings and a pass mark defined in advance, so the round produces a number rather than an impression.",
+        },
+        {
+          constraint: "This was a five-person team and I did not build all of it.",
+          whyItMatters:
+            "Anything in the product outside the component system, the shared state layer and my own interview rounds was somebody else's work.",
+          nextValidation:
+            "Ask me about the parts I owned and the commit history will match what I say.",
         },
       ],
       takeaway:
-        "This case proves I can restructure complex information architecture around user mental models, then validate the direction through tree testing and measurable findability.",
+        "This case proves I can run research that is capable of proving itself wrong, and then carry what survives into a component system that twenty-four screens can share.",
     },
     spectra: {
       decisions: [
@@ -693,84 +718,100 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
     connect: {
       decisions: [
         {
-          label: "从部门结构转向任务导向的信息架构",
-          choice: "把入口从内部部门归属改成学生任务导向的信息架构。",
-          evidence: "树测试和任务走查都显示，学生按生活任务找信息，不按部门名称找。",
-          tradeoff: "结构不再完全贴合组织图，但更贴近学生的理解方式。",
-          impact: "「找不找得到」从此变成可以拿证据讨论的事，后续导航判断也有了用户基准。",
+          label: "把及格线写在收数据之前",
+          choice:
+            "每条假设在第一场访谈之前就写好了数字门槛——「至少 70% 的学生，参与度随每周精力变化」「孤独感与幸福感相关系数 r ≤ −0.4」，诸如此类。",
+          evidence:
+            "没有事先约定的门槛，访谈回来的任何结果都能被读成支持。这些门槛是唯一挡在我们和自我印证之间的东西。",
+          tradeoff: "结果有几条假设没过自己定的线，我们得把「我们错了」写下来。",
+          impact:
+            "learning cards 里留着哪些假设垮掉了——语言能力才是障碍、缺的是曝光——而不是把它们悄悄重新表述成发现。",
         },
         {
-          label: "用学生语言重写导航标签",
-          choice: "把面向教职工的标签改成 Study、Belong、Fees & finance 这类更直接的类别。",
-          evidence: "卡片分类和任务分析都显示，学生按意图和紧急程度组织信息。",
-          tradeoff: "一些标签牺牲了行政上的精确，但降低了学生的理解成本。",
-          impact: "学生不用再把行政术语翻译成自己的说法；这个改善有多大，课程结束后没有再测。",
+          label: "让匹配自己解释自己",
+          choice: "推荐一个人的时候，一并给出匹配理由——学习习惯相近、时间表兼容——而不是只给一个契合度分数。",
+          evidence: "学生对黑箱匹配明确表示怀疑，但同一条推荐一旦说出具体理由，他们就愿意行动。",
+          tradeoff: "每条匹配占的竖向空间变大，一屏能放的更少，列表也更长。",
+          impact: "那个分数不再是一个只能选择相信的数字，而变成学生可以同意或反对的东西。",
         },
         {
-          label: "先验证结构，再提高视觉保真度",
-          choice: "在做高保真界面之前，先用树测试验证这套结构站不站得住。",
-          evidence: "这个项目最大的风险不是视觉，而是学生到底找不找得到关键任务。",
-          tradeoff: "界面探索被推后，但避免了在错误结构上做打磨。",
-          impact: "团队可以先讨论「找得到吗、做得完吗」，再讨论长什么样。",
+          label: "九月测完之后，回到纸上",
+          choice:
+            "没有去补那个可点击原型，而是在 10 月 3 日把整个应用重画在一张纸上：五个屏、每条从首页出发的路径都画了箭头、每块功能挂一个人名。",
+          evidence:
+            "九月抓到的缺陷是结构性的——没有可见的返回路径、卡片状态和它自己的按钮互相矛盾。这类问题不是一个组件一个组件能补掉的。",
+          tradeoff: "在学期中间付出了开发时间，而且纸面结构砍掉了一些已经写好的功能。",
+          impact: "十一月的开发是从一套固定骨架和明确分工开始的，而不是从一个不断堆积的原型开始。",
         },
       ],
       evidence: [
         {
-          method: "开放式卡片分类",
-          sample: "分组人数未正式记录",
-          question: "去掉部门标签后，学生会如何自然组织门户信息？",
-          finding: "参与者围绕学习、归属、费用和校园生活这几类任务聚类。",
-          implication: "信息架构应该先映射学生心智模型，而不是部门归属。",
+          method: "探索式访谈",
+          sample: "第一轮 33 份逐字稿，2025 年 8 月 15–30 日；其中 7 场是我做的",
+          question: "UQ 给国际学生办的活动本来就不少。为什么它们没有变成关系？",
+          finding:
+            "把人挡在外面的是场合的规模与节奏，不是词汇量。一位受访者把天花板说得很直白：除了「大家都是国际学生」，很难再找到共同点。",
+          implication: "问题不是活动不够多，而是没有任何东西把一个人从这场活动带到下一场。",
         },
         {
-          method: "树测试",
-          sample: "非主持形式；分组人数未正式记录",
-          question: "没有界面提示时，学生能否在新层级中找到关键任务？",
-          finding: "按任务划分的结构胜过按部门划分的原版；「Money」和「My account」必须改名重跑。",
-          implication: "这套按任务组织的结构够扎实，可以进入界面设计阶段。",
+          method: "出声思考可用性测试",
+          sample: "第二轮 28 份逐字稿，2025 年 9 月 17–24 日；其中 5 场是我做的",
+          question: "没有我坐在旁边，学生能不能自己把这些功能用起来？",
+          finding:
+            "活动卡片一边显示「已报名」，一边还留着报名按钮；一个次级按钮没人看得出是干什么的；没有回上一页的入口；「Skill swap」这个标签本身讲不清自己。",
+          implication: "状态反馈和导航才是当下的阻塞点，比匹配质量早得多。",
         },
         {
-          method: "任务分析",
-          sample: "10 场任务走查",
-          question: "学生完成关键任务时在哪里犹豫？",
-          finding: "当机构术语和自己的任务目标不一致时，学生会失去信心。",
-          implication: "标签需要作为产品决策测试，而不是最后的文案润色。",
+          method: "任务式可用性测试",
+          sample: "第三轮 10 份逐字稿，2025 年 11 月 8–12 日；其中 2 场是我做的",
+          question: "学生能不能独自走完一整条链路——创建圈子、设可见范围、进聊天室、发言、再回到列表？",
+          finding:
+            "链路走通了。受测者把配色化的首页读成了整个应用的地图。但 Circles 的入口不是一眼看到的，他是在侧栏里找到的。",
+          implication: "进到流程里之后是站得住的；进得去与否，仍然取决于能不能找到那个入口。",
         },
       ],
       iterations: [
         {
-          version: "部门地图",
-          change: "从现有那套按部门划分的分类开始。",
-          reason: "先把当前的失败方式摆出来，给重构一个基线。",
-          improvement: "暴露出导航反映的是「谁负责」，而不是「学生想干什么」。",
+          version: "可点击原型，九月",
+          change: "直接拿已经做出来的功能集去测，让受测者出声思考。",
+          reason: "当时敞着的风险是「学生能不能自己用」，不是「他们喜不喜欢这个点子」。",
+          improvement: "抓出了导航与状态缺陷——这些东西在一场演示式走查里会被直接讲过去。",
         },
         {
-          version: "任务地图",
-          change: "把十二个部门入口收敛成六个学生任务组。",
-          reason: "卡片分类和任务分析都支持更小、更贴近学生说法的分组。",
-          improvement: "扫读成本降下来，结构也终于可以拿去做树测试。",
+          version: "纸面，10 月 3 日",
+          change:
+            "把应用重画成五个屏——首页、学习伙伴、校园地图上的附近圈子、wellness、资源中心——并为每条从首页出发的路径画上箭头。",
+          reason: "结构性的缺陷需要结构性的回答，而纸是给出这个回答最便宜的地方。",
+          improvement: "产出了一套开发可以照着走的骨架，每块功能都落到了具体的人身上。",
         },
         {
-          version: "可验证版结构",
-          change: "为树测试调整标签措辞和层级深度。",
-          reason: "下一步需要的是「找不找得到」的证据，不是又一版视觉稿。",
-          improvement: "产出一个能真的拿去和原结构对比的方案，而不是停在争论里。",
+          version: "24 屏 MVP，十一月",
+          change: "把这些屏做成共享的组件系统，用 React context 承载跨屏状态，而不是每个屏各写各的样式。",
+          reason: "24 个屏、五个人各自手写样式，撑不了多久就不像同一个产品了。",
+          improvement: "十一月的测试跑在同一套视觉系统上，受测者靠它的配色去预测东西在哪里。",
         },
       ],
       limits: [
         {
-          constraint: "验证只覆盖了「找信息」这一段，没有覆盖上线后的完整行为。",
-          whyItMatters: "树测试过关，不等于真实搜索行为会变、支持工单会少。",
-          nextValidation: "上线前后对比搜索词、支持工单量和任务完成数据。",
+          constraint: "MVP 跑在 mock 数据上。后端写了，但从来没接上去。",
+          whyItMatters:
+            "匹配、消息和日程从未面对过真实记录、并发或空状态。这几轮测的是一个界面，不是一个能用的产品。",
+          nextValidation: "把 API 层接上，用同一条任务链重跑一次，专门盯列表为空、消息变慢的时候会怎么塌。",
         },
         {
-          constraint: "样本偏向学生任务，较少覆盖内容治理这一侧。",
-          whyItMatters: "门户既要让学生看得懂，也要让维护内容的人管得动。",
-          nextValidation: "等学生侧的层级稳定后，再和内容负责人做一轮治理评审。",
+          constraint: "没有做前后测量。",
+          whyItMatters:
+            "我能说九月那个导航缺陷在十一月没有再出现。我说不出改善了多少——因为没有任何一轮记录过完成时间或事先定好的成功标准。",
+          nextValidation: "带着计时和事先写好的及格线重跑十一月那条链路，让这一轮产出一个数字，而不是一个印象。",
+        },
+        {
+          constraint: "这是五个人的团队，不是我一个人做的。",
+          whyItMatters: "组件系统、共享状态层和我自己那几轮访谈之外的部分，都是别人的工作。",
+          nextValidation: "可以直接问我负责哪几块，提交记录会和我说的对得上。",
         },
       ],
       takeaway:
-        "这个案例证明我能围绕用户心智模型重构复杂的信息架构，并用树测试验证「学生到底找不找得到」。",
+        "这个案例证明我能把研究做成「有可能证明自己错」的样子，再把活下来的结论落进一套 24 个屏共用的组件系统里。",
     },
     spectra: {
       decisions: [
@@ -1169,19 +1210,19 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
   en: {
     connect: {
       proves:
-        "This case proves I can use research evidence to restructure complex information architecture and validate findability.",
+        "This case proves I can run research capable of proving itself wrong, then carry what survives into a component system twenty-four screens share.",
       inspect: [
-        "How task analysis changed the navigation model.",
-        "How card sorting and tree testing shaped the final IA.",
-        "How findability and task-success metrics constrained the design.",
+        "The hypotheses that failed their own pre-written threshold, and what replaced them.",
+        "Why the team went back to paper in October instead of patching the prototype.",
+        "What the November task chain established, and what it could not.",
       ],
       questions: [
-        "How did you decide which navigation labels were user-facing enough?",
-        "What would you test next if this portal went into production?",
+        "Which of your assumptions did the research kill, and how did you find out?",
+        "You were one of five. Which parts of this are yours?",
       ],
       bestFit: [
-        "Education, service design, or complex platform teams.",
-        "UX roles where IA decisions need research evidence.",
+        "Product teams where a designer is expected to build as well as research.",
+        "Roles where research has to survive contact with a delivery deadline.",
       ],
     },
     spectra: {
@@ -1256,19 +1297,19 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
   zh: {
     connect: {
       proves:
-        "This case proves I can use research evidence to restructure complex information architecture and validate findability.",
+        "这个案例证明我能把研究做成「有可能证明自己错」的样子，再把活下来的结论落进一套 24 个屏共用的组件系统里。",
       inspect: [
-        "How task analysis changed the navigation model.",
-        "How card sorting and tree testing shaped the final IA.",
-        "How findability and task-success metrics constrained the design.",
+        "哪几条假设没过自己事先写好的门槛，以及后来换成了什么。",
+        "十月为什么选择回到纸上重画，而不是去补那个原型。",
+        "十一月那条任务链证明了什么，又有什么是它证明不了的。",
       ],
       questions: [
-        "How did you decide which navigation labels were user-facing enough?",
-        "What would you test next if this portal went into production?",
+        "研究杀掉了你哪些假设？你是怎么发现的？",
+        "你们是五个人。这里面哪些部分是你的？",
       ],
       bestFit: [
-        "Education, service design, or complex platform teams.",
-        "UX roles where IA decisions need research evidence.",
+        "期待设计师既做研究也能动手写的产品团队。",
+        "研究必须在真实交付期限下活下来的岗位。",
       ],
     },
     spectra: {
@@ -1441,18 +1482,18 @@ const caseReaderModes: Record<ProofLocale, CaseReaderMode[]> = {
 const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]> = {
   connect: [
     {
-      question: "Why did you move from staff-oriented navigation to task-oriented IA?",
-      reason: "Tests whether the IA decision came from user mental models, not taste.",
+      question: "Why write a pass mark for each hypothesis before running any interviews?",
+      reason: "Tests whether the research was set up to be able to fail, or only to confirm.",
       anchorId: "decision-timeline",
     },
     {
-      question: "Which research signal most changed the final navigation labels?",
-      reason: "Connects card sorting, task analysis, and tree testing to product structure.",
+      question: "Which assumption did the interviews kill, and what did you do about it?",
+      reason: "Separates research that changed the product from research that decorated it.",
       anchorId: "evidence-board",
     },
     {
-      question: "What would you validate next before this became the university default?",
-      reason: "Checks whether measured findability is being claimed with the right limits.",
+      question: "The MVP runs on mock data. What does that mean you have not proven?",
+      reason: "Checks whether the limits of a course project are stated or glossed over.",
       anchorId: "outcome-limits",
     },
   ],

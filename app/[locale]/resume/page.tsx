@@ -259,7 +259,7 @@ export default async function ResumePage() {
                   lineHeight: 1.7,
                 }}
               >
-                Figma · Framer · Protopie · Maze · OptimalSort · Treejack · Otter · Dovetail · Notion · Rive · Miro · VS Code
+                Figma · Framer · Protopie · Maze · Otter · Dovetail · Notion · Rive · Miro · VS Code
               </p>
             </div>
             <div className="res-side-card">

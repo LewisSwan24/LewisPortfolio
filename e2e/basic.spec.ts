@@ -391,8 +391,8 @@ test.describe("Projects Page", () => {
         await page.goto("/projects/connect");
 
         await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/task-first/i).first()).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/tree test/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/mock data/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/think-aloud/i).first()).toBeVisible();
     });
 
     test("spectra detail should expose inclusive design depth", async ({ page }) => {
