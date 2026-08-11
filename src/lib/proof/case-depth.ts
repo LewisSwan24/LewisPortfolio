@@ -18,9 +18,9 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       role: "One of five on a course team; I owned the front-end component system and ran 14 of the 71 interviews",
       methods: ["exploratory interviews", "falsifiable test cards", "think-aloud usability testing", "paper-to-interactive prototyping", "component system design"],
       evidence: [
-        "71 interviews across three iterations, 14 of them mine",
-        "hypotheses written with pass/fail thresholds before any data was collected",
-        "learning cards recording which of those hypotheses we got wrong",
+        "71 interview transcripts across three rounds; my 14 sessions covered 9 participants, 4 of whom came back in a later round",
+        "13 hypotheses, each carrying a numeric pass mark written before any data was collected",
+        "14 learning cards — 12 answering a hypothesis, 2 the data raised on its own",
       ],
       outcome: "A 24-screen mobile MVP reached through three rounds of research and two prototype generations. Course project; runs on mock data, never connected to a live database.",
       next: "I would connect the backend and re-run the task chain with completion times, so the third round produces a number instead of an impression.",
@@ -84,9 +84,9 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       role: "五人课程团队中的一员；我负责前端组件系统，并做了 71 场访谈里的 14 场",
       methods: ["探索式访谈", "可证伪的假设卡", "出声思考可用性测试", "从纸面到可交互原型", "组件系统设计"],
       evidence: [
-        "三轮共 71 场访谈，其中 14 场是我做的",
-        "假设连同判定阈值一起，写在收集数据之前",
-        "learning cards 记下了我们哪几条假设是错的",
+        "三轮共 71 份访谈逐字稿；我那 14 场来自 9 位受访者，其中 4 位跨轮回访",
+        "13 条假设，每条都带一个写在收数据之前的数字门槛",
+        "14 张 learning card —— 12 条回答假设，2 条是数据自己冒出来的",
       ],
       outcome: "一个 24 屏的移动端 MVP，背后是三轮研究与两代原型。课程项目，跑在 mock 数据上，从未接上真实数据库。",
       next: "我会把后端接上，带着完成时间重跑一次任务链，让第三轮产出一个数字，而不是一个印象。",
@@ -147,13 +147,13 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         {
           label: "Write the pass mark before collecting the data",
           choice:
-            "Every hypothesis got a numeric threshold in writing before a single interview ran — participation tracks weekly energy for at least 70% of students, loneliness correlates with wellbeing at r ≤ −0.4, and so on.",
+            "All thirteen hypotheses got a numeric threshold in writing before the work that would test them — eight about the problem space before the first interview, five about MVP features before we prototyped them. Participation tracks weekly energy for at least 70% of students; loneliness correlates with wellbeing at r ≤ −0.4 on UCLA-3 and WHO-5; and so on.",
           evidence:
             "Without a threshold agreed in advance, whatever the interviews return can be read as support. The thresholds were the only thing standing between us and that.",
           tradeoff:
             "Several hypotheses then failed their own test, and we had to write down that we had been wrong.",
           impact:
-            "The learning cards record which assumptions broke — that language proficiency was the barrier, that exposure was the gap — instead of quietly reframing them as findings.",
+            "Fourteen learning cards came back against thirteen hypotheses. Twelve answer a hypothesis, including the two that broke: language proficiency was not the barrier, and exposure was not the gap. Two answer nothing we had asked — cost, and the fact that clubs go quiet after recruiting. A threshold can only test a question you already thought to ask, and those two moved the product more than anything we predicted.",
         },
         {
           label: "Make the match explain itself",
@@ -720,12 +720,12 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         {
           label: "把及格线写在收数据之前",
           choice:
-            "每条假设在第一场访谈之前就写好了数字门槛——「至少 70% 的学生，参与度随每周精力变化」「孤独感与幸福感相关系数 r ≤ −0.4」，诸如此类。",
+            "13 条假设，每一条都在会检验它的那步工作之前就写好了数字门槛——8 条关于问题空间，写在第一场访谈之前；5 条关于 MVP 功能，写在做原型之前。「至少 70% 的学生，参与度随每周精力变化」「UCLA-3 与 WHO-5 上，孤独与幸福感相关系数 r ≤ −0.4」，诸如此类。",
           evidence:
             "没有事先约定的门槛，访谈回来的任何结果都能被读成支持。这些门槛是唯一挡在我们和自我印证之间的东西。",
           tradeoff: "结果有几条假设没过自己定的线，我们得把「我们错了」写下来。",
           impact:
-            "learning cards 里留着哪些假设垮掉了——语言能力才是障碍、缺的是曝光——而不是把它们悄悄重新表述成发现。",
+            "13 条假设进去，14 张 learning card 回来。12 条对得上假设，包括垮掉的那两条：语言能力不是障碍，缺口也不在曝光。另外 2 条不回答我们问过的任何问题——费用，以及社团招到人之后就没了下文。门槛只能检验你已经想到要问的问题，而这两条比我们预测过的任何一条都更改变了产品的方向。",
         },
         {
           label: "让匹配自己解释自己",
