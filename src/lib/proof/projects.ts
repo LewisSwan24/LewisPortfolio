@@ -470,7 +470,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
   },
   zh: {
     availability: "开放 2026 实习、毕业生 UX 岗位与研究驱动型产品团队机会。",
-    roles: ["UX Designer Intern", "Product Designer Intern", "UX Research Intern", "Graduate Interaction Designer"],
+    roles: ["用户体验设计实习生", "产品设计实习生", "用户研究实习生", "交互设计应届生"],
     bestFit: [
       "问题足够模糊、也有真实用户可接触的团队。",
       "重视无障碍、教育、AI 信任或实体交互的产品。",

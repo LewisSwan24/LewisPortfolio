@@ -41,6 +41,12 @@ export const siteConfig = {
   title: "Graduate Interaction Designer (Full-time) · UX Designer · UX Researcher",
   description:
     "UQ Master of Interaction Design student in Brisbane crafting research-driven experiences through usability testing, AI, prototyping, and accessibility.",
+  // Single source for the zh surfaces. These used to be inline literals in
+  // app/[locale]/page.tsx, which left the RSS feed with no Chinese copy to fall
+  // back to — /zh/feed.xml was serving the English description.
+  titleZh: "交互设计师 / 产品设计师",
+  descriptionZh:
+    "昆士兰大学交互设计硕士在读，常驻布里斯班。通过可用性测试、AI 工具、原型设计与可访问性打造以研究驱动的体验。",
   url: resolveSiteUrl(),
   author: {
     name: "Lewis Dong",

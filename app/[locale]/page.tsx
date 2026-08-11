@@ -21,12 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "董子铭（Lewis Dong）· 交互设计师 / 产品设计师"
+      ? `${siteConfig.author.nameZh}（${siteConfig.name}）· ${siteConfig.titleZh}`
       : `${siteConfig.name} · ${siteConfig.title}`;
   const description =
-    locale === "zh"
-      ? "昆士兰大学交互设计硕士在读，常驻布里斯班。通过可用性测试、AI 工具、原型设计与可访问性打造以研究驱动的体验。"
-      : siteConfig.description;
+    locale === "zh" ? siteConfig.descriptionZh : siteConfig.description;
   return {
     title,
     description,
@@ -221,11 +219,11 @@ export default async function HomePage() {
               build, so it differentiates hardest against screen-only portfolios.
               Vigil follows because it is the strongest evidence for the AI half
               of the positioning. */}
-          <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze />} />
-          <FeatItem n="02" k="vigil" href="/projects/vigil" flip t={t} viz={<VizVigil />} />
-          <FeatItem n="03" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop />} />
-          <FeatItem n="04" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect />} />
-          <FeatItem n="05" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra />} />
+          <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze locale={proofLocale} />} />
+          <FeatItem n="02" k="vigil" href="/projects/vigil" flip t={t} viz={<VizVigil locale={proofLocale} />} />
+          <FeatItem n="03" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop locale={proofLocale} />} />
+          <FeatItem n="04" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect locale={proofLocale} />} />
+          <FeatItem n="05" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra locale={proofLocale} />} />
         </div>
       </section>
 

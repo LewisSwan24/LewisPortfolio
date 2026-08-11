@@ -113,12 +113,12 @@ const ITEMS: Item[] = [
   },
 ];
 
-function WorkPreview({ project }: { project: ProjKey }) {
-  if (project === "maze") return <VizMaze />;
-  if (project === "vigil") return <VizVigil />;
-  if (project === "hoop") return <VizHoop />;
-  if (project === "connect") return <VizConnect />;
-  return <VizSpectra />;
+function WorkPreview({ project, locale }: { project: ProjKey; locale: ProofLocale }) {
+  if (project === "maze") return <VizMaze locale={locale} />;
+  if (project === "vigil") return <VizVigil locale={locale} />;
+  if (project === "hoop") return <VizHoop locale={locale} />;
+  if (project === "connect") return <VizConnect locale={locale} />;
+  return <VizSpectra locale={locale} />;
 }
 
 export function WorkIndex() {
@@ -195,7 +195,7 @@ export function WorkIndex() {
             <Link className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
               <div className="work-index-project">
                 <div className="work-index-thumb" aria-hidden="true">
-                  <WorkPreview project={i.k} />
+                  <WorkPreview project={i.k} locale={proofLocale} />
                   <span className="work-index-thumb-label">{pageCopy.conceptVisual}</span>
                 </div>
                 <div>

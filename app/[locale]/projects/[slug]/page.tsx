@@ -58,6 +58,60 @@ interface CaseMedia {
  * variants themselves. The rest carry their argument in prose.
  */
 const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
+  connect: {
+    label: "The sheet, and what came off it",
+    labelZh: "那张纸，和从它做出来的东西",
+    blurb:
+      "The October paper reset and three screens captured from the team's live deployment — not mockups. The app runs on mock data; the backend was written and never connected.",
+    blurbZh:
+      "十月那次纸面重画，以及三张从团队线上部署直接抓的截图，不是效果图。应用跑在 mock 数据上，后端写了但从未接上。",
+    images: [
+      {
+        src: "/projects/connect/04-paper-prototype.jpg",
+        width: 2220,
+        height: 2040,
+        alt: "The 3 October pencil sheet: five phone screens with arrows drawn from the home screen to each one",
+        altZh: "10 月 3 日的铅笔草图：五个手机屏，从首页各画一条箭头指向对应的屏",
+        caption:
+          "3 October. September's sessions found no way back and a card contradicting its own button — structural faults, so the answer was drawn as structure.",
+        captionZh:
+          "10 月 3 日。九月测出「没有返回路径」和「卡片与自己的按钮矛盾」——都是结构问题，所以答案也画成结构。",
+      },
+      {
+        src: "/projects/connect/01-app-home.png",
+        width: 1170,
+        height: 2532,
+        alt: "UQ Connect home screen: a colour-coded grid of feature cards above a five-tab bar",
+        altZh: "UQ Connect 首页：配色化的功能卡片网格，下方是五个标签的底栏",
+        caption:
+          "The November home screen. A participant read the colour coding as a map of the app — that was the point of building it as one component system.",
+        captionZh:
+          "十一月的首页。受测者把这套配色读成了整个应用的地图——把它做成一套组件系统，图的就是这个。",
+      },
+      {
+        src: "/projects/connect/02-app-studybuddy.png",
+        width: 1170,
+        height: 2532,
+        alt: "A study-buddy match card showing 94% match beside the course, library, availability and small-group size",
+        altZh: "学习伙伴匹配卡：94% 契合度旁边列着课程、图书馆、可用时间与小组规模",
+        caption:
+          "The match states its reasons — course, place, availability, group size — because students were sceptical of a score on its own but acted on a concrete reason.",
+        captionZh:
+          "匹配把理由摆出来——课程、地点、可用时间、小组规模。因为学生怀疑一个孤零零的分数，却会照着具体理由行动。",
+      },
+      {
+        src: "/projects/connect/03-app-events.png",
+        width: 1170,
+        height: 2532,
+        alt: "Campus event cards showing price, location, attendance count, and separate Register and I'm Going states",
+        altZh: "校园活动卡片：显示价格、地点、参加人数，以及「报名」与「我要去」两个不同状态",
+        caption:
+          "Price sits on the card. Nobody predicted that — it came out of the interviews, where $100–200 events were quietly ruled out.",
+        captionZh:
+          "价格就写在卡片上。没有人预测到这一点——它是从访谈里冒出来的，100–200 澳元的活动会被默默排除掉。",
+      },
+    ],
+  },
   maze: {
     label: "Build evidence",
     labelZh: "实物证据",
@@ -274,7 +328,12 @@ const CASE_DEMO: Partial<Record<Slug, CaseDemo>> = {
 };
 
 const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
-  connect: [],
+  // The team's own deployment. It is the one public artefact of this project —
+  // the source repository stays private, carrying classmates' details and the
+  // interview transcripts.
+  connect: [
+    { label: "Open the demo", href: "https://uq-connect.vercel.app/", external: true },
+  ],
   spectra: [],
   maze: [],
   vigil: [],
@@ -309,12 +368,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function CoverViz({ slug }: { slug: Slug }) {
-  if (slug === "maze") return <VizMaze />;
-  if (slug === "vigil") return <VizVigil />;
-  if (slug === "hoop") return <VizHoop />;
-  if (slug === "connect") return <VizConnect />;
-  return <VizSpectra />;
+function CoverViz({ slug, locale }: { slug: Slug; locale: ProofLocale }) {
+  if (slug === "maze") return <VizMaze locale={locale} />;
+  if (slug === "vigil") return <VizVigil locale={locale} />;
+  if (slug === "hoop") return <VizHoop locale={locale} />;
+  if (slug === "connect") return <VizConnect locale={locale} />;
+  return <VizSpectra locale={locale} />;
 }
 
 export default async function CasePage({ params }: Props) {
@@ -528,7 +587,7 @@ export default async function CasePage({ params }: Props) {
         </aside>
         <div id="artifact" className="case-anchor" aria-hidden />
         <figure className="cs-cover">
-          <CoverViz slug={k} />
+          <CoverViz slug={k} locale={proofLocale} />
           <figcaption>{pageCopy.coverCaption}</figcaption>
         </figure>
       </section>
@@ -805,7 +864,7 @@ export default async function CasePage({ params }: Props) {
             >
               <div className="cs-related-eyebrow">← {t("cs.prev")}</div>
               <div className="cs-related-viz" aria-hidden>
-                <CoverViz slug={prevSlug} />
+                <CoverViz slug={prevSlug} locale={proofLocale} />
               </div>
               <div className="cs-related-meta">
                 <h4>{t(`proj.${prevSlug}.title`)}</h4>
@@ -818,7 +877,7 @@ export default async function CasePage({ params }: Props) {
             >
               <div className="cs-related-eyebrow">{t("cs.next")} →</div>
               <div className="cs-related-viz" aria-hidden>
-                <CoverViz slug={nextSlug} />
+                <CoverViz slug={nextSlug} locale={proofLocale} />
               </div>
               <div className="cs-related-meta">
                 <h4>{t(`proj.${nextSlug}.title`)}</h4>

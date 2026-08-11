@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/cn";
 import type { TOCItem } from "@/lib/toc";
@@ -11,6 +12,7 @@ interface TOCProps {
 export function TOC({ items }: TOCProps) {
   const [activeId, setActiveId] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
+  const onThisPage = useLocale() === "zh" ? "本页目录" : "On this page";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,7 +52,7 @@ export function TOC({ items }: TOCProps) {
           className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-background/40 backdrop-blur-md px-4 py-3 text-sm font-medium text-foreground shadow-sm shadow-black/5 transition-all duration-200 motion-reduce:transition-none focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
           aria-expanded={isOpen}
         >
-          <span>On this page</span>
+          <span>{onThisPage}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -95,7 +97,7 @@ export function TOC({ items }: TOCProps) {
       {/* Desktop TOC */}
       <aside className="hidden lg:block">
         <div className="sticky top-24">
-          <p className="mb-4 text-sm font-medium text-foreground">On this page</p>
+          <p className="mb-4 text-sm font-medium text-foreground">{onThisPage}</p>
           <nav>
             <ul className="space-y-2 border-l border-border">
               {items.map((item) => (

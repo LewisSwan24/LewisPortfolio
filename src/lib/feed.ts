@@ -7,18 +7,25 @@ import { PROJECT_OG_COPY } from "./project-routes";
 type FeedLocale = "en" | "zh";
 
 export async function generateRSSFeed(locale: FeedLocale = "en") {
-  const prefix = locale === "zh" ? "/zh" : "";
+  const isZh = locale === "zh";
+  const prefix = isZh ? "/zh" : "";
   const feedUrl = `${siteConfig.url}${prefix}`;
+  // The zh feed used to fall through to the English title, description, and
+  // copyright, so a Chinese reader subscribing got an English channel header.
+  const author = isZh
+    ? `${siteConfig.author.nameZh}（${siteConfig.name}）`
+    : siteConfig.name;
+  const year = new Date().getFullYear();
 
   const feed = new Feed({
-    title: `${siteConfig.name} - ${siteConfig.title}`,
-    description: siteConfig.description,
+    title: `${author} - ${isZh ? siteConfig.titleZh : siteConfig.title}`,
+    description: isZh ? siteConfig.descriptionZh : siteConfig.description,
     id: feedUrl,
     link: feedUrl,
-    language: locale === "zh" ? "zh-CN" : "en",
+    language: isZh ? "zh-CN" : "en",
     image: `${siteConfig.url}/favicon.svg`,
     favicon: `${siteConfig.url}/favicon.svg`,
-    copyright: `All rights reserved ${new Date().getFullYear()}, ${siteConfig.name}`,
+    copyright: isZh ? `版权所有 ${year}，${author}` : `All rights reserved ${year}, ${siteConfig.name}`,
     author: {
       name: siteConfig.author.name,
       email: siteConfig.author.email,

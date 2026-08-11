@@ -31,7 +31,7 @@ const SKILLS: Array<{ en: string; zh: string; v: number; href?: string }> = [
   { en: "User research", zh: "用户研究", v: 92, href: "/projects/connect" },
   { en: "Information architecture", zh: "信息架构", v: 88, href: "/projects/connect" },
   { en: "Interaction design", zh: "交互设计", v: 85, href: "/projects/spectra" },
-  { en: "Prototyping (Figma, Framer)", zh: "原型（Figma / Framer）", v: 90, href: "/projects/ai" },
+  { en: "Prototyping (Figma, Framer)", zh: "原型（Figma / Framer）", v: 90, href: "/projects/vigil" },
   { en: "HTML / CSS / React", zh: "HTML / CSS / React", v: 72, href: "/blog/designing-for-ai" },
   { en: "Usability testing", zh: "可用性测试", v: 88, href: "/projects/spectra" },
 ];
@@ -204,16 +204,16 @@ export default async function ResumePage() {
               </div>
             </div>
             <div className="res-side-card resume-proof-card">
-              <h4>Proof-linked resume</h4>
+              <h4>{isZh ? "带证据链接的简历" : "Proof-linked resume"}</h4>
               <p>{hiringConversion.hero.status}</p>
-              <h5>Best cases to inspect</h5>
+              <h5>{isZh ? "最值得查看的案例" : "Best cases to inspect"}</h5>
               <div className="resume-proof-links">
                 {hiringConversion.proofRoutes.map((route) => (
                   <Link href={route.href} key={route.href}>
                     {route.title}
                   </Link>
                 ))}
-                <Link href="/hire">Interview decision</Link>
+                <Link href="/hire">{isZh ? "面试判断页" : "Interview decision"}</Link>
               </div>
             </div>
             <div className="res-side-card">

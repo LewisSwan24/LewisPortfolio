@@ -20,10 +20,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function BlogPage() {
   const locale = (await getLocale()) as "en" | "zh";
-  // Tags stay locale-free on purpose: they are filter keys shared across both
-  // locales, so localising them would break the filter identity.
+  // Tags have to come from the same locale as the posts. They are not shared
+  // filter keys — the zh MDX files carry Chinese tags — so reading them from
+  // the English posts left /zh/blog with filters that matched nothing.
   const posts = await getAllBlogPosts(locale);
-  const tags = await getAllBlogTags();
+  const tags = await getAllBlogTags(locale);
 
   const postsData = posts.map((p) => ({
     slug: p.slug,
