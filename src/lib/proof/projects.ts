@@ -127,7 +127,7 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "accessibility",
       title: "无障碍与包容性",
       summary: "我把无障碍准则做成用户真的够得到的控件，并让它在真实网站上持续可用。",
-      proof: "Spectra Lens 把无障碍准则做成了一个能用的扩展：一个 popup 就能改写任意页面的字体与间距。",
+      proof: "Spectra Lens 把无障碍准则做成了一个能用的扩展：一个扩展弹窗就能改写任意页面的字体与间距。",
       href: "/projects/spectra",
     },
     {
@@ -247,8 +247,8 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       problemType: "阅读无障碍，做成浏览器扩展",
       challenge: "网页的字体、行距和对比度由建站的人决定，读起来吃力的人没有调整余地。",
       methods: ["无障碍准则应用", "字体与间距调校", "跨站点回归测试", "中英双语界面"],
-      sample: "自主开发。Chrome 扩展：内容脚本注入样式、popup 控制面板、本地打包 OpenDyslexic 字体、中英双语语系文件、Jest 单元测试。尚未做过用户研究。",
-      outcome: "一个能用的扩展：从一个 popup 就能改写任意页面的字体与间距，设置按站点分别保存。",
+      sample: "自主开发。Chrome 扩展：内容脚本注入样式、弹窗控制面板、本地打包 OpenDyslexic 字体、中英双语语系文件、Jest 单元测试。尚未做过用户研究。",
+      outcome: "一个能用的扩展：从一个扩展弹窗就能改写任意页面的字体与间距，设置按站点分别保存。",
       proves: "证明我能把无障碍准则做成真正能用的工具，并让它在我控制不了的网站上持续可用。",
     },
     {
@@ -285,7 +285,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       problemType: "大体量生成式生产与叙事系统设计",
       challenge:
         "一个生涯模拟 RPG 需要几百张美术资产，才撑得起「这是同一个世界」。现在生成它们很便宜，难的是让 299 张保持在同一种风格里。",
-      methods: ["美术圣经", "按批次写 prompt 生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
+      methods: ["美术圣经", "按批次写提示词生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
       sample:
         "线上公开可玩，游戏自标 DEMO v0.6。六个批次共 299 张资产、十章生涯跑在 146 个节点上、覆盖生涯与合同与伤病与存档系统的 1975 个测试。没有做过玩家研究。",
       outcome:

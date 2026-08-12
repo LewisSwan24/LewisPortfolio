@@ -109,7 +109,7 @@ const ITEMS: Item[] = [
     year: "2026",
     dur: "Shipped",
     problem: { en: "Type and spacing are fixed by whoever built the page", zh: "字体和行距由建站的人决定，读的人改不了" },
-    changed: { en: "A browser extension that rewrites both from one popup", zh: "一个浏览器扩展，从一个 popup 就能改写两者" },
+    changed: { en: "A browser extension that rewrites both from one popup", zh: "一个浏览器扩展，从一个扩展弹窗就能改写两者" },
   },
 ];
 

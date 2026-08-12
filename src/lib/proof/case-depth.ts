@@ -10,6 +10,16 @@ import type {
   ProofLocale,
 } from "./types";
 
+/**
+ * Read the note on `CaseDepth` in ./types before adding case copy here.
+ *
+ * Of everything in this file, only `caseSummaries` and `caseDepth[*].limits`
+ * are rendered. The decisions, evidence, iterations and takeaways are kept as
+ * interview preparation and are held to a standard by the tests, but no reader
+ * ever sees them — the narrative they used to feed now lives under `cs.<slug>`
+ * in src/messages/{en,zh}.json.
+ */
+
 
 const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary>> = {
   en: {
@@ -96,7 +106,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       role: "独立设计与开发",
       methods: ["WCAG 文本间距条款", "现有扩展拆解", "跨站点注入测试"],
       evidence: ["一个能跑的 Chrome 扩展", "Jest 覆盖设置层", "在文档站、新闻站与单页应用上的手动验证"],
-      outcome: "一个扩展：从一个 popup 就能改写任意页面的字体与间距，中英双语，设置按站点保存。DEMO 阶段。",
+      outcome: "一个扩展：从一个扩展弹窗就能改写任意页面的字体与间距，中英双语，设置按站点保存。DEMO 阶段。",
       next: "我会把它交给一个真的这样读东西的人，看他们从来不碰哪几个控件。",
     },
     maze: {
@@ -127,7 +137,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       challenge:
         "一个生涯模拟 RPG 需要几百张美术资产，才撑得起「这是同一个世界」。生成它们现在很便宜，难的是让 299 张保持在同一种风格里。",
       role: "设计、美术方向与技术方向都由我定，通过一套 AI 生产管线实现",
-      methods: ["美术圣经", "按批次写 prompt 生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
+      methods: ["美术圣经", "按批次写提示词生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
       evidence: [
         "六个批次共 299 张资产，全部对照一份写下来的美术圣经",
         "一道风格闸门，附明确的「拒绝风格」清单",
@@ -876,9 +886,9 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
             "读者对一个站点设置一次，之后就一直是那样。",
         },
         {
-          label: "控件放 popup，不放右键菜单",
+          label: "控件放弹窗，不放右键菜单",
           choice:
-            "所有控件集中在工具栏打开的一个 popup 面板里。",
+            "所有控件集中在工具栏打开的一个弹窗面板里。",
           evidence:
             "右键菜单把「能调什么」藏在一次右键后面，而且一次只显示一项。",
           tradeoff:
@@ -918,8 +928,8 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           improvement: "简单页面能用，遇到优先级强的网站就失效。",
         },
         {
-          version: "popup 控件",
-          change: "加了 popup 面板，放四项间距控件和字体切换。",
+          version: "弹窗控件",
+          change: "加了弹窗面板，放四项间距控件和字体切换。",
           reason: "要手改数值的东西，没人会用第二次。",
           improvement: "「能调到什么程度」从暗示变成了看得见。",
         },
@@ -1143,7 +1153,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       decisions: [
         {
           label: "先写美术圣经，再开始生成",
-          choice: "先写三份参考文档——像素球员、有机场景、扁平队徽——之后每一批的 prompt 都引用它们。",
+          choice: "先写三份参考文档——像素球员、有机场景、扁平队徽——之后每一批的提示词都引用它们。",
           evidence:
             "生成的美术会漂。每一批单独看都说得过去，漂移只有在它们同框的时候才看得出来——而那时候你已经有几百个文件要收拾了。",
           tradeoff: "在看到产出之前就把规则定死，等于对一个还没被验证过的风格先下注。",
@@ -1153,7 +1163,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           label: "按批次过风格闸门，并且写清楚拒绝什么",
           choice:
             "每一批都要对照已有的运行时锚点过一道风格闸门，并附明确的拒绝清单：写实照片、3D、动漫、霓虹、随机文字、真实商标。",
-          evidence: "只要 prompt 稍微变一点，生成器会很乐意给你上面任何一种，而且每一种单独看都站得住。",
+          evidence: "只要提示词稍微变一点，生成器会很乐意给你上面任何一种，而且每一种单独看都站得住。",
           tradeoff: "闸门会打掉真的花了时间做出来的东西；批次已经晚了的时候，人很容易想放一个「差一点」的过去。",
           impact: "拒绝清单才是承重的那一半。说清楚这个世界「不是什么」，比描述它「是什么」更能落地。",
         },
@@ -1214,7 +1224,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         },
         {
           version: "美术管线",
-          change: "从零散生成，改成美术圣经 + 批次 prompt + 风格闸门 + 生产记录。",
+          change: "从零散生成，改成美术圣经 + 批次提示词 + 风格闸门 + 生产记录。",
           reason: "最早那批资产单看都不错，但它们彼此对不上。",
           improvement: "一致性变成流程的属性，而不是每张图都要重新吵一次的事。",
         },

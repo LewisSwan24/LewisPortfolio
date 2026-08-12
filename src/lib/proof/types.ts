@@ -93,6 +93,18 @@ export interface CaseLimit {
   nextValidation: string;
 }
 
+/**
+ * Only `limits` reaches a reader. The decision timeline, the evidence board and
+ * the interview takeaway were folded into the `cs.<slug>.*` narrative in
+ * src/messages/{en,zh}.json; app/[locale]/projects/[slug]/page.tsx keeps their
+ * anchors alive as empty `case-anchor` divs so existing proof links still land,
+ * and renders nothing from `decisions`, `evidence`, `iterations` or `takeaway`.
+ *
+ * They are kept because they are the interview-prep version of each case and
+ * tests/lib/portfolio-proof.test.ts holds them to a standard. But writing case
+ * copy here does not publish it — put anything a reader should see in
+ * messages.json, and verify against the served HTML rather than the source.
+ */
 export interface CaseDepth {
   decisions: CaseDecision[];
   evidence: CaseEvidenceItem[];
