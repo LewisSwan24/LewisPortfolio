@@ -38,7 +38,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "Information architecture",
       caseSlug: "connect",
       proof:
-        "UQ Connect stopped mid-build and redrew twenty-four screens as five on paper, with every route off the home page.",
+        "UQ Connect stopped mid-build and redrew the whole app as five screens on paper, with every route off the home page.",
       whyItMatters:
         "Shows a designer willing to answer a structural defect with structure, not with patches.",
       href: "/projects/connect#decision-timeline",
@@ -194,7 +194,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "信息架构",
       caseSlug: "connect",
       proof:
-        "UQ Connect 在开发中途停下来，在纸上把二十四个屏重画成五个，并画出从首页出发的每条路径。",
+        "UQ Connect 在开发中途停下来，把整个应用在纸上重画成五个屏，并画出从首页出发的每条路径。",
       whyItMatters:
         "证明我面对结构性缺陷会用结构去回答，而不是打补丁。",
       href: "/projects/connect#decision-timeline",

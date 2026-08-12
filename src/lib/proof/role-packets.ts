@@ -52,7 +52,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "ux-product-ia",
           claim: "Lewis lets research change the product, including when that means restarting.",
           evidence:
-            "UQ Connect went back to paper mid-build after usability sessions exposed structural navigation defects, then rebuilt twenty-four screens off that sheet.",
+            "UQ Connect went back to paper mid-build after usability sessions exposed structural navigation defects, then rebuilt the app off that sheet.",
           boundary:
             "This shows research-to-decision quality on a course project, not ownership of a shipped product.",
           strongestAnchor: "/projects/connect#evidence-board",
@@ -198,7 +198,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "ux-product-ia",
           claim: "Lewis 会让研究真的改变产品，包括推翻重来。",
           evidence:
-            "UQ Connect 在可用性测试暴露出结构性导航缺陷之后，开发中途回到纸上重画，再照着那张纸重建二十四个屏。",
+            "UQ Connect 在可用性测试暴露出结构性导航缺陷之后，开发中途回到纸上重画，再照着那张纸把整个应用重建了一遍。",
           boundary:
             "这证明的是课程项目里「从研究到决策」的质量，不等于拥有一个已上线产品。",
           strongestAnchor: "/projects/connect#evidence-board",

@@ -157,7 +157,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "Redrew twenty-four screens as five on paper, mid-build, with every route off the home page.",
+        proof: "Redrew the whole app as five screens on paper, mid-build, with every route off the home page.",
         href: "/projects/connect#decision-timeline",
       },
     },
@@ -283,7 +283,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "开发中途在纸上把二十四个屏重画成五个，并画出从首页出发的每条路径。",
+        proof: "开发中途把整个应用在纸上重画成五个屏，并画出从首页出发的每条路径。",
         href: "/projects/connect#decision-timeline",
       },
     },
