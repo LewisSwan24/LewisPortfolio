@@ -166,7 +166,7 @@
         "title": "Three rounds, three fidelities, seventy-one transcripts.",
         "m1": {
           "t": "Exploratory interviews",
-          "b": "33 transcripts in August, 7 of them mine, on why the events that already exist fail to connect people."
+          "b": "33 transcripts in August, 7 of them mine, on why the events that already exist fail to connect people. My seven spanned six countries, seven degrees and three campuses, first year to Master's."
         },
         "m2": {
           "t": "Think-aloud usability testing",
@@ -174,7 +174,7 @@
         },
         "m3": {
           "t": "Task-based usability testing",
-          "b": "10 transcripts in November, 2 mine, on the built MVP: one chain, start to finish, unaided."
+          "b": "10 transcripts in November, 2 mine, on the built MVP: one chain, start to finish, unaided. My 14 sessions across the three rounds came from 9 people — 4 sat with me more than once, one all three times."
         },
         "quote": "Can I go to the previous page? How can I do that?",
         "quoteWho": "Iteration 2 participant, 17 September 2025"
@@ -182,11 +182,11 @@
       "sy": {
         "label": "Synthesis",
         "title": "The barrier was pace and group size, not language.",
-        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, which is the only reason we could tell when we were wrong. Two assumptions did not survive. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go."
+        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, which is the only reason we could tell when we were wrong. Two assumptions did not survive. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go. What did hold was repetition around a shared task — the students who stayed connected had met three or four times over something they were making together, a documentary shoot, a quartet. The cultural society cuts both ways for the same reason: it is the first place a student belongs, and then it is the reason they never leave it."
       },
       "id": {
         "label": "Design decisions",
-        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly sceptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan."
+        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly sceptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan. Discovery moved onto a campus map for a related reason — choosing from a map costs less than choosing from a list — but a map has to say who is already there and whether the walk is safe, or it relocates the hesitation instead of removing it. The competitor teardown pointed the same way: Griffith Mates launches at Orientation, runs a buddy program for four weeks, then keeps people in a Teams channel. The channel is the part doing the work, and a one-off event has no equivalent."
       },
       "pr": {
         "label": "Prototype",
