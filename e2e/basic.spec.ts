@@ -150,7 +150,9 @@ test.describe("Projects Page", () => {
 
     test("should help recruiters choose the right case", async ({ page }) => {
         await expect(page.getByText("Recruiter shortlist")).toBeVisible();
-        await expect(page.getByText(/IA \/ service complexity/i)).toBeVisible();
+        // Renamed in 3e58192: the real UQ Connect is a student social platform,
+        // not the portal IA redesign the fabricated case claimed.
+        await expect(page.getByText(/Research rigor \/ product structure/i)).toBeVisible();
         await expect(page.getByText(/Accessibility \/ inclusive design/i)).toBeVisible();
         await expect(page.getByText(/AI UX \/ trust/i)).toBeVisible();
     });
