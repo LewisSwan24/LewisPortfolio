@@ -173,9 +173,11 @@ export function VizSpectra({ locale = "en" }: VizProps) {
           {zh ? "辅助后" : "ASSISTED"}
         </text>
 
+        {/* Chinese glyphs carry a taller em box than the Latin line, so the zh
+            baseline sits higher to keep the text inside the viewBox. */}
         <text
           x="30"
-          y="382"
+          y={zh ? 378 : 382}
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="22"
