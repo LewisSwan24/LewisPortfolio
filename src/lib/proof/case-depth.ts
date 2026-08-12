@@ -22,7 +22,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         "13 hypotheses, each carrying a numeric pass mark written before any data was collected",
         "14 learning cards — 12 answering a hypothesis, 2 the data raised on its own",
       ],
-      outcome: "A 24-screen mobile MVP reached through three rounds of research and two prototype generations. Course project; runs on mock data, never connected to a live database.",
+      outcome: "A 19-screen mobile MVP reached through three rounds of research and two prototype generations — 24 by the team's own MVP definition, which counts sub-views as pages. I carried it on alone in January and deployed it. Runs on mock data; the backend was written and never connected.",
       next: "I would connect the backend and re-run the task chain with completion times, so the third round produces a number instead of an impression.",
     },
     spectra: {
@@ -88,7 +88,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         "13 条假设，每条都带一个写在收数据之前的数字门槛",
         "14 张 learning card —— 12 条回答假设，2 条是数据自己冒出来的",
       ],
-      outcome: "一个 24 屏的移动端 MVP，背后是三轮研究与两代原型。课程项目，跑在 mock 数据上，从未接上真实数据库。",
+      outcome: "一个 19 屏的移动端 MVP，背后是三轮研究与两代原型——团队自己的 MVP 文档写的是 24 屏，那是把子视图也算成了页。课程结束后我一个人接着做，并把它部署上线。跑在 mock 数据上，从未接上真实数据库。",
       next: "我会把后端接上，带着完成时间重跑一次任务链，让第三轮产出一个数字，而不是一个印象。",
     },
     spectra: {
@@ -177,6 +177,17 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           impact:
             "The November build started from a fixed skeleton with an owner per area, rather than from an accumulating prototype.",
         },
+        {
+          label: "Carry it on after the grade was in — by deleting",
+          choice:
+            "In January I imported the codebase into my own repository and spent five days on it: one design system in place of five people's screen-level styling, dark mode, an OAuth callback screen, and a deploy. The diff across those eight commits is +1,068 and −2,348.",
+          evidence:
+            "Five people styling twenty-one screens in parallel leaves something that reads as five products. That is invisible in a code review and obvious the moment you click through it.",
+          tradeoff:
+            "Removing more than I added meant deleting teammates' work, and importing the codebase as a single commit threw away the history that showed who wrote what.",
+          impact:
+            "It is the only part of UQ Connect that is unambiguously mine — nine commits, all under my name. It is also why there is anything to click: the screen whose absence stopped the course repository from building is present in mine.",
+        },
       ],
       evidence: [
         {
@@ -223,12 +234,20 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           improvement: "Produced a skeleton the build could follow, with each feature area assigned to a named person.",
         },
         {
-          version: "24-screen MVP, November",
+          version: "The November MVP",
           change:
             "Built the screens as a shared component system with React context for cross-screen state, rather than styling each screen on its own.",
-          reason: "Twenty-four screens hand-styled by five people do not stay one product for long.",
+          reason: "Nineteen screens hand-styled by five people do not stay one product for long.",
           improvement:
             "The November sessions ran on a single visual system, and the participant used its colour coding to predict where things were.",
+        },
+        {
+          version: "Solo, January",
+          change:
+            "Took the codebase into my own repository and cut it back: one design system replacing per-screen styling, dark mode, an OAuth callback, then a deploy.",
+          reason: "The semester ended with something that worked and did not yet look like one product.",
+          improvement:
+            "Twenty-two screens on one system, and a build anyone can open rather than a repository they would have to be given access to.",
         },
       ],
       limits: [
@@ -255,7 +274,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         },
       ],
       takeaway:
-        "This case proves I can run research that is capable of proving itself wrong, and then carry what survives into a component system that twenty-four screens can share.",
+        "This case proves I can run research that is capable of proving itself wrong, carry what survives into a shared component system, and keep working on the result after the grade that required it was already in.",
     },
     spectra: {
       decisions: [
@@ -743,6 +762,17 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           tradeoff: "在学期中间付出了开发时间，而且纸面结构砍掉了一些已经写好的功能。",
           impact: "十一月的开发是从一套固定骨架和明确分工开始的，而不是从一个不断堆积的原型开始。",
         },
+        {
+          label: "分数出了之后接着做，方式是删",
+          choice:
+            "一月份我把代码库导进自己的仓库，花了五天：用一套设计系统替掉五个人各写各的屏级样式，加上暗色模式和一个 OAuth 回调屏，然后部署上线。那八笔提交的差异是 +1,068 与 −2,348。",
+          evidence:
+            "五个人并行给二十一个屏写样式，做出来的东西读起来像五个产品。这件事在代码评审里看不出来，一点开就全是。",
+          tradeoff:
+            "删得比加得多，意味着在删同组同学写的东西；而把整个代码库当成一笔提交导进来，也丢掉了「谁写了哪部分」的历史。",
+          impact:
+            "这是 UQ Connect 里归属毫无争议属于我的部分——九笔提交，全在我名下。也正因为如此才有东西可以点开：那个让课程仓库编译不过的缺失文件，在我的仓库里是有的。",
+        },
       ],
       evidence: [
         {
@@ -785,10 +815,18 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           improvement: "产出了一套开发可以照着走的骨架，每块功能都落到了具体的人身上。",
         },
         {
-          version: "24 屏 MVP，十一月",
+          version: "十一月的 MVP",
           change: "把这些屏做成共享的组件系统，用 React context 承载跨屏状态，而不是每个屏各写各的样式。",
-          reason: "24 个屏、五个人各自手写样式，撑不了多久就不像同一个产品了。",
+          reason: "十九个屏、五个人各自手写样式，撑不了多久就不像同一个产品了。",
           improvement: "十一月的测试跑在同一套视觉系统上，受测者靠它的配色去预测东西在哪里。",
+        },
+        {
+          version: "个人续作，一月",
+          change:
+            "把代码库拿进自己的仓库往回收：用一套设计系统替掉屏级样式，加暗色模式和 OAuth 回调，然后部署。",
+          reason: "学期结束时东西是能跑的，但还不像同一个产品。",
+          improvement:
+            "二十二个屏跑在同一套系统上，而且变成一个谁都能打开的线上版本，不再是一个需要被授权才能看到的仓库。",
         },
       ],
       limits: [
@@ -811,7 +849,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         },
       ],
       takeaway:
-        "这个案例证明我能把研究做成「有可能证明自己错」的样子，再把活下来的结论落进一套 24 个屏共用的组件系统里。",
+        "这个案例证明我能把研究做成「有可能证明自己错」的样子，把活下来的结论落进一套共享的组件系统，并且在那门课的分数早就出来之后，还继续把它往下做。",
     },
     spectra: {
       decisions: [
@@ -1210,7 +1248,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
   en: {
     connect: {
       proves:
-        "This case proves I can run research capable of proving itself wrong, then carry what survives into a component system twenty-four screens share.",
+        "This case proves I can run research capable of proving itself wrong, carry what survives into a shared component system, and keep working on the result after the grade was already in.",
       inspect: [
         "The hypotheses that failed their own pre-written threshold, and what replaced them.",
         "Why the team went back to paper in October instead of patching the prototype.",

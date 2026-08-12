@@ -156,7 +156,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       challenge: "UQ runs plenty of events for international students, and they still end up in the same circle. A one-off mixer produces an introduction, not a relationship.",
       methods: ["exploratory interviews", "falsifiable test cards", "think-aloud usability testing", "task-based usability testing", "component system design"],
       sample: "Course project, five-person team. 71 interview transcripts across three rounds between August and November 2025; my 14 sessions covered 9 participants, 4 of whom returned in a later round. 13 hypotheses carried a numeric pass mark set in advance, but no round recorded completion times or a fixed success criterion.",
-      outcome: "A 24-screen mobile MVP built on a shared component system, reached through three research rounds and a mid-build return to paper. Runs on mock data; the backend was written but never connected.",
+      outcome: "A 19-screen mobile MVP built on a shared component system, reached through three research rounds and a mid-build return to paper, then carried on alone in January and deployed. Runs on mock data; the backend was written but never connected.",
       proves: "I can run research set up to disconfirm itself, and carry what survives into a component system that keeps two dozen screens reading as one product.",
     },
     {
@@ -238,7 +238,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       challenge: "UQ 给国际学生办的活动不少，他们还是留在同一个圈子里。一次性的迎新派对制造的是认识，不是关系。",
       methods: ["探索式访谈", "可证伪的假设卡", "出声思考可用性测试", "任务式可用性测试", "组件系统设计"],
       sample: "课程项目，五人团队。2025 年 8 月至 11 月三轮共 71 份访谈逐字稿；我那 14 场来自 9 位受访者，其中 4 位跨轮回访。13 条假设都带着事先定好的数字门槛，但没有任何一轮记录过完成时间或成功标准。",
-      outcome: "一个 24 屏、建立在共享组件系统上的移动端 MVP，经过三轮研究和一次开发中途回到纸面的重画。跑在 mock 数据上；后端写了，但从未接上。",
+      outcome: "一个 19 屏、建立在共享组件系统上的移动端 MVP，经过三轮研究和一次开发中途回到纸面的重画；课程结束后我一个人接着做，并把它部署上线。跑在 mock 数据上；后端写了，但从未接上。",
       proves: "证明我能把研究做成会否定自己的样子，再把活下来的结论落进一套组件系统，让二十多个屏读起来仍然是同一个产品。",
     },
     {

@@ -94,7 +94,7 @@
       "date": "Aug–Nov 2025, coursework",
       "m1": "71 interview transcripts, 14 mine",
       "m2": "Exploratory · think-aloud · task-based",
-      "m3": "24-screen MVP on mock data"
+      "m3": "19-screen MVP on mock data"
     },
     "spectra": {
       "kicker": "Accessibility · Browser extension",
@@ -190,7 +190,7 @@
       },
       "pr": {
         "label": "Prototype",
-        "p": "On 3 October, after the September sessions, we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area. The November build started from that sheet, as a shared component system with React context for cross-screen state rather than twenty-four independently styled screens."
+        "p": "On 3 October, after the September sessions, we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area. The November build started from that sheet, as a shared component system with React context for cross-screen state rather than nineteen independently styled screens."
       },
       "te": {
         "label": "Usability test",
@@ -200,7 +200,7 @@
         "label": "What it produced",
         "m1": {
           "label": "Build",
-          "v": "24-screen MVP"
+          "v": "19 screens, one system"
         },
         "m2": {
           "label": "Research",
@@ -210,7 +210,7 @@
           "label": "My share",
           "v": "14 interviews, front-end system"
         },
-        "p": "A 24-screen mobile MVP on a shared component system, reached through three research rounds and a mid-build return to paper. Evidence status — course project, five-person team. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, and ran 14 of the 71 interviews; the map, the wellness hub and the matching logic were other people's work. The MVP runs on mock data: the backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. No round recorded completion times or a fixed success criterion, so I can say the September navigation defect did not recur in November, and I cannot say by how much anything improved."
+        "p": "A 19-screen mobile MVP on a shared component system, reached through three research rounds and a mid-build return to paper — 24 by the team's own MVP definition, which counts sub-views as pages. Evidence status — course project, five-person team. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, and ran 14 of the 71 interviews; the map, the wellness hub and the matching logic were other people's work. In January, after the semester was over, I took the codebase into my own repository and spent five days cutting it back to one design system — plus dark mode, an OAuth callback, and a deploy — across eight commits that added 1,068 lines and removed 2,348. That part is unambiguously mine: nine commits, all under my name, and it is the reason there is a build you can open at all. The MVP runs on mock data: the backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. No round recorded completion times or a fixed success criterion, so I can say the September navigation defect did not recur in November, and I cannot say by how much anything improved."
       },
       "rf": {
         "label": "Reflection",
