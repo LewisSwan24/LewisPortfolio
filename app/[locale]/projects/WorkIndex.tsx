@@ -10,6 +10,9 @@ import {
   VizSpectra,
   VizVigil,
   VizHoop,
+  VizPricewise,
+  VizGapmapper,
+  VizRules,
 } from "@/components/viz/ProjectViz";
 import {
   getEvidenceMatrix,
@@ -18,7 +21,15 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type ProjKey = "connect" | "spectra" | "maze" | "vigil" | "hoop";
+type ProjKey =
+  | "connect"
+  | "spectra"
+  | "maze"
+  | "vigil"
+  | "hoop"
+  | "pricewise"
+  | "gapmapper"
+  | "rules";
 type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "hardware";
 type Localized = { en: string; zh: string };
 
@@ -61,22 +72,48 @@ const ITEMS: Item[] = [
   },
   {
     n: "02",
-    k: "vigil",
-    tags: ["flag", "ai", "research"],
-    role: "Design + direction",
+    k: "gapmapper",
+    tags: ["flag", "research"],
+    role: "Prototype + turn",
     year: "2026",
-    dur: "In progress",
+    dur: "Submitted",
     problem: {
-      en: "A classifier that is wrong 12% of the time, and a reviewer who stops checking",
-      zh: "一个有 12% 会判错的分类器，和一个逐渐不再复核的人",
+      en: "A safety interface that cannot guarantee safety, sounding certain anyway",
+      zh: "一个保证不了安全的安全界面，说起话来却很笃定",
     },
     changed: {
-      en: "Confidence built as weak evidence, so the number cannot replace reading the message",
-      zh: "把置信度做成弱证据，让那个数字无法取代真的去读那封信",
+      en: "Perception and indicators kept apart, so the gap is a reason to look rather than a verdict",
+      zh: "感知与客观指标分开放，让落差变成去查一查的理由，而不是一句判决",
     },
   },
   {
     n: "03",
+    k: "connect",
+    tags: ["flag", "research"],
+    role: "Solo",
+    year: "Coursework",
+    dur: "Not shipped",
+    problem: { en: "Disjointed structure and hard-to-find information", zh: "结构割裂，关键信息难找" },
+    changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
+  },
+  {
+    n: "04",
+    k: "pricewise",
+    tags: ["flag", "ai"],
+    role: "Product + direction",
+    year: "2026",
+    dur: "Live",
+    problem: {
+      en: "An AI wrote the code, and a green build proved nothing about whether it ran",
+      zh: "代码是 AI 写的，而构建通过证明不了它到底跑没跑",
+    },
+    changed: {
+      en: "Five defects found by calling the real endpoints and querying the database directly",
+      zh: "打真实接口、直接查库，查出五处缺陷",
+    },
+  },
+  {
+    n: "05",
     k: "hoop",
     tags: ["ai", "hardware"],
     role: "Design + art dir",
@@ -92,17 +129,39 @@ const ITEMS: Item[] = [
     },
   },
   {
-    n: "04",
-    k: "connect",
-    tags: ["flag", "research"],
-    role: "Solo",
-    year: "Coursework",
-    dur: "Not shipped",
-    problem: { en: "Disjointed structure and hard-to-find information", zh: "结构割裂，关键信息难找" },
-    changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
+    n: "06",
+    k: "rules",
+    tags: ["research", "ai"],
+    role: "Interface + spec",
+    year: "2025",
+    dur: "Submitted",
+    problem: {
+      en: "Requirements everyone agreed with and nobody could build to",
+      zh: "所有人都同意、却没人能照着施工的要求",
+    },
+    changed: {
+      en: "150–250 m of warning lead, a 48 px floor, and three triggers from one paper",
+      zh: "150–250 m 的提前量、48px 的下限，以及从一篇论文拆出的三条触发条件",
+    },
   },
   {
-    n: "05",
+    n: "07",
+    k: "vigil",
+    tags: ["flag", "ai", "research"],
+    role: "Design + direction",
+    year: "2026",
+    dur: "In progress",
+    problem: {
+      en: "A classifier that is wrong 12% of the time, and a reviewer who stops checking",
+      zh: "一个有 12% 会判错的分类器，和一个逐渐不再复核的人",
+    },
+    changed: {
+      en: "Confidence built as weak evidence, so the number cannot replace reading the message",
+      zh: "把置信度做成弱证据，让那个数字无法取代真的去读那封信",
+    },
+  },
+  {
+    n: "08",
     k: "spectra",
     tags: ["acc"],
     role: "Solo build",
@@ -117,6 +176,9 @@ function WorkPreview({ project, locale }: { project: ProjKey; locale: ProofLocal
   if (project === "maze") return <VizMaze locale={locale} />;
   if (project === "vigil") return <VizVigil locale={locale} />;
   if (project === "hoop") return <VizHoop locale={locale} />;
+  if (project === "pricewise") return <VizPricewise locale={locale} />;
+  if (project === "gapmapper") return <VizGapmapper locale={locale} />;
+  if (project === "rules") return <VizRules locale={locale} />;
   if (project === "connect") return <VizConnect locale={locale} />;
   return <VizSpectra locale={locale} />;
 }

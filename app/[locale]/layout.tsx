@@ -48,7 +48,7 @@ export default async function LocaleLayout({
     const t = await getTranslations();
     const blogPosts = await getAllBlogPosts();
     const searchItems = [
-        ...(["connect", "spectra", "maze", "vigil", "hoop"] as const).map((slug) => ({
+        ...(["connect", "spectra", "maze", "vigil", "hoop", "pricewise", "gapmapper", "rules"] as const).map((slug) => ({
             type: "project" as const,
             slug,
             title: t(`proj.${slug}.title`),

@@ -820,6 +820,22 @@ html { scroll-behavior: smooth; }
   aspect-ratio: 3 / 4;
   margin: 0 auto;
 }
+/* The deck takes focus as one control, so the ring goes around the whole
+   stack rather than around whichever card is on top. The offset keeps it
+   clear of the fanned edges underneath. */
+.hero-deck:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 10px;
+  border-radius: 6px;
+}
+.deck-kbd {
+  margin: 14px 0 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-4);
+}
 .deck-card {
   position: absolute;
   inset: 0;
@@ -2189,6 +2205,57 @@ html { scroll-behavior: smooth; }
 }
 .feat-head .h-display { max-width: 14em; margin: var(--s-3) 0 0; }
 .feat-list { display: flex; flex-direction: column; gap: var(--s-9); }
+
+/* The featured deck. One case on stage, the other seven stacked underneath it
+   in the same grid cell — they stay in the document for crawlers and
+   find-in-page, so they cannot simply be display:none. */
+.feat-deck { margin-top: var(--s-7); }
+.feat-deck-stage { display: grid; border-radius: 6px; }
+.feat-deck-stage:focus-visible { outline: 2px solid var(--accent); outline-offset: 14px; }
+.feat-deck-slide {
+  grid-area: 1 / 1;
+  /* Hidden slides must not swallow clicks aimed at the visible one. */
+  pointer-events: none;
+  visibility: hidden;
+}
+.feat-deck-slide.is-active { pointer-events: auto; visibility: visible; }
+.feat-deck-slide.is-active:active { cursor: grabbing; }
+
+.feat-deck-bar {
+  display: flex; align-items: center; justify-content: center; gap: 18px;
+  margin-top: var(--s-6);
+}
+.feat-deck-arrow {
+  width: 34px; height: 34px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); border-radius: 50%;
+  background: transparent; color: var(--text-2);
+  font-size: 14px; line-height: 1; cursor: pointer;
+  transition: border-color 0.18s, color 0.18s;
+}
+.feat-deck-arrow:hover { border-color: var(--accent); color: var(--accent); }
+
+/* The tick row borrows the ruler vocabulary from the hero deck, so the two
+   decks read as one control rather than two unrelated widgets. */
+.feat-deck-ticks {
+  display: flex; align-items: center; gap: 12px;
+  list-style: none; margin: 0; padding: 0;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  color: var(--text-4);
+}
+.feat-deck-ticks li { position: relative; padding-bottom: 7px; }
+.feat-deck-ticks li::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px; background: var(--border);
+}
+.feat-deck-ticks li.on { color: var(--accent); }
+.feat-deck-ticks li.on::after { background: var(--accent); height: 2px; }
+
+.feat-deck-kbd {
+  margin: 12px 0 0; text-align: center;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  color: var(--text-4);
+}
 .feat-item { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8); align-items: center; }
 .feat-item.flip { direction: rtl; }
 .feat-item.flip > * { direction: ltr; }

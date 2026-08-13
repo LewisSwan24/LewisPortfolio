@@ -229,6 +229,66 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "I can run generative production at a volume that would otherwise go incoherent, and keep a systems-heavy build correct while content keeps landing.",
     },
+    {
+      slug: "pricewise",
+      href: "/projects/pricewise",
+      problemType: "Product design under AI-written implementation, and behavioural verification",
+      challenge:
+        "When an AI writes the code, a green build stops being evidence. The interface renders, types check, tests pass — and none of that says whether the feature executes.",
+      methods: [
+        "spec-first delivery",
+        "live endpoint probing",
+        "direct database inspection",
+        "regression test authoring",
+        "scope reduction",
+      ],
+      sample:
+        "A deployed app with 109 API routes and 36 page routes, 307 unit tests and 14 end-to-end cases, 65 products across Coles, Woolworths and Aldi. Zero registered users; all pricing is simulated.",
+      outcome:
+        "Five defects that had passed build, type-check and the full suite, each found by calling the real endpoint, reading the response and querying the database — plus a 93-commit history where a 5,884-line expansion and its retraction are both legible.",
+      proves:
+        "I can separate 'looks finished' from 'actually runs' on a codebase an AI wrote, and leave scripts behind that let someone else reach the same conclusions.",
+    },
+    {
+      slug: "gapmapper",
+      href: "/projects/gapmapper",
+      problemType: "Public-space safety, and the boundary of what evidence may claim",
+      challenge:
+        "An interface that recommends a safer route claims an authority it has not earned. It cannot guarantee safety, and the better it looks, the more convincing that unearned promise becomes.",
+      methods: [
+        "semi-structured interviews",
+        "literature-checked assumptions",
+        "critique-driven repositioning",
+        "evidence-model design",
+        "policy-constraint writing",
+      ],
+      sample:
+        "18 team interviews with six participants completing; I ran and coded numbers 10, 11 and 12. Six prototype screens, each passed through four questions about visibility, concealment, expected actor and implied certainty. Never tested with planning staff.",
+      outcome:
+        "Three interlocking deliverables — a report that sets the claim, a one-page brief that turns it into system requirements, and a prototype that walks those requirements through a planning flow — with perception and objective indicators kept side by side and never merged into a score.",
+      proves:
+        "I will retire my own working prototype when it makes a promise the evidence cannot support, and turn the resulting position into system requirements rather than a paragraph.",
+    },
+    {
+      slug: "rules",
+      href: "/projects/rules",
+      problemType: "Specification writing, and translating sources into buildable constraints",
+      challenge:
+        "'Make cycling safer' and 'warn people in time' are sentences everyone agrees with and nobody can build to. Neither can be argued against, which is what makes them useless as requirements.",
+      methods: [
+        "requirement-to-threshold translation",
+        "design system specification",
+        "AI usage auditing",
+        "think-aloud walkthrough",
+        "peer-reviewed source translation",
+      ],
+      sample:
+        "Two coursework briefs: a cycling route app where I owned the interface, and an individual guide translating one 2025 peer-reviewed paper. Testing reached think-aloud walkthrough; the six-item self-check passed 6 of 6, which is a self-check rather than external validation.",
+      outcome:
+        "Safety became routing weights, a 150–250 m warning lead and a 48 px tap-target floor; the paper became three independent trigger conditions with their own copy templates and thresholds.",
+      proves:
+        "I can force a requirement everyone agrees with into a rule someone can build to and argue with, and state plainly where that rule stops holding.",
+    },
   ],
   zh: [
     {
@@ -291,6 +351,48 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       outcome:
         "一个真的能玩的生涯模拟，而它的一致性来自管线而不是单张资产：规则先写、风格闸门附明确的拒绝清单、生产记录让每一批都可审计。",
       proves: "证明我能在一个本来一定会失控的量级上跑生成式生产，并在内容持续落地的同时让实现保持正确。",
+    },
+    {
+      slug: "pricewise",
+      href: "/projects/pricewise",
+      problemType: "AI 实现下的产品设计与行为验证",
+      challenge:
+        "代码交给 AI 写之后，构建通过就不再是证据了。界面渲染出来了、类型检查零错误、测试全绿——这三件事都不能证明功能真的在执行。",
+      methods: ["规格先行", "打真实接口验行为", "直接查数据库", "补写回归测试", "范围收缩"],
+      sample:
+        "一个线上应用：109 条 API 路由、36 条页面路由，307 个单元测试与 14 个端到端用例，Coles / Woolworths / Aldi 三家共 65 件商品。注册用户是 0，价格全部为拟真数据。",
+      outcome:
+        "五处同时通过构建、类型检查与整套测试的缺陷，每一处都是打真实接口、读返回、直接查库才查出来的；外加九十三个提交的完整记录，5884 行的膨胀和随后的收缩都留在里面。",
+      proves:
+        "在一份 AI 写的代码上，我能把「看起来完成」和「真的能用」分开验，并且留下可复现的脚本，换一个人照着跑能得到同样的结论。",
+    },
+    {
+      slug: "gapmapper",
+      href: "/projects/gapmapper",
+      problemType: "公共空间安全，以及证据能声称什么的边界",
+      challenge:
+        "一个建议「更安全路线」的界面，获得了一种自己没有挣来的权威。它保证不了安全，而它做得越像样，那个兑现不了的承诺就越有说服力。",
+      methods: ["半结构式访谈", "拿文献检验假设", "评图驱动的方向转变", "证据模型设计", "把伦理立场写成系统要求"],
+      sample:
+        "团队 18 个访谈、6 人完成，第 10、11、12 个由我做并编码。原型六屏，每屏都过同样四个问题：让什么可见、把什么藏起来、期待谁去行动、暗示了多高的确定性。未经真实规划人员测试。",
+      outcome:
+        "三件互相咬合的交付物——报告定主张、一页 brief 把主张变成系统要求、原型把这些要求走成一条能通的规划流程；感知与客观指标在屏幕上始终并排，从不合成一个分数。",
+      proves:
+        "当我自己做出来的原型给出了证据撑不起的承诺时，我会杀掉它；并且能把由此产生的立场写成系统要求，而不是留成一段话。",
+    },
+    {
+      slug: "rules",
+      href: "/projects/rules",
+      problemType: "写规格，以及把文献翻译成能施工的约束",
+      challenge:
+        "「让骑车更安全」「预警有效」这类话，写在文档里谁都同意，但没有一句拿得去施工，也没有一句能被反驳——而这正是它们作为要求毫无用处的原因。",
+      methods: ["把要求逼成阈值", "设计系统规格", "AI 使用标注册", "出声思考走查", "把同行评审论文翻译成规范"],
+      sample:
+        "同一门课的两份作业：一个自行车路线 App（界面部分由我负责），一份把 2025 年某篇同行评审论文翻译成规范的个人作业。测试做到出声思考走查这一层；六条自查清单 6/6 通过，那是自查不是外部验证。",
+      outcome:
+        "安全变成了路线权重、150–250 m 的提示提前量和 48px 的点击区下限；论文变成了三条各配文案模板与阈值的独立触发条件。",
+      proves:
+        "我能把一句所有人都同意的要求，逼成一条能照着施工、也能被指着说「这条不对」的规则，并且说得清它在哪里失效。",
     },
   ],
 };

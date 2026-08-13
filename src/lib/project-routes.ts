@@ -4,6 +4,9 @@ export const CURRENT_PROJECT_SLUGS = [
   "maze",
   "vigil",
   "hoop",
+  "pricewise",
+  "gapmapper",
+  "rules",
 ] as const;
 
 export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
@@ -43,5 +46,17 @@ export const PROJECT_OG_COPY: Record<
   hoop: {
     title: "Hoop Dream",
     oneLiner: "A Chinese basketball career RPG, and a production pipeline for 299 generated assets.",
+  },
+  pricewise: {
+    title: "PriceWise",
+    oneLiner: "A live grocery price comparison app, and five defects that a green build could not see.",
+  },
+  gapmapper: {
+    title: "Perception Gap Mapper",
+    oneLiner: "I built the route prototype, then argued for abandoning it — a safety interface cannot promise safety.",
+  },
+  rules: {
+    title: "Requirements into Rules",
+    oneLiner: "Two coursework briefs, one move: turn a soft requirement into a rule someone can build to and argue with.",
   },
 };

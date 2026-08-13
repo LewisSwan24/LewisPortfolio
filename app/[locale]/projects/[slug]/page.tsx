@@ -10,6 +10,9 @@ import {
   VizMaze,
   VizVigil,
   VizHoop,
+  VizPricewise,
+  VizGapmapper,
+  VizRules,
 } from "@/components/viz/ProjectViz";
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { DemoEmbed } from "@/components/case/DemoEmbed";
@@ -253,6 +256,113 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
       },
     ],
   },
+  pricewise: {
+    label: "The running app",
+    labelZh: "跑起来的样子",
+    blurb:
+      "Captured from the live deployment, not mocked up. Amounts shown come from demo data, not from anyone's real bill — the database has zero registered users.",
+    blurbZh:
+      "从线上版本直接抓的，不是效果图。图中金额来自演示数据，不是任何人的真实账单——数据库里注册用户是 0。",
+    images: [
+      {
+        src: "/projects/pricewise/02-scan.png",
+        width: 2880,
+        height: 1800,
+        alt: "The receipt scanning screen, with an upload area and the list of recognised items",
+        altZh: "小票扫描页：上传区域，以及识别出来的商品清单",
+        caption:
+          "Where the whole product lives or dies. A receipt prints MLK FC 2L and the catalogue says Full Cream Milk 2L; if those do not meet, nothing downstream can happen.",
+        captionZh:
+          "整个产品的成败都压在这一步。小票印 MLK FC 2L，商品库里是 Full Cream Milk 2L，对不上，后面什么都做不了。",
+      },
+      {
+        src: "/projects/pricewise/03-compare.png",
+        width: 2880,
+        height: 1800,
+        alt: "The comparison view, with the cheapest chain marked in green for each item",
+        altZh: "比价页，每件商品最便宜的那一家标成绿色",
+        caption:
+          "Three chains, item by item. The green marker is the only claim this screen makes, and it is only as good as the match behind it.",
+        captionZh:
+          "三家超市逐件对比。绿色标记是这一屏唯一给出的判断，而它的可信度完全取决于背后那次匹配。",
+      },
+      {
+        src: "/projects/pricewise/04-products.png",
+        width: 2880,
+        height: 1800,
+        alt: "The product browser, each card listing the price at all three supermarkets",
+        altZh: "商品浏览页，每张卡片列出三家超市的价格",
+        caption:
+          "65 products across Coles, Woolworths and Aldi. This is the page whose semantic search silently fell back to keyword matching on every query.",
+        captionZh:
+          "Coles、Woolworths、Aldi 三家共 65 件商品。这一页的语意搜索，每次查询都静默退回了关键字匹配。",
+      },
+    ],
+  },
+  gapmapper: {
+    label: "The prototype I argued against",
+    labelZh: "我主张放弃的那版原型",
+    blurb:
+      "The route-support prototype, kept in the portfolio because it is the evidence for the turn. It looked extremely usable — which is exactly what made it dangerous.",
+    blurbZh:
+      "那版路线支持原型。它留在作品集里，因为它是那次转向的证据。它看起来非常实用——这正是它危险的地方。",
+    images: [
+      {
+        src: "/projects/gapmapper/01-route-options.png",
+        width: 3768,
+        height: 1650,
+        alt: "Five phone screens side by side: the same trip as five route options, each overlaying risk density, lighting, surveillance or open-business layers, with trip duration marked",
+        altZh: "五个手机界面并排：同一趟行程的五种路线方案，分别叠加风险密度、路灯、监控与营业店铺图层，各自标出行程时长",
+        caption:
+          "The version I built: one trip, scored and ranked by different cues. A system that recommends a safer route without being able to guarantee safety has acquired an authority it never earned.",
+        captionZh:
+          "我建的那一版：同一趟行程按不同线索评分排序。一个建议「更安全路线」却保证不了安全的系统，获得了一种自己没有挣来的权威。",
+      },
+      {
+        src: "/projects/gapmapper/02-heads-up.png",
+        width: 1860,
+        height: 2320,
+        alt: "A hazard heads-up screen from the same prototype",
+        altZh: "同一版原型里的危险提示界面",
+        caption:
+          "The critique was not a list of features to fix. Painting safety as binary makes 'here is safe, there is not' something the interface says out loud — and the first thing I changed afterwards was not a screen, it was the reader.",
+        captionZh:
+          "评图给的不是一份待修的功能清单。把安全画成二元，会让「这里安全、那里不安全」变成界面亲口说出的判断——而我之后改的第一件事不是界面，是读者。",
+      },
+    ],
+  },
+  rules: {
+    label: "Both briefs, side by side",
+    labelZh: "两份作业并排",
+    blurb:
+      "One turns 'safety' into routing weights, warning distances and tap sizes. The other turns a peer-reviewed paper into trigger conditions, copy templates and a checklist. Same move, twice.",
+    blurbZh:
+      "一份把「安全」变成路线权重、提示距离和点击区尺寸；另一份把一篇同行评审论文变成触发条件、文案模板和自查清单。同一个动作，做了两遍。",
+    images: [
+      {
+        src: "/projects/rules/01-fietspad-ui.png",
+        width: 2093,
+        height: 1361,
+        alt: "Three dark-theme phone screens: a home screen with mode selection and recent routes, a planning screen with a rider profile, and a riding screen with a left-hook warning and hazard list",
+        altZh: "三张深色主题的手机界面：模式选择与最近路线的首页、含骑行档案的规划页、以及骑行中的左勾弯风险提示与危险清单",
+        caption:
+          "Fietspad is Dutch for bike path, and the hazard categories are cycling-specific too: left hook, dooring zone, shared lane. The hazard list carries an audio toggle, because a rider cannot look at a screen.",
+        captionZh:
+          "产品名 Fietspad 是荷兰语的「自行车道」。危险分类也是自行车专用的：左勾弯、开门区、共享道。清单上带音频开关，因为人在骑车时看不了屏。",
+      },
+      {
+        src: "/projects/rules/02-guide-frames.jpg",
+        width: 8297,
+        height: 2306,
+        alt: "Eight phone-shaped guide panels in a row: failure symptoms, impact, do and do-not, trigger thresholds, copy templates, before and after, a self-check list, and closing actions",
+        altZh: "八格手机样式的图文指南横排：从失效现象、影响、该做与不该做、触发阈值、文案模板、效果对比、自查清单到收尾行动",
+        caption:
+          "Three failure causes became three independent triggers rather than one generic warning, each with its own copy in a fixed format: symptom, then one action, verb first.",
+        captionZh:
+          "三种失效成因变成三条独立触发条件，而不是一句通用警告；各配各的文案，格式固定为「现象 → 一个动作」，动词开头。",
+      },
+    ],
+  },
 };
 
 interface CaseDemo {
@@ -325,6 +435,22 @@ const CASE_DEMO: Partial<Record<Slug, CaseDemo>> = {
     action: "Load the playable build",
     actionZh: "载入可玩版本",
   },
+  pricewise: {
+    src: "https://pricewise-lewisdong.vercel.app",
+    poster: "/projects/pricewise/01-home.png",
+    title: "PriceWise, live",
+    titleZh: "PriceWise 线上版本",
+    posterAlt: "The PriceWise home screen; click to open the live app in the page",
+    posterAltZh: "PriceWise 首页，点击即可在页面里打开线上版本",
+    label: "Open the live app",
+    labelZh: "打开线上版本",
+    blurb:
+      "The deployed build, in the page. Browse the 65-product catalogue and compare across the three chains without signing in. Prices come from simulated data, and the database has no registered users.",
+    blurbZh:
+      "线上版本，直接嵌在页面里。不登录也能浏览 65 件商品并做三家比价。价格是拟真数据，数据库里没有注册用户。",
+    action: "Load the live app",
+    actionZh: "载入线上版本",
+  },
 };
 
 const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
@@ -338,6 +464,14 @@ const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   maze: [],
   vigil: [],
   hoop: [],
+  pricewise: [
+    { label: "Open the live app", href: "https://pricewise-lewisdong.vercel.app", external: true },
+  ],
+  // No public artefact for either. Both are coursework: the reports and Figma
+  // files are not mine alone to publish, and the same reasoning as UQ Connect
+  // applies to the course repositories.
+  gapmapper: [],
+  rules: [],
 };
 
 export function generateStaticParams() {
@@ -373,6 +507,9 @@ function CoverViz({ slug, locale }: { slug: Slug; locale: ProofLocale }) {
   if (slug === "vigil") return <VizVigil locale={locale} />;
   if (slug === "hoop") return <VizHoop locale={locale} />;
   if (slug === "connect") return <VizConnect locale={locale} />;
+  if (slug === "pricewise") return <VizPricewise locale={locale} />;
+  if (slug === "gapmapper") return <VizGapmapper locale={locale} />;
+  if (slug === "rules") return <VizRules locale={locale} />;
   return <VizSpectra locale={locale} />;
 }
 

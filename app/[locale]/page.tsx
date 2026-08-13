@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
+import { FeaturedDeck } from "@/components/home/FeaturedDeck";
 import {
   VizConnect,
   VizSpectra,
   VizMaze,
   VizVigil,
   VizHoop,
+  VizPricewise,
+  VizGapmapper,
+  VizRules,
 } from "@/components/viz/ProjectViz";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -34,7 +38,15 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ProjKey = "connect" | "spectra" | "maze" | "vigil" | "hoop";
+type ProjKey =
+  | "connect"
+  | "spectra"
+  | "maze"
+  | "vigil"
+  | "hoop"
+  | "pricewise"
+  | "gapmapper"
+  | "rules";
 
 interface FeatItemProps {
   n: string;
@@ -214,17 +226,37 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        <div className="feat-list">
-          {/* MazeRunners leads: it is the only case backed by a working physical
-              build, so it differentiates hardest against screen-only portfolios.
-              Vigil follows because it is the strongest evidence for the AI half
-              of the positioning. */}
-          <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze locale={proofLocale} />} />
-          <FeatItem n="02" k="vigil" href="/projects/vigil" flip t={t} viz={<VizVigil locale={proofLocale} />} />
-          <FeatItem n="03" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop locale={proofLocale} />} />
-          <FeatItem n="04" k="connect" href="/projects/connect" flip t={t} viz={<VizConnect locale={proofLocale} />} />
-          <FeatItem n="05" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra locale={proofLocale} />} />
-        </div>
+        {/* One case at a time, not eight stacked. The stack this replaces ran
+            4,560px of identical blocks — giving everything equal weight is the
+            same as featuring nothing.
+
+            The first six run in the same order as the portfolio PDF, so a
+            recruiter holding both sees one sequence rather than two. That still
+            puts MazeRunners first: it is the only case backed by a working
+            physical build, so it differentiates hardest against screen-only
+            portfolios. Vigil and Spectra Lens are not in the PDF at all, so
+            they follow the six rather than interleaving.
+
+            Every case is still rendered. FeaturedDeck hides the inactive ones
+            visually but leaves them in the served HTML, so a crawler still gets
+            all eight. */}
+        <FeaturedDeck
+          labels={{
+            prev: t("feat.deckPrev"),
+            next: t("feat.deckNext"),
+            kbd: t("feat.deckKbd"),
+          }}
+          items={[
+            { key: "maze", n: "01", node: <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze locale={proofLocale} />} /> },
+            { key: "gapmapper", n: "02", node: <FeatItem n="02" k="gapmapper" href="/projects/gapmapper" flip t={t} viz={<VizGapmapper locale={proofLocale} />} /> },
+            { key: "connect", n: "03", node: <FeatItem n="03" k="connect" href="/projects/connect" t={t} viz={<VizConnect locale={proofLocale} />} /> },
+            { key: "pricewise", n: "04", node: <FeatItem n="04" k="pricewise" href="/projects/pricewise" flip t={t} viz={<VizPricewise locale={proofLocale} />} /> },
+            { key: "hoop", n: "05", node: <FeatItem n="05" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop locale={proofLocale} />} /> },
+            { key: "rules", n: "06", node: <FeatItem n="06" k="rules" href="/projects/rules" flip t={t} viz={<VizRules locale={proofLocale} />} /> },
+            { key: "vigil", n: "07", node: <FeatItem n="07" k="vigil" href="/projects/vigil" t={t} viz={<VizVigil locale={proofLocale} />} /> },
+            { key: "spectra", n: "08", node: <FeatItem n="08" k="spectra" href="/projects/spectra" flip t={t} viz={<VizSpectra locale={proofLocale} />} /> },
+          ]}
+        />
       </section>
 
       {latestPosts.length > 0 && (

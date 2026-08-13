@@ -87,6 +87,42 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         "A playable ten-chapter career sim running publicly, on a pipeline where every asset batch is reviewed against the same written rules. Self-labelled DEMO v0.6; no player research yet.",
       next: "I would put it in front of players who do not already follow basketball, and watch where the systems stop explaining themselves.",
     },
+      pricewise: {
+        challenge: "When an AI writes the code, a green build stops being evidence. The interface renders, types check, tests pass — and none of that tells you whether the feature actually runs.",
+        role: "Product direction, interaction design and technical direction; I wrote the specs, reviewed the code and verified the behaviour. Codex and Claude Code wrote the implementation",
+        methods: ["spec-first delivery", "live endpoint probing", "direct database inspection", "regression test authoring", "scope reduction"],
+        evidence: [
+          "109 API routes and 36 page routes in a deployed app, against 307 unit tests and 14 end-to-end cases",
+          "five defects that passed build, type-check and test — each found by calling the real endpoint, reading the response and querying the database directly",
+          "a 93-commit history where both the expansion and the retraction are legible: 5,884 lines of social features in a single commit on 1 March 2026, then cut",
+        ],
+        outcome: "A live grocery comparison app covering Coles, Woolworths and Aldi across 65 products, and a verification habit that separates 'looks finished' from 'actually runs' with scripts anyone can re-run.",
+        next: "I would put it in front of five people using their own receipts, and turn the manual verification into a build gate.",
+      },
+      gapmapper: {
+        challenge: "An interface that recommends a safer route claims an authority it has not earned. It cannot guarantee safety, and the better it looks, the more convincing that unearned promise becomes.",
+        role: "Team of six on a studio course; I built the first working prototype, then argued for abandoning the direction it represented",
+        methods: ["semi-structured interviews", "literature-checked assumptions", "critique-driven repositioning", "evidence-model design", "policy-constraint writing"],
+        evidence: [
+          "18 team interviews with six participants completing; I ran and coded numbers 10, 11 and 12",
+          "three interlocking deliverables — a report that sets the claim, a one-page brief that turns it into system requirements, and a prototype that walks those requirements through a planning flow",
+          "six deliberately slow screens, each passed through four questions: what it makes visible, what it hides, who it expects to act, and how much certainty it implies",
+        ],
+        outcome: "A planning proposal that treats feeling unsafe as a public-space problem rather than a personal-navigation one. Perception signals and objective indicators sit side by side and are never merged into a safety score.",
+        next: "A small pilot on two or three sites with a handful of rounded reports, then a review with campus safety staff to test whether Place Inspector explains its evidence.",
+      },
+      rules: {
+        challenge: "'Make cycling safer' and 'warn people in time' are sentences everyone agrees with and nobody can build to. Neither can be argued against, which is exactly what makes them useless as requirements.",
+        role: "Fietspad was a team project and I owned the interface work; the Quest 3 guide was individual and entirely mine",
+        methods: ["requirement-to-threshold translation", "design system specification", "AI usage auditing", "think-aloud walkthrough", "peer-reviewed source translation"],
+        evidence: [
+          "a route app where safety became routing weights, a 150–250 m warning lead and a 48 px minimum tap target",
+          "an AI usage register naming what each of four tools got wrong and how it was corrected, including deleting every figure that had no source",
+          "an eight-panel guide turning one 2025 peer-reviewed paper into three independent trigger conditions, each with its own copy template",
+        ],
+        outcome: "Two briefs, one move: force a soft requirement into a rule someone can build to and point at to say 'this one is wrong'. Being arguable is the precondition for being useful.",
+        next: "Neither is validated outside coursework — the cycling app needs real riding conditions, and the guide's effect figures come from the cited paper rather than from me.",
+      },
   },
   zh: {
     connect: {
@@ -147,6 +183,42 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         "一个公开可玩、十章生涯的模拟游戏，背后是一条「每批资产都按同一套成文规则审一遍」的管线。游戏自标 DEMO v0.6，还没有做过玩家研究。",
       next: "我会把它交给本来不看篮球的人玩，看这些系统在哪一步开始讲不清自己。",
     },
+      pricewise: {
+        challenge: "代码交给 AI 写之后，构建通过就不再是证据了。界面渲染出来了、类型检查零错误、测试全绿——这三件事没有一件能证明功能真的在跑。",
+        role: "产品方向、交互设计与技术方向；写规格、审代码、验行为。实现由 Codex 和 Claude Code 完成",
+        methods: ["规格先行", "打真实接口验行为", "直接查数据库", "补写回归测试", "范围收缩"],
+        evidence: [
+          "线上应用 109 条 API 路由、36 条页面路由，配 307 个单元测试与 14 个端到端用例",
+          "五处同时通过构建、类型检查和测试的缺陷——每一处都是打真实接口、读返回内容、直接查库才查出来的",
+          "九十三个提交的完整记录，膨胀和收缩都留在里面：2026 年 3 月 1 日单次提交 5884 行社交功能，随后砍掉",
+        ],
+        outcome: "一个线上公开可用的比价应用，覆盖 Coles、Woolworths、Aldi 三家共 65 件商品；以及一套把「看起来完成」和「真的能用」分开验的习惯，每个结论都留下可复现的脚本。",
+        next: "找五个人用他们自己的小票真的跑一次，并把这些手动验证接进构建流程，变成一道关卡。",
+      },
+      gapmapper: {
+        challenge: "一个建议「更安全路线」的界面，获得了一种自己没有挣来的权威。它保证不了安全，而它做得越像样，那个兑现不了的承诺就越有说服力。",
+        role: "六人小组的课程项目；第一个可用原型由我建，后来主张放弃这个方向的也是我",
+        methods: ["半结构式访谈", "拿文献检验假设", "评图驱动的方向转变", "证据模型设计", "把伦理立场写成系统要求"],
+        evidence: [
+          "团队 18 个访谈、6 人完成；第 10、11、12 个由我做并编码",
+          "三件互相咬合的交付物——报告定主张、一页 brief 把主张变成系统要求、原型把这些要求走成一条能通的规划流程",
+          "六屏刻意慢下来的界面，每一屏都过同样四个问题：让什么可见、把什么藏起来、期待谁去行动、暗示了多高的确定性",
+        ],
+        outcome: "一份把「感觉不安全」当作公共空间问题、而不是个人出行问题来处理的规划提案。感知信号和客观指标在屏幕上始终并排，从不合成一个安全分数。",
+        next: "先挑两三个地点、用一小批取整过的上报跑个小试点，再找校园安全人员开一次评审，看 Place Inspector 有没有把证据讲清楚。",
+      },
+      rules: {
+        challenge: "「让骑车更安全」「预警有效」这类话，写在文档里谁都同意，但没有一句拿得去施工，也没有一句能被反驳——而这正是它们作为要求毫无用处的原因。",
+        role: "Fietspad 是团队项目，界面部分由我负责；Quest 3 指南是个人作业，全部内容由我完成",
+        methods: ["把要求逼成阈值", "设计系统规格", "AI 使用标注册", "出声思考走查", "把同行评审论文翻译成规范"],
+        evidence: [
+          "一个路线 App，「安全」在里面变成了路线权重、150–250 m 的提示提前量和 48px 的点击区下限",
+          "一份 AI 使用标注册，逐个说明四个工具各自出了什么问题、怎么修的——其中一条是删掉所有没有出处的数字",
+          "一份八格图文指南，把一篇 2025 年的同行评审论文变成三条独立触发条件，各配各的文案模板",
+        ],
+        outcome: "两份作业做的是同一个动作：把一句软要求逼成一条能照着施工、也能被人指着说「这条不对」的规则。能被反驳，是它有用的前提。",
+        next: "两份都还没在课程之外验证过——骑行 App 需要真实骑行环境，指南里的效果数字出自所引论文而不是我的实验。",
+      },
   },
 };
 
@@ -742,6 +814,351 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "This case proves I can run generative production at a volume that would otherwise be incoherent — by writing the rules first, gating on them, and naming what gets rejected — while keeping a systems-heavy build correct under 1,975 tests.",
     },
+      pricewise: {
+        decisions: [
+          {
+            label: "Treat a green build as a claim, not as evidence",
+            choice:
+              "Every feature was re-verified by calling the deployed endpoint, reading the actual response body, and querying the database directly — not by reading the code that was supposed to implement it.",
+            evidence:
+              "Five defects passed build, type-check and the full test suite. Semantic search never used a vector; template lists were created empty; cron auth compared against the string 'Bearer undefined'; six declared tables were never created in the database.",
+            tradeoff:
+              "It is slow, manual, and it finds nothing most of the time — the cost is paid on every feature, and the payoff is concentrated in a few.",
+            impact:
+              "All five defects shared one property: they did not throw. What was broken was whether the feature executed at all, and no automatic gate was watching for that.",
+          },
+          {
+            label: "Let the vector defect stand as my own mistake",
+            choice:
+              "One of the five was introduced by me while fixing something else: adding a missing field serialized a 1,536-dimension vector into the API response, pushing three search results to 89 KB.",
+            evidence:
+              "It was found the same way as the other four — by calling the real endpoint and reading what came back, not by reviewing the diff.",
+            tradeoff:
+              "Naming it as mine makes the case less flattering, and it is the one defect I could have quietly folded into the others.",
+            impact:
+              "It is the strongest evidence for the method, because it shows the check catching its own author rather than only catching the AI.",
+          },
+          {
+            label: "Stop at 5,884 lines rather than at the end of the feature list",
+            choice:
+              "On 1 March 2026 a single commit added 5,884 lines of social features — friends, DMs, feeds, polls, reports, household groups, challenges. On 2 March I stopped, and the code came out afterwards.",
+            evidence:
+              "The feature list was AI-generated planning, derived from what a complete product ought to have rather than from what anyone asked for. Phases 2 through 6 all landed within two days, 9–10 January 2026.",
+            tradeoff:
+              "The judgement — a comparison app on simulated data with no real users does not deserve to keep expanding — was correct, and it arrived 5,884 lines too late.",
+            impact:
+              "The v1 namespace went from 24 routes to 5. Five models including Friendship, Challenge and Household are deliberately still in the schema: they are the most direct evidence of the retraction.",
+          },
+          {
+            label: "Leave one known mismatch unfixed, and lock it into a test",
+            choice:
+              "Receipt matching went from 15 of 20 constructed inputs to 19, but 'MLK FC 2L' moved from no-match to matching Oat Milk. That is worse, and it was left as-is.",
+            evidence:
+              "A no-match lands in the unmatched list where the user can see it. A wrong match sends a wrong price silently into the comparison result, and the user never finds out.",
+            tradeoff:
+              "The fix would be an abbreviation dictionary — an endless maintenance list — or admitting two-letter tokens, which reinstates the mis-matches just suppressed.",
+            impact:
+              "The correct handling is to return it to no-match, which is a confidence-threshold problem rather than an abbreviation problem. The known mismatch is locked into a test so that a change to it cannot go unnoticed.",
+          },
+        ],
+        evidence: [
+          {
+            method: "Live endpoint probing against the deployed app",
+            sample: "109 API routes and 36 page routes; five features probed end to end",
+            question: "Does the feature execute, or does it only render?",
+            finding:
+              "Semantic search silently fell back to keyword matching on every query — the product object dropped its vector field at the data-mapping layer. Keyword matching also returns results, so nothing looked wrong.",
+            implication:
+              "'Renders correctly' and 'executes correctly' are different claims, and only one of them has automatic gates behind it.",
+          },
+          {
+            method: "Regression testing the module the product depends on",
+            sample: "The receipt-name matcher: 175 lines written in the second commit and never modified since, with 13 tests using 'milk', 'eggs', 'sourdough bread'",
+            question: "Was the core module tested against inputs that look like the real thing?",
+            finding:
+              "Not one of the 13 test inputs resembled printed receipt text. 'W/MEAL BREAD' matched white bread because normalisation turned the truncation slash into a space; 'MLK FC 2L' and 'CHK BRST FIL' matched nothing, because vowel-stripped abbreviations are subsequences of their targets.",
+            implication:
+              "The fix only adds points and never subtracts: the four existing scoring rules were left untouched, so previously-correct inputs cannot regress. Confirmed — all 15 originally-correct inputs held.",
+          },
+          {
+            method: "Direct database inspection",
+            sample: "The full schema against the live Postgres instance",
+            question: "Do the declared tables exist?",
+            finding: "Six did not. Nothing read or wrote them, so the 'relation does not exist' error had never been triggered.",
+            implication:
+              "A schema is a declaration of intent. Whether it matches the database is a separate question, and no part of the build was asking it.",
+          },
+        ],
+        iterations: [
+          {
+            version: "Scaffold to feature-complete",
+            change: "Phases 2 through 6 — budgets, deals, recipes, store location, collaboration, sharing, price alerts, bilingual UI, spending trends, AI suggestions, list templates, command palette, help centre — all pushed across 9–10 January 2026.",
+            reason: "The plan came from an AI-generated definition of a complete product rather than from a user need.",
+            improvement: "It produced a large, coherent-looking surface, and that appearance is what the rest of the case is about.",
+          },
+          {
+            version: "Retraction",
+            change: "Stopped on 2 March 2026 and left it untouched for five months. The first commit on returning was labelled as a restore point for half-finished features.",
+            reason: "A comparison app built on simulated data with no real users is not worth expanding further.",
+            improvement: "24 v1 routes became 5. The orphaned models were kept on purpose as evidence of what was cut.",
+          },
+          {
+            version: "Verification pass",
+            change: "Went feature by feature calling live endpoints, reading responses and querying the database; wrote regression tests for the matcher.",
+            reason: "Nothing in the build was checking whether features executed, only whether they compiled and rendered.",
+            improvement: "Five defects found, four fixed, one deliberately left with its failure documented and pinned by a test. 311 tests green.",
+          },
+        ],
+        limits: [
+          {
+            constraint: "Zero registered users. Every verification ran on data I created.",
+            whyItMatters:
+              "The case proves a verification method, not that the product is useful. What a crumpled receipt does to recognition accuracy is unknown to me.",
+            nextValidation: "Five people, their own receipts, and a record of how recognition fails rather than how often.",
+          },
+          {
+            constraint: "The verification is manual and lives in my hands.",
+            whyItMatters:
+              "A check that depends on someone remembering to run it is not a gate. The five defects existed precisely because no automatic check was asking whether features executed.",
+            nextValidation: "Wire the endpoint probes into the build pipeline so that 'does it actually run' fails CI rather than waiting for a person.",
+          },
+          {
+            constraint: "The catalogue is 65 products across three chains, priced from simulated data.",
+            whyItMatters: "Prices shown in the case are demo data, not anyone's real bill, and the comparison logic has never met real pricing volatility.",
+            nextValidation: "A live pricing source for a small product set, and a check on how stale a price can get before the comparison misleads.",
+          },
+        ],
+        takeaway:
+          "This case proves I can separate 'looks finished' from 'actually runs' on a codebase an AI wrote, and leave behind scripts that let someone else reach the same conclusions. The judgement I contributed was not what to build — it was how to confirm it is real.",
+      },
+      gapmapper: {
+        decisions: [
+          {
+            label: "Build the route prototype, then argue against shipping the idea",
+            choice:
+              "The team had nothing demonstrable and I was the one who could turn discussion into code, so I built the first route-support prototype — then argued the direction should be abandoned.",
+            evidence:
+              "Once it was on screen the problem was on screen with it: a system that recommends a safer route without being able to guarantee safety has acquired an authority it never earned.",
+            tradeoff:
+              "It meant giving up the more obvious, better-demoing product concept in favour of something quieter with clearer boundaries.",
+            impact:
+              "The early prototype stays in the portfolio precisely because it is unfinished and unlovely. Without it the final direction looks like it appeared from nowhere; next to it, the learning is visible.",
+          },
+          {
+            label: "Change the reader before changing the interface",
+            choice:
+              "After critique the first thing I changed was not a screen. The audience moved from a pedestrian who is nervous right now to councils, city planners and campus safety teams.",
+            evidence:
+              "Critique named two design problems, not feature gaps: painting safety as binary makes 'here is safe, there is not' something the interface says out loud, and a women's-safety project risks once again asking women to modify their behaviour instead of questioning the environment.",
+            tradeoff:
+              "The new audience is institutional and slow, and the product loses the immediacy that made it demo well.",
+            impact:
+              "Output changed with it: no longer telling anyone which way to walk, but showing where perception and objective indicators fail to agree — and promising that nowhere is safe.",
+          },
+          {
+            label: "Keep the two kinds of evidence side by side, never merged",
+            choice:
+              "Objective indicators — lighting, transit access, incident context, sightlines, open businesses, street condition — sit next to perception signals, and the gap between them is displayed as a reason to look, not as proof of danger.",
+            evidence:
+              "Literature disagreed with my starting assumption that streetlights are a usable safety variable. Visibility, enclosure, nearby activity, social cues and time all change how the same light is read; a lit street that is empty and hard to leave still feels wrong.",
+            tradeoff: "Keeping them apart makes the result less dramatic and harder to summarise.",
+            impact:
+              "Merging them into one score would delete the uncertainty and make the screen look more confident than it has any right to be. Separate, someone can ask why a place was flagged instead of being told it is unsafe.",
+          },
+          {
+            label: "Write the ethics into the brief as system requirements",
+            choice:
+              "The one-page brief states them as constraints: reports are anonymous, location is rounded to a street segment, confidence level and bias notes must be displayed, and no public safety score is produced.",
+            evidence:
+              "An interviewee was wary of routing by crime history because bias can already be inside the crime data before an algorithm touches it. I had initially mis-read her point and went back to the notes after a teammate challenged my reading.",
+            tradeoff:
+              "The brief was the hardest of the three deliverables to write, because it stops an ethical position from being a sentence in a report.",
+            impact:
+              "Once 'no safety score' is a system requirement it is no longer an attitude, it is a constraint — and someone building the thing has to satisfy it.",
+          },
+        ],
+        evidence: [
+          {
+            method: "Semi-structured interviews, coded",
+            sample: "18 across the team with six participants completing; I ran numbers 10, 11 and 12",
+            question: "What cues do people actually use to judge whether a place is safe to walk?",
+            finding:
+              "Three consecutive interviews did not converge on a clean pattern. Cues ranged over visibility, main roads, transit stops, bike coverage, streetlights, businesses still open, location sharing and live foot traffic — with crime history explicitly distrusted by more than one participant.",
+            implication:
+              "Non-convergence is the finding. If no single objective indicator explains a place, indicators and perception cannot be blended into one safety score.",
+          },
+          {
+            method: "Assumption tested against literature",
+            sample: "The streetlight assumption: more light means safer",
+            question: "Is lighting usable as a direct safety variable?",
+            finding: "No. Visibility, enclosure, surrounding activity, social cues and time of day all change how one light is interpreted.",
+            implication:
+              "This decided every structure downstream, and it moved the interviews from survey results to perception cues — a sample this size cannot support any score.",
+          },
+          {
+            method: "Screen-level ethics review",
+            sample: "Six screens: Place Inspector, Field Reports, Data Sources, Intervention Planner, Ethics Boundary, Export Brief",
+            question: "What does each screen make visible, hide, expect someone to act on, and imply about certainty?",
+            finding:
+              "Place Inspector was the load-bearing one. A red or orange marker on a real street starts to read as a verdict even when the evidence behind it is thin, so it shows confidence level, source status, report context, and what the data still cannot prove.",
+            implication: "The map is only the entry point. The screens that carry the argument are the slow ones.",
+          },
+        ],
+        iterations: [
+          {
+            version: "Route-support prototype",
+            change: "The same trip scored and ranked by different cues, with risk density, lighting, surveillance and open-business layers.",
+            reason: "The team needed something demonstrable and I could build it.",
+            improvement: "It looked extremely usable, which is exactly what made it dangerous — it made an unsolved problem look solved.",
+          },
+          {
+            version: "Repositioning after critique",
+            change: "New reader, new output, new claim: support the discussion of what to investigate next, promise no location is safe.",
+            reason: "Critique identified binary safety and misplaced responsibility as design problems, not feature gaps.",
+            improvement: "The claim moved from 'help one person walk home safely' to 'help an institution see where its own evidence is incomplete'.",
+          },
+          {
+            version: "Three interlocking deliverables",
+            change: "A final report that sets the claim, a one-page brief that turns it into system requirements, and a prototype that walks those requirements through a planning flow.",
+            reason: "A prototype alone leaves the claim floating; a report alone leaves it unimplemented.",
+            improvement: "Report to brief to prototype means the ethical position ends up as something a builder must satisfy.",
+          },
+        ],
+        limits: [
+          {
+            constraint: "Never tested with real planning staff, and parts of the data layer are an intended integration rather than a live pipeline.",
+            whyItMatters:
+              "The case claims a design direction that can be challenged, not a working public system. Formal data-sharing agreements, minimum reporting thresholds, stronger bias detection and stakeholder onboarding are all missing.",
+            nextValidation:
+              "A pilot on two or three sites in Brisbane with a small batch of rounded reports, then a review with campus safety staff or council-facing reviewers.",
+          },
+          {
+            constraint: "Six completed interviews cannot support a rate, a ranking, or a score.",
+            whyItMatters: "This is why the interviews are used as perception cues rather than as survey results anywhere in the work.",
+            nextValidation: "Test the reporting question wording only after the gap categories survive messier evidence — the order matters.",
+          },
+          {
+            constraint: "The final proposal does not fully answer the critique it responded to.",
+            whyItMatters:
+              "Reframing what a system claims is not the same as solving the underlying problem of who is being asked to change their behaviour.",
+            nextValidation: "Put the proposal in front of the same reviewer and ask whether the shift in claim is enough, or only more careful.",
+          },
+        ],
+        takeaway:
+          "This case proves I will kill my own working prototype when it makes a promise the evidence cannot support, and that I can turn the resulting ethical position into system requirements rather than leaving it as a paragraph. Sometimes the better design decision is to stop yourself from claiming so much.",
+      },
+      rules: {
+        decisions: [
+          {
+            label: "Force 'safer' into numbers before designing anything",
+            choice:
+              "Safety became routing weights that favour separated segments and quiet streets and down-weight paint-only lanes, a 150–250 m warning lead, and a 48 px minimum tap target.",
+            evidence:
+              "Bike lanes end abruptly and dump riders into traffic. The team named the phenomenon — the '25-metre bike lane' — and made it a term in the routing algorithm.",
+            tradeoff: "Committing to thresholds early means committing before there is evidence that these are the right numbers.",
+            impact: "A rule with a number in it can be executed and can be argued with. 'Make cycling safer' can be neither.",
+          },
+          {
+            label: "Write warnings as behaviour, not as direction",
+            choice:
+              "The left-hook warning tells the rider to take the lane and make eye contact with turning drivers, or take the alternate street — because that is the actual response, not 'turn left'.",
+            evidence:
+              "Hazard categories are cycling-specific: left hook, dooring zone, shared lane. Distances are given as distance, not as junction counts, because there is no stable 'next intersection' reference while riding.",
+            tradeoff: "Behavioural copy is longer than directional copy, and it has to be read or heard at speed.",
+            impact:
+              "The hazard list carries an audio toggle, because a rider cannot look at a screen. That is the same requirement — 150–250 m of lead time, delivered without taking the eyes.",
+          },
+          {
+            label: "Make the safe option carry its own cost, and refuse the superlative",
+            choice:
+              "The detour button states the extra minutes on the button itself, and 'keep current route' is an equal-weight primary action. The entry button reads 'See safer routes' — comparative, never superlative.",
+            evidence: "No data available supports the word 'safest'.",
+            tradeoff: "A comparative claim is weaker marketing and a less satisfying button.",
+            impact:
+              "The interface does not assume the safer route is the right route for this rider on this trip, and it does not claim a ranking it cannot defend.",
+          },
+          {
+            label: "Turn one paper into three triggers rather than one warning",
+            choice:
+              "The Quest 3 guide splits hand-tracking failure into three independent trigger conditions — low light, out of view, mutual occlusion — each with its own copy template, rather than merging them into a generic warning.",
+            evidence:
+              "A 2025 peer-reviewed paper showed that warning before tracking breaks is effective. Low light warns roughly three seconds ahead; out-of-view and occlusion trigger on risk thresholds, ignoring micro-jitter and applying a cooldown.",
+            tradeoff: "Three templates are more to maintain than one, and the causes can co-occur.",
+            impact:
+              "Copy is uniformly 'symptom then one action' — your hand is out of view, move it back — verb first, one thing to do. That format is what makes it buildable tomorrow.",
+          },
+        ],
+        evidence: [
+          {
+            method: "AI usage register, as required by the course",
+            sample: "Four tools with distinct roles: Otter for transcription, ChatGPT for grouping and drafts, Miro for concept maps and initial clustering, Figma Make for rapid prototypes",
+            question: "Where did AI help, where did it fail, and what was done about it?",
+            finding:
+              "Transcription dropped names and streets and merged speakers; generative drafts were confident and unsourced; Figma Make's layout fidelity drifted badly on small prompt changes; AI flattened contradictory tensions into single themes.",
+            implication:
+              "The corrections were concrete actions, not attitudes: a short style guide for names and suburbs, verification against official sources with every unsourced figure deleted, rebuilding every screen in Figma Design, and a separate table for edge cases — night-riding confidence, wet-weather risk, large e-bikes that do not fit narrow racks — which each became a specific feature.",
+          },
+          {
+            method: "Source-to-specification translation",
+            sample: "One 2025 peer-reviewed paper on pre-failure warnings for camera-based hand tracking",
+            question: "What in this paper can a designer act on tomorrow?",
+            finding:
+              "Three failure causes became three triggers with independent copy; the detection lead time became a per-cause threshold; the copy convention became 'symptom then one action'.",
+            implication:
+              "An eight-panel guide covering symptom, impact, do and do-not, thresholds, copy templates, before-and-after, a self-check list and closing actions.",
+          },
+          {
+            method: "Think-aloud walkthrough and a self-check list",
+            sample: "Six checklist items including the 48 px tap-target floor; the flow walked with think-aloud",
+            question: "Does the specification hold when someone walks the flow?",
+            finding: "It held at walkthrough level. The '6/6 pass' result is a self-check, not external validation.",
+            implication:
+              "This is the ceiling of what the evidence supports — a walkthrough is not a riding trial, and the case says so rather than letting 6/6 imply more.",
+          },
+        ],
+        iterations: [
+          {
+            version: "Soft requirement",
+            change: "'Make cycling safer' and 'warn people in time' as starting briefs.",
+            reason: "That is how the requirement arrives, and it is the form in which everyone agrees with it.",
+            improvement: "Neither could be built to, and neither could be argued against — which is the same problem stated twice.",
+          },
+          {
+            version: "Forced into thresholds",
+            change: "Metres of warning lead, which lane types get down-weighted, minimum tap size, and when not to warn at all.",
+            reason: "The real design work is the step that turns the sentence into a number.",
+            improvement: "The rules became executable and, more importantly, refutable — someone can point at one and say it is wrong.",
+          },
+          {
+            version: "Second brief, same move",
+            change: "A peer-reviewed paper turned into trigger conditions, copy templates and a self-check list.",
+            reason: "To test whether the move generalises beyond one project.",
+            improvement:
+              "It does. Both briefs prove the same capability: turn a soft requirement into a rule that can be argued with, and be explicit about where it stops holding.",
+          },
+        ],
+        limits: [
+          {
+            constraint: "The guide's effect figures are the cited paper's results, not mine.",
+            whyItMatters:
+              "Roughly 83% for out-of-view and 62% for mutual occlusion are experimental results I did not produce, and a reader could easily take them as evidence of my design working.",
+            nextValidation:
+              "A separate section already lists what the source study cannot support: three causes only, Quest 3 only, mostly right-handed young participants, short lab tasks.",
+          },
+          {
+            constraint: "Fietspad never shipped, and the route proportions in the proposal are demonstration figures.",
+            whyItMatters: "Routing weights that have never met a real street network are a design intention, not a measured result.",
+            nextValidation: "Ride the routes. The claims that survive real conditions are the ones worth keeping.",
+          },
+          {
+            constraint: "User testing reached think-aloud walkthrough and no further.",
+            whyItMatters: "A walkthrough catches comprehension problems; it does not catch what happens when someone is riding, tired, wet, or in traffic.",
+            nextValidation: "The audio warning in particular needs to be tested at speed, since it exists specifically because a rider cannot look at a screen.",
+          },
+        ],
+        takeaway:
+          "This case proves I can take a requirement everyone agrees with and force it into a rule someone can build to and argue with — and that I will state where the rule stops holding rather than letting a self-check imply external validation.",
+      },
   },
   zh: {
     connect: {
@@ -1249,6 +1666,322 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "这个案例证明我能在一个「本来一定会失控」的量级上跑生成式生产——靠先写规则、按规则设闸门、并且写清楚什么会被拒——同时让一个系统很重的实现在 1975 个测试下保持正确。",
     },
+      pricewise: {
+        decisions: [
+          {
+            label: "把构建通过当成一句待验证的话，不当成证据",
+            choice:
+              "每个功能都重新验一遍：打线上接口、读真实返回、直接查数据库。不看那段本该实现它的代码。",
+            evidence:
+              "五处缺陷同时通过了构建、类型检查和整套测试。语意搜索从来没用过向量；用模板建的清单永远是空的；定时任务鉴权比对的对象是字符串「Bearer undefined」；数据模型里声明的六张表，数据库里从来没建过。",
+            tradeoff: "慢、全靠手动，而且大部分时候什么也查不出来——成本每个功能都要付，收益集中在少数几个上。",
+            impact:
+              "五处的共同点是都不报错。坏掉的是「功能有没有真的执行」，而这件事没有任何一道自动关卡在看。",
+          },
+          {
+            label: "把向量那处算成我自己的错，写进案例",
+            choice:
+              "五处里有一处是我修别的东西时引入的：补上一个漏传的字段之后，一个 1536 维的向量跟着商品对象一路序列化进了接口返回，三条搜索结果把响应撑到 89 KB。",
+            evidence: "它是和另外四处一样被查出来的——打真实接口、读返回内容，不是靠审 diff。",
+            tradeoff: "写明它是我的，案例就没那么好看，而且这是唯一一处可以悄悄并进其他几条的。",
+            impact: "但它恰恰是这套方法最强的证据：这道检查连它自己的作者一起抓，而不只抓 AI。",
+          },
+          {
+            label: "停在 5884 行，而不是停在功能清单跑完",
+            choice:
+              "2026 年 3 月 1 日，单次提交 5884 行社交功能——好友、私信、动态、投票、举报、家庭群组、挑战赛。3 月 2 日停下，删除发生在这之后。",
+            evidence:
+              "功能清单是 AI 生成的规划，它不是从「用户要什么」推出来的，是从「一个完整的产品该有什么」推出来的。Phase 2 到 Phase 6 全部落在 2026 年 1 月 9 到 10 日这两天。",
+            tradeoff:
+              "「一个建在拟真数据上、没有真实用户的比价应用不值得继续扩张」——这个判断是对的，问题是它来得太晚，晚了 5884 行。",
+            impact:
+              "v1 路由从加入过的 24 条收到现存 5 条。Friendship、Challenge、Household 等五个数据模型刻意留在 schema 里，它们是这次收缩最直接的证据。",
+          },
+          {
+            label: "留一处已知的错配不修，并把它锁进测试",
+            choice:
+              "小票匹配从 20 条构造输入里对 15 条提到对 19 条，但「MLK FC 2L」从「匹配不到」变成了「配到 Oat Milk」。这是变糟，所以维持原样不动。",
+            evidence:
+              "匹配不到会进 unmatched 清单，用户看得见；配到错的商品，错价格会直接进比价结果，用户不会知道。",
+            tradeoff:
+              "要修就得加缩写词典——那会变成没完没了的维护清单；或者放开两字母 token——那会把刚压下去的误配放回来。",
+            impact:
+              "正确的处理是让它回到「匹配不到」，那是信心阈值的问题，不是缩写的问题。这个已知错配已经锁进测试，它变了要有人知道。",
+          },
+        ],
+        evidence: [
+          {
+            method: "对着线上应用打真实接口",
+            sample: "109 条 API 路由、36 条页面路由；五个功能端到端各打一遍",
+            question: "这个功能是真的在执行，还是只是渲染出来了？",
+            finding:
+              "语意搜索每一次查询都静默退回关键字匹配——商品对象在数据映射那层就把向量字段丢了。关键字匹配也能搜到东西，所以看不出任何异常。",
+            implication: "「渲染正确」和「执行正确」是两句不同的话，而只有其中一句背后有自动关卡。",
+          },
+          {
+            method: "给产品最依赖的那个模块补回归测试",
+            sample: "小票商品名匹配：第二个提交里一次写成 175 行、此后从未修改，配的 13 个测试输入是 milk、eggs、sourdough bread",
+            question: "这个核心模块，测过真实小票印出来的样子吗？",
+            finding:
+              "13 个输入没有一条像真实小票。「W/MEAL BREAD」配到了白吐司，因为正规化把截断标记的斜杠换成了空格；「MLK FC 2L」和「CHK BRST FIL」匹配不到，因为去掉元音的骨架缩写是目标词的子序列。",
+            implication:
+              "改法只加分不改分：既有四条计分规则一行没动，所以原本能配对的输入不可能倒退。实测确认，原本对的 15 条零退化。",
+          },
+          {
+            method: "直接查数据库",
+            sample: "拿整份 schema 对线上 Postgres 实例逐张核",
+            question: "声明过的表，数据库里真的有吗？",
+            finding: "六张没有。因为没有功能真的读写它们，「关系不存在」这个错从来没被触发过。",
+            implication: "schema 是一份意图声明。它和数据库对不对得上是另一个问题，而构建流程里没有任何一环在问它。",
+          },
+        ],
+        iterations: [
+          {
+            version: "从脚手架到功能齐全",
+            change:
+              "Phase 2 到 Phase 6——预算、优惠、食谱、门店定位、协作、社交分享、价格提醒、双语、消费趋势、AI 建议、清单模板、命令面板、帮助中心——全部推完，用了 2026 年 1 月 9 到 10 日两天。",
+            reason: "规划来自 AI 对「一个完整产品」的定义，不来自任何一个用户的需求。",
+            improvement: "它做出了一个很大、看起来也很自洽的表层——而这个「看起来」正是这个案例后面要讲的事。",
+          },
+          {
+            version: "收缩",
+            change: "2026 年 3 月 2 日停下，五个月没有碰。回来后第一句提交信息写的是「半成品功能，作为优化前的还原点」。",
+            reason: "一个建在拟真数据上、没有真实用户的比价应用，不值得继续扩张。",
+            improvement: "24 条 v1 路由收到 5 条。孤儿数据模型刻意留着，它们是「砍掉了什么」最直接的证据。",
+          },
+          {
+            version: "验证轮",
+            change: "逐个功能打线上接口、读返回、查数据库；给匹配器补写回归测试。",
+            reason: "构建流程里没有任何一环在问「功能有没有真的执行」，它只问了「能不能编译、渲不渲染得出来」。",
+            improvement: "查出五处，修掉四处，留一处并写明它怎么失效、拿测试钉住。测试共 311 个，全绿。",
+          },
+        ],
+        limits: [
+          {
+            constraint: "注册用户是 0。所有验证跑的都是我自己造的数据。",
+            whyItMatters: "这个案例证明的是一套验证方法，不是这个产品有用。普通人拍一张皱掉的小票，识别成功率是多少，我不知道。",
+            nextValidation: "找五个人，用他们自己的小票，记录识别是怎么失败的——不是失败率，是失败的样子。",
+          },
+          {
+            constraint: "这些验证是手动的，长在我手上。",
+            whyItMatters: "一道要靠人记得去跑的检查不算关卡。那五处缺陷之所以存在，正因为没有任何自动检查在问功能有没有执行。",
+            nextValidation: "把接口探测接进构建流程，让「有没有真的跑起来」直接把 CI 挂掉，而不是等一个人想起来。",
+          },
+          {
+            constraint: "商品库是三家超市 65 件商品，价格来自拟真数据。",
+            whyItMatters: "案例里出现的金额是演示数据，不是任何人的真实账单；比价逻辑也从没遇到过真实的价格波动。",
+            nextValidation: "接一个小范围的真实价格源，再查一件事：一个价格放多久之后，比价结果就开始误导人。",
+          },
+        ],
+        takeaway:
+          "这个案例证明：在一份 AI 写的代码上，我能把「看起来完成」和「真的能用」分开验，并且留下可复现的脚本，换一个人照着跑能得到同样的结论。我贡献的判断不是「写什么」，是「怎么确认它是真的」。",
+      },
+      gapmapper: {
+        decisions: [
+          {
+            label: "先把原型做出来，再主张放弃它代表的方向",
+            choice:
+              "团队当时没有能演示的东西，而我是能把讨论变成代码的那个，所以第一版路线支持原型由我建——然后由我主张这个方向该放弃。",
+            evidence:
+              "屏幕一亮起来，问题也跟着亮了：一个建议「更安全路线」却保证不了安全的系统，获得了一种自己没有挣来的权威。",
+            tradeoff: "这意味着放弃一个更明显、更好讲、演示效果更好的产品概念，换一个更安静但边界更清楚的方案。",
+            impact:
+              "那版早期原型留在作品集里，恰恰因为它没做完、也不好看。没有它，最终方向看起来像凭空出现；有它在旁边，那段学习才看得见。",
+          },
+          {
+            label: "先换读者，再改界面",
+            choice: "评图之后我改的第一件事不是界面，是读者：从街上那个此刻正紧张的行人，换成议会、城市规划者、校园安全团队。",
+            evidence:
+              "评图指出的是两个设计问题，不是功能缺口：把安全画成二元，会让「这里安全、那里不安全」变成界面亲口说出的判断；而一个女性安全项目，可能又一次在要求女性调整自己的行为，而不是去质问造成不安全的环境、系统和人。",
+            tradeoff: "新读者是机构，节奏慢，产品也失去了那种让它演示好看的即时感。",
+            impact:
+              "输出跟着变：不再告诉人走哪条，而是显示感知和客观指标对不上的地方——并且不承诺任何一处是安全的。",
+          },
+          {
+            label: "两类证据并排放，不合并",
+            choice:
+              "客观指标——照明、公交可达、事件背景、视野、还开着的店、街道状况——和感知信号并排，两者的落差被当成「需要去查一查的理由」显示，而不是「危险的证明」。",
+            evidence:
+              "我最初把路灯当成可以直接使用的安全变量：灯多则安全。文献不同意。能见度、围合感、周围有没有活动、社会线索、时间，都会改变一个人怎么解读同一盏灯；一条有灯的街，如果空、封闭、不好离开，照样让人不舒服。",
+            tradeoff: "分开放让结果不那么戏剧化，也更难一句话概括。",
+            impact:
+              "一旦揉成一个分数，不确定性就消失了，屏幕会显得比它应有的样子更自信。分开放，人可以追问「为什么这里被标出来」，而不是被告知「这里就是不安全」。",
+          },
+          {
+            label: "把伦理立场写成系统要求，放进 brief",
+            choice: "一页 brief 把它们写成约束：上报匿名、位置取整到街段、必须显示信心水平与偏差注记、不出公开的安全分数。",
+            evidence:
+              "一位受访者警惕按犯罪历史算路线，因为偏见可能在进入算法之前，就已经在犯罪数据里了。我一开始把她的意思读错了，是队友在群里质疑之后，我回去重看笔记才确认的。",
+            tradeoff: "这一页是三件交付物里最难写的，因为它让伦理立场没法停留在报告里的一句话。",
+            impact: "「不出安全分数」写进系统要求之后，它就不再是态度，是约束——做这个东西的人必须满足它。",
+          },
+        ],
+        evidence: [
+          {
+            method: "半结构式访谈并编码",
+            sample: "团队共 18 个、6 人完成；第 10、11、12 个由我做",
+            question: "人在判断一个地方能不能走的时候，实际依赖的是什么线索？",
+            finding:
+              "三个人挨着做，答案没有收敛成一个干净的模式：能见度、主干道、公交站、自行车道覆盖、路灯、还开着的店、位置共享、实时人流都被提到，而犯罪率历史被不止一个人明确表示不信。",
+            implication: "不收敛本身就是发现。既然单个客观指标都无法解释一个地方，指标和感知就不能被揉进同一个安全分数。",
+          },
+          {
+            method: "拿文献检验假设",
+            sample: "路灯假设：灯多则安全",
+            question: "照明能不能直接当作安全变量用？",
+            finding: "不能。能见度、围合感、周围有没有活动、社会线索、时间，都会改变同一盏灯被怎么解读。",
+            implication: "这条决定了后面所有结构，也让访谈从「调查结果」变成「感知线索」——这个样本量撑不起任何一个分数。",
+          },
+          {
+            method: "逐屏做伦理审视",
+            sample: "六屏：Place Inspector、Field Reports、Data Sources、Intervention Planner、Ethics Boundary、Export Brief",
+            question: "这一屏让什么可见、把什么藏起来、期待谁去行动、暗示了多高的确定性？",
+            finding:
+              "Place Inspector 是承重的那一屏。一个红色或橙色的标记落在真实街道上，会开始像一个判决，哪怕背后的证据其实很薄——所以它显示信心水平、来源状态、上报背景，以及这些数据还证明不了什么。",
+            implication: "地图只是入口。真正承担论证的是那几屏慢的。",
+          },
+        ],
+        iterations: [
+          {
+            version: "路线支持原型",
+            change: "同一趟行程按不同线索评分排序，叠加风险密度、路灯、监控与营业店铺图层。",
+            reason: "团队需要能演示的东西，而我能建。",
+            improvement: "它看起来非常实用——这正是它危险的地方，它让一个没解决的问题看上去像已经解决了。",
+          },
+          {
+            version: "评图之后转向",
+            change: "换读者、换输出、换主张：支持「接下来该查什么」的讨论，不承诺任何地方是安全的。",
+            reason: "评图指出的是把安全画成二元和责任错位，这是设计问题不是功能问题。",
+            improvement: "主张从「帮一个人安全地走夜路」，变成「让机构看见自己的证据在哪里不完整」。",
+          },
+          {
+            version: "三件互相咬合的交付物",
+            change: "最终报告定主张，一页 brief 把主张变成系统要求，原型把这些要求走成一条能通的规划流程。",
+            reason: "光有原型，主张会飘；光有报告，主张不落地。",
+            improvement: "报告到 brief 到原型这条链，让伦理立场最后变成了一个施工的人必须满足的东西。",
+          },
+        ],
+        limits: [
+          {
+            constraint: "没有经过真实规划人员测试，部分数据层是设想中的接入而非实时管线。",
+            whyItMatters:
+              "它能声称的是一个可以被挑战的设计方向，不是一个完成的公共系统。正式的数据共享协议、最小上报阈值、更强的偏差检测、干系人上手流程，都还缺。",
+            nextValidation: "挑两三个昆大或布里斯班市中心的地点做小试点，用一小批取整过的上报跑一遍，再找校园安全人员或面向议会的评审开一次评审会。",
+          },
+          {
+            constraint: "六个完成的访谈撑不起任何比例、排名或分数。",
+            whyItMatters: "这就是为什么整份工作里访谈只被当成感知线索用，从来没被当成调查结果。",
+            nextValidation: "先看落差分类在更乱的证据里还成不成立，再回头测上报的提问方式——顺序不能反。",
+          },
+          {
+            constraint: "最终提案没有完全回答它所回应的那条批评。",
+            whyItMatters: "改变一个系统声称什么，不等于解决了「究竟在要求谁改变行为」这个底层问题。",
+            nextValidation: "把提案交回同一位评审，问这次主张的转变够不够，还是只是更小心了。",
+          },
+        ],
+        takeaway:
+          "这个案例证明：当我自己做出来的原型给出了证据撑不起的承诺时，我会杀掉它；并且能把由此产生的伦理立场写成系统要求，而不是留成报告里的一段话。有时候更好的设计选择，是拦住自己别说那么多。",
+      },
+      rules: {
+        decisions: [
+          {
+            label: "先把「更安全」逼成数字，再开始设计",
+            choice: "安全变成了三样东西：优先分隔路段与安静街道、给只有一层油漆的车道降权的路线权重，150–250 m 的提示提前量，48px 的点击区下限。",
+            evidence: "自行车道会突然断掉，把人甩到主干道上。团队给这个现象起了名字——「25 米自行车道」——并把它变成路线算法里的一项。",
+            tradeoff: "这么早定阈值，等于在还没有证据说明这些数字对不对的时候就先认了。",
+            impact: "一条带数字的规则能被执行，也能被反驳。「让骑车更安全」两样都做不到。",
+          },
+          {
+            label: "提示写行为，不写方向",
+            choice: "左勾弯的提示写的是「占道，并与转弯车辆做眼神确认，或走 Fish Lane 绕行」——因为真实应对方式是占位加眼神，不是「左转」。",
+            evidence: "危险分类是自行车专用的：左勾弯、开门区、共享道。距离按距离给（200m / 450m / 1.2km），不按路口给，因为骑行中没有「下一个路口」这种稳定参照。",
+            tradeoff: "行为型文案比方向型长，而且得在速度中被读到或听到。",
+            impact: "所以危险清单带音频开关——人在骑车时看不了屏。这是同一条要求：150–250 m 的提前量，用不占视线的方式给出去。",
+          },
+          {
+            label: "让安全的那个选项自带代价，并且拒绝最高级",
+            choice:
+              "绕路按钮把多花的分钟数直接写在按钮上；「保持原路线」是平等的一级按钮。入口按钮写的是「See safer routes」——比较级，不是最高级。",
+            evidence: "没有任何数据能支撑「最安全」这三个字。",
+            tradeoff: "比较级作为宣传更弱，做成按钮也更不痛快。",
+            impact: "界面不假设更安全的那条就是这个人这趟该走的那条，也不声称一个它辩护不了的排名。",
+          },
+          {
+            label: "把一篇论文拆成三条触发条件，而不是一句通用警告",
+            choice: "Quest 3 指南把手部追踪失效拆成三条独立触发条件——低光、出视野、互遮——各配各的文案模板，不合并。",
+            evidence:
+              "一篇 2025 年的同行评审论文证明了「断之前给预警」有效。低光约提前 3 秒；出视野与互遮按风险阈值触发，忽略微抖动并加冷却。",
+            tradeoff: "三套模板比一套难维护，而且这几种成因可能同时发生。",
+            impact:
+              "文案统一写成「现象 → 一个动作」：手看不见了 → 把手移回视野。动词开头，只给一件事做。正是这个格式让它明天就能照着施工。",
+          },
+        ],
+        evidence: [
+          {
+            method: "课程要求的 AI 使用标注册",
+            sample: "四个工具各有分工：Otter 做转录、ChatGPT 归类与初稿、Miro 出概念图与初步聚类、Figma Make 出快速原型",
+            question: "AI 在哪里帮上了忙、在哪里出了问题、然后怎么修的？",
+            finding:
+              "转录漏人名街名、合并发言人；生成工具给出听起来笃定、实则无据的说法；Figma Make 的版面保真度不稳，小改提示词导致大幅偏移；AI 会把互相矛盾的张力并成一个主题。",
+            implication:
+              "修法是具体动作不是态度：建一份人名与郊区的简短风格指南；对照官方来源逐条核实，删掉所有没有出处的数字；每一屏在 Figma Design 重建；边缘案例单独列一张表——夜骑信心、雨天风险、大型电辅车停不进窄车架——它们后来各自变成了具体功能。",
+          },
+          {
+            method: "把文献翻译成规范",
+            sample: "一篇 2025 年关于摄像头手部追踪断线前预警的同行评审论文",
+            question: "这篇论文里有什么，是设计师明天就能照着做的？",
+            finding: "三种失效成因变成三条独立触发条件；检测的提前量变成各自的阈值；文案约定变成「现象 → 一个动作」。",
+            implication: "产出是一份八格图文指南：失效现象、影响、该做与不该做、触发阈值、文案模板、效果对比、自查清单、收尾行动。",
+          },
+          {
+            method: "出声思考走查加自查清单",
+            sample: "六条自查项，含 48px 点击区下限；流程用出声思考走了一遍",
+            question: "这份规格，在有人真的走一遍流程时立不立得住？",
+            finding: "走查这一层立得住。「6/6 通过」是自查清单，不是外部验证。",
+            implication: "这就是证据能撑到的上限——走查不是骑行实测，案例直接这么写，而不是让 6/6 去暗示更多。",
+          },
+        ],
+        iterations: [
+          {
+            version: "软要求",
+            change: "「让骑车更安全」「预警有效」，作业最初就是这两句话。",
+            reason: "要求本来就是以这个形态出现的，也正是这个形态让所有人都同意它。",
+            improvement: "两句都拿不去施工，也都没法被反驳——这其实是同一个问题说了两遍。",
+          },
+          {
+            version: "逼成阈值",
+            change: "多少米之前提示、哪一类车道要降权、点击区不小于多少、什么情况下不该提示。",
+            reason: "真正的设计工作发生在把句子变成数字的这一步。",
+            improvement: "规则变得既能执行，更要紧的是能被反驳——有人可以指着其中一条说「这条不对」。",
+          },
+          {
+            version: "第二份作业，同一个动作",
+            change: "把一篇同行评审论文变成触发条件、文案模板和自查清单。",
+            reason: "想验证这个动作能不能脱离单个项目。",
+            improvement:
+              "能。两份作业证明的是同一件事：把软要求逼成一条能被反驳的规则，并且说得清它在哪里失效。",
+          },
+        ],
+        limits: [
+          {
+            constraint: "指南里的效果数字是所引论文的实验结果，不是我的。",
+            whyItMatters: "出视野约 83%、互遮约 62%，这两个数不是我做出来的，读者很容易把它们当成我的设计有效的证据。",
+            nextValidation: "已另写一节列出原研究撑不起的部分：只覆盖三种成因、只在 Quest 3 上做、受试者以右利手年轻人为主、实验室短时任务。",
+          },
+          {
+            constraint: "Fietspad 没有上线，提案里的路线比例是演示数字。",
+            whyItMatters: "一套从未遇到真实路网的路线权重，是设计意图，不是测量结果。",
+            nextValidation: "去骑。能在真实条件下活下来的主张，才是值得留的那些。",
+          },
+          {
+            constraint: "用户测试只做到出声思考走查这一层。",
+            whyItMatters: "走查能抓到理解上的问题，抓不到一个人在骑行中、累了、下雨、车流里会发生什么。",
+            nextValidation: "音频提示尤其要在速度中测——它存在的理由本来就是「人在骑车时看不了屏」。",
+          },
+        ],
+        takeaway:
+          "这个案例证明：我能把一句所有人都同意的要求，逼成一条能照着施工、也能被指着说「这条不对」的规则；并且会写明它在哪里失效，而不是让一份自查清单去暗示外部验证。",
+      },
   },
 };
 
@@ -1341,6 +2074,57 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "Games, narrative systems, or any product where content volume is the design problem.",
       ],
     },
+      pricewise: {
+        proves:
+          "This case proves I can separate 'looks finished' from 'actually runs' on a codebase an AI wrote, and leave scripts behind that let someone else reach the same conclusions.",
+        inspect: [
+          "Why a green build, a clean type-check and a passing suite were treated as claims rather than as evidence.",
+          "Which of the five defects I introduced myself, and how it was found.",
+          "Why one known mismatch was deliberately left unfixed and pinned by a test.",
+        ],
+        questions: [
+          "The AI wrote the code. What was left for you to do?",
+          "You shipped 5,884 lines and then cut them. What would you do differently?",
+        ],
+        bestFit: [
+          "Teams shipping AI-written code who need someone asking whether it actually runs.",
+          "Product roles where scope discipline matters more than feature count.",
+        ],
+      },
+      gapmapper: {
+        proves:
+          "This case proves I will kill my own working prototype when it makes a promise the evidence cannot support, and turn the resulting position into system requirements rather than a paragraph.",
+        inspect: [
+          "Why the route prototype stays in the portfolio even though the direction was abandoned.",
+          "Why the reader changed before any screen did.",
+          "Why perception signals and objective indicators are never merged into one score.",
+        ],
+        questions: [
+          "You built it and then argued against it. Walk me through that call.",
+          "What did critique tell you that your own prototype could not?",
+        ],
+        bestFit: [
+          "Teams working on civic, safety or trust-and-safety products.",
+          "Roles where knowing what a system may not claim matters as much as what it does.",
+        ],
+      },
+      rules: {
+        proves:
+          "This case proves I can force a requirement everyone agrees with into a rule someone can build to and argue with, and state where that rule stops holding.",
+        inspect: [
+          "How 'safer' became routing weights, a 150–250 m warning lead and a 48 px tap-target floor.",
+          "Why warnings are written as behaviour rather than as direction.",
+          "Which figures come from the cited paper rather than from me, and where that is said.",
+        ],
+        questions: [
+          "How do you turn a soft requirement into something a team can build?",
+          "Where does your own specification stop being supported by evidence?",
+        ],
+        bestFit: [
+          "Teams that need specs precise enough to hand to engineering without a second conversation.",
+          "Design systems and standards work, where a rule has to survive being applied by other people.",
+        ],
+      },
   },
   zh: {
     connect: {
@@ -1428,6 +2212,57 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "游戏、叙事系统，或任何「内容体量本身就是设计问题」的产品。",
       ],
     },
+      pricewise: {
+        proves:
+          "这个案例证明：在一份 AI 写的代码上，我能把「看起来完成」和「真的能用」分开验，并且留下可复现的脚本，换一个人照着跑能得到同样的结论。",
+        inspect: [
+          "为什么构建通过、类型检查零错误、测试全绿被当成待验证的话，而不是证据。",
+          "五处缺陷里哪一处是我自己引入的，以及它是怎么被查出来的。",
+          "为什么有一处已知错配是刻意不修、并用测试钉住的。",
+        ],
+        questions: [
+          "代码是 AI 写的，那你做了什么？",
+          "推了 5884 行又砍掉，再来一次你会怎么做？",
+        ],
+        bestFit: [
+          "在用 AI 写代码、需要有人追问「它是不是真的在跑」的团队。",
+          "看重范围克制、而不是功能数量的产品岗。",
+        ],
+      },
+      gapmapper: {
+        proves:
+          "这个案例证明：当我自己做出来的原型给出了证据撑不起的承诺时，我会杀掉它；并且能把由此产生的立场写成系统要求，而不是留成报告里的一段话。",
+        inspect: [
+          "方向已经放弃了，为什么那版路线原型还留在作品集里。",
+          "为什么改的第一件事是读者，不是界面。",
+          "为什么感知信号和客观指标从不合成一个分数。",
+        ],
+        questions: [
+          "你把它做出来，又主张放弃它。说说这个决定。",
+          "评图告诉了你什么，是你自己的原型说不出来的？",
+        ],
+        bestFit: [
+          "做公共服务、安全类或信任与安全方向产品的团队。",
+          "「一个系统不能声称什么」和「它能做什么」同样要紧的岗位。",
+        ],
+      },
+      rules: {
+        proves:
+          "这个案例证明：我能把一句所有人都同意的要求，逼成一条能照着施工、也能被反驳的规则，并且说得清它在哪里失效。",
+        inspect: [
+          "「更安全」是怎么变成路线权重、150–250 m 提前量和 48px 点击区下限的。",
+          "为什么提示写的是行为，不是方向。",
+          "哪些数字出自所引论文而不是我的实验，以及这句话写在哪里。",
+        ],
+        questions: [
+          "一句软要求，你怎么把它变成团队能施工的东西？",
+          "你自己写的这份规格，在哪里就没有证据支撑了？",
+        ],
+        bestFit: [
+          "需要规格精确到可以直接交给工程、不用再谈一轮的团队。",
+          "设计系统与规范类工作——规则得经得起别人拿去用。",
+        ],
+      },
   },
 };
 
@@ -1610,6 +2445,57 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
     {
       question: "It says DEMO v0.6 and has no player research. What is it evidence of?",
       reason: "Keeps a large, polished build honest about what volume alone proves.",
+      anchorId: "outcome-limits",
+    },
+  ],
+  pricewise: [
+    {
+      question: "The build was green. What made you go looking anyway?",
+      reason: "Tests whether 'it compiles and renders' is treated as evidence or as a claim.",
+      anchorId: "decision-timeline",
+    },
+    {
+      question: "Which of the five defects was yours, and how did you find it?",
+      reason: "Checks whether the verification method catches its own author, not only the AI.",
+      anchorId: "evidence-board",
+    },
+    {
+      question: "You left one known mismatch unfixed. Defend that.",
+      reason: "Separates 'fixed the number' from 'understood which failure is worse for the user'.",
+      anchorId: "outcome-limits",
+    },
+  ],
+  gapmapper: [
+    {
+      question: "You built the prototype and then argued for dropping it. Why?",
+      reason: "Tests whether the candidate can retire their own work when the claim outruns the evidence.",
+      anchorId: "decision-timeline",
+    },
+    {
+      question: "Why are perception signals and objective indicators never merged?",
+      reason: "Gets at whether the evidence model was a design decision or a default.",
+      anchorId: "evidence-board",
+    },
+    {
+      question: "What does the final proposal still fail to answer?",
+      reason: "Checks whether the reframing is understood as a limit rather than as a solution.",
+      anchorId: "outcome-limits",
+    },
+  ],
+  rules: [
+    {
+      question: "How did 'make cycling safer' become something a team could build?",
+      reason: "Tests the core move: turning a soft requirement into a threshold that can be argued with.",
+      anchorId: "decision-timeline",
+    },
+    {
+      question: "Why is the button 'See safer routes' rather than 'safest'?",
+      reason: "Checks whether copy is treated as a claim about evidence.",
+      anchorId: "iteration-gallery",
+    },
+    {
+      question: "Which numbers in the guide are yours, and which are not?",
+      reason: "Separates translating a source faithfully from borrowing its authority.",
       anchorId: "outcome-limits",
     },
   ],

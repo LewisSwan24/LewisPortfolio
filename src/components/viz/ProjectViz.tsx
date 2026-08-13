@@ -1,4 +1,4 @@
-// These five SVGs carry real prose, not decoration, so they were the largest
+// These SVGs carry real prose, not decoration, so they were the largest
 // remaining block of English on the /zh routes. Each takes an optional locale
 // and defaults to "en", which keeps every existing call site unchanged.
 //
@@ -496,6 +496,299 @@ export function VizHoop({ locale = "en" }: VizProps) {
         </text>
         <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
           {zh ? "规则写在产量出现之前" : "the rules were written before the volume existed"}
+        </text>
+      </svg>
+    </div>
+  );
+}
+
+export function VizPricewise({ locale = "en" }: VizProps) {
+  // The case's argument in one image: three gates all say PASS, and five defects
+  // walk straight through them, because none of the three asks whether the
+  // feature executed. The five are the ones named in the case copy.
+  const zh = locale === "zh";
+  const gates = [
+    { label: zh ? "构建" : "BUILD", x: 150 },
+    { label: zh ? "类型" : "TYPES", x: 232 },
+    { label: zh ? "测试" : "TESTS", x: 314 },
+  ];
+  const defects = [
+    zh ? "语意搜索没用过向量" : "search never used a vector",
+    zh ? "模板建的清单是空的" : "template lists came out empty",
+    zh ? "鉴权比对 Bearer undefined" : "auth compared 'Bearer undefined'",
+    zh ? "六张表从没建过" : "six tables were never created",
+    zh ? "向量撑爆返回体积" : "a vector bloated the response",
+  ];
+
+  return (
+    <div className="viz viz-pricewise">
+      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="paper-p" width="40" height="40" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="520" height="400" fill="url(#paper-p)" opacity="0.5" />
+
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+          {zh ? "三道关卡 · 全部通过" : "THREE GATES · ALL GREEN"}
+        </text>
+
+        {/* The three gates, drawn as openings rather than barriers. */}
+        {gates.map((gate) => (
+          <g key={gate.label}>
+            <line x1={gate.x} y1="52" x2={gate.x} y2="228" stroke="#25231D" strokeWidth="1.2" />
+            <text
+              x={gate.x}
+              y="244"
+              fontFamily="var(--font-mono)"
+              fontSize="8.5"
+              textAnchor="middle"
+              fill="#25231D"
+            >
+              {gate.label}
+            </text>
+          </g>
+        ))}
+
+        {/* Five defects passing through every gate untouched. */}
+        {defects.map((defect, i) => {
+          const y = 70 + i * 31;
+          return (
+            <g key={defect}>
+              <text x="30" y={y + 4} fontFamily="var(--font-mono)" fontSize="8" fill="#756D61">
+                {String(i + 1).padStart(2, "0")}
+              </text>
+              <line x1="52" y1={y} x2="404" y2={y} stroke="#A63F2A" strokeWidth="1" opacity="0.55" />
+              <path d={`M 404 ${y} l -6 -3 l 0 6 z`} fill="#A63F2A" opacity="0.55" />
+              <text x="52" y={y - 6} fontFamily="var(--font-mono)" fontSize="8" fill="#A63F2A">
+                {defect}
+              </text>
+            </g>
+          );
+        })}
+
+        <text x="412" y="152" fontFamily="var(--font-display)" fontSize="40" fill="#25231D">
+          5
+        </text>
+        <text x="412" y="172" fontFamily="var(--font-mono)" fontSize="8.5" fill="#8B7355">
+          {zh ? "全过" : "GOT THROUGH"}
+        </text>
+
+        <text x="30" y="288" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
+          {zh
+            ? "查出它们靠的是：打真实接口 · 读返回内容 · 直接查数据库"
+            : "FOUND BY: CALLING THE REAL ENDPOINT · READING THE RESPONSE · QUERYING THE DB"}
+        </text>
+
+        <text
+          x="30"
+          y="336"
+          fontFamily="var(--font-display)"
+          fontStyle={displayStyle(locale)}
+          fontSize="22"
+          fill="#25231D"
+        >
+          {zh ? "渲染出来了，不等于跑起来了" : "renders correctly is not runs correctly"}
+        </text>
+        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          {zh ? "109 条 API 路由 · 36 条页面路由 · 311 个测试" : "109 API routes · 36 page routes · 311 tests"}
+        </text>
+        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          {zh ? "没有一道关卡在问「它有没有真的执行」" : "no gate was asking whether the feature executed"}
+        </text>
+      </svg>
+    </div>
+  );
+}
+
+export function VizGapmapper({ locale = "en" }: VizProps) {
+  // The core structure of the case: two columns of evidence that are never
+  // merged, and the distance between them read as a reason to investigate
+  // rather than as proof of danger.
+  const zh = locale === "zh";
+  const objective = zh
+    ? ["照明", "公交可达", "事件背景", "视野", "还开着的店", "街道状况"]
+    : ["LIGHTING", "TRANSIT", "INCIDENTS", "SIGHTLINES", "OPEN SHOPS", "STREET"];
+  const perceived = zh
+    ? ["绕开一侧走", "找还开着的店", "确认求助够近", "说不上来的不安"]
+    : ["CROSSED OVER", "SOUGHT AN OPEN SHOP", "CHECKED HELP WAS NEAR", "UNEASE WITH NO CAUSE"];
+
+  return (
+    <div className="viz viz-gapmapper">
+      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="paper-g" width="40" height="40" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="520" height="400" fill="url(#paper-g)" opacity="0.5" />
+
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+          {zh ? "两类证据 · 并排 · 不合并" : "TWO KINDS OF EVIDENCE · SIDE BY SIDE · NEVER MERGED"}
+        </text>
+
+        <text x="30" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="#25231D">
+          {zh ? "客观指标" : "OBJECTIVE"}
+        </text>
+        {objective.map((item, i) => (
+          <g key={item}>
+            <rect x="30" y={74 + i * 22} width="152" height="14" fill="#25231D" opacity="0.1" />
+            <text x="38" y={84 + i * 22} fontFamily="var(--font-mono)" fontSize="8" fill="#3A362D">
+              {item}
+            </text>
+          </g>
+        ))}
+
+        <text x="338" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="#A63F2A">
+          {zh ? "感知信号" : "PERCEIVED"}
+        </text>
+        {perceived.map((item, i) => (
+          <g key={item}>
+            <rect x="338" y={74 + i * 22} width="152" height="14" fill="#A63F2A" opacity="0.16" />
+            <text x="346" y={84 + i * 22} fontFamily="var(--font-mono)" fontSize="8" fill="#3A362D">
+              {item}
+            </text>
+          </g>
+        ))}
+
+        {/* The gap itself. Nothing bridges it — that is the whole point. */}
+        <line x1="206" y1="74" x2="206" y2="206" stroke="#25231D" strokeWidth="1" strokeDasharray="2 4" />
+        <line x1="314" y1="74" x2="314" y2="206" stroke="#A63F2A" strokeWidth="1" strokeDasharray="2 4" />
+        <text
+          x="260"
+          y="136"
+          fontFamily="var(--font-display)"
+          fontStyle={displayStyle(locale)}
+          fontSize="19"
+          textAnchor="middle"
+          fill="#25231D"
+        >
+          {zh ? "落差" : "the gap"}
+        </text>
+        <text x="260" y="158" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#8B7355">
+          {zh ? "去查一查的理由" : "A REASON TO LOOK"}
+        </text>
+        <text x="260" y="172" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#8B7355">
+          {zh ? "不是危险的证明" : "NOT PROOF OF DANGER"}
+        </text>
+
+        <text x="30" y="248" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
+          {zh
+            ? "写进系统要求：匿名上报 · 位置取整到街段 · 显示信心与偏差 · 不出安全分数"
+            : "AS REQUIREMENTS: ANONYMOUS · ROUNDED TO A STREET SEGMENT · CONFIDENCE SHOWN · NO SAFETY SCORE"}
+        </text>
+
+        <text
+          x="30"
+          y="300"
+          fontFamily="var(--font-display)"
+          fontStyle={displayStyle(locale)}
+          fontSize="22"
+          fill="#25231D"
+        >
+          {zh ? "一合并，不确定性就消失了" : "merge them and the uncertainty disappears"}
+        </text>
+        <text x="30" y="330" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          {zh
+            ? "18 个访谈 · 6 人完成 · 我做第 10、11、12 个"
+            : "18 interviews · six completed · numbers 10, 11 and 12 are mine"}
+        </text>
+        <text x="30" y="350" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          {zh ? "六个完成的访谈撑不起任何一个分数" : "six completed interviews cannot support any score"}
+        </text>
+        <text x="30" y="378" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#A63F2A">
+          {zh
+            ? "我建了那个路线原型，然后主张放弃它"
+            : "I built the route prototype, then argued for abandoning it"}
+        </text>
+      </svg>
+    </div>
+  );
+}
+
+export function VizRules({ locale = "en" }: VizProps) {
+  // One move, drawn twice: a sentence everybody agrees with on the left,
+  // the checkable numbers it was forced into on the right.
+  const zh = locale === "zh";
+  const rows = [
+    {
+      soft: zh ? "「提前警告」" : "'warn in time'",
+      hard: zh ? "150–250 m，走音频与触觉" : "150–250 m, audio and haptic",
+    },
+    {
+      soft: zh ? "「骑车时也点得到」" : "'usable while riding'",
+      hard: zh ? "点击区不小于 48px" : "tap targets at least 48 px",
+    },
+    {
+      soft: zh ? "「走更安全的路」" : "'take a safer route'",
+      hard: zh ? "分隔路段加权，油漆车道降权" : "separated up, paint-only down",
+    },
+    {
+      soft: zh ? "「追踪断之前提示」" : "'warn before tracking breaks'",
+      hard: zh ? "三条触发条件，各配文案" : "three triggers, one template each",
+    },
+  ];
+
+  return (
+    <div className="viz viz-rules">
+      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="paper-r" width="40" height="40" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="520" height="400" fill="url(#paper-r)" opacity="0.5" />
+
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+          {zh ? "谁都同意的一句话 → 能被反驳的一条规则" : "A SENTENCE ANYONE AGREES WITH → A RULE ANYONE CAN REFUTE"}
+        </text>
+
+        <text x="30" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="#8B7355">
+          {zh ? "软要求" : "SOFT"}
+        </text>
+        <text x="266" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="#A63F2A">
+          {zh ? "能施工、也能被指着说不对" : "BUILDABLE, AND ARGUABLE"}
+        </text>
+
+        {rows.map((row, i) => {
+          const y = 92 + i * 40;
+          return (
+            <g key={row.soft}>
+              <text x="30" y={y} fontFamily="var(--font-mono)" fontSize="8.5" fill="#756D61">
+                {row.soft}
+              </text>
+              <line x1="212" y1={y - 4} x2="256" y2={y - 4} stroke="#25231D" strokeWidth="1" />
+              <path d={`M 256 ${y - 4} l -6 -3 l 0 6 z`} fill="#25231D" />
+              <text x="266" y={y} fontFamily="var(--font-mono)" fontSize="8.5" fill="#3A362D">
+                {row.hard}
+              </text>
+              <line x1="30" y1={y + 14} x2="490" y2={y + 14} stroke="#C9BEA2" strokeWidth="0.5" />
+            </g>
+          );
+        })}
+
+        <text x="30" y="278" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
+          {zh
+            ? "按钮写「See safer routes」——比较级，因为没有数据支撑「最安全」"
+            : "THE BUTTON READS 'SEE SAFER ROUTES' — COMPARATIVE, BECAUSE NO DATA SUPPORTS 'SAFEST'"}
+        </text>
+
+        <text
+          x="30"
+          y="326"
+          fontFamily="var(--font-display)"
+          fontStyle={displayStyle(locale)}
+          fontSize="22"
+          fill="#25231D"
+        >
+          {zh ? "能被反驳，是它有用的前提" : "being refutable is what makes it useful"}
+        </text>
+        <text x="30" y="354" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          {zh ? "两份作业 · 同一个动作 · 均已提交并评分" : "two briefs · one move · both submitted and marked"}
+        </text>
+        <text x="30" y="376" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+          {zh ? "指南里的效果数字出自所引论文，不是我的实验" : "the guide's effect figures are the cited paper's, not mine"}
         </text>
       </svg>
     </div>

@@ -3,7 +3,10 @@ export type ProjectEvidenceSlug =
   | "spectra"
   | "maze"
   | "vigil"
-  | "hoop";
+  | "hoop"
+  | "pricewise"
+  | "gapmapper"
+  | "rules";
 export type ProofLocale = "en" | "zh";
 
 export interface CareerSnapshotStat {

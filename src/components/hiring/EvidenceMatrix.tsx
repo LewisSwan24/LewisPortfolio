@@ -11,6 +11,9 @@ const projectLabels: Record<ProjectEvidenceSlug, string> = {
   maze: "MazeRunners",
   vigil: "Vigil",
   hoop: "Hoop Dream",
+  pricewise: "PriceWise",
+  gapmapper: "Perception Gap Mapper",
+  rules: "Requirements into Rules",
 };
 
 const projectOrder: ProjectEvidenceSlug[] = [
@@ -19,6 +22,9 @@ const projectOrder: ProjectEvidenceSlug[] = [
   "maze",
   "vigil",
   "hoop",
+  "pricewise",
+  "gapmapper",
+  "rules",
 ];
 
 interface EvidenceMatrixProps {

@@ -11,6 +11,9 @@ const caseLabels: Record<ProjectEvidenceSlug, string> = {
   maze: "MazeRunners",
   vigil: "Vigil",
   hoop: "Hoop Dream",
+  pricewise: "PriceWise",
+  gapmapper: "Perception Gap Mapper",
+  rules: "Requirements into Rules",
 };
 
 interface InterviewEvidenceBriefProps {
