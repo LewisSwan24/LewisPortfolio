@@ -79,7 +79,7 @@ export const PROJECT_OG_COPY: Record<
   },
   pricewise: {
     title: "PriceWise",
-    oneLiner: "A live grocery price comparison app, and four classes of defect that a green build could not see.",
+    oneLiner: "A grocery price comparison prototype on demo data, and four classes of defect that a green build could not see.",
   },
   gapmapper: {
     title: "Perception Gap Mapper",

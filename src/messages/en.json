@@ -531,7 +531,7 @@
     "pricewise": {
       "hero": {
         "title": "PriceWise",
-        "sub": "A live grocery comparison app across three Australian chains — and the four classes of defect that a passing build, a clean type-check and a green test suite could not see."
+        "sub": "A grocery comparison prototype across three Australian chains, running on demo data — and the four classes of defect that a passing build, a clean type-check and a green test suite could not see."
       },
       "roleVal": "Product direction, interaction design and technical direction; Codex and Claude Code wrote the implementation",
       "timeVal": "2026 · deployed prototype, demo data",

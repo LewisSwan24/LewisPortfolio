@@ -23,6 +23,7 @@ import {
 import type { CaseReaderAnchorId } from "@/lib/proof";
 import {
   LISTED_PROJECT_SLUGS,
+  PROJECT_OG_COPY,
   UNLISTED_PROJECT_SLUGS,
   isUnlistedProject,
   linksToUnlistedProject,
@@ -571,6 +572,24 @@ describe("PriceWise canonical facts (rows 14, 15 and 16)", () => {
   it("never calls PriceWise publicly usable or gives an end-to-end count", () => {
     expect(pricewiseCopy("en")).not.toMatch(/publicly usable|14 end-to-end/i);
     expect(pricewiseCopy("zh")).not.toMatch(/公开可用|线上可用|14 个端到端/);
+  });
+
+  // The hero and the RSS/search summary once called it "a live grocery
+  // comparison app" two lines above "deployed prototype, demo data". Prices are
+  // simulated, so "live" read as live prices.
+  it("calls it a prototype on demo data in the hero and the feed summary, never a live app", () => {
+    const heroAndFeed = {
+      en: [enMessages.cs.pricewise.hero.sub, PROJECT_OG_COPY.pricewise.oneLiner],
+      zh: [zhMessages.cs.pricewise.hero.sub],
+    };
+    for (const line of heroAndFeed.en) {
+      expect(line).toMatch(/prototype/);
+      expect(line).toMatch(/demo data/);
+      expect(line).not.toMatch(/\blive\b/i);
+    }
+    expect(heroAndFeed.zh[0]).toMatch(/原型/);
+    expect(heroAndFeed.zh[0]).toMatch(/演示数据/);
+    expect(pricewiseCopy("zh")).not.toMatch(/线上比价/);
   });
 
   it("gives 311 as the current test count, and keeps 307 for history only", () => {
