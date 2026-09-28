@@ -503,6 +503,99 @@ describe("claims checked against their sources", () => {
   });
 });
 
+// Every piece of PriceWise copy a visitor or an interview can reach, as one
+// string per locale.
+const pricewiseCopy = (locale: "en" | "zh") => {
+  const messages = locale === "en" ? enMessages : zhMessages;
+  return JSON.stringify([
+    messages.proj.pricewise,
+    messages.cs.pricewise,
+    getCaseSummary("pricewise", locale),
+    getCaseDepth("pricewise", locale),
+    getCaseInterviewScan("pricewise", locale),
+    getCaseInterviewPack("pricewise", locale),
+    getProjectEvidence(locale).find((project) => project.slug === "pricewise"),
+    getEvidenceMatrix(locale).map((capability) => capability.cases.pricewise),
+    getHiringRoleFits(locale).flatMap((role) =>
+      role.proofLinks.filter((link) => link.href.startsWith("/projects/pricewise"))
+    ),
+  ]);
+};
+
+// PriceWise's scope story, checked against its git history on 2026-09-28. The
+// 5,884-line commit (78b36d1, 1 March 2026) was about a quarter social code,
+// and nothing was cut afterwards: on 8 August the v1 routes moved to
+// unversioned paths (d214c6e), and the social routes and models are still in
+// use. "Looking back" is a judgement Lewis reached later, not his reason for
+// stopping in March, and the repository records no reason.
+describe("PriceWise scope story", () => {
+  it("never says the scope was cut, or that the 5,884 lines were all social", () => {
+    expect(pricewiseCopy("en")).not.toMatch(
+      /\bcut\b|cutting|retract|orphan|shrank|scope reduction|24 routes|24 v1|lines of social/i
+    );
+    expect(pricewiseCopy("zh")).not.toMatch(/砍|收缩|孤儿|24 条|行社交功能/);
+    // Model names, as the old copy used them for evidence of a cut. "household
+    // groups" in lower case is a feature in the list and stays.
+    for (const locale of ["en", "zh"] as const) {
+      expect(pricewiseCopy(locale)).not.toMatch(/Friendship|Household/);
+    }
+  });
+
+  it("states the stop-growing judgement only as hindsight, never as the reason", () => {
+    const en = pricewiseCopy("en");
+    const zh = pricewiseCopy("zh");
+    expect(en).not.toMatch(/judgement was (right|correct)|was correct|lines (too )?late|deserve to keep|not worth expanding/i);
+    expect(zh).not.toMatch(/判断是对的|晚了 5884|不值得继续扩张|不该继续扩张/);
+
+    const enJudgements = en.match(/[^.]*kept growing/gi) ?? [];
+    const zhJudgements = zh.match(/[^。]*不该继续长下去/g) ?? [];
+    expect(enJudgements.length).toBeGreaterThan(0);
+    expect(zhJudgements.length).toBeGreaterThan(0);
+    for (const sentence of enJudgements) expect(sentence).toMatch(/looking back/i);
+    for (const sentence of zhJudgements) expect(sentence).toMatch(/回头看/);
+
+    for (const locale of ["en", "zh"] as const) {
+      const reasons = getCaseDepth("pricewise", locale).iterations.map((iteration) => iteration.reason);
+      expect(reasons.join(" ")).not.toMatch(/kept growing|expanding|不该继续|扩张/);
+    }
+  });
+});
+
+// PriceWise rows 14 to 16 of the canonical facts file (2026-09-28). Its current
+// Vitest count is 311; 307 was the count before four receipt-format regression
+// tests, so it may appear only as history ("passed build, type-check and 307
+// tests"). The end-to-end count is not verified while its Playwright runner has
+// a version conflict. It is a deployed prototype on demo data with zero
+// registered users, never "publicly usable". Its defects are four classes.
+describe("PriceWise canonical facts (rows 14, 15 and 16)", () => {
+  it("never calls PriceWise publicly usable or gives an end-to-end count", () => {
+    expect(pricewiseCopy("en")).not.toMatch(/publicly usable|14 end-to-end/i);
+    expect(pricewiseCopy("zh")).not.toMatch(/公开可用|线上可用|14 个端到端/);
+  });
+
+  it("gives 311 as the current test count, and keeps 307 for history only", () => {
+    for (const locale of ["en", "zh"] as const) {
+      // The case summary's evidence and the work index's sample describe the
+      // app as it stands, so they carry the current count.
+      const inventory = JSON.stringify([
+        getCaseSummary("pricewise", locale).evidence,
+        getProjectEvidence(locale).find((project) => project.slug === "pricewise")?.sample,
+      ]);
+      expect(inventory).toContain("311");
+      expect(inventory).not.toContain("307");
+    }
+  });
+
+  it("counts four classes of defect, not five defects", () => {
+    expect(enMessages.cs.pricewise.ou.m1.v).toBe("4");
+    expect(zhMessages.cs.pricewise.ou.m1.v).toBe("4");
+    expect(enMessages.cs.pricewise.ou.m1.label).toMatch(/^classes of defect /);
+    expect(zhMessages.cs.pricewise.ou.m1.label).toMatch(/^类缺陷/);
+    expect(pricewiseCopy("en")).not.toMatch(/\b(5|five) defects\b/i);
+    expect(pricewiseCopy("zh")).not.toMatch(/[5五]\s*处缺陷/);
+  });
+});
+
 describe("unlisted cases", () => {
   it("recognises a link into an unlisted case in either locale", () => {
     expect(UNLISTED_PROJECT_SLUGS).toContain("vigil");

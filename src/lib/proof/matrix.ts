@@ -17,7 +17,7 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
       { label: "UQ Connect: back to paper", href: "/projects/connect#decision-timeline" },
       { label: "MazeRunners hardware trade-offs", href: "/projects/maze#decision-timeline" },
       { label: "Hoop Dream production pipeline", href: "/projects/hoop#decision-timeline" },
-      { label: "PriceWise: cutting 24 routes to 5", href: "/projects/pricewise#iteration-gallery" },
+      { label: "PriceWise: how the scope grew", href: "/projects/pricewise#iteration-gallery" },
     ],
     bestCases: ["connect", "maze", "hoop", "pricewise"],
     risk:
@@ -88,7 +88,7 @@ const zhHiringRoleFits: HiringRoleFit[] = [
       { label: "UQ Connect：回到纸上", href: "/projects/connect#decision-timeline" },
       { label: "MazeRunners 的软硬件取舍", href: "/projects/maze#decision-timeline" },
       { label: "Hoop Dream 的生产管线", href: "/projects/hoop#decision-timeline" },
-      { label: "PriceWise：24 条路由砍到 5 条", href: "/projects/pricewise#iteration-gallery" },
+      { label: "PriceWise：范围是怎么变大的", href: "/projects/pricewise#iteration-gallery" },
     ],
     bestCases: ["connect", "maze", "hoop", "pricewise"],
     risk: "我最强的地方是把模糊的产品问题结构化；生产环境的约束我会尽早找工程一起看。",
@@ -249,8 +249,8 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         href: "/projects/vigil#decision-timeline",
       },
         pricewise: {
-          strength: "primary",
-          proof: "Stopped at 5,884 lines of social features and cut them, taking the v1 namespace from 24 routes to 5.",
+          strength: "supporting",
+          proof: "An AI-generated plan set the scope, and it never came back down. Looking back, an app on simulated data with no registered users should not have kept growing.",
           href: "/projects/pricewise#iteration-gallery",
         },
         gapmapper: {
@@ -435,8 +435,8 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
         href: "/projects/vigil#decision-timeline",
       },
         pricewise: {
-          strength: "primary",
-          proof: "停在 5884 行社交功能，然后全部砍掉，v1 路由从 24 条收到 5 条。",
+          strength: "supporting",
+          proof: "范围由 AI 生成的规划定下，之后没有缩回去。回头看，一个建在拟真数据上、没有注册用户的比价应用，不该继续长下去。",
           href: "/projects/pricewise#iteration-gallery",
         },
         gapmapper: {
@@ -739,11 +739,11 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
         },
         {
           id: "pricewise-scope",
-          question: "You pushed 5,884 lines of social features and then cut them. What is the lesson?",
+          question: "The scope grew from an AI-generated plan and never came back down. What would you check before accepting a plan like that again?",
           answer:
-            "The feature list was AI-generated planning derived from what a complete product should have, not from anyone's need. The judgement that a comparison app on simulated data with no users should stop expanding was correct — it just arrived 5,884 lines late. The v1 namespace went from 24 routes to 5, and I left the orphaned models in the schema on purpose as evidence of the cut.",
+            "What the plan was derived from. This one came from what a complete product should have, not from anyone's need, and the build followed it. On 1 March 2026 a single commit added 5,884 lines, about a quarter of them social features. Commits stopped the next day for five months, and the scope never came back down: the v1 routes were later moved to unversioned paths, not removed. Looking back, a comparison app on simulated data with no registered users should not have kept growing.",
           evidenceHref: "/projects/pricewise#iteration-gallery",
-          boundary: "Knowing the retraction was late does not prove I would catch the next one earlier.",
+          boundary: "This is a judgement made afterwards. It does not show that I would catch the next plan early.",
         },
       ],
       managerFollowUp: {
@@ -1056,11 +1056,11 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         },
         {
           id: "pricewise-scope",
-          question: "推了 5884 行社交功能又砍掉，教训是什么？",
+          question: "范围跟着 AI 生成的规划长大，后来一直没有缩回去。再接一份这样的规划，你会先查什么？",
           answer:
-            "功能清单是 AI 生成的规划，从「一个完整的产品该有什么」推出来的，不是从任何人的需求推出来的。「一个建在拟真数据上、没有用户的比价应用不该继续扩张」这个判断是对的，只是晚了 5884 行。v1 路由从 24 条收到 5 条，孤儿数据模型我刻意留在 schema 里，它们就是这次收缩的证据。",
+            "先查这份规划从哪里来。PriceWise 那份是从「一个完整的产品该有什么」推出来的，不是从任何人的需求推出来的，开发一路照着做。2026 年 3 月 1 日单次提交 5884 行，社交功能约占四分之一。第二天之后，五个月没有提交。范围也一直没有缩回去，v1 路由后来只是换了路径，没有删。回头看，一个建在拟真数据上、注册用户为 0 的比价应用，不该继续长下去。",
           evidenceHref: "/projects/pricewise#iteration-gallery",
-          boundary: "知道这次收缩来晚了，并不证明下一次我就能早点发现。",
+          boundary: "这是事后的判断，证明不了下一份规划我能早点看出来。",
         },
       ],
       managerFollowUp: {

@@ -43,10 +43,6 @@
       "label": "Reading",
       "val": "Weiss on loneliness; Ryan & Deci on self-determination"
     },
-    "building": {
-      "label": "Building",
-      "val": "Vigil — a phishing-detection tool, spec through usability testing"
-    },
     "learning": {
       "label": "Learning",
       "val": "Where AI coding agents help a designer, and where they slow one down"
@@ -146,10 +142,10 @@
       "title": "PriceWise",
       "sub": "Photograph a supermarket receipt and see what the same basket costs at two other chains. The AI wrote the code; the question was how to know it works.",
       "role": "Product + interaction + technical direction",
-      "date": "2026 · live at pricewise-lewisdong.vercel.app",
+      "date": "2026 · deployed at pricewise-lewisdong.vercel.app",
       "m1": "109 API routes · 36 page routes",
       "m2": "4 classes of defect a green build could not see",
-      "m3": "24 v1 routes cut to 5"
+      "m3": "15 → 19 of 20 constructed receipt inputs matched"
     },
     "gapmapper": {
       "kicker": "Public space · Evidence boundaries",
@@ -538,13 +534,13 @@
         "sub": "A live grocery comparison app across three Australian chains — and the four classes of defect that a passing build, a clean type-check and a green test suite could not see."
       },
       "roleVal": "Product direction, interaction design and technical direction; Codex and Claude Code wrote the implementation",
-      "timeVal": "2026 · live and publicly usable",
+      "timeVal": "2026 · deployed prototype, demo data",
       "teamVal": "Solo",
       "toolsVal": "Next.js · Prisma · Clerk · Postgres · Vitest · Playwright · Codex · Claude Code",
       "ch": {
         "label": "The problem",
         "title": "When an AI writes the code, a green build stops being evidence.",
-        "p": "The interface rendered. The type-check was clean. 307 unit tests and 14 end-to-end cases passed. None of those three facts tells you whether a feature actually executes — and in this codebase, four classes of defect satisfied all three. That is the real problem this case is about: not what to build, but how to confirm what was built is real."
+        "p": "The interface rendered. The type-check was clean. 307 unit tests passed. None of those three facts tells you whether a feature actually executes — and in this codebase, four classes of defect satisfied all three. That is the real problem this case is about: not what to build, but how to confirm what was built is real."
       },
       "re": {
         "label": "How they were found",
@@ -574,8 +570,8 @@
         "p": "One more defect was mine: a regression from my own fix to search. Passing a missing field through serialized a 1,536-dimension vector into the API response and pushed three search results to 89 KB. I found it by calling the real endpoint and reading the response, not by reviewing my own diff. It stays in the case because a check that only catches the AI is not really a check. It also shows the method's limit: nothing prevented the defect, something caught it afterwards."
       },
       "pr": {
-        "label": "How it grew, and how it shrank",
-        "p": "The feature list was AI-generated planning, derived from what a complete product ought to have rather than from anyone's need. Phases 2 through 6 all landed across two days, 9–10 January 2026. On 1 March a single commit added 5,884 lines of social features — friends, DMs, feeds, polls, reports, household groups, challenges. On 2 March I stopped, and did not touch it for five months. The judgement was right: a comparison app on simulated data with no real users does not deserve to keep expanding. It arrived 5,884 lines late. The v1 namespace went from 24 routes to 5, and five models including Friendship, Challenge and Household are still in the schema on purpose — they are the most direct evidence of the cut."
+        "label": "How the scope grew",
+        "p": "The feature list was AI-generated planning, derived from what a complete product ought to have rather than from anyone's need. Phases 2 through 6 all landed across two days, 9–10 January 2026. On 1 March a single commit added 5,884 lines: a v1 API, AI function calling, bilingual text, price prediction, and a social layer of friends, DMs, feeds, household groups and challenges that made up about a quarter of it. On 2 March I stopped, and did not touch it for five months. The scope never came back down: in August the v1 routes moved to unversioned paths rather than being removed, and the social routes are still in the app. Looking back, a comparison app on simulated data with no registered users should not have kept growing."
       },
       "te": {
         "label": "The module everything depends on",
@@ -584,18 +580,18 @@
       "ou": {
         "label": "What this case produced",
         "m1": {
-          "label": "defects passing build, types and tests",
-          "v": "5"
+          "label": "classes of defect passing build, types and tests",
+          "v": "4"
         },
         "m2": {
           "label": "receipt-format inputs matched",
           "v": "15 → 19 of 20"
         },
         "m3": {
-          "label": "v1 routes, after the cut",
-          "v": "24 → 5"
+          "label": "registered users",
+          "v": "0"
         },
-        "p": "A live, publicly usable comparison app covering Coles, Woolworths and Aldi across 65 products — and, more usefully, a verification habit with scripts anyone can re-run. Evidence status: zero registered users. Every verification ran on data I created, and what a real crumpled receipt does to recognition accuracy is unknown to me. The verification is also manual: it should be a build gate, and it is not one yet."
+        "p": "A deployed comparison prototype on demo data, covering Coles, Woolworths and Aldi across 65 products — and, more usefully, a verification habit with scripts anyone can re-run. Evidence status: zero registered users. Every verification ran on data I created, and what a real crumpled receipt does to recognition accuracy is unknown to me. The verification is also manual: it should be a build gate, and it is not one yet."
       },
       "rf": {
         "label": "Reflection",
@@ -1083,16 +1079,6 @@
       "degree": "Master of Interaction Design",
       "institutionAndYears": "The University of Queensland • 2025 – 2026"
     },
-    "experience": [
-      {
-        "title": "Control layer, MazeRunners (group project)",
-        "orgAndYear": "Built & exhibited • 2026"
-      },
-      {
-        "title": "Vigil & Hoop Dream (solo projects)",
-        "orgAndYear": "Spec to build with AI tooling • 2026"
-      }
-    ],
     "kicker": "Résumé",
     "headline": "Experience",
     "download": "Request PDF",

@@ -90,13 +90,13 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       pricewise: {
         challenge: "When an AI writes the code, a green build stops being evidence. The interface renders, types check, tests pass — and none of that tells you whether the feature actually runs.",
         role: "Product direction, interaction design and technical direction; I wrote the specs, reviewed the code and verified the behaviour. Codex and Claude Code wrote the implementation",
-        methods: ["spec-first delivery", "live endpoint probing", "direct database inspection", "regression test authoring", "scope reduction"],
+        methods: ["spec-first delivery", "live endpoint probing", "direct database inspection", "regression test authoring"],
         evidence: [
-          "109 API routes and 36 page routes in a deployed app, against 307 unit tests and 14 end-to-end cases",
+          "109 API routes and 36 page routes in a deployed app, against 311 Vitest tests",
           "four classes of defect that passed build, type-check and test, plus a regression from my own fix that only the live endpoint showed",
-          "a 96-commit history (to 13 August 2026) where both the expansion and the retraction are legible: 5,884 lines of social features in a single commit on 1 March 2026, then cut",
+          "a 96-commit history (to 13 August 2026): 5,884 lines in one commit on 1 March 2026, about a quarter of them social features, then five months with no commits",
         ],
-        outcome: "A live grocery comparison app covering Coles, Woolworths and Aldi across 65 products, and a verification habit that separates 'looks finished' from 'actually runs' with scripts anyone can re-run.",
+        outcome: "A deployed comparison prototype on demo data, covering Coles, Woolworths and Aldi across 65 products, and a verification habit that separates 'looks finished' from 'actually runs' with scripts anyone can re-run.",
         next: "I would put it in front of five people using their own receipts, and turn the manual verification into a build gate.",
       },
       gapmapper: {
@@ -186,13 +186,13 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       pricewise: {
         challenge: "代码交给 AI 写之后，构建通过就不再是证据了。界面渲染出来了、类型检查零错误、测试全绿：这三件事没有一件能证明功能真的在跑。",
         role: "产品方向、交互设计与技术方向；写规格、审代码、验行为。实现由 Codex 和 Claude Code 完成",
-        methods: ["规格先行", "打真实接口验行为", "直接查数据库", "补写回归测试", "范围收缩"],
+        methods: ["规格先行", "打真实接口验行为", "直接查数据库", "补写回归测试"],
         evidence: [
-          "线上应用 109 条 API 路由、36 条页面路由，配 307 个单元测试与 14 个端到端用例",
+          "线上应用 109 条 API 路由、36 条页面路由，配 311 个 Vitest 测试",
           "四类同时通过构建、类型检查和测试的缺陷，外加一处我自己的修复带进的回归，打线上接口才看得出来",
-          "96 个提交的完整记录（截至 2026 年 8 月 13 日），膨胀和收缩都留在里面：2026 年 3 月 1 日单次提交 5884 行社交功能，随后砍掉",
+          "96 个提交的完整记录（截至 2026 年 8 月 13 日）：3 月 1 日单次提交 5884 行，其中社交功能约占四分之一，之后五个月没有提交",
         ],
-        outcome: "一个线上公开可用的比价应用，覆盖 澳洲三大连锁超市 Coles、Woolworths、Aldi 共 65 件商品；以及一套把「看起来完成」和「真的能用」分开验的习惯，每个结论都留下可复现的脚本。",
+        outcome: "一个已部署的比价原型，跑在演示数据上，覆盖澳洲三大连锁超市 Coles、Woolworths、Aldi 共 65 件商品。另有一套把「看起来完成」和「真的能用」分开验的习惯，每个结论都留下可复现的脚本。",
         next: "找五个人用他们自己的小票真的跑一次，并把这些手动验证接进构建流程，变成一道关卡。",
       },
       gapmapper: {
@@ -839,15 +839,15 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
               "It is the strongest evidence for the method, because it shows the check catching its own author rather than only catching the AI.",
           },
           {
-            label: "Stop at 5,884 lines rather than at the end of the feature list",
+            label: "Let an AI-generated feature plan set the scope",
             choice:
-              "On 1 March 2026 a single commit added 5,884 lines of social features — friends, DMs, feeds, polls, reports, household groups, challenges. On 2 March I stopped, and the code came out afterwards.",
+              "The feature list was AI-generated planning, derived from what a complete product ought to have rather than from what anyone asked for, and the build followed it. Phases 2 through 6 all landed within two days, 9–10 January 2026.",
             evidence:
-              "The feature list was AI-generated planning, derived from what a complete product ought to have rather than from what anyone asked for. Phases 2 through 6 all landed within two days, 9–10 January 2026.",
+              "On 1 March 2026 a single commit added 5,884 lines: a v1 API, AI function calling, bilingual text, price prediction and a social layer, which made up about a quarter of it. The last commits were on 2 March, and the next came five months later.",
             tradeoff:
-              "The judgement — a comparison app on simulated data with no real users does not deserve to keep expanding — was correct, and it arrived 5,884 lines too late.",
+              "Looking back, a comparison app on simulated data with no registered users should not have kept growing.",
             impact:
-              "The v1 namespace went from 24 routes to 5. Five models including Friendship, Challenge and Household are deliberately still in the schema: they are the most direct evidence of the retraction.",
+              "The scope never came back down. In August the v1 routes were moved to unversioned paths rather than removed, and the app now has 109 API routes, up from 91 on 2 March.",
           },
           {
             label: "Leave one known mismatch unfixed, and lock it into a test",
@@ -897,10 +897,10 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
             improvement: "It produced a large, coherent-looking surface, and that appearance is what the rest of the case is about.",
           },
           {
-            version: "Retraction",
-            change: "Stopped on 2 March 2026 and left it untouched for five months. The first commit on returning was labelled as a restore point for half-finished features.",
-            reason: "A comparison app built on simulated data with no real users is not worth expanding further.",
-            improvement: "24 v1 routes became 5. The orphaned models were kept on purpose as evidence of what was cut.",
+            version: "Pause",
+            change: "Stopped on 2 March 2026 and left it untouched for five months. The first commit on returning committed the Next 16 upgrade and half-finished features as a restore point before optimising.",
+            reason: "No reason for the stop is recorded in the repository.",
+            improvement: "The scope never came back down: in August the v1 routes moved to unversioned paths rather than being removed, and the social routes are still there. Looking back, an app on simulated data with no registered users should not have kept growing.",
           },
           {
             version: "Verification pass",
@@ -1687,15 +1687,14 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
             impact: "但它恰恰是这套方法最强的证据：这道检查连它自己的作者一起抓，而不只抓 AI。",
           },
           {
-            label: "停在 5884 行，而不是停在功能清单跑完",
+            label: "让 AI 生成的功能规划定下范围",
             choice:
-              "2026 年 3 月 1 日，单次提交 5884 行社交功能：好友、私信、动态、投票、举报、家庭群组、挑战赛。3 月 2 日停下，删除发生在这之后。",
+              "功能清单是 AI 生成的规划，从「一个完整的产品该有什么」推出来的，不是从任何人的需求推出来的。开发一路照着这份清单做，Phase 2 到 Phase 6 全部落在 2026 年 1 月 9 到 10 日这两天。",
             evidence:
-              "功能清单是 AI 生成的规划，它不是从「用户要什么」推出来的，是从「一个完整的产品该有什么」推出来的。Phase 2 到 Phase 6 全部落在 2026 年 1 月 9 到 10 日这两天。",
-            tradeoff:
-              "「一个建在拟真数据上、没有真实用户的比价应用不值得继续扩张」：这个判断是对的，问题是它来得太晚，晚了 5884 行。",
+              "2026 年 3 月 1 日，单次提交 5884 行：v1 接口、AI 函数调用、中英双语文案、价格预测，还有一层社交功能，约占四分之一。最后几次提交在 3 月 2 日，下一次要到五个月后。",
+            tradeoff: "回头看，一个建在拟真数据上、注册用户为 0 的比价应用，不该继续长下去。",
             impact:
-              "v1 路由从加入过的 24 条收到现存 5 条。Friendship、Challenge、Household 等五个数据模型刻意留在 schema 里，它们是这次收缩最直接的证据。",
+              "范围一直没有缩回去。8 月 v1 路由只是搬到了不带版本号的路径，没有删；API 路由从 3 月 2 日的 91 条变成现在的 109 条。",
           },
           {
             label: "留一处已知的错配不修，并把它锁进测试",
@@ -1744,10 +1743,11 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
             improvement: "它做出了一个很大、看起来也很自洽的表层，而这个「看起来」正是这个案例后面要讲的事。",
           },
           {
-            version: "收缩",
-            change: "2026 年 3 月 2 日停下，五个月没有碰。回来后第一句提交信息写的是「半成品功能，作为优化前的还原点」。",
-            reason: "一个建在拟真数据上、没有真实用户的比价应用，不值得继续扩张。",
-            improvement: "24 条 v1 路由收到 5 条。孤儿数据模型刻意留着，它们是「砍掉了什么」最直接的证据。",
+            version: "搁置",
+            change: "2026 年 3 月 2 日停下，五个月没有碰。回来后第一句提交信息写的是「提交 Next 16 升级与半成品功能，作为优化前的还原点」。",
+            reason: "仓库里没有记录为什么停下。",
+            improvement:
+              "范围一直没有缩回去。8 月 v1 路由只是搬到不带版本号的路径，社交路由至今都在。回头看，一个建在拟真数据上、注册用户为 0 的比价应用，不该继续长下去。",
           },
           {
             version: "验证轮",
@@ -2084,11 +2084,11 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         ],
         questions: [
           "The AI wrote the code. What was left for you to do?",
-          "You shipped 5,884 lines and then cut them. What would you do differently?",
+          "The scope grew from an AI-generated plan and never came back down. What would you check before accepting a plan like that again?",
         ],
         bestFit: [
           "Teams shipping AI-written code who need someone asking whether it actually runs.",
-          "Product roles where scope discipline matters more than feature count.",
+          "Teams that want verification written as scripts someone else can re-run.",
         ],
       },
       gapmapper: {
@@ -2222,11 +2222,11 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         ],
         questions: [
           "代码是 AI 写的，那你做了什么？",
-          "推了 5884 行又砍掉，再来一次你会怎么做？",
+          "范围跟着 AI 生成的规划长大，后来一直没有缩回去。再接一份这样的规划，你会先查什么？",
         ],
         bestFit: [
           "在用 AI 写代码、需要有人追问「它是不是真的在跑」的团队。",
-          "看重范围克制、而不是功能数量的产品岗。",
+          "希望验证写成脚本、换个人也能重跑的团队。",
         ],
       },
       gapmapper: {

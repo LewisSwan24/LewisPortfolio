@@ -88,9 +88,16 @@ const DECK: DeckCard[] = [
       ],
     },
   },
-  // The three cases added on 2026-08-13. Every line below is transcribed from
-  // the portfolio PDF rather than written for the card: PriceWise from the
-  // commit table on p23, Gap Mapper from the critique on p12, Fietspad p31-32.
+  // The three cases added on 2026-08-13. Gap Mapper's and Fietspad's lines are
+  // transcribed from the portfolio PDF rather than written for the card: the
+  // critique on p12, and p31-32.
+  //
+  // PriceWise's lines came from the PDF's commit table on p23 and were
+  // corrected on 2026-09-28 against the repository's own history. The
+  // 5,884-line commit (78b36d1) was about a quarter social code, and nothing
+  // was cut afterwards: the v1 routes moved to unversioned paths in August and
+  // the social routes are still there. "Looking back" is Lewis's later
+  // judgement, not his reason for stopping in March.
   //
   // Only PriceWise has a documented day. The other two are coursework and the
   // source records a semester, so they carry a semester — a precise-looking
@@ -103,16 +110,16 @@ const DECK: DeckCard[] = [
     project: { en: "PriceWise", zh: "PriceWise" },
     body: {
       en: [
-        "Friends, DMs, feeds, polls, reports, household groups, challenges.",
+        "A v1 API, AI function calling, i18n, price prediction, a social layer.",
         "The feature list was AI-generated planning, not anything a user asked for.",
-        "Stopped the next day. Did not touch it again for five months.",
-        "→ the judgement was right; it arrived 5,884 lines late.",
+        "Stopped the next day for five months. The scope never came back down.",
+        "→ looking back, an app with no users should not have kept growing.",
       ],
       zh: [
-        "好友、私信、动态、投票、举报、家庭群组、挑战赛。",
+        "v1 接口、AI 函数调用、双语、价格预测，还有一层社交功能。",
         "功能清单是 AI 生成的规划，不是从「用户要什么」推出来的。",
-        "第二天停下，之后五个月没有再碰。",
-        "→ 判断是对的，问题是晚了 5884 行。",
+        "第二天停下，五个月没有再碰，范围也没有缩回去。",
+        "→ 回头看，没有用户的应用不该继续长下去。",
       ],
     },
   },

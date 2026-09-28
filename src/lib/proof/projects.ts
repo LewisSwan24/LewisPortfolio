@@ -241,12 +241,11 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
         "live endpoint probing",
         "direct database inspection",
         "regression test authoring",
-        "scope reduction",
       ],
       sample:
-        "A deployed app with 109 API routes and 36 page routes, 307 unit tests and 14 end-to-end cases, 65 products across Coles, Woolworths and Aldi. Zero registered users; all pricing is simulated.",
+        "A deployed app with 109 API routes and 36 page routes, 311 Vitest tests, 65 products across Coles, Woolworths and Aldi. Zero registered users; all pricing is simulated.",
       outcome:
-        "Four classes of defect that had passed build, type-check and the full suite, plus a 96-commit history (to 13 August 2026) where a 5,884-line expansion and its retraction are both legible.",
+        "Four classes of defect that had passed build, type-check and the full suite, plus a 96-commit history (to 13 August 2026) that records how the scope grew, including 5,884 lines in one commit, and that it never came back down.",
       proves:
         "I can separate 'looks finished' from 'actually runs' on a codebase an AI wrote, and leave scripts behind that let someone else reach the same conclusions.",
     },
@@ -359,11 +358,11 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       problemType: "AI 实现下的产品设计与行为验证",
       challenge:
         "代码交给 AI 写之后，构建通过就不再是证据了。界面渲染出来了、类型检查零错误、测试全绿，这三件事都不能证明功能真的在执行。",
-      methods: ["规格先行", "打真实接口验行为", "直接查数据库", "补写回归测试", "范围收缩"],
+      methods: ["规格先行", "打真实接口验行为", "直接查数据库", "补写回归测试"],
       sample:
-        "一个线上应用：109 条 API 路由、36 条页面路由，307 个单元测试与 14 个端到端用例，澳洲三大连锁超市 Coles / Woolworths / Aldi 共 65 件商品。注册用户是 0，价格全部为拟真数据。",
+        "一个线上应用：109 条 API 路由、36 条页面路由，311 个 Vitest 测试，澳洲三大连锁超市 Coles / Woolworths / Aldi 共 65 件商品。注册用户是 0，价格全部为拟真数据。",
       outcome:
-        "四类同时通过构建、类型检查与整套测试的缺陷。另有 96 个提交的完整记录（截至 2026 年 8 月 13 日），5884 行的膨胀和随后的收缩都留在里面。",
+        "四类同时通过构建、类型检查与整套测试的缺陷。另有 96 个提交的完整记录（截至 2026 年 8 月 13 日）：范围怎么变大、单次提交 5884 行、之后没有缩回去，都查得到。",
       proves:
         "在一份 AI 写的代码上，我能把「看起来完成」和「真的能用」分开验，并且留下可复现的脚本，换一个人照着跑能得到同样的结论。",
     },
