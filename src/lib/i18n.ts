@@ -423,7 +423,7 @@ const dictionaries = {
       },
       intro: {
         p1: "我目前正在昆士兰大学攻读交互设计硕士，在学习中不断提升用户研究、原型制作与以人为本的设计方法能力。",
-        p2: "我的方法结合了分析性思维与创造性的解决问题能力。我相信优秀的设计来自对用户需求的深入理解，并通过持续迭代打磨出既实用又令人愉悦的方案。",
+        p2: "我的做法是把分析思维和有创意的解法结合起来。我相信优秀的设计来自对用户需求的深入理解，并通过持续迭代打磨出既实用又令人愉悦的方案。",
       },
       profilePhoto: "个人照片",
       sections: {
@@ -462,7 +462,7 @@ const dictionaries = {
         {
           icon: "♿",
           title: "默认可访问",
-          description: "设计包容性的体验，让不同能力与不同情境的用户都能顺畅使用。",
+          description: "设计包容的体验，让不同能力与不同情境的用户都能顺畅使用。",
         },
         {
           icon: "📊",
@@ -617,27 +617,27 @@ const dictionaries = {
     },
     lab: {
       title: "实验室",
-      description: "一系列交互实验和 UI 组件的合集，它们是构建本作品集的基础模块。",
+      description: "一系列交互实验和 UI 组件的合集，也是构建本作品集的基础模块。",
       magneticButtons: {
         title: "磁性按钮",
-        description: "按钮会微妙地跟随鼠标移动，将鼠标悬停在上方查看效果。",
+        description: "按钮会轻微地跟随鼠标移动，把鼠标移上去就能看到效果。",
         hover: "悬停试试",
         secondary: "次要",
         ghost: "透明",
       },
       tiltCards: {
         title: "3D 倾斜卡片",
-        description: "卡片在 3D 空间中跟随光标位置倾斜，将鼠标移到卡片上方。",
+        description: "卡片在 3D 空间中跟随光标位置倾斜，把鼠标移到卡片上方看看。",
         design: "设计",
         designDesc: "精心打磨的交互界面",
         performance: "性能",
-        performanceDesc: "为速度和流畅动画而优化",
+        performanceDesc: "针对速度与动画流畅度做过优化",
         accessibility: "无障碍",
         accessibilityDesc: "面向所有用户的包容性设计",
       },
       glassMorphism: {
         title: "毛玻璃效果",
-        description: "使用模糊和透明度的现代磨砂玻璃 UI 效果。",
+        description: "用模糊与透明度做出的现代磨砂玻璃 UI 效果。",
         glassCard: "玻璃卡片",
         glassCardDesc: "这张卡片使用了 backdrop-blur 实现磨砂玻璃效果",
         heavyGlass: "深度玻璃",
@@ -652,12 +652,12 @@ const dictionaries = {
       },
       about: {
         title: "关于这些实验",
-        description: "所有这些交互组件都使用 React、TypeScript 和 Framer Motion 构建，旨在增强用户体验而不影响性能或可访问性。",
+        description: "这些交互组件都用 React、TypeScript 和 Framer Motion 构建，目的是增强用户体验，同时不牺牲性能与可访问性。",
         features: [
           "自定义光标增强桌面端导航",
           "磁性按钮提供微妙的触觉反馈",
           "3D 倾斜卡片增加深度和参与感",
-          "所有动画尊重 prefers-reduced-motion 设置",
+          "所有动画都遵循 prefers-reduced-motion 设置",
         ],
       },
     },

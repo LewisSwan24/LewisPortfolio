@@ -114,39 +114,43 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       ]),
     },
     {
-      ...packetBase("en", "ai-ux", ["vigil", "spectra", "connect"]),
+      ...packetBase("en", "ai-ux", ["pricewise", "gapmapper", "connect"]),
       label: "AI UX / Human-AI Interaction",
-      headline: "Interview Lewis for AI UX roles where trust, timing, and agency matter.",
+      headline: "Interview Lewis for AI UX roles that need someone to check how far an AI feature can be trusted.",
       fitThesis:
-        "Best fit when the product needs judgment about where AI should intervene, explain itself, or stay quiet.",
+        "Best fit when a team needs someone to judge how far an AI feature should be trusted, and to check what it actually does.",
+      // Rebuilt on 2026-09-28 from the /hire thread (ai-trust-thread.ts) after
+      // Vigil, the only AI-native case, was abandoned. Both claims name who
+      // did the work and where the evidence stops.
+      thread: { label: "Read the AI and trust thread", href: "/hire#ai-trust-thread" },
       proofClaims: [
         {
-          id: "ai-ux-weak-evidence",
-          claim: "Lewis can design so a person keeps judging instead of deferring to the model.",
+          id: "ai-ux-verify-ai-output",
+          claim: "Lewis checks what AI-built features actually do before trusting a green build.",
           evidence:
-            "Vigil shows the classifier's confidence as deliberately weak evidence, and the build fails if that number ever starts predicting the model's errors.",
+            "Codex and Claude Code wrote the implementation; Lewis wrote the specs, reviewed the code and verified the behaviour. Build, type-check and the full test suite all passed, and four classes of defect were still in the code.",
           boundary:
-            "The interface is built and the protocol is written, but no participants have run it yet.",
-          strongestAnchor: "/projects/vigil#decision-timeline",
+            "PriceWise runs on demo data with zero registered users, and the unmatched fallback is a decision, not a shipped feature.",
+          strongestAnchor: "/projects/pricewise#decision-timeline",
           nextValidation:
-            "Run the five-person hallway test, then a counterbalanced study on whichever question survives it.",
+            "I would put it in front of five people using their own receipts, and turn the manual verification into a build gate.",
         },
         {
-          id: "ai-ux-falsifiable-questions",
-          claim: "Lewis can turn a vague trust problem into questions that can be answered with evidence.",
+          id: "ai-ux-evidence-bounded-confidence",
+          claim: "Lewis will argue against an interface that sounds surer than its evidence, including one he built.",
           evidence:
-            "Vigil splits over-trust into three questions - how confidence is shown, when the verdict appears, how evidence is presented - each with two working variants and a prediction written before testing.",
+            "Lewis built the first route-support prototype. Once it was on screen, so was the problem: an interface recommending a safer route had claimed an authority it had not earned.",
           boundary:
-            "Predictions are recorded, not confirmed; the case proves the instrument, not the answers.",
-          strongestAnchor: "/projects/vigil#evidence-board",
+            "A six-person course project: the team built the final dashboard, no real planner has tested it, and no AI model scored the routes.",
+          strongestAnchor: "/projects/gapmapper#decision-timeline",
           nextValidation:
-            "Compare the recorded predictions against what participants actually do, and report where they were wrong.",
+            "A small pilot on two or three sites with a handful of rounded reports, then a review with campus safety staff to test whether Place Inspector explains its evidence.",
         },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
-        ["vigil", 0],
-        ["vigil", 1],
-        ["spectra", 1],
+        ["pricewise", 0],
+        ["pricewise", 1],
+        ["gapmapper", 0],
       ]),
     },
     {
@@ -198,7 +202,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "ux-product-ia",
           claim: "Lewis 会让研究真的改变产品，包括推翻重来。",
           evidence:
-            "UQ Connect 在可用性测试暴露出结构性导航缺陷之后，开发中途回到纸上重画，再照着那张纸把整个应用重建了一遍。",
+            "UQ Connect 在可用性测试暴露出导航结构上的缺陷之后，开发中途回到纸上重画，再照着那张纸把整个应用重建了一遍。",
           boundary:
             "这证明的是课程项目里「从研究到决策」的质量，不等于拥有一个已上线产品。",
           strongestAnchor: "/projects/connect#evidence-board",
@@ -260,39 +264,40 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       ]),
     },
     {
-      ...packetBase("zh", "ai-ux", ["vigil", "spectra", "connect"]),
+      ...packetBase("zh", "ai-ux", ["pricewise", "gapmapper", "connect"]),
       label: "AI UX / Human-AI Interaction",
-      headline: "适合重视信任、反馈时机和用户主动权的 AI UX 岗位。",
+      headline: "适合需要有人判断 AI 功能能信到什么程度的 AI UX 岗位。",
       fitThesis:
-        "当产品需要判断 AI 何时介入、何时解释、何时保持安静时，这个方向最匹配。",
+        "适合这样的团队：需要有人判断一个 AI 功能值得多少信任，也需要有人去核实这个功能实际做了什么。",
+      thread: { label: "看 AI 与信任这条线", href: "/hire#ai-trust-thread" },
       proofClaims: [
         {
-          id: "ai-ux-weak-evidence",
-          claim: "Lewis 能把界面设计成让人继续自己判断，而不是顺着模型点下去。",
+          id: "ai-ux-verify-ai-output",
+          claim: "Lewis 会先核实 AI 写的功能实际做了什么，再去相信构建全绿。",
           evidence:
-            "Vigil 把分类器的信心分数刻意做成弱证据；一旦这个数字变得能预测模型哪里错，构建就直接失败。",
+            "实现由 Codex 和 Claude Code 完成，规格、审查和验收由 Lewis 负责。构建、类型检查和整套测试都通过了，代码里照样藏着四类缺陷。",
           boundary:
-            "界面已经做出来、测试脚本也写好了，但还没有受试者跑过。",
-          strongestAnchor: "/projects/vigil#decision-timeline",
+            "PriceWise 用的是演示数据，注册用户为 0；「未匹配」退路只是一条判断，还没做进产品。",
+          strongestAnchor: "/projects/pricewise#decision-timeline",
           nextValidation:
-            "先跑五人走廊测试，再针对活下来的那个问题做一次平衡顺序的对照研究。",
+            "找五个人用他们自己的小票真的跑一次，并把这些手动验证接进构建流程，变成一道关卡。",
         },
         {
-          id: "ai-ux-falsifiable-questions",
-          claim: "Lewis 能把模糊的信任问题，拆成可以用证据回答的具体问题。",
+          id: "ai-ux-evidence-bounded-confidence",
+          claim: "界面说话的把握一旦超过证据，Lewis 会主张放弃，自己做的也一样。",
           evidence:
-            "Vigil 把「人会不会过度信任 AI」拆成三个问题：信心怎么显示、结论何时出现、证据怎么摆；每个问题都做了两个能跑的变体，预测在测试之前先写下来。",
+            "第一版路线支持原型是 Lewis 做的。原型一上屏幕，问题也跟着出来：推荐「更安全路线」的界面，拿到了一种自己没有挣来的权威。",
           boundary:
-            "预测只是记录下来了，还没有被验证；这个案例证明的是测量工具，不是答案。",
-          strongestAnchor: "/projects/vigil#evidence-board",
+            "六人课程项目：最终仪表板由团队完成，没有真实的规划人员测过，路线评分也没有用 AI 模型。",
+          strongestAnchor: "/projects/gapmapper#decision-timeline",
           nextValidation:
-            "把记录的预测和受试者的实际行为对照，并如实报告哪些预测错了。",
+            "先挑两三个地点、用一小批取整过的上报跑个小试点，再找校园安全人员开一次评审，看 Place Inspector 有没有把证据讲清楚。",
         },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [
-        ["vigil", 0],
-        ["vigil", 1],
-        ["spectra", 1],
+        ["pricewise", 0],
+        ["pricewise", 1],
+        ["gapmapper", 0],
       ]),
     },
     {
@@ -317,12 +322,12 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "accessibility-plain-language",
           claim: "Lewis 把「看不懂的标签」和「走不回去的死路」当缺陷处理，不当润色。",
           evidence:
-            "UQ Connect 九月的测试把「Skill swap——不知道这是什么」和「我怎么回上一页？」记为阻塞项，十月的结构重画把两者都回答了。",
+            "UQ Connect 九月的测试把「Skill swap，不知道这是什么」和「我怎么回上一页？」记为阻塞项，十月的结构重画把两者都回答了。",
           boundary:
             "这是面向一般学生的语言与导航清晰度，不是一次辅助技术审计。",
           strongestAnchor: "/projects/connect#evidence-board",
           nextValidation:
-            "让屏幕阅读器用户和纯键盘用户跑同一条任务链——他们从来没有出现在任何一轮里。",
+            "让屏幕阅读器用户和纯键盘用户跑同一条任务链，他们从来没有出现在任何一轮里。",
         },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [

@@ -56,7 +56,7 @@ export interface RoleFit {
   bestFit: string[];
   proofLinks: Array<{
     label: string;
-    href: `/projects/${ProjectEvidenceSlug}` | "/resume" | "/contact";
+    href: `/projects/${ProjectEvidenceSlug}` | "/resume" | "/contact" | "/hire#ai-trust-thread";
   }>;
 }
 
@@ -324,6 +324,39 @@ export interface RolePacket {
   interviewQuestions: CaseInterviewAnswer[];
   primaryAction: ConversionAction;
   secondaryAction: ConversionAction;
+  /** Where the role's evidence is gathered on /hire, when it spans several cases. */
+  thread?: {
+    label: string;
+    href: "/hire#ai-trust-thread";
+  };
+}
+
+/**
+ * One entry in the /hire "AI and trust" thread. `who` says who did the work
+ * (solo, or which course team), because the thread spans team projects.
+ */
+export interface AiTrustThreadEntry {
+  slug: ProjectEvidenceSlug;
+  caseName: string;
+  who: string;
+  body: string;
+  href: CaseReaderHref;
+}
+
+export interface AiTrustThread {
+  eyebrow: string;
+  title: string;
+  /** Opens by admitting there is no finished AI-native product. */
+  intro: string;
+  entries: AiTrustThreadEntry[];
+  /** The closing limit sentence. Tested in both locales. */
+  limit: string;
+  linkLabel: string;
+  /** The one-line marker case pages on the thread carry back to /hire. */
+  caseMarker: {
+    label: string;
+    link: string;
+  };
 }
 
 export type ApplicationPacketRoute = `/hire/${HiringRoleId}/packet`;

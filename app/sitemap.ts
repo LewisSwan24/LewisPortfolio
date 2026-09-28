@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
-import { CURRENT_PROJECT_SLUGS } from "@/lib/project-routes";
+import { LISTED_PROJECT_SLUGS } from "@/lib/project-routes";
 import { getAllBlogPosts } from "@/lib/blog";
 
 const locales = ["en", "zh"] as const;
@@ -54,7 +54,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const projectPageMtime =
     safeStatMtime(path.join(process.cwd(), "app/[locale]/projects/[slug]/page.tsx")) || buildTime;
-  const projectRoutes: MetadataRoute.Sitemap = CURRENT_PROJECT_SLUGS.flatMap((slug) =>
+  // Listed cases only: an unlisted case keeps its page, but the sitemap is one
+  // of the lists it comes off.
+  const projectRoutes: MetadataRoute.Sitemap = LISTED_PROJECT_SLUGS.flatMap((slug) =>
     locales.map((locale) => ({
       url:
         locale === "en"

@@ -1708,6 +1708,24 @@ html { scroll-behavior: smooth; }
   }
 }
 
+/* AI AND TRUST THREAD (/hire). Reuses the interview-room head, list and card
+   styles; only the ordered list reset and the closing limit are its own. */
+.ai-trust-thread {
+  max-width: 100%;
+  scroll-margin-top: 96px;
+}
+.ai-trust-thread-list {
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ai-trust-thread-limit {
+  max-width: 64ch;
+  margin: var(--s-4) 0 0;
+  color: var(--text);
+  line-height: 1.6;
+}
+
 /* APPLICATION PACKETS */
 .application-packet-page,
 .application-packet {
@@ -2102,6 +2120,13 @@ html { scroll-behavior: smooth; }
   .role-packet-page .section.container {
     padding-top: var(--s-5);
     padding-bottom: var(--s-5);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* .section's shorthand padding zeroes .container's side gutter, so /hire
+     sections ran edge to edge on phones. Same fix as the role packet page. */
+  .interview-room-page .section.container {
     padding-left: 20px;
     padding-right: 20px;
   }

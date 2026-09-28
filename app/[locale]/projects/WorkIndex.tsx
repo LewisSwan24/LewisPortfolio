@@ -8,7 +8,6 @@ import {
   VizConnect,
   VizMaze,
   VizSpectra,
-  VizVigil,
   VizHoop,
   VizPricewise,
   VizGapmapper,
@@ -25,7 +24,6 @@ type ProjKey =
   | "connect"
   | "spectra"
   | "maze"
-  | "vigil"
   | "hoop"
   | "pricewise"
   | "gapmapper"
@@ -105,11 +103,11 @@ const ITEMS: Item[] = [
     dur: "Live",
     problem: {
       en: "An AI wrote the code, and a green build proved nothing about whether it ran",
-      zh: "代码是 AI 写的，而构建通过证明不了它到底跑没跑",
+      zh: "代码是 AI 写的，构建通过却证明不了到底跑没跑",
     },
     changed: {
-      en: "Five defects found by calling the real endpoints and querying the database directly",
-      zh: "打真实接口、直接查库，查出五处缺陷",
+      en: "Four classes of defect that a green build, a clean type-check and passing tests all missed",
+      zh: "构建、类型检查和测试全绿，照样漏掉四类缺陷",
     },
   },
   {
@@ -120,12 +118,12 @@ const ITEMS: Item[] = [
     year: "2026",
     dur: "Playable",
     problem: {
-      en: "Hundreds of generated assets that each looked fine and did not agree",
-      zh: "几百张单看都不错、彼此却对不上的生成资产",
+      en: "Hundreds of generated assets, where what goes wrong shows only as a set",
+      zh: "几百张生成资产，毛病要整组摆在一起才看得出来",
     },
     changed: {
-      en: "An art bible and a style gate, so coherence came from the pipeline",
-      zh: "一份美术圣经加一道风格闸门，让一致性来自管线本身",
+      en: "An art bible and a rejected list written first, with style checked by eye",
+      zh: "先写美术圣经和拒绝清单，风格靠人眼对照",
     },
   },
   {
@@ -146,22 +144,6 @@ const ITEMS: Item[] = [
   },
   {
     n: "07",
-    k: "vigil",
-    tags: ["flag", "ai", "research"],
-    role: "Design + direction",
-    year: "2026",
-    dur: "In progress",
-    problem: {
-      en: "A classifier that is wrong 12% of the time, and a reviewer who stops checking",
-      zh: "一个有 12% 会判错的分类器，和一个逐渐不再复核的人",
-    },
-    changed: {
-      en: "Confidence built as weak evidence, so the number cannot replace reading the message",
-      zh: "把置信度做成弱证据，让那个数字无法取代真的去读那封信",
-    },
-  },
-  {
-    n: "08",
     k: "spectra",
     tags: ["acc"],
     role: "Solo build",
@@ -174,7 +156,6 @@ const ITEMS: Item[] = [
 
 function WorkPreview({ project, locale }: { project: ProjKey; locale: ProofLocale }) {
   if (project === "maze") return <VizMaze locale={locale} />;
-  if (project === "vigil") return <VizVigil locale={locale} />;
   if (project === "hoop") return <VizHoop locale={locale} />;
   if (project === "pricewise") return <VizPricewise locale={locale} />;
   if (project === "gapmapper") return <VizGapmapper locale={locale} />;

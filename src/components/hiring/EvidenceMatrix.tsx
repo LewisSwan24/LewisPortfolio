@@ -4,6 +4,7 @@ import type {
   ProjectEvidenceSlug,
   ProofLocale,
 } from "@/lib/portfolio-proof";
+import { isUnlistedProject } from "@/lib/project-routes";
 
 const projectLabels: Record<ProjectEvidenceSlug, string> = {
   connect: "UQ Connect",
@@ -16,16 +17,19 @@ const projectLabels: Record<ProjectEvidenceSlug, string> = {
   rules: "Requirements into Rules",
 };
 
-const projectOrder: ProjectEvidenceSlug[] = [
-  "connect",
-  "spectra",
-  "maze",
-  "vigil",
-  "hoop",
-  "pricewise",
-  "gapmapper",
-  "rules",
-];
+// An unlisted case gets no column; getEvidenceMatrix has already dropped its cells.
+const projectOrder: ProjectEvidenceSlug[] = (
+  [
+    "connect",
+    "spectra",
+    "maze",
+    "vigil",
+    "hoop",
+    "pricewise",
+    "gapmapper",
+    "rules",
+  ] as const
+).filter((slug) => !isUnlistedProject(slug));
 
 interface EvidenceMatrixProps {
   capabilities: EvidenceMatrixCapability[];

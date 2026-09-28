@@ -41,10 +41,19 @@ export async function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
 
+// A draft (published: false) is left out of generateStaticParams above, but
+// that alone does not hide it: a slug outside that list is still rendered on
+// request. Both the page and its metadata treat a draft as missing, so its URL
+// answers 404 in either locale.
+async function getPublishedPost(slug: string, locale: "en" | "zh") {
+  const post = await getBlogPost(slug, locale);
+  return post && post.metadata.published ? post : null;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const locale = (await getLocale()) as "en" | "zh";
-  const post = await getBlogPost(slug, locale);
+  const post = await getPublishedPost(slug, locale);
   if (!post) return { title: "Post Not Found" };
   const title = post.metadata.title;
   const description = post.metadata.excerpt;
@@ -72,7 +81,7 @@ export default async function BlogPostPage({ params }: Props) {
   const locale = await getLocale();
   const isZh = locale === "zh";
 
-  const post = await getBlogPost(slug, isZh ? "zh" : "en");
+  const post = await getPublishedPost(slug, isZh ? "zh" : "en");
   if (!post) notFound();
 
   const all = await getAllBlogPosts(isZh ? "zh" : "en");

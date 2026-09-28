@@ -18,27 +18,6 @@ type DeckCard = {
 
 const DECK: DeckCard[] = [
   {
-    id: "spec",
-    kind: { en: "Pre-test predictions", zh: "测试前预测" },
-    stamp: { en: "Vigil · spec freeze", zh: "Vigil · 规格冻结" },
-    date: "2026.08.04",
-    project: { en: "Vigil", zh: "Vigil" },
-    body: {
-      en: [
-        "Three design questions · six switchable variants.",
-        "Predictions written down before anyone touches the build.",
-        "140 synthetic emails, gated so confidence cannot predict the errors.",
-        "→ rule: if confidence starts predicting error, the build fails.",
-      ],
-      zh: [
-        "三个设计问题 · 六个可切换变体。",
-        "预测在任何人碰到实现之前就先写下来。",
-        "140 封合成邮件，设了闸门：置信度不能预测错在哪。",
-        "→ 规则：一旦置信度能预测错误，build 就挂掉。",
-      ],
-    },
-  },
-  {
     id: "thinkaloud",
     kind: { en: "Think-aloud session note", zh: "出声思考记录" },
     stamp: { en: "UQ Connect · Iteration 2", zh: "UQ Connect · 第二轮" },
@@ -53,7 +32,7 @@ const DECK: DeckCard[] = [
       ],
       zh: [
         "主持式 · 可运行原型 · 出声思考",
-        "「它显示我已经报名了。等等，可是还能点」",
+        "「上面显示我已经报名了。等等，可是还能点」",
         "「我能回上一页吗？要怎么回？」",
         "→ 10/03：不再打补丁，回到纸上重画结构",
       ],
@@ -68,23 +47,23 @@ const DECK: DeckCard[] = [
     sketch: true,
   },
   {
-    id: "gate",
-    kind: { en: "Style gate review", zh: "风格闸门审查" },
-    stamp: { en: "Hoop Dream · batch 6", zh: "Hoop Dream · 第六批" },
-    date: "2026.05.13",
+    id: "bible",
+    kind: { en: "Art bible", zh: "美术圣经" },
+    stamp: { en: "Hoop Dream · three bibles", zh: "Hoop Dream · 三份规范" },
+    date: "2026.05.01",
     project: { en: "Hoop Dream", zh: "Hoop Dream" },
     body: {
       en: [
-        "299 assets · six batches · one written art bible",
-        "The gate carries an explicit rejected-style list, not a vibe",
-        "A reject goes back as a prompt edit, never a hand fix",
-        "→ consistency has to come from the pipeline, not from any one asset.",
+        "Three bibles, split by canvas: logos · sprites · scenes",
+        "A written rejected-style list, so the eye has a test",
+        "Laid side by side, the logos had converged: two set rules",
+        "→ a script can read the manifest; style still needs a person.",
       ],
       zh: [
-        "299 张资产 · 六个批次 · 一份写下来的美术圣经",
-        "闸门带着明确的「拒绝风格」清单，不是靠感觉",
-        "被拒的批次改提示词重跑，不手工修图",
-        "→ 一致性得来自这条管线，而不是某一张图。",
+        "三份规范，按画布尺寸分开：队徽 · 人物 · 场景",
+        "写下来的「拒绝风格」清单，让肉眼有据可查",
+        "队徽并排一摆就看出趋同，补上两条整组规则",
+        "→ 脚本读得了清单，风格还得靠人看。",
       ],
     },
   },
@@ -104,7 +83,7 @@ const DECK: DeckCard[] = [
       zh: [
         "把样式表注进去。文档站可以，新闻站直接失效。",
         "内联样式和高优先级选择器默认就赢过你。",
-        "单页应用一切换路由，注入的东西整个被重新渲染掉。",
+        "单页应用一切换路由，重新渲染就把注入的东西冲掉了。",
         "→ 路由变化时要重新应用，不能只在加载时跑一次。",
       ],
     },
@@ -133,7 +112,7 @@ const DECK: DeckCard[] = [
         "好友、私信、动态、投票、举报、家庭群组、挑战赛。",
         "功能清单是 AI 生成的规划，不是从「用户要什么」推出来的。",
         "第二天停下，之后五个月没有再碰。",
-        "→ 判断是对的，问题是它晚了 5884 行。",
+        "→ 判断是对的，问题是晚了 5884 行。",
       ],
     },
   },
@@ -152,8 +131,8 @@ const DECK: DeckCard[] = [
       ],
       zh: [
         "评图给的是两个设计问题，不是一份待修的功能清单。",
-        "「把安全画成二元」——界面亲口说出哪里安全、哪里不安全。",
-        "「责任错位」——又一次在要求女性调整自己的行为。",
+        "「把安全画成二元」：界面亲口说出哪里安全、哪里不安全。",
+        "「责任错位」：又一次在要求女性调整自己的行为。",
         "→ 我改的第一件事不是界面，是读者。",
       ],
     },

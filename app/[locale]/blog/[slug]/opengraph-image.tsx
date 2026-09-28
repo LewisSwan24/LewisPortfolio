@@ -1,15 +1,17 @@
 import { ImageResponse } from "next/og";
-import { getBlogPost, getBlogSlugs } from "@/lib/blog";
+import { getAllBlogPosts, getBlogPost } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 
 export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export function generateStaticParams() {
-  return getBlogSlugs()
-    .map((f) => f.replace(/\.mdx$/, ""))
-    .map((slug) => ({ slug }));
+// Published posts only. A draft gets no prerendered card, and on request it
+// gets the same untitled card as a slug that does not exist, so its title is
+// not served from here either.
+export async function generateStaticParams() {
+  const posts = await getAllBlogPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 interface Props {
@@ -43,7 +45,8 @@ const TERRA = "#C9523A";
 
 export default async function Image({ params }: Props) {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const found = await getBlogPost(slug);
+  const post = found?.metadata.published ? found : null;
   const title = post?.metadata.title || "Writing";
   const excerpt = post?.metadata.excerpt || "";
   const name = siteConfig.name.toUpperCase();

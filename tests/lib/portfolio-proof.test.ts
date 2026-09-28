@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  AI_TRUST_THREAD_HREF,
+  getAiTrustThread,
   getCapabilityPillars,
   getCareerSnapshot,
   getCaseDepth,
@@ -14,10 +16,19 @@ import {
   getInterviewDecisionRoom,
   getProjectEvidence,
   getRoleFit,
+  getRolePacket,
   type ProjectEvidenceSlug,
   projectEvidenceSlugs,
 } from "@/lib/portfolio-proof";
 import type { CaseReaderAnchorId } from "@/lib/proof";
+import {
+  LISTED_PROJECT_SLUGS,
+  UNLISTED_PROJECT_SLUGS,
+  isUnlistedProject,
+  linksToUnlistedProject,
+} from "@/lib/project-routes";
+import enMessages from "@/messages/en.json";
+import zhMessages from "@/messages/zh.json";
 
 // Derived from the slug registry so adding a case does not silently invalidate
 // these patterns the way hard-coded slug alternations did.
@@ -26,13 +37,15 @@ const CASE_HREF = new RegExp(`^/projects/(${SLUG_ALT})(#.+)?$`);
 const CASE_ANCHOR_HREF = new RegExp(`^/projects/(${SLUG_ALT})#`);
 
 describe("portfolio proof content", () => {
-  it("covers every portfolio project with evidence metadata", () => {
+  it("covers every listed project with evidence metadata", () => {
     const projects = getProjectEvidence("en");
+    const listed = projectEvidenceSlugs.filter((slug) => !isUnlistedProject(slug));
 
     // Bound to the slug registry rather than a literal, so adding a case does
-    // not require editing a count here.
-    expect(projects).toHaveLength(projectEvidenceSlugs.length);
-    expect(projects.map((project) => project.slug)).toEqual(projectEvidenceSlugs);
+    // not require editing a count here. An unlisted case keeps its entry in the
+    // registry but drops out of this list, the way it drops out of the work index.
+    expect(projects).toHaveLength(listed.length);
+    expect(projects.map((project) => project.slug)).toEqual(listed);
 
     for (const project of projects) {
       expect(project.challenge.length).toBeGreaterThan(20);
@@ -223,6 +236,8 @@ describe("portfolio proof content", () => {
     const roleFits = getHiringRoleFits("en");
     const ids = roleFits.map((role) => role.id);
 
+    // ai-ux went with Vigil when Vigil was unlisted, and came back on 2026-09-28
+    // as a thread through listed cases (see the "AI and trust thread" block).
     expect(ids).toEqual(["ux-product", "ux-research", "ai-ux", "accessibility"]);
 
     for (const role of roleFits) {
@@ -307,7 +322,9 @@ describe("portfolio proof content", () => {
     expect(room.brief.primaryAction.href).toBe("/contact");
     expect(room.brief.secondaryAction.href).toBe("/resume");
 
-    expect(room.evidenceBrief.length).toBeGreaterThanOrEqual(5);
+    // Four, not five, while Vigil is unlisted: its human-oversight entry is
+    // kept in the data but not shown.
+    expect(room.evidenceBrief.length).toBeGreaterThanOrEqual(4);
     expect(room.questionBank.length).toBeGreaterThanOrEqual(5);
     // Per-case limits live on each case page's outcome-limits block; /hire
     // carries only the general boundaries, so this floor is deliberately low.
@@ -351,5 +368,212 @@ describe("portfolio proof content", () => {
     expect(zh.boundaries.map((item) => item.id)).toEqual(
       en.boundaries.map((item) => item.id)
     );
+  });
+});
+
+// AI UX as a thread through several cases (plan 甲, 2026-09-28). The limits
+// are the canonical facts file's: no finished AI-native case, every entry says
+// who did the work, and every cell is supporting rather than primary.
+describe("AI and trust thread", () => {
+  const THREAD_SLUGS: ProjectEvidenceSlug[] = ["pricewise", "gapmapper", "connect", "hoop"];
+  const ROLE_SLUGS: ProjectEvidenceSlug[] = ["pricewise", "gapmapper", "connect"];
+  const slugOf = (href: string) => href.match(/^\/projects\/([^#/?]+)/)?.[1];
+
+  it("backs the AI UX role with PriceWise, Perception Gap Mapper and UQ Connect, not Vigil", () => {
+    for (const locale of ["en", "zh"] as const) {
+      const role = getHiringRoleFits(locale).find((fit) => fit.id === "ai-ux");
+      expect(role).toBeDefined();
+      expect(role!.proofLinks.map((link) => slugOf(link.href))).toEqual(ROLE_SLUGS);
+      expect(role!.bestCases).toEqual(ROLE_SLUGS);
+      expect(JSON.stringify(role)).not.toMatch(/vigil/i);
+    }
+  });
+
+  it("restores the AI UX and trust row with supporting evidence only", () => {
+    for (const locale of ["en", "zh"] as const) {
+      const row = getEvidenceMatrix(locale).find((capability) => capability.id === "ai-trust");
+      expect(row).toBeDefined();
+      expect(Object.keys(row!.cases).sort()).toEqual([...THREAD_SLUGS].sort());
+      for (const cell of Object.values(row!.cases)) {
+        expect(cell?.strength).toBe("supporting");
+      }
+    }
+  });
+
+  it("points the AI UX proof route at PriceWise and the resume link at the thread", () => {
+    for (const locale of ["en", "zh"] as const) {
+      const route = getHiringConversion(locale).proofRoutes.find((item) => item.audience.startsWith("AI UX"));
+      expect(route?.href).toBe("/projects/pricewise#decision-timeline");
+      expect(getRoleFit(locale).proofLinks.map((link) => link.href)).toContain(AI_TRUST_THREAD_HREF);
+      expect(getRolePacket("ai-ux", locale)?.thread?.href).toBe(AI_TRUST_THREAD_HREF);
+    }
+  });
+
+  it("opens by admitting there is no finished AI-native product", () => {
+    expect(getAiTrustThread("en").intro).toMatch(/^I have not finished an AI-native product yet\./);
+    expect(getAiTrustThread("zh").intro).toMatch(/^我还没有做完一个 AI 原生产品。/);
+  });
+
+  it("states its limit sentence in both locales", () => {
+    expect(getAiTrustThread("en").limit).toBe(
+      "None of these is a finished AI-native product, and each entry states its own limits."
+    );
+    expect(getAiTrustThread("zh").limit).toBe("这四条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。");
+  });
+
+  it("says who did the work in every entry and links each to a valid case anchor", () => {
+    for (const locale of ["en", "zh"] as const) {
+      const thread = getAiTrustThread(locale);
+      expect(thread.entries.map((entry) => entry.slug)).toEqual(THREAD_SLUGS);
+
+      for (const entry of thread.entries) {
+        expect(entry.who.length).toBeGreaterThan(3);
+        expect(entry.body.length).toBeGreaterThan(60);
+        expect(entry.href).toMatch(CASE_ANCHOR_HREF);
+        const [, slug, anchor] = entry.href.match(/^\/projects\/([^#]+)#(.+)$/) ?? [];
+        expect(slug).toBe(entry.slug);
+        const guide = getCaseReaderGuide(slug as ProjectEvidenceSlug, locale);
+        expect(guide.sections.some((section) => section.id === anchor)).toBe(true);
+      }
+    }
+  });
+
+  it("keeps the counts the canonical facts reject out of the thread", () => {
+    for (const locale of ["en", "zh"] as const) {
+      const copy = JSON.stringify(getAiTrustThread(locale));
+      // PriceWise is four classes of defect, not five defects; Hoop Dream's 299
+      // are registry records whose images were never verified.
+      expect(copy).not.toMatch(/five defects|五处|299/i);
+      expect(copy).not.toMatch(/vigil/i);
+    }
+  });
+});
+
+// Three claims the live site made that their sources do not back (2026-09-28).
+// UQ Connect's 71 files are research and testing records, not transcripts
+// (canonical facts, UQ Connect research row). PriceWise's history was counted
+// again on its working branch, so the count carries its date. Hoop Dream's
+// production log prints its own style verdict: the generator script writes
+// that line, and the only automated check reads the manifest and PNG
+// headers. So no Hoop copy may present a style gate, and the review is manual.
+describe("claims checked against their sources", () => {
+  it("calls UQ Connect's 71 items records, not transcripts", () => {
+    expect(enMessages.cs.connect.re.title).toBe("Three rounds, three fidelities, 71 research and testing records.");
+    expect(zhMessages.cs.connect.re.title).toBe("三轮，三种保真度，71 份研究与测试记录。");
+    for (const locale of ["en", "zh"] as const) {
+      const messages = locale === "en" ? enMessages : zhMessages;
+      const rounds = [messages.cs.connect.re.m1.b, messages.cs.connect.re.m2.b, messages.cs.connect.re.m3.b];
+      const samples = getCaseDepth("connect", locale).evidence.map((item) => item.sample);
+      expect([...rounds, ...samples].join(" ")).not.toMatch(/transcript|逐字稿/i);
+    }
+  });
+
+  it("states PriceWise's commit count with the date it was counted", () => {
+    const en = JSON.stringify([getCaseSummary("pricewise", "en"), getProjectEvidence("en")]);
+    const zh = JSON.stringify([getCaseSummary("pricewise", "zh"), getProjectEvidence("zh")]);
+    expect(en).toContain("96-commit history (to 13 August 2026)");
+    expect(zh).toContain("96 个提交的完整记录（截至 2026 年 8 月 13 日）");
+    expect(en + zh).not.toMatch(/93-commit|九十三/);
+  });
+
+  it("never presents a Hoop Dream style gate or an automated style verdict", () => {
+    for (const locale of ["en", "zh"] as const) {
+      const messages = locale === "en" ? enMessages : zhMessages;
+      const copy = JSON.stringify([
+        messages.proj.hoop,
+        messages.cs.hoop,
+        getCaseSummary("hoop", locale),
+        getCaseDepth("hoop", locale),
+        getCaseInterviewScan("hoop", locale),
+        getCaseInterviewPack("hoop", locale),
+        getProjectEvidence(locale).find((project) => project.slug === "hoop"),
+        getInterviewDecisionRoom(locale).evidenceBrief.filter((item) => item.caseSlug === "hoop"),
+        getAiTrustThread(locale).entries.find((entry) => entry.slug === "hoop"),
+      ]);
+      expect(copy).not.toMatch(/style gate|\bgating\b|runtime anchors|闸门|锚点/i);
+      expect(copy).not.toMatch(/PASS/);
+    }
+  });
+
+  it("says the Hoop Dream style review was manual", () => {
+    const en = getAiTrustThread("en").entries.find((entry) => entry.slug === "hoop");
+    const zh = getAiTrustThread("zh").entries.find((entry) => entry.slug === "hoop");
+    expect(en?.body).toContain("Style review was manual");
+    expect(zh?.body).toContain("风格靠人工审查");
+  });
+});
+
+describe("unlisted cases", () => {
+  it("recognises a link into an unlisted case in either locale", () => {
+    expect(UNLISTED_PROJECT_SLUGS).toContain("vigil");
+    expect(LISTED_PROJECT_SLUGS).not.toContain("vigil");
+
+    expect(linksToUnlistedProject("/projects/vigil")).toBe(true);
+    expect(linksToUnlistedProject("/zh/projects/vigil#outcome-limits")).toBe(true);
+    expect(linksToUnlistedProject("/projects/vigil/prototype.html")).toBe(true);
+    expect(linksToUnlistedProject("/projects/connect#decision-timeline")).toBe(false);
+    expect(linksToUnlistedProject("/resume")).toBe(false);
+  });
+
+  it("keeps unlisted cases out of every proof list a visitor sees", () => {
+    for (const locale of ["en", "zh"] as const) {
+      const room = getInterviewDecisionRoom(locale);
+      const hrefs = [
+        ...getProjectEvidence(locale).map((project) => project.href),
+        ...getHiringConversion(locale).proofRoutes.map((route) => route.href),
+        ...getRoleFit(locale).proofLinks.map((link) => link.href),
+        ...getHiringRoleFits(locale).flatMap((role) => role.proofLinks.map((link) => link.href)),
+        ...room.evidenceBrief.map((item) => item.href),
+        ...room.questionBank.map((item) => item.href),
+        ...getAiTrustThread(locale).entries.map((entry) => entry.href),
+        ...getEvidenceMatrix(locale).flatMap((capability) =>
+          Object.values(capability.cases).flatMap((cell) => (cell ? [cell.href] : []))
+        ),
+      ];
+
+      expect(hrefs.length).toBeGreaterThan(0);
+      expect(hrefs.filter(linksToUnlistedProject)).toEqual([]);
+
+      for (const role of getHiringRoleFits(locale)) {
+        expect(role.bestCases.filter(isUnlistedProject)).toEqual([]);
+      }
+      for (const capability of getEvidenceMatrix(locale)) {
+        expect(Object.keys(capability.cases).filter(isUnlistedProject)).toEqual([]);
+      }
+    }
+  });
+
+  it("leaves no role or capability standing with nothing behind it", () => {
+    for (const locale of ["en", "zh"] as const) {
+      for (const role of getHiringRoleFits(locale)) {
+        expect(role.proofLinks.length).toBeGreaterThan(0);
+      }
+      for (const capability of getEvidenceMatrix(locale)) {
+        const shown = Object.values(capability.cases).filter(
+          (cell) => cell !== undefined && cell.strength !== "none"
+        );
+        expect(shown.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("keeps the AI UX role packet off the unlisted case", () => {
+    for (const locale of ["en", "zh"] as const) {
+      const packet = getRolePacket("ai-ux", locale);
+      expect(packet).toBeDefined();
+      expect(packet!.strongestCases.filter(isUnlistedProject)).toEqual([]);
+      expect(packet!.proofClaims.map((claim) => claim.strongestAnchor).filter(linksToUnlistedProject)).toEqual([]);
+      expect(packet!.interviewQuestions.map((answer) => answer.evidenceHref).filter(linksToUnlistedProject)).toEqual([]);
+    }
+  });
+
+  it("still has the full case data for an unlisted case", () => {
+    // Unlisting hides a case; it does not delete it. The page is still built
+    // from these, so they have to stay complete.
+    for (const slug of UNLISTED_PROJECT_SLUGS) {
+      expect(getCaseSummary(slug, "en").challenge.length).toBeGreaterThan(20);
+      expect(getCaseDepth(slug, "zh").decisions.length).toBeGreaterThanOrEqual(3);
+      expect(getCaseInterviewPack(slug, "en").answers.length).toBeGreaterThanOrEqual(3);
+    }
   });
 });

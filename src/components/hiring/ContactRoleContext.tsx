@@ -36,6 +36,11 @@ export function ContactRoleContext({ role, locale }: ContactRoleContextProps) {
             {claim.claim}
           </Link>
         ))}
+        {packet.thread && (
+          <Link href={localizeInternalHref(packet.thread.href, locale)}>
+            {packet.thread.label}
+          </Link>
+        )}
         <Link href={localizeInternalHref(packet.route, locale)}>
           {labels.openRolePacket}
         </Link>

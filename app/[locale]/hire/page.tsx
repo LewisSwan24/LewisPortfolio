@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
+import { AiTrustThread } from "@/components/hiring/AiTrustThread";
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
@@ -8,6 +9,7 @@ import { InterviewEvidenceBrief } from "@/components/hiring/InterviewEvidenceBri
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
 import {
+  getAiTrustThread,
   getHiringRoleFits,
   getInterviewDecisionRoom,
   type ProofLocale,
@@ -36,6 +38,7 @@ export default async function HirePage() {
   const proofLocale: ProofLocale = locale === "zh" ? "zh" : "en";
   const room = getInterviewDecisionRoom(proofLocale);
   const roleFits = getHiringRoleFits(proofLocale);
+  const aiTrustThread = getAiTrustThread(proofLocale);
   const proofLabels = getProofUiLabels(proofLocale);
   const pageCopy =
     proofLocale === "zh"
@@ -84,6 +87,12 @@ export default async function HirePage() {
           intro={pageCopy.roleIntro}
           labels={proofLabels}
         />
+      </section>
+
+      {/* AI UX as a thread through several cases. The AI UX role card above
+          links into the same cases; /resume and /contact?role=ai-ux link here. */}
+      <section className="section container">
+        <AiTrustThread thread={aiTrustThread} />
       </section>
 
       <section className="section container">

@@ -7,7 +7,6 @@ import {
   VizConnect,
   VizSpectra,
   VizMaze,
-  VizVigil,
   VizHoop,
   VizPricewise,
   VizGapmapper,
@@ -42,7 +41,6 @@ type ProjKey =
   | "connect"
   | "spectra"
   | "maze"
-  | "vigil"
   | "hoop"
   | "pricewise"
   | "gapmapper"
@@ -234,12 +232,13 @@ export default async function HomePage() {
             recruiter holding both sees one sequence rather than two. That still
             puts MazeRunners first: it is the only case backed by a working
             physical build, so it differentiates hardest against screen-only
-            portfolios. Vigil and Spectra Lens are not in the PDF at all, so
-            they follow the six rather than interleaving.
+            portfolios. Spectra Lens is not in the PDF at all, so it follows
+            the six rather than interleaving. Vigil is unlisted (see
+            UNLISTED_PROJECT_SLUGS) and has no slot here.
 
             Every case is still rendered. FeaturedDeck hides the inactive ones
             visually but leaves them in the served HTML, so a crawler still gets
-            all eight. */}
+            all seven. */}
         <FeaturedDeck
           labels={{
             prev: t("feat.deckPrev"),
@@ -253,8 +252,7 @@ export default async function HomePage() {
             { key: "pricewise", n: "04", node: <FeatItem n="04" k="pricewise" href="/projects/pricewise" flip t={t} viz={<VizPricewise locale={proofLocale} />} /> },
             { key: "hoop", n: "05", node: <FeatItem n="05" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop locale={proofLocale} />} /> },
             { key: "rules", n: "06", node: <FeatItem n="06" k="rules" href="/projects/rules" flip t={t} viz={<VizRules locale={proofLocale} />} /> },
-            { key: "vigil", n: "07", node: <FeatItem n="07" k="vigil" href="/projects/vigil" t={t} viz={<VizVigil locale={proofLocale} />} /> },
-            { key: "spectra", n: "08", node: <FeatItem n="08" k="spectra" href="/projects/spectra" flip t={t} viz={<VizSpectra locale={proofLocale} />} /> },
+            { key: "spectra", n: "07", node: <FeatItem n="07" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra locale={proofLocale} />} /> },
           ]}
         />
       </section>

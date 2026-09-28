@@ -7,6 +7,7 @@ import type {
   ProofLocale,
   RoleFit,
 } from "./types";
+import { isUnlistedProject, linksToUnlistedProject } from "../project-routes";
 
 
 const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
@@ -96,9 +97,9 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
     {
       id: "ai-ux",
       title: "AI interaction design",
-      summary: "I design AI as a relationship: expectation-setting, control, feedback timing, and trust.",
-      proof: "Vigil treats the classifier's confidence as deliberately weak evidence, so the reviewer keeps checking instead of deferring.",
-      href: "/projects/vigil",
+      summary: "I judge how sure an AI feature is allowed to sound, and check what it actually does.",
+      proof: "PriceWise passed build, type-check and tests with four classes of defect still in the code; its semantic search had never used a vector.",
+      href: "/projects/pricewise",
     },
     {
       id: "prototyping-testing",
@@ -113,7 +114,7 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "研究问题定义",
       summary: "我把宽泛问题拆成研究范围、招募计划与决策标准。",
-      proof: "UQ Connect 在第一场访谈之前，就把每条假设的数字及格线写了下来，让研究有可能得出否定结果——而它确实否定了好几条。",
+      proof: "UQ Connect 在第一场访谈之前，就把每条假设的数字及格线写了下来，让研究有可能得出否定结果；最后确实否定了好几条。",
       href: "/projects/connect",
     },
     {
@@ -126,16 +127,16 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
     {
       id: "accessibility",
       title: "无障碍与包容性",
-      summary: "我把无障碍准则做成用户真的够得到的控件，并让它在真实网站上持续可用。",
+      summary: "我把无障碍准则做成用户真的够得到的控件，并让这套控件在真实网站上持续可用。",
       proof: "Spectra Lens 把无障碍准则做成了一个能用的扩展：一个扩展弹窗就能改写任意页面的字体与间距。",
       href: "/projects/spectra",
     },
     {
       id: "ai-ux",
       title: "AI 交互设计",
-      summary: "我把 AI 体验看成关系设计：预期、控制、反馈时机与信任。",
-      proof: "Vigil 把分类器的信心分数刻意做成弱证据，让复核的人继续自己判断，而不是顺着它点下去。",
-      href: "/projects/vigil",
+      summary: "我判断一个 AI 功能该有多大把握，也去核实这个功能实际做了什么。",
+      proof: "PriceWise 的构建、类型检查和测试全绿，代码里仍有四类缺陷；语义搜索其实从来没用过向量。",
+      href: "/projects/pricewise",
     },
     {
       id: "prototyping-testing",
@@ -155,7 +156,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       problemType: "A social platform for international students, researched and built over one semester",
       challenge: "UQ runs plenty of events for international students, and they still end up in the same circle. A one-off mixer produces an introduction, not a relationship.",
       methods: ["exploratory interviews", "falsifiable test cards", "think-aloud usability testing", "task-based usability testing", "component system design"],
-      sample: "Course project, five-person team. 71 interview transcripts across three rounds between August and November 2025; my 14 sessions covered 9 participants, 4 of whom returned in a later round. 13 hypotheses carried a numeric pass mark set in advance, but no round recorded completion times or a fixed success criterion.",
+      sample: "Course project, five-person team. 71 research and test sessions across three rounds between August and November 2025; my 14 sessions covered 9 participants, 4 of whom returned in a later round. 13 hypotheses carried a numeric pass mark set in advance, but no round recorded completion times or a fixed success criterion.",
       outcome: "A 19-screen mobile MVP built on a shared component system, reached through three research rounds and a mid-build return to paper, then carried on alone in January and deployed. Runs on mock data; the backend was written but never connected.",
       proves: "I can run research set up to disconfirm itself, and carry what survives into a component system that keeps two dozen screens reading as one product.",
     },
@@ -214,20 +215,20 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       href: "/projects/hoop",
       problemType: "Generative production at volume, and narrative systems design",
       challenge:
-        "A career-simulation RPG needs hundreds of art assets to read as one world. Generating them is cheap now; keeping 299 of them stylistically coherent is the actual problem.",
+        "A career-simulation RPG needs hundreds of art assets to read as one world. Generating them is cheap now; keeping them stylistically coherent is the actual problem.",
       methods: [
         "art bible",
-        "prompt-per-batch production",
-        "style gate review",
+        "prompt templates with negative prompts",
+        "manual side-by-side review",
         "narrative systems design",
         "regression testing at scale",
       ],
       sample:
-        "Publicly playable, self-labelled DEMO v0.6. 299 assets across six batches, a ten-chapter career on 146 nodes, and 1,975 tests over the career, contract, injury and save systems. No player research.",
+        "Publicly playable, self-labelled DEMO v0.6. 299 asset specs registered across six batches (original images not yet verified), a ten-chapter career on 146 nodes, and 1,975 tests over the career, contract, injury and save systems. No player research.",
       outcome:
-        "A working career sim where coherence is a property of the pipeline rather than of individual assets: rules written first, a style gate with an explicit rejected list, and a production log that makes every batch auditable.",
+        "A working career sim whose style rules were written first: three art bibles, an explicit rejected list checked by eye, and a registry that logs every batch. The one automated check reads the manifest, not the style.",
       proves:
-        "I can run generative production at a volume that would otherwise go incoherent, and keep a systems-heavy build correct while content keeps landing.",
+        "I can set up generative production with written rules and a plain line between what a script checks and what a person must, and keep a systems-heavy build correct while content keeps landing.",
     },
     {
       slug: "pricewise",
@@ -245,7 +246,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       sample:
         "A deployed app with 109 API routes and 36 page routes, 307 unit tests and 14 end-to-end cases, 65 products across Coles, Woolworths and Aldi. Zero registered users; all pricing is simulated.",
       outcome:
-        "Five defects that had passed build, type-check and the full suite, each found by calling the real endpoint, reading the response and querying the database — plus a 93-commit history where a 5,884-line expansion and its retraction are both legible.",
+        "Four classes of defect that had passed build, type-check and the full suite, plus a 96-commit history (to 13 August 2026) where a 5,884-line expansion and its retraction are both legible.",
       proves:
         "I can separate 'looks finished' from 'actually runs' on a codebase an AI wrote, and leave scripts behind that let someone else reach the same conclusions.",
     },
@@ -263,7 +264,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
         "policy-constraint writing",
       ],
       sample:
-        "18 team interviews with six participants completing; I ran and coded numbers 10, 11 and 12. Six prototype screens, each passed through four questions about visibility, concealment, expected actor and implied certainty. Never tested with planning staff.",
+        "18 interviews run by a team of six; I ran and coded numbers 10, 11 and 12. Six prototype screens, each passed through four questions about visibility, concealment, expected actor and implied certainty. Never tested with planning staff.",
       outcome:
         "Three interlocking deliverables — a report that sets the claim, a one-page brief that turns it into system requirements, and a prototype that walks those requirements through a planning flow — with perception and objective indicators kept side by side and never merged into a score.",
       proves:
@@ -297,8 +298,8 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       problemType: "一个面向国际学生的社交平台，一学期内做完研究并做出来",
       challenge: "UQ 给国际学生办的活动不少，他们还是留在同一个圈子里。一次性的迎新派对制造的是认识，不是关系。",
       methods: ["探索式访谈", "可证伪的假设卡", "出声思考可用性测试", "任务式可用性测试", "组件系统设计"],
-      sample: "课程项目，五人团队。2025 年 8 月至 11 月三轮共 71 份访谈逐字稿；我那 14 场来自 9 位受访者，其中 4 位跨轮回访。13 条假设都带着事先定好的数字门槛，但没有任何一轮记录过完成时间或成功标准。",
-      outcome: "一个 19 屏、建立在共享组件系统上的移动端 MVP，经过三轮研究和一次开发中途回到纸面的重画；课程结束后我一个人接着做，并把它部署上线。跑在 mock 数据上；后端写了，但从未接上。",
+      sample: "课程项目，五人团队。2025 年 8 月至 11 月三轮共 71 份研究与测试记录；我那 14 场来自 9 位受访者，其中 4 位跨轮回访。13 条假设都带着事先定好的数字门槛，但没有任何一轮记录过完成时间或成功标准。",
+      outcome: "一个 19 屏、建立在共享组件系统上的移动端 MVP，经过三轮研究和一次开发中途回到纸面的重画；课程结束后我一个人接着做，并部署上线。跑在 mock 数据上；后端写了，但从未接上。",
       proves: "证明我能把研究做成会否定自己的样子，再把活下来的结论落进一套组件系统，让二十多个屏读起来仍然是同一个产品。",
     },
     {
@@ -309,14 +310,14 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       methods: ["无障碍准则应用", "字体与间距调校", "跨站点回归测试", "中英双语界面"],
       sample: "自主开发。Chrome 扩展：内容脚本注入样式、弹窗控制面板、本地打包 OpenDyslexic 字体、中英双语语系文件、Jest 单元测试。尚未做过用户研究。",
       outcome: "一个能用的扩展：从一个扩展弹窗就能改写任意页面的字体与间距，设置按站点分别保存。",
-      proves: "证明我能把无障碍准则做成真正能用的工具，并让它在我控制不了的网站上持续可用。",
+      proves: "证明我能把无障碍准则做成真正能用的工具，并让这个扩展在我控制不了的网站上持续可用。",
     },
     {
       slug: "maze",
       href: "/projects/maze",
       problemType: "物理计算与软硬件交互",
       challenge:
-        "实体迷宫本身是被动的。要让它像一个会回应的多人系统，必须把感测、反馈和游戏状态接在一起，让玩家看得见、听得见、也感觉得到每一个事件。",
+        "实体迷宫本身是被动的。要让这座迷宫像一个会回应的多人系统，必须把感测、反馈和游戏状态接在一起，让玩家看得见、听得见、也感觉得到每一个事件。",
       methods: ["固件状态机", "传感器防抖与冷却调校", "触觉反馈设计", "Web Serial 控制台", "固件与网页行为一致性的回归测试"],
       sample:
         "已完成搭建并展出。Arduino Mega、10 个 FC-51 红外传感器、TM1637 计分与计时显示、继电器驱动的震动马达、RGB 灯带、舵机，以及一个浏览器控制台；在公开展览的多人游玩中验证。",
@@ -337,32 +338,32 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       outcome:
         "六个变体已经跑起来，背后是一版可运行的 React 实现；语料设有闸门，确保置信度无法预测分类器错在哪里。三个设计问题都还开着，而预测在测试之前就已写下。",
       proves:
-        "证明我能把一套系统说清楚到 AI 可以快速实现，同时把「它到底测不测得到东西」这个判断留在自己手里。",
+        "证明我能把一套系统说清楚到 AI 可以快速实现，同时把「这套系统到底测不测得到东西」这个判断留在自己手里。",
     },
     {
       slug: "hoop",
       href: "/projects/hoop",
       problemType: "大体量生成式生产与叙事系统设计",
       challenge:
-        "一个生涯模拟 RPG 需要几百张美术资产，才撑得起「这是同一个世界」。现在生成它们很便宜，难的是让 299 张保持在同一种风格里。",
-      methods: ["美术圣经", "按批次写提示词生产", "风格闸门审查", "叙事系统设计", "大规模回归测试"],
+        "一个生涯模拟 RPG 需要几百张美术资产，才撑得起「这是同一个世界」。现在生成这些资产很便宜，难的是让这么多张保持同一种风格。",
+      methods: ["美术圣经", "带负面提示词的提示词模板", "人工并排审查", "叙事系统设计", "大规模回归测试"],
       sample:
-        "线上公开可玩，游戏自标 DEMO v0.6。六个批次共 299 张资产、十章生涯跑在 146 个节点上、覆盖生涯与合同与伤病与存档系统的 1975 个测试。没有做过玩家研究。",
+        "线上公开可玩，游戏自标 DEMO v0.6。六个批次登记了 299 条资产规格（原图尚未核实）、十章生涯跑在 146 个节点上、覆盖生涯与合同与伤病与存档系统的 1975 个测试。没有做过玩家研究。",
       outcome:
-        "一个真的能玩的生涯模拟，而它的一致性来自管线而不是单张资产：规则先写、风格闸门附明确的拒绝清单、生产记录让每一批都可审计。",
-      proves: "证明我能在一个本来一定会失控的量级上跑生成式生产，并在内容持续落地的同时让实现保持正确。",
+        "一个真的能玩的生涯模拟，风格规则写在前面：三份美术圣经，加一张靠人眼对照的拒绝清单。资产按批次登记；唯一的自动检查读的是资产清单，不查风格。",
+      proves: "证明我能用成文规则搭生成式生产，分清脚本查得了什么、什么必须靠人看。内容持续落地时，实现也保持正确。",
     },
     {
       slug: "pricewise",
       href: "/projects/pricewise",
       problemType: "AI 实现下的产品设计与行为验证",
       challenge:
-        "代码交给 AI 写之后，构建通过就不再是证据了。界面渲染出来了、类型检查零错误、测试全绿——这三件事都不能证明功能真的在执行。",
+        "代码交给 AI 写之后，构建通过就不再是证据了。界面渲染出来了、类型检查零错误、测试全绿，这三件事都不能证明功能真的在执行。",
       methods: ["规格先行", "打真实接口验行为", "直接查数据库", "补写回归测试", "范围收缩"],
       sample:
-        "一个线上应用：109 条 API 路由、36 条页面路由，307 个单元测试与 14 个端到端用例，Coles / Woolworths / Aldi 三家共 65 件商品。注册用户是 0，价格全部为拟真数据。",
+        "一个线上应用：109 条 API 路由、36 条页面路由，307 个单元测试与 14 个端到端用例，澳洲三大连锁超市 Coles / Woolworths / Aldi 共 65 件商品。注册用户是 0，价格全部为拟真数据。",
       outcome:
-        "五处同时通过构建、类型检查与整套测试的缺陷，每一处都是打真实接口、读返回、直接查库才查出来的；外加九十三个提交的完整记录，5884 行的膨胀和随后的收缩都留在里面。",
+        "四类同时通过构建、类型检查与整套测试的缺陷。另有 96 个提交的完整记录（截至 2026 年 8 月 13 日），5884 行的膨胀和随后的收缩都留在里面。",
       proves:
         "在一份 AI 写的代码上，我能把「看起来完成」和「真的能用」分开验，并且留下可复现的脚本，换一个人照着跑能得到同样的结论。",
     },
@@ -371,28 +372,28 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       href: "/projects/gapmapper",
       problemType: "公共空间安全，以及证据能声称什么的边界",
       challenge:
-        "一个建议「更安全路线」的界面，获得了一种自己没有挣来的权威。它保证不了安全，而它做得越像样，那个兑现不了的承诺就越有说服力。",
+        "一个建议「更安全路线」的界面，获得了一种自己没有挣来的权威。这样的界面保证不了安全，而做得越像样，那个兑现不了的承诺就越有说服力。",
       methods: ["半结构式访谈", "拿文献检验假设", "评图驱动的方向转变", "证据模型设计", "把伦理立场写成系统要求"],
       sample:
         "团队 18 个访谈、6 人完成，第 10、11、12 个由我做并编码。原型六屏，每屏都过同样四个问题：让什么可见、把什么藏起来、期待谁去行动、暗示了多高的确定性。未经真实规划人员测试。",
       outcome:
-        "三件互相咬合的交付物——报告定主张、一页 brief 把主张变成系统要求、原型把这些要求走成一条能通的规划流程；感知与客观指标在屏幕上始终并排，从不合成一个分数。",
+        "三件互相咬合的交付物：报告定主张、一页 brief 把主张变成系统要求、原型把这些要求走成一条能通的规划流程；感知与客观指标在屏幕上始终并排，从不合成一个分数。",
       proves:
-        "当我自己做出来的原型给出了证据撑不起的承诺时，我会杀掉它；并且能把由此产生的立场写成系统要求，而不是留成一段话。",
+        "自己做出来的原型一旦给出了证据撑不起的承诺，我会亲手停掉；并且能把由此产生的立场写成系统要求，而不是留成一段话。",
     },
     {
       slug: "rules",
       href: "/projects/rules",
       problemType: "写规格，以及把文献翻译成能施工的约束",
       challenge:
-        "「让骑车更安全」「预警有效」这类话，写在文档里谁都同意，但没有一句拿得去施工，也没有一句能被反驳——而这正是它们作为要求毫无用处的原因。",
+        "「让骑车更安全」「预警有效」这类话，写在文档里谁都同意，但没有一句拿得去施工，也没有谁能反驳，而正因为反驳不了，这些话当成要求毫无用处。",
       methods: ["把要求逼成阈值", "设计系统规格", "AI 使用标注册", "出声思考走查", "把同行评审论文翻译成规范"],
       sample:
         "同一门课的两份作业：一个自行车路线 App（界面部分由我负责），一份把 2025 年某篇同行评审论文翻译成规范的个人作业。测试做到出声思考走查这一层；六条自查清单 6/6 通过，那是自查不是外部验证。",
       outcome:
         "安全变成了路线权重、150–250 m 的提示提前量和 48px 的点击区下限；论文变成了三条各配文案模板与阈值的独立触发条件。",
       proves:
-        "我能把一句所有人都同意的要求，逼成一条能照着施工、也能被指着说「这条不对」的规则，并且说得清它在哪里失效。",
+        "我能把一句所有人都同意的要求，逼成一条能照着施工、也能让人指着说「这条不对」的规则，并且说得清这条规则在哪里失效。",
     },
   ],
 };
@@ -409,10 +410,10 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "6",
-        label: "end-to-end cases",
+        value: "4",
+        label: "cases with a live build you can open",
         detail:
-          "A student social platform, accessibility, AI feedback, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "UQ Connect, MazeRunners, Hoop Dream and PriceWise each open from their case page.",
       },
       {
         value: "6",
@@ -459,12 +460,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       },
       {
         audience: "AI UX / trust",
-        title: "Designing against over-trust in an AI",
+        title: "Checking what an AI feature really does",
         claim:
-          "Best proof that I can design the conditions under which a person genuinely checks an AI rather than deferring to it.",
+          "Best proof that I check AI-built features against the live system before I trust a green build.",
         evidence:
-          "Vigil builds the classifier's confidence as deliberately weak evidence, and the build fails if that stops being true.",
-        href: "/projects/vigil#decision-timeline",
+          "PriceWise: four classes of defect passed build, type-check and tests, and semantic search had never used a vector.",
+        href: "/projects/pricewise#decision-timeline",
       },
     ],
     closingPrompt: {
@@ -479,16 +480,16 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     hero: {
       headline: "会把东西真的做出来的交互设计师，而不只是交一份稿。",
       subhead:
-        "我把模糊的产品问题走完研究、信息架构与包容性交互决策，再用 Claude Code 和 Codex 把它推到能跑——所以你看到的是一个能用的原型，而不是对原型的描述。",
+        "我把模糊的产品问题走完研究、信息架构与包容性交互决策，再用 Claude Code 和 Codex 推到能跑，所以你看到的是一个能用的原型，而不是对原型的描述。",
       status:
         "2026 年底毕业。实习与毕业生的交互、产品、design technologist 岗位都在看。",
     },
     signals: [
       {
-        value: "6",
-        label: "端到端案例",
+        value: "4",
+        label: "个案例有能直接打开的线上版本",
         detail:
-          "涵盖一个学生社交平台、无障碍、AI 反馈、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "UQ Connect、MazeRunners、Hoop Dream 和 PriceWise，都能从案例页直接打开。",
       },
       {
         value: "6",
@@ -498,7 +499,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       {
         value: "1",
         label: "可运行的硬件作品",
-        detail: "Arduino 固件、红外感测、触觉反馈与 Web Serial 控制台 —— 真的做出来、接好线并展出过。",
+        detail: "Arduino 固件、红外感测、触觉反馈与 Web Serial 控制台，都真的做出来、接好线并展出过。",
       },
       {
         value: "2026",
@@ -512,7 +513,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         title: "硬件、固件与交互接成同一个闭环",
         claim: "证明我不只是写规格，而是真的做得出来。",
         evidence:
-          "MazeRunners 把红外感测、固件状态、震动、音效与 Web Serial 控制台接成一套系统 —— 已搭建并展出。",
+          "MazeRunners 把红外感测、固件状态、震动、音效与 Web Serial 控制台接成一套系统，已搭建并展出。",
         href: "/projects/maze#decision-timeline",
       },
       {
@@ -535,12 +536,12 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       },
       {
         audience: "AI UX / 信任",
-        title: "设计出「不轻易相信 AI」这件事",
+        title: "核实 AI 功能到底做了什么",
         claim:
-          "证明我能设计出让人真的去复核 AI、而不是顺着它点下去的条件。",
+          "证明我在相信构建全绿之前，会先对着线上系统核实 AI 写的功能。",
         evidence:
-          "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这个性质失效，build 直接挂掉。",
-        href: "/projects/vigil#decision-timeline",
+          "PriceWise：四类缺陷都过了构建、类型检查和测试，语义搜索其实从来没用过向量。",
+        href: "/projects/pricewise#decision-timeline",
       },
     ],
     closingPrompt: {
@@ -566,7 +567,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     proofLinks: [
       { label: "Information architecture proof", href: "/projects/connect" },
       { label: "Accessibility proof", href: "/projects/spectra" },
-      { label: "AI UX proof", href: "/projects/vigil" },
+      { label: "AI UX thread", href: "/hire#ai-trust-thread" },
       { label: "Resume", href: "/resume" },
     ],
   },
@@ -581,7 +582,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     proofLinks: [
       { label: "信息架构证据", href: "/projects/connect" },
       { label: "无障碍证据", href: "/projects/spectra" },
-      { label: "AI UX 证据", href: "/projects/vigil" },
+      { label: "AI UX 这条线", href: "/hire#ai-trust-thread" },
       { label: "简历", href: "/resume" },
     ],
   },
@@ -639,16 +640,27 @@ export function getCapabilityPillars(locale: ProofLocale): CapabilityPillar[] {
   return capabilityPillars[locale];
 }
 
+// The next three feed lists a visitor sees (work index, feed, proof routes,
+// contact and resume links), so an unlisted case is filtered out here. Its
+// entries stay in the tables above; only the lists stop showing them.
 export function getProjectEvidence(locale: ProofLocale): ProjectEvidence[] {
-  return projectEvidence[locale];
+  return projectEvidence[locale].filter((project) => !isUnlistedProject(project.slug));
 }
 
 export function getHiringConversion(locale: ProofLocale): HiringConversion {
-  return hiringConversions[locale];
+  const conversion = hiringConversions[locale];
+  return {
+    ...conversion,
+    proofRoutes: conversion.proofRoutes.filter((route) => !linksToUnlistedProject(route.href)),
+  };
 }
 
 export function getRoleFit(locale: ProofLocale): RoleFit {
-  return roleFits[locale];
+  const fit = roleFits[locale];
+  return {
+    ...fit,
+    proofLinks: fit.proofLinks.filter((link) => !linksToUnlistedProject(link.href)),
+  };
 }
 
 export function getHiringPaths(locale: ProofLocale): HiringPath[] {

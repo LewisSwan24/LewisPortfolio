@@ -45,7 +45,7 @@ export function VizConnect({ locale = "en" }: VizProps) {
         </defs>
         <rect width="520" height="400" fill="url(#paper-c)" opacity="0.5" />
         <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
-          {zh ? "三轮访谈 · 2025 年 8–11 月" : "THREE ROUNDS · AUG–NOV 2025"}
+          {zh ? "三轮研究与测试 · 2025 年 8–11 月" : "THREE ROUNDS · AUG–NOV 2025"}
         </text>
 
         {rounds.map((round, i) => (
@@ -110,7 +110,7 @@ export function VizConnect({ locale = "en" }: VizProps) {
           14 / 71
         </text>
         <text x="30" y="390" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8A8170">
-          {zh ? "我主持的场次，占团队总数" : "interviews I ran, of the team’s total"}
+          {zh ? "我主持的场次，占团队总数" : "sessions I ran, of the team’s total"}
         </text>
       </svg>
     </div>
@@ -389,7 +389,7 @@ export function VizVigil({ locale = "en" }: VizProps) {
           fontSize="22"
           fill="#25231D"
         >
-          {zh ? "这个数字不会告诉你它什么时候错了" : "the number can’t tell you when it’s wrong"}
+          {zh ? "这个数字不会告诉你哪一次判断是错的" : "the number can’t tell you when it’s wrong"}
         </text>
         <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
           {zh
@@ -405,9 +405,9 @@ export function VizVigil({ locale = "en" }: VizProps) {
 }
 
 export function VizHoop({ locale = "en" }: VizProps) {
-  // The case's actual argument: volume only stays coherent because every batch
-  // clears the same written gate. Counts transcribed from the project's own
-  // stage15 production log.
+  // What the repo supports: six batches logged into one registry, rules written
+  // before them, and one automated check that reads the registry, never the
+  // style. Counts transcribed from the project's own stage15 production log.
   const zh = locale === "zh";
   const batches = [
     { label: zh ? "人物立绘" : "PORTRAITS", n: 64 },
@@ -430,7 +430,7 @@ export function VizHoop({ locale = "en" }: VizProps) {
         <rect width="520" height="400" fill="url(#paper-h)" opacity="0.5" />
 
         <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
-          {zh ? "六个批次 · 一道风格闸门" : "SIX BATCHES · ONE STYLE GATE"}
+          {zh ? "六个批次 · 一份登记表" : "SIX BATCHES · ONE REGISTRY"}
         </text>
 
         {batches.map((batch, i) => {
@@ -454,7 +454,7 @@ export function VizHoop({ locale = "en" }: VizProps) {
           );
         })}
 
-        {/* The gate every batch has to clear. */}
+        {/* The registry every batch is logged into. Its script reads names and sizes, never style. */}
         <line x1="300" y1="52" x2="300" y2="230" stroke="#25231D" strokeWidth="1.2" />
         <text
           x="300"
@@ -464,15 +464,30 @@ export function VizHoop({ locale = "en" }: VizProps) {
           textAnchor="middle"
           fill="#25231D"
         >
-          {zh ? "风格闸门" : "STYLE GATE"}
+          {zh ? "登记表" : "REGISTRY"}
+        </text>
+        <text
+          x="300"
+          y="258"
+          fontFamily="var(--font-mono)"
+          fontSize="8"
+          textAnchor="middle"
+          fill="#8B7355"
+        >
+          {zh ? "脚本只读清单，不查风格" : "SCRIPT READS THE MANIFEST, NOT STYLE"}
         </text>
 
         <path d="M 306 141 L 386 141" stroke="#25231D" strokeWidth="1" />
         <text x="396" y="132" fontFamily="var(--font-display)" fontSize="40" fill="#25231D">
           299
         </text>
+        {/* Registry records, not finished art: the image files behind the 299
+            were never verified (canonical facts, Hoop Dream 299). */}
         <text x="396" y="152" fontFamily="var(--font-mono)" fontSize="8.5" fill="#8B7355">
-          {zh ? "通过" : "PASSED"}
+          {zh ? "条登记规格" : "REGISTERED SPECS"}
+        </text>
+        <text x="396" y="164" fontFamily="var(--font-mono)" fontSize="8.5" fill="#8B7355">
+          {zh ? "原图未核实" : "IMAGES NOT VERIFIED"}
         </text>
 
         <text x="30" y="288" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
@@ -503,9 +518,11 @@ export function VizHoop({ locale = "en" }: VizProps) {
 }
 
 export function VizPricewise({ locale = "en" }: VizProps) {
-  // The case's argument in one image: three gates all say PASS, and five defects
-  // walk straight through them, because none of the three asks whether the
-  // feature executed. The five are the ones named in the case copy.
+  // The case's argument in one image: three gates all say PASS, and four
+  // classes of defect walk straight through them, because none of the three asks
+  // whether the feature executed. The fifth line is the regression my own fix
+  // introduced (PriceWise e066106), so the count reads 4+1, not 5 defects: the
+  // fix commits name more than ten individual defects inside the four classes.
   const zh = locale === "zh";
   const gates = [
     { label: zh ? "构建" : "BUILD", x: 150 },
@@ -515,9 +532,9 @@ export function VizPricewise({ locale = "en" }: VizProps) {
   const defects = [
     zh ? "语意搜索没用过向量" : "search never used a vector",
     zh ? "模板建的清单是空的" : "template lists came out empty",
-    zh ? "鉴权比对 Bearer undefined" : "auth compared 'Bearer undefined'",
+    zh ? "鉴权缺密钥时不拒绝" : "auth failed open without its key",
     zh ? "六张表从没建过" : "six tables were never created",
-    zh ? "向量撑爆返回体积" : "a vector bloated the response",
+    zh ? "我的修复带进：向量撑爆返回" : "my fix's regression: a bloated response",
   ];
 
   return (
@@ -551,7 +568,7 @@ export function VizPricewise({ locale = "en" }: VizProps) {
           </g>
         ))}
 
-        {/* Five defects passing through every gate untouched. */}
+        {/* Four classes and one regression, passing through every gate untouched. */}
         {defects.map((defect, i) => {
           const y = 70 + i * 31;
           return (
@@ -569,7 +586,7 @@ export function VizPricewise({ locale = "en" }: VizProps) {
         })}
 
         <text x="412" y="152" fontFamily="var(--font-display)" fontSize="40" fill="#25231D">
-          5
+          4+1
         </text>
         <text x="412" y="172" fontFamily="var(--font-mono)" fontSize="8.5" fill="#8B7355">
           {zh ? "全过" : "GOT THROUGH"}
@@ -577,7 +594,7 @@ export function VizPricewise({ locale = "en" }: VizProps) {
 
         <text x="30" y="288" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
           {zh
-            ? "查出它们靠的是：打真实接口 · 读返回内容 · 直接查数据库"
+            ? "查出来靠的是：打真实接口 · 读返回内容 · 直接查数据库"
             : "FOUND BY: CALLING THE REAL ENDPOINT · READING THE RESPONSE · QUERYING THE DB"}
         </text>
 
@@ -595,7 +612,7 @@ export function VizPricewise({ locale = "en" }: VizProps) {
           {zh ? "109 条 API 路由 · 36 条页面路由 · 311 个测试" : "109 API routes · 36 page routes · 311 tests"}
         </text>
         <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
-          {zh ? "没有一道关卡在问「它有没有真的执行」" : "no gate was asking whether the feature executed"}
+          {zh ? "没有一道关卡在问「功能有没有真的执行」" : "no gate was asking whether the feature executed"}
         </text>
       </svg>
     </div>
@@ -695,11 +712,11 @@ export function VizGapmapper({ locale = "en" }: VizProps) {
             : "18 interviews · six completed · numbers 10, 11 and 12 are mine"}
         </text>
         <text x="30" y="350" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
-          {zh ? "六个完成的访谈撑不起任何一个分数" : "six completed interviews cannot support any score"}
+          {zh ? "18 个访谈撑不起一个安全分数" : "18 interviews cannot support a safety score"}
         </text>
         <text x="30" y="378" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#A63F2A">
           {zh
-            ? "我建了那个路线原型，然后主张放弃它"
+            ? "路线原型是我建的，也是我主张放弃的"
             : "I built the route prototype, then argued for abandoning it"}
         </text>
       </svg>
@@ -770,7 +787,7 @@ export function VizRules({ locale = "en" }: VizProps) {
 
         <text x="30" y="278" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
           {zh
-            ? "按钮写「See safer routes」——比较级，因为没有数据支撑「最安全」"
+            ? "按钮写「See safer routes」：比较级，因为没有数据支撑「最安全」"
             : "THE BUTTON READS 'SEE SAFER ROUTES' — COMPARATIVE, BECAUSE NO DATA SUPPORTS 'SAFEST'"}
         </text>
 
@@ -782,7 +799,7 @@ export function VizRules({ locale = "en" }: VizProps) {
           fontSize="22"
           fill="#25231D"
         >
-          {zh ? "能被反驳，是它有用的前提" : "being refutable is what makes it useful"}
+          {zh ? "能被反驳，规则才有用" : "being refutable is what makes it useful"}
         </text>
         <text x="30" y="354" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
           {zh ? "两份作业 · 同一个动作 · 均已提交并评分" : "two briefs · one move · both submitted and marked"}

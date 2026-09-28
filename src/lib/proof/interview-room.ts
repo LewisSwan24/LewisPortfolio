@@ -1,5 +1,5 @@
 import type { InterviewDecisionRoom, ProofLocale } from "./types";
-
+import { isUnlistedProject } from "../project-routes";
 
 const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
   brief: {
@@ -18,9 +18,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Proof depth",
-        value: "5 end-to-end cases",
+        value: "4 live builds",
         detail:
-          "IA, an accessibility extension, a hardware build, an AI-oversight study, and a generative production pipeline — methods and limits shown.",
+          "UQ Connect, MazeRunners, Hoop Dream and PriceWise each open from their case page. Every case shows its methods and limits.",
       },
       {
         label: "Interview readiness",
@@ -78,9 +78,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "Design systems at generated scale",
       caseSlug: "hoop",
       proof:
-        "Hoop Dream held 299 generated assets to one written art bible through a style gate with an explicit rejected-style list.",
+        "Hoop Dream wrote its style rules down before the batches: three art bibles and an explicit rejected-style list, reviewed by eye rather than by a script. 299 asset specs are registered across six batches.",
       whyItMatters:
-        "Shows consistency enforced by a process rather than by taste applied one asset at a time.",
+        "Shows written standards another reviewer could apply, and a clear line between what a script can check and what it cannot.",
       href: "/projects/hoop#decision-timeline",
     },
   ],
@@ -121,7 +121,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       id: "pipeline-consistency-hoop",
       group: "product",
       question: "How do you keep hundreds of generated assets looking like one world?",
-      proves: "Process design, written standards, and reviewing at scale.",
+      proves: "Process design, written standards, and knowing what a script can and cannot check.",
       caseSlug: "hoop",
       href: "/projects/hoop#decision-timeline",
     },
@@ -174,9 +174,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "证据深度",
-        value: "5 个端到端案例",
+        value: "4 个线上版本",
         detail:
-          "覆盖 IA、一个无障碍扩展、一台硬件作品、一项 AI 监督研究，以及一条生成式生产管线，并展示方法与限制。",
+          "UQ Connect、MazeRunners、Hoop Dream 和 PriceWise 都能从案例页直接打开。每个案例都写了方法和限制。",
       },
       {
         label: "面试准备度",
@@ -196,7 +196,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       proof:
         "UQ Connect 在开发中途停下来，把整个应用在纸上重画成五个屏，并画出从首页出发的每条路径。",
       whyItMatters:
-        "证明我面对结构性缺陷会用结构去回答，而不是打补丁。",
+        "证明我遇到结构层面的缺陷，会用结构去回答，而不是打补丁。",
       href: "/projects/connect#decision-timeline",
     },
     {
@@ -224,9 +224,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "人对 AI 的监督",
       caseSlug: "vigil",
       proof:
-        "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这个性质失效，它自己的 build 就会挂掉。",
+        "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这一点失效，Vigil 自己的 build 就会挂掉。",
       whyItMatters:
-        "证明我做得了 AI UX 里更难的那一半：让人继续复核，而不是顺着它点下去。",
+        "证明我做得了 AI UX 里更难的那一半：让人继续复核，而不是顺着模型点下去。",
       href: "/projects/vigil#decision-timeline",
     },
     {
@@ -234,9 +234,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "规模化生产中的一致性",
       caseSlug: "hoop",
       proof:
-        "Hoop Dream 靠一份成文美术规范和一道带「拒绝清单」的风格闸门，把 299 张生成资产收在同一种风格里。",
+        "Hoop Dream 在批次之前先写下风格规则：三份美术规范和一张「拒绝清单」，靠人眼对照，没有脚本在查。登记在册的资产规格有 299 条，分六批。",
       whyItMatters:
-        "证明一致性可以由流程守住，而不是靠一张一张凭手感盯。",
+        "说明标准写成了文字，换一个人也能照着审；也说明我分得清脚本查得了什么、查不了什么。",
       href: "/projects/hoop#decision-timeline",
     },
   ],
@@ -252,7 +252,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "accessibility-feedback-spectra",
       group: "accessibility",
-      question: "怎么让注入的样式赢过网站，又不把它的布局撑坏？",
+      question: "怎么让注入的样式赢过网站，又不把原本的布局撑坏？",
       proves: "包容性设计判断和约束驱动的交互设计。",
       caseSlug: "spectra",
       href: "/projects/spectra#decision-timeline",
@@ -276,8 +276,8 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "pipeline-consistency-hoop",
       group: "product",
-      question: "几百张生成的资产，怎么让它们看起来像同一个世界？",
-      proves: "流程设计、成文标准，以及大规模审查。",
+      question: "几百张生成的资产，怎么才能看起来像同一个世界？",
+      proves: "流程设计、成文标准，以及分清脚本查得了什么。",
       caseSlug: "hoop",
       href: "/projects/hoop#decision-timeline",
     },
@@ -287,7 +287,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       id: "academic-context",
       claim: "这些案例证明的是设计判断和证据处理能力。",
       boundary:
-        "它们不应被当成大规模生产系统 ownership 的证明。",
+        "别把这些案例当成大规模生产系统 ownership 的证明。",
       validation:
         "我会尽早和工程配合，验证交付约束。",
       href: "/projects/connect#outcome-limits",
@@ -303,9 +303,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     },
     {
       id: "scope-of-build",
-      claim: "MazeRunners 证明我能把一套系统真的做出来并让它运行。",
+      claim: "MazeRunners 证明我能把一套系统真的做出来并跑起来。",
       boundary:
-        "它是一台手工接线的展览单机，不能用来说明可量产性或长期耐久度。",
+        "这是一台手工接线的展览单机，说明不了能不能量产，也说明不了能用多久。",
       validation:
         "我会改用制作好的线束重做一台，并在多个场地测量布置时间与传感器漂移。",
       href: "/projects/maze#outcome-limits",
@@ -319,6 +319,13 @@ const interviewDecisionRooms: Record<ProofLocale, InterviewDecisionRoom> = {
 };
 
 
+// Entries pointing at an unlisted case stay in the tables above but are not
+// shown: /hire is one of the pages that no longer links to it.
 export function getInterviewDecisionRoom(locale: ProofLocale): InterviewDecisionRoom {
-  return interviewDecisionRooms[locale];
+  const room = interviewDecisionRooms[locale];
+  return {
+    ...room,
+    evidenceBrief: room.evidenceBrief.filter((item) => !isUnlistedProject(item.caseSlug)),
+    questionBank: room.questionBank.filter((item) => !isUnlistedProject(item.caseSlug)),
+  };
 }

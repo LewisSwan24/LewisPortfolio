@@ -11,6 +11,36 @@ export const CURRENT_PROJECT_SLUGS = [
 
 export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
 
+/**
+ * Cases that keep their page but are no longer presented. The page still
+ * builds and still answers at its URL; nothing on the site links to it, and
+ * the homepage, the work index, the sitemap, the feeds, search, structured
+ * data and the proof lists all leave it out.
+ *
+ * Vigil was abandoned on 2026-09-23. On 2026-09-27 Lewis chose to take it off
+ * the homepage and the lists rather than delete it, so its case data, images
+ * and prototype stay where they are.
+ */
+export const UNLISTED_PROJECT_SLUGS: readonly CurrentProjectSlug[] = ["vigil"];
+
+export function isUnlistedProject(slug: string): boolean {
+  return (UNLISTED_PROJECT_SLUGS as readonly string[]).includes(slug);
+}
+
+export const LISTED_PROJECT_SLUGS: CurrentProjectSlug[] = CURRENT_PROJECT_SLUGS.filter(
+  (slug) => !isUnlistedProject(slug),
+);
+
+/**
+ * True for an internal link into an unlisted case, in either locale and with
+ * or without an anchor: `/projects/vigil`, `/zh/projects/vigil#outcome-limits`,
+ * `/projects/vigil/prototype.html`.
+ */
+export function linksToUnlistedProject(href: string): boolean {
+  const slug = href.match(/^(?:\/zh)?\/projects\/([^/?#]+)/)?.[1];
+  return slug !== undefined && isUnlistedProject(slug);
+}
+
 export const LEGACY_PROJECT_SLUG_REDIRECTS: Record<string, CurrentProjectSlug> = {
   "uq-connect": "connect",
   "spectra-lens": "spectra",
@@ -45,11 +75,11 @@ export const PROJECT_OG_COPY: Record<
   },
   hoop: {
     title: "Hoop Dream",
-    oneLiner: "A Chinese basketball career RPG, and a production pipeline for 299 generated assets.",
+    oneLiner: "A Chinese basketball career RPG, and a production pipeline with 299 registered asset specs.",
   },
   pricewise: {
     title: "PriceWise",
-    oneLiner: "A live grocery price comparison app, and five defects that a green build could not see.",
+    oneLiner: "A live grocery price comparison app, and four classes of defect that a green build could not see.",
   },
   gapmapper: {
     title: "Perception Gap Mapper",
