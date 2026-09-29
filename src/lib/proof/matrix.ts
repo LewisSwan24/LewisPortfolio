@@ -798,7 +798,7 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
           id: "rules-soft-to-threshold",
           question: "How do you turn 'make cycling safer' into something a team can build?",
           answer:
-            "You force it into numbers. Safety became routing weights favouring separated segments and quiet streets while down-weighting paint-only lanes, a 150–250 m warning lead, and a 48 px tap-target floor. The team named the underlying phenomenon — the '25-metre bike lane' that ends and dumps you into traffic — and made it a term in the algorithm. A rule with a number in it can be executed and argued with; the original sentence can be neither.",
+            "You force it into numbers. In Fietspad the proposal drafts did that: routing weights favouring separated segments and quiet streets while down-weighting paint-only lanes, a 150–250 m warning lead, and a 48 px tap-target floor. AI wrote most of those drafts, and the final proposal kept only pre-alerts before roundabouts and left hooks, with 'Calmest' as the default route. A rule with a number in it can be executed and argued with; the original sentence can be neither.",
           evidenceHref: "/projects/rules#decision-timeline",
           boundary: "Committing to thresholds early means committing before there is evidence that these are the right numbers.",
         },
@@ -1114,7 +1114,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
           id: "rules-soft-to-threshold",
           question: "「让骑车更安全」这句话，你怎么把它变成团队能施工的东西？",
           answer:
-            "把它逼成数字。安全变成了优先分隔路段与安静街道、给只有一层油漆的车道降权的路线权重，150–250 m 的提示提前量，48px 的点击区下限。团队还给底下那个现象起了名字（「25 米自行车道」，断掉之后把人甩到主干道上），并把它变成算法里的一项。一条带数字的规则能被执行、也能被反驳；原来那句话两样都做不到。",
+            "把它逼成数字。Fietspad 的提案草稿就是这么做的。草稿里的路线权重优先分隔路段与安静街道，给只有一层油漆的车道降权；提示提前量是 150–250 m，点击区下限是 48px。这些草稿多由 AI 起草，最终提案只保留了环岛与左勾弯前的预警，并把「最平稳」设为默认路线。一条带数字的规则能被执行、也能被反驳；原来那句话两样都做不到。",
           evidenceHref: "/projects/rules#decision-timeline",
           boundary: "这么早定阈值，等于在还没有证据说明这些数字对不对的时候就先认了。",
         },

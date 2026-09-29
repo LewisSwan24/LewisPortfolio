@@ -283,9 +283,9 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
         "peer-reviewed source translation",
       ],
       sample:
-        "Two coursework briefs: a cycling route app where I owned the interface, and an individual guide translating one 2025 peer-reviewed paper. Testing reached think-aloud walkthrough; the six-item self-check passed 6 of 6, which is a self-check rather than external validation.",
+        "Two coursework briefs: a cycling route app where I was Lead Developer, and an individual guide translating one 2025 peer-reviewed paper. Testing reached think-aloud walkthrough; the proposal drafts' self-check claims 6 of 6, which is a self-check rather than external validation.",
       outcome:
-        "Safety became routing weights, a 150–250 m warning lead and a 48 px tap-target floor; the paper became three independent trigger conditions with their own copy templates and thresholds.",
+        "The proposal drafts, mostly written by AI, turned safety into routing weights, a 150–250 m warning lead and a 48 px tap-target floor; the paper became three independent trigger conditions with their own copy templates and thresholds.",
       proves:
         "I can force a requirement everyone agrees with into a rule someone can build to and argue with, and state plainly where that rule stops holding.",
     },
@@ -388,9 +388,9 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
         "「让骑车更安全」「预警有效」这类话，写在文档里谁都同意，但没有一句拿得去施工，也没有谁能反驳，而正因为反驳不了，这些话当成要求毫无用处。",
       methods: ["把要求逼成阈值", "设计系统规格", "AI 使用标注册", "出声思考走查", "把同行评审论文翻译成规范"],
       sample:
-        "同一门课的两份作业：一个自行车路线 App（界面部分由我负责），一份把 2025 年某篇同行评审论文翻译成规范的个人作业。测试做到出声思考走查这一层；六条自查清单 6/6 通过，那是自查不是外部验证。",
+        "同一门课的两份作业：一个自行车路线 App（我是 Lead Developer），一份把 2025 年某篇同行评审论文翻译成规范的个人作业。测试做到出声思考走查这一层；草稿的自查清单写着 6/6 通过，那是自查不是外部验证。",
       outcome:
-        "安全变成了路线权重、150–250 m 的提示提前量和 48px 的点击区下限；论文变成了三条各配文案模板与阈值的独立触发条件。",
+        "提案草稿把安全写成了路线权重、150–250 m 的提示提前量和 48px 的点击区下限，草稿多由 AI 起草。论文变成了三条各配文案模板与阈值的独立触发条件。",
       proves:
         "我能把一句所有人都同意的要求，逼成一条能照着施工、也能让人指着说「这条不对」的规则，并且说得清这条规则在哪里失效。",
     },

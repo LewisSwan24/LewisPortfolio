@@ -113,10 +113,10 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       },
       rules: {
         challenge: "'Make cycling safer' and 'warn people in time' are sentences everyone agrees with and nobody can build to. Neither can be argued against, which is exactly what makes them useless as requirements.",
-        role: "Fietspad was a team project and I owned the interface work; the Quest 3 guide was individual and entirely mine",
+        role: "Fietspad was a team project and I was Lead Developer: I built the back-end prototype with AI coding tools and generated the high-fidelity interface in Figma Make, which a teammate rebuilt in Figma Design; the Quest 3 guide was individual and entirely mine",
         methods: ["requirement-to-threshold translation", "design system specification", "AI usage auditing", "think-aloud walkthrough", "peer-reviewed source translation"],
         evidence: [
-          "a route app where safety became routing weights, a 150–250 m warning lead and a 48 px minimum tap target",
+          "a route app whose proposal drafts, mostly written by AI, set routing weights, a 150–250 m warning lead and a 48 px minimum tap target",
           "an AI usage register naming what each of four tools got wrong and how it was corrected, including deleting every figure that had no source",
           "an eight-panel guide turning one 2025 peer-reviewed paper into three independent trigger conditions, each with its own copy template",
         ],
@@ -209,10 +209,10 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       },
       rules: {
         challenge: "「让骑车更安全」「预警有效」这类话，写在文档里谁都同意，但没有一句拿得去施工，也没有一句能被反驳。这类话之所以作为要求毫无用处，原因正在这里。",
-        role: "Fietspad 是团队项目，界面部分由我负责；Quest 3 指南是个人作业，全部内容由我完成",
+        role: "Fietspad 是团队项目，我是 Lead Developer：后端原型用 AI 编码工具搭，高保真界面由我用 Figma Make 生成、组员在 Figma Design 重建。Quest 3 指南是个人作业，全部内容由我完成",
         methods: ["把要求逼成阈值", "设计系统规格", "AI 使用标注册", "出声思考走查", "把同行评审论文翻译成规范"],
         evidence: [
-          "一个路线 App，「安全」在里面变成了路线权重、150–250 m 的提示提前量和 48px 的点击区下限",
+          "一个路线 App，提案草稿把「安全」写成了路线权重、150–250 m 的提示提前量和 48px 的点击区下限，草稿多由 AI 起草",
           "一份 AI 使用标注册，逐个说明四个工具各自出了什么问题、怎么修的；其中一条是删掉所有没有出处的数字",
           "一份八格图文指南，把一篇 2025 年的同行评审论文变成三条独立触发条件，各配各的文案模板",
         ],
@@ -1050,11 +1050,11 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       rules: {
         decisions: [
           {
-            label: "Force 'safer' into numbers before designing anything",
+            label: "Force 'safer' into numbers in the proposal drafts",
             choice:
-              "Safety became routing weights that favour separated segments and quiet streets and down-weight paint-only lanes, a 150–250 m warning lead, and a 48 px minimum tap target.",
+              "The proposal drafts turned safety into routing weights that favour separated segments and quiet streets and down-weight paint-only lanes, a 150–250 m warning lead, and a 48 px minimum tap target. AI wrote most of those drafts.",
             evidence:
-              "Bike lanes end abruptly and dump riders into traffic. The team named the phenomenon — the '25-metre bike lane' — and made it a term in the routing algorithm.",
+              "Bike lanes end abruptly and dump riders into traffic. The drafts named the phenomenon, the '25-metre bike lane'. The final proposal kept pre-alerts before roundabouts and left hooks and made 'Calmest' the default route.",
             tradeoff: "Committing to thresholds early means committing before there is evidence that these are the right numbers.",
             impact: "A rule with a number in it can be executed and can be argued with. 'Make cycling safer' can be neither.",
           },
@@ -1109,9 +1109,9 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           },
           {
             method: "Think-aloud walkthrough and a self-check list",
-            sample: "Six checklist items including the 48 px tap-target floor; the flow walked with think-aloud",
+            sample: "The proposal drafts' checklist, including the 48 px tap-target floor; the flow walked with think-aloud",
             question: "Does the specification hold when someone walks the flow?",
-            finding: "It held at walkthrough level. The '6/6 pass' result is a self-check, not external validation.",
+            finding: "It held at walkthrough level. The drafts' '6/6 pass' is a self-check, not external validation.",
             implication:
               "This is the ceiling of what the evidence supports — a walkthrough is not a riding trial, and the case says so rather than letting 6/6 imply more.",
           },
@@ -1885,9 +1885,9 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       rules: {
         decisions: [
           {
-            label: "先把「更安全」逼成数字，再开始设计",
-            choice: "安全变成了三样东西：优先分隔路段与安静街道、给只有一层油漆的车道降权的路线权重，150–250 m 的提示提前量，48px 的点击区下限。",
-            evidence: "自行车道会突然断掉，把人甩到主干道上。团队给这个现象起了名字（「25 米自行车道」），并把它变成路线算法里的一项。",
+            label: "提案草稿先把「更安全」逼成数字",
+            choice: "提案草稿把安全写成了三样东西。一是路线权重：优先分隔路段与安静街道，给只有一层油漆的车道降权。二是 150–250 m 的提示提前量，三是 48px 的点击区下限。草稿多由 AI 起草。",
+            evidence: "自行车道会突然断掉，把人甩到主干道上。草稿给这个现象起了名字（「25 米自行车道」）。最终提案保留了环岛与左勾弯前的预警，并把「最平稳」设为默认路线。",
             tradeoff: "这么早定阈值，等于在还没有证据说明这些数字对不对的时候就先认了。",
             impact: "一条带数字的规则能被执行，也能被反驳。「让骑车更安全」两样都做不到。",
           },
@@ -1935,9 +1935,9 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           },
           {
             method: "出声思考走查加自查清单",
-            sample: "六条自查项，含 48px 点击区下限；流程用出声思考走了一遍",
+            sample: "提案草稿的自查清单，含 48px 点击区下限；流程用出声思考走了一遍",
             question: "这份规格，在有人真的走一遍流程时立不立得住？",
-            finding: "走查这一层立得住。「6/6 通过」是自查清单，不是外部验证。",
+            finding: "走查这一层立得住。草稿里的「6/6 通过」是自查清单，不是外部验证。",
             implication: "这就是证据能撑到的上限：走查不是骑行实测，案例直接这么写，而不是让 6/6 去暗示更多。",
           },
         ],

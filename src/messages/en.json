@@ -161,10 +161,10 @@
       "kicker": "Specification · Design systems",
       "title": "Requirements into Rules",
       "sub": "Two coursework briefs doing the same thing: forcing a soft requirement into a rule someone can build to, and argue with.",
-      "role": "Interface work on one, sole author on the other",
+      "role": "Lead Developer on one, sole author on the other",
       "date": "2025 · DECO7250, submitted and marked",
-      "m1": "150–250 m warning lead",
-      "m2": "48 px tap-target floor",
+      "m1": "150–250 m warning lead (draft)",
+      "m2": "48 px tap-target floor (draft)",
       "m3": "1 paper → 3 trigger conditions"
     }
   },
@@ -673,7 +673,7 @@
         "title": "Requirements into Rules",
         "sub": "Two briefs from one course, doing the same thing: taking a requirement everyone agrees with and forcing it into a rule that can be built to — and argued against."
       },
-      "roleVal": "Fietspad was a team project and I owned the interface work; the Quest 3 guide was individual and entirely mine",
+      "roleVal": "Fietspad was a team project and I was Lead Developer: I built the back-end prototype with AI coding tools and generated the high-fidelity interface in Figma Make, which a teammate rebuilt in Figma Design; the Quest 3 guide was individual and entirely mine",
       "timeVal": "2025 · DECO7250 Human-Computer Interaction, submitted and marked",
       "teamVal": "One team, one solo",
       "toolsVal": "Figma · Figma Make · Miro · Otter · ChatGPT · literature translation",
@@ -702,8 +702,8 @@
       },
       "sy": {
         "label": "The system idea",
-        "title": "Safety became routing weights, metres, and pixels.",
-        "p": "Bike lanes end abruptly and dump riders into traffic. The team named the phenomenon — the '25-metre bike lane' — and made it a term in the routing algorithm: prefer separated segments and quiet streets, down-weight lanes that are only a layer of paint. Hazard categories are cycling-specific rather than generic: left hook, dooring zone, shared lane. Warnings arrive 150–250 m ahead, delivered by audio and haptics so they do not take the eyes. Tap targets have a 48 px floor, which is one of six items on the self-check list."
+        "title": "The proposal drafts turned safety into metres, pixels and routing weights.",
+        "p": "Bike lanes end abruptly and dump riders into traffic. The proposal drafts named the phenomenon, the '25-metre bike lane', and proposed down-weighting lanes that are only a layer of paint; AI wrote most of those drafts. The back-end prototype I built with AI coding tools filters segments by level of traffic stress, and the final proposal made 'Calmest' the default route. Hazard categories are cycling-specific rather than generic: left hook, dooring zone, shared lane. The drafts set warnings 150–250 m ahead, delivered by audio and haptics so they do not take the eyes, and a 48 px tap-target floor is one item on the drafts' self-check list. The final proposal kept pre-alerts before roundabouts and left hooks."
       },
       "id": {
         "label": "Interface decisions",
@@ -715,16 +715,16 @@
       },
       "te": {
         "label": "How far the testing went",
-        "p": "Think-aloud walkthrough, and no further. The six-item self-check list passed 6 of 6 — which is a self-check, not external validation, and the case says so rather than letting the number imply more. A walkthrough catches comprehension problems. It does not catch what happens when someone is riding, tired, wet or in traffic, and the audio warning in particular exists precisely because a rider cannot look at a screen."
+        "p": "Think-aloud walkthrough, and no further. The proposal drafts' self-check list claims 6 of 6 — which is a self-check, not external validation, and the case says so rather than letting the number imply more. A walkthrough catches comprehension problems. It does not catch what happens when someone is riding, tired, wet or in traffic, and the audio warning in particular exists precisely because a rider cannot look at a screen."
       },
       "ou": {
         "label": "What this case produced",
         "m1": {
-          "label": "hazard warning lead, audio and haptic",
+          "label": "warning lead in the proposal drafts",
           "v": "150–250 m"
         },
         "m2": {
-          "label": "tap-target floor, one of six checklist items",
+          "label": "tap-target floor, one item on the drafts' checklist",
           "v": "48 px"
         },
         "m3": {
@@ -735,7 +735,7 @@
       },
       "rf": {
         "label": "Reflection",
-        "p": "Putting the two briefs together is the point. One turns 'safety' into routing weights, warning distances and tap sizes; the other turns a paper into trigger conditions, copy templates and a checklist. They prove the same capability, and the second exists to show the first was not a one-off. What survives outside a course is the move itself — and the discipline of saying where the rule stops holding, rather than letting a self-check stand in for evidence someone else produced."
+        "p": "Putting the two briefs together is the point. In Fietspad, the proposal drafts turned 'safety' into routing weights, warning distances and tap sizes, and AI wrote most of those drafts. The other brief is where I turned a paper into trigger conditions, copy templates and a checklist myself. What survives outside a course is the move itself — and the discipline of saying where the rule stops holding, rather than letting a self-check stand in for evidence someone else produced."
       }
     }
   },
