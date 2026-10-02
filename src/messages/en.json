@@ -16,7 +16,7 @@
   },
   "brand": {
     "name": "Lewis Dong",
-    "tagline": "practice log, est. 2026"
+    "tagline": "practice log"
   },
   "hero": {
     "eyebrow": "Interaction & Product Designer · Master's in Interaction Design, UQ",
@@ -49,7 +49,7 @@
     },
     "location": {
       "label": "Location",
-      "val": "Brisbane, AU — graduating late 2026, open to internships and graduate roles"
+      "val": "Brisbane, AU — graduating late 2026, looking for full-time graduate roles"
     }
   },
   "approach": {
@@ -122,7 +122,7 @@
       "title": "Vigil",
       "sub": "A review desk for deciding when to trust a classifier that is wrong 12% of the time.",
       "role": "Design + direction",
-      "date": "2026 · in progress",
+      "date": "2026 · abandoned",
       "m1": "140 messages · 87.9% accurate",
       "m2": "Confidence built as weak evidence",
       "m3": "Six variants, three open questions"
@@ -142,7 +142,7 @@
       "title": "PriceWise",
       "sub": "Photograph a supermarket receipt and see what the same basket costs at two other chains. The AI wrote the code; the question was how to know it works.",
       "role": "Product + interaction + technical direction",
-      "date": "2026 · deployed at pricewise-lewisdong.vercel.app",
+      "date": "2026 · deployed prototype, demo data, 0 registered users",
       "m1": "109 API routes · 36 page routes",
       "m2": "4 classes of defect a green build could not see",
       "m3": "15 → 19 of 20 constructed receipt inputs matched"
@@ -213,7 +213,7 @@
       "sy": {
         "label": "Synthesis",
         "title": "The barrier was pace and group size, not language.",
-        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, which is the only reason we could tell when we were wrong. Two assumptions did not survive. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go. What did hold was repetition around a shared task — the students who stayed connected had met three or four times over something they were making together, a documentary shoot, a quartet. The cultural society cuts both ways for the same reason: it is the first place a student belongs, and then it is the reason they never leave it."
+        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, though we never scored the records against them. Two assumptions did not survive the interviews, on qualitative evidence. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go. What did hold was repetition around a shared task — the students who stayed connected had met three or four times over something they were making together, a documentary shoot, a quartet. The cultural society cuts both ways for the same reason: it is the first place a student belongs, and then it is the reason they never leave it."
       },
       "id": {
         "label": "Design decisions",
@@ -394,7 +394,7 @@
         "sub": "An email review desk built to find out whether an interface can keep someone checking an AI that is wrong 12% of the time."
       },
       "roleVal": "Designer and technical director; Claude Code and Codex wrote the code to my spec",
-      "timeVal": "2026 · in progress, phase 3 of 5",
+      "timeVal": "2026 · abandoned 23 Sep 2026; evaluation protocol written, study never run",
       "teamVal": "Solo, working through an AI coding workflow; brief sourced from a UQ research lab",
       "toolsVal": "React · TypeScript · Zustand · Dexie · Python · Claude Code · Codex",
       "ch": {
@@ -470,7 +470,7 @@
       "ch": {
         "label": "The problem",
         "title": "Generating the art is cheap. Making it agree is not.",
-        "p": "A career-simulation RPG needs hundreds of assets — portraits, scenes, story CGs, UI icons, court diagrams — before it reads as one world rather than a folder of pictures. Generation removed the cost of producing them and left the harder problem completely intact: every image can pass the rules on its own, and what is wrong with the set only shows once they sit on the same screen, by which point there are hundreds of files to reconcile."
+        "p": "A career-simulation RPG needs hundreds of assets — portraits, scenes, story CGs, UI icons, court diagrams — before it reads as one world rather than a folder of pictures. Generation removed the cost of producing them and left the harder problem completely intact: every image can pass the rules on its own, and what is wrong with the set only shows once they sit on the same screen, by which point there are 299 specs on the registry to reconcile."
       },
       "re": {
         "label": "Groundwork",
@@ -555,7 +555,7 @@
         },
         "m3": {
           "t": "Query the database directly",
-          "b": "Six declared tables had never been created. Nothing read or wrote them, so 'relation does not exist' had never been triggered. Cron auth, meanwhile, did not fail closed when its key was unset."
+          "b": "Six declared tables had never been created. Nothing read or wrote them, so 'relation does not exist' had never been triggered. Reading code during a migration also turned up cron auth that did not fail closed when its key was unset."
         },
         "quote": "They all pass build, type-check and tests. What is broken is whether the feature runs at all, and no automatic gate is watching for that.",
         "quoteWho": "The property all four classes share"
@@ -748,7 +748,7 @@
     "site": "Site",
     "write": "Write",
     "meta": {
-      "built": "Hand-built with Next.js, Tailwind, and a lot of revisions.",
+      "built": "Built with Next.js and Tailwind, written with Codex and Claude Code, and revised many times.",
       "version": "v4 · updated April 2026"
     }
   },
@@ -819,7 +819,7 @@
     "skillsAndTools": "Skills & Tools",
     "skillsAndToolsDescription": "Core competencies developed through academic study and hands-on projects.",
     "letsWorkTogether": "Let's Work Together",
-    "letsWorkTogetherDescription": "I'm currently looking for internship opportunities and excited to contribute to meaningful design projects.",
+    "letsWorkTogetherDescription": "I'm graduating late 2026 and looking for full-time graduate roles, and excited to contribute to meaningful design projects.",
     "featuredProjectsEmpty": "Featured projects coming soon.",
     "stats": {
       "userInterviews": "User Interviews",
@@ -1022,7 +1022,7 @@
       "items": [
         {
           "q": "What's your typical response time?",
-          "a": "I usually respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn."
+          "a": "I usually respond to emails within 24-48 hours."
         },
         {
           "q": "Are you available for freelance work?",
@@ -1043,7 +1043,7 @@
     "email": "24kplo@gmail.com",
     "cal": "Book 20 minutes",
     "fit": {
-      "1": "UX / Product / Interaction internships, 2026 – 2027",
+      "1": "Full-time graduate roles in UX, product and interaction design, from late 2026",
       "2": "Research-led work where shipping is still the goal",
       "3": "Small teams where the designer is in the room for decisions",
       "label": "Good fits"

@@ -31,7 +31,7 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
       "Best fit when the team needs mixed methods, careful sampling, and research outputs that change product decisions.",
     proofLinks: [
       { label: "Connect research evidence", href: "/projects/connect#evidence-board" },
-      { label: "Spectra field evidence", href: "/projects/spectra#evidence-board" },
+      { label: "Spectra evidence", href: "/projects/spectra#evidence-board" },
       { label: "Research limits", href: "/projects/connect#outcome-limits" },
       { label: "Gap Mapper: an assumption the literature killed", href: "/projects/gapmapper#evidence-board" },
     ],
@@ -65,7 +65,7 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     proofLinks: [
       { label: "Spectra accessibility evidence", href: "/projects/spectra#evidence-board" },
       { label: "Spectra privacy decision", href: "/projects/spectra#decision-timeline" },
-      { label: "Spectra field limits", href: "/projects/spectra#outcome-limits" },
+      { label: "Spectra limits", href: "/projects/spectra#outcome-limits" },
       { label: "A 48 px floor, and warnings you do not have to look at", href: "/projects/rules#decision-timeline" },
     ],
     bestCases: ["spectra", "rules"],
@@ -100,7 +100,7 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     fit: "适合需要混合方法、谨慎取样，并且要让研究真的改变产品决策的团队。",
     proofLinks: [
       { label: "Connect 的研究证据", href: "/projects/connect#evidence-board" },
-      { label: "Spectra 的实地证据", href: "/projects/spectra#evidence-board" },
+      { label: "Spectra 的证据", href: "/projects/spectra#evidence-board" },
       { label: "研究的限制", href: "/projects/connect#outcome-limits" },
       { label: "走夜路：一条被文献推翻的假设", href: "/projects/gapmapper#evidence-board" },
     ],
@@ -128,7 +128,7 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     proofLinks: [
       { label: "Spectra 的无障碍证据", href: "/projects/spectra#evidence-board" },
       { label: "Spectra 的隐私决策", href: "/projects/spectra#decision-timeline" },
-      { label: "Spectra 的实地限制", href: "/projects/spectra#outcome-limits" },
+      { label: "Spectra 的限制", href: "/projects/spectra#outcome-limits" },
       { label: "48px 的下限，和不用看屏幕的提示", href: "/projects/rules#decision-timeline" },
     ],
     bestCases: ["spectra", "rules"],
@@ -150,7 +150,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "Every hypothesis carried a numeric pass mark written before fieldwork; several failed it.",
+        proof: "Every hypothesis carried a numeric pass mark written before fieldwork. The marks were never scored, so two assumptions were challenged by qualitative evidence, not formally refuted.",
         href: "/projects/connect#evidence-board",
       },
       spectra: {
@@ -277,7 +277,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       spectra: {
         strength: "primary",
-        proof: "Field testing exposed lighting, motion, and privacy constraints.",
+        proof: "Hand-testing a docs site, a news site and a single-page app showed that inline styles beat the injected layer and route changes wipe it.",
         href: "/projects/spectra#outcome-limits",
       },
       vigil: {
@@ -338,7 +338,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "每条假设都带着进场前写好的数字及格线；有几条没过。",
+        proof: "每条假设都带着进场前写好的数字及格线。及格线从没逐条打分，两项初始假设只是被定性证据挑战，不算正式否证。",
         href: "/projects/connect#evidence-board",
       },
       spectra: {
@@ -463,7 +463,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       spectra: {
         strength: "primary",
-        proof: "真实场景测试暴露出光照、移动和隐私上的约束。",
+        proof: "手动跑过文档站、新闻站和单页应用，发现内联样式会盖过注入层，路由一换，注入的样式也被冲掉。",
         href: "/projects/spectra#outcome-limits",
       },
       vigil: {
@@ -562,37 +562,37 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
     answers: [
       {
         id: "spectra-colour-feedback",
-        question: "Why avoid colour-only feedback as the primary interaction?",
+        question: "Why four spacing controls and not a general CSS editor?",
         answer:
-          "I would explain how the WCAG text-spacing criteria set the control list, and why the font is bundled rather than fetched from a CDN.",
+          "WCAG's text-spacing criteria set explicit thresholds for line height, letter spacing, word spacing and paragraph spacing, so those four became the control list.",
         evidenceHref: "/projects/spectra#decision-timeline",
         boundary:
-          "I would not claim one feedback model covers every colour vision profile without broader field validation.",
+          "It is a DEMO with no user research behind it, so I cannot say these four are the controls readers need.",
       },
       {
         id: "spectra-privacy",
         question: "Why is the font bundled instead of fetched at runtime?",
         answer:
-          "I would show how public-use anxiety made glanceable, user-controlled feedback more important than persistent visible assistance.",
+          "A remote font request tells a third party who is reading which page, and it fails offline or when the host changes. Bundling costs a larger package and means the font only updates with a new release.",
         evidenceHref: "/projects/spectra#evidence-board",
         boundary:
-          "The privacy model is a product direction, not a completed legal or clinical accessibility audit.",
+          "This is a design argument about privacy, not a privacy review or an accessibility audit.",
       },
       {
         id: "spectra-field-testing",
-        question: "What would field testing need to prove?",
+        question: "What would testing need to prove before this ships?",
         answer:
-          "I would test lighting, motion, object distance, and real task contexts before claiming the interaction is reliable outdoors.",
+          "That real readers can reach the controls and that per-site saving fits how they read. So far I have only hand-tested a docs site, a news site and a single-page app, plus Jest on the settings layer.",
         evidenceHref: "/projects/spectra#outcome-limits",
         boundary:
-          "Prototype recognition confidence is useful evidence, but not enough to ship as assistive infrastructure.",
+          "Those checks show the injection works. They do not show that readers benefit from it.",
       },
     ],
     managerFollowUp: {
       id: "spectra-manager-follow-up",
       question: "How would you decide whether this belongs in an extension or in the browser itself?",
       answer:
-        "I would compare the value of in-context feedback against privacy cost, device friction, and recognition reliability in field tasks.",
+        "I would weigh what an extension can do that the browser does not, such as per-site settings, against asking readers to install it and the pages where injected styles lose to the page's own CSS.",
       evidenceHref: "/projects/spectra#interview-takeaway",
       boundary:
         "I would drop the extension entirely if the browser shipped the same controls natively.",
@@ -682,7 +682,7 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
     answers: [
       {
         id: "hoop-style-coherence",
-        question: "How do you keep hundreds of generated assets looking like one world?",
+        question: "How do you keep a 299-spec asset registry looking like one world?",
         answer:
           "I would show the order, and what each step does not prove. Three art bibles, split by canvas size, came before the batches; their forbidden lists went into the prompt templates as negative prompts; style was reviewed by eye, with the assets side by side; and a registry logs 299 asset specs across six batches. The only automated check reads that registry, not the style. The original image files are not yet verified, so what I can show is the process, not a finished set.",
         evidenceHref: "/projects/hoop#decision-timeline",
@@ -724,7 +724,7 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
           id: "pricewise-green-build",
           question: "An AI wrote the code and everything passes. What is left for you to check?",
           answer:
-            "Whether the feature executes at all. I go feature by feature calling the deployed endpoint, reading the response body and querying the database directly. Four classes of defect had passed build, type-check and the full suite: semantic search that never used a vector, template lists created empty, cron auth that did not fail closed without its secret, and six declared tables that were never created.",
+            "Whether the feature executes at all. I go feature by feature calling the deployed endpoint, reading the response body and querying the database directly, and I read the code during a migration. Four classes of defect had passed build, type-check and the full suite: semantic search that never used a vector, template lists created empty, cron auth that did not fail closed without its secret, and six declared tables that were never created.",
           evidenceHref: "/projects/pricewise#decision-timeline",
           boundary:
             "It is manual and slow, and it finds nothing most of the time. Turning it into a build gate is the obvious next step and it has not happened yet.",
@@ -880,37 +880,37 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
     answers: [
       {
         id: "spectra-colour-feedback",
-        question: "为什么不把「只靠颜色」当成主要的反馈方式？",
+        question: "为什么只开放四个间距控件，而不是做成通用的 CSS 编辑器？",
         answer:
-          "我会讲 WCAG 的文本间距条款怎么定下了控件清单，以及字体为什么打包进扩展而不是从 CDN 取。",
+          "WCAG 的文本间距条款对行高、字距、词距、段距都给了明确阈值，所以控件清单就定在这四项上。",
         evidenceHref: "/projects/spectra#decision-timeline",
         boundary:
-          "我不会说一套反馈模型能覆盖所有色觉类型，那需要更大范围的实地验证。",
+          "这是 DEMO，背后没有用户研究，我没法说这四项就是读者需要的控件。",
       },
       {
         id: "spectra-privacy",
         question: "字体为什么打包进扩展，而不是运行时去取？",
         answer:
-          "我会讲在公共场合被看见这件事本身带来的压力：这份压力让「一眼扫完、自己决定什么时候用」比「一直挂在眼前的辅助」重要得多。",
+          "远端字体请求会让第三方知道谁在读哪一页，断网或者主机变了也会失效。打包的代价是安装包更大，字体只能随新版本更新。",
         evidenceHref: "/projects/spectra#evidence-board",
         boundary:
-          "这套隐私处理是产品方向，不是做完的法务审查，也不是临床级的无障碍认证。",
+          "这是围绕隐私的设计取舍，不是做完的隐私审查，也不是无障碍认证。",
       },
       {
         id: "spectra-field-testing",
-        question: "真实场景测试需要证明什么？",
+        question: "上线之前，测试还需要证明什么？",
         answer:
-          "光照、移动、物体距离，以及真实的任务场景：这几样都过了，才敢说这个交互在户外靠得住。",
+          "要证明真实读者够得到这些控件，也要证明按站点保存符合他们的阅读习惯。目前我只手动跑过文档站、新闻站和单页应用，再加上设置层的 Jest 测试。",
         evidenceHref: "/projects/spectra#outcome-limits",
         boundary:
-          "原型阶段的识别信心是有用的证据，但离能当成辅助设施交付还差得远。",
+          "这些检查只能说明注入是成立的，说明不了读者能从中得到什么好处。",
       },
     ],
     managerFollowUp: {
       id: "spectra-manager-follow-up",
-      question: "你怎么判断这件事该做成 AR，还是做成更简单的工具？",
+      question: "你怎么判断这件事该做成扩展，还是该由浏览器自己来做？",
       answer:
-        "我会把「在情境里当场给出判断」的价值，和隐私成本、戴设备的麻烦、以及真实任务里的识别可靠性放在一起比。",
+        "我会比两样东西。一边是扩展能做、浏览器没做的事，比如按站点保存设置。另一边是让读者自己安装的门槛，以及注入的样式输给网页自己 CSS 的那些页面。",
       evidenceHref: "/projects/spectra#interview-takeaway",
       boundary:
         "如果浏览器自己内建了同样的控件，我愿意直接放弃这个扩展。",
@@ -1000,7 +1000,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
     answers: [
       {
         id: "hoop-style-coherence",
-        question: "几百张生成的素材，你怎么让它们看起来像同一个世界？",
+        question: "299 条资产规格的登记表，你怎么让它们看起来像同一个世界？",
         answer:
           "我会按顺序讲，也讲清每一步证明不了什么。三份美术圣经按画布尺寸分开，写在批次之前；里面的禁止项写进提示词模板，成了负面提示词。风格靠人工审查，把资产并排摆开看。登记表记下六个批次、299 条资产规格，唯一的自动检查读的是这份登记表，不查风格。原始图像文件还没核实，所以我能拿出来的是这套流程，不是一整套成品。",
         evidenceHref: "/projects/hoop#decision-timeline",
@@ -1042,7 +1042,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
           id: "pricewise-green-build",
           question: "代码是 AI 写的，而且全都通过了。那你还要查什么？",
           answer:
-            "查功能有没有真的执行。我逐个功能打线上接口、读真实返回、直接查数据库。通过了构建、类型检查和整套测试的缺陷有四类：语意搜索从来没用过向量、用模板建的清单永远是空的、定时任务鉴权在密钥缺失时没有默认拒绝、声明过的六张表数据库里根本没建。",
+            "查功能有没有真的执行。我逐个功能打线上接口、读真实返回、直接查数据库，迁移时再读代码。通过了构建、类型检查和整套测试的缺陷有四类：语意搜索从来没用过向量、用模板建的清单永远是空的、定时任务鉴权在密钥缺失时没有默认拒绝、声明过的六张表数据库里根本没建。",
           evidenceHref: "/projects/pricewise#decision-timeline",
           boundary: "它慢、全靠手动，而且大部分时候什么也查不出来。把它接进构建流程变成关卡是显而易见的下一步，但还没做。",
         },

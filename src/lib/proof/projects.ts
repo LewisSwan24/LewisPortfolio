@@ -14,8 +14,8 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
   en: {
     headline: "Interaction designer who takes an idea all the way to something that runs.",
     summary:
-      "I am looking for interaction and product design internships and graduate roles on teams that want a designer who can build, not only specify.",
-    status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; open to internships and graduate roles.",
+      "I am looking for full-time graduate roles in interaction and product design, on teams that want a designer who can build, not only specify.",
+    status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; looking for full-time graduate roles.",
     stats: [
       {
         value: "5",
@@ -43,8 +43,8 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
   zh: {
     headline: "会把东西真的做出来的交互设计师，而不只是交一份稿。",
     summary:
-      "我在找交互 / 产品设计的实习与毕业生岗位，尤其适合希望设计师能自己把想法推到能跑的团队。",
-    status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，实习与全职都在看。",
+      "我在找交互 / 产品设计的全职毕业生岗位，尤其适合希望设计师能自己把想法推到能跑的团队。",
+    status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，主要看全职毕业生岗位。",
     stats: [
       {
         value: "5",
@@ -77,7 +77,7 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "Research framing",
       summary: "I turn broad questions into scoped studies, participant plans, and decision criteria.",
-      proof: "UQ Connect gave every hypothesis a numeric pass mark in writing before the first interview, so the research was able to come back negative — and on several counts it did.",
+      proof: "UQ Connect gave every hypothesis a numeric pass mark in writing before the first interview, so the research could come back negative. The marks were never scored one by one, so the two assumptions it challenged are qualitative findings, not formal refutations.",
       href: "/projects/connect",
     },
     {
@@ -114,7 +114,7 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "research-framing",
       title: "研究问题定义",
       summary: "我把宽泛问题拆成研究范围、招募计划与决策标准。",
-      proof: "UQ Connect 在第一场访谈之前，就把每条假设的数字及格线写了下来，让研究有可能得出否定结果；最后确实否定了好几条。",
+      proof: "UQ Connect 在第一场访谈之前，就把每条假设的数字及格线写了下来，让研究有可能得出否定结果。及格线没有逐条打分，所以被挑战的两项初始假设只是定性判断。",
       href: "/projects/connect",
     },
     {
@@ -168,7 +168,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       methods: ["accessibility heuristics", "typographic tuning", "cross-site regression testing", "bilingual UI"],
       sample: "Self-directed build. Chrome extension: content-script style injection, a popup control panel, OpenDyslexic bundled locally, English and Simplified Chinese locale files, Jest unit tests. No user research yet.",
       outcome: "A working extension that rewrites type and spacing on any page from a single popup, with settings that persist per site.",
-      proves: "I can turn accessibility guidance into a shipped tool, and keep it working across sites I do not control.",
+      proves: "I can turn accessibility guidance into a working tool, and keep it working across sites I do not control.",
     },
     {
       slug: "maze",
@@ -405,7 +405,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       subhead:
         "I take ambiguous product problems through research, information architecture, and inclusive interaction decisions — then use Claude Code and Codex to get them running, so what you review is a working prototype rather than a description of one.",
       status:
-        "Graduating late 2026. Open to internships and graduate UX, product, and design-technologist roles.",
+        "Graduating late 2026. Looking for full-time graduate UX, product, and design-technologist roles.",
     },
     signals: [
       {
@@ -445,7 +445,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         claim:
           "Best proof that I run studies capable of returning a negative, then act on the result.",
         evidence:
-          "UQ Connect set a numeric pass mark per hypothesis before fieldwork; several failed, and the learning cards say so.",
+          "UQ Connect set a numeric pass mark per hypothesis before fieldwork. They were never scored, so the two challenged assumptions are qualitative findings.",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -454,7 +454,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         claim:
           "Best proof that I can turn accessibility research into a practical product interaction model.",
         evidence:
-          "Spectra Lens combines accessibility guidance, cross-site injection testing, and a shipped browser extension.",
+          "Spectra Lens combines accessibility guidance, cross-site injection testing, and a browser extension built to DEMO stage.",
         href: "/projects/spectra#evidence-board",
       },
       {
@@ -481,7 +481,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       subhead:
         "我把模糊的产品问题走完研究、信息架构与包容性交互决策，再用 Claude Code 和 Codex 推到能跑，所以你看到的是一个能用的原型，而不是对原型的描述。",
       status:
-        "2026 年底毕业。实习与毕业生的交互、产品、design technologist 岗位都在看。",
+        "2026 年底毕业。主要看全职毕业生的交互、产品、design technologist 岗位。",
     },
     signals: [
       {
@@ -521,7 +521,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         claim:
           "证明我做的研究有可能得出否定结果，并且我会按结果行动。",
         evidence:
-          "UQ Connect 在进场之前就为每条假设定了数字及格线；有几条没过，learning cards 把这件事写了下来。",
+          "UQ Connect 在进场之前就为每条假设定了数字及格线；及格线没有逐条打分，被挑战的两项假设只是定性判断。",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -530,7 +530,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         claim:
           "证明我能把无障碍研究转化为可实施的产品交互模型。",
         evidence:
-          "Spectra Lens 把无障碍准则、跨站点注入测试和一个真的做出来的浏览器扩展接在一起。",
+          "Spectra Lens 把无障碍准则、跨站点注入测试和一个做到 DEMO 阶段的浏览器扩展接在一起。",
         href: "/projects/spectra#evidence-board",
       },
       {
@@ -556,8 +556,8 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
 
 const roleFits: Record<ProofLocale, RoleFit> = {
   en: {
-    availability: "Open to 2026 internships, graduate UX roles, and research-led product teams.",
-    roles: ["UX Designer Intern", "Product Designer Intern", "UX Research Intern", "Graduate Interaction Designer"],
+    availability: "Graduating late 2026; looking for full-time graduate UX and product design roles, and research-led product teams.",
+    roles: ["Graduate Interaction Designer", "Graduate Product Designer", "Graduate UX Designer", "Graduate UX Researcher"],
     bestFit: [
       "Teams with ambiguous problems and enough access to users to learn properly.",
       "Products where accessibility, education, AI trust, or physical interaction matters.",
@@ -571,8 +571,8 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     ],
   },
   zh: {
-    availability: "开放 2026 实习、毕业生 UX 岗位与研究驱动型产品团队机会。",
-    roles: ["用户体验设计实习生", "产品设计实习生", "用户研究实习生", "交互设计应届生"],
+    availability: "2026 年底毕业，主要看全职毕业生 UX 与产品设计岗位，以及研究驱动型产品团队。",
+    roles: ["交互设计应届生", "产品设计应届生", "用户体验设计应届生", "用户研究应届生"],
     bestFit: [
       "问题足够模糊、也有真实用户可接触的团队。",
       "重视无障碍、教育、AI 信任或实体交互的产品。",

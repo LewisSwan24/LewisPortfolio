@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site";
 
 export const runtime = "edge";
 
-export const alt = `${siteConfig.name} — practice log, est. 2024`;
+export const alt = `${siteConfig.name} — practice log`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -33,7 +33,7 @@ const PAPER_800 = "#161412";
 const TERRA = "#C9523A";
 
 export default async function Image() {
-  const headline = "Practice log,\nest. 2024.";
+  const headline = "Practice log.";
   const sub = "UX + Interaction Design · Brisbane, AU";
   const name = siteConfig.name.toUpperCase();
 

@@ -158,7 +158,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       label: "Accessibility / Inclusive Design",
       headline: "Interview Lewis for inclusive design roles that turn constraints into product behavior.",
       fitThesis:
-        "Best fit when the work needs accessibility guidance turned into shipped behaviour, with honest limits on what has been validated.",
+        "Best fit when the work needs accessibility guidance turned into working behaviour, with honest limits on what has been validated.",
       proofClaims: [
         {
           id: "accessibility-multimodal-feedback",

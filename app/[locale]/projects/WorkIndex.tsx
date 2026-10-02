@@ -57,7 +57,7 @@ const ITEMS: Item[] = [
     k: "maze",
     tags: ["flag", "hardware"],
     role: "Design tech",
-    year: "2025",
+    year: "2026",
     dur: "Built",
     problem: {
       en: "A physical maze that noticed nothing and answered nothing",
@@ -100,7 +100,7 @@ const ITEMS: Item[] = [
     tags: ["flag", "ai"],
     role: "Product + direction",
     year: "2026",
-    dur: "Live",
+    dur: "Prototype, demo data",
     problem: {
       en: "An AI wrote the code, and a green build proved nothing about whether it ran",
       zh: "代码是 AI 写的，构建通过却证明不了到底跑没跑",
@@ -118,8 +118,8 @@ const ITEMS: Item[] = [
     year: "2026",
     dur: "Playable",
     problem: {
-      en: "Hundreds of generated assets, where what goes wrong shows only as a set",
-      zh: "几百张生成资产，毛病要整组摆在一起才看得出来",
+      en: "A registry of 299 asset specs, where what goes wrong shows only as a set",
+      zh: "299 条资产规格的登记表，毛病要整组摆在一起才看得出来",
     },
     changed: {
       en: "An art bible and a rejected list written first, with style checked by eye",
@@ -148,7 +148,7 @@ const ITEMS: Item[] = [
     tags: ["acc"],
     role: "Solo build",
     year: "2026",
-    dur: "Shipped",
+    dur: "DEMO",
     problem: { en: "Type and spacing are fixed by whoever built the page", zh: "字体和行距由建站的人决定，读的人改不了" },
     changed: { en: "A browser extension that rewrites both from one popup", zh: "一个浏览器扩展，从一个扩展弹窗就能改写两者" },
   },

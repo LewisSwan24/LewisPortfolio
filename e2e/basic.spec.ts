@@ -71,7 +71,7 @@ test.describe("Portfolio Homepage", () => {
     test("should present a clear hiring conversion path", async ({ page }) => {
         const proofDesk = page.locator(".hiring-proof-desk");
 
-        await expect(proofDesk.getByText(/2026.*internships|internships.*2026/i)).toBeVisible();
+        await expect(proofDesk.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
         await expect(proofDesk.getByText(/Best cases to inspect/i)).toBeVisible();
         await expect(proofDesk.getByText(/Information architecture/i).first()).toBeVisible();
         await expect(proofDesk.getByText(/Accessibility/i).first()).toBeVisible();
@@ -630,7 +630,7 @@ test.describe("Contact Page", () => {
         const nextStep = page.locator(".contact-next-step");
 
         await expect(nextStep.getByText("Hiring next step")).toBeVisible();
-        await expect(nextStep.getByText(/2026.*internships|internships.*2026/i)).toBeVisible();
+        await expect(nextStep.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
     });
 
     test("contact proof links should point to case anchors", async ({ page }) => {

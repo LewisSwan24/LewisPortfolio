@@ -434,18 +434,18 @@ const CASE_DEMO: Partial<Record<Slug, CaseDemo>> = {
   pricewise: {
     src: "https://pricewise-lewisdong.vercel.app",
     poster: "/projects/pricewise/01-home.png",
-    title: "PriceWise, live",
-    titleZh: "PriceWise 线上版本",
-    posterAlt: "The PriceWise home screen; click to open the live app in the page",
-    posterAltZh: "PriceWise 首页，点击即可在页面里打开线上版本",
-    label: "Open the live app",
-    labelZh: "打开线上版本",
+    title: "PriceWise, demo build",
+    titleZh: "PriceWise 演示版本",
+    posterAlt: "The PriceWise home screen; click to open the demo build in the page",
+    posterAltZh: "PriceWise 首页，点击即可在页面里打开演示版本",
+    label: "Open the demo build",
+    labelZh: "打开演示版本",
     blurb:
-      "The deployed build, in the page. Browse the 65-product catalogue and compare across the three chains without signing in. Prices come from simulated data, and the database has no registered users.",
+      "The deployed prototype, in the page. Browse the 65-product catalogue and compare across the three chains without signing in. Prices come from simulated data, and the database has no registered users.",
     blurbZh:
-      "线上版本，直接嵌在页面里。不登录也能浏览 65 件商品并做三家比价。价格是拟真数据，数据库里没有注册用户。",
-    action: "Load the live app",
-    actionZh: "载入线上版本",
+      "已部署的功能原型，直接嵌在页面里。不登录也能浏览 65 件商品并做三家比价。价格是拟真数据，数据库里没有注册用户。",
+    action: "Load the demo build",
+    actionZh: "载入演示版本",
   },
 };
 
@@ -461,7 +461,7 @@ const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   vigil: [],
   hoop: [],
   pricewise: [
-    { label: "Open the live app", href: "https://pricewise-lewisdong.vercel.app", external: true },
+    { label: "Open the demo", href: "https://pricewise-lewisdong.vercel.app", external: true },
   ],
   // No public artefact for either. Both are coursework: the reports and Figma
   // files are not mine alone to publish, and the same reasoning as UQ Connect
@@ -495,6 +495,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: buildAlternates(path, locale),
     openGraph: buildOpenGraph({ title, description, path, locale, type: "article", image }),
     twitter: buildTwitter({ title, description, image }),
+    // An unlisted case keeps its URL but stays out of search results.
+    ...(isUnlistedProject(slug) ? { robots: { index: false, follow: false } } : {}),
   };
 }
 
@@ -644,6 +646,13 @@ export default async function CasePage({ params }: Props) {
         </div>
         <h1>{t(`cs.${k}.hero.title`)}</h1>
         <p className="sub">{t(`cs.${k}.hero.sub`)}</p>
+        {isUnlistedProject(k) && (
+          <p className="sub" role="note" style={{ fontWeight: 600 }}>
+            {isZh
+              ? "这个项目已于 2026-09-23 放弃：评估协议写完了，受试实验从未运行，所以这一页没有任何受试者数据。"
+              : "I abandoned this project on 23 Sep 2026. The evaluation protocol was finished and the participant study never ran, so this page holds no participant data."}
+          </p>
+        )}
         <dl className="cs-meta">
           <div>
             <dt>{t("cs.role")}</dt>

@@ -168,6 +168,11 @@ const nextConfig = {
         // makes no network calls, so connect-src is 'none'.
         source: "/projects/vigil/prototype.html",
         headers: [
+          // The case is unlisted and abandoned; keep the prototype out of search too.
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
           {
             key: "X-Frame-Options",
             value: "SAMEORIGIN",

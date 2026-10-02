@@ -819,7 +819,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           {
             label: "Treat a green build as a claim, not as evidence",
             choice:
-              "Every feature was re-verified by calling the deployed endpoint, reading the actual response body, and querying the database directly — not by reading the code that was supposed to implement it.",
+              "Every feature was re-verified by calling the deployed endpoint, reading the actual response body, and querying the database directly — not by reading the code that was supposed to implement it. The one exception is the cron-auth gap, which I came across reading code during a migration.",
             evidence:
               "Four classes of defect passed build, type-check and the full test suite. Semantic search never used a vector; template lists were created empty; cron auth did not fail closed when its secret was missing; six declared tables were never created in the database.",
             tradeoff:
@@ -1671,7 +1671,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           {
             label: "把构建通过当成一句待验证的话，不当成证据",
             choice:
-              "每个功能都重新验一遍：打线上接口、读真实返回、直接查数据库。不看那段本该实现它的代码。",
+              "每个功能都重新验一遍：打线上接口、读真实返回、直接查数据库。不看那段本该实现它的代码；唯一的例外是定时任务鉴权，那是迁移途中读代码撞见的。",
             evidence:
               "四类缺陷同时通过了构建、类型检查和整套测试。语意搜索从来没用过向量，用模板建的清单永远是空的。定时任务鉴权缺了密钥也不拒绝。数据模型里声明的六张表，数据库里一张都没建。",
             tradeoff: "慢、全靠手动，而且大部分时候什么也查不出来，成本每个功能都要付，收益集中在少数几个上。",
@@ -2066,7 +2066,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "Why a career runs on 146 discrete nodes instead of a simulated calendar.",
       ],
       questions: [
-        "How do you keep hundreds of generated assets looking like one world?",
+        "How do you keep a 299-spec asset registry looking like one world?",
         "The visual language is derived from another product's design system — how do you think about that?",
       ],
       bestFit: [
@@ -2204,7 +2204,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "为什么一段生涯跑在 146 个离散节点上，而不是模拟日历。",
       ],
       questions: [
-        "几百张生成的资产，你怎么让它们看起来还是同一个世界？",
+        "299 条资产规格的登记表，你怎么让它们看起来还是同一个世界？",
         "这套视觉语言是从别人的产品设计系统反推来的：你怎么看这件事？",
       ],
       bestFit: [
@@ -2382,18 +2382,18 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
   ],
   spectra: [
     {
-      question: "Why did you avoid colour-only feedback as the core interaction?",
-      reason: "Shows whether accessibility decisions are inclusive in practice, not only compliant.",
+      question: "Why four spacing controls and not a general CSS editor?",
+      reason: "Shows whether an accessibility decision starts from a stated guideline and a scope, not from a feature list.",
       anchorId: "decision-timeline",
     },
     {
       question: "Why bundle the font instead of loading it from a CDN?",
-      reason: "Tests judgment around social exposure, glanceability, and user control.",
+      reason: "Tests whether a privacy gain was weighed against its package-size and update cost.",
       anchorId: "evidence-board",
     },
     {
-      question: "What would field testing need to prove before shipping?",
-      reason: "Grounds the outcome story in lighting, motion, and real-world constraints.",
+      question: "What would testing need to prove before this ships?",
+      reason: "Separates what manual cross-site checks show from what only readers can tell you.",
       anchorId: "outcome-limits",
     },
   ],

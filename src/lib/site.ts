@@ -58,10 +58,12 @@ export const siteConfig = {
     location: "Brisbane, Australia",
   },
   social: {
-    // Add your social media links below (leave empty to hide the icon)
-    linkedin: "https://linkedin.com/in/lewis-dong",
+    // Leave a link empty to hide it. LinkedIn is empty on purpose: the
+    // canonical facts file records it as not public, and it only goes back with
+    // Lewis's say-so. Dribbble is empty because dribbble.com/lewisdong is a 404.
+    linkedin: "",
     github: "https://github.com/LewisSwan24",
-    dribbble: "https://dribbble.com/lewisdong",
+    dribbble: "",
   },
   navLinks: [
     { href: "/", label: "Home" },

@@ -27,18 +27,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const SKILLS: Array<{ en: string; zh: string; v: number; href?: string }> = [
-  { en: "User research", zh: "用户研究", v: 92, href: "/projects/connect" },
-  { en: "Information architecture", zh: "信息架构", v: 88, href: "/projects/connect" },
-  { en: "Interaction design", zh: "交互设计", v: 85, href: "/projects/spectra" },
-  // No proof link: the case this pointed at, Vigil, is unlisted.
-  { en: "Prototyping (Figma, Framer)", zh: "原型（Figma / Framer）", v: 90 },
-  // No proof link: the post this pointed at, designing-for-ai, was about Vigil
-  // and is now a draft (published: false), so its URL returns 404.
-  { en: "HTML / CSS / React", zh: "HTML / CSS / React", v: 72 },
-  { en: "Usability testing", zh: "可用性测试", v: 88, href: "/projects/spectra" },
-];
-
 export default async function ResumePage() {
   const t = await getTranslations();
   const locale = await getLocale();
@@ -118,8 +106,8 @@ export default async function ResumePage() {
                     </li>
                     <li>
                       {isZh
-                        ? "负责控制层全部实现：Arduino 程序、电路、布线和展出用的计分网页；迷宫本体由组员完成。"
-                        : "Built the whole control layer: Arduino code, circuits, wiring, and the score webpage used at the exhibition; teammates built the maze body."}
+                        ? "我的部分：交互机制、Arduino 程序、电路和全部布线，以及展出用的实时计分网页。程序有 AI 编码工具参与实现，调试与验收由我负责；迷宫本体和外观由组员完成。"
+                        : "My part: interaction mechanics, Arduino firmware (AI coding tools helped implement it; I debugged and signed it off), the circuit and all wiring, plus the live scoring page used at the exhibition; teammates built the maze body and exterior."}
                     </li>
                     <li>
                       {isZh
@@ -217,38 +205,6 @@ export default async function ResumePage() {
               </div>
             </div>
             <div className="res-side-card">
-              <h4>{t("resume.section.skills")}</h4>
-              {SKILLS.map((s) => {
-                const inner = (
-                  <>
-                    <div className="row">
-                      <span>{isZh ? s.zh : s.en}</span>
-                      <span>{s.v}</span>
-                    </div>
-                    <div className="bar">
-                      <i style={{ width: `${s.v}%` }} />
-                    </div>
-                  </>
-                );
-                return s.href ? (
-                  <Link
-                    href={s.href}
-                    key={s.en}
-                    className="res-skill res-skill-link"
-                    aria-label={`${isZh ? s.zh : s.en} — ${
-                      isZh ? "查看证明" : "see proof"
-                    }`}
-                  >
-                    {inner}
-                  </Link>
-                ) : (
-                  <div className="res-skill" key={s.en}>
-                    {inner}
-                  </div>
-                );
-              })}
-            </div>
-            <div className="res-side-card">
               <h4>{isZh ? "工具" : "Tools"}</h4>
               <p
                 style={{
@@ -259,7 +215,7 @@ export default async function ResumePage() {
                   lineHeight: 1.7,
                 }}
               >
-                Figma · Framer · Protopie · Maze · Otter · Dovetail · Notion · Rive · Miro · VS Code
+                Figma / Miro · HTML / CSS / JavaScript · React / Next.js · Phaser · Canvas · Arduino / ESP32 · Web Serial
               </p>
             </div>
             <div className="res-side-card">
@@ -273,9 +229,7 @@ export default async function ResumePage() {
                   lineHeight: 1.7,
                 }}
               >
-                {isZh
-                  ? "英语（雅思 7.5） · 中文（母语）"
-                  : "English (IELTS 7.5) · Mandarin (native)"}
+                {isZh ? "英语 · 中文（母语）" : "English · Mandarin (native)"}
               </p>
             </div>
           </aside>

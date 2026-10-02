@@ -119,71 +119,66 @@ export function VizConnect({ locale = "en" }: VizProps) {
 
 export function VizSpectra({ locale = "en" }: VizProps) {
   const zh = locale === "zh";
+  // The extension rewrites type and spacing on a page the reader does not
+  // control, so the picture is one paragraph twice: as the author set it, and
+  // after the reader's four spacing controls. Bars stand in for text on
+  // purpose; no invented sentence, no numbers.
+  const rawBars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const rawWidth = [190, 200, 176, 198, 192, 150, 200, 164, 196, 182, 200, 172, 120];
+  const setBars = [0, 1, 2, 3, 4, 5];
+  const setWidth = [178, 190, 168, 186, 176, 124];
+  const controls = zh ? ["行高", "字距", "词距", "段距"] : ["LINE", "LETTER", "WORD", "PARA"];
 
   return (
     <div className="viz viz-spectra">
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
-        <text x="30" y="30" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#B5AC99">
-          {zh ? "SPECTRA LENS · 取景器" : "SPECTRA LENS · VIEWFINDER"}
+        <text x="30" y="30" fontFamily="var(--font-mono)" fontSize="11" letterSpacing="2" fill="#B5AC99">
+          {zh ? "SPECTRA LENS · 浏览器扩展" : "SPECTRA LENS · BROWSER EXTENSION"}
         </text>
 
-        <rect x="140" y="60" width="240" height="300" rx="18" stroke="#EFE8DA" strokeWidth="1.2" fill="none" />
-        <rect x="190" y="72" width="60" height="5" rx="2.5" fill="#EFE8DA" />
+        <rect x="30" y="56" width="215" height="226" rx="6" stroke="#EFE8DA" strokeWidth="1.2" fill="none" />
+        <rect x="275" y="56" width="215" height="226" rx="6" stroke="#EFE8DA" strokeWidth="1.2" fill="none" />
 
-        <defs>
-          <clipPath id="spectra-left-half">
-            <rect x="150" y="90" width="110" height="220" rx="4" />
-          </clipPath>
-          <clipPath id="spectra-right-half">
-            <rect x="260" y="90" width="110" height="220" rx="4" />
-          </clipPath>
-        </defs>
+        {rawBars.map((i) => (
+          <rect key={`r${i}`} x="42" y={72 + i * 14} width={rawWidth[i] - 18} height="5" rx="2.5" fill="#8A8170" />
+        ))}
+        {setBars.map((i) => (
+          <rect key={`s${i}`} x="287" y={74 + i * 38} width={setWidth[i] - 18} height="6" rx="3" fill="#EFE8DA" />
+        ))}
 
-        <g clipPath="url(#spectra-left-half)">
-          <rect x="150" y="90" width="110" height="220" fill="#3A3A3A" />
-          <circle cx="195" cy="150" r="28" fill="#6B6B6B" />
-          <circle cx="215" cy="220" r="28" fill="#7A7A7A" />
-          <circle cx="195" cy="290" r="28" fill="#888888" />
-        </g>
-        <g clipPath="url(#spectra-right-half)">
-          <rect x="260" y="90" width="110" height="220" fill="#25231D" />
-          <circle cx="305" cy="150" r="28" fill="#C9523A" />
-          <circle cx="325" cy="220" r="28" fill="#B8873E" />
-          <circle cx="305" cy="290" r="28" fill="#5B6B4A" />
-          <rect x="275" y="140" width="22" height="18" fill="#F7F4EC" stroke="#25231D" strokeWidth="0.5" />
-          <text x="286" y="152" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#25231D">
-            {zh ? "停" : "STOP"}
-          </text>
-          <rect x="345" y="210" width="20" height="18" fill="#F7F4EC" stroke="#25231D" strokeWidth="0.5" />
-          <text x="355" y="222" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#25231D">
-            {zh ? "等" : "WAIT"}
-          </text>
-          <rect x="275" y="280" width="20" height="18" fill="#F7F4EC" stroke="#25231D" strokeWidth="0.5" />
-          <text x="285" y="292" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#25231D">
-            {zh ? "走" : "GO"}
-          </text>
-        </g>
-
-        <line x1="260" y1="90" x2="260" y2="310" stroke="#EFE8DA" strokeWidth="0.6" strokeDasharray="3 3" />
-
-        <text x="150" y="340" fontFamily="var(--font-mono)" fontSize="9" fill="#8A8170" letterSpacing="1">
-          {zh ? "原始" : "RAW"}
+        <text x="30" y="306" fontFamily="var(--font-mono)" fontSize="11" fill="#8A8170" letterSpacing="1">
+          {zh ? "作者写死的" : "AS THE AUTHOR SET IT"}
         </text>
-        <text x="370" y="340" fontFamily="var(--font-mono)" fontSize="9" fill="#8A8170" letterSpacing="1" textAnchor="end">
-          {zh ? "辅助后" : "ASSISTED"}
+        <text x="490" y="306" fontFamily="var(--font-mono)" fontSize="11" fill="#8A8170" letterSpacing="1" textAnchor="end">
+          {zh ? "读者调整后" : "AS THE READER SETS IT"}
         </text>
 
-        {/* Chinese glyphs carry a taller em box than the Latin line, so the zh
-            baseline sits higher to keep the text inside the viewBox. */}
+        {controls.map((label, i) => (
+          <g key={label}>
+            <rect x={30 + i * 118} y="324" width="104" height="26" rx="13" stroke="#EFE8DA" strokeWidth="1" fill="none" />
+            <text
+              x={30 + i * 118 + 52}
+              y="341"
+              fontFamily="var(--font-mono)"
+              fontSize="11"
+              letterSpacing="1"
+              textAnchor="middle"
+              fill="#EFE8DA"
+            >
+              {label}
+            </text>
+          </g>
+        ))}
+
         <text
           x="30"
-          y={zh ? 378 : 382}
+          y={zh ? 384 : 388}
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
-          fontSize="22"
+          fontSize="20"
           fill="#EFE8DA"
         >
-          {zh ? "回答该怎么办，而不是报出色名" : "answer the decision, not the hue"}
+          {zh ? "字体和行距，由读者自己改" : "the reader, not the page, sets the type"}
         </text>
       </svg>
     </div>

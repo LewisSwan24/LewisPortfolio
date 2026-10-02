@@ -218,7 +218,7 @@ const dictionaries = {
         items: [
           {
             q: "What's your typical response time?",
-            a: "I usually respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn.",
+            a: "I usually respond to emails within 24-48 hours.",
           },
           {
             q: "Are you available for freelance work?",

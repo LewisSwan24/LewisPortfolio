@@ -8,7 +8,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
     subhead:
       "A decision page for role fit, strongest proof, interview questions, and honest boundaries.",
     status:
-      "UQ Master of Interaction Design candidate in Brisbane. Open to 2026 internships and graduate UX/Product roles.",
+      "UQ Master of Interaction Design candidate in Brisbane. Looking for full-time graduate UX/Product roles from late 2026.",
     signals: [
       {
         label: "Role fit",
@@ -120,7 +120,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "pipeline-consistency-hoop",
       group: "product",
-      question: "How do you keep hundreds of generated assets looking like one world?",
+      question: "How do you keep a 299-spec asset registry looking like one world?",
       proves: "Process design, written standards, and knowing what a script can and cannot check.",
       caseSlug: "hoop",
       href: "/projects/hoop#decision-timeline",
@@ -164,7 +164,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     subhead:
       "用一页看清岗位匹配、最强证据、可追问问题和需要诚实说明的边界。",
     status:
-      "昆士兰大学交互设计硕士在读，常驻布里斯班。开放 2026 实习与毕业生 UX / Product 岗位。",
+      "昆士兰大学交互设计硕士在读，常驻布里斯班。主要看 2026 年底起的全职毕业生 UX / Product 岗位。",
     signals: [
       {
         label: "岗位匹配",
@@ -276,7 +276,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "pipeline-consistency-hoop",
       group: "product",
-      question: "几百张生成的资产，怎么才能看起来像同一个世界？",
+      question: "299 条资产规格的登记表，怎么才能看起来像同一个世界？",
       proves: "流程设计、成文标准，以及分清脚本查得了什么。",
       caseSlug: "hoop",
       href: "/projects/hoop#decision-timeline",

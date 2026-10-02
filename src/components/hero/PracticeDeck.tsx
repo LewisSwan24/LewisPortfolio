@@ -12,8 +12,7 @@ type DeckCard = {
   stamp: Record<Lang, string>;
   date: string;
   project: Record<Lang, string>;
-  body?: Record<Lang, string[]>;
-  sketch?: boolean;
+  body: Record<Lang, string[]>;
 };
 
 const DECK: DeckCard[] = [
@@ -37,14 +36,6 @@ const DECK: DeckCard[] = [
         "→ 10/03：不再打补丁，回到纸上重画结构",
       ],
     },
-  },
-  {
-    id: "sketch",
-    kind: { en: "Wireframe sketch", zh: "线框草图" },
-    stamp: { en: "Spectra Lens · v3", zh: "Spectra Lens · v3" },
-    date: "2024.09.09",
-    project: { en: "Spectra Lens", zh: "Spectra Lens" },
-    sketch: true,
   },
   {
     id: "bible",
@@ -146,7 +137,7 @@ const DECK: DeckCard[] = [
   },
   {
     id: "threshold",
-    kind: { en: "Spec draft", zh: "规格草稿" },
+    kind: { en: "Proposal draft, mostly AI-written", zh: "提案草稿，多半由 AI 起草" },
     stamp: { en: "Fietspad · warning thresholds", zh: "Fietspad · 提示阈值" },
     date: "2025 · S2",
     project: { en: "Requirements into Rules", zh: "把要求变成规则" },
@@ -392,61 +383,16 @@ function DeckCardContent({ card, lang }: { card: DeckCard; lang: Lang }) {
       </header>
       <div className="dc-stamp">{card.stamp[lang]}</div>
 
-      {card.sketch ? (
-        <DeckSketch lang={lang} />
-      ) : (
-        <ul className="dc-body">
-          {card.body?.[lang].map((line, i) => (
-            <li key={i}>{line}</li>
-          ))}
-        </ul>
-      )}
+      <ul className="dc-body">
+        {card.body[lang].map((line, i) => (
+          <li key={i}>{line}</li>
+        ))}
+      </ul>
 
       <footer className="dc-foot">
         <span className="dc-dot" />
         <span>{card.project[lang]}</span>
       </footer>
     </>
-  );
-}
-
-// The three callouts and the aria-label were hard-coded English, so they never
-// went through messages and stayed English on the zh homepage.
-function DeckSketch({ lang }: { lang: Lang }) {
-  const zh = lang === "zh";
-  return (
-    <div className="dc-sketch" aria-label={zh ? "线框草图" : "Wireframe sketch"}>
-      <svg viewBox="0 0 300 200" fill="none">
-        <rect x="90" y="14" width="120" height="172" rx="14" stroke="currentColor" strokeWidth="1.4" fill="none" />
-        <rect x="125" y="20" width="50" height="4" rx="2" stroke="currentColor" strokeWidth="1" fill="none" />
-        <rect x="100" y="34" width="100" height="68" stroke="currentColor" strokeWidth="1" fill="none" />
-        <line x1="105" y1="45" x2="175" y2="45" stroke="currentColor" strokeWidth="0.8" strokeDasharray="2 3" />
-        <line x1="105" y1="55" x2="165" y2="55" stroke="currentColor" strokeWidth="0.8" strokeDasharray="2 3" />
-        <line x1="105" y1="65" x2="185" y2="65" stroke="currentColor" strokeWidth="0.8" strokeDasharray="2 3" />
-        <circle cx="150" cy="68" r="16" stroke="currentColor" strokeWidth="1.4" fill="none" />
-        <line x1="134" y1="68" x2="166" y2="68" stroke="currentColor" strokeWidth="1" />
-        <line x1="150" y1="52" x2="150" y2="84" stroke="currentColor" strokeWidth="1" />
-        <rect x="100" y="112" width="100" height="26" stroke="currentColor" strokeWidth="1.2" fill="none" />
-        <line x1="106" y1="120" x2="150" y2="120" stroke="currentColor" strokeWidth="1" />
-        <line x1="106" y1="128" x2="170" y2="128" stroke="currentColor" strokeWidth="0.8" />
-        <circle cx="150" cy="162" r="14" stroke="currentColor" strokeWidth="1.4" fill="none" />
-        <circle cx="150" cy="162" r="5" stroke="currentColor" strokeWidth="1" fill="none" />
-        <text x="18" y="72" fontFamily="var(--font-hand)" fontSize="13" fill="currentColor">
-          {zh ? "实时画面" : "live feed"}
-        </text>
-        <path d="M52 70 L88 66" stroke="currentColor" strokeWidth="0.8" />
-        <text x="218" y="126" fontFamily="var(--font-hand)" fontSize="13" fill="currentColor">
-          {zh ? "色名" : "color name"}
-        </text>
-        <path d="M210 122 L204 124" stroke="currentColor" strokeWidth="0.8" />
-        <text x="218" y="166" fontFamily="var(--font-hand)" fontSize="13" fill="currentColor">
-          {zh ? "振动" : "haptic"}
-        </text>
-        <path d="M210 162 L170 162" stroke="currentColor" strokeWidth="0.8" />
-        <text x="14" y="190" fontFamily="var(--font-mono)" fontSize="9" fill="currentColor" opacity="0.7">
-          spectra · viewer · v3 · 0909
-        </text>
-      </svg>
-    </div>
   );
 }
