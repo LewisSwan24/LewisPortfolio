@@ -476,7 +476,10 @@ html { scroll-behavior: smooth; }
 }
 @media (max-width: 640px) { .container { padding: 0 20px; } }
 
-.section { padding: var(--s-9) 0; }
+/* Vertical only. The shorthand used to zero the left and right padding that
+   .container sets on the same element, so every .section.container touched the
+   viewport edge on a phone. */
+.section { padding-block: var(--s-9); }
 
 .label {
   font-family: var(--font-ui);
@@ -717,7 +720,7 @@ html { scroll-behavior: smooth; }
 
 /* HERO — Practice Deck */
 .hero {
-  padding: var(--s-7) 0 var(--s-9);
+  padding-block: var(--s-7) var(--s-9);
   position: relative;
   overflow: hidden;
 }
@@ -1328,13 +1331,25 @@ html { scroll-behavior: smooth; }
   padding: var(--s-5) 0;
 }
 .evidence-matrix {
+  --matrix-cols: 4;
+  --matrix-lead: 180px;
+  --matrix-col: 150px;
   margin-top: var(--s-4);
   border-top: 1px solid var(--border);
   border-left: 1px solid var(--border);
+  /* One column per listed case, so a narrow window scrolls the table
+     sideways instead of squeezing the cells to a few characters. */
+  overflow-x: auto;
 }
 .evidence-matrix-row {
   display: grid;
-  grid-template-columns: minmax(220px, 1.2fr) repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(var(--matrix-lead), 1.1fr) repeat(var(--matrix-cols), minmax(var(--matrix-col), 1fr));
+  min-width: calc(var(--matrix-lead) + var(--matrix-cols) * var(--matrix-col));
+}
+.evidence-matrix-row > .evidence-matrix-capability {
+  position: sticky;
+  left: 0;
+  z-index: 1;
 }
 .evidence-matrix-row.is-header {
   font-family: var(--font-ui);
@@ -1442,10 +1457,17 @@ html { scroll-behavior: smooth; }
     gap: var(--s-3);
     border: 0;
   }
+  .evidence-matrix {
+    overflow-x: visible;
+  }
   .evidence-matrix-row,
   .evidence-matrix-row.is-header {
     display: grid;
     grid-template-columns: 1fr;
+    min-width: 0;
+  }
+  .evidence-matrix-row > .evidence-matrix-capability {
+    position: static;
   }
   .evidence-matrix-row.is-header {
     display: none;
@@ -2368,7 +2390,7 @@ html { scroll-behavior: smooth; }
 /* ============================================================
    PROJECTS LIST PAGE — sprint 3
    ============================================================ */
-.idx-hero { padding: var(--s-8) 0 var(--s-7); }
+.idx-hero { padding-block: var(--s-8) var(--s-7); }
 .idx-hero .h-display {
   max-width: 12em;
   font-size: clamp(44px, 5vw, 66px);
@@ -3107,7 +3129,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 }
 
 .case-depth {
-  padding: 0 0 var(--s-8);
+  padding-bottom: var(--s-8);
 }
 .case-depth-block {
   display: grid;
@@ -3232,7 +3254,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
   }
 }
 
-.cs-section { padding: var(--s-8) 0; border-top: 1px dashed var(--border); }
+.cs-section { padding-block: var(--s-8); border-top: 1px dashed var(--border); }
 .cs-section:first-of-type { border-top: none; }
 .cs-row {
   display: grid;
@@ -3349,7 +3371,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 /* ============================================================
    ABOUT — sprint 3
    ============================================================ */
-.about-hero { padding: var(--s-8) 0 var(--s-7); }
+.about-hero { padding-block: var(--s-8) var(--s-7); }
 .about-hero .h-display { max-width: 14em; }
 .about-grid {
   display: grid;
@@ -3420,7 +3442,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
    RESUME — sprint 3
    ============================================================ */
 .res-hero {
-  padding: var(--s-8) 0 var(--s-6);
+  padding-block: var(--s-8) var(--s-6);
   display: flex; justify-content: space-between; align-items: end;
   flex-wrap: wrap; gap: var(--s-5);
   border-bottom: 1px solid var(--border);

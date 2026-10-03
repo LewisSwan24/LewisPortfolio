@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import type {
   EvidenceMatrixCapability,
@@ -73,7 +74,14 @@ export function EvidenceMatrix({ capabilities, locale = "en" }: EvidenceMatrixPr
         <p>{copy.body}</p>
       </div>
 
-      <div className="evidence-matrix" role="table" aria-label={copy.aria}>
+      <div
+        className="evidence-matrix"
+        role="table"
+        aria-label={copy.aria}
+        // The column count follows the listed cases, so unlisting one cannot
+        // leave the grid with the wrong number of tracks.
+        style={{ "--matrix-cols": projectOrder.length } as CSSProperties}
+      >
         <div className="evidence-matrix-row is-header" role="row">
           <div role="columnheader">{copy.capability}</div>
           {projectOrder.map((slug) => (
