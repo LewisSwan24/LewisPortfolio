@@ -8,8 +8,10 @@ import {
   VizConnect,
   VizMaze,
   VizSpectra,
-  VizVigil,
   VizHoop,
+  VizPricewise,
+  VizGapmapper,
+  VizRules,
 } from "@/components/viz/ProjectViz";
 import {
   getEvidenceMatrix,
@@ -18,7 +20,14 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
-type ProjKey = "connect" | "spectra" | "maze" | "vigil" | "hoop";
+type ProjKey =
+  | "connect"
+  | "spectra"
+  | "maze"
+  | "hoop"
+  | "pricewise"
+  | "gapmapper"
+  | "rules";
 type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "hardware";
 type Localized = { en: string; zh: string };
 
@@ -48,7 +57,7 @@ const ITEMS: Item[] = [
     k: "maze",
     tags: ["flag", "hardware"],
     role: "Design tech",
-    year: "2025",
+    year: "2026",
     dur: "Built",
     problem: {
       en: "A physical maze that noticed nothing and answered nothing",
@@ -61,38 +70,22 @@ const ITEMS: Item[] = [
   },
   {
     n: "02",
-    k: "vigil",
-    tags: ["flag", "ai", "research"],
-    role: "Design + direction",
+    k: "gapmapper",
+    tags: ["flag", "research"],
+    role: "Prototype + turn",
     year: "2026",
-    dur: "In progress",
+    dur: "Submitted",
     problem: {
-      en: "A classifier that is wrong 12% of the time, and a reviewer who stops checking",
-      zh: "一个有 12% 会判错的分类器，和一个逐渐不再复核的人",
+      en: "A safety interface that cannot guarantee safety, sounding certain anyway",
+      zh: "一个保证不了安全的安全界面，说起话来却很笃定",
     },
     changed: {
-      en: "Confidence built as weak evidence, so the number cannot replace reading the message",
-      zh: "把置信度做成弱证据，让那个数字无法取代真的去读那封信",
+      en: "Perception and indicators kept apart, so the gap is a reason to look rather than a verdict",
+      zh: "感知与客观指标分开放，让落差变成去查一查的理由，而不是一句判决",
     },
   },
   {
     n: "03",
-    k: "hoop",
-    tags: ["ai", "hardware"],
-    role: "Design + art dir",
-    year: "2026",
-    dur: "Playable",
-    problem: {
-      en: "Hundreds of generated assets that each looked fine and did not agree",
-      zh: "几百张单看都不错、彼此却对不上的生成资产",
-    },
-    changed: {
-      en: "An art bible and a style gate, so coherence came from the pipeline",
-      zh: "一份美术圣经加一道风格闸门，让一致性来自管线本身",
-    },
-  },
-  {
-    n: "04",
     k: "connect",
     tags: ["flag", "research"],
     role: "Solo",
@@ -102,23 +95,73 @@ const ITEMS: Item[] = [
     changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
   },
   {
+    n: "04",
+    k: "pricewise",
+    tags: ["flag", "ai"],
+    role: "Product + direction",
+    year: "2026",
+    dur: "Prototype, demo data",
+    problem: {
+      en: "An AI wrote the code, and a green build proved nothing about whether it ran",
+      zh: "代码是 AI 写的，构建通过却证明不了到底跑没跑",
+    },
+    changed: {
+      en: "Four classes of defect that a green build, a clean type-check and passing tests all missed",
+      zh: "构建、类型检查和测试全绿，照样漏掉四类缺陷",
+    },
+  },
+  {
     n: "05",
+    k: "hoop",
+    tags: ["ai", "hardware"],
+    role: "Design + art dir",
+    year: "2026",
+    dur: "Playable",
+    problem: {
+      en: "A registry of 299 asset specs, where what goes wrong shows only as a set",
+      zh: "299 条资产规格的登记表，毛病要整组摆在一起才看得出来",
+    },
+    changed: {
+      en: "An art bible and a rejected list written first, with style checked by eye",
+      zh: "先写美术圣经和拒绝清单，风格靠人眼对照",
+    },
+  },
+  {
+    n: "06",
+    k: "rules",
+    tags: ["research", "ai"],
+    role: "Interface + spec",
+    year: "2025",
+    dur: "Submitted",
+    problem: {
+      en: "Requirements everyone agreed with and nobody could build to",
+      zh: "所有人都同意、却没人能照着施工的要求",
+    },
+    changed: {
+      en: "150–250 m of warning lead, a 48 px floor, and three triggers from one paper",
+      zh: "150–250 m 的提前量、48px 的下限，以及从一篇论文拆出的三条触发条件",
+    },
+  },
+  {
+    n: "07",
     k: "spectra",
     tags: ["acc"],
     role: "Solo build",
     year: "2026",
-    dur: "Shipped",
+    dur: "DEMO",
     problem: { en: "Type and spacing are fixed by whoever built the page", zh: "字体和行距由建站的人决定，读的人改不了" },
-    changed: { en: "A browser extension that rewrites both from one popup", zh: "一个浏览器扩展，从一个 popup 就能改写两者" },
+    changed: { en: "A browser extension that rewrites both from one popup", zh: "一个浏览器扩展，从一个扩展弹窗就能改写两者" },
   },
 ];
 
-function WorkPreview({ project }: { project: ProjKey }) {
-  if (project === "maze") return <VizMaze />;
-  if (project === "vigil") return <VizVigil />;
-  if (project === "hoop") return <VizHoop />;
-  if (project === "connect") return <VizConnect />;
-  return <VizSpectra />;
+function WorkPreview({ project, locale }: { project: ProjKey; locale: ProofLocale }) {
+  if (project === "maze") return <VizMaze locale={locale} />;
+  if (project === "hoop") return <VizHoop locale={locale} />;
+  if (project === "pricewise") return <VizPricewise locale={locale} />;
+  if (project === "gapmapper") return <VizGapmapper locale={locale} />;
+  if (project === "rules") return <VizRules locale={locale} />;
+  if (project === "connect") return <VizConnect locale={locale} />;
+  return <VizSpectra locale={locale} />;
 }
 
 export function WorkIndex() {
@@ -195,7 +238,7 @@ export function WorkIndex() {
             <Link className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
               <div className="work-index-project">
                 <div className="work-index-thumb" aria-hidden="true">
-                  <WorkPreview project={i.k} />
+                  <WorkPreview project={i.k} locale={proofLocale} />
                   <span className="work-index-thumb-label">{pageCopy.conceptVisual}</span>
                 </div>
                 <div>

@@ -3,7 +3,10 @@ export type ProjectEvidenceSlug =
   | "spectra"
   | "maze"
   | "vigil"
-  | "hoop";
+  | "hoop"
+  | "pricewise"
+  | "gapmapper"
+  | "rules";
 export type ProofLocale = "en" | "zh";
 
 export interface CareerSnapshotStat {
@@ -53,7 +56,7 @@ export interface RoleFit {
   bestFit: string[];
   proofLinks: Array<{
     label: string;
-    href: `/projects/${ProjectEvidenceSlug}` | "/resume" | "/contact";
+    href: `/projects/${ProjectEvidenceSlug}` | "/resume" | "/contact" | "/hire#ai-trust-thread";
   }>;
 }
 
@@ -93,6 +96,18 @@ export interface CaseLimit {
   nextValidation: string;
 }
 
+/**
+ * Only `limits` reaches a reader. The decision timeline, the evidence board and
+ * the interview takeaway were folded into the `cs.<slug>.*` narrative in
+ * src/messages/{en,zh}.json; app/[locale]/projects/[slug]/page.tsx keeps their
+ * anchors alive as empty `case-anchor` divs so existing proof links still land,
+ * and renders nothing from `decisions`, `evidence`, `iterations` or `takeaway`.
+ *
+ * They are kept because they are the interview-prep version of each case and
+ * tests/lib/portfolio-proof.test.ts holds them to a standard. But writing case
+ * copy here does not publish it — put anything a reader should see in
+ * messages.json, and verify against the served HTML rather than the source.
+ */
 export interface CaseDepth {
   decisions: CaseDecision[];
   evidence: CaseEvidenceItem[];
@@ -309,6 +324,39 @@ export interface RolePacket {
   interviewQuestions: CaseInterviewAnswer[];
   primaryAction: ConversionAction;
   secondaryAction: ConversionAction;
+  /** Where the role's evidence is gathered on /hire, when it spans several cases. */
+  thread?: {
+    label: string;
+    href: "/hire#ai-trust-thread";
+  };
+}
+
+/**
+ * One entry in the /hire "AI and trust" thread. `who` says who did the work
+ * (solo, or which course team), because the thread spans team projects.
+ */
+export interface AiTrustThreadEntry {
+  slug: ProjectEvidenceSlug;
+  caseName: string;
+  who: string;
+  body: string;
+  href: CaseReaderHref;
+}
+
+export interface AiTrustThread {
+  eyebrow: string;
+  title: string;
+  /** Opens by admitting there is no finished AI-native product. */
+  intro: string;
+  entries: AiTrustThreadEntry[];
+  /** The closing limit sentence. Tested in both locales. */
+  limit: string;
+  linkLabel: string;
+  /** The one-line marker case pages on the thread carry back to /hire. */
+  caseMarker: {
+    label: string;
+    link: string;
+  };
 }
 
 export type ApplicationPacketRoute = `/hire/${HiringRoleId}/packet`;

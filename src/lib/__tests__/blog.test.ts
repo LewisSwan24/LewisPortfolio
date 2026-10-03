@@ -37,6 +37,23 @@ describe("blog i18n", () => {
   });
 });
 
+describe("blog drafts", () => {
+  // designing-for-ai was taken down on 2026-09-28: it is about Vigil, which was
+  // abandoned. The files stay on disk, but no listing may carry the post. The
+  // blog index, homepage, search, sitemap and both feeds all read
+  // getAllBlogPosts, so this one check covers every one of them.
+  it("keeps the taken-down post out of both locales' listings", async () => {
+    for (const locale of ["en", "zh"] as const) {
+      const draft = await getBlogPost("designing-for-ai", locale);
+      expect(draft, `${locale} file is missing`).not.toBeNull();
+      expect(draft!.metadata.published, `${locale} post is published again`).toBe(false);
+
+      const slugs = (await getAllBlogPosts(locale)).map((post) => post.slug);
+      expect(slugs).not.toContain("designing-for-ai");
+    }
+  });
+});
+
 describe("blog", () => {
   it("should return all blog posts", async () => {
     const posts = await getAllBlogPosts();

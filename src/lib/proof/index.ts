@@ -4,6 +4,7 @@ export * from "./projects";
 export * from "./case-depth";
 export * from "./matrix";
 export * from "./interview-room";
+export * from "./ai-trust-thread";
 export * from "./events";
 export * from "./locale";
 export { getProofHandoffExport } from "./handoff-export";

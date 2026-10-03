@@ -126,7 +126,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
                 <div className="idx-flag-side">
                   <div>{p.readingTime}</div>
                   <div style={{ marginTop: 8, color: "var(--accent)" }}>
-                    {isZh ? "读它" : "Read it"} →
+                    {isZh ? "读一读" : "Read it"} →
                   </div>
                 </div>
               </Link>

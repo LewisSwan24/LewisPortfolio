@@ -115,10 +115,15 @@ export async function getAllBlogPosts(locale: BlogLocale = "en"): Promise<BlogPo
 }
 
 /**
- * Get all unique tags from blog posts
+ * Get all unique tags from blog posts.
+ *
+ * Takes a locale because tags are not shared filter keys: the zh MDX files
+ * carry Chinese tags. Reading them from the English posts meant /zh/blog
+ * rendered English filter buttons that could never match a zh post's tags, so
+ * every filter click there returned nothing.
  */
-export async function getAllBlogTags(): Promise<string[]> {
-    const posts = await getAllBlogPosts();
+export async function getAllBlogTags(locale: BlogLocale = "en"): Promise<string[]> {
+    const posts = await getAllBlogPosts(locale);
     const tagsSet = new Set<string>();
 
     posts.forEach((post) => {

@@ -10,17 +10,27 @@ import {
   VizMaze,
   VizVigil,
   VizHoop,
+  VizPricewise,
+  VizGapmapper,
+  VizRules,
 } from "@/components/viz/ProjectViz";
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { DemoEmbed } from "@/components/case/DemoEmbed";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
-import { CURRENT_PROJECT_SLUGS, type CurrentProjectSlug } from "@/lib/project-routes";
 import {
+  CURRENT_PROJECT_SLUGS,
+  isUnlistedProject,
+  type CurrentProjectSlug,
+} from "@/lib/project-routes";
+import {
+  AI_TRUST_THREAD_HREF,
+  getAiTrustThread,
   getCaseDepth,
   getCaseInterviewPack,
   getCaseSummary,
+  isOnAiTrustThread,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 
@@ -58,6 +68,60 @@ interface CaseMedia {
  * variants themselves. The rest carry their argument in prose.
  */
 const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
+  connect: {
+    label: "The sheet, and what came off it",
+    labelZh: "那张纸，和从纸上做出来的东西",
+    blurb:
+      "The October paper reset and three screens captured from the team's live deployment — not mockups. The app runs on mock data; the backend was written and never connected.",
+    blurbZh:
+      "十月那次纸面重画，以及三张从团队线上部署直接抓的截图，不是效果图。应用跑在 mock 数据上，后端写了但从未接上。",
+    images: [
+      {
+        src: "/projects/connect/04-paper-prototype.jpg",
+        width: 2220,
+        height: 2040,
+        alt: "The 3 October pencil sheet: five phone screens with arrows drawn from the home screen to each one",
+        altZh: "10 月 3 日的铅笔草图：五个手机屏，从首页各画一条箭头指向对应的屏",
+        caption:
+          "3 October. September's sessions found no way back and a card contradicting its own button — structural faults, so the answer was drawn as structure.",
+        captionZh:
+          "10 月 3 日。九月测出「没有返回路径」和「卡片与自己的按钮矛盾」，两个都是结构问题，所以答案也画成结构。",
+      },
+      {
+        src: "/projects/connect/01-app-home.png",
+        width: 1170,
+        height: 2532,
+        alt: "UQ Connect home screen: a colour-coded grid of feature cards above a five-tab bar",
+        altZh: "UQ Connect 首页：配色化的功能卡片网格，下方是五个标签的底栏",
+        caption:
+          "The November home screen. A participant read the colour coding as a map of the app — that was the point of building it as one component system.",
+        captionZh:
+          "十一月的首页。受测者把这套配色读成了整个应用的地图：把界面做成一套组件系统，图的就是这个。",
+      },
+      {
+        src: "/projects/connect/02-app-studybuddy.png",
+        width: 1170,
+        height: 2532,
+        alt: "A study-buddy match card showing 94% match beside the course, library, availability and small-group size",
+        altZh: "学习伙伴匹配卡：94% 契合度旁边列着课程、图书馆、可用时间与小组规模",
+        caption:
+          "The match states its reasons — course, place, availability, group size — because students were sceptical of a score on its own but acted on a concrete reason.",
+        captionZh:
+          "匹配把理由摆出来：课程、地点、可用时间、小组规模。因为学生怀疑一个孤零零的分数，却会照着具体理由行动。",
+      },
+      {
+        src: "/projects/connect/03-app-events.png",
+        width: 1170,
+        height: 2532,
+        alt: "Campus event cards showing price, location, attendance count, and separate Register and I'm Going states",
+        altZh: "校园活动卡片：显示价格、地点、参加人数，以及「报名」与「我要去」两个不同状态",
+        caption:
+          "Price sits on the card. Nobody predicted that — it came out of the interviews, where $100–200 events were quietly ruled out.",
+        captionZh:
+          "价格就写在卡片上。没有人预测到这一点，是访谈里冒出来的：100–200 澳元的活动，默默就排掉了。",
+      },
+    ],
+  },
   maze: {
     label: "Build evidence",
     labelZh: "实物证据",
@@ -80,7 +144,7 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
         alt: "Close-up of the wearable finger sleeve that delivers vibration feedback",
         altZh: "提供震动反馈的可穿戴手指套特写",
         caption: "The finger sleeve — where the trap actually lands.",
-        captionZh: "手指套 —— 陷阱真正落在这里。",
+        captionZh: "手指套：陷阱真正落在这里。",
       },
       {
         src: "/projects/maze/03-wiring-layer.png",
@@ -110,11 +174,11 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
   },
   vigil: {
     label: "The variants under test",
-    labelZh: "正在被测试的变体",
+    labelZh: "正在测试的变体",
     blurb:
       "Screens generated from the running prototype by a script, so each image is a pure function of its URL and can be regenerated after any change.",
     blurbZh:
-      "这些截图由脚本从跑起来的原型直接生成——每张图都是 URL 的纯函数，任何改动之后都可以重新生成一遍。",
+      "这些截图由脚本从跑起来的原型直接生成：每张图都是 URL 的纯函数，任何改动之后都可以重新生成一遍。",
     images: [
       {
         src: "/projects/vigil/02-review-q1percent-q3inline.png",
@@ -123,7 +187,7 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
         alt: "The review screen showing a precise confidence figure and cue spans highlighted inline in the message",
         altZh: "复核界面：显示精确置信度数值，线索直接在邮件正文里高亮",
         caption: "Q1 percent + Q3 inline. The evidence is marked where it sits.",
-        captionZh: "Q1 精确百分比 + Q3 内文高亮。证据标在它所在的位置。",
+        captionZh: "Q1 精确百分比 + Q3 内文高亮。证据出现在哪，就标在哪。",
       },
       {
         src: "/projects/vigil/03-review-q1band-q3list.png",
@@ -143,7 +207,7 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
         caption:
           "The hardest message in the set: every authentication check passes, the classifier reports no indicators, and it is impersonation.",
         captionZh:
-          "整组里最难的一封：每一项认证检查都通过，分类器报告零线索，而它其实是冒用身分。",
+          "整组里最难的一封：每一项认证检查都通过，分类器报告零线索，这封信其实是冒用身分。",
       },
       {
         src: "/projects/vigil/06-summary.png",
@@ -163,7 +227,7 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
     blurb:
       "Captured from the public deployment, not mocked up: the menu, the two-step character creation, and the first career node with its status, attributes, relationships and actions all live.",
     blurbZh:
-      "这些是从线上公开版本抓的，不是效果图：主菜单、两步角色创建，以及第一个生涯节点——状态、六维属性、关系网和可选行动全部是真的。",
+      "这些是从线上公开版本抓的，不是效果图：主菜单、两步角色创建，以及第一个生涯节点，状态、六维属性、关系网和可选行动全部是真的。",
     images: [
       {
         src: "/projects/hoop/01-main-menu.png",
@@ -184,7 +248,7 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
         caption:
           "Four archetypes against six attributes. START JOURNEY stays disabled until the name is filled — validation, not a broken button.",
         captionZh:
-          "四种原型对六维属性。姓名没填之前「开始旅程」一直是灰的——那是校验，不是按钮坏了。",
+          "四种原型对六维属性。姓名没填之前「开始旅程」一直是灰的。那是校验，不是按钮坏了。",
       },
       {
         src: "/projects/hoop/04-career-node.png",
@@ -196,6 +260,102 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
           "One node of 146. Status, six attributes, eight relationships and the action menu are all wired to the same career state.",
         captionZh:
           "146 个节点里的第一个。状态、六维属性、八段关系与行动菜单，全部接在同一份生涯状态上。",
+      },
+    ],
+  },
+  pricewise: {
+    label: "The running app",
+    labelZh: "跑起来的样子",
+    blurb:
+      "Captured from the live deployment, not mocked up. Amounts shown come from demo data, not from anyone's real bill — the database has zero registered users.",
+    blurbZh:
+      "从线上版本直接抓的，不是效果图。图中金额来自演示数据，不是任何人的真实账单：数据库里注册用户是 0。",
+    images: [
+      {
+        src: "/projects/pricewise/02-scan.png",
+        width: 2880,
+        height: 1800,
+        alt: "The receipt scanning screen, with an upload area and the list of recognised items",
+        altZh: "小票扫描页：上传区域，以及识别出来的商品清单",
+        caption:
+          "Where the whole product lives or dies. A receipt prints MLK FC 2L and the catalogue says Full Cream Milk 2L; if those do not meet, nothing downstream can happen.",
+        captionZh:
+          "整个产品的成败都压在这一步。小票印 MLK FC 2L，商品库里是 Full Cream Milk 2L，对不上，后面什么都做不了。",
+      },
+      {
+        src: "/projects/pricewise/03-compare.png",
+        width: 2880,
+        height: 1800,
+        alt: "The comparison view, with the cheapest chain marked in green for each item",
+        altZh: "比价页，每件商品最便宜的那一家标成绿色",
+        caption:
+          "Three chains, item by item. The green marker is the only claim this screen makes, and it is only as good as the match behind it.",
+        captionZh:
+          "三家超市逐件对比。绿色标记是这一屏唯一给出的判断，而这个判断有多可信，完全取决于背后那次匹配。",
+      },
+      {
+        src: "/projects/pricewise/04-products.png",
+        width: 2880,
+        height: 1800,
+        alt: "The product browser, each card listing the price at all three supermarkets",
+        altZh: "商品浏览页，每张卡片列出三家超市的价格",
+        caption:
+          "65 products across Coles, Woolworths and Aldi. This is the page whose semantic search silently fell back to keyword matching on every query.",
+        captionZh:
+          "澳洲三大连锁超市 Coles、Woolworths、Aldi 共 65 件商品。这一页的语意搜索，每次查询都静默退回了关键字匹配。",
+      },
+    ],
+  },
+  gapmapper: {
+    label: "The prototype I argued against",
+    labelZh: "我主张放弃的那版原型",
+    blurb:
+      "The route-support prototype, kept in the portfolio because it is the evidence for the turn. It looked extremely usable — which is exactly what made it dangerous.",
+    blurbZh:
+      "那版路线支持原型。留在作品集里，是因为这就是那次转向的证据。看起来非常实用，危险恰恰在这里。",
+    images: [
+      {
+        src: "/projects/gapmapper/01-route-options.png",
+        width: 3768,
+        height: 1650,
+        alt: "Five phone screens side by side: the same trip as five route options, each overlaying risk density, lighting, surveillance or open-business layers, with trip duration marked",
+        altZh: "五个手机界面并排：同一趟行程的五种路线方案，分别叠加风险密度、路灯、监控与营业店铺图层，各自标出行程时长",
+        caption:
+          "The version I built: one trip, scored and ranked by different cues. A system that recommends a safer route without being able to guarantee safety has acquired an authority it never earned.",
+        captionZh:
+          "我建的那一版：同一趟行程按不同线索评分排序。一个建议「更安全路线」却保证不了安全的系统，获得了一种自己没有挣来的权威。",
+      },
+    ],
+  },
+  rules: {
+    label: "Both briefs, side by side",
+    labelZh: "两份作业并排",
+    blurb:
+      "One turns 'safety' into routing weights, warning distances and tap sizes. The other turns a peer-reviewed paper into trigger conditions, copy templates and a checklist. Same move, twice.",
+    blurbZh:
+      "一份把「安全」变成路线权重、提示距离和点击区尺寸；另一份把一篇同行评审论文变成触发条件、文案模板和自查清单。同一个动作，做了两遍。",
+    images: [
+      {
+        src: "/projects/rules/01-fietspad-ui.png",
+        width: 2093,
+        height: 1361,
+        alt: "Three dark-theme phone screens: a home screen with mode selection and recent routes, a planning screen with a rider profile, and a riding screen with a left-hook warning and hazard list",
+        altZh: "三张深色主题的手机界面：模式选择与最近路线的首页、含骑行档案的规划页、以及骑行中的左勾弯风险提示与危险清单",
+        caption:
+          "Fietspad is Dutch for bike path, and the hazard categories are cycling-specific too: left hook, dooring zone, shared lane. The hazard list carries an audio toggle, because a rider cannot look at a screen.",
+        captionZh:
+          "产品名 Fietspad 是荷兰语的「自行车道」。危险分类也是自行车专用的：左勾弯、开门区、共享道。清单上带音频开关，因为人在骑车时看不了屏。",
+      },
+      {
+        src: "/projects/rules/02-guide-frames.jpg",
+        width: 8297,
+        height: 2306,
+        alt: "Eight phone-shaped guide panels in a row: failure symptoms, impact, do and do-not, trigger thresholds, copy templates, before and after, a self-check list, and closing actions",
+        altZh: "八格手机样式的图文指南横排：从失效现象、影响、该做与不该做、触发阈值、文案模板、效果对比、自查清单到收尾行动",
+        caption:
+          "Three failure causes became three independent triggers rather than one generic warning, each with its own copy in a fixed format: symptom, then one action, verb first.",
+        captionZh:
+          "三种失效成因变成三条独立触发条件，而不是一句通用警告；各配各的文案，格式固定为「现象 → 一个动作」，动词开头。",
       },
     ],
   },
@@ -267,18 +427,47 @@ const CASE_DEMO: Partial<Record<Slug, CaseDemo>> = {
     blurb:
       "The public build, in the page. Create a player — the name is required, and the archetype you pick propagates into the six attributes — then walk into the first node and spend an action. Everything past that point is the same systems the tests cover.",
     blurbZh:
-      "线上版本，直接嵌在页面里。创建一名球员——姓名必填，选的打法风格会传导进六维属性——然后进第一个节点花掉一次行动。从那里往后，跑的都是测试覆盖的同一批系统。",
+      "线上版本，直接嵌在页面里。创建一名球员：姓名必填，选的打法风格会传导进六维属性；然后进第一个节点花掉一次行动。从那里往后，跑的都是测试覆盖的同一批系统。",
     action: "Load the playable build",
     actionZh: "载入可玩版本",
+  },
+  pricewise: {
+    src: "https://pricewise-lewisdong.vercel.app",
+    poster: "/projects/pricewise/01-home.png",
+    title: "PriceWise, demo build",
+    titleZh: "PriceWise 演示版本",
+    posterAlt: "The PriceWise home screen; click to open the demo build in the page",
+    posterAltZh: "PriceWise 首页，点击即可在页面里打开演示版本",
+    label: "Open the demo build",
+    labelZh: "打开演示版本",
+    blurb:
+      "The deployed prototype, in the page. Browse the 65-product catalogue and compare across the three chains without signing in. Prices come from simulated data, and the database has no registered users.",
+    blurbZh:
+      "已部署的功能原型，直接嵌在页面里。不登录也能浏览 65 件商品并做三家比价。价格是拟真数据，数据库里没有注册用户。",
+    action: "Load the demo build",
+    actionZh: "载入演示版本",
   },
 };
 
 const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
-  connect: [],
+  // The team's own deployment. It is the one public artefact of this project —
+  // the source repository stays private, carrying classmates' details and the
+  // interview transcripts.
+  connect: [
+    { label: "Open the demo", href: "https://uq-connect.vercel.app/", external: true },
+  ],
   spectra: [],
   maze: [],
   vigil: [],
   hoop: [],
+  pricewise: [
+    { label: "Open the demo", href: "https://pricewise-lewisdong.vercel.app", external: true },
+  ],
+  // No public artefact for either. Both are coursework: the reports and Figma
+  // files are not mine alone to publish, and the same reasoning as UQ Connect
+  // applies to the course repositories.
+  gapmapper: [],
+  rules: [],
 };
 
 export function generateStaticParams() {
@@ -306,15 +495,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: buildAlternates(path, locale),
     openGraph: buildOpenGraph({ title, description, path, locale, type: "article", image }),
     twitter: buildTwitter({ title, description, image }),
+    // An unlisted case keeps its URL but stays out of search results.
+    ...(isUnlistedProject(slug) ? { robots: { index: false, follow: false } } : {}),
   };
 }
 
-function CoverViz({ slug }: { slug: Slug }) {
-  if (slug === "maze") return <VizMaze />;
-  if (slug === "vigil") return <VizVigil />;
-  if (slug === "hoop") return <VizHoop />;
-  if (slug === "connect") return <VizConnect />;
-  return <VizSpectra />;
+function CoverViz({ slug, locale }: { slug: Slug; locale: ProofLocale }) {
+  if (slug === "maze") return <VizMaze locale={locale} />;
+  if (slug === "vigil") return <VizVigil locale={locale} />;
+  if (slug === "hoop") return <VizHoop locale={locale} />;
+  if (slug === "connect") return <VizConnect locale={locale} />;
+  if (slug === "pricewise") return <VizPricewise locale={locale} />;
+  if (slug === "gapmapper") return <VizGapmapper locale={locale} />;
+  if (slug === "rules") return <VizRules locale={locale} />;
+  return <VizSpectra locale={locale} />;
 }
 
 export default async function CasePage({ params }: Props) {
@@ -326,8 +520,18 @@ export default async function CasePage({ params }: Props) {
   const locale = await getLocale();
   const isZh = locale === "zh";
   const idx = SLUGS.indexOf(k);
-  const nextSlug = SLUGS[(idx + 1) % SLUGS.length];
-  const prevSlug = SLUGS[(idx - 1 + SLUGS.length) % SLUGS.length];
+  // Neighbours walk the full order but skip unlisted cases, so no listed case
+  // links to one. An unlisted case keeps its page (every slug above is still
+  // generated), and that page still leads back into the listed ones.
+  const neighbour = (step: 1 | -1): Slug => {
+    for (let i = 1; i < SLUGS.length; i += 1) {
+      const candidate = SLUGS[(((idx + step * i) % SLUGS.length) + SLUGS.length) % SLUGS.length];
+      if (!isUnlistedProject(candidate)) return candidate;
+    }
+    return k;
+  };
+  const nextSlug = neighbour(1);
+  const prevSlug = neighbour(-1);
   const projectLinks = PROJECT_LINKS[k];
 
   const siteUrl = siteConfig.url;
@@ -336,6 +540,7 @@ export default async function CasePage({ params }: Props) {
   const caseSummary = getCaseSummary(k, proofLocale);
   const caseDepth = getCaseDepth(k, proofLocale);
   const caseInterviewPack = getCaseInterviewPack(k, proofLocale);
+  const aiTrustMarker = isOnAiTrustThread(k) ? getAiTrustThread(proofLocale).caseMarker : null;
   const pageCopy = isZh
     ? {
         caseReaderAria: "案例阅读路径",
@@ -441,6 +646,13 @@ export default async function CasePage({ params }: Props) {
         </div>
         <h1>{t(`cs.${k}.hero.title`)}</h1>
         <p className="sub">{t(`cs.${k}.hero.sub`)}</p>
+        {isUnlistedProject(k) && (
+          <p className="sub" role="note" style={{ fontWeight: 600 }}>
+            {isZh
+              ? "这个项目已于 2026-09-23 放弃：评估协议写完了，受试实验从未运行，所以这一页没有任何受试者数据。"
+              : "I abandoned this project on 23 Sep 2026. The evaluation protocol was finished and the participant study never ran, so this page holds no participant data."}
+          </p>
+        )}
         <dl className="cs-meta">
           <div>
             <dt>{t("cs.role")}</dt>
@@ -477,6 +689,19 @@ export default async function CasePage({ params }: Props) {
                       </Link>
                     </li>
                   ))}
+                </ul>
+              </dd>
+            </div>
+          )}
+          {/* The four cases the /hire AI and trust thread draws on point back to it. */}
+          {aiTrustMarker && (
+            <div>
+              <dt>{aiTrustMarker.label}</dt>
+              <dd>
+                <ul className="cs-links">
+                  <li>
+                    <Link href={AI_TRUST_THREAD_HREF}>{aiTrustMarker.link}</Link>
+                  </li>
                 </ul>
               </dd>
             </div>
@@ -528,7 +753,7 @@ export default async function CasePage({ params }: Props) {
         </aside>
         <div id="artifact" className="case-anchor" aria-hidden />
         <figure className="cs-cover">
-          <CoverViz slug={k} />
+          <CoverViz slug={k} locale={proofLocale} />
           <figcaption>{pageCopy.coverCaption}</figcaption>
         </figure>
       </section>
@@ -678,7 +903,7 @@ export default async function CasePage({ params }: Props) {
                   </div>
                   <div>
                     <h6>
-                      {isZh ? "发现 · 71 份逐字稿之后" : "Found · after 71 transcripts"}
+                      {isZh ? "发现 · 71 份记录之后" : "Found · after 71 sessions"}
                     </h6>
                     <ul>
                       <li className="ok">
@@ -805,7 +1030,7 @@ export default async function CasePage({ params }: Props) {
             >
               <div className="cs-related-eyebrow">← {t("cs.prev")}</div>
               <div className="cs-related-viz" aria-hidden>
-                <CoverViz slug={prevSlug} />
+                <CoverViz slug={prevSlug} locale={proofLocale} />
               </div>
               <div className="cs-related-meta">
                 <h4>{t(`proj.${prevSlug}.title`)}</h4>
@@ -818,7 +1043,7 @@ export default async function CasePage({ params }: Props) {
             >
               <div className="cs-related-eyebrow">{t("cs.next")} →</div>
               <div className="cs-related-viz" aria-hidden>
-                <CoverViz slug={nextSlug} />
+                <CoverViz slug={nextSlug} locale={proofLocale} />
               </div>
               <div className="cs-related-meta">
                 <h4>{t(`proj.${nextSlug}.title`)}</h4>

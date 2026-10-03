@@ -73,12 +73,14 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <span aria-hidden="true">@</span>
               <a href={`mailto:${email}`}>{email}</a>
             </li>
-            <li>
-              <span aria-hidden="true">in</span>
-              <a href={linkedin} target="_blank" rel="noopener noreferrer">
-                {readableUrl(linkedin)}
-              </a>
-            </li>
+            {linkedin ? (
+              <li>
+                <span aria-hidden="true">in</span>
+                <a href={linkedin} target="_blank" rel="noopener noreferrer">
+                  {readableUrl(linkedin)}
+                </a>
+              </li>
+            ) : null}
             <li>
               <span aria-hidden="true">gh</span>
               <a href={github} target="_blank" rel="noopener noreferrer">

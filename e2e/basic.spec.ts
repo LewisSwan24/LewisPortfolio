@@ -1,7 +1,9 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
+// No vigil: it is unlisted, so no proof link may point at it. PriceWise and
+// Perception Gap Mapper carry the AI UX thread that replaced it.
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|maze|vigil|hoop)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|spectra|ai|maze|hoop|pricewise|gapmapper)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 /**
  * Next's dev server sometimes issues a full reload while it compiles a route for
@@ -69,11 +71,16 @@ test.describe("Portfolio Homepage", () => {
     test("should present a clear hiring conversion path", async ({ page }) => {
         const proofDesk = page.locator(".hiring-proof-desk");
 
-        await expect(proofDesk.getByText(/2026.*internships|internships.*2026/i)).toBeVisible();
+        await expect(proofDesk.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
         await expect(proofDesk.getByText(/Best cases to inspect/i)).toBeVisible();
         await expect(proofDesk.getByText(/Information architecture/i).first()).toBeVisible();
         await expect(proofDesk.getByText(/Accessibility/i).first()).toBeVisible();
+        await expect(proofDesk.getByText(/Design technology/i).first()).toBeVisible();
+        // The AI UX route went with Vigil when Vigil was unlisted, and came back
+        // as a thread whose route points at PriceWise, never at Vigil.
         await expect(proofDesk.getByText(/AI UX/i).first()).toBeVisible();
+        await expect(proofDesk.locator("a[href='/projects/pricewise#decision-timeline']").first()).toBeVisible();
+        await expect(proofDesk.locator("a[href*='vigil']")).toHaveCount(0);
         await expect(proofDesk.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
     });
 
@@ -150,9 +157,14 @@ test.describe("Projects Page", () => {
 
     test("should help recruiters choose the right case", async ({ page }) => {
         await expect(page.getByText("Recruiter shortlist")).toBeVisible();
-        await expect(page.getByText(/IA \/ service complexity/i)).toBeVisible();
+        // Renamed in 3e58192: the real UQ Connect is a student social platform,
+        // not the portal IA redesign the fabricated case claimed.
+        await expect(page.getByText(/Research rigor \/ product structure/i)).toBeVisible();
         await expect(page.getByText(/Accessibility \/ inclusive design/i)).toBeVisible();
-        await expect(page.getByText(/AI UX \/ trust/i)).toBeVisible();
+        await expect(page.getByText(/Design technology \/ prototyping/i)).toBeVisible();
+        // Gone with Vigil, then back as a thread through PriceWise, Perception
+        // Gap Mapper and UQ Connect.
+        await expect(page.getByText(/AI UX \/ trust/i).first()).toBeVisible();
     });
 
     test("work shortlist proof links should point to case anchors", async ({ page }) => {
@@ -170,8 +182,10 @@ test.describe("Projects Page", () => {
 
         await page.setViewportSize({ width: 390, height: 844 });
         await expect(
-            matrix.locator(".evidence-matrix-mobile-label").filter({ hasText: "Vigil" }).first(),
+            matrix.locator(".evidence-matrix-mobile-label").filter({ hasText: "MazeRunners" }).first(),
         ).toBeVisible();
+        // Vigil is unlisted, so it has no column at any width.
+        await expect(matrix.getByText("Vigil")).toHaveCount(0);
     });
 
     test("work page should link to the interview decision room", async ({ page }) => {
@@ -314,6 +328,11 @@ test.describe("Projects Page", () => {
 
         // A big polished build with no players has to say so.
         await expect(page.locator(".case-limits")).toContainText(/no player research/i);
+
+        // The production log's style verdict is printed by its own generator
+        // script, and the only automated check reads the manifest. The case
+        // must not present an automated style gate.
+        await expect(page.locator("main.page")).not.toContainText(/style gate/i);
     });
 
     test("zh hoop case should be translated, not fall back to English", async ({ page }) => {
@@ -321,6 +340,7 @@ test.describe("Projects Page", () => {
 
         await expect(page.locator(".case-summary")).toContainText("美术圣经");
         await expect(page.locator(".case-build-evidence .label")).toHaveText("跑起来的样子");
+        await expect(page.locator("main.page")).not.toContainText("风格闸门");
     });
 
     test("CSP should permit the case-page embeds it relies on", async ({ page }) => {
@@ -363,7 +383,8 @@ test.describe("Projects Page", () => {
         await gotoStable(page, "/zh/projects/vigil");
 
         await expect(page.locator(".case-summary")).toContainText("分类器");
-        await expect(page.locator(".case-build-evidence .label")).toHaveText("正在被测试的变体");
+        // The label lost its passive (被) in a zh copy edit; this follows the copy.
+        await expect(page.locator(".case-build-evidence .label")).toHaveText("正在测试的变体");
     });
 
     test("case page should not overflow on mobile", async ({ page }) => {
@@ -393,6 +414,8 @@ test.describe("Projects Page", () => {
         await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
         await expect(page.locator("#long-form").getByText(/mock data/i).first()).toBeVisible();
         await expect(page.locator("#long-form").getByText(/think-aloud/i).first()).toBeVisible();
+        // Canonical facts: the 71 items are research and testing records, not transcripts.
+        await expect(page.locator("#long-form")).toContainText("71 research and testing records");
     });
 
     test("spectra detail should expose inclusive design depth", async ({ page }) => {
@@ -533,6 +556,36 @@ test.describe("Hire Page", () => {
         await expectAnchoredCaseProofLink(page.locator(".interview-evidence-brief a[href*='#']").first());
         await expectAnchoredCaseProofLink(page.locator(".hiring-role-fit a[href*='#']").first());
     });
+
+    // AI UX is a thread through several cases, not one AI case. It has to open
+    // by admitting there is no finished AI-native product and close on its limit.
+    test("hire should show the AI and trust thread with its limit", async ({ page }) => {
+        const thread = page.locator("#ai-trust-thread");
+
+        await expect(thread.getByRole("heading", { name: "AI and trust: one thread through the work" })).toBeVisible();
+        await expect(thread.getByText(/^I have not finished an AI-native product yet\./)).toBeVisible();
+        await expect(
+            thread.getByText("None of these is a finished AI-native product, and each entry states its own limits.", { exact: true }),
+        ).toBeVisible();
+        await expect(thread.locator("li")).toHaveCount(4);
+        for (const slug of ["pricewise", "gapmapper", "connect", "hoop"]) {
+            await expect(thread.locator(`a[href='/projects/${slug}#decision-timeline']`)).toBeVisible();
+        }
+        await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
+        await expect(page.locator(".hiring-role-fit").getByRole("heading", { name: "AI UX" })).toBeVisible();
+    });
+
+    test("zh hire should state the thread limit in Chinese", async ({ page }) => {
+        await gotoStable(page, "/zh/hire");
+        const thread = page.locator("#ai-trust-thread");
+
+        await expect(thread.getByText(/^我还没有做完一个 AI 原生产品。/)).toBeVisible();
+        await expect(
+            thread.getByText("这四条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。", { exact: true }),
+        ).toBeVisible();
+        await expect(thread.locator("a[href='/zh/projects/pricewise#decision-timeline']")).toBeVisible();
+        await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
+    });
 });
 
 test.describe("Proof Maintenance", () => {
@@ -577,7 +630,7 @@ test.describe("Contact Page", () => {
         const nextStep = page.locator(".contact-next-step");
 
         await expect(nextStep.getByText("Hiring next step")).toBeVisible();
-        await expect(nextStep.getByText(/2026.*internships|internships.*2026/i)).toBeVisible();
+        await expect(nextStep.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
     });
 
     test("contact proof links should point to case anchors", async ({ page }) => {
@@ -773,5 +826,80 @@ test.describe("Responsive Design", () => {
         await page.getByRole("button", { name: "Open menu" }).click();
         await expect(page.getByRole("navigation", { name: "Mobile primary" })).toBeVisible();
         await expect(page.getByRole("link", { name: "Work" }).last()).toBeVisible();
+    });
+});
+
+// Vigil was unlisted on 2026-09-27. Its page still answers at its URL (the
+// vigil case tests above go there directly), but nothing on the site may link
+// to it, and the sitemap and feeds leave it out.
+test.describe("Unlisted cases", () => {
+    test("no page links to an unlisted case", async ({ page }) => {
+        // The Vigil blog post used to be on this list. It is a draft now and
+        // answers 404 (see "Draft posts" below), so the blog index stands in.
+        for (const url of [
+            "/",
+            "/zh",
+            "/projects",
+            "/zh/projects",
+            "/hire",
+            "/resume",
+            "/zh/resume",
+            "/contact",
+            "/projects/maze",
+            "/projects/hoop",
+            "/blog",
+            "/zh/blog",
+        ]) {
+            await gotoStable(page, url);
+            await expect(page.locator("a[href*='/projects/vigil']"), url).toHaveCount(0);
+        }
+    });
+
+    // Lewis's call on 2026-09-28: the resume names Vigil nowhere, in either
+    // locale, not only in its links.
+    test("the resume does not name an unlisted case", async ({ page }) => {
+        for (const url of ["/resume", "/zh/resume"]) {
+            await gotoStable(page, url);
+            const resume = page.locator("main[data-screen-label='05 Resume']");
+            // Visible first, so a missing page cannot pass the negative check.
+            await expect(resume.locator(".res-entry").first(), url).toBeVisible();
+            await expect(resume, url).not.toContainText(/vigil/i);
+        }
+    });
+
+    test("sitemap and feeds leave an unlisted case out", async ({ page }) => {
+        for (const url of ["/sitemap.xml", "/feed.xml", "/zh/feed.xml"]) {
+            const response = await page.request.get(url);
+            expect(response.status(), url).toBe(200);
+            expect(await response.text(), url).not.toContain("/projects/vigil");
+        }
+    });
+});
+
+// designing-for-ai was taken down on 2026-09-28 by setting published: false.
+// The .mdx files stay; the site behaves as if the post did not exist.
+test.describe("Draft posts", () => {
+    const draftSlug = "designing-for-ai";
+
+    test("a draft post answers 404 in both locales", async ({ page }) => {
+        for (const url of [`/blog/${draftSlug}`, `/zh/blog/${draftSlug}`]) {
+            const response = await page.request.get(url);
+            expect(response.status(), url).toBe(404);
+        }
+    });
+
+    test("no page links to a draft post", async ({ page }) => {
+        for (const url of ["/", "/zh", "/blog", "/zh/blog", "/resume", "/zh/resume"]) {
+            await gotoStable(page, url);
+            await expect(page.locator(`a[href*='/blog/${draftSlug}']`), url).toHaveCount(0);
+        }
+    });
+
+    test("sitemap and feeds leave a draft post out", async ({ page }) => {
+        for (const url of ["/sitemap.xml", "/feed.xml", "/zh/feed.xml"]) {
+            const response = await page.request.get(url);
+            expect(response.status(), url).toBe(200);
+            expect(await response.text(), url).not.toContain(draftSlug);
+        }
     });
 });

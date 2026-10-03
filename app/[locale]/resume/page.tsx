@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = t("resume.kicker");
   const description =
     locale === "zh"
-      ? "经历、教育、能力——一页纸的诚实版本。"
+      ? "经历、教育、能力：一页纸的诚实版本。"
       : "The one-page version — experience, education, skills.";
   return {
     title,
@@ -26,15 +26,6 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: buildTwitter({ title, description }),
   };
 }
-
-const SKILLS: Array<{ en: string; zh: string; v: number; href?: string }> = [
-  { en: "User research", zh: "用户研究", v: 92, href: "/projects/connect" },
-  { en: "Information architecture", zh: "信息架构", v: 88, href: "/projects/connect" },
-  { en: "Interaction design", zh: "交互设计", v: 85, href: "/projects/spectra" },
-  { en: "Prototyping (Figma, Framer)", zh: "原型（Figma / Framer）", v: 90, href: "/projects/ai" },
-  { en: "HTML / CSS / React", zh: "HTML / CSS / React", v: 72, href: "/blog/designing-for-ai" },
-  { en: "Usability testing", zh: "可用性测试", v: 88, href: "/projects/spectra" },
-];
 
 export default async function ResumePage() {
   const t = await getTranslations();
@@ -71,10 +62,12 @@ export default async function ResumePage() {
                       ? "产品与交互设计师（自主项目）"
                       : "Product & Interaction Designer (self-initiated)"}
                   </h4>
+                  {/* Vigil was abandoned on 2026-09-23 and is unlisted, so it is
+                      named neither in this line nor in a bullet below. */}
                   <p className="org">
                     {isZh
-                      ? "AI 辅助产品实践 · Vigil / Hoop Dream / 个人作品集网站"
-                      : "AI-assisted product practice · Vigil, Hoop Dream, this site"}
+                      ? "AI 辅助产品实践 · Hoop Dream / 个人作品集网站"
+                      : "AI-assisted product practice · Hoop Dream, this site"}
                   </p>
                   <ul>
                     <li>
@@ -84,13 +77,8 @@ export default async function ResumePage() {
                     </li>
                     <li>
                       {isZh
-                        ? "Vigil：140 封合成邮件、六个可切换界面变体；预测在测试前先写下，并设了一道闸门——一旦置信度能预测分类器的错误，build 就挂掉。"
-                        : "Vigil: six switchable interface variants over a 140-email synthetic corpus, predictions recorded before testing, and a build gate that fails if confidence starts predicting the classifier's errors."}
-                    </li>
-                    <li>
-                      {isZh
-                        ? "Hoop Dream：六个批次共 299 张美术资产，靠一份成文美术圣经与一道带「拒绝风格」清单的闸门保持一致；线上公开可玩，自标 DEMO v0.6。"
-                        : "Hoop Dream: 299 art assets across six batches held to one written art bible by a style gate with an explicit rejected-style list; publicly playable, self-labelled DEMO v0.6."}
+                        ? "Hoop Dream：一份成文美术圣经，附「拒绝风格」清单，靠人眼对照，没有脚本在查。299 条资产规格与登记记录分 6 批管理，原始图像文件尚未全部核实；线上公开可玩，自标 DEMO v0.6。"
+                        : "Hoop Dream: a written art bible with an explicit rejected-style list, checked by eye rather than by a script; 299 asset specs and registry records managed in six batches, original image files not yet fully verified; publicly playable, self-labelled DEMO v0.6."}
                     </li>
                   </ul>
                 </div>
@@ -118,8 +106,8 @@ export default async function ResumePage() {
                     </li>
                     <li>
                       {isZh
-                        ? "负责控制层全部实现：Arduino 程序、电路、布线和展出用的计分网页；迷宫本体由组员完成。"
-                        : "Built the whole control layer: Arduino code, circuits, wiring, and the score webpage used at the exhibition; teammates built the maze body."}
+                        ? "我的部分：交互机制、Arduino 程序、电路和全部布线，以及展出用的实时计分网页。程序有 AI 编码工具参与实现，调试与验收由我负责；迷宫本体和外观由组员完成。"
+                        : "My part: interaction mechanics, Arduino firmware (AI coding tools helped implement it; I debugged and signed it off), the circuit and all wiring, plus the live scoring page used at the exhibition; teammates built the maze body and exterior."}
                     </li>
                     <li>
                       {isZh
@@ -204,49 +192,17 @@ export default async function ResumePage() {
               </div>
             </div>
             <div className="res-side-card resume-proof-card">
-              <h4>Proof-linked resume</h4>
+              <h4>{isZh ? "带证据链接的简历" : "Proof-linked resume"}</h4>
               <p>{hiringConversion.hero.status}</p>
-              <h5>Best cases to inspect</h5>
+              <h5>{isZh ? "最值得查看的案例" : "Best cases to inspect"}</h5>
               <div className="resume-proof-links">
                 {hiringConversion.proofRoutes.map((route) => (
                   <Link href={route.href} key={route.href}>
                     {route.title}
                   </Link>
                 ))}
-                <Link href="/hire">Interview decision</Link>
+                <Link href="/hire">{isZh ? "面试判断页" : "Interview decision"}</Link>
               </div>
-            </div>
-            <div className="res-side-card">
-              <h4>{t("resume.section.skills")}</h4>
-              {SKILLS.map((s) => {
-                const inner = (
-                  <>
-                    <div className="row">
-                      <span>{isZh ? s.zh : s.en}</span>
-                      <span>{s.v}</span>
-                    </div>
-                    <div className="bar">
-                      <i style={{ width: `${s.v}%` }} />
-                    </div>
-                  </>
-                );
-                return s.href ? (
-                  <Link
-                    href={s.href}
-                    key={s.en}
-                    className="res-skill res-skill-link"
-                    aria-label={`${isZh ? s.zh : s.en} — ${
-                      isZh ? "查看证明" : "see proof"
-                    }`}
-                  >
-                    {inner}
-                  </Link>
-                ) : (
-                  <div className="res-skill" key={s.en}>
-                    {inner}
-                  </div>
-                );
-              })}
             </div>
             <div className="res-side-card">
               <h4>{isZh ? "工具" : "Tools"}</h4>
@@ -259,7 +215,7 @@ export default async function ResumePage() {
                   lineHeight: 1.7,
                 }}
               >
-                Figma · Framer · Protopie · Maze · Otter · Dovetail · Notion · Rive · Miro · VS Code
+                Figma / Miro · HTML / CSS / JavaScript · React / Next.js · Phaser · Canvas · Arduino / ESP32 · Web Serial
               </p>
             </div>
             <div className="res-side-card">
@@ -273,9 +229,7 @@ export default async function ResumePage() {
                   lineHeight: 1.7,
                 }}
               >
-                {isZh
-                  ? "英语（雅思 7.5） · 中文（母语）"
-                  : "English (IELTS 7.5) · Mandarin (native)"}
+                {isZh ? "英语 · 中文（母语）" : "English · Mandarin (native)"}
               </p>
             </div>
           </aside>

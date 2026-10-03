@@ -5,7 +5,7 @@ import type {
   ProjectEvidenceSlug,
   ProofLocale,
 } from "./types";
-
+import { isUnlistedProject, linksToUnlistedProject } from "../project-routes";
 
 const sharedHiringRoleFits: HiringRoleFit[] = [
   {
@@ -17,8 +17,9 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
       { label: "UQ Connect: back to paper", href: "/projects/connect#decision-timeline" },
       { label: "MazeRunners hardware trade-offs", href: "/projects/maze#decision-timeline" },
       { label: "Hoop Dream production pipeline", href: "/projects/hoop#decision-timeline" },
+      { label: "PriceWise: how the scope grew", href: "/projects/pricewise#iteration-gallery" },
     ],
-    bestCases: ["connect", "maze", "hoop"],
+    bestCases: ["connect", "maze", "hoop", "pricewise"],
     risk:
       "I am strongest when product ambiguity needs structure; I would pair with engineering early for production constraints.",
     interviewAngle: "Ask how I turn research signals into scoped product decisions.",
@@ -30,10 +31,11 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
       "Best fit when the team needs mixed methods, careful sampling, and research outputs that change product decisions.",
     proofLinks: [
       { label: "Connect research evidence", href: "/projects/connect#evidence-board" },
-      { label: "Spectra field evidence", href: "/projects/spectra#evidence-board" },
+      { label: "Spectra evidence", href: "/projects/spectra#evidence-board" },
       { label: "Research limits", href: "/projects/connect#outcome-limits" },
+      { label: "Gap Mapper: an assumption the literature killed", href: "/projects/gapmapper#evidence-board" },
     ],
-    bestCases: ["connect", "spectra"],
+    bestCases: ["connect", "spectra", "gapmapper"],
     risk:
       "Most projects are academic or self-initiated, so I am explicit about what evidence is measured and what still needs field validation.",
     interviewAngle: "Ask how I choose methods when the problem is still ambiguous.",
@@ -42,15 +44,18 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     id: "ai-ux",
     label: "AI UX",
     fit:
-      "Best fit when the team needs AI assistance designed around timing, agency, trust, and emotional safety.",
+      "Best fit when a team needs someone to judge how far an AI feature should be trusted, and to check what it actually does.",
+    // A thread through several cases, not one AI case: Vigil, the only
+    // AI-native case, was abandoned. See ai-trust-thread.ts.
     proofLinks: [
-      { label: "Vigil: designing against over-trust", href: "/projects/vigil#decision-timeline" },
-      { label: "Vigil: what it does not prove yet", href: "/projects/vigil#outcome-limits" },
+      { label: "PriceWise: checking what an AI feature really does", href: "/projects/pricewise#decision-timeline" },
+      { label: "Perception Gap Mapper: no more certainty than the evidence allows", href: "/projects/gapmapper#decision-timeline" },
+      { label: "UQ Connect: a match that states its reasons (team finding)", href: "/projects/connect#decision-timeline" },
     ],
-    bestCases: ["vigil", "connect"],
+    bestCases: ["pricewise", "gapmapper", "connect"],
     risk:
-      "I treat AI as a product interaction problem first and would validate model behavior with real users before scaling claims.",
-    interviewAngle: "Ask where AI should intervene and where it should stay quiet.",
+      "No AI-native case is finished yet. The evidence comes from AI-built code, automated output and one team study, and each case states its limits.",
+    interviewAngle: "Ask how I found that PriceWise's semantic search never used a vector.",
   },
   {
     id: "accessibility",
@@ -60,9 +65,10 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     proofLinks: [
       { label: "Spectra accessibility evidence", href: "/projects/spectra#evidence-board" },
       { label: "Spectra privacy decision", href: "/projects/spectra#decision-timeline" },
-      { label: "Spectra field limits", href: "/projects/spectra#outcome-limits" },
+      { label: "Spectra limits", href: "/projects/spectra#outcome-limits" },
+      { label: "A 48 px floor, and warnings you do not have to look at", href: "/projects/rules#decision-timeline" },
     ],
-    bestCases: ["spectra"],
+    bestCases: ["spectra", "rules"],
     risk:
       "I avoid claiming universal accessibility from a narrow sample and would broaden validation across contexts before launch.",
     interviewAngle: "Ask how inclusive design choices changed the core interaction model.",
@@ -82,8 +88,9 @@ const zhHiringRoleFits: HiringRoleFit[] = [
       { label: "UQ Connect：回到纸上", href: "/projects/connect#decision-timeline" },
       { label: "MazeRunners 的软硬件取舍", href: "/projects/maze#decision-timeline" },
       { label: "Hoop Dream 的生产管线", href: "/projects/hoop#decision-timeline" },
+      { label: "PriceWise：范围是怎么变大的", href: "/projects/pricewise#iteration-gallery" },
     ],
-    bestCases: ["connect", "maze", "hoop"],
+    bestCases: ["connect", "maze", "hoop", "pricewise"],
     risk: "我最强的地方是把模糊的产品问题结构化；生产环境的约束我会尽早找工程一起看。",
     interviewAngle: "可以问我怎么把研究信号收敛成有范围的产品决策。",
   },
@@ -93,24 +100,26 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     fit: "适合需要混合方法、谨慎取样，并且要让研究真的改变产品决策的团队。",
     proofLinks: [
       { label: "Connect 的研究证据", href: "/projects/connect#evidence-board" },
-      { label: "Spectra 的实地证据", href: "/projects/spectra#evidence-board" },
+      { label: "Spectra 的证据", href: "/projects/spectra#evidence-board" },
       { label: "研究的限制", href: "/projects/connect#outcome-limits" },
+      { label: "走夜路：一条被文献推翻的假设", href: "/projects/gapmapper#evidence-board" },
     ],
-    bestCases: ["connect", "spectra"],
+    bestCases: ["connect", "spectra", "gapmapper"],
     risk: "多数项目是课程或自发项目，所以我会讲清楚哪些有证据、哪些还需要实地验证。",
     interviewAngle: "可以问我在问题还很模糊时怎么选方法。",
   },
   {
     id: "ai-ux",
     label: "AI 交互设计",
-    fit: "适合需要围绕时机、控制感、信任与情绪安全来设计 AI 辅助的团队。",
+    fit: "适合这样的团队：需要有人判断一个 AI 功能值得多少信任，也需要有人去核实这个功能实际做了什么。",
     proofLinks: [
-      { label: "Vigil：如何设计出「不轻易信」", href: "/projects/vigil#decision-timeline" },
-      { label: "Vigil：它还证明不了什么", href: "/projects/vigil#outcome-limits" },
+      { label: "PriceWise：核实 AI 功能到底做了什么", href: "/projects/pricewise#decision-timeline" },
+      { label: "走夜路：不让界面说出证据撑不起的把握", href: "/projects/gapmapper#decision-timeline" },
+      { label: "UQ Connect：会说明理由的匹配（团队发现）", href: "/projects/connect#decision-timeline" },
     ],
-    bestCases: ["vigil", "connect"],
-    risk: "我先把 AI 当成产品交互问题；在放大任何结论之前，我会拿真实用户验证模型行为。",
-    interviewAngle: "可以问我 AI 应该在哪里介入、又该在哪里闭嘴。",
+    bestCases: ["pricewise", "gapmapper", "connect"],
+    risk: "还没有做完的 AI 原生案例。这里的证据来自 AI 写的代码、自动化输出和一项团队研究，边界写在每个案例里。",
+    interviewAngle: "可以问我怎么发现 PriceWise 的语义搜索从来没用过向量。",
   },
   {
     id: "accessibility",
@@ -119,9 +128,10 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     proofLinks: [
       { label: "Spectra 的无障碍证据", href: "/projects/spectra#evidence-board" },
       { label: "Spectra 的隐私决策", href: "/projects/spectra#decision-timeline" },
-      { label: "Spectra 的实地限制", href: "/projects/spectra#outcome-limits" },
+      { label: "Spectra 的限制", href: "/projects/spectra#outcome-limits" },
+      { label: "48px 的下限，和不用看屏幕的提示", href: "/projects/rules#decision-timeline" },
     ],
-    bestCases: ["spectra"],
+    bestCases: ["spectra", "rules"],
     risk: "我不会用一个小样本去宣称通用无障碍；正式上线前需要把验证扩展到更多场景。",
     interviewAngle: "可以问我包容性设计的取舍怎么改变了核心交互模型。",
   },
@@ -140,7 +150,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "Every hypothesis carried a numeric pass mark written before fieldwork; several failed it.",
+        proof: "Every hypothesis carried a numeric pass mark written before fieldwork. The marks were never scored, so two assumptions were challenged by qualitative evidence, not formally refuted.",
         href: "/projects/connect#evidence-board",
       },
       spectra: {
@@ -148,6 +158,11 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "WCAG text-spacing criteria decided which controls the extension exposes.",
         href: "/projects/spectra#evidence-board",
       },
+        gapmapper: {
+          strength: "primary",
+          proof: "In the team's coding, most of the 18 interviews named people presence and lighting; what split my three was whether a system may judge for them.",
+          href: "/projects/gapmapper#evidence-board",
+        },
     },
   },
   {
@@ -157,7 +172,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "Redrew twenty-four screens as five on paper, mid-build, with every route off the home page.",
+        proof: "Redrew the whole app as five screens on paper, mid-build, with every route off the home page.",
         href: "/projects/connect#decision-timeline",
       },
     },
@@ -177,17 +192,39 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "Plain-language labels reduced navigation friction.",
         href: "/projects/connect#decision-timeline",
       },
+        rules: {
+          strength: "supporting",
+          proof: "A 48 px tap-target floor on the checklist, and warnings delivered by audio and haptics because a rider cannot look at a screen.",
+          href: "/projects/rules#decision-timeline",
+        },
     },
   },
   {
     id: "ai-trust",
     label: "AI UX and trust",
-    summary: "Designs AI assistance around agency, timing, confidence, and boundaries.",
+    summary: "Keeps a system's confidence in line with its evidence.",
+    // Supporting only. With no finished AI-native case, no cell here may claim
+    // to be primary evidence.
     cases: {
-      vigil: {
-        strength: "primary",
-        proof: "Built confidence as weak evidence so reviewers had to read the message.",
-        href: "/projects/vigil#decision-timeline",
+      pricewise: {
+        strength: "supporting",
+        proof: "Four classes of defect passed every automatic gate in AI-built code. Also decided that an unsure match should show as unmatched.",
+        href: "/projects/pricewise#decision-timeline",
+      },
+      gapmapper: {
+        strength: "supporting",
+        proof: "Argued to drop a route recommender that claimed more certainty than its evidence.",
+        href: "/projects/gapmapper#decision-timeline",
+      },
+      connect: {
+        strength: "supporting",
+        proof: "Team finding: students acted on a match once it named a reason.",
+        href: "/projects/connect#decision-timeline",
+      },
+      hoop: {
+        strength: "supporting",
+        proof: "Generative art production ran against a written art bible and reject list.",
+        href: "/projects/hoop#decision-timeline",
       },
     },
   },
@@ -211,6 +248,21 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "Refused search, batch actions, and severity tiers to protect the measure.",
         href: "/projects/vigil#decision-timeline",
       },
+        pricewise: {
+          strength: "supporting",
+          proof: "An AI-generated plan set the scope, and it never came back down. Looking back, an app on simulated data with no registered users should not have kept growing.",
+          href: "/projects/pricewise#iteration-gallery",
+        },
+        gapmapper: {
+          strength: "primary",
+          proof: "Retired my own working prototype because it promised a safety it could not guarantee.",
+          href: "/projects/gapmapper#decision-timeline",
+        },
+        rules: {
+          strength: "supporting",
+          proof: "Refused the superlative: the button reads 'See safer routes', and the detour states its own cost in minutes.",
+          href: "/projects/rules#iteration-gallery",
+        },
     },
   },
   {
@@ -225,7 +277,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       spectra: {
         strength: "primary",
-        proof: "Field testing exposed lighting, motion, and privacy constraints.",
+        proof: "Hand-testing a docs site, a news site and a single-page app showed that inline styles beat the injected layer and route changes wipe it.",
         href: "/projects/spectra#outcome-limits",
       },
       vigil: {
@@ -233,6 +285,16 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "The build fails if confidence starts predicting the classifier's errors.",
         href: "/projects/vigil#outcome-limits",
       },
+        pricewise: {
+          strength: "primary",
+          proof: "Four classes of defect passed build, type-check and 307 tests without a single error thrown.",
+          href: "/projects/pricewise#evidence-board",
+        },
+        rules: {
+          strength: "supporting",
+          proof: "States that the 6/6 self-check is not external validation, and that the effect figures belong to the cited paper.",
+          href: "/projects/rules#outcome-limits",
+        },
     },
   },
   {
@@ -250,6 +312,16 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "Inclusive rationale is framed for critique and next validation.",
         href: "/projects/spectra#interview-takeaway",
       },
+        gapmapper: {
+          strength: "primary",
+          proof: "A one-page brief that turns an ethical position into system requirements someone building it has to satisfy.",
+          href: "/projects/gapmapper#iteration-gallery",
+        },
+        rules: {
+          strength: "supporting",
+          proof: "An AI usage register naming what each of four tools got wrong, and the concrete correction for each.",
+          href: "/projects/rules#evidence-board",
+        },
     },
   },
 ];
@@ -266,7 +338,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "每条假设都带着进场前写好的数字及格线；有几条没过。",
+        proof: "每条假设都带着进场前写好的数字及格线。及格线从没逐条打分，两项初始假设只是被定性证据挑战，不算正式否证。",
         href: "/projects/connect#evidence-board",
       },
       spectra: {
@@ -274,6 +346,11 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "WCAG 的文本间距条款决定了这个扩展开放哪几个控件。",
         href: "/projects/spectra#evidence-board",
       },
+        gapmapper: {
+          strength: "primary",
+          proof: "团队的编码里，18 个访谈多数提到有没有人和路灯；把我做的三个分开的，是愿不愿意让系统替自己判断。",
+          href: "/projects/gapmapper#evidence-board",
+        },
     },
   },
   {
@@ -283,7 +360,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "primary",
-        proof: "开发中途在纸上把二十四个屏重画成五个，并画出从首页出发的每条路径。",
+        proof: "开发中途把整个应用在纸上重画成五个屏，并画出从首页出发的每条路径。",
         href: "/projects/connect#decision-timeline",
       },
     },
@@ -303,17 +380,37 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "用大白话写的标签，降低了导航时的理解成本。",
         href: "/projects/connect#decision-timeline",
       },
+        rules: {
+          strength: "supporting",
+          proof: "自查清单里的 48px 点击区下限，以及走音频与触觉的提示，因为人在骑车时看不了屏。",
+          href: "/projects/rules#decision-timeline",
+        },
     },
   },
   {
     id: "ai-trust",
     label: "AI 交互与信任",
-    summary: "围绕控制感、时机、信心与边界来设计 AI 辅助。",
+    summary: "让系统的把握和证据相称。",
     cases: {
-      vigil: {
-        strength: "primary",
-        proof: "刻意把置信度做成弱证据，逼审阅者去读邮件本身。",
-        href: "/projects/vigil#decision-timeline",
+      pricewise: {
+        strength: "supporting",
+        proof: "AI 写的代码里，四类缺陷过了所有自动关卡。也定下了拿不准就显示「未匹配」。",
+        href: "/projects/pricewise#decision-timeline",
+      },
+      gapmapper: {
+        strength: "supporting",
+        proof: "主张放弃一个把握超过证据的路线推荐。",
+        href: "/projects/gapmapper#decision-timeline",
+      },
+      connect: {
+        strength: "supporting",
+        proof: "团队发现：匹配一说出具体理由，学生就愿意行动。",
+        href: "/projects/connect#decision-timeline",
+      },
+      hoop: {
+        strength: "supporting",
+        proof: "生成美术对照成文的美术圣经和拒绝清单。",
+        href: "/projects/hoop#decision-timeline",
       },
     },
   },
@@ -337,6 +434,21 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "为了守住测量，主动砍掉搜索、批量操作和风险分级。",
         href: "/projects/vigil#decision-timeline",
       },
+        pricewise: {
+          strength: "supporting",
+          proof: "范围由 AI 生成的规划定下，之后没有缩回去。回头看，一个建在拟真数据上、没有注册用户的比价应用，不该继续长下去。",
+          href: "/projects/pricewise#iteration-gallery",
+        },
+        gapmapper: {
+          strength: "primary",
+          proof: "杀掉自己做出来的可用原型，因为它承诺了一种保证不了的安全。",
+          href: "/projects/gapmapper#decision-timeline",
+        },
+        rules: {
+          strength: "supporting",
+          proof: "拒绝最高级：按钮写的是「See safer routes」，绕路按钮把多花的分钟数写在自己身上。",
+          href: "/projects/rules#iteration-gallery",
+        },
     },
   },
   {
@@ -351,7 +463,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       spectra: {
         strength: "primary",
-        proof: "真实场景测试暴露出光照、移动和隐私上的约束。",
+        proof: "手动跑过文档站、新闻站和单页应用，发现内联样式会盖过注入层，路由一换，注入的样式也被冲掉。",
         href: "/projects/spectra#outcome-limits",
       },
       vigil: {
@@ -359,6 +471,16 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "一旦置信度开始能预测分类器的错误，构建就直接失败。",
         href: "/projects/vigil#outcome-limits",
       },
+        pricewise: {
+          strength: "primary",
+          proof: "四类缺陷通过了构建、类型检查与 307 个测试，没有一处报错。",
+          href: "/projects/pricewise#evidence-board",
+        },
+        rules: {
+          strength: "supporting",
+          proof: "写明 6/6 是自查，不是外部验证；效果数字属于所引论文，不是自己的实验。",
+          href: "/projects/rules#outcome-limits",
+        },
     },
   },
   {
@@ -368,7 +490,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       connect: {
         strength: "supporting",
-        proof: "决策记录让信息架构的取舍可以被逐条检查。",
+        proof: "决策记录让信息架构的取舍可以逐条检查。",
         href: "/projects/connect#interview-takeaway",
       },
       spectra: {
@@ -376,6 +498,16 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
         proof: "包容性设计的理由是摊开来给人挑刺的，并写明了下一步要验证什么。",
         href: "/projects/spectra#interview-takeaway",
       },
+        gapmapper: {
+          strength: "primary",
+          proof: "一页 brief 把伦理立场变成系统要求，做这个东西的人必须满足这些条件。",
+          href: "/projects/gapmapper#iteration-gallery",
+        },
+        rules: {
+          strength: "supporting",
+          proof: "一份 AI 使用标注册，逐个说明四个工具各自出了什么问题，以及具体怎么修的。",
+          href: "/projects/rules#evidence-board",
+        },
     },
   },
 ];
@@ -420,7 +552,7 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
       id: "connect-manager-follow-up",
       question: "You were one of five. How do I know which parts are yours?",
       answer:
-        "Ask, and the commit history will match what I say. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, ran 14 of the 71 interviews, and co-wrote the test and learning cards. The map feature, the wellness hub and the study-buddy matching logic were other people's.",
+        "Ask, and the commit history will match what I say. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, ran 14 of the 71 sessions, and co-wrote the test and learning cards. The map feature, the wellness hub and the study-buddy matching logic were other people's.",
       evidenceHref: "/projects/connect#interview-takeaway",
       boundary:
         "It was a course team under a deadline, so ownership blurred at the edges — I reviewed and touched code I did not design.",
@@ -430,37 +562,37 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
     answers: [
       {
         id: "spectra-colour-feedback",
-        question: "Why avoid colour-only feedback as the primary interaction?",
+        question: "Why four spacing controls and not a general CSS editor?",
         answer:
-          "I would explain how the WCAG text-spacing criteria set the control list, and why the font is bundled rather than fetched from a CDN.",
+          "WCAG's text-spacing criteria set explicit thresholds for line height, letter spacing, word spacing and paragraph spacing, so those four became the control list.",
         evidenceHref: "/projects/spectra#decision-timeline",
         boundary:
-          "I would not claim one feedback model covers every colour vision profile without broader field validation.",
+          "It is a DEMO with no user research behind it, so I cannot say these four are the controls readers need.",
       },
       {
         id: "spectra-privacy",
         question: "Why is the font bundled instead of fetched at runtime?",
         answer:
-          "I would show how public-use anxiety made glanceable, user-controlled feedback more important than persistent visible assistance.",
+          "A remote font request tells a third party who is reading which page, and it fails offline or when the host changes. Bundling costs a larger package and means the font only updates with a new release.",
         evidenceHref: "/projects/spectra#evidence-board",
         boundary:
-          "The privacy model is a product direction, not a completed legal or clinical accessibility audit.",
+          "This is a design argument about privacy, not a privacy review or an accessibility audit.",
       },
       {
         id: "spectra-field-testing",
-        question: "What would field testing need to prove?",
+        question: "What would testing need to prove before this ships?",
         answer:
-          "I would test lighting, motion, object distance, and real task contexts before claiming the interaction is reliable outdoors.",
+          "That real readers can reach the controls and that per-site saving fits how they read. So far I have only hand-tested a docs site, a news site and a single-page app, plus Jest on the settings layer.",
         evidenceHref: "/projects/spectra#outcome-limits",
         boundary:
-          "Prototype recognition confidence is useful evidence, but not enough to ship as assistive infrastructure.",
+          "Those checks show the injection works. They do not show that readers benefit from it.",
       },
     ],
     managerFollowUp: {
       id: "spectra-manager-follow-up",
       question: "How would you decide whether this belongs in an extension or in the browser itself?",
       answer:
-        "I would compare the value of in-context feedback against privacy cost, device friction, and recognition reliability in field tasks.",
+        "I would weigh what an extension can do that the browser does not, such as per-site settings, against asking readers to install it and the pages where injected styles lose to the page's own CSS.",
       evidenceHref: "/projects/spectra#interview-takeaway",
       boundary:
         "I would drop the extension entirely if the browser shipped the same controls natively.",
@@ -550,18 +682,18 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
     answers: [
       {
         id: "hoop-style-coherence",
-        question: "How do you keep hundreds of generated assets looking like one world?",
+        question: "How do you keep a 299-spec asset registry looking like one world?",
         answer:
-          "I would show the order: art bible first, then batch prompts that cite it, then a style gate reviewed against existing runtime anchors, then a production log recording counts per batch. 299 assets across six batches went through that, and coherence became a property of the process rather than an argument re-run per asset.",
+          "I would show the order, and what each step does not prove. Three art bibles, split by canvas size, came before the batches; their forbidden lists went into the prompt templates as negative prompts; style was reviewed by eye, with the assets side by side; and a registry logs 299 asset specs across six batches. The only automated check reads that registry, not the style. The original image files are not yet verified, so what I can show is the process, not a finished set.",
         evidenceHref: "/projects/hoop#decision-timeline",
         boundary:
-          "It buys stylistic consistency, not artistry — this is a provisional production batch, and the log labels it that way.",
+          "It shows a process, not a consistent finished set: the log itself calls this batch provisional, pending hand-polish.",
       },
       {
         id: "hoop-rejected-list",
-        question: "What actually made the style gate work?",
+        question: "What did the rejected list actually do?",
         answer:
-          "The rejected list, more than the positive description. Naming photoreal, 3D, anime, neon, random text and real trademarks as out of bounds gave a reviewable test, where 'warm and simplified' only gave an opinion. A generator will produce any of those on a slightly different prompt, and each looks defensible until it sits next to the rest.",
+          "More than the positive description did. Naming photoreal, 3D, anime, neon, random text and real trademarks as out of bounds gave a reviewer a test, where 'warm and simplified' only gave an opinion. The reviewer was me, by eye: no script in the pipeline looks at style. A generator will produce any of those on a slightly different prompt, and each looks defensible until it sits next to the rest.",
         evidenceHref: "/projects/hoop#evidence-board",
         boundary:
           "A rejected list only covers failure modes already seen. It would need extending the first time a batch failed in a new direction.",
@@ -580,12 +712,123 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
       id: "hoop-manager-follow-up",
       question: "It is large and polished but has no players. Why is it in the portfolio?",
       answer:
-        "Because the interesting problem is production discipline at volume, and that is visible without players: rules written before output, a gate that rejects, a log that makes every batch auditable, and 1,975 tests keeping a systems-heavy build correct while content lands. The game self-labels DEMO v0.6 and the case claims no more than that.",
+        "Because the interesting problem is production discipline at volume, and that is visible without players: rules written before the batches, a rejected list checked by eye, a registry that logs every batch, and 1,975 tests keeping a systems-heavy build correct while content lands. The game self-labels DEMO v0.6 and the case claims no more than that.",
       evidenceHref: "/projects/hoop#outcome-limits",
       boundary:
         "Volume proves process, not that the pacing works for anyone but me — that needs playtests I have not run.",
     },
   },
+    pricewise: {
+      answers: [
+        {
+          id: "pricewise-green-build",
+          question: "An AI wrote the code and everything passes. What is left for you to check?",
+          answer:
+            "Whether the feature executes at all. I go feature by feature calling the deployed endpoint, reading the response body and querying the database directly, and I read the code during a migration. Four classes of defect had passed build, type-check and the full suite: semantic search that never used a vector, template lists created empty, cron auth that did not fail closed without its secret, and six declared tables that were never created.",
+          evidenceHref: "/projects/pricewise#decision-timeline",
+          boundary:
+            "It is manual and slow, and it finds nothing most of the time. Turning it into a build gate is the obvious next step and it has not happened yet.",
+        },
+        {
+          id: "pricewise-own-defect",
+          question: "Were any of those your own?",
+          answer:
+            "One, a regression from my own fix to search. Passing the missing field through serialized a 1,536-dimension vector into the API response and pushed three search results to 89 KB. I found it by calling the real endpoint and reading what came back, not by reviewing my own diff. I keep it in the case because a check that only catches the AI is not really a check.",
+          evidenceHref: "/projects/pricewise#evidence-board",
+          boundary: "It also shows the method is reactive: nothing prevented the defect, something caught it afterwards.",
+        },
+        {
+          id: "pricewise-scope",
+          question: "The scope grew from an AI-generated plan and never came back down. What would you check before accepting a plan like that again?",
+          answer:
+            "What the plan was derived from. This one came from what a complete product should have, not from anyone's need, and the build followed it. On 1 March 2026 a single commit added 5,884 lines, about a quarter of them social features. Commits stopped the next day for five months, and the scope never came back down: the v1 routes were later moved to unversioned paths, not removed. Looking back, a comparison app on simulated data with no registered users should not have kept growing.",
+          evidenceHref: "/projects/pricewise#iteration-gallery",
+          boundary: "This is a judgement made afterwards. It does not show that I would catch the next plan early.",
+        },
+      ],
+      managerFollowUp: {
+        id: "pricewise-manager-follow-up",
+        question: "It is live but has zero users. Why does it belong in a portfolio?",
+        answer:
+          "Because the transferable part is the verification habit, and that is visible without users: reproducible scripts, defects documented with how they were found, and one known mismatch deliberately left unfixed because a wrong match is worse for the user than no match. The case says plainly that whether the product is useful to anyone is untested.",
+        evidenceHref: "/projects/pricewise#outcome-limits",
+        boundary: "Zero registered users means recognition accuracy on a real crumpled receipt is unknown to me.",
+      },
+    },
+    gapmapper: {
+      answers: [
+        {
+          id: "gapmapper-kill-own-prototype",
+          question: "You built the working prototype and then argued against the direction. Walk me through it.",
+          answer:
+            "The team had nothing demonstrable and I could turn discussion into code, so I built the route-support prototype. Once it was on screen the problem was too: recommending a safer route without being able to guarantee safety gives a system an authority it has not earned. The better it looked, the more convincing that unearned promise became.",
+          evidenceHref: "/projects/gapmapper#decision-timeline",
+          boundary: "It cost the team a concept that demoed well, and the replacement is slower and harder to show.",
+        },
+        {
+          id: "gapmapper-evidence-model",
+          question: "Why do perception and objective indicators never merge into a score?",
+          answer:
+            "Because merging deletes the uncertainty and makes the screen look more confident than it should. Literature also disagreed with my starting assumption that lighting is a usable safety variable — visibility, enclosure, nearby activity, social cues and time all change how one light is read. If no single indicator explains a place, indicators and perception cannot be blended. Kept apart, someone can ask why a place was flagged instead of being told it is unsafe.",
+          evidenceHref: "/projects/gapmapper#evidence-board",
+          boundary: "18 interviews give counts of mentions, not a rate or a ranking, which is why they are used as cues throughout.",
+        },
+        {
+          id: "gapmapper-ethics-as-requirements",
+          question: "How do you stop an ethical position from being just a paragraph?",
+          answer:
+            "You write it as system requirements. The one-page brief states them as constraints: reports anonymous, location rounded to a street segment, confidence level and bias notes displayed, no public safety score. That page was the hardest of the three deliverables, because once 'no safety score' is a requirement it stops being an attitude and someone building the thing has to satisfy it.",
+          evidenceHref: "/projects/gapmapper#iteration-gallery",
+          boundary: "The requirements have never been handed to an actual implementation team.",
+        },
+      ],
+      managerFollowUp: {
+        id: "gapmapper-manager-follow-up",
+        question: "The final proposal is quieter and less impressive. Was that the right trade?",
+        answer:
+          "For this problem, yes. The claim moved from 'help one person walk home safely' to 'help an institution see where its own evidence is incomplete' — a claim the work can actually support. I keep the abandoned route prototype in the portfolio precisely because without it the final direction looks like it appeared from nowhere.",
+        evidenceHref: "/projects/gapmapper#outcome-limits",
+        boundary:
+          "I do not think the proposal fully answers the critique it responded to. It changed what I am willing to claim, not who is being asked to change their behaviour.",
+      },
+    },
+    rules: {
+      answers: [
+        {
+          id: "rules-soft-to-threshold",
+          question: "How do you turn 'make cycling safer' into something a team can build?",
+          answer:
+            "You force it into numbers. In Fietspad the proposal drafts did that: routing weights favouring separated segments and quiet streets while down-weighting paint-only lanes, a 150–250 m warning lead, and a 48 px tap-target floor. AI wrote most of those drafts, and the final proposal kept only pre-alerts before roundabouts and left hooks, with 'Calmest' as the default route. A rule with a number in it can be executed and argued with; the original sentence can be neither.",
+          evidenceHref: "/projects/rules#decision-timeline",
+          boundary: "Committing to thresholds early means committing before there is evidence that these are the right numbers.",
+        },
+        {
+          id: "rules-copy-as-claim",
+          question: "Why does the button say 'See safer routes' instead of 'safest'?",
+          answer:
+            "Because no data available supports the superlative. The same discipline runs through the warnings: they state behaviour rather than direction — take the lane and make eye contact with turning drivers — because that is the actual response to a left hook. Distances are given as distance, not junction counts, since there is no stable 'next intersection' while riding, and the detour button states its own cost in minutes with 'keep current route' as an equal-weight action.",
+          evidenceHref: "/projects/rules#iteration-gallery",
+          boundary: "A comparative claim is weaker marketing, and none of it has been tested in real riding conditions.",
+        },
+        {
+          id: "rules-ai-register",
+          question: "You submitted an AI usage register. What did it actually say?",
+          answer:
+            "That AI is a strong accelerator for breadth and that depth needs a person. Concretely: transcription dropped names and merged speakers, so we wrote a short style guide for names and suburbs; generative drafts were confident and unsourced, so we verified against official sources and deleted every figure without one; Figma Make's layout drifted on small prompt changes, so every screen was rebuilt in Figma Design; and AI flattened contradictory tensions into single themes, so edge cases went into their own table and each became a feature.",
+          evidenceHref: "/projects/rules#evidence-board",
+          boundary: "Quality control there was five specific actions rather than a policy, and it depended on someone remembering to run them.",
+        },
+      ],
+      managerFollowUp: {
+        id: "rules-manager-follow-up",
+        question: "This is coursework and neither piece shipped. What survives outside a course?",
+        answer:
+          "The move, which is why the two briefs are presented as one case: take a requirement everyone agrees with and force it into a rule that can be built to and argued against. The second brief exists to show it generalises — one 2025 peer-reviewed paper became three independent trigger conditions with their own copy templates and thresholds.",
+        evidenceHref: "/projects/rules#outcome-limits",
+        boundary:
+          "The guide's effect figures are the cited paper's results, not mine, and I wrote a separate section listing what that study cannot support. Fietspad's '6/6 pass' is a self-check, not external validation.",
+      },
+    },
 };
 
 /**
@@ -599,25 +842,25 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         id: "connect-paper-reset",
         question: "九月你们已经有能跑的原型了，十月为什么还要回到纸上？",
         answer:
-          "因为抓到的缺陷是结构性的，不是表面的。受测者找不到回上一页的路；活动卡片一边显示她已报名，一边还给她一个报名按钮。这种问题不是一个组件一个组件补得掉的，所以我们把整个应用重画在一张纸上——五个屏、每条从首页出发的路径、每块功能挂一个人名——然后照着这张纸重做。",
+          "因为抓到的缺陷出在结构上，不在表面。受测者找不到回上一页的路；活动卡片一边显示她已报名，一边还给她一个报名按钮。这种问题不是一个组件一个组件补得掉的，所以我们把整个应用重画在一张纸上：五个屏、每条从首页出发的路径、每块功能挂一个人名，然后照着这张纸重做。",
         evidenceHref: "/projects/connect#decision-timeline",
         boundary:
-          "我能给出的是顺序，不是因果。那张纸记录了新结构，但没有记录每处改动的理由。",
+          "我能给出顺序，给不出因果。那张纸记录了新结构，但没有记录每处改动的理由。",
       },
       {
         id: "connect-failed-hypothesis",
         question: "研究杀掉了你哪一条假设？",
         answer:
-          "「语言能力是障碍」这条。不是。同样的英文水平，学生在快节奏、嘈杂、人多的场合会闭嘴，在小而慢的场合却讲得很自然——真正的障碍是节奏和人数规模。我们另一条假设也塌了：以为缺口在曝光，其实在跟进——大家都看得到活动，还是没去。",
+          "「语言能力是障碍」这条。不是。同样的英文水平，学生在快节奏、嘈杂、人多的场合会闭嘴，在小而慢的场合却讲得很自然：真正的障碍是节奏和人数规模。我们另一条假设也塌了：以为缺口在曝光，其实在跟进。大家都看得到活动，还是没去。",
         evidenceHref: "/projects/connect#evidence-board",
         boundary:
-          "这些来自访谈里的模式，不是被埋点测量出来的。我们事先定的那些阈值，从来没有真的拿逐字稿去逐条打分。",
+          "这些来自访谈里的模式，不是埋点测出来的。我们事先定的那些阈值，从来没有真的拿逐字稿去逐条打分。",
       },
       {
         id: "connect-mock-data-limit",
         question: "MVP 跑在 mock 数据上。这意味着你没有证明什么？",
         answer:
-          "除了界面之外，关于这个产品的几乎所有事。匹配、消息和日程从来没有面对过真实记录、并发或空状态。十一月那几场证明的是一个人能操作这些屏；至于底下那套东西能不能跑，它一句话都没说。",
+          "除了界面之外，关于这个产品的几乎所有事。匹配、消息和日程从来没有面对过真实记录、并发或空状态。十一月那几场证明的是一个人能操作这些屏；至于底下那套东西能不能跑，那几场什么都没说。",
         evidenceHref: "/projects/connect#outcome-limits",
         boundary:
           "而且没有任何一轮记录过完成时间或事先定好的成功标准，所以我也给不出任何数字。",
@@ -627,47 +870,47 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
       id: "connect-manager-follow-up",
       question: "你们是五个人。我怎么知道哪些部分是你的？",
       answer:
-        "直接问，提交记录会和我说的对得上。我负责前端组件系统和共享状态层，写了一部分后端路由与控制器，做了 71 场访谈里的 14 场，并参与撰写 test cards 与 learning cards。地图、wellness hub 和学习伙伴匹配逻辑是别人的。",
+        "直接问，提交记录会和我说的对得上。我负责前端组件系统和共享状态层，写了一部分后端路由与控制器，做了 71 场研究与测试里的 14 场，并参与撰写 test cards 与 learning cards。地图、wellness hub 和学习伙伴匹配逻辑是别人的。",
       evidenceHref: "/projects/connect#interview-takeaway",
       boundary:
-        "这是一个赶期限的课程团队，边界处会糊——我也 review 过、动过一些不是我设计的代码。",
+        "这是一个赶期限的课程团队，边界处会糊：我也 review 过、动过一些不是我设计的代码。",
     },
   },
   spectra: {
     answers: [
       {
         id: "spectra-colour-feedback",
-        question: "为什么不把「只靠颜色」当成主要的反馈方式？",
+        question: "为什么只开放四个间距控件，而不是做成通用的 CSS 编辑器？",
         answer:
-          "我会讲 WCAG 的文本间距条款怎么定下了控件清单，以及字体为什么打包进扩展而不是从 CDN 取。",
+          "WCAG 的文本间距条款对行高、字距、词距、段距都给了明确阈值，所以控件清单就定在这四项上。",
         evidenceHref: "/projects/spectra#decision-timeline",
         boundary:
-          "我不会说一套反馈模型能覆盖所有色觉类型，那需要更大范围的实地验证。",
+          "这是 DEMO，背后没有用户研究，我没法说这四项就是读者需要的控件。",
       },
       {
         id: "spectra-privacy",
         question: "字体为什么打包进扩展，而不是运行时去取？",
         answer:
-          "我会讲在公共场合被看见这件事本身带来的压力：它让「一眼扫完、自己决定什么时候用」比「一直挂在眼前的辅助」重要得多。",
+          "远端字体请求会让第三方知道谁在读哪一页，断网或者主机变了也会失效。打包的代价是安装包更大，字体只能随新版本更新。",
         evidenceHref: "/projects/spectra#evidence-board",
         boundary:
-          "这套隐私处理是产品方向，不是做完的法务审查，也不是临床级的无障碍认证。",
+          "这是围绕隐私的设计取舍，不是做完的隐私审查，也不是无障碍认证。",
       },
       {
         id: "spectra-field-testing",
-        question: "真实场景测试需要证明什么？",
+        question: "上线之前，测试还需要证明什么？",
         answer:
-          "光照、移动、物体距离，以及真实的任务场景 —— 这几样都过了，才敢说这个交互在户外靠得住。",
+          "要证明真实读者够得到这些控件，也要证明按站点保存符合他们的阅读习惯。目前我只手动跑过文档站、新闻站和单页应用，再加上设置层的 Jest 测试。",
         evidenceHref: "/projects/spectra#outcome-limits",
         boundary:
-          "原型阶段的识别信心是有用的证据，但离能当成辅助设施交付还差得远。",
+          "这些检查只能说明注入是成立的，说明不了读者能从中得到什么好处。",
       },
     ],
     managerFollowUp: {
       id: "spectra-manager-follow-up",
-      question: "你怎么判断这件事该做成 AR，还是做成更简单的工具？",
+      question: "你怎么判断这件事该做成扩展，还是该由浏览器自己来做？",
       answer:
-        "我会把「在情境里当场给出判断」的价值，和隐私成本、戴设备的麻烦、以及真实任务里的识别可靠性放在一起比。",
+        "我会比两样东西。一边是扩展能做、浏览器没做的事，比如按站点保存设置。另一边是让读者自己安装的门槛，以及注入的样式输给网页自己 CSS 的那些页面。",
       evidenceHref: "/projects/spectra#interview-takeaway",
       boundary:
         "如果浏览器自己内建了同样的控件，我愿意直接放弃这个扩展。",
@@ -679,7 +922,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         id: "maze-safety-tradeoff",
         question: "为什么陷阱最后做成振动，而不是电击？",
         answer:
-          "公开展览意味着玩的人无人看管，年龄和身体状况都不知道，逐人做同意和强度校准根本不可能。所以我改成继电器驱动的振动马达，装进指套 —— 感觉仍然落在身体上，但那份风险没了。",
+          "公开展览意味着玩的人无人看管，年龄和身体状况都不知道，逐人做同意和强度校准根本不可能。所以我改成继电器驱动的振动马达，装进指套，感觉仍然落在身体上，但那份风险没了。",
         evidenceHref: "/projects/maze#decision-timeline",
         boundary:
           "我会承认振动确实更弱，我拿一部分「记得住」，换了这台机器可以没人守着一直跑。",
@@ -691,7 +934,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
           "十个红外传感器每个都加了消抖和一段冷却窗口。原始读数会重复触发，一次通过打出好几个事件，分数、计时和振动就各说各话了。",
         evidenceHref: "/projects/maze#evidence-board",
         boundary:
-          "冷却窗口带来一段盲区，真的很快的第二次通过会被漏掉 —— 这是有意的取舍，不是没想到。",
+          "冷却窗口带来一段盲区，真的很快的第二次通过会被漏掉，这是有意的取舍，不是没想到。",
       },
       {
         id: "maze-web-bridge",
@@ -700,7 +943,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
           "Web Serial 控制台一边实时映射迷宫的状态，一边留了一个不接硬件也能跑的演示模式；两边靠回归测试互相咬住，保证演示模式说的仍然是固件的规则。",
         evidenceHref: "/projects/maze#iteration-gallery",
         boundary:
-          "两套模式会漂移 —— 一致性测试的存在，正是因为我不信自己能靠手工让它们一直对齐。",
+          "两套模式会漂移，一致性测试的存在，正是因为我不信自己能靠手工让它们一直对齐。",
       },
     ],
     managerFollowUp: {
@@ -710,7 +953,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         "它证明我能把一个想法贯穿整条链路：传感、固件状态机、实体反馈，再到浏览器上的控制界面；也证明我能在陌生人真的会上手的硬件上，做出校准和安全的判断。",
       evidenceHref: "/projects/maze#interview-takeaway",
       boundary:
-        "它只是一台展览用的机器，线是手工走的 —— 它证明的是搭建能力和系统思维，不是可量产。",
+        "它只是一台展览用的机器，线是手工走的，证明的是搭建能力和系统思维，不是可量产。",
     },
   },
   vigil: {
@@ -719,7 +962,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         id: "vigil-weak-confidence",
         question: "为什么要故意把分类器的置信度做成弱信号？",
         answer:
-          "第一版里置信度分得干干净净：判断对的全在 0.84 以上，判断错的全在 0.82 以下。参与者不用读任何一封邮件，光看这个数字就能把 17 个错误全挑出来 —— 那样界面之间的对比就什么都测不到。分层重采样之后，错误排序的 AUC 降到 0.72；现在只要它漂回 0.75 以上，构建脚本就直接失败。",
+          "第一版里置信度分得干干净净：判断对的全在 0.84 以上，判断错的全在 0.82 以下。参与者不用读任何一封邮件，光看这个数字就能把 17 个错误全挑出来，那样界面之间的对比就什么都测不到。分层重采样之后，错误排序的 AUC 降到 0.72；现在只要它漂回 0.75 以上，构建脚本就直接失败。",
         evidenceHref: "/projects/vigil#decision-timeline",
         boundary:
           "这是人工撰写语料的性质，不是在说真实的分类器就长这样。",
@@ -728,10 +971,10 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         id: "vigil-predictions-first",
         question: "你在测试之前就写下了预期哪个变体会赢。为什么？",
         answer:
-          "我会把那张预测表拿出来 —— 日期在第一个变体被打开之前。它的形状也值得看：两注押在「加摩擦」，一注押在「减少搜索成本」。事后补写的预测永远和结果一致，所以它证明不了任何推理真的发生过。",
+          "我会把那张预测表拿出来：日期在第一个变体被打开之前。它的形状也值得看：两注押在「加摩擦」，一注押在「减少搜索成本」。事后补写的预测永远和结果一致，所以它证明不了任何推理真的发生过。",
         evidenceHref: "/projects/vigil#evidence-board",
         boundary:
-          "预测在案，结果不在 —— 因为还没有人跑过这个测试。",
+          "预测在案，结果不在，因为还没有人跑过这个测试。",
       },
       {
         id: "vigil-ai-workflow",
@@ -740,7 +983,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
           "这两件事要分开说。Claude Code 和 Codex 写了语料管线、原型和 React 版本，而且很快。交不出去的是这几个判断：置信度必须做到不提供信息；一条描述了邮件里根本不存在的线索的解释，是会毁掉整个研究的缺陷；以及这个界面应该是一台仪器，而不是一个收件箱。",
         evidenceHref: "/projects/vigil#iteration-gallery",
         boundary:
-          "这套工作流产出的第一版视觉合格但没有主张 —— 那就是它的失败模式，第二版才是我的。",
+          "这套工作流产出的第一版视觉合格但没有主张：那就是它的失败模式，第二版才是我的。",
       },
     ],
     managerFollowUp: {
@@ -750,25 +993,25 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         "因为它展示的正是平时看不见的那部分：材料、变体、协议，以及那些决定「这个研究到底能不能回答问题」的验证闸门。三个设计问题都标着未解，预测都在案，所以将来真跑出结果，是可以拿回来对的。",
       evidenceHref: "/projects/vigil#outcome-limits",
       boundary:
-        "在有人真的跑之前，这里每一个关于变体的论证都是推理而不是证据 —— 案例本身就是这么写的。",
+        "在有人真的跑之前，这里每一个关于变体的论证都是推理而不是证据，案例本身就是这么写的。",
     },
   },
   hoop: {
     answers: [
       {
         id: "hoop-style-coherence",
-        question: "几百张生成的素材，你怎么让它们看起来像同一个世界？",
+        question: "299 条资产规格的登记表，你怎么让它们看起来像同一个世界？",
         answer:
-          "顺序是关键：先写美术圣经，再让每批提示词引用它，然后拿运行中已有的锚点素材过一道风格闸门，最后用生产日志逐批记录数量。六个批次、299 个素材都走了这条路，一致性因此变成流程的属性，而不是每张图都要重新吵一次的事。",
+          "我会按顺序讲，也讲清每一步证明不了什么。三份美术圣经按画布尺寸分开，写在批次之前；里面的禁止项写进提示词模板，成了负面提示词。风格靠人工审查，把资产并排摆开看。登记表记下六个批次、299 条资产规格，唯一的自动检查读的是这份登记表，不查风格。原始图像文件还没核实，所以我能拿出来的是这套流程，不是一整套成品。",
         evidenceHref: "/projects/hoop#decision-timeline",
         boundary:
-          "它买到的是风格统一，不是艺术性 —— 这是一批临时产能，日志里也是这么标的。",
+          "这只证明流程在，成品是否统一还说不上：日志自己就把这一批标成临时产能，留待以后手工打磨。",
       },
       {
         id: "hoop-rejected-list",
-        question: "风格闸门真正起作用的是什么？",
+        question: "拒绝清单实际起了什么作用？",
         answer:
-          "是那张「不要什么」的清单，比正面描述有用得多。把写实、3D、日系动画、霓虹、随机文字和真实商标点名列为出界，闸门就有了可复核的判据；而「温暖、简化」只给得出一个观点。生成器换个提示词就能产出上面任何一种，而且单看每一张都说得通 —— 直到它和其他素材摆在一起。",
+          "这张「不要什么」的清单，比正面描述有用得多。把写实、3D、日系动画、霓虹、随机文字和真实商标点名列为出界，审查的人就有了可复核的判据。「温暖、简化」只给得出一个观点。审查的人就是我，靠眼睛看，管线里没有任何脚本查风格。生成器换个提示词就能产出上面任何一种，而且单看每一张都说得通，直到和其他素材摆在一起。",
         evidenceHref: "/projects/hoop#evidence-board",
         boundary:
           "这张清单只覆盖已经见过的失败方式。第一次出现新方向的翻车，它就得再加一条。",
@@ -780,19 +1023,128 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
           "我会直说，因为设计文档里就是这么写的：配色和字体系统是从 Anthropic 的产品设计反推出来的。原因是，一个讲一个人一生的游戏，需要的是从容、带文学感的表面，而不是一整套冷蓝配能量渐变的体育界面。把一次迁移练习说成原创发明，那才是不诚实的地方。",
         evidenceHref: "/projects/hoop#iteration-gallery",
         boundary:
-          "它是借来的，而且到了篮球本身那几屏就撑不住了 —— 在那里，源头没有话可说。",
+          "它是借来的，而且到了篮球本身那几屏就撑不住了。在那里，源头没有话可说。",
       },
     ],
     managerFollowUp: {
       id: "hoop-manager-follow-up",
       question: "体量大、也够完整，但没有玩家。为什么放进作品集？",
       answer:
-        "因为这里有意思的问题是「上了量之后怎么守住生产纪律」，而这件事不需要玩家就看得见：规则写在产出之前、闸门真的会拒稿、日志让每一批都可追溯，再加上 1,975 个测试，在内容不断落地的同时守住一个系统很重的构建。游戏自己标着 DEMO v0.6，案例也没有多说一个字。",
+        "因为这里有意思的问题是「上了量之后怎么守住生产纪律」，这件事不需要玩家就看得见。规则写在批次之前，拒绝清单靠人眼对照，登记表记下每一批。再加上 1,975 个测试，在内容不断落地的同时守住一个系统很重的构建。游戏自己标着 DEMO v0.6，案例也没有多说一个字。",
       evidenceHref: "/projects/hoop#outcome-limits",
       boundary:
-        "体量证明的是流程，不是这个节奏对除我之外的人也成立 —— 那需要我还没跑过的玩家测试。",
+        "体量证明的是流程，不是这个节奏对除我之外的人也成立，那需要我还没跑过的玩家测试。",
     },
   },
+    pricewise: {
+      answers: [
+        {
+          id: "pricewise-green-build",
+          question: "代码是 AI 写的，而且全都通过了。那你还要查什么？",
+          answer:
+            "查功能有没有真的执行。我逐个功能打线上接口、读真实返回、直接查数据库，迁移时再读代码。通过了构建、类型检查和整套测试的缺陷有四类：语意搜索从来没用过向量、用模板建的清单永远是空的、定时任务鉴权在密钥缺失时没有默认拒绝、声明过的六张表数据库里根本没建。",
+          evidenceHref: "/projects/pricewise#decision-timeline",
+          boundary: "它慢、全靠手动，而且大部分时候什么也查不出来。把它接进构建流程变成关卡是显而易见的下一步，但还没做。",
+        },
+        {
+          id: "pricewise-own-defect",
+          question: "这些缺陷里有你自己的吗？",
+          answer:
+            "有一处，是我修语义搜索时带进去的回归。补上漏传的字段之后，一个 1536 维的向量跟着序列化进了接口返回，三条搜索结果把响应撑到 89 KB。它是打真实接口、读返回查出来的，不是靠审我自己的 diff。我把它写进案例，因为一道只抓 AI 的检查算不上检查。",
+          evidenceHref: "/projects/pricewise#evidence-board",
+          boundary: "它也说明这套方法是事后的：没有任何东西阻止了这个缺陷，只是有东西在事后抓到了它。",
+        },
+        {
+          id: "pricewise-scope",
+          question: "范围跟着 AI 生成的规划长大，后来一直没有缩回去。再接一份这样的规划，你会先查什么？",
+          answer:
+            "先查这份规划从哪里来。PriceWise 那份是从「一个完整的产品该有什么」推出来的，不是从任何人的需求推出来的，开发一路照着做。2026 年 3 月 1 日单次提交 5884 行，社交功能约占四分之一。第二天之后，五个月没有提交。范围也一直没有缩回去，v1 路由后来只是换了路径，没有删。回头看，一个建在拟真数据上、注册用户为 0 的比价应用，不该继续长下去。",
+          evidenceHref: "/projects/pricewise#iteration-gallery",
+          boundary: "这是事后的判断，证明不了下一份规划我能早点看出来。",
+        },
+      ],
+      managerFollowUp: {
+        id: "pricewise-manager-follow-up",
+        question: "它是线上的，但注册用户是 0。这样的东西凭什么放进作品集？",
+        answer:
+          "因为能迁移的那部分是验证习惯，而这件事不需要用户也看得见：可复现的脚本、写明「怎么查出来的」的缺陷记录，还有一处刻意不修的已知错配：因为对用户来说，配到错的商品比匹配不到更糟。案例直说了：这个产品对真实用户有没有用，没有验证过。",
+        evidenceHref: "/projects/pricewise#outcome-limits",
+        boundary: "注册用户是 0，所以普通人拍一张皱掉的小票识别成功率是多少，我不知道。",
+      },
+    },
+    gapmapper: {
+      answers: [
+        {
+          id: "gapmapper-kill-own-prototype",
+          question: "你把能跑的原型做出来了，然后主张放弃这个方向。说说这个过程。",
+          answer:
+            "团队当时没有能演示的东西，而我是能把讨论变成代码的那个，所以路线支持原型由我建。屏幕一亮起来，问题也跟着亮了：一个建议「更安全路线」却保证不了安全的系统，获得了一种自己没有挣来的权威。它做得越像样，那个兑现不了的承诺就越有说服力。",
+          evidenceHref: "/projects/gapmapper#decision-timeline",
+          boundary: "代价是团队失去了一个演示效果很好的概念，换来的方案更慢、也更难展示。",
+        },
+        {
+          id: "gapmapper-evidence-model",
+          question: "为什么感知和客观指标从不合成一个分数？",
+          answer:
+            "因为一合并，不确定性就消失了，屏幕会显得比它应有的样子更自信。文献也不同意我最初的假设「灯多则安全」：能见度、围合感、周围有没有活动、社会线索、时间，都会改变同一盏灯被怎么解读。既然单个指标都解释不了一个地方，指标和感知就不能揉在一起。分开放，人可以追问「为什么这里被标出来」，而不是被告知「这里就是不安全」。",
+          evidenceHref: "/projects/gapmapper#evidence-board",
+          boundary: "18 个访谈只能数出提及次数，撑不起任何比例或排名，所以整份工作里只当感知线索用。",
+        },
+        {
+          id: "gapmapper-ethics-as-requirements",
+          question: "怎么让一个伦理立场不停留在一段话上？",
+          answer:
+            "把它写成系统要求。一页 brief 把它们写成约束：上报匿名、位置取整到街段、必须显示信心水平与偏差标注、不出公开的安全分数。这一页是三件交付物里最难写的：因为「不出安全分数」一旦成为系统要求，就不再是态度，做这个东西的人必须满足它。",
+          evidenceHref: "/projects/gapmapper#iteration-gallery",
+          boundary: "这些要求从来没有真的交给一个实现团队。",
+        },
+      ],
+      managerFollowUp: {
+        id: "gapmapper-manager-follow-up",
+        question: "最终提案更安静、也更不惊艳。这个交换划算吗？",
+        answer:
+          "对这个问题来说，划算。主张从「帮一个人安全地走夜路」变成了「让机构看见自己的证据在哪里不完整」：后者是这份工作真的撑得起的。那版被放弃的路线原型我留在作品集里，正因为没有它，最终方向看起来会像凭空出现。",
+        evidenceHref: "/projects/gapmapper#outcome-limits",
+        boundary: "我也不认为最终提案完全回答了那条批评。它改变的是我愿意声称什么，不是「究竟在要求谁改变行为」。",
+      },
+    },
+    rules: {
+      answers: [
+        {
+          id: "rules-soft-to-threshold",
+          question: "「让骑车更安全」这句话，你怎么把它变成团队能施工的东西？",
+          answer:
+            "把它逼成数字。Fietspad 的提案草稿就是这么做的。草稿里的路线权重优先分隔路段与安静街道，给只有一层油漆的车道降权；提示提前量是 150–250 m，点击区下限是 48px。这些草稿多由 AI 起草，最终提案只保留了环岛与左勾弯前的预警，并把「最平稳」设为默认路线。一条带数字的规则能被执行、也能被反驳；原来那句话两样都做不到。",
+          evidenceHref: "/projects/rules#decision-timeline",
+          boundary: "这么早定阈值，等于在还没有证据说明这些数字对不对的时候就先认了。",
+        },
+        {
+          id: "rules-copy-as-claim",
+          question: "按钮为什么写「See safer routes」而不是「最安全」？",
+          answer:
+            "因为没有任何数据能支撑那个最高级。同一条纪律贯穿整个提示系统：提示写行为不写方向（占道，并与转弯车辆做眼神确认），因为那才是左勾弯的真实应对。距离按距离给不按路口给，因为骑行中没有「下一个路口」这种稳定参照；绕路按钮把多花的分钟数写在自己身上，而「保持原路线」是平等的一级按钮。",
+          evidenceHref: "/projects/rules#iteration-gallery",
+          boundary: "比较级作为宣传更弱，而且这一整套都没有在真实骑行环境里测过。",
+        },
+        {
+          id: "rules-ai-register",
+          question: "你交过一份 AI 使用标注册。它到底写了什么？",
+          answer:
+            "写的是：AI 在广度上是强力加速器，深度得人来检查。具体说：转录漏人名、合并发言人，所以我们建了一份人名与郊区的简短风格指南；生成的初稿听起来笃定实则无据，所以对照官方来源逐条核实、删掉所有没有出处的数字；Figma Make 小改提示词就大幅偏移，所以每一屏在 Figma Design 重建；AI 还会把互相矛盾的张力并成一个主题，所以边缘案例单独列表，后来各自变成了具体功能。",
+          evidenceHref: "/projects/rules#evidence-board",
+          boundary: "那里的质量控制是五条具体动作，不是一套制度，而且要靠人记得去执行。",
+        },
+      ],
+      managerFollowUp: {
+        id: "rules-manager-follow-up",
+        question: "这是课程作业，两份都没上线。离开课程之后还剩下什么？",
+        answer:
+          "剩下那个动作，这也是两份作业合成一个案例的原因：把一句所有人都同意的要求，逼成一条能施工、也能被反驳的规则。第二份作业存在的意义就是证明它能脱离单个项目：一篇 2025 年的同行评审论文，变成了三条各带文案模板和阈值的独立触发条件。",
+        evidenceHref: "/projects/rules#outcome-limits",
+        boundary:
+          "指南里的效果数字是所引论文的结果，不是我的，我另写了一节列出那份研究撑不起的部分。Fietspad 的「6/6 通过」是自查清单，不是外部验证。",
+      },
+    },
 };
 
 const caseInterviewPacks: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseInterviewPack>> = {
@@ -801,12 +1153,34 @@ const caseInterviewPacks: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
 };
 
 
+// Links into an unlisted case are dropped. A role left with no proof link, or
+// a capability left with no evidence in any listed case, is dropped with them
+// rather than shown as a claim with nothing behind it. When Vigil was unlisted
+// that took out the AI UX role and the AI UX and trust row: Vigil was the only
+// evidence either had. Both came back on 2026-09-28 as a thread through
+// PriceWise, Perception Gap Mapper, UQ Connect and Hoop Dream, every cell
+// supporting rather than primary (see ai-trust-thread.ts).
 export function getHiringRoleFits(locale: ProofLocale): HiringRoleFit[] {
-  return hiringRoleFits[locale];
+  return hiringRoleFits[locale]
+    .map((role) => ({
+      ...role,
+      proofLinks: role.proofLinks.filter((link) => !linksToUnlistedProject(link.href)),
+      bestCases: role.bestCases.filter((slug) => !isUnlistedProject(slug)),
+    }))
+    .filter((role) => role.proofLinks.length > 0);
 }
 
 export function getEvidenceMatrix(locale: ProofLocale): EvidenceMatrixCapability[] {
-  return evidenceMatrix[locale];
+  return evidenceMatrix[locale]
+    .map((capability) => ({
+      ...capability,
+      cases: Object.fromEntries(
+        Object.entries(capability.cases).filter(([slug]) => !isUnlistedProject(slug)),
+      ) as EvidenceMatrixCapability["cases"],
+    }))
+    .filter((capability) =>
+      Object.values(capability.cases).some((cell) => cell !== undefined && cell.strength !== "none"),
+    );
 }
 
 export function getCaseInterviewPack(

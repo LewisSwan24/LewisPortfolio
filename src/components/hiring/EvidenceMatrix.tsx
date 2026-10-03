@@ -1,9 +1,11 @@
+import type { CSSProperties } from "react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import type {
   EvidenceMatrixCapability,
   ProjectEvidenceSlug,
   ProofLocale,
 } from "@/lib/portfolio-proof";
+import { isUnlistedProject } from "@/lib/project-routes";
 
 const projectLabels: Record<ProjectEvidenceSlug, string> = {
   connect: "UQ Connect",
@@ -11,15 +13,24 @@ const projectLabels: Record<ProjectEvidenceSlug, string> = {
   maze: "MazeRunners",
   vigil: "Vigil",
   hoop: "Hoop Dream",
+  pricewise: "PriceWise",
+  gapmapper: "Perception Gap Mapper",
+  rules: "Requirements into Rules",
 };
 
-const projectOrder: ProjectEvidenceSlug[] = [
-  "connect",
-  "spectra",
-  "maze",
-  "vigil",
-  "hoop",
-];
+// An unlisted case gets no column; getEvidenceMatrix has already dropped its cells.
+const projectOrder: ProjectEvidenceSlug[] = (
+  [
+    "connect",
+    "spectra",
+    "maze",
+    "vigil",
+    "hoop",
+    "pricewise",
+    "gapmapper",
+    "rules",
+  ] as const
+).filter((slug) => !isUnlistedProject(slug));
 
 interface EvidenceMatrixProps {
   capabilities: EvidenceMatrixCapability[];
@@ -63,7 +74,14 @@ export function EvidenceMatrix({ capabilities, locale = "en" }: EvidenceMatrixPr
         <p>{copy.body}</p>
       </div>
 
-      <div className="evidence-matrix" role="table" aria-label={copy.aria}>
+      <div
+        className="evidence-matrix"
+        role="table"
+        aria-label={copy.aria}
+        // The column count follows the listed cases, so unlisting one cannot
+        // leave the grid with the wrong number of tracks.
+        style={{ "--matrix-cols": projectOrder.length } as CSSProperties}
+      >
         <div className="evidence-matrix-row is-header" role="row">
           <div role="columnheader">{copy.capability}</div>
           {projectOrder.map((slug) => (

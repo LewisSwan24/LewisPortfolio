@@ -41,6 +41,12 @@ export const siteConfig = {
   title: "Graduate Interaction Designer (Full-time) · UX Designer · UX Researcher",
   description:
     "UQ Master of Interaction Design student in Brisbane crafting research-driven experiences through usability testing, AI, prototyping, and accessibility.",
+  // Single source for the zh surfaces. These used to be inline literals in
+  // app/[locale]/page.tsx, which left the RSS feed with no Chinese copy to fall
+  // back to — /zh/feed.xml was serving the English description.
+  titleZh: "交互设计师 / 产品设计师",
+  descriptionZh:
+    "昆士兰大学交互设计硕士在读，常驻布里斯班。通过可用性测试、AI 工具、原型设计与可访问性，打造由研究驱动的体验。",
   url: resolveSiteUrl(),
   author: {
     name: "Lewis Dong",
@@ -52,10 +58,12 @@ export const siteConfig = {
     location: "Brisbane, Australia",
   },
   social: {
-    // Add your social media links below (leave empty to hide the icon)
-    linkedin: "https://linkedin.com/in/lewis-dong",
+    // Leave a link empty to hide it. LinkedIn is empty on purpose: the
+    // canonical facts file records it as not public, and it only goes back with
+    // Lewis's say-so. Dribbble is empty because dribbble.com/lewisdong is a 404.
+    linkedin: "",
     github: "https://github.com/LewisSwan24",
-    dribbble: "https://dribbble.com/lewisdong",
+    dribbble: "",
   },
   navLinks: [
     { href: "/", label: "Home" },

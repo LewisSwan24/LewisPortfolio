@@ -14,6 +14,7 @@ import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
 import { KeyboardShortcutsModal } from "@/components/providers/KeyboardShortcutsModal";
 import { SearchProvider } from "@/components/SearchProvider";
 import { getAllBlogPosts } from "@/lib/blog";
+import { LISTED_PROJECT_SLUGS } from "@/lib/project-routes";
 import { Analytics } from "@vercel/analytics/react";
 import {
     StructuredData,
@@ -48,7 +49,7 @@ export default async function LocaleLayout({
     const t = await getTranslations();
     const blogPosts = await getAllBlogPosts();
     const searchItems = [
-        ...(["connect", "spectra", "ai", "maze", "vigil", "hoop"] as const).map((slug) => ({
+        ...LISTED_PROJECT_SLUGS.map((slug) => ({
             type: "project" as const,
             slug,
             title: t(`proj.${slug}.title`),

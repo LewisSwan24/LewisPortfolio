@@ -16,7 +16,7 @@
   },
   "brand": {
     "name": "Lewis Dong",
-    "tagline": "practice log, est. 2026"
+    "tagline": "practice log"
   },
   "hero": {
     "eyebrow": "Interaction & Product Designer · Master's in Interaction Design, UQ",
@@ -28,7 +28,9 @@
     "body": "I design interactions and then build them. Claude Code and Codex get me from a spec to a running prototype quickly enough that testing happens on the real thing instead of a picture of it.",
     "deck": {
       "label": "The practice log —",
-      "hint": "Drag or click an entry to open"
+      "hint": "Drag or click any card",
+      "roledesc": "Card deck",
+      "kbd": "Drag, click, or use ← → to step through"
     },
     "cta": {
       "work": "View selected work",
@@ -41,17 +43,13 @@
       "label": "Reading",
       "val": "Weiss on loneliness; Ryan & Deci on self-determination"
     },
-    "building": {
-      "label": "Building",
-      "val": "Vigil — a phishing-detection tool, spec through usability testing"
-    },
     "learning": {
       "label": "Learning",
       "val": "Where AI coding agents help a designer, and where they slow one down"
     },
     "location": {
       "label": "Location",
-      "val": "Brisbane, AU — graduating late 2026, open to internships and graduate roles"
+      "val": "Brisbane, AU — graduating late 2026, looking for full-time graduate roles"
     }
   },
   "approach": {
@@ -82,8 +80,11 @@
   },
   "feat": {
     "label": "Selected work",
-    "title": "Five projects, end-to-end.",
-    "footer": "Full index"
+    "title": "Seven cases, each with its own stopping point.",
+    "footer": "Full index",
+    "deckPrev": "Previous case",
+    "deckNext": "Next case",
+    "deckKbd": "Drag, or use ← → to step through the seven"
   },
   "proj": {
     "connect": {
@@ -92,9 +93,9 @@
       "sub": "A social platform for international students — three rounds of research, one semester of building.",
       "role": "Front-end system & research",
       "date": "Aug–Nov 2025, coursework",
-      "m1": "71 interview transcripts, 14 mine",
+      "m1": "71 research and test sessions, 14 mine",
       "m2": "Exploratory · think-aloud · task-based",
-      "m3": "24-screen MVP on mock data"
+      "m3": "19-screen MVP on mock data"
     },
     "spectra": {
       "kicker": "Accessibility · Browser extension",
@@ -121,7 +122,7 @@
       "title": "Vigil",
       "sub": "A review desk for deciding when to trust a classifier that is wrong 12% of the time.",
       "role": "Design + direction",
-      "date": "2026 · in progress",
+      "date": "2026 · abandoned",
       "m1": "140 messages · 87.9% accurate",
       "m2": "Confidence built as weak evidence",
       "m3": "Six variants, three open questions"
@@ -129,12 +130,42 @@
     "hoop": {
       "kicker": "Generative production · Narrative systems",
       "title": "Hoop Dream",
-      "sub": "A basketball life from twelve to retirement, and a pipeline that kept 299 generated assets in one style.",
+      "sub": "A basketball life from twelve to retirement, and style rules written down before the asset batches.",
       "role": "Design + art direction",
       "date": "2026 · playable, DEMO v0.6",
-      "m1": "299 assets · 6 batches · 1 gate",
+      "m1": "299 asset specs · 6 batches · 3 art bibles",
       "m2": "146 career nodes, not a calendar",
       "m3": "1,975 tests over the systems"
+    },
+    "pricewise": {
+      "kicker": "Product design · Engineering verification",
+      "title": "PriceWise",
+      "sub": "Photograph a supermarket receipt and see what the same basket costs at two other chains. The AI wrote the code; the question was how to know it works.",
+      "role": "Product + interaction + technical direction",
+      "date": "2026 · deployed prototype, demo data, 0 registered users",
+      "m1": "109 API routes · 36 page routes",
+      "m2": "4 classes of defect a green build could not see",
+      "m3": "15 → 19 of 20 constructed receipt inputs matched"
+    },
+    "gapmapper": {
+      "kicker": "Public space · Evidence boundaries",
+      "title": "Perception Gap Mapper",
+      "sub": "I built the working prototype, then argued for abandoning it — because an interface that cannot guarantee safety should not tell anyone which route is safer.",
+      "role": "Team project · prototype and repositioning mine",
+      "date": "2026 · DECO7380, submitted and marked",
+      "m1": "18 interviews · 3 of them mine",
+      "m2": "6 slow screens, 4 questions each",
+      "m3": "No safety score, by requirement"
+    },
+    "rules": {
+      "kicker": "Specification · Design systems",
+      "title": "Requirements into Rules",
+      "sub": "Two coursework briefs doing the same thing: forcing a soft requirement into a rule someone can build to, and argue with.",
+      "role": "Lead Developer on one, sole author on the other",
+      "date": "2025 · DECO7250, submitted and marked",
+      "m1": "150–250 m warning lead (draft)",
+      "m2": "48 px tap-target floor (draft)",
+      "m3": "1 paper → 3 trigger conditions"
     }
   },
   "cs": {
@@ -152,7 +183,7 @@
         "title": "UQ Connect",
         "sub": "A social platform for international students, researched and built over one semester."
       },
-      "roleVal": "Front-end component system, shared state, 14 of 71 interviews",
+      "roleVal": "Front-end component system, shared state, 14 of 71 sessions",
       "timeVal": "August–November 2025, university coursework",
       "teamVal": "Five-person course team",
       "toolsVal": "React · TypeScript · Tailwind · Figma Make · Paper",
@@ -163,18 +194,18 @@
       },
       "re": {
         "label": "Research",
-        "title": "Three rounds, three fidelities, seventy-one transcripts.",
+        "title": "Three rounds, three fidelities, 71 research and testing records.",
         "m1": {
           "t": "Exploratory interviews",
-          "b": "33 transcripts in August, 7 of them mine, on why the events that already exist fail to connect people."
+          "b": "33 records in August, 7 of them mine, on why the events that already exist fail to connect people. My seven spanned six countries, seven degrees and three campuses, first year to Master's."
         },
         "m2": {
           "t": "Think-aloud usability testing",
-          "b": "28 transcripts in September, 5 mine, on a prototype that already ran — watching where people stalled."
+          "b": "28 records in September, 5 mine, on a prototype that already ran — watching where people stalled."
         },
         "m3": {
           "t": "Task-based usability testing",
-          "b": "10 transcripts in November, 2 mine, on the built MVP: one chain, start to finish, unaided."
+          "b": "10 records in November, 2 mine, on the built MVP: one chain, start to finish, unaided. My 14 sessions across the three rounds came from 9 people — 4 sat with me more than once, one all three times."
         },
         "quote": "Can I go to the previous page? How can I do that?",
         "quoteWho": "Iteration 2 participant, 17 September 2025"
@@ -182,15 +213,15 @@
       "sy": {
         "label": "Synthesis",
         "title": "The barrier was pace and group size, not language.",
-        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, which is the only reason we could tell when we were wrong. Two assumptions did not survive. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go."
+        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, though we never scored the records against them. Two assumptions did not survive the interviews, on qualitative evidence. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go. What did hold was repetition around a shared task — the students who stayed connected had met three or four times over something they were making together, a documentary shoot, a quartet. The cultural society cuts both ways for the same reason: it is the first place a student belongs, and then it is the reason they never leave it."
       },
       "id": {
         "label": "Design decisions",
-        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly sceptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan."
+        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly sceptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan. Discovery moved onto a campus map for a related reason — choosing from a map costs less than choosing from a list — but a map has to say who is already there and whether the walk is safe, or it relocates the hesitation instead of removing it. The competitor teardown pointed the same way: Griffith Mates launches at Orientation, runs a buddy program for four weeks, then keeps people in a Teams channel. The channel is the part doing the work, and a one-off event has no equivalent."
       },
       "pr": {
         "label": "Prototype",
-        "p": "On 3 October, after the September sessions, we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area. The November build started from that sheet, as a shared component system with React context for cross-screen state rather than twenty-four independently styled screens."
+        "p": "On 3 October, after the September sessions, we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area. The November build started from that sheet, as a shared component system with React context for cross-screen state rather than nineteen independently styled screens."
       },
       "te": {
         "label": "Usability test",
@@ -200,17 +231,17 @@
         "label": "What it produced",
         "m1": {
           "label": "Build",
-          "v": "24-screen MVP"
+          "v": "19 screens, one system"
         },
         "m2": {
           "label": "Research",
-          "v": "71 transcripts, 3 rounds"
+          "v": "71 sessions, 3 rounds"
         },
         "m3": {
           "label": "My share",
           "v": "14 interviews, front-end system"
         },
-        "p": "A 24-screen mobile MVP on a shared component system, reached through three research rounds and a mid-build return to paper. Evidence status — course project, five-person team. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, and ran 14 of the 71 interviews; the map, the wellness hub and the matching logic were other people's work. The MVP runs on mock data: the backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. No round recorded completion times or a fixed success criterion, so I can say the September navigation defect did not recur in November, and I cannot say by how much anything improved."
+        "p": "A 19-screen mobile MVP on a shared component system, reached through three research rounds and a mid-build return to paper — 24 by the team's own MVP definition, which counts sub-views as pages. Evidence status — course project, five-person team. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, and ran 14 of the 71 sessions; the map, the wellness hub and the matching logic were other people's work. In January, after the semester was over, I took the codebase into my own repository and spent five days cutting it back to one design system — plus dark mode, an OAuth callback, and a deploy — across eight commits that added 1,068 lines and removed 2,348. That part is unambiguously mine: nine commits, all under my name, and it is the reason there is a build you can open at all. The MVP runs on mock data: the backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. No round recorded completion times or a fixed success criterion, so I can say the September navigation defect did not recur in November, and I cannot say by how much anything improved."
       },
       "rf": {
         "label": "Reflection",
@@ -363,7 +394,7 @@
         "sub": "An email review desk built to find out whether an interface can keep someone checking an AI that is wrong 12% of the time."
       },
       "roleVal": "Designer and technical director; Claude Code and Codex wrote the code to my spec",
-      "timeVal": "2026 · in progress, phase 3 of 5",
+      "timeVal": "2026 · abandoned 23 Sep 2026; evaluation protocol written, study never run",
       "teamVal": "Solo, working through an AI coding workflow; brief sourced from a UQ research lab",
       "toolsVal": "React · TypeScript · Zustand · Dexie · Python · Claude Code · Codex",
       "ch": {
@@ -430,7 +461,7 @@
     "hoop": {
       "hero": {
         "title": "Hoop Dream",
-        "sub": "A career simulation that runs from a neighbourhood court at twelve through to retirement — and the production pipeline that kept 299 generated assets looking like one world."
+        "sub": "A career simulation that runs from a neighbourhood court at twelve through to retirement — and the production pipeline that wrote down what the world looks like before the asset batches."
       },
       "roleVal": "Designer, art director and technical director, through an AI production pipeline",
       "timeVal": "2026 · playable, self-labelled DEMO v0.6",
@@ -438,15 +469,15 @@
       "toolsVal": "Phaser · TypeScript · Vite · Tailwind · Vitest · Claude Code · Codex",
       "ch": {
         "label": "The problem",
-        "title": "Generating the art is cheap. Making 299 pieces agree is not.",
-        "p": "A career-simulation RPG needs hundreds of assets — portraits, scenes, story CGs, UI icons, court diagrams — before it reads as one world rather than a folder of pictures. Generation removed the cost of producing them and left the harder problem completely intact: each batch is independently plausible, and the drift only becomes visible once they sit on the same screen, by which point there are hundreds of files to reconcile."
+        "title": "Generating the art is cheap. Making it agree is not.",
+        "p": "A career-simulation RPG needs hundreds of assets — portraits, scenes, story CGs, UI icons, court diagrams — before it reads as one world rather than a folder of pictures. Generation removed the cost of producing them and left the harder problem completely intact: every image can pass the rules on its own, and what is wrong with the set only shows once they sit on the same screen, by which point there are 299 specs on the registry to reconcile."
       },
       "re": {
         "label": "Groundwork",
         "title": "Deciding what the world is, and what it is not.",
         "m1": {
           "t": "Art bible",
-          "b": "Three reference documents — pixel players, organic scenes, flat logos — written before any asset was generated, so batch prompts had something to cite."
+          "b": "Three reference documents — pixel players, organic scenes, flat logos — split by canvas size and written before the asset batches. Their forbidden lists went into the prompt templates as negative prompts."
         },
         "m2": {
           "t": "Reference teardown",
@@ -456,13 +487,13 @@
           "t": "A rejected list",
           "b": "Photoreal, 3D, anime, neon, random text, real trademarks. Written down as out of bounds, because a generator produces all of them happily on a slightly different prompt."
         },
-        "quote": "Style gate: PASS. Reviewed against the existing runtime anchors and art bible rules.",
-        "quoteWho": "The production log, on the batch of 299"
+        "quote": "Avoid photo realism and dramatic cinematic lighting.",
+        "quoteWho": "The art bible, scenes-organic.md"
       },
       "sy": {
         "label": "System concept",
-        "title": "Coherence as a property of the pipeline, not of each asset.",
-        "p": "Every batch follows the same path: prompts cite the art bible, output is reviewed against assets already running in the game, and the production log records counts per batch — 64 portraits, 40 scenes, 73 CGs, 72 UI icons, 18 court and tactics, 32 static VFX. That makes the whole set auditable. Anyone can ask which batch a given asset came from and which rules it was checked against, which is not a question you can answer about art that was generated ad hoc."
+        "title": "What a script can check, and what only a person can.",
+        "p": "The rules sit in two places: the art bible, and the prompt templates that carry its forbidden lists as negative prompts. A registry then logs each batch — 64 portraits, 40 scenes, 73 CGs, 72 UI icons, 18 court and tactics, 32 static VFX. A script checks that registry: names, unique keys, folders and, where a file exists, the PNG size read from its header. It cannot see style, so style review stayed manual, with the assets laid side by side against the art bible. The production log's own review line is printed by the generator script, so I do not count it as a review. The images behind the 299 registered specs are not yet verified."
       },
       "id": {
         "label": "Design decisions",
@@ -474,12 +505,12 @@
       },
       "te": {
         "label": "Testing and iteration",
-        "p": "355 test files and 1,975 tests cover the career, contract, injury, season and save systems. At this size that is a design constraint rather than a boast — without it, adding a chapter quietly breaks a contract rule three chapters earlier, and you find out from a player instead of from CI. The art pipeline went through its own iteration: the earliest assets were fine individually and did not agree with each other, which is what moved production from ad-hoc generation to art bible, batch prompts, style gate and log."
+        "p": "355 test files and 1,975 tests cover the career, contract, injury, season and save systems. At this size that is a design constraint rather than a boast — without it, adding a chapter quietly breaks a contract rule three chapters earlier, and you find out from a player instead of from CI. The art pipeline went through its own iteration. Every logo passed the per-image rules, yet laid side by side they were variants of one template. That added two set-level rules to the logo bible and to its template's negative prompt: no shared shield-and-big-letters template, and no basketball seams on every logo."
       },
       "ou": {
         "label": "What it produced",
         "m1": {
-          "label": "assets through one style gate",
+          "label": "asset specs registered across six batches",
           "v": "299"
         },
         "m2": {
@@ -490,11 +521,221 @@
           "label": "Tests",
           "v": "355 files → 1,975 passing"
         },
-        "p": "A publicly playable ten-chapter career sim, built on a pipeline where coherence is enforced rather than hoped for. Evidence status — the game labels itself DEMO v0.6, and there has been no player research. Everything here is systems design and production discipline; whether the pacing works for someone who is not me is untested. The first load is also large and mobile QA is thin, which matters because a phone is where this audience would meet it."
+        "p": "A publicly playable ten-chapter career sim, built on a pipeline whose style rules are written down rather than kept in my head. Evidence status — the game labels itself DEMO v0.6, and there has been no player research. Everything here is systems design and production discipline; whether the pacing works for someone who is not me is untested. The first load is also large and mobile QA is thin, which matters because a phone is where this audience would meet it."
       },
       "rf": {
         "label": "Reflection",
-        "p": "The useful discovery was that the rejected list did more work than the positive description. 'Warm, simplified, flat symbolic UI' is an opinion two people can hold and still disagree about a specific image. 'Not photoreal, not 3D, not anime, not neon, no random text, no real trademarks' is a test — you can hand it to someone else and get the same answer. When production volume goes up, the rules that survive are the ones that can be checked without you in the room."
+        "p": "The useful discovery was that the rejected list did more work than the positive description. 'Warm, simplified, flat symbolic UI' is an opinion two people can hold and still disagree about a specific image. 'Not photoreal, not 3D, not anime, not neon, no random text, no real trademarks' is a test — you can hand it to someone else and get the same answer. When production volume goes up, the rules that survive are the ones that can be checked without you in the room. They are still checked by a person, by eye: the only automated check in the pipeline reads the manifest, and the part a script can automate turned out to be exactly the part that is not style."
+      }
+    },
+    "pricewise": {
+      "hero": {
+        "title": "PriceWise",
+        "sub": "A grocery comparison prototype across three Australian chains, running on demo data — and the four classes of defect that a passing build, a clean type-check and a green test suite could not see."
+      },
+      "roleVal": "Product direction, interaction design and technical direction; Codex and Claude Code wrote the implementation",
+      "timeVal": "2026 · deployed prototype, demo data",
+      "teamVal": "Solo",
+      "toolsVal": "Next.js · Prisma · Clerk · Postgres · Vitest · Playwright · Codex · Claude Code",
+      "ch": {
+        "label": "The problem",
+        "title": "When an AI writes the code, a green build stops being evidence.",
+        "p": "The interface rendered. The type-check was clean. 307 unit tests passed. None of those three facts tells you whether a feature actually executes — and in this codebase, four classes of defect satisfied all three. That is the real problem this case is about: not what to build, but how to confirm what was built is real."
+      },
+      "re": {
+        "label": "How they were found",
+        "title": "Stop reading the code. Call the endpoint and read what comes back.",
+        "m1": {
+          "t": "Probe the live endpoint",
+          "b": "Semantic search never used a vector — the product object dropped its vector field at the data-mapping layer and every query silently fell back to keyword matching. Keyword matching returns results too, so nothing looked wrong."
+        },
+        "m2": {
+          "t": "Open the thing it created",
+          "b": "Lists built from a template were always empty: the items the front end sent were silently stripped by back-end validation. The catch branch also showed a success message, so a dropped network still reported good news."
+        },
+        "m3": {
+          "t": "Query the database directly",
+          "b": "Six declared tables had never been created. Nothing read or wrote them, so 'relation does not exist' had never been triggered. Reading code during a migration also turned up cron auth that did not fail closed when its key was unset."
+        },
+        "quote": "They all pass build, type-check and tests. What is broken is whether the feature runs at all, and no automatic gate is watching for that.",
+        "quoteWho": "The property all four classes share"
+      },
+      "sy": {
+        "label": "The system idea",
+        "title": "'Renders correctly' and 'executes correctly' are different claims.",
+        "p": "Only one of them has automatic gates behind it. A build proves the code compiles; a test proves the path the test walks; a screenshot proves pixels. None of them proves that a query used the index it was supposed to, that a write landed, or that a declared table exists. The verification pass in this project is simply the habit of asking the second question out loud, on every feature, with the deployed system rather than the source."
+      },
+      "id": {
+        "label": "The decision I am least comfortable with",
+        "p": "One more defect was mine: a regression from my own fix to search. Passing a missing field through serialized a 1,536-dimension vector into the API response and pushed three search results to 89 KB. I found it by calling the real endpoint and reading the response, not by reviewing my own diff. It stays in the case because a check that only catches the AI is not really a check. It also shows the method's limit: nothing prevented the defect, something caught it afterwards."
+      },
+      "pr": {
+        "label": "How the scope grew",
+        "p": "The feature list was AI-generated planning, derived from what a complete product ought to have rather than from anyone's need. Phases 2 through 6 all landed across two days, 9–10 January 2026. On 1 March a single commit added 5,884 lines: a v1 API, AI function calling, bilingual text, price prediction, and a social layer of friends, DMs, feeds, household groups and challenges that made up about a quarter of it. On 2 March I stopped, and did not touch it for five months. The scope never came back down: in August the v1 routes moved to unversioned paths rather than being removed, and the social routes are still in the app. Looking back, a comparison app on simulated data with no registered users should not have kept growing."
+      },
+      "te": {
+        "label": "The module everything depends on",
+        "p": "Receipt matching is the product: a receipt prints MLK FC 2L, the catalogue says Full Cream Milk 2L, and if those do not meet, nothing else can happen. That module was written in one pass of 175 lines in the second commit and never modified, with 13 tests using 'milk', 'eggs', 'sourdough bread' — not one input resembling printed receipt text. Against 20 constructed receipt-format inputs it matched 15; after a fix that only adds points and never subtracts, 19. All 15 originally-correct inputs held. 311 tests green."
+      },
+      "ou": {
+        "label": "What this case produced",
+        "m1": {
+          "label": "classes of defect passing build, types and tests",
+          "v": "4"
+        },
+        "m2": {
+          "label": "receipt-format inputs matched",
+          "v": "15 → 19 of 20"
+        },
+        "m3": {
+          "label": "registered users",
+          "v": "0"
+        },
+        "p": "A deployed comparison prototype on demo data, covering Coles, Woolworths and Aldi across 65 products — and, more usefully, a verification habit with scripts anyone can re-run. Evidence status: zero registered users. Every verification ran on data I created, and what a real crumpled receipt does to recognition accuracy is unknown to me. The verification is also manual: it should be a build gate, and it is not one yet."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "One mismatch was left unfixed on purpose. 'MLK FC 2L' moved from no-match to matching Oat Milk — a change in kind, and for the worse. A no-match lands in the unmatched list where the user can see it; a wrong match sends a wrong price silently into the comparison and the user never finds out. Fixing it means either an abbreviation dictionary, which becomes an endless maintenance list, or admitting two-letter tokens, which reinstates the mis-matches just suppressed. The correct handling is to send it back to no-match, which is a confidence-threshold problem rather than an abbreviation problem. It is pinned by a test so that if it changes, someone knows."
+      }
+    },
+    "gapmapper": {
+      "hero": {
+        "title": "Perception Gap Mapper",
+        "sub": "I built the first working prototype, then argued for abandoning it. The better it looked, the more visible a promise it could not keep."
+      },
+      "roleVal": "Team project; I built the first prototype and drove the change of direction",
+      "timeVal": "2026 · DECO7380 Design Computing Studio 3, submitted and marked",
+      "teamVal": "Six",
+      "toolsVal": "Semi-structured interviews · thematic coding · Figma · literature review",
+      "ch": {
+        "label": "The problem",
+        "title": "A system that recommends a safer route claims an authority it has not earned.",
+        "p": "The team had nothing demonstrable and I was the one who could turn discussion into code, so the first route-support prototype was mine. It ranked the same trip by different cues, with layers for risk density, lighting, surveillance and open businesses. It looked extremely usable — which is exactly what made it dangerous. It made an unsolved problem look solved."
+      },
+      "re": {
+        "label": "Research",
+        "title": "Three people differed on whether to trust a tool.",
+        "m1": {
+          "t": "What they relied on",
+          "b": "Visibility, main roads, transit stops, bike coverage, streetlights, businesses still open, location sharing, live foot traffic. All three mentioned lighting. In the team's coding chart, people presence came up in 16 of the 18 interviews and lighting in 14: counts of mentions, not a rate."
+        },
+        "m2": {
+          "t": "What they distrusted",
+          "b": "Crime history. One participant was wary of routing by it because bias can already be inside the data before an algorithm touches it — and because a conclusion you cannot interrogate is not usable. I mis-read her point at first and went back to the notes after a teammate challenged me."
+        },
+        "m3": {
+          "t": "An assumption that died",
+          "b": "I had treated streetlights as a directly usable safety variable: more light, safer. Literature disagreed. Visibility, enclosure, nearby activity, social cues and time all change how one light is read. A lit street that is empty, enclosed and hard to leave still feels wrong."
+        },
+        "quote": "Making it Worse First",
+        "quoteWho": "The team name, from a week-three exercise: ask what the worst version would do. After critique I realised those four descriptions were our own version."
+      },
+      "sy": {
+        "label": "The core structure",
+        "title": "Two kinds of evidence, side by side, never merged.",
+        "p": "Objective indicators — lighting, transit access, incident context, sightlines, open businesses, street condition — sit next to perception signals: someone crossing to avoid one side, looking for a shop still open, checking help is close enough, feeling uncertain in a place that is entirely normal on paper. The gap between them is displayed as a reason to investigate, not as proof of danger. Merge them into one score and the uncertainty disappears; the screen starts looking more confident than it has any right to be."
+      },
+      "id": {
+        "label": "The turn",
+        "p": "After critique the first thing I changed was not a screen — it was the reader. From a pedestrian who is nervous right now, to councils, city planners and campus safety teams. Output changed with it: no longer telling anyone which way to walk, but showing where perception and objective indicators fail to agree. And the claim changed: it can support a discussion about what to investigate next, and it promises that nowhere is safe. Critique had named two design problems rather than feature gaps — painting safety as binary, and a women's-safety project that risks once again asking women to change their behaviour instead of questioning the environment."
+      },
+      "pr": {
+        "label": "The screen that carries it",
+        "p": "Place Inspector is the load-bearing one. Selecting a place does not return a colour block or a warning: it shows confidence level, source status, report context, and what the data still cannot prove. A red or orange marker on a real street starts to read as a verdict even when the evidence behind it is thin. I ran four questions over every screen — what does this make visible, what does it hide, who does it expect to act, how much certainty does it imply. The map is only the entry point; the argument lives in the slow screens: Place Inspector, Field Reports, Data Sources, Intervention Planner, Ethics Boundary, Export Brief."
+      },
+      "te": {
+        "label": "Three interlocking deliverables",
+        "p": "The final report sets the claim: move from route advice to the perception gap, because formal indicators and lived experience do not always agree — a street can be lit, well served by transit and low on recorded incidents, and still be unpleasant to walk. The one-page brief turns the claim into system requirements: reports anonymous, location rounded to a street segment, confidence level and bias notes displayed, no public safety score. The prototype turns those requirements into a flow that runs end to end. The brief was the hardest to write, because it stops an ethical position from being a sentence in a report."
+      },
+      "ou": {
+        "label": "What this case produced",
+        "m1": {
+          "label": "interviews across the team; three are mine",
+          "v": "18"
+        },
+        "m2": {
+          "label": "deliverables that hold each other up",
+          "v": "3"
+        },
+        "m3": {
+          "label": "slow screens, four questions each",
+          "v": "6"
+        },
+        "p": "A design direction that can be challenged: anonymous perception reports, objective layers, gap categories, per-place explanation, source limits, an exportable planning brief. A reviewer, planner or community member can point at a screen and question its logic — which is more useful than a handsome dashboard image. Evidence status: never tested with real planning staff, and parts of the data layer are an intended integration rather than a live pipeline. 18 interviews can count mentions; they cannot support a rate, a ranking or a score, which is why they are used as perception cues throughout."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "The main lesson was not 'collect more data'. It was to work out what the data is allowed to claim. Australia already has established channels for residents to report local issues to council; we borrowed the flow but not the purpose — a perception report should not become a public danger warning, only a small planning signal to be checked against other evidence. Community-contributed geographic data can show planners what official layers miss, but it is not automatically complete, neutral or representative, which is why rounding, anonymity and bias notes are preconditions rather than features. I do not think the final proposal fully answers the critique it responded to. It changed what I am willing to claim: not 'help someone walk home safely', but 'help an institution see where its own evidence is incomplete'."
+      }
+    },
+    "rules": {
+      "hero": {
+        "title": "Requirements into Rules",
+        "sub": "Two briefs from one course, doing the same thing: taking a requirement everyone agrees with and forcing it into a rule that can be built to — and argued against."
+      },
+      "roleVal": "Fietspad was a team project and I was Lead Developer: I built the back-end prototype with AI coding tools and generated the high-fidelity interface in Figma Make, which a teammate rebuilt in Figma Design; the Quest 3 guide was individual and entirely mine",
+      "timeVal": "2025 · DECO7250 Human-Computer Interaction, submitted and marked",
+      "teamVal": "One team, one solo",
+      "toolsVal": "Figma · Figma Make · Miro · Otter · ChatGPT · literature translation",
+      "ch": {
+        "label": "The problem",
+        "title": "'Make cycling safer' is a sentence nobody can build to and nobody can argue with.",
+        "p": "Neither can 'warn people in time'. Everyone agrees with them in a document, and neither survives contact with an engineer. The real design work happens in the step that forces them into numbers: how many metres before the hazard, which lane types get down-weighted, how small a tap target may be, and when not to warn at all. Once that is done the rule can be executed — and, more importantly, someone can point at it and say this one is wrong. Being refutable is the precondition for being useful."
+      },
+      "re": {
+        "label": "Working with AI",
+        "title": "AI is an accelerator for breadth. Depth is still a person's job.",
+        "m1": {
+          "t": "Confident and unsourced",
+          "b": "Generative drafts produced claims that sounded settled and had nothing behind them. Every figure without a source was deleted, claims were verified against official sources, and known local examples went in instead."
+        },
+        "m2": {
+          "t": "Fidelity drift",
+          "b": "Figma Make's layout fidelity was unstable — a small prompt change caused a large deviation. It was demoted to a reference export, and every screen was rebuilt in Figma Design."
+        },
+        "m3": {
+          "t": "Flattened tensions",
+          "b": "AI merges contradictory findings into a single theme. Edge cases went into a separate table — night-riding confidence, wet-weather risk, large e-bikes that do not fit narrow racks — and each later became a specific feature."
+        },
+        "quote": "Verify transcripts against audio · check claims against official sources · rewrite AI copy · walk the flow with think-aloud · delete features that only add complexity",
+        "quoteWho": "Quality control, as five actions rather than an attitude"
+      },
+      "sy": {
+        "label": "The system idea",
+        "title": "The proposal drafts turned safety into metres, pixels and routing weights.",
+        "p": "Bike lanes end abruptly and dump riders into traffic. The proposal drafts named the phenomenon, the '25-metre bike lane', and proposed down-weighting lanes that are only a layer of paint; AI wrote most of those drafts. The back-end prototype I built with AI coding tools filters segments by level of traffic stress, and the final proposal made 'Calmest' the default route. Hazard categories are cycling-specific rather than generic: left hook, dooring zone, shared lane. The drafts set warnings 150–250 m ahead, delivered by audio and haptics so they do not take the eyes, and a 48 px tap-target floor is one item on the drafts' self-check list. The final proposal kept pre-alerts before roundabouts and left hooks."
+      },
+      "id": {
+        "label": "Interface decisions",
+        "p": "Warnings state behaviour, not direction: take the lane and make eye contact with turning drivers, or take the alternate street — because that is the real response to a left hook, not 'turn left'. The detour button carries its own cost, stating the extra minutes on the button itself, while 'keep current route' remains an equal-weight primary action; the interface does not assume the safer route is the right route. Distances are given as distance — 200 m, 450 m, 1.2 km — not as junction counts, because there is no stable 'next intersection' while riding. And the entry button reads 'See safer routes', comparative rather than superlative, because no available data supports the word 'safest'."
+      },
+      "pr": {
+        "label": "The second brief",
+        "p": "A VR headset watches your hands with cameras. In low light, when the hands overlap, or when a hand leaves the field of view, tracking breaks and the virtual hand vanishes. A 2025 peer-reviewed paper showed that warning before the break is effective. The brief was to turn that into something a designer can act on tomorrow: three failure causes became three independent trigger conditions with their own copy, rather than one generic warning; the detection lead time became a per-cause threshold — roughly three seconds ahead in low light, risk-threshold triggers for out-of-view and occlusion, ignoring micro-jitter and applying a cooldown; and the copy convention became uniform, symptom then one action, verb first."
+      },
+      "te": {
+        "label": "How far the testing went",
+        "p": "Think-aloud walkthrough, and no further. The proposal drafts' self-check list claims 6 of 6 — which is a self-check, not external validation, and the case says so rather than letting the number imply more. A walkthrough catches comprehension problems. It does not catch what happens when someone is riding, tired, wet or in traffic, and the audio warning in particular exists precisely because a rider cannot look at a screen."
+      },
+      "ou": {
+        "label": "What this case produced",
+        "m1": {
+          "label": "warning lead in the proposal drafts",
+          "v": "150–250 m"
+        },
+        "m2": {
+          "label": "tap-target floor, one item on the drafts' checklist",
+          "v": "48 px"
+        },
+        "m3": {
+          "label": "paper turned into independent triggers",
+          "v": "1 → 3"
+        },
+        "p": "A route app's interface and design system, an AI usage register, an eight-panel guide and its analysis. Evidence status: both were submitted and marked, neither shipped. The guide's effect figures — roughly 83% for out-of-view and 62% for mutual occlusion — are the cited paper's experimental results, not mine, and a separate section lists what that study cannot support: three causes only, Quest 3 only, mostly right-handed young participants, short lab tasks. Fietspad's route proportions are demonstration figures."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "Putting the two briefs together is the point. In Fietspad, the proposal drafts turned 'safety' into routing weights, warning distances and tap sizes, and AI wrote most of those drafts. The other brief is where I turned a paper into trigger conditions, copy templates and a checklist myself. What survives outside a course is the move itself — and the discipline of saying where the rule stops holding, rather than letting a self-check stand in for evidence someone else produced."
       }
     }
   },
@@ -507,7 +748,7 @@
     "site": "Site",
     "write": "Write",
     "meta": {
-      "built": "Hand-built with Next.js, Tailwind, and a lot of revisions.",
+      "built": "Built with Next.js and Tailwind, written with Codex and Claude Code, and revised many times.",
       "version": "v4 · updated April 2026"
     }
   },
@@ -578,7 +819,7 @@
     "skillsAndTools": "Skills & Tools",
     "skillsAndToolsDescription": "Core competencies developed through academic study and hands-on projects.",
     "letsWorkTogether": "Let's Work Together",
-    "letsWorkTogetherDescription": "I'm currently looking for internship opportunities and excited to contribute to meaningful design projects.",
+    "letsWorkTogetherDescription": "I'm graduating late 2026 and looking for full-time graduate roles, and excited to contribute to meaningful design projects.",
     "featuredProjectsEmpty": "Featured projects coming soon.",
     "stats": {
       "userInterviews": "User Interviews",
@@ -743,7 +984,7 @@
     "cv": "Download CV",
     "tl": {
       "label": "Briefly",
-      "y2026": "MazeRunners built and exhibited; Vigil and Hoop Dream shipped. Graduating in Nov, looking for a serious team.",
+      "y2026": "MazeRunners built and exhibited; Hoop Dream shipped. Graduating in Nov, looking for a serious team.",
       "y2025": "Started the Master of Interaction Design at UQ in Feb: research methods, IA, physical computing.",
       "y2024": "Graduated from Swansea University in Jul with a BSc (Hons) in Computer Science, 2:1.",
       "y2020": "Moved to Wales to study Computer Science at Swansea University."
@@ -781,7 +1022,7 @@
       "items": [
         {
           "q": "What's your typical response time?",
-          "a": "I usually respond to emails within 24-48 hours. For urgent matters, feel free to reach out on LinkedIn."
+          "a": "I usually respond to emails within 24-48 hours."
         },
         {
           "q": "Are you available for freelance work?",
@@ -802,7 +1043,7 @@
     "email": "24kplo@gmail.com",
     "cal": "Book 20 minutes",
     "fit": {
-      "1": "UX / Product / Interaction internships, 2026 – 2027",
+      "1": "Full-time graduate roles in UX, product and interaction design, from late 2026",
       "2": "Research-led work where shipping is still the goal",
       "3": "Small teams where the designer is in the room for decisions",
       "label": "Good fits"
@@ -838,16 +1079,6 @@
       "degree": "Master of Interaction Design",
       "institutionAndYears": "The University of Queensland • 2025 – 2026"
     },
-    "experience": [
-      {
-        "title": "Control layer, MazeRunners (group project)",
-        "orgAndYear": "Built & exhibited • 2026"
-      },
-      {
-        "title": "Vigil & Hoop Dream (solo projects)",
-        "orgAndYear": "Spec to build with AI tooling • 2026"
-      }
-    ],
     "kicker": "Résumé",
     "headline": "Experience",
     "download": "Request PDF",
