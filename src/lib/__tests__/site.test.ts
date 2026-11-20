@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { siteConfig, resolveSiteUrl } from "../site";
 
-const PROD = "https://lewisdong.vercel.app";
+const PROD = "https://portfolio-lewisdong.vercel.app";
 
 describe("resolveSiteUrl", () => {
     it("falls back to the production origin when the env var is unset or blank", () => {
