@@ -1,9 +1,9 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
-// No vigil: it is unlisted, so no proof link may point at it. PriceWise and
-// Perception Gap Mapper carry the AI UX thread that replaced it.
+// Listed cases only: vigil, spectra, rules and gapmapper are unlisted, so no
+// proof link may point at them.
 const anchoredCaseProofHref =
-    /\/projects\/(connect|spectra|ai|maze|hoop|pricewise|gapmapper)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|ai|maze|hoop|pricewise|grassland|onthebeat|lamplight|autofill)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 /**
  * Next's dev server sometimes issues a full reload while it compiles a route for
@@ -74,7 +74,7 @@ test.describe("Portfolio Homepage", () => {
         await expect(proofDesk.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
         await expect(proofDesk.getByText(/Best cases to inspect/i)).toBeVisible();
         await expect(proofDesk.getByText(/Information architecture/i).first()).toBeVisible();
-        await expect(proofDesk.getByText(/Accessibility/i).first()).toBeVisible();
+        // No accessibility line since Spectra Lens was unlisted (2026-11-20).
         await expect(proofDesk.getByText(/Design technology/i).first()).toBeVisible();
         // The AI UX route went with Vigil when Vigil was unlisted, and came back
         // as a thread whose route points at PriceWise, never at Vigil.
@@ -160,10 +160,12 @@ test.describe("Projects Page", () => {
         // Renamed in 3e58192: the real UQ Connect is a student social platform,
         // not the portal IA redesign the fabricated case claimed.
         await expect(page.getByText(/Research rigor \/ product structure/i)).toBeVisible();
-        await expect(page.getByText(/Accessibility \/ inclusive design/i)).toBeVisible();
+        // Accessibility went with Spectra Lens (unlisted 2026-11-20).
+        await expect(page.getByText(/Accessibility \/ inclusive design/i)).toHaveCount(0);
+        await expect(page.getByText(/Complex \/ real-time interaction/i)).toBeVisible();
         await expect(page.getByText(/Design technology \/ prototyping/i)).toBeVisible();
-        // Gone with Vigil, then back as a thread through PriceWise, Perception
-        // Gap Mapper and UQ Connect.
+        // Gone with Vigil, then back as a thread through PriceWise, UQ Connect
+        // and Hoop Dream.
         await expect(page.getByText(/AI UX \/ trust/i).first()).toBeVisible();
     });
 
@@ -269,7 +271,7 @@ test.describe("Projects Page", () => {
     });
 
     test("cases without a playable build should not show a demo", async ({ page }) => {
-        for (const slug of ["connect", "spectra", "ai"]) {
+        for (const slug of ["connect", "onthebeat", "ai"]) {
             await page.goto(`/projects/${slug}`);
             await expect(page.locator(".case-demo")).toHaveCount(0);
         }
@@ -418,18 +420,36 @@ test.describe("Projects Page", () => {
         await expect(page.locator("#long-form")).toContainText("71 research and testing records");
     });
 
-    test("spectra detail should expose inclusive design depth", async ({ page }) => {
-        await page.goto("/projects/spectra");
+    test("on the beat detail should state who wrote the code and what is untested", async ({ page }) => {
+        await page.goto("/projects/onthebeat");
 
         await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
-        // The case is the browser extension that exists, not the AR tool the
-        // Codex-generated copy invented. Assert the build and its stated limit.
-        await expect(page.locator("#long-form").getByText(/extension/i).first()).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/spacing/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/written and flashed by Claude Code/i).first()).toBeVisible();
+        await expect(page.locator("#long-form").getByText(/no record of any participant testing/i).first()).toBeVisible();
+        await expect(page.locator(".case-build-evidence img")).toHaveCount(3);
+    });
+
+    test("lamplight and autofill details should state authorship and their only user", async ({ page }) => {
+        for (const slug of ["lamplight", "autofill"]) {
+            await page.goto(`/projects/${slug}`);
+            await expect(page.locator(".cs-cover img")).toHaveCount(1);
+            await expect(page.locator("#long-form").getByText(/written by Claude Code/i).first()).toBeVisible();
+            await expect(page.locator("#long-form").getByText(/no one but me|the only user on record/i).first()).toBeVisible();
+        }
+    });
+
+    test("grassland detail should show its screenshots and its evidence limit", async ({ page }) => {
+        await page.goto("/projects/grassland");
+
+        await expect(page.locator(".cs-cover img")).toHaveCount(1);
+        await expect(page.locator(".case-build-evidence img")).toHaveCount(6);
+        await expect(page.locator("#long-form").getByText(/no structured usability testing with outside players/i).first()).toBeVisible();
+        await expect(page.locator("a[href='https://onon-wolf-iron-tide.vercel.app']").first()).toBeVisible();
     });
 
     test("project detail should keep related visuals inside their cards", async ({ page }) => {
-        await page.goto("/projects/spectra");
+        // MazeRunners' neighbours (UQ Connect, Hoop Dream) both draw a diagram.
+        await page.goto("/projects/maze");
         const relatedViz = page.locator(".cs-related-viz").first();
         const nestedViz = relatedViz.locator(".viz");
 
@@ -567,8 +587,8 @@ test.describe("Hire Page", () => {
         await expect(
             thread.getByText("None of these is a finished AI-native product, and each entry states its own limits.", { exact: true }),
         ).toBeVisible();
-        await expect(thread.locator("li")).toHaveCount(4);
-        for (const slug of ["pricewise", "gapmapper", "connect", "hoop"]) {
+        await expect(thread.locator("li")).toHaveCount(3);
+        for (const slug of ["pricewise", "connect", "hoop"]) {
             await expect(thread.locator(`a[href='/projects/${slug}#decision-timeline']`)).toBeVisible();
         }
         await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
@@ -581,7 +601,7 @@ test.describe("Hire Page", () => {
 
         await expect(thread.getByText(/^我还没有做完一个 AI 原生产品。/)).toBeVisible();
         await expect(
-            thread.getByText("这四条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。", { exact: true }),
+            thread.getByText("这三条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。", { exact: true }),
         ).toBeVisible();
         await expect(thread.locator("a[href='/zh/projects/pricewise#decision-timeline']")).toBeVisible();
         await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
@@ -663,6 +683,15 @@ test.describe("Contact Page", () => {
         await expect(page.getByText(/AI UX/i).first()).toBeVisible();
         await expect(page.getByText(/Best proof/i).first()).toBeVisible();
         await expect(page.locator("a[href*='/projects/'][href*='#']").first()).toBeVisible();
+    });
+
+    // Accessibility lost its only listed cases on 2026-11-20, so a stale link
+    // gets the plain form rather than a packet pointing at unlisted cases.
+    test("contact should show no role context for a role with no listed case", async ({ page }) => {
+        await page.goto("/contact?role=accessibility");
+
+        await expect(page.locator(".contact-role-context")).toHaveCount(0);
+        await expect(page.locator("a[href*='/projects/spectra']")).toHaveCount(0);
     });
 
     test("contact should show interview follow-through context", async ({ page }) => {
@@ -777,7 +806,10 @@ test.describe("Responsive Design", () => {
             "/blog",
             "/about",
             "/projects/connect",
-            "/projects/spectra",
+            "/projects/grassland",
+            "/projects/onthebeat",
+            "/projects/lamplight",
+            "/projects/autofill",
             "/projects/ai",
             "/projects/hoop",
             "/zh",

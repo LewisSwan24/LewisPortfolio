@@ -18,9 +18,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Proof depth",
-        value: "4 live builds",
+        value: "5 live builds",
         detail:
-          "UQ Connect, MazeRunners, Hoop Dream and PriceWise each open from their case page. Every case shows its methods and limits.",
+          "UQ Connect, MazeRunners, Hoop Dream, PriceWise and Grassland Iron Tide each open from their case page. Every case shows its methods and limits.",
       },
       {
         label: "Interview readiness",
@@ -83,6 +83,26 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
         "Shows written standards another reviewer could apply, and a clear line between what a script can check and what it cannot.",
       href: "/projects/hoop#decision-timeline",
     },
+    {
+      id: "realtime-interaction-proof",
+      capability: "Complex, real-time interaction",
+      caseSlug: "grassland",
+      proof:
+        "Grassland Iron Tide keeps one command grammar across five RTS missions and restores failure from one save chain; 430/430 tests and a full playthrough at two resolutions check it.",
+      whyItMatters:
+        "Shows interaction rules written so a test or a browser run can hold them, not only screens.",
+      href: "/projects/grassland#decision-timeline",
+    },
+    {
+      id: "ai-output-review-proof",
+      capability: "Reviewing what AI tools build",
+      caseSlug: "onthebeat",
+      proof:
+        "On The Beat's code was written by Claude Code. I caught mock data posing as a real match, a link that needed my laptop and a canvas that counted wrong, then checked the fixes on two real wristbands.",
+      whyItMatters:
+        "Shows the part of AI-assisted work that stays with the designer: deciding what done means.",
+      href: "/projects/onthebeat#decision-timeline",
+    },
   ],
   questionBank: [
     {
@@ -125,6 +145,22 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       caseSlug: "hoop",
       href: "/projects/hoop#decision-timeline",
     },
+    {
+      id: "command-grammar-grassland",
+      group: "product",
+      question: "How do you keep a command system predictable across five missions?",
+      proves: "Interaction rules, consistency across missions, and knowing what a test can hold.",
+      caseSlug: "grassland",
+      href: "/projects/grassland#decision-timeline",
+    },
+    {
+      id: "ai-review-onthebeat",
+      group: "limits",
+      question: "The code was written by Claude Code. What was your part?",
+      proves: "Requirement setting, AI output review, and an honest authorship line.",
+      caseSlug: "onthebeat",
+      href: "/projects/onthebeat#outcome-limits",
+    },
   ],
   boundaries: [
     {
@@ -143,7 +179,8 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
         "The before-and-after outcomes were never formally measured, so I quote methods and observations rather than effect sizes.",
       validation:
         "I would define production telemetry before claiming durable product impact.",
-      href: "/projects/spectra#outcome-limits",
+      // Pointed at Spectra Lens until it was unlisted (2026-11-20).
+      href: "/projects/pricewise#outcome-limits",
     },
     {
       id: "scope-of-build",
@@ -174,9 +211,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "证据深度",
-        value: "4 个线上版本",
+        value: "5 个线上版本",
         detail:
-          "UQ Connect、MazeRunners、Hoop Dream 和 PriceWise 都能从案例页直接打开。每个案例都写了方法和限制。",
+          "UQ Connect、MazeRunners、Hoop Dream、PriceWise 和草原铁潮都能从案例页直接打开。每个案例都写了方法和限制。",
       },
       {
         label: "面试准备度",
@@ -239,6 +276,22 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
         "说明标准写成了文字，换一个人也能照着审；也说明我分得清脚本查得了什么、查不了什么。",
       href: "/projects/hoop#decision-timeline",
     },
+    {
+      id: "realtime-interaction-proof",
+      capability: "复杂的即时交互",
+      caseSlug: "grassland",
+      proof: "草原铁潮让五关 RTS 共用一套命令语法，失败后从同一条存档链恢复；430 / 430 测试和两种分辨率的完整通关负责核对。",
+      whyItMatters: "说明交互规则写成了测试或浏览器能守住的样子，不只是画面。",
+      href: "/projects/grassland#decision-timeline",
+    },
+    {
+      id: "ai-output-review-proof",
+      capability: "审查 AI 工具做出来的东西",
+      caseSlug: "onthebeat",
+      proof: "On The Beat 的代码由 Claude Code 编写。我抓出了冒充真配对的模拟数据、离不开我笔电的链路和数错的画布，再在两支真手环上核对修复。",
+      whyItMatters: "说明 AI 辅助开发里留给设计者的那部分：决定什么才算做完。",
+      href: "/projects/onthebeat#decision-timeline",
+    },
   ],
   questionBank: [
     {
@@ -281,6 +334,22 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       caseSlug: "hoop",
       href: "/projects/hoop#decision-timeline",
     },
+    {
+      id: "command-grammar-grassland",
+      group: "product",
+      question: "五关下来，怎么让命令系统保持可预测？",
+      proves: "交互规则、跨关卡的一致性，以及分清测试守得住什么。",
+      caseSlug: "grassland",
+      href: "/projects/grassland#decision-timeline",
+    },
+    {
+      id: "ai-review-onthebeat",
+      group: "limits",
+      question: "代码是 Claude Code 写的，你做了什么？",
+      proves: "定需求、审查 AI 输出，以及讲清分工。",
+      caseSlug: "onthebeat",
+      href: "/projects/onthebeat#outcome-limits",
+    },
   ],
   boundaries: [
     {
@@ -299,7 +368,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
         "前后对比的结果从来没有正式测量过，所以我只讲方法和观察到的现象，不报效应量。",
       validation:
         "在声称长期产品影响前，我会先定义生产 telemetry。",
-      href: "/projects/spectra#outcome-limits",
+      href: "/projects/pricewise#outcome-limits",
     },
     {
       id: "scope-of-build",

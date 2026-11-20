@@ -14,6 +14,10 @@ const caseLabels: Record<ProjectEvidenceSlug, string> = {
   pricewise: "PriceWise",
   gapmapper: "Perception Gap Mapper",
   rules: "Requirements into Rules",
+  grassland: "Grassland Iron Tide",
+  onthebeat: "On The Beat",
+  lamplight: "Lamplight Nook",
+  autofill: "Resume Autofill",
 };
 
 interface InterviewQuestionBankProps {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { localizeInternalHref } from "@/lib/locale-href";
 import {
+  getHiringRoleFits,
   getProofUiLabels,
   getRolePacket,
   type HiringRoleId,
@@ -15,6 +16,9 @@ interface ContactRoleContextProps {
 export function ContactRoleContext({ role, locale }: ContactRoleContextProps) {
   if (!role) return null;
 
+  // A role with no listed case behind it has no card on /hire (accessibility,
+  // since 2026-11-20), so a stale ?role= link gets the plain form.
+  if (!getHiringRoleFits(locale).some((fit) => fit.id === role)) return null;
   const packet = getRolePacket(role as HiringRoleId, locale);
   if (!packet) return null;
   const labels = getProofUiLabels(locale);

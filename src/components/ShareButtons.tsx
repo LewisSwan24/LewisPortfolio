@@ -49,9 +49,9 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
                     onClick={handleShare}
                     className={cn(
                         "flex h-9 w-9 items-center justify-center rounded-lg",
-                        "border border-border/60 bg-background/40 backdrop-blur-md",
+                        "border border-border/60 bg-[var(--surface)]",
                         "text-muted-foreground transition-colors",
-                        "hover:bg-accent hover:text-accent-foreground hover:border-accent",
+                        "hover:bg-accent hover:text-[var(--on-accent)] hover:border-accent",
                         "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                     )}
                     aria-label="Share"
@@ -69,7 +69,7 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
                 rel="noopener noreferrer"
                 className={cn(
                     "flex h-9 w-9 items-center justify-center rounded-lg",
-                    "border border-border/60 bg-background/40 backdrop-blur-md",
+                    "border border-border/60 bg-[var(--surface)]",
                     "text-muted-foreground transition-colors",
                     "hover:bg-[#1DA1F2] hover:text-white hover:border-[#1DA1F2]",
                     "focus:outline-none focus:ring-2 focus:ring-[#1DA1F2] focus:ring-offset-2"
@@ -88,7 +88,7 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
                 rel="noopener noreferrer"
                 className={cn(
                     "flex h-9 w-9 items-center justify-center rounded-lg",
-                    "border border-border/60 bg-background/40 backdrop-blur-md",
+                    "border border-border/60 bg-[var(--surface)]",
                     "text-muted-foreground transition-colors",
                     "hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2]",
                     "focus:outline-none focus:ring-2 focus:ring-[#0A66C2] focus:ring-offset-2"
@@ -105,9 +105,9 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
                 href={shareLinks.email(url, title, description)}
                 className={cn(
                     "flex h-9 w-9 items-center justify-center rounded-lg",
-                    "border border-border/60 bg-background/40 backdrop-blur-md",
+                    "border border-border/60 bg-[var(--surface)]",
                     "text-muted-foreground transition-colors",
-                    "hover:bg-accent hover:text-accent-foreground hover:border-accent",
+                    "hover:bg-accent hover:text-[var(--on-accent)] hover:border-accent",
                     "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                 )}
                 aria-label="Share via Email"
@@ -125,9 +125,9 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
                 }}
                 className={cn(
                     "flex h-9 w-9 items-center justify-center rounded-lg",
-                    "border border-border/60 bg-background/40 backdrop-blur-md",
+                    "border border-border/60 bg-[var(--surface)]",
                     "text-muted-foreground transition-colors",
-                    "hover:bg-accent hover:text-accent-foreground hover:border-accent",
+                    "hover:bg-accent hover:text-[var(--on-accent)] hover:border-accent",
                     "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                 )}
                 aria-label="Copy link"

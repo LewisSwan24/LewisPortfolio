@@ -45,10 +45,10 @@ export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
                 onClick={handleCopy}
                 className={cn(
                     "absolute right-2 top-2 p-2 rounded-md",
-                    "bg-background/80 backdrop-blur-sm border border-border/50",
+                    "bg-background/80 border border-border/50",
                     "text-muted-foreground transition-all duration-200",
                     "opacity-0 group-hover:opacity-100 focus:opacity-100",
-                    "hover:bg-accent hover:text-accent-foreground hover:border-accent",
+                    "hover:bg-accent hover:text-[var(--on-accent)] hover:border-accent",
                     "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-muted"
                 )}
                 aria-label={copied ? "Copied!" : "Copy code"}

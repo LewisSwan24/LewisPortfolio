@@ -49,7 +49,7 @@ export function TOC({ items }: TOCProps) {
       <div className="mb-6 lg:hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-background/40 backdrop-blur-md px-4 py-3 text-sm font-medium text-foreground shadow-sm shadow-black/5 transition-all duration-200 motion-reduce:transition-none focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
+          className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-[var(--surface)] px-4 py-3 text-sm font-medium text-foreground transition-all duration-200 motion-reduce:transition-none focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background"
           aria-expanded={isOpen}
         >
           <span>{onThisPage}</span>
@@ -70,7 +70,7 @@ export function TOC({ items }: TOCProps) {
           </svg>
         </button>
         {isOpen && (
-          <nav className="mt-2 rounded-xl border border-border/60 bg-background/40 backdrop-blur-md p-4 shadow-sm shadow-black/5">
+          <nav className="mt-2 rounded-xl border border-border/60 bg-[var(--surface)] p-4">
             <ul className="space-y-2">
               {items.map((item) => (
                 <li key={item.id}>

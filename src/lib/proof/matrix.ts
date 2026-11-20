@@ -1,3 +1,6 @@
+import { autofillPack } from "./case-autofill";
+import { lamplightPack } from "./case-lamplight";
+import { recentCaseInterviewPacks } from "./recent-cases";
 import type {
   CaseInterviewPack,
   EvidenceMatrixCapability,
@@ -49,10 +52,10 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     // AI-native case, was abandoned. See ai-trust-thread.ts.
     proofLinks: [
       { label: "PriceWise: checking what an AI feature really does", href: "/projects/pricewise#decision-timeline" },
-      { label: "Perception Gap Mapper: no more certainty than the evidence allows", href: "/projects/gapmapper#decision-timeline" },
+      { label: "On The Beat: sending back AI output that only looked finished", href: "/projects/onthebeat#decision-timeline" },
       { label: "UQ Connect: a match that states its reasons (team finding)", href: "/projects/connect#decision-timeline" },
     ],
-    bestCases: ["pricewise", "gapmapper", "connect"],
+    bestCases: ["pricewise", "onthebeat", "connect"],
     risk:
       "No AI-native case is finished yet. The evidence comes from AI-built code, automated output and one team study, and each case states its limits.",
     interviewAngle: "Ask how I found that PriceWise's semantic search never used a vector.",
@@ -114,10 +117,10 @@ const zhHiringRoleFits: HiringRoleFit[] = [
     fit: "适合这样的团队：需要有人判断一个 AI 功能值得多少信任，也需要有人去核实这个功能实际做了什么。",
     proofLinks: [
       { label: "PriceWise：核实 AI 功能到底做了什么", href: "/projects/pricewise#decision-timeline" },
-      { label: "走夜路：不让界面说出证据撑不起的把握", href: "/projects/gapmapper#decision-timeline" },
+      { label: "On The Beat：把只是看起来做完的 AI 输出打回去", href: "/projects/onthebeat#decision-timeline" },
       { label: "UQ Connect：会说明理由的匹配（团队发现）", href: "/projects/connect#decision-timeline" },
     ],
-    bestCases: ["pricewise", "gapmapper", "connect"],
+    bestCases: ["pricewise", "onthebeat", "connect"],
     risk: "还没有做完的 AI 原生案例。这里的证据来自 AI 写的代码、自动化输出和一项团队研究，边界写在每个案例里。",
     interviewAngle: "可以问我怎么发现 PriceWise 的语义搜索从来没用过向量。",
   },
@@ -829,6 +832,9 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
           "The guide's effect figures are the cited paper's results, not mine, and I wrote a separate section listing what that study cannot support. Fietspad's '6/6 pass' is a self-check, not external validation.",
       },
     },
+  ...recentCaseInterviewPacks.en,
+  ...lamplightPack.en,
+  ...autofillPack.en,
 };
 
 /**
@@ -1145,6 +1151,9 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
           "指南里的效果数字是所引论文的结果，不是我的，我另写了一节列出那份研究撑不起的部分。Fietspad 的「6/6 通过」是自查清单，不是外部验证。",
       },
     },
+  ...recentCaseInterviewPacks.zh,
+  ...lamplightPack.zh,
+  ...autofillPack.zh,
 };
 
 const caseInterviewPacks: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseInterviewPack>> = {

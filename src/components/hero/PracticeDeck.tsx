@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useGsapContext } from "@/hooks/useGsapContext";
+import { getGsap, MOTION_PRESETS } from "@/lib/motion/gsap";
 
 type Lang = "en" | "zh";
 
@@ -79,20 +81,6 @@ const DECK: DeckCard[] = [
       ],
     },
   },
-  // The three cases added on 2026-08-13. Gap Mapper's and Fietspad's lines are
-  // transcribed from the portfolio PDF rather than written for the card: the
-  // critique on p12, and p31-32.
-  //
-  // PriceWise's lines came from the PDF's commit table on p23 and were
-  // corrected on 2026-09-28 against the repository's own history. The
-  // 5,884-line commit (78b36d1) was about a quarter social code, and nothing
-  // was cut afterwards: the v1 routes moved to unversioned paths in August and
-  // the social routes are still there. "Looking back" is Lewis's later
-  // judgement, not his reason for stopping in March.
-  //
-  // Only PriceWise has a documented day. The other two are coursework and the
-  // source records a semester, so they carry a semester — a precise-looking
-  // date I cannot support is the same defect as any other invented figure.
   {
     id: "scope",
     kind: { en: "Commit log", zh: "提交记录" },
@@ -158,21 +146,8 @@ const DECK: DeckCard[] = [
   },
 ];
 
-/**
- * Motion, and why it is a spring rather than a curve.
- *
- * A cubic-bezier can only ease; it cannot overshoot and settle, and overshoot
- * is most of what reads as paper having weight. framer-motion is already a
- * dependency on this route, so the spring costs nothing extra in the bundle —
- * adding a second animation library for one hero component would.
- */
-const SETTLE = { type: "spring", stiffness: 240, damping: 26, mass: 0.9 } as const;
-const THROW = { type: "spring", stiffness: 190, damping: 22, mass: 0.7 } as const;
-const INSTANT = { duration: 0 } as const;
-
-// How far off-stage a card goes, and how far past the edge it has to be
-// dragged before the throw commits rather than snapping back.
-const OFF = 460;
+const REST_ROTATIONS = [-2.5, 1.5, -1, 2, -0.5] as const;
+const OFF = 420;
 const COMMIT = 90;
 
 type Leaving = { dir: 1 | -1 } | null;
@@ -184,29 +159,33 @@ export function PracticeDeck() {
   const reduce = useReducedMotion();
 
   const [top, setTop] = useState(0);
-  // `leaving` is the card being thrown out; `entering` is a card arriving back
-  // from off-stage when you step backwards. Going back has to bring a card in
-  // from the side it left by — throwing the top card away in both directions
-  // would make "back" look identical to "forward".
   const [leaving, setLeaving] = useState<Leaving>(null);
   const [entering, setEntering] = useState<1 | -1 | null>(null);
   const busy = useRef(false);
+  const hasInteracted = useRef(false);
+  const deckRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{
+    active: boolean;
+    moved: boolean;
+    startX: number;
+    startTime: number;
+    lastX: number;
+    el: HTMLElement | null;
+  }>({ active: false, moved: false, startX: 0, startTime: 0, lastX: 0, el: null });
 
   const step = useCallback(
     (delta: 1 | -1) => {
       if (busy.current) return;
+      hasInteracted.current = true;
       busy.current = true;
-      // The lock is released on its own timer, never from an animation
-      // callback. requestAnimationFrame does not fire while the tab is hidden
-      // or otherwise not compositing, so releasing there means a user who
-      // switches tabs mid-turn comes back to a deck that is locked for good.
-      // setTimeout still runs in a background tab — throttled, but it runs.
-      window.setTimeout(() => {
-        busy.current = false;
-      }, reduce ? 0 : 260);
+      window.setTimeout(
+        () => {
+          busy.current = false;
+        },
+        reduce ? 0 : 260
+      );
 
       if (reduce) {
-        // No travel at all under reduced motion — the card is simply replaced.
         setTop((i) => (i + delta + DECK.length) % DECK.length);
         return;
       }
@@ -218,14 +197,72 @@ export function PracticeDeck() {
           setLeaving(null);
         }, 240);
       } else {
-        // Put the previous card on top already parked off-stage, then let the
-        // next tick spring it home.
         setTop((i) => (i - 1 + DECK.length) % DECK.length);
         setEntering(-1);
         window.setTimeout(() => setEntering(null), 20);
       }
     },
-    [reduce],
+    [reduce]
+  );
+
+  useGsapContext(
+    deckRef,
+    ({ gsap }) => {
+      const cards = deckRef.current?.querySelectorAll<HTMLElement>("[data-deck-offset]");
+      if (!cards) return;
+
+      cards.forEach((card) => {
+        const offset = Number(card.dataset.deckOffset ?? "0");
+        const isTop = offset === 0;
+        const isLeaving = isTop && Boolean(leaving);
+        const isEntering = isTop && entering !== null;
+        const restRot = REST_ROTATIONS[offset] ?? 0;
+
+        const target = isLeaving
+          ? {
+              x: leaving!.dir * OFF,
+              y: 84,
+              rotation: leaving!.dir * 24,
+              scale: 0.96,
+              opacity: 0,
+            }
+          : isEntering
+            ? {
+                x: entering! * OFF,
+                y: 84,
+                rotation: entering! * 24,
+                scale: 0.96,
+                opacity: 0,
+              }
+            : {
+                x: offset * 4,
+                y: offset * 6,
+                rotation: restRot,
+                scale: 1 - offset * 0.03,
+                opacity: offset > 3 ? 0 : 1,
+              };
+
+        if (reduce || !hasInteracted.current || isEntering) {
+          gsap.set(card, target);
+        } else if (isLeaving) {
+          gsap.to(card, {
+            ...target,
+            duration: MOTION_PRESETS.deckThrow.duration,
+            ease: MOTION_PRESETS.deckThrow.ease,
+            overwrite: "auto",
+          });
+        } else {
+          gsap.to(card, {
+            ...target,
+            duration: MOTION_PRESETS.stackRipple.duration,
+            ease: MOTION_PRESETS.stackRipple.ease,
+            delay: offset * 0.035,
+            overwrite: "auto",
+          });
+        }
+      });
+    },
+    [top, leaving, entering, reduce]
   );
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -237,7 +274,69 @@ export function PracticeDeck() {
       step(-1);
     } else if (e.key === "Home") {
       e.preventDefault();
+      hasInteracted.current = true;
       setTop(0);
+    }
+  };
+
+  const onTopPointerDown = (e: React.PointerEvent<HTMLElement>) => {
+    if (reduce || e.button !== 0) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    dragRef.current = {
+      active: true,
+      moved: false,
+      startX: e.clientX,
+      startTime: performance.now(),
+      lastX: e.clientX,
+      el: e.currentTarget,
+    };
+  };
+
+  const onTopPointerMove = (e: React.PointerEvent<HTMLElement>) => {
+    const d = dragRef.current;
+    if (!d.active || !d.el) return;
+    d.lastX = e.clientX;
+    const dx = e.clientX - d.startX;
+    if (Math.abs(dx) > 8) {
+      d.moved = true;
+      const { gsap } = getGsap();
+      gsap.set(d.el, { x: dx * 0.45, rotation: -2.5 + dx * 0.04, scale: 1.02 });
+    }
+  };
+
+  const onTopPointerUp = (e: React.PointerEvent<HTMLElement>) => {
+    const d = dragRef.current;
+    if (!d.active) return;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+    const dx = d.lastX - d.startX;
+    const elapsed = Math.max(1, performance.now() - d.startTime);
+    const velocity = Math.abs(dx / elapsed) * 1000;
+    const wasMoved = d.moved;
+    const el = d.el;
+    d.active = false;
+    d.moved = false;
+    d.el = null;
+
+    if (!wasMoved) {
+      step(1);
+      return;
+    }
+
+    if (Math.abs(dx) > COMMIT || velocity > 520) {
+      step(dx < 0 ? -1 : 1);
+    } else if (el) {
+      const { gsap } = getGsap();
+      gsap.to(el, {
+        x: 0,
+        y: 0,
+        rotation: REST_ROTATIONS[0],
+        scale: 1,
+        duration: MOTION_PRESETS.stackRipple.duration,
+        ease: MOTION_PRESETS.stackRipple.ease,
+        overwrite: "auto",
+      });
     }
   };
 
@@ -256,11 +355,8 @@ export function PracticeDeck() {
         </div>
       </div>
 
-      {/* The deck itself takes focus, not the individual cards: a card that
-          scrolls away under you is a poor focus target, and the whole point of
-          the control is "step through the stack". Arrow keys and space step,
-          Home returns to the first card. */}
       <div
+        ref={deckRef}
         className="hero-deck"
         role="group"
         aria-roledescription={t("roledesc")}
@@ -272,66 +368,24 @@ export function PracticeDeck() {
           const offset = (i - top + DECK.length) % DECK.length;
           if (offset > 4) return null;
           const isTop = offset === 0;
-          const isLeaving = isTop && !!leaving;
-          const isEntering = isTop && entering !== null;
-          // The resting stack: each card sits a little lower, a little smaller
-          // and at its own angle, so the pile reads as loose paper.
-          const restRot = [-2.5, 1.5, -1, 2, -0.5][offset] ?? 0;
-
-          const target = isLeaving
-            ? {
-                x: leaving!.dir * OFF,
-                y: 90, // it falls as it goes, rather than sliding flat
-                rotate: leaving!.dir * 26,
-                scale: 0.96,
-                opacity: 0,
-              }
-            : isEntering
-              ? { x: entering! * OFF, y: 90, rotate: entering! * 26, scale: 0.96, opacity: 0 }
-              : {
-                  x: offset * 4,
-                  y: offset * 6,
-                  rotate: restRot,
-                  scale: 1 - offset * 0.03,
-                  opacity: offset > 3 ? 0 : 1,
-                };
+          const isLeaving = isTop && Boolean(leaving);
+          const restRot = REST_ROTATIONS[offset] ?? 0;
 
           return (
-            <motion.article
+            <article
               key={c.id}
+              data-deck-offset={offset}
               className={`deck-card ${isTop ? "top" : ""} ${isLeaving ? "released" : ""}`}
-              style={{ zIndex: 10 - offset }}
-              // Without this the server renders no transform and the client
-              // renders one, React calls the mismatch a hydration failure, and
-              // throws the whole server tree away. `initial={false}` means
-              // "start already at the animate values" — both sides then emit
-              // the same markup, and the stack does not fly in on first paint.
-              initial={false}
-              animate={target}
-              transition={
-                reduce
-                  ? INSTANT
-                  : isEntering
-                    ? INSTANT
-                    : isLeaving
-                      ? THROW
-                      : // Cards behind settle slightly after the one in front,
-                        // so the stack ripples instead of snapping as one block.
-                        { ...SETTLE, delay: offset * 0.035 }
-              }
-              drag={isTop && !reduce ? "x" : false}
-              dragElastic={0.14}
-              dragMomentum={false}
-              dragConstraints={{ left: 0, right: 0 }}
-              whileDrag={{ scale: 1.02, cursor: "grabbing" }}
-              onDragEnd={(_, info) => {
-                // Commit on distance or on a fast flick, so a short sharp
-                // gesture works as well as a long slow drag.
-                if (Math.abs(info.offset.x) > COMMIT || Math.abs(info.velocity.x) > 520) {
-                  step(info.offset.x < 0 ? -1 : 1);
-                }
+              style={{
+                zIndex: 10 - offset,
+                transform: `translate3d(${offset * 4}px, ${offset * 6}px, 0) rotate(${restRot}deg) scale(${1 - offset * 0.03})`,
+                opacity: offset > 3 ? 0 : 1,
               }}
-              onClick={isTop ? () => step(1) : undefined}
+              onPointerDown={isTop ? onTopPointerDown : undefined}
+              onPointerMove={isTop ? onTopPointerMove : undefined}
+              onPointerUp={isTop ? onTopPointerUp : undefined}
+              onPointerCancel={isTop ? onTopPointerUp : undefined}
+              onClick={isTop && reduce ? () => step(1) : undefined}
               aria-hidden={!isTop}
             >
               <DeckCardContent card={c} lang={lang} />
@@ -349,13 +403,10 @@ export function PracticeDeck() {
                   </svg>
                 </div>
               )}
-            </motion.article>
+            </article>
           );
         })}
 
-        {/* The live region used to announce only "03 / 08", which tells a
-            screen-reader user that something moved but not what they landed
-            on. It now reads the card out. */}
         <div className="deck-counter" aria-live="polite">
           <span>{String(top + 1).padStart(2, "0")}</span>
           <span className="sep">/</span>

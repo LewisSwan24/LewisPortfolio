@@ -66,7 +66,7 @@ export function SearchTrigger({ className }: { className?: string }) {
   return (
     <button
       onClick={openSearch}
-      className={`flex items-center gap-2 rounded-lg border border-border/60 bg-background/40 backdrop-blur-md px-3 py-2 text-sm text-muted-foreground shadow-sm shadow-black/5 hover:border-border hover:bg-muted/40 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background transition-all duration-200 ${className || ""}`}
+      className={`flex items-center gap-2 rounded-lg border border-border/60 bg-[var(--surface)] px-3 py-2 text-sm text-muted-foreground hover:border-border hover:bg-muted/40 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background transition-all duration-200 ${className || ""}`}
       aria-label="Open search (⌘K)"
     >
       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

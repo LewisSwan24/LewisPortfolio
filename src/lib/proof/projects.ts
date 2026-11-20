@@ -15,7 +15,7 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     headline: "Interaction designer who takes an idea all the way to something that runs.",
     summary:
       "I am looking for full-time graduate roles in interaction and product design, on teams that want a designer who can build, not only specify.",
-    status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; looking for full-time graduate roles.",
+    status: "UQ Master of Interaction Design candidate, Brisbane. Graduating November 2026; looking for full-time graduate roles.",
     stats: [
       {
         value: "5",
@@ -44,7 +44,7 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     headline: "会把东西真的做出来的交互设计师，而不只是交一份稿。",
     summary:
       "我在找交互 / 产品设计的全职毕业生岗位，尤其适合希望设计师能自己把想法推到能跑的团队。",
-    status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，主要看全职毕业生岗位。",
+    status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年 11 月毕业，主要看全职毕业生岗位。",
     stats: [
       {
         value: "5",
@@ -289,6 +289,72 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "I can force a requirement everyone agrees with into a rule someone can build to and argue with, and state plainly where that rule stops holding.",
     },
+    {
+      slug: "grassland",
+      href: "/projects/grassland",
+      problemType: "Complex interaction in a real-time system",
+      challenge:
+        "A real-time strategy game gives the player many units and commands on a running clock. If missions invent their own controls, or failure leaves the screen and the mission state disagreeing, nothing stays predictable.",
+      methods: [
+        "interaction grammar",
+        "information hierarchy on a fixed camera",
+        "checkpoint and save design",
+        "two-resolution browser acceptance",
+      ],
+      sample:
+        "Solo, with AI tools assisting the code, copy and assets. Five missions; 430/430 tests in the RC audit record; a full playthrough at 1280×720 and 1920×1080; an asset gate over 75 registered assets. No outside playtests.",
+      outcome:
+        "Chapter one plays end to end in a desktop browser, with one command grammar across all five missions and failure restored from one save chain.",
+      proves:
+        "I can design the rules of a real-time interaction system and write them so that tests and browser runs can check them.",
+    },
+    {
+      slug: "onthebeat",
+      href: "/projects/onthebeat",
+      problemType: "Connected hardware built with AI tools",
+      challenge:
+        "At a gig, two strangers who want to talk have no low-stakes way to start, and an app that makes them stare at a phone works against the point.",
+      methods: [
+        "requirement setting",
+        "AI output review",
+        "pairing on real hardware",
+        "two-sided consent flow",
+      ],
+      sample:
+        "Individual version of coursework; the three cards come from a teammate's prototype and Claude Code wrote the code. Two real wristbands paired through a cloud relay on 25 September 2026. No participant testing.",
+      outcome:
+        "A phone app, two wristbands and an always-on relay that run without a laptop; names appear only after both people agree.",
+      proves:
+        "I can steer AI tools to a working connected system by setting the requirements and sending back output that only looks finished.",
+    },
+    {
+      slug: "lamplight",
+      href: "/projects/lamplight",
+      problemType: "An interface for a long-running AI agent",
+      challenge:
+        "A long-running AI task shows up as a scrolling log: hard to tell who is working, how far the plan has got, or whether it is waiting for you.",
+      methods: ["metaphor-led interface design", "event-to-behaviour rules", "human-in-the-loop decision cards"],
+      sample:
+        "Solo; Claude Code wrote the code. A Windows app on the Claude Agent SDK, 1.0 on 5 November 2026, used day to day by me. No user testing; installer unsigned.",
+      outcome:
+        "A café crew that plays out a real Claude task, with the plan on a blackboard and risky steps behind a card that defaults to 'not now'.",
+      proves:
+        "I can turn the state of a long AI task into something a person reads at a glance, and keep them in charge of what is risky.",
+    },
+    {
+      slug: "autofill",
+      href: "/projects/autofill",
+      problemType: "Automation that acts in someone's name",
+      challenge:
+        "Applying for graduate jobs means typing one resume into system after system; a tool that fills forms in your name has to be trusted not to guess, submit or leak.",
+      methods: ["rules for uncertainty", "human-in-the-loop submission", "local-first privacy design"],
+      sample:
+        "Solo; Claude Code wrote the code. A Chrome extension and an Android app, used on my own applications. Accuracy measured only on synthetic test forms; no other users on record.",
+      outcome:
+        "A local-first autofill that leaves unsure fields to you, stops before the final submit and keeps the resume on the device.",
+      proves:
+        "I can set the rules for a tool that acts on someone's behalf, and make each rule visible on screen.",
+    },
   ],
   zh: [
     {
@@ -394,6 +460,48 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "我能把一句所有人都同意的要求，逼成一条能照着施工、也能让人指着说「这条不对」的规则，并且说得清这条规则在哪里失效。",
     },
+    {
+      slug: "grassland",
+      href: "/projects/grassland",
+      problemType: "即时系统里的复杂交互",
+      challenge: "即时战略游戏在不停走的时钟上交给玩家很多单位和命令。每关各造一套操作，或者失败后画面和任务状态对不上，就什么都不可预测了。",
+      methods: ["交互语法", "固定镜头下的信息层级", "检查点与存档设计", "双分辨率浏览器验收"],
+      sample:
+        "独立完成，代码、文案与资产由 AI 工具辅助生产。五关；RC 审计记录中 430 / 430 测试通过；1280×720 与 1920×1080 两种分辨率完整通关；资产闸门覆盖 75 项登记资产。没有外部试玩。",
+      outcome: "第一章能在桌面浏览器里连续通关，五关共用一套命令语法，失败后从同一条存档链恢复。",
+      proves: "我能为即时交互系统定规则，并把规则写成测试和浏览器都能核对的样子。",
+    },
+    {
+      slug: "onthebeat",
+      href: "/projects/onthebeat",
+      problemType: "借助 AI 工具做出来的联网硬件",
+      challenge: "演出现场，两个想说话的陌生人缺一个没有压力的开头；一个让人盯着手机的 App 反而违背初衷。",
+      methods: ["需求设定", "AI 输出审查", "真机硬件配对", "双方同意的流程"],
+      sample:
+        "课程作业的个人版本；三张卡出自组员的原型，代码由 Claude Code 编写。2026 年 9 月 25 日两支真手环经云端 relay 配对成功。没有参与者测试。",
+      outcome: "手机 App、两支手环和一台常开的 relay，不需要笔电就能运转；双方都同意后才显示名字。",
+      proves: "我能靠定需求、把只是看起来做完的输出打回去，借 AI 工具做出一套能运行的联网系统。",
+    },
+    {
+      slug: "lamplight",
+      href: "/projects/lamplight",
+      problemType: "给长时间运行的 AI 代理做的界面",
+      challenge: "跑很久的 AI 任务只是一屏滚动的日志：谁在做事、计划做到哪、是不是在等你，都很难看出来。",
+      methods: ["以比喻带动的界面设计", "事件到角色行为的规则", "人在回路的决定卡"],
+      sample: "独立完成，代码由 Claude Code 编写。基于 Claude Agent SDK 的 Windows 应用，2026 年 11 月 5 日发布 1.0，我日常在用。没有用户测试，安装包未签名。",
+      outcome: "一组咖啡馆店员演出真实的 Claude 任务，计划写在黑板上，风险步骤挡在默认「先不要」的卡片后面。",
+      proves: "我能把 AI 长任务的状态做成一眼看得懂的东西，并让人掌握有风险的步骤。",
+    },
+    {
+      slug: "autofill",
+      href: "/projects/autofill",
+      problemType: "以别人名义行事的自动化",
+      challenge: "投应届岗位要把同一份简历在一个又一个系统里重填；以你的名义填表的工具，要让人放心它不猜、不提交、不外传。",
+      methods: ["处理不确定的规则", "人在回路的提交", "本地优先的隐私设计"],
+      sample: "独立完成，代码由 Claude Code 编写。Chrome 扩展加 Android App，我投递时用过。准确率只在合成测试表单上量过；没有其他使用者的记录。",
+      outcome: "一个本地优先的自动填表工具：拿不准的留给你，在最终提交前停下，简历不离开设备。",
+      proves: "我能为代替用户行事的工具定规则，并让每条规则显示在屏幕上。",
+    },
   ],
 };
 
@@ -405,14 +513,14 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       subhead:
         "I take ambiguous product problems through research, information architecture, and inclusive interaction decisions — then use Claude Code and Codex to get them running, so what you review is a working prototype rather than a description of one.",
       status:
-        "Graduating late 2026. Looking for full-time graduate UX, product, and design-technologist roles.",
+        "Graduating November 2026. Looking for full-time graduate UX, product, and design-technologist roles.",
     },
     signals: [
       {
-        value: "4",
+        value: "5",
         label: "cases with a live build you can open",
         detail:
-          "UQ Connect, MazeRunners, Hoop Dream and PriceWise each open from their case page.",
+          "UQ Connect, MazeRunners, Hoop Dream, PriceWise and Grassland Iron Tide each open from their case page.",
       },
       {
         value: "6",
@@ -427,7 +535,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       {
         value: "2026",
         label: "availability",
-        detail: "Graduating late 2026. Open to graduate and entry-level UX, product design, and design-technologist roles.",
+        detail: "Graduating November 2026. Open to graduate and entry-level UX, product design, and design-technologist roles.",
       },
     ],
     proofRoutes: [
@@ -458,6 +566,15 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         href: "/projects/spectra#evidence-board",
       },
       {
+        audience: "Complex / real-time interaction",
+        title: "One set of rules across a whole system",
+        claim:
+          "Best proof that I can design interaction rules that hold across a complex system and can be checked.",
+        evidence:
+          "Grassland Iron Tide: one command grammar across five RTS missions, failure restored from one save chain, 430/430 tests and a full playthrough at two resolutions.",
+        href: "/projects/grassland#decision-timeline",
+      },
+      {
         audience: "AI UX / trust",
         title: "Checking what an AI feature really does",
         claim:
@@ -481,14 +598,14 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       subhead:
         "我把模糊的产品问题走完研究、信息架构与包容性交互决策，再用 Claude Code 和 Codex 推到能跑，所以你看到的是一个能用的原型，而不是对原型的描述。",
       status:
-        "2026 年底毕业。主要看全职毕业生的交互、产品、design technologist 岗位。",
+        "2026 年 11 月毕业。主要看全职毕业生的交互、产品、design technologist 岗位。",
     },
     signals: [
       {
-        value: "4",
+        value: "5",
         label: "个案例有能直接打开的线上版本",
         detail:
-          "UQ Connect、MazeRunners、Hoop Dream 和 PriceWise，都能从案例页直接打开。",
+          "UQ Connect、MazeRunners、Hoop Dream、PriceWise 和草原铁潮，都能从案例页直接打开。",
       },
       {
         value: "6",
@@ -503,7 +620,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       {
         value: "2026",
         label: "可入职时间",
-        detail: "2026 年底毕业。开放毕业生 / 入门级 UX、产品设计与 design technologist 岗位。",
+        detail: "2026 年 11 月毕业。开放毕业生 / 入门级 UX、产品设计与 design technologist 岗位。",
       },
     ],
     proofRoutes: [
@@ -534,6 +651,14 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         href: "/projects/spectra#evidence-board",
       },
       {
+        audience: "复杂 / 即时交互",
+        title: "一整个系统共用一套规则",
+        claim: "证明我能为复杂系统设计一套前后一致、而且能被核对的交互规则。",
+        evidence:
+          "草原铁潮：五关 RTS 共用一套命令语法，失败后从同一条存档链恢复，430 / 430 测试通过，两种分辨率完整通关。",
+        href: "/projects/grassland#decision-timeline",
+      },
+      {
         audience: "AI UX / 信任",
         title: "核实 AI 功能到底做了什么",
         claim:
@@ -556,7 +681,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
 
 const roleFits: Record<ProofLocale, RoleFit> = {
   en: {
-    availability: "Graduating late 2026; looking for full-time graduate UX and product design roles, and research-led product teams.",
+    availability: "Graduating November 2026; looking for full-time graduate UX and product design roles, and research-led product teams.",
     roles: ["Graduate Interaction Designer", "Graduate Product Designer", "Graduate UX Designer", "Graduate UX Researcher"],
     bestFit: [
       "Teams with ambiguous problems and enough access to users to learn properly.",
@@ -571,7 +696,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     ],
   },
   zh: {
-    availability: "2026 年底毕业，主要看全职毕业生 UX 与产品设计岗位，以及研究驱动型产品团队。",
+    availability: "2026 年 11 月毕业，主要看全职毕业生 UX 与产品设计岗位，以及研究驱动型产品团队。",
     roles: ["交互设计应届生", "产品设计应届生", "用户体验设计应届生", "用户研究应届生"],
     bestFit: [
       "问题足够模糊、也有真实用户可接触的团队。",

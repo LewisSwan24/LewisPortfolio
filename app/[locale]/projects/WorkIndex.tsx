@@ -7,12 +7,11 @@ import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
 import {
   VizConnect,
   VizMaze,
-  VizSpectra,
   VizHoop,
   VizPricewise,
-  VizGapmapper,
-  VizRules,
 } from "@/components/viz/ProjectViz";
+import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
+import { getProjectCover } from "@/lib/project-covers";
 import {
   getEvidenceMatrix,
   getHiringConversion,
@@ -22,13 +21,15 @@ import {
 
 type ProjKey =
   | "connect"
-  | "spectra"
   | "maze"
   | "hoop"
   | "pricewise"
-  | "gapmapper"
-  | "rules";
-type FilterId = "all" | "flag" | "research" | "acc" | "ai" | "hardware";
+  | "grassland"
+  | "onthebeat"
+  | "lamplight"
+  | "autofill";
+// "acc" left with Spectra Lens, its only case (unlisted 2026-11-20).
+type FilterId = "all" | "flag" | "research" | "ai" | "hardware";
 type Localized = { en: string; zh: string };
 
 interface Item {
@@ -46,7 +47,6 @@ const FILTERS: Array<{ id: FilterId; en: string; zh: string }> = [
   { id: "all", en: "All", zh: "全部" },
   { id: "flag", en: "Flagship", zh: "旗舰" },
   { id: "research", en: "Research-led", zh: "研究驱动" },
-  { id: "acc", en: "Accessibility", zh: "无障碍" },
   { id: "ai", en: "AI / ML", zh: "AI" },
   { id: "hardware", en: "Hardware", zh: "硬件" },
 ];
@@ -70,22 +70,6 @@ const ITEMS: Item[] = [
   },
   {
     n: "02",
-    k: "gapmapper",
-    tags: ["flag", "research"],
-    role: "Prototype + turn",
-    year: "2026",
-    dur: "Submitted",
-    problem: {
-      en: "A safety interface that cannot guarantee safety, sounding certain anyway",
-      zh: "一个保证不了安全的安全界面，说起话来却很笃定",
-    },
-    changed: {
-      en: "Perception and indicators kept apart, so the gap is a reason to look rather than a verdict",
-      zh: "感知与客观指标分开放，让落差变成去查一查的理由，而不是一句判决",
-    },
-  },
-  {
-    n: "03",
     k: "connect",
     tags: ["flag", "research"],
     role: "Solo",
@@ -95,7 +79,7 @@ const ITEMS: Item[] = [
     changed: { en: "Clearer task flow and navigation structure", zh: "更清楚的任务流和导航结构" },
   },
   {
-    n: "04",
+    n: "03",
     k: "pricewise",
     tags: ["flag", "ai"],
     role: "Product + direction",
@@ -111,7 +95,7 @@ const ITEMS: Item[] = [
     },
   },
   {
-    n: "05",
+    n: "04",
     k: "hoop",
     tags: ["ai", "hardware"],
     role: "Design + art dir",
@@ -127,41 +111,81 @@ const ITEMS: Item[] = [
     },
   },
   {
-    n: "06",
-    k: "rules",
-    tags: ["research", "ai"],
-    role: "Interface + spec",
-    year: "2025",
-    dur: "Submitted",
+    n: "05",
+    k: "grassland",
+    tags: ["flag", "ai"],
+    role: "Solo, with AI tools",
+    year: "2026",
+    dur: "Chapter one playable",
     problem: {
-      en: "Requirements everyone agreed with and nobody could build to",
-      zh: "所有人都同意、却没人能照着施工的要求",
+      en: "Many units, many commands and a running clock, where one inconsistent rule makes the whole game unpredictable",
+      zh: "单位多、命令多、时钟一直在走，一条规则不一致，整个游戏就不可预测",
     },
     changed: {
-      en: "150–250 m of warning lead, a 48 px floor, and three triggers from one paper",
-      zh: "150–250 m 的提前量、48px 的下限，以及从一篇论文拆出的三条触发条件",
+      en: "One command grammar across five missions, and failure restored from one save chain",
+      zh: "五关共用一套命令语法，失败后从同一条存档链恢复",
+    },
+  },
+  {
+    n: "06",
+    k: "onthebeat",
+    tags: ["hardware", "ai"],
+    role: "Requirements + review",
+    year: "2026",
+    dur: "Paired on real bands",
+    problem: {
+      en: "Two strangers at a gig with no easy way to say hello",
+      zh: "演出现场两个陌生人，缺一个容易开口的方式",
+    },
+    changed: {
+      en: "A phone, two wristbands and a cloud relay that run without a laptop",
+      zh: "手机、两支手环加云端 relay，不需要笔电就能运转",
     },
   },
   {
     n: "07",
-    k: "spectra",
-    tags: ["acc"],
-    role: "Solo build",
+    k: "lamplight",
+    tags: ["ai"],
+    role: "Direction + interaction",
     year: "2026",
-    dur: "DEMO",
-    problem: { en: "Type and spacing are fixed by whoever built the page", zh: "字体和行距由建站的人决定，读的人改不了" },
-    changed: { en: "A browser extension that rewrites both from one popup", zh: "一个浏览器扩展，从一个扩展弹窗就能改写两者" },
+    dur: "1.0, in daily use",
+    problem: {
+      en: "A long AI task shows up as a log nobody can read at a glance",
+      zh: "AI 长任务只是一屏没人能一眼看懂的日志",
+    },
+    changed: {
+      en: "A café crew acting out the task, with questions and risky steps as cards",
+      zh: "一组咖啡馆店员演出任务，提问和风险步骤变成卡片",
+    },
+  },
+  {
+    n: "08",
+    k: "autofill",
+    tags: ["ai"],
+    role: "Problem + rules",
+    year: "2026",
+    dur: "Used on my applications",
+    problem: {
+      en: "One resume typed into Workday, Beisen and Moka, field by field",
+      zh: "同一份简历在 Workday、北森、Moka 里一格格重填",
+    },
+    changed: {
+      en: "An autofill that never guesses, never submits and keeps the resume on the device",
+      zh: "一个不猜、不提交、简历不离开设备的自动填表工具",
+    },
   },
 ];
 
 function WorkPreview({ project, locale }: { project: ProjKey; locale: ProofLocale }) {
+  const cover = getProjectCover(project);
+  if (cover) {
+    return <ProjectCoverImage cover={cover} locale={locale} sizes="240px" />;
+  }
   if (project === "maze") return <VizMaze locale={locale} />;
   if (project === "hoop") return <VizHoop locale={locale} />;
   if (project === "pricewise") return <VizPricewise locale={locale} />;
-  if (project === "gapmapper") return <VizGapmapper locale={locale} />;
-  if (project === "rules") return <VizRules locale={locale} />;
   if (project === "connect") return <VizConnect locale={locale} />;
-  return <VizSpectra locale={locale} />;
+  return null;
 }
 
 export function WorkIndex() {
@@ -237,9 +261,13 @@ export function WorkIndex() {
           {shown.map((i) => (
             <Link className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
               <div className="work-index-project">
+                {/* The row's link names the case; the thumbnail repeats it as
+                    a picture, so it stays out of the accessibility tree. */}
                 <div className="work-index-thumb" aria-hidden="true">
                   <WorkPreview project={i.k} locale={proofLocale} />
-                  <span className="work-index-thumb-label">{pageCopy.conceptVisual}</span>
+                  {!getProjectCover(i.k) && (
+                    <span className="work-index-thumb-label">{pageCopy.conceptVisual}</span>
+                  )}
                 </div>
                 <div>
                   <h3>{t(`proj.${i.k}.title`)}</h3>

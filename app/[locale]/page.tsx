@@ -5,13 +5,12 @@ import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { FeaturedDeck } from "@/components/home/FeaturedDeck";
 import {
   VizConnect,
-  VizSpectra,
   VizMaze,
   VizHoop,
   VizPricewise,
-  VizGapmapper,
-  VizRules,
 } from "@/components/viz/ProjectViz";
+import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
+import { getProjectCover } from "@/lib/project-covers";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -39,32 +38,46 @@ export async function generateMetadata(): Promise<Metadata> {
 
 type ProjKey =
   | "connect"
-  | "spectra"
   | "maze"
   | "hoop"
   | "pricewise"
-  | "gapmapper"
-  | "rules";
+  | "grassland"
+  | "onthebeat"
+  | "lamplight"
+  | "autofill";
 
 interface FeatItemProps {
   n: string;
   k: ProjKey;
   href: string;
   flip?: boolean;
-  viz: React.ReactNode;
+  /** Only shown when the case has no cover image. */
+  viz?: React.ReactNode;
   t: Awaited<ReturnType<typeof getTranslations>>;
+  locale: ProofLocale;
 }
 
-function FeatItem({ n, k, href, flip, viz, t }: FeatItemProps) {
+function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
+  // The real artefact leads where one exists; the concept diagram stands in
+  // only for a case that has no screenshot or photo of its own.
+  const cover = getProjectCover(k);
   return (
     <Link
       className={`feat-item ${flip ? "flip" : ""}`}
       href={href}
       style={{ textDecoration: "none", color: "inherit" }}
     >
-      <div className="feat-visual">
+      <div className={`feat-visual${cover ? " has-cover" : ""}`}>
         <span className="num">{n}</span>
-        {viz}
+        {cover ? (
+          <ProjectCoverImage
+            cover={cover}
+            locale={locale}
+            sizes="(max-width: 960px) 100vw, 600px"
+          />
+        ) : (
+          viz
+        )}
       </div>
       <div className="feat-body">
         <div className="eyebrow">{t(`proj.${k}.kicker`)}</div>
@@ -228,17 +241,15 @@ export default async function HomePage() {
             4,560px of identical blocks — giving everything equal weight is the
             same as featuring nothing.
 
-            The first six run in the same order as the portfolio PDF, so a
-            recruiter holding both sees one sequence rather than two. That still
-            puts MazeRunners first: it is the only case backed by a working
-            physical build, so it differentiates hardest against screen-only
-            portfolios. Spectra Lens is not in the PDF at all, so it follows
-            the six rather than interleaving. Vigil is unlisted (see
-            UNLISTED_PROJECT_SLUGS) and has no slot here.
+            They run in the same order as the portfolio PDF, so a recruiter
+            holding both sees one sequence rather than two. That puts
+            MazeRunners first: it is the only case backed by a working physical
+            build, so it differentiates hardest against screen-only portfolios.
+            Cases that are unlisted (see UNLISTED_PROJECT_SLUGS) have no slot.
 
             Every case is still rendered. FeaturedDeck hides the inactive ones
             visually but leaves them in the served HTML, so a crawler still gets
-            all seven. */}
+            all eight. */}
         <FeaturedDeck
           labels={{
             prev: t("feat.deckPrev"),
@@ -246,13 +257,14 @@ export default async function HomePage() {
             kbd: t("feat.deckKbd"),
           }}
           items={[
-            { key: "maze", n: "01", node: <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze locale={proofLocale} />} /> },
-            { key: "gapmapper", n: "02", node: <FeatItem n="02" k="gapmapper" href="/projects/gapmapper" flip t={t} viz={<VizGapmapper locale={proofLocale} />} /> },
-            { key: "connect", n: "03", node: <FeatItem n="03" k="connect" href="/projects/connect" t={t} viz={<VizConnect locale={proofLocale} />} /> },
-            { key: "pricewise", n: "04", node: <FeatItem n="04" k="pricewise" href="/projects/pricewise" flip t={t} viz={<VizPricewise locale={proofLocale} />} /> },
-            { key: "hoop", n: "05", node: <FeatItem n="05" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop locale={proofLocale} />} /> },
-            { key: "rules", n: "06", node: <FeatItem n="06" k="rules" href="/projects/rules" flip t={t} viz={<VizRules locale={proofLocale} />} /> },
-            { key: "spectra", n: "07", node: <FeatItem n="07" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra locale={proofLocale} />} /> },
+            { key: "maze", n: "01", node: <FeatItem n="01" k="maze" href="/projects/maze" t={t} locale={proofLocale} viz={<VizMaze locale={proofLocale} />} /> },
+            { key: "connect", n: "02", node: <FeatItem n="02" k="connect" href="/projects/connect" flip t={t} locale={proofLocale} viz={<VizConnect locale={proofLocale} />} /> },
+            { key: "pricewise", n: "03", node: <FeatItem n="03" k="pricewise" href="/projects/pricewise" t={t} locale={proofLocale} viz={<VizPricewise locale={proofLocale} />} /> },
+            { key: "hoop", n: "04", node: <FeatItem n="04" k="hoop" href="/projects/hoop" flip t={t} locale={proofLocale} viz={<VizHoop locale={proofLocale} />} /> },
+            { key: "grassland", n: "05", node: <FeatItem n="05" k="grassland" href="/projects/grassland" t={t} locale={proofLocale} /> },
+            { key: "onthebeat", n: "06", node: <FeatItem n="06" k="onthebeat" href="/projects/onthebeat" flip t={t} locale={proofLocale} /> },
+            { key: "lamplight", n: "07", node: <FeatItem n="07" k="lamplight" href="/projects/lamplight" t={t} locale={proofLocale} /> },
+            { key: "autofill", n: "08", node: <FeatItem n="08" k="autofill" href="/projects/autofill" flip t={t} locale={proofLocale} /> },
           ]}
         />
       </section>

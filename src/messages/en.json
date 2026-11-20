@@ -49,7 +49,7 @@
     },
     "location": {
       "label": "Location",
-      "val": "Brisbane, AU — graduating late 2026, looking for full-time graduate roles"
+      "val": "Brisbane, AU — graduating November 2026, looking for full-time graduate roles"
     }
   },
   "approach": {
@@ -80,11 +80,11 @@
   },
   "feat": {
     "label": "Selected work",
-    "title": "Seven cases, each with its own stopping point.",
+    "title": "Eight cases, each with its own stopping point.",
     "footer": "Full index",
     "deckPrev": "Previous case",
     "deckNext": "Next case",
-    "deckKbd": "Drag, or use ← → to step through the seven"
+    "deckKbd": "Drag, or use ← → to step through the eight"
   },
   "proj": {
     "connect": {
@@ -166,6 +166,46 @@
       "m1": "150–250 m warning lead (draft)",
       "m2": "48 px tap-target floor (draft)",
       "m3": "1 paper → 3 trigger conditions"
+    },
+    "grassland": {
+      "kicker": "Complex interaction · Real-time systems",
+      "title": "Grassland Iron Tide",
+      "sub": "A five-mission browser RTS chapter, where selection, commands, feedback and failure recovery follow one set of rules that a test can check.",
+      "role": "Solo, with AI tools",
+      "date": "2026 · chapter one playable",
+      "m1": "5 missions, played through end to end",
+      "m2": "430 / 430 tests in the RC record",
+      "m3": "2 resolutions checked in a real browser"
+    },
+    "onthebeat": {
+      "kicker": "Phone, wristbands and a cloud relay",
+      "title": "On The Beat",
+      "sub": "At a gig, help two strangers say hello, then let the devices get out of the way. Names appear only after both agree.",
+      "role": "Requirements, review, pairing",
+      "date": "2026 · individual version of coursework",
+      "m1": "2 real wristbands showing MEET together",
+      "m2": "65 minutes to take the laptop out",
+      "m3": "No participant testing yet"
+    },
+    "lamplight": {
+      "kicker": "AI agent interface · Desktop app",
+      "title": "Lamplight Nook",
+      "sub": "A pixel-art desktop app that plays out a long-running Claude task as a small café crew at work, and stops to ask before anything risky.",
+      "role": "Direction + interaction",
+      "date": "2026 · 1.0, in my daily use",
+      "m1": "1.0 on 5 November 2026",
+      "m2": "Risky steps default to 'not now'",
+      "m3": "Chinese and English throughout"
+    },
+    "autofill": {
+      "kicker": "Automation that acts for you · Privacy",
+      "title": "Resume Autofill",
+      "sub": "A job-application autofill for Chrome and Android that never guesses, never submits for you and keeps your resume on the device.",
+      "role": "Problem + rules",
+      "date": "2026 · used on my own applications",
+      "m1": "Unsure fields left empty for review",
+      "m2": "Stops before the final submit",
+      "m3": "Your resume stays on the device"
     }
   },
   "cs": {
@@ -737,6 +777,280 @@
         "label": "Reflection",
         "p": "Putting the two briefs together is the point. In Fietspad, the proposal drafts turned 'safety' into routing weights, warning distances and tap sizes, and AI wrote most of those drafts. The other brief is where I turned a paper into trigger conditions, copy templates and a checklist myself. What survives outside a course is the move itself — and the discipline of saying where the rule stops holding, rather than letting a self-check stand in for evidence someone else produced."
       }
+    },
+    "grassland": {
+      "hero": {
+        "title": "Grassland Iron Tide",
+        "sub": "Five historical missions built into one real-time strategy chapter you can play through in a desktop browser, where selection, commands, feedback, failure recovery and story all run on one set of rules."
+      },
+      "roleVal": "Solo: product direction, mission design, interaction rules, implementation acceptance and evidence",
+      "timeVal": "2026 · chapter one, 《苍狼余火》, playable",
+      "teamVal": "Solo, with AI tools assisting the code, the copy and the original assets",
+      "toolsVal": "TypeScript · Phaser 4 · EasyStar.js · Vitest · AI coding tools",
+      "ch": {
+        "label": "The problem",
+        "title": "Keeping a command system from getting out of hand.",
+        "p": "A real-time strategy game gives the player many units, many commands and a clock that does not stop. Each mission wants something a little different, and the easy answer is a special rule for each one. Five missions later the player can no longer predict what a click will do. Failure is the other trap: if the screen comes back after a defeat but the mission state does not, the player stops trusting anything the game shows."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Three rules every mission follows.",
+        "m1": {
+          "t": "One grammar",
+          "b": "Click, box-select, Shift to add or remove, Ctrl to group and a right-click command menu cover all five missions. A mission may restrict which commands are allowed; it may not change how they work."
+        },
+        "m2": {
+          "t": "The battlefield first",
+          "b": "A fixed camera zoom. The objective, minimap, selection state and command grid sit at the screen edges, and mission text stays off the area the player acts on."
+        },
+        "m3": {
+          "t": "One save chain",
+          "b": "Pause, the reason for failure, the checkpoint and the restored units share one save chain, so what the screen shows and what the mission knows cannot drift apart."
+        }
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Five missions, one pipeline.",
+        "p": "The missions are data, not separate programs. A chapter manifest sets the order and the unlocks; each mission definition holds its objectives, triggers and map; a runtime loader brings in only that mission's atlases and map, so the first screen does not preload the heavy assets of all five. Underneath, one simulation runs at a fixed 20 Hz, and input, combat, movement, mission logic and vision all share its clock. Checkpoints and saves restore the mission and its units together."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "I chose far fewer commands than a commercial RTS, so that every command has a result the player can predict. The fixed camera keeps the battlefield the largest part of the screen, even when resources, unit status and objectives are all showing. Failure had to explain itself and be undone: after a defeat in mission four, a checkpoint restore spares the player the whole stretch again. The main menu shows only the chapter, the save state and the way in, with nothing from development left on screen."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "This is a solo project. AI tools assisted the code, the copy and the original assets; my part was the product direction, the mission design, the interaction rules, accepting or rejecting the implementation, and keeping the evidence. The asset pipeline is held to the same standard as the code: 6 manifests and 75 registered assets, with 49 alpha files and 154 provenance records that a script can re-check."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "The release-candidate audit puts four checks side by side. 430 of 430 automated tests pass over mission logic, commands, movement, vision, checkpoints and the runtime asset contract. The asset gate passes. The web build passes, with a known warning that the Phaser bundle is large. And in a real browser, at 1280×720 and 1920×1080, all five missions were played through in sequence from the main menu, re-checking selection, grouping, commands, pause, the minimap and failure recovery, screen by screen for page scroll, clipping and covered buttons."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Missions in chapter one",
+          "v": "5"
+        },
+        "m2": {
+          "label": "Tests in the RC record",
+          "v": "430 / 430"
+        },
+        "m3": {
+          "label": "Resolutions played through",
+          "v": "1280×720 · 1920×1080"
+        },
+        "p": "A chapter that plays end to end in a desktop browser, with one command grammar across every mission. Evidence status: the five-mission acceptance comes from the local RC record, and the live link has not been through the same audit. These are system and browser checks. There has been no structured usability testing with outside players, so the case does not claim the game is easy to pick up."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "What the record can show is that chapter one plays through in the local RC build, and that the interaction logic and asset contracts it covers did not regress. A rule like 'a mission may restrict commands but never change them' can be held by a test, so the fifth mission is checked against the same grammar as the first. What the record cannot show is whether a new player learns that grammar. Without structured sessions with outside players, I do not present the chapter as proven easy to pick up."
+      }
+    },
+    "onthebeat": {
+      "hero": {
+        "title": "On The Beat",
+        "sub": "A phone app, two wristbands and a cloud relay for live gigs: help two strangers say hello, then let the devices get out of the way."
+      },
+      "roleVal": "Requirements, AI output review, error hunting and pairing on real wristbands. The code was written by AI tools",
+      "timeVal": "September–October 2026 · individual version of DECO3500 coursework",
+      "teamVal": "Individual. The original three-card Figma prototype is a teammate's",
+      "toolsVal": "React · Node relay on Fly.io · C++ firmware (PlatformIO, M5Unified) · Claude Design · Claude Code",
+      "ch": {
+        "label": "The problem",
+        "title": "Start a conversation, then get out of the way.",
+        "p": "At a live gig, two people who would like to talk have no low-stakes way to begin. An app that makes them stare at a phone works against the moment. In the 29 September build the phone holds three cards from a teammate's Figma prototype: SAY HI, FIRST SONG? and LET'S DANCE!. A wave tells the other person only that someone nearby is there. Names and a meeting place appear only after both have nodded. The wristband is a second way in: its side button chooses a card and the phone follows."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Three things the first version only pretended to do.",
+        "m1": {
+          "t": "The band on its own",
+          "b": "On 24 September I asked for the link to work both ways. At noon on 25 September only the phone could still drive the band; that afternoon the side button chose a card and the phone followed."
+        },
+        "m2": {
+          "t": "MEET for real",
+          "b": "On 25 September I pointed out that MEET was only mock data. That night two devices with two bands waved and waved back, and both bands showed MEET at the same time."
+        },
+        "m3": {
+          "t": "No laptop",
+          "b": "The same evening I said neither device could run without a computer. The relay moved to one always-on machine on Fly.io in Sydney, and the bands matched through the cloud 65 minutes after my message."
+        },
+        "quote": "Without a computer, neither of these two things can run.",
+        "quoteWho": "My message to Claude Code, 25 September 2026, translated from Chinese"
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Phone, relay, two wristbands.",
+        "p": "Three parts talk through one relay. The phone app is React. The relay is Node on one always-on machine on Fly.io in Sydney. The two wristbands are a StickS3 and a StickC Plus, two different ESP32-family boards, running C++ firmware. Either side can change state, so both go through the relay to stay in agreement, and neither side sees a name until both have agreed."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "The concept was not mine: the three cards come from a teammate's Figma prototype. My decisions were about what the working system had to do. Each began as a message to Claude Code naming something the generated version had not done: the band could only follow the phone, MEET was mock data, and without a computer neither device could run. Each was then checked on the two real wristbands, not only on screen."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "Everything was built with AI tools. The firmware and the app code were written and flashed by Claude Code. I did the wiring, turned on the hotspot, pressed the buttons, watched the screens and reported back. In September I was new to hardware and needed each step explained before I did it. The design canvas was generated in Claude Design, and I imported each version into Claude Code for review: I caught all four cards reading '1 of 4' on 15 September, and on 21 September what looked like a black screen after picking a song."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "Two kinds of check, both mine. On real hardware, on 25 September, both wristbands showed MEET at the same time through the cloud relay, with no laptop involved. In software, two local test windows, Ava and Leo, walk the flow on the 29 September build: SAY HI lit, a wave that shows no name, and names only after both nod. The design canvas went back for rework at least 5 times that night, after at least 12 rounds on the earlier Say Hello canvas. None of this is participant testing."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Real wristbands paired through the cloud",
+          "v": "2"
+        },
+        "m2": {
+          "label": "From my message to the bands matching",
+          "v": "65 min"
+        },
+        "m3": {
+          "label": "Participant sessions",
+          "v": "None yet"
+        },
+        "p": "A phone app, two wristbands and an always-on relay that run without a laptop, in a public repository. Evidence status: there is no record of any participant testing the app. The bands' timing values, such as staying awake for six seconds or a 1.5-second long press, are estimates still to be measured on a wrist. A night on battery, the Plus's front button and a wave-back pressed on the band itself are unverified. Staff-page push notifications arrived on my Android phone on 30 September, with a VPN on. An iPhone clip that disappeared on 6 October was fixed but not retested."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "In this record my part sits at two ends: saying what the system must do, and sending back output that only looked finished. Mock data that showed MEET, a link that only worked with my laptop, and a canvas that counted wrong each looked fine on screen until it was tried. What the case cannot say is whether the cards help two strangers meet. That needs people at a real or staged gig, and it has not happened yet."
+      }
+    },
+    "lamplight": {
+      "hero": {
+        "title": "Lamplight Nook",
+        "sub": "A cozy pixel-art desktop app that turns a long-running AI task into the daily life of a small café crew: who is busy, how far the plan has got, and what is waiting for you."
+      },
+      "roleVal": "Solo: the café metaphor, the decision cards, the art direction and acceptance. The code was written by Claude Code",
+      "timeVal": "October–November 2026 · 1.0 on 5 November, 1.1 to 1.4 in progress",
+      "teamVal": "Solo",
+      "toolsVal": "Electron · Phaser · TypeScript · Claude Agent SDK · Vitest · Claude Code",
+      "ch": {
+        "label": "The problem",
+        "title": "A long task you cannot read, and a wait you cannot enjoy.",
+        "p": "A long-running Claude task shows up as a scrolling log. It is hard to tell who is working, how far the plan has got, and whether the work has stopped to wait for you. I wanted two things from Lamplight Nook: to read the state of a long task at a glance, and to make waiting on it feel better than watching a terminal."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Three decisions that were mine.",
+        "m1": {
+          "t": "A café crew",
+          "b": "The main agent and its subagents are played by a small crew. Wick plans the job and chalks the real to-do list on a blackboard, Clem runs out to look things up, Iris settles colours and layout, Flint checks the work before it leaves the shop."
+        },
+        "m2": {
+          "t": "Decision cards",
+          "b": "What needs a person becomes a card. Questions open a dialog with the choices spelled out; a risky step opens a plain confirmation card whose default is 'not now'."
+        },
+        "m3": {
+          "t": "Bought art",
+          "b": "The pixel art comes from purchased LimeZu packs, recoloured and assembled by scripts in the repository, rather than generated images. The music is Alex Morgan's, under CC BY 4.0."
+        }
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Real events in, characters out.",
+        "p": "The Electron main process runs the agent through the Claude Agent SDK, normalises its events, classifies risk and records each run. The renderer is a Phaser scene: rules written in YAML turn events into character commands, a director paces them, and a state machine tracks each character. Characters walk, work, get stuck, ask for help and wrap up from what the agent is really doing."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "The blackboard holds the real plan, ticked off as it goes, so how far along the job is can be read without a log. A commission slip takes the request, the files to hand over and a spending cap; the staff work on copies, so the originals stay as they are. When the shop is minimised, a small window in the corner shows who is working and which step is under way, and calls you when a question is waiting. A risky step waits on a card that defaults to 'not now', so nothing risky goes ahead because nobody was looking."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "Claude Code wrote the code; the metaphor, the decision cards, the choice of art and what counted as finished were mine. The public history has one squashed commit per version: 0.1.0 on 22 October 2026, 0.6.0 on 30 October, a pass titled 'Safety before 1.0' and then 1.0.0 on 5 November. Since then, 1.1 to 1.4 work has added working only inside a folder you choose to lend, and Word, Excel, PowerPoint and PDF results with previews. It runs on your own Anthropic API key, with no account and no telemetry."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "The repository carries about a hundred Vitest test files, and a debug panel that replays a bundled real recording without calling the API, previews the decision cards and walks characters between anchors, so a scene can be checked the same way each time. The screenshots on this page are made by the app's own simulation script for the store listing, not captured from someone's real task. The real-use check is mine: I run it on my own Claude tasks day to day."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Version released",
+          "v": "1.0"
+        },
+        "m2": {
+          "label": "Languages, following the system",
+          "v": "2"
+        },
+        "m3": {
+          "label": "Users on record",
+          "v": "Me"
+        },
+        "p": "A Windows app that plays out a real Claude task as a café crew, with the plan on a blackboard and every risky step behind a card. Evidence status: I am the only user on record, and there has been no user testing. The installer is not code-signed, and the Microsoft Store listing is not live. The code was written by Claude Code, the art is LimeZu's and the music is Alex Morgan's."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "What the case can show is that the café carries real state: the plan, who is stuck, and what is waiting on a person, and that it holds up on my own daily work. What it cannot show is whether the café reads faster than a log for someone else, or only feels nicer. That needs other people running long tasks, side by side with a plain log."
+      }
+    },
+    "autofill": {
+      "hero": {
+        "title": "Resume Autofill",
+        "sub": "A local-first autofill for job applications, as a Chrome extension and an Android app with a resume keyboard. It fills forms from your own resume, leaves anything uncertain to you, and sends nothing to a server."
+      },
+      "roleVal": "Solo: the problem, the rules the tool follows, review, and testing on my own applications. The code was written by Claude Code",
+      "timeVal": "November 2026 · in use on my own applications",
+      "teamVal": "Solo",
+      "toolsVal": "TypeScript · WXT (Chrome MV3) · Capacitor (Android) · Vitest · Playwright · Claude Code",
+      "ch": {
+        "label": "The problem",
+        "title": "One resume, typed again in every system.",
+        "p": "Applying for graduate jobs meant typing the same resume into Workday, Greenhouse, Beisen, Moka and the rest, field by field. That was where it started. While building it, privacy became the main design constraint: a tool that fills forms in your name has to be trusted not to fill them wrongly, not to submit for you, and not to send your resume anywhere."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Three things the tool refuses to do.",
+        "m1": {
+          "t": "Never guess",
+          "b": "A field the tool is unsure about stays empty and is outlined for you to confirm. The fill report counts filled, needs-review and not-filled fields separately."
+        },
+        "m2": {
+          "t": "Never submit",
+          "b": "On a multi-page application it presses Next and fills each page, then stops before the final submit. The side panel says so on screen."
+        },
+        "m3": {
+          "t": "Never send",
+          "b": "No server and no analytics. The extension keeps your data in local browser storage under a strict content security policy; Android encrypts it with a key held in the Keystore."
+        }
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Adapters for the forms people actually meet.",
+        "p": "Application forms are built from a handful of libraries, so the engine fills by kind of control rather than by site: native HTML, Ant Design, Element Plus, react-select and ARIA widgets. On top of that sit adapters for Greenhouse, Lever, Workable and Workday, and for Beisen, Moka and Feishu on Chinese campus-recruitment sites. Where a browser cannot reach, such as WeChat mini programs, the Android app's resume keyboard types the fields in."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "Three rules were mine: leave an unsure field empty and outlined, stop before the final submit, and keep the resume on the device. Each one shows on screen, so a person can see what is left to them: the summary card after a fill, the side panel that lists every field with its reason, and the note that the final submit stays with you. Each state carries a word and an icon as well as a colour, so it does not rely on colour alone."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "Claude Code wrote the code; the problem, the rules and the acceptance were mine. The extension core came first, from 4 November 2026, then fixes from what real Feishu, Moka and Beisen forms showed. From 16 November the Android app added a fill browser, an application tracker and the resume keyboard, and from 17 to 19 November came preview before fill, multi-step forms and resume variants."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "The screenshots here come from the repository's own screenshot tests, which passed 6 of 6 on 20 November 2026 in light and dark, on synthetic test forms with the extension's built-in sample resume. The README records every field on those synthetic forms filled correctly; that is the repository's own test forms, not real sites. A unit test fails if the keyboard's code refers to a network class. The real-use check is mine: I have used it on my own applications."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Platforms",
+          "v": "Chrome · Android"
+        },
+        "m2": {
+          "label": "Servers your resume is sent to",
+          "v": "None"
+        },
+        "m3": {
+          "label": "Users on record",
+          "v": "Me"
+        },
+        "p": "A local-first autofill that covers international ATS platforms and Chinese campus-recruitment sites, and that I have used on real applications. Evidence status: there is no measured fill accuracy on real sites, and no one but me is on record as using it. It is not on the Chrome Web Store or Google Play, there is no iOS app, the keyboard has no Chinese input method, and sites that only allow WeChat login are out of reach. The code was written by Claude Code."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "For a tool that acts in someone's name, this case is mostly about what it refuses to do, and about making each refusal visible. What the case cannot show yet is accuracy on real sites, or whether other applicants trust the review outlines enough to check them. Both need measuring before the tool is offered to anyone else."
+      }
     }
   },
   "foot": {
@@ -749,7 +1063,7 @@
     "write": "Write",
     "meta": {
       "built": "Built with Next.js and Tailwind, written with Codex and Claude Code, and revised many times.",
-      "version": "v4 · updated April 2026"
+      "version": "v5 · updated November 2026"
     }
   },
   "tw": {
@@ -819,7 +1133,7 @@
     "skillsAndTools": "Skills & Tools",
     "skillsAndToolsDescription": "Core competencies developed through academic study and hands-on projects.",
     "letsWorkTogether": "Let's Work Together",
-    "letsWorkTogetherDescription": "I'm graduating late 2026 and looking for full-time graduate roles, and excited to contribute to meaningful design projects.",
+    "letsWorkTogetherDescription": "I'm graduating November 2026 and looking for full-time graduate roles, and excited to contribute to meaningful design projects.",
     "featuredProjectsEmpty": "Featured projects coming soon.",
     "stats": {
       "userInterviews": "User Interviews",
