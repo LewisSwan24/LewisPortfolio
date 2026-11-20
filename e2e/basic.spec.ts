@@ -3,7 +3,7 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 // Listed cases only: vigil, spectra, rules and gapmapper are unlisted, so no
 // proof link may point at them.
 const anchoredCaseProofHref =
-    /\/projects\/(connect|ai|maze|hoop|pricewise|grassland|onthebeat|lamplight|autofill)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|ai|maze|hoop|pricewise|grassland|onthebeat|lamplight|autofill|walkie|fencepost)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 /**
  * Next's dev server sometimes issues a full reload while it compiles a route for
@@ -810,6 +810,8 @@ test.describe("Responsive Design", () => {
             "/projects/onthebeat",
             "/projects/lamplight",
             "/projects/autofill",
+            "/projects/walkie",
+            "/projects/fencepost",
             "/projects/ai",
             "/projects/hoop",
             "/zh",

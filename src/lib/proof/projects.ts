@@ -355,6 +355,34 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "I can set the rules for a tool that acts on someone's behalf, and make each rule visible on screen.",
     },
+    {
+      slug: "walkie",
+      href: "/projects/walkie",
+      problemType: "Physical voice & approval remote for an AI coding agent",
+      challenge:
+        "Directing Claude Code away from the desk requires keeping tool approvals physical, cloud relays zero-knowledge, and dual-boot flashing safe.",
+      methods: ["dual-boot M5StickS3 firmware", "AES-256-GCM sealed link", "hardware-in-the-loop gate scripts"],
+      sample:
+        "Solo; AI coding tools assisted implementation. Verified via g++ host tests plus three on-device/relay gates (gate-h, gate-p5, gate-l); no external users or wrist photos yet.",
+      outcome:
+        "A working wrist voice remote with USB priority, Fly.io sealed relay fallback, and physical tool-permission approvals.",
+      proves:
+        "I can compress autonomous AI agent workflows into tiny physical hardware with explicit security and confirmation boundaries.",
+    },
+    {
+      slug: "fencepost",
+      href: "/projects/fencepost",
+      problemType: "Community wildlife AI storyboard with strict access invariants",
+      challenge:
+        "Co-creating neighbourhood possum storyboards requires revocable QR permissions, zero EXIF storage, and ensuring revoked grants immediately cut off AI context.",
+      methods: ["three-role AI safety proxy", "431 offline access-invariant tests", "29 red-line safety checks"],
+      sample:
+        "Live course deployment (fencepost-app.vercel.app + Turso libSQL). 431 offline unit tests + 29 red-line prompt cases + live deploy route probe; open signup stays enabled for course evaluation.",
+      outcome:
+        "A deployed full-stack storyboard and Python AI proxy where soft-deletes and revoked grants remove entries on the very next model call.",
+      proves:
+        "I treat AI trust and privacy as verifiable data-layer invariants rather than prompt-only promises.",
+    },
   ],
   zh: [
     {
@@ -501,6 +529,26 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       sample: "独立完成，代码由 Claude Code 编写。Chrome 扩展加 Android App，我投递时用过。准确率只在合成测试表单上量过；没有其他使用者的记录。",
       outcome: "一个本地优先的自动填表工具：拿不准的留给你，在最终提交前停下，简历不离开设备。",
       proves: "我能为代替用户行事的工具定规则，并让每条规则显示在屏幕上。",
+    },
+    {
+      slug: "walkie",
+      href: "/projects/walkie",
+      problemType: "面向编码 Agent 的手腕语音与实体审批终端",
+      challenge: "离开电脑指挥 Claude Code 时，必须让实体按键掌管高风险审批、云中继零知识，且双启动刷机绝不误擦同机应用。",
+      methods: ["M5StickS3 双启动固件", "AES-256-GCM 加密链路", "真机门禁测试脚本"],
+      sample: "独立负责（AI 编码工具辅助实现）。通过宿主机 g++ 单测与三组真机/中继门禁（gate-h / gate-p5 / gate-l）；尚无外部用户与实拍照片。",
+      outcome: "交付可运行的手腕语音遥控器，具备 USB 优先、Fly.io 加密中继兜底与实体工具审批。",
+      proves: "证明我能把自主 AI Agent 工作流压缩进微型硬件，并落出清晰的安全与物理确认边界。",
+    },
+    {
+      slug: "fencepost",
+      href: "/projects/fencepost",
+      problemType: "具备严格权限不变量的社区 AI 故事板",
+      challenge: "居民共创负鼠故事板需要可吊销二维码权限、零 EXIF 入库，并确保权限吊销后 AI 上下文即刻截断。",
+      methods: ["三角色 AI 安全代理", "431 项离线权限测试", "29 条红线安全评测"],
+      sample: "线上课程部署（fencepost-app.vercel.app + Turso libSQL）。431 项离线单测 + 29 条红线用例 + 发布后路由探活；演示环境保持开放注册。",
+      outcome: "上线全栈故事板与 Python AI 代理，任何软删或吊销均在下一次模型调用即刻生效。",
+      proves: "证明我把 AI 信任与隐私做成可测试的数据层不变量，而非停留在提示词承诺。",
     },
   ],
 };

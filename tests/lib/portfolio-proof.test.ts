@@ -28,6 +28,7 @@ import {
   isUnlistedProject,
   linksToUnlistedProject,
 } from "@/lib/project-routes";
+import { getCaseCard, getCaseNarrative } from "@/lib/cases/registry";
 import enMessages from "@/messages/en.json";
 import zhMessages from "@/messages/zh.json";
 
@@ -466,11 +467,11 @@ describe("AI and trust thread", () => {
 // headers. So no Hoop copy may present a style gate, and the review is manual.
 describe("claims checked against their sources", () => {
   it("calls UQ Connect's 71 items records, not transcripts", () => {
-    expect(enMessages.cs.connect.re.title).toBe("Three rounds, three fidelities, 71 research and testing records.");
-    expect(zhMessages.cs.connect.re.title).toBe("三轮，三种保真度，71 份研究与测试记录。");
+    expect(getCaseNarrative("connect", "en").re.title).toBe("Three rounds, three fidelities, 71 research and testing records.");
+    expect(getCaseNarrative("connect", "zh").re.title).toBe("三轮，三种保真度，71 份研究与测试记录。");
     for (const locale of ["en", "zh"] as const) {
-      const messages = locale === "en" ? enMessages : zhMessages;
-      const rounds = [messages.cs.connect.re.m1.b, messages.cs.connect.re.m2.b, messages.cs.connect.re.m3.b];
+      const connectNarrative = getCaseNarrative("connect", locale);
+      const rounds = [connectNarrative.re.m1.b, connectNarrative.re.m2.b, connectNarrative.re.m3.b];
       const samples = getCaseDepth("connect", locale).evidence.map((item) => item.sample);
       expect([...rounds, ...samples].join(" ")).not.toMatch(/transcript|逐字稿/i);
     }
@@ -486,10 +487,9 @@ describe("claims checked against their sources", () => {
 
   it("never presents a Hoop Dream style gate or an automated style verdict", () => {
     for (const locale of ["en", "zh"] as const) {
-      const messages = locale === "en" ? enMessages : zhMessages;
       const copy = JSON.stringify([
-        messages.proj.hoop,
-        messages.cs.hoop,
+        getCaseCard("hoop", locale),
+        getCaseNarrative("hoop", locale),
         getCaseSummary("hoop", locale),
         getCaseDepth("hoop", locale),
         getCaseInterviewScan("hoop", locale),
@@ -514,10 +514,9 @@ describe("claims checked against their sources", () => {
 // Every piece of PriceWise copy a visitor or an interview can reach, as one
 // string per locale.
 const pricewiseCopy = (locale: "en" | "zh") => {
-  const messages = locale === "en" ? enMessages : zhMessages;
   return JSON.stringify([
-    messages.proj.pricewise,
-    messages.cs.pricewise,
+    getCaseCard("pricewise", locale),
+    getCaseNarrative("pricewise", locale),
     getCaseSummary("pricewise", locale),
     getCaseDepth("pricewise", locale),
     getCaseInterviewScan("pricewise", locale),
@@ -586,8 +585,8 @@ describe("PriceWise canonical facts (rows 14, 15 and 16)", () => {
   // simulated, so "live" read as live prices.
   it("calls it a prototype on demo data in the hero and the feed summary, never a live app", () => {
     const heroAndFeed = {
-      en: [enMessages.cs.pricewise.hero.sub, PROJECT_OG_COPY.pricewise.oneLiner],
-      zh: [zhMessages.cs.pricewise.hero.sub],
+      en: [getCaseNarrative("pricewise", "en").hero.sub, PROJECT_OG_COPY.pricewise.oneLiner],
+      zh: [getCaseNarrative("pricewise", "zh").hero.sub],
     };
     for (const line of heroAndFeed.en) {
       expect(line).toMatch(/prototype/);
@@ -613,10 +612,12 @@ describe("PriceWise canonical facts (rows 14, 15 and 16)", () => {
   });
 
   it("counts four classes of defect, not five defects", () => {
-    expect(enMessages.cs.pricewise.ou.m1.v).toBe("4");
-    expect(zhMessages.cs.pricewise.ou.m1.v).toBe("4");
-    expect(enMessages.cs.pricewise.ou.m1.label).toMatch(/^classes of defect /);
-    expect(zhMessages.cs.pricewise.ou.m1.label).toMatch(/^类缺陷/);
+    const enOu = getCaseNarrative("pricewise", "en").ou;
+    const zhOu = getCaseNarrative("pricewise", "zh").ou;
+    expect(enOu.m1.v).toBe("4");
+    expect(zhOu.m1.v).toBe("4");
+    expect(enOu.m1.label).toMatch(/^classes of defect /);
+    expect(zhOu.m1.label).toMatch(/^类缺陷/);
     expect(pricewiseCopy("en")).not.toMatch(/\b(5|five) defects\b/i);
     expect(pricewiseCopy("zh")).not.toMatch(/[5五]\s*处缺陷/);
   });
@@ -632,7 +633,7 @@ describe("unlisted cases", () => {
       expect(UNLISTED_PROJECT_SLUGS).toContain(slug);
       expect(LISTED_PROJECT_SLUGS).not.toContain(slug);
     }
-    for (const slug of ["grassland", "onthebeat", "lamplight", "autofill"]) {
+    for (const slug of ["grassland", "onthebeat", "lamplight", "autofill", "walkie", "fencepost"]) {
       expect(LISTED_PROJECT_SLUGS).toContain(slug);
     }
 

@@ -11,6 +11,8 @@ import {
 } from "@/components/viz/ProjectViz";
 import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
 import { getProjectCover } from "@/lib/project-covers";
+import { getCaseCard, getFeaturedDeckCases } from "@/lib/cases/registry";
+import type { CurrentProjectSlug } from "@/lib/project-routes";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -36,15 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ProjKey =
-  | "connect"
-  | "maze"
-  | "hoop"
-  | "pricewise"
-  | "grassland"
-  | "onthebeat"
-  | "lamplight"
-  | "autofill";
+type ProjKey = CurrentProjectSlug;
 
 interface FeatItemProps {
   n: string;
@@ -61,6 +55,7 @@ function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
   // The real artefact leads where one exists; the concept diagram stands in
   // only for a case that has no screenshot or photo of its own.
   const cover = getProjectCover(k);
+  const card = getCaseCard(k, locale);
   return (
     <Link
       className={`feat-item ${flip ? "flip" : ""}`}
@@ -80,19 +75,19 @@ function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
         )}
       </div>
       <div className="feat-body">
-        <div className="eyebrow">{t(`proj.${k}.kicker`)}</div>
-        <h3>{t(`proj.${k}.title`)}</h3>
-        <p className="sub">{t(`proj.${k}.sub`)}</p>
+        <div className="eyebrow">{card.kicker}</div>
+        <h3>{card.title}</h3>
+        <p className="sub">{card.sub}</p>
         <dl className="feat-meta">
           <dt>{t("cs.role")}</dt>
-          <dd>{t(`proj.${k}.role`)}</dd>
+          <dd>{card.role}</dd>
           <dt>{t("cs.time")}</dt>
-          <dd>{t(`proj.${k}.date`)}</dd>
+          <dd>{card.date}</dd>
         </dl>
         <div className="feat-metrics">
-          <span className="m">{t(`proj.${k}.m1`)}</span>
-          <span className="m">{t(`proj.${k}.m2`)}</span>
-          <span className="m">{t(`proj.${k}.m3`)}</span>
+          <span className="m">{card.m1}</span>
+          <span className="m">{card.m2}</span>
+          <span className="m">{card.m3}</span>
         </div>
         <span className="feat-cta">
           {t("feat.footer")} <span>→</span>
@@ -256,16 +251,34 @@ export default async function HomePage() {
             next: t("feat.deckNext"),
             kbd: t("feat.deckKbd"),
           }}
-          items={[
-            { key: "maze", n: "01", node: <FeatItem n="01" k="maze" href="/projects/maze" t={t} locale={proofLocale} viz={<VizMaze locale={proofLocale} />} /> },
-            { key: "connect", n: "02", node: <FeatItem n="02" k="connect" href="/projects/connect" flip t={t} locale={proofLocale} viz={<VizConnect locale={proofLocale} />} /> },
-            { key: "pricewise", n: "03", node: <FeatItem n="03" k="pricewise" href="/projects/pricewise" t={t} locale={proofLocale} viz={<VizPricewise locale={proofLocale} />} /> },
-            { key: "hoop", n: "04", node: <FeatItem n="04" k="hoop" href="/projects/hoop" flip t={t} locale={proofLocale} viz={<VizHoop locale={proofLocale} />} /> },
-            { key: "grassland", n: "05", node: <FeatItem n="05" k="grassland" href="/projects/grassland" t={t} locale={proofLocale} /> },
-            { key: "onthebeat", n: "06", node: <FeatItem n="06" k="onthebeat" href="/projects/onthebeat" flip t={t} locale={proofLocale} /> },
-            { key: "lamplight", n: "07", node: <FeatItem n="07" k="lamplight" href="/projects/lamplight" t={t} locale={proofLocale} /> },
-            { key: "autofill", n: "08", node: <FeatItem n="08" k="autofill" href="/projects/autofill" flip t={t} locale={proofLocale} /> },
-          ]}
+          items={getFeaturedDeckCases().map((record, index) => {
+            const n = String(index + 1).padStart(2, "0");
+            const fallbackViz =
+              record.slug === "maze" ? (
+                <VizMaze locale={proofLocale} />
+              ) : record.slug === "connect" ? (
+                <VizConnect locale={proofLocale} />
+              ) : record.slug === "pricewise" ? (
+                <VizPricewise locale={proofLocale} />
+              ) : record.slug === "hoop" ? (
+                <VizHoop locale={proofLocale} />
+              ) : undefined;
+            return {
+              key: record.slug,
+              n,
+              node: (
+                <FeatItem
+                  n={n}
+                  k={record.slug}
+                  href={`/projects/${record.slug}`}
+                  flip={index % 2 === 1}
+                  t={t}
+                  locale={proofLocale}
+                  viz={fallbackViz}
+                />
+              ),
+            };
+          })}
         />
       </section>
 
