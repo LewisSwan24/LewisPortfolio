@@ -181,7 +181,7 @@ export function SkillsBars({ skills, className }: SkillsBarsProps) {
                     </div>
                     <div className="h-2 bg-muted rounded-full overflow-hidden">
                         <div
-                            className="h-full bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] rounded-full transition-all duration-700 ease-out"
+                            className="h-full bg-[var(--text-2)] rounded-full transition-all duration-700 ease-out"
                             style={{
                                 width: `${skill.level}%`,
                                 animationDelay: `${index * 100}ms`,

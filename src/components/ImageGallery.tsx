@@ -55,7 +55,7 @@ export function ImageGallery({ images, columns = 3 }: ImageGalleryProps) {
                             "group relative aspect-video overflow-hidden rounded-xl",
                             "border border-border/50 bg-muted/30",
                             "transition-all duration-300",
-                            "hover:border-accent/50 hover:shadow-xl hover:shadow-accent/10",
+                            "hover:border-[var(--text)]",
                             "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2",
                             "cursor-pointer"
                         )}
@@ -74,7 +74,7 @@ export function ImageGallery({ images, columns = 3 }: ImageGalleryProps) {
                         {/* Overlay */}
                         <div
                             className={cn(
-                                "absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent",
+                                "absolute inset-0 bg-transparent",
                                 "opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                             )}
                         />
@@ -108,7 +108,7 @@ export function ImageGallery({ images, columns = 3 }: ImageGalleryProps) {
                             <div
                                 className={cn(
                                     "absolute bottom-0 left-0 right-0 p-3",
-                                    "bg-gradient-to-t from-black/80 to-transparent",
+                                    "bg-black/75",
                                     "translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                                 )}
                             >

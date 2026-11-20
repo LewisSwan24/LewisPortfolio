@@ -117,13 +117,13 @@ export function SearchModal({
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-background/80"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Modal */}
-      <div className="relative w-full max-w-xl mx-4 rounded-2xl border border-border/60 bg-background shadow-2xl shadow-black/20 overflow-hidden">
+      <div className="relative w-full max-w-xl mx-4 rounded-xl border border-border/60 bg-background overflow-hidden">
         {/* Search Input */}
         <div className="flex items-center border-b border-border/50 px-4">
           <svg

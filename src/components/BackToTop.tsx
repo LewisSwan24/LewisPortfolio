@@ -37,10 +37,10 @@ export function BackToTop({ threshold = 400, className }: BackToTopProps) {
       className={cn(
         "fixed bottom-6 right-6 z-50",
         "flex h-12 w-12 items-center justify-center",
-        "rounded-full border border-border/60 bg-background/80 backdrop-blur-md",
-        "text-foreground shadow-lg shadow-black/10",
+        "rounded-full border border-border/60 bg-background/80",
+        "text-foreground",
         "transition-all duration-300 ease-out",
-        "hover:bg-accent hover:text-accent-foreground hover:border-transparent hover:shadow-xl hover:shadow-accent/20",
+        "hover:bg-accent hover:text-[var(--on-accent)] hover:border-transparent",
         "focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background",
         "motion-safe:hover:scale-110 motion-safe:active:scale-95",
         isVisible

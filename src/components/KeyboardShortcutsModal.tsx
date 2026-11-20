@@ -55,7 +55,7 @@ export function KeyboardShortcutsModal() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] bg-background/80"
             onClick={() => setIsOpen(false)}
           />
 
@@ -67,7 +67,7 @@ export function KeyboardShortcutsModal() {
             transition={{ duration: 0.2 }}
             className="fixed left-1/2 top-1/2 z-[101] w-full max-w-md -translate-x-1/2 -translate-y-1/2 p-4"
           >
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-2xl">
+            <div className="rounded-xl border border-border bg-card p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-foreground">
                   Keyboard Shortcuts

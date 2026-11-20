@@ -10,7 +10,8 @@ type VizProps = { locale?: VizLocale };
 
 // Synthesised oblique on Chinese glyphs looks like a rendering fault, so the
 // display lines stay upright in zh.
-const displayStyle = (locale: VizLocale) => (locale === "zh" ? "normal" : "italic");
+// Lively Icons rules: no italics, in either locale.
+const displayStyle = (_locale: VizLocale) => "normal";
 
 export function VizConnect({ locale = "en" }: VizProps) {
   const zh = locale === "zh";
@@ -40,20 +41,20 @@ export function VizConnect({ locale = "en" }: VizProps) {
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
         <defs>
           <pattern id="paper-c" width="40" height="40" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="var(--viz-rule)" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="520" height="400" fill="url(#paper-c)" opacity="0.5" />
-        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="var(--viz-muted)">
           {zh ? "三轮研究与测试 · 2025 年 8–11 月" : "THREE ROUNDS · AUG–NOV 2025"}
         </text>
 
         {rounds.map((round, i) => (
           <g key={round.month}>
-            <text x={30} y={64 + i * 84} fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#A63F2A">
+            <text x={30} y={64 + i * 84} fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-focus)">
               {round.month}
             </text>
-            <text x={70} y={64 + i * 84} fontFamily="var(--font-ui)" fontSize="11" fill="#3A362D">
+            <text x={70} y={64 + i * 84} fontFamily="var(--font-ui)" fontSize="11" fill="var(--viz-ink)">
               {round.label}
             </text>
             {Array.from({ length: round.total }).map((_, n) => (
@@ -63,8 +64,8 @@ export function VizConnect({ locale = "en" }: VizProps) {
                 y={76 + i * 84 + Math.floor(n / 17) * 15}
                 width="9"
                 height="11"
-                fill={n < round.mine ? "#C9523A" : "none"}
-                stroke={n < round.mine ? "#C9523A" : "#8B7355"}
+                fill={n < round.mine ? "var(--viz-focus)" : "none"}
+                stroke={n < round.mine ? "var(--viz-focus)" : "var(--viz-muted)"}
                 strokeWidth="0.8"
               />
             ))}
@@ -74,19 +75,19 @@ export function VizConnect({ locale = "en" }: VizProps) {
               fontFamily="var(--font-mono)"
               fontSize="10"
               textAnchor="end"
-              fill="#8A8170"
+              fill="var(--viz-muted)"
             >
               {round.mine}/{round.total}
             </text>
           </g>
         ))}
 
-        <line x1="30" y1="228" x2="490" y2="228" stroke="#C9523A" strokeWidth="1" strokeDasharray="3 3" />
-        <text x={30} y={242} fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#C9523A">
+        <line x1="30" y1="228" x2="490" y2="228" stroke="var(--viz-focus)" strokeWidth="1" strokeDasharray="3 3" />
+        <text x={30} y={242} fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="var(--viz-focus)">
           {zh ? "10 月 3 日 · 回到纸面，重画成 5 屏" : "3 OCT · BACK TO PAPER — REDRAWN AS 5 SCREENS"}
         </text>
 
-        <line x1="30" y1="340" x2="490" y2="340" stroke="#8A8170" strokeWidth="0.8" />
+        <line x1="30" y1="340" x2="490" y2="340" stroke="var(--viz-muted)" strokeWidth="0.8" />
         {Array.from({ length: 24 }).map((_, i) => (
           <line
             key={i}
@@ -94,7 +95,7 @@ export function VizConnect({ locale = "en" }: VizProps) {
             y1="340"
             x2={30 + i * 20}
             y2={i % 5 === 0 ? 348 : 344}
-            stroke="#8A8170"
+            stroke="var(--viz-muted)"
             strokeWidth="0.6"
           />
         ))}
@@ -105,11 +106,11 @@ export function VizConnect({ locale = "en" }: VizProps) {
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="28"
-          fill="#3A362D"
+          fill="var(--viz-ink)"
         >
           14 / 71
         </text>
-        <text x="30" y="390" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8A8170">
+        <text x="30" y="390" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "我主持的场次，占团队总数" : "sessions I ran, of the team’s total"}
         </text>
       </svg>
@@ -132,30 +133,30 @@ export function VizSpectra({ locale = "en" }: VizProps) {
   return (
     <div className="viz viz-spectra">
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
-        <text x="30" y="30" fontFamily="var(--font-mono)" fontSize="11" letterSpacing="2" fill="#B5AC99">
+        <text x="30" y="30" fontFamily="var(--font-mono)" fontSize="11" letterSpacing="2" fill="var(--viz-rule)">
           {zh ? "SPECTRA LENS · 浏览器扩展" : "SPECTRA LENS · BROWSER EXTENSION"}
         </text>
 
-        <rect x="30" y="56" width="215" height="226" rx="6" stroke="#EFE8DA" strokeWidth="1.2" fill="none" />
-        <rect x="275" y="56" width="215" height="226" rx="6" stroke="#EFE8DA" strokeWidth="1.2" fill="none" />
+        <rect x="30" y="56" width="215" height="226" rx="6" stroke="var(--viz-paper)" strokeWidth="1.2" fill="none" />
+        <rect x="275" y="56" width="215" height="226" rx="6" stroke="var(--viz-paper)" strokeWidth="1.2" fill="none" />
 
         {rawBars.map((i) => (
-          <rect key={`r${i}`} x="42" y={72 + i * 14} width={rawWidth[i] - 18} height="5" rx="2.5" fill="#8A8170" />
+          <rect key={`r${i}`} x="42" y={72 + i * 14} width={rawWidth[i] - 18} height="5" rx="2.5" fill="var(--viz-muted)" />
         ))}
         {setBars.map((i) => (
-          <rect key={`s${i}`} x="287" y={74 + i * 38} width={setWidth[i] - 18} height="6" rx="3" fill="#EFE8DA" />
+          <rect key={`s${i}`} x="287" y={74 + i * 38} width={setWidth[i] - 18} height="6" rx="3" fill="var(--viz-paper)" />
         ))}
 
-        <text x="30" y="306" fontFamily="var(--font-mono)" fontSize="11" fill="#8A8170" letterSpacing="1">
+        <text x="30" y="306" fontFamily="var(--font-mono)" fontSize="11" fill="var(--viz-muted)" letterSpacing="1">
           {zh ? "作者写死的" : "AS THE AUTHOR SET IT"}
         </text>
-        <text x="490" y="306" fontFamily="var(--font-mono)" fontSize="11" fill="#8A8170" letterSpacing="1" textAnchor="end">
+        <text x="490" y="306" fontFamily="var(--font-mono)" fontSize="11" fill="var(--viz-muted)" letterSpacing="1" textAnchor="end">
           {zh ? "读者调整后" : "AS THE READER SETS IT"}
         </text>
 
         {controls.map((label, i) => (
           <g key={label}>
-            <rect x={30 + i * 118} y="324" width="104" height="26" rx="13" stroke="#EFE8DA" strokeWidth="1" fill="none" />
+            <rect x={30 + i * 118} y="324" width="104" height="26" rx="13" stroke="var(--viz-paper)" strokeWidth="1" fill="none" />
             <text
               x={30 + i * 118 + 52}
               y="341"
@@ -163,7 +164,7 @@ export function VizSpectra({ locale = "en" }: VizProps) {
               fontSize="11"
               letterSpacing="1"
               textAnchor="middle"
-              fill="#EFE8DA"
+              fill="var(--viz-paper)"
             >
               {label}
             </text>
@@ -176,7 +177,7 @@ export function VizSpectra({ locale = "en" }: VizProps) {
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="20"
-          fill="#EFE8DA"
+          fill="var(--viz-paper)"
         >
           {zh ? "字体和行距，由读者自己改" : "the reader, not the page, sets the type"}
         </text>
@@ -199,34 +200,34 @@ export function VizMaze({ locale = "en" }: VizProps) {
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
         <defs>
           <pattern id="paper-m" width="40" height="40" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="var(--viz-rule)" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="520" height="400" fill="url(#paper-m)" opacity="0.5" />
 
-        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="var(--viz-muted)">
           {zh ? "一次通过 · 一个事件" : "ONE PASS · ONE EVENT"}
         </text>
 
-        <circle cx="46" cy="120" r="7" fill="#A63F2A" />
-        <path d="M 56 120 L 116 120" stroke="#8B7355" strokeWidth="0.8" strokeDasharray="3 3" />
+        <circle cx="46" cy="120" r="7" fill="var(--viz-focus)" />
+        <path d="M 56 120 L 116 120" stroke="var(--viz-muted)" strokeWidth="0.8" strokeDasharray="3 3" />
 
-        <line x1="128" y1="88" x2="128" y2="152" stroke="#A63F2A" strokeWidth="1.4" />
-        <text x="128" y="80" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#A63F2A">
+        <line x1="128" y1="88" x2="128" y2="152" stroke="var(--viz-focus)" strokeWidth="1.4" />
+        <text x="128" y="80" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="var(--viz-focus)">
           IR
         </text>
-        <text x="128" y="168" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#8B7355">
+        <text x="128" y="168" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="var(--viz-muted)">
           {zh ? "消抖" : "debounce"}
         </text>
 
-        <rect x="176" y="94" width="104" height="52" fill="#F7F4EC" stroke="#25231D" strokeWidth="1" />
-        <text x="228" y="116" fontFamily="var(--font-ui)" fontSize="11" textAnchor="middle" fill="#25231D">
+        <rect x="176" y="94" width="104" height="52" fill="var(--viz-surface)" stroke="var(--viz-ink)" strokeWidth="1" />
+        <text x="228" y="116" fontFamily="var(--font-ui)" fontSize="11" textAnchor="middle" fill="var(--viz-ink)">
           {zh ? "回合状态" : "round state"}
         </text>
-        <text x="228" y="132" fontFamily="var(--font-mono)" fontSize="9" textAnchor="middle" fill="#756D61">
+        <text x="228" y="132" fontFamily="var(--font-mono)" fontSize="9" textAnchor="middle" fill="var(--viz-muted)">
           {zh ? "推进" : "advance"}
         </text>
-        <path d="M 138 120 L 174 120" stroke="#25231D" strokeWidth="1" />
+        <path d="M 138 120 L 174 120" stroke="var(--viz-ink)" strokeWidth="1" />
 
         {channels.map((c, i) => {
           const y = 66 + i * 42;
@@ -234,12 +235,12 @@ export function VizMaze({ locale = "en" }: VizProps) {
             <g key={c}>
               <path
                 d={`M 282 120 C 322 120, 322 ${y + 11}, 356 ${y + 11}`}
-                stroke="#A63F2A"
+                stroke="var(--viz-focus)"
                 strokeWidth="0.9"
                 fill="none"
               />
-              <rect x="356" y={y} width="128" height="22" fill="#F7F4EC" stroke="#A63F2A" strokeWidth="0.9" />
-              <text x="368" y={y + 15} fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#3A362D">
+              <rect x="356" y={y} width="128" height="22" fill="var(--viz-surface)" stroke="var(--viz-focus)" strokeWidth="0.9" />
+              <text x="368" y={y + 15} fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="var(--viz-ink)">
                 {c}
               </text>
             </g>
@@ -252,14 +253,14 @@ export function VizMaze({ locale = "en" }: VizProps) {
           width="104"
           height="34"
           fill="none"
-          stroke="#8B7355"
+          stroke="var(--viz-muted)"
           strokeWidth="0.8"
           strokeDasharray="2 2"
         />
-        <text x="228" y="217" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#756D61">
+        <text x="228" y="217" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="var(--viz-muted)">
           WEB SERIAL
         </text>
-        <path d="M 228 148 L 228 194" stroke="#8B7355" strokeWidth="0.8" strokeDasharray="2 2" />
+        <path d="M 228 148 L 228 194" stroke="var(--viz-muted)" strokeWidth="0.8" strokeDasharray="2 2" />
 
         <text
           x="30"
@@ -267,11 +268,11 @@ export function VizMaze({ locale = "en" }: VizProps) {
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="22"
-          fill="#25231D"
+          fill="var(--viz-ink)"
         >
           {zh ? "振动比分数先到" : "the buzz lands before the score does"}
         </text>
-        <text x="30" y="378" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="378" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "arduino mega · 10 个传感器 · 已公开展出" : "arduino mega · 10 sensors · exhibited"}
         </text>
       </svg>
@@ -297,28 +298,28 @@ export function VizVigil({ locale = "en" }: VizProps) {
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
         <defs>
           <pattern id="paper-v" width="40" height="40" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="var(--viz-rule)" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="520" height="400" fill="url(#paper-v)" opacity="0.5" />
 
-        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="var(--viz-muted)">
           {zh ? "置信度 · 分类器落在哪里" : "CONFIDENCE · WHERE THE CLASSIFIER LANDS"}
         </text>
 
         {/* The overlap is the argument: both bands occupy the same stretch. */}
-        <rect x={x(0.61)} y="86" width={x(0.91) - x(0.61)} height="128" fill="#A63F2A" opacity="0.07" />
+        <rect x={x(0.61)} y="86" width={x(0.91) - x(0.61)} height="128" fill="var(--viz-focus)" opacity="0.07" />
 
         <rect
           x={x(0.58)}
           y="98"
           width={x(0.97) - x(0.58)}
           height="26"
-          fill="#F7F4EC"
-          stroke="#25231D"
+          fill="var(--viz-surface)"
+          stroke="var(--viz-ink)"
           strokeWidth="1"
         />
-        <text x={x(0.58) + 10} y="115" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#3A362D">
+        <text x={x(0.58) + 10} y="115" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="var(--viz-ink)">
           {zh ? "判断对的 123 封" : "123 CALLS IT GOT RIGHT"}
         </text>
 
@@ -327,11 +328,11 @@ export function VizVigil({ locale = "en" }: VizProps) {
           y="176"
           width={x(0.91) - x(0.61)}
           height="26"
-          fill="#F7F4EC"
-          stroke="#A63F2A"
+          fill="var(--viz-surface)"
+          stroke="var(--viz-focus)"
           strokeWidth="1.2"
         />
-        <text x={x(0.61) + 10} y="193" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="#A63F2A">
+        <text x={x(0.61) + 10} y="193" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="var(--viz-focus)">
           {zh ? "判断错的 17 封" : "17 IT GOT WRONG"}
         </text>
 
@@ -342,34 +343,34 @@ export function VizVigil({ locale = "en" }: VizProps) {
               y1="176"
               x2={x(error.confidence)}
               y2="228"
-              stroke="#A63F2A"
+              stroke="var(--viz-focus)"
               strokeWidth="1"
             />
-            <circle cx={x(error.confidence)} cy="189" r="3.4" fill="#A63F2A" />
+            <circle cx={x(error.confidence)} cy="189" r="3.4" fill="var(--viz-focus)" />
             <text
               x={x(error.confidence)}
               y="242"
               fontFamily="var(--font-mono)"
               fontSize="8"
               textAnchor="middle"
-              fill="#A63F2A"
+              fill="var(--viz-focus)"
             >
               {error.label}
             </text>
           </g>
         ))}
 
-        <line x1="60" y1="272" x2="470" y2="272" stroke="#8B7355" strokeWidth="0.8" />
+        <line x1="60" y1="272" x2="470" y2="272" stroke="var(--viz-muted)" strokeWidth="0.8" />
         {ticks.map((tick) => (
           <g key={tick}>
-            <line x1={x(tick)} y1="272" x2={x(tick)} y2="278" stroke="#8B7355" strokeWidth="0.8" />
+            <line x1={x(tick)} y1="272" x2={x(tick)} y2="278" stroke="var(--viz-muted)" strokeWidth="0.8" />
             <text
               x={x(tick)}
               y="292"
               fontFamily="var(--font-mono)"
               fontSize="9"
               textAnchor="middle"
-              fill="#756D61"
+              fill="var(--viz-muted)"
             >
               {tick.toFixed(1)}
             </text>
@@ -382,16 +383,16 @@ export function VizVigil({ locale = "en" }: VizProps) {
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="22"
-          fill="#25231D"
+          fill="var(--viz-ink)"
         >
           {zh ? "这个数字不会告诉你哪一次判断是错的" : "the number can’t tell you when it’s wrong"}
         </text>
-        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh
             ? "140 封邮件 · 准确率 87.9% · 错误排序 auc 0.72"
             : "140 messages · 87.9% accurate · error-ranking auc 0.72"}
         </text>
-        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "一旦这个数字爬过 0.75，构建就失败" : "the build fails if that number climbs past 0.75"}
         </text>
       </svg>
@@ -419,12 +420,12 @@ export function VizHoop({ locale = "en" }: VizProps) {
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
         <defs>
           <pattern id="paper-h" width="40" height="40" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="var(--viz-rule)" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="520" height="400" fill="url(#paper-h)" opacity="0.5" />
 
-        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="var(--viz-muted)">
           {zh ? "六个批次 · 一份登记表" : "SIX BATCHES · ONE REGISTRY"}
         </text>
 
@@ -432,16 +433,16 @@ export function VizHoop({ locale = "en" }: VizProps) {
           const y = 62 + i * 26;
           return (
             <g key={batch.label}>
-              <text x="30" y={y + 9} fontFamily="var(--font-mono)" fontSize="8.5" fill="#756D61">
+              <text x="30" y={y + 9} fontFamily="var(--font-mono)" fontSize="8.5" fill="var(--viz-muted)">
                 {batch.label}
               </text>
-              <rect x="118" y={y} width={scale(batch.n)} height="12" fill="#A63F2A" opacity="0.24" />
+              <rect x="118" y={y} width={scale(batch.n)} height="12" fill="var(--viz-focus)" opacity="0.24" />
               <text
                 x={118 + scale(batch.n) + 8}
                 y={y + 10}
                 fontFamily="var(--font-mono)"
                 fontSize="9"
-                fill="#3A362D"
+                fill="var(--viz-ink)"
               >
                 {batch.n}
               </text>
@@ -450,14 +451,14 @@ export function VizHoop({ locale = "en" }: VizProps) {
         })}
 
         {/* The registry every batch is logged into. Its script reads names and sizes, never style. */}
-        <line x1="300" y1="52" x2="300" y2="230" stroke="#25231D" strokeWidth="1.2" />
+        <line x1="300" y1="52" x2="300" y2="230" stroke="var(--viz-ink)" strokeWidth="1.2" />
         <text
           x="300"
           y="246"
           fontFamily="var(--font-mono)"
           fontSize="8.5"
           textAnchor="middle"
-          fill="#25231D"
+          fill="var(--viz-ink)"
         >
           {zh ? "登记表" : "REGISTRY"}
         </text>
@@ -467,25 +468,25 @@ export function VizHoop({ locale = "en" }: VizProps) {
           fontFamily="var(--font-mono)"
           fontSize="8"
           textAnchor="middle"
-          fill="#8B7355"
+          fill="var(--viz-muted)"
         >
           {zh ? "脚本只读清单，不查风格" : "SCRIPT READS THE MANIFEST, NOT STYLE"}
         </text>
 
-        <path d="M 306 141 L 386 141" stroke="#25231D" strokeWidth="1" />
-        <text x="396" y="132" fontFamily="var(--font-display)" fontSize="40" fill="#25231D">
+        <path d="M 306 141 L 386 141" stroke="var(--viz-ink)" strokeWidth="1" />
+        <text x="396" y="132" fontFamily="var(--font-display)" fontSize="40" fill="var(--viz-ink)">
           299
         </text>
         {/* Registry records, not finished art: the image files behind the 299
             were never verified (canonical facts, Hoop Dream 299). */}
-        <text x="396" y="152" fontFamily="var(--font-mono)" fontSize="8.5" fill="#8B7355">
+        <text x="396" y="152" fontFamily="var(--font-mono)" fontSize="8.5" fill="var(--viz-muted)">
           {zh ? "条登记规格" : "REGISTERED SPECS"}
         </text>
-        <text x="396" y="164" fontFamily="var(--font-mono)" fontSize="8.5" fill="#8B7355">
+        <text x="396" y="164" fontFamily="var(--font-mono)" fontSize="8.5" fill="var(--viz-muted)">
           {zh ? "原图未核实" : "IMAGES NOT VERIFIED"}
         </text>
 
-        <text x="30" y="288" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
+        <text x="30" y="288" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="var(--viz-focus)">
           {zh
             ? "拒收：写实 · 3D · 日系动画 · 霓虹 · 随机文字 · 真实商标"
             : "REJECTED: PHOTOREAL · 3D · ANIME · NEON · RANDOM TEXT · REAL MARKS"}
@@ -497,14 +498,14 @@ export function VizHoop({ locale = "en" }: VizProps) {
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="22"
-          fill="#25231D"
+          fill="var(--viz-ink)"
         >
           {zh ? "说清楚「不要什么」更管用" : "saying what it is not did more work"}
         </text>
-        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "146 个生涯节点 · 10 章 · 1,975 个测试" : "146 career nodes · 10 chapters · 1,975 tests"}
         </text>
-        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "规则写在产量出现之前" : "the rules were written before the volume existed"}
         </text>
       </svg>
@@ -537,26 +538,26 @@ export function VizPricewise({ locale = "en" }: VizProps) {
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
         <defs>
           <pattern id="paper-p" width="40" height="40" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="var(--viz-rule)" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="520" height="400" fill="url(#paper-p)" opacity="0.5" />
 
-        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="var(--viz-muted)">
           {zh ? "三道关卡 · 全部通过" : "THREE GATES · ALL GREEN"}
         </text>
 
         {/* The three gates, drawn as openings rather than barriers. */}
         {gates.map((gate) => (
           <g key={gate.label}>
-            <line x1={gate.x} y1="52" x2={gate.x} y2="228" stroke="#25231D" strokeWidth="1.2" />
+            <line x1={gate.x} y1="52" x2={gate.x} y2="228" stroke="var(--viz-ink)" strokeWidth="1.2" />
             <text
               x={gate.x}
               y="244"
               fontFamily="var(--font-mono)"
               fontSize="8.5"
               textAnchor="middle"
-              fill="#25231D"
+              fill="var(--viz-ink)"
             >
               {gate.label}
             </text>
@@ -568,26 +569,26 @@ export function VizPricewise({ locale = "en" }: VizProps) {
           const y = 70 + i * 31;
           return (
             <g key={defect}>
-              <text x="30" y={y + 4} fontFamily="var(--font-mono)" fontSize="8" fill="#756D61">
+              <text x="30" y={y + 4} fontFamily="var(--font-mono)" fontSize="8" fill="var(--viz-muted)">
                 {String(i + 1).padStart(2, "0")}
               </text>
-              <line x1="52" y1={y} x2="404" y2={y} stroke="#A63F2A" strokeWidth="1" opacity="0.55" />
-              <path d={`M 404 ${y} l -6 -3 l 0 6 z`} fill="#A63F2A" opacity="0.55" />
-              <text x="52" y={y - 6} fontFamily="var(--font-mono)" fontSize="8" fill="#A63F2A">
+              <line x1="52" y1={y} x2="404" y2={y} stroke="var(--viz-focus)" strokeWidth="1" opacity="0.55" />
+              <path d={`M 404 ${y} l -6 -3 l 0 6 z`} fill="var(--viz-focus)" opacity="0.55" />
+              <text x="52" y={y - 6} fontFamily="var(--font-mono)" fontSize="8" fill="var(--viz-focus)">
                 {defect}
               </text>
             </g>
           );
         })}
 
-        <text x="412" y="152" fontFamily="var(--font-display)" fontSize="40" fill="#25231D">
+        <text x="412" y="152" fontFamily="var(--font-display)" fontSize="40" fill="var(--viz-ink)">
           4+1
         </text>
-        <text x="412" y="172" fontFamily="var(--font-mono)" fontSize="8.5" fill="#8B7355">
+        <text x="412" y="172" fontFamily="var(--font-mono)" fontSize="8.5" fill="var(--viz-muted)">
           {zh ? "全过" : "GOT THROUGH"}
         </text>
 
-        <text x="30" y="288" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
+        <text x="30" y="288" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="var(--viz-focus)">
           {zh
             ? "查出来靠的是：打真实接口 · 读返回内容 · 直接查数据库"
             : "FOUND BY: CALLING THE REAL ENDPOINT · READING THE RESPONSE · QUERYING THE DB"}
@@ -599,14 +600,14 @@ export function VizPricewise({ locale = "en" }: VizProps) {
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="22"
-          fill="#25231D"
+          fill="var(--viz-ink)"
         >
           {zh ? "渲染出来了，不等于跑起来了" : "renders correctly is not runs correctly"}
         </text>
-        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "109 条 API 路由 · 36 条页面路由 · 311 个测试" : "109 API routes · 36 page routes · 311 tests"}
         </text>
-        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "没有一道关卡在问「功能有没有真的执行」" : "no gate was asking whether the feature executed"}
         </text>
       </svg>
@@ -631,42 +632,42 @@ export function VizGapmapper({ locale = "en" }: VizProps) {
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
         <defs>
           <pattern id="paper-g" width="40" height="40" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="var(--viz-rule)" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="520" height="400" fill="url(#paper-g)" opacity="0.5" />
 
-        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="var(--viz-muted)">
           {zh ? "两类证据 · 并排 · 不合并" : "TWO KINDS OF EVIDENCE · SIDE BY SIDE · NEVER MERGED"}
         </text>
 
-        <text x="30" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="#25231D">
+        <text x="30" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="var(--viz-ink)">
           {zh ? "客观指标" : "OBJECTIVE"}
         </text>
         {objective.map((item, i) => (
           <g key={item}>
-            <rect x="30" y={74 + i * 22} width="152" height="14" fill="#25231D" opacity="0.1" />
-            <text x="38" y={84 + i * 22} fontFamily="var(--font-mono)" fontSize="8" fill="#3A362D">
+            <rect x="30" y={74 + i * 22} width="152" height="14" fill="var(--viz-ink)" opacity="0.1" />
+            <text x="38" y={84 + i * 22} fontFamily="var(--font-mono)" fontSize="8" fill="var(--viz-ink)">
               {item}
             </text>
           </g>
         ))}
 
-        <text x="338" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="#A63F2A">
+        <text x="338" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="var(--viz-focus)">
           {zh ? "感知信号" : "PERCEIVED"}
         </text>
         {perceived.map((item, i) => (
           <g key={item}>
-            <rect x="338" y={74 + i * 22} width="152" height="14" fill="#A63F2A" opacity="0.16" />
-            <text x="346" y={84 + i * 22} fontFamily="var(--font-mono)" fontSize="8" fill="#3A362D">
+            <rect x="338" y={74 + i * 22} width="152" height="14" fill="var(--viz-focus)" opacity="0.16" />
+            <text x="346" y={84 + i * 22} fontFamily="var(--font-mono)" fontSize="8" fill="var(--viz-ink)">
               {item}
             </text>
           </g>
         ))}
 
         {/* The gap itself. Nothing bridges it — that is the whole point. */}
-        <line x1="206" y1="74" x2="206" y2="206" stroke="#25231D" strokeWidth="1" strokeDasharray="2 4" />
-        <line x1="314" y1="74" x2="314" y2="206" stroke="#A63F2A" strokeWidth="1" strokeDasharray="2 4" />
+        <line x1="206" y1="74" x2="206" y2="206" stroke="var(--viz-ink)" strokeWidth="1" strokeDasharray="2 4" />
+        <line x1="314" y1="74" x2="314" y2="206" stroke="var(--viz-focus)" strokeWidth="1" strokeDasharray="2 4" />
         <text
           x="260"
           y="136"
@@ -674,18 +675,18 @@ export function VizGapmapper({ locale = "en" }: VizProps) {
           fontStyle={displayStyle(locale)}
           fontSize="19"
           textAnchor="middle"
-          fill="#25231D"
+          fill="var(--viz-ink)"
         >
           {zh ? "落差" : "the gap"}
         </text>
-        <text x="260" y="158" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#8B7355">
+        <text x="260" y="158" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="var(--viz-muted)">
           {zh ? "去查一查的理由" : "A REASON TO LOOK"}
         </text>
-        <text x="260" y="172" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="#8B7355">
+        <text x="260" y="172" fontFamily="var(--font-mono)" fontSize="8" textAnchor="middle" fill="var(--viz-muted)">
           {zh ? "不是危险的证明" : "NOT PROOF OF DANGER"}
         </text>
 
-        <text x="30" y="248" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
+        <text x="30" y="248" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="var(--viz-focus)">
           {zh
             ? "写进系统要求：匿名上报 · 位置取整到街段 · 显示信心与偏差 · 不出安全分数"
             : "AS REQUIREMENTS: ANONYMOUS · ROUNDED TO A STREET SEGMENT · CONFIDENCE SHOWN · NO SAFETY SCORE"}
@@ -697,19 +698,19 @@ export function VizGapmapper({ locale = "en" }: VizProps) {
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="22"
-          fill="#25231D"
+          fill="var(--viz-ink)"
         >
           {zh ? "一合并，不确定性就消失了" : "merge them and the uncertainty disappears"}
         </text>
-        <text x="30" y="330" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="330" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh
             ? "18 个访谈 · 6 人完成 · 我做第 10、11、12 个"
             : "18 interviews · six completed · numbers 10, 11 and 12 are mine"}
         </text>
-        <text x="30" y="350" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="350" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "18 个访谈撑不起一个安全分数" : "18 interviews cannot support a safety score"}
         </text>
-        <text x="30" y="378" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#A63F2A">
+        <text x="30" y="378" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-focus)">
           {zh
             ? "路线原型是我建的，也是我主张放弃的"
             : "I built the route prototype, then argued for abandoning it"}
@@ -747,19 +748,19 @@ export function VizRules({ locale = "en" }: VizProps) {
       <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
         <defs>
           <pattern id="paper-r" width="40" height="40" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="#C9BEA2" strokeWidth="0.5" />
+            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="var(--viz-rule)" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="520" height="400" fill="url(#paper-r)" opacity="0.5" />
 
-        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="#8B7355">
+        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="var(--viz-muted)">
           {zh ? "谁都同意的一句话 → 能被反驳的一条规则" : "A SENTENCE ANYONE AGREES WITH → A RULE ANYONE CAN REFUTE"}
         </text>
 
-        <text x="30" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "软要求" : "SOFT"}
         </text>
-        <text x="266" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="#A63F2A">
+        <text x="266" y="62" fontFamily="var(--font-mono)" fontSize="8.5" letterSpacing="1" fill="var(--viz-focus)">
           {zh ? "能施工、也能被指着说不对" : "BUILDABLE, AND ARGUABLE"}
         </text>
 
@@ -767,20 +768,20 @@ export function VizRules({ locale = "en" }: VizProps) {
           const y = 92 + i * 40;
           return (
             <g key={row.soft}>
-              <text x="30" y={y} fontFamily="var(--font-mono)" fontSize="8.5" fill="#756D61">
+              <text x="30" y={y} fontFamily="var(--font-mono)" fontSize="8.5" fill="var(--viz-muted)">
                 {row.soft}
               </text>
-              <line x1="212" y1={y - 4} x2="256" y2={y - 4} stroke="#25231D" strokeWidth="1" />
-              <path d={`M 256 ${y - 4} l -6 -3 l 0 6 z`} fill="#25231D" />
-              <text x="266" y={y} fontFamily="var(--font-mono)" fontSize="8.5" fill="#3A362D">
+              <line x1="212" y1={y - 4} x2="256" y2={y - 4} stroke="var(--viz-ink)" strokeWidth="1" />
+              <path d={`M 256 ${y - 4} l -6 -3 l 0 6 z`} fill="var(--viz-ink)" />
+              <text x="266" y={y} fontFamily="var(--font-mono)" fontSize="8.5" fill="var(--viz-ink)">
                 {row.hard}
               </text>
-              <line x1="30" y1={y + 14} x2="490" y2={y + 14} stroke="#C9BEA2" strokeWidth="0.5" />
+              <line x1="30" y1={y + 14} x2="490" y2={y + 14} stroke="var(--viz-rule)" strokeWidth="0.5" />
             </g>
           );
         })}
 
-        <text x="30" y="278" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="#A63F2A">
+        <text x="30" y="278" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="var(--viz-focus)">
           {zh
             ? "按钮写「See safer routes」：比较级，因为没有数据支撑「最安全」"
             : "THE BUTTON READS 'SEE SAFER ROUTES' — COMPARATIVE, BECAUSE NO DATA SUPPORTS 'SAFEST'"}
@@ -792,14 +793,14 @@ export function VizRules({ locale = "en" }: VizProps) {
           fontFamily="var(--font-display)"
           fontStyle={displayStyle(locale)}
           fontSize="22"
-          fill="#25231D"
+          fill="var(--viz-ink)"
         >
           {zh ? "能被反驳，规则才有用" : "being refutable is what makes it useful"}
         </text>
-        <text x="30" y="354" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="354" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "两份作业 · 同一个动作 · 均已提交并评分" : "two briefs · one move · both submitted and marked"}
         </text>
-        <text x="30" y="376" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="#8B7355">
+        <text x="30" y="376" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "指南里的效果数字出自所引论文，不是我的实验" : "the guide's effect figures are the cited paper's, not mine"}
         </text>
       </svg>
