@@ -18,6 +18,8 @@ const projectLabels: Record<ProjectEvidenceSlug, string> = {
   rules: "Requirements into Rules",
   grassland: "Grassland Iron Tide",
   onthebeat: "On The Beat",
+  lamplight: "Lamplight Nook",
+  autofill: "Resume Autofill",
 };
 
 // An unlisted case gets no column; getEvidenceMatrix has already dropped its cells.
@@ -33,6 +35,8 @@ const projectOrder: ProjectEvidenceSlug[] = (
     "rules",
     "grassland",
     "onthebeat",
+    "lamplight",
+    "autofill",
   ] as const
 ).filter((slug) => !isUnlistedProject(slug));
 

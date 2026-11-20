@@ -632,7 +632,7 @@ describe("unlisted cases", () => {
       expect(UNLISTED_PROJECT_SLUGS).toContain(slug);
       expect(LISTED_PROJECT_SLUGS).not.toContain(slug);
     }
-    for (const slug of ["grassland", "onthebeat"]) {
+    for (const slug of ["grassland", "onthebeat", "lamplight", "autofill"]) {
       expect(LISTED_PROJECT_SLUGS).toContain(slug);
     }
 

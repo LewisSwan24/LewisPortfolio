@@ -9,6 +9,8 @@ export const CURRENT_PROJECT_SLUGS = [
   "rules",
   "grassland",
   "onthebeat",
+  "lamplight",
+  "autofill",
 ] as const;
 
 export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
@@ -105,5 +107,13 @@ export const PROJECT_OG_COPY: Record<
   onthebeat: {
     title: "On The Beat",
     oneLiner: "A phone app, two wristbands and a cloud relay that help two strangers at a gig say hello, then get out of the way.",
+  },
+  lamplight: {
+    title: "Lamplight Nook",
+    oneLiner: "A pixel-art desktop app that shows a long-running Claude task as a small café crew at work.",
+  },
+  autofill: {
+    title: "Resume Autofill",
+    oneLiner: "A local-first job-application autofill tool that never guesses, never submits for you and never sends your resume away.",
   },
 };

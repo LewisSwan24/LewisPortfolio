@@ -327,6 +327,34 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "I can steer AI tools to a working connected system by setting the requirements and sending back output that only looks finished.",
     },
+    {
+      slug: "lamplight",
+      href: "/projects/lamplight",
+      problemType: "An interface for a long-running AI agent",
+      challenge:
+        "A long-running AI task shows up as a scrolling log: hard to tell who is working, how far the plan has got, or whether it is waiting for you.",
+      methods: ["metaphor-led interface design", "event-to-behaviour rules", "human-in-the-loop decision cards"],
+      sample:
+        "Solo; Claude Code wrote the code. A Windows app on the Claude Agent SDK, 1.0 on 5 November 2026, used day to day by me. No user testing; installer unsigned.",
+      outcome:
+        "A café crew that plays out a real Claude task, with the plan on a blackboard and risky steps behind a card that defaults to 'not now'.",
+      proves:
+        "I can turn the state of a long AI task into something a person reads at a glance, and keep them in charge of what is risky.",
+    },
+    {
+      slug: "autofill",
+      href: "/projects/autofill",
+      problemType: "Automation that acts in someone's name",
+      challenge:
+        "Applying for graduate jobs means typing one resume into system after system; a tool that fills forms in your name has to be trusted not to guess, submit or leak.",
+      methods: ["rules for uncertainty", "human-in-the-loop submission", "local-first privacy design"],
+      sample:
+        "Solo; Claude Code wrote the code. A Chrome extension and an Android app, used on my own applications. Accuracy measured only on synthetic test forms; no other users on record.",
+      outcome:
+        "A local-first autofill that leaves unsure fields to you, stops before the final submit and keeps the resume on the device.",
+      proves:
+        "I can set the rules for a tool that acts on someone's behalf, and make each rule visible on screen.",
+    },
   ],
   zh: [
     {
@@ -453,6 +481,26 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
         "课程作业的个人版本；三张卡出自组员的原型，代码由 Claude Code 编写。2026 年 9 月 25 日两支真手环经云端 relay 配对成功。没有参与者测试。",
       outcome: "手机 App、两支手环和一台常开的 relay，不需要笔电就能运转；双方都同意后才显示名字。",
       proves: "我能靠定需求、把只是看起来做完的输出打回去，借 AI 工具做出一套能运行的联网系统。",
+    },
+    {
+      slug: "lamplight",
+      href: "/projects/lamplight",
+      problemType: "给长时间运行的 AI 代理做的界面",
+      challenge: "跑很久的 AI 任务只是一屏滚动的日志：谁在做事、计划做到哪、是不是在等你，都很难看出来。",
+      methods: ["以比喻带动的界面设计", "事件到角色行为的规则", "人在回路的决定卡"],
+      sample: "独立完成，代码由 Claude Code 编写。基于 Claude Agent SDK 的 Windows 应用，2026 年 11 月 5 日发布 1.0，我日常在用。没有用户测试，安装包未签名。",
+      outcome: "一组咖啡馆店员演出真实的 Claude 任务，计划写在黑板上，风险步骤挡在默认「先不要」的卡片后面。",
+      proves: "我能把 AI 长任务的状态做成一眼看得懂的东西，并让人掌握有风险的步骤。",
+    },
+    {
+      slug: "autofill",
+      href: "/projects/autofill",
+      problemType: "以别人名义行事的自动化",
+      challenge: "投应届岗位要把同一份简历在一个又一个系统里重填；以你的名义填表的工具，要让人放心它不猜、不提交、不外传。",
+      methods: ["处理不确定的规则", "人在回路的提交", "本地优先的隐私设计"],
+      sample: "独立完成，代码由 Claude Code 编写。Chrome 扩展加 Android App，我投递时用过。准确率只在合成测试表单上量过；没有其他使用者的记录。",
+      outcome: "一个本地优先的自动填表工具：拿不准的留给你，在最终提交前停下，简历不离开设备。",
+      proves: "我能为代替用户行事的工具定规则，并让每条规则显示在屏幕上。",
     },
   ],
 };

@@ -1,3 +1,5 @@
+import { autofillPack } from "./case-autofill";
+import { lamplightPack } from "./case-lamplight";
 import { recentCaseInterviewPacks } from "./recent-cases";
 import type {
   CaseInterviewPack,
@@ -831,6 +833,8 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
       },
     },
   ...recentCaseInterviewPacks.en,
+  ...lamplightPack.en,
+  ...autofillPack.en,
 };
 
 /**
@@ -1148,6 +1152,8 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
       },
     },
   ...recentCaseInterviewPacks.zh,
+  ...lamplightPack.zh,
+  ...autofillPack.zh,
 };
 
 const caseInterviewPacks: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseInterviewPack>> = {

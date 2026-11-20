@@ -11,6 +11,8 @@ export const projectEvidenceSlugs = [
   "rules",
   "grassland",
   "onthebeat",
+  "lamplight",
+  "autofill",
 ] as const satisfies readonly ProjectEvidenceSlug[];
 
 export const hiringRoleIds = [
@@ -33,4 +35,6 @@ export const projectLabels: Record<ProjectEvidenceSlug, string> = {
   rules: "Requirements into Rules",
   grassland: "Grassland Iron Tide",
   onthebeat: "On The Beat",
+  lamplight: "Lamplight Nook",
+  autofill: "Resume Autofill",
 };

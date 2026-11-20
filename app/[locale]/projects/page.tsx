@@ -9,8 +9,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = t("nav.work");
   const description =
     locale === "zh"
-      ? "六个案例，涵盖 UX、交互设计、实体交互与可运行原型。"
-      : "Six cases across UX, interaction design, physical computing and working prototypes.";
+      ? "八个案例，涵盖 UX、交互设计、实体交互与可运行原型。"
+      : "Eight cases across UX, interaction design, physical computing and working prototypes.";
   return {
     title,
     description,

@@ -42,7 +42,9 @@ type ProjKey =
   | "hoop"
   | "pricewise"
   | "grassland"
-  | "onthebeat";
+  | "onthebeat"
+  | "lamplight"
+  | "autofill";
 
 interface FeatItemProps {
   n: string;
@@ -252,7 +254,7 @@ export default async function HomePage() {
 
             Every case is still rendered. FeaturedDeck hides the inactive ones
             visually but leaves them in the served HTML, so a crawler still gets
-            all six. */}
+            all eight. */}
         <FeaturedDeck
           labels={{
             prev: t("feat.deckPrev"),
@@ -266,6 +268,8 @@ export default async function HomePage() {
             { key: "hoop", n: "04", node: <FeatItem n="04" k="hoop" href="/projects/hoop" flip t={t} locale={proofLocale} viz={<VizHoop locale={proofLocale} />} /> },
             { key: "grassland", n: "05", node: <FeatItem n="05" k="grassland" href="/projects/grassland" t={t} locale={proofLocale} /> },
             { key: "onthebeat", n: "06", node: <FeatItem n="06" k="onthebeat" href="/projects/onthebeat" flip t={t} locale={proofLocale} /> },
+            { key: "lamplight", n: "07", node: <FeatItem n="07" k="lamplight" href="/projects/lamplight" t={t} locale={proofLocale} /> },
+            { key: "autofill", n: "08", node: <FeatItem n="08" k="autofill" href="/projects/autofill" flip t={t} locale={proofLocale} /> },
           ]}
         />
       </section>

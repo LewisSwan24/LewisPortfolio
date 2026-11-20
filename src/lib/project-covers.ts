@@ -79,6 +79,26 @@ export const PROJECT_COVERS = {
     },
     fit: "contain",
   },
+  lamplight: {
+    src: "/projects/lamplight/02-board.jpg",
+    width: 1280,
+    height: 720,
+    alt: {
+      en: "The café with Wick's plan on the blackboard card: seven steps, three crossed off, the fourth under way",
+      zh: "咖啡馆里 Wick 写在黑板卡上的计划：七个步骤，划掉三个，第四个正在进行",
+    },
+    fit: "cover",
+  },
+  autofill: {
+    src: "/projects/autofill/01-form-filled.png",
+    width: 1280,
+    height: 900,
+    alt: {
+      en: "A Chinese application form filled from the sample resume, with the summary card showing 45 filled, 1 needing review and 1 not filled",
+      zh: "用示例简历填好的中文申请表，摘要卡显示已填 45、待确认 1、未填 1",
+    },
+    fit: "cover",
+  },
 } satisfies Record<string, ProjectCover>;
 
 export function getProjectCover(slug: string): ProjectCover | undefined {

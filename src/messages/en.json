@@ -80,11 +80,11 @@
   },
   "feat": {
     "label": "Selected work",
-    "title": "Six cases, each with its own stopping point.",
+    "title": "Eight cases, each with its own stopping point.",
     "footer": "Full index",
     "deckPrev": "Previous case",
     "deckNext": "Next case",
-    "deckKbd": "Drag, or use ← → to step through the six"
+    "deckKbd": "Drag, or use ← → to step through the eight"
   },
   "proj": {
     "connect": {
@@ -186,6 +186,26 @@
       "m1": "2 real wristbands showing MEET together",
       "m2": "65 minutes to take the laptop out",
       "m3": "No participant testing yet"
+    },
+    "lamplight": {
+      "kicker": "AI agent interface · Desktop app",
+      "title": "Lamplight Nook",
+      "sub": "A pixel-art desktop app that plays out a long-running Claude task as a small café crew at work, and stops to ask before anything risky.",
+      "role": "Direction + interaction",
+      "date": "2026 · 1.0, in my daily use",
+      "m1": "1.0 on 5 November 2026",
+      "m2": "Risky steps default to 'not now'",
+      "m3": "Chinese and English throughout"
+    },
+    "autofill": {
+      "kicker": "Automation that acts for you · Privacy",
+      "title": "Resume Autofill",
+      "sub": "A job-application autofill for Chrome and Android that never guesses, never submits for you and keeps your resume on the device.",
+      "role": "Problem + rules",
+      "date": "2026 · used on my own applications",
+      "m1": "Unsure fields left empty for review",
+      "m2": "Stops before the final submit",
+      "m3": "Your resume stays on the device"
     }
   },
   "cs": {
@@ -894,6 +914,142 @@
       "rf": {
         "label": "Reflection",
         "p": "In this record my part sits at two ends: saying what the system must do, and sending back output that only looked finished. Mock data that showed MEET, a link that only worked with my laptop, and a canvas that counted wrong each looked fine on screen until it was tried. What the case cannot say is whether the cards help two strangers meet. That needs people at a real or staged gig, and it has not happened yet."
+      }
+    },
+    "lamplight": {
+      "hero": {
+        "title": "Lamplight Nook",
+        "sub": "A cozy pixel-art desktop app that turns a long-running AI task into the daily life of a small café crew: who is busy, how far the plan has got, and what is waiting for you."
+      },
+      "roleVal": "Solo: the café metaphor, the decision cards, the art direction and acceptance. The code was written by Claude Code",
+      "timeVal": "October–November 2026 · 1.0 on 5 November, 1.1 to 1.4 in progress",
+      "teamVal": "Solo",
+      "toolsVal": "Electron · Phaser · TypeScript · Claude Agent SDK · Vitest · Claude Code",
+      "ch": {
+        "label": "The problem",
+        "title": "A long task you cannot read, and a wait you cannot enjoy.",
+        "p": "A long-running Claude task shows up as a scrolling log. It is hard to tell who is working, how far the plan has got, and whether the work has stopped to wait for you. I wanted two things from Lamplight Nook: to read the state of a long task at a glance, and to make waiting on it feel better than watching a terminal."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Three decisions that were mine.",
+        "m1": {
+          "t": "A café crew",
+          "b": "The main agent and its subagents are played by a small crew. Wick plans the job and chalks the real to-do list on a blackboard, Clem runs out to look things up, Iris settles colours and layout, Flint checks the work before it leaves the shop."
+        },
+        "m2": {
+          "t": "Decision cards",
+          "b": "What needs a person becomes a card. Questions open a dialog with the choices spelled out; a risky step opens a plain confirmation card whose default is 'not now'."
+        },
+        "m3": {
+          "t": "Bought art",
+          "b": "The pixel art comes from purchased LimeZu packs, recoloured and assembled by scripts in the repository, rather than generated images. The music is Alex Morgan's, under CC BY 4.0."
+        }
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Real events in, characters out.",
+        "p": "The Electron main process runs the agent through the Claude Agent SDK, normalises its events, classifies risk and records each run. The renderer is a Phaser scene: rules written in YAML turn events into character commands, a director paces them, and a state machine tracks each character. Characters walk, work, get stuck, ask for help and wrap up from what the agent is really doing."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "The blackboard holds the real plan, ticked off as it goes, so how far along the job is can be read without a log. A commission slip takes the request, the files to hand over and a spending cap; the staff work on copies, so the originals stay as they are. When the shop is minimised, a small window in the corner shows who is working and which step is under way, and calls you when a question is waiting. A risky step waits on a card that defaults to 'not now', so nothing risky goes ahead because nobody was looking."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "Claude Code wrote the code; the metaphor, the decision cards, the choice of art and what counted as finished were mine. The public history has one squashed commit per version: 0.1.0 on 22 October 2026, 0.6.0 on 30 October, a pass titled 'Safety before 1.0' and then 1.0.0 on 5 November. Since then, 1.1 to 1.4 work has added working only inside a folder you choose to lend, and Word, Excel, PowerPoint and PDF results with previews. It runs on your own Anthropic API key, with no account and no telemetry."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "The repository carries about a hundred Vitest test files, and a debug panel that replays a bundled real recording without calling the API, previews the decision cards and walks characters between anchors, so a scene can be checked the same way each time. The screenshots on this page are made by the app's own simulation script for the store listing, not captured from someone's real task. The real-use check is mine: I run it on my own Claude tasks day to day."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Version released",
+          "v": "1.0"
+        },
+        "m2": {
+          "label": "Languages, following the system",
+          "v": "2"
+        },
+        "m3": {
+          "label": "Users on record",
+          "v": "Me"
+        },
+        "p": "A Windows app that plays out a real Claude task as a café crew, with the plan on a blackboard and every risky step behind a card. Evidence status: I am the only user on record, and there has been no user testing. The installer is not code-signed, and the Microsoft Store listing is not live. The code was written by Claude Code, the art is LimeZu's and the music is Alex Morgan's."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "What the case can show is that the café carries real state: the plan, who is stuck, and what is waiting on a person, and that it holds up on my own daily work. What it cannot show is whether the café reads faster than a log for someone else, or only feels nicer. That needs other people running long tasks, side by side with a plain log."
+      }
+    },
+    "autofill": {
+      "hero": {
+        "title": "Resume Autofill",
+        "sub": "A local-first autofill for job applications, as a Chrome extension and an Android app with a resume keyboard. It fills forms from your own resume, leaves anything uncertain to you, and sends nothing to a server."
+      },
+      "roleVal": "Solo: the problem, the rules the tool follows, review, and testing on my own applications. The code was written by Claude Code",
+      "timeVal": "November 2026 · in use on my own applications",
+      "teamVal": "Solo",
+      "toolsVal": "TypeScript · WXT (Chrome MV3) · Capacitor (Android) · Vitest · Playwright · Claude Code",
+      "ch": {
+        "label": "The problem",
+        "title": "One resume, typed again in every system.",
+        "p": "Applying for graduate jobs meant typing the same resume into Workday, Greenhouse, Beisen, Moka and the rest, field by field. That was where it started. While building it, privacy became the main design constraint: a tool that fills forms in your name has to be trusted not to fill them wrongly, not to submit for you, and not to send your resume anywhere."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Three things the tool refuses to do.",
+        "m1": {
+          "t": "Never guess",
+          "b": "A field the tool is unsure about stays empty and is outlined for you to confirm. The fill report counts filled, needs-review and not-filled fields separately."
+        },
+        "m2": {
+          "t": "Never submit",
+          "b": "On a multi-page application it presses Next and fills each page, then stops before the final submit. The side panel says so on screen."
+        },
+        "m3": {
+          "t": "Never send",
+          "b": "No server and no analytics. The extension keeps your data in local browser storage under a strict content security policy; Android encrypts it with a key held in the Keystore."
+        }
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Adapters for the forms people actually meet.",
+        "p": "Application forms are built from a handful of libraries, so the engine fills by kind of control rather than by site: native HTML, Ant Design, Element Plus, react-select and ARIA widgets. On top of that sit adapters for Greenhouse, Lever, Workable and Workday, and for Beisen, Moka and Feishu on Chinese campus-recruitment sites. Where a browser cannot reach, such as WeChat mini programs, the Android app's resume keyboard types the fields in."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "Three rules were mine: leave an unsure field empty and outlined, stop before the final submit, and keep the resume on the device. Each one shows on screen, so a person can see what is left to them: the summary card after a fill, the side panel that lists every field with its reason, and the note that the final submit stays with you. Each state carries a word and an icon as well as a colour, so it does not rely on colour alone."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "Claude Code wrote the code; the problem, the rules and the acceptance were mine. The extension core came first, from 4 November 2026, then fixes from what real Feishu, Moka and Beisen forms showed. From 16 November the Android app added a fill browser, an application tracker and the resume keyboard, and from 17 to 19 November came preview before fill, multi-step forms and resume variants."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "The screenshots here come from the repository's own screenshot tests, which passed 6 of 6 on 20 November 2026 in light and dark, on synthetic test forms with the extension's built-in sample resume. The README records every field on those synthetic forms filled correctly; that is the repository's own test forms, not real sites. A unit test fails if the keyboard's code refers to a network class. The real-use check is mine: I have used it on my own applications."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Platforms",
+          "v": "Chrome · Android"
+        },
+        "m2": {
+          "label": "Servers your resume is sent to",
+          "v": "None"
+        },
+        "m3": {
+          "label": "Users on record",
+          "v": "Me"
+        },
+        "p": "A local-first autofill that covers international ATS platforms and Chinese campus-recruitment sites, and that I have used on real applications. Evidence status: there is no measured fill accuracy on real sites, and no one but me is on record as using it. It is not on the Chrome Web Store or Google Play, there is no iOS app, the keyboard has no Chinese input method, and sites that only allow WeChat login are out of reach. The code was written by Claude Code."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "For a tool that acts in someone's name, this case is mostly about what it refuses to do, and about making each refusal visible. What the case cannot show yet is accuracy on real sites, or whether other applicants trust the review outlines enough to check them. Both need measuring before the tool is offered to anyone else."
       }
     }
   },

@@ -3,7 +3,7 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 // Listed cases only: vigil, spectra, rules and gapmapper are unlisted, so no
 // proof link may point at them.
 const anchoredCaseProofHref =
-    /\/projects\/(connect|ai|maze|hoop|pricewise|grassland|onthebeat)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(connect|ai|maze|hoop|pricewise|grassland|onthebeat|lamplight|autofill)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 /**
  * Next's dev server sometimes issues a full reload while it compiles a route for
@@ -429,6 +429,15 @@ test.describe("Projects Page", () => {
         await expect(page.locator(".case-build-evidence img")).toHaveCount(3);
     });
 
+    test("lamplight and autofill details should state authorship and their only user", async ({ page }) => {
+        for (const slug of ["lamplight", "autofill"]) {
+            await page.goto(`/projects/${slug}`);
+            await expect(page.locator(".cs-cover img")).toHaveCount(1);
+            await expect(page.locator("#long-form").getByText(/written by Claude Code/i).first()).toBeVisible();
+            await expect(page.locator("#long-form").getByText(/no one but me|the only user on record/i).first()).toBeVisible();
+        }
+    });
+
     test("grassland detail should show its screenshots and its evidence limit", async ({ page }) => {
         await page.goto("/projects/grassland");
 
@@ -799,6 +808,8 @@ test.describe("Responsive Design", () => {
             "/projects/connect",
             "/projects/grassland",
             "/projects/onthebeat",
+            "/projects/lamplight",
+            "/projects/autofill",
             "/projects/ai",
             "/projects/hoop",
             "/zh",

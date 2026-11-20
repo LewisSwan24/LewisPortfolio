@@ -25,7 +25,9 @@ type ProjKey =
   | "hoop"
   | "pricewise"
   | "grassland"
-  | "onthebeat";
+  | "onthebeat"
+  | "lamplight"
+  | "autofill";
 // "acc" left with Spectra Lens, its only case (unlisted 2026-11-20).
 type FilterId = "all" | "flag" | "research" | "ai" | "hardware";
 type Localized = { en: string; zh: string };
@@ -138,6 +140,38 @@ const ITEMS: Item[] = [
     changed: {
       en: "A phone, two wristbands and a cloud relay that run without a laptop",
       zh: "手机、两支手环加云端 relay，不需要笔电就能运转",
+    },
+  },
+  {
+    n: "07",
+    k: "lamplight",
+    tags: ["ai"],
+    role: "Direction + interaction",
+    year: "2026",
+    dur: "1.0, in daily use",
+    problem: {
+      en: "A long AI task shows up as a log nobody can read at a glance",
+      zh: "AI 长任务只是一屏没人能一眼看懂的日志",
+    },
+    changed: {
+      en: "A café crew acting out the task, with questions and risky steps as cards",
+      zh: "一组咖啡馆店员演出任务，提问和风险步骤变成卡片",
+    },
+  },
+  {
+    n: "08",
+    k: "autofill",
+    tags: ["ai"],
+    role: "Problem + rules",
+    year: "2026",
+    dur: "Used on my applications",
+    problem: {
+      en: "One resume typed into Workday, Beisen and Moka, field by field",
+      zh: "同一份简历在 Workday、北森、Moka 里一格格重填",
+    },
+    changed: {
+      en: "An autofill that never guesses, never submits and keeps the resume on the device",
+      zh: "一个不猜、不提交、简历不离开设备的自动填表工具",
     },
   },
 ];

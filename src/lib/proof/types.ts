@@ -8,7 +8,9 @@ export type ProjectEvidenceSlug =
   | "gapmapper"
   | "rules"
   | "grassland"
-  | "onthebeat";
+  | "onthebeat"
+  | "lamplight"
+  | "autofill";
 export type ProofLocale = "en" | "zh";
 
 export interface CareerSnapshotStat {
