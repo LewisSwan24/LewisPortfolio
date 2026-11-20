@@ -49,7 +49,7 @@
     },
     "location": {
       "label": "位置",
-      "val": "澳洲布里斯班 · 2026 年底毕业，主要看全职毕业生岗位"
+      "val": "澳洲布里斯班 · 2026 年 11 月毕业，主要看全职毕业生岗位"
     }
   },
   "approach": {
@@ -749,7 +749,7 @@
     "write": "写作",
     "meta": {
       "built": "用 Next.js、Tailwind 搭建，代码由 Codex 和 Claude Code 协助写成。改了很多版。",
-      "version": "v4 · 2026 年 4 月更新"
+      "version": "v5 · 2026 年 11 月更新"
     }
   },
   "tw": {
@@ -819,7 +819,7 @@
     "skillsAndTools": "技能与工具",
     "skillsAndToolsDescription": "通过课程与项目实践形成的核心能力。",
     "letsWorkTogether": "一起合作",
-    "letsWorkTogetherDescription": "我 2026 年底毕业，正在找全职毕业生岗位，期待参与有意义的设计项目。",
+    "letsWorkTogetherDescription": "我 2026 年 11 月毕业，正在找全职毕业生岗位，期待参与有意义的设计项目。",
     "featuredProjectsEmpty": "精选项目即将上线。",
     "stats": {
       "userInterviews": "用户访谈",

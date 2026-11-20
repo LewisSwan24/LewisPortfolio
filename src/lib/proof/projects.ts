@@ -15,7 +15,7 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     headline: "Interaction designer who takes an idea all the way to something that runs.",
     summary:
       "I am looking for full-time graduate roles in interaction and product design, on teams that want a designer who can build, not only specify.",
-    status: "UQ Master of Interaction Design candidate, Brisbane. Graduating late 2026; looking for full-time graduate roles.",
+    status: "UQ Master of Interaction Design candidate, Brisbane. Graduating November 2026; looking for full-time graduate roles.",
     stats: [
       {
         value: "5",
@@ -44,7 +44,7 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     headline: "会把东西真的做出来的交互设计师，而不只是交一份稿。",
     summary:
       "我在找交互 / 产品设计的全职毕业生岗位，尤其适合希望设计师能自己把想法推到能跑的团队。",
-    status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年底毕业，主要看全职毕业生岗位。",
+    status: "昆士兰大学交互设计硕士在读，布里斯班。2026 年 11 月毕业，主要看全职毕业生岗位。",
     stats: [
       {
         value: "5",
@@ -405,7 +405,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       subhead:
         "I take ambiguous product problems through research, information architecture, and inclusive interaction decisions — then use Claude Code and Codex to get them running, so what you review is a working prototype rather than a description of one.",
       status:
-        "Graduating late 2026. Looking for full-time graduate UX, product, and design-technologist roles.",
+        "Graduating November 2026. Looking for full-time graduate UX, product, and design-technologist roles.",
     },
     signals: [
       {
@@ -427,7 +427,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       {
         value: "2026",
         label: "availability",
-        detail: "Graduating late 2026. Open to graduate and entry-level UX, product design, and design-technologist roles.",
+        detail: "Graduating November 2026. Open to graduate and entry-level UX, product design, and design-technologist roles.",
       },
     ],
     proofRoutes: [
@@ -481,7 +481,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       subhead:
         "我把模糊的产品问题走完研究、信息架构与包容性交互决策，再用 Claude Code 和 Codex 推到能跑，所以你看到的是一个能用的原型，而不是对原型的描述。",
       status:
-        "2026 年底毕业。主要看全职毕业生的交互、产品、design technologist 岗位。",
+        "2026 年 11 月毕业。主要看全职毕业生的交互、产品、design technologist 岗位。",
     },
     signals: [
       {
@@ -503,7 +503,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
       {
         value: "2026",
         label: "可入职时间",
-        detail: "2026 年底毕业。开放毕业生 / 入门级 UX、产品设计与 design technologist 岗位。",
+        detail: "2026 年 11 月毕业。开放毕业生 / 入门级 UX、产品设计与 design technologist 岗位。",
       },
     ],
     proofRoutes: [
@@ -556,7 +556,7 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
 
 const roleFits: Record<ProofLocale, RoleFit> = {
   en: {
-    availability: "Graduating late 2026; looking for full-time graduate UX and product design roles, and research-led product teams.",
+    availability: "Graduating November 2026; looking for full-time graduate UX and product design roles, and research-led product teams.",
     roles: ["Graduate Interaction Designer", "Graduate Product Designer", "Graduate UX Designer", "Graduate UX Researcher"],
     bestFit: [
       "Teams with ambiguous problems and enough access to users to learn properly.",
@@ -571,7 +571,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     ],
   },
   zh: {
-    availability: "2026 年底毕业，主要看全职毕业生 UX 与产品设计岗位，以及研究驱动型产品团队。",
+    availability: "2026 年 11 月毕业，主要看全职毕业生 UX 与产品设计岗位，以及研究驱动型产品团队。",
     roles: ["交互设计应届生", "产品设计应届生", "用户体验设计应届生", "用户研究应届生"],
     bestFit: [
       "问题足够模糊、也有真实用户可接触的团队。",

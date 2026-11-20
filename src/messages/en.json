@@ -49,7 +49,7 @@
     },
     "location": {
       "label": "Location",
-      "val": "Brisbane, AU — graduating late 2026, looking for full-time graduate roles"
+      "val": "Brisbane, AU — graduating November 2026, looking for full-time graduate roles"
     }
   },
   "approach": {
@@ -749,7 +749,7 @@
     "write": "Write",
     "meta": {
       "built": "Built with Next.js and Tailwind, written with Codex and Claude Code, and revised many times.",
-      "version": "v4 · updated April 2026"
+      "version": "v5 · updated November 2026"
     }
   },
   "tw": {
@@ -819,7 +819,7 @@
     "skillsAndTools": "Skills & Tools",
     "skillsAndToolsDescription": "Core competencies developed through academic study and hands-on projects.",
     "letsWorkTogether": "Let's Work Together",
-    "letsWorkTogetherDescription": "I'm graduating late 2026 and looking for full-time graduate roles, and excited to contribute to meaningful design projects.",
+    "letsWorkTogetherDescription": "I'm graduating November 2026 and looking for full-time graduate roles, and excited to contribute to meaningful design projects.",
     "featuredProjectsEmpty": "Featured projects coming soon.",
     "stats": {
       "userInterviews": "User Interviews",
