@@ -707,6 +707,31 @@ export default async function CasePage({ params }: Props) {
             </div>
           )}
         </dl>
+        {/* A plain list of the long-form sections, so an 11,000px case can be
+            entered at the part a reader came for. It names sections only; it
+            does not restate the interview pack the way the removed reader nav
+            did. Every target is an anchor this page always renders. */}
+        <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
+          <span className="cs-jump-label" aria-hidden="true">
+            {isZh ? "本页目录" : "On this page"}
+          </span>
+          <ol>
+            {(
+              [
+                ["outcome-limits", pageCopy.outcomeLimits],
+                ["long-form", t(`cs.${k}.ch.label`)],
+                ["evidence-board", t(`cs.${k}.re.label`)],
+                ["decision-timeline", t(`cs.${k}.id.label`)],
+                ["iteration-gallery", t(`cs.${k}.te.label`)],
+                ["interview-takeaway", t(`cs.${k}.rf.label`)],
+              ] as const
+            ).map(([id, label]) => (
+              <li key={id}>
+                <a href={`#${id}`}>{label}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
         {/* One interview surface, not three. The reader nav, its mode list and
             its prompt list all restated what the interview pack already answers
             with evidence links, so only the pack survives. */}
