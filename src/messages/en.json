@@ -80,11 +80,11 @@
   },
   "feat": {
     "label": "Selected work",
-    "title": "Seven cases, each with its own stopping point.",
+    "title": "Six cases, each with its own stopping point.",
     "footer": "Full index",
     "deckPrev": "Previous case",
     "deckNext": "Next case",
-    "deckKbd": "Drag, or use ← → to step through the seven"
+    "deckKbd": "Drag, or use ← → to step through the six"
   },
   "proj": {
     "connect": {
@@ -166,6 +166,26 @@
       "m1": "150–250 m warning lead (draft)",
       "m2": "48 px tap-target floor (draft)",
       "m3": "1 paper → 3 trigger conditions"
+    },
+    "grassland": {
+      "kicker": "Complex interaction · Real-time systems",
+      "title": "Grassland Iron Tide",
+      "sub": "A five-mission browser RTS chapter, where selection, commands, feedback and failure recovery follow one set of rules that a test can check.",
+      "role": "Solo, with AI tools",
+      "date": "2026 · chapter one playable",
+      "m1": "5 missions, played through end to end",
+      "m2": "430 / 430 tests in the RC record",
+      "m3": "2 resolutions checked in a real browser"
+    },
+    "onthebeat": {
+      "kicker": "Phone, wristbands and a cloud relay",
+      "title": "On The Beat",
+      "sub": "At a gig, help two strangers say hello, then let the devices get out of the way. Names appear only after both agree.",
+      "role": "Requirements, review, pairing",
+      "date": "2026 · individual version of coursework",
+      "m1": "2 real wristbands showing MEET together",
+      "m2": "65 minutes to take the laptop out",
+      "m3": "No participant testing yet"
     }
   },
   "cs": {
@@ -736,6 +756,144 @@
       "rf": {
         "label": "Reflection",
         "p": "Putting the two briefs together is the point. In Fietspad, the proposal drafts turned 'safety' into routing weights, warning distances and tap sizes, and AI wrote most of those drafts. The other brief is where I turned a paper into trigger conditions, copy templates and a checklist myself. What survives outside a course is the move itself — and the discipline of saying where the rule stops holding, rather than letting a self-check stand in for evidence someone else produced."
+      }
+    },
+    "grassland": {
+      "hero": {
+        "title": "Grassland Iron Tide",
+        "sub": "Five historical missions built into one real-time strategy chapter you can play through in a desktop browser, where selection, commands, feedback, failure recovery and story all run on one set of rules."
+      },
+      "roleVal": "Solo: product direction, mission design, interaction rules, implementation acceptance and evidence",
+      "timeVal": "2026 · chapter one, 《苍狼余火》, playable",
+      "teamVal": "Solo, with AI tools assisting the code, the copy and the original assets",
+      "toolsVal": "TypeScript · Phaser 4 · EasyStar.js · Vitest · AI coding tools",
+      "ch": {
+        "label": "The problem",
+        "title": "Keeping a command system from getting out of hand.",
+        "p": "A real-time strategy game gives the player many units, many commands and a clock that does not stop. Each mission wants something a little different, and the easy answer is a special rule for each one. Five missions later the player can no longer predict what a click will do. Failure is the other trap: if the screen comes back after a defeat but the mission state does not, the player stops trusting anything the game shows."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Three rules every mission follows.",
+        "m1": {
+          "t": "One grammar",
+          "b": "Click, box-select, Shift to add or remove, Ctrl to group and a right-click command menu cover all five missions. A mission may restrict which commands are allowed; it may not change how they work."
+        },
+        "m2": {
+          "t": "The battlefield first",
+          "b": "A fixed camera zoom. The objective, minimap, selection state and command grid sit at the screen edges, and mission text stays off the area the player acts on."
+        },
+        "m3": {
+          "t": "One save chain",
+          "b": "Pause, the reason for failure, the checkpoint and the restored units share one save chain, so what the screen shows and what the mission knows cannot drift apart."
+        }
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Five missions, one pipeline.",
+        "p": "The missions are data, not separate programs. A chapter manifest sets the order and the unlocks; each mission definition holds its objectives, triggers and map; a runtime loader brings in only that mission's atlases and map, so the first screen does not preload the heavy assets of all five. Underneath, one simulation runs at a fixed 20 Hz, and input, combat, movement, mission logic and vision all share its clock. Checkpoints and saves restore the mission and its units together."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "I chose far fewer commands than a commercial RTS, so that every command has a result the player can predict. The fixed camera keeps the battlefield the largest part of the screen, even when resources, unit status and objectives are all showing. Failure had to explain itself and be undone: after a defeat in mission four, a checkpoint restore spares the player the whole stretch again. The main menu shows only the chapter, the save state and the way in, with nothing from development left on screen."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "This is a solo project. AI tools assisted the code, the copy and the original assets; my part was the product direction, the mission design, the interaction rules, accepting or rejecting the implementation, and keeping the evidence. The asset pipeline is held to the same standard as the code: 6 manifests and 75 registered assets, with 49 alpha files and 154 provenance records that a script can re-check."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "The release-candidate audit puts four checks side by side. 430 of 430 automated tests pass over mission logic, commands, movement, vision, checkpoints and the runtime asset contract. The asset gate passes. The web build passes, with a known warning that the Phaser bundle is large. And in a real browser, at 1280×720 and 1920×1080, all five missions were played through in sequence from the main menu, re-checking selection, grouping, commands, pause, the minimap and failure recovery, screen by screen for page scroll, clipping and covered buttons."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Missions in chapter one",
+          "v": "5"
+        },
+        "m2": {
+          "label": "Tests in the RC record",
+          "v": "430 / 430"
+        },
+        "m3": {
+          "label": "Resolutions played through",
+          "v": "1280×720 · 1920×1080"
+        },
+        "p": "A chapter that plays end to end in a desktop browser, with one command grammar across every mission. Evidence status: the five-mission acceptance comes from the local RC record, and the live link has not been through the same audit. These are system and browser checks. There has been no structured usability testing with outside players, so the case does not claim the game is easy to pick up."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "What the record can show is that chapter one plays through in the local RC build, and that the interaction logic and asset contracts it covers did not regress. A rule like 'a mission may restrict commands but never change them' can be held by a test, so the fifth mission is checked against the same grammar as the first. What the record cannot show is whether a new player learns that grammar. Without structured sessions with outside players, I do not present the chapter as proven easy to pick up."
+      }
+    },
+    "onthebeat": {
+      "hero": {
+        "title": "On The Beat",
+        "sub": "A phone app, two wristbands and a cloud relay for live gigs: help two strangers say hello, then let the devices get out of the way."
+      },
+      "roleVal": "Requirements, AI output review, error hunting and pairing on real wristbands. The code was written by AI tools",
+      "timeVal": "September–October 2026 · individual version of DECO3500 coursework",
+      "teamVal": "Individual. The original three-card Figma prototype is a teammate's",
+      "toolsVal": "React · Node relay on Fly.io · C++ firmware (PlatformIO, M5Unified) · Claude Design · Claude Code",
+      "ch": {
+        "label": "The problem",
+        "title": "Start a conversation, then get out of the way.",
+        "p": "At a live gig, two people who would like to talk have no low-stakes way to begin. An app that makes them stare at a phone works against the moment. In the 29 September build the phone holds three cards from a teammate's Figma prototype: SAY HI, FIRST SONG? and LET'S DANCE!. A wave tells the other person only that someone nearby is there. Names and a meeting place appear only after both have nodded. The wristband is a second way in: its side button chooses a card and the phone follows."
+      },
+      "re": {
+        "label": "Groundwork",
+        "title": "Three things the first version only pretended to do.",
+        "m1": {
+          "t": "The band on its own",
+          "b": "On 24 September I asked for the link to work both ways. At noon on 25 September only the phone could still drive the band; that afternoon the side button chose a card and the phone followed."
+        },
+        "m2": {
+          "t": "MEET for real",
+          "b": "On 25 September I pointed out that MEET was only mock data. That night two devices with two bands waved and waved back, and both bands showed MEET at the same time."
+        },
+        "m3": {
+          "t": "No laptop",
+          "b": "The same evening I said neither device could run without a computer. The relay moved to one always-on machine on Fly.io in Sydney, and the bands matched through the cloud 65 minutes after my message."
+        },
+        "quote": "Without a computer, neither of these two things can run.",
+        "quoteWho": "My message to Claude Code, 25 September 2026, translated from Chinese"
+      },
+      "sy": {
+        "label": "System concept",
+        "title": "Phone, relay, two wristbands.",
+        "p": "Three parts talk through one relay. The phone app is React. The relay is Node on one always-on machine on Fly.io in Sydney. The two wristbands are a StickS3 and a StickC Plus, two different ESP32-family boards, running C++ firmware. Either side can change state, so both go through the relay to stay in agreement, and neither side sees a name until both have agreed."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "The concept was not mine: the three cards come from a teammate's Figma prototype. My decisions were about what the working system had to do. Each began as a message to Claude Code naming something the generated version had not done: the band could only follow the phone, MEET was mock data, and without a computer neither device could run. Each was then checked on the two real wristbands, not only on screen."
+      },
+      "pr": {
+        "label": "How it got built",
+        "p": "Everything was built with AI tools. The firmware and the app code were written and flashed by Claude Code. I did the wiring, turned on the hotspot, pressed the buttons, watched the screens and reported back. In September I was new to hardware and needed each step explained before I did it. The design canvas was generated in Claude Design, and I imported each version into Claude Code for review: I caught all four cards reading '1 of 4' on 15 September, and on 21 September what looked like a black screen after picking a song."
+      },
+      "te": {
+        "label": "Testing and iteration",
+        "p": "Two kinds of check, both mine. On real hardware, on 25 September, both wristbands showed MEET at the same time through the cloud relay, with no laptop involved. In software, two local test windows, Ava and Leo, walk the flow on the 29 September build: SAY HI lit, a wave that shows no name, and names only after both nod. The design canvas went back for rework at least 5 times that night, after at least 12 rounds on the earlier Say Hello canvas. None of this is participant testing."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Real wristbands paired through the cloud",
+          "v": "2"
+        },
+        "m2": {
+          "label": "From my message to the bands matching",
+          "v": "65 min"
+        },
+        "m3": {
+          "label": "Participant sessions",
+          "v": "None yet"
+        },
+        "p": "A phone app, two wristbands and an always-on relay that run without a laptop, in a public repository. Evidence status: there is no record of any participant testing the app. The bands' timing values, such as staying awake for six seconds or a 1.5-second long press, are estimates still to be measured on a wrist. A night on battery, the Plus's front button and a wave-back pressed on the band itself are unverified. Staff-page push notifications arrived on my Android phone on 30 September, with a VPN on. An iPhone clip that disappeared on 6 October was fixed but not retested."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "In this record my part sits at two ends: saying what the system must do, and sending back output that only looked finished. Mock data that showed MEET, a link that only worked with my laptop, and a canvas that counted wrong each looked fine on screen until it was tried. What the case cannot say is whether the cards help two strangers meet. That needs people at a real or staged gig, and it has not happened yet."
       }
     }
   },

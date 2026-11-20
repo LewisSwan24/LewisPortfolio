@@ -1,3 +1,9 @@
+import {
+  recentCaseDepth,
+  recentCaseInterviewScans,
+  recentCaseReaderPrompts,
+  recentCaseSummaries,
+} from "./recent-cases";
 import type {
   CaseDepth,
   CaseInterviewPrompt,
@@ -123,6 +129,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         outcome: "Two briefs, one move: force a soft requirement into a rule someone can build to and point at to say 'this one is wrong'. Being arguable is the precondition for being useful.",
         next: "Neither is validated outside coursework — the cycling app needs real riding conditions, and the guide's effect figures come from the cited paper rather than from me.",
       },
+    ...recentCaseSummaries.en,
   },
   zh: {
     connect: {
@@ -219,6 +226,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
         outcome: "两份作业做的是同一个动作：把一句软要求逼成一条能照着施工、也能被人指着说「这条不对」的规则。能被反驳，是一条规则有用的前提。",
         next: "两份都还没在课程之外验证过：骑行 App 需要真实骑行环境，指南里的效果数字出自所引论文而不是我的实验。",
       },
+    ...recentCaseSummaries.zh,
   },
 };
 
@@ -1159,6 +1167,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         takeaway:
           "This case proves I can take a requirement everyone agrees with and force it into a rule someone can build to and argue with — and that I will state where the rule stops holding rather than letting a self-check imply external validation.",
       },
+    ...recentCaseDepth.en,
   },
   zh: {
     connect: {
@@ -1982,6 +1991,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         takeaway:
           "这个案例证明：我能把一句所有人都同意的要求，逼成一条能照着施工、也能被指着说「这条不对」的规则；并且会写明它在哪里失效，而不是让一份自查清单去暗示外部验证。",
       },
+    ...recentCaseDepth.zh,
   },
 };
 
@@ -2125,6 +2135,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
           "Design systems and standards work, where a rule has to survive being applied by other people.",
         ],
       },
+    ...recentCaseInterviewScans.en,
   },
   zh: {
     connect: {
@@ -2263,6 +2274,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
           "设计系统与规范类工作：规则得经得起别人拿去用。",
         ],
       },
+    ...recentCaseInterviewScans.zh,
   },
 };
 
@@ -2499,6 +2511,7 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
       anchorId: "outcome-limits",
     },
   ],
+  ...recentCaseReaderPrompts,
 };
 
 const caseReaderPrompts: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseInterviewPrompt[]>> = {

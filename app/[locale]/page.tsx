@@ -5,12 +5,9 @@ import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { FeaturedDeck } from "@/components/home/FeaturedDeck";
 import {
   VizConnect,
-  VizSpectra,
   VizMaze,
   VizHoop,
   VizPricewise,
-  VizGapmapper,
-  VizRules,
 } from "@/components/viz/ProjectViz";
 import Image from "next/image";
 import { getProjectCover } from "@/lib/project-covers";
@@ -41,19 +38,19 @@ export async function generateMetadata(): Promise<Metadata> {
 
 type ProjKey =
   | "connect"
-  | "spectra"
   | "maze"
   | "hoop"
   | "pricewise"
-  | "gapmapper"
-  | "rules";
+  | "grassland"
+  | "onthebeat";
 
 interface FeatItemProps {
   n: string;
   k: ProjKey;
   href: string;
   flip?: boolean;
-  viz: React.ReactNode;
+  /** Only shown when the case has no cover image. */
+  viz?: React.ReactNode;
   t: Awaited<ReturnType<typeof getTranslations>>;
   locale: ProofLocale;
 }
@@ -247,17 +244,15 @@ export default async function HomePage() {
             4,560px of identical blocks — giving everything equal weight is the
             same as featuring nothing.
 
-            The first six run in the same order as the portfolio PDF, so a
-            recruiter holding both sees one sequence rather than two. That still
-            puts MazeRunners first: it is the only case backed by a working
-            physical build, so it differentiates hardest against screen-only
-            portfolios. Spectra Lens is not in the PDF at all, so it follows
-            the six rather than interleaving. Vigil is unlisted (see
-            UNLISTED_PROJECT_SLUGS) and has no slot here.
+            They run in the same order as the portfolio PDF, so a recruiter
+            holding both sees one sequence rather than two. That puts
+            MazeRunners first: it is the only case backed by a working physical
+            build, so it differentiates hardest against screen-only portfolios.
+            Cases that are unlisted (see UNLISTED_PROJECT_SLUGS) have no slot.
 
             Every case is still rendered. FeaturedDeck hides the inactive ones
             visually but leaves them in the served HTML, so a crawler still gets
-            all seven. */}
+            all six. */}
         <FeaturedDeck
           labels={{
             prev: t("feat.deckPrev"),
@@ -266,12 +261,11 @@ export default async function HomePage() {
           }}
           items={[
             { key: "maze", n: "01", node: <FeatItem n="01" k="maze" href="/projects/maze" t={t} locale={proofLocale} viz={<VizMaze locale={proofLocale} />} /> },
-            { key: "gapmapper", n: "02", node: <FeatItem n="02" k="gapmapper" href="/projects/gapmapper" flip t={t} locale={proofLocale} viz={<VizGapmapper locale={proofLocale} />} /> },
-            { key: "connect", n: "03", node: <FeatItem n="03" k="connect" href="/projects/connect" t={t} locale={proofLocale} viz={<VizConnect locale={proofLocale} />} /> },
-            { key: "pricewise", n: "04", node: <FeatItem n="04" k="pricewise" href="/projects/pricewise" flip t={t} locale={proofLocale} viz={<VizPricewise locale={proofLocale} />} /> },
-            { key: "hoop", n: "05", node: <FeatItem n="05" k="hoop" href="/projects/hoop" t={t} locale={proofLocale} viz={<VizHoop locale={proofLocale} />} /> },
-            { key: "rules", n: "06", node: <FeatItem n="06" k="rules" href="/projects/rules" flip t={t} locale={proofLocale} viz={<VizRules locale={proofLocale} />} /> },
-            { key: "spectra", n: "07", node: <FeatItem n="07" k="spectra" href="/projects/spectra" t={t} locale={proofLocale} viz={<VizSpectra locale={proofLocale} />} /> },
+            { key: "connect", n: "02", node: <FeatItem n="02" k="connect" href="/projects/connect" flip t={t} locale={proofLocale} viz={<VizConnect locale={proofLocale} />} /> },
+            { key: "pricewise", n: "03", node: <FeatItem n="03" k="pricewise" href="/projects/pricewise" t={t} locale={proofLocale} viz={<VizPricewise locale={proofLocale} />} /> },
+            { key: "hoop", n: "04", node: <FeatItem n="04" k="hoop" href="/projects/hoop" flip t={t} locale={proofLocale} viz={<VizHoop locale={proofLocale} />} /> },
+            { key: "grassland", n: "05", node: <FeatItem n="05" k="grassland" href="/projects/grassland" t={t} locale={proofLocale} /> },
+            { key: "onthebeat", n: "06", node: <FeatItem n="06" k="onthebeat" href="/projects/onthebeat" flip t={t} locale={proofLocale} /> },
           ]}
         />
       </section>

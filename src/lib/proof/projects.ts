@@ -289,6 +289,44 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "I can force a requirement everyone agrees with into a rule someone can build to and argue with, and state plainly where that rule stops holding.",
     },
+    {
+      slug: "grassland",
+      href: "/projects/grassland",
+      problemType: "Complex interaction in a real-time system",
+      challenge:
+        "A real-time strategy game gives the player many units and commands on a running clock. If missions invent their own controls, or failure leaves the screen and the mission state disagreeing, nothing stays predictable.",
+      methods: [
+        "interaction grammar",
+        "information hierarchy on a fixed camera",
+        "checkpoint and save design",
+        "two-resolution browser acceptance",
+      ],
+      sample:
+        "Solo, with AI tools assisting the code, copy and assets. Five missions; 430/430 tests in the RC audit record; a full playthrough at 1280×720 and 1920×1080; an asset gate over 75 registered assets. No outside playtests.",
+      outcome:
+        "Chapter one plays end to end in a desktop browser, with one command grammar across all five missions and failure restored from one save chain.",
+      proves:
+        "I can design the rules of a real-time interaction system and write them so that tests and browser runs can check them.",
+    },
+    {
+      slug: "onthebeat",
+      href: "/projects/onthebeat",
+      problemType: "Connected hardware built with AI tools",
+      challenge:
+        "At a gig, two strangers who want to talk have no low-stakes way to start, and an app that makes them stare at a phone works against the point.",
+      methods: [
+        "requirement setting",
+        "AI output review",
+        "pairing on real hardware",
+        "two-sided consent flow",
+      ],
+      sample:
+        "Individual version of coursework; the three cards come from a teammate's prototype and Claude Code wrote the code. Two real wristbands paired through a cloud relay on 25 September 2026. No participant testing.",
+      outcome:
+        "A phone app, two wristbands and an always-on relay that run without a laptop; names appear only after both people agree.",
+      proves:
+        "I can steer AI tools to a working connected system by setting the requirements and sending back output that only looks finished.",
+    },
   ],
   zh: [
     {
@@ -394,6 +432,28 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       proves:
         "我能把一句所有人都同意的要求，逼成一条能照着施工、也能让人指着说「这条不对」的规则，并且说得清这条规则在哪里失效。",
     },
+    {
+      slug: "grassland",
+      href: "/projects/grassland",
+      problemType: "即时系统里的复杂交互",
+      challenge: "即时战略游戏在不停走的时钟上交给玩家很多单位和命令。每关各造一套操作，或者失败后画面和任务状态对不上，就什么都不可预测了。",
+      methods: ["交互语法", "固定镜头下的信息层级", "检查点与存档设计", "双分辨率浏览器验收"],
+      sample:
+        "独立完成，代码、文案与资产由 AI 工具辅助生产。五关；RC 审计记录中 430 / 430 测试通过；1280×720 与 1920×1080 两种分辨率完整通关；资产闸门覆盖 75 项登记资产。没有外部试玩。",
+      outcome: "第一章能在桌面浏览器里连续通关，五关共用一套命令语法，失败后从同一条存档链恢复。",
+      proves: "我能为即时交互系统定规则，并把规则写成测试和浏览器都能核对的样子。",
+    },
+    {
+      slug: "onthebeat",
+      href: "/projects/onthebeat",
+      problemType: "借助 AI 工具做出来的联网硬件",
+      challenge: "演出现场，两个想说话的陌生人缺一个没有压力的开头；一个让人盯着手机的 App 反而违背初衷。",
+      methods: ["需求设定", "AI 输出审查", "真机硬件配对", "双方同意的流程"],
+      sample:
+        "课程作业的个人版本；三张卡出自组员的原型，代码由 Claude Code 编写。2026 年 9 月 25 日两支真手环经云端 relay 配对成功。没有参与者测试。",
+      outcome: "手机 App、两支手环和一台常开的 relay，不需要笔电就能运转；双方都同意后才显示名字。",
+      proves: "我能靠定需求、把只是看起来做完的输出打回去，借 AI 工具做出一套能运行的联网系统。",
+    },
   ],
 };
 
@@ -409,10 +469,10 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "4",
+        value: "5",
         label: "cases with a live build you can open",
         detail:
-          "UQ Connect, MazeRunners, Hoop Dream and PriceWise each open from their case page.",
+          "UQ Connect, MazeRunners, Hoop Dream, PriceWise and Grassland Iron Tide each open from their case page.",
       },
       {
         value: "6",
@@ -458,6 +518,15 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         href: "/projects/spectra#evidence-board",
       },
       {
+        audience: "Complex / real-time interaction",
+        title: "One set of rules across a whole system",
+        claim:
+          "Best proof that I can design interaction rules that hold across a complex system and can be checked.",
+        evidence:
+          "Grassland Iron Tide: one command grammar across five RTS missions, failure restored from one save chain, 430/430 tests and a full playthrough at two resolutions.",
+        href: "/projects/grassland#decision-timeline",
+      },
+      {
         audience: "AI UX / trust",
         title: "Checking what an AI feature really does",
         claim:
@@ -485,10 +554,10 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
     },
     signals: [
       {
-        value: "4",
+        value: "5",
         label: "个案例有能直接打开的线上版本",
         detail:
-          "UQ Connect、MazeRunners、Hoop Dream 和 PriceWise，都能从案例页直接打开。",
+          "UQ Connect、MazeRunners、Hoop Dream、PriceWise 和草原铁潮，都能从案例页直接打开。",
       },
       {
         value: "6",
@@ -532,6 +601,14 @@ const hiringConversions: Record<ProofLocale, HiringConversion> = {
         evidence:
           "Spectra Lens 把无障碍准则、跨站点注入测试和一个做到 DEMO 阶段的浏览器扩展接在一起。",
         href: "/projects/spectra#evidence-board",
+      },
+      {
+        audience: "复杂 / 即时交互",
+        title: "一整个系统共用一套规则",
+        claim: "证明我能为复杂系统设计一套前后一致、而且能被核对的交互规则。",
+        evidence:
+          "草原铁潮：五关 RTS 共用一套命令语法，失败后从同一条存档链恢复，430 / 430 测试通过，两种分辨率完整通关。",
+        href: "/projects/grassland#decision-timeline",
       },
       {
         audience: "AI UX / 信任",

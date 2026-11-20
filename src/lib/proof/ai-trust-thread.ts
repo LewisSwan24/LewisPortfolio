@@ -77,7 +77,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
     eyebrow: "AI UX",
     title: "AI 与信任：贯穿几个案例的一条线",
     intro:
-      "我还没有做完一个 AI 原生产品。几个案例里一直都在的，是同一个习惯：系统说话的把握，不能超过手上的证据。下面四条，每一条都写明是谁做的。",
+      "我还没有做完一个 AI 原生产品。几个案例里一直都在的，是同一个习惯：系统说话的把握，不能超过手上的证据。下面三条，每一条都写明是谁做的。",
     entries: [
       {
         slug: "pricewise",
@@ -112,7 +112,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         href: "/projects/hoop#decision-timeline",
       },
     ],
-    limit: "这四条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。",
+    limit: "这三条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。",
     linkLabel: "看案例里的决策",
     caseMarker: { label: "主线", link: "AI 与信任" },
   },

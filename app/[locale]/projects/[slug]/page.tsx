@@ -2,6 +2,7 @@ import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getProjectCover } from "@/lib/project-covers";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import {
@@ -359,6 +360,109 @@ const CASE_MEDIA: Partial<Record<Slug, CaseMedia>> = {
       },
     ],
   },
+  // Captions follow the portfolio PDF's case six; every screenshot is from the
+  // chapter-one build at 1280×720.
+  grassland: {
+    label: "The chapter, played through",
+    labelZh: "整章打下来的样子",
+    blurb:
+      "Screenshots of the chapter-one build, from the strategic map through the missions to the chapter-complete screen.",
+    blurbZh: "第一章构建的截图，从战略地图、各关战斗，到整章完成的画面。",
+    images: [
+      {
+        src: "/projects/grassland/02-strategic-map.jpg",
+        width: 1280,
+        height: 720,
+        alt: "The five-mission strategic map of chapter one",
+        altZh: "第一章的五关战略地图",
+        caption: "The strategic map shows progress, sets out the chapter and is the way back into a mission to replay it.",
+        captionZh: "五关战略地图同时承担进度展示、章节结构与重玩入口。",
+      },
+      {
+        src: "/projects/grassland/03-mission-02.jpg",
+        width: 1280,
+        height: 720,
+        alt: "Mission two: resources, unit status and objectives around a battlefield that fills most of the screen",
+        altZh: "第二关：资源、人物状态与目标围在四周，主战场占据大部分画面",
+        caption: "Mission two. Resources, unit status and objectives are all on screen, and the battlefield still takes the largest area.",
+        captionZh: "第二关：资源、人物状态与目标同时存在，主战场仍占最大视觉面积。",
+      },
+      {
+        src: "/projects/grassland/04-mission-03.jpg",
+        width: 1280,
+        height: 720,
+        alt: "Mission three: a box-selected group of units with combat information",
+        altZh: "第三关：框选的一队单位与战斗信息",
+        caption: "Mission three. Box-select, grouping and combat information use the same controls as every other mission.",
+        captionZh: "第三关：框选、编队与战斗信息沿用同一套操作，没有为单关另造规则。",
+      },
+      {
+        src: "/projects/grassland/05-checkpoint.jpg",
+        width: 1280,
+        height: 720,
+        alt: "Mission four's failure screen offering to restore from a checkpoint",
+        altZh: "第四关失败画面，提供从检查点恢复",
+        caption: "After a failure in mission four, a checkpoint restore spares the player the whole stretch again.",
+        captionZh: "第四关失败后有明确的检查点恢复，玩家不用重走整段流程。",
+      },
+      {
+        src: "/projects/grassland/06-night-ford.jpg",
+        width: 1280,
+        height: 720,
+        alt: "Mission five, the night ford",
+        altZh: "第五关夜渡",
+        caption: "Mission five, the night ford: hiding, searching the camp, the packs and the way home run on one mission state.",
+        captionZh: "第五关夜渡：隐蔽、搜营、行囊与返家目标串在同一条任务状态链上。",
+      },
+      {
+        src: "/projects/grassland/07-chapter-complete.jpg",
+        width: 1280,
+        height: 720,
+        alt: "The strategic map with all five missions complete",
+        altZh: "五关全部完成后的战略地图",
+        caption: "The map after all five missions. Its completed state comes from the real results and save data, not a static mock-up.",
+        captionZh: "五关完成后的战略地图。完成状态来自实际结算与存档数据，不是静态演示图。",
+      },
+    ],
+  },
+  // From the 2026-09-29 build, two local test windows (Ava and Leo). There is
+  // no photograph of the wristbands, and the case says so.
+  onthebeat: {
+    label: "One wave, two test windows",
+    labelZh: "一次挥手，两个测试视窗",
+    blurb:
+      "Two local test windows, Ava and Leo, walking the flow on the 29 September 2026 build. There are no photographs of the wristbands in this case.",
+    blurbZh: "本机两个测试视窗 Ava 与 Leo 走一遍流程，截自 2026 年 9 月 29 日的构建。这个案例没有手环实拍照片。",
+    images: [
+      {
+        src: "/projects/onthebeat/01-armed.jpg",
+        width: 786,
+        height: 1704,
+        alt: "Phone screen with the SAY HI card lit",
+        altZh: "手机画面，SAY HI 卡已点亮",
+        caption: "SAY HI is lit.",
+        captionZh: "点亮 SAY HI。",
+      },
+      {
+        src: "/projects/onthebeat/02-waved.jpg",
+        width: 786,
+        height: 1704,
+        alt: "Phone screen showing that someone nearby has waved, with no name",
+        altZh: "手机画面，显示附近有人挥手，没有名字",
+        caption: "A wave arrives. It says only that someone nearby is there, with no name.",
+        captionZh: "收到挥手，只显示附近有人，没有名字。",
+      },
+      {
+        src: "/projects/onthebeat/03-match.jpg",
+        width: 786,
+        height: 1704,
+        alt: "Phone screen after both people agreed, showing names and the meeting place",
+        altZh: "双方都同意后的手机画面，显示名字和碰面地点",
+        caption: "Only after both nod do they see each other's names and where to meet.",
+        captionZh: "双方都点头之后，才互相看到名字和碰面的地方。",
+      },
+    ],
+  },
 };
 
 interface CaseDemo {
@@ -468,6 +572,15 @@ const PROJECT_LINKS: Record<Slug, ProjectLink[]> = {
   // applies to the course repositories.
   gapmapper: [],
   rules: [],
+  // The chapter-one build is deployed. The repository stays private.
+  grassland: [
+    { label: "Play chapter one", href: "https://onon-wolf-iron-tide.vercel.app", external: true },
+  ],
+  // Public since 2026-10-07, history squashed to 15 commits. The relay is
+  // always on; the app needs the wristbands for the full flow.
+  onthebeat: [
+    { label: "Source on GitHub", href: "https://github.com/LewisSwan24/on-the-beat", external: true },
+  ],
 };
 
 export function generateStaticParams() {
@@ -500,7 +613,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// Cases added on 2026-11-20 have screenshots rather than a drawn diagram, so
+// their cover is the first screenshot, not a concept visual.
+const SCREENSHOT_COVER_SLUGS: readonly Slug[] = ["grassland", "onthebeat"];
+
+function hasScreenshotCover(slug: Slug): boolean {
+  return SCREENSHOT_COVER_SLUGS.includes(slug) && getProjectCover(slug) !== undefined;
+}
+
 function CoverViz({ slug, locale }: { slug: Slug; locale: ProofLocale }) {
+  if (hasScreenshotCover(slug)) {
+    const cover = getProjectCover(slug)!;
+    return (
+      <Image
+        src={cover.src}
+        fill
+        alt={cover.alt[locale]}
+        className={`project-cover project-cover--${cover.fit}`}
+        sizes="(max-width: 1200px) 100vw, 1200px"
+      />
+    );
+  }
   if (slug === "maze") return <VizMaze locale={locale} />;
   if (slug === "vigil") return <VizVigil locale={locale} />;
   if (slug === "hoop") return <VizHoop locale={locale} />;
@@ -779,7 +912,7 @@ export default async function CasePage({ params }: Props) {
         <div id="artifact" className="case-anchor" aria-hidden />
         <figure className="cs-cover">
           <CoverViz slug={k} locale={proofLocale} />
-          <figcaption>{pageCopy.coverCaption}</figcaption>
+          {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
         </figure>
       </section>
 
@@ -792,7 +925,13 @@ export default async function CasePage({ params }: Props) {
             <div className="label">{isZh ? CASE_MEDIA[k]!.labelZh : CASE_MEDIA[k]!.label}</div>
             <p>{isZh ? CASE_MEDIA[k]!.blurbZh : CASE_MEDIA[k]!.blurb}</p>
           </div>
-          <div className="case-build-grid">
+          <div
+            className={`case-build-grid${
+              CASE_MEDIA[k]!.images.every((image) => image.height > image.width)
+                ? " case-build-grid--phones"
+                : ""
+            }`}
+          >
             {CASE_MEDIA[k]!.images.map((image) => (
               <figure key={image.src}>
                 <Image
@@ -893,10 +1032,13 @@ export default async function CasePage({ params }: Props) {
                   </div>
                 ))}
               </div>
-              <div className="quote" style={{ marginTop: 32, maxWidth: "36em" }}>
-                <p>{t(`cs.${k}.re.quote`)}</p>
-                <cite>— {t(`cs.${k}.re.quoteWho`)}</cite>
-              </div>
+              {/* Only a quote with a real source: Grassland Iron Tide has none. */}
+              {t.has(`cs.${k}.re.quote`) && (
+                <div className="quote" style={{ marginTop: 32, maxWidth: "36em" }}>
+                  <p>{t(`cs.${k}.re.quote`)}</p>
+                  <cite>— {t(`cs.${k}.re.quoteWho`)}</cite>
+                </div>
+              )}
             </div>
           </div>
         </div>

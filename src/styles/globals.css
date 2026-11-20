@@ -5028,6 +5028,12 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
   background: var(--surface-2);
 }
 
+/* Phone screenshots are portrait: three narrow columns, not two tall ones. */
+.case-build-grid--phones {
+  grid-template-columns: repeat(3, minmax(0, 280px));
+  justify-content: start;
+}
+
 .case-build-grid figcaption,
 .case-build-video figcaption {
   margin-top: 0.6rem;
@@ -5042,6 +5048,10 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 @media (max-width: 720px) {
   .case-build-grid {
     grid-template-columns: 1fr;
+  }
+  .case-build-grid--phones {
+    grid-template-columns: minmax(0, 300px);
+    justify-content: center;
   }
 }
 

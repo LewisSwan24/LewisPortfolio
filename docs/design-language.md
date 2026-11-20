@@ -60,10 +60,12 @@ text-2 11.9, text-3 7.7, border-strong 4.3.
 ## Images
 
 Each listed case has one real cover in `src/lib/project-covers.ts`, used by
-the homepage deck and the `/projects` index. Portrait phones and wide strips
-letterbox (`fit: "contain"`) rather than crop. Spectra Lens has no screenshot,
-so it keeps its diagram. Add a cover only from an image that is of the case,
-with alt text in both locales.
+the homepage deck and the `/projects` index; a test fails if a listed case has
+none. Portrait phones and wide strips letterbox (`fit: "contain"`) rather than
+crop. Add a cover only from an image that is of the case, with alt text in
+both locales. Cases with screenshots and no drawn diagram (Grassland Iron Tide,
+On The Beat) also use the cover at the top of the case page, without the
+"concept visual" caption.
 
 ## Engineering notes
 

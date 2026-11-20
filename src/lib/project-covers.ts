@@ -4,8 +4,7 @@
  * case page already shows, and every alt text is the one that page already uses,
  * except MazeRunners, whose cover is the exhibition photo from the portfolio PDF.
  *
- * Spectra Lens has no screenshot or photo, so it keeps its diagram rather than
- * borrowing an image that is not of it.
+ * Unlisted cases (see UNLISTED_PROJECT_SLUGS) carry no cover.
  */
 
 export interface ProjectCover {
@@ -29,16 +28,6 @@ export const PROJECT_COVERS = {
       zh: "展览现场，两位玩家的手悬在亮着灯的迷宫上方，手指都套着接了线的指套",
     },
     fit: "cover",
-  },
-  gapmapper: {
-    src: "/projects/gapmapper/01-route-options.png",
-    width: 3768,
-    height: 1650,
-    alt: {
-      en: "Five phone screens side by side: the same trip as five route options, each overlaying risk density, lighting, surveillance or open-business layers, with trip duration marked",
-      zh: "五个手机界面并排：同一趟行程的五种路线方案，分别叠加风险密度、路灯、监控与营业店铺图层，各自标出行程时长",
-    },
-    fit: "contain",
   },
   connect: {
     src: "/projects/connect/02-app-studybuddy.png",
@@ -70,13 +59,23 @@ export const PROJECT_COVERS = {
     },
     fit: "cover",
   },
-  rules: {
-    src: "/projects/rules/01-fietspad-ui.png",
-    width: 2093,
-    height: 1361,
+  grassland: {
+    src: "/projects/grassland/03-mission-02.jpg",
+    width: 1280,
+    height: 720,
     alt: {
-      en: "Three dark-theme phone screens: a home screen with mode selection and recent routes, a planning screen with a rider profile, and a riding screen with a left-hook warning and hazard list",
-      zh: "三张深色主题的手机界面：模式选择与最近路线的首页、含骑行档案的规划页、以及骑行中的左勾弯风险提示与危险清单",
+      en: "Mission two: resources, unit status and objectives around a battlefield that fills most of the screen",
+      zh: "第二关：资源、人物状态与目标围在四周，主战场占据大部分画面",
+    },
+    fit: "cover",
+  },
+  onthebeat: {
+    src: "/projects/onthebeat/03-match.jpg",
+    width: 786,
+    height: 1704,
+    alt: {
+      en: "Phone screen after both people agreed, showing names and the meeting place",
+      zh: "双方都同意后的手机画面，显示名字和碰面地点",
     },
     fit: "contain",
   },

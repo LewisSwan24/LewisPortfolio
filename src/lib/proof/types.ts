@@ -6,7 +6,9 @@ export type ProjectEvidenceSlug =
   | "hoop"
   | "pricewise"
   | "gapmapper"
-  | "rules";
+  | "rules"
+  | "grassland"
+  | "onthebeat";
 export type ProofLocale = "en" | "zh";
 
 export interface CareerSnapshotStat {

@@ -114,7 +114,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       ]),
     },
     {
-      ...packetBase("en", "ai-ux", ["pricewise", "gapmapper", "connect"]),
+      ...packetBase("en", "ai-ux", ["pricewise", "onthebeat", "connect"]),
       label: "AI UX / Human-AI Interaction",
       headline: "Interview Lewis for AI UX roles that need someone to check how far an AI feature can be trusted.",
       fitThesis:
@@ -135,22 +135,23 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           nextValidation:
             "I would put it in front of five people using their own receipts, and turn the manual verification into a build gate.",
         },
+        // Took Perception Gap Mapper's place when it was unlisted (2026-11-20).
         {
-          id: "ai-ux-evidence-bounded-confidence",
-          claim: "Lewis will argue against an interface that sounds surer than its evidence, including one he built.",
+          id: "ai-ux-review-ai-output",
+          claim: "Lewis sends back AI output that only looks finished, and checks it on real devices.",
           evidence:
-            "Lewis built the first route-support prototype. Once it was on screen, so was the problem: an interface recommending a safer route had claimed an authority it had not earned.",
+            "Claude Code wrote and flashed On The Beat's firmware and app. Lewis set the requirements and caught what the generated version had not done: MEET was mock data, nothing ran without his laptop, and the design canvas showed all four cards as '1 of 4'.",
           boundary:
-            "A six-person course project: the team built the final dashboard, no real planner has tested it, and no AI model scored the routes.",
-          strongestAnchor: "/projects/gapmapper#decision-timeline",
+            "No participant has tested the app; the checks were Lewis's own, on two real wristbands and two local test windows.",
+          strongestAnchor: "/projects/onthebeat#decision-timeline",
           nextValidation:
-            "A small pilot on two or three sites with a handful of rounded reports, then a review with campus safety staff to test whether Place Inspector explains its evidence.",
+            "Participant sessions at a real or staged gig, and wearing the bands to measure the timing values that are still estimates.",
         },
       ],
       interviewQuestions: pickInterviewQuestions("en", [
         ["pricewise", 0],
         ["pricewise", 1],
-        ["gapmapper", 0],
+        ["onthebeat", 0],
       ]),
     },
     {
@@ -264,7 +265,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       ]),
     },
     {
-      ...packetBase("zh", "ai-ux", ["pricewise", "gapmapper", "connect"]),
+      ...packetBase("zh", "ai-ux", ["pricewise", "onthebeat", "connect"]),
       label: "AI UX / Human-AI Interaction",
       headline: "适合需要有人判断 AI 功能能信到什么程度的 AI UX 岗位。",
       fitThesis:
@@ -283,21 +284,19 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
             "找五个人用他们自己的小票真的跑一次，并把这些手动验证接进构建流程，变成一道关卡。",
         },
         {
-          id: "ai-ux-evidence-bounded-confidence",
-          claim: "界面说话的把握一旦超过证据，Lewis 会主张放弃，自己做的也一样。",
+          id: "ai-ux-review-ai-output",
+          claim: "只是看起来做完的 AI 输出，Lewis 会打回去，并在真设备上核对。",
           evidence:
-            "第一版路线支持原型是 Lewis 做的。原型一上屏幕，问题也跟着出来：推荐「更安全路线」的界面，拿到了一种自己没有挣来的权威。",
-          boundary:
-            "六人课程项目：最终仪表板由团队完成，没有真实的规划人员测过，路线评分也没有用 AI 模型。",
-          strongestAnchor: "/projects/gapmapper#decision-timeline",
-          nextValidation:
-            "先挑两三个地点、用一小批取整过的上报跑个小试点，再找校园安全人员开一次评审，看 Place Inspector 有没有把证据讲清楚。",
+            "On The Beat 的固件和 App 由 Claude Code 编写并烧录。需求由 Lewis 设定，生成版本没做到的地方也是他抓出来的：MEET 是模拟数据，离开他的笔电就跑不起来，设计画布四张卡都显示 1 of 4。",
+          boundary: "没有参与者测试过这个 App；检查都是 Lewis 自己做的，用两支真手环和本机两个测试视窗。",
+          strongestAnchor: "/projects/onthebeat#decision-timeline",
+          nextValidation: "在真实或模拟的演出现场做参与者测试，并佩戴手环实测那些仍是估计值的时间参数。",
         },
       ],
       interviewQuestions: pickInterviewQuestions("zh", [
         ["pricewise", 0],
         ["pricewise", 1],
-        ["gapmapper", 0],
+        ["onthebeat", 0],
       ]),
     },
     {

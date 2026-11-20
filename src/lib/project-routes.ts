@@ -7,6 +7,8 @@ export const CURRENT_PROJECT_SLUGS = [
   "pricewise",
   "gapmapper",
   "rules",
+  "grassland",
+  "onthebeat",
 ] as const;
 
 export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
@@ -21,7 +23,14 @@ export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
  * the homepage and the lists rather than delete it, so its case data, images
  * and prototype stay where they are.
  */
-export const UNLISTED_PROJECT_SLUGS: readonly CurrentProjectSlug[] = ["vigil"];
+export const UNLISTED_PROJECT_SLUGS: readonly CurrentProjectSlug[] = [
+  "vigil",
+  // 2026-11-20: Lewis took down the three cases with no recent work and put
+  // up Grassland Iron Tide and On The Beat in their place.
+  "spectra",
+  "rules",
+  "gapmapper",
+];
 
 export function isUnlistedProject(slug: string): boolean {
   return (UNLISTED_PROJECT_SLUGS as readonly string[]).includes(slug);
@@ -88,5 +97,13 @@ export const PROJECT_OG_COPY: Record<
   rules: {
     title: "Requirements into Rules",
     oneLiner: "Two coursework briefs, one move: turn a soft requirement into a rule someone can build to and argue with.",
+  },
+  grassland: {
+    title: "Grassland Iron Tide",
+    oneLiner: "A five-mission browser RTS chapter where selection, commands, feedback and failure recovery follow one set of rules.",
+  },
+  onthebeat: {
+    title: "On The Beat",
+    oneLiner: "A phone app, two wristbands and a cloud relay that help two strangers at a gig say hello, then get out of the way.",
   },
 };

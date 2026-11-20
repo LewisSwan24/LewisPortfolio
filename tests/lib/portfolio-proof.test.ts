@@ -239,7 +239,9 @@ describe("portfolio proof content", () => {
 
     // ai-ux went with Vigil when Vigil was unlisted, and came back on 2026-09-28
     // as a thread through listed cases (see the "AI and trust thread" block).
-    expect(ids).toEqual(["ux-product", "ux-research", "ai-ux", "accessibility"]);
+    // accessibility went on 2026-11-20 with Spectra Lens and Requirements into
+    // Rules, the only cases behind it; no listed case is left to back it.
+    expect(ids).toEqual(["ux-product", "ux-research", "ai-ux"]);
 
     for (const role of roleFits) {
       expect(role.label.length).toBeGreaterThan(4);
@@ -326,6 +328,9 @@ describe("portfolio proof content", () => {
     // Four, not five, while Vigil is unlisted: its human-oversight entry is
     // kept in the data but not shown.
     expect(room.evidenceBrief.length).toBeGreaterThanOrEqual(4);
+    expect(room.evidenceBrief.map((item) => item.caseSlug)).toEqual(
+      expect.arrayContaining(["grassland", "onthebeat"])
+    );
     expect(room.questionBank.length).toBeGreaterThanOrEqual(5);
     // Per-case limits live on each case page's outcome-limits block; /hire
     // carries only the general boundaries, so this floor is deliberately low.
@@ -376,11 +381,13 @@ describe("portfolio proof content", () => {
 // are the canonical facts file's: no finished AI-native case, every entry says
 // who did the work, and every cell is supporting rather than primary.
 describe("AI and trust thread", () => {
-  const THREAD_SLUGS: ProjectEvidenceSlug[] = ["pricewise", "gapmapper", "connect", "hoop"];
-  const ROLE_SLUGS: ProjectEvidenceSlug[] = ["pricewise", "gapmapper", "connect"];
+  // Perception Gap Mapper left the thread when it was unlisted (2026-11-20).
+  const THREAD_SLUGS: ProjectEvidenceSlug[] = ["pricewise", "connect", "hoop"];
+  // On The Beat took Gap Mapper's place in the role: reviewing AI output.
+  const ROLE_SLUGS: ProjectEvidenceSlug[] = ["pricewise", "onthebeat", "connect"];
   const slugOf = (href: string) => href.match(/^\/projects\/([^#/?]+)/)?.[1];
 
-  it("backs the AI UX role with PriceWise, Perception Gap Mapper and UQ Connect, not Vigil", () => {
+  it("backs the AI UX role with PriceWise, On The Beat and UQ Connect, not an unlisted case", () => {
     for (const locale of ["en", "zh"] as const) {
       const role = getHiringRoleFits(locale).find((fit) => fit.id === "ai-ux");
       expect(role).toBeDefined();
@@ -419,7 +426,7 @@ describe("AI and trust thread", () => {
     expect(getAiTrustThread("en").limit).toBe(
       "None of these is a finished AI-native product, and each entry states its own limits."
     );
-    expect(getAiTrustThread("zh").limit).toBe("这四条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。");
+    expect(getAiTrustThread("zh").limit).toBe("这三条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。");
   });
 
   it("says who did the work in every entry and links each to a valid case anchor", () => {
@@ -619,6 +626,15 @@ describe("unlisted cases", () => {
   it("recognises a link into an unlisted case in either locale", () => {
     expect(UNLISTED_PROJECT_SLUGS).toContain("vigil");
     expect(LISTED_PROJECT_SLUGS).not.toContain("vigil");
+    // 2026-11-20: Lewis took down the three cases with no recent work and put
+    // up his newest builds in their place.
+    for (const slug of ["spectra", "rules", "gapmapper"]) {
+      expect(UNLISTED_PROJECT_SLUGS).toContain(slug);
+      expect(LISTED_PROJECT_SLUGS).not.toContain(slug);
+    }
+    for (const slug of ["grassland", "onthebeat"]) {
+      expect(LISTED_PROJECT_SLUGS).toContain(slug);
+    }
 
     expect(linksToUnlistedProject("/projects/vigil")).toBe(true);
     expect(linksToUnlistedProject("/zh/projects/vigil#outcome-limits")).toBe(true);
@@ -637,6 +653,7 @@ describe("unlisted cases", () => {
         ...getHiringRoleFits(locale).flatMap((role) => role.proofLinks.map((link) => link.href)),
         ...room.evidenceBrief.map((item) => item.href),
         ...room.questionBank.map((item) => item.href),
+        ...room.boundaries.flatMap((item) => (item.href ? [item.href] : [])),
         ...getAiTrustThread(locale).entries.map((entry) => entry.href),
         ...getEvidenceMatrix(locale).flatMap((capability) =>
           Object.values(capability.cases).flatMap((cell) => (cell ? [cell.href] : []))
