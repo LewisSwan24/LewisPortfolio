@@ -12,6 +12,8 @@ import {
   VizGapmapper,
   VizRules,
 } from "@/components/viz/ProjectViz";
+import Image from "next/image";
+import { getProjectCover } from "@/lib/project-covers";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -53,18 +55,35 @@ interface FeatItemProps {
   flip?: boolean;
   viz: React.ReactNode;
   t: Awaited<ReturnType<typeof getTranslations>>;
+  locale: ProofLocale;
 }
 
-function FeatItem({ n, k, href, flip, viz, t }: FeatItemProps) {
+function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
+  // The real artefact leads where one exists; the concept diagram stands in
+  // only for a case that has no screenshot or photo of its own.
+  const cover = getProjectCover(k);
   return (
     <Link
       className={`feat-item ${flip ? "flip" : ""}`}
       href={href}
       style={{ textDecoration: "none", color: "inherit" }}
     >
-      <div className="feat-visual">
+      <div className={`feat-visual${cover ? " has-cover" : ""}`}>
         <span className="num">{n}</span>
-        {viz}
+        {cover ? (
+          // next/image directly, as the case page does: routing this through
+          // the shared ProjectCoverImage client component broke the homepage
+          // in dev ("reading 'call'"), because /projects imports it too.
+          <Image
+            className={`project-cover project-cover--${cover.fit}`}
+            src={cover.src}
+            alt={cover.alt[locale]}
+            fill
+            sizes="(max-width: 960px) 100vw, 600px"
+          />
+        ) : (
+          viz
+        )}
       </div>
       <div className="feat-body">
         <div className="eyebrow">{t(`proj.${k}.kicker`)}</div>
@@ -246,13 +265,13 @@ export default async function HomePage() {
             kbd: t("feat.deckKbd"),
           }}
           items={[
-            { key: "maze", n: "01", node: <FeatItem n="01" k="maze" href="/projects/maze" t={t} viz={<VizMaze locale={proofLocale} />} /> },
-            { key: "gapmapper", n: "02", node: <FeatItem n="02" k="gapmapper" href="/projects/gapmapper" flip t={t} viz={<VizGapmapper locale={proofLocale} />} /> },
-            { key: "connect", n: "03", node: <FeatItem n="03" k="connect" href="/projects/connect" t={t} viz={<VizConnect locale={proofLocale} />} /> },
-            { key: "pricewise", n: "04", node: <FeatItem n="04" k="pricewise" href="/projects/pricewise" flip t={t} viz={<VizPricewise locale={proofLocale} />} /> },
-            { key: "hoop", n: "05", node: <FeatItem n="05" k="hoop" href="/projects/hoop" t={t} viz={<VizHoop locale={proofLocale} />} /> },
-            { key: "rules", n: "06", node: <FeatItem n="06" k="rules" href="/projects/rules" flip t={t} viz={<VizRules locale={proofLocale} />} /> },
-            { key: "spectra", n: "07", node: <FeatItem n="07" k="spectra" href="/projects/spectra" t={t} viz={<VizSpectra locale={proofLocale} />} /> },
+            { key: "maze", n: "01", node: <FeatItem n="01" k="maze" href="/projects/maze" t={t} locale={proofLocale} viz={<VizMaze locale={proofLocale} />} /> },
+            { key: "gapmapper", n: "02", node: <FeatItem n="02" k="gapmapper" href="/projects/gapmapper" flip t={t} locale={proofLocale} viz={<VizGapmapper locale={proofLocale} />} /> },
+            { key: "connect", n: "03", node: <FeatItem n="03" k="connect" href="/projects/connect" t={t} locale={proofLocale} viz={<VizConnect locale={proofLocale} />} /> },
+            { key: "pricewise", n: "04", node: <FeatItem n="04" k="pricewise" href="/projects/pricewise" flip t={t} locale={proofLocale} viz={<VizPricewise locale={proofLocale} />} /> },
+            { key: "hoop", n: "05", node: <FeatItem n="05" k="hoop" href="/projects/hoop" t={t} locale={proofLocale} viz={<VizHoop locale={proofLocale} />} /> },
+            { key: "rules", n: "06", node: <FeatItem n="06" k="rules" href="/projects/rules" flip t={t} locale={proofLocale} viz={<VizRules locale={proofLocale} />} /> },
+            { key: "spectra", n: "07", node: <FeatItem n="07" k="spectra" href="/projects/spectra" t={t} locale={proofLocale} viz={<VizSpectra locale={proofLocale} />} /> },
           ]}
         />
       </section>

@@ -13,6 +13,8 @@ import {
   VizGapmapper,
   VizRules,
 } from "@/components/viz/ProjectViz";
+import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
+import { getProjectCover } from "@/lib/project-covers";
 import {
   getEvidenceMatrix,
   getHiringConversion,
@@ -155,6 +157,10 @@ const ITEMS: Item[] = [
 ];
 
 function WorkPreview({ project, locale }: { project: ProjKey; locale: ProofLocale }) {
+  const cover = getProjectCover(project);
+  if (cover) {
+    return <ProjectCoverImage cover={cover} locale={locale} sizes="240px" />;
+  }
   if (project === "maze") return <VizMaze locale={locale} />;
   if (project === "hoop") return <VizHoop locale={locale} />;
   if (project === "pricewise") return <VizPricewise locale={locale} />;
@@ -237,9 +243,13 @@ export function WorkIndex() {
           {shown.map((i) => (
             <Link className="work-index-row" href={`/projects/${i.k}`} key={i.k}>
               <div className="work-index-project">
+                {/* The row's link names the case; the thumbnail repeats it as
+                    a picture, so it stays out of the accessibility tree. */}
                 <div className="work-index-thumb" aria-hidden="true">
                   <WorkPreview project={i.k} locale={proofLocale} />
-                  <span className="work-index-thumb-label">{pageCopy.conceptVisual}</span>
+                  {!getProjectCover(i.k) && (
+                    <span className="work-index-thumb-label">{pageCopy.conceptVisual}</span>
+                  )}
                 </div>
                 <div>
                   <h3>{t(`proj.${i.k}.title`)}</h3>
