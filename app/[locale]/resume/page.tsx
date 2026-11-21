@@ -62,18 +62,32 @@ export default async function ResumePage() {
                       ? "产品与交互设计师（自主项目）"
                       : "Product & Interaction Designer (self-initiated)"}
                   </h4>
-                  {/* Vigil was abandoned on 2026-09-23 and is unlisted, so it is
-                      named neither in this line nor in a bullet below. */}
+                  {/* Unlisted projects are intentionally excluded from every public resume line. */}
                   <p className="org">
                     {isZh
-                      ? "AI 辅助产品实践 · Hoop Dream / 个人作品集网站"
-                      : "AI-assisted product practice · Hoop Dream, this site"}
+                      ? "AI 辅助产品与设计工程实践 · Walkie / Fencepost / Lamplight Nook / Resume Autofill / On The Beat / Hoop Dream / 个人作品集"
+                      : "AI-assisted product & design engineering · Walkie, Fencepost, Lamplight Nook, Resume Autofill, On The Beat, Hoop Dream, this site"}
                   </p>
                   <ul>
                     <li>
                       {isZh
-                        ? "把自主选题的产品从书面规格一路带到可运行的实现：规格与设计决策由我定，再指挥 Codex 与 Claude Code 落地。"
-                        : "Took self-directed products from written spec to running build — I wrote the specification and design decisions, then directed Codex and Claude Code to implement them."}
+                        ? "把自主选题的产品从书面规格一路带到可运行的实现：规格与设计决策由我定，再指挥 Codex 与 Claude Code 落地并通过自动化测试验收。"
+                        : "Took self-directed products from written spec to running build — I wrote the specification and design decisions, then directed Codex and Claude Code to implement them and verified with automated tests."}
+                    </li>
+                    <li>
+                      {isZh
+                        ? "Walkie（M5StickS3 手腕 AI 语音遥控器）：双启动 PlatformIO C++ 固件（与 On The Beat 共用同一支表）、AES-256-GCM 加密链路（插线 USB 优先，离缆走零知识 Fly.io 中继）与手腕实体按键审批 Claude 工具权限，经 3 组自动化硬件/协议门禁（含 11 个真机屏幕按键场景）验收。"
+                        : "Walkie (M5StickS3 wrist voice remote for Claude Code): dual-boot PlatformIO C++ firmware sharing one watch with On The Beat, AES-256-GCM sealed transport (USB wins; zero-knowledge Fly.io relay fallback), and physical wrist approval buttons, verified by 3 automated hardware/protocol gates (including 11 on-device scenes)."}
+                    </li>
+                    <li>
+                      {isZh
+                        ? "Fencepost（布里斯班社区野生动物故事板）：可吊销权限二维码（access_grants）、三角色 Python AI 安全代理与 Next.js / Turso libSQL 线上原型，通过 431 项离线测试与 29 条 AI 安全红线用例。"
+                        : "Fencepost (Brisbane community wildlife storyboard): revocable QR access_grants, a 3-role Python AI safety proxy, and a live Next.js + Turso libSQL deployment verified by 431 offline tests and 29 AI red-line cases."}
+                    </li>
+                    <li>
+                      {isZh
+                        ? "Lamplight Nook、Resume Autofill 与 On The Beat：分别完成像素风 AI 任务桌面应用（Electron + Phaser，风险步骤默认「先不要」）、本地优先的 Chrome/Android 求职自动填表工具（不猜、不替提交、简历不出设备），以及面向演出现场的双 M5StickS3 手环破冰原型。"
+                        : "Lamplight Nook, Resume Autofill, and On The Beat: shipped an Electron + Phaser desktop UI for long-running Claude tasks (risky steps default to 'not now'), a local-first Chrome/Android autofill that never guesses or submits, and a two-wristband live-gig icebreaker prototype."}
                     </li>
                     <li>
                       {isZh
@@ -215,7 +229,7 @@ export default async function ResumePage() {
                   lineHeight: 1.7,
                 }}
               >
-                Figma / Miro · HTML / CSS / JavaScript · React / Next.js · Phaser · Canvas · Arduino / ESP32 · Web Serial
+                Figma / Miro · HTML / CSS / TypeScript · React / Next.js · Tailwind CSS · GSAP · Python / SQLite · Phaser / Canvas · Arduino / ESP32 · Web Serial · Playwright / Vitest
               </p>
             </div>
             <div className="res-side-card">

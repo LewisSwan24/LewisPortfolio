@@ -23,7 +23,9 @@
     "proof:export": "node scripts/proof-export.mjs",
     "proof:bundle": "node scripts/proof-bundle.mjs",
     "media:optimize": "node scripts/optimize-media.mjs",
-    "media:check": "node scripts/optimize-media.mjs --check"
+    "media:check": "node scripts/optimize-media.mjs --check",
+    "budget:check": "node scripts/check-bundle-budget.mjs",
+    "resume:pdf": "node scripts/build-resume-pdf.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
@@ -50,6 +52,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/eslintrc": "^3.3.7",
     "@next/bundle-analyzer": "^15.5.29",
     "@playwright/test": "^1.57.0",

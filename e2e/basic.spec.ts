@@ -937,3 +937,43 @@ test.describe("Draft posts", () => {
         }
     });
 });
+
+test.describe("V3 Flagship Routes & Role Lens", () => {
+    test("lab interactive workbench renders state-machine demos and transitions states", async ({ page }) => {
+        await gotoStable(page, "/lab");
+        await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+
+        const walkieTab = page.getByRole("tab", { name: /Walkie/i });
+        await expect(walkieTab).toBeVisible();
+        await walkieTab.click();
+        await expect(walkieTab).toHaveAttribute("aria-selected", "true");
+
+        const advanceButton = page.getByRole("button", { name: /Advance state|Next state/i });
+        await expect(advanceButton).toBeVisible();
+        await advanceButton.click();
+    });
+
+    test("hire role lens filters cases from URL query and switches tracks", async ({ page }) => {
+        await gotoStable(page, "/hire?role=design-eng");
+        const grid = page.locator(".role-lens-grid");
+        await expect(grid).toHaveAttribute("data-active-lens", "design-eng");
+        await expect(grid.locator("a[href*='/projects/walkie']")).toBeVisible();
+
+        const aiTab = page.getByRole("tab", { name: /AI UX/i });
+        await aiTab.click();
+        await expect(grid).toHaveAttribute("data-active-lens", "ai-ux");
+        await expect(grid.locator("a[href*='/projects/fencepost']")).toBeVisible();
+    });
+
+    test("new V3 flagship case studies walkie and fencepost render in EN and ZH", async ({ page }) => {
+        for (const url of [
+            "/projects/walkie",
+            "/zh/projects/walkie",
+            "/projects/fencepost",
+            "/zh/projects/fencepost",
+        ]) {
+            await gotoStable(page, url);
+            await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+        }
+    });
+});

@@ -16,7 +16,7 @@ export function ResumeActions() {
         {t("resume.print")}
       </button>
       <LocalizedLink className="btn btn-primary" href="/contact">
-        {t("resume.contact")} <span className="arrow">-&gt;</span>
+        {t("resume.contact")} <span className="arrow" aria-hidden="true">→</span>
       </LocalizedLink>
     </div>
   );
