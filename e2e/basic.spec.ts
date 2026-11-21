@@ -46,65 +46,13 @@ test.describe("Portfolio Homepage", () => {
         await expect(page.locator(".hero-lede")).toContainText(/Claude Code|Codex/);
     });
 
-    // The old "Evidence at a glance" / "Capability map" sections were removed
-    // when the homepage was condensed; the hiring signal grid replaced them.
-    test("should surface career evidence", async ({ page }) => {
-        const signals = page.locator(".hiring-signal-grid .hiring-signal");
-
-        await expect(signals.first()).toBeVisible();
-        expect(await signals.count()).toBeGreaterThanOrEqual(3);
-        await expect(page.locator(".hiring-proof-status")).toContainText(/2026/);
-    });
-
-    // Replaces the removed timed reading paths ("15-second scan" and friends).
-    // The surviving way in for a recruiter is the proof route board.
-    test("should guide hiring readers", async ({ page }) => {
-        const board = page.locator(".proof-route-board");
-
-        await expect(board.getByText(/Best cases to inspect/i)).toBeVisible();
-
-        const routes = board.locator(".proof-route-card");
-        expect(await routes.count()).toBeGreaterThanOrEqual(3);
-        await expect(routes.first()).toBeVisible();
-    });
-
-    test("should present a clear hiring conversion path", async ({ page }) => {
-        const proofDesk = page.locator(".hiring-proof-desk");
-
-        await expect(proofDesk.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
-        await expect(proofDesk.getByText(/Best cases to inspect/i)).toBeVisible();
-        await expect(proofDesk.getByText(/Information architecture/i).first()).toBeVisible();
-        // No accessibility line since Spectra Lens was unlisted (2026-11-20).
-        await expect(proofDesk.getByText(/Design technology/i).first()).toBeVisible();
-        // The AI UX route went with Vigil when Vigil was unlisted, and came back
-        // as a thread whose route points at PriceWise, never at Vigil.
-        await expect(proofDesk.getByText(/AI UX/i).first()).toBeVisible();
-        await expect(proofDesk.locator("a[href='/projects/pricewise#decision-timeline']").first()).toBeVisible();
-        await expect(proofDesk.locator("a[href*='vigil']")).toHaveCount(0);
-        await expect(proofDesk.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
-    });
-
-    test("hiring proof links should point to case anchors", async ({ page }) => {
-        await expectAnchoredCaseProofLink(page.locator(".hiring-proof-desk a[href*='#']").first());
-    });
-
-    // The role-fit panel moved off the homepage to /hire, /resume and /contact,
-    // which have their own coverage. What the homepage must still do is offer
-    // the three conversion routes.
-    test("should offer the hiring conversion actions", async ({ page }) => {
-        const actions = page.locator(".hiring-proof-actions");
-
-        for (const href of ["/contact", "/resume", "/hire"]) {
-            await expect(actions.locator(`a[href='${href}']`)).toBeVisible();
-        }
+    // Homepage focuses directly on practice notes, featured cases, and
+    // approach without duplicating /hire's dossier blocks.
+    test("homepage stays focused without duplicated hiring proof desk and links to /hire", async ({ page }) => {
+        await expect(page.locator(".hiring-proof-desk")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
-    });
-
-    test("homepage should link to the interview decision room", async ({ page }) => {
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
-            "href",
-            "/hire",
-        );
+        await expect(page.locator(".hero-hire-link")).toHaveAttribute("href", "/hire");
+        await expect(page.locator(".feat-deck")).toBeVisible();
     });
 
     test("should have working navigation", async ({ page }) => {
@@ -653,59 +601,42 @@ test.describe("Contact Page", () => {
         await expect(nextStep.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
     });
 
-    test("contact proof links should point to case anchors", async ({ page }) => {
+    test("contact stays concise without duplicated role-fit/proof sections and links to /hire", async ({ page }) => {
         await page.goto("/contact");
 
-        await expectAnchoredCaseProofLink(page.locator(".contact-next-step a[href*='#']").first());
-    });
-
-    // Role fit now lives only on /hire; contact links there instead of
-    // restating all twelve role blocks.
-    test("contact should not restate the role fit panel", async ({ page }) => {
-        await page.goto("/contact");
-
+        await expect(page.locator(".contact-use")).toHaveCount(0);
+        await expect(page.locator(".contact-next-step")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toBeVisible();
+        await expect(page.locator(".contact-note-card")).toBeVisible();
+        await expect(page.locator(".contact-hire-hint a")).toHaveAttribute("href", "/hire");
     });
 
-    test("contact should link to the interview decision room", async ({ page }) => {
-        await page.goto("/contact");
-
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
-            "href",
-            "/hire",
-        );
-    });
-
-    test("contact should show role context from hire route", async ({ page }) => {
+    test("contact should show single contextual panel from hire route", async ({ page }) => {
         await page.goto("/contact?role=ai-ux");
 
+        await expect(page.locator(".contact-note-card")).toHaveCount(0);
         await expect(page.getByText(/AI UX/i).first()).toBeVisible();
         await expect(page.getByText(/Best proof/i).first()).toBeVisible();
         await expect(page.locator("a[href*='/projects/'][href*='#']").first()).toBeVisible();
     });
 
-    // Accessibility lost its only listed cases on 2026-11-20, so a stale link
-    // gets the plain form rather than a packet pointing at unlisted cases.
-    test("contact should show no role context for a role with no listed case", async ({ page }) => {
+    test("contact should fall back cleanly for a role with no listed case", async ({ page }) => {
         await page.goto("/contact?role=accessibility");
 
         await expect(page.locator(".contact-role-context")).toHaveCount(0);
+        await expect(page.locator(".contact-note-card")).toBeVisible();
         await expect(page.locator("a[href*='/projects/spectra']")).toHaveCount(0);
     });
 
-    test("contact should show interview follow-through context", async ({ page }) => {
+    test("contact should show interview follow-through context linking to live /hire route", async ({ page }) => {
         await page.goto("/contact?role=ai-ux&intent=interview");
 
         await expect(page.getByText(/Follow-through/i).first()).toBeVisible();
         await expect(page.getByRole("link", { name: /next-step plan/i })).toHaveAttribute(
             "href",
-            "/hire/ai-ux/next",
+            "/hire?role=ai-ux",
         );
-        await expect(page.getByRole("link", { name: /application packet/i }).first()).toHaveAttribute(
-            "href",
-            "/hire/ai-ux/packet",
-        );
+        await expect(page.locator("a[href^='/hire/']")).toHaveCount(0);
     });
 });
 
@@ -724,40 +655,13 @@ test.describe("Resume Page", () => {
         await expect(page.locator("a[href='/resume.pdf']")).toHaveCount(0);
     });
 
-    test("should show best-fit roles", async ({ page }) => {
-        await page.goto("/resume");
-        await expect(page.getByText("Best-fit roles")).toBeVisible();
-    });
-
-    test("should show a Proof-linked resume path", async ({ page }) => {
+    test("resume stays focused with compact target roles and link to /hire", async ({ page }) => {
         await page.goto("/resume");
 
-        await expect(page.getByText("Proof-linked resume")).toBeVisible();
-        await expect(page.getByText(/Best cases to inspect/i)).toBeVisible();
-    });
-
-    test("resume proof links should point to case anchors", async ({ page }) => {
-        await page.goto("/resume");
-
-        await expectAnchoredCaseProofLink(page.locator(".resume-proof-card a[href*='#']").first());
-    });
-
-    // Role fit now lives only on /hire; the resume links to the proof routes
-    // and to /hire rather than restating the panel.
-    test("resume should not restate the role fit panel", async ({ page }) => {
-        await page.goto("/resume");
-
+        await expect(page.getByText("Target roles")).toBeVisible();
+        await expect(page.locator(".resume-proof-card")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
-        await expect(page.locator(".resume-proof-card a[href*='#']").first()).toBeVisible();
-    });
-
-    test("resume should link to the interview decision room", async ({ page }) => {
-        await page.goto("/resume");
-
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
-            "href",
-            "/hire",
-        );
+        await expect(page.locator(".role-fit-links a")).toHaveAttribute("href", "/hire");
     });
 });
 

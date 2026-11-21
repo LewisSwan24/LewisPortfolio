@@ -34,13 +34,13 @@ export function FollowThroughContactContext({
       <div className="follow-through-actions">
         <Link
           className="btn btn-primary"
-          href={localizeInternalHref(brief.route, locale)}
+          href={localizeInternalHref(`/hire?role=${brief.id}`, locale)}
         >
           {labels.openFollowThrough}
         </Link>
         <Link
           className="btn btn-ghost"
-          href={localizeInternalHref(`/hire/${brief.id}/packet`, locale)}
+          href={localizeInternalHref(`/hire?role=${brief.id}`, locale)}
         >
           {labels.openApplicationPacket}
         </Link>

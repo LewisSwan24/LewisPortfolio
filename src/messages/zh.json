@@ -82,11 +82,11 @@
   },
   "feat": {
     "label": "精选作品",
-    "title": "八个案例，每个都写了做到哪一步。",
+    "title": "六件精选案例，每件都标明了真实止步点。",
     "footer": "完整列表",
     "deckPrev": "上一个案例",
     "deckNext": "下一个案例",
-    "deckKbd": "拖动，或用 ← → 逐个翻这八个"
+    "deckKbd": "拖动或按 ← → 切换精选案例"
   },
   "cs": {
     "back": "← 所有作品",
@@ -109,7 +109,7 @@
     "write": "写作",
     "meta": {
       "built": "用 Next.js、Tailwind 搭建，代码由 Codex 和 Claude Code 协助写成。改了很多版。",
-      "version": "v5 · 2026 年 11 月更新"
+      "version": "v3.3 · 2026 年 11 月更新"
     }
   },
   "tw": {
