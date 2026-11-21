@@ -11,6 +11,7 @@ import {
 } from "@/components/viz/ProjectViz";
 import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
 import { getProjectCover } from "@/lib/project-covers";
+import { getCaseCard } from "@/lib/cases/registry";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -61,6 +62,7 @@ function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
   // The real artefact leads where one exists; the concept diagram stands in
   // only for a case that has no screenshot or photo of its own.
   const cover = getProjectCover(k);
+  const card = getCaseCard(k, locale);
   return (
     <Link
       className={`feat-item ${flip ? "flip" : ""}`}
@@ -80,19 +82,19 @@ function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
         )}
       </div>
       <div className="feat-body">
-        <div className="eyebrow">{t(`proj.${k}.kicker`)}</div>
-        <h3>{t(`proj.${k}.title`)}</h3>
-        <p className="sub">{t(`proj.${k}.sub`)}</p>
+        <div className="eyebrow">{card.kicker}</div>
+        <h3>{card.title}</h3>
+        <p className="sub">{card.sub}</p>
         <dl className="feat-meta">
           <dt>{t("cs.role")}</dt>
-          <dd>{t(`proj.${k}.role`)}</dd>
+          <dd>{card.role}</dd>
           <dt>{t("cs.time")}</dt>
-          <dd>{t(`proj.${k}.date`)}</dd>
+          <dd>{card.date}</dd>
         </dl>
         <div className="feat-metrics">
-          <span className="m">{t(`proj.${k}.m1`)}</span>
-          <span className="m">{t(`proj.${k}.m2`)}</span>
-          <span className="m">{t(`proj.${k}.m3`)}</span>
+          <span className="m">{card.m1}</span>
+          <span className="m">{card.m2}</span>
+          <span className="m">{card.m3}</span>
         </div>
         <span className="feat-cta">
           {t("feat.footer")} <span>→</span>

@@ -1,8 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { siteConfig } from "@/lib/site";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
@@ -14,85 +13,104 @@ import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
 import { KeyboardShortcutsModal } from "@/components/providers/KeyboardShortcutsModal";
 import { SearchProvider } from "@/components/SearchProvider";
 import { getAllBlogPosts } from "@/lib/blog";
-import { LISTED_PROJECT_SLUGS } from "@/lib/project-routes";
+import { getCaseSearchIndex, type CaseLocale } from "@/lib/cases/registry";
 import { Analytics } from "@vercel/analytics/react";
 import {
-    StructuredData,
-    generatePersonSchema,
-    generateWebSiteSchema,
-    generateOrganizationSchema,
+  StructuredData,
+  generatePersonSchema,
+  generateWebSiteSchema,
+  generateOrganizationSchema,
 } from "@/lib/seo";
 
+const CLIENT_MESSAGE_NAMESPACES = [
+  "nav",
+  "hero",
+  "foot",
+  "footer",
+  "blog",
+  "resume",
+  "skipLink",
+  "mobileMenu",
+  "search",
+  "languageToggle",
+  "common",
+] as const;
+
+function pickClientMessages(messages: Record<string, unknown>) {
+  const picked: Record<string, unknown> = {};
+  for (const key of CLIENT_MESSAGE_NAMESPACES) {
+    if (key in messages) {
+      picked[key] = messages[key];
+    }
+  }
+  return picked;
+}
+
 export function generateStaticParams() {
-    return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
-    children,
-    params,
+  children,
+  params,
 }: {
-    children: React.ReactNode;
-    params: Promise<{ locale: string }>;
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-    const { locale } = await params;
+  const { locale } = await params;
 
-    // Validate incoming locale
-    if (!hasLocale(routing.locales, locale)) {
-        notFound();
-    }
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
 
-    // Enable static rendering
-    setRequestLocale(locale);
+  setRequestLocale(locale);
 
-    // Load messages for NextIntlClientProvider
-    const messages = await getMessages();
-    const t = await getTranslations();
-    const blogPosts = await getAllBlogPosts();
-    const searchItems = [
-        ...LISTED_PROJECT_SLUGS.map((slug) => ({
-            type: "project" as const,
-            slug,
-            title: t(`proj.${slug}.title`),
-            description: t(`proj.${slug}.sub`),
-            tags: [t(`proj.${slug}.kicker`), t(`proj.${slug}.m1`), t(`proj.${slug}.m2`), t(`proj.${slug}.m3`)],
-        })),
-        ...blogPosts.map((post) => ({
-            type: "blog" as const,
-            slug: post.slug,
-            title: post.title,
-            description: post.excerpt,
-            tags: post.tags,
-        })),
-    ];
+  const caseLocale: CaseLocale = locale === "zh" ? "zh" : "en";
+  const [messages, blogPosts] = await Promise.all([
+    getMessages(),
+    getAllBlogPosts(caseLocale),
+  ]);
+  const clientMessages = pickClientMessages(messages as Record<string, unknown>);
 
-    return (
-        <NextIntlClientProvider messages={messages}>
-            <ThemeProvider
-                attribute={["class", "data-theme"]}
-                defaultTheme="light"
-                enableSystem={false}
-                disableTransitionOnChange
-            >
-                <SearchProvider items={searchItems}>
-                    <StructuredData data={generatePersonSchema()} />
-                    <StructuredData data={generateOrganizationSchema()} />
-                    <StructuredData data={generateWebSiteSchema()} />
-                    <SkipLink />
-                    <div className="flex min-h-screen flex-col">
-                        <Navigation />
-                        <main id="main-content" className="flex-1">
-                            <ErrorBoundary>
-                                <PageTransition>{children}</PageTransition>
-                            </ErrorBoundary>
-                        </main>
-                        <Footer />
-                    </div>
-                    <BackToTop />
-                    <KeyboardShortcutsModal />
-                    <PerformanceMonitor />
-                    <Analytics />
-                </SearchProvider>
-            </ThemeProvider>
-        </NextIntlClientProvider>
-    );
+  const searchItems = [
+    ...getCaseSearchIndex(caseLocale),
+    ...blogPosts.map((post) => ({
+      type: "blog" as const,
+      slug: post.slug,
+      title: post.title,
+      description: post.excerpt,
+      tags: post.tags,
+    })),
+  ];
+
+  return (
+    <NextIntlClientProvider messages={clientMessages}>
+      <ThemeProvider
+        attribute={["class", "data-theme"]}
+        defaultTheme="light"
+        enableSystem={false}
+        disableTransitionOnChange
+      >
+        <SearchProvider items={searchItems}>
+          <StructuredData data={generatePersonSchema()} />
+          <StructuredData data={generateOrganizationSchema()} />
+          <StructuredData data={generateWebSiteSchema()} />
+          <SkipLink />
+          <div className="flex min-h-screen flex-col">
+            <Navigation />
+            <main id="main-content" className="flex-1">
+              <ErrorBoundary>
+                <PageTransition>{children}</PageTransition>
+              </ErrorBoundary>
+            </main>
+            <Footer />
+          </div>
+          <BackToTop />
+          <KeyboardShortcutsModal />
+          <PerformanceMonitor />
+          <Analytics />
+        </SearchProvider>
+      </ThemeProvider>
+    </NextIntlClientProvider>
+  );
 }

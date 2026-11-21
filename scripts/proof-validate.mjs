@@ -30,8 +30,8 @@ console.log("Proof validation gate");
 // pins) parses --run as its own option and aborts with "Unknown option: 'run'",
 // while pnpm 10 forwards it. Invoking the binary is version-agnostic.
 run(
-  "Running proof registry and validation tests...",
-  "vitest run tests/lib/proof-registry.test.ts tests/lib/proof-validation.test.ts"
+  "Running proof & unified case registry validation tests...",
+  "vitest run tests/lib/proof-registry.test.ts tests/lib/proof-validation.test.ts tests/lib/case-registry.test.ts"
 );
 
 run("Running proof maintenance report...", `${pnpm} proof:maintenance`);

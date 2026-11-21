@@ -12,6 +12,7 @@ import {
 } from "@/components/viz/ProjectViz";
 import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
 import { getProjectCover } from "@/lib/project-covers";
+import type { CaseCardCopy } from "@/lib/cases/schema";
 import {
   getEvidenceMatrix,
   getHiringConversion,
@@ -188,7 +189,11 @@ function WorkPreview({ project, locale }: { project: ProjKey; locale: ProofLocal
   return null;
 }
 
-export function WorkIndex() {
+export function WorkIndex({
+  cardsBySlug,
+}: {
+  cardsBySlug: Record<string, CaseCardCopy>;
+}) {
   const t = useTranslations();
   const locale = useLocale();
   const isZh = locale === "zh";
@@ -270,12 +275,12 @@ export function WorkIndex() {
                   )}
                 </div>
                 <div>
-                  <h3>{t(`proj.${i.k}.title`)}</h3>
-                  <p>{t(`proj.${i.k}.kicker`)}</p>
+                  <h3>{cardsBySlug[i.k]?.title ?? i.k}</h3>
+                  <p>{cardsBySlug[i.k]?.kicker ?? ""}</p>
                 </div>
               </div>
               <div className="work-index-role">
-                <strong>{t(`proj.${i.k}.role`)}</strong>
+                <strong>{cardsBySlug[i.k]?.role ?? i.role}</strong>
                 <span>{i.year} · {i.dur}</span>
               </div>
               <p className="work-index-copy">{isZh ? i.problem.zh : i.problem.en}</p>
@@ -333,7 +338,7 @@ export function WorkIndex() {
             <Link className="work-evidence-card" href={item.href} key={item.slug}>
               <div className="work-evidence-top">
                 <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{t(`proj.${item.slug}.title`)}</strong>
+                <strong>{cardsBySlug[item.slug]?.title ?? item.slug}</strong>
               </div>
               <p className="work-evidence-problem">{item.problemType}</p>
               <dl>
