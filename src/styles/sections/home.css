@@ -150,6 +150,22 @@
   color: var(--text);
   user-select: none; -webkit-user-select: none;
 }
+.deck-card:not(.top) {
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .hero-deck {
+    aspect-ratio: auto;
+    min-height: 440px;
+  }
+  .deck-card {
+    padding: 18px 16px 14px;
+    gap: 10px;
+  }
+  .dc-stamp { font-size: 20px; }
+  .dc-body li { font-size: 13.5px; line-height: 1.4; }
+  .dc-body li:first-child { font-size: 15px; }
+}
 .deck-card.top { cursor: grab; }
 .deck-card.top:active { cursor: grabbing; }
 .deck-card::before {
