@@ -1,25 +1,26 @@
-# Portfolio 定期维护清单
+# Portfolio Maintenance Checklist (V3)
 
-## 每周 (Weekly)
-- [ ] 检查 Vercel 部署状态和 Analytics 面板
-- [ ] 检查 GitHub Actions CI 是否有失败的 workflow run
+## Weekly
+- [ ] Check Vercel production deployment status and Analytics (`https://portfolio-lewisdong.vercel.app`)
+- [ ] Verify GitHub Actions CI (`quality` + `e2e` including `a11y.spec.ts`) on `master`
 
-## 每月 (Monthly) 
-- [ ] `npm audit` — 检查依赖安全漏洞
-- [ ] `npx npm-check-updates -u` — 更新过时依赖（注意 breaking changes）
-- [ ] 运行完整测试套件 `npx vitest run && npx playwright test`
-- [ ] 检查 Lighthouse 分数（Performance / Accessibility / SEO）
+## Monthly
+- [ ] Run `pnpm audit` to review dependency advisories
+- [ ] Run full local verification gate:
+  ```bash
+  pnpm typecheck && pnpm lint && pnpm test:ci && pnpm automation:check && pnpm media:check && pnpm build && pnpm budget:check
+  ```
+- [ ] Run `pnpm proof:maintenance` to review case-study freshness and evidence links
+- [ ] Regenerate bilingual A4 resume PDFs if `/resume` changed: `pnpm resume:pdf`
 
-## 每季度 (Quarterly)
-- [ ] 审查 Next.js 主版本更新
-- [ ] 审查 CSP 和安全头配置是否需要调整
-- [ ] 清理未使用的依赖 `npx depcheck`
-- [ ] 审查 API rate-limit 阈值是否合理
+## Quarterly
+- [ ] Review Next.js, React, Tailwind CSS v4, and GSAP minor/security updates
+- [ ] Audit `next.config.js` CSP (`frame-src`, `img-src`, `script-src`) whenever adding or retiring external demo embeds
+- [ ] Optimize newly added case media with `pnpm media:optimize` and confirm `pnpm media:check` stays within budget
 
-## 发布流程
-1. 确保所有测试通过：`npx vitest run`
-2. 更新 `CHANGELOG.md`
-3. Commit with conventional message: `feat:` / `fix:` / `chore:`
-4. 打版本 tag: `git tag -a vX.Y.Z -m "description"`
-5. Push: `git push origin master --tags`
-6. 验证 Vercel 自动部署
+## Release Workflow
+1. Branch from `master`, make atomic commits with Conventional Commits (`feat:`, `fix:`, `refactor:`, `docs:`, `chore:`)
+2. Verify locally: `pnpm typecheck && pnpm lint && pnpm test:ci && pnpm automation:check && pnpm media:check && pnpm build && pnpm budget:check`
+3. Open PR and confirm GitHub Actions (`quality`, `e2e` + `a11y.spec.ts`) and Vercel Preview pass
+4. Rebase-merge to `master`, update `CHANGELOG.md`, tag `vX.Y.Z`, and push tags (`git push origin master --tags`)
+5. Verify live production routes (`/en`, `/zh`, `/en/lab`, `/en/hire`, `/en/projects/walkie`, `/en/projects/fencepost`)
