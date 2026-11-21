@@ -51,7 +51,7 @@ test.describe("V3.2 Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
     for (const route of PUBLIC_ROUTES) {
       const response = await page.goto(route, { waitUntil: "domcontentloaded" });
       expect(response?.status(), `HTTP status on ${route}`).toBe(200);
-      await expect(page.locator("main")).toBeVisible();
+      await expect(page.locator("#main-content")).toBeVisible();
 
       const hrefs = await page.locator("main a[href^='/'], header a[href^='/']").evaluateAll((els) =>
         els.map((el) => el.getAttribute("href") || "")
