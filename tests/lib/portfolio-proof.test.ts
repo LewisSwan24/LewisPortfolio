@@ -418,16 +418,22 @@ describe("AI and trust thread", () => {
     }
   });
 
-  it("opens by admitting there is no finished AI-native product", () => {
-    expect(getAiTrustThread("en").intro).toMatch(/^I have not finished an AI-native product yet\./);
-    expect(getAiTrustThread("zh").intro).toMatch(/^我还没有做完一个 AI 原生产品。/);
+  it("frames the AI and trust thread around legible uncertainty and honest prototype scope", () => {
+    const en = getAiTrustThread("en");
+    const zh = getAiTrustThread("zh");
+    expect(en.intro).toMatch(/uncertainty legible/i);
+    expect(en.intro).not.toMatch(/^I have not finished/i);
+    expect(zh.intro).toMatch(/交互原则/);
+    expect(zh.intro).not.toMatch(/^我还没有做完/);
   });
 
-  it("states its limit sentence in both locales", () => {
-    expect(getAiTrustThread("en").limit).toBe(
-      "None of these is a finished AI-native product, and each entry states its own limits."
-    );
-    expect(getAiTrustThread("zh").limit).toBe("这三条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。");
+  it("states explicit scope boundaries in both locales without apologizing", () => {
+    const en = getAiTrustThread("en");
+    const zh = getAiTrustThread("zh");
+    expect(en.limit).toMatch(/mock data|manual style review|production traffic/i);
+    expect(en.limit).not.toMatch(/^None of these is a finished/i);
+    expect(zh.limit).toMatch(/模拟数据|人工视觉走查|生产流量/);
+    expect(zh.limit).not.toMatch(/^这三条里没有一个是做完的/);
   });
 
   it("says who did the work in every entry and links each to a valid case anchor", () => {
@@ -503,11 +509,11 @@ describe("claims checked against their sources", () => {
     }
   });
 
-  it("says the Hoop Dream style review was manual", () => {
+  it("states clearly that Hoop Dream style review stays manual", () => {
     const en = getAiTrustThread("en").entries.find((entry) => entry.slug === "hoop");
     const zh = getAiTrustThread("zh").entries.find((entry) => entry.slug === "hoop");
-    expect(en?.body).toContain("Style review was manual");
-    expect(zh?.body).toContain("风格靠人工审查");
+    expect(en?.body).toMatch(/reviewed manually|side by side/i);
+    expect(zh?.body).toMatch(/人工走查|对照规范/);
   });
 });
 

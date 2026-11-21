@@ -14,12 +14,12 @@ export const hoopCase: CaseRecord = {
     "year": "2026",
     "dur": "Playable",
     "problem": {
-      "en": "A registry of 299 asset specs, where what goes wrong shows only as a set",
-      "zh": "299 条资产规格的登记表，毛病要整组摆在一起才看得出来"
+      "en": "Keeping hundreds of generated game assets looking like one cohesive world",
+      "zh": "几百张生成式游戏素材摆在一起，如何看起来像同一个世界"
     },
     "changed": {
-      "en": "An art bible and a rejected list written first, with style checked by eye",
-      "zh": "先写美术圣经和拒绝清单，风格靠人眼对照"
+      "en": "Written art bibles and negative-prompt constraints verified through side-by-side human review",
+      "zh": "先确立美术圣经与禁用清单，再通过并排人工走查守住整体画风"
     }
   },
   "reviewMeta": {
@@ -66,10 +66,10 @@ export const hoopCase: CaseRecord = {
         "src": "/projects/hoop/04-career-node.png",
         "width": 1280,
         "height": 800,
-        "alt": "The first career node: status and attribute rails on the left, a narrative modal in the centre, training and life actions on the right",
+        "alt": "The first career node: status and attribute rails on the left, a narrative modal in the center, training and life actions on the right",
         "altZh": "第一个生涯节点：左侧状态与属性条，中间剧情弹窗，右侧训练与生活行动",
-        "caption": "One node of 146. Status, six attributes, eight relationships and the action menu are all wired to the same career state.",
-        "captionZh": "146 个节点里的第一个。状态、六维属性、八段关系与行动菜单，全部接在同一份生涯状态上。"
+        "caption": "An opening career node: player status, six attributes, relationships, and the action choices all share one connected state.",
+        "captionZh": "生涯首个节点：状态、六维属性、人物关系与行动选项全部联动同一份状态流。"
       }
     ]
   },
@@ -89,34 +89,34 @@ export const hoopCase: CaseRecord = {
   },
   "card": {
     "en": {
-      "kicker": "Generative production · Narrative systems",
+      "kicker": "Art Direction · Narrative Systems",
       "title": "Hoop Dream",
-      "sub": "A basketball life from twelve to retirement, and style rules written down before the asset batches.",
+      "sub": "A basketball career RPG spanning age twelve to retirement, guided by written art bibles to keep generated assets coherent.",
       "role": "Design + art direction",
       "date": "2026 · playable, DEMO v0.6",
-      "m1": "299 asset specs · 6 batches · 3 art bibles",
-      "m2": "146 career nodes, not a calendar",
-      "m3": "1,975 tests over the systems"
+      "m1": "3 visual art bibles + negative prompts",
+      "m2": "Choice-driven branching nodes",
+      "m3": "Side-by-side manual art review"
     },
     "zh": {
-      "kicker": "生成式生产 · 叙事系统",
+      "kicker": "视觉规范 · 叙事交互系统",
       "title": "Hoop Dream",
-      "sub": "一段从 12 岁打到退役的篮球人生，以及一套在资产批次之前就写下的风格规则。",
+      "sub": "一段从 12 岁打到退役的篮球生涯模拟，借助书面美术圣经与禁用约束维持生成式视觉的整体统一。",
       "role": "设计与美术方向",
       "date": "2026 · 可玩，DEMO v0.6",
-      "m1": "299 条资产规格 · 6 个批次 · 3 份美术圣经",
-      "m2": "146 个节点，不是日历",
-      "m3": "1975 个测试覆盖系统"
+      "m1": "三份美术规范 + 负面提示词清单",
+      "m2": "以选择代替机械日程点击",
+      "m3": "并排人工对照审查画风"
     }
   },
   "narrative": {
     "en": {
       "hero": {
         "title": "Hoop Dream",
-        "sub": "A career simulation that runs from a neighbourhood court at twelve through to retirement — and the production pipeline that wrote down what the world looks like before the asset batches."
+        "sub": "A career simulation running from a neighborhood court at twelve through retirement — pairing branching choice pacing with written art direction for generated assets."
       },
       "roleVal": "Designer, art director and technical director, through an AI production pipeline",
-      "timeVal": "2026 · playable, self-labelled DEMO v0.6",
+      "timeVal": "2026 · playable, labeled DEMO v0.6",
       "teamVal": "Solo",
       "toolsVal": "Phaser · TypeScript · Vite · Tailwind · Vitest · Claude Code · Codex",
       "ch": {
@@ -230,7 +230,7 @@ export const hoopCase: CaseRecord = {
         "p": "355 个测试文件、1975 个测试，覆盖生涯、合同、伤病、赛季与存档系统。在这个体量下它是一个设计约束，不是拿来炫的：没有它，加一章会安静地弄坏三章之前的一条合同规则，而你会从玩家那里、而不是从 CI 那里知道。美术管线自己也迭代过一轮。每个队徽单看都过了逐张规则，并排一摆，却都是同一个模板的变体。于是队徽规范和对应模板的负面提示词里，多了两条管整组的规则。一条是不许大多数球队共用盾牌加大字母的模板，一条是不许每个队徽都放篮球接缝。"
       },
       "ou": {
-        "label": "这个案例产出了什么",
+        "label": "产出与边界",
         "m1": {
           "label": "条资产规格，分六批登记",
           "v": "299"

@@ -79,9 +79,9 @@ export const lamplightDepth: Record<ProofLocale, { lamplight: CaseDepth }> = {
         },
         {
           label: "Bought art, not generated",
-          choice: "The pixel art comes from purchased LimeZu packs, recoloured and assembled by scripts in the repository.",
-          evidence: "Lewis picked this as his own decision. The README and docs/art.md record the packs and their licence; the site credits LimeZu.",
-          tradeoff: "A pack's licence limits what can be redistributed, and it does not draw anything the pack lacks.",
+          choice: "The pixel art comes from purchased LimeZu packs, recolored and assembled by scripts in the repository.",
+          evidence: "Lewis picked this as his own decision. The README and docs/art.md record the packs and their license; the site credits LimeZu.",
+          tradeoff: "A pack's license limits what can be redistributed, and it does not draw anything the pack lacks.",
           impact: "The café looks consistent, and its sources and credits can be stated.",
         },
       ],
@@ -140,7 +140,7 @@ export const lamplightDepth: Record<ProofLocale, { lamplight: CaseDepth }> = {
           nextValidation: "Sign the installer, or ship through the Store, before asking anyone to try it.",
         },
         {
-          constraint: "The code was written by Claude Code; the art is purchased LimeZu packs recoloured by script; the music is Alex Morgan's, under CC BY 4.0.",
+          constraint: "The code was written by Claude Code; the art is purchased LimeZu packs recolored by script; the music is Alex Morgan's, under CC BY 4.0.",
           whyItMatters: "The case is about interaction design and direction, not hand-written code or original art.",
           nextValidation: "Keep the credits and the authorship line wherever the app is shown.",
         },
@@ -290,7 +290,7 @@ export const lamplightPack: Record<ProofLocale, { lamplight: CaseInterviewPack }
           id: "lamplight-metaphor",
           question: "Why a café instead of a progress dashboard?",
           answer:
-            "I wanted two things from it: to read the state of a long task, and to make waiting on it feel better. In the café the main agent and its subagents are a crew. Wick plans and chalks the real to-do list on a blackboard, Clem looks things up, Iris settles colours and layout, Flint checks the work. Who is busy, stuck or waiting shows as what a character is doing.",
+            "I wanted two things from it: to read the state of a long task, and to make waiting on it feel better. In the café the main agent and its subagents are a crew. Wick plans and chalks the real to-do list on a blackboard, Clem looks things up, Iris settles colors and layout, Flint checks the work. Who is busy, stuck or waiting shows as what a character is doing.",
           evidenceHref: "/projects/lamplight#decision-timeline",
           boundary: "Whether the café reads faster than a log for anyone else is untested.",
         },
@@ -298,7 +298,7 @@ export const lamplightPack: Record<ProofLocale, { lamplight: CaseInterviewPack }
           id: "lamplight-decision-cards",
           question: "What does the confirmation card protect against?",
           answer:
-            "A risky step going ahead because nobody was watching. Questions open a dialog, and a risky step opens a plain card whose default is 'not now'. When the shop is minimised, a small window shows who is working and calls you when a question is waiting.",
+            "A risky step going ahead because nobody was watching. Questions open a dialog, and a risky step opens a plain card whose default is 'not now'. When the shop is minimized, a small window shows who is working and calls you when a question is waiting.",
           evidenceHref: "/projects/lamplight#decision-timeline",
           boundary: "The trade-off is that a task can stall until someone answers.",
         },
@@ -306,7 +306,7 @@ export const lamplightPack: Record<ProofLocale, { lamplight: CaseInterviewPack }
           id: "lamplight-authorship",
           question: "What did you do, and what did the tools do?",
           answer:
-            "Claude Code wrote the code. My decisions were the café crew as the metaphor, the decision cards, and using bought pixel art rather than generated images. The art is LimeZu's, recoloured by scripts; the music is Alex Morgan's under CC BY 4.0.",
+            "Claude Code wrote the code. My decisions were the café crew as the metaphor, the decision cards, and using bought pixel art rather than generated images. The art is LimeZu's, recolored by scripts; the music is Alex Morgan's under CC BY 4.0.",
           evidenceHref: "/projects/lamplight#outcome-limits",
           boundary: "I did not write the code, draw the art or make the music.",
         },

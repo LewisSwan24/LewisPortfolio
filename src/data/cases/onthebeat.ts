@@ -85,24 +85,24 @@ export const onthebeatCase: CaseRecord = {
   },
   "card": {
     "en": {
-      "kicker": "Phone, wristbands and a cloud relay",
+      "kicker": "Social Wearables · Ambient Interaction",
       "title": "On The Beat",
-      "sub": "At a gig, help two strangers say hello, then let the devices get out of the way. Names appear only after both agree.",
-      "role": "Requirements, review, pairing",
-      "date": "2026 · individual version of coursework",
-      "m1": "2 real wristbands showing MEET together",
-      "m2": "65 minutes to take the laptop out",
-      "m3": "No participant testing yet"
+      "sub": "At a live gig, help two strangers break the ice without staring at a phone—names only appear once both nod on the wrist.",
+      "role": "Requirements, review & hardware pairing",
+      "date": "2026 · coursework prototype",
+      "m1": "Two real wristbands paired live",
+      "m2": "Standalone cloud relay, no laptop",
+      "m3": "Mutual-consent name reveal"
     },
     "zh": {
-      "kicker": "手机、手环与云端 relay",
+      "kicker": "社交穿戴体验 · 现场轻交互",
       "title": "On The Beat",
-      "sub": "在现场演出里，让两个陌生人开口，然后让设备退到一边。双方都同意之后，才会看到对方的名字。",
-      "role": "定需求、审查、配对实测",
-      "date": "2026 · 课程作业的个人版本",
-      "m1": "2 支真手环同时显示 MEET",
-      "m2": "65 分钟让链路脱离笔电",
-      "m3": "尚无参与者测试"
+      "sub": "在演出人群里帮两个想搭话的人破冰，不必低头盯手机：双方都在手腕端同意后，才互相显示名字与碰面地点。",
+      "role": "交互规则、输出审查与真机配对",
+      "date": "2026 · 课程原型个人实现版",
+      "m1": "两支实体手环双向配对",
+      "m2": "脱离电脑独立运转云端中继",
+      "m3": "双向同意后才揭示身份"
     }
   },
   "narrative": {
@@ -226,7 +226,7 @@ export const onthebeatCase: CaseRecord = {
         "p": "两类检查，都是我自己做的。真机上，9 月 25 日两支手环经云端 relay 同时显示 MEET，链路里没有笔电。软件上，用本机两个测试视窗 Ava 与 Leo 在 9 月 29 日的构建上走一遍：点亮 SAY HI，收到不带名字的挥手，双方点头后才显示名字。当晚设计画布至少返工 5 次，此前的 Say Hello 画布至少 12 轮。这些都不是参与者测试。"
       },
       "ou": {
-        "label": "这个案例产出了什么",
+        "label": "产出与边界",
         "m1": {
           "label": "经云端配对的真手环",
           "v": "2"

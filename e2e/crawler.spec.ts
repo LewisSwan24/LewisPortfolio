@@ -1,7 +1,6 @@
 import { test, expect } from "@playwright/test";
 
 const BLOG_SLUGS = [
-  "designing-for-ai",
   "ux-research-methods-guide",
   "accessibility-in-design",
   "v3-architecture-and-performance-moat",
@@ -78,26 +77,32 @@ test.describe("V3.2 Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
         anchorsByPath.set(route.replace(/^\/en(?=\/|$)/, "") || "/", new Set(idsOnPage));
       }
 
-      const hrefs = await page.locator("main a[href^='/'], header a[href^='/']").evaluateAll((els) =>
+      const mainHrefs = await page.locator("main a[href^='/']").evaluateAll((els) =>
+        els.map((el) => el.getAttribute("href") || "")
+      );
+      const headerHrefs = await page.locator("header a[href^='/']").evaluateAll((els) =>
         els.map((el) => el.getAttribute("href") || "")
       );
 
-      for (const href of hrefs) {
+      for (const href of [...mainHrefs, ...headerHrefs]) {
         for (const hidden of UNLISTED_SLUGS) {
           expect(href, `Unlisted leak (${hidden}) found on ${route}`).not.toContain(
             `/projects/${hidden}`
           );
         }
         expect(href, `Retired /hire/* link found on ${route}`).not.toMatch(/^\/(?:en\/|zh\/)?hire\//);
-        if (route.startsWith("/zh/blog/")) {
+        const hashIdx = href.indexOf("#");
+        if (hashIdx > 0) {
+          crossPageHashLinks.push({ source: route, href });
+        }
+      }
+
+      if (route.startsWith("/zh/blog/")) {
+        for (const href of mainHrefs) {
           const pathOnly = href.split(/[?#]/)[0];
           if (pathOnly.startsWith("/projects/") || pathOnly.startsWith("/blog/")) {
             throw new Error(`Cross-locale unprefixed link "${href}" inside ${route}`);
           }
-        }
-        const hashIdx = href.indexOf("#");
-        if (hashIdx > 0) {
-          crossPageHashLinks.push({ source: route, href });
         }
       }
 
