@@ -1,9 +1,4 @@
-"use client";
-
-import { useRef, type ReactNode } from "react";
-import { usePathname } from "next/navigation";
-import { useGsapContext } from "@/hooks/useGsapContext";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import type { ReactNode } from "react";
 
 interface PageTransitionProps {
   children: ReactNode;
@@ -11,36 +6,10 @@ interface PageTransitionProps {
 }
 
 /**
- * Lightweight GSAP route-entry settle: keeps SSR content visible on first paint
- * and restores clean transform/opacity properties so sticky layouts keep working.
+ * Pure CSS compositor route wrapper — keeps static pages free of client
+ * animation runtime overhead while running subtle settle motion only when
+ * `prefers-reduced-motion: no-preference`.
  */
 export function PageTransition({ children, className = "" }: PageTransitionProps) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
-  const reducedMotion = useReducedMotion();
-
-  useGsapContext(
-    rootRef,
-    ({ gsap }) => {
-      if (reducedMotion || !rootRef.current) return;
-      gsap.fromTo(
-        rootRef.current,
-        { y: 6, opacity: 0.96 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.24,
-          ease: "power2.out",
-          clearProps: "transform,opacity",
-        }
-      );
-    },
-    [pathname, reducedMotion]
-  );
-
-  return (
-    <div ref={rootRef} className={className}>
-      {children}
-    </div>
-  );
+  return <div className={`v3-page-enter ${className}`.trim()}>{children}</div>;
 }

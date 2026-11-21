@@ -1,7 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
-import { CommandPalette, type PaletteItem } from "@/components/command/CommandPalette";
+import dynamic from "next/dynamic";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import type { PaletteItem } from "@/components/command/CommandPalette";
+
+const LazyCommandPalette = dynamic(
+  () => import("@/components/command/CommandPalette").then((mod) => mod.CommandPalette),
+  { ssr: false }
+);
 
 interface SearchContextType {
   isOpen: boolean;
@@ -22,15 +28,41 @@ export function useSearch() {
 
 interface SearchProviderProps {
   children: ReactNode;
-  items: PaletteItem[];
+  locale: "en" | "zh";
 }
 
-export function SearchProvider({ children, items }: SearchProviderProps) {
+export function SearchProvider({ children, locale }: SearchProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasActivated, setHasActivated] = useState(false);
+  const [items, setItems] = useState<PaletteItem[]>([]);
+  const fetchedLocaleRef = useRef<string | null>(null);
 
-  const openSearch = () => setIsOpen(true);
-  const closeSearch = () => setIsOpen(false);
-  const toggleSearch = () => setIsOpen((prev) => !prev);
+  const ensureItemsLoaded = useCallback(() => {
+    if (fetchedLocaleRef.current === locale) return;
+    fetchedLocaleRef.current = locale;
+    fetch(`/search-index/${locale}`)
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data: PaletteItem[]) => {
+        if (Array.isArray(data)) setItems(data);
+      })
+      .catch(() => {
+        fetchedLocaleRef.current = null;
+      });
+  }, [locale]);
+
+  const openSearch = useCallback(() => {
+    setHasActivated(true);
+    ensureItemsLoaded();
+    setIsOpen(true);
+  }, [ensureItemsLoaded]);
+
+  const closeSearch = useCallback(() => setIsOpen(false), []);
+
+  const toggleSearch = useCallback(() => {
+    setHasActivated(true);
+    ensureItemsLoaded();
+    setIsOpen((prev) => !prev);
+  }, [ensureItemsLoaded]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -42,12 +74,14 @@ export function SearchProvider({ children, items }: SearchProviderProps) {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [toggleSearch]);
 
   return (
     <SearchContext.Provider value={{ isOpen, openSearch, closeSearch, toggleSearch }}>
       {children}
-      <CommandPalette isOpen={isOpen} onClose={closeSearch} items={items} />
+      {hasActivated ? (
+        <LazyCommandPalette isOpen={isOpen} onClose={closeSearch} items={items} />
+      ) : null}
     </SearchContext.Provider>
   );
 }
