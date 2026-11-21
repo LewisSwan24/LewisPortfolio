@@ -43,6 +43,9 @@ jobs:
       - name: Automation checks
         run: pnpm automation:check
 
+      - name: Media asset budget check
+        run: pnpm media:check
+
       - name: Build
         run: pnpm build
 
