@@ -3,14 +3,20 @@
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { ThemeToggle } from "@/components/providers/ThemeToggle";
 
-const NAV_ITEMS: Array<{ key: "work" | "about" | "resume" | "writing" | "contact"; href: string }> = [
+const NAV_ITEMS: Array<{
+  key: "work" | "lab" | "writing" | "about" | "contact" | "hire";
+  href: string;
+  accent?: boolean;
+}> = [
   { key: "work", href: "/projects" },
-  { key: "about", href: "/about" },
-  { key: "resume", href: "/resume" },
+  { key: "lab", href: "/lab" },
   { key: "writing", href: "/blog" },
+  { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },
+  { key: "hire", href: "/hire", accent: true },
 ];
 
 export function Navigation() {
@@ -54,21 +60,22 @@ export function Navigation() {
   return (
     <header className="pd-nav" data-scrolled={scrolled ? "true" : "false"}>
       <div className="pd-nav-inner">
-        <a href={localizeHref("/")} className="pd-nav-brand">
+        <Link href="/" className="pd-nav-brand">
           <span className="dot" aria-hidden="true" />
           <span>{t("brand.name")}</span>
           <em>{t("brand.tagline")}</em>
-        </a>
+        </Link>
 
         <nav className="pd-nav-links" aria-label="Primary">
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={localizeHref(item.href)}
+              href={item.href}
+              className={item.accent ? "pd-nav-hire" : undefined}
               aria-current={isCurrent(item.href) ? "page" : undefined}
             >
               {t(`nav.${item.key}`)}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -99,13 +106,15 @@ export function Navigation() {
         <div className="pd-mobile-menu" id="mobile-navigation">
           <nav aria-label="Mobile primary">
             {NAV_ITEMS.map((item) => (
-              <a
+              <Link
                 key={item.href}
-                href={localizeHref(item.href)}
+                href={item.href}
+                className={item.accent ? "pd-nav-hire" : undefined}
                 aria-current={isCurrent(item.href) ? "page" : undefined}
+                onClick={() => setMobileOpen(false)}
               >
                 {t(`nav.${item.key}`)}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
