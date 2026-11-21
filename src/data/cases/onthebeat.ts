@@ -83,6 +83,53 @@ export const onthebeatCase: CaseRecord = {
       }
     ]
   },
+  "processArtifacts": {
+    "microLoop": {
+      "eyebrow": {
+        "en": "Vector micro-loop · Zero-identity icebreaker",
+        "zh": "矢量交互微循环 · 零身份破冰节奏"
+      },
+      "title": {
+        "en": "Wave pulse → Anonymous relay → Mutual nod → Phones back in pockets",
+        "zh": "手环挥手脉冲 → 匿名中继转发 → 双向点头解锁 → 手机收回口袋"
+      },
+      "summary": {
+        "en": "Four-step interaction cycle designed so strangers never expose profiles before mutual consent.",
+        "zh": "用轻量矢量序列演示如何在「双方明确点头」之前做到零个人资料暴露。"
+      },
+      "loopId": "onthebeat-wave",
+      "steps": [
+        {
+          "label": { "en": "Wave Pulse", "zh": "手环挥手" },
+          "detail": {
+            "en": "ESP32 wristband detects an intentional SAY HI wave without broadcasting your profile.",
+            "zh": "ESP32 手环识别挥手意图并亮起 SAY HI，不广播任何个人资料。"
+          }
+        },
+        {
+          "label": { "en": "Blind Relay", "zh": "匿名中继" },
+          "detail": {
+            "en": "Fly.io relay notifies nearby phones only that someone waved — zero name, zero photo.",
+            "zh": "Fly.io 中继仅告知附近「有人挥手」，绝不泄名字与头像。"
+          }
+        },
+        {
+          "label": { "en": "Mutual Nod", "zh": "双向点头" },
+          "detail": {
+            "en": "Only after both confirm on the wrist do names and a shared gig landmark unlock.",
+            "zh": "双方均在手腕确认后，屏幕才揭示彼此名字与唯一碰面地标。"
+          }
+        },
+        {
+          "label": { "en": "Pocket Exit", "zh": "收起手机" },
+          "detail": {
+            "en": "The interface steps out of the way so the real conversation happens in person.",
+            "zh": "界面完成使命主动退场，把注意力还给演出现场的真实对话。"
+          }
+        }
+      ]
+    }
+  },
   "card": {
     "en": {
       "kicker": "Social Wearables · Ambient Interaction",

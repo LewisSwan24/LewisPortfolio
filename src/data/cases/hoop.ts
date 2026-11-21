@@ -87,6 +87,40 @@ export const hoopCase: CaseRecord = {
     "action": "Load the playable build",
     "actionZh": "载入可玩版本"
   },
+  "processArtifacts": {
+    "scrubber": {
+      "eyebrow": {
+        "en": "Process scrubber · Style drift vs art-bible discipline",
+        "zh": "前后对比拉杆 · 风格漂移 ↔ 美术圣经成品"
+      },
+      "title": {
+        "en": "How three art bibles and negative prompts pulled generated UI into one palette",
+        "zh": "对比早期风格漂移反例与引入三份画布规范后的成品界面"
+      },
+      "summary": {
+        "en": "Before locking negative prompts and side-by-side manual review, generated assets clashed with the warm parchment palette.",
+        "zh": "引入书面美术圣经、禁用风格清单与并排人工走查前后对比。"
+      },
+      "beforeLabel": {
+        "en": "Before · Unguided Style Drift",
+        "zh": "改造前 · 无规范风格漂移"
+      },
+      "afterLabel": {
+        "en": "After · Character Creation UI",
+        "zh": "改造后 · 统一画风角色创建屏"
+      },
+      "wireframeId": "hoop-style",
+      "afterImage": {
+        "src": "/projects/hoop/02-character-creation.png",
+        "alt": {
+          "en": "Hoop Dream character creation screen with consistent parchment palette and archetypes",
+          "zh": "Hoop Dream 角色创建界面：统一羊皮纸色板与四种打法原型"
+        },
+        "width": 1280,
+        "height": 800
+      }
+    }
+  },
   "card": {
     "en": {
       "kicker": "Art Direction · Narrative Systems",

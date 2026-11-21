@@ -1,0 +1,7 @@
+/* V3.9 Presentation Mode & Form Error Cue */
+.pres-dialog { border: 0; padding: 0; background: transparent; max-width: min(1120px, 95vw); width: 100%; margin: auto; color: var(--text); }
+.pres-dialog:modal, .pres-dialog::backdrop { overscroll-behavior: contain; }
+.pres-dialog::backdrop { background: rgba(22, 20, 18, 0.72); overflow: hidden; }
+.pres-frame { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; max-height: 92dvh; }
+.pres-stage { padding: var(--s-5); overflow: auto; display: grid; gap: var(--s-4); align-content: start; }
+.sim-field :is(input, textarea):is(:user-invalid, [aria-invalid="true"]) { border-color: var(--error); }

@@ -4,6 +4,7 @@ import { isValidElement } from "react";
 import Image from "next/image";
 import { DynamicImageGallery } from "./DynamicImports";
 import { CodeBlock } from "./CodeBlock";
+import { AnchorNote } from "./ui/AnchorNote";
 import { getBlurDataURL } from "@/lib/image-utils";
 import { localizeInternalHref } from "@/lib/locale-href";
 
@@ -138,5 +139,6 @@ export function getMdxComponents(locale = "en"): MDXComponents {
       );
     },
     ImageGallery: DynamicImageGallery,
+    AnchorNote,
   };
 }

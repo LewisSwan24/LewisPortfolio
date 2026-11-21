@@ -3,8 +3,8 @@ import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { WorkIndex, type WorkIndexClientRow } from "../../app/[locale]/projects/WorkIndex";
 
-vi.mock("@/components/LocalizedLink", () => ({
-  LocalizedLink: ({ href, children, ...props }: { href: string; children: ReactNode }) => (
+vi.mock("@/components/navigation/TransitionLink", () => ({
+  TransitionLink: ({ href, children, ...props }: { href: string; children: ReactNode }) => (
     <a href={href} {...props}>
       {children}
     </a>

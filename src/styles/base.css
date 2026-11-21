@@ -203,6 +203,27 @@ html { scroll-behavior: smooth; }
     animation: none;
     transition: none;
   }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+.vt-active-media,
+.cs-cover {
+  view-transition-name: case-hero-media;
+}
+
+.vt-active-title,
+.cs-hero h1 {
+  view-transition-name: case-hero-title;
+  width: fit-content;
+}
+
+::view-transition-old(case-hero-media),
+::view-transition-new(case-hero-media) {
+  height: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

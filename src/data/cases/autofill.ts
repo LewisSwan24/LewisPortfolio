@@ -91,6 +91,60 @@ export const autofillCase: CaseRecord = {
       }
     ]
   },
+  "processArtifacts": {
+    "quotes": {
+      "eyebrow": {
+        "en": "Applicant friction · Real ATS application runs",
+        "zh": "真实投递场景痛点归因卡"
+      },
+      "title": {
+        "en": "Rules forged from filling Workday, Beisen, Moka, and Feishu forms",
+        "zh": "从 Workday、北森、Moka 与飞书真实投递中沉淀的三条底线"
+      },
+      "items": [
+        {
+          "id": "autofill-no-guess",
+          "category": "trust",
+          "quote": {
+            "en": "\"A wrong visa status or fabricated motivation paragraph is far worse than leaving the field empty for me.\"",
+            "zh": "「填错签证类别或瞎编一段申请动机，比直接留空让我自己填还要致命得多。」"
+          },
+          "context": {
+            "en": "Graduate application runs across Workday & Moka (Nov 2026)",
+            "zh": "应届校招 Workday / Moka 真实表单投递（2026 年 11 月）"
+          },
+          "friction": {
+            "en": "Aggressive autofillers silently write low-confidence guesses into high-stakes fields.",
+            "zh": "激进型填表工具会把低把握猜测静默写入关键字段。"
+          },
+          "decision": {
+            "en": "Split output into 3 visual tiers (solid, dashed, double) and banned open-ended generation.",
+            "zh": "拆出实线/虚线/双线三档可视化分流，并禁止生成任何开放式回答。"
+          }
+        },
+        {
+          "id": "autofill-submit-lock",
+          "category": "structure",
+          "quote": {
+            "en": "\"Multi-step Chinese campus portals hide Submit right where Next used to sit.\"",
+            "zh": "「多步校招流程里，最终『提交』按钮经常长在上一页『下一步』同样的位置。」"
+          },
+          "context": {
+            "en": "Beisen & Feishu multi-page form adapters",
+            "zh": "北森与飞书多步表单适配器调试"
+          },
+          "friction": {
+            "en": "Automated page advancement risks accidentally firing irreversible final submission.",
+            "zh": "自动翻页脚本一旦误判终态按钮，就会替人点击不可撤回的最终提交。"
+          },
+          "decision": {
+            "en": "Enforced an explicit Human Submit Lock in both extension logic and side-panel copy.",
+            "zh": "在扩展逻辑与侧栏说明中硬性锁定：最终提交按钮永远仅限申请人亲手点击。"
+          }
+        }
+      ]
+    }
+  },
   "card": {
     "en": {
       "kicker": "Automation that acts for you · Privacy",

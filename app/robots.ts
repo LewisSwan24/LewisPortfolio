@@ -4,6 +4,10 @@ import { siteConfig } from "@/lib/site";
 const hiddenPaths = [
   "/booking",
   "/guestbook",
+  // Tailored recruiter briefs must never enter search indexes
+  "/brief",
+  "/en/brief",
+  "/zh/brief",
   // Internal proof-maintenance dashboard: reachable, never linked, and absent
   // from the sitemap. Keep it out of the index rather than let it rank.
   "/maintenance",

@@ -105,6 +105,46 @@ export const grasslandCase: CaseRecord = {
       }
     ]
   },
+  "processArtifacts": {
+    "microLoop": {
+      "eyebrow": {
+        "en": "Vector micro-loop · Unified RTS command grammar",
+        "zh": "矢量交互微循环 · 统一指令语法与快照回滚"
+      },
+      "title": {
+        "en": "Queue commands → Unified dispatch → Deterministic checkpoint rollback",
+        "zh": "多单位指令排队 → 统一命令语法调度 → 失败快照无损回滚"
+      },
+      "summary": {
+        "en": "Consistent selection and save-chain restoration keep five escalating missions predictable under a live clock.",
+        "zh": "展示五关共用的编队指令语法如何在实时倒计时压力下保持状态可预期。"
+      },
+      "loopId": "grassland-rts",
+      "steps": [
+        {
+          "label": { "en": "Box Queue", "zh": "框选排队" },
+          "detail": {
+            "en": "Box-selecting any mix of squads feeds one unified command queue across all five missions.",
+            "zh": "任意框选不同兵种队伍均进入同一套命令队列，五关无特殊操作例外。"
+          }
+        },
+        {
+          "label": { "en": "Shared Grammar", "zh": "统一语法" },
+          "detail": {
+            "en": "Move, scout, and guard directives validate against one predictable rule table.",
+            "zh": "移动、侦察与驻守指令遵循同一套规则校验，减少实时高压下的操作失误。"
+          }
+        },
+        {
+          "label": { "en": "Checkpoint Snap", "zh": "快照回滚" },
+          "detail": {
+            "en": "On mission failure, players restore cleanly from the saved checkpoint chain instead of restarting the chapter.",
+            "zh": "任务失败后直接从单一存档链检查点恢复，无需被迫重头重打整章。"
+          }
+        }
+      ]
+    }
+  },
   "card": {
     "en": {
       "kicker": "Complex interaction · Real-time systems",

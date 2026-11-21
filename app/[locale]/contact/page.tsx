@@ -3,6 +3,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { ContactRoleContext } from "@/components/hiring/ContactRoleContext";
 import { FollowThroughContactContext } from "@/components/hiring/FollowThroughComponents";
+import { QuickContactForm } from "@/components/contact/QuickContactForm";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getHiringRoleFits, getProofUiLabels } from "@/lib/proof";
 import { siteConfig } from "@/lib/site";
@@ -116,6 +117,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </aside>
         )}
       </section>
+
+      <QuickContactForm locale={proofLocale} initialRole={matchedRole ?? ""} />
     </main>
   );
 }

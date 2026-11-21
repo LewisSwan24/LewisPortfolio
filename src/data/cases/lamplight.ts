@@ -119,6 +119,92 @@ export const lamplightCase: CaseRecord = {
       }
     ]
   },
+  "processArtifacts": {
+    "scrubber": {
+      "eyebrow": {
+        "en": "Process scrubber · Terminal stdout vs café crew",
+        "zh": "前后对比拉杆 · 滚动日志 ↔ 咖啡馆状态卡"
+      },
+      "title": {
+        "en": "Turn unreadable agent logs into spatial crew progress & risk cards",
+        "zh": "把难以扫读的长串 Agent 日志转化为黑板进度与风险确认卡"
+      },
+      "summary": {
+        "en": "Scrub between the raw stdout mental model and Lamplight Nook's blackboard plan & default-safe interruption view.",
+        "zh": "对比纯文本日志流与咖啡馆黑板步骤、默认「先不要」风控体系。"
+      },
+      "beforeLabel": {
+        "en": "Before · Raw Agent Log Wall",
+        "zh": "改造前 · 纯文本 Agent 日志"
+      },
+      "afterLabel": {
+        "en": "After · Café Blackboard View",
+        "zh": "改造后 · 咖啡馆黑板状态视图"
+      },
+      "wireframeId": "lamplight-log",
+      "afterImage": {
+        "src": "/projects/lamplight/02-board.jpg",
+        "alt": {
+          "en": "Lamplight Nook café blackboard plan showing completed and active steps",
+          "zh": "Lamplight Nook 咖啡馆黑板计划卡片：清晰标出已完成与进行中步骤"
+        },
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "quotes": {
+      "eyebrow": {
+        "en": "Usage & self-audit observations",
+        "zh": "日常真实运行归因卡"
+      },
+      "title": {
+        "en": "Moments in daily Claude runs that shaped the café guardrails",
+        "zh": "日常任务暴露卡点如何直接转化为界面安全规则"
+      },
+      "items": [
+        {
+          "id": "lamplight-log-blind",
+          "category": "structure",
+          "quote": {
+            "en": "\"Scrolling 300 lines of terminal stdout just to see if Claude is working or waiting on me breaks flow every 5 minutes.\"",
+            "zh": "「每隔五分钟就得翻几百行终端日志，只为确认 Agent 是在干活还是在等我点头。」"
+          },
+          "context": {
+            "en": "Daily long-running Claude task observation (Oct 2026)",
+            "zh": "日常长耗时 Claude 任务使用观察（2026 年 10 月）"
+          },
+          "friction": {
+            "en": "Logs flatten progress, active owner, and blocked input into identical text lines.",
+            "zh": "纯文本日志把进度、当前执行者与等待确认压扁成一模一样的字符行。"
+          },
+          "decision": {
+            "en": "Split plan state onto the blackboard and minimized status into a quiet corner window.",
+            "zh": "用黑板清单承载总计划，并在最小化时收缩为桌面角落状态小窗。"
+          }
+        },
+        {
+          "id": "lamplight-not-now",
+          "category": "trust",
+          "quote": {
+            "en": "\"If a confirmation modal highlights Proceed by default, hitting Enter out of habit overwrites original files.\"",
+            "zh": "「只要确认弹窗默认高亮『继续』，习惯性敲一下 Enter 就会直接覆写原文件。」"
+          },
+          "context": {
+            "en": "Safety pass before v1.0 release (Nov 2026)",
+            "zh": "v1.0 发布前「安全边界排查」阶段（2026 年 11 月）"
+          },
+          "friction": {
+            "en": "Standard OS dialog defaults bias toward execution rather than reversible pausing.",
+            "zh": "常规弹窗默认倾向于继续执行而非无损挂起。"
+          },
+          "decision": {
+            "en": "Locked risky cards to default focus on 'Not now' and restricted staff to working on copies.",
+            "zh": "风险卡片默认焦点锁死「先不要」，且所有任务文件统一走副本处理。"
+          }
+        }
+      ]
+    }
+  },
   "card": {
     "en": {
       "kicker": "AI agent interface · Desktop app",

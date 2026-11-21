@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import { TransitionLink as Link } from "@/components/navigation/TransitionLink";
 import type { WorkTag } from "@/lib/cases/schema";
 
 export type WorkFilterId = "all" | WorkTag;
@@ -116,11 +116,11 @@ export function WorkIndex({
             {shown.map((item) => (
               <Link className="work-index-row" href={`/projects/${item.slug}`} key={item.slug}>
                 <div className="work-index-project">
-                  <div className="work-index-thumb" aria-hidden="true">
+                  <div className="work-index-thumb" aria-hidden="true" data-vt-media>
                     {thumbs[item.slug]}
                   </div>
                   <div>
-                    <h3>{item.title}</h3>
+                    <h3 data-vt-title>{item.title}</h3>
                     <p>{item.kicker}</p>
                   </div>
                 </div>

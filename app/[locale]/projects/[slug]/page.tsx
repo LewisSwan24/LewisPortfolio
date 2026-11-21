@@ -10,6 +10,12 @@ import { CaseMediaGallery } from "@/components/case/CaseMediaGallery";
 import { CaseCoverVisual, hasScreenshotCover } from "@/components/case/CaseCoverVisual";
 import { CaseSummaryBlock } from "@/components/case/CaseSummaryBlock";
 import { CaseSimulatorFrame } from "@/components/case/CaseSimulatorFrame";
+import { CaseTerminologyNotes } from "@/components/case/CaseTerminologyNotes";
+import { BeforeAfterScrubber } from "@/components/case/BeforeAfterScrubber";
+import { ResearchQuoteDeck } from "@/components/case/ResearchQuoteDeck";
+import { CaseMicroLoop } from "@/components/case/CaseMicroLoop";
+import { PresentationTrigger } from "@/components/presentation/PresentationTrigger";
+import { buildCaseDeck } from "@/lib/presentation/build-deck";
 import { CaseNarrative } from "@/components/case/CaseNarrative";
 import { CaseRelatedNav } from "@/components/case/CaseRelatedNav";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -91,6 +97,13 @@ export default async function CasePage({ params }: Props) {
   const caseDepth = getCaseDepth(k, proofLocale);
   const caseInterviewPack = getCaseInterviewPack(k, proofLocale);
   const aiTrustMarker = isOnAiTrustThread(k) ? getAiTrustThread(proofLocale).caseMarker : null;
+  const presentationDeck = buildCaseDeck({
+    record,
+    summary: caseSummary,
+    depth: caseDepth,
+    interviewPack: caseInterviewPack,
+    locale: proofLocale,
+  });
 
   const pageCopy = isZh
     ? {
@@ -116,8 +129,17 @@ export default async function CasePage({ params }: Props) {
     narrative.hero.title !== card.title ? narrative.hero.title : narrative.hero.sub;
 
   const interactiveDemo = record.interactiveDemo;
+  const processArtifacts = record.processArtifacts;
+  const hasProcessArtifacts = Boolean(
+    processArtifacts?.scrubber ||
+      processArtifacts?.quotes ||
+      processArtifacts?.microLoop
+  );
   const interactiveJump: [string, string] | null = interactiveDemo
     ? ["interactive-demo", isZh ? "交互原型" : "Interactive prototype"]
+    : null;
+  const processJump: [string, string] | null = hasProcessArtifacts
+    ? ["process-artifacts", isZh ? "过程手稿与调研" : "Process & research"]
     : null;
 
   const jumpSections: Array<readonly [string, string]> = [
@@ -129,6 +151,7 @@ export default async function CasePage({ params }: Props) {
     ...(interactiveJump && interactiveDemo?.placement === "mid-narrative"
       ? [interactiveJump]
       : []),
+    ...(processJump ? [processJump] : []),
     ["long-form", narrative.ch.label],
     ["evidence-board", narrative.re.label],
     ["decision-timeline", narrative.id.label],
@@ -140,6 +163,7 @@ export default async function CasePage({ params }: Props) {
 
   return (
     <main className="page" data-screen-label={`03 Case · ${k}`}>
+      <div className="cs-scroll-progress" aria-hidden="true" />
       <StructuredData
         data={generateBreadcrumbSchema([
           { name: t("nav.home"), url: siteUrl },
@@ -160,7 +184,7 @@ export default async function CasePage({ params }: Props) {
         <div className="eyebrow" style={{ marginBottom: 12 }}>
           {card.kicker}
         </div>
-        <h1>{card.title}</h1>
+        <h1 tabIndex={-1}>{card.title}</h1>
         <p className="sub">{subtitleText}</p>
         {isUnlistedProject(k) && (
           <p className="sub" role="note" style={{ fontWeight: 600 }}>
@@ -225,6 +249,12 @@ export default async function CasePage({ params }: Props) {
           )}
         </dl>
 
+        <CaseTerminologyNotes slug={k} locale={proofLocale} />
+
+        <div style={{ marginBlock: "var(--s-4) var(--s-5)" }}>
+          <PresentationTrigger deck={presentationDeck} locale={proofLocale} />
+        </div>
+
         <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
           <span className="cs-jump-label" aria-hidden="true">
             {isZh ? "本页目录" : "On this page"}
@@ -270,6 +300,27 @@ export default async function CasePage({ params }: Props) {
 
       {interactiveDemo?.placement === "mid-narrative" && (
         <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} />
+      )}
+
+      {hasProcessArtifacts && (
+        <section
+          id="process-artifacts"
+          className="container case-sim-section proc-stage"
+          aria-label={isZh ? "设计过程手稿与研究证据" : "Design process artifacts"}
+        >
+          {processArtifacts?.scrubber && (
+            <BeforeAfterScrubber
+              data={processArtifacts.scrubber}
+              locale={proofLocale}
+            />
+          )}
+          {processArtifacts?.microLoop && (
+            <CaseMicroLoop data={processArtifacts.microLoop} locale={proofLocale} />
+          )}
+          {processArtifacts?.quotes && (
+            <ResearchQuoteDeck data={processArtifacts.quotes} locale={proofLocale} />
+          )}
+        </section>
       )}
 
       <section id="long-form" className="container">

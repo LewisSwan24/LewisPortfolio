@@ -810,9 +810,10 @@ test.describe("V3 Flagship Routes & Role Lens", () => {
         await walkieTab.click();
         await expect(walkieTab).toHaveAttribute("aria-selected", "true");
 
-        const advanceButton = page.getByRole("button", { name: /Advance state|Next state/i });
-        await expect(advanceButton).toBeVisible();
-        await advanceButton.click();
+        const approveButton = page.getByRole("button", { name: /Front Key · Approve|前键 · 批准/i });
+        await expect(approveButton).toBeVisible();
+        await approveButton.click();
+        await expect(page.getByText(/Front key approved|前键批准/)).toBeVisible();
     });
 
     test("hire role lens filters cases from URL query and switches tracks", async ({ page }) => {

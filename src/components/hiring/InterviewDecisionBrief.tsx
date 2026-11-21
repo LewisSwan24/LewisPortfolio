@@ -2,17 +2,21 @@ import Link from "next/link";
 import { localizeInternalHref } from "@/lib/locale-href";
 import type { ProofLocale } from "@/lib/proof";
 import type { InterviewDecisionBrief as InterviewDecisionBriefData } from "@/lib/portfolio-proof";
+import type { PresentationDeckData } from "@/lib/presentation/build-deck";
+import { PresentationTrigger } from "@/components/presentation/PresentationTrigger";
 
 interface InterviewDecisionBriefProps {
   brief: InterviewDecisionBriefData;
   locale?: ProofLocale;
   workLabel?: string;
+  presentationDeck?: PresentationDeckData;
 }
 
 export function InterviewDecisionBrief({
   brief,
   locale = "en",
   workLabel,
+  presentationDeck,
 }: InterviewDecisionBriefProps) {
   const projectsText = workLabel ?? (locale === "zh" ? "查看作品" : "Browse work");
   return (
@@ -32,6 +36,9 @@ export function InterviewDecisionBrief({
           <Link className="btn btn-ghost" href={localizeInternalHref("/projects", locale)}>
             {projectsText}
           </Link>
+          {presentationDeck && (
+            <PresentationTrigger deck={presentationDeck} locale={locale} />
+          )}
         </div>
       </div>
       <div className="interview-room-signal-card" aria-label="Hiring decision signals">

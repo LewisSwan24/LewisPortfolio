@@ -201,6 +201,90 @@ export const CaseInteractiveDemoSchema = z.object({
 
 export type CaseInteractiveDemo = z.infer<typeof CaseInteractiveDemoSchema>;
 
+export const CaseWireframeIdSchema = z.enum([
+  "connect-ia",
+  "pricewise-match",
+  "hoop-style",
+  "lamplight-log",
+]);
+
+export type CaseWireframeId = z.infer<typeof CaseWireframeIdSchema>;
+
+export const CaseQuoteCategorySchema = z.enum([
+  "structure",
+  "trust",
+  "physical",
+]);
+
+export type CaseQuoteCategory = z.infer<typeof CaseQuoteCategorySchema>;
+
+export const CaseMicroLoopIdSchema = z.enum([
+  "onthebeat-wave",
+  "walkie-relay",
+  "grassland-rts",
+]);
+
+export type CaseMicroLoopId = z.infer<typeof CaseMicroLoopIdSchema>;
+
+export const CaseScrubberSchema = z.object({
+  eyebrow: LocalizedStringSchema,
+  title: LocalizedStringSchema,
+  summary: LocalizedStringSchema,
+  beforeLabel: LocalizedStringSchema,
+  afterLabel: LocalizedStringSchema,
+  wireframeId: CaseWireframeIdSchema,
+  afterImage: z.object({
+    src: z.string().startsWith("/projects/"),
+    alt: LocalizedStringSchema,
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+  }),
+});
+
+export type CaseScrubber = z.infer<typeof CaseScrubberSchema>;
+
+export const CaseResearchQuoteItemSchema = z.object({
+  id: z.string().min(1),
+  category: CaseQuoteCategorySchema,
+  quote: LocalizedStringSchema,
+  context: LocalizedStringSchema,
+  friction: LocalizedStringSchema,
+  decision: LocalizedStringSchema,
+});
+
+export const CaseResearchQuotesSchema = z.object({
+  eyebrow: LocalizedStringSchema,
+  title: LocalizedStringSchema,
+  items: z.array(CaseResearchQuoteItemSchema).min(1),
+});
+
+export type CaseResearchQuotes = z.infer<typeof CaseResearchQuotesSchema>;
+
+export const CaseMicroLoopSchema = z.object({
+  eyebrow: LocalizedStringSchema,
+  title: LocalizedStringSchema,
+  summary: LocalizedStringSchema,
+  loopId: CaseMicroLoopIdSchema,
+  steps: z
+    .array(
+      z.object({
+        label: LocalizedStringSchema,
+        detail: LocalizedStringSchema,
+      })
+    )
+    .min(3),
+});
+
+export type CaseMicroLoopData = z.infer<typeof CaseMicroLoopSchema>;
+
+export const CaseProcessArtifactsSchema = z.object({
+  scrubber: CaseScrubberSchema.optional(),
+  quotes: CaseResearchQuotesSchema.optional(),
+  microLoop: CaseMicroLoopSchema.optional(),
+});
+
+export type CaseProcessArtifacts = z.infer<typeof CaseProcessArtifactsSchema>;
+
 export const CaseRecordSchema = z.object({
   slug: z.enum(CURRENT_PROJECT_SLUGS),
   status: z.enum(["listed", "unlisted"]),
@@ -213,6 +297,7 @@ export const CaseRecordSchema = z.object({
   media: CaseMediaSchema.optional(),
   demo: CaseDemoSchema.optional(),
   interactiveDemo: CaseInteractiveDemoSchema.optional(),
+  processArtifacts: CaseProcessArtifactsSchema.optional(),
   card: z.object({
     en: CaseCardCopySchema,
     zh: CaseCardCopySchema,

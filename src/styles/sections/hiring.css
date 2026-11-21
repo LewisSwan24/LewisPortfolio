@@ -760,59 +760,6 @@
   }
 }
 
-/* PROOF REVIEW ROOM */
-.proof-review-page,
-.proof-review-room {
-  max-width: 100%;
-}
-.proof-review-room {
-  padding-top: var(--s-8);
-  padding-bottom: var(--s-8);
-}
-@media (max-width: 1100px) {
-  .proof-review-command-list,
-  .proof-review-anchor-ledger,
-  .proof-review-sequence {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 900px) {
-  .proof-review-hero,
-  .proof-review-section-head,
-  .proof-review-bundle,
-  .proof-review-close {
-    grid-template-columns: 1fr;
-  }
-  .proof-review-room {
-    padding-top: var(--s-6);
-  }
-}
-@media (max-width: 720px) {
-  .proof-review-hero h1 {
-    font-size: clamp(38px, 13vw, 58px);
-  }
-  .proof-review-signals,
-  .proof-review-command-list,
-  .proof-review-role-grid,
-  .proof-review-anchor-ledger,
-  .proof-review-sequence {
-    grid-template-columns: 1fr;
-    border: 0;
-    gap: var(--s-3);
-  }
-  .proof-review-signal,
-  .proof-review-command,
-  .proof-review-role-card,
-  .proof-review-anchor,
-  .proof-review-step {
-    min-height: 0;
-    border: 1px solid var(--border);
-  }
-  .proof-review-role-stats,
-  .proof-review-bundle dl div {
-    grid-template-columns: 1fr;
-  }
-}
 .role-comparison-summary span,
 .role-comparison-summary strong,
 .role-comparison-summary a,

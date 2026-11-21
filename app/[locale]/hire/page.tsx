@@ -6,6 +6,8 @@ import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
 import { RoleLensSwitch, type RoleLensCaseItem } from "@/components/hiring/RoleLensSwitch";
+import { TailoredBriefBuilder } from "@/components/hiring/TailoredBriefBuilder";
+import { buildHiringDeck } from "@/lib/presentation/build-deck";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
 import { getListedCases } from "@/lib/cases/registry";
@@ -42,7 +44,13 @@ export default async function HirePage() {
   const aiTrustThread = getAiTrustThread(proofLocale);
   const proofLabels = getProofUiLabels(proofLocale);
 
-  const lensCases: RoleLensCaseItem[] = getListedCases().map((record) => {
+  const listedCases = getListedCases();
+  const hiringDeck = buildHiringDeck({
+    room,
+    cases: listedCases,
+    locale: proofLocale,
+  });
+  const lensCases: RoleLensCaseItem[] = listedCases.map((record) => {
     const card = record.card[proofLocale];
     return {
       slug: record.slug,
@@ -71,6 +79,7 @@ export default async function HirePage() {
       <InterviewDecisionBrief
         brief={room.brief}
         locale={proofLocale}
+        presentationDeck={hiringDeck}
       />
 
       <Suspense fallback={null}>
@@ -95,6 +104,14 @@ export default async function HirePage() {
       <section className="section container">
         <InterviewBoundaryNotes notes={room.boundaries} labels={proofLabels} />
       </section>
+
+      <TailoredBriefBuilder
+        cases={listedCases.map((record) => ({
+          slug: record.slug,
+          title: record.card[proofLocale].title,
+        }))}
+        locale={proofLocale}
+      />
     </main>
   );
 }
