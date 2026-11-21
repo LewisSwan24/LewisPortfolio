@@ -197,8 +197,48 @@ html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .page-fade {
+  .page-fade,
+  .v3-page-enter,
+  .v3-section-reveal {
     animation: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes v3-page-enter {
+    from { opacity: 0.96; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .v3-page-enter {
+    animation: v3-page-enter 220ms var(--ease-out) both;
+  }
+
+  @keyframes v3-scroll-settle {
+    from { opacity: 0.94; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .v3-section-reveal {
+      animation: v3-scroll-settle auto var(--ease-out) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 28%;
+    }
+  }
+
+  @supports not ((animation-timeline: view()) and (animation-range: entry)) {
+    .v3-section-reveal {
+      opacity: 0.94;
+      transform: translateY(10px);
+      transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out);
+    }
+    .v3-section-reveal[data-reveal-state="visible"],
+    .v3-section-reveal[data-reveal-state="ready"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 

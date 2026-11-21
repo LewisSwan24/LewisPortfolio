@@ -18,8 +18,8 @@ const shortcuts: ShortcutItem[] = [
   { keys: ["Shift", "Tab"], description: "Previous focusable element" },
 ];
 
-export function KeyboardShortcutsModal() {
-  const [isOpen, setIsOpen] = useState(false);
+export function KeyboardShortcutsModal({ initialOpen = false }: { initialOpen?: boolean }) {
+  const [isOpen, setIsOpen] = useState(initialOpen);
 
   useKeyboardShortcuts([
     {

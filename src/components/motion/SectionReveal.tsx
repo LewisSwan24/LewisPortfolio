@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
-import { getGsapWithScrollTrigger } from "@/lib/motion/gsap";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface SectionRevealProps {
   children: ReactNode;
@@ -10,54 +8,45 @@ interface SectionRevealProps {
 }
 
 /**
- * Editorial section reveal backed by lazy ScrollTrigger. Content stays readable
- * at high opacity before trigger firing so Axe contrast checks and first-paint
- * scans never encounter hidden sections.
+ * Progressive section settle backed by CSS Scroll-Driven Animations (`view()`)
+ * with an IntersectionObserver fallback for partial-support browsers. Elements
+ * stay readable (`opacity >= 0.94`) even before entering the viewport.
  */
 export function SectionReveal({ children, className = "" }: SectionRevealProps) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const reducedMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el || reducedMotion) return;
+    const el = ref.current;
+    if (!el || typeof window === "undefined") return;
 
-    let cancelled = false;
-    let revertFn: (() => void) | undefined;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const supportsCssScrollDriven =
+      window.CSS?.supports?.("(animation-timeline: view()) and (animation-range: entry)") ?? false;
 
-    getGsapWithScrollTrigger().then(({ gsap }) => {
-      if (cancelled || !sectionRef.current) return;
-      const targets = sectionRef.current.querySelectorAll<HTMLElement>("[data-reveal-item]");
-      const animatedTargets = targets.length > 0 ? targets : sectionRef.current;
+    if (prefersReduced || supportsCssScrollDriven) {
+      el.setAttribute("data-reveal-state", "ready");
+      return;
+    }
 
-      const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from(animatedTargets, {
-          y: 12,
-          opacity: 0.94,
-          duration: 0.36,
-          stagger: 0.05,
-          ease: "power2.out",
-          clearProps: "transform,opacity",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 90%",
-            once: true,
-          },
-        });
-      });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            el.setAttribute("data-reveal-state", "visible");
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.08 }
+    );
 
-      revertFn = () => mm.revert();
-    });
-
-    return () => {
-      cancelled = true;
-      revertFn?.();
-    };
-  }, [reducedMotion]);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div ref={sectionRef} className={className}>
+    <div ref={ref} className={`v3-section-reveal ${className}`.trim()}>
       {children}
     </div>
   );
