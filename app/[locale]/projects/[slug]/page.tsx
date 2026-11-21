@@ -7,6 +7,7 @@ import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { DemoEmbed } from "@/components/case/DemoEmbed";
 import { CaseInvariantLink, isLabLinkedCase } from "@/components/case/CaseInvariantLink";
 import { CaseMediaGallery } from "@/components/case/CaseMediaGallery";
+import { CaseCoverVisual, hasScreenshotCover } from "@/components/case/CaseCoverVisual";
 import { CaseSummaryBlock } from "@/components/case/CaseSummaryBlock";
 import { CaseNarrative } from "@/components/case/CaseNarrative";
 import { CaseRelatedNav } from "@/components/case/CaseRelatedNav";
@@ -92,31 +93,37 @@ export default async function CasePage({ params }: Props) {
 
   const pageCopy = isZh
     ? {
-        coverCaption:
-          "概念视觉图。真实证据、方法、指标和限制写在案例摘要与下方深度说明中。",
-        caseDepthAria: "面试可用的案例深度",
-        limitsLabel: "限制",
-        outcomeLimits: "结果限制",
-        whyItMatters: "为什么重要",
-        nextValidation: "下一步验证",
+        coverCaption: "系统示意图 · 下方展开构建证据与诚实边界。",
+        caseDepthAria: "案例局限与下步规划",
+        limitsLabel: "边界",
+        outcomeLimits: "实证局限与边界",
+        whyItMatters: "影响",
+        nextValidation: "下步验证",
+        interviewPack: "面试深入问答",
       }
     : {
-        coverCaption:
-          "Concept visual. The evidence, methods, metrics, and limits are documented in the case summary and depth sections.",
-        caseDepthAria: "Interview-ready case depth",
+        coverCaption: "Concept schematic · build evidence and honest limits follow below.",
+        caseDepthAria: "Outcome limits",
         limitsLabel: "Limits",
         outcomeLimits: "Outcome limits",
         whyItMatters: "Why it matters",
         nextValidation: "Next validation",
+        interviewPack: "Interview pack",
       };
 
+  const subtitleText =
+    narrative.hero.title !== card.title ? narrative.hero.title : narrative.hero.sub;
+
   const jumpSections = [
-    ["outcome-limits", pageCopy.outcomeLimits],
+    ["artifact", isZh ? "核心产物" : "Artifact"],
+    ["snapshot", isZh ? "案例摘要" : "Summary"],
     ["long-form", narrative.ch.label],
     ["evidence-board", narrative.re.label],
     ["decision-timeline", narrative.id.label],
     ["iteration-gallery", narrative.te.label],
+    ["outcome-limits", pageCopy.outcomeLimits],
     ["interview-takeaway", narrative.rf.label],
+    ["interview-pack", pageCopy.interviewPack],
   ] as const;
 
   return (
@@ -138,19 +145,16 @@ export default async function CasePage({ params }: Props) {
             { label: card.title },
           ]}
         />
-        <Link className="cs-back" href="/projects">
-          {t("cs.back")}
-        </Link>
         <div className="eyebrow" style={{ marginBottom: 12 }}>
           {card.kicker}
         </div>
-        <h1>{narrative.hero.title}</h1>
-        <p className="sub">{narrative.hero.sub}</p>
+        <h1>{card.title}</h1>
+        <p className="sub">{subtitleText}</p>
         {isUnlistedProject(k) && (
           <p className="sub" role="note" style={{ fontWeight: 600 }}>
             {isZh
-              ? "这个项目已于 2026-09-23 放弃：评估协议写完了，受试实验从未运行，所以这一页没有任何受试者数据。"
-              : "I abandoned this project on 23 Sep 2026. The evaluation protocol was finished and the participant study never ran, so this page holds no participant data."}
+              ? "项目归档说明（2026-09-23）：评估方案已撰写，受试实验未执行。"
+              : "Project note (23 Sep 2026): evaluation protocol written; participant study never ran."}
           </p>
         )}
         <dl className="cs-meta">
@@ -222,14 +226,13 @@ export default async function CasePage({ params }: Props) {
           </ol>
         </nav>
 
-        <CaseInterviewPack pack={caseInterviewPack} locale={proofLocale} />
+        <div id="artifact" className="case-anchor" aria-hidden />
+        <figure className="cs-cover">
+          <CaseCoverVisual slug={k} locale={proofLocale} />
+          {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
+        </figure>
 
-        <CaseSummaryBlock
-          slug={k}
-          locale={proofLocale}
-          summary={caseSummary}
-          coverCaption={pageCopy.coverCaption}
-        />
+        <CaseSummaryBlock locale={proofLocale} summary={caseSummary} />
       </section>
 
       {isLabLinkedCase(k) && <CaseInvariantLink slug={k} isZh={isZh} />}
@@ -249,32 +252,6 @@ export default async function CasePage({ params }: Props) {
         />
       )}
 
-      <section className="container case-depth" aria-label={pageCopy.caseDepthAria}>
-        <div id="outcome-limits" className="case-depth-block case-limits">
-          <div className="case-depth-head">
-            <div className="label">{pageCopy.limitsLabel}</div>
-            <h2>{pageCopy.outcomeLimits}</h2>
-          </div>
-          <div className="case-limits-grid">
-            {caseDepth.limits.map((limit) => (
-              <article key={limit.constraint}>
-                <h3>{limit.constraint}</h3>
-                <dl className="case-depth-dl">
-                  <div>
-                    <dt>{pageCopy.whyItMatters}</dt>
-                    <dd>{limit.whyItMatters}</dd>
-                  </div>
-                  <div>
-                    <dt>{pageCopy.nextValidation}</dt>
-                    <dd>{limit.nextValidation}</dd>
-                  </div>
-                </dl>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="long-form" className="container">
         <CaseNarrative
           slug={k}
@@ -283,6 +260,36 @@ export default async function CasePage({ params }: Props) {
           isZh={isZh}
         />
 
+        <div className="case-depth" aria-label={pageCopy.caseDepthAria}>
+          <div id="outcome-limits" className="case-depth-block case-limits">
+            <div className="case-depth-head">
+              <div className="label">{pageCopy.limitsLabel}</div>
+              <h2>{pageCopy.outcomeLimits}</h2>
+            </div>
+            <div className="case-limits-grid">
+              {caseDepth.limits.map((limit) => (
+                <article key={limit.constraint}>
+                  <h3>{limit.constraint}</h3>
+                  <dl className="case-depth-dl">
+                    <div>
+                      <dt>{pageCopy.whyItMatters}</dt>
+                      <dd>{limit.whyItMatters}</dd>
+                    </div>
+                    <div>
+                      <dt>{pageCopy.nextValidation}</dt>
+                      <dd>{limit.nextValidation}</dd>
+                    </div>
+                  </dl>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CaseInterviewPack pack={caseInterviewPack} locale={proofLocale} />
+
+      <section className="container">
         <CaseRelatedNav
           prevSlug={prevSlug}
           prevCard={getCaseCard(prevSlug, proofLocale)}

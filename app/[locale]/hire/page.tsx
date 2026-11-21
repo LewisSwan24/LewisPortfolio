@@ -1,12 +1,10 @@
 import { Suspense } from "react";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { AiTrustThread } from "@/components/hiring/AiTrustThread";
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
-import { InterviewEvidenceBrief } from "@/components/hiring/InterviewEvidenceBrief";
 import { RoleLensSwitch, type RoleLensCaseItem } from "@/components/hiring/RoleLensSwitch";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
@@ -61,36 +59,22 @@ export default async function HirePage() {
       ? {
           roleTitle: "把岗位需求匹配到证据。",
           roleIntro: "先看岗位信号，再进入通话前最相关的案例证据。",
-          nextStep: "下一步",
-          closeTitle: "带一个案例和一个问题进入面试。",
-          closeBody:
-            "最快路径是：选一个岗位视角，检查一个证据锚点，然后提出与你团队最相关的问题。",
-          contact: "联系 Lewis",
-          browseWork: "查看作品",
-          resume: "查看简历",
+          resumeLabel: "查看简历",
         }
       : {
           roleTitle: "Match the opening to the proof.",
           roleIntro:
             "Pick the role signal first, then inspect the exact case evidence before the call.",
-          nextStep: "Next step",
-          closeTitle: "Bring one case and one question to the interview.",
-          closeBody:
-            "The fastest route is: pick a role lens, inspect one proof anchor, then ask the question that matches your team.",
-          contact: "Contact Lewis",
-          browseWork: "Browse work",
-          resume: "Resume",
+          resumeLabel: "Resume",
         };
-
-  const actions = [
-    { href: "/contact", label: pageCopy.contact, variant: "btn-primary" },
-    { href: "/projects", label: pageCopy.browseWork, variant: "btn-ghost" },
-    { href: "/resume", label: pageCopy.resume, variant: "btn-ghost" },
-  ];
 
   return (
     <main className="page interview-room-page" data-screen-label="05 Hire">
-      <InterviewDecisionBrief brief={room.brief} />
+      <InterviewDecisionBrief
+        brief={room.brief}
+        locale={proofLocale}
+        resumeLabel={pageCopy.resumeLabel}
+      />
 
       <Suspense fallback={null}>
         <RoleLensSwitch cases={lensCases} locale={proofLocale} />
@@ -111,28 +95,7 @@ export default async function HirePage() {
       </section>
 
       <section className="section container">
-        <InterviewEvidenceBrief items={room.evidenceBrief} labels={proofLabels} />
-      </section>
-
-      <section className="section container">
         <InterviewBoundaryNotes notes={room.boundaries} labels={proofLabels} />
-      </section>
-
-      <section className="section container interview-room-close">
-        <div>
-          <div className="label">{pageCopy.nextStep}</div>
-          <h2>{pageCopy.closeTitle}</h2>
-          <p>{pageCopy.closeBody}</p>
-        </div>
-        <div>
-          <div className="interview-room-actions interview-room-primary-actions">
-            {actions.map((action) => (
-              <Link className={`btn ${action.variant}`} href={action.href} key={action.href}>
-                {action.label}
-              </Link>
-            ))}
-          </div>
-        </div>
       </section>
     </main>
   );

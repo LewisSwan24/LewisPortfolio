@@ -117,12 +117,13 @@ test.describe("Projects Page", () => {
         await expect(page.getByText(/AI UX \/ trust/i).first()).toBeVisible();
     });
 
-    test("work shortlist proof links should point to case anchors", async ({ page }) => {
-        await expectAnchoredCaseProofLink(page.locator(".work-shortlist-section a[href*='#']").first());
-    });
+    test("work page toggles cleanly between index list and capability evidence matrix", async ({ page }) => {
+        await expect(page.locator(".work-shortlist-section")).toHaveCount(0);
+        await expect(page.locator(".work-evidence-section")).toHaveCount(0);
+        await expect(page.locator(".work-index-row").first()).toBeVisible();
 
-    test("work page should expose an evidence matrix", async ({ page }) => {
         await page.setViewportSize({ width: 1280, height: 900 });
+        await page.getByRole("tab", { name: "Capability matrix" }).click();
         const matrix = page.locator(".evidence-matrix-section");
 
         await expect(matrix.getByText("Evidence matrix")).toBeVisible();
@@ -136,13 +137,6 @@ test.describe("Projects Page", () => {
         ).toBeVisible();
         // Vigil is unlisted, so it has no column at any width.
         await expect(matrix.getByText("Vigil")).toHaveCount(0);
-    });
-
-    test("work page should link to the interview decision room", async ({ page }) => {
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
-            "href",
-            "/hire",
-        );
     });
 
     // waitForURL rather than an immediate toHaveURL: clicking straight after
@@ -192,14 +186,21 @@ test.describe("Projects Page", () => {
         }
     });
 
-    test("case detail should expose interview answer routes", async ({ page }) => {
+    test("case detail puts primary cover before summary and opens collapsible interview answers", async ({ page }) => {
         await page.goto("/projects/connect");
+
+        const coverBox = await page.locator(".cs-cover").boundingBox();
+        const summaryBox = await page.locator(".case-summary").boundingBox();
+        expect(coverBox?.y ?? 99999).toBeLessThan(summaryBox?.y ?? 0);
 
         const pack = page.locator(".case-interview-pack");
 
         await expect(pack.getByText("Interview pack")).toBeVisible();
-        await expect(pack.getByText(/Questions I can answer/i)).toBeVisible();
-        await expect(pack.getByRole("link", { name: /Inspect the evidence/i }).first()).toHaveAttribute(
+        const firstDetails = pack.locator("details").first();
+        await expect(firstDetails).not.toHaveAttribute("open", "");
+        await firstDetails.locator("summary").click();
+        await expect(firstDetails).toHaveAttribute("open", "");
+        await expect(firstDetails.getByRole("link", { name: /Inspect the evidence/i })).toHaveAttribute(
             "href",
             /#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway)/,
         );
@@ -486,29 +487,24 @@ test.describe("Hire Page", () => {
         await page.goto("/hire");
     });
 
-    test("should render the interview decision room", async ({ page }) => {
+    test("should render the focused three-block interview decision room", async ({ page }) => {
         await expect(page.locator("main[data-screen-label='05 Hire']")).toBeVisible();
-        // The h1 is the decision-brief headline ("Why I'll help your team."),
-        // not the word "Interview"; assert the section content instead of copy.
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-        await expect(page.getByText("Evidence brief", { exact: true })).toBeVisible();
-        // The flat question bank was removed; role fit carries the per-role
-        // "ask me about" angle instead.
+        await expect(page.locator(".interview-evidence-brief")).toHaveCount(0);
+        await expect(page.locator(".interview-room-close")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toBeVisible();
         await expect(page.getByText("What I would not overclaim")).toBeVisible();
         await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
     });
 
     // The page used to fan out to 19 hiring sub-pages plus a /hire/[role] tree.
-    // Those routes are deleted and 301 back here, so the page must offer exactly
-    // three destinations and leave no surviving /hire/* link.
+    // Those routes are deleted and 301 back here, so the hero actions offer
+    // all three destinations and leave no surviving /hire/* link.
     test("should offer three destinations and no retired hiring sub-links", async ({ page }) => {
-        // Scoped to the closing block: InterviewDecisionBrief renders its own
-        // .interview-room-actions at the top of the page.
-        const closingActions = page.locator(".interview-room-primary-actions");
+        const actions = page.locator(".interview-room-primary-actions");
 
         for (const href of ["/contact", "/projects", "/resume"]) {
-            await expect(closingActions.locator(`a[href='${href}']`).first()).toBeVisible();
+            await expect(actions.locator(`a[href='${href}']`).first()).toBeVisible();
         }
         await expect(page.locator("a[href^='/hire/']")).toHaveCount(0);
     });
@@ -521,7 +517,6 @@ test.describe("Hire Page", () => {
     });
 
     test("hire proof links should point to case anchors", async ({ page }) => {
-        await expectAnchoredCaseProofLink(page.locator(".interview-evidence-brief a[href*='#']").first());
         await expectAnchoredCaseProofLink(page.locator(".hiring-role-fit a[href*='#']").first());
     });
 
@@ -585,20 +580,6 @@ test.describe("Contact Page", () => {
             "href",
             /^mailto:.+@.+\..+/,
         );
-    });
-
-    test("should explain how to use the portfolio", async ({ page }) => {
-        await page.goto("/contact");
-
-        await expect(page.getByText("Use this portfolio for")).toBeVisible();
-    });
-
-    test("should provide a hiring next step", async ({ page }) => {
-        await page.goto("/contact");
-        const nextStep = page.locator(".contact-next-step");
-
-        await expect(nextStep.getByText("Hiring next step")).toBeVisible();
-        await expect(nextStep.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
     });
 
     test("contact stays concise without duplicated role-fit/proof sections and links to /hire", async ({ page }) => {

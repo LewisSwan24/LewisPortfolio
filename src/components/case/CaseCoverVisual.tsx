@@ -39,6 +39,7 @@ export function CaseCoverVisual({
       <Image
         src={cover.src}
         fill
+        priority
         alt={cover.alt[locale]}
         className={`project-cover project-cover--${cover.fit}`}
         sizes="(max-width: 1200px) 100vw, 1200px"
