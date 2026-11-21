@@ -3,7 +3,6 @@ import type { CaseRecord } from "@/lib/cases/schema";
 export const pricewiseCase: CaseRecord = {
   "slug": "pricewise",
   "status": "listed",
-  "featuredOrder": 3,
   "roleTracks": [
     "product",
     "ai-ux",

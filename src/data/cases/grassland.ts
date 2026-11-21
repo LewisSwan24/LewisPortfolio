@@ -3,7 +3,6 @@ import type { CaseRecord } from "@/lib/cases/schema";
 export const grasslandCase: CaseRecord = {
   "slug": "grassland",
   "status": "listed",
-  "featuredOrder": 5,
   "roleTracks": [
     "interaction",
     "design-eng"

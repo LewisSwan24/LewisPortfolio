@@ -11,6 +11,8 @@ export const CURRENT_PROJECT_SLUGS = [
   "onthebeat",
   "lamplight",
   "autofill",
+  "walkie",
+  "fencepost",
 ] as const;
 
 export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
@@ -115,5 +117,13 @@ export const PROJECT_OG_COPY: Record<
   autofill: {
     title: "Resume Autofill",
     oneLiner: "A local-first job-application autofill tool that never guesses, never submits for you and never sends your resume away.",
+  },
+  walkie: {
+    title: "Walkie",
+    oneLiner: "A wrist voice remote for Claude Code on M5StickS3 with AES-256-GCM sealed transport and physical approval buttons.",
+  },
+  fencepost: {
+    title: "Fencepost",
+    oneLiner: "A Brisbane community wildlife storyboard where revocable QR grants, 3-role AI screening, and 431 offline tests enforce access invariants.",
   },
 };

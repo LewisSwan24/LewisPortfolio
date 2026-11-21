@@ -18,6 +18,8 @@ const caseLabels: Record<ProjectEvidenceSlug, string> = {
   onthebeat: "On The Beat",
   lamplight: "Lamplight Nook",
   autofill: "Resume Autofill",
+  walkie: "Walkie",
+  fencepost: "Fencepost",
 };
 
 interface InterviewQuestionBankProps {

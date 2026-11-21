@@ -3,7 +3,7 @@ import type { CaseRecord } from "@/lib/cases/schema";
 export const lamplightCase: CaseRecord = {
   "slug": "lamplight",
   "status": "listed",
-  "featuredOrder": 7,
+  "featuredOrder": 3,
   "roleTracks": [
     "product",
     "ai-ux",

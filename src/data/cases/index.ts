@@ -10,6 +10,8 @@ import { grasslandCase } from "./grassland";
 import { onthebeatCase } from "./onthebeat";
 import { lamplightCase } from "./lamplight";
 import { autofillCase } from "./autofill";
+import { walkieCase } from "./walkie";
+import { fencepostCase } from "./fencepost";
 import type { CaseRecord } from "@/lib/cases/schema";
 
 export const ALL_CASE_RECORDS: readonly CaseRecord[] = [
@@ -25,4 +27,6 @@ export const ALL_CASE_RECORDS: readonly CaseRecord[] = [
   onthebeatCase,
   lamplightCase,
   autofillCase,
+  walkieCase,
+  fencepostCase,
 ];
