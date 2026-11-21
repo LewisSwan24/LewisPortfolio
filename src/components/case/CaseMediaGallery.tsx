@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { CaseMedia } from "@/lib/cases/schema";
+import { CaseMediaGridClient, type CaseGalleryCardItem } from "./CaseMediaGridClient";
 
 export function CaseMediaGallery({
   media,
@@ -9,6 +9,13 @@ export function CaseMediaGallery({
   isZh: boolean;
 }) {
   const allPhones = media.images.every((image) => image.height > image.width);
+  const items: CaseGalleryCardItem[] = media.images.map((image) => ({
+    src: image.src,
+    width: image.width,
+    height: image.height,
+    alt: isZh ? image.altZh : image.alt,
+    caption: isZh ? image.captionZh : image.caption,
+  }));
 
   return (
     <section
@@ -19,20 +26,7 @@ export function CaseMediaGallery({
         <div className="label">{isZh ? media.labelZh : media.label}</div>
         <p>{isZh ? media.blurbZh : media.blurb}</p>
       </div>
-      <div className={`case-build-grid${allPhones ? " case-build-grid--phones" : ""}`}>
-        {media.images.map((image) => (
-          <figure key={image.src}>
-            <Image
-              src={image.src}
-              width={image.width}
-              height={image.height}
-              alt={isZh ? image.altZh : image.alt}
-              sizes="(max-width: 720px) 100vw, 50vw"
-            />
-            <figcaption>{isZh ? image.captionZh : image.caption}</figcaption>
-          </figure>
-        ))}
-      </div>
+      <CaseMediaGridClient items={items} allPhones={allPhones} isZh={isZh} />
       {media.video && (
         <figure className="case-build-video">
           <video
