@@ -82,6 +82,105 @@ export const walkieCase: CaseRecord = {
       zh: "高风险 Agent 工具调用必须等待手腕实体按键才放行；只要插上 USB 线，有线链路立即抢占无线中继。",
     },
   },
+  processArtifacts: {
+    quotes: {
+      eyebrow: {
+        en: "Hardware & protocol insights",
+        zh: "真机实测与协议归因卡",
+      },
+      title: {
+        en: "Field constraints that shaped physical keys and sealed framing",
+        zh: "硬件与安全场景暴露的卡点如何决定按键与链路规则",
+      },
+      items: [
+        {
+          id: "walkie-voice-ambiguity",
+          category: "physical",
+          quote: {
+            en: "\"Approving a shell command purely by voice fails as soon as background noise triggers a false 'yes'.\"",
+            zh: "「如果只靠语音识别说『好』就放行高危命令，房间里一有杂音就会误批准。」",
+          },
+          context: {
+            en: "Away-from-desk Claude Code workflow probe",
+            zh: "离桌远程指挥 Claude Code 场景实测",
+          },
+          friction: {
+            en: "Speech-to-text lacks a deliberate, noise-immune commitment signal.",
+            zh: "语音转文字在嘈杂环境下无法充当可靠的不可逆操作门控。",
+          },
+          decision: {
+            en: "Bound tool approvals exclusively to deliberate physical Front/Side key presses on M5StickS3.",
+            zh: "将工具审批硬性绑定到 M5StickS3 手腕实体前键（批准）与侧键（拒绝）。",
+          },
+        },
+        {
+          id: "walkie-dualboot-guard",
+          category: "trust",
+          quote: {
+            en: "\"Sharing one M5StickS3 across Walkie and On The Beat means one careless flash flag wipes the sibling app.\"",
+            zh: "「同一块手表同时跑 Walkie 和 On The Beat，一条误触擦除命令就会把另一个应用抹掉。」",
+          },
+          context: {
+            en: "Dual-boot firmware maintenance on S3",
+            zh: "M5StickS3 双启动固件日常烧录维护",
+          },
+          friction: {
+            en: "Standard esptool workflows expose -t erase without sibling-slot awareness.",
+            zh: "默认刷写脚本不感知同机双启动分区边界。",
+          },
+          decision: {
+            en: "Added firmware/guard.py blocking -t erase and -t uploadfs before flashing.",
+            zh: "在固件层加入 firmware/guard.py 拦截 -t erase 与 -t uploadfs 危险参数。",
+          },
+        },
+      ],
+    },
+    microLoop: {
+      eyebrow: {
+        en: "Vector micro-loop · Sealed wrist cycle",
+        zh: "矢量交互微循环 · 手腕加密审批闭环",
+      },
+      title: {
+        en: "Press-to-talk → USB/Relay switch → Wrist gate → Spoken summary",
+        zh: "按住录音 → 链路无缝切换 → 手腕物理审批 → 语音简报回传",
+      },
+      summary: {
+        en: "Inspect the 4-stage wire and attention loop without loading heavy video captures.",
+        zh: "无需加载大体积录屏视频，按帧步进或暂停查看端到端加密与实体确认闭环。",
+      },
+      loopId: "walkie-relay",
+      steps: [
+        {
+          label: { en: "Hold Front Key", zh: "按住前键录音" },
+          detail: {
+            en: "S3 samples 16 kHz press-to-talk audio locally while holding the physical front button.",
+            zh: "按住实体前键采集 16 kHz 本地语音，松开才封包发送。",
+          },
+        },
+        {
+          label: { en: "USB / Sealed Relay", zh: "USB / 加密中继" },
+          detail: {
+            en: "USB PCM wins whenever plugged in; unplugging switches cleanly to AES-256-GCM 4-bit ADPCM over Fly.io.",
+            zh: "插线时 USB PCM 优先抢占；拔线后自动切换为 AES-256-GCM 4-bit ADPCM 零知识中继。",
+          },
+        },
+        {
+          label: { en: "Wrist Key Gate", zh: "手腕审批门控" },
+          detail: {
+            en: "Claude tool permissions wait on the S3 screen until Front Key approves or Side Key denies.",
+            zh: "Claude 工具调用阻塞等待 S3 手腕确认：前键放行，侧键拦截并可口述原因。",
+          },
+        },
+        {
+          label: { en: "Voice Brief Back", zh: "语音简报回传" },
+          detail: {
+            en: "Node 24 bridge synthesizes a brief summary and streams audio to the wrist speaker.",
+            zh: "Node 24 桥接合成简短摘要语音回传至手腕扬声器，免看电脑屏完成闭环。",
+          },
+        },
+      ],
+    },
+  },
   card: {
     en: {
       kicker: "Physical AI Agent · Tactile Approvals",

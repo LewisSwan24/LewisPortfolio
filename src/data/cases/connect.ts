@@ -108,6 +108,92 @@ export const connectCase: CaseRecord = {
       "zh": "当可用性测试暴露出缺少返回路径与按钮状态歧义时，回到纸面重画五屏信息架构比在旧结构上继续打补丁更有效。"
     }
   },
+  "processArtifacts": {
+    "scrubber": {
+      "eyebrow": {
+        "en": "Process scrubber · Paper IA vs StudyBuddy UI",
+        "zh": "前后对比拉杆 · 纸面线框 ↔ 高保真界面"
+      },
+      "title": {
+        "en": "Compare the October 3 paper redraw with the shipped StudyBuddy interface",
+        "zh": "拖动对比十月纸面架构重画与十一月高保真学习伙伴界面"
+      },
+      "summary": {
+        "en": "Drag the divider or press Left/Right arrows to inspect how explicit back routes and match reasoning replaced opaque scores.",
+        "zh": "左右拖动或按方向键对比：如何用五屏显性返回路径与匹配理由卡片取代早期黑箱契合度分数。"
+      },
+      "beforeLabel": {
+        "en": "Before · Oct 3 IA Wireframe",
+        "zh": "改造前 · 十月纸面重画线框"
+      },
+      "afterLabel": {
+        "en": "After · StudyBuddy Screen",
+        "zh": "改造后 · StudyBuddy 高保真界面"
+      },
+      "wireframeId": "connect-ia",
+      "afterImage": {
+        "src": "/projects/connect/02-app-studybuddy.png",
+        "alt": {
+          "en": "Final UQ Connect StudyBuddy match card listing 94% match alongside course, library, and group size",
+          "zh": "UQ Connect 最终 StudyBuddy 匹配卡：94% 契合度旁写明课程、图书馆与小组规模"
+        },
+        "width": 1170,
+        "height": 2532
+      }
+    },
+    "quotes": {
+      "eyebrow": {
+        "en": "Research attribution · 71 sessions across 3 rounds",
+        "zh": "调研原声与洞察归因卡 · 三轮 71 份记录"
+      },
+      "title": {
+        "en": "Participant friction that directly triggered IA and UI changes",
+        "zh": "直接触发信息架构与界面改动的受访者原话"
+      },
+      "items": [
+        {
+          "id": "connect-back",
+          "category": "structure",
+          "quote": {
+            "en": "\"Can I go to the previous page? How can I do that?\"",
+            "zh": "「我能回上一页吗？要怎么回？」"
+          },
+          "context": {
+            "en": "Iteration 2 think-aloud session (17 Sep 2025)",
+            "zh": "第二轮出声思考可用性测试（2025-09-17）"
+          },
+          "friction": {
+            "en": "Patched sub-views lacked a consistent back bar inside nested tabs.",
+            "zh": "打补丁叠出来的子页面被多层 Tab 包裹，缺少明确返回入口。"
+          },
+          "decision": {
+            "en": "Stopped patching and redrew all 5 screens from Home on paper (Oct 3 reset).",
+            "zh": "停止打补丁，10 月 3 日在一张纸上从首页重画全部 5 个主路径。"
+          }
+        },
+        {
+          "id": "connect-reason",
+          "category": "trust",
+          "quote": {
+            "en": "\"94% match doesn't tell me whether we actually study at the same library or pace.\"",
+            "zh": "「光写 94% 匹配，我不知道我们是不是同一个节奏或去同一座图书馆。」"
+          },
+          "context": {
+            "en": "Exploratory interviews & September prototype probe",
+            "zh": "第一轮访谈与九月原型对照"
+          },
+          "friction": {
+            "en": "Bare compatibility numbers made students hesitate to message strangers.",
+            "zh": "孤立的匹配分数让学生不敢贸然发起私聊联系。"
+          },
+          "decision": {
+            "en": "Placed course, venue, availability, and small-group size directly on each card.",
+            "zh": "直接在匹配卡列出课程、图书馆、空闲时段与小组人数作为行动依据。"
+          }
+        }
+      ]
+    }
+  },
   "card": {
     "en": {
       "kicker": "Team project · Research and IA reset",

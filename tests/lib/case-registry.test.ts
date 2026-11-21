@@ -73,6 +73,11 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
           expect(fs.existsSync(path.join(PUBLIC_DIR, record.demo.src))).toBe(true);
         }
       }
+      if (record.processArtifacts?.scrubber) {
+        expect(
+          fs.existsSync(path.join(PUBLIC_DIR, record.processArtifacts.scrubber.afterImage.src))
+        ).toBe(true);
+      }
     }
   });
 
@@ -116,6 +121,18 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
       expect(record?.interactiveDemo?.prompt.zh.length).toBeGreaterThan(4);
       expect(record?.interactiveDemo?.takeaway.en.length).toBeGreaterThan(8);
       expect(record?.interactiveDemo?.takeaway.zh.length).toBeGreaterThan(4);
+    }
+  });
+
+  it("configures V3.8 processArtifacts across scrubber (4), quotes (5), and microLoop (3) cases", () => {
+    for (const slug of ["connect", "pricewise", "hoop", "lamplight"] as const) {
+      expect(getCaseBySlug(slug)?.processArtifacts?.scrubber).toBeDefined();
+    }
+    for (const slug of ["connect", "maze", "autofill", "lamplight", "walkie"] as const) {
+      expect(getCaseBySlug(slug)?.processArtifacts?.quotes?.items.length).toBeGreaterThan(0);
+    }
+    for (const slug of ["onthebeat", "walkie", "grassland"] as const) {
+      expect(getCaseBySlug(slug)?.processArtifacts?.microLoop?.steps.length).toBeGreaterThanOrEqual(3);
     }
   });
 });

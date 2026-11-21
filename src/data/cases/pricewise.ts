@@ -93,6 +93,40 @@ export const pricewiseCase: CaseRecord = {
     "action": "Load the demo build",
     "actionZh": "载入演示版本"
   },
+  "processArtifacts": {
+    "scrubber": {
+      "eyebrow": {
+        "en": "Process scrubber · Silent fallback vs explicit state",
+        "zh": "前后对比拉杆 · 静默猜填 ↔ 显性状态"
+      },
+      "title": {
+        "en": "Expose silent matching failures instead of faking certainty",
+        "zh": "对比未校验旧结果与显式标出存疑/未匹配的最终界面"
+      },
+      "summary": {
+        "en": "Inspect why raw receipt abbreviations forced an explicit 'unmatched' UI tier rather than letting keyword fallback masquerade as semantic search.",
+        "zh": "拖动对比小票简写识别如何从「静默误判最便宜」改为把不确定项显式标出。"
+      },
+      "beforeLabel": {
+        "en": "Before · Silent Fallback Mock",
+        "zh": "改造前 · 无校验直接展示"
+      },
+      "afterLabel": {
+        "en": "After · Verified Live UI",
+        "zh": "改造后 · 实装校验态主页"
+      },
+      "wireframeId": "pricewise-match",
+      "afterImage": {
+        "src": "/projects/pricewise/01-home.png",
+        "alt": {
+          "en": "The live PriceWise home screen showing explicit matching and comparison entry points",
+          "zh": "PriceWise 线上首页截图，展示清晰校验与比价入口"
+        },
+        "width": 2880,
+        "height": 1800
+      }
+    }
+  },
   "card": {
     "en": {
       "kicker": "Product design · Behavior verification",

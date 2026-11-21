@@ -122,6 +122,60 @@ export const mazeCase: CaseRecord = {
       "zh": "协作型物理交互把「双人在场」编码为明确的状态门控：单人触碰即时给出锁定提示，双人配对则同步驱动计分、震动、灯带与串口。"
     }
   },
+  "processArtifacts": {
+    "quotes": {
+      "eyebrow": {
+        "en": "Exhibition observation · Bench & public play",
+        "zh": "展览与台架观察归因卡"
+      },
+      "title": {
+        "en": "Physical feedback insights observed during exhibition rounds",
+        "zh": "公开展览与台架调试中暴露的物理交互规律"
+      },
+      "items": [
+        {
+          "id": "maze-look-up",
+          "category": "physical",
+          "quote": {
+            "en": "\"People don't read the score display. They feel the buzz and look up.\"",
+            "zh": "「大家不看计分屏。他们先感觉到那一下震动，然后才抬头。」"
+          },
+          "context": {
+            "en": "Observed during group exhibition play (2026)",
+            "zh": "展览现场多人同玩观察记录（2026）"
+          },
+          "friction": {
+            "en": "Visual scoreboards compete with the physical board for players' eyes.",
+            "zh": "视觉计分屏会和桌面实体迷宫争夺玩家视线。"
+          },
+          "decision": {
+            "en": "Made finger-sleeve vibration the primary trap signal, synced with audio and LED strips.",
+            "zh": "以手指套触觉震动作为第一信号，再联动音效与灯带同步响应。"
+          }
+        },
+        {
+          "id": "maze-debounce",
+          "category": "structure",
+          "quote": {
+            "en": "\"Raw IR sensor reads double- and triple-fired on one ball pass, breaking trust between score and buzz.\"",
+            "zh": "「原始红外读数会在一次经过里连发两三次，计分与震动对不上就会让玩家怀疑系统坏了。」"
+          },
+          "context": {
+            "en": "Bench calibration on FC-51 IR array",
+            "zh": "FC-51 红外传感器台架校准调试"
+          },
+          "friction": {
+            "en": "Unsubscribed hardware jitter caused subsystems to disagree on round state.",
+            "zh": "硬件毛刺导致计分屏、计时器与触觉各自触发不同次数。"
+          },
+          "decision": {
+            "en": "Added per-sensor debounce + cooldown windows feeding one round state machine.",
+            "zh": "为每个传感器增加防抖与冷却窗口，全部收拢进单一回合状态机。"
+          }
+        }
+      ]
+    }
+  },
   "card": {
     "en": {
       "kicker": "Flagship · Physical computing",
