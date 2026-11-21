@@ -19,9 +19,10 @@ A statically generated, bilingual portfolio and hiring decision platform for a U
 - **Minimal i18n Client Payload** — Case study copy moved out of JSON bundles into TypeScript registry modules; `NextIntlClientProvider` ships only the 11 UI namespaces needed on the client
 
 ### Flagship Experience & Hiring Engine
-- **10 Listed Case Studies** — Curated Top 6 featured deck on home (`maze`, `walkie`, `lamplight`, `autofill`, `fencepost`, `connect`) plus full work archive (`hoop`, `onthebeat`, `ai`, `wayfinding`), per-project OG images, and click-to-load interactive embeds (including `fencepost-app.vercel.app`)
-- **Interactive `/lab` Workbench** — Bilingual Lively Icons Design System Inspector, live GSAP Motion Sandbox, and 3 interactive state-machine micro-demos (`On The Beat`, `Resume Autofill`, `Walkie`)
-- **`cmdk` Warm-Paper Command Palette (`⌘K` / `Ctrl+K`)** — Instant navigation across cases, routes, and themes
+- **10 Listed Case Studies** — Curated Top 6 featured deck on home (`maze`, `walkie`, `lamplight`, `autofill`, `fencepost`, `connect`) plus full work archive (`hoop`, `onthebeat`, `ai`, `wayfinding`), native `<dialog>` gallery lightbox (`CaseLightbox.tsx`), interactive `/lab?demo=` invariant cards, and click-to-load embeds (`fencepost-app.vercel.app`, `lewisswan24.github.io/lamplight-nook-site/`)
+- **Interactive `/lab` Workbench** — Bilingual Lively Icons Design System Inspector, live GSAP Motion Sandbox, and 3 URL-linkable state-machine micro-demos (`On The Beat`, `Resume Autofill`, `Walkie`)
+- **Lazy `cmdk` Warm-Paper Command Palette (`⌘K`)** — Dynamically mounted on demand and backed by static `/search-index/{en,zh}` JSON endpoints
+- **Machine-Readable `/llms.txt`** — Static summary of all 10 listed case studies, capabilities, and evidence boundaries (excluding unlisted archives)
 - **Role-Tailored Hiring Lens (`/hire?role=product|interaction|design-eng|ai-ux`)** — URL-driven case filtering with one-click copyable tailored links, evidence matrix, interview question bank, and proof packets
 - **Print-First `/resume` + Playwright PDF Builder** — Clean print-to-PDF layout with `pnpm resume:pdf` generating crisp EN/ZH A4 vector PDFs on demand
 

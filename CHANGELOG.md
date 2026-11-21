@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.0] - 2026-11-21
+
+### Performance & Architecture
+- **Lazy Search & Shortcuts Loading (`app/search-index/[locale]`)** — Extracted search indexing out of `app/[locale]/layout.tsx` into `force-static` `/search-index/en` and `/search-index/zh` JSON routes, lazy-loading `CommandPalette` (`cmdk`) and `KeyboardShortcutsModal` only on first invocation (`⌘K` / `⌘/`).
+- **Native CSS Scroll-Driven `SectionReveal` & Zero-JS `PageTransition`** — Removed GSAP & ScrollTrigger from global layout/static pages (`/about` First Load JS dropped `147 kB -> 119 kB`), reserving GSAP strictly for interactive decks and `/lab`.
+- **Tightened CI Bundle Gate (`scripts/check-bundle-budget.mjs`)** — Tightened budgets to `<= 70 kB gz` largest JS chunk, `<= 15 kB gz` per-route `chunks/app/` ceiling, `<= 26 kB gz` App CSS, and `<= 60 kB gz` total CSS.
+
+### Craft, Live Integration & QA Moat
+- **Native `<dialog>` Lightbox (`CaseLightbox.tsx`) & Dep Cleanup** — Replaced unused `yet-another-react-lightbox` (`pnpm remove`) with a zero-dependency native top-layer `<dialog>` inspector (`showModal()`, `closedby="any"`, `@starting-style`, `allow-discrete`, `←`/`→` keyboard nav) across case galleries and MDX galleries (`App/UI CSS 24.7 -> 23.7 kB gz`).
+- **Live Sites & Bidirectional `/lab` Invariant Cards** — Added verified live app link (`https://on-the-beat.fly.dev`, respecting `X-Frame-Options: DENY`) to `On The Beat`, companion site link + click-to-load `DemoEmbed` (`https://lewisswan24.github.io/lamplight-nook-site/`, CSP `frame-src` updated) to `Lamplight Nook`, and deep-link `/lab?demo=` invariant cards on `walkie`, `autofill`, and `onthebeat`.
+- **Static `/llms.txt` & Site-Wide Playwright Crawler (`e2e/crawler.spec.ts`)** — Added strict listed-only `/llms.txt` endpoint plus automated 20-route link/anchor/console/lightbox/embed E2E verification.
+
 ## [3.1.0] - 2026-11-21
 
 ### Architecture & Performance
