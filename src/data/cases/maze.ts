@@ -14,12 +14,12 @@ export const mazeCase: CaseRecord = {
     "year": "2026",
     "dur": "Built",
     "problem": {
-      "en": "A physical maze that noticed nothing and answered nothing",
-      "zh": "一台什么都察觉不到、也不会回应的实体迷宫"
+      "en": "A physical maze that gave players no real-time feedback",
+      "zh": "一座毫无反馈的木质实体迷宫"
     },
     "changed": {
-      "en": "One sensor event driving score, haptics, light, audio, and a web console",
-      "zh": "一个传感器事件同时驱动计分、震动、灯光、音效与网页控制台"
+      "en": "Sensor events driving synchronized score, haptics, light, audio, and a web console",
+      "zh": "一次传感器触发同时联动计分、触觉、灯光、音效与网页控制台"
     }
   },
   "reviewMeta": {
@@ -40,9 +40,9 @@ export const mazeCase: CaseRecord = {
   "links": [],
   "media": {
     "label": "Build evidence",
-    "labelZh": "实物证据",
-    "blurb": "Photographs of the actual build and a clip of the circuit running — not renders.",
-    "blurbZh": "以下是实际搭建与展出的照片和电路运行录像，不是渲染图。",
+    "labelZh": "展览实物",
+    "blurb": "Exhibition photographs of the physical build alongside a video clip of the working feedback circuit.",
+    "blurbZh": "展览现场实拍照片，搭配反馈电路实际运转的实录视频。",
     "images": [
       {
         "src": "/projects/maze/01-exhibition-setup.png",
@@ -144,7 +144,7 @@ export const mazeCase: CaseRecord = {
         "title": "Working out what the system must sense, and what it must never do.",
         "m1": {
           "t": "Sensor mapping",
-          "b": "Ten FC-51 IR sensors assigned across trap, diagnostic, spare, and finish zones, each needing its own trigger behaviour."
+          "b": "IR sensors assigned across trap, diagnostic, spare, and finish zones, each calibrated with its own trigger behavior."
         },
         "m2": {
           "t": "Safety review",
@@ -164,7 +164,7 @@ export const mazeCase: CaseRecord = {
       },
       "id": {
         "label": "Technical decisions",
-        "p": "Vibration replaced the electric shock: relay-driven motors in wearable finger sleeves keep the sensation on the body without a risk that needs supervision. Each IR sensor got debounce and a cooldown window, because raw reads double- and triple-fired on a single pass and broke agreement between score, timer, and haptics. Platform tilt moved to its own SafeTouchServoController with hold-to-move behaviour, so servo motion stopped competing with time-sensitive sensor polling and a servo fault could not take down the round."
+        "p": "Vibration replaced the electric shock: relay-driven motors in wearable finger sleeves keep the sensation on the body without a risk that needs supervision. Each IR sensor got debounce and a cooldown window, because raw reads double- and triple-fired on a single pass and broke agreement between score, timer, and haptics. Platform tilt moved to its own SafeTouchServoController with hold-to-move behavior, so servo motion stopped competing with time-sensitive sensor polling and a servo fault could not take down the round."
       },
       "pr": {
         "label": "The web console",
@@ -182,7 +182,7 @@ export const mazeCase: CaseRecord = {
         },
         "m2": {
           "label": "Feedback",
-          "v": "5 synchronised channels"
+          "v": "5 synchronized channels"
         },
         "m3": {
           "label": "Control",
@@ -245,7 +245,7 @@ export const mazeCase: CaseRecord = {
         "p": "台架测试反复调校防抖与冷却，直到一次球的经过刚好产生一个游戏事件。一致性测试则在只改动固件或只改动控制台时抓出漂移。之后展览上的多人游玩暴露了台架测不出来的东西：玩家对震动和音效的反应比对计分屏更快，而手指套需要别人帮忙戴，这个佩戴过程本身就是交互的一部分。"
       },
       "ou": {
-        "label": "这个案例产出了什么",
+        "label": "产出与边界",
         "m1": {
           "label": "状态",
           "v": "单一回合状态机"

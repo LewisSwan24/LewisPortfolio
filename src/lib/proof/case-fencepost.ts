@@ -16,32 +16,32 @@ export const fencepostSummary: Record<ProofLocale, { fencepost: CaseSummary }> =
   en: {
     fencepost: {
       challenge:
-        "Brisbane residents sharing backyard possum sightings need a way to co-create storyboards without exposing home EXIF metadata, leaking private entries into an AI assistant's context, or losing control once a QR code is printed.",
-      role: "Product architecture, AI safety proxy design, data-layer access invariants, and deployment verification",
-      methods: ["permissioned QR access control", "three-role AI proxy (Screener/Writer/Chat)", "431 offline invariant tests", "29 red-line safety tests", "post-deploy live route probing"],
+        "Neighbors sharing backyard wildlife stories need to feel confident that photos won't expose home metadata, private entries won't echo inside an AI summary, and printed QR shares stay revocable.",
+      role: "Interaction & privacy architecture, AI safety proxy design, access boundary rules, and deployment verification",
+      methods: ["revocable QR sharing", "three-role AI workflow (Screener / Writer / Chat)", "offline invariant checks", "safety red-line review", "post-deploy route verification"],
       evidence: [
-        "live deployment at fencepost-app.vercel.app backed by Python Serverless API + Turso libSQL",
-        "431 offline unit tests pinning three access invariants (context isolation, soft-delete cut-off, instant grant revocation)",
-        "29 red-line safety cases gating prompt edits, plus scripts/check_deploy.py built after a real .vercelignore outage",
+        "live interactive prototype at fencepost-app.vercel.app backed by Python API + Turso libSQL",
+        "automated access checks enforcing three privacy rules: context isolation, soft-delete cut-off, and instant QR grant revocation",
+        "red-line prompt review alongside automated post-deploy route checks built after a real .vercelignore incident",
       ],
       outcome:
-        "A deployed community wildlife storyboarding app and hardened AI proxy where revoking a grant or soft-deleting an entry immediately removes it from model context.",
-      next: "Disable course-demo open handle signup before any real neighbourhood launch, and run a field trial with Brisbane residents.",
+        "A live community wildlife storyboarding app where revoking a QR grant or deleting an entry cuts it out of future AI context immediately.",
+      next: "Replace demo handle login with full resident sign-in ahead of any public neighborhood pilot, and observe a first backyard sharing trial.",
     },
   },
   zh: {
     fencepost: {
       challenge:
-        "布里斯班居民想共同记录后院负鼠故事板，但不能泄露照片 EXIF 与住址、不能让私密条目进入 AI 助手上下文，也不能在二维码贴出后失去撤销权限的能力。",
-      role: "产品架构、AI 安全代理设计、数据层权限不变量与部署校验体系",
-      methods: ["可吊销二维码权限控制", "三角色 AI 代理（审核/撰写/对话）", "431 项离线不变量测试", "29 条红线安全测试", "发布后全路由探活校验"],
+        "邻居之间共同记录后院负鼠与鸟类故事时，必须能放心三件事：照片不会带出家庭位置信息、私密记录不会混进 AI 助手的上下文、贴出去的二维码也随时能收回。",
+      role: "交互与隐私架构、AI 代理边界设计、数据层访问控制及部署核验",
+      methods: ["可吊销二维码分享", "三角色 AI 协作代理（初筛 / 撰写 / 对话）", "离线权限不变量检查", "安全红线核验", "上线后路由可用性巡检"],
       evidence: [
-        "已上线 fencepost-app.vercel.app，后端为 Python Serverless API + Turso libSQL",
-        "431 项离线单元测试钉死三条权限不变量（上下文隔离、软删立即截断、吊销权限即刻生效）",
-        "29 条安全红线用例把关提示词变更，以及在 .vercelignore 故障后补建的 scripts/check_deploy.py",
+        "已部署在线交互原型 fencepost-app.vercel.app（Python API + Turso libSQL）",
+        "自动化权限检查确保三条隐私底线落地：他人上下文隔离、软删除即刻断联、吊销二维码后模型不再引用旧记录",
+        "红线边界评审配合上线路由检查脚本，确保界面声明与后端实际行为一致",
       ],
-      outcome: "上线了一套布里斯班社区野生动物故事板与加固版 AI 安全代理，任何吊销或删除都会在下一次模型调用中即时生效。",
-      next: "面向真实社区上线前关闭课程演示版开放注册，并在布里斯班居民中开展实地试用。",
+      outcome: "交付了可交互的社区野生动物故事板与权限受控的 AI 代理，一旦居民撤销分享权限，下一次 AI 回答就会彻底停用该条目。",
+      next: "在真实街区开放使用前关闭演示版免密代号登录，切换完整账号体系并在小范围邻里间实地观察试用体验。",
     },
   },
 };
@@ -111,14 +111,14 @@ export const fencepostDepth: Record<ProofLocale, { fencepost: CaseDepth }> = {
       ],
       limits: [
         {
-          constraint: "Course deployment intentionally leaves FENCEPOST_OPEN_SIGNUP enabled for frictionless evaluation.",
-          whyItMatters: "Anyone holding a handle can claim it in the demo build (though read visibility still requires access_grants).",
-          nextValidation: "Turn off FENCEPOST_OPEN_SIGNUP and require full password registration before any public rollout.",
+          constraint: "Course deployment intentionally leaves demo handle sign-in open so reviewers can explore without creating passwords.",
+          whyItMatters: "Read visibility stays locked behind access grants, while handle sign-in itself fits a classroom review context rather than public streets.",
+          nextValidation: "Require full resident authentication before any public neighborhood rollout.",
         },
         {
-          constraint: "No long-term Brisbane neighbourhood field usage data is claimed.",
-          whyItMatters: "Automated invariants and red-line tests prove system behaviour, not community retention.",
-          nextValidation: "Run a scoped trial with one Brisbane street sharing real backyard sightings.",
+          constraint: "Built and checked through automated privacy invariants and red-line prompts; field adoption with Brisbane households has not started yet.",
+          whyItMatters: "Privacy guarantees in the data layer are tested directly, while everyday neighborhood sharing habits still need real-world observation.",
+          nextValidation: "Run a scoped trial with a few Brisbane households sharing backyard sightings.",
         },
       ],
       takeaway:
@@ -189,14 +189,14 @@ export const fencepostDepth: Record<ProofLocale, { fencepost: CaseDepth }> = {
       ],
       limits: [
         {
-          constraint: "课程演示部署刻意开启了 FENCEPOST_OPEN_SIGNUP 以便评审免注册体验。",
-          whyItMatters: "演示版中知道代号即可换取写入 Token（但读取仍受 access_grants 保护）。",
-          nextValidation: "正式面向社区开放前关闭开放注册，切换至完整账号密码鉴权。",
+          constraint: "课程演示版本刻意保留轻量代号登录，方便评审直接打开体验核心流程。",
+          whyItMatters: "读取可见性仍严格受 access_grants 保护，但代号登录仅适用于课程评审演示，不适于公开邻里使用。",
+          nextValidation: "真正面向街区开放前关闭免密入口，启用完整账号鉴权。",
         },
         {
-          constraint: "未宣称布里斯班真实社区的长期留存数据。",
-          whyItMatters: "自动化测试与红线用例验证的是系统行为，而非真实居民长期使用意愿。",
-          nextValidation: "在布里斯班一条街区开展小范围真实目击分享试用。",
+          constraint: "当前重点验证了数据层隐私拦截与红线行为，尚未进入真实社区居民的长期留存试用。",
+          whyItMatters: "技术层的不越界已有扎实验证，但居民日常分享的节奏与顾虑仍需实地试用去印证。",
+          nextValidation: "先在一两个真实街区开展小规模后院目击分享观察。",
         },
       ],
       takeaway:

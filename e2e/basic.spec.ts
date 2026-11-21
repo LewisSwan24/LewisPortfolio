@@ -474,7 +474,7 @@ test.describe("Hire Page", () => {
         await expect(page.locator(".interview-evidence-brief")).toHaveCount(0);
         await expect(page.locator(".interview-room-close")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toBeVisible();
-        await expect(page.getByText("What I would not overclaim")).toBeVisible();
+        await expect(page.locator("#interview-boundaries-title")).toBeVisible();
         await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
     });
 
@@ -501,16 +501,14 @@ test.describe("Hire Page", () => {
         await expectAnchoredCaseProofLink(page.locator(".hiring-role-fit a[href*='#']").first());
     });
 
-    // AI UX is a thread through several cases, not one AI case. It has to open
-    // by admitting there is no finished AI-native product and close on its limit.
-    test("hire should show the AI and trust thread with its limit", async ({ page }) => {
+    // AI UX is a thread through several cases, framing legible uncertainty
+    // under scoped prototype testing rather than defensive self-disclaimers.
+    test("hire should show the AI and trust thread with explicit scope", async ({ page }) => {
         const thread = page.locator("#ai-trust-thread");
 
-        await expect(thread.getByRole("heading", { name: "AI and trust: one thread through the work" })).toBeVisible();
-        await expect(thread.getByText(/^I have not finished an AI-native product yet\./)).toBeVisible();
-        await expect(
-            thread.getByText("None of these is a finished AI-native product, and each entry states its own limits.", { exact: true }),
-        ).toBeVisible();
+        await expect(thread.getByRole("heading", { name: "Designing trust across AI-assisted workflows" })).toBeVisible();
+        await expect(thread.getByText(/uncertainty legible/i)).toBeVisible();
+        await expect(thread.locator(".ai-trust-thread-limit")).toContainText(/mock data|production traffic/i);
         await expect(thread.locator("li")).toHaveCount(3);
         for (const slug of ["pricewise", "connect", "hoop"]) {
             await expect(thread.locator(`a[href='/projects/${slug}#decision-timeline']`)).toBeVisible();
@@ -519,14 +517,12 @@ test.describe("Hire Page", () => {
         await expect(page.locator(".hiring-role-fit").getByRole("heading", { name: "AI UX" })).toBeVisible();
     });
 
-    test("zh hire should state the thread limit in Chinese", async ({ page }) => {
+    test("zh hire should state scoped prototype boundaries in Chinese", async ({ page }) => {
         await gotoStable(page, "/zh/hire");
         const thread = page.locator("#ai-trust-thread");
 
-        await expect(thread.getByText(/^我还没有做完一个 AI 原生产品。/)).toBeVisible();
-        await expect(
-            thread.getByText("这三条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。", { exact: true }),
-        ).toBeVisible();
+        await expect(thread.getByText(/交互原则/)).toBeVisible();
+        await expect(thread.locator(".ai-trust-thread-limit")).toContainText(/模拟数据|生产流量/);
         await expect(thread.locator("a[href='/zh/projects/pricewise#decision-timeline']")).toBeVisible();
         await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
     });

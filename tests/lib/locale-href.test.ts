@@ -23,4 +23,13 @@ describe("localizeInternalHref", () => {
       "#decision-timeline"
     );
   });
+
+  it("leaves static assets and file-extension routes unprefixed", () => {
+    expect(localizeInternalHref("/assets/hero.png", "zh")).toBe("/assets/hero.png");
+    expect(localizeInternalHref("/projects/walkie/prototype.html", "zh")).toBe(
+      "/projects/walkie/prototype.html"
+    );
+    expect(localizeInternalHref("/feed.xml", "zh")).toBe("/feed.xml");
+    expect(localizeInternalHref("/llms.txt", "zh")).toBe("/llms.txt");
+  });
 });

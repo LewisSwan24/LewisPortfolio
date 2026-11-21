@@ -7,13 +7,37 @@ import { getRolePackets } from "./role-packets";
 import type {
   ApplicationPacketRoute,
   CaseReaderHref,
+  ConsolidatedHiringView,
   FollowThroughRoute,
   HiringRoleId,
   ProjectEvidenceSlug,
   ProofLocale,
+  ProofMaintenanceSurface,
   ProofValidationIssue,
   ProofValidationReport,
 } from "./types";
+
+const CONSOLIDATED_HIRING_VIEWS: readonly ConsolidatedHiringView[] = [
+  "review",
+  "compare",
+  "interview",
+  "scorecard",
+  "shortlist",
+  "debrief",
+  "decision",
+  "offer",
+  "onboarding",
+  "kickoff",
+  "impact",
+  "growth",
+  "retention",
+  "partnership",
+  "command",
+  "briefing",
+  "readiness",
+  "action",
+  "tracker",
+];
 
 const locales: ProofLocale[] = ["en", "zh"];
 // Derived rather than hand-listed: the literal that used to sit here still said
@@ -28,16 +52,16 @@ function addIssue(
   issues.push(issue);
 }
 
-function roleRoute(role: HiringRoleId): `/hire/${HiringRoleId}` {
-  return `/hire/${role}`;
+function roleRoute(role: HiringRoleId): `/hire?role=${HiringRoleId}` {
+  return `/hire?role=${role}`;
 }
 
 function packetRoute(role: HiringRoleId): ApplicationPacketRoute {
-  return `/hire/${role}/packet`;
+  return `/contact?role=${role}`;
 }
 
 function followThroughRoute(role: HiringRoleId): FollowThroughRoute {
-  return `/hire/${role}/next`;
+  return `/contact?role=${role}&intent=interview`;
 }
 
 function parseCaseAnchor(href: string) {
@@ -59,25 +83,9 @@ function isValidCaseAnchor(href: string, locale: ProofLocale): href is CaseReade
 }
 
 function isValidProofRoute(href: string) {
-  if (href === "/hire/review") return true;
-  if (href === "/hire/compare") return true;
-  if (href === "/hire/interview") return true;
-  if (href === "/hire/scorecard") return true;
-  if (href === "/hire/shortlist") return true;
-  if (href === "/hire/debrief") return true;
-  if (href === "/hire/decision") return true;
-  if (href === "/hire/offer") return true;
-  if (href === "/hire/onboarding") return true;
-  if (href === "/hire/kickoff") return true;
-  if (href === "/hire/impact") return true;
-  if (href === "/hire/growth") return true;
-  if (href === "/hire/retention") return true;
-  if (href === "/hire/partnership") return true;
-  if (href === "/hire/command") return true;
-  if (href === "/hire/briefing") return true;
-  if (href === "/hire/readiness") return true;
-  if (href === "/hire/action") return true;
-  if (href === "/hire/tracker") return true;
+  if (CONSOLIDATED_HIRING_VIEWS.some((view) => href === `/hire?view=${view}`)) {
+    return true;
+  }
 
   return hiringRoleIds.some(
     (role) =>
@@ -234,121 +242,47 @@ export function getProofValidationReport(
       .map((entry) => `${entry.roleId}:${entry.claimId}`)
   );
   const maintenanceHrefs = new Set(maintenanceEntries.map((entry) => entry.href));
-  const maintainedReviewRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "review-room")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedComparisonRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "role-comparison")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedAgendaRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "interview-agenda")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedScorecardRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-scorecard")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedShortlistRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-shortlist")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedDebriefRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-debrief")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedDecisionRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-decision")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedOfferRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-offer")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedOnboardingRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-onboarding")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedKickoffRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-kickoff")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedImpactRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-impact")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedGrowthRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-growth")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedRetentionRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-retention")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedPartnershipRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-partnership")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedCommandRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-command")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedBriefingRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-briefing")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedReadinessRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-readiness")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedActionRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-action")
-      .map((entry) => entry.roleId)
-  );
-  const maintainedTrackerRoles = new Set(
-    maintenanceEntries
-      .filter((entry) => entry.surface === "hiring-tracker")
-      .map((entry) => entry.roleId)
+  const consolidatedSurfaceChecks: Array<{
+    surface: ProofMaintenanceSurface;
+    view: ConsolidatedHiringView;
+    issueSuffix: string;
+    label: string;
+  }> = [
+    { surface: "review-room", view: "review", issueSuffix: "proof-review", label: "role card" },
+    { surface: "role-comparison", view: "compare", issueSuffix: "role-comparison", label: "role lane" },
+    { surface: "interview-agenda", view: "interview", issueSuffix: "interview-agenda", label: "agenda card" },
+    { surface: "hiring-scorecard", view: "scorecard", issueSuffix: "hiring-scorecard", label: "scorecard lane" },
+    { surface: "hiring-shortlist", view: "shortlist", issueSuffix: "hiring-shortlist", label: "shortlist memo lane" },
+    { surface: "hiring-debrief", view: "debrief", issueSuffix: "hiring-debrief", label: "manager debrief lane" },
+    { surface: "hiring-decision", view: "decision", issueSuffix: "hiring-decision", label: "decision pack lane" },
+    { surface: "hiring-offer", view: "offer", issueSuffix: "hiring-offer", label: "offer readiness lane" },
+    { surface: "hiring-onboarding", view: "onboarding", issueSuffix: "hiring-onboarding", label: "onboarding readiness lane" },
+    { surface: "hiring-kickoff", view: "kickoff", issueSuffix: "hiring-kickoff", label: "kickoff alignment lane" },
+    { surface: "hiring-impact", view: "impact", issueSuffix: "hiring-impact", label: "early impact lane" },
+    { surface: "hiring-growth", view: "growth", issueSuffix: "hiring-growth", label: "growth roadmap lane" },
+    { surface: "hiring-retention", view: "retention", issueSuffix: "hiring-retention", label: "retention readiness lane" },
+    { surface: "hiring-partnership", view: "partnership", issueSuffix: "hiring-partnership", label: "partnership operating lane" },
+    { surface: "hiring-command", view: "command", issueSuffix: "hiring-command", label: "command lane" },
+    { surface: "hiring-briefing", view: "briefing", issueSuffix: "hiring-briefing", label: "briefing lane" },
+    { surface: "hiring-readiness", view: "readiness", issueSuffix: "hiring-readiness", label: "readiness lane" },
+    { surface: "hiring-action", view: "action", issueSuffix: "hiring-action", label: "action lane" },
+    { surface: "hiring-tracker", view: "tracker", issueSuffix: "hiring-tracker", label: "tracker lane" },
+  ];
+
+  const maintainedRolesBySurface = new Map(
+    consolidatedSurfaceChecks.map((check) => [
+      check.surface,
+      new Set(
+        maintenanceEntries
+          .filter((entry) => entry.surface === check.surface)
+          .map((entry) => entry.roleId)
+      ),
+    ])
   );
 
-  checkedRoutes.add("/hire/review");
-  checkedRoutes.add("/hire/compare");
-  checkedRoutes.add("/hire/interview");
-  checkedRoutes.add("/hire/scorecard");
-  checkedRoutes.add("/hire/shortlist");
-  checkedRoutes.add("/hire/debrief");
-  checkedRoutes.add("/hire/decision");
-  checkedRoutes.add("/hire/offer");
-  checkedRoutes.add("/hire/onboarding");
-  checkedRoutes.add("/hire/kickoff");
-  checkedRoutes.add("/hire/impact");
-  checkedRoutes.add("/hire/growth");
-  checkedRoutes.add("/hire/retention");
-  checkedRoutes.add("/hire/partnership");
-  checkedRoutes.add("/hire/command");
-  checkedRoutes.add("/hire/briefing");
-  checkedRoutes.add("/hire/readiness");
-  checkedRoutes.add("/hire/action");
-  checkedRoutes.add("/hire/tracker");
+  for (const check of consolidatedSurfaceChecks) {
+    checkedRoutes.add(`/hire?view=${check.view}`);
+  }
 
   for (const key of Array.from(roleClaimKeys)) {
     if (!maintainedRoleClaimKeys.has(key)) {
@@ -390,213 +324,19 @@ export function getProofValidationReport(
       });
     }
 
-    if (!maintainedReviewRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-proof-review-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/review role card ${role}.`,
-        roleId: role,
-        href: "/hire/review",
-      });
-    }
-
-    if (!maintainedComparisonRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-role-comparison-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/compare role lane ${role}.`,
-        roleId: role,
-        href: "/hire/compare",
-      });
-    }
-
-    if (!maintainedAgendaRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-interview-agenda-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/interview agenda card ${role}.`,
-        roleId: role,
-        href: "/hire/interview",
-      });
-    }
-
-    if (!maintainedScorecardRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-scorecard-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/scorecard scorecard lane ${role}.`,
-        roleId: role,
-        href: "/hire/scorecard",
-      });
-    }
-
-    if (!maintainedShortlistRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-shortlist-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/shortlist shortlist memo lane ${role}.`,
-        roleId: role,
-        href: "/hire/shortlist",
-      });
-    }
-
-    if (!maintainedDebriefRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-debrief-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/debrief manager debrief lane ${role}.`,
-        roleId: role,
-        href: "/hire/debrief",
-      });
-    }
-
-    if (!maintainedDecisionRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-decision-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/decision decision pack lane ${role}.`,
-        roleId: role,
-        href: "/hire/decision",
-      });
-    }
-
-    if (!maintainedOfferRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-offer-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/offer offer readiness lane ${role}.`,
-        roleId: role,
-        href: "/hire/offer",
-      });
-    }
-
-    if (!maintainedOnboardingRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-onboarding-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/onboarding onboarding readiness lane ${role}.`,
-        roleId: role,
-        href: "/hire/onboarding",
-      });
-    }
-
-    if (!maintainedKickoffRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-kickoff-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/kickoff kickoff alignment lane ${role}.`,
-        roleId: role,
-        href: "/hire/kickoff",
-      });
-    }
-
-    if (!maintainedImpactRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-impact-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/impact early impact lane ${role}.`,
-        roleId: role,
-        href: "/hire/impact",
-      });
-    }
-
-    if (!maintainedGrowthRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-growth-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/growth growth roadmap lane ${role}.`,
-        roleId: role,
-        href: "/hire/growth",
-      });
-    }
-
-    if (!maintainedRetentionRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-retention-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/retention retention readiness lane ${role}.`,
-        roleId: role,
-        href: "/hire/retention",
-      });
-    }
-
-    if (!maintainedPartnershipRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-partnership-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/partnership partnership operating lane ${role}.`,
-        roleId: role,
-        href: "/hire/partnership",
-      });
-    }
-
-    if (!maintainedCommandRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-command-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/command command lane ${role}.`,
-        roleId: role,
-        href: "/hire/command",
-      });
-    }
-
-    if (!maintainedBriefingRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-briefing-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/briefing briefing lane ${role}.`,
-        roleId: role,
-        href: "/hire/briefing",
-      });
-    }
-
-    if (!maintainedReadinessRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-readiness-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/readiness readiness lane ${role}.`,
-        roleId: role,
-        href: "/hire/readiness",
-      });
-    }
-
-    if (!maintainedActionRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-action-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/action action lane ${role}.`,
-        roleId: role,
-        href: "/hire/action",
-      });
-    }
-
-    if (!maintainedTrackerRoles.has(role)) {
-      addIssue(issues, {
-        id: `${role}-hiring-tracker-maintenance-missing`,
-        severity: "error",
-        area: "maintenance",
-        message: `Missing maintenance entry for /hire/tracker tracker lane ${role}.`,
-        roleId: role,
-        href: "/hire/tracker",
-      });
+    for (const check of consolidatedSurfaceChecks) {
+      const maintainedRoles = maintainedRolesBySurface.get(check.surface);
+      const route = `/hire?view=${check.view}`;
+      if (!maintainedRoles?.has(role)) {
+        addIssue(issues, {
+          id: `${role}-${check.issueSuffix}-maintenance-missing`,
+          severity: "error",
+          area: "maintenance",
+          message: `Missing maintenance entry for ${route} ${check.label} ${role}.`,
+          roleId: role,
+          href: route,
+        });
+      }
     }
   }
 

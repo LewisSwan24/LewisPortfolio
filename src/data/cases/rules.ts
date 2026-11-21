@@ -114,7 +114,7 @@ export const rulesCase: CaseRecord = {
       },
       "id": {
         "label": "Interface decisions",
-        "p": "Warnings state behaviour, not direction: take the lane and make eye contact with turning drivers, or take the alternate street — because that is the real response to a left hook, not 'turn left'. The detour button carries its own cost, stating the extra minutes on the button itself, while 'keep current route' remains an equal-weight primary action; the interface does not assume the safer route is the right route. Distances are given as distance — 200 m, 450 m, 1.2 km — not as junction counts, because there is no stable 'next intersection' while riding. And the entry button reads 'See safer routes', comparative rather than superlative, because no available data supports the word 'safest'."
+        "p": "Warnings state behavior, not direction: take the lane and make eye contact with turning drivers, or take the alternate street — because that is the real response to a left hook, not 'turn left'. The detour button carries its own cost, stating the extra minutes on the button itself, while 'keep current route' remains an equal-weight primary action; the interface does not assume the safer route is the right route. Distances are given as distance — 200 m, 450 m, 1.2 km — not as junction counts, because there is no stable 'next intersection' while riding. And the entry button reads 'See safer routes', comparative rather than superlative, because no available data supports the word 'safest'."
       },
       "pr": {
         "label": "The second brief",

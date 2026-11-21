@@ -35,7 +35,7 @@ describe("proof registry", () => {
 
       expect(packets.map((packet) => packet.id)).toEqual(hiringRoleIds);
       for (const packet of packets) {
-        expect(packet.route).toBe(`/hire/${packet.id}`);
+        expect(packet.route).toBe(`/hire?role=${packet.id}`);
         expect(packet.proofClaims.length).toBeGreaterThanOrEqual(2);
       }
     }
@@ -91,7 +91,7 @@ describe("proof registry", () => {
 
       expect(packets.map((packet) => packet.id)).toEqual(hiringRoleIds);
       for (const packet of packets) {
-        expect(packet.route).toBe(`/hire/${packet.id}/packet`);
+        expect(packet.route).toBe(`/contact?role=${packet.id}`);
         expect(packet.proof.length).toBeGreaterThanOrEqual(2);
         expect(packet.interviewFocus.length).toBeGreaterThanOrEqual(2);
         expect(packet.boundaries.length).toBeGreaterThanOrEqual(2);
@@ -126,7 +126,7 @@ describe("proof registry", () => {
 
       expect(briefs.map((brief) => brief.id)).toEqual(hiringRoleIds);
       for (const brief of briefs) {
-        expect(brief.route).toBe(`/hire/${brief.id}/next`);
+        expect(brief.route).toBe(`/contact?role=${brief.id}&intent=interview`);
         expect(brief.emailSubject.length).toBeGreaterThan(8);
         expect(brief.emailBody.length).toBeGreaterThan(40);
         expect(brief.preCallEvidence.length).toBeGreaterThanOrEqual(2);
@@ -202,25 +202,29 @@ describe("proof registry", () => {
       expect(hrefs.has(brief.route)).toBe(true);
     }
 
-    expect(hrefs.has("/hire/review")).toBe(true);
-    expect(hrefs.has("/hire/compare")).toBe(true);
-    expect(hrefs.has("/hire/interview")).toBe(true);
-    expect(hrefs.has("/hire/scorecard")).toBe(true);
-    expect(hrefs.has("/hire/shortlist")).toBe(true);
-    expect(hrefs.has("/hire/debrief")).toBe(true);
-    expect(hrefs.has("/hire/decision")).toBe(true);
-    expect(hrefs.has("/hire/offer")).toBe(true);
-    expect(hrefs.has("/hire/onboarding")).toBe(true);
-    expect(hrefs.has("/hire/kickoff")).toBe(true);
-    expect(hrefs.has("/hire/impact")).toBe(true);
-    expect(hrefs.has("/hire/growth")).toBe(true);
-    expect(hrefs.has("/hire/retention")).toBe(true);
-    expect(hrefs.has("/hire/partnership")).toBe(true);
-    expect(hrefs.has("/hire/command")).toBe(true);
-    expect(hrefs.has("/hire/briefing")).toBe(true);
-    expect(hrefs.has("/hire/readiness")).toBe(true);
-    expect(hrefs.has("/hire/action")).toBe(true);
-    expect(hrefs.has("/hire/tracker")).toBe(true);
+    for (const view of [
+      "review",
+      "compare",
+      "interview",
+      "scorecard",
+      "shortlist",
+      "debrief",
+      "decision",
+      "offer",
+      "onboarding",
+      "kickoff",
+      "impact",
+      "growth",
+      "retention",
+      "partnership",
+      "command",
+      "briefing",
+      "readiness",
+      "action",
+      "tracker",
+    ] as const) {
+      expect(hrefs.has(`/hire?view=${view}`)).toBe(true);
+    }
   });
 
   it("maintenance report exposes status buckets and stays fresh at baseline", () => {

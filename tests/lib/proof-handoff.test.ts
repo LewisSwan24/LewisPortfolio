@@ -16,9 +16,9 @@ describe("proof handoff manifest", () => {
 
     expect(manifest.roles.map((role) => role.id)).toEqual(hiringRoleIds);
     for (const role of manifest.roles) {
-      expect(role.roleRoute).toBe(`/hire/${role.id}`);
-      expect(role.packetRoute).toBe(`/hire/${role.id}/packet`);
-      expect(role.followThroughRoute).toBe(`/hire/${role.id}/next`);
+      expect(role.roleRoute).toBe(`/hire?role=${role.id}`);
+      expect(role.packetRoute).toBe(`/contact?role=${role.id}`);
+      expect(role.followThroughRoute).toBe(`/contact?role=${role.id}&intent=interview`);
       expect(role.claimCount).toBeGreaterThanOrEqual(2);
       expect(role.proofAnchors.length).toBeGreaterThanOrEqual(2);
     }

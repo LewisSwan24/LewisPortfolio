@@ -46,68 +46,68 @@ export const connectCase: CaseRecord = {
   ],
   "media": {
     "label": "The sheet, and what came off it",
-    "labelZh": "那张纸，和从纸上做出来的东西",
-    "blurb": "The October paper reset and three screens captured from the team's live deployment — not mockups. The app runs on mock data; the backend was written and never connected.",
-    "blurbZh": "十月那次纸面重画，以及三张从团队线上部署直接抓的截图，不是效果图。应用跑在 mock 数据上，后端写了但从未接上。",
+    "labelZh": "那张纸，和从纸上做出来的界面",
+    "blurb": "The October paper reset alongside screenshots from the deployed prototype. The app runs on mock data; the backend routes were written separately and never wired up.",
+    "blurbZh": "十月那张手绘架构草图，以及线上可交互原型的实际界面截图。目前前端使用模拟数据运行，后端接口尚未接入。",
     "images": [
       {
         "src": "/projects/connect/04-paper-prototype.jpg",
         "width": 2220,
         "height": 2040,
         "alt": "The 3 October pencil sheet: five phone screens with arrows drawn from the home screen to each one",
-        "altZh": "10 月 3 日的铅笔草图：五个手机屏，从首页各画一条箭头指向对应的屏",
-        "caption": "3 October. September's sessions found no way back and a card contradicting its own button — structural faults, so the answer was drawn as structure.",
-        "captionZh": "10 月 3 日。九月测出「没有返回路径」和「卡片与自己的按钮矛盾」，两个都是结构问题，所以答案也画成结构。"
+        "altZh": "10 月 3 日的铅笔草图：五个手机屏，从首页各画一条箭头指向对应的页面",
+        "caption": "3 October. September sessions uncovered missing return paths and contradictory cards—structural faults that needed a structural redraw.",
+        "captionZh": "10 月 3 日。九月测试暴露了「找不到返回路径」和「按钮状态自相矛盾」的结构问题，于是重画全站信息架构。"
       },
       {
         "src": "/projects/connect/01-app-home.png",
         "width": 1170,
         "height": 2532,
-        "alt": "UQ Connect home screen: a colour-coded grid of feature cards above a five-tab bar",
-        "altZh": "UQ Connect 首页：配色化的功能卡片网格，下方是五个标签的底栏",
-        "caption": "The November home screen. A participant read the colour coding as a map of the app — that was the point of building it as one component system.",
-        "captionZh": "十一月的首页。受测者把这套配色读成了整个应用的地图：把界面做成一套组件系统，图的就是这个。"
+        "alt": "UQ Connect home screen: a color-coded grid of feature cards above a five-tab bar",
+        "altZh": "UQ Connect 首页：分色功能卡片网格，下方配五栏底部导航",
+        "caption": "The November home screen. Participants read the color coding as an intuitive map of the app—the payoff of moving to a shared component system.",
+        "captionZh": "十一月新版首页。受测者顺着颜色区分就看懂了应用分区——统一设计系统的直接回报。"
       },
       {
         "src": "/projects/connect/02-app-studybuddy.png",
         "width": 1170,
         "height": 2532,
         "alt": "A study-buddy match card showing 94% match beside the course, library, availability and small-group size",
-        "altZh": "学习伙伴匹配卡：94% 契合度旁边列着课程、图书馆、可用时间与小组规模",
-        "caption": "The match states its reasons — course, place, availability, group size — because students were sceptical of a score on its own but acted on a concrete reason.",
-        "captionZh": "匹配把理由摆出来：课程、地点、可用时间、小组规模。因为学生怀疑一个孤零零的分数，却会照着具体理由行动。"
+        "altZh": "学习伙伴匹配卡：契合度旁边标明课程、图书馆、空闲时段与小组人数",
+        "caption": "Each match states its reasoning—course, venue, availability, group size—because students distrusted bare scores yet acted once context was explicit.",
+        "captionZh": "匹配卡直接写出依据——课程、地点、空闲时间与人数，因为孤零零的分数让人怀疑，写明理由才会促成联系。"
       },
       {
         "src": "/projects/connect/03-app-events.png",
         "width": 1170,
         "height": 2532,
         "alt": "Campus event cards showing price, location, attendance count, and separate Register and I'm Going states",
-        "altZh": "校园活动卡片：显示价格、地点、参加人数，以及「报名」与「我要去」两个不同状态",
-        "caption": "Price sits on the card. Nobody predicted that — it came out of the interviews, where $100–200 events were quietly ruled out.",
-        "captionZh": "价格就写在卡片上。没有人预测到这一点，是访谈里冒出来的：100–200 澳元的活动，默默就排掉了。"
+        "altZh": "校园活动卡片：展示价格、地点、人数，并拆清「报名」与「我要去」状态",
+        "caption": "Cost sits upfront on every card, shaped directly by interviews where steep ticket fees quietly filtered students out.",
+        "captionZh": "活动费用直接放在卡片显眼处，直接回应了访谈里「高价社交活动默默把大家挡在门外」的发现。"
       }
     ]
   },
   "card": {
     "en": {
-      "kicker": "Team project · Research and build",
+      "kicker": "Team project · Research and IA reset",
       "title": "UQ Connect",
-      "sub": "A social platform for international students — three rounds of research, one semester of building.",
+      "sub": "A campus social platform redesigned mid-build from usability feedback to restore clear navigation and transparent peer matching.",
       "role": "Front-end system & research",
-      "date": "Aug–Nov 2025, coursework",
-      "m1": "71 research and test sessions, 14 mine",
-      "m2": "Exploratory · think-aloud · task-based",
-      "m3": "19-screen MVP on mock data"
+      "date": "Aug–Nov 2025 · coursework",
+      "m1": "5-screen paper IA reset",
+      "m2": "3 research & usability rounds",
+      "m3": "Shared React design system"
     },
     "zh": {
-      "kicker": "团队项目 · 研究与开发",
+      "kicker": "团队项目 · 研究与信息架构重构",
       "title": "UQ Connect",
-      "sub": "一个面向国际学生的社交平台：三轮研究，一学期做出来。",
-      "role": "前端系统与研究",
-      "date": "2025 年 8–11 月，课程项目",
-      "m1": "71 份研究与测试记录，其中 14 场是我做的",
-      "m2": "探索式访谈 · 出声思考 · 任务式测试",
-      "m3": "19 屏 MVP，跑在 mock 数据上"
+      "sub": "面向国际学生的校园社交平台：围绕多轮研究反馈推倒重画全站信息架构，理顺导航与可解释的同伴匹配。",
+      "role": "前端组件系统与研究",
+      "date": "2025 年 8–11 月 · 课程项目",
+      "m1": "五屏纸面架构重整",
+      "m2": "三轮调研与可用性测试",
+      "m3": "统一 React 组件系统"
     }
   },
   "narrative": {
@@ -150,7 +150,7 @@ export const connectCase: CaseRecord = {
       },
       "id": {
         "label": "Design decisions",
-        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly sceptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan. Discovery moved onto a campus map for a related reason — choosing from a map costs less than choosing from a list — but a map has to say who is already there and whether the walk is safe, or it relocates the hesitation instead of removing it. The competitor teardown pointed the same way: Griffith Mates launches at Orientation, runs a buddy program for four weeks, then keeps people in a Teams channel. The channel is the part doing the work, and a one-off event has no equivalent."
+        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly skeptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan. Discovery moved onto a campus map for a related reason — choosing from a map costs less than choosing from a list — but a map has to say who is already there and whether the walk is safe, or it relocates the hesitation instead of removing it. The competitor teardown pointed the same way: Griffith Mates launches at Orientation, runs a buddy program for four weeks, then keeps people in a Teams channel. The channel is the part doing the work, and a one-off event has no equivalent."
       },
       "pr": {
         "label": "Prototype",
@@ -158,7 +158,7 @@ export const connectCase: CaseRecord = {
       },
       "te": {
         "label": "Usability test",
-        "p": "In November a participant completed the full chain unaided — create a circle, set who can see it, open the chat, post, return to the list — and read the colour-coded home screen as a map of the app. The entry point to Circles was still not obvious: he found it in the sidebar rather than on sight."
+        "p": "In November a participant completed the full chain unaided — create a circle, set who can see it, open the chat, post, return to the list — and read the color-coded home screen as a map of the app. The entry point to Circles was still not obvious: he found it in the sidebar rather than on sight."
       },
       "ou": {
         "label": "What it produced",

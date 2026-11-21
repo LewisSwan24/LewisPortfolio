@@ -109,22 +109,22 @@ export const grasslandCase: CaseRecord = {
     "en": {
       "kicker": "Complex interaction · Real-time systems",
       "title": "Grassland Iron Tide",
-      "sub": "A five-mission browser RTS chapter, where selection, commands, feedback and failure recovery follow one set of rules that a test can check.",
+      "sub": "A five-mission browser RTS chapter where selection, command grammar, and checkpoint recovery follow one consistent mental model.",
       "role": "Solo, with AI tools",
       "date": "2026 · chapter one playable",
-      "m1": "5 missions, played through end to end",
-      "m2": "430 / 430 tests in the RC record",
-      "m3": "2 resolutions checked in a real browser"
+      "m1": "Unified RTS command grammar",
+      "m2": "Single checkpoint recovery chain",
+      "m3": "Two-resolution desktop playthrough"
     },
     "zh": {
-      "kicker": "复杂交互 · 即时系统",
+      "kicker": "复杂交互 · 即时操作心智模型",
       "title": "草原铁潮",
-      "sub": "一章五关、在桌面浏览器里跑的即时战略游戏。选择、命令、反馈与失败恢复走同一套规则，而且这套规则能用测试核对。",
-      "role": "独立完成，借助 AI 工具",
+      "sub": "一章五关、在桌面浏览器运行的即时战略游戏：用统一的操作语法与单一检查点状态链，让玩家越往后越笃定。",
+      "role": "独立设计，借助 AI 工具开发",
       "date": "2026 · 第一章可玩",
-      "m1": "5 关，可连续通关",
-      "m2": "RC 记录中 430 / 430 测试通过",
-      "m3": "2 种分辨率真实浏览器通关"
+      "m1": "跨五关一致的命令语法",
+      "m2": "统一检查点状态还原链",
+      "m3": "双分辨率实机连续通关"
     }
   },
   "narrative": {
@@ -244,7 +244,7 @@ export const grasslandCase: CaseRecord = {
         "p": "发布候选版的审计把四项检查放在一起。430 / 430 个自动化测试通过，覆盖任务逻辑、命令、移动、视野、检查点和运行时资源契约。资产闸门通过。网页构建通过，保留 Phaser 主包偏大的已知警告。在真实浏览器里，以 1280×720 和 1920×1080 两种分辨率从主菜单连续打完五关，复验选择、编队、命令、暂停、迷你地图与失败恢复，并逐屏检查页面滚动、内容裁切和按钮遮挡。"
       },
       "ou": {
-        "label": "这个案例产出了什么",
+        "label": "产出与边界",
         "m1": {
           "label": "第一章关卡数",
           "v": "5"
