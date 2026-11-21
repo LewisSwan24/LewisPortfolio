@@ -77,6 +77,7 @@ function disabledSurfaceRedirects() {
 }
 
 const nextConfig = {
+  outputFileTracingRoot: __dirname,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     formats: ["image/avif", "image/webp"],
