@@ -1,6 +1,7 @@
 "use client";
 
 import { Component, type ReactNode, type ErrorInfo } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
 interface Props {
@@ -123,12 +124,12 @@ export class ErrorBoundary extends Component<Props, State> {
             {/* Support link */}
             <p className="mt-6 text-sm text-muted-foreground">
               If this keeps happening, please{" "}
-              <a 
-                href="/contact" 
+              <Link
+                href="/contact"
                 className="text-accent hover:underline"
               >
                 contact support
-              </a>
+              </Link>
             </p>
           </div>
         </div>

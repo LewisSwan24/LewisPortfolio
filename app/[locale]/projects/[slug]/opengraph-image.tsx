@@ -2,10 +2,9 @@ import { ImageResponse } from "next/og";
 import { CURRENT_PROJECT_SLUGS, PROJECT_OG_COPY } from "@/lib/project-routes";
 import { siteConfig } from "@/lib/site";
 
-// Edge, matching app/opengraph-image.tsx. Under the nodejs runtime this route
-// returned 500 for every slug: @vercel/og resolves its bundled font through
-// fileURLToPath, which throws on the packaged path. Nothing here needs Node.
-export const runtime = "edge";
+// Next.js 15 requires nodejs runtime when combined with generateStaticParams
+// so every project OG card is prerendered cleanly at build time.
+export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
