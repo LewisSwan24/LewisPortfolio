@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
@@ -24,6 +25,12 @@ const shareLinks = {
  * Social sharing buttons component
  */
 export function ShareButtons({ url, title, description }: ShareButtonsProps) {
+    const [canNativeShare, setCanNativeShare] = useState(false);
+
+    useEffect(() => {
+        setCanNativeShare(typeof navigator !== "undefined" && "share" in navigator);
+    }, []);
+
     const handleShare = async () => {
         if (navigator.share) {
             try {
@@ -44,7 +51,7 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
             <span className="text-sm font-medium text-muted-foreground">Share:</span>
 
             {/* Native Share (Mobile) */}
-            {typeof window !== "undefined" && "share" in navigator && (
+            {canNativeShare && (
                 <button
                     onClick={handleShare}
                     className={cn(

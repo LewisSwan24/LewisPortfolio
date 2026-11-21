@@ -10,6 +10,7 @@ import { CaseMediaGallery } from "@/components/case/CaseMediaGallery";
 import { CaseCoverVisual, hasScreenshotCover } from "@/components/case/CaseCoverVisual";
 import { CaseSummaryBlock } from "@/components/case/CaseSummaryBlock";
 import { CaseSimulatorFrame } from "@/components/case/CaseSimulatorFrame";
+import { CaseTerminologyNotes } from "@/components/case/CaseTerminologyNotes";
 import { CaseNarrative } from "@/components/case/CaseNarrative";
 import { CaseRelatedNav } from "@/components/case/CaseRelatedNav";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -140,6 +141,7 @@ export default async function CasePage({ params }: Props) {
 
   return (
     <main className="page" data-screen-label={`03 Case · ${k}`}>
+      <div className="cs-scroll-progress" aria-hidden="true" />
       <StructuredData
         data={generateBreadcrumbSchema([
           { name: t("nav.home"), url: siteUrl },
@@ -160,7 +162,7 @@ export default async function CasePage({ params }: Props) {
         <div className="eyebrow" style={{ marginBottom: 12 }}>
           {card.kicker}
         </div>
-        <h1>{card.title}</h1>
+        <h1 tabIndex={-1}>{card.title}</h1>
         <p className="sub">{subtitleText}</p>
         {isUnlistedProject(k) && (
           <p className="sub" role="note" style={{ fontWeight: 600 }}>
@@ -224,6 +226,8 @@ export default async function CasePage({ params }: Props) {
             </div>
           )}
         </dl>
+
+        <CaseTerminologyNotes slug={k} locale={proofLocale} />
 
         <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
           <span className="cs-jump-label" aria-hidden="true">

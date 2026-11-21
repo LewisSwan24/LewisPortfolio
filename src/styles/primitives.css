@@ -407,3 +407,109 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
     transition-behavior: allow-discrete;
   }
 }
+
+/* ============================================================
+   V3.7 Anchor Note Popover (Native Popover + Anchor Positioning)
+   ============================================================ */
+.anchor-note-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  vertical-align: baseline;
+}
+
+.anchor-note-trigger {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px dashed var(--accent);
+  padding: 2px 3px;
+  margin: 0 2px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.anchor-note-trigger:hover {
+  color: var(--accent);
+}
+
+.anchor-note-popover {
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  max-width: min(320px, calc(100vw - 32px));
+}
+
+.anchor-note-popover[data-fallback-open="true"] {
+  display: block;
+  position: fixed;
+  inset-block-end: 24px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+}
+
+.anchor-note-content {
+  position: relative;
+  padding: 12px 14px;
+  display: grid;
+  gap: 6px;
+}
+
+.anchor-note-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.anchor-note-text {
+  display: block;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+@supports (anchor-name: --a) {
+  [popover].anchor-note-popover {
+    inset: auto;
+    margin: unset;
+    position: fixed;
+    position-area: block-start;
+    position-try-fallbacks: flip-block;
+    margin-block-end: 8px;
+  }
+}
+
+@supports (container-type: anchored) {
+  [popover].anchor-note-popover {
+    container-type: anchored;
+  }
+
+  .anchor-note-content::before {
+    content: "▼" / "";
+    position: absolute;
+    inset-block-end: -13px;
+    inset-inline-start: 16px;
+    font-size: 11px;
+    line-height: 1;
+    color: var(--border-strong);
+  }
+
+  @container anchored(fallback: flip-block) {
+    .anchor-note-content::before {
+      content: "▲" / "";
+      inset-block-start: -13px;
+      inset-block-end: auto;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
+import { TransitionLink } from "@/components/navigation/TransitionLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { FeaturedDeck } from "@/components/home/FeaturedDeck";
 import { SectionReveal } from "@/components/motion/SectionReveal";
@@ -56,12 +57,12 @@ function FeatItem({ n, k, href, flip, priority = false, viz, t, locale }: FeatIt
   const cover = getProjectCover(k);
   const card = getCaseCard(k, locale);
   return (
-    <Link
+    <TransitionLink
       className={`feat-item ${flip ? "flip" : ""}`}
       href={href}
       style={{ textDecoration: "none", color: "inherit" }}
     >
-      <div className={`feat-visual${cover ? " has-cover" : ""}`}>
+      <div className={`feat-visual${cover ? " has-cover" : ""}`} data-vt-media>
         <span className="num">{n}</span>
         {cover ? (
           <ProjectCoverImage
@@ -76,7 +77,7 @@ function FeatItem({ n, k, href, flip, priority = false, viz, t, locale }: FeatIt
       </div>
       <div className="feat-body">
         <div className="eyebrow">{card.kicker}</div>
-        <h3>{card.title}</h3>
+        <h3 data-vt-title>{card.title}</h3>
         <p className="sub">{card.sub}</p>
         <dl className="feat-meta">
           <dt>{t("cs.role")}</dt>
@@ -93,7 +94,7 @@ function FeatItem({ n, k, href, flip, priority = false, viz, t, locale }: FeatIt
           {t("common.viewCaseStudy")} <span>→</span>
         </span>
       </div>
-    </Link>
+    </TransitionLink>
   );
 }
 

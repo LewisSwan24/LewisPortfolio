@@ -553,3 +553,56 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 .cs-tree .ko { color: var(--text-3); text-decoration: line-through; }
 .cs-tree .ok { color: var(--text); }
 @media (max-width: 640px) { .cs-tree { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   V3.7 Terminology Footnotes & Scroll-Driven Progress Rail
+   ============================================================ */
+.case-term-note-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  margin-top: var(--s-4);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.cs-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  pointer-events: none;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+  @keyframes cs-progress-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .cs-scroll-progress {
+    animation: cs-progress-grow auto linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0% 100%;
+  }
+}
+
+@supports not ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+  .cs-scroll-progress {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-scroll-progress {
+    animation: none !important;
+    display: none;
+  }
+}

@@ -199,6 +199,11 @@
   justify-content: space-between;
 }
 
+.lab-control-row input[type="range"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 .lab-pill-row {
   display: flex;
   flex-wrap: wrap;
@@ -410,4 +415,210 @@
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--text-3);
+}
+
+/* ============================================================
+   V3.7 Six Interaction Primitives Gallery
+   ============================================================ */
+.lab-prim-stage {
+  margin-top: var(--s-4);
+}
+
+.lab-prim-panel {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.lab-prim-summary {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.lab-dual-view {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+@media (max-width: 720px) {
+  .lab-dual-view {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lab-dual-card,
+.lab-risk-compare {
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  padding: var(--s-4);
+  display: grid;
+  gap: 8px;
+}
+
+.lab-risk-compare--anti {
+  border-style: dashed;
+}
+
+.lab-risk-compare--calm {
+  border-width: 2px;
+  border-color: var(--border-strong);
+}
+
+.lab-compare-outcome {
+  margin: 4px 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+}
+
+.lab-conf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+@media (max-width: 640px) {
+  .lab-conf-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lab-conf-card {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  display: grid;
+  gap: 6px;
+}
+
+.lab-conf-card[data-tier="fill"] {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--border-strong);
+}
+
+.lab-conf-card[data-tier="review"] {
+  border-style: dashed;
+  border-width: 2px;
+  border-color: var(--accent);
+}
+
+.lab-conf-card[data-tier="blank"] {
+  border-style: double;
+  border-width: 3px;
+}
+
+.lab-conf-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.lab-conf-val {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.lab-conf-badge {
+  justify-self: start;
+  padding: 2px 8px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--surface);
+}
+
+.lab-wrist-box {
+  padding: var(--s-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  display: grid;
+  gap: var(--s-3);
+}
+
+.lab-wrist-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.lab-wrist-status {
+  padding: 10px 12px;
+  border: 1px dashed var(--border);
+  border-radius: var(--r-xs);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.lab-drag-stage {
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  padding: var(--s-6);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.lab-drag-card {
+  padding: 18px 24px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  cursor: grab;
+  user-select: none;
+  display: grid;
+  gap: 6px;
+  text-align: center;
+  min-width: 220px;
+}
+
+.lab-drag-card:active {
+  cursor: grabbing;
+}
+
+.lab-drag-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+@media (max-width: 640px) {
+  .lab-drag-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lab-anchor-sandbox {
+  min-height: 180px;
+  padding: var(--s-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+}
+
+.lab-anchor-sandbox[data-edge="top"] {
+  align-items: flex-start;
+}
+
+.lab-anchor-sandbox[data-edge="bottom"] {
+  align-items: flex-end;
+}
+
+.lab-anchor-sandbox p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text);
 }

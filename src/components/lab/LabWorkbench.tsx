@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import { getGsap } from "@/lib/motion/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { LabPrimitivesGallery } from "./primitives/LabPrimitivesGallery";
 
 type Locale = "en" | "zh";
 type EaseId = "power2.out" | "power3.out" | "back.out(1.2)";
-type DemoId = "onthebeat" | "autofill" | "walkie";
 
 const SWATCHES = [
   { token: "--bg", hexLight: "#EFE8DA", hexDark: "#141413", ratio: "Base canvas" },
@@ -19,194 +19,6 @@ const SWATCHES = [
   { token: "--border", hexLight: "#9C9182", hexDark: "#5C5C58", ratio: "1px divider" },
   { token: "--accent", hexLight: "#A63F2A", hexDark: "#F5F5F4", ratio: "5.1:1 · actions only" },
 ] as const;
-
-interface StateStep {
-  id: string;
-  name: Record<Locale, string>;
-  state: Record<Locale, string>;
-  rule: Record<Locale, string>;
-}
-
-const STATE_DEMOS: Record<
-  DemoId,
-  {
-    title: Record<Locale, string>;
-    summary: Record<Locale, string>;
-    steps: StateStep[];
-  }
-> = {
-  onthebeat: {
-    title: { en: "On The Beat · Zero-Identity Pairing", zh: "On The Beat · 匿名挥手配对" },
-    summary: {
-      en: "Two strangers at a gig only learn names and a meeting spot after both opt in — never before.",
-      zh: "演出里的两位陌生人只有在双方都明确点头之后才互相看到名字与碰面点，绝不提前暴露身份。",
-    },
-    steps: [
-      {
-        id: "idle",
-        name: { en: "Idle", zh: "待命" },
-        state: {
-          en: "Wristband quiet, phone dark. Nobody nearby can see you exist in the room.",
-          zh: "手环静默、手机息屏。附近任何人都看不到你的存在。",
-        },
-        rule: {
-          en: "Design rule: Presence is opt-in per moment, never always-on broadcasting.",
-          zh: "交互规则：在场状态必须按次主动开启，禁止常驻广播。",
-        },
-      },
-      {
-        id: "armed",
-        name: { en: "Armed (SAY HI)", zh: "点亮 SAY HI" },
-        state: {
-          en: "SAY HI card is lit on the phone; ESP32 wristband arms its IMU wave detector.",
-          zh: "手机端 SAY HI 卡点亮；ESP32 手环开启 IMU 挥手检测。",
-        },
-        rule: {
-          en: "Design rule: Single gesture commits intent without browsing profiles.",
-          zh: "交互规则：单次实体动作表达意愿，不引入刷资料卡片。",
-        },
-      },
-      {
-        id: "waved",
-        name: { en: "Nearby Wave", zh: "收到挥手（匿名）" },
-        state: {
-          en: "Relay forwards a nearby pulse. Screen says only that someone nearby waved — zero name, zero photo.",
-          zh: "中继转发附近信号。屏幕只提示「附近有人挥手」——无名字、无照片。",
-        },
-        rule: {
-          en: "Design rule: Unilateral interest never leaks identity.",
-          zh: "交互规则：单方兴趣绝不泄露对方身份。",
-        },
-      },
-      {
-        id: "match",
-        name: { en: "Mutual Nod", zh: "双向确认碰面" },
-        state: {
-          en: "Both nodded. Names and one meeting landmark appear, then the app gets out of the way.",
-          zh: "双方点头后才显示彼此名字与唯一碰面点，随后应用退场。",
-        },
-        rule: {
-          en: "Design rule: Success means phones returning to pockets.",
-          zh: "交互规则：交互成功的标准是手机重新放回口袋。",
-        },
-      },
-    ],
-  },
-  autofill: {
-    title: { en: "Resume Autofill · Zero-Guess Confidence Gate", zh: "Resume Autofill · 零猜测置信度门控" },
-    summary: {
-      en: "Every form field is classified into three explicit buckets; the extension never fabricates answers and never clicks Submit.",
-      zh: "每个表单字段被严格分为三档；扩展永不猜测编造，也永不代点提交按钮。",
-    },
-    steps: [
-      {
-        id: "scan",
-        name: { en: "Local DOM Scan", zh: "本地 DOM 扫描" },
-        state: {
-          en: "47 inputs detected on ATS page. Resume stays in local browser storage; zero network upload.",
-          zh: "检测到 47 个 ATS 输入框。简历仅留在本地存储，零网络外发。",
-        },
-        rule: {
-          en: "Design rule: Local-first privacy — personal data never leaves the browser.",
-          zh: "交互规则：本地优先隐私，个人简历绝不离开设备。",
-        },
-      },
-      {
-        id: "filled",
-        name: { en: "Auto-Filled (High match)", zh: "高置信直填" },
-        state: {
-          en: "Deterministic fields (name, degree, dates, links) filled with exact schema match and field-level log.",
-          zh: "确定性字段（姓名、学位、日期、链接）按精确规则填入并记录原因。",
-        },
-        rule: {
-          en: "Design rule: Only verified 1:1 mappings write automatically.",
-          zh: "交互规则：仅经过校验的 1:1 映射才允许自动写入。",
-        },
-      },
-      {
-        id: "review",
-        name: { en: "Needs Review (Ambiguous)", zh: "待人工确认" },
-        state: {
-          en: "Work-rights dropdown is ambiguous; highlighted with both word + border (never color alone).",
-          zh: "工作权限下拉框存在歧义；同时用文字与线框标记（不只靠颜色）。",
-        },
-        rule: {
-          en: "Design rule: Uncertainty surfaces as a review item, never a silent guess.",
-          zh: "交互规则：不确定性必须显式暴露给用户确认，绝不静默猜测。",
-        },
-      },
-      {
-        id: "submit-lock",
-        name: { en: "Human Submit Lock", zh: "人工提交锁" },
-        state: {
-          en: "Side panel summarizes filled, review, and skipped items. Final Submit remains strictly human-triggered.",
-          zh: "侧栏清晰汇总已填、待确认与未填项；最终提交按钮严格锁定为人工点击。",
-        },
-        rule: {
-          en: "Design rule: Automation stops before irreversible external commitment.",
-          zh: "交互规则：自动化在不可逆外部提交之前强制停止。",
-        },
-      },
-    ],
-  },
-  walkie: {
-    title: { en: "Walkie · Wrist Voice Approval Gate for Claude Code", zh: "Walkie · 手腕语音与工具权限审批流" },
-    summary: {
-      en: "M5StickS3 firmware + AES-256-GCM sealed link + Node bridge routing spoken instructions and Claude tool approvals to the wrist.",
-      zh: "M5StickS3 固件 + AES-256-GCM 加密链路 + Node 桥接，把语音指令与 Claude 工具审批直接送到手腕。",
-    },
-    steps: [
-      {
-        id: "ptt",
-        name: { en: "Hold Front Key", zh: "按住前键说话" },
-        state: {
-          en: "M5StickS3 captures 16 kHz audio (PCM over USB, or 4-bit ADPCM over Fly.io sealed relay).",
-          zh: "M5StickS3 采集 16 kHz 语音（USB 走 PCM，Fly.io 加密中继走 4-bit ADPCM）。",
-        },
-        rule: {
-          en: "Design rule: Physical press-to-talk guarantees deliberate mic capture.",
-          zh: "交互规则：实体按键按住说话，确保录音意图清晰可控。",
-        },
-      },
-      {
-        id: "seal",
-        name: { en: "Sealed Frame", zh: "AES-256-GCM 封包" },
-        state: {
-          en: "Frame encrypted with HKDF session key from pair.key; relay forwards ciphertext without reading it.",
-          zh: "由 pair.key 派生 HKDF 会话密钥加密帧；云端中继仅转发密文无法解密。",
-        },
-        rule: {
-          en: "Design rule: Relay is zero-knowledge; USB cable always wins when plugged in.",
-          zh: "交互规则：中继零知识；插线时 USB 永远优先于无线中继。",
-        },
-      },
-      {
-        id: "perm",
-        name: { en: "Wrist Permission", zh: "手腕审批门控" },
-        state: {
-          en: "Claude Code requests a tool call. Bridge queues approval on the S3 screen: front key approves, side key denies (with optional voice reason).",
-          zh: "Claude Code 请求工具调用。桥接将审批推到手腕屏幕：前键同意、侧键拒绝（可附口述原因）。",
-        },
-        rule: {
-          en: "Design rule: High-impact agent actions require physical confirmation.",
-          zh: "交互规则：高风险 Agent 动作必须经过实体按键确认。",
-        },
-      },
-      {
-        id: "reply",
-        name: { en: "Spoken Summary", zh: "语音简报回传" },
-        state: {
-          en: "Bridge summarizes the turn via OpenAI (Gemini fallback) and streams audio back to the wrist speaker.",
-          zh: "桥接通过 OpenAI（Gemini 兜底）合成简短结果回传至手腕扬声器。",
-        },
-        rule: {
-          en: "Design rule: Eyes-free feedback loop closes without returning to the desk.",
-          zh: "交互规则：免看屏幕完成闭环，无需走回电脑前。",
-        },
-      },
-    ],
-  },
-};
 
 export function LabWorkbench({ locale }: { locale: Locale }) {
   const isZh = locale === "zh";
@@ -220,21 +32,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
   const [cardAtRight, setCardAtRight] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Module 03 state: State-Machine Micro-Demos
-  const [activeDemo, setActiveDemo] = useState<DemoId>("onthebeat");
-  const [stepIdx, setStepIdx] = useState(0);
-
-  useEffect(() => {
-    const param = new URLSearchParams(window.location.search).get("demo");
-    if (param === "onthebeat" || param === "autofill" || param === "walkie") {
-      setActiveDemo(param);
-      setStepIdx(0);
-    }
-  }, []);
-
   const effectiveReduced = osReducedMotion || simulateReduced;
-  const demo = STATE_DEMOS[activeDemo];
-  const currentStep = demo.steps[stepIdx] ?? demo.steps[0];
 
   const triggerMotion = () => {
     const nextSide = !cardAtRight;
@@ -257,11 +55,6 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
       ease,
       overwrite: "auto",
     });
-  };
-
-  const switchDemo = (next: DemoId) => {
-    setActiveDemo(next);
-    setStepIdx(0);
   };
 
   return (
@@ -409,90 +202,8 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* Module 03: Interactive State-Machine Micro-Demos */}
-      <section className="lab-module" aria-labelledby="lab-sm-title">
-        <div className="lab-module-head">
-          <div>
-            <div className="label">03 · {isZh ? "交互状态机微原型" : "State-Machine Micro-Demos"}</div>
-            <h2 id="lab-sm-title">
-              {isZh ? "从真实项目中抽离的交互规则" : "Core Interaction Rules from Real Projects"}
-            </h2>
-            <p>
-              {isZh
-                ? "点击下方不同项目与状态节点，直接查看每个系统在关键时刻如何守住用户信任与反馈清晰度。"
-                : "Step through each project state to inspect the interaction rules that keep user trust and physical feedback predictable."}
-            </p>
-          </div>
-        </div>
-
-        <div className="lab-sm-tabs" role="tablist" aria-label={isZh ? "选择状态机案例" : "Select state machine"}>
-          {(["onthebeat", "autofill", "walkie"] as const).map((id) => (
-            <button
-              key={id}
-              type="button"
-              role="tab"
-              aria-selected={activeDemo === id}
-              className="lab-pill"
-              onClick={() => switchDemo(id)}
-            >
-              {STATE_DEMOS[id].title[locale]}
-            </button>
-          ))}
-        </div>
-
-        <p style={{ marginBottom: 16, color: "var(--text-2)", fontSize: 15 }}>
-          {demo.summary[locale]}
-        </p>
-
-        <div className="lab-sm-steps">
-          {demo.steps.map((step, i) => (
-            <button
-              key={step.id}
-              type="button"
-              className={`lab-sm-step${i === stepIdx ? " is-current" : ""}`}
-              onClick={() => setStepIdx(i)}
-            >
-              <div className="lab-sm-step-num">{String(i + 1).padStart(2, "0")}</div>
-              <div className="lab-sm-step-name">{step.name[locale]}</div>
-            </button>
-          ))}
-        </div>
-
-        <div className="lab-sm-detail" aria-live="polite">
-          <div className="eyebrow">
-            {isZh ? "当前状态" : "Active state"} · {String(stepIdx + 1).padStart(2, "0")} /{" "}
-            {String(demo.steps.length).padStart(2, "0")}
-          </div>
-          <h3 style={{ margin: 0, fontSize: 20, fontWeight: 600 }}>{currentStep.name[locale]}</h3>
-          <p style={{ margin: 0, color: "var(--text-2)", lineHeight: 1.6 }}>
-            {currentStep.state[locale]}
-          </p>
-          <div className="lab-sm-rule">{currentStep.rule[locale]}</div>
-          <div className="lab-sm-actions">
-            <button
-              type="button"
-              className="btn btn-ghost"
-              disabled={stepIdx === 0}
-              onClick={() => setStepIdx((i) => Math.max(0, i - 1))}
-            >
-              ← {isZh ? "上一步" : "Previous"}
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => setStepIdx((i) => (i + 1) % demo.steps.length)}
-            >
-              {stepIdx === demo.steps.length - 1
-                ? isZh
-                  ? "重新开始"
-                  : "Restart flow"
-                : isZh
-                  ? "推进到下一状态 →"
-                  : "Advance state →"}
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* Module 03: Six Interaction Primitives Exhibition */}
+      <LabPrimitivesGallery locale={locale} />
     </div>
   );
 }

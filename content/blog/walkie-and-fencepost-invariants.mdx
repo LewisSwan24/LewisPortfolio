@@ -32,7 +32,7 @@ In neighborhood wildlife storyboarding, sharing backyard sightings involves priv
 In Fencepost, two rules live in the data boundary itself:
 
 1. **No EXIF storage**: Media uploads strip location metadata on ingest so home coordinates never enter the database.
-2. **Query-level `access_grants` enforcement**: Every retrieval query joins active sharing grants before assembling model context, verified through automated privacy checks and red-line prompt reviews. When a resident revokes a QR grant, subsequent assistant answers immediately stop referencing the hidden sighting.
+2. **Query-level `access_grants` enforcement**: Every retrieval query joins active sharing grants before assembling model context, verified through automated privacy checks and red-line prompt reviews. When a resident revokes a QR grant, subsequent assistant answers immediately stop referencing the hidden sighting. <AnchorNote term="query-layer invariant" label="Architecture note" note="Separating timeline queries from assistant context queries means UI caching never leaks revoked data back into an LLM prompt." />
 
 The live public build on Vercel intentionally leaves demo handle login lightweight so reviewers can inspect flows directly, while keeping grant enforcement intact at the data layer.
 

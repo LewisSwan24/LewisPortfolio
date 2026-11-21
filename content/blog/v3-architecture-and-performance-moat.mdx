@@ -24,7 +24,7 @@ Consolidating all case records into typed `src/data/cases/*.ts` modules validate
 
 Even after slimming dictionaries, build inspection flagged `/projects` as noticeably heavier than other routes because `WorkIndex` sat behind a `"use client"` boundary—pulling interactive thumbnails, summaries, and helpers into client JavaScript just to power a filter bar.
 
-Lifting those presentational blocks back into the Server Component (`app/[locale]/projects/page.tsx`) and passing rendered slots left only the lightweight tab toggle on the client, dropping the `/projects` route script to roughly **1.25 kB** so automated CI budget checks can keep interaction pages crisp.
+Lifting those presentational blocks back into the Server Component (`app/[locale]/projects/page.tsx`) and passing rendered slots left only the lightweight tab toggle on the client, dropping the `/projects` route script to roughly **1.25 kB** so automated CI budget checks can keep interaction pages crisp. <AnchorNote term="RSC slot pattern" label="Engineering note" note="Passing pre-rendered server ReactNode trees as props into a small client wrapper keeps heavy SVG/media helpers off the browser bundle." />
 
 ## Lighter assets, calmer motion, and accessibility checks
 
