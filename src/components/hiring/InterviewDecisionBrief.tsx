@@ -6,14 +6,15 @@ import type { InterviewDecisionBrief as InterviewDecisionBriefData } from "@/lib
 interface InterviewDecisionBriefProps {
   brief: InterviewDecisionBriefData;
   locale?: ProofLocale;
-  resumeLabel?: string;
+  workLabel?: string;
 }
 
 export function InterviewDecisionBrief({
   brief,
   locale = "en",
-  resumeLabel = "Resume",
+  workLabel,
 }: InterviewDecisionBriefProps) {
+  const projectsText = workLabel ?? (locale === "zh" ? "查看作品" : "Browse work");
   return (
     <section className="interview-room-hero container" aria-labelledby="interview-room-title">
       <div className="interview-room-hero-copy">
@@ -28,8 +29,8 @@ export function InterviewDecisionBrief({
           <Link className="btn btn-ghost" href={localizeInternalHref(brief.secondaryAction.href, locale)}>
             {brief.secondaryAction.label}
           </Link>
-          <Link className="btn btn-ghost" href={localizeInternalHref("/resume", locale)}>
-            {resumeLabel}
+          <Link className="btn btn-ghost" href={localizeInternalHref("/projects", locale)}>
+            {projectsText}
           </Link>
         </div>
       </div>

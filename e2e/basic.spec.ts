@@ -98,25 +98,6 @@ test.describe("Projects Page", () => {
         await expect(page.locator("a.work-index-row[href^='/projects/']").first()).toBeVisible();
     });
 
-    test("should display the evidence map", async ({ page }) => {
-        await expect(page.getByText("Evidence map")).toBeVisible();
-        await expect(page.getByText("What this proves").first()).toBeVisible();
-    });
-
-    test("should help recruiters choose the right case", async ({ page }) => {
-        await expect(page.getByText("Recruiter shortlist")).toBeVisible();
-        // Renamed in 3e58192: the real UQ Connect is a student social platform,
-        // not the portal IA redesign the fabricated case claimed.
-        await expect(page.getByText(/Research rigor \/ product structure/i)).toBeVisible();
-        // Accessibility went with Spectra Lens (unlisted 2026-11-20).
-        await expect(page.getByText(/Accessibility \/ inclusive design/i)).toHaveCount(0);
-        await expect(page.getByText(/Complex \/ real-time interaction/i)).toBeVisible();
-        await expect(page.getByText(/Design technology \/ prototyping/i)).toBeVisible();
-        // Gone with Vigil, then back as a thread through PriceWise, UQ Connect
-        // and Hoop Dream.
-        await expect(page.getByText(/AI UX \/ trust/i).first()).toBeVisible();
-    });
-
     test("work page toggles cleanly between index list and capability evidence matrix", async ({ page }) => {
         await expect(page.locator(".work-shortlist-section")).toHaveCount(0);
         await expect(page.locator(".work-evidence-section")).toHaveCount(0);

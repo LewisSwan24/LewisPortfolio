@@ -59,13 +59,11 @@ export default async function HirePage() {
       ? {
           roleTitle: "把岗位需求匹配到证据。",
           roleIntro: "先看岗位信号，再进入通话前最相关的案例证据。",
-          resumeLabel: "查看简历",
         }
       : {
           roleTitle: "Match the opening to the proof.",
           roleIntro:
             "Pick the role signal first, then inspect the exact case evidence before the call.",
-          resumeLabel: "Resume",
         };
 
   return (
@@ -73,7 +71,6 @@ export default async function HirePage() {
       <InterviewDecisionBrief
         brief={room.brief}
         locale={proofLocale}
-        resumeLabel={pageCopy.resumeLabel}
       />
 
       <Suspense fallback={null}>
