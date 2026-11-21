@@ -34,10 +34,22 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function renderThumbVisual(slug: string, locale: ProofLocale, conceptLabel: string) {
+function renderThumbVisual(
+  slug: string,
+  locale: ProofLocale,
+  conceptLabel: string,
+  priority = false
+) {
   const cover = getProjectCover(slug as Parameters<typeof getProjectCover>[0]);
   if (cover) {
-    return <ProjectCoverImage cover={cover} locale={locale} sizes="240px" />;
+    return (
+      <ProjectCoverImage
+        cover={cover}
+        locale={locale}
+        sizes="240px"
+        priority={priority}
+      />
+    );
   }
   return (
     <div style={{ display: "contents" }}>
@@ -76,9 +88,9 @@ export default async function ProjectsPage() {
     changed: item.changed,
   }));
   const thumbs = Object.fromEntries(
-    workItems.map((item) => [
+    workItems.map((item, idx) => [
       item.slug,
-      renderThumbVisual(item.slug, locale, conceptVisual),
+      renderThumbVisual(item.slug, locale, conceptVisual, idx < 3),
     ])
   );
 

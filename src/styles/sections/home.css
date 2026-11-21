@@ -81,12 +81,20 @@
 .hero-hire-link:hover {
   border-bottom-color: var(--accent);
 }
+@media (max-width: 640px) {
+  .hero-focus-strip {
+    gap: var(--s-2) var(--s-3);
+  }
+  .hero-hire-link {
+    margin-inline-start: 0;
+  }
+}
 
-.hero-deck-wrap { position: relative; padding: 20px 20px 20px 60px; }
-@media (max-width: 640px) { .hero-deck-wrap { padding: 20px 8px 20px 44px; } }
+.hero-deck-wrap { position: relative; padding: 20px 20px 64px 60px; }
+@media (max-width: 640px) { .hero-deck-wrap { padding: 20px 8px 64px 44px; } }
 .hero-deck-ruler {
   position: absolute;
-  top: 20px; bottom: 20px; left: 10px;
+  top: 20px; bottom: 64px; left: 10px;
   width: 40px;
   font-family: var(--font-mono);
   color: var(--text-4);
@@ -122,12 +130,12 @@
   border-radius: var(--r-sm);
 }
 .deck-kbd {
-  margin: 14px 0 0;
+  margin: 56px 0 0;
   text-align: center;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.06em;
-  color: var(--text-4);
+  color: var(--text-3);
 }
 .deck-card {
   position: absolute;
@@ -202,17 +210,17 @@
 .dc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-3); }
 .deck-hint {
   position: absolute;
-  left: 22px; right: 22px; bottom: -32px;
+  left: 0; right: 76px; bottom: -46px;
   display: flex; justify-content: space-between; align-items: center;
   font-family: var(--font-mono);
   font-size: 10.5px;
-  color: var(--text-4);
+  color: var(--text-3);
   letter-spacing: 0.04em;
   pointer-events: none;
 }
 .deck-counter {
   position: absolute;
-  bottom: -56px; right: 0;
+  bottom: -47px; right: 0;
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--text-3);

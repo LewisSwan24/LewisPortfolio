@@ -50,8 +50,8 @@ const STATE_DEMOS: Record<
           zh: "手环静默、手机息屏。附近任何人都看不到你的存在。",
         },
         rule: {
-          en: "Invariant: Presence is opt-in per moment, never always-on broadcasting.",
-          zh: "不变量：在场状态必须按次主动开启，禁止常驻广播。",
+          en: "Design rule: Presence is opt-in per moment, never always-on broadcasting.",
+          zh: "交互规则：在场状态必须按次主动开启，禁止常驻广播。",
         },
       },
       {
@@ -62,8 +62,8 @@ const STATE_DEMOS: Record<
           zh: "手机端 SAY HI 卡点亮；ESP32 手环开启 IMU 挥手检测。",
         },
         rule: {
-          en: "Invariant: Single gesture commits intent without browsing profiles.",
-          zh: "不变量：单次实体动作表达意愿，不引入刷资料卡片。",
+          en: "Design rule: Single gesture commits intent without browsing profiles.",
+          zh: "交互规则：单次实体动作表达意愿，不引入刷资料卡片。",
         },
       },
       {
@@ -74,8 +74,8 @@ const STATE_DEMOS: Record<
           zh: "中继转发附近信号。屏幕只提示「附近有人挥手」——无名字、无照片。",
         },
         rule: {
-          en: "Invariant: Unilateral interest never leaks identity.",
-          zh: "不变量：单方兴趣绝不泄露对方身份。",
+          en: "Design rule: Unilateral interest never leaks identity.",
+          zh: "交互规则：单方兴趣绝不泄露对方身份。",
         },
       },
       {
@@ -86,8 +86,8 @@ const STATE_DEMOS: Record<
           zh: "双方点头后才显示彼此名字与唯一碰面点，随后应用退场。",
         },
         rule: {
-          en: "Invariant: Success metric is phones returning to pockets.",
-          zh: "不变量：成功标准是手机重新放回口袋。",
+          en: "Design rule: Success means phones returning to pockets.",
+          zh: "交互规则：交互成功的标准是手机重新放回口袋。",
         },
       },
     ],
@@ -107,44 +107,44 @@ const STATE_DEMOS: Record<
           zh: "检测到 47 个 ATS 输入框。简历仅留在本地存储，零网络外发。",
         },
         rule: {
-          en: "Invariant: Local-first privacy — personal data never leaves the browser.",
-          zh: "不变量：本地优先隐私，个人简历绝不离开设备。",
+          en: "Design rule: Local-first privacy — personal data never leaves the browser.",
+          zh: "交互规则：本地优先隐私，个人简历绝不离开设备。",
         },
       },
       {
         id: "filled",
-        name: { en: "Auto-Filled (45)", zh: "高置信直填（45 项）" },
+        name: { en: "Auto-Filled (High match)", zh: "高置信直填" },
         state: {
           en: "Deterministic fields (name, degree, dates, links) filled with exact schema match and field-level log.",
           zh: "确定性字段（姓名、学位、日期、链接）按精确规则填入并记录原因。",
         },
         rule: {
-          en: "Invariant: Only verified 1:1 mappings write automatically.",
-          zh: "不变量：仅经过校验的 1:1 映射才允许自动写入。",
+          en: "Design rule: Only verified 1:1 mappings write automatically.",
+          zh: "交互规则：仅经过校验的 1:1 映射才允许自动写入。",
         },
       },
       {
         id: "review",
-        name: { en: "Needs Review (1)", zh: "待人工确认（1 项）" },
+        name: { en: "Needs Review (Ambiguous)", zh: "待人工确认" },
         state: {
           en: "Work-rights dropdown is ambiguous; highlighted with both word + border (never color alone).",
           zh: "工作权限下拉框存在歧义；同时用文字与线框标记（不只靠颜色）。",
         },
         rule: {
-          en: "Invariant: Uncertainty surfaces as a review item, never a silent guess.",
-          zh: "不变量：不确定性必须显式暴露给用户确认，绝不静默猜测。",
+          en: "Design rule: Uncertainty surfaces as a review item, never a silent guess.",
+          zh: "交互规则：不确定性必须显式暴露给用户确认，绝不静默猜测。",
         },
       },
       {
         id: "submit-lock",
         name: { en: "Human Submit Lock", zh: "人工提交锁" },
         state: {
-          en: "Side panel reports 45 filled · 1 to review · 1 not filled. Final Submit remains strictly human-triggered.",
-          zh: "侧栏汇报 45 已填 · 1 待确认 · 1 未填。最终提交按钮严格锁定为人工点击。",
+          en: "Side panel summarizes filled, review, and skipped items. Final Submit remains strictly human-triggered.",
+          zh: "侧栏清晰汇总已填、待确认与未填项；最终提交按钮严格锁定为人工点击。",
         },
         rule: {
-          en: "Invariant: Automation stops before irreversible external commitment.",
-          zh: "不变量：自动化在不可逆外部提交之前强制停止。",
+          en: "Design rule: Automation stops before irreversible external commitment.",
+          zh: "交互规则：自动化在不可逆外部提交之前强制停止。",
         },
       },
     ],
@@ -164,8 +164,8 @@ const STATE_DEMOS: Record<
           zh: "M5StickS3 采集 16 kHz 语音（USB 走 PCM，Fly.io 加密中继走 4-bit ADPCM）。",
         },
         rule: {
-          en: "Invariant: Physical press-to-talk guarantees deliberate mic capture.",
-          zh: "不变量：实体按键按住说话，确保录音意图清晰可控。",
+          en: "Design rule: Physical press-to-talk guarantees deliberate mic capture.",
+          zh: "交互规则：实体按键按住说话，确保录音意图清晰可控。",
         },
       },
       {
@@ -176,8 +176,8 @@ const STATE_DEMOS: Record<
           zh: "由 pair.key 派生 HKDF 会话密钥加密帧；云端中继仅转发密文无法解密。",
         },
         rule: {
-          en: "Invariant: Relay is zero-knowledge; USB cable always wins when plugged in.",
-          zh: "不变量：中继零知识；插线时 USB 永远优先于无线中继。",
+          en: "Design rule: Relay is zero-knowledge; USB cable always wins when plugged in.",
+          zh: "交互规则：中继零知识；插线时 USB 永远优先于无线中继。",
         },
       },
       {
@@ -188,8 +188,8 @@ const STATE_DEMOS: Record<
           zh: "Claude Code 请求工具调用。桥接将审批推到手腕屏幕：前键同意、侧键拒绝（可附口述原因）。",
         },
         rule: {
-          en: "Invariant: High-impact agent actions require physical confirmation.",
-          zh: "不变量：高风险 Agent 动作必须经过实体按键确认。",
+          en: "Design rule: High-impact agent actions require physical confirmation.",
+          zh: "交互规则：高风险 Agent 动作必须经过实体按键确认。",
         },
       },
       {
@@ -200,8 +200,8 @@ const STATE_DEMOS: Record<
           zh: "桥接通过 OpenAI（Gemini 兜底）合成简短结果回传至手腕扬声器。",
         },
         rule: {
-          en: "Invariant: Eyes-free feedback loop closes without returning to the desk.",
-          zh: "不变量：免看屏幕完成闭环，无需走回电脑前。",
+          en: "Design rule: Eyes-free feedback loop closes without returning to the desk.",
+          zh: "交互规则：免看屏幕完成闭环，无需走回电脑前。",
         },
       },
     ],
@@ -415,12 +415,12 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           <div>
             <div className="label">03 · {isZh ? "交互状态机微原型" : "State-Machine Micro-Demos"}</div>
             <h2 id="lab-sm-title">
-              {isZh ? "从真实项目中抽离的核心规则" : "Core Interaction Invariants from Real Builds"}
+              {isZh ? "从真实项目中抽离的交互规则" : "Core Interaction Rules from Real Projects"}
             </h2>
             <p>
               {isZh
-                ? "点击下方不同项目与状态节点，直接走查每个系统「绝不越界」的交互契约。"
-                : "Step through the finite states of three real builds to inspect the exact invariants that keep trust and hardware feedback predictable."}
+                ? "点击下方不同项目与状态节点，直接查看每个系统在关键时刻如何守住用户信任与反馈清晰度。"
+                : "Step through each project state to inspect the interaction rules that keep user trust and physical feedback predictable."}
             </p>
           </div>
         </div>

@@ -37,8 +37,8 @@ export default async function LabPage() {
         </h1>
         <p className="sub">
           {isZh
-            ? "这里不放装饰性的特效模板，而是直接暴露本站的 Lively Icons 色彩对比度 Token、GSAP 纸面动效曲线，以及三个真实项目里最核心的交互状态机。"
-            : "No decorative templates — this workbench exposes the live Lively Icons contrast tokens, the GSAP paper-motion curve layer, and the core state-machine invariants behind three shipped builds."}
+            ? "这里不放装饰性的特效模板，而是直接呈现本站的 Lively Icons 色彩对比度规范、GSAP 纸面动效曲线，以及三个项目中最核心的交互状态规则。"
+            : "No decorative templates — this workbench exposes the live Lively Icons contrast tokens, the GSAP paper-motion curve layer, and the core state rules behind three projects."}
         </p>
       </section>
       <LabWorkbench locale={locale} />

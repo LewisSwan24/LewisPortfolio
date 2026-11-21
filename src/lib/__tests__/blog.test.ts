@@ -105,10 +105,16 @@ describe("blog", () => {
   });
 
   it("should include reading time", async () => {
-    const posts = await getAllBlogPosts();
+    const posts = await getAllBlogPosts("en");
     for (const post of posts) {
       expect(post.readingTime).toBeDefined();
       expect(post.readingTime).toMatch(/min read/);
+    }
+
+    const zhPosts = await getAllBlogPosts("zh");
+    for (const post of zhPosts) {
+      expect(post.readingTime).toBeDefined();
+      expect(post.readingTime).toMatch(/分钟阅读/);
     }
   });
 });

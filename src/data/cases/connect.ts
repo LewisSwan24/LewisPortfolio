@@ -12,7 +12,7 @@ export const connectCase: CaseRecord = {
     "order": 2,
     "tags": ["flag", "research"],
     "year": "Coursework",
-    "dur": "Not shipped",
+    "dur": "Coursework prototype",
     "problem": {
       "en": "Disjointed structure and hard-to-find information",
       "zh": "结构割裂，关键信息难找"
