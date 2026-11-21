@@ -38,6 +38,11 @@ export const onthebeatCase: CaseRecord = {
   },
   "links": [
     {
+      "label": "Open live web prototype",
+      "href": "https://on-the-beat.fly.dev",
+      "external": true
+    },
+    {
       "label": "Source on GitHub",
       "href": "https://github.com/LewisSwan24/on-the-beat",
       "external": true

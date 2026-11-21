@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import { getGsap } from "@/lib/motion/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -223,6 +223,14 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
   // Module 03 state: State-Machine Micro-Demos
   const [activeDemo, setActiveDemo] = useState<DemoId>("onthebeat");
   const [stepIdx, setStepIdx] = useState(0);
+
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("demo");
+    if (param === "onthebeat" || param === "autofill" || param === "walkie") {
+      setActiveDemo(param);
+      setStepIdx(0);
+    }
+  }, []);
 
   const effectiveReduced = osReducedMotion || simulateReduced;
   const demo = STATE_DEMOS[activeDemo];
