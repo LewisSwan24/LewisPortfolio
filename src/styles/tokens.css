@@ -1,0 +1,298 @@
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  /* Warm paper neutrals */
+  --color-paper-50: var(--paper-50);
+  --color-paper-100: var(--paper-100);
+  --color-paper-200: var(--paper-200);
+  --color-paper-300: var(--paper-300);
+  --color-paper-400: var(--paper-400);
+  --color-paper-500: var(--paper-500);
+  --color-paper-600: var(--paper-600);
+  --color-paper-700: var(--paper-700);
+  --color-paper-800: var(--paper-800);
+  --color-paper-900: var(--paper-900);
+
+  /* Terra accent */
+  --color-terra-50: var(--terra-50);
+  --color-terra-300: var(--terra-300);
+  --color-terra-500: var(--terra-500);
+  --color-terra-600: var(--terra-600);
+  --color-terra-700: var(--terra-700);
+
+  /* Sage secondary */
+  --color-sage-300: var(--sage-300);
+  --color-sage-500: var(--sage-500);
+
+  /* Semantic & surface tokens */
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-accent-ink: var(--accent-ink);
+  --color-text-1: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-text-4: var(--text-4);
+  --color-border-strong: var(--border-strong);
+  --color-parchment: var(--bg-parchment);
+  --color-ivory: var(--bg-ivory);
+  --color-sand: var(--bg-sand);
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-tertiary: var(--text-tertiary);
+  --color-border-cream: var(--border-cream);
+  --color-border-warm: var(--border-warm);
+  --color-moss: var(--accent-moss);
+  --color-moss-hover: var(--accent-moss-hover);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-focus: var(--focus);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-muted: var(--surface-2);
+  --color-muted-foreground: var(--text-2);
+  --color-card: var(--bg-alt);
+  --color-card-foreground: var(--text);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--on-accent);
+
+  /* Typography */
+  --font-sans: var(--font-ui);
+  --font-serif: var(--font-ui);
+  --font-reader: var(--font-ui);
+  --font-mono: var(--font-mono);
+  --font-hand: var(--font-ui);
+  --font-display: var(--font-ui);
+  --font-title: var(--font-title);
+
+  /* Radii */
+  --radius-r-xs: var(--r-xs);
+  --radius-r-sm: var(--r-sm);
+  --radius-r-md: var(--r-md);
+  --radius-r-lg: var(--r-lg);
+  --radius-r-pill: var(--r-pill);
+
+  /* Max width */
+  --container-grid-max: var(--grid-max);
+}
+
+/* ============================================================
+   Lewis Dong — Portfolio Design Tokens
+   Theme: warm paper, Lively Icons rules (decided 2026-11-20).
+   - Warm paper neutrals stay; terra is the ONE accent, for the primary
+     action, links and the focus ring only.
+   - No shadows, no gradients: layers separate with a 1px line.
+   - Page titles in Shantell Sans / ZCOOL KuaiLe; everything else Lexend;
+     technical strings in Geist Mono. Weights 400 and 600, no italics.
+   - Dark mode carries no hue; the accent becomes the brightest grey.
+   See DESIGN.md.
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* ---- Warm paper neutrals (9 steps) ---- */
+    --paper-50:  #F7F4EC;
+    --paper-100: #EFE8DA;
+    --paper-200: #E7DFD1;
+    --paper-300: #D6CDBC;
+    --paper-400: #B8AD9D;
+    --paper-500: #8E8578;
+    --paper-600: #756D61;
+    --paper-700: #3A362D;
+    --paper-800: #25231D;
+    --paper-900: #161412;
+
+    /* ---- Terra accent (warm clay red) ---- */
+    --terra-50:  #FBEFE9;
+    --terra-300: #E89678;
+    --terra-500: #C9523A;
+    --terra-600: #A63F2A;
+    --terra-700: #7A2D1C;
+
+    /* ---- Sage secondary ---- */
+    --sage-300: #B8A485;
+    --sage-500: #8B7355;
+
+    /* ---- Semantic ---- */
+    --success: #5B6B4A;
+    --warning: #B8873E;
+    --error:   #A63F2A;
+    --info:    #4A5D6B;
+
+    /* ---- Surfaces (light) ----
+       Ratios measured against --bg #EFE8DA on 2026-11-20:
+       text 15.1, text-2 7.4 (running text holds 7:1), text-3 5.8,
+       text-4 5.2, accent 5.1 (4.7 on surface-2), border-strong 3.4. */
+    --bg:             var(--paper-100);
+    --bg-alt:         var(--paper-50);
+    --surface:        var(--paper-50);
+    --surface-2:      var(--paper-200);
+    --border:         #9C9182;
+    --border-strong:  #857C6F;
+    --rule:           var(--paper-300);
+    --text:           var(--paper-900);
+    --text-2:         #4E4840;
+    --text-3:         #5F584F;
+    --text-4:         #665F55;
+    --accent:         var(--terra-600);
+    --accent-ink:     var(--terra-700);
+    --on-accent:      var(--paper-50);
+    --danger:         var(--terra-700);
+    --ink:            var(--paper-900);
+
+    /* ---- Legacy aliases (back-compat for pre-redesign components) ---- */
+    --bg-parchment:        var(--bg);
+    --bg-ivory:            var(--bg-alt);
+    --bg-sand:             var(--surface-2);
+    --text-primary:        var(--text);
+    --text-secondary:      var(--text-2);
+    --text-tertiary:       var(--text-3);
+    --border-cream:        var(--border);
+    --border-warm:         var(--border-strong);
+    --accent-moss:         var(--accent);
+    --accent-moss-hover:   var(--terra-600);
+    --focus:               var(--accent);
+    --dark-surface:        var(--paper-800);
+    --dark-bg:             var(--paper-900);
+
+    /* ---- Typography stacks (vars injected by next/font in app/layout.tsx) ---- */
+    /* --font-title is for the one big title of a page, never for buttons,
+       lists, cards or running text. --font-display is kept as a name for
+       older selectors and now resolves to the sans. */
+    --font-title:    var(--font-shantell), var(--font-zcool), "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-ui:       var(--font-sans), "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    --font-display:  var(--font-ui);
+    --font-body:     var(--font-ui);
+    --font-mono:     var(--font-geist-mono), "Cascadia Mono", Consolas, "SF Mono", Menlo, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace;
+    --font-monospace:var(--font-mono);
+    --font-hand:     var(--font-ui);
+
+    /* ---- Type scale ---- */
+    --t-xs:   12px;
+    --t-sm:   14px;
+    --t-base: 16px;
+    --t-md:   18px;
+    --t-lg:   22px;
+    --t-xl:   28px;
+    --t-2xl:  36px;
+    --t-3xl:  48px;
+    --t-4xl:  64px;
+    --t-5xl:  84px;
+    --t-6xl:  112px;
+
+    /* ---- Spacing (4px base) ---- */
+    --s-1:  4px;
+    --s-2:  8px;
+    --s-3:  12px;
+    --s-4:  16px;
+    --s-5:  24px;
+    --s-6:  32px;
+    --s-7:  48px;
+    --s-8:  64px;
+    --s-9:  96px;
+    --s-10: 128px;
+    --s-11: 160px;
+
+    /* ---- Radii ---- */
+    /* Lively Icons scale: xs tags and badges, sm icon tiles and tooltips,
+       md cards, buttons and inputs. */
+    --r-xs:   6px;
+    --r-sm:   8px;
+    --r-md:   12px;
+    --r-lg:   12px;
+    --r-pill: 999px;
+
+    /* ---- No shadows. Kept as names so older selectors resolve to none. ---- */
+    --sh-1: none;
+    --sh-2: none;
+    --sh-3: none;
+    --sh-ink: none;
+
+    /* ---- Motion ---- */
+    --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --dur-1: 120ms;
+    --dur-2: 220ms;
+    --dur-3: 420ms;
+    --dur-4: 720ms;
+
+    /* ---- Grid ---- */
+    --grid-max:    1360px;
+    --grid-gutter: 24px;
+    --grid-margin: 32px;
+  }
+
+  :root[data-theme="dark"],
+  .dark {
+    /* Dark carries no hue. Ratios on --bg #141413: text 16.9, text-2 11.9,
+       text-3 7.7, text-4 7.1 on surface, border-strong 4.3. */
+    --bg:            #141413;
+    --bg-alt:        #1A1A19;
+    --surface:       #1C1C1B;
+    --surface-2:     #262624;
+    --border:        #5C5C58;
+    --border-strong: #7A7A75;
+    --rule:          #3A3A37;
+    --text:          #F5F5F4;
+    --text-2:        #D0D0CC;
+    --text-3:        #A8A8A3;
+    --text-4:        #A8A8A3;
+    --accent:        #F5F5F4;
+    --accent-ink:    #F5F5F4;
+    --on-accent:     #141413;
+    --danger:        #FF8A80;
+
+    --bg-parchment:      var(--bg);
+    --bg-ivory:          var(--bg-alt);
+    --bg-sand:           var(--surface-2);
+    --text-primary:      var(--text);
+    --text-secondary:    var(--text-2);
+    --text-tertiary:     var(--text-3);
+    --border-cream:      var(--border);
+    --border-warm:       var(--border-strong);
+    --accent-moss:       var(--accent);
+    --accent-moss-hover: var(--text-2);
+  }
+
+  * { box-sizing: border-box; border-color: var(--border); }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: var(--t-base);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--accent); color: var(--on-accent); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  /* A page has one h1, its title: the only text in the title face. */
+  h1 { font-family: var(--font-title); font-weight: 700; }
+
+  /* No italics anywhere. Emphasis inside text darkens to the primary ink. */
+  em, i, cite, address, dfn { font-style: normal; }
+  em { color: var(--text); }
+
+  /* Chinese takes no letter spacing and no uppercase tracking, in any slot.
+     Latin labels on the English pages keep theirs. */
+  :root[lang="zh"] body :where(*) { letter-spacing: normal !important; }
+}

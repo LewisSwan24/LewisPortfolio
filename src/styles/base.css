@@ -1,0 +1,282 @@
+/* ============================================================
+   Utilities
+   ============================================================ */
+@layer utilities {
+  /* Legacy utilities (back-compat) */
+  .ring-shadow             { box-shadow: 0 0 0 1px var(--border-strong); }
+  .ring-shadow-hover:hover { box-shadow: 0 0 0 1px var(--text); }
+  .whisper-shadow          { box-shadow: none; }
+  .overline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  /* Design-system container */
+  .container-ld {
+    width: 100%;
+    max-width: var(--grid-max);
+    margin: 0 auto;
+    padding: 0 var(--grid-margin);
+  }
+  @media (max-width: 640px) {
+    .container-ld { padding: 0 20px; }
+  }
+
+  .g12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
+  }
+
+  .label-ld {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .label-ld::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--text-4);
+    display: inline-block;
+  }
+
+  .eyebrow-ld {
+    font-family: var(--font-monospace);
+    font-size: 12px;
+    color: var(--text-3);
+    letter-spacing: 0.02em;
+  }
+
+  /* Section headings set in Lexend 600. Only .h1-ld, the page's own title,
+     takes the hand-drawn title face. The second half of a two-part heading
+     (the old italic <em>) steps down to --text-3 instead of slanting. */
+  .h-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    color: var(--text);
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  .h-display em { font-style: normal; color: var(--text-3); }
+  .h1-ld {
+    font-family: var(--font-title);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    font-size: clamp(40px, 7vw, 88px);
+  }
+  .h2-ld { font-size: clamp(28px, 4vw, 44px); }
+  .h3-ld { font-size: clamp(22px, 2.6vw, 30px); }
+
+  .prose-ld {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-2);
+    max-width: 34em;
+    text-wrap: pretty;
+  }
+  .prose-sm-ld {
+    font-size: 16px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  .hand {
+    font-family: var(--font-hand);
+    font-size: 22px;
+    color: var(--text-2);
+    transform: rotate(-2deg);
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .marg { position: relative; padding-left: 24px; }
+  .marg::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 14px;
+    height: 1px;
+    background: var(--text-3);
+  }
+
+  .page-fade { animation: page-in var(--dur-4) var(--ease-out) both; }
+  @keyframes page-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.4vw, 60px);
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text);
+  }
+  .stat-num em { font-style: normal; color: var(--text-3); }
+  .stat-lab {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--text-3);
+  }
+
+  .tag-ld {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--r-xs);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--text-2);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+  }
+  /* Was a terra tint. The accent is reserved for actions, so an emphasised
+     tag now reads through a heavier line and the primary ink. */
+  .tag-ld-accent {
+    color: var(--text);
+    border-color: var(--text);
+    background: var(--surface);
+  }
+
+  .quote-ld {
+    padding: var(--s-6);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    position: relative;
+  }
+  .quote-ld::before {
+    content: "\201C";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    font-family: var(--font-title);
+    font-size: 56px;
+    line-height: 1;
+    color: var(--text-3);
+    background: var(--bg);
+    padding: 0 8px;
+  }
+  .quote-ld p {
+    font-family: var(--font-display);
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--text);
+    margin: 0 0 var(--s-4);
+  }
+  .quote-ld cite {
+    font-style: normal;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--text-3);
+    letter-spacing: 0.02em;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  z-index: 50;
+  transform: translateY(-64px);
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 8px 16px;
+  border-radius: var(--r-md);
+  transition: transform 150ms;
+}
+.skip-link:focus { transform: translateY(0); }
+
+@media print {
+  @page { size: A4; margin: 14mm 16mm; }
+
+  html, body { background: white !important; color: black !important; }
+
+  nav,
+  footer,
+  .no-print,
+  .reading-progress,
+  .res-actions,
+  .about-actions,
+  .blog-share,
+  .blog-bio,
+  .latest-list,
+  .cs-related,
+  .cs-related-section,
+  .blog-pager,
+  .end-cta,
+  .back-to-top,
+  [aria-label="Reading progress"],
+  [data-screen-label]::before {
+    display: none !important;
+  }
+
+  .container { padding: 0 !important; max-width: 100% !important; }
+  .page { background: white !important; }
+
+  h1, h2, h3, h4 {
+    color: black !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .h-display, .h1 { font-size: 22pt !important; line-height: 1.2 !important; }
+  .h2 { font-size: 16pt !important; line-height: 1.25 !important; }
+  h3 { font-size: 13pt !important; }
+  h4 { font-size: 11pt !important; }
+  p, li, dd, dt, .prose { font-size: 10pt !important; line-height: 1.45 !important; color: #000 !important; }
+
+  .res-entry, .res-section, .res-side-card, .cs-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .res-body { gap: 24px !important; }
+  .res-side-card { background: transparent !important; border: 1px solid #ccc !important; }
+  .res-skill .bar { background: #eee !important; }
+  .res-skill .bar i { background: #555 !important; }
+
+  a { color: #000 !important; text-decoration: underline !important; }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
