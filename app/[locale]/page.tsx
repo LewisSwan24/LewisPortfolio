@@ -3,6 +3,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { FeaturedDeck } from "@/components/home/FeaturedDeck";
+import { SectionReveal } from "@/components/motion/SectionReveal";
 import {
   VizConnect,
   VizMaze,
@@ -209,15 +210,17 @@ export default async function HomePage() {
             </h2>
             <p className="prose">{t("approach.body")}</p>
           </div>
-          <div className="approach-steps">
-            {[1, 2, 3, 4].map((i) => (
-              <div className="approach-step" key={i}>
-                <div className="num">0{i}</div>
-                <h4>{t(`approach.step.${i}.t`)}</h4>
-                <p>{t(`approach.step.${i}.b`)}</p>
-              </div>
-            ))}
-          </div>
+          <SectionReveal>
+            <div className="approach-steps">
+              {[1, 2, 3, 4].map((i) => (
+                <div className="approach-step" key={i} data-reveal-item>
+                  <div className="num">0{i}</div>
+                  <h4>{t(`approach.step.${i}.t`)}</h4>
+                  <p>{t(`approach.step.${i}.b`)}</p>
+                </div>
+              ))}
+            </div>
+          </SectionReveal>
         </div>
       </section>
 

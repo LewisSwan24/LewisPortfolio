@@ -19,6 +19,7 @@ const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "output", "resume");
 const PORT = 3211;
 const BASE_URL = `http://127.0.0.1:${PORT}`;
+const MIN_PDF_BYTES = 8 * 1024;
 
 async function waitForServer(url, timeoutMs = 45000) {
   const deadline = Date.now() + timeoutMs;
@@ -32,6 +33,17 @@ async function waitForServer(url, timeoutMs = 45000) {
     await new Promise((r) => setTimeout(r, 500));
   }
   throw new Error(`Timed out waiting for ${url}`);
+}
+
+function assertValidPdf(filePath) {
+  const buf = fs.readFileSync(filePath);
+  if (buf.subarray(0, 5).toString("ascii") !== "%PDF-") {
+    throw new Error(`Generated file is not a valid PDF document: ${filePath}`);
+  }
+  if (buf.length < MIN_PDF_BYTES) {
+    throw new Error(`Generated PDF suspiciously small (${buf.length} bytes): ${filePath}`);
+  }
+  return buf.length;
 }
 
 async function main() {
@@ -49,7 +61,15 @@ async function main() {
 
   try {
     await waitForServer(`${BASE_URL}/en/resume`);
-    const browser = await chromium.launch();
+    let browser;
+    try {
+      browser = await chromium.launch();
+    } catch (err) {
+      throw new Error(
+        `Failed to launch Playwright Chromium (${err instanceof Error ? err.message : String(err)}). Run \`pnpm exec playwright install chromium\` first.`
+      );
+    }
+
     try {
       const page = await browser.newPage();
       for (const locale of ["en", "zh"]) {
@@ -63,8 +83,8 @@ async function main() {
           printBackground: false,
           margin: { top: "14mm", right: "14mm", bottom: "14mm", left: "14mm" },
         });
-        const kb = (fs.statSync(outFile).size / 1024).toFixed(1);
-        console.log(`Generated ${path.relative(ROOT, outFile)} (${kb} KB)`);
+        const bytes = assertValidPdf(outFile);
+        console.log(`Generated ${path.relative(ROOT, outFile)} (${(bytes / 1024).toFixed(1)} KB, %PDF verified)`);
       }
     } finally {
       await browser.close();
