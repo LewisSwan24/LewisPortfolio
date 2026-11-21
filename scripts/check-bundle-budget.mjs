@@ -12,10 +12,10 @@ import zlib from "node:zlib";
 const ROOT = process.cwd();
 const STATIC_DIR = path.join(ROOT, ".next", "static");
 
-const MAX_SINGLE_CHUNK_GZ_KB = 75;
-const MAX_APP_ROUTE_CHUNK_GZ_KB = 20;
-const MAX_APP_CSS_GZ_KB = 30;
-const MAX_TOTAL_CSS_GZ_KB = 65;
+const MAX_SINGLE_CHUNK_GZ_KB = 70;
+const MAX_APP_ROUTE_CHUNK_GZ_KB = 15;
+const MAX_APP_CSS_GZ_KB = 26;
+const MAX_TOTAL_CSS_GZ_KB = 60;
 
 function walk(dir, out = []) {
   if (!fs.existsSync(dir)) return out;
@@ -68,7 +68,7 @@ for (const file of cssFiles) {
 }
 const totalCssGzKb = appCssGzKb + fontCssGzKb;
 
-console.log("=== V3.1 Bundle Budget Report ===");
+console.log("=== V3.2 Bundle Budget Report ===");
 console.log(`  JS chunks analyzed     : ${jsChunks.length}`);
 console.log(`  Largest JS chunk       : ${largestJs.file} (${largestJs.gzKb.toFixed(1)} kB gz, budget <= ${MAX_SINGLE_CHUNK_GZ_KB} kB)`);
 console.log(`  Largest App route chunk: ${largestAppRouteJs.file} (${largestAppRouteJs.gzKb.toFixed(1)} kB gz, budget <= ${MAX_APP_ROUTE_CHUNK_GZ_KB} kB)`);
