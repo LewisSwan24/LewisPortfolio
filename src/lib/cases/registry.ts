@@ -4,7 +4,9 @@ import {
   type CaseCardCopy,
   type CaseNarrativeCopy,
   type CaseRecord,
+  type CaseReviewMeta,
   type RoleTrack,
+  type WorkTag,
 } from "./schema";
 import type { CurrentProjectSlug } from "@/lib/project-routes";
 
@@ -66,6 +68,60 @@ export function getCaseSearchIndex(locale: CaseLocale) {
       tags: [card.kicker, card.m1, card.m2, card.m3],
     };
   });
+}
+
+export interface WorkIndexDto {
+  order: string;
+  slug: CurrentProjectSlug;
+  tags: WorkTag[];
+  title: string;
+  kicker: string;
+  role: string;
+  year: string;
+  dur: string;
+  problem: string;
+  changed: string;
+}
+
+export function getWorkIndexItems(locale: CaseLocale): WorkIndexDto[] {
+  return [...getListedCases()]
+    .sort((a, b) => (a.workSummary.order ?? 999) - (b.workSummary.order ?? 999))
+    .map((record, idx) => {
+      const card = record.card[locale];
+      const summary = record.workSummary;
+      return {
+        order: String(summary.order ?? idx + 1).padStart(2, "0"),
+        slug: record.slug,
+        tags: [...summary.tags],
+        title: card.title,
+        kicker: card.kicker,
+        role: card.role,
+        year: summary.year,
+        dur: summary.dur,
+        problem: summary.problem[locale],
+        changed: summary.changed[locale],
+      };
+    });
+}
+
+export function getCaseReviewMeta(slug: string): CaseReviewMeta | undefined {
+  return getCaseBySlug(slug)?.reviewMeta;
+}
+
+export function getRegistryReviewWindow(): {
+  reviewedAt: string;
+  nextReviewAt: string;
+} {
+  const listed = getListedCases();
+  const reviewedAt = listed.reduce(
+    (latest, c) => (c.reviewMeta.reviewedAt > latest ? c.reviewMeta.reviewedAt : latest),
+    listed[0]?.reviewMeta.reviewedAt ?? "2026-11-21"
+  );
+  const nextReviewAt = listed.reduce(
+    (earliest, c) => (c.reviewMeta.nextReviewAt < earliest ? c.reviewMeta.nextReviewAt : earliest),
+    listed[0]?.reviewMeta.nextReviewAt ?? "2027-02-21"
+  );
+  return { reviewedAt, nextReviewAt };
 }
 
 export interface CaseValidationIssue {

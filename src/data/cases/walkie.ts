@@ -5,6 +5,25 @@ export const walkieCase: CaseRecord = {
   status: "listed",
   featuredOrder: 2,
   roleTracks: ["interaction", "design-eng", "ai-ux"],
+  workSummary: {
+    order: 9,
+    tags: ["flag", "hardware", "ai"],
+    year: "2026",
+    dur: "Dual-boot S3 build",
+    problem: {
+      en: "Stepping away from the desk leaves coding agents blocked on short permission checks",
+      zh: "离开电脑前，编码 Agent 常常卡在简短的权限审批与一句追问上",
+    },
+    changed: {
+      en: "A sealed AES-256-GCM wrist voice remote where physical watch buttons own every approval",
+      zh: "一套 AES-256-GCM 加密手腕语音遥控器，高风险审批全部落在实体按键上",
+    },
+  },
+  reviewMeta: {
+    reviewedAt: "2026-11-21",
+    nextReviewAt: "2027-02-21",
+    auditNote: "Verified LewisSwan24/walkie gates (gate-h, gate-p5, gate-l) and fake-claude test isolation for V3.1 baseline.",
+  },
   cover: {
     src: "/projects/walkie/01-architecture.svg",
     width: 1280,

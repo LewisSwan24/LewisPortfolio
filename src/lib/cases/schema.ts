@@ -10,12 +10,35 @@ export const RoleTrackSchema = z.enum([
 
 export type RoleTrack = z.infer<typeof RoleTrackSchema>;
 
+export const WorkTagSchema = z.enum(["flag", "research", "ai", "hardware"]);
+
+export type WorkTag = z.infer<typeof WorkTagSchema>;
+
 export const LocalizedStringSchema = z.object({
   en: z.string().min(1),
   zh: z.string().min(1),
 });
 
 export type LocalizedString = z.infer<typeof LocalizedStringSchema>;
+
+export const CaseWorkSummarySchema = z.object({
+  order: z.number().int().positive().optional(),
+  tags: z.array(WorkTagSchema).min(1),
+  year: z.string().min(1),
+  dur: z.string().min(1),
+  problem: LocalizedStringSchema,
+  changed: LocalizedStringSchema,
+});
+
+export type CaseWorkSummary = z.infer<typeof CaseWorkSummarySchema>;
+
+export const CaseReviewMetaSchema = z.object({
+  reviewedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  nextReviewAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  auditNote: z.string().min(1),
+});
+
+export type CaseReviewMeta = z.infer<typeof CaseReviewMetaSchema>;
 
 export const CaseCardCopySchema = z.object({
   kicker: z.string().min(1),
@@ -161,6 +184,8 @@ export const CaseRecordSchema = z.object({
   status: z.enum(["listed", "unlisted"]),
   featuredOrder: z.number().int().positive().optional(),
   roleTracks: z.array(RoleTrackSchema).min(1),
+  workSummary: CaseWorkSummarySchema,
+  reviewMeta: CaseReviewMetaSchema,
   cover: CaseCoverSchema.optional(),
   links: z.array(CaseLinkSchema),
   media: CaseMediaSchema.optional(),

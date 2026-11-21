@@ -8,6 +8,25 @@ export const pricewiseCase: CaseRecord = {
     "ai-ux",
     "design-eng"
   ],
+  "workSummary": {
+    "order": 3,
+    "tags": ["flag", "ai"],
+    "year": "2026",
+    "dur": "Prototype, demo data",
+    "problem": {
+      "en": "An AI wrote the code, and a green build proved nothing about whether it ran",
+      "zh": "代码是 AI 写的，构建通过却证明不了到底跑没跑"
+    },
+    "changed": {
+      "en": "Four classes of defect that a green build, a clean type-check and passing tests all missed",
+      "zh": "构建、类型检查和测试全绿，照样漏掉四类缺陷"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified defect taxonomy and live prototype boundary for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/pricewise/01-home.png",
     "width": 2880,

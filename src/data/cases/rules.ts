@@ -7,6 +7,24 @@ export const rulesCase: CaseRecord = {
     "product",
     "interaction"
   ],
+  "workSummary": {
+    "tags": ["research"],
+    "year": "2025",
+    "dur": "Coursework (unlisted)",
+    "problem": {
+      "en": "High-level UX guidelines stay too vague for engineers to implement or refute",
+      "zh": "抽象的 UX 设计准则过软，工程师既难以施工也难以反驳校验"
+    },
+    "changed": {
+      "en": "Compiled soft briefs into falsifiable numeric thresholds (48 px tap floor, 150–250 m lead)",
+      "zh": "把抽象准则压缩成可被反驳与验证的数字规则（48 px 触控下限、150–250 m 提前量）"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Confirmed unlisted archive status and DECO7250 coursework boundary for V3.1 baseline."
+  },
   "links": [],
   "media": {
     "label": "Both briefs, side by side",

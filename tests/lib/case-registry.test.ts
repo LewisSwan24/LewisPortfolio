@@ -7,6 +7,8 @@ import {
   getFeaturedDeckCases,
   getListedCases,
   getCasesByRoleTrack,
+  getRegistryReviewWindow,
+  getWorkIndexItems,
   validateCaseRegistry,
 } from "@/lib/cases/registry";
 import {
@@ -72,5 +74,24 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
         }
       }
     }
+  });
+
+  it("derives ordered WorkIndex DTOs for listed cases in EN and ZH", () => {
+    const enItems = getWorkIndexItems("en");
+    const zhItems = getWorkIndexItems("zh");
+
+    expect(enItems.length).toBe(LISTED_PROJECT_SLUGS.length);
+    expect(zhItems.length).toBe(LISTED_PROJECT_SLUGS.length);
+    expect(enItems.map((i) => i.slug)).toEqual(zhItems.map((i) => i.slug));
+
+    for (const item of enItems) {
+      expect(item.tags.length).toBeGreaterThan(0);
+      expect(item.problem.length).toBeGreaterThan(8);
+      expect(item.changed.length).toBeGreaterThan(8);
+    }
+
+    const window = getRegistryReviewWindow();
+    expect(window.reviewedAt).toBe("2026-11-21");
+    expect(window.nextReviewAt).toBe("2027-02-21");
   });
 });

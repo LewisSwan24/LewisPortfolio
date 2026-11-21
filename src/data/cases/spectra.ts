@@ -7,6 +7,24 @@ export const spectraCase: CaseRecord = {
     "interaction",
     "design-eng"
   ],
+  "workSummary": {
+    "tags": ["research"],
+    "year": "2026",
+    "dur": "DEMO (unlisted)",
+    "problem": {
+      "en": "Locked-down web typography leaves readers unable to adjust line height or font safely",
+      "zh": "网页作者写死的排版限制了需要更大字距与行高的阅读者"
+    },
+    "changed": {
+      "en": "Per-origin Chrome extension injection with offline bundled OpenDyslexic",
+      "zh": "按域名保存设置的浏览器扩展注入与离线本地打包 OpenDyslexic 字体"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Confirmed unlisted archive status (2026-11-20) and local font bundling rationale for V3.1 baseline."
+  },
   "links": [],
   "card": {
     "en": {

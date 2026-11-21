@@ -9,6 +9,25 @@ export const lamplightCase: CaseRecord = {
     "ai-ux",
     "design-eng"
   ],
+  "workSummary": {
+    "order": 7,
+    "tags": ["ai"],
+    "year": "2026",
+    "dur": "1.0, in daily use",
+    "problem": {
+      "en": "A long AI task shows up as a log nobody can read at a glance",
+      "zh": "AI 长任务只是一屏没人能一眼看懂的日志"
+    },
+    "changed": {
+      "en": "A café crew acting out the task, with questions and risky steps as cards",
+      "zh": "一组咖啡馆店员演出任务，提问和风险步骤变成卡片"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified v1.0 release date (2026-11-05) and simulation-staged media note for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/lamplight/02-board.jpg",
     "width": 1280,

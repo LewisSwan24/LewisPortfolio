@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,8 +10,24 @@ function readProjectFile(path) {
   return readFileSync(join(root, path), "utf8");
 }
 
-function extractConst(source, name) {
-  return source.match(new RegExp(`const ${name} = "([^"]+)"`))?.[1] ?? "";
+function extractCaseReviewWindow() {
+  const casesDir = join(root, "src", "data", "cases");
+  const files = readdirSync(casesDir).filter((f) => f.endsWith(".ts") && f !== "index.ts");
+  const reviewedDates = [];
+  const nextReviewDates = [];
+  for (const file of files) {
+    const src = readFileSync(join(casesDir, file), "utf8");
+    const r = src.match(/reviewedAt["']?\s*:\s*["'](\d{4}-\d{2}-\d{2})["']/)?.[1];
+    const n = src.match(/nextReviewAt["']?\s*:\s*["'](\d{4}-\d{2}-\d{2})["']/)?.[1];
+    if (r) reviewedDates.push(r);
+    if (n) nextReviewDates.push(n);
+  }
+  reviewedDates.sort();
+  nextReviewDates.sort();
+  return {
+    reviewedAt: reviewedDates[reviewedDates.length - 1] ?? "",
+    nextReviewAt: nextReviewDates[0] ?? "",
+  };
 }
 
 function extractRoleIds(source) {
@@ -47,12 +63,10 @@ function statusFor(nextReviewAt, generatedAt) {
 
 const anchorsSource = readProjectFile("src/lib/proof/anchors.ts");
 const rolePacketsSource = readProjectFile("src/lib/proof/role-packets.ts");
-const maintenanceSource = readProjectFile("src/lib/proof/maintenance.ts");
 
 const roleIds = extractRoleIds(anchorsSource);
 const claimIds = extractClaimIds(rolePacketsSource);
-const reviewedAt = extractConst(maintenanceSource, "reviewedAt");
-const nextReviewAt = extractConst(maintenanceSource, "nextReviewAt");
+const { reviewedAt, nextReviewAt } = extractCaseReviewWindow();
 const generatedAt = new Date().toISOString().slice(0, 10);
 const trackedEntries = claimIds.size + roleIds.length * 21;
 const missingReview = reviewedAt && nextReviewAt ? 0 : trackedEntries;

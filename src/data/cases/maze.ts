@@ -8,6 +8,25 @@ export const mazeCase: CaseRecord = {
     "interaction",
     "design-eng"
   ],
+  "workSummary": {
+    "order": 1,
+    "tags": ["flag", "hardware"],
+    "year": "2026",
+    "dur": "Built",
+    "problem": {
+      "en": "A physical maze that noticed nothing and answered nothing",
+      "zh": "一台什么都察觉不到、也不会回应的实体迷宫"
+    },
+    "changed": {
+      "en": "One sensor event driving score, haptics, light, audio, and a web console",
+      "zh": "一个传感器事件同时驱动计分、震动、灯光、音效与网页控制台"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified exhibition build scope, Arduino firmware role, and media assets for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/maze/06-final-contact.jpg",
     "width": 1800,

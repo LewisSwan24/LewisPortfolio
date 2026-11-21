@@ -7,6 +7,24 @@ export const gapmapperCase: CaseRecord = {
     "product",
     "interaction"
   ],
+  "workSummary": {
+    "tags": ["research"],
+    "year": "2026",
+    "dur": "Coursework (unlisted)",
+    "problem": {
+      "en": "Safety route-ranking apps claim predictive authority the underlying lighting data cannot earn",
+      "zh": "为步行路线给出安全排名容易制造一种底层的照明/治安数据根本支撑不住的权威错觉"
+    },
+    "changed": {
+      "en": "Refused numeric safety scores and shifted team direction to transparent perception reflection",
+      "zh": "取消安全分排序，把方向重构为暴露线索不确定性的慢界面记录"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Confirmed unlisted archive status and DECO7380 submission boundaries for V3.1 baseline."
+  },
   "links": [],
   "media": {
     "label": "The prototype I argued against",
