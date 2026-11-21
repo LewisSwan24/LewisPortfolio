@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.1.0] - 2026-11-21
+
+### Architecture & Performance
+- **Unified Case Registry Consolidation** — Added Zod-validated `workSummary` and `reviewMeta` fields to all 14 case records (`src/data/cases/*.ts`), driving Work Index rows and `proof:maintenance` baselines directly from the registry (`92/92` entries Fresh, `0` Stale).
+- **`/projects` Server Component Refactor** — Moved `Shortlist`, `EvidenceMatrix`, `EvidenceMap`, and SVG preview rendering into `app/[locale]/projects/page.tsx`, reducing the `/projects` route JS bundle by **98.4%** (`80.2 kB -> 1.25 kB`, First Load JS `204 kB -> 125 kB`).
+- **Tightened Bundle Gate (`scripts/check-bundle-budget.mjs`)** — Reduced maximum single-chunk budget to `75 kB gz` and introduced a dedicated `20 kB gz` ceiling for per-route `chunks/app/` bundles.
+
+### Motion, Editorial Content & A11y QA
+- **GSAP Route & Scroll Choreography** — Replaced Tailwind keyframe relics in `PageTransition` with `useGsapContext`, added lazy `ScrollTrigger`-backed `SectionReveal`, scoped `prefers-reduced-motion` cleanly in `src/styles/base.css`, and refined A4 `@media print` resume pagination.
+- **Two Bilingual Deep-Dive Blog Posts** — Published EN/ZH essays on V3 engineering/performance architecture (`v3-architecture-and-performance-moat`) and hard safety invariants (`walkie-and-fencepost-invariants`).
+- **Expanded Playwright E2E + Axe Moat & Node 22 CI** — Added Desktop Dark (`#141413`) and Mobile (`375x812`) `@axe-core/playwright` WCAG 2.1 AA audits (`e2e/a11y.spec.ts`), non-empty A4 `%PDF-` export verification (`e2e/resume-pdf.spec.ts`), and updated `.github/workflows/ci.yml` to Node 22 + current action majors.
+
 ## [3.0.0] - 2026-11-21
 
 ### Major Platform & Architecture Upgrades
