@@ -16,27 +16,35 @@ export function CaseInterviewPack({
   const answers = [...pack.answers, pack.managerFollowUp];
 
   return (
-    <div className="case-interview-pack">
+    <section
+      id="interview-pack"
+      className="case-interview-pack container"
+      aria-labelledby="interview-pack-title"
+    >
       <div className="case-interview-pack-head">
-        <div className="label">{isZh ? "面试问答" : "Interview pack"}</div>
-        <h2>
+        <div className="label">{isZh ? "面试深入问答" : "Interview pack"}</div>
+        <h2 id="interview-pack-title">
           {isZh
-            ? "我可以用证据回答的问题。"
+            ? "围绕取舍与验证细节的追问清单。"
             : "Questions I can answer with evidence."}
         </h2>
       </div>
-      <div className="case-interview-pack-grid">
+      <div className="v3-accordion case-interview-accordion">
         {answers.map((answer) => (
-          <article className="case-interview-answer" key={answer.id}>
-            <h3>{answer.question}</h3>
-            <p>{answer.answer}</p>
-            <Link href={localizeInternalHref(answer.evidenceHref, locale)}>
-              {isZh ? "查看证据" : "Inspect the evidence"}
-            </Link>
-            <small>{answer.boundary}</small>
-          </article>
+          <details className="v3-details case-interview-answer" key={answer.id}>
+            <summary>{answer.question}</summary>
+            <div className="v3-details-body">
+              <p>{answer.answer}</p>
+              <div className="case-interview-meta">
+                <Link href={localizeInternalHref(answer.evidenceHref, locale)}>
+                  {isZh ? "跳到对应段落 ↗" : "Inspect the evidence ↗"}
+                </Link>
+                <small>{answer.boundary}</small>
+              </div>
+            </div>
+          </details>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

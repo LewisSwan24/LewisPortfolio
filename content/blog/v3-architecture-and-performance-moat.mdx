@@ -1,7 +1,7 @@
 ---
 title: "Rebuilding a bilingual portfolio for speed, Server Components, and automated proof"
 date: "2026-11-21"
-excerpt: "How moving case studies into a Zod-validated TypeScript registry, splitting a 5,217-line CSS monolith, and replacing runtime animation weight turned performance and accessibility into enforced CI gates."
+excerpt: "How moving case studies into a schema-validated TypeScript registry, keeping client bundles lean, and replacing heavy runtime motion turned reading speed and accessibility into automated checks."
 tags:
   - Engineering
   - Architecture
@@ -10,32 +10,26 @@ author: "Lewis Dong"
 published: true
 ---
 
-A portfolio built for design-engineering roles should stand up to the same inspection a production product team runs on its own frontend. During the V3 refactor of this site, I audited every byte shipped to the browser and every place where case-study facts were duplicated across files.
+A portfolio for interaction and design-engineering roles should feel effortless to read and hold up to basic web hygiene. During the V3 refactor of this site, I audited what actually reached the reader's browser and every place where case-study facts drifted apart across files.
 
-The goal was not a visual rewrite—the warm-paper Lively Icons design system already fit the work. The goal was removing hidden coupling and making every quality claim enforceable in CI.
+The goal was never a visual overhaul—the warm-paper typography and editorial pacing already fit the work. The real goal was eliminating duplicated data, keeping initial page loads responsive, and catching accessibility or broken-link slips before they reach production.
 
 ## Moving case studies out of client JSON bundles
 
-Earlier versions stored narrative case-study copy inside global i18n JSON bundles (`en.json` and `zh.json`). Because `NextIntlClientProvider` serialized the entire dictionary into HTML, every visitor downloaded bilingual essays for ten projects just to render the navigation bar.
+Earlier versions stored narrative case-study copy inside global translation dictionaries (`en.json` and `zh.json`). Because `NextIntlClientProvider` serialized the whole object into HTML, visiting the home page meant downloading bilingual essays for ten projects just to render the top bar.
 
-Moving all fourteen project records (ten listed cases and four unlisted archives) into typed `src/data/cases/*.ts` modules validated by **Zod 4** reversed that cost immediately:
-
-- `en.json` dropped from roughly **99 KB to 16 KB** (-83.5%)
-- `zh.json` dropped from roughly **52 KB to 11 KB** (-78.7%)
-- `NextIntlClientProvider` now forwards only client-required UI namespaces (`brand`, `nav`, `footer`, `contact`, `resume`, `search`, and layout chrome)
-
-Every case slug, image asset path, work summary row, and proof review window is checked statically on push by `pnpm proof:validate` and Vitest.
+Consolidating all case records into typed `src/data/cases/*.ts` modules validated with **Zod** reversed that weight right away: client bundles now receive only interactive interface labels (`nav`, `contact`, `resume`, `search`), cutting translation payloads to a fraction of their former size while keeping project slugs, media paths, and review schedules checked automatically.
 
 ## Stopping client boundary creep on the Work Index
 
-Even after shrinking global dictionaries, one route stood out in Next.js 15 build output: `/projects` carried **80.2 kB** of route JavaScript (**204 kB** First Load JS), almost entirely inside a single `WorkIndex` client wrapper.
+Even after slimming dictionaries, build inspection flagged `/projects` as noticeably heavier than other routes because `WorkIndex` sat behind a `"use client"` boundary—pulling interactive thumbnails, summaries, and helpers into client JavaScript just to power a filter bar.
 
-Tracing its imports explained why: the interactive category tabs pulled in four SVG schematic components, hiring shortlist summaries, the capability evidence matrix, and proof helpers—all inside `"use client"`. Moving those blocks up into the Server Component (`app/[locale]/projects/page.tsx`) and passing pre-rendered thumbnail slots left only the lightweight tab-filter wrapper on the client. After rebuilding, the `/projects` page chunk fell from **80.2 kB to 1.25 kB** (`First Load JS: 125 kB`), allowing the CI bundle gate (`pnpm budget:check`) to lock per-route app chunks strictly under **20 kB gzipped**.
+Lifting those presentational blocks back into the Server Component (`app/[locale]/projects/page.tsx`) and passing rendered slots left only the lightweight tab toggle on the client, dropping the `/projects` route script to roughly **1.25 kB** so automated CI budget checks can keep interaction pages crisp.
 
-## Replacing heavy assets and ad-hoc motion
+## Lighter assets, calmer motion, and accessibility checks
 
-Three smaller shifts closed the rest of the loop:
+Three practical habits closed the loop:
 
-1. **Media pipeline (`pnpm media:check`)**: Using `sharp` and `ffmpeg` compression brought project media down from `18.15 MB` to under `8 MB` across all cases while keeping a hard `12 MB` CI ceiling.
-2. **Unified GSAP core**: Removing `framer-motion` in favor of centralized `gsap.context()` cleanup and lazy `ScrollTrigger` reduced the home route First Load JS from `175 kB` to `158 kB` while honoring `prefers-reduced-motion`.
-3. **Automated accessibility checks**: `@axe-core/playwright` now scans Desktop Light, Desktop Dark (`#141413`), and Mobile (`375px`) viewports in CI, alongside `a[href='/resume.pdf']` omission checks that keep the web resume and print stylesheet as a single source of truth.
+1. **Media discipline (`pnpm media:check`)**: Compressing screenshots and looping clips kept the entire visual archive light and snappy without degrading type clarity.
+2. **Restrained GSAP motion**: Centralizing subtle reveals with `useGsapContext` cleanup and `prefers-reduced-motion` support makes transitions settle immediately for visitors who prefer reduced motion.
+3. **Multi-viewport accessibility scans**: Automated `@axe-core/playwright` checks cover Desktop Light, Desktop Dark (`#141413`), and Mobile viewports together, ensuring contrast and focus rings stay intact across themes.

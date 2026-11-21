@@ -74,9 +74,14 @@ export async function getBlogPost(
         const fileContents = fs.readFileSync(fullPath, "utf8");
         const { data, content } = matter(fileContents);
 
-        // Calculate reading time (rough estimate: 200 words per minute)
-        const wordCount = content.split(/\s+/).length;
-        const readingTime = Math.ceil(wordCount / 200);
+        // Calculate reading time accounting for both English words (~200 wpm) and CJK characters (~350 cpm)
+        const cjkCount = (content.match(/[\u4e00-\u9fff]/g) ?? []).length;
+        const latinWordCount = content
+            .replace(/[\u4e00-\u9fff]/g, " ")
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean).length;
+        const readingMinutes = Math.max(1, Math.ceil(cjkCount / 350 + latinWordCount / 200));
 
         return {
             metadata: {
@@ -86,7 +91,7 @@ export async function getBlogPost(
                 excerpt: data.excerpt || "",
                 tags: data.tags || [],
                 author: data.author || "Lewis Dong",
-                readingTime: `${readingTime} min read`,
+                readingTime: locale === "zh" ? `${readingMinutes} 分钟阅读` : `${readingMinutes} min read`,
                 published: data.published !== false,
             },
             content,

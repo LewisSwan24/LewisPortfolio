@@ -85,7 +85,7 @@ describe("interview decision components", () => {
     render(<InterviewQuestionBank items={questions} />);
 
     expect(screen.getByText("Interview questions to ask")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Inspect evidence" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Inspect decision" })).toHaveAttribute(
       "href",
       "/projects/connect#evidence-board"
     );
@@ -94,7 +94,7 @@ describe("interview decision components", () => {
   it("renders boundary notes with related proof", () => {
     render(<InterviewBoundaryNotes notes={boundaries} />);
 
-    expect(screen.getByText("What I would not overclaim.")).toBeInTheDocument();
+    expect(screen.getByText("Context & testing boundaries.")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "See related proof" })).toHaveAttribute(
       "href",
       "/projects/connect#outcome-limits"

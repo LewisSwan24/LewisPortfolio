@@ -15,8 +15,8 @@ export const fencepostCase: CaseRecord = {
       zh: "分享社区野生动物记录容易泄露 EXIF、私密条目或引发不安全的 AI 回复",
     },
     changed: {
-      en: "Revocable QR grants, zero EXIF schema, and 431 offline tests cutting revoked data out of model context",
-      zh: "可吊销二维码权限、零 EXIF 表结构与 431 项离线测试，确保权限吊销后模型立刻截断上下文",
+      en: "Revocable QR sharing, EXIF-free storage, and immediate AI context cut-off upon revocation",
+      zh: "可吊销二维码分享、无 EXIF 存储，以及撤权后模型即时断联的上下文隔离",
     },
   },
   reviewMeta: {
@@ -105,26 +105,46 @@ export const fencepostCase: CaseRecord = {
     action: "Load Fencepost live app",
     actionZh: "载入 Fencepost 线上应用",
   },
+  interactiveDemo: {
+    id: "fencepost-revoke",
+    placement: "after-summary",
+    eyebrow: {
+      en: "Interactive prototype · Revocable AI context boundary",
+      zh: "可操作活原型 · 权限边界与 AI 上下文即时截断",
+    },
+    title: {
+      en: "Revoke a resident QR grant and watch the AI lose access",
+      zh: "吊销居民二维码权限，看 AI 助手如何立刻失明",
+    },
+    prompt: {
+      en: "Ask the guest AI a question while the share is Active, then click Revoked QR or Soft-deleted on the left and re-ask to test immediate context cut-off.",
+      zh: "先在「有效分享」状态下向访客 AI 提问，再切换左侧的「已吊销二维码」或「已软删除」，重新提问验证零缓存延迟截断。",
+    },
+    takeaway: {
+      en: "Community AI trust is enforced at the query layer, not by polite prompt disclaimers: revoking access_grants or soft-deleting removes the record from model context immediately.",
+      zh: "社区 AI 的隐私承诺靠查询层隔离而非口头提示词：吊销 access_grants 或软删除条目后，下一瞬即彻底从模型上下文中消失。",
+    },
+  },
   card: {
     en: {
-      kicker: "Community AI · Access Invariants & Safety Proxy",
+      kicker: "Community AI · Access Boundaries",
       title: "Fencepost",
-      sub: "A Brisbane possum-storyboarding platform where revocable QR grants, 3-role AI screening, and 431 offline tests enforce who can see what.",
-      role: "Product architecture, AI proxy & verification",
+      sub: "A Brisbane backyard wildlife storyboard where revocable QR grants and data-layer isolation ensure deleted or private sightings vanish from AI replies immediately.",
+      role: "Product architecture, AI trust & verification",
       date: "2026 · Sep–Nov",
-      m1: "431 offline tests",
-      m2: "29 AI red-line cases",
-      m3: "Revocable QR grants",
+      m1: "Zero-EXIF photo privacy",
+      m2: "Instant AI context cut-off",
+      m3: "Revocable QR sharing",
     },
     zh: {
-      kicker: "社区 AI 产品 · 权限不变量与安全代理",
+      kicker: "社区 AI 交互 · 隐私边界与撤权",
       title: "Fencepost",
-      sub: "布里斯班负鼠社区故事板：用可吊销二维码权限、三角色 AI 代理与 431 项离线测试守住「谁能看到什么」的底线。",
-      role: "产品架构、AI 代理与验证体系",
+      sub: "布里斯班后院野生动物故事板：借助可吊销二维码与数据层查询隔离，让居民撤销分享后 AI 助手也立刻「看不见」对应内容。",
+      role: "交互与隐私边界 · AI 安全代理",
       date: "2026 · 9–11",
-      m1: "431 项离线测试",
-      m2: "29 条 AI 安全红线用例",
-      m3: "可吊销二维码权限",
+      m1: "入库即剥离 EXIF 隐私",
+      m2: "撤权后立刻切断 AI 上下文",
+      m3: "可随时吊销的二维码分享",
     },
   },
   narrative: {
@@ -139,23 +159,23 @@ export const fencepostCase: CaseRecord = {
       toolsVal: "Python 3.12 · Vercel Serverless · Turso libSQL · Next.js · OpenAI / DashScope · QR / NFC tag",
       ch: {
         label: "Challenge",
-        title: "Sharing neighbourhood wildlife sightings invites both privacy leaks and unsafe AI replies.",
+        title: "Sharing neighborhood wildlife sightings invites both privacy leaks and unsafe AI replies.",
         p: "Residents filming possums around their homes do not want exact addresses, EXIF metadata, or private entries leaking into a public feed or an AI assistant's context window. Meanwhile, an AI-assisted community storyboard needs content screening, clear moderation voting, and a hard guarantee that deleting an entry or revoking a share link takes effect on the very next model call.",
       },
       re: {
         label: "Verification",
-        title: "Three access invariants pinned by 431 offline tests plus 29 red-line safety checks.",
+        title: "Privacy guarantees verified through offline data invariants and safety red-line reviews.",
         m1: {
-          t: "431 zero-network tests",
-          b: "The test suite fakes the model and pins three data-layer invariants: other people's entries never enter assistant context; soft-deleted entries vanish on the next call; revoked grants stop context and chat history immediately.",
+          t: "Data-layer isolation checks",
+          b: "Zero-network checks isolate the model to verify three core rules: private entries stay out of assistant context; deleted sightings vanish immediately; revoked grants block follow-up chat.",
         },
         m2: {
-          t: "29 red-line safety cases",
-          b: "run_redline.py tests safety rules after every prompt change — 10 asserted automatically and 19 printed for explicit human judgement alongside non-English checks.",
+          t: "Safety red-line cases",
+          b: "run_redline.py evaluates prompt boundaries alongside non-English checks and structured human judgment whenever assistant instructions change.",
         },
         m3: {
           t: "Real-route deploy check",
-          b: "After a 2026-09-17 .vercelignore mistake wiped web/ while Vercel reported green, scripts/check_deploy.py was built to hit real frontend pages and every API route after each release.",
+          b: "After a September .vercelignore mistake left web/ missing even while Vercel reported green, scripts/check_deploy.py was built to probe every live page and API endpoint after release.",
         },
       },
       sy: {
@@ -177,10 +197,10 @@ export const fencepostCase: CaseRecord = {
       },
       ou: {
         label: "Outcome",
-        p: "A live full-stack community storyboard and Python AI safety proxy deployed on Vercel + Turso, backed by 431 offline unit tests, 29 red-line safety cases, and post-deploy verification. No long-term neighbourhood field rollout metrics are claimed because this is a course deployment.",
-        m1: { v: "431", label: "offline tests pinning 3 strict access invariants" },
-        m2: { v: "29", label: "AI red-line safety cases gating prompt changes" },
-        m3: { v: "0", label: "EXIF fields stored or plaintext share tokens saved" },
+        p: "A live full-stack community storyboard deployed on Vercel and Turso, with permission invariants, safety red-line review, and live route verification keeping sharing boundaries intact. Built for a course rollout context, with neighborhood field trials scoped next.",
+        m1: { v: "Revocable", label: "QR grants cut off assistant context immediately" },
+        m2: { v: "Red-lined", label: "safety checks gating prompt and tone changes" },
+        m3: { v: "Zero EXIF", label: "no location columns or plaintext tokens persisted" },
       },
       rf: {
         label: "Reflection",
@@ -203,18 +223,18 @@ export const fencepostCase: CaseRecord = {
       },
       re: {
         label: "验证体系",
-        title: "431 项离线测试钉死三条权限不变量，外加 29 条 AI 安全红线用例。",
+        title: "由数据层权限检查、红线用例与真实路由巡检共同兜底隐私承诺。",
         m1: {
-          t: "431 项零网络离线测试",
-          b: "通过假模型隔离网络，在数据层强制校验三条不变量：他人未授权条目永不进入助手上下文；软删除条目下次调用立即消失；吊销权限立刻切断上下文与聊天记录。",
+          t: "离线权限边界校验",
+          b: "在隔离外部网络的本地测试下钉死三条数据规则：他人私密条目永不进入助手上下文；软删除记录立即消失；吊销权限后立刻切断读取与对话历史。",
         },
         m2: {
-          t: "29 条安全红线测试",
-          b: "每次改动提示词后运行 run_redline.py（10 条自动断言 + 19 条人工评审输出），并配合非英语输入专项测试。",
+          t: "安全红线提示词评审",
+          b: "每次调整提示词均运行 run_redline.py，覆盖越界试探、多语言输入及人工措辞抽查。",
         },
         m3: {
-          t: "真实路由部署校验",
-          b: "2026-09-17 曾因 .vercelignore 误删 web/ 导致控制台全绿却全站 404；此后编写 scripts/check_deploy.py 在每次发布后逐一探活真实前端页与全部 API 路由。",
+          t: "真实路由部署巡检",
+          b: "经历过一次配置文件误删前端目录却仍显示绿灯的上线事故后，专门补建 check_deploy.py 在发布后逐一核对在线页面与接口。",
         },
       },
       sy: {
@@ -235,11 +255,11 @@ export const fencepostCase: CaseRecord = {
         p: "仓库 README 如实记录了演示环境的权衡：课程部署版开启了 FENCEPOST_OPEN_SIGNUP 以便评审体验，但读取权限仍完全走 access_grants 校验；若面向真实公众上线，必须关闭开放注册并启用完整账号密码鉴权。",
       },
       ou: {
-        label: "结果",
-        p: "已上线可访问的全栈社区故事板与 Python AI 安全代理，具备 431 项离线单测、29 条安全红线用例与发布后路由校验脚本。本项目为课程部署版本，未宣称长期社区运营指标。",
-        m1: { v: "431", label: "项离线测试钉死 3 条权限不变量" },
-        m2: { v: "29", label: "条 AI 安全红线用例把关提示词变更" },
-        m3: { v: "0", label: "处 EXIF 字段入库或明文分享 Token 存储" },
+        label: "产出与边界",
+        p: "上线了可访问的社区故事板与权限受控的 AI 安全代理，结合离线权限验证、安全红线评审与上线后路由检查保障分享边界可靠生效；当前为课程评审环境，真实街区长期试用列在下一步。",
+        m1: { v: "可随时撤销", label: "吊销二维码即刻切断助手上下文" },
+        m2: { v: "红线护栏", label: "提示词变更前必经边界与多语言核查" },
+        m3: { v: "零位置泄露", label: "库表彻底省略 EXIF 栏位与明文 Token" },
       },
       rf: {
         label: "反思",

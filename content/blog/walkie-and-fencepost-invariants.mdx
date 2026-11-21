@@ -23,16 +23,16 @@ Walkie solves that by making the **physical button layer** on the M5StickS3 non-
 - **Dual-boot safety guard**: Because Walkie shares the watch with [On The Beat](/projects/onthebeat), `firmware/guard.py` blocks full flash erase commands so updating one app cannot wipe the sibling partition.
 - **Zero-knowledge relay**: Beyond the USB cable, frames use AES-256-GCM under a session key derived from `pair.key`, so the Fly.io relay never sees plaintext prompts or tool names.
 
-All three validation gates (`gate-h` across 11 on-device scenes, `gate-p5` on-chip encryption tests, and `gate-l` 75-second relay keep-alive checks) verify behavior against mock Claude streams before real keys are ever touched.
+All three hardware verification scripts confirm pairing cryptography, on-device pagination, and relay keep-alive behavior on real M5StickS3 hardware before connecting any live model key.
 
 ## Fencepost: revoking access cuts the model off too
 
-In neighborhood wildlife storyboarding, sharing sightings involves backyard context, child-friendly reading, and moderation across three roles. UI visibility toggles alone are brittle if a revoked link's text remains reachable inside an AI assistant's retrieval context.
+In neighborhood wildlife storyboarding, sharing backyard sightings involves private home context, family reading, and neighbor moderation. UI visibility toggles alone feel fragile if text from a revoked link lingers inside an AI assistant's retrieval context.
 
-In Fencepost, two rules live in the backend boundary itself:
+In Fencepost, two rules live in the data boundary itself:
 
-1. **No EXIF storage**: Media schemas strip location metadata on ingest and persist only opaque storage keys.
-2. **Query-level `access_grants` enforcement**: Every retrieval path joins active grants before assembling model context, verified across **431 offline tests** and **29 AI red-line scenarios**. When a resident revokes a QR grant, subsequent model prompts cannot quote the hidden sighting.
+1. **No EXIF storage**: Media uploads strip location metadata on ingest so home coordinates never enter the database.
+2. **Query-level `access_grants` enforcement**: Every retrieval query joins active sharing grants before assembling model context, verified through automated privacy checks and red-line prompt reviews. When a resident revokes a QR grant, subsequent assistant answers immediately stop referencing the hidden sighting.
 
 The live public build on Vercel intentionally leaves demo handle login lightweight so reviewers can inspect flows directly, while keeping grant enforcement intact at the data layer.
 

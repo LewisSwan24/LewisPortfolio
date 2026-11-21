@@ -53,8 +53,13 @@
 
 .lab-swatch-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--s-3);
+}
+@media (max-width: 900px) {
+  .lab-swatch-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .lab-swatch {
@@ -253,9 +258,16 @@
   border-color: var(--text);
 }
 
+.lab-sm-step:focus-visible,
+.lab-pill:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .lab-sm-step.is-current {
   border-color: var(--accent);
   background: var(--surface);
+  box-shadow: inset 0 2px 0 0 var(--accent);
 }
 
 .lab-sm-step-num {

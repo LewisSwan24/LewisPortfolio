@@ -5,6 +5,7 @@ import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import type { WorkTag } from "@/lib/cases/schema";
 
 export type WorkFilterId = "all" | WorkTag;
+export type WorkViewMode = "index" | "matrix";
 
 export interface WorkIndexClientRow {
   slug: string;
@@ -16,7 +17,6 @@ export interface WorkIndexClientRow {
   dur: string;
   problem: string;
   changed: string;
-  thumb: ReactNode;
 }
 
 const FILTERS: Array<{ id: WorkFilterId; en: string; zh: string }> = [
@@ -29,71 +29,113 @@ const FILTERS: Array<{ id: WorkFilterId; en: string; zh: string }> = [
 
 export function WorkIndex({
   items,
+  thumbs,
+  matrixSlot,
   locale,
 }: {
   items: WorkIndexClientRow[];
+  thumbs: Record<string, ReactNode>;
+  matrixSlot?: ReactNode;
   locale: "en" | "zh";
 }) {
   const isZh = locale === "zh";
   const [filter, setFilter] = useState<WorkFilterId>("all");
+  const [view, setView] = useState<WorkViewMode>("index");
 
   const shown = filter === "all" ? items : items.filter((item) => item.tags.includes(filter));
 
   return (
     <>
       <section className="container">
-        <div
-          className="idx-filters"
-          role="tablist"
-          aria-label={isZh ? "筛选项目" : "Filter projects"}
-        >
-          {FILTERS.map((f) => (
-            <button
-              key={f.id}
-              className={`idx-filter ${filter === f.id ? "active" : ""}`}
-              onClick={() => setFilter(f.id)}
-              role="tab"
-              aria-selected={filter === f.id}
-              type="button"
+        <div className="idx-bar">
+          <div
+            className="idx-filters"
+            role="tablist"
+            aria-label={isZh ? "筛选项目" : "Filter projects"}
+          >
+            {FILTERS.map((f) => (
+              <button
+                key={f.id}
+                className={`idx-filter ${filter === f.id ? "active" : ""}`}
+                onClick={() => {
+                  setFilter(f.id);
+                  setView("index");
+                }}
+                role="tab"
+                aria-selected={view === "index" && filter === f.id}
+                type="button"
+              >
+                {isZh ? f.zh : f.en}
+              </button>
+            ))}
+          </div>
+          {matrixSlot && (
+            <div
+              className="idx-view-tabs"
+              role="tablist"
+              aria-label={isZh ? "切换视图" : "Switch view"}
             >
-              {isZh ? f.zh : f.en}
-            </button>
-          ))}
+              <button
+                type="button"
+                role="tab"
+                aria-selected={view === "index"}
+                className={`idx-filter ${view === "index" ? "active" : ""}`}
+                onClick={() => setView("index")}
+              >
+                {isZh ? "作品清单" : "Index"}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={view === "matrix"}
+                className={`idx-filter ${view === "matrix" ? "active" : ""}`}
+                onClick={() => setView("matrix")}
+              >
+                {isZh ? "能力矩阵" : "Capability matrix"}
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
-      <section className="container work-index-board" aria-labelledby="work-index-title">
-        <h2 id="work-index-title" className="sr-only">
-          {isZh ? "项目清单" : "Project list"}
-        </h2>
-        <div className="work-index-head" aria-hidden="true">
-          <span>{isZh ? "项目" : "Project"}</span>
-          <span>{isZh ? "角色" : "Role"}</span>
-          <span>{isZh ? "问题" : "Problem"}</span>
-          <span>{isZh ? "改变了什么" : "What changed"}</span>
-          <span />
-        </div>
-        <div className="work-index-list">
-          {shown.map((item) => (
-            <Link className="work-index-row" href={`/projects/${item.slug}`} key={item.slug}>
-              <div className="work-index-project">
-                {item.thumb}
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.kicker}</p>
+      {view === "matrix" && matrixSlot ? (
+        <section className="container">{matrixSlot}</section>
+      ) : (
+        <section className="container work-index-board" aria-labelledby="work-index-title">
+          <h2 id="work-index-title" className="sr-only">
+            {isZh ? "项目清单" : "Project list"}
+          </h2>
+          <div className="work-index-head" aria-hidden="true">
+            <span>{isZh ? "项目" : "Project"}</span>
+            <span>{isZh ? "角色" : "Role"}</span>
+            <span>{isZh ? "问题" : "Problem"}</span>
+            <span>{isZh ? "改变了什么" : "What changed"}</span>
+            <span />
+          </div>
+          <div className="work-index-list">
+            {shown.map((item) => (
+              <Link className="work-index-row" href={`/projects/${item.slug}`} key={item.slug}>
+                <div className="work-index-project">
+                  <div className="work-index-thumb" aria-hidden="true">
+                    {thumbs[item.slug]}
+                  </div>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.kicker}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="work-index-role">
-                <strong>{item.role}</strong>
-                <span>{item.year} · {item.dur}</span>
-              </div>
-              <p className="work-index-copy">{item.problem}</p>
-              <p className="work-index-copy">{item.changed}</p>
-              <span className="work-index-arrow" aria-hidden="true">→</span>
-            </Link>
-          ))}
-        </div>
-      </section>
+                <div className="work-index-role">
+                  <strong>{item.role}</strong>
+                  <span>{item.year} · {item.dur}</span>
+                </div>
+                <p className="work-index-copy">{item.problem}</p>
+                <p className="work-index-copy">{item.changed}</p>
+                <span className="work-index-arrow" aria-hidden="true">→</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </>
   );
 }

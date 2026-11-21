@@ -58,7 +58,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
       {!empty && (
         <section className="container">
           <div
-            className="idx-filters"
+            className="idx-filters v3-pill-row"
             role="tablist"
             aria-label={isZh ? "筛选文章" : "Filter posts"}
           >
@@ -115,7 +115,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
                   <div className="eyebrow">{date}</div>
                   <h3 className="idx-flag-title">{p.title}</h3>
                   <p>{p.excerpt}</p>
-                  <div className="idx-flag-tags">
+                  <div className="idx-flag-tags v3-pill-row">
                     {p.tags.slice(0, 3).map((tag) => (
                       <span key={tag} className="tag">
                         {tag}

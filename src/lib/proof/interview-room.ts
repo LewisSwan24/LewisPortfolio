@@ -3,30 +3,30 @@ import { isUnlistedProject } from "../project-routes";
 
 const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
   brief: {
-    eyebrow: "Interview decision room",
-    headline: "Why I'll help your team.",
+    eyebrow: "Hiring overview",
+    headline: "How I work across research and interaction.",
     subhead:
-      "A decision page for role fit, strongest proof, interview questions, and honest boundaries.",
+      "A quick guide to role fit, core interaction cases, interview prompts, and project scope.",
     status:
-      "UQ Master of Interaction Design candidate in Brisbane. Looking for full-time graduate UX/Product roles from late 2026.",
+      "UQ Master of Interaction Design candidate in Brisbane, graduating November 2026. Open to full-time graduate UX, Product, and Interaction Design roles.",
     signals: [
       {
         label: "Role fit",
-        value: "UX/Product + research-led teams",
+        value: "Interaction, UX & Product teams",
         detail:
-          "Strongest where ambiguity needs structure, evidence, and product judgment.",
+          "Strongest where ambiguous problem spaces need information architecture, rapid prototyping, and research synthesis.",
       },
       {
-        label: "Proof depth",
-        value: "5 live builds",
+        label: "Case depth",
+        value: "Live interactive builds",
         detail:
-          "UQ Connect, MazeRunners, Hoop Dream, PriceWise and Grassland Iron Tide each open from their case page. Every case shows its methods and limits.",
+          "UQ Connect, MazeRunners, Hoop Dream, PriceWise, Walkie, Fencepost, and Grassland open straight into interactive demos and research records.",
       },
       {
-        label: "Interview readiness",
-        value: "Question routes prepared",
+        label: "Decision trail",
+        value: "Documented trade-offs",
         detail:
-          "Each major claim links to a case anchor and a defensible answer route.",
+          "Every case connects design claims directly to usability findings, revised architecture, and realistic next steps.",
       },
     ],
     primaryAction: { label: "Contact Lewis", href: "/contact" },
@@ -78,9 +78,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "Design systems at generated scale",
       caseSlug: "hoop",
       proof:
-        "Hoop Dream wrote its style rules down before the batches: three art bibles and an explicit rejected-style list, reviewed by eye rather than by a script. 299 asset specs are registered across six batches.",
+        "Hoop Dream established visual standards before generation began—using art bibles, rejected-style criteria, and manual side-by-side audits across six asset batches.",
       whyItMatters:
-        "Shows written standards another reviewer could apply, and a clear line between what a script can check and what it cannot.",
+        "Shows clear visual direction and knowing where script checks stop and human taste takes over.",
       href: "/projects/hoop#decision-timeline",
     },
     {
@@ -88,9 +88,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "Complex, real-time interaction",
       caseSlug: "grassland",
       proof:
-        "Grassland Iron Tide keeps one command grammar across five RTS missions and restores failure from one save chain; 430/430 tests and a full playthrough at two resolutions check it.",
+        "Grassland Iron Tide preserves a single intuitive command grammar across five real-time missions and restores checkpoints from one state chain.",
       whyItMatters:
-        "Shows interaction rules written so a test or a browser run can hold them, not only screens.",
+        "Shows interaction models designed to stay learnable under time pressure, verified through full desktop playthroughs.",
       href: "/projects/grassland#decision-timeline",
     },
     {
@@ -140,8 +140,8 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "pipeline-consistency-hoop",
       group: "product",
-      question: "How do you keep a 299-spec asset registry looking like one world?",
-      proves: "Process design, written standards, and knowing what a script can and cannot check.",
+      question: "How do you keep a large batch of generated art feeling like one cohesive world?",
+      proves: "Art direction, written criteria, and human visual review.",
       caseSlug: "hoop",
       href: "/projects/hoop#decision-timeline",
     },
@@ -196,30 +196,30 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
 
 const zhInterviewDecisionRoom: InterviewDecisionRoom = {
   brief: {
-    eyebrow: "面试决策页",
-    headline: "我能怎样帮助你的团队。",
+    eyebrow: "招聘速览",
+    headline: "我如何把研究推进到真实交互。",
     subhead:
-      "用一页看清岗位匹配、最强证据、可追问问题和需要诚实说明的边界。",
+      "把岗位契合度、关键交互决策、可追问的设计问题和项目真实边界收在一页，方便面试前快速浏览。",
     status:
-      "昆士兰大学交互设计硕士在读，常驻布里斯班。主要看 2026 年底起的全职毕业生 UX / Product 岗位。",
+      "昆士兰大学交互设计硕士在读（2026 年 11 月毕业），常驻布里斯班。正在寻找全职交互设计、UX / 产品设计毕业生岗位。",
     signals: [
       {
-        label: "岗位匹配",
-        value: "UX/Product + 研究驱动团队",
+        label: "岗位契合",
+        value: "交互 / 产品设计 & 研究驱动团队",
         detail:
-          "最适合需要结构化模糊问题、证据判断和产品判断的团队。",
+          "尤其擅长在定义模糊的早期阶段，理清信息架构、做低成本高信噪比原型并用调研推动取舍。",
       },
       {
-        label: "证据深度",
-        value: "5 个线上版本",
+        label: "作品落点",
+        value: "可交互的真实原型",
         detail:
-          "UQ Connect、MazeRunners、Hoop Dream、PriceWise 和草原铁潮都能从案例页直接打开。每个案例都写了方法和限制。",
+          "UQ Connect、MazeRunners、Walkie、Fencepost 与草原铁潮均提供可上手体验的版本，记录了设计动机与演进取舍。",
       },
       {
-        label: "面试准备度",
-        value: "已准备问题路径",
+        label: "推理链条",
+        value: "决策有迹可循",
         detail:
-          "主要 claim 都能链接到案例锚点和可辩护的回答路径。",
+          "每项能力结论都对应具体案例片段，看得到方案为什么改、改了哪里，以及当前未覆盖的验证范围。",
       },
     ],
     primaryAction: { label: "联系 Lewis", href: "/contact" },
@@ -268,20 +268,22 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     },
     {
       id: "generative-pipeline-proof",
-      capability: "规模化生产中的一致性",
+      capability: "视觉与系统一致性",
       caseSlug: "hoop",
       proof:
-        "Hoop Dream 在批次之前先写下风格规则：三份美术规范和一张「拒绝清单」，靠人眼对照，没有脚本在查。登记在册的资产规格有 299 条，分六批。",
+        "Hoop Dream 在批量生成素材之前先制定视觉圣经与禁用清单，并逐批做对照走查，避免风格越做越散。",
       whyItMatters:
-        "说明标准写成了文字，换一个人也能照着审；也说明我分得清脚本查得了什么、查不了什么。",
+        "体现设计规范如何在大量生成素材中守住叙事氛围，也区分了脚本校验与审美把关各自的分工。",
       href: "/projects/hoop#decision-timeline",
     },
     {
       id: "realtime-interaction-proof",
-      capability: "复杂的即时交互",
+      capability: "高密度即时交互",
       caseSlug: "grassland",
-      proof: "草原铁潮让五关 RTS 共用一套命令语法，失败后从同一条存档链恢复；430 / 430 测试和两种分辨率的完整通关负责核对。",
-      whyItMatters: "说明交互规则写成了测试或浏览器能守住的样子，不只是画面。",
+      proof:
+        "草原铁潮五道关卡共用同一套选中与指令语法，失败时沿着统一状态链回滚到检查点。",
+      whyItMatters:
+        "在多单位并行与倒计时压力下，玩家学会的操作语法跨关卡保持一致，不需要重复摸索。",
       href: "/projects/grassland#decision-timeline",
     },
     {
@@ -329,8 +331,8 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
     {
       id: "pipeline-consistency-hoop",
       group: "product",
-      question: "299 条资产规格的登记表，怎么才能看起来像同一个世界？",
-      proves: "流程设计、成文标准，以及分清脚本查得了什么。",
+      question: "大批量生成的素材，怎么保持看起来来自同一个世界？",
+      proves: "视觉规范定义、成文标准与人工审美走查。",
       caseSlug: "hoop",
       href: "/projects/hoop#decision-timeline",
     },

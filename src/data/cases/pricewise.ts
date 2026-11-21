@@ -18,8 +18,8 @@ export const pricewiseCase: CaseRecord = {
       "zh": "代码是 AI 写的，构建通过却证明不了到底跑没跑"
     },
     "changed": {
-      "en": "Four classes of defect that a green build, a clean type-check and passing tests all missed",
-      "zh": "构建、类型检查和测试全绿，照样漏掉四类缺陷"
+      "en": "Identified four silent failures that passed build, type-check, and automated tests",
+      "zh": "找出四类通过了构建、类型检查与测试但实际失效的问题"
     }
   },
   "reviewMeta": {
@@ -54,10 +54,10 @@ export const pricewiseCase: CaseRecord = {
         "src": "/projects/pricewise/02-scan.png",
         "width": 2880,
         "height": 1800,
-        "alt": "The receipt scanning screen, with an upload area and the list of recognised items",
-        "altZh": "小票扫描页：上传区域，以及识别出来的商品清单",
-        "caption": "Where the whole product lives or dies. A receipt prints MLK FC 2L and the catalogue says Full Cream Milk 2L; if those do not meet, nothing downstream can happen.",
-        "captionZh": "整个产品的成败都压在这一步。小票印 MLK FC 2L，商品库里是 Full Cream Milk 2L，对不上，后面什么都做不了。"
+        "alt": "The receipt scanning screen, with an upload area and the list of recognized items",
+        "altZh": "小票扫描页：上传区域与识别商品清单",
+        "caption": "The core interaction bottleneck: receipts print cryptic abbreviations like MLK FC 2L while catalogs store Full Cream Milk 2L.",
+        "captionZh": "体验核心所在：小票印的是简写 MLK FC 2L，商品库写的是 Full Cream Milk 2L，两者连不上就无法比价。"
       },
       {
         "src": "/projects/pricewise/03-compare.png",
@@ -95,24 +95,24 @@ export const pricewiseCase: CaseRecord = {
   },
   "card": {
     "en": {
-      "kicker": "Product design · Engineering verification",
+      "kicker": "Product design · Behavior verification",
       "title": "PriceWise",
-      "sub": "Photograph a supermarket receipt and see what the same basket costs at two other chains. The AI wrote the code; the question was how to know it works.",
-      "role": "Product + interaction + technical direction",
-      "date": "2026 · deployed prototype, demo data, 0 registered users",
-      "m1": "109 API routes · 36 page routes",
-      "m2": "4 classes of defect a green build could not see",
-      "m3": "15 → 19 of 20 constructed receipt inputs matched"
+      "sub": "A grocery comparison prototype on simulated data—focused on exposing silent AI/search failures and clarifying uncertain receipt matches for users.",
+      "role": "Product + interaction + verification",
+      "date": "2026 · prototype on demo data",
+      "m1": "Explicit unmatched fallback UI",
+      "m2": "Four silent runtime failure modes",
+      "m3": "Coles · Woolworths · Aldi catalog"
     },
     "zh": {
-      "kicker": "产品设计 · 工程验证",
+      "kicker": "产品设计 · 交互与行为验证",
       "title": "PriceWise",
-      "sub": "拍一张超市小票，得到「同样这些东西，在另外两家要多少钱」。代码是 AI 写的，真正的问题是怎么知道它真的在工作。",
-      "role": "产品、交互与技术方向",
-      "date": "2026 · 已部署的功能原型，演示数据，0 注册用户",
-      "m1": "109 条 API · 36 条页面路由",
-      "m2": "4 类构建看不见的缺陷",
-      "m3": "20 条构造的小票输入：配上 15 → 19 条"
+      "sub": "基于模拟数据的超市比价原型：重点解决「AI 静默回退与小票缩写歧义如何诚实呈现在界面上」。",
+      "role": "产品、交互设计与验证",
+      "date": "2026 · 演示数据原型",
+      "m1": "拿不准时显示为未匹配",
+      "m2": "揪出四类静默失灵场景",
+      "m3": "覆盖三大澳洲连锁超市商品"
     }
   },
   "narrative": {
@@ -163,7 +163,7 @@ export const pricewiseCase: CaseRecord = {
       },
       "te": {
         "label": "The module everything depends on",
-        "p": "Receipt matching is the product: a receipt prints MLK FC 2L, the catalogue says Full Cream Milk 2L, and if those do not meet, nothing else can happen. That module was written in one pass of 175 lines in the second commit and never modified, with 13 tests using 'milk', 'eggs', 'sourdough bread' — not one input resembling printed receipt text. Against 20 constructed receipt-format inputs it matched 15; after a fix that only adds points and never subtracts, 19. All 15 originally-correct inputs held. 311 tests green."
+        "p": "Receipt matching is the product: a receipt prints MLK FC 2L, the catalog says Full Cream Milk 2L, and if those do not meet, nothing else can happen. That module was written in one pass of 175 lines in the second commit and never modified, with 13 tests using 'milk', 'eggs', 'sourdough bread' — not one input resembling printed receipt text. Against 20 constructed receipt-format inputs it matched 15; after a fix that only adds points and never subtracts, 19. All 15 originally-correct inputs held. 311 tests green."
       },
       "ou": {
         "label": "What this case produced",
@@ -236,7 +236,7 @@ export const pricewiseCase: CaseRecord = {
         "p": "小票商品名匹配就是这个产品：小票印 MLK FC 2L，商品库里是 Full Cream Milk 2L，对不上就什么都比不了。这个模块在第二个提交里一次写成 175 行、此后从未修改，配的 13 个测试输入是 milk、eggs、sourdough bread：没有一条是真实小票印出来的样子。拿 20 条构造的小票格式输入去测，修前对 15 条；改法只加分不改分之后，对 19 条。原本对的 15 条零退化。测试共 311 个，全绿。"
       },
       "ou": {
-        "label": "这个案例产出了什么",
+        "label": "产出与边界",
         "m1": {
           "label": "类缺陷同时通过构建、类型与测试",
           "v": "4"

@@ -1,5 +1,3 @@
-import { CaseCoverVisual, hasScreenshotCover } from "./CaseCoverVisual";
-import type { CurrentProjectSlug } from "@/lib/project-routes";
 import type { ProofLocale } from "@/lib/portfolio-proof";
 
 interface CaseSummaryData {
@@ -12,15 +10,11 @@ interface CaseSummaryData {
 }
 
 export function CaseSummaryBlock({
-  slug,
   locale,
   summary,
-  coverCaption,
 }: {
-  slug: CurrentProjectSlug;
   locale: ProofLocale;
   summary: CaseSummaryData;
-  coverCaption: string;
 }) {
   const isZh = locale === "zh";
 
@@ -30,7 +24,7 @@ export function CaseSummaryBlock({
       <div id="interviewer-scan" className="case-anchor" aria-hidden />
       <aside className="case-summary" aria-label={isZh ? "案例摘要" : "Case summary"}>
         <div className="case-summary-head">
-          <div className="label">{isZh ? "案例摘要" : "Case summary"}</div>
+          <div className="label">{isZh ? "一句话结论" : "Case summary"}</div>
           <p>{summary.challenge}</p>
         </div>
         <div className="case-summary-grid">
@@ -64,11 +58,6 @@ export function CaseSummaryBlock({
           </div>
         </div>
       </aside>
-      <div id="artifact" className="case-anchor" aria-hidden />
-      <figure className="cs-cover">
-        <CaseCoverVisual slug={slug} locale={locale} />
-        {!hasScreenshotCover(slug) && <figcaption>{coverCaption}</figcaption>}
-      </figure>
     </>
   );
 }

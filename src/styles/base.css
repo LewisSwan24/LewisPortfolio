@@ -257,12 +257,33 @@ html { scroll-behavior: smooth; }
 .skip-link:focus { transform: translateY(0); }
 
 @media print {
-  @page { size: A4; margin: 14mm 16mm; }
+  @page { size: A4; margin: 11mm 14mm; }
 
   html, body { background: white !important; color: black !important; }
 
+  *,
+  *::before,
+  *::after,
+  .v3-page-enter,
+  .v3-section-reveal {
+    animation: none !important;
+    transition: none !important;
+  }
+  .v3-page-enter,
+  .v3-section-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .min-h-screen {
+    min-height: 0 !important;
+    display: block !important;
+  }
+
   nav,
   footer,
+  .pd-nav,
+  .pd-mobile-menu,
+  .pd-footer,
   .no-print,
   .reading-progress,
   .res-actions,
@@ -288,41 +309,62 @@ html { scroll-behavior: smooth; }
     page-break-after: avoid;
     break-after: avoid;
   }
-  .h-display, .h1 { font-size: 22pt !important; line-height: 1.2 !important; }
-  .h2 { font-size: 16pt !important; line-height: 1.25 !important; }
-  h3 { font-size: 13pt !important; }
-  h4 { font-size: 11pt !important; }
-  p, li, dd, dt, .prose { font-size: 10pt !important; line-height: 1.45 !important; color: #000 !important; }
+  .h-display, .h1 { font-size: 19pt !important; line-height: 1.18 !important; }
+  .h2 { font-size: 14pt !important; line-height: 1.2 !important; margin-top: 6pt !important; }
+  h3 { font-size: 10pt !important; margin-bottom: 6pt !important; }
+  h4 { font-size: 10.5pt !important; }
+  p, li, dd, dt, .prose { font-size: 9pt !important; line-height: 1.38 !important; color: #000 !important; }
 
-  .res-entry, .res-section, .res-side-card, .cs-section {
+  .res-section > h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .res-entry, .res-side-card, .cs-section {
     page-break-inside: avoid;
     break-inside: avoid;
   }
   .res-hero {
     padding-top: 0 !important;
-    padding-bottom: 12pt !important;
+    padding-bottom: 8pt !important;
     border-bottom: 1pt solid #000 !important;
   }
   .res-body {
     display: grid !important;
-    grid-template-columns: 1.6fr 0.9fr !important;
-    gap: 18pt !important;
+    grid-template-columns: 1.75fr 0.85fr !important;
+    gap: 14pt !important;
+    padding: 10pt 0 0 !important;
     align-items: start !important;
   }
+  .res-section {
+    padding-bottom: 8pt !important;
+    margin-bottom: 8pt !important;
+  }
+  .res-entry {
+    grid-template-columns: 82pt 1fr !important;
+    gap: 10pt !important;
+    margin-bottom: 8pt !important;
+  }
+  .res-entry .date { font-size: 8.5pt !important; }
+  .res-entry .org { font-size: 8.5pt !important; margin-bottom: 4pt !important; }
+  .res-entry li { margin-bottom: 2.5pt !important; }
   .res-side {
     display: grid !important;
-    gap: 10pt !important;
+    gap: 8pt !important;
   }
   .res-side-card {
     background: transparent !important;
     border: 1px solid #999 !important;
-    padding: 8pt 10pt !important;
+    padding: 7pt 9pt !important;
+    margin-bottom: 0 !important;
   }
+  .res-side-card h4 { margin-bottom: 4pt !important; }
+  .role-fit-availability { margin-bottom: 6pt !important; }
+  .role-fit-tags { gap: 4pt !important; margin-bottom: 6pt !important; }
   .res-skill .bar { background: #eee !important; }
   .res-skill .bar i { background: #555 !important; }
 
   a { color: #000 !important; text-decoration: underline !important; }
-  .res-entry ul { padding-left: 14pt !important; margin-top: 4pt !important; }
+  .res-entry ul { padding-left: 14pt !important; margin-top: 3pt !important; }
   [cmdk-root] { display: none !important; }
 }
 

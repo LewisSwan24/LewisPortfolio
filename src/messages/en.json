@@ -8,6 +8,8 @@
     "blog": "Blog",
     "more": "More",
     "work": "Work",
+    "lab": "Lab",
+    "hire": "Hire me",
     "writing": "Writing",
     "lang": {
       "en": "EN",
@@ -16,16 +18,16 @@
   },
   "brand": {
     "name": "Lewis Dong",
-    "tagline": "practice log"
+    "tagline": "interaction design log"
   },
   "hero": {
     "eyebrow": "Interaction & Product Designer · Master's in Interaction Design, UQ",
     "headline": {
       "a": "From idea to",
-      "b": "something you can",
+      "b": "something people can",
       "c": "actually use."
     },
-    "body": "I design interactions and then build them. Claude Code and Codex get me from a spec to a running prototype quickly enough that testing happens on the real thing instead of a picture of it.",
+    "body": "I design interactions and build working prototypes early enough to test real behavior with users, rather than guessing from static screens. Claude Code and Codex help me bridge concept and code quickly.",
     "deck": {
       "label": "The practice log —",
       "hint": "Drag or click any card",
@@ -34,7 +36,7 @@
     },
     "cta": {
       "work": "View selected work",
-      "note": "Start a conversation"
+      "note": "Get in touch"
     }
   },
   "now": {
@@ -44,47 +46,47 @@
       "val": "Weiss on loneliness; Ryan & Deci on self-determination"
     },
     "learning": {
-      "label": "Learning",
-      "val": "Where AI coding agents help a designer, and where they slow one down"
+      "label": "Exploring",
+      "val": "Where AI coding tools sharpen interaction craft, and where human judgment takes over"
     },
     "location": {
       "label": "Location",
-      "val": "Brisbane, AU — graduating November 2026, looking for full-time graduate roles"
+      "val": "Brisbane, AU — graduating November 2026, open to full-time graduate roles"
     }
   },
   "approach": {
     "label": "How I work",
     "title": {
-      "text": "Research in, artefact out.",
+      "text": "Research in, working interaction out.",
       "em": "Every time."
     },
-    "body": "I don't hand off sketches and hope. I run the interviews, synthesise the signals, draft the IA, prototype the interactions, then sit beside real users and watch it break. The work only counts when it ships.",
+    "body": "I don't hand off static mockups and hope for the best. I run the interviews, synthesize what people actually struggle with, shape the information architecture, build the prototype, and watch real users test it.",
     "step": {
       "1": {
         "t": "Listen",
-        "b": "Field notes, transcripts, task evidence, and the quiet signals people almost miss."
+        "b": "Field notes, transcripts, task observation, and the quiet friction people rarely voice."
       },
       "2": {
-        "t": "Synthesise",
-        "b": "Affinity maps, JTBD, test cards — structured reasoning."
+        "t": "Synthesize",
+        "b": "Affinity maps, jobs to be done, testable hypotheses — structured reasoning."
       },
       "3": {
         "t": "Prototype",
-        "b": "Figma, Framer, HTML/CSS/React — I build at the fidelity needed."
+        "b": "Figma, Framer, HTML/CSS/React, or hardware — whichever fidelity tests the real risk."
       },
       "4": {
-        "t": "Ship",
-        "b": "Usability test, iterate, hand off with rationale intact."
+        "t": "Refine",
+        "b": "Usability testing, iteration, and handoff with design rationale intact."
       }
     }
   },
   "feat": {
     "label": "Selected work",
-    "title": "Eight cases, each with its own stopping point.",
+    "title": "Six featured cases, each showing how far the design goes.",
     "footer": "Full index",
     "deckPrev": "Previous case",
     "deckNext": "Next case",
-    "deckKbd": "Drag, or use ← → to step through the eight"
+    "deckKbd": "Drag, or use ← → to step through"
   },
   "cs": {
     "back": "← All work",
@@ -95,19 +97,19 @@
     "next": "Next project",
     "prev": "Previous",
     "related": "Continue reading",
-    "impactLabel": "What it produced"
+    "impactLabel": "Outcome & scope"
   },
   "foot": {
     "signature": {
-      "text": "A portfolio is a long answer to the question",
-      "em": "what do you actually do all day."
+      "text": "A portfolio is a practical answer to the question",
+      "em": "how you think and build."
     },
     "elsewhere": "Elsewhere",
     "site": "Site",
     "write": "Write",
     "meta": {
-      "built": "Built with Next.js and Tailwind, written with Codex and Claude Code, and revised many times.",
-      "version": "v5 · updated November 2026"
+      "built": "Built with Next.js and Tailwind, prototyped with Codex and Claude Code, and refined across iterations.",
+      "version": "v3.5 · updated November 2026"
     }
   },
   "tw": {
@@ -314,35 +316,35 @@
     ],
     "kicker": "About",
     "headline": {
-      "text": "I make digital things people can actually find their way through.",
-      "em": "people"
+      "text": "I design interactions that help people stay oriented.",
+      "em": "oriented"
     },
-    "p1": "I'm finishing my Master of Interaction Design at the University of Queensland. Before that I spent four years on a Computer Science degree in Wales, which is why I'm comfortable being the person in the room who translates between designers and engineers.",
-    "p2": "My work sits where research, architecture and craft overlap. I'm most useful on messy, high-stakes problems — the ones where nobody agrees what the product should be yet — because I enjoy the part everyone else finds tedious: reading interview transcripts at 1am until the pattern shows up.",
-    "p3": "Outside the studio I cook with too much garlic, read non-fiction about cities, and occasionally attempt to learn Japanese. I reply to every email that isn't a recruiter mass-send.",
+    "p1": "I'm finishing my Master of Interaction Design at the University of Queensland after four years studying Computer Science in Wales. That mix makes it natural for me to sit in the gap between design intent and working software.",
+    "p2": "Most of my favorite work lives where research, information architecture, and craft overlap. I enjoy messy, early-stage problems — before anyone agrees what the product should be — and the quiet discipline of reading transcripts until a clear mental model emerges.",
+    "p3": "Outside the studio, I cook with too much garlic, read non-fiction about cities, and keep chipping away at Japanese. Write to me directly and I'll reply promptly.",
     "philo": {
       "1": {
         "t": "Research is not decoration.",
-        "b": "If a study didn't change the design, the study wasn't necessary."
+        "b": "If a study never challenges a design choice, it didn't earn its time."
       },
       "2": {
         "t": "Clarity over cleverness.",
-        "b": "The best interaction is the one the user never notices solving their problem."
+        "b": "The best interaction gets out of the way so people can act with confidence."
       },
       "3": {
-        "t": "Ship the unglamorous parts.",
-        "b": "Empty states, errors, load states — that's where respect for the user lives."
+        "t": "Care for the quiet states.",
+        "b": "Empty states, recovery paths, and physical confirmations — that's where trust actually lives."
       },
       "4": {
-        "t": "Disagree in writing.",
-        "b": "A memo survives the meeting. A whiteboard doesn't."
+        "t": "Decide in the open.",
+        "b": "Writing down constraints and assumptions keeps everyone aligned long after a meeting ends."
       },
       "label": "What I believe"
     },
     "cv": "Download CV",
     "tl": {
       "label": "Briefly",
-      "y2026": "MazeRunners built and exhibited; Hoop Dream shipped. Graduating in Nov, looking for a serious team.",
+      "y2026": "Exhibited MazeRunners; built Walkie, Fencepost, and Hoop Dream. Graduating in Nov, looking for a product design team.",
       "y2025": "Started the Master of Interaction Design at UQ in Feb: research methods, IA, physical computing.",
       "y2024": "Graduated from Swansea University in Jul with a BSc (Hons) in Computer Science, 2:1.",
       "y2020": "Moved to Wales to study Computer Science at Swansea University."
@@ -353,19 +355,19 @@
       "title": {
         "prefix": "Let's ",
         "highlight": "Create",
-        "suffix": " Something Amazing"
+        "suffix": " Something Meaningful"
       },
-      "description": "I'm always open to discussing new projects, design opportunities, or just having a friendly chat about UX and design."
+      "description": "Always glad to discuss graduate roles, product design collaborations, or interaction research."
     },
     "methods": {
       "email": {
         "title": "Email",
-        "description": "Drop me a line anytime",
+        "description": "Fastest way to reach me",
         "action": "Send Email"
       },
       "linkedin": {
         "title": "LinkedIn",
-        "description": "Let's connect professionally",
+        "description": "Professional updates",
         "value": "View Profile",
         "action": "Connect"
       },
@@ -380,44 +382,44 @@
       "items": [
         {
           "q": "What's your typical response time?",
-          "a": "I usually respond to emails within 24-48 hours."
+          "a": "Usually within 24 hours on weekdays, and always within 48 hours."
         },
         {
-          "q": "Are you available for freelance work?",
-          "a": "I'm currently focused on my studies but open to interesting projects. Let's chat about what you have in mind!"
+          "q": "What roles are you looking for?",
+          "a": "Full-time graduate roles in interaction design, UX/product design, or UX research starting late 2026."
         },
         {
-          "q": "What kind of projects interest you?",
-          "a": "I'm passionate about user-centered design, accessibility, and creating delightful digital experiences. Mobile apps, web platforms, and design systems all excite me."
+          "q": "What kind of work excites you?",
+          "a": "Complex workflows, hardware-software touchpoints, accessible tools, and AI interfaces where human control remains legible."
         }
       ]
     },
     "kicker": "Contact",
     "headline": {
-      "text": "The shortest path is the one.",
+      "text": "The shortest path is the direct one.",
       "em": "direct"
     },
-    "body": "No form. Email is fastest. I reply within 48 hours on weekdays, often sooner. If you'd like a video call, the Calendly link is honest — I only show slots I can actually take.",
+    "body": "No contact form needed — email is fastest, and I reply within 48 hours on weekdays. If you'd prefer a quick video call, pick any open slot on Calendly.",
     "email": "24kplo@gmail.com",
     "cal": "Book 20 minutes",
     "fit": {
-      "1": "Full-time graduate roles in UX, product and interaction design, from late 2026",
-      "2": "Research-led work where shipping is still the goal",
-      "3": "Small teams where the designer is in the room for decisions",
+      "1": "Full-time graduate roles in UX, product, and interaction design starting late 2026",
+      "2": "Research-led teams that validate through working prototypes",
+      "3": "Collaborative product teams where designers help shape scope",
       "label": "Good fits"
     },
     "notfit": {
-      "1": "Unpaid 'portfolio-building' opportunities",
-      "2": "Projects where research is decoration",
-      "3": "Crypto, surveillance, gambling",
+      "1": "Unpaid 'exposure' work",
+      "2": "Research treated strictly as post-hoc validation",
+      "3": "Surveillance, dark patterns, or gambling",
       "label": "Less good fits"
     }
   },
   "resume": {
     "title": "Resume",
-    "description": "Download my resume to learn more about my experience and qualifications.",
+    "description": "View or print my resume to learn more about my education, projects, and interaction skills.",
     "cardTitle": "{name}'s Resume",
-    "cardMeta": "Web resume • Updated June 2026",
+    "cardMeta": "Web resume · Updated November 2026",
     "downloadPdf": "Request resume PDF",
     "downloadPdfShort": "Request PDF",
     "getInTouch": "Get in Touch",
@@ -481,9 +483,9 @@
   },
   "notFound": {
     "kicker": "404",
-    "title": "This page took a wrong turn.",
-    "description": "The URL might be mistyped, or the page has moved. Either way, nothing here worth staying for — let's get you back on track.",
-    "hand": "happens to the best of us.",
+    "title": "This page isn't at this address.",
+    "description": "The link may be mistyped or the page may have moved. Pick a route below to get back to the work.",
+    "hand": "Let's get you back on track.",
     "goHome": "Back to home",
     "viewProjects": "See the work",
     "tryPopular": "Or jump to"

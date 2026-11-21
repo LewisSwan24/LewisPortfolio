@@ -45,6 +45,26 @@ export const autofillCase: CaseRecord = {
       "external": true
     }
   ],
+  "interactiveDemo": {
+    "id": "autofill-confidence",
+    "placement": "mid-narrative",
+    "eyebrow": {
+      "en": "Interactive prototype · Zero-guess confidence gate",
+      "zh": "可操作活原型 · 零猜测三档分流门控"
+    },
+    "title": {
+      "en": "Run a local scan on a simulated ATS form",
+      "zh": "在模拟 ATS 申请表上运行一次本地扫描"
+    },
+    "prompt": {
+      "en": "Click \"Scan this form locally\" to see exact 1:1 fields auto-fill (solid), ambiguous dropdowns pause for you (dashed), open prompts stay blank (double), and Submit stay human-locked.",
+      "zh": "点击「一键本地扫描」，观察确定字段如何直填（实线）、歧义下拉如何标出待确认（虚线）、开放题如何刻意留空（双线），以及提交按钮如何始终由人手掌控。"
+    },
+    "takeaway": {
+      "en": "Trustworthy form automation splits certainty from guesswork visually and structurally—never fabricating open answers and never clicking final Submit.",
+      "zh": "值得信任的自动化工具在结构与视觉上严格区分确定性与猜测：绝不编造开放题，也绝不越权代点最终提交。"
+    }
+  },
   "media": {
     "label": "After a fill",
     "labelZh": "填完之后",
@@ -66,7 +86,7 @@ export const autofillCase: CaseRecord = {
         "height": 714,
         "alt": "The summary card after a fill, in dark mode",
         "altZh": "填完后的摘要卡，暗色模式",
-        "caption": "The summary card in dark mode: filled, needs review and not filled, each with a word as well as a colour.",
+        "caption": "The summary card in dark mode: filled, needs review and not filled, each with a word as well as a color.",
         "captionZh": "暗色模式下的摘要卡：已填、待确认、未填，每种状态都有文字，不只靠颜色。"
       }
     ]
@@ -131,7 +151,7 @@ export const autofillCase: CaseRecord = {
       },
       "id": {
         "label": "Design decisions",
-        "p": "Three rules were mine: leave an unsure field empty and outlined, stop before the final submit, and keep the resume on the device. Each one shows on screen, so a person can see what is left to them: the summary card after a fill, the side panel that lists every field with its reason, and the note that the final submit stays with you. Each state carries a word and an icon as well as a colour, so it does not rely on colour alone."
+        "p": "Three rules were mine: leave an unsure field empty and outlined, stop before the final submit, and keep the resume on the device. Each one shows on screen, so a person can see what is left to them: the summary card after a fill, the side panel that lists every field with its reason, and the note that the final submit stays with you. Each state carries a word and an icon as well as a color, so it does not rely on color alone."
       },
       "pr": {
         "label": "How it got built",
@@ -210,7 +230,7 @@ export const autofillCase: CaseRecord = {
         "p": "这里的截图来自仓库自带的截图测试。2026 年 11 月 20 日，亮色与暗色 6 / 6 通过，用的是合成测试表单和扩展内置的示例简历。README 记录这些合成表单上的栏位全部填对；那是仓库自己的测试表单，不是真实网站。键盘代码一旦引用网络类，就有单元测试失败。真实使用的检验是我自己：我在自己的申请上用过。"
       },
       "ou": {
-        "label": "这个案例产出了什么",
+        "label": "产出与边界",
         "m1": {
           "label": "平台",
           "v": "Chrome · Android"

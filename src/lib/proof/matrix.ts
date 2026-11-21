@@ -59,7 +59,7 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     ],
     bestCases: ["pricewise", "onthebeat", "connect"],
     risk:
-      "No AI-native case is finished yet. The evidence comes from AI-built code, automated output and one team study, and each case states its limits.",
+      "The examples focus on interaction scoping, prototyping, and real behavior under human oversight across course and independent builds.",
     interviewAngle: "Ask how I found that PriceWise's semantic search never used a vector.",
   },
   {
@@ -123,8 +123,8 @@ const zhHiringRoleFits: HiringRoleFit[] = [
       { label: "UQ Connect：会说明理由的匹配（团队发现）", href: "/projects/connect#decision-timeline" },
     ],
     bestCases: ["pricewise", "onthebeat", "connect"],
-    risk: "还没有做完的 AI 原生案例。这里的证据来自 AI 写的代码、自动化输出和一项团队研究，边界写在每个案例里。",
-    interviewAngle: "可以问我怎么发现 PriceWise 的语义搜索从来没用过向量。",
+    risk: "案例均来自课程项目或独立原型，重点展示了我如何把交互边界、人工复核与诚实反馈做进 AI 协助流程。",
+    interviewAngle: "可以聊聊我怎么察觉 PriceWise 的语义搜索其实一直退回了关键词匹配。",
   },
   {
     id: "accessibility",

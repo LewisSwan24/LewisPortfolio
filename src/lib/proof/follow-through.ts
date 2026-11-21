@@ -53,8 +53,8 @@ function followThroughActions(
   return [
     { kind: "copy-email", label: copy.copyEmail },
     { kind: "mailto", label: copy.openMail },
-    { kind: "packet", label: copy.packet, href: `/hire/${role}/packet` },
-    { kind: "role-room", label: copy.roleRoom, href: `/hire/${role}` },
+    { kind: "packet", label: copy.packet, href: `/contact?role=${role}` },
+    { kind: "role-room", label: copy.roleRoom, href: `/hire?role=${role}` },
     { kind: "contact", label: copy.contact, href: `/contact?role=${role}&intent=interview` },
     { kind: "resume", label: copy.resume, href: "/resume" },
   ];
@@ -87,7 +87,7 @@ export function getFollowThroughBrief(
 
   return {
     id: packet.id,
-    route: `/hire/${packet.id}/next`,
+    route: `/contact?role=${packet.id}&intent=interview`,
     label: packet.label,
     headline: `${packet.label} ${copy.headlineSuffix}`,
     summary: `${copy.summaryPrefix} ${packet.summary}`,

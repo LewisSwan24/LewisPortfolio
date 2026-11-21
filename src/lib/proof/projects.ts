@@ -19,24 +19,24 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     stats: [
       {
         value: "5",
-        label: "end-to-end cases",
+        label: "interaction tracks",
         detail:
-          "A student social platform, an accessibility browser extension, a physical interaction system, an AI-oversight interface study, and a generative production pipeline.",
+          "Campus social IA, physical computing hardware, real-time command grammar, AI safety & verification, and generated visual systems.",
       },
       {
         value: "4",
-        label: "research methods used",
-        detail: "Exploratory interviews, think-aloud usability testing, task-based usability testing, and observation during a public exhibition.",
+        label: "research methods",
+        detail: "Exploratory interviews, testable hypotheses, think-aloud usability, and public exhibition field observation.",
       },
       {
-        value: "1",
-        label: "working hardware build",
-        detail: "MazeRunners: Arduino firmware, sensors, haptics, and a Web Serial console that actually runs.",
+        value: "Live",
+        label: "hardware & web prototypes",
+        detail: "Interactive builds ranging from Web Serial firmware mazes and dual-boot wearables to deployed AI interfaces.",
       },
       {
         value: "2026",
         label: "career focus",
-        detail: "Graduate and entry-level UX, product design, or design-technologist teams.",
+        detail: "Full-time graduate Interaction Design, UX/Product Design, and Design Technologist roles.",
       },
     ],
   },
@@ -48,24 +48,24 @@ const careerSnapshots: Record<ProofLocale, CareerSnapshot> = {
     stats: [
       {
         value: "5",
-        label: "端到端案例",
+        label: "交互研究与实作方向",
         detail:
-          "一个学生社交平台、一个无障碍浏览器扩展、一个软硬件结合的互动系统、一项关于「人如何监督 AI」的界面研究，以及一条生成式内容生产管线。",
+          "校园社交信息架构、物理计算互动装置、高密度即时操作语法、AI 信任与安全边界、规模化视觉体系。",
       },
       {
         value: "4",
-        label: "使用过的研究方法",
-        detail: "探索式访谈、出声思考可用性测试、任务式可用性测试，以及公开展出时的现场观察。",
+        label: "常用研究方法",
+        detail: "探索式访谈、可证伪假设卡、出声思考可用性测试与公开展出实地观察。",
       },
       {
-        value: "1",
-        label: "可运行的硬件作品",
-        detail: "MazeRunners：Arduino 固件、传感器、触觉反馈，以及真正能跑起来的 Web Serial 控制台。",
+        value: "可运行",
+        label: "软硬协同原型",
+        detail: "从 Web Serial 硬件交互迷宫、双分区穿戴终端，到持续在线的 Web 交互系统。",
       },
       {
         value: "2026",
         label: "求职方向",
-        detail: "毕业生 / 入门级 UX、产品设计或 design technologist 团队。",
+        detail: "全职毕业生交互设计、UX / 产品设计或设计技术交叉团队。",
       },
     ],
   },

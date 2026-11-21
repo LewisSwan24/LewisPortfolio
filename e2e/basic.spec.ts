@@ -46,65 +46,13 @@ test.describe("Portfolio Homepage", () => {
         await expect(page.locator(".hero-lede")).toContainText(/Claude Code|Codex/);
     });
 
-    // The old "Evidence at a glance" / "Capability map" sections were removed
-    // when the homepage was condensed; the hiring signal grid replaced them.
-    test("should surface career evidence", async ({ page }) => {
-        const signals = page.locator(".hiring-signal-grid .hiring-signal");
-
-        await expect(signals.first()).toBeVisible();
-        expect(await signals.count()).toBeGreaterThanOrEqual(3);
-        await expect(page.locator(".hiring-proof-status")).toContainText(/2026/);
-    });
-
-    // Replaces the removed timed reading paths ("15-second scan" and friends).
-    // The surviving way in for a recruiter is the proof route board.
-    test("should guide hiring readers", async ({ page }) => {
-        const board = page.locator(".proof-route-board");
-
-        await expect(board.getByText(/Best cases to inspect/i)).toBeVisible();
-
-        const routes = board.locator(".proof-route-card");
-        expect(await routes.count()).toBeGreaterThanOrEqual(3);
-        await expect(routes.first()).toBeVisible();
-    });
-
-    test("should present a clear hiring conversion path", async ({ page }) => {
-        const proofDesk = page.locator(".hiring-proof-desk");
-
-        await expect(proofDesk.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
-        await expect(proofDesk.getByText(/Best cases to inspect/i)).toBeVisible();
-        await expect(proofDesk.getByText(/Information architecture/i).first()).toBeVisible();
-        // No accessibility line since Spectra Lens was unlisted (2026-11-20).
-        await expect(proofDesk.getByText(/Design technology/i).first()).toBeVisible();
-        // The AI UX route went with Vigil when Vigil was unlisted, and came back
-        // as a thread whose route points at PriceWise, never at Vigil.
-        await expect(proofDesk.getByText(/AI UX/i).first()).toBeVisible();
-        await expect(proofDesk.locator("a[href='/projects/pricewise#decision-timeline']").first()).toBeVisible();
-        await expect(proofDesk.locator("a[href*='vigil']")).toHaveCount(0);
-        await expect(proofDesk.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
-    });
-
-    test("hiring proof links should point to case anchors", async ({ page }) => {
-        await expectAnchoredCaseProofLink(page.locator(".hiring-proof-desk a[href*='#']").first());
-    });
-
-    // The role-fit panel moved off the homepage to /hire, /resume and /contact,
-    // which have their own coverage. What the homepage must still do is offer
-    // the three conversion routes.
-    test("should offer the hiring conversion actions", async ({ page }) => {
-        const actions = page.locator(".hiring-proof-actions");
-
-        for (const href of ["/contact", "/resume", "/hire"]) {
-            await expect(actions.locator(`a[href='${href}']`)).toBeVisible();
-        }
+    // Homepage focuses directly on practice notes, featured cases, and
+    // approach without duplicating /hire's dossier blocks.
+    test("homepage stays focused without duplicated hiring proof desk and links to /hire", async ({ page }) => {
+        await expect(page.locator(".hiring-proof-desk")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
-    });
-
-    test("homepage should link to the interview decision room", async ({ page }) => {
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
-            "href",
-            "/hire",
-        );
+        await expect(page.locator(".hero-hire-link")).toHaveAttribute("href", "/hire");
+        await expect(page.locator(".feat-deck")).toBeVisible();
     });
 
     test("should have working navigation", async ({ page }) => {
@@ -150,31 +98,13 @@ test.describe("Projects Page", () => {
         await expect(page.locator("a.work-index-row[href^='/projects/']").first()).toBeVisible();
     });
 
-    test("should display the evidence map", async ({ page }) => {
-        await expect(page.getByText("Evidence map")).toBeVisible();
-        await expect(page.getByText("What this proves").first()).toBeVisible();
-    });
+    test("work page toggles cleanly between index list and capability evidence matrix", async ({ page }) => {
+        await expect(page.locator(".work-shortlist-section")).toHaveCount(0);
+        await expect(page.locator(".work-evidence-section")).toHaveCount(0);
+        await expect(page.locator(".work-index-row").first()).toBeVisible();
 
-    test("should help recruiters choose the right case", async ({ page }) => {
-        await expect(page.getByText("Recruiter shortlist")).toBeVisible();
-        // Renamed in 3e58192: the real UQ Connect is a student social platform,
-        // not the portal IA redesign the fabricated case claimed.
-        await expect(page.getByText(/Research rigor \/ product structure/i)).toBeVisible();
-        // Accessibility went with Spectra Lens (unlisted 2026-11-20).
-        await expect(page.getByText(/Accessibility \/ inclusive design/i)).toHaveCount(0);
-        await expect(page.getByText(/Complex \/ real-time interaction/i)).toBeVisible();
-        await expect(page.getByText(/Design technology \/ prototyping/i)).toBeVisible();
-        // Gone with Vigil, then back as a thread through PriceWise, UQ Connect
-        // and Hoop Dream.
-        await expect(page.getByText(/AI UX \/ trust/i).first()).toBeVisible();
-    });
-
-    test("work shortlist proof links should point to case anchors", async ({ page }) => {
-        await expectAnchoredCaseProofLink(page.locator(".work-shortlist-section a[href*='#']").first());
-    });
-
-    test("work page should expose an evidence matrix", async ({ page }) => {
         await page.setViewportSize({ width: 1280, height: 900 });
+        await page.getByRole("tab", { name: "Capability matrix" }).click();
         const matrix = page.locator(".evidence-matrix-section");
 
         await expect(matrix.getByText("Evidence matrix")).toBeVisible();
@@ -188,13 +118,6 @@ test.describe("Projects Page", () => {
         ).toBeVisible();
         // Vigil is unlisted, so it has no column at any width.
         await expect(matrix.getByText("Vigil")).toHaveCount(0);
-    });
-
-    test("work page should link to the interview decision room", async ({ page }) => {
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
-            "href",
-            "/hire",
-        );
     });
 
     // waitForURL rather than an immediate toHaveURL: clicking straight after
@@ -244,14 +167,21 @@ test.describe("Projects Page", () => {
         }
     });
 
-    test("case detail should expose interview answer routes", async ({ page }) => {
+    test("case detail puts primary cover before summary and opens collapsible interview answers", async ({ page }) => {
         await page.goto("/projects/connect");
+
+        const coverBox = await page.locator(".cs-cover").boundingBox();
+        const summaryBox = await page.locator(".case-summary").boundingBox();
+        expect(coverBox?.y ?? 99999).toBeLessThan(summaryBox?.y ?? 0);
 
         const pack = page.locator(".case-interview-pack");
 
         await expect(pack.getByText("Interview pack")).toBeVisible();
-        await expect(pack.getByText(/Questions I can answer/i)).toBeVisible();
-        await expect(pack.getByRole("link", { name: /Inspect the evidence/i }).first()).toHaveAttribute(
+        const firstDetails = pack.locator("details").first();
+        await expect(firstDetails).not.toHaveAttribute("open", "");
+        await firstDetails.locator("summary").click();
+        await expect(firstDetails).toHaveAttribute("open", "");
+        await expect(firstDetails.getByRole("link", { name: /Inspect the evidence/i })).toHaveAttribute(
             "href",
             /#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway)/,
         );
@@ -538,29 +468,24 @@ test.describe("Hire Page", () => {
         await page.goto("/hire");
     });
 
-    test("should render the interview decision room", async ({ page }) => {
+    test("should render the focused three-block interview decision room", async ({ page }) => {
         await expect(page.locator("main[data-screen-label='05 Hire']")).toBeVisible();
-        // The h1 is the decision-brief headline ("Why I'll help your team."),
-        // not the word "Interview"; assert the section content instead of copy.
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-        await expect(page.getByText("Evidence brief", { exact: true })).toBeVisible();
-        // The flat question bank was removed; role fit carries the per-role
-        // "ask me about" angle instead.
+        await expect(page.locator(".interview-evidence-brief")).toHaveCount(0);
+        await expect(page.locator(".interview-room-close")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toBeVisible();
-        await expect(page.getByText("What I would not overclaim")).toBeVisible();
+        await expect(page.locator("#interview-boundaries-title")).toBeVisible();
         await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
     });
 
     // The page used to fan out to 19 hiring sub-pages plus a /hire/[role] tree.
-    // Those routes are deleted and 301 back here, so the page must offer exactly
-    // three destinations and leave no surviving /hire/* link.
+    // Those routes are deleted and 301 back here, so the hero actions offer
+    // all three destinations and leave no surviving /hire/* link.
     test("should offer three destinations and no retired hiring sub-links", async ({ page }) => {
-        // Scoped to the closing block: InterviewDecisionBrief renders its own
-        // .interview-room-actions at the top of the page.
-        const closingActions = page.locator(".interview-room-primary-actions");
+        const actions = page.locator(".interview-room-primary-actions");
 
         for (const href of ["/contact", "/projects", "/resume"]) {
-            await expect(closingActions.locator(`a[href='${href}']`).first()).toBeVisible();
+            await expect(actions.locator(`a[href='${href}']`).first()).toBeVisible();
         }
         await expect(page.locator("a[href^='/hire/']")).toHaveCount(0);
     });
@@ -573,20 +498,17 @@ test.describe("Hire Page", () => {
     });
 
     test("hire proof links should point to case anchors", async ({ page }) => {
-        await expectAnchoredCaseProofLink(page.locator(".interview-evidence-brief a[href*='#']").first());
         await expectAnchoredCaseProofLink(page.locator(".hiring-role-fit a[href*='#']").first());
     });
 
-    // AI UX is a thread through several cases, not one AI case. It has to open
-    // by admitting there is no finished AI-native product and close on its limit.
-    test("hire should show the AI and trust thread with its limit", async ({ page }) => {
+    // AI UX is a thread through several cases, framing legible uncertainty
+    // under scoped prototype testing rather than defensive self-disclaimers.
+    test("hire should show the AI and trust thread with explicit scope", async ({ page }) => {
         const thread = page.locator("#ai-trust-thread");
 
-        await expect(thread.getByRole("heading", { name: "AI and trust: one thread through the work" })).toBeVisible();
-        await expect(thread.getByText(/^I have not finished an AI-native product yet\./)).toBeVisible();
-        await expect(
-            thread.getByText("None of these is a finished AI-native product, and each entry states its own limits.", { exact: true }),
-        ).toBeVisible();
+        await expect(thread.getByRole("heading", { name: "Designing trust across AI-assisted workflows" })).toBeVisible();
+        await expect(thread.getByText(/uncertainty legible/i)).toBeVisible();
+        await expect(thread.locator(".ai-trust-thread-limit")).toContainText(/mock data|production traffic/i);
         await expect(thread.locator("li")).toHaveCount(3);
         for (const slug of ["pricewise", "connect", "hoop"]) {
             await expect(thread.locator(`a[href='/projects/${slug}#decision-timeline']`)).toBeVisible();
@@ -595,14 +517,12 @@ test.describe("Hire Page", () => {
         await expect(page.locator(".hiring-role-fit").getByRole("heading", { name: "AI UX" })).toBeVisible();
     });
 
-    test("zh hire should state the thread limit in Chinese", async ({ page }) => {
+    test("zh hire should state scoped prototype boundaries in Chinese", async ({ page }) => {
         await gotoStable(page, "/zh/hire");
         const thread = page.locator("#ai-trust-thread");
 
-        await expect(thread.getByText(/^我还没有做完一个 AI 原生产品。/)).toBeVisible();
-        await expect(
-            thread.getByText("这三条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。", { exact: true }),
-        ).toBeVisible();
+        await expect(thread.getByText(/交互原则/)).toBeVisible();
+        await expect(thread.locator(".ai-trust-thread-limit")).toContainText(/模拟数据|生产流量/);
         await expect(thread.locator("a[href='/zh/projects/pricewise#decision-timeline']")).toBeVisible();
         await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
     });
@@ -639,73 +559,42 @@ test.describe("Contact Page", () => {
         );
     });
 
-    test("should explain how to use the portfolio", async ({ page }) => {
+    test("contact stays concise without duplicated role-fit/proof sections and links to /hire", async ({ page }) => {
         await page.goto("/contact");
 
-        await expect(page.getByText("Use this portfolio for")).toBeVisible();
-    });
-
-    test("should provide a hiring next step", async ({ page }) => {
-        await page.goto("/contact");
-        const nextStep = page.locator(".contact-next-step");
-
-        await expect(nextStep.getByText("Hiring next step")).toBeVisible();
-        await expect(nextStep.getByText(/2026.*full-time graduate|full-time graduate.*2026/i)).toBeVisible();
-    });
-
-    test("contact proof links should point to case anchors", async ({ page }) => {
-        await page.goto("/contact");
-
-        await expectAnchoredCaseProofLink(page.locator(".contact-next-step a[href*='#']").first());
-    });
-
-    // Role fit now lives only on /hire; contact links there instead of
-    // restating all twelve role blocks.
-    test("contact should not restate the role fit panel", async ({ page }) => {
-        await page.goto("/contact");
-
+        await expect(page.locator(".contact-use")).toHaveCount(0);
+        await expect(page.locator(".contact-next-step")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toBeVisible();
+        await expect(page.locator(".contact-note-card")).toBeVisible();
+        await expect(page.locator(".contact-hire-hint a")).toHaveAttribute("href", "/hire");
     });
 
-    test("contact should link to the interview decision room", async ({ page }) => {
-        await page.goto("/contact");
-
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
-            "href",
-            "/hire",
-        );
-    });
-
-    test("contact should show role context from hire route", async ({ page }) => {
+    test("contact should show single contextual panel from hire route", async ({ page }) => {
         await page.goto("/contact?role=ai-ux");
 
+        await expect(page.locator(".contact-note-card")).toHaveCount(0);
         await expect(page.getByText(/AI UX/i).first()).toBeVisible();
         await expect(page.getByText(/Best proof/i).first()).toBeVisible();
         await expect(page.locator("a[href*='/projects/'][href*='#']").first()).toBeVisible();
     });
 
-    // Accessibility lost its only listed cases on 2026-11-20, so a stale link
-    // gets the plain form rather than a packet pointing at unlisted cases.
-    test("contact should show no role context for a role with no listed case", async ({ page }) => {
+    test("contact should fall back cleanly for a role with no listed case", async ({ page }) => {
         await page.goto("/contact?role=accessibility");
 
         await expect(page.locator(".contact-role-context")).toHaveCount(0);
+        await expect(page.locator(".contact-note-card")).toBeVisible();
         await expect(page.locator("a[href*='/projects/spectra']")).toHaveCount(0);
     });
 
-    test("contact should show interview follow-through context", async ({ page }) => {
+    test("contact should show interview follow-through context linking to live /hire route", async ({ page }) => {
         await page.goto("/contact?role=ai-ux&intent=interview");
 
         await expect(page.getByText(/Follow-through/i).first()).toBeVisible();
         await expect(page.getByRole("link", { name: /next-step plan/i })).toHaveAttribute(
             "href",
-            "/hire/ai-ux/next",
+            "/hire?role=ai-ux",
         );
-        await expect(page.getByRole("link", { name: /application packet/i }).first()).toHaveAttribute(
-            "href",
-            "/hire/ai-ux/packet",
-        );
+        await expect(page.locator("a[href^='/hire/']")).toHaveCount(0);
     });
 });
 
@@ -724,40 +613,13 @@ test.describe("Resume Page", () => {
         await expect(page.locator("a[href='/resume.pdf']")).toHaveCount(0);
     });
 
-    test("should show best-fit roles", async ({ page }) => {
-        await page.goto("/resume");
-        await expect(page.getByText("Best-fit roles")).toBeVisible();
-    });
-
-    test("should show a Proof-linked resume path", async ({ page }) => {
+    test("resume stays focused with compact target roles and link to /hire", async ({ page }) => {
         await page.goto("/resume");
 
-        await expect(page.getByText("Proof-linked resume")).toBeVisible();
-        await expect(page.getByText(/Best cases to inspect/i)).toBeVisible();
-    });
-
-    test("resume proof links should point to case anchors", async ({ page }) => {
-        await page.goto("/resume");
-
-        await expectAnchoredCaseProofLink(page.locator(".resume-proof-card a[href*='#']").first());
-    });
-
-    // Role fit now lives only on /hire; the resume links to the proof routes
-    // and to /hire rather than restating the panel.
-    test("resume should not restate the role fit panel", async ({ page }) => {
-        await page.goto("/resume");
-
+        await expect(page.getByText("Target roles")).toBeVisible();
+        await expect(page.locator(".resume-proof-card")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
-        await expect(page.locator(".resume-proof-card a[href*='#']").first()).toBeVisible();
-    });
-
-    test("resume should link to the interview decision room", async ({ page }) => {
-        await page.goto("/resume");
-
-        await expect(page.getByRole("link", { name: /Interview decision/i }).first()).toHaveAttribute(
-            "href",
-            "/hire",
-        );
+        await expect(page.locator(".role-fit-links a")).toHaveAttribute("href", "/hire");
     });
 });
 

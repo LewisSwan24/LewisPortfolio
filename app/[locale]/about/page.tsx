@@ -76,6 +76,39 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      <section className="container section about-workflow-section" aria-labelledby="about-workflow-heading">
+        <div className="about-workflow-head">
+          <div className="label">{isZh ? "协作边界" : "Working loop"}</div>
+          <h2 id="about-workflow-heading" className="h-display h2" style={{ marginTop: 12 }}>
+            {isZh ? "我自己定规则，代理负责跑通实现，测试守住边界。" : "I own the spec and the judgment; agents draft the code; tests guard the edges."}
+          </h2>
+        </div>
+
+        <ol className="about-loop-rail" aria-label={isZh ? "从研究到验收的四步循环" : "Four-step build loop"}>
+          {(
+            isZh
+              ? [
+                  { n: "01", t: "书面规格", d: "先写清楚场景假设、权限与停机规则，再决定界面长什么样。" },
+                  { n: "02", t: "代理协作", d: "用 Claude Code / Codex 把结构落成可运行原型，而非停在静态线框。" },
+                  { n: "03", t: "自动化门禁", d: "单元测试、红线拦截、硬件串口/屏幕场景脚本替代纯口头判断。" },
+                  { n: "04", t: "诚实复盘", d: "实测没跑的部分直接标明空白，不拿模拟日志冒充真实用户。" },
+                ]
+              : [
+                  { n: "01", t: "Written spec", d: "Pin down user tensions, safety invariants, and failure states before visual polish." },
+                  { n: "02", t: "Agent-assisted build", d: "Use Claude Code and Codex to reach real interactive builds faster than mockups alone." },
+                  { n: "03", t: "Reproducible gates", d: "Back every invariant with automated red-line checks, offline suites, or device scenes." },
+                  { n: "04", t: "Honest scope", d: "Document where participant testing has not run yet instead of hiding gaps behind polish." },
+                ]
+          ).map((step) => (
+            <li className="about-loop-step" key={step.n}>
+              <span>{step.n}</span>
+              <h3>{step.t}</h3>
+              <p>{step.d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       <section className="container section">
         <div className="label">{t("about.philo.label")}</div>
         <SectionReveal>

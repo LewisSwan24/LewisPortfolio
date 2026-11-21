@@ -1,4 +1,4 @@
-const PRODUCTION_SITE_URL = "https://portfolio-lewisdong.vercel.app";
+const PRODUCTION_SITE_URL = "https://lewisdong.vercel.app";
 
 /**
  * The absolute origin every canonical, sitemap, robots, OG and JSON-LD URL is
@@ -44,9 +44,9 @@ export const siteConfig = {
   // Single source for the zh surfaces. These used to be inline literals in
   // app/[locale]/page.tsx, which left the RSS feed with no Chinese copy to fall
   // back to — /zh/feed.xml was serving the English description.
-  titleZh: "交互设计师 / 产品设计师",
+  titleZh: "交互设计师 · 产品设计师",
   descriptionZh:
-    "昆士兰大学交互设计硕士在读，常驻布里斯班。通过可用性测试、AI 工具、原型设计与可访问性，打造由研究驱动的体验。",
+    "昆士兰大学交互设计硕士在读，常驻布里斯班。擅长通过用户研究、快速原型与可用性测试，打造清晰可感、以人为本的数字与软硬件交互体验。",
   url: resolveSiteUrl(),
   author: {
     name: "Lewis Dong",

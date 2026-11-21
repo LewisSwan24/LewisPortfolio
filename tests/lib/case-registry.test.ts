@@ -94,4 +94,28 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
     expect(window.reviewedAt).toBe("2026-11-21");
     expect(window.nextReviewAt).toBe("2027-02-21");
   });
+
+  it("configures bilingual interactiveDemo metadata for all 6 flagship cases", () => {
+    const expectedDemos = [
+      { slug: "maze", id: "maze-contact", placement: "after-summary" },
+      { slug: "walkie", id: "walkie-wrist", placement: "after-summary" },
+      { slug: "lamplight", id: "lamplight-triage", placement: "after-summary" },
+      { slug: "autofill", id: "autofill-confidence", placement: "mid-narrative" },
+      { slug: "fencepost", id: "fencepost-revoke", placement: "after-summary" },
+      { slug: "connect", id: "connect-ia-reset", placement: "mid-narrative" },
+    ] as const;
+
+    for (const expected of expectedDemos) {
+      const record = getCaseBySlug(expected.slug);
+      expect(record?.interactiveDemo).toBeDefined();
+      expect(record?.interactiveDemo?.id).toBe(expected.id);
+      expect(record?.interactiveDemo?.placement).toBe(expected.placement);
+      expect(record?.interactiveDemo?.title.en.length).toBeGreaterThan(4);
+      expect(record?.interactiveDemo?.title.zh.length).toBeGreaterThan(2);
+      expect(record?.interactiveDemo?.prompt.en.length).toBeGreaterThan(8);
+      expect(record?.interactiveDemo?.prompt.zh.length).toBeGreaterThan(4);
+      expect(record?.interactiveDemo?.takeaway.en.length).toBeGreaterThan(8);
+      expect(record?.interactiveDemo?.takeaway.zh.length).toBeGreaterThan(4);
+    }
+  });
 });

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { DynamicImageGallery } from "./DynamicImports";
 import { CodeBlock } from "./CodeBlock";
 import { getBlurDataURL } from "@/lib/image-utils";
+import { localizeInternalHref } from "@/lib/locale-href";
 
 type MDXComponents = Record<string, React.ComponentType<any>>;
 
@@ -55,17 +56,18 @@ function createHeading(level: 2 | 3, slugger: GithubSlugger) {
   return HeadingComponent;
 }
 
-export function getMdxComponents(): MDXComponents {
+export function getMdxComponents(locale = "en"): MDXComponents {
   const slugger = new GithubSlugger();
 
   return {
     h2: createHeading(2, slugger),
     h3: createHeading(3, slugger),
     a: ({ href, children, ...props }) => {
-      const isExternal = href?.startsWith("http");
+      const resolvedHref = href ? localizeInternalHref(href, locale) : href;
+      const isExternal = resolvedHref?.startsWith("http");
       return (
         <a
-          href={href}
+          href={resolvedHref}
           target={isExternal ? "_blank" : undefined}
           rel={isExternal ? "noopener noreferrer" : undefined}
           className={cn(

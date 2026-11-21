@@ -191,42 +191,31 @@
   background: color-mix(in srgb, var(--bg-alt) 55%, var(--surface));
 }
 .case-interview-pack {
-  margin-top: var(--s-4);
-  padding-top: var(--s-4);
+  margin-top: var(--s-6);
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-6);
   border-top: 1px dashed var(--border);
 }
-.case-interview-pack-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  margin-top: var(--s-4);
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-}
-.case-interview-answer {
-  min-width: 0;
-  display: grid;
-  gap: var(--s-3);
-  padding: var(--s-4);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg-alt) 68%, var(--surface));
-}
-.case-interview-answer h3 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.12rem;
-  font-weight: 400;
-  line-height: 1.2;
+.case-interview-accordion {
+  margin-top: var(--s-5);
 }
 .case-interview-answer p {
   margin: 0;
   color: var(--text-2);
-  line-height: 1.55;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+.case-interview-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border);
 }
 @media (max-width: 1100px) {
-  .hiring-role-fit-grid,
-  .case-interview-pack-grid {
+  .hiring-role-fit-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -237,8 +226,7 @@
   .hiring-role-fit-head,
   .evidence-matrix-head,
   .case-interview-pack-head,
-  .hiring-role-fit-grid,
-  .case-interview-pack-grid {
+  .hiring-role-fit-grid {
     grid-template-columns: 1fr;
   }
   .evidence-matrix {
@@ -1067,6 +1055,7 @@
 .role-lens-tabs {
   display: flex;
   flex-wrap: wrap;
+  flex-wrap: balance;
   gap: var(--s-2);
   margin-top: var(--s-4);
 }
@@ -1094,21 +1083,20 @@
 .role-lens-tab[aria-selected="true"] {
   border-color: var(--accent);
   background: var(--accent);
-  color: var(--surface);
+  color: var(--on-accent);
 }
 .role-lens-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: var(--s-4);
   border-top: 1px solid var(--border);
   border-left: 1px solid var(--border);
 }
 .role-lens-card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-2);
+  display: grid;
+  gap: 6px;
   min-width: 0;
-  padding: var(--s-4);
+  padding: 14px 18px;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: var(--surface);
@@ -1116,9 +1104,18 @@
   text-decoration: none;
   transition: background var(--dur-2) var(--ease-out);
 }
+.role-lens-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
 .role-lens-card:hover,
 .role-lens-card:focus-visible {
   background: var(--bg-alt);
+}
+.role-lens-card:hover h3 {
+  color: var(--accent);
 }
 .role-lens-card:focus-visible {
   outline: 2px solid var(--accent);
@@ -1127,22 +1124,9 @@
 .role-lens-card h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.12rem;
   font-weight: 400;
-  line-height: 1.15;
-}
-.role-lens-card p {
-  margin: 0;
-  color: var(--text-2);
-  font-size: 0.94rem;
-  line-height: 1.5;
-}
-.role-lens-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: auto;
-  padding-top: var(--s-2);
+  line-height: 1.2;
 }
 @media (max-width: 1024px) {
   .role-lens-grid {
