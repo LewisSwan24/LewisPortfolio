@@ -3,7 +3,6 @@ import type { CaseRecord } from "@/lib/cases/schema";
 export const hoopCase: CaseRecord = {
   "slug": "hoop",
   "status": "listed",
-  "featuredOrder": 4,
   "roleTracks": [
     "product",
     "design-eng",

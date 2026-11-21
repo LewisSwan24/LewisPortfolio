@@ -10,7 +10,9 @@ export type ProjectEvidenceSlug =
   | "grassland"
   | "onthebeat"
   | "lamplight"
-  | "autofill";
+  | "autofill"
+  | "walkie"
+  | "fencepost";
 export type ProofLocale = "en" | "zh";
 
 export interface CareerSnapshotStat {

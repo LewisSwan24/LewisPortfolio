@@ -156,7 +156,7 @@ const nextConfig = {
             // showcase for the case-page embed — no request at all, just an
             // error frame. frame-ancestors stays 'none': nobody frames us.
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://avatars.githubusercontent.com https://images.unsplash.com; font-src 'self'; connect-src 'self' https://vitals.vercel-insights.com; frame-src 'self' https://maze-runners.vercel.app https://hoop-dream.vercel.app; frame-ancestors 'none';",
+              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://avatars.githubusercontent.com https://images.unsplash.com; font-src 'self'; connect-src 'self' https://vitals.vercel-insights.com; frame-src 'self' https://maze-runners.vercel.app https://hoop-dream.vercel.app https://fencepost-app.vercel.app; frame-ancestors 'none';",
           },
         ],
       },

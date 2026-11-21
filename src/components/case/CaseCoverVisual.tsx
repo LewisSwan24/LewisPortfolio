@@ -18,6 +18,8 @@ const SCREENSHOT_COVER_SLUGS: readonly CurrentProjectSlug[] = [
   "onthebeat",
   "lamplight",
   "autofill",
+  "walkie",
+  "fencepost",
 ];
 
 export function hasScreenshotCover(slug: CurrentProjectSlug): boolean {

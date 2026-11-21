@@ -3,7 +3,6 @@ import type { CaseRecord } from "@/lib/cases/schema";
 export const onthebeatCase: CaseRecord = {
   "slug": "onthebeat",
   "status": "listed",
-  "featuredOrder": 6,
   "roleTracks": [
     "interaction",
     "design-eng"

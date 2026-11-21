@@ -1,5 +1,7 @@
 import { autofillPack } from "./case-autofill";
 import { lamplightPack } from "./case-lamplight";
+import { walkiePack } from "./case-walkie";
+import { fencepostPack } from "./case-fencepost";
 import { recentCaseInterviewPacks } from "./recent-cases";
 import type {
   CaseInterviewPack,
@@ -835,6 +837,8 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
   ...recentCaseInterviewPacks.en,
   ...lamplightPack.en,
   ...autofillPack.en,
+  ...walkiePack.en,
+  ...fencepostPack.en,
 };
 
 /**
@@ -1154,6 +1158,8 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
   ...recentCaseInterviewPacks.zh,
   ...lamplightPack.zh,
   ...autofillPack.zh,
+  ...walkiePack.zh,
+  ...fencepostPack.zh,
 };
 
 const caseInterviewPacks: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseInterviewPack>> = {

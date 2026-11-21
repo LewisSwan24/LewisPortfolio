@@ -3,7 +3,7 @@ import type { CaseRecord } from "@/lib/cases/schema";
 export const autofillCase: CaseRecord = {
   "slug": "autofill",
   "status": "listed",
-  "featuredOrder": 8,
+  "featuredOrder": 4,
   "roleTracks": [
     "product",
     "ai-ux",

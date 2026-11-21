@@ -6,6 +6,8 @@ import {
 } from "./recent-cases";
 import { lamplightDepth, lamplightPrompts, lamplightScan, lamplightSummary } from "./case-lamplight";
 import { autofillDepth, autofillPrompts, autofillScan, autofillSummary } from "./case-autofill";
+import { walkieDepth, walkiePrompts, walkieScan, walkieSummary } from "./case-walkie";
+import { fencepostDepth, fencepostPrompts, fencepostScan, fencepostSummary } from "./case-fencepost";
 import type {
   CaseDepth,
   CaseInterviewPrompt,
@@ -134,6 +136,8 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
     ...recentCaseSummaries.en,
     ...lamplightSummary.en,
     ...autofillSummary.en,
+    ...walkieSummary.en,
+    ...fencepostSummary.en,
   },
   zh: {
     connect: {
@@ -233,6 +237,8 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
     ...recentCaseSummaries.zh,
     ...lamplightSummary.zh,
     ...autofillSummary.zh,
+    ...walkieSummary.zh,
+    ...fencepostSummary.zh,
   },
 };
 
@@ -1176,6 +1182,8 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
     ...recentCaseDepth.en,
     ...lamplightDepth.en,
     ...autofillDepth.en,
+    ...walkieDepth.en,
+    ...fencepostDepth.en,
   },
   zh: {
     connect: {
@@ -2002,6 +2010,8 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
     ...recentCaseDepth.zh,
     ...lamplightDepth.zh,
     ...autofillDepth.zh,
+    ...walkieDepth.zh,
+    ...fencepostDepth.zh,
   },
 };
 
@@ -2148,6 +2158,8 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
     ...recentCaseInterviewScans.en,
     ...lamplightScan.en,
     ...autofillScan.en,
+    ...walkieScan.en,
+    ...fencepostScan.en,
   },
   zh: {
     connect: {
@@ -2289,6 +2301,8 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
     ...recentCaseInterviewScans.zh,
     ...lamplightScan.zh,
     ...autofillScan.zh,
+    ...walkieScan.zh,
+    ...fencepostScan.zh,
   },
 };
 
@@ -2528,6 +2542,8 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
   ...recentCaseReaderPrompts,
   ...lamplightPrompts,
   ...autofillPrompts,
+  ...walkiePrompts,
+  ...fencepostPrompts,
 };
 
 const caseReaderPrompts: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseInterviewPrompt[]>> = {

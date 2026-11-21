@@ -28,7 +28,9 @@ type ProjKey =
   | "grassland"
   | "onthebeat"
   | "lamplight"
-  | "autofill";
+  | "autofill"
+  | "walkie"
+  | "fencepost";
 // "acc" left with Spectra Lens, its only case (unlisted 2026-11-20).
 type FilterId = "all" | "flag" | "research" | "ai" | "hardware";
 type Localized = { en: string; zh: string };
@@ -173,6 +175,38 @@ const ITEMS: Item[] = [
     changed: {
       en: "An autofill that never guesses, never submits and keeps the resume on the device",
       zh: "一个不猜、不提交、简历不离开设备的自动填表工具",
+    },
+  },
+  {
+    n: "09",
+    k: "walkie",
+    tags: ["flag", "hardware", "ai"],
+    role: "Hardware + AI UX",
+    year: "2026",
+    dur: "Dual-boot S3 build",
+    problem: {
+      en: "Stepping away from the desk leaves coding agents blocked on short permission checks",
+      zh: "离开电脑前，编码 Agent 常常卡在简短的权限审批与一句追问上",
+    },
+    changed: {
+      en: "A sealed AES-256-GCM wrist voice remote where physical watch buttons own every approval",
+      zh: "一套 AES-256-GCM 加密手腕语音遥控器，高风险审批全部落在实体按键上",
+    },
+  },
+  {
+    n: "10",
+    k: "fencepost",
+    tags: ["flag", "ai", "research"],
+    role: "Product + AI Safety",
+    year: "2026",
+    dur: "Live deployment",
+    problem: {
+      en: "Sharing backyard wildlife sightings risks leaking EXIF, private entries, or unsafe AI replies",
+      zh: "分享社区野生动物记录容易泄露 EXIF、私密条目或引发不安全的 AI 回复",
+    },
+    changed: {
+      en: "Revocable QR grants, zero EXIF schema, and 431 offline tests cutting revoked data out of model context",
+      zh: "可吊销二维码权限、零 EXIF 表结构与 431 项离线测试，确保权限吊销后模型立刻截断上下文",
     },
   },
 ];
