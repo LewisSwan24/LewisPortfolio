@@ -9,7 +9,7 @@ import {
   VizHoop,
   VizPricewise,
 } from "@/components/viz/ProjectViz";
-import Image from "next/image";
+import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
 import { getProjectCover } from "@/lib/project-covers";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -70,14 +70,9 @@ function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
       <div className={`feat-visual${cover ? " has-cover" : ""}`}>
         <span className="num">{n}</span>
         {cover ? (
-          // next/image directly, as the case page does: routing this through
-          // the shared ProjectCoverImage client component broke the homepage
-          // in dev ("reading 'call'"), because /projects imports it too.
-          <Image
-            className={`project-cover project-cover--${cover.fit}`}
-            src={cover.src}
-            alt={cover.alt[locale]}
-            fill
+          <ProjectCoverImage
+            cover={cover}
+            locale={locale}
             sizes="(max-width: 960px) 100vw, 600px"
           />
         ) : (
