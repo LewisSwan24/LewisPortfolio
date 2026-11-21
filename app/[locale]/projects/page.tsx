@@ -39,11 +39,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 function renderThumbVisual(slug: string, locale: ProofLocale, conceptLabel: string) {
   const cover = getProjectCover(slug as Parameters<typeof getProjectCover>[0]);
+  if (cover) {
+    return <ProjectCoverImage cover={cover} locale={locale} sizes="240px" />;
+  }
   return (
-    <div className="work-index-thumb" aria-hidden="true">
-      {cover ? (
-        <ProjectCoverImage cover={cover} locale={locale} sizes="240px" />
-      ) : slug === "maze" ? (
+    <div style={{ display: "contents" }}>
+      {slug === "maze" ? (
         <VizMaze locale={locale} />
       ) : slug === "hoop" ? (
         <VizHoop locale={locale} />
@@ -52,7 +53,7 @@ function renderThumbVisual(slug: string, locale: ProofLocale, conceptLabel: stri
       ) : slug === "connect" ? (
         <VizConnect locale={locale} />
       ) : null}
-      {!cover && <span className="work-index-thumb-label">{conceptLabel}</span>}
+      <span className="work-index-thumb-label">{conceptLabel}</span>
     </div>
   );
 }
@@ -80,7 +81,8 @@ export default async function ProjectsPage() {
         interviewDecision: "Interview decision",
       };
 
-  const clientRows: WorkIndexClientRow[] = getWorkIndexItems(locale).map((item) => ({
+  const workItems = getWorkIndexItems(locale);
+  const clientRows: WorkIndexClientRow[] = workItems.map((item) => ({
     slug: item.slug,
     tags: item.tags,
     title: item.title,
@@ -90,8 +92,13 @@ export default async function ProjectsPage() {
     dur: item.dur,
     problem: item.problem,
     changed: item.changed,
-    thumb: renderThumbVisual(item.slug, locale, pageCopy.conceptVisual),
   }));
+  const thumbs = Object.fromEntries(
+    workItems.map((item) => [
+      item.slug,
+      renderThumbVisual(item.slug, locale, pageCopy.conceptVisual),
+    ])
+  );
 
   const evidenceMatrix = getEvidenceMatrix(locale);
   const hiringConversion = getHiringConversion(locale);
@@ -106,7 +113,7 @@ export default async function ProjectsPage() {
         </h1>
       </section>
 
-      <WorkIndex items={clientRows} locale={locale} />
+      <WorkIndex items={clientRows} thumbs={thumbs} locale={locale} />
 
       <section className="container work-shortlist-section">
         <div className="work-shortlist-head">

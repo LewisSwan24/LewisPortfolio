@@ -16,7 +16,6 @@ export interface WorkIndexClientRow {
   dur: string;
   problem: string;
   changed: string;
-  thumb: ReactNode;
 }
 
 const FILTERS: Array<{ id: WorkFilterId; en: string; zh: string }> = [
@@ -29,9 +28,11 @@ const FILTERS: Array<{ id: WorkFilterId; en: string; zh: string }> = [
 
 export function WorkIndex({
   items,
+  thumbs,
   locale,
 }: {
   items: WorkIndexClientRow[];
+  thumbs: Record<string, ReactNode>;
   locale: "en" | "zh";
 }) {
   const isZh = locale === "zh";
@@ -77,7 +78,9 @@ export function WorkIndex({
           {shown.map((item) => (
             <Link className="work-index-row" href={`/projects/${item.slug}`} key={item.slug}>
               <div className="work-index-project">
-                {item.thumb}
+                <div className="work-index-thumb" aria-hidden="true">
+                  {thumbs[item.slug]}
+                </div>
                 <div>
                   <h3>{item.title}</h3>
                   <p>{item.kicker}</p>
