@@ -8,6 +8,25 @@ export const connectCase: CaseRecord = {
     "product",
     "interaction"
   ],
+  "workSummary": {
+    "order": 2,
+    "tags": ["flag", "research"],
+    "year": "Coursework",
+    "dur": "Not shipped",
+    "problem": {
+      "en": "Disjointed structure and hard-to-find information",
+      "zh": "结构割裂，关键信息难找"
+    },
+    "changed": {
+      "en": "Clearer task flow and navigation structure",
+      "zh": "更清楚的任务流和导航结构"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified session counts (71 total, 14 mine) and October paper reset evidence for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/connect/02-app-studybuddy.png",
     "width": 1170,

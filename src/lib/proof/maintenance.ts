@@ -1,16 +1,23 @@
 import { getApplicationPackets } from "./application-packets";
 import { getFollowThroughBriefs } from "./follow-through";
 import { getRolePackets } from "./role-packets";
+import {
+  getCaseReviewMeta,
+  getRegistryReviewWindow,
+} from "@/lib/cases/registry";
 import type {
   ProofFreshnessStatus,
   ProofMaintenanceEntry,
   ProofMaintenanceReport,
 } from "./types";
 
-const reviewedAt = "2026-05-10";
-const nextReviewAt = "2026-08-10";
 const watchWindowDays = 30;
 const dayMs = 24 * 60 * 60 * 1000;
+
+function extractCaseSlugFromHref(href: string): string | undefined {
+  const match = href.match(/^\/projects\/([^#/?]+)/);
+  return match?.[1];
+}
 
 function statusFor(
   entryNextReviewAt: string,
@@ -28,19 +35,26 @@ function statusFor(
 }
 
 function buildProofMaintenanceEntries(): ProofMaintenanceEntry[] {
+  const { reviewedAt, nextReviewAt } = getRegistryReviewWindow();
+
   const roleEntries: ProofMaintenanceEntry[] = getRolePackets("en").flatMap((packet) =>
-    packet.proofClaims.map((claim) => ({
-      id: `${packet.id}-${claim.id}-role-room`,
-      roleId: packet.id,
-      claimId: claim.id,
-      surface: "role-room",
-      href: claim.strongestAnchor,
-      reviewedAt,
-      nextReviewAt,
-      status: "fresh",
-      ownerNote:
-        "Re-check claim, anchor, boundary, and next validation before refreshing role-room proof.",
-    }))
+    packet.proofClaims.map((claim) => {
+      const linkedSlug = extractCaseSlugFromHref(claim.strongestAnchor);
+      const caseReview = linkedSlug ? getCaseReviewMeta(linkedSlug) : undefined;
+      return {
+        id: `${packet.id}-${claim.id}-role-room`,
+        roleId: packet.id,
+        claimId: claim.id,
+        surface: "role-room",
+        href: claim.strongestAnchor,
+        reviewedAt: caseReview?.reviewedAt ?? reviewedAt,
+        nextReviewAt: caseReview?.nextReviewAt ?? nextReviewAt,
+        status: "fresh",
+        ownerNote:
+          caseReview?.auditNote ??
+          "Re-check claim, anchor, boundary, and next validation before refreshing role-room proof.",
+      };
+    })
   );
 
   const applicationEntries: ProofMaintenanceEntry[] = getApplicationPackets("en").map((packet) => ({

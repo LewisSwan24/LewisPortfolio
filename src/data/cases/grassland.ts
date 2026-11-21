@@ -7,6 +7,25 @@ export const grasslandCase: CaseRecord = {
     "interaction",
     "design-eng"
   ],
+  "workSummary": {
+    "order": 5,
+    "tags": ["flag", "ai"],
+    "year": "2026",
+    "dur": "Chapter one playable",
+    "problem": {
+      "en": "Many units, many commands and a running clock, where one inconsistent rule makes the whole game unpredictable",
+      "zh": "单位多、命令多、时钟一直在走，一条规则不一致，整个游戏就不可预测"
+    },
+    "changed": {
+      "en": "One command grammar across five missions, and failure restored from one save chain",
+      "zh": "五关共用一套命令语法，失败后从同一条存档链恢复"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified 430/430 test baseline and Chapter 1 scope for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/grassland/03-mission-02.jpg",
     "width": 1280,

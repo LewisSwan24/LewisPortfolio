@@ -223,20 +223,19 @@ describe("proof registry", () => {
     expect(hrefs.has("/hire/tracker")).toBe(true);
   });
 
-  it("maintenance report exposes status buckets", () => {
+  it("maintenance report exposes status buckets and stays fresh at baseline", () => {
     const entries = getProofMaintenanceEntries();
-    const report = getProofMaintenanceReport("2026-05-10");
+    const baselineReport = getProofMaintenanceReport("2026-11-21");
 
-    expect(report.generatedAt).toBe("2026-05-10");
-    expect(report.entries).toHaveLength(entries.length);
-    expect(
-      report.fresh.length + report.watch.length + report.stale.length
-    ).toBe(entries.length);
-    expect(report.missingReview).toEqual([]);
+    expect(baselineReport.generatedAt).toBe("2026-11-21");
+    expect(baselineReport.entries).toHaveLength(entries.length);
+    expect(baselineReport.fresh).toHaveLength(entries.length);
+    expect(baselineReport.stale).toEqual([]);
+    expect(baselineReport.missingReview).toEqual([]);
   });
 
   it("maintenance report marks overdue entries stale", () => {
-    const report = getProofMaintenanceReport("2026-09-10");
+    const report = getProofMaintenanceReport("2027-03-01");
 
     expect(report.stale.length).toBeGreaterThan(0);
     expect(report.stale.every((entry) => entry.status === "stale")).toBe(true);

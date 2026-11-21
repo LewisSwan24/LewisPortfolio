@@ -7,6 +7,24 @@ export const vigilCase: CaseRecord = {
     "ai-ux",
     "interaction"
   ],
+  "workSummary": {
+    "tags": ["ai"],
+    "year": "2026",
+    "dur": "Abandoned (unlisted)",
+    "problem": {
+      "en": "Over-trusting classifier confidence scores on ambiguous phishing emails",
+      "zh": "面对真假难辨的钓鱼邮件时，使用者容易过度信赖分类器的单值置信度"
+    },
+    "changed": {
+      "en": "Six-variant experimental review desk (archived abandoned, excluded from public resume and nav)",
+      "zh": "六变体对照复核原型（已停止投入并转入未公开归档，全站导航与简历不列出）"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Confirmed unlisted/abandoned status (2026-09-27) and noindex/no-resume invariant for V3.1 baseline."
+  },
   "links": [],
   "media": {
     "label": "The variants under test",

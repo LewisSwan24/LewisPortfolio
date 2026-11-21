@@ -8,6 +8,25 @@ export const hoopCase: CaseRecord = {
     "design-eng",
     "ai-ux"
   ],
+  "workSummary": {
+    "order": 4,
+    "tags": ["ai", "hardware"],
+    "year": "2026",
+    "dur": "Playable",
+    "problem": {
+      "en": "A registry of 299 asset specs, where what goes wrong shows only as a set",
+      "zh": "299 条资产规格的登记表，毛病要整组摆在一起才看得出来"
+    },
+    "changed": {
+      "en": "An art bible and a rejected list written first, with style checked by eye",
+      "zh": "先写美术圣经和拒绝清单，风格靠人眼对照"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified DEMO v0.6 registry claim boundaries for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/hoop/01-main-menu.png",
     "width": 1280,
