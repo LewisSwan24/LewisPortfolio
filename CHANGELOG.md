@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.5.0] - 2026-11-21
+
+### Visual Polish, CWV & Print Fit
+- **Hero `PracticeDeck` & Mobile Focus Strip Layout (`src/styles/sections/home.css`)** — Cleared bottom card stack intersection with the drag/counter captions and aligned mobile `Focus` + `Hiring dossier ↗` wrapping cleanly flush-left.
+- **Home & `/projects` LCP Image Priority (`ProjectCoverImage.tsx`, `app/[locale]/page.tsx`, `app/[locale]/projects/page.tsx`)** — Added `fetchPriority="high"` and `priority` loading to lead `FeaturedDeck` cover and top `WorkIndex` thumbnails, while updating `FeaturedDeck` item CTAs to `"View case study →"` / `"查看案例 →"`.
+- **Blog Mobile Breadcrumb & CJK Reading Time (`src/styles/sections/case.css`, `src/lib/blog.ts`)** — Prevented short ancestor breadcrumb labels from wrapping vertically next to long titles on narrow screens and localized reading time (`分钟阅读`) with combined CJK/Latin estimation.
+- **`/lab` Workbench & Copy Refinement (`LabWorkbench.tsx`, `lab.css`)** — Switched token swatches to a symmetric `4×2` desktop grid (`2×4` on mobile), sharpened active/focus states, and reframed `/lab` copy into Interaction Design language.
+- **1–2 Page A4 Resume Print Fit (`src/styles/base.css`, `app/[locale]/resume/page.tsx`)** — Hid `.pd-nav`, `.pd-mobile-menu`, and `.pd-footer` in `@media print`, tightened A4 pagination rules, and refined experience descriptions to emphasize interaction design ownership over dense test/asset counts.
+
+## [3.4.0] - 2026-11-21
+
+### Bilingual Editorial Naturalization & Link Integrity
+- **Interaction-Design Copy Pass (`en` / `zh`)** — Rewrote defensive disclaimers and metric-heavy summaries across flagship cases, proof packets, and blog articles into direct Interaction Design narratives.
+- **Link, Locale & Canonical Hygiene** — Fixed localized Chinese `/zh/projects/...` routing, aligned Chinese blog TOC anchors with DOM heading IDs, removed legacy alias leaks, and configured `NEXT_PUBLIC_SITE_URL=https://lewisdong.vercel.app`.
+
+## [3.3.0] - 2026-11-21
+
+### Editorial Consolidation & Component Deduplication
+- **Hero, `/hire` & Case Navigation Streamlining** — Consolidated redundant sections on Home, `/hire`, and case detail views without losing role-tailored proof filtering or quick decision paths.
+- **UI Primitives & Cleanup** — Simplified `PracticeDeck` card copy and aligned `/about` and `/contact` editorial rhythm.
+
 ## [3.2.0] - 2026-11-21
 
 ### Performance & Architecture

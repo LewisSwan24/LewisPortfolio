@@ -18,8 +18,8 @@ export const pricewiseCase: CaseRecord = {
       "zh": "代码是 AI 写的，构建通过却证明不了到底跑没跑"
     },
     "changed": {
-      "en": "Four classes of defect that a green build, a clean type-check and passing tests all missed",
-      "zh": "构建、类型检查和测试全绿，照样漏掉四类缺陷"
+      "en": "Identified four silent failures that passed build, type-check, and automated tests",
+      "zh": "找出四类通过了构建、类型检查与测试但实际失效的问题"
     }
   },
   "reviewMeta": {

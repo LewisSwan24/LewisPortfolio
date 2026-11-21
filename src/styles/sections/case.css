@@ -8,11 +8,34 @@
   font-family: var(--font-ui);
   font-size: 13px;
   color: var(--text-3);
-  margin-bottom: var(--s-4);
+  margin-bottom: var(--s-3);
+}
+.cs-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cs-breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 !important;
+}
+.cs-breadcrumb li:not(:last-child) {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.cs-breadcrumb li:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .cs-breadcrumb a { color: var(--text-3); text-decoration: none; }
 .cs-breadcrumb a:hover { color: var(--accent); }
-.cs-breadcrumb svg { color: var(--text-4, var(--text-3)); }
+.cs-breadcrumb svg { color: var(--text-4, var(--text-3)); flex-shrink: 0; }
 .cs-back {
   font-family: var(--font-ui);
   font-size: 14px;

@@ -43,13 +43,14 @@ interface FeatItemProps {
   k: ProjKey;
   href: string;
   flip?: boolean;
+  priority?: boolean;
   /** Only shown when the case has no cover image. */
   viz?: React.ReactNode;
   t: Awaited<ReturnType<typeof getTranslations>>;
   locale: ProofLocale;
 }
 
-function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
+function FeatItem({ n, k, href, flip, priority = false, viz, t, locale }: FeatItemProps) {
   // The real artefact leads where one exists; the concept diagram stands in
   // only for a case that has no screenshot or photo of its own.
   const cover = getProjectCover(k);
@@ -67,6 +68,7 @@ function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
             cover={cover}
             locale={locale}
             sizes="(max-width: 960px) 100vw, 600px"
+            priority={priority}
           />
         ) : (
           viz
@@ -88,7 +90,7 @@ function FeatItem({ n, k, href, flip, viz, t, locale }: FeatItemProps) {
           <span className="m">{card.m3}</span>
         </div>
         <span className="feat-cta">
-          {t("feat.footer")} <span>→</span>
+          {t("common.viewCaseStudy")} <span>→</span>
         </span>
       </div>
     </Link>
@@ -180,6 +182,7 @@ export default async function HomePage() {
                   k={record.slug}
                   href={`/projects/${record.slug}`}
                   flip={index % 2 === 1}
+                  priority={index === 0}
                   t={t}
                   locale={proofLocale}
                   viz={fallbackViz}
