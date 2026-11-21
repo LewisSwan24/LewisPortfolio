@@ -62,6 +62,26 @@ export const walkieCase: CaseRecord = {
       },
     ],
   },
+  interactiveDemo: {
+    id: "walkie-wrist",
+    placement: "after-summary",
+    eyebrow: {
+      en: "Interactive prototype · Hardware approval gate",
+      zh: "可操作活原型 · 手腕实体审批门控",
+    },
+    title: {
+      en: "Test the wrist permission loop yourself",
+      zh: "亲手试一下手腕语音与工具审批闭环",
+    },
+    prompt: {
+      en: "Switch between USB cable and zero-knowledge relay, trigger a Claude Code tool request on the right, then press the watch Front Key (Enter) to approve or Side Key (Backspace) to deny.",
+      zh: "先切换 USB 有线或无线零知识中继，在右侧触发一条 Claude Code 请求，再按下手表前键（Enter）批准或侧键（Backspace）拒绝。",
+    },
+    takeaway: {
+      en: "High-impact agent calls block until a deliberate physical key press on the wrist; USB preempts wireless whenever plugged in.",
+      zh: "高风险 Agent 工具调用必须等待手腕实体按键才放行；只要插上 USB 线，有线链路立即抢占无线中继。",
+    },
+  },
   card: {
     en: {
       kicker: "Physical AI Agent · Tactile Approvals",

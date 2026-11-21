@@ -105,6 +105,26 @@ export const fencepostCase: CaseRecord = {
     action: "Load Fencepost live app",
     actionZh: "载入 Fencepost 线上应用",
   },
+  interactiveDemo: {
+    id: "fencepost-revoke",
+    placement: "after-summary",
+    eyebrow: {
+      en: "Interactive prototype · Revocable AI context boundary",
+      zh: "可操作活原型 · 权限边界与 AI 上下文即时截断",
+    },
+    title: {
+      en: "Revoke a resident QR grant and watch the AI lose access",
+      zh: "吊销居民二维码权限，看 AI 助手如何立刻失明",
+    },
+    prompt: {
+      en: "Ask the guest AI a question while the share is Active, then click Revoked QR or Soft-deleted on the left and re-ask to test immediate context cut-off.",
+      zh: "先在「有效分享」状态下向访客 AI 提问，再切换左侧的「已吊销二维码」或「已软删除」，重新提问验证零缓存延迟截断。",
+    },
+    takeaway: {
+      en: "Community AI trust is enforced at the query layer, not by polite prompt disclaimers: revoking access_grants or soft-deleting removes the record from model context immediately.",
+      zh: "社区 AI 的隐私承诺靠查询层隔离而非口头提示词：吊销 access_grants 或软删除条目后，下一瞬即彻底从模型上下文中消失。",
+    },
+  },
   card: {
     en: {
       kicker: "Community AI · Access Boundaries",

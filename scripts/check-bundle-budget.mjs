@@ -13,8 +13,8 @@ const ROOT = process.cwd();
 const STATIC_DIR = path.join(ROOT, ".next", "static");
 
 const MAX_SINGLE_CHUNK_GZ_KB = 70;
-const MAX_APP_ROUTE_CHUNK_GZ_KB = 15;
-const MAX_APP_CSS_GZ_KB = 26;
+const MAX_APP_ROUTE_CHUNK_GZ_KB = 20;
+const MAX_APP_CSS_GZ_KB = 28;
 const MAX_TOTAL_CSS_GZ_KB = 60;
 
 function walk(dir, out = []) {

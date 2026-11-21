@@ -9,6 +9,7 @@ import { CaseInvariantLink, isLabLinkedCase } from "@/components/case/CaseInvari
 import { CaseMediaGallery } from "@/components/case/CaseMediaGallery";
 import { CaseCoverVisual, hasScreenshotCover } from "@/components/case/CaseCoverVisual";
 import { CaseSummaryBlock } from "@/components/case/CaseSummaryBlock";
+import { CaseSimulatorFrame } from "@/components/case/CaseSimulatorFrame";
 import { CaseNarrative } from "@/components/case/CaseNarrative";
 import { CaseRelatedNav } from "@/components/case/CaseRelatedNav";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -114,9 +115,20 @@ export default async function CasePage({ params }: Props) {
   const subtitleText =
     narrative.hero.title !== card.title ? narrative.hero.title : narrative.hero.sub;
 
-  const jumpSections = [
+  const interactiveDemo = record.interactiveDemo;
+  const interactiveJump: [string, string] | null = interactiveDemo
+    ? ["interactive-demo", isZh ? "交互原型" : "Interactive prototype"]
+    : null;
+
+  const jumpSections: Array<readonly [string, string]> = [
     ["artifact", isZh ? "核心产物" : "Artifact"],
     ["snapshot", isZh ? "案例摘要" : "Summary"],
+    ...(interactiveJump && interactiveDemo?.placement === "after-summary"
+      ? [interactiveJump]
+      : []),
+    ...(interactiveJump && interactiveDemo?.placement === "mid-narrative"
+      ? [interactiveJump]
+      : []),
     ["long-form", narrative.ch.label],
     ["evidence-board", narrative.re.label],
     ["decision-timeline", narrative.id.label],
@@ -124,7 +136,7 @@ export default async function CasePage({ params }: Props) {
     ["outcome-limits", pageCopy.outcomeLimits],
     ["interview-takeaway", narrative.rf.label],
     ["interview-pack", pageCopy.interviewPack],
-  ] as const;
+  ];
 
   return (
     <main className="page" data-screen-label={`03 Case · ${k}`}>
@@ -235,6 +247,10 @@ export default async function CasePage({ params }: Props) {
         <CaseSummaryBlock locale={proofLocale} summary={caseSummary} />
       </section>
 
+      {interactiveDemo?.placement === "after-summary" && (
+        <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} />
+      )}
+
       {isLabLinkedCase(k) && <CaseInvariantLink slug={k} isZh={isZh} />}
 
       {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
@@ -250,6 +266,10 @@ export default async function CasePage({ params }: Props) {
           action={isZh ? record.demo.actionZh : record.demo.action}
           openLabel={isZh ? "在新标签页打开 ↗" : "Open in a new tab ↗"}
         />
+      )}
+
+      {interactiveDemo?.placement === "mid-narrative" && (
+        <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} />
       )}
 
       <section id="long-form" className="container">

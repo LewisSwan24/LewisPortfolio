@@ -88,6 +88,26 @@ export const connectCase: CaseRecord = {
       }
     ]
   },
+  "interactiveDemo": {
+    "id": "connect-ia-reset",
+    "placement": "mid-narrative",
+    "eyebrow": {
+      "en": "Interactive prototype · Before & after IA reset",
+      "zh": "可操作活原型 · 信息架构重画前后对比"
+    },
+    "title": {
+      "en": "Walk the exact think-aloud flow before and after the October paper reset",
+      "zh": "15 秒对比九月旧结构卡点与十月纸面重画后的任务流"
+    },
+    "prompt": {
+      "en": "Switch between Iteration 2 (patched legacy) and Oct Reset (redrawn IA), then step through Browse → Register → Back to feel why the October reset resolved the navigation trap.",
+      "zh": "在顶部切换「Iteration 2 · 补丁旧结构」与「Oct Reset · 纸面重画新结构」，依次点击浏览 → 报名 → 返回，亲手体验受测者卡点如何被解决。"
+    },
+    "takeaway": {
+      "en": "When usability sessions reveal missing back routes and ambiguous button states, redrawing the 5-screen IA on paper beats layering more UI patches.",
+      "zh": "当可用性测试暴露出缺少返回路径与按钮状态歧义时，回到纸面重画五屏信息架构比在旧结构上继续打补丁更有效。"
+    }
+  },
   "card": {
     "en": {
       "kicker": "Team project · Research and IA reset",

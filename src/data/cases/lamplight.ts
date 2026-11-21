@@ -64,6 +64,26 @@ export const lamplightCase: CaseRecord = {
     "action": "Load Lamplight Nook site",
     "actionZh": "载入 Lamplight Nook 展示页"
   },
+  "interactiveDemo": {
+    "id": "lamplight-triage",
+    "placement": "after-summary",
+    "eyebrow": {
+      "en": "Interactive prototype · Default-safe risk triage",
+      "zh": "可操作活原型 · 风险动作默认「先不要」"
+    },
+    "title": {
+      "en": "Walk the café queue & trigger a risky step",
+      "zh": "推进咖啡馆任务队列并触发高风险确认卡"
+    },
+    "prompt": {
+      "en": "Advance low-risk steps or jump directly to a risky step. Notice initial keyboard focus and visual emphasis land on \"Not now\" — preserving progress without accidental writes.",
+      "zh": "推进低风险步骤或直接跳到风险步骤。留意确认卡弹出时，默认高亮与初始焦点落在「先不要」而非「继续执行」。"
+    },
+    "takeaway": {
+      "en": "Calm agents treat interruption as reversible pausing: \"Not now\" is the safe default, impact diffs stay inspectable, and completed work is never discarded.",
+      "zh": "克制的 Agent 交互把打断视为安全挂起：「先不要」永远是默认安全选项，影响范围可展开核对，已完成进度完整保留。"
+    }
+  },
   "media": {
     "label": "The shop at work",
     "labelZh": "店里干活的样子",

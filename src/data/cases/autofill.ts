@@ -45,6 +45,26 @@ export const autofillCase: CaseRecord = {
       "external": true
     }
   ],
+  "interactiveDemo": {
+    "id": "autofill-confidence",
+    "placement": "mid-narrative",
+    "eyebrow": {
+      "en": "Interactive prototype · Zero-guess confidence gate",
+      "zh": "可操作活原型 · 零猜测三档分流门控"
+    },
+    "title": {
+      "en": "Run a local scan on a simulated ATS form",
+      "zh": "在模拟 ATS 申请表上运行一次本地扫描"
+    },
+    "prompt": {
+      "en": "Click \"Scan this form locally\" to see exact 1:1 fields auto-fill (solid), ambiguous dropdowns pause for you (dashed), open prompts stay blank (double), and Submit stay human-locked.",
+      "zh": "点击「一键本地扫描」，观察确定字段如何直填（实线）、歧义下拉如何标出待确认（虚线）、开放题如何刻意留空（双线），以及提交按钮如何始终由人手掌控。"
+    },
+    "takeaway": {
+      "en": "Trustworthy form automation splits certainty from guesswork visually and structurally—never fabricating open answers and never clicking final Submit.",
+      "zh": "值得信任的自动化工具在结构与视觉上严格区分确定性与猜测：绝不编造开放题，也绝不越权代点最终提交。"
+    }
+  },
   "media": {
     "label": "After a fill",
     "labelZh": "填完之后",

@@ -179,6 +179,28 @@ export const CaseCoverSchema = z.object({
   alt: LocalizedStringSchema,
 });
 
+export const CaseSimulatorIdSchema = z.enum([
+  "maze-contact",
+  "walkie-wrist",
+  "lamplight-triage",
+  "autofill-confidence",
+  "fencepost-revoke",
+  "connect-ia-reset",
+]);
+
+export type CaseSimulatorId = z.infer<typeof CaseSimulatorIdSchema>;
+
+export const CaseInteractiveDemoSchema = z.object({
+  id: CaseSimulatorIdSchema,
+  placement: z.enum(["after-summary", "mid-narrative"]),
+  eyebrow: LocalizedStringSchema,
+  title: LocalizedStringSchema,
+  prompt: LocalizedStringSchema,
+  takeaway: LocalizedStringSchema,
+});
+
+export type CaseInteractiveDemo = z.infer<typeof CaseInteractiveDemoSchema>;
+
 export const CaseRecordSchema = z.object({
   slug: z.enum(CURRENT_PROJECT_SLUGS),
   status: z.enum(["listed", "unlisted"]),
@@ -190,6 +212,7 @@ export const CaseRecordSchema = z.object({
   links: z.array(CaseLinkSchema),
   media: CaseMediaSchema.optional(),
   demo: CaseDemoSchema.optional(),
+  interactiveDemo: CaseInteractiveDemoSchema.optional(),
   card: z.object({
     en: CaseCardCopySchema,
     zh: CaseCardCopySchema,

@@ -102,6 +102,26 @@ export const mazeCase: CaseRecord = {
     "action": "Load the interactive demo",
     "actionZh": "载入互动 demo"
   },
+  "interactiveDemo": {
+    "id": "maze-contact",
+    "placement": "after-summary",
+    "eyebrow": {
+      "en": "Interactive prototype · 4-player co-touch gate",
+      "zh": "可操作活原型 · 四人触控协同迷宫"
+    },
+    "title": {
+      "en": "Test why one player alone cannot move the maze",
+      "zh": "亲手试一下为什么单人点按无法驱动迷宫"
+    },
+    "prompt": {
+      "en": "Tap a wristband in Single-player mode to feel the lock, then switch to Two-player co-touch (or press Arrow keys on the grid) to steer the orb to GOAL.",
+      "zh": "先在「单人试按」模式下点击任意腕带感受方向锁定，再切换为「双人同时触碰」（或聚焦棋盘按方向键）协同把球送到终点。"
+    },
+    "takeaway": {
+      "en": "Collaborative hardware turns physical co-presence into an explicit state gate: one person alone gets immediate lock feedback, while paired touch drives all five synchronized channels.",
+      "zh": "协作型物理交互把「双人在场」编码为明确的状态门控：单人触碰即时给出锁定提示，双人配对则同步驱动计分、震动、灯带与串口。"
+    }
+  },
   "card": {
     "en": {
       "kicker": "Flagship · Physical computing",
