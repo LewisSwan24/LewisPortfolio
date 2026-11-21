@@ -4,13 +4,9 @@ import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { ContactRoleContext } from "@/components/hiring/ContactRoleContext";
 import { FollowThroughContactContext } from "@/components/hiring/FollowThroughComponents";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
-import { getProofUiLabels } from "@/lib/proof";
+import { getHiringRoleFits, getProofUiLabels } from "@/lib/proof";
 import { siteConfig } from "@/lib/site";
-import {
-  getHiringConversion,
-  getRoleFit,
-  type ProofLocale,
-} from "@/lib/portfolio-proof";
+import type { ProofLocale } from "@/lib/portfolio-proof";
 
 function readableUrl(url: string) {
   return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
@@ -43,9 +39,12 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const linkedin = siteConfig.social.linkedin;
   const github = siteConfig.social.github;
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
-  const roleFit = getRoleFit(proofLocale);
-  const hiringConversion = getHiringConversion(proofLocale);
   const proofLabels = getProofUiLabels(proofLocale);
+  const matchedRole =
+    query?.role && getHiringRoleFits(proofLocale).some((fit) => fit.id === query.role)
+      ? query.role
+      : undefined;
+  const isInterviewIntent = query?.intent === "interview" && Boolean(matchedRole);
 
   return (
     <main className="page" data-screen-label="06 Contact">
@@ -65,8 +64,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </h1>
           <p className="prose">
             {isZh
-              ? "把岗位、问题，或你想让我准备的问题发来。我会带着最相关的案例和判断回复。"
-              : "Send the role, the problem, or the question you want me to prepare for. I will reply with the most relevant case and a clear next step."}
+              ? "如果你正在招人、推进一个交互复杂的新产品，或想先聊某个案例的取舍，直接写信给我即可，通常 48 小时内回复。"
+              : "If you are hiring, shaping a tricky interaction problem, or want to compare notes on a shipped build, send a note — I usually reply within 48 hours."}
           </p>
           <ul className="contact-method-list" aria-label={isZh ? "联系方式" : "Contact methods"}>
             <li>
@@ -88,80 +87,34 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               </a>
             </li>
           </ul>
-        </div>
-        <aside className="contact-note-card" aria-label={isZh ? "最佳联系方式" : "Best way to reach me"}>
-          <div className="contact-note-label">
-            {isZh ? "最好这样联系我" : "Best way to reach me"}
-          </div>
-          <p>
-            {isZh
-              ? "告诉我你想解决的问题，我会带着一条清楚的证据路径回复。"
-              : "Tell me the problem you are trying to solve, and I will reply with a useful evidence path."}
+          <p className="contact-hire-hint">
+            <Link href="/hire">
+              {isZh ? "正在评估岗位匹配？查看 1 分钟招聘简报 →" : "Evaluating role fit? Open the quick hiring dossier →"}
+            </Link>
           </p>
-          <span>{isZh ? "具体一点 → 回复更快" : "specificity → speed"}</span>
-        </aside>
-
-        <ContactRoleContext role={query?.role} locale={proofLocale} />
-        <FollowThroughContactContext
-          role={query?.role}
-          intent={query?.intent}
-          locale={proofLocale}
-          labels={proofLabels}
-        />
-
-        <section className="contact-use" aria-labelledby="contact-use-title">
-          <div>
-            <div className="label">{isZh ? "使用方式" : "Use this portfolio for"}</div>
-            <h2 id="contact-use-title">
-              {isZh ? "快速判断我是否适合你的 UX / Product Design 团队。" : "Quickly decide whether I fit your UX or product design team."}
-            </h2>
-            <p>{roleFit.availability}</p>
-          </div>
-          <div className="contact-use-body">
-            <div className="role-fit-tags">
-              {roleFit.roles.map((role) => (
-                <span className="tag" key={role}>
-                  {role}
-                </span>
-              ))}
+        </div>
+        {isInterviewIntent ? (
+          <FollowThroughContactContext
+            role={matchedRole}
+            intent={query?.intent}
+            locale={proofLocale}
+            labels={proofLabels}
+          />
+        ) : matchedRole ? (
+          <ContactRoleContext role={matchedRole} locale={proofLocale} />
+        ) : (
+          <aside className="contact-note-card" aria-label={isZh ? "来信建议" : "Note guide"}>
+            <div className="contact-note-label">
+              {isZh ? "写信时顺便带上一句" : "Helpful in your note"}
             </div>
-            <ul className="role-fit-list">
-              {roleFit.bestFit.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <div className="contact-use-links">
-              {roleFit.proofLinks.map((link) => (
-                <Link href={link.href} key={link.href}>
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="contact-next-step" aria-labelledby="contact-next-step-title">
-          <div>
-            <div className="label">
-              {isZh ? "招聘下一步" : "Hiring next step"}
-            </div>
-            <h2 id="contact-next-step-title">{hiringConversion.closingPrompt.title}</h2>
-            <p className="contact-next-status">{hiringConversion.hero.status}</p>
-            <p>{hiringConversion.closingPrompt.body}</p>
-          </div>
-          <div className="contact-next-step-links">
-            {hiringConversion.proofRoutes.map((route) => (
-              <Link href={route.href} key={route.href}>
-                {route.title}
-              </Link>
-            ))}
-            <a href={`mailto:${email}`}>
-              {isZh ? "直接发邮件" : "Email me directly"}
-            </a>
-            <Link href="/hire">{isZh ? "面试判断" : "Interview decision"}</Link>
-          </div>
-        </section>
-
+            <p>
+              {isZh
+                ? "附上团队方向、产品阶段或想深聊的一件作品，我回信时可以直接把相关设计与边界整理给你。"
+                : "Share the role scope, product stage, or specific build you want to unpack — I will reply with the right context ready."}
+            </p>
+            <span>{isZh ? "布里斯班 · 欢迎远程与澳洲本地机会" : "Brisbane · Open to AU & remote"}</span>
+          </aside>
+        )}
       </section>
     </main>
   );

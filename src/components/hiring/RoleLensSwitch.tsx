@@ -154,16 +154,11 @@ export function RoleLensSwitch({
       <div className="role-lens-grid" data-active-lens={activeLens}>
         {filtered.map((item) => (
           <Link key={item.slug} href={`/projects/${item.slug}`} className="role-lens-card">
-            <div className="eyebrow">{item.kicker}</div>
-            <h3>{item.title}</h3>
-            <p>{item.sub}</p>
-            <div className="role-lens-metrics">
-              {item.metrics.map((m) => (
-                <span key={m} className="tag">
-                  {m}
-                </span>
-              ))}
+            <div className="role-lens-card-head">
+              <h3>{item.title}</h3>
+              <span className="tag">{item.metrics[0]}</span>
             </div>
+            <div className="eyebrow">{item.kicker}</div>
           </Link>
         ))}
       </div>

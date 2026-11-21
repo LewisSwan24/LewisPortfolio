@@ -1,11 +1,20 @@
 import Link from "next/link";
+import { localizeInternalHref } from "@/lib/locale-href";
+import type { ProofLocale } from "@/lib/proof";
 import type { InterviewDecisionBrief as InterviewDecisionBriefData } from "@/lib/portfolio-proof";
 
 interface InterviewDecisionBriefProps {
   brief: InterviewDecisionBriefData;
+  locale?: ProofLocale;
+  workLabel?: string;
 }
 
-export function InterviewDecisionBrief({ brief }: InterviewDecisionBriefProps) {
+export function InterviewDecisionBrief({
+  brief,
+  locale = "en",
+  workLabel,
+}: InterviewDecisionBriefProps) {
+  const projectsText = workLabel ?? (locale === "zh" ? "查看作品" : "Browse work");
   return (
     <section className="interview-room-hero container" aria-labelledby="interview-room-title">
       <div className="interview-room-hero-copy">
@@ -13,12 +22,15 @@ export function InterviewDecisionBrief({ brief }: InterviewDecisionBriefProps) {
         <h1 id="interview-room-title">{brief.headline}</h1>
         <p>{brief.subhead}</p>
         <p className="interview-room-status">{brief.status}</p>
-        <div className="interview-room-actions">
-          <Link className="btn btn-primary" href={brief.primaryAction.href}>
+        <div className="interview-room-actions interview-room-primary-actions">
+          <Link className="btn btn-primary" href={localizeInternalHref(brief.primaryAction.href, locale)}>
             {brief.primaryAction.label}
           </Link>
-          <Link className="btn btn-ghost" href={brief.secondaryAction.href}>
+          <Link className="btn btn-ghost" href={localizeInternalHref(brief.secondaryAction.href, locale)}>
             {brief.secondaryAction.label}
+          </Link>
+          <Link className="btn btn-ghost" href={localizeInternalHref("/projects", locale)}>
+            {projectsText}
           </Link>
         </div>
       </div>

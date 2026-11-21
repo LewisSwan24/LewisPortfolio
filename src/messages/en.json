@@ -82,11 +82,11 @@
   },
   "feat": {
     "label": "Selected work",
-    "title": "Eight cases, each with its own stopping point.",
+    "title": "Six featured cases, each with its own stopping point.",
     "footer": "Full index",
     "deckPrev": "Previous case",
     "deckNext": "Next case",
-    "deckKbd": "Drag, or use ← → to step through the eight"
+    "deckKbd": "Drag, or use ← → to step through"
   },
   "cs": {
     "back": "← All work",
@@ -109,7 +109,7 @@
     "write": "Write",
     "meta": {
       "built": "Built with Next.js and Tailwind, written with Codex and Claude Code, and revised many times.",
-      "version": "v5 · updated November 2026"
+      "version": "v3.3 · updated November 2026"
     }
   },
   "tw": {

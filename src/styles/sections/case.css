@@ -2,7 +2,7 @@
    CASE STUDY — sprint 3
    ============================================================ */
 .cs-hero {
-  padding: var(--s-7) var(--grid-margin) var(--s-8);
+  padding: var(--s-6) var(--grid-margin) var(--s-6);
 }
 .cs-breadcrumb {
   font-family: var(--font-ui);
@@ -177,7 +177,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
   border-left: 1px solid var(--border);
 }
 .case-summary-grid > div {
-  min-height: 180px;
+  min-height: 0;
   padding: var(--s-4);
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -417,7 +417,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
   }
 }
 
-.cs-section { padding-block: var(--s-8); border-top: 1px dashed var(--border); }
+.cs-section { padding-block: var(--s-5); border-top: 1px dashed var(--border); }
 .cs-section:first-of-type { border-top: none; }
 .cs-row {
   display: grid;
@@ -467,7 +467,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 @media (max-width: 820px) { .cs-method-grid { grid-template-columns: 1fr; } }
 
 .cs-metrics {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0;
   border-top: 1px solid var(--border);
   border-left: 1px solid var(--border);
   margin: var(--s-6) 0;

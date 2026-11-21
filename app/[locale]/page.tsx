@@ -17,10 +17,7 @@ import type { CurrentProjectSlug } from "@/lib/project-routes";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import { getAllBlogPosts } from "@/lib/blog";
-import {
-  getHiringConversion,
-  type ProofLocale,
-} from "@/lib/portfolio-proof";
+import type { ProofLocale } from "@/lib/portfolio-proof";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
@@ -106,7 +103,6 @@ export default async function HomePage() {
   const latestPosts = allPosts.slice(0, 3);
   const dateLocale = isZh ? "zh-CN" : "en-US";
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
-  const hiringConversion = getHiringConversion(proofLocale);
 
   return (
     <main className="page" data-screen-label="01 Home">
@@ -115,10 +111,10 @@ export default async function HomePage() {
           <div className="hero-text">
             <div className="eyebrow">{t("hero.eyebrow")}</div>
             <h1 className="h-display h1">
-              {t("hero.headline.a")}
-              <br />
-              <em>{t("hero.headline.b")}</em>
-              <br />
+              {t("hero.headline.a")}{" "}
+              <br />{" "}
+              <em>{t("hero.headline.b")}</em>{" "}
+              <br />{" "}
               {t("hero.headline.c")}
             </h1>
             <p className="hero-lede">{t("hero.body")}</p>
@@ -130,97 +126,17 @@ export default async function HomePage() {
                 {t("hero.cta.note")} <span className="arrow">→</span>
               </Link>
             </div>
-            <div className="hero-focus-strip" aria-label={isZh ? "当前关注方向" : "Current focus"}>
-              <span>{isZh ? "当前关注" : "Current focus"}</span>
-              <strong>{isZh ? "UX 研究" : "UX research"}</strong>
-              <strong>{isZh ? "交互设计" : "Interaction design"}</strong>
-              <strong>{isZh ? "产品清晰度" : "Product clarity"}</strong>
+            <div className="hero-focus-strip" aria-label={isZh ? "状态与招聘入口" : "Status and hiring focus"}>
+              <span>{isZh ? "当前关注" : "Focus"}</span>
+              <strong>{isZh ? "交互设计 · UX 研究 · 设计工程" : "Interaction · UX research · Design engineering"}</strong>
+              <Link href="/hire" className="hero-hire-link">
+                {isZh ? "招聘决策简报 ↗" : "Hiring dossier ↗"}
+              </Link>
             </div>
           </div>
           <div className="hero-visual">
             <PracticeDeck />
           </div>
-        </div>
-      </section>
-
-      <section
-        className="section container hiring-proof-desk"
-        aria-labelledby="hiring-proof-title"
-      >
-        <div className="hiring-proof-head">
-          <div>
-            <div className="label">{isZh ? "招聘信号" : "Hiring signal"}</div>
-            <h2 id="hiring-proof-title">{hiringConversion.hero.headline}</h2>
-            <p className="hiring-proof-status">{hiringConversion.hero.status}</p>
-            <p>{hiringConversion.hero.subhead}</p>
-          </div>
-          <div className="hiring-proof-actions">
-            <Link
-              href={hiringConversion.closingPrompt.primaryAction.href}
-              className="btn btn-primary"
-            >
-              {hiringConversion.closingPrompt.primaryAction.label}
-            </Link>
-            <Link
-              href={hiringConversion.closingPrompt.secondaryAction.href}
-              className="btn btn-ghost"
-            >
-              {hiringConversion.closingPrompt.secondaryAction.label}
-            </Link>
-            <Link href="/hire" className="btn btn-ghost">
-              {isZh ? "面试判断" : "Interview decision"}
-            </Link>
-          </div>
-        </div>
-
-        <div className="hiring-signal-grid">
-          {hiringConversion.signals.map((signal) => (
-            <div className="hiring-signal" key={signal.label}>
-              <strong>{signal.value}</strong>
-              <span>{signal.label}</span>
-              <p>{signal.detail}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="proof-route-board">
-          <div className="label">
-            {isZh ? "最值得查看的案例" : "Best cases to inspect"}
-          </div>
-          <div className="proof-route-grid">
-            {hiringConversion.proofRoutes.map((route, index) => (
-              <Link className="proof-route-card" href={route.href} key={route.href}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <small>{route.audience}</small>
-                <h3>{route.title}</h3>
-                <p>{route.claim}</p>
-                <em>{route.evidence}</em>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section container">
-        <div className="approach">
-          <div className="approach-text">
-            <div className="label">{t("approach.label")}</div>
-            <h2 className="h-display h2">
-              {t("approach.title.text")} <em>{t("approach.title.em")}</em>
-            </h2>
-            <p className="prose">{t("approach.body")}</p>
-          </div>
-          <SectionReveal>
-            <div className="approach-steps">
-              {[1, 2, 3, 4].map((i) => (
-                <div className="approach-step" key={i} data-reveal-item>
-                  <div className="num">0{i}</div>
-                  <h4>{t(`approach.step.${i}.t`)}</h4>
-                  <p>{t(`approach.step.${i}.b`)}</p>
-                </div>
-              ))}
-            </div>
-          </SectionReveal>
         </div>
       </section>
 
@@ -235,19 +151,8 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        {/* One case at a time, not eight stacked. The stack this replaces ran
-            4,560px of identical blocks — giving everything equal weight is the
-            same as featuring nothing.
-
-            They run in the same order as the portfolio PDF, so a recruiter
-            holding both sees one sequence rather than two. That puts
-            MazeRunners first: it is the only case backed by a working physical
-            build, so it differentiates hardest against screen-only portfolios.
-            Cases that are unlisted (see UNLISTED_PROJECT_SLUGS) have no slot.
-
-            Every case is still rendered. FeaturedDeck hides the inactive ones
-            visually but leaves them in the served HTML, so a crawler still gets
-            all eight. */}
+        {/* One case at a time, stacked cleanly so crawlers get all featured entries
+            without turning the homepage into an endless vertical wall. */}
         <FeaturedDeck
           labels={{
             prev: t("feat.deckPrev"),
@@ -283,6 +188,29 @@ export default async function HomePage() {
             };
           })}
         />
+      </section>
+
+      <section className="section container">
+        <div className="approach">
+          <div className="approach-text">
+            <div className="label">{t("approach.label")}</div>
+            <h2 className="h-display h2">
+              {t("approach.title.text")} <em>{t("approach.title.em")}</em>
+            </h2>
+            <p className="prose">{t("approach.body")}</p>
+          </div>
+          <SectionReveal>
+            <div className="approach-steps">
+              {[1, 2, 3, 4].map((i) => (
+                <div className="approach-step" key={i} data-reveal-item>
+                  <div className="num">0{i}</div>
+                  <h4>{t(`approach.step.${i}.t`)}</h4>
+                  <p>{t(`approach.step.${i}.b`)}</p>
+                </div>
+              ))}
+            </div>
+          </SectionReveal>
+        </div>
       </section>
 
       {latestPosts.length > 0 && (

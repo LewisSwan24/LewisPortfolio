@@ -4,7 +4,6 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { StructuredData, generateResumePersonSchema } from "@/lib/seo";
 import {
-  getHiringConversion,
   getRoleFit,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
@@ -33,7 +32,6 @@ export default async function ResumePage() {
   const isZh = locale === "zh";
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
   const roleFit = getRoleFit(proofLocale);
-  const hiringConversion = getHiringConversion(proofLocale);
 
   return (
     <main className="page" data-screen-label="05 Resume">
@@ -71,28 +69,18 @@ export default async function ResumePage() {
                   <ul>
                     <li>
                       {isZh
-                        ? "把自主选题的产品从书面规格一路带到可运行的实现：规格与设计决策由我定，再指挥 Codex 与 Claude Code 落地并通过自动化测试验收。"
-                        : "Took self-directed products from written spec to running build — I wrote the specification and design decisions, then directed Codex and Claude Code to implement them and verified with automated tests."}
+                        ? "物理数字协同（Walkie / On The Beat）：与 On The Beat 共用 M5StickS3 的双启动固件，以 USB 优先与 AES-256-GCM 零知识中继驱动手腕实体按钮审批 Claude 工具，通过 3 组硬件/协议门禁（含 11 个实机屏幕场景）验收。"
+                        : "Physical-digital control (Walkie & On The Beat): dual-boot M5StickS3 firmware with USB-first AES-256-GCM relay and wrist button approvals for Claude Code, verified by 3 automated hardware/protocol gates (11 on-device scenes)."}
                     </li>
                     <li>
                       {isZh
-                        ? "Walkie（M5StickS3 手腕 AI 语音遥控器）：双启动 PlatformIO C++ 固件（与 On The Beat 共用同一支表）、AES-256-GCM 加密链路（插线 USB 优先，离缆走零知识 Fly.io 中继）与手腕实体按键审批 Claude 工具权限，经 3 组自动化硬件/协议门禁（含 11 个真机屏幕按键场景）验收。"
-                        : "Walkie (M5StickS3 wrist voice remote for Claude Code): dual-boot PlatformIO C++ firmware sharing one watch with On The Beat, AES-256-GCM sealed transport (USB wins; zero-knowledge Fly.io relay fallback), and physical wrist approval buttons, verified by 3 automated hardware/protocol gates (including 11 on-device scenes)."}
+                        ? "AI 安全与风险确认边界（Fencepost / Lamplight Nook）：实现可吊销权限二维码与三角色 Python 安全代理（通过 431 项离线测试与 29 条红线用例），以及风险动作默认「先不要」的 Electron + Phaser 任务界面。"
+                        : "AI safety & risk gating (Fencepost & Lamplight Nook): revocable QR access_grants and a 3-role Python AI safety proxy (431 offline tests, 29 red-line cases) alongside a desktop task UI where risky actions default to 'not now'."}
                     </li>
                     <li>
                       {isZh
-                        ? "Fencepost（布里斯班社区野生动物故事板）：可吊销权限二维码（access_grants）、三角色 Python AI 安全代理与 Next.js / Turso libSQL 线上原型，通过 431 项离线测试与 29 条 AI 安全红线用例。"
-                        : "Fencepost (Brisbane community wildlife storyboard): revocable QR access_grants, a 3-role Python AI safety proxy, and a live Next.js + Turso libSQL deployment verified by 431 offline tests and 29 AI red-line cases."}
-                    </li>
-                    <li>
-                      {isZh
-                        ? "Lamplight Nook、Resume Autofill 与 On The Beat：分别完成像素风 AI 任务桌面应用（Electron + Phaser，风险步骤默认「先不要」）、本地优先的 Chrome/Android 求职自动填表工具（不猜、不替提交、简历不出设备），以及面向演出现场的双 M5StickS3 手环破冰原型。"
-                        : "Lamplight Nook, Resume Autofill, and On The Beat: shipped an Electron + Phaser desktop UI for long-running Claude tasks (risky steps default to 'not now'), a local-first Chrome/Android autofill that never guesses or submits, and a two-wristband live-gig icebreaker prototype."}
-                    </li>
-                    <li>
-                      {isZh
-                        ? "Hoop Dream：一份成文美术圣经，附「拒绝风格」清单，靠人眼对照，没有脚本在查。299 条资产规格与登记记录分 6 批管理，原始图像文件尚未全部核实；线上公开可玩，自标 DEMO v0.6。"
-                        : "Hoop Dream: a written art bible with an explicit rejected-style list, checked by eye rather than by a script; 299 asset specs and registry records managed in six batches, original image files not yet fully verified; publicly playable, self-labelled DEMO v0.6."}
+                        ? "求职工作流与视觉规范（Resume Autofill / Hoop Dream）：打造不猜测、不替投、简历不出设备的本地填表拓展，并以三份画布规范与拒绝风格清单约束 299 条游戏美术资产（自标 DEMO v0.6）。"
+                        : "Workflow tools & design systems (Resume Autofill & Hoop Dream): local-first Chrome/Android autofill that never guesses or submits, plus a 3-tier art bible governing 299 asset specs (self-labelled DEMO v0.6)."}
                     </li>
                   </ul>
                 </div>
@@ -182,7 +170,7 @@ export default async function ResumePage() {
 
           <aside className="res-side">
             <div className="res-side-card role-fit-card">
-              <h4>{isZh ? "最匹配岗位" : "Best-fit roles"}</h4>
+              <h4>{isZh ? "目标岗位" : "Target roles"}</h4>
               <p className="role-fit-availability">{roleFit.availability}</p>
               <div className="role-fit-tags">
                 {roleFit.roles.map((role) => (
@@ -191,31 +179,10 @@ export default async function ResumePage() {
                   </span>
                 ))}
               </div>
-              <h5>{isZh ? "适合的团队" : "Best-fit teams"}</h5>
-              <ul className="role-fit-list">
-                {roleFit.bestFit.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
               <div className="role-fit-links">
-                {roleFit.proofLinks.map((link) => (
-                  <Link href={link.href} key={link.href}>
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div className="res-side-card resume-proof-card">
-              <h4>{isZh ? "带证据链接的简历" : "Proof-linked resume"}</h4>
-              <p>{hiringConversion.hero.status}</p>
-              <h5>{isZh ? "最值得查看的案例" : "Best cases to inspect"}</h5>
-              <div className="resume-proof-links">
-                {hiringConversion.proofRoutes.map((route) => (
-                  <Link href={route.href} key={route.href}>
-                    {route.title}
-                  </Link>
-                ))}
-                <Link href="/hire">{isZh ? "面试判断页" : "Interview decision"}</Link>
+                <Link href="/hire">
+                  {isZh ? "查看岗位与证据简报 →" : "Open hiring dossier →"}
+                </Link>
               </div>
             </div>
             <div className="res-side-card">
