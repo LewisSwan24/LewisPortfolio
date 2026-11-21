@@ -10,10 +10,9 @@ import { BackToTop } from "@/components/navigation/BackToTop";
 import { ErrorBoundary } from "@/components/providers/ErrorBoundary";
 import { PageTransition } from "@/components/effects/PageTransition";
 import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
-import { KeyboardShortcutsModal } from "@/components/providers/KeyboardShortcutsModal";
+import { LazyKeyboardShortcuts } from "@/components/providers/LazyKeyboardShortcuts";
 import { SearchProvider } from "@/components/SearchProvider";
-import { getAllBlogPosts } from "@/lib/blog";
-import { getCaseSearchIndex, type CaseLocale } from "@/lib/cases/registry";
+import type { CaseLocale } from "@/lib/cases/registry";
 import { Analytics } from "@vercel/analytics/react";
 import {
   StructuredData,
@@ -23,10 +22,12 @@ import {
 } from "@/lib/seo";
 
 const CLIENT_MESSAGE_NAMESPACES = [
+  "brand",
   "nav",
   "hero",
   "foot",
   "footer",
+  "contact",
   "blog",
   "resume",
   "skipLink",
@@ -66,22 +67,8 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const caseLocale: CaseLocale = locale === "zh" ? "zh" : "en";
-  const [messages, blogPosts] = await Promise.all([
-    getMessages(),
-    getAllBlogPosts(caseLocale),
-  ]);
+  const messages = await getMessages();
   const clientMessages = pickClientMessages(messages as Record<string, unknown>);
-
-  const searchItems = [
-    ...getCaseSearchIndex(caseLocale),
-    ...blogPosts.map((post) => ({
-      type: "blog" as const,
-      slug: post.slug,
-      title: post.title,
-      description: post.excerpt,
-      tags: post.tags,
-    })),
-  ];
 
   return (
     <NextIntlClientProvider messages={clientMessages}>
@@ -91,7 +78,7 @@ export default async function LocaleLayout({
         enableSystem={false}
         disableTransitionOnChange
       >
-        <SearchProvider items={searchItems}>
+        <SearchProvider locale={caseLocale}>
           <StructuredData data={generatePersonSchema()} />
           <StructuredData data={generateOrganizationSchema()} />
           <StructuredData data={generateWebSiteSchema()} />
@@ -106,7 +93,7 @@ export default async function LocaleLayout({
             <Footer />
           </div>
           <BackToTop />
-          <KeyboardShortcutsModal />
+          <LazyKeyboardShortcuts />
           <PerformanceMonitor />
           <Analytics />
         </SearchProvider>

@@ -5,6 +5,7 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { DemoEmbed } from "@/components/case/DemoEmbed";
+import { CaseInvariantLink, isLabLinkedCase } from "@/components/case/CaseInvariantLink";
 import { CaseMediaGallery } from "@/components/case/CaseMediaGallery";
 import { CaseSummaryBlock } from "@/components/case/CaseSummaryBlock";
 import { CaseNarrative } from "@/components/case/CaseNarrative";
@@ -230,6 +231,8 @@ export default async function CasePage({ params }: Props) {
           coverCaption={pageCopy.coverCaption}
         />
       </section>
+
+      {isLabLinkedCase(k) && <CaseInvariantLink slug={k} isZh={isZh} />}
 
       {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
 

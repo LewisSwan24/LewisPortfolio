@@ -9,6 +9,25 @@ export const lamplightCase: CaseRecord = {
     "ai-ux",
     "design-eng"
   ],
+  "workSummary": {
+    "order": 7,
+    "tags": ["ai"],
+    "year": "2026",
+    "dur": "1.0, in daily use",
+    "problem": {
+      "en": "A long AI task shows up as a log nobody can read at a glance",
+      "zh": "AI 长任务只是一屏没人能一眼看懂的日志"
+    },
+    "changed": {
+      "en": "A café crew acting out the task, with questions and risky steps as cards",
+      "zh": "一组咖啡馆店员演出任务，提问和风险步骤变成卡片"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified v1.0 release date (2026-11-05) and simulation-staged media note for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/lamplight/02-board.jpg",
     "width": 1280,
@@ -21,11 +40,30 @@ export const lamplightCase: CaseRecord = {
   },
   "links": [
     {
+      "label": "Open companion site",
+      "href": "https://lewisswan24.github.io/lamplight-nook-site/",
+      "external": true
+    },
+    {
       "label": "Source on GitHub",
       "href": "https://github.com/LewisSwan24/lamplight-nook",
       "external": true
     }
   ],
+  "demo": {
+    "src": "https://lewisswan24.github.io/lamplight-nook-site/",
+    "poster": "/projects/lamplight/02-board.jpg",
+    "title": "Lamplight Nook companion site",
+    "titleZh": "Lamplight Nook 专题展示页",
+    "posterAlt": "Lamplight Nook café plan blackboard scene; click to inspect the bilingual showcase site",
+    "posterAltZh": "Lamplight Nook 咖啡馆黑板计划场景，点击载入双语展示网站",
+    "label": "Inspect the public product site",
+    "labelZh": "查看公开产品展示页",
+    "blurb": "Published at lewisswan24.github.io/lamplight-nook-site/ as the Windows 1.0 product presentation with downloadable package details and privacy notes.",
+    "blurbZh": "发布于 lewisswan24.github.io/lamplight-nook-site/ 的 Windows 1.0 公开展示页，包含发布说明与隐私边界。",
+    "action": "Load Lamplight Nook site",
+    "actionZh": "载入 Lamplight Nook 展示页"
+  },
   "media": {
     "label": "The shop at work",
     "labelZh": "店里干活的样子",

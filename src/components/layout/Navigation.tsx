@@ -54,7 +54,7 @@ export function Navigation() {
   return (
     <header className="pd-nav" data-scrolled={scrolled ? "true" : "false"}>
       <div className="pd-nav-inner">
-        <a href={localizeHref("/")} className="pd-nav-brand" aria-label={t("brand.name")}>
+        <a href={localizeHref("/")} className="pd-nav-brand">
           <span className="dot" aria-hidden="true" />
           <span>{t("brand.name")}</span>
           <em>{t("brand.tagline")}</em>

@@ -5,6 +5,25 @@ export const fencepostCase: CaseRecord = {
   status: "listed",
   featuredOrder: 5,
   roleTracks: ["product", "ai-ux", "design-eng"],
+  workSummary: {
+    order: 10,
+    tags: ["flag", "ai", "research"],
+    year: "2026",
+    dur: "Live deployment",
+    problem: {
+      en: "Sharing backyard wildlife sightings risks leaking EXIF, private entries, or unsafe AI replies",
+      zh: "分享社区野生动物记录容易泄露 EXIF、私密条目或引发不安全的 AI 回复",
+    },
+    changed: {
+      en: "Revocable QR grants, zero EXIF schema, and 431 offline tests cutting revoked data out of model context",
+      zh: "可吊销二维码权限、零 EXIF 表结构与 431 项离线测试，确保权限吊销后模型立刻截断上下文",
+    },
+  },
+  reviewMeta: {
+    reviewedAt: "2026-11-21",
+    nextReviewAt: "2027-02-21",
+    auditNote: "Verified LewisSwan24/fencepost 431 offline tests, 29 red-line cases, and public deployment note for V3.1 baseline.",
+  },
   cover: {
     src: "/projects/fencepost/01-ringtail-brisbane.jpg",
     width: 1200,

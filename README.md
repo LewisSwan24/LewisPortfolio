@@ -1,283 +1,118 @@
-# Lewis Dong — Portfolio
+# Lewis Dong — Portfolio (v3.0)
 
-A statically generated, fully internationalized portfolio for a UQ Master of Interaction Design student. Built with **Next.js 14 App Router**, **TypeScript**, **Tailwind CSS**, and **next-intl**. There is no database: case studies live in a typed **proof registry** (`src/lib/proof/`), the blog is file-based **MDX**, and everything renders statically in both English and Chinese.
+A statically generated, bilingual portfolio and hiring decision platform for a UQ Master of Interaction Design graduate & Design Engineer. Built with **Next.js 15 App Router**, **React 19**, **TypeScript 5.7**, **Tailwind CSS v4**, **GSAP 3**, **Zod 4**, and **next-intl**. There is no database: all 10 listed case studies live in a schema-validated **Unified Case Registry** (`src/data/cases/` + `src/lib/cases/`), the blog is file-based **MDX**, and every route renders statically in both English and Chinese.
 
-[![Build](https://img.shields.io/badge/build-passing-brightgreen)](#scripts)
-[![Lint](https://img.shields.io/badge/lint-0%20errors-brightgreen)](#scripts)
+[![Next.js 15](https://img.shields.io/badge/Next.js-15.5-black)](#tech-stack)
+[![React 19](https://img.shields.io/badge/React-19-blue)](#tech-stack)
 [![i18n](https://img.shields.io/badge/i18n-EN%20%7C%20ZH-blue)](#internationalization)
-[![SEO](https://img.shields.io/badge/SEO-schema%20%7C%20hreflang%20%7C%20RSS-blue)](#seo--performance)
+[![A11y](https://img.shields.io/badge/WCAG%202.1-AA%20Audited-brightgreen)](#testing)
 
 ---
 
 ## Features
 
-### Core
-- **Next.js 14 App Router** — Server components, static generation, route groups
-- **Locale routing (`/[locale]/...`)** — Real URL segments (`/en/...`, `/zh/...`), not cookie-only
-- **Proof registry** — Case studies, hiring evidence, and role packets defined once in typed modules (`src/lib/proof/`), validated in CI via `pnpm proof:validate`
-- **MDX blog** — Bilingual posts (`content/blog/` + `content/blog/zh/`) with full frontmatter
-- **TypeScript strict** — Fully typed codebase
-- **Tailwind CSS + CSS variables** — Utility-first styling with HSL design tokens
+### Core Architecture (V3)
+- **Next.js 15 + React 19 App Router** — Server Components by default, static generation across EN/ZH locales, minimal client hydration boundary
+- **Unified Case Registry (`src/data/cases/*.ts`)** — Modular TypeScript case records validated at build & CI time via **Zod 4** (`src/lib/cases/schema.ts`), paired with the hiring proof registry (`src/lib/proof/`)
+- **Lively Icons Design System (`src/styles/`)** — Tailwind CSS v4 (`@theme inline`) + layered editorial CSS (`tokens`, `base`, `primitives`, `sections/*`): warm paper surfaces (`#EFE8DA` / `#F7F4EC`), single terra accent (`#A63F2A`), monochrome dark mode (`#141413`), 1px solid borders, zero shadows/blur
+- **Single-point GSAP Motion (`src/lib/motion/gsap.ts`)** — Centralized GSAP registration, `useGsapContext` cleanup, `prefers-reduced-motion` gating, native Pointer Events (no `framer-motion`)
+- **Minimal i18n Client Payload** — Case study copy moved out of JSON bundles into TypeScript registry modules; `NextIntlClientProvider` ships only the 11 UI namespaces needed on the client
 
-### UX & interactivity
-- **Global search** — Fuzzy search (Fuse.js) with keyboard shortcut (⌘K / Ctrl+K)
-- **Theme toggle** — Light/dark with system preference detection (next-themes)
-- **Language toggle** — Explicit EN/ZH switch that preserves route path
-- **Reading progress + chapter markers** — Chapter-aware progress bar on articles
-- **Custom cursor, tilt cards, magnetic buttons, parallax** — Interactive polish on pointer devices; all respect `prefers-reduced-motion`
-- **Page transitions, back-to-top, toast notifications, keyboard shortcuts modal**
+### Flagship Experience & Hiring Engine
+- **10 Listed Case Studies** — Curated Top 6 featured deck on home (`maze`, `walkie`, `lamplight`, `autofill`, `fencepost`, `connect`) plus full work archive (`hoop`, `onthebeat`, `ai`, `wayfinding`), native `<dialog>` gallery lightbox (`CaseLightbox.tsx`), interactive `/lab?demo=` invariant cards, and click-to-load embeds (`fencepost-app.vercel.app`, `lewisswan24.github.io/lamplight-nook-site/`)
+- **Interactive `/lab` Workbench** — Bilingual Lively Icons Design System Inspector, live GSAP Motion Sandbox, and 3 URL-linkable state-machine micro-demos (`On The Beat`, `Resume Autofill`, `Walkie`)
+- **Lazy `cmdk` Warm-Paper Command Palette (`⌘K`)** — Dynamically mounted on demand and backed by static `/search-index/{en,zh}` JSON endpoints
+- **Machine-Readable `/llms.txt`** — Static summary of all 10 listed case studies, capabilities, and evidence boundaries (excluding unlisted archives)
+- **Role-Tailored Hiring Lens (`/hire?role=product|interaction|design-eng|ai-ux`)** — URL-driven case filtering with one-click copyable tailored links, evidence matrix, interview question bank, and proof packets
+- **Print-First `/resume` + Playwright PDF Builder** — Clean print-to-PDF layout with `pnpm resume:pdf` generating crisp EN/ZH A4 vector PDFs on demand
 
-### Content
-- **Case studies** — Six cases (Connect, Spectra, AI, MazeRunners, Vigil, Hoop Dream) sourced from the proof registry, with per-project OG images and click-to-load live demo embeds (MazeRunners demo, Vigil prototype)
-- **Hire page** — Role fits, evidence matrix, interview question bank, downloadable proof packets
-- **Blog** — Bilingual, tag filtering, related posts, reading time, Giscus (GitHub Discussions) comments
-- **Resume** — Timeline layout with PDF download and print hint
-- **Lab** — Interactive UI experiment showcase
-- **Contact** — Form posting to an external endpoint (`NEXT_PUBLIC_CONTACT_FORM_ENDPOINT`, e.g. Formspree)
-
-### SEO & performance
-- **JSON-LD structured data** — Person, WebSite, Article, CreativeWork, BreadcrumbList
-- **Dynamic OG images** — Per-project and per-blog-post via `next/og`
-- **Sitemap + robots** — Dynamically generated, hreflang-aware
-- **RSS feeds** — `/feed.xml` (EN) and `/zh/feed.xml` (ZH)
-- **Canonical + hreflang + OG/Twitter tags** — Wired through `src/lib/seo.tsx`
-- **Web Vitals monitoring** — CLS, INP, FCP, LCP, TTFB via `@vercel/analytics` + `web-vitals`
-- **Dynamic imports** — Heavy components code-split (search modal, cursor, embeds)
-- **Bundle analyzer** — `pnpm analyze`
-
-### Accessibility
-- Skip links, full keyboard navigation, visible focus rings
-- ARIA roles, labels, live regions
-- All animations respect `prefers-reduced-motion`
-- Proper heading hierarchy and landmark regions
-
-### Internationalization
-- **next-intl** — Messages loaded server-side, `NextIntlClientProvider` hydrates on the client
-- **`/en` and `/zh` routes** — Static-rendered per locale via `generateStaticParams`
-- **`<html lang>` set dynamically** and hreflang alternates emitted
-- **Bilingual content, not translated content** — Case copy and blog posts are written per locale
+### QA & Performance Moat
+- **Media Optimization & Budget Gate (`pnpm media:optimize` / `pnpm media:check`)** — `sharp` + `ffmpeg` pipeline enforcing per-project and total media budgets
+- **Bundle Budget Gate (`pnpm budget:check`)** — Enforces gzipped JS chunk and CSS payload ceilings after every production build
+- **WCAG 2.1 AA Automated Audit (`e2e/a11y.spec.ts`)** — `@axe-core/playwright` scanning 9 primary EN/ZH routes in CI
 
 ---
 
-## Tech stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| **Framework** | [Next.js 14.2](https://nextjs.org/) (App Router) |
-| **Language** | [TypeScript 5.7](https://www.typescriptlang.org/) (strict) |
-| **Styling** | [Tailwind CSS 3.4](https://tailwindcss.com/) + CSS variables |
+| **Framework** | [Next.js 15.5](https://nextjs.org/) (App Router) + [React 19](https://react.dev/) |
+| **Language** | [TypeScript 5.7](https://www.typescriptlang.org/) (strict) + [Zod 4](https://zod.dev/) |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) + layered Lively Icons CSS tokens |
+| **Motion** | [GSAP 3](https://gsap.com/) + native CSS / Pointer Events |
+| **Search** | [cmdk](https://cmdk.paco.me/) |
 | **i18n** | [next-intl 4](https://next-intl.dev/) |
-| **Content** | Typed proof registry + [MDX](https://mdxjs.com/) via `next-mdx-remote` + `gray-matter` |
-| **Comments** | [Giscus](https://giscus.app/) (GitHub Discussions) |
-| **Animation** | [Framer Motion 11](https://www.framer.com/motion/) |
-| **Search** | [Fuse.js 7](https://www.fusejs.io/) |
-| **Theme** | [next-themes](https://github.com/pacocoursey/next-themes) |
-| **Testing** | [Vitest](https://vitest.dev/) + [Playwright](https://playwright.dev/) |
-| **Analytics** | [Vercel Analytics](https://vercel.com/analytics) + [web-vitals](https://github.com/GoogleChrome/web-vitals) |
-| **Package manager** | [pnpm](https://pnpm.io/) |
-
-There is **no database, auth, or server-side persistence** — no Prisma, no Supabase. Comments run on Giscus and the contact form posts to an external form endpoint.
+| **Content** | Typed Case & Proof Registries + [MDX](https://mdxjs.com/) (`next-mdx-remote`) |
+| **Linting** | [ESLint 9](https://eslint.org/) Flat Config (`eslint.config.mjs`) |
+| **Testing** | [Vitest 4](https://vitest.dev/) + [Playwright](https://playwright.dev/) + [`@axe-core/playwright`](https://github.com/dequelabs/axe-core-npm) |
+| **Media** | [sharp](https://sharp.pixelplumbing.com/) + `ffmpeg` |
+| **Analytics** | [Vercel Analytics](https://vercel.com/analytics) + `web-vitals` |
+| **Package Manager** | [pnpm 9](https://pnpm.io/) |
 
 ---
 
-## Getting started
+## Getting Started
 
 ### Prerequisites
+- Node.js 20+
+- pnpm 9+
 
-- Node.js 18.17+ (Node 20+ recommended)
-- pnpm 8+
-
-### Installation
+### Installation & Dev
 
 ```bash
-git clone <your-repo-url>
-cd portfolio
+git clone https://github.com/LewisSwan24/LewisPortfolio.git
+cd LewisPortfolio
 pnpm install
-cp .env.example .env.local   # optional — see below
+cp .env.example .env.local   # optional
 pnpm dev
 ```
 
-Open <http://localhost:3000> — you will be redirected to `/en` (or `/zh` based on `Accept-Language`).
+Open <http://localhost:3000> (redirects to `/en` or `/zh`).
 
-### Environment variables
+### Environment Variables
 
 All optional; the site builds and runs with none set (see `.env.example`):
 
 ```bash
-# Site
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-
-# Contact form endpoint (Formspree / Getform / Basin, etc.)
+NEXT_PUBLIC_SITE_URL=https://portfolio-lewisdong.vercel.app
 NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=
-
-# Giscus comments (all four must be set to enable comments on blog posts)
 NEXT_PUBLIC_GISCUS_REPO=
 NEXT_PUBLIC_GISCUS_REPO_ID=
 NEXT_PUBLIC_GISCUS_CATEGORY=
 NEXT_PUBLIC_GISCUS_CATEGORY_ID=
-
-# Internal proof maintenance route (local/dev only)
 NEXT_PUBLIC_ENABLE_PROOF_MAINTENANCE=false
 ```
 
-> **Giscus**: the blog detail page auto-hides the comments section if any of the four values are missing, so it's safe to leave unset in development.
-
-### Production build
-
-```bash
-pnpm build
-pnpm start
-```
-
 ---
 
-## Project structure
+## Project Structure
 
-```
+```text
 portfolio/
-├── app/
-│   ├── [locale]/                # Locale-scoped pages (en | zh)
-│   │   ├── layout.tsx           # NextIntlClientProvider, theme, nav, footer
-│   │   ├── page.tsx             # Home
-│   │   ├── about/, resume/, lab/, contact/
-│   │   ├── hire/                # Role fits, evidence matrix, interview prep
-│   │   ├── maintenance/proof/   # Internal proof maintenance view (dev only)
-│   │   ├── blog/
-│   │   │   ├── page.tsx         # Listing + filters
-│   │   │   └── [slug]/page.tsx  # Article + TOC + related + Giscus comments
-│   │   ├── projects/
-│   │   │   ├── page.tsx         # Grid + filters
-│   │   │   ├── WorkIndex.tsx    # Client grid/list toggle
-│   │   │   └── [slug]/
-│   │   │       ├── page.tsx            # Case study + JSON-LD + demo embeds
-│   │   │       └── opengraph-image.tsx # Per-project OG
-│   │   └── [...rest]/page.tsx   # 404 fallback within locale
-│   ├── feed.xml/route.ts        # RSS (EN)
-│   ├── zh/feed.xml/route.ts     # RSS (ZH)
-│   ├── sitemap.ts, robots.ts, manifest.ts
-│   ├── opengraph-image.tsx      # Default site OG
-│   └── layout.tsx               # Root <html> shell
-├── content/
-│   └── blog/                    # EN posts (*.mdx) + zh/ mirror
+├── app/[locale]/               # Locale-scoped App Router pages (en | zh)
+│   ├── page.tsx                # Home (Featured Top 6 deck)
+│   ├── projects/               # Work index & modular case study routes
+│   ├── lab/                    # Lively Icons Design System + GSAP + State Machines
+│   ├── hire/                   # Role lens (?role=...), evidence matrix, interview Q&A
+│   ├── resume/, about/, contact/, blog/
+├── content/blog/               # Bilingual MDX blog posts (en + zh/)
 ├── src/
-│   ├── components/              # Components organized by concern
-│   │   ├── case/                # Case-study building blocks, DemoEmbed
-│   │   ├── hiring/              # EvidenceMatrix, InterviewQuestionBank, …
-│   │   ├── layout/, navigation/, content/, effects/, providers/, seo/, ui/, viz/
-│   ├── i18n/                    # next-intl routing + request config
+│   ├── data/cases/             # 10 modular TypeScript case records (Zod-validated)
 │   ├── lib/
-│   │   ├── proof/               # Proof registry: projects, matrix, validation,
-│   │   │                        # role packets, handoff/export, release bundle
-│   │   ├── seo.tsx              # JSON-LD schema generators
-│   │   ├── blog.ts, feed.ts     # MDX data layer + RSS builder
-│   │   ├── project-routes.ts    # Case routing helpers
-│   │   └── site.ts              # Site config
-│   ├── messages/                # next-intl bundles (en.json, zh.json)
-│   └── styles/globals.css       # HSL design tokens + Tailwind layers
-├── scripts/                     # Content automation + proof tooling (*.mjs)
-├── tests/                       # Vitest suites (components, lib, scripts)
-├── e2e/                         # Playwright specs
-├── public/                      # Static assets, project media, demos
-└── tailwind.config.ts, vitest.config.ts, playwright.config.ts
-```
-
----
-
-## Configuration
-
-### Site metadata
-
-Edit `src/lib/site.ts`.
-
-### Design tokens
-
-HSL variables in `src/styles/globals.css`:
-
-```css
-:root {
-  --background: 0 0% 98%;
-  --foreground: 220 15% 15%;
-  --accent: 220 80% 55%;
-}
-.dark {
-  --background: 220 15% 10%;
-  --foreground: 220 10% 92%;
-  --accent: 220 80% 60%;
-}
-```
-
-### Internationalization
-
-- Message bundles: `src/messages/en.json`, `src/messages/zh.json` (same key shape)
-- Routing: `src/i18n/routing.ts` (locales, default, prefix strategy)
-- Request config: `src/i18n/request.ts` (loads messages per request)
-- `<html lang>` and hreflang alternates are emitted from `app/[locale]/layout.tsx` and `src/lib/seo.tsx`
-
----
-
-## Content authoring
-
-### Case studies (proof registry)
-
-Case studies are **not MDX** — they live as typed data in `src/lib/proof/projects.ts` (both locales in one place), rendered by `app/[locale]/projects/[slug]/page.tsx`. To add or edit a case:
-
-1. Edit `src/lib/proof/projects.ts` — add EN and ZH entries with matching slugs
-2. Put media under `public/projects/<slug>/`
-3. Validate: `pnpm proof:validate` (also runs in CI)
-
-Supporting tooling: `pnpm proof:maintenance` (freshness report), `pnpm proof:handoff`, `pnpm proof:export`, `pnpm proof:bundle`.
-
-### Blog posts
-
-```bash
-pnpm blog:new         # scaffold a draft
-pnpm blog:publish     # promote a draft
-pnpm content:validate # frontmatter + content checks
-```
-
-Posts live in `content/blog/*.mdx` with a Chinese counterpart in `content/blog/zh/`. Frontmatter: `slug`, `title`, `excerpt`, `tags`, `date`, plus optional `featured` and `cover`; `readingTime` is auto-calculated. Use `##`/`###` headings — they are auto-extracted for the TOC.
-
----
-
-## Testing
-
-### Unit tests (Vitest)
-
-```bash
-pnpm test                # watch mode
-pnpm test -- run         # single run
-pnpm test:coverage       # coverage report
-pnpm test:ui             # Vitest UI
-pnpm automation:check    # content + proof validation + related suites
-```
-
-Suites live in `tests/` (components, lib, scripts) and `src/lib/__tests__/`.
-
-### E2E tests (Playwright)
-
-```bash
-pnpm exec playwright install   # first time only
-pnpm exec playwright test
-```
-
-Covers: home, projects, blog (list + detail), hire, contact, resume, lab, search, 404, a11y landmarks, responsive breakpoints — in both locales.
-
----
-
-## Deployment
-
-### Vercel (recommended)
-
-1. Push to GitHub.
-2. Import the repo in [Vercel](https://vercel.com) — framework auto-detected.
-3. Add environment variables (at minimum `NEXT_PUBLIC_SITE_URL`; plus the contact endpoint / Giscus values if used).
-4. Deploy. Preview deployments are created per PR.
-
-### CLI
-
-```bash
-pnpm add -g vercel
-vercel --prod
+│   │   ├── cases/              # Zod schema + unified case registry selectors
+│   │   ├── proof/              # Hiring proof modules, evidence matrix, role packets
+│   │   └── motion/gsap.ts      # Centralized GSAP bootstrap & hooks
+│   ├── components/
+│   │   ├── case/               # Decomposed Server Components for case pages
+│   │   ├── command/            # cmdk warm-paper CommandPalette
+│   │   ├── hiring/             # RoleLensSwitch, EvidenceMatrix, InterviewQuestionBank
+│   │   └── lab/                # Interactive LabWorkbench
+│   ├── messages/               # Minimal UI-only i18n bundles (en.json, zh.json)
+│   └── styles/                 # globals.css + tokens, base, primitives, sections/*
+├── scripts/                    # Validation, media optimization, bundle budget, resume PDF
+├── tests/                      # Vitest unit & component tests
+└── e2e/                        # Playwright E2E + axe WCAG 2.1 AA specs
 ```
 
 ---
@@ -286,40 +121,21 @@ vercel --prod
 
 | Command | Description |
 |---------|-------------|
-| `pnpm dev` | Development server at <http://localhost:3000> |
-| `pnpm build` | Production build |
-| `pnpm start` | Production server |
-| `pnpm lint` | ESLint (`eslint-config-next`) |
-| `pnpm test` / `test:coverage` / `test:ui` | Vitest |
-| `pnpm analyze` | Build with `@next/bundle-analyzer` |
-| `pnpm exec playwright test` | E2E suite |
-| `pnpm blog:new` / `blog:publish` | Blog scaffolding and publishing |
-| `pnpm content:validate` | Blog frontmatter/content checks |
-| `pnpm proof:validate` | Proof registry validation (CI gate) |
-| `pnpm proof:maintenance` | Proof freshness report |
-| `pnpm proof:handoff` / `proof:export` / `proof:bundle` | Proof packaging tooling |
-| `pnpm automation:check` | content:validate + proof:validate + related tests |
-
----
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|---------|
-| Module not found | Run `pnpm install` |
-| Case not appearing | Check `src/lib/proof/projects.ts` — both locales present, slugs match; run `pnpm proof:validate` |
-| Blog post not appearing | Check MDX lives in `content/blog/` (and `zh/`), slug matches filename, required frontmatter present; run `pnpm content:validate` |
-| TOC empty | Use `##` / `###` headings in MDX |
-| Build fails | Run `pnpm build` locally — surfaces TypeScript errors |
-| Images not loading | Place under `public/`, reference with absolute path (`/projects/...` or `/images/...`) |
-| Wrong language on first load | Check the URL — language is driven by `/en` vs `/zh` route prefix, not a cookie |
+| `pnpm dev` | Local Next.js 15 dev server |
+| `pnpm build` / `pnpm start` | Production build & start |
+| `pnpm typecheck` | TypeScript strict check (`tsc --noEmit`) |
+| `pnpm lint` | ESLint 9 Flat Config (`eslint .`) |
+| `pnpm test` / `pnpm test:ci` | Vitest watch / single CI run |
+| `pnpm automation:check` | Content validation + Zod/Proof validation + automation tests |
+| `pnpm proof:validate` | Case & Proof registry schema/asset verification |
+| `pnpm media:optimize` / `pnpm media:check` | Optimize images/videos or enforce media budget |
+| `pnpm budget:check` | Enforce gzipped JS & CSS bundle budgets after build |
+| `pnpm resume:pdf` | Generate bilingual A4 vector resume PDFs (`output/resume/`) |
+| `pnpm exec playwright test` | Run E2E + `@axe-core/playwright` WCAG 2.1 AA suite |
+| `pnpm analyze` | Production build with `@next/bundle-analyzer` |
 
 ---
 
 ## License
 
 MIT
-
----
-
-Built with Next.js, TypeScript, Tailwind CSS, next-intl, and Framer Motion.

@@ -7,6 +7,25 @@ export const onthebeatCase: CaseRecord = {
     "interaction",
     "design-eng"
   ],
+  "workSummary": {
+    "order": 6,
+    "tags": ["hardware", "ai"],
+    "year": "2026",
+    "dur": "Paired on real bands",
+    "problem": {
+      "en": "Two strangers at a gig with no easy way to say hello",
+      "zh": "演出现场两个陌生人，缺一个容易开口的方式"
+    },
+    "changed": {
+      "en": "A phone, two wristbands and a cloud relay that run without a laptop",
+      "zh": "手机、两支手环加云端 relay，不需要笔电就能运转"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified dual-wristband pairing proof and unstudied participant limit for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/onthebeat/03-match.jpg",
     "width": 786,
@@ -18,6 +37,11 @@ export const onthebeatCase: CaseRecord = {
     "fit": "contain"
   },
   "links": [
+    {
+      "label": "Open live web prototype",
+      "href": "https://on-the-beat.fly.dev",
+      "external": true
+    },
     {
       "label": "Source on GitHub",
       "href": "https://github.com/LewisSwan24/on-the-beat",

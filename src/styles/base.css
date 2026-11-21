@@ -197,11 +197,48 @@ html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .page-fade,
+  .v3-page-enter,
+  .v3-section-reveal {
+    animation: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes v3-page-enter {
+    from { opacity: 0.96; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .v3-page-enter {
+    animation: v3-page-enter 220ms var(--ease-out) both;
+  }
+
+  @keyframes v3-scroll-settle {
+    from { opacity: 0.94; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .v3-section-reveal {
+      animation: v3-scroll-settle auto var(--ease-out) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 28%;
+    }
+  }
+
+  @supports not ((animation-timeline: view()) and (animation-range: entry)) {
+    .v3-section-reveal {
+      opacity: 0.94;
+      transform: translateY(10px);
+      transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out);
+    }
+    .v3-section-reveal[data-reveal-state="visible"],
+    .v3-section-reveal[data-reveal-state="ready"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
@@ -261,12 +298,32 @@ html { scroll-behavior: smooth; }
     page-break-inside: avoid;
     break-inside: avoid;
   }
-  .res-body { gap: 24px !important; }
-  .res-side-card { background: transparent !important; border: 1px solid #ccc !important; }
+  .res-hero {
+    padding-top: 0 !important;
+    padding-bottom: 12pt !important;
+    border-bottom: 1pt solid #000 !important;
+  }
+  .res-body {
+    display: grid !important;
+    grid-template-columns: 1.6fr 0.9fr !important;
+    gap: 18pt !important;
+    align-items: start !important;
+  }
+  .res-side {
+    display: grid !important;
+    gap: 10pt !important;
+  }
+  .res-side-card {
+    background: transparent !important;
+    border: 1px solid #999 !important;
+    padding: 8pt 10pt !important;
+  }
   .res-skill .bar { background: #eee !important; }
   .res-skill .bar i { background: #555 !important; }
 
   a { color: #000 !important; text-decoration: underline !important; }
+  .res-entry ul { padding-left: 14pt !important; margin-top: 4pt !important; }
+  [cmdk-root] { display: none !important; }
 }
 
 .sr-only {

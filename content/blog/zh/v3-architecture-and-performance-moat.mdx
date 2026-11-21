@@ -1,0 +1,37 @@
+---
+title: "为双语作品集建立性能、服务端边界与自动化验收护城河"
+date: "2026-11-21"
+excerpt: "把 14 份案例迁出全局 i18n JSON 并交由 Zod 4 统一校验、拆解巨型客户端组件将 /projects 页面分包从 80.2 kB 压至 1.25 kB，并把无障碍与体积预算写入 CI 硬门禁。"
+tags:
+  - 工程架构
+  - 性能优化
+  - 可访问性
+author: "Lewis Dong"
+published: true
+---
+
+既然定位是能承担 Design Engineer 与交互系统设计的作品集，网站本身的工程质量就应该经得起正式产品团队的剖检。在这次 V3 到 V3.1 的持续重构里，视觉语言继续沿用暖纸（Warm Paper）与 Lively Icons 规范，真正动刀的，是浏览器加载字节、服务端/客户端边界，以及能否靠自动化门禁守住每一次提交。
+
+## 把案例正文彻底迁出客户端 i18n JSON
+
+早期架构把所有中英文案例叙事都塞进了全局翻译文件 `en.json` 和 `zh.json`。由于 `NextIntlClientProvider` 会把消息对象序列化进首屏 HTML，访客哪怕只看首页，也要被动接收整套双语长文。
+
+我将全部 14 份案例（10 份在架 + 4 份未公开归档）统一收拢至纯 TypeScript 模块（`src/data/cases/*.ts`），并用 **Zod 4** 做构建期和 CI 校验：
+
+- `en.json` 从约 **99 KB 降至 16 KB**（-83.5%）
+- `zh.json` 从约 **52 KB 降至 11 KB**（-78.7%）
+- 客户端仅保留 `brand`、`nav`、`footer`、`contact`、`resume`、`search` 等轻量 UI 命名空间
+
+同时，`workSummary` 与 `reviewMeta` 字段一并进入统一注册表，消除了多文件手抄指标与过时评审日期的问题。
+
+## 斩断 `/projects` 列表页的客户端传染链路
+
+即使精简了全局翻译包，Next.js 15 构建输出仍暴露出一个显眼瓶颈：`/projects` 路由独享了 **80.2 kB** 页面 JS（First Load JS 高达 **204 kB**）。排查 `WorkIndex.tsx` 的依赖图后发现，仅仅因为顶部四个筛选项需要 `"use client"`，连带把底下的 4 个概念 SVG 图、招聘短名单、能力证据矩阵与全部双语文案一并打进了浏览器脚本。
+
+重构做法非常直接：让服务端页面 `app/[locale]/projects/page.tsx` 负责拉取案例摘要并预渲染缩略图 React 节点槽位，同时把招聘短名单与 `EvidenceMatrix` 留在服务端渲染；`WorkIndex` 只剩下几十行纯筛选状态切换代码。改造后，`/projects` 路由分包从 **80.2 kB 直降至 1.25 kB**（First Load JS 降至 **125 kB**），随后我们把 CI 中的单路由 App 分包门禁收紧到 **≤ 20 kB gzipped**。
+
+## 媒体预算、GSAP 收口与暗黑/移动端 Axe 门禁
+
+1. **媒体压缩门禁（`pnpm media:check`）**：通过 `sharp` 与 `ffmpeg` 优化，项目媒体总体积从 `18.15 MB` 降至 `8 MB` 以内（含新增案例，全站上限锁死 `12 MB`）。
+2. **轻量动效收口**：移除 `framer-motion` 后，统一采用单点注册的 GSAP + `useGsapContext` 清理与按需加载的 `ScrollTrigger`，首页 First Load JS 由 `175 kB` 降至 `158 kB`，所有动效在 `prefers-reduced-motion` 下即时落定且不阻断首屏可读性。
+3. **三维无障碍回归**：`@axe-core/playwright` 审计矩阵在 CI 中同时覆盖亮色桌面、真实按钮切换后的暗黑模式（`#141413`）与 `375px` 移动端视口，防止视觉改动意外破坏 WCAG 2.1 AA 对比度与标签规范。

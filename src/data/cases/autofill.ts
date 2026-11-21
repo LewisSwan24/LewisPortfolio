@@ -9,6 +9,25 @@ export const autofillCase: CaseRecord = {
     "ai-ux",
     "design-eng"
   ],
+  "workSummary": {
+    "order": 8,
+    "tags": ["ai"],
+    "year": "2026",
+    "dur": "Used on my applications",
+    "problem": {
+      "en": "One resume typed into Workday, Beisen and Moka, field by field",
+      "zh": "同一份简历在 Workday、北森、Moka 里一格格重填"
+    },
+    "changed": {
+      "en": "An autofill that never guesses, never submits and keeps the resume on the device",
+      "zh": "一个不猜、不提交、简历不离开设备的自动填表工具"
+    }
+  },
+  "reviewMeta": {
+    "reviewedAt": "2026-11-21",
+    "nextReviewAt": "2027-02-21",
+    "auditNote": "Verified synthetic-form screenshot test provenance (2026-11-20) and local-only invariant for V3.1 baseline."
+  },
   "cover": {
     "src": "/projects/autofill/01-form-filled.png",
     "width": 1280,
