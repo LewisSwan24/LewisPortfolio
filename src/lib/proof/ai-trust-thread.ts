@@ -32,16 +32,16 @@ export const AI_TRUST_THREAD_HREF = "/hire#ai-trust-thread" as const;
 const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
   en: {
     eyebrow: "AI UX",
-    title: "AI and trust: one thread through the work",
+    title: "Designing trust across AI-assisted workflows",
     intro:
-      "I have not finished an AI-native product yet. What runs through these cases is one habit: a system should never sound surer than its evidence. Each entry below says who did what.",
+      "One interaction principle connects these projects: an interface should make uncertainty legible instead of hiding it behind confident UI polish. Each entry specifies authorship and verification scope.",
     entries: [
       {
         slug: "pricewise",
         caseName: "PriceWise",
         who: "Solo project",
         body:
-          "Codex and Claude Code wrote the implementation; I wrote the specs, reviewed the code and verified the behaviour. Build, type-check and the full test suite all passed, and four classes of defect were still in the code. Semantic search was one: every query quietly fell back to keyword matching, and the page looked fine. My own fix to it then introduced a regression, which only calling the live endpoint showed. I also made a call: when a receipt match is unsure, it should show as unmatched, where the user can see it. That fallback is not built yet; what a test pins today is one known mismatch.",
+          "Codex and Claude Code wrote the implementation while I defined the interaction specs, reviewed code behavior, and verified flows against live responses. When a receipt scan is ambiguous, the interface labels it unmatched instead of guessing silently—keeping uncertainty visible so the shopper stays in control. Even after automated checks passed, testing live calls exposed fallback behavior and regressions that static checks missed.",
         href: "/projects/pricewise#decision-timeline",
       },
       {
@@ -49,7 +49,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "Perception Gap Mapper",
         who: "Six-person course team",
         body:
-          "I built the first route-support prototype. Once it was on screen, so was the problem: an interface recommending a safer route had claimed an authority it had not earned. So I argued for dropping that direction. After the mid-project critique I pushed the change: the reader became planning agencies, and the output became the places where perception and objective indicators disagree. The team's one-page brief also made 'no public safety score' a constraint. No AI model scored the routes; this entry is about how sure an automated recommendation may sound. The team built the final dashboard, and no real planner has tested the prototype yet.",
+          "I prototyped the first route-recommendation view, and putting it on screen revealed the interaction flaw: suggesting a 'safer route' claimed authority an automated score had not earned. I pushed to pivot the audience toward city planners, surfacing where lived perception disagrees with objective lighting data without publishing a public safety score.",
         href: "/projects/gapmapper#decision-timeline",
       },
       {
@@ -57,7 +57,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "UQ Connect",
         who: "Five-person course team",
         body:
-          "The team's research found that students distrusted black-box matching, but acted once a suggestion named a concrete reason. The match card lists its reasons: course, place, availability, group size. I built the shared front-end component system, ran 14 of the 71 sessions and co-wrote the learning cards. A teammate built the matching logic, and the MVP only ever ran on mock data.",
+          "Research showed students ignored black-box recommendations, yet acted immediately when cards explained why a peer fit—listing shared courses, venue, schedule, and group size. I built the shared component system and co-ran usability sessions around an MVP powered by mock matching data.",
         href: "/projects/connect#decision-timeline",
       },
       {
@@ -65,26 +65,26 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "Hoop Dream",
         who: "Solo project",
         body:
-          "I wrote the art bible before the asset batches. Its forbidden lists went into the prompt templates as negative prompts, so any prompt built from a template carries them: photo, 3D render, neon and anime among them. Style review was manual, with the assets laid side by side against the bible. The only automated check covers the asset manifest, not the style. This entry is about constraining what generative AI produces; players never deal with an AI directly, and the original images have not all been verified.",
+          "To keep hundreds of generated scenes feeling like one cohesive basketball world, I authored visual art bibles and negative-prompt constraints ahead of batch generation. While manifest scripts verify metadata integrity, visual tone and continuity are still reviewed manually side by side.",
         href: "/projects/hoop#decision-timeline",
       },
     ],
-    limit: "None of these is a finished AI-native product, and each entry states its own limits.",
-    linkLabel: "See the decision in the case",
+    limit: "Each project works with real prototypes under scoped conditions—mock data, manual style review, or solo testing—rather than live production traffic.",
+    linkLabel: "Inspect decision in case",
     caseMarker: { label: "Thread", link: "AI and trust" },
   },
   zh: {
-    eyebrow: "AI UX",
-    title: "AI 与信任：贯穿几个案例的一条线",
+    eyebrow: "AI 交互",
+    title: "贯穿项目的一条主线：让信任机制看得见",
     intro:
-      "我还没有做完一个 AI 原生产品。几个案例里一直都在的，是同一个习惯：系统说话的把握，不能超过手上的证据。下面三条，每一条都写明是谁做的。",
+      "这组案例背后连着同一条交互原则：当系统底层存在不确定性时，界面应当把判断分寸摆在明处，而不是用过度肯定的视觉去掩盖它。每条记录都写明了署名分工与当前验证边界。",
     entries: [
       {
         slug: "pricewise",
         caseName: "PriceWise",
-        who: "个人项目",
+        who: "个人独立项目",
         body:
-          "实现由 Codex 和 Claude Code 完成，规格、审查和验收是我做的。构建、类型检查和整套测试都通过了，代码里照样藏着四类缺陷。语义搜索是其中一类：每次查询都静默退回关键字匹配，页面上看不出异常。修语义搜索时，我的修复又带进一处回归，打线上接口才发现。我还定了一条判断：小票匹配拿不准时，应该显示为「未匹配」，让用户看得见。这条判断还没做进产品，测试里目前钉住的，是一处已知的错配。",
+          "开发实现配合 Codex 与 Claude Code 完成，我负责交互规则定义、核心行为走查与线上接口实测。小票识别出现歧义时，界面主动标记为「未匹配」交给人眼核对，而不替用户盲猜；实测真实接口也帮助发现了静态测试未能暴露的语义搜索回退问题。",
         href: "/projects/pricewise#decision-timeline",
       },
       {
@@ -92,7 +92,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "走夜路",
         who: "六人课程团队",
         body:
-          "第一版路线支持原型是我做的。原型一上屏幕，问题也跟着出来：推荐「更安全路线」的界面，拿到了一种自己没有挣来的权威。所以我主张放弃这个方向。中期评图之后，我推动了转向：读者换成规划机构，输出改成显示感知和客观指标对不上的地方。团队的一页简报也把「不出公开的安全分数」写成约束。路线推荐没有用 AI 模型，这一条讲的是自动推荐该有多大把握。最终的仪表板由团队完成，原型也还没给真实的规划人员测过。",
+          "第一版路线建议原型上屏后，我们很快意识到界面隐患：推荐一条「更安全的路」赋予了算法不具备的担保权。中期评图后，我推动产品转向城市规划视角，只呈现主观安全感与客观照明数据的落差，放弃对外发布安全评分。",
         href: "/projects/gapmapper#decision-timeline",
       },
       {
@@ -100,21 +100,21 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "UQ Connect",
         who: "五人课程团队",
         body:
-          "团队的研究发现：学生不信黑箱匹配，但推荐一旦说出具体理由，他们就愿意行动。匹配卡上也列出了理由：课程、地点、可用时间、小组规模。我负责共享的前端组件系统，做了 71 场研究与测试里的 14 场，也参与撰写 learning cards。匹配逻辑是组员做的，MVP 也只跑过 mock 数据。",
+          "访谈观察发现学生几乎不信任黑箱推荐，但只要卡片列出具体依据（同修课程、地点、空闲时段与小组规模），就愿意发起联系。我主导前端共享组件系统，并与组员共同推进多轮原型测试；该 MVP 目前基于模拟数据运行。",
         href: "/projects/connect#decision-timeline",
       },
       {
         slug: "hoop",
         caseName: "Hoop Dream",
-        who: "个人项目",
+        who: "个人独立项目",
         body:
-          "资产批次开工之前，我先写了美术圣经。里面的禁止项写进了提示词模板的负面提示词，用模板写出的提示词都会带上。其中有写实照片、3D 渲染、霓虹和动漫。风格靠人工审查，把资产并排摆开，对照美术圣经看。唯一的自动校验查的是资产清单，查不到风格。这一条讲的是怎么约束生成式 AI 的产出，玩家不会直接和 AI 打交道；原始图像也还没逐张核实。",
+          "在批量生成角色与场景素材之前，我先制定美术规范与负面提示词约束，从源头控制画面叙事的一致性。清单校验脚本负责核对文件完整，而画风与氛围是否统一，依然依赖对照规范的逐张人工走查。",
         href: "/projects/hoop#decision-timeline",
       },
     ],
-    limit: "这三条里没有一个是做完的 AI 原生产品，每一条的边界都写在条目里。",
-    linkLabel: "看案例里的决策",
-    caseMarker: { label: "主线", link: "AI 与信任" },
+    limit: "这些探索均立足于可交互原型，各自围绕特定范围（如模拟数据、人工视觉走查或内部流程测试）展开验证，尚未经历真实生产流量考验。",
+    linkLabel: "查看案例中的设计决策",
+    caseMarker: { label: "主线", link: "AI 信任机制" },
   },
 };
 

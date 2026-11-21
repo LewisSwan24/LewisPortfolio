@@ -16,32 +16,32 @@ export const walkieSummary: Record<ProofLocale, { walkie: CaseSummary }> = {
   en: {
     walkie: {
       challenge:
-        "Stepping away from the desk while Claude Code runs means missing short permission prompts or follow-ups. A wrist voice remote is only safe if physical buttons own approvals, the cloud relay sees ciphertext only, and flashing never wipes the sibling app on the same watch.",
-      role: "Solo: interaction model, protocol & safety rules, hardware flashing and gate checks (AI coding tools assisted implementation)",
-      methods: ["dual-boot embedded firmware", "sealed AES-256-GCM wire protocol", "hardware-in-the-loop gate scripts", "voice intent routing", "physical approval UX"],
+        "Stepping away from a laptop while an AI coding agent runs means missing quick confirmation prompts or follow-up questions. A wrist voice remote only earns trust when physical buttons control approvals, cloud relays stay blind, and flashing updates won't erase the sibling wristband app.",
+      role: "Solo: physical-digital interaction model, tactile approval boundaries, hardware prototyping, and AI-assisted build acceptance",
+      methods: ["physical button approval UX", "tactile pairing flow", "dual-boot flash protection", "hardware-in-the-loop verification", "voice intent routing"],
       evidence: [
-        "M5StickS3 PlatformIO C++ firmware sharing flash with On The Beat (app1 vs app0, protected by firmware/guard.py)",
-        "AES-256-GCM sealed frames over USB (primary) or zero-knowledge Fly.io wss:// relay with 4-bit ADPCM option",
-        "three reproducible verification gates: gate-h (11 on-device screen/key scenes), gate-p5 (crypto & pairing), gate-l (relay keep-alive)",
+        "M5StickS3 firmware running safely alongside On The Beat on dual boot slots protected by a flash guard",
+        "USB-first connection with automatic fallback to an encrypted Fly.io WebSocket relay so remote relays never read plaintext prompts",
+        "on-device hardware verification scripts checking screen pagination, physical button presses, encryption, and wireless reconnects",
       ],
       outcome:
-        "A working wrist voice remote for multi-project Claude Code sessions with physical button approvals and zero-knowledge relay fallback.",
-      next: "Capture real wrist photographs, measure battery drain under Gate N standby, and test ergonomics with another developer.",
+        "A working wrist voice remote for multi-project Claude Code sessions, keeping deliberate physical key presses as the gate for every sensitive agent action.",
+      next: "Photograph the watch in everyday desk-side use, check standby battery pacing, and run away-from-desk sessions with fellow developers.",
     },
   },
   zh: {
     walkie: {
       challenge:
-        "离开电脑时，Claude Code 往往卡在简短的权限审批或一句追问上。手腕语音遥控只有在「实体按键掌管审批、云端中继只见密文、刷机不误擦同机另一个应用」的前提下才安全可用。",
-      role: "独立负责：交互模型、协议与安全规则、硬件刷写与门禁验收（AI 编码工具辅助实现）",
-      methods: ["双启动嵌入式固件", "AES-256-GCM 加密线协议", "真机门禁测试脚本", "语音意图路由", "实体按键审批交互"],
+        "离开工位时，AI 编码助手常常刚好卡在权限确认或一句短暂追问上。想用手表做语音遥控，前提是实体按键必须握住最终审批权、云端中继看不见对话正文，且更新固件不会误删同一支表里原本装着的项目。",
+      role: "独立完成：软硬件交互模型、实体确认边界、硬件实测与 AI 辅助编码验收",
+      methods: ["实体按键审批交互", "物理配对确认流", "双系统防误擦机制", "真机屏幕状态走查", "语音意图路由"],
       evidence: [
-        "跑在 M5StickS3 app1 分区的 PlatformIO C++ 固件，与 On The Beat（app0）共机并由 firmware/guard.py 防误擦",
-        "USB 优先、离缆自动切换零知识 Fly.io wss:// 中继的 AES-256-GCM 加密链路，支持 4-bit ADPCM 压缩",
-        "三组可复现验收门禁：gate-h（11 个真机屏幕/按键场景）、gate-p5（加密与配对）、gate-l（中继保活）",
+        "M5StickS3 双分区运行方案：与 On The Beat 同机共存，通过自定义刷机护栏隔离分区",
+        "USB 有线优先、离桌自动切换端到端加密 Fly.io 中继，确保服务器只转发密文",
+        "硬件在环检查覆盖小屏分页反馈、实体按压配对、加密封包与断线重连",
       ],
-      outcome: "交付一套可运行的多项目 Claude Code 手腕语音遥控器，具备实体按键审批与零知识中继兜底。",
-      next: "补齐手腕实拍照片，按 Gate N 实测 1 小时待机耗电，并邀请其他开发者试用体验。",
+      outcome: "做出了一套真正跑通的多项目 Claude Code 手腕语音遥控交互：看一眼小屏，按一下实体键，就能稳妥放行或拒绝高风险操作。",
+      next: "补拍真实佩戴在手腕上的操作画面，实测离桌待机续航，并邀请几位常驻终端的开发者试戴体验。",
     },
   },
 };

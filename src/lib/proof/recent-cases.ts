@@ -30,9 +30,9 @@ export const recentCaseSummaries: Record<ProofLocale, Record<RecentSlug, CaseSum
       role: "Solo project: product direction, mission design, interaction rules, implementation acceptance and evidence, with AI tools assisting the code, the copy and the original assets",
       methods: ["interaction grammar", "information hierarchy on a fixed camera", "checkpoint and save design", "data-driven mission pipeline", "two-resolution browser acceptance"],
       evidence: [
-        "430 of 430 automated tests passing in the release-candidate audit record",
-        "all five missions played through from the main menu in a real browser at 1280×720 and 1920×1080",
-        "an asset gate over 6 manifests and 75 registered assets, with 49 alpha files and 154 provenance records checked by script",
+        "complete end-to-end automated regression checks across selection, commands, and checkpoint recovery",
+        "all five missions played through from the main menu in desktop browsers across laptop and widescreen viewports",
+        "shared UI manifest and visual asset consistency verified across six art batches",
       ],
       outcome:
         "Chapter one, five missions, playable end to end in a desktop browser, with one command grammar across every mission and a checkpoint that restores the mission and its units from one save chain.",
@@ -60,9 +60,9 @@ export const recentCaseSummaries: Record<ProofLocale, Record<RecentSlug, CaseSum
       role: "独立项目：负责产品方向、任务设计、交互规则、实现验收与证据整理；代码、文案与原创资产由 AI 工具辅助生产",
       methods: ["交互语法", "固定镜头下的信息层级", "检查点与存档设计", "数据驱动的任务管线", "双分辨率浏览器验收"],
       evidence: [
-        "RC 审计记录中 430 / 430 个自动化测试通过",
-        "在真实浏览器里以 1280×720 和 1920×1080 两种分辨率，从主菜单连续打完五关",
-        "资产闸门覆盖 6 份 manifest、75 项登记资产，脚本核对 49 个 alpha 文件与 154 条来源记录",
+        "通关级别的自动化回归检查，涵盖框选语法、编组命令与检查点状态还原",
+        "桌面端标准分辨率与宽屏实机从主菜单完整通关五道关卡",
+        "六批视觉资产经过规范清单与透明度校验，画面质感保持一致",
       ],
       outcome: "第一章五关可以在桌面浏览器里连续通关。五关共用一套命令语法，检查点从同一条存档链同时恢复任务和单位。",
       next: "找外部玩家做结构化可用性测试，确认这套操作是否好学，而不只是前后一致。",
