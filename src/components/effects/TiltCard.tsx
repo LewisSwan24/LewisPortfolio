@@ -1,1 +1,0 @@
-export { TiltCard } from "../TiltCard";

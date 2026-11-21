@@ -1,1 +1,0 @@
-export { AutoThemeSwitch } from "../AutoThemeSwitch";
