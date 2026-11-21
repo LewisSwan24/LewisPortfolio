@@ -321,7 +321,7 @@ export interface ProofClaim {
 
 export interface RolePacket {
   id: HiringRoleId;
-  route: `/hire/${HiringRoleId}`;
+  route: `/hire?role=${HiringRoleId}`;
   label: string;
   headline: string;
   fitThesis: string;
@@ -365,11 +365,11 @@ export interface AiTrustThread {
   };
 }
 
-export type ApplicationPacketRoute = `/hire/${HiringRoleId}/packet`;
+export type ApplicationPacketRoute = `/contact?role=${HiringRoleId}`;
 
 export type ApplicationPacketActionHref =
-  | `/hire/${HiringRoleId}`
-  | `/hire/${HiringRoleId}/next`
+  | `/hire?role=${HiringRoleId}`
+  | `/contact?role=${HiringRoleId}&intent=interview`
   | `/contact?role=${HiringRoleId}`
   | "/resume";
 
@@ -399,12 +399,12 @@ export interface ApplicationPacket {
   actions: ApplicationPacketAction[];
 }
 
-export type FollowThroughRoute = `/hire/${HiringRoleId}/next`;
+export type FollowThroughRoute = `/contact?role=${HiringRoleId}&intent=interview`;
 
 export type FollowThroughActionHref =
   | FollowThroughRoute
   | ApplicationPacketRoute
-  | `/hire/${HiringRoleId}`
+  | `/hire?role=${HiringRoleId}`
   | `/contact?role=${HiringRoleId}&intent=interview`
   | "/resume"
   | `mailto:${string}`;
@@ -464,6 +464,27 @@ export type ProofMaintenanceSurface =
   | "review-room"
   | "contact";
 
+export type ConsolidatedHiringView =
+  | "compare"
+  | "interview"
+  | "scorecard"
+  | "shortlist"
+  | "debrief"
+  | "decision"
+  | "offer"
+  | "onboarding"
+  | "kickoff"
+  | "impact"
+  | "growth"
+  | "retention"
+  | "partnership"
+  | "command"
+  | "briefing"
+  | "readiness"
+  | "action"
+  | "tracker"
+  | "review";
+
 export interface ProofMaintenanceEntry {
   id: string;
   roleId: HiringRoleId;
@@ -471,28 +492,10 @@ export interface ProofMaintenanceEntry {
   surface: ProofMaintenanceSurface;
   href:
     | CaseReaderHref
-    | `/hire/${HiringRoleId}`
+    | `/hire?role=${HiringRoleId}`
     | ApplicationPacketRoute
     | FollowThroughRoute
-    | "/hire/compare"
-    | "/hire/interview"
-    | "/hire/scorecard"
-    | "/hire/shortlist"
-    | "/hire/debrief"
-    | "/hire/decision"
-    | "/hire/offer"
-    | "/hire/onboarding"
-    | "/hire/kickoff"
-    | "/hire/impact"
-    | "/hire/growth"
-    | "/hire/retention"
-    | "/hire/partnership"
-    | "/hire/command"
-    | "/hire/briefing"
-    | "/hire/readiness"
-    | "/hire/action"
-    | "/hire/tracker"
-    | "/hire/review"
+    | `/hire?view=${ConsolidatedHiringView}`
     | `/contact?role=${HiringRoleId}`
     | `/contact?role=${HiringRoleId}&intent=scorecard`
     | `/contact?role=${HiringRoleId}&intent=debrief`
@@ -553,7 +556,7 @@ export type ProofHandoffStatus = "ready" | "blocked";
 export interface ProofHandoffRole {
   id: HiringRoleId;
   label: string;
-  roleRoute: `/hire/${HiringRoleId}`;
+  roleRoute: `/hire?role=${HiringRoleId}`;
   packetRoute: ApplicationPacketRoute;
   followThroughRoute: FollowThroughRoute;
   claimCount: number;

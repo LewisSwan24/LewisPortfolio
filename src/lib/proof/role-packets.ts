@@ -32,7 +32,7 @@ function packetBase(
 ) {
   return {
     id,
-    route: `/hire/${id}`,
+    route: `/hire?role=${id}`,
     strongestCases,
     primaryAction: actions[locale].contact,
     secondaryAction: actions[locale].resume,

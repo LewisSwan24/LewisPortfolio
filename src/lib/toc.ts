@@ -9,10 +9,30 @@ export interface TOCItem {
   level: number;
 }
 
+interface PhrasingNode {
+  type: string;
+  value?: string;
+  children?: PhrasingNode[];
+}
+
 interface HeadingNode {
   type: "heading";
   depth: number;
-  children: Array<{ type: string; value?: string }>;
+  children: PhrasingNode[];
+}
+
+function extractNodeText(nodes: PhrasingNode[]): string {
+  return nodes
+    .map((node) => {
+      if (node.type === "text" || node.type === "inlineCode") {
+        return node.value || "";
+      }
+      if (Array.isArray(node.children)) {
+        return extractNodeText(node.children);
+      }
+      return "";
+    })
+    .join("");
 }
 
 export function extractTOC(content: string): TOCItem[] {
@@ -23,10 +43,7 @@ export function extractTOC(content: string): TOCItem[] {
 
   visit(tree, "heading", (node: HeadingNode) => {
     if (node.depth >= 2 && node.depth <= 3) {
-      const text = node.children
-        .filter((child) => child.type === "text")
-        .map((child) => child.value || "")
-        .join("");
+      const text = extractNodeText(node.children);
 
       if (text) {
         toc.push({

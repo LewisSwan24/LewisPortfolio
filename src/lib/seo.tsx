@@ -67,12 +67,12 @@ export function generateResumePersonSchema() {
         },
         workExample: [
             { "@type": "CreativeWork", name: "UQ Connect", url: `${url}/projects/connect` },
-            { "@type": "CreativeWork", name: "Spectra Lens", url: `${url}/projects/spectra` },
             { "@type": "CreativeWork", name: "MazeRunners", url: `${url}/projects/maze` },
+            { "@type": "CreativeWork", name: "Walkie", url: `${url}/projects/walkie` },
+            { "@type": "CreativeWork", name: "Fencepost", url: `${url}/projects/fencepost` },
+            { "@type": "CreativeWork", name: "Lamplight", url: `${url}/projects/lamplight` },
             { "@type": "CreativeWork", name: "Hoop Dream", url: `${url}/projects/hoop` },
             { "@type": "CreativeWork", name: "PriceWise", url: `${url}/projects/pricewise` },
-            { "@type": "CreativeWork", name: "Perception Gap Mapper", url: `${url}/projects/gapmapper` },
-            { "@type": "CreativeWork", name: "Requirements into Rules", url: `${url}/projects/rules` },
         ],
     };
 }

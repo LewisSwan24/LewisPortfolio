@@ -30,9 +30,9 @@ function packetActions(role: HiringRoleId, locale: ProofLocale): ApplicationPack
   const copy = packetCopy[locale];
 
   return [
-    { kind: "role-room", label: copy.roleRoom, href: `/hire/${role}` },
+    { kind: "role-room", label: copy.roleRoom, href: `/hire?role=${role}` },
     { kind: "contact", label: copy.contact, href: `/contact?role=${role}` },
-    { kind: "next", label: copy.next, href: `/hire/${role}/next` },
+    { kind: "next", label: copy.next, href: `/contact?role=${role}&intent=interview` },
     { kind: "resume", label: copy.resume, href: "/resume" },
   ];
 }
@@ -50,7 +50,7 @@ export function getApplicationPacket(
 
   return {
     id: packet.id,
-    route: `/hire/${packet.id}/packet`,
+    route: `/contact?role=${packet.id}`,
     label: packet.label,
     headline: `${packet.label} ${copy.headlineSuffix}`,
     summary: `${copy.summaryPrefix} ${packet.fitThesis}`,

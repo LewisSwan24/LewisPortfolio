@@ -11,33 +11,37 @@ describe("proof handoff export", () => {
     expect(exportArtifact.content).toContain("Status: ready");
     expect(exportArtifact.content).toContain("pnpm proof:validate");
     expect(exportArtifact.content).toContain("Maintenance: 92 total");
-    expect(exportArtifact.content).toContain("/hire/compare");
-    expect(exportArtifact.content).toContain("/hire/interview");
-    expect(exportArtifact.content).toContain("/hire/scorecard");
-    expect(exportArtifact.content).toContain("/hire/shortlist");
-    expect(exportArtifact.content).toContain("/hire/debrief");
-    expect(exportArtifact.content).toContain("/hire/decision");
-    expect(exportArtifact.content).toContain("/hire/offer");
-    expect(exportArtifact.content).toContain("/hire/onboarding");
-    expect(exportArtifact.content).toContain("/hire/kickoff");
-    expect(exportArtifact.content).toContain("/hire/impact");
-    expect(exportArtifact.content).toContain("/hire/growth");
-    expect(exportArtifact.content).toContain("/hire/retention");
-    expect(exportArtifact.content).toContain("/hire/partnership");
-    expect(exportArtifact.content).toContain("/hire/command");
-    expect(exportArtifact.content).toContain("/hire/briefing");
-    expect(exportArtifact.content).toContain("/hire/readiness");
-    expect(exportArtifact.content).toContain("/hire/action");
-    expect(exportArtifact.content).toContain("/hire/tracker");
+    for (const view of [
+      "compare",
+      "interview",
+      "scorecard",
+      "shortlist",
+      "debrief",
+      "decision",
+      "offer",
+      "onboarding",
+      "kickoff",
+      "impact",
+      "growth",
+      "retention",
+      "partnership",
+      "command",
+      "briefing",
+      "readiness",
+      "action",
+      "tracker",
+    ]) {
+      expect(exportArtifact.content).toContain(`/hire?view=${view}`);
+    }
   });
 
   it("includes every role route in the markdown", () => {
     const exportArtifact = getProofHandoffExport("2026-05-10");
 
     for (const role of hiringRoleIds) {
-      expect(exportArtifact.content).toContain(`/hire/${role}`);
-      expect(exportArtifact.content).toContain(`/hire/${role}/packet`);
-      expect(exportArtifact.content).toContain(`/hire/${role}/next`);
+      expect(exportArtifact.content).toContain(`/hire?role=${role}`);
+      expect(exportArtifact.content).toContain(`/contact?role=${role}`);
+      expect(exportArtifact.content).toContain(`/contact?role=${role}&intent=interview`);
     }
   });
 });

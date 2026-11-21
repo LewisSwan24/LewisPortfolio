@@ -1,4 +1,4 @@
-const PRODUCTION_SITE_URL = "https://portfolio-lewisdong.vercel.app";
+const PRODUCTION_SITE_URL = "https://lewisdong.vercel.app";
 
 /**
  * The absolute origin every canonical, sitemap, robots, OG and JSON-LD URL is

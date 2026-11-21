@@ -75,7 +75,7 @@ Open <http://localhost:3000> (redirects to `/en` or `/zh`).
 All optional; the site builds and runs with none set (see `.env.example`):
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://portfolio-lewisdong.vercel.app
+NEXT_PUBLIC_SITE_URL=https://lewisdong.vercel.app
 NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=
 NEXT_PUBLIC_GISCUS_REPO=
 NEXT_PUBLIC_GISCUS_REPO_ID=

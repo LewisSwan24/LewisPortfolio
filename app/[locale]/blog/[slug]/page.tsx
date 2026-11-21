@@ -173,7 +173,7 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
             <div className="blog-article-col">
               <article className="blog-article">
-                <MDXRemote source={post.content} components={getMdxComponents()} />
+                <MDXRemote source={post.content} components={getMdxComponents(locale)} />
               </article>
 
               <div className="blog-share">
