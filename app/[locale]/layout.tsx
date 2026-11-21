@@ -23,10 +23,12 @@ import {
 } from "@/lib/seo";
 
 const CLIENT_MESSAGE_NAMESPACES = [
+  "brand",
   "nav",
   "hero",
   "foot",
   "footer",
+  "contact",
   "blog",
   "resume",
   "skipLink",
