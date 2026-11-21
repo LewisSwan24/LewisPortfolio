@@ -40,11 +40,30 @@ export const lamplightCase: CaseRecord = {
   },
   "links": [
     {
+      "label": "Open companion site",
+      "href": "https://lewisswan24.github.io/lamplight-nook-site/",
+      "external": true
+    },
+    {
       "label": "Source on GitHub",
       "href": "https://github.com/LewisSwan24/lamplight-nook",
       "external": true
     }
   ],
+  "demo": {
+    "src": "https://lewisswan24.github.io/lamplight-nook-site/",
+    "poster": "/projects/lamplight/02-board.jpg",
+    "title": "Lamplight Nook companion site",
+    "titleZh": "Lamplight Nook 专题展示页",
+    "posterAlt": "Lamplight Nook café plan blackboard scene; click to inspect the bilingual showcase site",
+    "posterAltZh": "Lamplight Nook 咖啡馆黑板计划场景，点击载入双语展示网站",
+    "label": "Inspect the public product site",
+    "labelZh": "查看公开产品展示页",
+    "blurb": "Published at lewisswan24.github.io/lamplight-nook-site/ as the Windows 1.0 product presentation with downloadable package details and privacy notes.",
+    "blurbZh": "发布于 lewisswan24.github.io/lamplight-nook-site/ 的 Windows 1.0 公开展示页，包含发布说明与隐私边界。",
+    "action": "Load Lamplight Nook site",
+    "actionZh": "载入 Lamplight Nook 展示页"
+  },
   "media": {
     "label": "The shop at work",
     "labelZh": "店里干活的样子",
