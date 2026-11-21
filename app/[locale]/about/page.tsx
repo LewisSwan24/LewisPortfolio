@@ -2,6 +2,7 @@ import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import { SectionReveal } from "@/components/motion/SectionReveal";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
@@ -77,14 +78,16 @@ export default async function AboutPage() {
 
       <section className="container section">
         <div className="label">{t("about.philo.label")}</div>
-        <div className="about-philo" style={{ marginTop: 24 }}>
-          {([1, 2, 3, 4] as const).map((i) => (
-            <div className="about-philo-item" key={i}>
-              <h4>{t(`about.philo.${i}.t`)}</h4>
-              <p>{t(`about.philo.${i}.b`)}</p>
-            </div>
-          ))}
-        </div>
+        <SectionReveal>
+          <div className="about-philo" style={{ marginTop: 24 }}>
+            {([1, 2, 3, 4] as const).map((i) => (
+              <div className="about-philo-item" key={i} data-reveal-item>
+                <h4>{t(`about.philo.${i}.t`)}</h4>
+                <p>{t(`about.philo.${i}.b`)}</p>
+              </div>
+            ))}
+          </div>
+        </SectionReveal>
       </section>
     </main>
   );

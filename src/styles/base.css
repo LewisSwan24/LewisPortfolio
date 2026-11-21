@@ -197,11 +197,8 @@ html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .page-fade {
+    animation: none;
   }
 }
 
@@ -261,12 +258,32 @@ html { scroll-behavior: smooth; }
     page-break-inside: avoid;
     break-inside: avoid;
   }
-  .res-body { gap: 24px !important; }
-  .res-side-card { background: transparent !important; border: 1px solid #ccc !important; }
+  .res-hero {
+    padding-top: 0 !important;
+    padding-bottom: 12pt !important;
+    border-bottom: 1pt solid #000 !important;
+  }
+  .res-body {
+    display: grid !important;
+    grid-template-columns: 1.6fr 0.9fr !important;
+    gap: 18pt !important;
+    align-items: start !important;
+  }
+  .res-side {
+    display: grid !important;
+    gap: 10pt !important;
+  }
+  .res-side-card {
+    background: transparent !important;
+    border: 1px solid #999 !important;
+    padding: 8pt 10pt !important;
+  }
   .res-skill .bar { background: #eee !important; }
   .res-skill .bar i { background: #555 !important; }
 
   a { color: #000 !important; text-decoration: underline !important; }
+  .res-entry ul { padding-left: 14pt !important; margin-top: 4pt !important; }
+  [cmdk-root] { display: none !important; }
 }
 
 .sr-only {

@@ -1,0 +1,41 @@
+---
+title: "Designing hard boundaries: physical approvals in Walkie and data-layer privacy in Fencepost"
+date: "2026-11-18"
+excerpt: "Two recent systems taught the same lesson from opposite ends of the stack: when an AI agent or community model acts asynchronously, trust lives in physical buttons and database invariants rather than prompt wording."
+tags:
+  - AI UX
+  - Hardware
+  - Systems Design
+author: "Lewis Dong"
+published: true
+---
+
+Prompts can ask a model to stay cautious, and confirmation dialogs can ask a user to double-check. Neither holds up well under fatigue or asynchronous workflows. Across two recent builds—[Walkie](/projects/walkie) on an M5StickS3 watch and [Fencepost](/projects/fencepost) as a community wildlife storyboarding app—I pushed critical safety boundaries down out of UI copy and into hardware inputs or query invariants.
+
+## Walkie: physical keys as the permission boundary
+
+When directing Claude Code across long tasks away from a desk, voice interaction is tempting right up until the agent asks to run a destructive shell command or write outside its workspace. Approving that solely by voice fails easily in a noisy room or via mis-transcription.
+
+Walkie solves that by making the **physical button layer** on the M5StickS3 non-negotiable:
+
+- **Explicit pairing**: Saving a desktop pairing key requires pressing the front button on the watch within a 30-second window.
+- **Discrete approval queue**: Tool permission prompts pause the Node 24 bridge until the front key (approve) or side key (deny, with optional spoken reason) is physically pressed.
+- **Dual-boot safety guard**: Because Walkie shares the watch with [On The Beat](/projects/onthebeat), `firmware/guard.py` blocks full flash erase commands so updating one app cannot wipe the sibling partition.
+- **Zero-knowledge relay**: Beyond the USB cable, frames use AES-256-GCM under a session key derived from `pair.key`, so the Fly.io relay never sees plaintext prompts or tool names.
+
+All three validation gates (`gate-h` across 11 on-device scenes, `gate-p5` on-chip encryption tests, and `gate-l` 75-second relay keep-alive checks) verify behavior against mock Claude streams before real keys are ever touched.
+
+## Fencepost: revoking access cuts the model off too
+
+In neighborhood wildlife storyboarding, sharing sightings involves backyard context, child-friendly reading, and moderation across three roles. UI visibility toggles alone are brittle if a revoked link's text remains reachable inside an AI assistant's retrieval context.
+
+In Fencepost, two rules live in the backend boundary itself:
+
+1. **No EXIF storage**: Media schemas strip location metadata on ingest and persist only opaque storage keys.
+2. **Query-level `access_grants` enforcement**: Every retrieval path joins active grants before assembling model context, verified across **431 offline tests** and **29 AI red-line scenarios**. When a resident revokes a QR grant, subsequent model prompts cannot quote the hidden sighting.
+
+The live public build on Vercel intentionally leaves demo handle login lightweight so reviewers can inspect flows directly, while keeping grant enforcement intact at the data layer.
+
+## Shared lesson
+
+Good interaction design for autonomous tools does not stop at polite microcopy. Whether the boundary is a tactile watch switch over AES-256-GCM or a SQL join gate before prompt construction, placing the safety invariant where bypassing it is structurally impossible makes every higher-level interface calmer to use.
