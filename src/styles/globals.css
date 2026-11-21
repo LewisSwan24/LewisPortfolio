@@ -1,6 +1,86 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  /* Warm paper neutrals */
+  --color-paper-50: var(--paper-50);
+  --color-paper-100: var(--paper-100);
+  --color-paper-200: var(--paper-200);
+  --color-paper-300: var(--paper-300);
+  --color-paper-400: var(--paper-400);
+  --color-paper-500: var(--paper-500);
+  --color-paper-600: var(--paper-600);
+  --color-paper-700: var(--paper-700);
+  --color-paper-800: var(--paper-800);
+  --color-paper-900: var(--paper-900);
+
+  /* Terra accent */
+  --color-terra-50: var(--terra-50);
+  --color-terra-300: var(--terra-300);
+  --color-terra-500: var(--terra-500);
+  --color-terra-600: var(--terra-600);
+  --color-terra-700: var(--terra-700);
+
+  /* Sage secondary */
+  --color-sage-300: var(--sage-300);
+  --color-sage-500: var(--sage-500);
+
+  /* Semantic & surface tokens */
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-accent-ink: var(--accent-ink);
+  --color-text-1: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-text-4: var(--text-4);
+  --color-border-strong: var(--border-strong);
+  --color-parchment: var(--bg-parchment);
+  --color-ivory: var(--bg-ivory);
+  --color-sand: var(--bg-sand);
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-tertiary: var(--text-tertiary);
+  --color-border-cream: var(--border-cream);
+  --color-border-warm: var(--border-warm);
+  --color-moss: var(--accent-moss);
+  --color-moss-hover: var(--accent-moss-hover);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-focus: var(--focus);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-muted: var(--surface-2);
+  --color-muted-foreground: var(--text-2);
+  --color-card: var(--bg-alt);
+  --color-card-foreground: var(--text);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--on-accent);
+
+  /* Typography */
+  --font-sans: var(--font-ui);
+  --font-serif: var(--font-ui);
+  --font-reader: var(--font-ui);
+  --font-mono: var(--font-mono);
+  --font-hand: var(--font-ui);
+  --font-display: var(--font-ui);
+  --font-title: var(--font-title);
+
+  /* Radii */
+  --radius-r-xs: var(--r-xs);
+  --radius-r-sm: var(--r-sm);
+  --radius-r-md: var(--r-md);
+  --radius-r-lg: var(--r-lg);
+  --radius-r-pill: var(--r-pill);
+
+  /* Max width */
+  --container-grid-max: var(--grid-max);
+}
 
 /* ============================================================
    Lewis Dong — Portfolio Design Tokens

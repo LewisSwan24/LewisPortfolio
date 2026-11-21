@@ -69,11 +69,10 @@ On The Beat) also use the cover at the top of the case page, without the
 
 ## Engineering notes
 
-- `ProjectCoverImage` is a client component used only by `/projects`. The
-  homepage renders `next/image` directly; sharing one module between the two
-  broke the homepage in `next dev`.
-- Under `next dev` the homepage can still throw
-  `Cannot read properties of undefined (reading 'call')` from a lazy client
-  reference inside `FeaturedDeck`. `next build && next start` renders it
-  without error (checked 2026-11-20). Check a homepage change against a
-  production build.
+- `ProjectCoverImage` is a stateless shared component (no `"use client"`
+  directive), safely reused by both the Server Component homepage and the
+  client `/projects` index.
+- Tailwind CSS v4 CSS-first `@theme inline` tokens live at the top of
+  `src/styles/globals.css`. Verified 2026-11-21 under Next.js 15.5 + React 19:
+  both `next dev` and `next build` render `/en`, `/zh`, `/en/projects`, and
+  case routes with zero runtime errors.
