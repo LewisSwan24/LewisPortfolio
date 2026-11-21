@@ -64,4 +64,22 @@ describe("WorkIndex", () => {
       errorSpy.mockRestore();
     }
   });
+
+  it("toggles cleanly between list index and capability matrix slot", () => {
+    render(
+      <WorkIndex
+        items={sampleItems}
+        thumbs={sampleThumbs}
+        matrixSlot={<div data-testid="matrix-slot">Capability Matrix</div>}
+        locale="en"
+      />
+    );
+
+    expect(screen.queryByTestId("matrix-slot")).not.toBeInTheDocument();
+    expect(screen.getByText("Walkie")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("tab", { name: "Capability matrix" }));
+    expect(screen.getByTestId("matrix-slot")).toBeInTheDocument();
+    expect(screen.queryByText("Walkie")).not.toBeInTheDocument();
+  });
 });

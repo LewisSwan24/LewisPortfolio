@@ -84,6 +84,7 @@ export default async function HirePage() {
         <HiringRoleFitPanel
           roles={roleFits}
           locale={proofLocale}
+          compact
           title={pageCopy.roleTitle}
           intro={pageCopy.roleIntro}
           labels={proofLabels}

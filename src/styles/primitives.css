@@ -12,7 +12,7 @@
 /* Vertical only. The shorthand used to zero the left and right padding that
    .container sets on the same element, so every .section.container touched the
    viewport edge on a phone. */
-.section { padding-block: clamp(48px, 6vw, 80px); }
+.section { padding-block: clamp(32px, 4vw, 52px); }
 
 .label {
   font-family: var(--font-ui);

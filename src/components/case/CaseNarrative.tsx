@@ -182,20 +182,10 @@ export function CaseNarrative({
       <div className="cs-section">
         <div className="cs-row">
           <div className="cs-row-side">
-            <div className="label">{narrative.id.label}</div>
+            <div className="label">{narrative.id.label} · {narrative.pr.label}</div>
           </div>
           <div className="cs-row-body">
             <p className="prose">{narrative.id.p}</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="cs-section">
-        <div className="cs-row">
-          <div className="cs-row-side">
-            <div className="label">{narrative.pr.label}</div>
-          </div>
-          <div className="cs-row-body">
             <p className="prose">{narrative.pr.p}</p>
           </div>
         </div>
