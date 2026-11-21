@@ -1,70 +1,34 @@
 import { describe, it, expect } from "vitest";
-import { getDictionary, normalizeLanguage, defaultLanguage } from "../i18n";
+import enMessages from "@/messages/en.json";
+import zhMessages from "@/messages/zh.json";
+import { routing } from "@/i18n/routing";
 
-describe("normalizeLanguage", () => {
-  it("should return 'zh' for 'zh'", () => {
-    expect(normalizeLanguage("zh")).toBe("zh");
+function flattenKeys(obj: Record<string, unknown>, prefix = ""): string[] {
+  const keys: string[] = [];
+  for (const [key, value] of Object.entries(obj)) {
+    const fullKey = prefix ? `${prefix}.${key}` : key;
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      keys.push(...flattenKeys(value as Record<string, unknown>, fullKey));
+    } else {
+      keys.push(fullKey);
+    }
+  }
+  return keys.sort();
+}
+
+describe("next-intl routing & message parity", () => {
+  it("declares en and zh locales with en as default", () => {
+    expect(routing.locales).toEqual(["en", "zh"]);
+    expect(routing.defaultLocale).toBe("en");
   });
 
-  it("should return 'en' for 'en'", () => {
-    expect(normalizeLanguage("en")).toBe("en");
+  it("keeps top-level namespaces aligned between en.json and zh.json", () => {
+    expect(Object.keys(enMessages).sort()).toEqual(Object.keys(zhMessages).sort());
   });
 
-  it("should return 'en' for undefined", () => {
-    expect(normalizeLanguage(undefined)).toBe("en");
-  });
-
-  it("should return 'en' for unknown language", () => {
-    expect(normalizeLanguage("fr")).toBe("en");
-  });
-
-  it("should return 'en' for empty string", () => {
-    expect(normalizeLanguage("")).toBe("en");
-  });
-});
-
-describe("getDictionary", () => {
-  it("should return English dictionary for 'en'", () => {
-    const dict = getDictionary("en");
-    expect(dict.nav.home).toBe("Home");
-    expect(dict.nav.projects).toBe("Projects");
-  });
-
-  it("should return Chinese dictionary for 'zh'", () => {
-    const dict = getDictionary("zh");
-    expect(dict.nav.home).toBe("首页");
-    expect(dict.nav.projects).toBe("项目");
-  });
-
-  it("should have consistent structure between en and zh", () => {
-    const en = getDictionary("en");
-    const zh = getDictionary("zh");
-
-    expect(Object.keys(en.nav)).toEqual(Object.keys(zh.nav));
-    expect(Object.keys(en.notFound)).toEqual(Object.keys(zh.notFound));
-  });
-
-  it("should have blog keys in both languages", () => {
-    const en = getDictionary("en");
-    const zh = getDictionary("zh");
-
-    expect(en.blog.title).toBeDefined();
-    expect(zh.blog.title).toBeDefined();
-    expect(en.blog.emptyTitle).toBeDefined();
-    expect(zh.blog.emptyTitle).toBeDefined();
-  });
-
-  it("should have lab keys in both languages", () => {
-    const en = getDictionary("en");
-    const zh = getDictionary("zh");
-
-    expect(en.lab.title).toBeDefined();
-    expect(zh.lab.title).toBeDefined();
-  });
-});
-
-describe("defaultLanguage", () => {
-  it("should be 'en'", () => {
-    expect(defaultLanguage).toBe("en");
+  it("keeps all flattened translation keys aligned between en.json and zh.json", () => {
+    const enKeys = flattenKeys(enMessages as unknown as Record<string, unknown>);
+    const zhKeys = flattenKeys(zhMessages as unknown as Record<string, unknown>);
+    expect(enKeys).toEqual(zhKeys);
   });
 });

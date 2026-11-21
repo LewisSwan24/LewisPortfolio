@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { getBlurDataURL, getImageProps, IMAGE_SIZES } from './image-utils'
+import { getBlurDataURL, getImageProps, IMAGE_SIZES } from '../image-utils'
 
 describe('image-utils', () => {
   describe('getBlurDataURL', () => {
