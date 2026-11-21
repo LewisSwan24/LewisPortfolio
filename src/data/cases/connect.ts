@@ -1,0 +1,236 @@
+import type { CaseRecord } from "@/lib/cases/schema";
+
+export const connectCase: CaseRecord = {
+  "slug": "connect",
+  "status": "listed",
+  "featuredOrder": 2,
+  "roleTracks": [
+    "product",
+    "interaction"
+  ],
+  "cover": {
+    "src": "/projects/connect/02-app-studybuddy.png",
+    "width": 1170,
+    "height": 2532,
+    "alt": {
+      "en": "A study-buddy match card showing 94% match beside the course, library, availability and small-group size",
+      "zh": "学习伙伴匹配卡：94% 契合度旁边列着课程、图书馆、可用时间与小组规模"
+    },
+    "fit": "contain"
+  },
+  "links": [
+    {
+      "label": "Open the demo",
+      "href": "https://uq-connect.vercel.app/",
+      "external": true
+    }
+  ],
+  "media": {
+    "label": "The sheet, and what came off it",
+    "labelZh": "那张纸，和从纸上做出来的东西",
+    "blurb": "The October paper reset and three screens captured from the team's live deployment — not mockups. The app runs on mock data; the backend was written and never connected.",
+    "blurbZh": "十月那次纸面重画，以及三张从团队线上部署直接抓的截图，不是效果图。应用跑在 mock 数据上，后端写了但从未接上。",
+    "images": [
+      {
+        "src": "/projects/connect/04-paper-prototype.jpg",
+        "width": 2220,
+        "height": 2040,
+        "alt": "The 3 October pencil sheet: five phone screens with arrows drawn from the home screen to each one",
+        "altZh": "10 月 3 日的铅笔草图：五个手机屏，从首页各画一条箭头指向对应的屏",
+        "caption": "3 October. September's sessions found no way back and a card contradicting its own button — structural faults, so the answer was drawn as structure.",
+        "captionZh": "10 月 3 日。九月测出「没有返回路径」和「卡片与自己的按钮矛盾」，两个都是结构问题，所以答案也画成结构。"
+      },
+      {
+        "src": "/projects/connect/01-app-home.png",
+        "width": 1170,
+        "height": 2532,
+        "alt": "UQ Connect home screen: a colour-coded grid of feature cards above a five-tab bar",
+        "altZh": "UQ Connect 首页：配色化的功能卡片网格，下方是五个标签的底栏",
+        "caption": "The November home screen. A participant read the colour coding as a map of the app — that was the point of building it as one component system.",
+        "captionZh": "十一月的首页。受测者把这套配色读成了整个应用的地图：把界面做成一套组件系统，图的就是这个。"
+      },
+      {
+        "src": "/projects/connect/02-app-studybuddy.png",
+        "width": 1170,
+        "height": 2532,
+        "alt": "A study-buddy match card showing 94% match beside the course, library, availability and small-group size",
+        "altZh": "学习伙伴匹配卡：94% 契合度旁边列着课程、图书馆、可用时间与小组规模",
+        "caption": "The match states its reasons — course, place, availability, group size — because students were sceptical of a score on its own but acted on a concrete reason.",
+        "captionZh": "匹配把理由摆出来：课程、地点、可用时间、小组规模。因为学生怀疑一个孤零零的分数，却会照着具体理由行动。"
+      },
+      {
+        "src": "/projects/connect/03-app-events.png",
+        "width": 1170,
+        "height": 2532,
+        "alt": "Campus event cards showing price, location, attendance count, and separate Register and I'm Going states",
+        "altZh": "校园活动卡片：显示价格、地点、参加人数，以及「报名」与「我要去」两个不同状态",
+        "caption": "Price sits on the card. Nobody predicted that — it came out of the interviews, where $100–200 events were quietly ruled out.",
+        "captionZh": "价格就写在卡片上。没有人预测到这一点，是访谈里冒出来的：100–200 澳元的活动，默默就排掉了。"
+      }
+    ]
+  },
+  "card": {
+    "en": {
+      "kicker": "Team project · Research and build",
+      "title": "UQ Connect",
+      "sub": "A social platform for international students — three rounds of research, one semester of building.",
+      "role": "Front-end system & research",
+      "date": "Aug–Nov 2025, coursework",
+      "m1": "71 research and test sessions, 14 mine",
+      "m2": "Exploratory · think-aloud · task-based",
+      "m3": "19-screen MVP on mock data"
+    },
+    "zh": {
+      "kicker": "团队项目 · 研究与开发",
+      "title": "UQ Connect",
+      "sub": "一个面向国际学生的社交平台：三轮研究，一学期做出来。",
+      "role": "前端系统与研究",
+      "date": "2025 年 8–11 月，课程项目",
+      "m1": "71 份研究与测试记录，其中 14 场是我做的",
+      "m2": "探索式访谈 · 出声思考 · 任务式测试",
+      "m3": "19 屏 MVP，跑在 mock 数据上"
+    }
+  },
+  "narrative": {
+    "en": {
+      "hero": {
+        "title": "UQ Connect",
+        "sub": "A social platform for international students, researched and built over one semester."
+      },
+      "roleVal": "Front-end component system, shared state, 14 of 71 sessions",
+      "timeVal": "August–November 2025, university coursework",
+      "teamVal": "Five-person course team",
+      "toolsVal": "React · TypeScript · Tailwind · Figma Make · Paper",
+      "ch": {
+        "label": "The problem",
+        "title": "The events already exist. The relationships do not.",
+        "p": "UQ runs no shortage of events for international students, and students still end up in the same circle. A first-round participant named the ceiling exactly: it is hard to find common ground beyond being international. Large mixers were too loud to hold a conversation in, and event descriptions did not say what would actually happen or what the room would feel like — so a one-off produced an introduction and nothing after it."
+      },
+      "re": {
+        "label": "Research",
+        "title": "Three rounds, three fidelities, 71 research and testing records.",
+        "m1": {
+          "t": "Exploratory interviews",
+          "b": "33 records in August, 7 of them mine, on why the events that already exist fail to connect people. My seven spanned six countries, seven degrees and three campuses, first year to Master's."
+        },
+        "m2": {
+          "t": "Think-aloud usability testing",
+          "b": "28 records in September, 5 mine, on a prototype that already ran — watching where people stalled."
+        },
+        "m3": {
+          "t": "Task-based usability testing",
+          "b": "10 records in November, 2 mine, on the built MVP: one chain, start to finish, unaided. My 14 sessions across the three rounds came from 9 people — 4 sat with me more than once, one all three times."
+        },
+        "quote": "Can I go to the previous page? How can I do that?",
+        "quoteWho": "Iteration 2 participant, 17 September 2025"
+      },
+      "sy": {
+        "label": "Synthesis",
+        "title": "The barrier was pace and group size, not language.",
+        "p": "Every hypothesis carried a numeric pass mark written before fieldwork began, though we never scored the records against them. Two assumptions did not survive the interviews, on qualitative evidence. Language proficiency was not the barrier — the same students, at the same level of English, went quiet in fast, crowded rooms and spoke freely in small, slow ones. And the gap was not exposure but follow-through: people found the events and still did not go. What did hold was repetition around a shared task — the students who stayed connected had met three or four times over something they were making together, a documentary shoot, a quartet. The cultural society cuts both ways for the same reason: it is the first place a student belongs, and then it is the reason they never leave it."
+      },
+      "id": {
+        "label": "Design decisions",
+        "p": "A recommended person shows the reason for the match — shared study habits, compatible schedules — rather than a compatibility score alone. Students were openly sceptical of black-box matching and acted on the same suggestion once it named a concrete reason. The cost is vertical space: fewer matches fit on a screen, and the list takes longer to scan. Discovery moved onto a campus map for a related reason — choosing from a map costs less than choosing from a list — but a map has to say who is already there and whether the walk is safe, or it relocates the hesitation instead of removing it. The competitor teardown pointed the same way: Griffith Mates launches at Orientation, runs a buddy program for four weeks, then keeps people in a Teams channel. The channel is the part doing the work, and a one-off event has no equivalent."
+      },
+      "pr": {
+        "label": "Prototype",
+        "p": "On 3 October, after the September sessions, we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area. The November build started from that sheet, as a shared component system with React context for cross-screen state rather than nineteen independently styled screens."
+      },
+      "te": {
+        "label": "Usability test",
+        "p": "In November a participant completed the full chain unaided — create a circle, set who can see it, open the chat, post, return to the list — and read the colour-coded home screen as a map of the app. The entry point to Circles was still not obvious: he found it in the sidebar rather than on sight."
+      },
+      "ou": {
+        "label": "What it produced",
+        "m1": {
+          "label": "Build",
+          "v": "19 screens, one system"
+        },
+        "m2": {
+          "label": "Research",
+          "v": "71 sessions, 3 rounds"
+        },
+        "m3": {
+          "label": "My share",
+          "v": "14 interviews, front-end system"
+        },
+        "p": "A 19-screen mobile MVP on a shared component system, reached through three research rounds and a mid-build return to paper — 24 by the team's own MVP definition, which counts sub-views as pages. Evidence status — course project, five-person team. I owned the front-end component system and the shared state layer, wrote some of the backend routes and controllers, and ran 14 of the 71 sessions; the map, the wellness hub and the matching logic were other people's work. In January, after the semester was over, I took the codebase into my own repository and spent five days cutting it back to one design system — plus dark mode, an OAuth callback, and a deploy — across eight commits that added 1,068 lines and removed 2,348. That part is unambiguously mine: nine commits, all under my name, and it is the reason there is a build you can open at all. The MVP runs on mock data: the backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. No round recorded completion times or a fixed success criterion, so I can say the September navigation defect did not recur in November, and I cannot say by how much anything improved."
+      },
+      "rf": {
+        "label": "Reflection",
+        "p": "We wrote pass marks and never formally scored them. The thresholds still did real work — they disciplined what we asked, and stopped us reframing misses as findings — but the disconfirmation ended up qualitative, which is the exact failure mode writing them down is meant to prevent. Next time I score the transcripts against the thresholds and publish the table, pass or fail."
+      }
+    },
+    "zh": {
+      "hero": {
+        "title": "UQ Connect",
+        "sub": "一个面向国际学生的社交平台，一学期内做完研究并做出来。"
+      },
+      "roleVal": "前端组件系统、共享状态层，71 场研究与测试里的 14 场",
+      "timeVal": "2025 年 8–11 月，课程项目",
+      "teamVal": "五人课程团队",
+      "toolsVal": "React · TypeScript · Tailwind · Figma Make · 纸",
+      "ch": {
+        "label": "问题",
+        "title": "活动本来就有。关系没有。",
+        "p": "UQ 给国际学生办的活动不少，学生还是留在同一个圈子里。第一轮的一位受访者把天花板说得很准：除了「大家都是国际学生」，很难再找到共同点。大型迎新活动吵到没法讲话，活动介绍又不说到底会发生什么、现场是什么气氛。于是一次性的活动制造了认识，后面就没有了。"
+      },
+      "re": {
+        "label": "研究",
+        "title": "三轮，三种保真度，71 份研究与测试记录。",
+        "m1": {
+          "t": "探索式访谈",
+          "b": "八月 33 份记录，其中 7 场是我做的，问的是：已经存在的活动为什么没能把人连起来。我那七位来自六个国家和地区、七个专业、三个校区，从大一到硕士都有。"
+        },
+        "m2": {
+          "t": "出声思考可用性测试",
+          "b": "九月 28 份记录，其中 5 场是我做的，在一个已经能跑的原型上，看人在哪里卡住。"
+        },
+        "m3": {
+          "t": "任务式可用性测试",
+          "b": "十一月 10 份记录，其中 2 场是我做的，在做出来的 MVP 上：一条链路，从头走到尾，没人帮忙。我在三轮里做的 14 场，其实只来自 9 个人：有 4 位不止一次坐下来跟我聊，一位三轮都在。"
+        },
+        "quote": "我能回上一页吗？要怎么回？",
+        "quoteWho": "第二轮受测者，2025 年 9 月 17 日"
+      },
+      "sy": {
+        "label": "综合",
+        "title": "障碍是节奏和人数规模，不是语言。",
+        "p": "每条假设都带着一个进场前就写下来的数字及格线，只是我们没有拿记录逐条打分。有两条假设没经住访谈，这是定性判断。语言能力不是障碍：同一批学生、同样的英文水平，在快节奏、人多的场合会闭嘴，在小而慢的场合却讲得很自然。而缺口也不在曝光，在跟进：大家都找得到活动，还是没去。真正留得下来的，是围绕一件共同要做的事反复见面，那些关系维持住的学生，都是为了同一个东西见过三四次：一次纪录片拍摄、一个四重奏。文化社团正反两面也出自同一个道理：它是一个学生最先归属的地方，然后也成了他再没走出去的原因。"
+      },
+      "id": {
+        "label": "设计决策",
+        "p": "推荐一个人的时候，一并给出匹配理由（学习习惯相近、时间表兼容），而不是只给一个契合度分数。学生对黑箱匹配明确表示怀疑，但同一条推荐一旦说出具体理由，他们就愿意行动。代价是竖向空间：一屏能放的匹配更少，列表也更长。把「发现」挪到校园地图上也是相近的理由（从地图上挑，比从列表里挑省力），但地图必须说清楚现在那儿有谁、走过去安不安全，否则它只是把犹豫换了个地方，而不是消掉。竞品拆解指向同一件事：Griffith Mates 在迎新周启动，前四周跑一轮伙伴配对，之后靠一个 Teams 频道把人留住。真正起作用的是那个频道，而一场一次性的活动拿不出对应的东西。"
+      },
+      "pr": {
+        "label": "原型",
+        "p": "10 月 3 日，在九月那几场之后，我们不再打补丁，把整个应用重画在一张纸上：五个屏、每条从首页出发的路径都画上箭头、每块功能挂一个人名。十一月的开发就是从那张纸开始的：做成一套共享组件系统，用 React context 承载跨屏状态，而不是十九个各写各样式的屏。"
+      },
+      "te": {
+        "label": "可用性测试",
+        "p": "十一月，一位受测者独自走完了整条链路：创建圈子、设可见范围、进聊天室、发消息、回到列表，并且把配色化的首页读成了整个应用的地图。Circles 的入口仍然不够显眼：他是在侧栏里找到的，不是一眼看到的。"
+      },
+      "ou": {
+        "label": "产出",
+        "m1": {
+          "label": "开发",
+          "v": "19 屏，一套系统"
+        },
+        "m2": {
+          "label": "研究",
+          "v": "71 份记录，3 轮"
+        },
+        "m3": {
+          "label": "我的部分",
+          "v": "14 场访谈，前端系统"
+        },
+        "p": "一个建立在共享组件系统上的 19 屏移动端 MVP，经过三轮研究和一次开发中途回到纸面的重画，团队自己的 MVP 文档写的是 24 屏，那是把子视图也算成了页。证据状态：课程项目，五人团队。我负责前端组件系统和共享状态层，写了一部分后端路由与控制器，做了 71 场研究与测试里的 14 场；地图、wellness hub 和匹配逻辑是别人的工作。一月份，学期早就结束了，我把这套代码导进自己的仓库，花五天把它往回收成一套设计系统，另外加上暗色模式、一个 OAuth 回调和部署上线：八笔提交，加了 1,068 行，删掉 2,348 行。这一段归属毫无争议属于我：九笔提交全在我名下，也正因为有它，才有一个能直接点开的版本。MVP 跑在 mock 数据上：后端写了但从未接上，所以匹配、消息和日程从来没有面对过真实记录、并发用户或空状态。没有任何一轮记录过完成时间或事先定好的成功标准，所以我能说九月那个导航缺陷在十一月没有再出现，但说不出任何东西改善了多少。"
+      },
+      "rf": {
+        "label": "反思",
+        "p": "我们写了及格线，却从来没有真的去打分。那些阈值仍然起了作用（它们约束了我们问什么，也让我们没能把没测到的东西悄悄重新表述成发现），但最后那个「否定」是定性的，而这恰恰就是把阈值写下来本来要防的失败。下次我会拿逐字稿对照阈值逐条打分，然后把那张表放出来，不管过没过。"
+      }
+    }
+  }
+};
