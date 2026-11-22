@@ -56,13 +56,13 @@ export default async function AboutPage() {
       </section>
 
       <section className="container">
-        <div className="about-grid">
-          <div className="about-prose">
+        <div className="v4-editorial-grid">
+          <div className="about-prose v4-span-8">
             <p className="prose">{t("about.p1")}</p>
             <p className="prose">{t("about.p2")}</p>
             <p className="prose">{t("about.p3")}</p>
           </div>
-          <aside className="about-side">
+          <aside className="about-side v4-span-4 v4-rail-sticky v4-studio-plate">
             <div className="label">{t("about.tl.label")}</div>
             <div className="about-tl" style={{ marginTop: 16 }}>
               {tlRows.map((row) => (

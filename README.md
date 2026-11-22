@@ -1,6 +1,6 @@
-# Lewis Dong — Portfolio (v3.0)
+# Lewis Dong — Portfolio (v4.0)
 
-A statically generated, bilingual portfolio and hiring decision platform for a UQ Master of Interaction Design graduate & Design Engineer. Built with **Next.js 15 App Router**, **React 19**, **TypeScript 5.7**, **Tailwind CSS v4**, **GSAP 3**, **Zod 4**, and **next-intl**. There is no database: all 10 listed case studies live in a schema-validated **Unified Case Registry** (`src/data/cases/` + `src/lib/cases/`), the blog is file-based **MDX**, and every route renders statically in both English and Chinese.
+A statically generated, bilingual digital studio log and hiring decision platform for a UQ Master of Interaction Design graduate & Design Engineer. Built with **Next.js 15 App Router**, **React 19**, **TypeScript 5.7**, **Tailwind CSS v4**, **GSAP 3**, **Zod 4**, and **next-intl**. Case studies live in a schema-validated **Unified Case Registry** (`src/data/cases/` + `src/lib/cases/`), writing lives in file-based **MDX**, and interactive presentation decks & company briefs run with zero-config static fallbacks or optional Upstash Redis / Vercel KV persistence.
 
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.5-black)](#tech-stack)
 [![React 19](https://img.shields.io/badge/React-19-blue)](#tech-stack)
@@ -11,10 +11,11 @@ A statically generated, bilingual portfolio and hiring decision platform for a U
 
 ## Features
 
-### Core Architecture (V3)
+### Core Architecture (V4)
 - **Next.js 15 + React 19 App Router** — Server Components by default, static generation across EN/ZH locales, minimal client hydration boundary
 - **Unified Case Registry (`src/data/cases/*.ts`)** — Modular TypeScript case records validated at build & CI time via **Zod 4** (`src/lib/cases/schema.ts`), paired with the hiring proof registry (`src/lib/proof/`)
-- **Lively Icons Design System (`src/styles/`)** — Tailwind CSS v4 (`@theme inline`) + layered editorial CSS (`tokens`, `base`, `primitives`, `sections/*`): warm paper surfaces (`#EFE8DA` / `#F7F4EC`), single terra accent (`#A63F2A`), monochrome dark mode (`#141413`), 1px solid borders, zero shadows/blur
+- **Swiss Editorial Design System (`src/styles/v4/`)** — Tailwind CSS v4 (`@theme inline`) + Warm Bone White surfaces (`#F6F4EF` / `#FCFBF8`), Deep Charcoal ink (`#151412`), three-tier Deep Charcoal dark workbench (`#111110` / `#181816` / `#222220`), per-case AA `--case-mood` signature ribbons, `Space Grotesk` + `Inter` + `Geist Mono`, 12-column asymmetric studio grid, and 1px structural borders
+- **Interactive Simulators, Process Artifacts & Presentation Mode** — Lazy-loaded V3.6 flagship simulators (`WalkieWristSim`, `MazeContactSim`, `LamplightTriageSim`, `AutofillConfidenceSim`, `FencepostRevokeSim`, `ConnectIaResetSim`), V3.8 before/after scrubbers + research quote decks + vector loops, and V3.9 `Shift + P` `<dialog>` interview presentation decks + `/[locale]/brief/[id]` tailored dossiers with Upstash KV or Base64url/HMAC fallback
 - **Single-point GSAP Motion (`src/lib/motion/gsap.ts`)** — Centralized GSAP registration, `useGsapContext` cleanup, `prefers-reduced-motion` gating, native Pointer Events (no `framer-motion`)
 - **Minimal i18n Client Payload** — Case study copy moved out of JSON bundles into TypeScript registry modules; `NextIntlClientProvider` ships only the 11 UI namespaces needed on the client
 

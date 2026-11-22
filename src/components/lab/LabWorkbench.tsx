@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import { useTheme } from "next-themes";
 import { getGsap } from "@/lib/motion/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -10,14 +10,22 @@ type Locale = "en" | "zh";
 type EaseId = "power2.out" | "power3.out" | "back.out(1.2)";
 
 const SWATCHES = [
-  { token: "--bg", hexLight: "#EFE8DA", hexDark: "#141413", ratio: "Base canvas" },
-  { token: "--surface", hexLight: "#F7F4EC", hexDark: "#1C1C1B", ratio: "Card layer" },
-  { token: "--surface-2", hexLight: "#E7DFD1", hexDark: "#262624", ratio: "Quiet fill" },
-  { token: "--text", hexLight: "#161412", hexDark: "#F5F5F4", ratio: "15.1:1 / 16.9:1" },
-  { token: "--text-2", hexLight: "#4E4840", hexDark: "#D0D0CC", ratio: "7.4:1 / 11.9:1" },
-  { token: "--text-3", hexLight: "#5F584F", hexDark: "#A8A8A3", ratio: "5.8:1 / 7.7:1" },
-  { token: "--border", hexLight: "#9C9182", hexDark: "#5C5C58", ratio: "1px divider" },
-  { token: "--accent", hexLight: "#A63F2A", hexDark: "#F5F5F4", ratio: "5.1:1 · actions only" },
+  { token: "--bg", hexLight: "#F6F4EF", hexDark: "#111110", ratio: "Warm Bone / Deep Studio" },
+  { token: "--surface", hexLight: "#FCFBF8", hexDark: "#181816", ratio: "Primary Card Layer" },
+  { token: "--surface-2", hexLight: "#ECE8DF", hexDark: "#222220", ratio: "Elevated Workbench" },
+  { token: "--text", hexLight: "#151412", hexDark: "#F4F2ED", ratio: "16.4:1 / 16.9:1" },
+  { token: "--text-2", hexLight: "#4A453D", hexDark: "#CECBC3", ratio: "8.5:1 / 11.6:1" },
+  { token: "--text-3", hexLight: "#5C564D", hexDark: "#A3A098", ratio: "6.3:1 / 7.2:1" },
+  { token: "--border-strong", hexLight: "#6E675C", hexDark: "#726F67", ratio: "1px structural grid" },
+  { token: "--accent", hexLight: "#A63F2A", hexDark: "#F4F2ED", ratio: "5.4:1 · primary action" },
+] as const;
+
+const CASE_MOOD_SWATCHES = [
+  { label: "Hardware Steel", token: "#2B4D6F", darkHex: "#92BAE0", cases: "maze / onthebeat" },
+  { label: "Signal Vermilion", token: "#A63F2A", darkHex: "#E69682", cases: "walkie" },
+  { label: "AI Safety Moss", token: "#2F5939", darkHex: "#8EC29A", cases: "fencepost / rules" },
+  { label: "Slate Indigo", token: "#3B4D70", darkHex: "#A3B6E0", cases: "autofill / pricewise" },
+  { label: "Narrative Umber", token: "#6E451F", darkHex: "#DAB082", cases: "lamplight / hoop" },
 ] as const;
 
 export function LabWorkbench({ locale }: { locale: Locale }) {
@@ -59,18 +67,18 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
 
   return (
     <div className="container lab-grid">
-      {/* Module 01: Lively Icons Token & Contrast Inspector */}
+      {/* Module 01: V4 Swiss Editorial Token & Contrast Inspector */}
       <section className="lab-module" aria-labelledby="lab-tokens-title">
         <div className="lab-module-head">
           <div>
-            <div className="label">01 · {isZh ? "设计语言检查器" : "Design System Inspector"}</div>
+            <div className="label">01 · {isZh ? "V4 设计语言检查器" : "V4 Design System Inspector"}</div>
             <h2 id="lab-tokens-title">
-              {isZh ? "Lively Icons 暖纸色与单强调色规范" : "Lively Icons Warm-Paper & Single-Accent Tokens"}
+              {isZh ? "现代瑞士编辑 · 暖骨白与深炭工作台色板" : "Swiss Editorial · Warm Bone White & Charcoal Studio"}
             </h2>
             <p>
               {isZh
-                ? "零阴影、零渐变、零毛玻璃。层级全靠 1px 线框区分；亮色仅用赤陶红标记可点击动作，暗色完全去色相。"
-                : "No shadows, no gradients, no blur. Layers separate with 1px lines; terra marks actions only in light mode, while dark mode drops hue completely."}
+                ? "1px 建筑级分隔线与 12 列不对称编辑网格。旗舰案例在顶栏与交互焦点注册专属 --case-mood 低饱和氛围色带。"
+                : "1px architectural hairlines on a 12-column asymmetric editorial grid. Flagship cases add a restrained AA-verified --case-mood ribbon."}
             </p>
           </div>
           <button
@@ -99,24 +107,44 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
 
         <div className="lab-type-row">
           <div className="lab-type-card">
-            <div className="eyebrow">01 · Page Title (700)</div>
+            <div className="eyebrow">01 · Editorial Display (500 / 700)</div>
             <div className="lab-type-sample-title">
               {isZh ? "交互即规则" : "Rules you can feel"}
             </div>
-            <span className="eyebrow">Shantell Sans / ZCOOL KuaiLe · h1 only</span>
+            <span className="eyebrow">Space Grotesk + Noto Sans SC · 1.25 scale</span>
           </div>
           <div className="lab-type-card">
-            <div className="eyebrow">02 · Interface & Body (400 / 600)</div>
+            <div className="eyebrow">02 · Bilingual Body & UI (400 / 600)</div>
             <div className="lab-type-sample-ui">
               {isZh ? "清晰胜过装饰，证据先于修辞。" : "Clarity over ornament, proof before prose."}
             </div>
-            <span className="eyebrow">Lexend · no italics, two weights</span>
+            <span className="eyebrow">Inter + Noto Sans SC · high legibility</span>
           </div>
           <div className="lab-type-card">
-            <div className="eyebrow">03 · Technical Metadata (400)</div>
-            <div className="lab-type-sample-mono">2026-11-21 · v3.0 · 15.1:1</div>
-            <span className="eyebrow">Geist Mono · dates, tokens, specs</span>
+            <div className="eyebrow">03 · Technical Index (400)</div>
+            <div className="lab-type-sample-mono">2026-11-22 · v4.0 · 16.4:1</div>
+            <span className="eyebrow">Geist Mono · tokens, specs, telemetry</span>
           </div>
+        </div>
+
+        <div className="lab-pill-row" aria-label={isZh ? "案例氛围色带" : "Per-case mood tokens"}>
+          {CASE_MOOD_SWATCHES.map((m) => (
+            <span
+              key={m.label}
+              className="tag"
+              data-case-mood={m.label}
+              style={
+                {
+                  "--case-mood-light": m.token,
+                  "--case-mood-dark": m.darkHex,
+                  borderColor: "var(--case-mood)",
+                  color: "var(--case-mood)",
+                } as CSSProperties
+              }
+            >
+              {m.label} ({m.cases})
+            </span>
+          ))}
         </div>
       </section>
 

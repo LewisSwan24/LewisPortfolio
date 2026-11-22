@@ -523,34 +523,6 @@
   line-height: 1.6;
 }
 
-/* APPLICATION PACKETS */
-.application-packet-page,
-.application-packet {
-  max-width: 100%;
-}
-.application-packet {
-  padding-top: var(--s-8);
-  padding-bottom: var(--s-8);
-}
-@media (max-width: 900px) {
-  .application-packet-hero,
-  .application-packet-proof {
-    grid-template-columns: 1fr;
-  }
-}
-@media print {
-  .application-packet {
-    padding: 0 !important;
-  }
-  .application-packet-proof {
-    grid-template-columns: 1fr !important;
-  }
-  .application-packet-proof-item {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-}
-
 /* APPLICATION FOLLOW-THROUGH */
 .follow-through-page,
 .follow-through {
@@ -760,171 +732,21 @@
   }
 }
 
-.role-comparison-summary span,
-.role-comparison-summary strong,
-.role-comparison-summary a,
-.role-comparison-criterion span,
-.role-comparison-lane small,
-.role-comparison-proof .label,
-.role-comparison-boundary strong,
-.role-comparison-question strong,
-.role-comparison-step span {
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-@media (max-width: 1100px) {
-  .role-comparison-criteria,
-  .role-comparison-sequence {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 900px) {
-  .role-comparison-hero,
-  .role-comparison-section-head,
-  .role-comparison-close {
-    grid-template-columns: 1fr;
-  }
-  .role-comparison-board {
-    padding-top: var(--s-6);
-  }
-}
-@media (max-width: 720px) {
-  .role-comparison-hero h1 {
-    font-size: clamp(38px, 13vw, 58px);
-  }
-  .role-comparison-summary li {
-    grid-template-columns: 1fr;
-  }
-  .role-comparison-criteria,
-  .role-comparison-grid,
-  .role-comparison-sequence {
-    grid-template-columns: 1fr;
-    border: 0;
-    gap: var(--s-3);
-  }
-  .role-comparison-criterion,
-  .role-comparison-lane,
-  .role-comparison-step {
-    min-height: 0;
-    border: 1px solid var(--border);
-  }
-  .role-comparison-stats {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 720px) {
-  .hiring-route-shelf {
-    grid-template-columns: 1fr;
-    padding: var(--s-3);
-  }
-}
-
-.role-packet-page .section.container {
-  padding-top: var(--s-6);
-  padding-bottom: var(--s-6);
-}
-
-@media (max-width: 980px) {
-  .role-packet-hero,
-  .role-packet-nav-head {
-    grid-template-columns: 1fr;
-  }
-
-  .role-packet-actions {
-    justify-content: flex-start;
-  }
-
-  .role-packet-proof-items,
-  .role-packet-interview-items,
-  .role-packet-limit-items,
-  .role-packet-nav-list {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 640px) {
   .hero.container,
   .idx-hero.container,
   .about-hero.container,
   .res-hero.container,
-  .contact-hero.container,
-  .role-packet-hero.container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .role-packet-hero h1 {
-    font-size: clamp(38px, 12vw, 54px);
-  }
-
-  .role-packet-page .section.container {
-    padding-top: var(--s-5);
-    padding-bottom: var(--s-5);
+  .contact-hero.container {
     padding-left: 20px;
     padding-right: 20px;
   }
 
   /* .section's shorthand padding zeroes .container's side gutter, so /hire
-     sections ran edge to edge on phones. Same fix as the role packet page. */
+     sections ran edge to edge on phones. */
   .interview-room-page .section.container {
     padding-left: 20px;
     padding-right: 20px;
-  }
-}
-.interview-agenda-summary span,
-.interview-agenda-summary strong,
-.interview-agenda-summary a,
-.interview-agenda-phase span,
-.interview-agenda-role small,
-.interview-agenda-proof .label,
-.interview-agenda-question strong,
-.interview-agenda-boundary strong,
-.interview-agenda-mini-list strong {
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-@media (max-width: 1100px) {
-  .interview-agenda-phases {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 900px) {
-  .interview-agenda-hero,
-  .interview-agenda-section-head,
-  .interview-agenda-close {
-    grid-template-columns: 1fr;
-  }
-  .interview-agenda-board {
-    padding-top: var(--s-6);
-  }
-}
-@media (max-width: 720px) {
-  .interview-agenda-hero h1 {
-    font-size: clamp(2.35rem, 3.5rem, 3.625rem);
-  }
-  .interview-agenda-hero > div > p {
-    font-size: 1.05rem;
-  }
-  .interview-agenda-summary li {
-    grid-template-columns: 1fr;
-  }
-  .interview-agenda-phases,
-  .interview-agenda-role-grid {
-    grid-template-columns: 1fr;
-    border: 0;
-    gap: var(--s-3);
-  }
-  .interview-agenda-phase,
-  .interview-agenda-role {
-    min-height: 0;
-    border: 1px solid var(--border);
   }
 }
 

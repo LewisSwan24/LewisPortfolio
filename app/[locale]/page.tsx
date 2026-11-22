@@ -108,11 +108,11 @@ export default async function HomePage() {
   const proofLocale: ProofLocale = isZh ? "zh" : "en";
 
   return (
-    <main className="page" data-screen-label="01 Home">
+    <main className="page v4-home" data-screen-label="01 Home · V4 Studio">
       <section className="hero container">
-        <div className="hero-inner">
-          <div className="hero-text">
-            <div className="eyebrow">{t("hero.eyebrow")}</div>
+        <div className="v4-editorial-grid" style={{ alignItems: "center" }}>
+          <div className="hero-text v4-span-5">
+            <div className="eyebrow">{t("hero.eyebrow")} · V4 STUDIO</div>
             <h1 className="h-display h1">
               {t("hero.headline.a")}{" "}
               <br />{" "}
@@ -137,7 +137,7 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="hero-visual">
+          <div className="hero-visual v4-span-7 v4-studio-plate">
             <PracticeDeck />
           </div>
         </div>
@@ -195,25 +195,27 @@ export default async function HomePage() {
       </section>
 
       <section className="section container">
-        <div className="approach">
-          <div className="approach-text">
+        <div className="v4-editorial-grid">
+          <div className="approach-text v4-span-4 v4-rail-sticky">
             <div className="label">{t("approach.label")}</div>
             <h2 className="h-display h2">
               {t("approach.title.text")} <em>{t("approach.title.em")}</em>
             </h2>
             <p className="prose">{t("approach.body")}</p>
           </div>
-          <SectionReveal>
-            <div className="approach-steps">
-              {[1, 2, 3, 4].map((i) => (
-                <div className="approach-step" key={i} data-reveal-item>
-                  <div className="num">0{i}</div>
-                  <h4>{t(`approach.step.${i}.t`)}</h4>
-                  <p>{t(`approach.step.${i}.b`)}</p>
-                </div>
-              ))}
-            </div>
-          </SectionReveal>
+          <div className="v4-span-8">
+            <SectionReveal>
+              <div className="approach-steps">
+                {[1, 2, 3, 4].map((i) => (
+                  <div className="approach-step" key={i} data-reveal-item>
+                    <div className="num">0{i}</div>
+                    <h4>{t(`approach.step.${i}.t`)}</h4>
+                    <p>{t(`approach.step.${i}.b`)}</p>
+                  </div>
+                ))}
+              </div>
+            </SectionReveal>
+          </div>
         </div>
       </section>
 
@@ -273,8 +275,8 @@ export default async function HomePage() {
           <div>
             <p className="prose" style={{ marginBottom: 24 }}>
               {isZh
-                ? "每一封真实的邮件，48 小时内必回。没有表单，也没有过滤器。"
-                : "I reply to every real email within 48 hours. No form, no filter."}
+                ? "每一封真切来信，48 小时内必回；可直发邮件或填写联系页速写表单。"
+                : "Write directly or use the quick note form on /contact — I reply within 48 hours."}
             </p>
             <Link href="/contact" className="btn btn-primary">
               {t("hero.cta.note")} <span className="arrow">→</span>

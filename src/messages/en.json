@@ -109,7 +109,7 @@
     "write": "Write",
     "meta": {
       "built": "Built with Next.js and Tailwind, prototyped with Codex and Claude Code, and refined across iterations.",
-      "version": "v3.5 · updated November 2026"
+      "version": "v4.0 · updated November 2026"
     }
   },
   "tw": {

@@ -1,0 +1,74 @@
+/* ============================================================
+   V4.0 Modern Swiss 12-Column Editorial Grid & Mood Ribbons
+   ============================================================ */
+.v4-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--grid-gutter);
+  align-items: start;
+}
+
+.v4-span-4 { grid-column: span 4; min-width: 0; }
+.v4-span-5 { grid-column: span 5; min-width: 0; }
+.v4-span-7 { grid-column: span 7; min-width: 0; }
+.v4-span-8 { grid-column: span 8; min-width: 0; }
+.v4-span-12 { grid-column: span 12; min-width: 0; }
+
+.v4-rail-sticky {
+  position: sticky;
+  top: 92px;
+  align-self: start;
+  display: grid;
+  gap: var(--s-4);
+}
+
+.v4-studio-plate {
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  padding: var(--s-5);
+}
+
+[data-case-mood] {
+  --case-mood: var(--case-mood-light, var(--accent));
+  --case-mood-soft: color-mix(in oklab, var(--case-mood) 8%, var(--surface));
+}
+
+:root[data-theme="dark"] [data-case-mood],
+.dark [data-case-mood] {
+  --case-mood: var(--case-mood-dark, var(--accent));
+  --case-mood-soft: color-mix(in oklab, var(--case-mood) 14%, var(--surface));
+}
+
+.v4-case-ribbon {
+  height: 3px;
+  width: 100%;
+  background: var(--case-mood);
+  margin-bottom: var(--s-5);
+}
+
+[data-case-mood] .cs-scroll-progress {
+  background: var(--case-mood);
+}
+
+[data-case-mood] .cs-jump a:hover {
+  border-color: var(--case-mood);
+  color: var(--case-mood);
+}
+
+@media (max-width: 960px) {
+  .v4-editorial-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-5);
+  }
+  .v4-span-4,
+  .v4-span-5,
+  .v4-span-7,
+  .v4-span-8,
+  .v4-span-12 {
+    grid-column: 1 / -1;
+  }
+  .v4-rail-sticky {
+    position: static;
+  }
+}

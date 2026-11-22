@@ -16,6 +16,7 @@ import { ResearchQuoteDeck } from "@/components/case/ResearchQuoteDeck";
 import { CaseMicroLoop } from "@/components/case/CaseMicroLoop";
 import { PresentationTrigger } from "@/components/presentation/PresentationTrigger";
 import { buildCaseDeck } from "@/lib/presentation/build-deck";
+import { getCaseMood, getCaseMoodStyle } from "@/lib/cases/mood";
 import { CaseNarrative } from "@/components/case/CaseNarrative";
 import { CaseRelatedNav } from "@/components/case/CaseRelatedNav";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -161,8 +162,16 @@ export default async function CasePage({ params }: Props) {
     ["interview-pack", pageCopy.interviewPack],
   ];
 
+  const mood = getCaseMood(k);
+  const moodStyle = getCaseMoodStyle(k);
+
   return (
-    <main className="page" data-screen-label={`03 Case · ${k}`}>
+    <main
+      className="page v4-case-page"
+      data-screen-label={`03 Case · ${k}`}
+      data-case-mood={k}
+      style={moodStyle}
+    >
       <div className="cs-scroll-progress" aria-hidden="true" />
       <StructuredData
         data={generateBreadcrumbSchema([
@@ -172,6 +181,7 @@ export default async function CasePage({ params }: Props) {
         ])}
       />
       <section className="container cs-hero">
+        <div className="v4-case-ribbon" aria-hidden="true" />
         <Breadcrumb
           className="cs-breadcrumb"
           locale={locale}
@@ -181,8 +191,11 @@ export default async function CasePage({ params }: Props) {
             { label: card.title },
           ]}
         />
-        <div className="eyebrow" style={{ marginBottom: 12 }}>
-          {card.kicker}
+        <div className="lab-pill-row" style={{ marginBottom: 12, alignItems: "center" }}>
+          <span className="eyebrow">{card.kicker}</span>
+          <span className="tag" style={{ borderColor: "var(--case-mood)", color: "var(--case-mood)" }}>
+            {isZh ? mood.labelZh : mood.labelEn}
+          </span>
         </div>
         <h1 tabIndex={-1}>{card.title}</h1>
         <p className="sub">{subtitleText}</p>
@@ -249,32 +262,38 @@ export default async function CasePage({ params }: Props) {
           )}
         </dl>
 
-        <CaseTerminologyNotes slug={k} locale={proofLocale} />
+        <div className="v4-editorial-grid" style={{ marginTop: "var(--s-6)" }}>
+          <aside className="v4-span-4 v4-rail-sticky" aria-label={isZh ? "案例导航轨" : "Case rail"}>
+            <CaseTerminologyNotes slug={k} locale={proofLocale} />
 
-        <div style={{ marginBlock: "var(--s-4) var(--s-5)" }}>
-          <PresentationTrigger deck={presentationDeck} locale={proofLocale} />
+            <div>
+              <PresentationTrigger deck={presentationDeck} locale={proofLocale} className="btn btn-primary" />
+            </div>
+
+            <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
+              <span className="cs-jump-label" aria-hidden="true">
+                {isZh ? "本页目录" : "On this page"}
+              </span>
+              <ol>
+                {jumpSections.map(([id, label]) => (
+                  <li key={id}>
+                    <a href={`#${id}`}>{label}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </aside>
+
+          <div className="v4-span-8">
+            <div id="artifact" className="case-anchor" aria-hidden />
+            <figure className="cs-cover">
+              <CaseCoverVisual slug={k} locale={proofLocale} />
+              {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
+            </figure>
+
+            <CaseSummaryBlock locale={proofLocale} summary={caseSummary} />
+          </div>
         </div>
-
-        <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
-          <span className="cs-jump-label" aria-hidden="true">
-            {isZh ? "本页目录" : "On this page"}
-          </span>
-          <ol>
-            {jumpSections.map(([id, label]) => (
-              <li key={id}>
-                <a href={`#${id}`}>{label}</a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-
-        <div id="artifact" className="case-anchor" aria-hidden />
-        <figure className="cs-cover">
-          <CaseCoverVisual slug={k} locale={proofLocale} />
-          {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
-        </figure>
-
-        <CaseSummaryBlock locale={proofLocale} summary={caseSummary} />
       </section>
 
       {interactiveDemo?.placement === "after-summary" && (

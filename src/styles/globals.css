@@ -1,6 +1,7 @@
-/* Lively Icons Design System — layered stylesheet entrypoint */
+/* V4.0 Swiss Editorial & Digital Studio Log — layered stylesheet entrypoint */
 @import "tailwindcss";
-@import "./tokens.css";
+@import "./v4/tokens.css";
+@import "./v4/grid.css";
 @import "./base.css";
 @import "./primitives.css";
 @import "./sections/home.css";

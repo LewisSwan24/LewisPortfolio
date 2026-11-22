@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site";
 
 export const runtime = "edge";
 
-export const alt = `${siteConfig.name} — practice log`;
+export const alt = `${siteConfig.name} — studio log`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,46 +25,33 @@ async function loadGoogleFont(family: string, text: string) {
   return resp.arrayBuffer();
 }
 
-const PAPER_100 = "#EFE8DA";
-const PAPER_300 = "#D6CDBC";
-const PAPER_500 = "#8E8578";
-const PAPER_600 = "#756D61";
-const PAPER_800 = "#161412";
-const TERRA = "#C9523A";
+const BONE_100 = "#F6F4EF";
+const BONE_300 = "#DBD5C9";
+const MUTED = "#5C564D";
+const INK = "#151412";
+const ACCENT = "#A63F2A";
 
 export default async function Image() {
-  const headline = "Practice log.";
-  const sub = "UX + Interaction Design · Brisbane, AU";
+  const headline = "Studio log.";
+  const sub = "Interaction Design · UX Research · Design Engineering";
   const name = siteConfig.name.toUpperCase();
 
   const alphabet =
     headline +
     sub +
     name +
-    " · PRACTICE LOG — PORTFOLIO / V4 " +
+    " · STUDIO LOG — PORTFOLIO / V4.0 " +
     siteConfig.url.replace(/^https?:\/\//, "") +
     "abcdefghijklmnopqrstuvwxyz0123456789";
 
-  const [displayItalic, mono] = await Promise.all([
-    loadGoogleFont("Fraunces:ital,wght@1,400", alphabet).catch(() => null),
+  const [displaySans, mono] = await Promise.all([
+    loadGoogleFont("Space+Grotesk:wght@700", alphabet).catch(() => null),
     loadGoogleFont("JetBrains+Mono:wght@500", alphabet).catch(() => null),
   ]);
 
-  const fonts: any[] = [];
-  if (displayItalic)
-    fonts.push({
-      name: "Fraunces",
-      data: displayItalic,
-      style: "italic",
-      weight: 400,
-    });
-  if (mono)
-    fonts.push({
-      name: "JetBrainsMono",
-      data: mono,
-      style: "normal",
-      weight: 500,
-    });
+  const fonts: Array<{ name: string; data: ArrayBuffer; style: "normal"; weight: 500 | 700 }> = [];
+  if (displaySans) fonts.push({ name: "SpaceGrotesk", data: displaySans, style: "normal", weight: 700 });
+  if (mono) fonts.push({ name: "JetBrainsMono", data: mono, style: "normal", weight: 500 });
 
   return new ImageResponse(
     (
@@ -76,7 +63,8 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 88px",
-          backgroundColor: PAPER_100,
+          backgroundColor: BONE_100,
+          borderTop: `8px solid ${ACCENT}`,
           fontFamily: "JetBrainsMono",
         }}
       >
@@ -87,33 +75,25 @@ export default async function Image() {
             gap: 14,
             fontFamily: "JetBrainsMono",
             fontSize: 18,
-            letterSpacing: "0.22em",
-            color: PAPER_600,
+            letterSpacing: "0.2em",
+            color: MUTED,
           }}
         >
-          <div
-            style={{
-              width: 10,
-              height: 10,
-              borderRadius: 999,
-              backgroundColor: TERRA,
-            }}
-          />
-          <div>{name}</div>
-          <div style={{ color: PAPER_500 }}>·</div>
-          <div style={{ color: PAPER_500 }}>PRACTICE LOG</div>
+          <div style={{ width: 10, height: 10, backgroundColor: ACCENT }} />
+          <div style={{ color: INK }}>{name}</div>
+          <div>·</div>
+          <div>STUDIO LOG</div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
           <div
             style={{
-              fontFamily: "Fraunces",
-              fontStyle: "italic",
-              fontSize: 120,
-              lineHeight: 1.02,
+              fontFamily: "SpaceGrotesk",
+              fontWeight: 700,
+              fontSize: 112,
+              lineHeight: 1.0,
               letterSpacing: "-0.03em",
-              color: PAPER_800,
-              whiteSpace: "pre-wrap",
+              color: INK,
               display: "flex",
             }}
           >
@@ -121,15 +101,8 @@ export default async function Image() {
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            <div style={{ width: 56, height: 2, backgroundColor: TERRA }} />
-            <div
-              style={{
-                fontFamily: "JetBrainsMono",
-                fontSize: 22,
-                color: PAPER_600,
-                letterSpacing: "0.01em",
-              }}
-            >
+            <div style={{ width: 56, height: 3, backgroundColor: ACCENT }} />
+            <div style={{ fontFamily: "JetBrainsMono", fontSize: 22, color: MUTED }}>
               {sub}
             </div>
           </div>
@@ -140,15 +113,15 @@ export default async function Image() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            borderTop: `1px solid ${PAPER_300}`,
+            borderTop: `1px solid ${BONE_300}`,
             paddingTop: 20,
             fontFamily: "JetBrainsMono",
             fontSize: 14,
-            color: PAPER_500,
+            color: MUTED,
             letterSpacing: "0.18em",
           }}
         >
-          <div>— PORTFOLIO / V4</div>
+          <div>— STUDIO LOG / V4.0</div>
           <div>{siteConfig.url.replace(/^https?:\/\//, "")}</div>
         </div>
       </div>

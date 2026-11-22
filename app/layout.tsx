@@ -1,36 +1,30 @@
-import type { Metadata } from "next";
-import { Lexend, Shantell_Sans, ZCOOL_KuaiLe } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { getLocale } from "next-intl/server";
 import "@/styles/globals.css";
 import { siteConfig } from "@/lib/site";
 
-// Lively Icons type: Lexend for everything a reader works through, Shantell
-// Sans (Latin) and ZCOOL KuaiLe (Chinese) for the one big title of a page,
-// Geist Mono for technical strings. Weights 400 and 600; 700 for titles.
-const lexend = Lexend({
-  subsets: ["latin", "latin-ext"],
+// V4.0 Swiss Editorial & Digital Studio Typography:
+// Space Grotesk for geometric architectural headings, Inter + Noto Sans SC for
+// high-readability bilingual UI/body copy, and Geist Mono for technical indices.
+const inter = Inter({
+  subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const shantell = Shantell_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["700"],
-  variable: "--font-shantell",
+  weight: ["500", "700"],
+  variable: "--font-display-face",
   display: "swap",
 });
 
-// Chinese titles only. Its Han glyphs ship as unicode-range slices, so a page
-// downloads only the slices its title touches; no preload.
-const zcool = ZCOOL_KuaiLe({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-zcool",
-  display: "swap",
-  preload: false,
-});
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -54,7 +48,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${lexend.variable} ${shantell.variable} ${zcool.variable} ${GeistMono.variable}`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${GeistMono.variable}`}
       data-theme="light"
       suppressHydrationWarning
     >

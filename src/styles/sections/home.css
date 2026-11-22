@@ -4,16 +4,6 @@
   position: relative;
   overflow: hidden;
 }
-.hero-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(340px, 0.86fr);
-  gap: var(--s-8);
-  align-items: center;
-  min-height: 560px;
-}
-@media (max-width: 960px) {
-  .hero-inner { grid-template-columns: 1fr; gap: var(--s-7); min-height: 0; }
-}
 .hero-text .h-display {
   max-width: 8.2em;
   margin-bottom: var(--s-4);
@@ -246,107 +236,12 @@
 }
 .deck-counter .sep { color: var(--text-4); }
 
-/* NOW strip */
-.now {
-  display: grid;
-  grid-template-columns: auto 1fr 1fr 1fr 1fr;
-  gap: var(--s-6);
-  padding: var(--s-6) 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  align-items: start;
-}
-.now-label .dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--text-3);
-  animation: pulse 2.4s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 0.3; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.1); }
-}
-.now-label .text {
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--text-3); margin-top: 6px;
-}
-@media (max-width: 960px) {
-  .now { grid-template-columns: 1fr 1fr; gap: var(--s-5); }
-  .now-label { grid-column: 1 / -1; flex-direction: row; align-items: center; }
-  .now-label .text { margin-top: 0; }
-}
-.proof-intro .label { align-self: start; }
-.proof-intro .h-display {
-  margin: var(--s-3) 0 var(--s-5);
-  max-width: 12em;
-}
-.proof-intro .prose { margin: 0; }
-.proof-status {
-  margin: var(--s-4) 0 0;
-  max-width: 42em;
-  font-family: var(--font-ui);
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text);
-}
-.proof-stat {
-  min-height: 180px;
-  padding: var(--s-5);
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-.proof-stat strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(38px, 5vw, 64px);
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  color: var(--text);
-}
-.proof-stat span {
-  display: block;
-  margin-top: 10px;
-  font-family: var(--font-ui);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-3);
-}
-.proof-stat p {
-  margin: var(--s-4) 0 0;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--text-2);
-}
-@media (max-width: 960px) {
-  .proof-intro,
-  .capability-map { grid-template-columns: 1fr; }
-  .proof-stats,
-  .capability-list { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 640px) {
-  .proof-stats,
-  .capability-list { grid-template-columns: 1fr; }
-  .proof-stat,
-  .capability-card { min-height: 0; }
-}
-@media (max-width: 960px) {
-  .hiring-guide-head,
-  .hiring-guide-list { grid-template-columns: 1fr; }
-  .hiring-guide-item { min-height: 0; }
-}
-@media (max-width: 640px) {
-  .hiring-guide { padding: 0 20px var(--s-7); }
-}
-
-/* FEATURED zig-zag */
+/* FEATURED */
 .feat-head {
   display: flex; justify-content: space-between; align-items: end;
   margin-bottom: var(--s-7); gap: var(--s-5);
 }
 .feat-head .h-display { max-width: 14em; margin: var(--s-3) 0 0; }
-.feat-list { display: flex; flex-direction: column; gap: var(--s-9); }
 
 /* The featured deck. One case on stage, the other seven stacked underneath it
    in the same grid cell — they stay in the document for crawlers and

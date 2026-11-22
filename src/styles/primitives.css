@@ -304,18 +304,6 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
   gap: var(--s-5);
 }
 
-.v3-card-subgrid {
-  grid-row: span 3;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-rows: subgrid;
-  gap: var(--s-3);
-}
-
-.v3-cq-card {
-  container: card / inline-size;
-}
-
 .v3-pill-row {
   display: flex;
   flex-wrap: wrap;

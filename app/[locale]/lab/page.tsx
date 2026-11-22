@@ -8,12 +8,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "实验室 · Lively Icons 设计系统与交互状态机"
-      : "Lab · Lively Icons & Interaction State Machines";
+      ? "实验室 · V4 Swiss Editorial 设计系统与交互状态机"
+      : "Lab · V4 Swiss Editorial & Interaction State Machines";
   const description =
     locale === "zh"
-      ? `${siteConfig.author.nameZh} 的 Lively Icons 暖纸色 Token 检查器、GSAP 动效曲线台与真实硬件/AI 状态机微原型。`
-      : `Interactive Lively Icons token inspector, GSAP paper-motion sandbox, and state-machine micro-demos by ${siteConfig.name}.`;
+      ? `${siteConfig.author.nameZh} 的 V4 Swiss Editorial 暖骨白与深炭工作室 Token 检查器、GSAP 动效曲线台与真实硬件/AI 状态机微原型。`
+      : `Interactive V4 Swiss Editorial token inspector, GSAP paper-motion sandbox, and state-machine micro-demos by ${siteConfig.name}.`;
 
   return {
     title,
@@ -37,8 +37,8 @@ export default async function LabPage() {
         </h1>
         <p className="sub">
           {isZh
-            ? "这里不放装饰性的特效模板，而是直接呈现本站的 Lively Icons 色彩对比度规范、GSAP 纸面动效曲线，以及三个项目中最核心的交互状态规则。"
-            : "No decorative templates — this workbench exposes the live Lively Icons contrast tokens, the GSAP paper-motion curve layer, and the core state rules behind three projects."}
+            ? "这里不放装饰性的特效模板，而是直接呈现本站的 V4 Swiss Editorial 色彩对比度规范、GSAP 纸面动效曲线，以及三个项目中最核心的交互状态规则。"
+            : "No decorative templates — this workbench exposes the live V4 Swiss Editorial contrast tokens, the GSAP paper-motion curve layer, and the core state rules behind three projects."}
         </p>
       </section>
       <LabWorkbench locale={locale} />

@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - 2026-11-22
+
+### Modern Swiss Editorial & Digital Studio Visual System
+- **V4 Design Tokens & Color System (`src/styles/v4/tokens.css`, `src/lib/cases/mood.ts`)** — Migrated from Lively Icons parchment (`#EFE8DA`) to Warm Bone White (`#F6F4EF` / `#FCFBF8`), Deep Charcoal ink (`#151412`), three-tier Deep Charcoal Studio dark workbench (`#111110` / `#181816` / `#222220`), `color-scheme: light dark`, `forced-colors: active` guards, and per-case WCAG AA `--case-mood` signature ribbons across all 14 cases.
+- **Bilingual Editorial Typography (`app/layout.tsx`)** — Replaced `Shantell Sans` / `ZCOOL KuaiLe` / `Lexend` with `Space Grotesk` + `Inter` + `Noto Sans SC` + `Geist Mono` on a `1.25` modular scale (`1px` architectural hairlines, CJK zero-letter-spacing preserved).
+- **12-Column Asymmetric Swiss Grid (`src/styles/v4/grid.css`)** — Rolled out `.v4-editorial-grid` (`4-col` sticky rail + `8-col` wide studio showcase canvas) across Home, case study pages, and `/about`, paired with `/lab` V4 token/mood swatches.
+- **V4 Dynamic OpenGraph & Strict `<= 26 kB gz` App CSS (`scripts/check-bundle-budget.mjs`)** — Upgraded root, project, and blog OG generators to V4 Warm Bone + Space Grotesk + case mood bars, updated footer version to `v4.0`, and pruned over 800 lines of unused hiring/legacy CSS.
+
+## [3.9.0] - 2026-11-22
+
+### Interview Presentation Mode, Tailored Briefs & Zero-PII Server Loop
+- **Lazy-Loaded Presentation Mode (`PresentationShell.tsx`, `PresentationTrigger.tsx`)** — Added `Shift + P` and trigger controls on case studies, `/hire`, and tailored brief pages rendering a 16:9 native `<dialog>` slide deck with embedded V3.6 interactive simulators, V3.8 scrubbers, keyboard pagination, `sessionStorage` local speaker notes (`N`), and fullscreen support (`F`).
+- **Tailored Brief Generator & `noindex` Dossier (`app/api/brief/route.ts`, `app/[locale]/brief/[id]/page.tsx`)** — Added Upstash Redis REST adapter (`brief:v1:<id>`, anonymous `brief:views:<id>`) plus automatic Base64url/HMAC stateless `s_...` fallback and `/hire` builder UI.
+- **Rate-Limited `/api/contact` & Progressive Form (`QuickContactForm.tsx`)** — Added Zod validation, `:user-invalid` post-interaction error handling, honeypot trap, 3-per-10-min sliding IP-hash rate limiter (`rl:contact:<ipHash>`), zero PII logging, and seamless `mailto:` fallback.
+
+## [3.8.0] - 2026-11-21
+
+### Design Process Artifacts, Research Attribution & Vector Micro-Loops
+- **Before/After Scrubber (`BeforeAfterScrubber.tsx`)** — Pointer + keyboard (`role="slider"`) structural comparison for `connect`, `pricewise`, `hoop`, and `lamplight` with `touch-action: pan-y` axis locking.
+- **Research Quote Deck (`ResearchQuoteDeck.tsx`)** — Filterable participant friction cards mapped directly to product decisions across `connect`, `maze`, `autofill`, `lamplight`, and `walkie`.
+- **Declarative Vector Micro-Loops (`CaseMicroLoop.tsx`)** — Zero-video interactive SVG loops with explicit Play/Pause and `prefers-reduced-motion` static keyframe fallback for `onthebeat`, `walkie`, and `grassland`.
+
+## [3.7.0] - 2026-11-21
+
+### Modern Web Platform Primitives & 6-Primitive Lab
+- **Native View Transitions (`TransitionLink.tsx`)**, **Anchored Popover Terminology Notes (`AnchorNote.tsx`, `CaseTerminologyNotes.tsx`)**, **CSS Scroll-Driven Progress (`cs-scroll-progress`)**, and **V3.7 `/lab` Interactive Primitives Gallery (`LabPrimitivesGallery.tsx`)**.
+
+## [3.6.0] - 2026-11-21
+
+### Interactive Case Prototype Engine & 6 Flagship Simulators
+- **Lazy-Loaded `CaseSimulatorFrame` + 6 Interactive Simulators** — Shipped `WalkieWristSim`, `LamplightTriageSim`, `AutofillConfidenceSim`, `MazeContactSim`, `FencepostRevokeSim`, and `ConnectIaResetSim` mounted only on intersection or explicit activation.
+
 ## [3.5.0] - 2026-11-21
 
 ### Visual Polish, CWV & Print Fit
