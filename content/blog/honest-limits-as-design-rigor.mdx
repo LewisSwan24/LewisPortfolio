@@ -1,0 +1,41 @@
+---
+title: "Honest validation boundaries as design rigor"
+date: "2026-11-22"
+excerpt: "In design portfolios, inflated metrics hide where judgment stops. Why labeling sample ceilings, unverified assumptions, and next experiments proves engineering honesty."
+tags:
+  - Evidence Discipline
+  - Portfolio Craft
+  - Design Rationale
+author: "Lewis Dong"
+published: true
+---
+
+Too many case studies borrow the visual grammar of finished consumer launches for what were actually student prototypes, personal utilities, or architectural experiments. "Increased efficiency by 42%" sounds polished on a slide deck until a hiring engineer asks for the baseline script or cohort size.
+
+Across the six public works in this portfolio, the fastest way to make a design decision credible was to publish the exact ceiling where testing stopped.
+
+## Separation between local proof and unmeasured field claims
+
+Take three prototypes built under completely different test regimes:
+
+- **[Grassland](/projects/grassland)** runs over 430 deterministic local unit and parser checks across its multi-file consistency grammar, syntax repair loop, and static preview builder. That verifies structural integrity in CI, not what 50 outside teams do when adopting the grammar without onboarding.
+- **[Maze](/projects/maze)** ran live across nine campus teams (36 players total, with roughly three teams reaching the finish) at UNSW. That validates physical QR physical-world pacing under noisy venue light, while leaving long-tail leaderboard persistence unbuilt after the event window closed.
+- **[OnTheBeat](/projects/onthebeat)** documents the teammate card aesthetic and hardware-software dual-boot/relay boundary explored by the team, with zero external long-term wearer study conducted in public.
+
+Treating unit counts, single-evening live trials, and unverified ergonomics as identical "success metrics" destroys signal for both human and machine readers.
+
+## Why printable dossiers must foreground failure modes
+
+When we added the A4 Editorial Critique dossier (`/brief/print`) and static role PDFs in this release, over 60% of every page went to human tension, rejected alternatives, and the explicit **Honest Scope & Limits** sidebar instead of large screenshots.
+
+Each sheet pairs those limits with an offline-safe vector QR matrix pointing directly to the live interactive prototype or decision table. A hiring lead carrying the printout into a conference room can read what we rejected, verify the boundary we have not crossed yet, and scan straight into the working code without scrolling past vanity KPIs.
+
+## Writing the next falsification test
+
+Every honest limit implies one concrete next check:
+
+1. For **[Walkie](/projects/walkie)**, run one week of single-handed corridor walk-tests with screen readers and wet-glove audio conditions instead of resting on single-user dry runs.
+2. For **[Lamplight Nook](/projects/lamplight)**, run blinded A/B comprehension audits of first-turn ambiguity across external users rather than tuning solely around Lewis's daily notes.
+3. For **[Resume Autofill](/projects/autofill)**, sample real ATS DOM mutations across external portals beyond our five synthetic fixture forms.
+
+Naming what has *not* been proven is not modesty; it is how an engineer prevents teams from mistaking prototype confidence for production guarantees.

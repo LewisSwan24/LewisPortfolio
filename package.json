@@ -25,7 +25,8 @@
     "media:optimize": "node scripts/optimize-media.mjs",
     "media:check": "node scripts/optimize-media.mjs --check",
     "budget:check": "node scripts/check-bundle-budget.mjs",
-    "resume:pdf": "node scripts/build-resume-pdf.mjs"
+    "resume:pdf": "node scripts/build-resume-pdf.mjs",
+    "decks:build": "node scripts/build-role-decks.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",

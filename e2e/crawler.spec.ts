@@ -7,6 +7,7 @@ const BLOG_SLUGS = [
   "walkie-and-fencepost-invariants",
   "withdrawing-interfaces-in-social-spaces",
   "cognitive-sovereignty-and-default-refusal",
+  "honest-limits-as-design-rigor",
 ];
 
 const PUBLIC_ROUTES = [

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { LabWorkbench } from "@/components/lab/LabWorkbench";
+import { LabTelemetryPanel } from "@/components/lab/LabTelemetryPanel";
 import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -48,6 +49,7 @@ export default async function LabPage() {
       </section>
       <LabWorkbench locale={locale} />
       <SpecimenAxisCanvas locale={locale} />
+      <LabTelemetryPanel locale={locale} />
     </main>
   );
 }

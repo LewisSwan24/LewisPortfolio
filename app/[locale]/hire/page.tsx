@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
+import { localizeInternalHref } from "@/lib/locale-href";
 import { AiTrustThread } from "@/components/hiring/AiTrustThread";
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
@@ -107,6 +109,40 @@ export default async function HirePage() {
       </section>
 
       <JdMatcherPanel locale={proofLocale} />
+
+      <section className="section container" aria-labelledby="hire-decks-heading">
+        <div className="v4-studio-plate" style={{ display: "grid", gap: "var(--s-3)" }}>
+          <div>
+            <span className="eyebrow">
+              {proofLocale === "zh" ? "A4 设计论证评注本与角色 PDF Deck" : "Editorial Critique Print & Role Decks"}
+            </span>
+            <h2 id="hire-decks-heading" className="h-display" style={{ fontSize: "clamp(20px, 2.2vw, 28px)", marginTop: 6 }}>
+              {proofLocale === "zh"
+                ? "带进面试会议室的论证手稿（附直达活原型的 QR 二维码）"
+                : "Bringable A4 critique manuscripts with live QR jump codes"}
+            </h2>
+            <p className="prose" style={{ marginTop: 6, maxWidth: "66ch" }}>
+              {proofLocale === "zh"
+                ? "每页 >= 60% 版面聚焦人类冲突、被否决方案与坦诚边界，避免堆砌大号装饰标题；支持在线自定义角色组合打印，或直接下载预设岗位 PDF。"
+                : "Over 60% of each A4 sheet covers human tension, rejected paths, and explicit limits — printable per custom case selection or downloadable directly per role."}
+            </p>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            <Link className="btn btn-primary" href={localizeInternalHref("/brief/print", proofLocale)}>
+              {proofLocale === "zh" ? "打开在线 A4 评注打印工作台" : "Open Interactive A4 Critique Studio"}
+            </Link>
+            <a className="btn btn-ghost" href="/decks/ai-product-engineer.pdf" download>
+              {proofLocale === "zh" ? "AI 产品工程师 Deck (PDF)" : "AI Product Engineer (PDF)"}
+            </a>
+            <a className="btn btn-ghost" href="/decks/design-engineer.pdf" download>
+              {proofLocale === "zh" ? "设计工程师 Deck (PDF)" : "Design Engineer (PDF)"}
+            </a>
+            <a className="btn btn-ghost" href="/decks/hardware-interaction.pdf" download>
+              {proofLocale === "zh" ? "软硬交互设计师 Deck (PDF)" : "Hardware & Interaction (PDF)"}
+            </a>
+          </div>
+        </div>
+      </section>
 
       <TailoredBriefBuilder
         cases={listedCases.map((record) => ({

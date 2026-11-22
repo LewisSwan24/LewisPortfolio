@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.0] - 2026-11-22
+
+### Editorial Critique A4 Print Dossier, Static Role PDFs, Zero-PII RUM & Essay #3
+- **Offline-Safe SVG QR Matrix Encoder (`src/lib/pdf/qr-svg.ts`)** — Deterministic TypeScript byte-mode QR encoder producing vector SVG paths (`shapeRendering="crispEdges"`) with zero external QR API dependencies.
+- **Editorial Critique Print Dossier (`app/[locale]/brief/print/page.tsx`, `src/components/brief/PrintDeckSelector.tsx`)** — Dynamically selectable role/case A4 print layout (`noindex, nofollow`) where `>= 60%` of each sheet covers human tension, rejected paths, and chosen tradeoffs beside explicit validation limits and live-prototype QR jump codes.
+- **3 Curated Role PDF Decks (`scripts/build-role-decks.mjs`, `pnpm decks:build`)** — Pre-built static A4 role PDFs (`public/decks/{ai-product-engineer,design-engineer,hardware-interaction}.pdf`, `< 600 KB` each) linked from `/hire`.
+- **Zero-PII RUM Telemetry (`app/api/vitals/route.ts`, `src/lib/web-vitals.ts`, `src/components/lab/LabTelemetryPanel.tsx`)** — Strict Zod enum-only Web Vitals (`LCP`, `INP`, `CLS`, `FCP`, `TTFB`, `INTERACTION`) and route-group buckets with zero cookies or PII, surfaced as a live P75 instrumentation panel on `/lab`.
+- **Essay #3 (`content/blog/{,zh/}honest-limits-as-design-rigor.mdx`)** — Published bilingual essay explaining how explicit sample ceilings, failed assumptions, and printable critique sheets turn prototype honesty into engineering rigor.
+
 ## [4.3.0] - 2026-11-22
 
 ### Zero-Hallucination Design-Defense AI Navigator & Essay #2
