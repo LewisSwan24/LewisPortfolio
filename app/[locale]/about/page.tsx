@@ -78,26 +78,28 @@ export default async function AboutPage() {
 
       <section className="container section about-workflow-section" aria-labelledby="about-workflow-heading">
         <div className="about-workflow-head">
-          <div className="label">{isZh ? "协作边界" : "Working loop"}</div>
+          <div className="label">{isZh ? "论证立场与协作边界" : "Design stance & working loop"}</div>
           <h2 id="about-workflow-heading" className="h-display h2" style={{ marginTop: 12 }}>
-            {isZh ? "我自己定规则，代理负责跑通实现，测试守住边界。" : "I own the spec and the judgment; agents draft the code; tests guard the edges."}
+            {isZh
+              ? "先替人写清交互规则与拒答边界，再让代码与原型去撞真实摩擦。"
+              : "I define the human rule and refusal boundary first; prototypes exist to test where it holds."}
           </h2>
         </div>
 
-        <ol className="about-loop-rail" aria-label={isZh ? "从研究到验收的四步循环" : "Four-step build loop"}>
+        <ol className="about-loop-rail" aria-label={isZh ? "从人的摩擦到诚实边界的四步循环" : "Four-step rationale and build loop"}>
           {(
             isZh
               ? [
-                  { n: "01", t: "书面规格", d: "先写清楚场景假设、权限与停机规则，再决定界面长什么样。" },
-                  { n: "02", t: "代理协作", d: "用 Claude Code / Codex 把结构落成可运行原型，而非停在静态线框。" },
-                  { n: "03", t: "自动化门禁", d: "单元测试、红线拦截、硬件串口/屏幕场景脚本替代纯口头判断。" },
-                  { n: "04", t: "诚实复盘", d: "实测没跑的部分直接标明空白，不拿模拟日志冒充真实用户。" },
+                  { n: "01", t: "找准人的摩擦", d: "先识别打扰注意力、引发误触风险或让人尴尬的真实场景，再决定界面长什么样。" },
+                  { n: "02", t: "明示设计取舍", d: "写清否决了哪几种看似顺滑但伤害用户掌控感的备选路径。" },
+                  { n: "03", t: "真原型压测", d: "用软件或硬件实体搭配自动化门禁跑到可测保真度，不止于口头讲故事。" },
+                  { n: "04", t: "诚实标注空白", d: "实测没跑的部分直接标明，不拿离线模拟或自我体验冒充外部真实研究。" },
                 ]
               : [
-                  { n: "01", t: "Written spec", d: "Pin down user tensions, safety invariants, and failure states before visual polish." },
-                  { n: "02", t: "Agent-assisted build", d: "Use Claude Code and Codex to reach real interactive builds faster than mockups alone." },
-                  { n: "03", t: "Reproducible gates", d: "Back every invariant with automated red-line checks, offline suites, or device scenes." },
-                  { n: "04", t: "Honest scope", d: "Document where participant testing has not run yet instead of hiding gaps behind polish." },
+                  { n: "01", t: "Human friction first", d: "Pin down attention overload, error cost, and social discomfort before choosing visual components." },
+                  { n: "02", t: "Explicit tradeoffs", d: "Write out the tempting alternatives that had to be rejected so the user keeps legible control." },
+                  { n: "03", t: "Falsifiable prototypes", d: "Ship software or physical builds backed by automated gates so rules are tested in motion." },
+                  { n: "04", t: "Honest scope", d: "Keep verified behavior distinct from what still waits for outside participant testing." },
                 ]
           ).map((step) => (
             <li className="about-loop-step" key={step.n}>

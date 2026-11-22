@@ -145,6 +145,90 @@ export const autofillCase: CaseRecord = {
       ]
     }
   },
+  "designDecisions": [
+    {
+      "id": "three-tier-no-guess",
+      "decisionTitle": {
+        "en": "Split certainty into three visible tiers and leave ambiguous answers blank",
+        "zh": "三态置信度分流：有歧义与开放题刻意留白，绝不替求职者乱猜"
+      },
+      "humanTension": {
+        "en": "Re-typing one resume across Workday, Beisen, and Moka is exhausting, yet AI autofillers that guess visa status, salary expectations, or motivation essays to look '100% automatic' shift catastrophic error risk onto the applicant.",
+        "zh": "在 Workday、北森、Moka 之间重复抄写同一份简历极其消耗心力；但市面上的工具常为了显得「全自动」而硬猜签证身份、期望薪资或开放问答题，一旦猜错，后果全由求职者承担。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Cloud LLM auto-generation for every blank and open-ended prompt",
+            "zh": "接入云端大模型自动编造所有未知栏位与开放式问答"
+          },
+          "flaw": {
+            "en": "Produces plausible hallucinations on high-stakes compliance fields and requires sending private resume history to external servers.",
+            "zh": "在签证、工龄等不可容错字段上制造「看起来很像」的幻觉，同时迫使个人简历离开本地设备。"
+          }
+        },
+        {
+          "option": {
+            "en": "Color-only highlight for uncertain fields",
+            "zh": "仅用单色边框高亮区分确定与待确认字段"
+          },
+          "flaw": {
+            "en": "Fails color-blind accessibility and leaves users unsure whether a field was skipped intentionally or broken.",
+            "zh": "色觉障碍用户难以分辨，也无法向人解释系统「为什么没填这一格」。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Deterministic 1:1 local matches fill immediately (solid), ambiguous dropdowns pause for review (dashed), open prompts stay blank (double), and every tier pairs stroke style, word badge, and explicit side-panel reason.",
+        "zh": "建立三档可见分流：确定 1:1 字段直填（实线）、歧义下拉标出待核（虚线）、开放题刻意留空（双线），每种状态同时配备边框线型、文字标签与侧栏原因说明。"
+      },
+      "residualCostOrRisk": {
+        "en": "Applicants still write open answers manually, and 100% fill accuracy is measured only on synthetic fixture forms—real ATS accuracy across outside users remains unmeasured.",
+        "zh": "求职者仍需亲自填写开放问答；目前的 100% 准确率仅来自合成测试表单，真实求职网站上的跨人群准确率尚未量化统计。"
+      }
+    },
+    {
+      "id": "human-submit-and-local",
+      "decisionTitle": {
+        "en": "Hard-lock final Submit to human action and keep resumes strictly on-device",
+        "zh": "硬性禁止代点最终提交，并把简历数据锁死在本地设备"
+      },
+      "humanTension": {
+        "en": "Multi-step campus portals frequently place 'Submit' in the exact pixel slot where 'Next' appeared on earlier steps, creating genuine anxiety that automation will fire an irreversible application prematurely.",
+        "zh": "国内校招与海外多步网申经常把最终「提交」放在上一页「下一步」的同一位置，让使用者担心工具翻页时顺手把半成品投了出去。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "One-click end-to-end auto-apply",
+            "zh": "全链路一键自动翻页并代点最终提交"
+          },
+          "flaw": {
+            "en": "Removes the applicant's final inspection gate and makes any adapter misread irreversible.",
+            "zh": "剥夺申请人的终审权，任何控件适配偏差都会直接变成无法撤回的错误投递。"
+          }
+        },
+        {
+          "option": {
+            "en": "Cloud account sync across Chrome and Android",
+            "zh": "通过自建云端账号在 Chrome 扩展与 Android 间同步简历"
+          },
+          "flaw": {
+            "en": "Introduces server storage, breach liability, and telemetry concerns for sensitive personal identity data.",
+            "zh": "引入服务端存储与泄露风险，削弱「绝不外传」的隐私承诺。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Extension logic advances Next across pages and stops dead before Submit (stated explicitly in the side panel), while Chrome CSP blocks network calls and Android encrypts resumes in the device Keystore (verified by a unit test rejecting network imports).",
+        "zh": "多页流程只代点「下一步」并在最终提交前停下（侧栏明文告知），Chrome 扩展通过严格 CSP 断绝外网请求，Android 端以 Keystore 加密存储并由单元测试拦截任何网络类引用。"
+      },
+      "residualCostOrRisk": {
+        "en": "Requires one manual final click and separate setup per device; not yet published on Chrome Web Store or Google Play, no iOS version, no Chinese IME in the Android keyboard, and WeChat-login-only portals stay unreachable.",
+        "zh": "每份投递仍需人工多点一次最终确认，双端无法云同步；尚未上架应用商店、无 iOS 版、Android 简历键盘暂不支持中文输入法，且无法触及纯微信登录页面。"
+      }
+    }
+  ],
   "card": {
     "en": {
       "kicker": "Automation that acts for you · Privacy",

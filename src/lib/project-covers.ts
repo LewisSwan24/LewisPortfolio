@@ -7,6 +7,8 @@
  * Unlisted cases (see UNLISTED_PROJECT_SLUGS) carry no cover.
  */
 
+import { isUnlistedProject } from "@/lib/project-routes";
+
 export interface ProjectCover {
   src: string;
   width: number;
@@ -122,5 +124,6 @@ export const PROJECT_COVERS = {
 } satisfies Record<string, ProjectCover>;
 
 export function getProjectCover(slug: string): ProjectCover | undefined {
+  if (isUnlistedProject(slug)) return undefined;
   return (PROJECT_COVERS as Record<string, ProjectCover>)[slug];
 }

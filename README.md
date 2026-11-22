@@ -1,4 +1,4 @@
-# Lewis Dong — Portfolio (v4.0)
+# Lewis Dong — Portfolio (v4.2)
 
 A statically generated, bilingual digital studio log and hiring decision platform for a UQ Master of Interaction Design graduate & Design Engineer. Built with **Next.js 15 App Router**, **React 19**, **TypeScript 5.7**, **Tailwind CSS v4**, **GSAP 3**, **Zod 4**, and **next-intl**. Case studies live in a schema-validated **Unified Case Registry** (`src/data/cases/` + `src/lib/cases/`), writing lives in file-based **MDX**, and interactive presentation decks & company briefs run with zero-config static fallbacks or optional Upstash Redis / Vercel KV persistence.
 
@@ -20,10 +20,10 @@ A statically generated, bilingual digital studio log and hiring decision platfor
 - **Minimal i18n Client Payload** — Case study copy moved out of JSON bundles into TypeScript registry modules; `NextIntlClientProvider` ships only the 11 UI namespaces needed on the client
 
 ### Flagship Experience & Hiring Engine
-- **10 Listed Case Studies (+ 4 Unlisted Archives)** — Curated Top 6 featured deck on home (`maze`, `walkie`, `lamplight`, `autofill`, `fencepost`, `connect`) plus listed index entries (`hoop`, `onthebeat`, `pricewise`, `grassland`), native `<dialog>` gallery lightbox (`CaseLightbox.tsx`), interactive `/lab?demo=` rule cards, and click-to-load embeds (`fencepost-app.vercel.app`, `lewisswan24.github.io/lamplight-nook-site/`)
-- **Interactive `/lab` Workbench** — Bilingual Lively Icons Design System Inspector, live GSAP Motion Sandbox, and 3 URL-linkable state-machine micro-demos (`On The Beat`, `Resume Autofill`, `Walkie`)
+- **6 Listed Case Studies (+ 8 Unlisted Archives)** — Curated 6-case portfolio (`walkie`, `lamplight`, `autofill`, `maze`, `onthebeat`, `grassland`), structured `Design Decisions & Tradeoffs` (`#design-decisions`) on every listed case, native `<dialog>` gallery lightbox (`CaseLightbox.tsx`), interactive `/lab?demo=` rule cards, and click-to-load embeds (`lewisswan24.github.io/lamplight-nook-site/`, `onon-wolf-iron-tide.vercel.app`)
+- **Interactive `/lab` Workbench** — Bilingual V4 Swiss Editorial Token Inspector with zero-hydration CSS theme swatches, live GSAP Motion Sandbox, and URL-linkable state-machine micro-demos (`On The Beat`, `Resume Autofill`, `Walkie`)
 - **Lazy `cmdk` Warm-Paper Command Palette (`⌘K`)** — Dynamically mounted on demand and backed by static `/search-index/{en,zh}` JSON endpoints
-- **Machine-Readable `/llms.txt`** — Static summary of all 10 listed case studies, capabilities, and evidence boundaries (excluding unlisted archives)
+- **Machine-Readable `/llms.txt`** — Static summary of all 6 listed case studies, capabilities, and evidence boundaries (excluding all 8 unlisted archives)
 - **Role-Tailored Hiring Lens (`/hire?role=product|interaction|design-eng|ai-ux`)** — URL-driven case filtering with one-click copyable tailored links, evidence matrix, interview question bank, and proof packets
 - **Print-First `/resume` + Playwright PDF Builder** — Clean print-to-PDF layout with `pnpm resume:pdf` generating crisp EN/ZH A4 vector PDFs on demand
 

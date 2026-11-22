@@ -205,6 +205,90 @@ export const lamplightCase: CaseRecord = {
       ]
     }
   },
+  "designDecisions": [
+    {
+      "id": "spatial-cafe-over-stdout",
+      "decisionTitle": {
+        "en": "Spatialize agent roles as a café crew instead of a terminal log or chat avatar",
+        "zh": "用「黑板计划 + 咖啡馆分工」替代终端滚动日志与拟人聊天框"
+      },
+      "humanTension": {
+        "en": "Background coding agents run for tens of minutes and emit hundreds of text lines; people either stare anxiously at scrolling stdout or tune out completely and miss when the agent actually stalled waiting for input.",
+        "zh": "异步后台 Agent 动辄连续运行十多分钟并吐出数百行日志；人要么被滚动字符吸走注意力，要么彻底切走而错过真正需要人拍板的卡点。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Traditional spinner plus auto-scrolling raw stdout log",
+            "zh": "传统旋转加载圈 + 自动滚动原始终端日志"
+          },
+          "flaw": {
+            "en": "Treats planning, tool execution, and blocked user questions as visually identical text lines, forcing the user to parse logs every few minutes.",
+            "zh": "把规划、执行与等待人确认压扁成同一种文本流，人每隔几分钟就得重读一遍上下文才能判断状态。"
+          }
+        },
+        {
+          "option": {
+            "en": "Conversational 'helpful buddy' chatbot with affective banter",
+            "zh": "强拟人化的情感陪伴式对话助手"
+          },
+          "flaw": {
+            "en": "Chatty anthropomorphism encourages over-trust and blurs the boundary between verified file actions and conversational reassurance.",
+            "zh": "过度拟人化的寒暄会制造虚假亲密感与盲信，让人在放松警惕时忽略后台真实的写文件动作。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Separate state into spatial roles: Wick chalks the real plan onto a blackboard, specialist crew act out real Claude Agent SDK events, and minimizing shrinks everything into a calm corner status monitor that only chimes when a decision waits.",
+        "zh": "将状态拆成空间秩序：Wick 把真实待办写在黑板逐条划掉，店员按 Claude Agent SDK 真实事件分头行动，最小化后收缩进桌角安静小窗，只在需要人决断时轻声唤回。"
+      },
+      "residualCostOrRisk": {
+        "en": "Every new agent event has to be explicitly mapped to character rules, unmappable details still require plain text cards, and whether others read the café faster than logs remains untested outside Lewis's daily work.",
+        "zh": "每个底层事件都需人工映射成角色动作，装不进比喻的细节仍得靠文字卡兜底；除作者本人外，其他人是否真的比看日志读得更快尚未经过对比实验。"
+      }
+    },
+    {
+      "id": "default-not-now-and-copies",
+      "decisionTitle": {
+        "en": "Lock risky-action keyboard focus onto 'Not now' and restrict staff to file copies",
+        "zh": "将风险确认卡初始焦点锁死「先不要」，并强制店员只操作文件副本"
+      },
+      "humanTension": {
+        "en": "During repetitive agent workflows, users develop muscle-memory 'Enter-key fatigue'—reflexively dismissing dialogs and unintentionally authorizing destructive overwrites.",
+        "zh": "在高频协作流程里，人极易形成「习惯性敲回车放行」的肌肉记忆疲劳；一旦弹窗按惯例把主按钮设为「继续」，一次走神就会覆写原文件。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Standard OS confirmation dialog with 'Continue' focused by default",
+            "zh": "遵循常规桌面弹窗习惯，默认聚焦高亮「继续执行」"
+          },
+          "flaw": {
+            "en": "Biases toward irreversible execution under distraction or rapid keyboard dismissal.",
+            "zh": "在用户分心或误按 Enter / Space 时直接放行高风险改动，缺乏后悔空间。"
+          }
+        },
+        {
+          "option": {
+            "en": "Allow background subagents to edit original user files in place",
+            "zh": "允许后台任务直接就地修改用户交接的原文件"
+          },
+          "flaw": {
+            "en": "Makes half-finished runs hard to inspect and raises the anxiety of handing over real working folders.",
+            "zh": "一旦中途跑偏就难以无损回退，让用户不敢放心把工作文件交给异步任务。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Risky cards place initial keyboard focus and primary visual weight on 'Not now', treating interruption as a safe, reversible pause while keeping completed steps intact; commission slips enforce spending caps and copy-only execution.",
+        "zh": "高风险卡片反常规把初始键盘焦点与视觉重心锁在「先不要」，把打断变成无损挂起而非丢弃进度；委托单则写明花费上限并默认只处理副本。"
+      },
+      "residualCostOrRisk": {
+        "en": "Tasks intentionally stall until a human chooses to proceed, the Windows installer is unsigned, and there is no external participant testing on record yet.",
+        "zh": "任务会因安全暂停而等待人工拍板；目前 Windows 安装包尚无代码签名、未上架商店，也还没有外部用户测试记录。"
+      }
+    }
+  ],
   "card": {
     "en": {
       "kicker": "AI agent interface · Desktop app",

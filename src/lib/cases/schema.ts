@@ -186,6 +186,8 @@ export const CaseSimulatorIdSchema = z.enum([
   "autofill-confidence",
   "fencepost-revoke",
   "connect-ia-reset",
+  "grassland-rules",
+  "onthebeat-handshake",
 ]);
 
 export type CaseSimulatorId = z.infer<typeof CaseSimulatorIdSchema>;
@@ -285,6 +287,25 @@ export const CaseProcessArtifactsSchema = z.object({
 
 export type CaseProcessArtifacts = z.infer<typeof CaseProcessArtifactsSchema>;
 
+export const DesignDecisionTradeoffSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  decisionTitle: LocalizedStringSchema,
+  humanTension: LocalizedStringSchema,
+  rejectedAlternatives: z
+    .array(
+      z.object({
+        option: LocalizedStringSchema,
+        flaw: LocalizedStringSchema,
+      })
+    )
+    .min(1)
+    .max(3),
+  chosenTradeoff: LocalizedStringSchema,
+  residualCostOrRisk: LocalizedStringSchema,
+});
+
+export type DesignDecisionTradeoff = z.infer<typeof DesignDecisionTradeoffSchema>;
+
 export const CaseRecordSchema = z.object({
   slug: z.enum(CURRENT_PROJECT_SLUGS),
   status: z.enum(["listed", "unlisted"]),
@@ -298,6 +319,7 @@ export const CaseRecordSchema = z.object({
   demo: CaseDemoSchema.optional(),
   interactiveDemo: CaseInteractiveDemoSchema.optional(),
   processArtifacts: CaseProcessArtifactsSchema.optional(),
+  designDecisions: z.array(DesignDecisionTradeoffSchema).optional(),
   card: z.object({
     en: CaseCardCopySchema,
     zh: CaseCardCopySchema,

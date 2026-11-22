@@ -28,8 +28,8 @@ const LENSES: Array<{
     id: "all",
     en: "All tracks",
     zh: "全部方向",
-    noteEn: "Full 10-case portfolio across interaction design, product systems, physical hardware, and AI UX.",
-    noteZh: "完整 10 案例全景，涵盖交互设计、产品系统、物理硬件与 AI UX。",
+    noteEn: "Curated 6-case portfolio across interaction design, product systems, physical hardware, and AI UX.",
+    noteZh: "精选 6 案例全景，涵盖交互设计、产品系统、物理硬件与 AI UX。",
   },
   {
     id: "product",

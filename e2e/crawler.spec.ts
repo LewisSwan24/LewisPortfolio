@@ -5,6 +5,7 @@ const BLOG_SLUGS = [
   "accessibility-in-design",
   "v3-architecture-and-performance-moat",
   "walkie-and-fencepost-invariants",
+  "withdrawing-interfaces-in-social-spaces",
 ];
 
 const PUBLIC_ROUTES = [
@@ -29,15 +30,20 @@ const PUBLIC_ROUTES = [
   "/en/projects/walkie",
   "/en/projects/lamplight",
   "/en/projects/autofill",
-  "/en/projects/fencepost",
-  "/en/projects/connect",
-  "/en/projects/hoop",
-  "/en/projects/pricewise",
   "/en/projects/grassland",
   "/en/projects/onthebeat",
 ];
 
-const UNLISTED_SLUGS = ["vigil", "spectra", "gapmapper", "rules"];
+const UNLISTED_SLUGS = [
+  "vigil",
+  "spectra",
+  "gapmapper",
+  "rules",
+  "fencepost",
+  "connect",
+  "hoop",
+  "pricewise",
+];
 
 test.describe("V3.2 Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
   test("crawls all public routes with zero console/page errors, valid anchors, and no unlisted or retired leaks", async ({
@@ -149,7 +155,7 @@ test.describe("V3.2 Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
     const llmsBody = await llmsRes.text();
     expect(llmsBody).toContain("# Lewis Dong");
     expect(llmsBody).toContain("/en/projects/walkie");
-    expect(llmsBody).toContain("/en/projects/fencepost");
+    expect(llmsBody).toContain("/en/projects/lamplight");
     for (const hidden of UNLISTED_SLUGS) {
       expect(llmsBody).not.toContain(`/projects/${hidden}`);
     }
@@ -158,7 +164,7 @@ test.describe("V3.2 Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
       const searchRes = await page.request.get(`/search-index/${locale}`);
       expect(searchRes.status(), locale).toBe(200);
       const items = (await searchRes.json()) as Array<{ type: string; slug: string }>;
-      expect(items.filter((i) => i.type === "project").length).toBe(10);
+      expect(items.filter((i) => i.type === "project").length).toBe(6);
       expect(items.some((i) => i.type === "blog")).toBe(true);
     }
   });

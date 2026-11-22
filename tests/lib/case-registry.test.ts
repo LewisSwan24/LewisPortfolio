@@ -28,9 +28,27 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
     expect(report.listed).toBe(LISTED_PROJECT_SLUGS.length);
   });
 
-  it("keeps listed and unlisted status aligned with project-routes.ts", () => {
+  it("keeps listed and unlisted status aligned with project-routes.ts (6 listed, 8 unlisted)", () => {
     const listedSlugs = getListedCases().map((c) => c.slug);
     expect(listedSlugs).toEqual(LISTED_PROJECT_SLUGS);
+    expect([...LISTED_PROJECT_SLUGS].sort()).toEqual([
+      "autofill",
+      "grassland",
+      "lamplight",
+      "maze",
+      "onthebeat",
+      "walkie",
+    ]);
+    expect([...UNLISTED_PROJECT_SLUGS].sort()).toEqual([
+      "connect",
+      "fencepost",
+      "gapmapper",
+      "hoop",
+      "pricewise",
+      "rules",
+      "spectra",
+      "vigil",
+    ]);
 
     for (const slug of UNLISTED_PROJECT_SLUGS) {
       const record = getCaseBySlug(slug);
@@ -39,9 +57,27 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
     }
   });
 
-  it("orders featured deck cases monotonically and excludes unlisted cases", () => {
+  it("requires structured designDecisions (>= 2) on every listed case", () => {
+    const listed = getListedCases();
+    expect(listed).toHaveLength(6);
+    for (const record of listed) {
+      expect(record.designDecisions).toBeDefined();
+      expect(record.designDecisions!.length).toBeGreaterThanOrEqual(2);
+      for (const decision of record.designDecisions!) {
+        expect(decision.rejectedAlternatives.length).toBeGreaterThanOrEqual(2);
+        expect(decision.humanTension.en.length).toBeGreaterThan(20);
+        expect(decision.humanTension.zh.length).toBeGreaterThan(10);
+        expect(decision.chosenTradeoff.en.length).toBeGreaterThan(20);
+        expect(decision.chosenTradeoff.zh.length).toBeGreaterThan(10);
+        expect(decision.residualCostOrRisk.en.length).toBeGreaterThan(15);
+        expect(decision.residualCostOrRisk.zh.length).toBeGreaterThan(8);
+      }
+    }
+  });
+
+  it("orders featured deck cases monotonically across all 6 listed cases and excludes unlisted cases", () => {
     const deck = getFeaturedDeckCases();
-    expect(deck.length).toBeGreaterThan(0);
+    expect(deck).toHaveLength(6);
     expect(deck.every((c) => c.status === "listed")).toBe(true);
     const orders = deck.map((c) => c.featuredOrder ?? 0);
     expect(orders).toEqual([...orders].sort((a, b) => a - b));

@@ -66,13 +66,12 @@ export function generateResumePersonSchema() {
                 "User research, Information architecture, Interaction design, Prototyping, Usability testing, Accessibility",
         },
         workExample: [
-            { "@type": "CreativeWork", name: "UQ Connect", url: `${url}/projects/connect` },
-            { "@type": "CreativeWork", name: "MazeRunners", url: `${url}/projects/maze` },
             { "@type": "CreativeWork", name: "Walkie", url: `${url}/projects/walkie` },
-            { "@type": "CreativeWork", name: "Fencepost", url: `${url}/projects/fencepost` },
-            { "@type": "CreativeWork", name: "Lamplight", url: `${url}/projects/lamplight` },
-            { "@type": "CreativeWork", name: "Hoop Dream", url: `${url}/projects/hoop` },
-            { "@type": "CreativeWork", name: "PriceWise", url: `${url}/projects/pricewise` },
+            { "@type": "CreativeWork", name: "Lamplight Nook", url: `${url}/projects/lamplight` },
+            { "@type": "CreativeWork", name: "Resume Autofill", url: `${url}/projects/autofill` },
+            { "@type": "CreativeWork", name: "MazeRunners", url: `${url}/projects/maze` },
+            { "@type": "CreativeWork", name: "On The Beat", url: `${url}/projects/onthebeat` },
+            { "@type": "CreativeWork", name: "Grassland Iron Tide", url: `${url}/projects/grassland` },
         ],
     };
 }

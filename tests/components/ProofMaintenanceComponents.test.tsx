@@ -22,7 +22,7 @@ describe("proof maintenance components", () => {
     expect(screen.getAllByText(/interview-agenda/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /ux-product-ia/i })).toHaveAttribute(
       "href",
-      "/projects/connect#evidence-board"
+      "/projects/lamplight#decision-timeline"
     );
   });
 });

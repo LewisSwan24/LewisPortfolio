@@ -2,8 +2,7 @@ import type { CaseRecord } from "@/lib/cases/schema";
 
 export const fencepostCase: CaseRecord = {
   slug: "fencepost",
-  status: "listed",
-  featuredOrder: 5,
+  status: "unlisted",
   roleTracks: ["product", "ai-ux", "design-eng"],
   workSummary: {
     order: 10,

@@ -3,6 +3,7 @@ import type { CaseRecord } from "@/lib/cases/schema";
 export const onthebeatCase: CaseRecord = {
   "slug": "onthebeat",
   "status": "listed",
+  "featuredOrder": 5,
   "roleTracks": [
     "interaction",
     "design-eng"
@@ -83,6 +84,26 @@ export const onthebeatCase: CaseRecord = {
       }
     ]
   },
+  "interactiveDemo": {
+    "id": "onthebeat-handshake",
+    "placement": "after-summary",
+    "eyebrow": {
+      "en": "Interactive prototype · Mutual consent & device withdrawal",
+      "zh": "可操作活原型 · 匿名破冰与开口后设备退场"
+    },
+    "title": {
+      "en": "Test the blind wave → mutual nod → pocket-exit rhythm",
+      "zh": "亲手走一遍匿名脉冲、双向点头与硬件静默退场节奏"
+    },
+    "prompt": {
+      "en": "Send an anonymous wave card, trigger mutual wrist confirmation, and step the phone out of view once two people meet in person.",
+      "zh": "选择一张匿名脉冲卡，完成双向手环点头后再将手机退场，观察姓名如何仅在双向同意后才暴露。"
+    },
+    "takeaway": {
+      "en": "Lowering initiation friction only earns trust when devices fade quietly the moment real conversation starts.",
+      "zh": "社交硬件的价值只在帮陌生人迈过开头那半秒——两人真正开口后，软件就该礼貌退居二线。"
+    }
+  },
   "processArtifacts": {
     "microLoop": {
       "eyebrow": {
@@ -130,6 +151,90 @@ export const onthebeatCase: CaseRecord = {
       ]
     }
   },
+  "designDecisions": [
+    {
+      "id": "blind-wave-mutual-consent",
+      "decisionTitle": {
+        "en": "Use blind waves and mutual consent before revealing names, then let devices withdraw",
+        "zh": "匿名预探 + 双向确认后才显名，开口后设备立即退场"
+      },
+      "humanTension": {
+        "en": "At a dark, loud live gig, wanting to say hello to someone nearby carries real social face-loss anxiety if you misread the room—yet pulling up a bright social-feed screen breaks eye contact and kills the music moment.",
+        "zh": "在灯光昏暗、人声嘈杂的演出现场，想向邻近同行人搭话却担心误判对方意愿而当场尴尬；但如果低头刷通用社交软件加好友，又会直接打断现场的音乐沉浸感。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Nearby-people radar showing faces, profiles, and bios",
+            "zh": "LBS 附近人雷达列表直接展示头像与个人资料"
+          },
+          "flaw": {
+            "en": "Turns an intimate gig into swipe-style appearance ranking and creates surveillance discomfort when neither person asked to be browsed.",
+            "zh": "把演出现场变成刷脸选秀与偷窥压力，在对方未表态前过早暴露身份。"
+          }
+        },
+        {
+          "option": {
+            "en": "Unconditional proximity alert or auto-revealed identity on one wave",
+            "zh": "单方挥手即强制推送对方名字与位置"
+          },
+          "flaw": {
+            "en": "Creates unwanted interruption and unilateral exposure without symmetric consent.",
+            "zh": "单方面突破社交安全距离，极易构成现场骚扰与尴尬拒斥。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "An initial wave transmits only anonymous presence ('someone nearby waved') across three low-stakes Figma prompt cards (SAY HI, FIRST SONG?, LET'S DANCE! from a teammate's concept); names and a shared meeting landmark unlock only after both nod, so both phones can go right back into pockets.",
+        "zh": "首次挥手只传递「附近有人在场」的匿名信号，配合组员原型里的三张低压力语义卡（SAY HI / FIRST SONG? / LET'S DANCE!）；唯有双方都点头确认后才解锁名字与碰面地标，随后手机即可收回口袋、让设备退居二线。"
+      },
+      "residualCostOrRisk": {
+        "en": "No participant or live-gig wear testing has been run yet; wristband sleep/long-press timings (6s awake, 1.5s hold) remain unmeasured estimates, and the three-card concept came from a teammate.",
+        "zh": "尚未在真实或模拟演出现场做过参与者与佩戴实测（唤醒 6 秒、长按 1.5 秒仍为估计值），且三张卡的初始概念源自同组同学的 Figma 原型。"
+      }
+    },
+    {
+      "id": "standalone-relay-and-ai-review",
+      "decisionTitle": {
+        "en": "Remove the laptop with an always-on relay and reject deceptive AI UI drafts",
+        "zh": "用常驻云端中继让手环脱离笔电独立运转，并拒收「假装完成」的 AI 产出"
+      },
+      "humanTension": {
+        "en": "AI-generated prototypes often look finished on a laptop desk—mocked matches, laptop-tethered relays, and repeated '1 of 4' card counters—that would collapse immediately in a real venue.",
+        "zh": "AI 生成的原型经常在笔记本桌面上「看起来什么都能跑」，实则暗藏写死的假匹配、离不开电脑本地服务的链路，以及四张卡全标着「1 of 4」的错漏——带到现场会瞬间穿帮。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Keep a laptop relay running at the table for demo convenience",
+            "zh": "保留本地笔电充当中继，省去云端部署"
+          },
+          "flaw": {
+            "en": "Neither phone nor wristbands can operate away from the desk, violating the portable gig setting.",
+            "zh": "没有电脑两台设备都无法配对，根本带不进真实演出场地。"
+          }
+        },
+        {
+          "option": {
+            "en": "Accept one-way phone-to-band mirroring and first-pass generated canvas",
+            "zh": "默认接受手机单向驱动手环与首轮生成的画布结果"
+          },
+          "flaw": {
+            "en": "Forces users back onto the phone screen and ships broken pagination and blank post-selection states.",
+            "zh": "强迫用户盯住手机，且把选歌后黑屏、计数错误等断点直接带进演示。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Enforced bidirectional state through an always-on Fly.io Sydney relay, verified real MEET agreement across StickS3 and StickC Plus wristbands, and sent generated design canvases back across 5+ rework rounds (12+ on the earlier canvas) until every state transition held.",
+        "zh": "明确要求手环侧键可独立选卡、MEET 必须是真实双端协商并迁入悉尼常驻 Fly.io 中继；对 AI 生成画布逐屏走查并打回至少 5 轮返工（早期画布至少 12 轮），直到状态一致。"
+      },
+      "residualCostOrRisk": {
+        "en": "Depends on cloud connectivity in crowded venues; full-night battery life, StickC Plus front button, band-initiated wave-back, and the post-fix iPhone clip remain unverified, and firmware/app code was written and flashed by Claude Code.",
+        "zh": "现场仍依赖云端连接；整晚续航、Plus 正面键、手环端按实体键回挥以及 iPhone 片段修复后的复测仍未验证，且固件与 App 代码由 Claude Code 编写并烧录。"
+      }
+    }
+  ],
   "card": {
     "en": {
       "kicker": "Social Wearables · Ambient Interaction",
@@ -168,22 +273,22 @@ export const onthebeatCase: CaseRecord = {
         "p": "At a live gig, two people who would like to talk have no low-stakes way to begin. An app that makes them stare at a phone works against the moment. In the 29 September build the phone holds three cards from a teammate's Figma prototype: SAY HI, FIRST SONG? and LET'S DANCE!. A wave tells the other person only that someone nearby is there. Names and a meeting place appear only after both have nodded. The wristband is a second way in: its side button chooses a card and the phone follows."
       },
       "re": {
-        "label": "Groundwork",
-        "title": "Three things the first version only pretended to do.",
+        "label": "System & Truth Audit",
+        "title": "Three places where generated polish hid a broken loop.",
         "m1": {
-          "t": "The band on its own",
-          "b": "On 24 September I asked for the link to work both ways. At noon on 25 September only the phone could still drive the band; that afternoon the side button chose a card and the phone followed."
+          "t": "Bidirectional band control",
+          "b": "The first generated build let only the phone drive the wristband, forcing attention back to glass. Requiring side-button card selection turned the band into a real second entry point."
         },
         "m2": {
-          "t": "MEET for real",
-          "b": "On 25 September I pointed out that MEET was only mock data. That night two devices with two bands waved and waved back, and both bands showed MEET at the same time."
+          "t": "Live mutual MEET agreement",
+          "b": "Early output simulated MEET with static mock data. Replacing it with real wave-and-nod coordination ensured both StickS3 and StickC Plus only unlock names when both agree."
         },
         "m3": {
-          "t": "No laptop",
-          "b": "The same evening I said neither device could run without a computer. The relay moved to one always-on machine on Fly.io in Sydney, and the bands matched through the cloud 65 minutes after my message."
+          "t": "No-laptop cloud relay",
+          "b": "A local laptop relay made gig portability impossible. Moving the relay to an always-on Fly.io instance in Sydney took the computer out of the loop—bands matched through the cloud 65 minutes later."
         },
         "quote": "Without a computer, neither of these two things can run.",
-        "quoteWho": "My message to Claude Code, 25 September 2026, translated from Chinese"
+        "quoteWho": "Requirement sent during 25 September hardware debugging"
       },
       "sy": {
         "label": "System concept",
@@ -238,22 +343,22 @@ export const onthebeatCase: CaseRecord = {
         "p": "现场演出里，两个想说话的人缺一个没有压力的开头。一个让人盯着手机的 App，只会把那一刻打断。9 月 29 日的构建里，手机有三张卡，出自组员的 Figma 原型：SAY HI、FIRST SONG?、LET'S DANCE!。挥手时，对方只知道附近有人。双方都点头之后，才会互相看到名字和碰面的地方。手环是另一个入口：侧键选卡，手机跟着变。"
       },
       "re": {
-        "label": "前期工作",
-        "title": "第一版只是假装做到的三件事。",
+        "label": "系统与真实核验",
+        "title": "第一版「看起来能跑」背后露馅的三处断点。",
         "m1": {
-          "t": "手环单独换状态",
-          "b": "9 月 24 日我提出链路要双向。25 日中午复测，仍然只有手机能控制手环；下午再测，侧键选卡，手机随之变化。"
+          "t": "手环脱离手机独立切卡",
+          "b": "首版生成代码只允许手机单向遥控手环，迫使人继续盯屏幕；明确要求双向同步后，侧键选卡可反推手机状态切换。"
         },
         "m2": {
-          "t": "真的 MEET",
-          "b": "9 月 25 日我指出 MEET 只是模拟数据。当晚两部设备配两支手环，一边挥手、一边回挥，两支手环同时显示 MEET。"
+          "t": "真实双端协商的 MEET",
+          "b": "早期 MEET 只是前端写死的假数据；打回重做后，StickS3 与 StickC Plus 通过真实挥手与回挥在双方点头后同步进入碰面态。"
         },
         "m3": {
-          "t": "不要笔电",
-          "b": "同一晚我说没有电脑两样东西都跑不起来。relay 迁到 Fly.io 悉尼的一台常开机器，我说完 65 分钟后，两支手环经云端对上。"
+          "t": "脱离笔电的常驻云中继",
+          "b": "依赖桌面电脑的中继带不进演出现场；将 relay 迁至悉尼常驻 Fly.io 后 65 分钟，两支真手环脱离笔电独立配对成功。"
         },
         "quote": "没有电脑的话这俩东西都无法运转了",
-        "quoteWho": "我在 2026 年 9 月 25 日发给 Claude Code 的消息"
+        "quoteWho": "9 月 25 日真机联调中发出的硬性约束"
       },
       "sy": {
         "label": "系统概念",

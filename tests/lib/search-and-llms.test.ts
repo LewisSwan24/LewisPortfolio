@@ -17,7 +17,7 @@ describe("Search index & llms.txt builders", () => {
     }
   });
 
-  it("generates /llms.txt covering all 10 listed cases while excluding unlisted projects", async () => {
+  it("generates /llms.txt covering all 6 listed cases while excluding unlisted projects", async () => {
     const body = await buildLlmsTxt();
     expect(body).toContain("# Lewis Dong");
 

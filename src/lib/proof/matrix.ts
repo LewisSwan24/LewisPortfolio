@@ -17,50 +17,50 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     id: "ux-product",
     label: "UX/Product Design",
     fit:
-      "Best fit when the team needs research to become product direction, IA, flows, and measurable iteration.",
+      "Best fit when the team needs human tensions framed clearly, mental models structured, and tradeoffs built into working prototypes.",
     proofLinks: [
-      { label: "UQ Connect: back to paper", href: "/projects/connect#decision-timeline" },
-      { label: "MazeRunners hardware trade-offs", href: "/projects/maze#decision-timeline" },
-      { label: "Hoop Dream production pipeline", href: "/projects/hoop#decision-timeline" },
-      { label: "PriceWise: how the scope grew", href: "/projects/pricewise#iteration-gallery" },
+      { label: "Walkie: wrist key authority", href: "/projects/walkie#decision-timeline" },
+      { label: "Lamplight Nook: café blackboard & 'Not now'", href: "/projects/lamplight#decision-timeline" },
+      { label: "Resume Autofill: three-tier refusal", href: "/projects/autofill#decision-timeline" },
+      { label: "MazeRunners: hardware & safety tradeoffs", href: "/projects/maze#decision-timeline" },
+      { label: "Grassland Iron Tide: unified grammar", href: "/projects/grassland#decision-timeline" },
     ],
-    bestCases: ["connect", "maze", "hoop", "pricewise"],
+    bestCases: ["walkie", "lamplight", "autofill", "maze", "grassland"],
     risk:
       "I am strongest when product ambiguity needs structure; I would pair with engineering early for production constraints.",
-    interviewAngle: "Ask how I turn research signals into scoped product decisions.",
+    interviewAngle: "Ask how I turn human tension and safety constraints into explicit interaction rules.",
   },
   {
     id: "ux-research",
     label: "UX Research",
     fit:
-      "Best fit when the team needs mixed methods, careful sampling, and research outputs that change product decisions.",
+      "Best fit when the team needs field observation, real-workflow friction logging, and honest boundaries on what evidence proves.",
     proofLinks: [
-      { label: "Connect research evidence", href: "/projects/connect#evidence-board" },
-      { label: "Spectra evidence", href: "/projects/spectra#evidence-board" },
-      { label: "Research limits", href: "/projects/connect#outcome-limits" },
-      { label: "Gap Mapper: an assumption the literature killed", href: "/projects/gapmapper#evidence-board" },
+      { label: "MazeRunners: exhibition group observation", href: "/projects/maze#evidence-board" },
+      { label: "Resume Autofill: synthetic vs real-site limits", href: "/projects/autofill#outcome-limits" },
+      { label: "Lamplight Nook: personal log vs user study boundary", href: "/projects/lamplight#outcome-limits" },
+      { label: "On The Beat: self-testing & unverified paths", href: "/projects/onthebeat#evidence-board" },
     ],
-    bestCases: ["connect", "spectra", "gapmapper"],
+    bestCases: ["maze", "autofill", "lamplight", "onthebeat"],
     risk:
-      "Most projects are academic or self-initiated, so I am explicit about what evidence is measured and what still needs field validation.",
-    interviewAngle: "Ask how I choose methods when the problem is still ambiguous.",
+      "Most builds are solo or exhibition prototypes without formal user studies yet, so I separate personal/bench observations from validated cohort data.",
+    interviewAngle: "Ask what my current builds prove today versus what still requires outside participant sessions.",
   },
   {
     id: "ai-ux",
     label: "AI UX",
     fit:
-      "Best fit when a team needs someone to judge how far an AI feature should be trusted, and to check what it actually does.",
-    // A thread through several cases, not one AI case: Vigil, the only
-    // AI-native case, was abandoned. See ai-trust-thread.ts.
+      "Best fit when a team needs someone to judge how far an AI feature should be trusted, design polite friction, and keep human authority intact.",
     proofLinks: [
-      { label: "PriceWise: checking what an AI feature really does", href: "/projects/pricewise#decision-timeline" },
-      { label: "On The Beat: sending back AI output that only looked finished", href: "/projects/onthebeat#decision-timeline" },
-      { label: "UQ Connect: a match that states its reasons (team finding)", href: "/projects/connect#decision-timeline" },
+      { label: "Walkie: physical approval gate over voice", href: "/projects/walkie#decision-timeline" },
+      { label: "Lamplight Nook: default focus on 'Not now'", href: "/projects/lamplight#decision-timeline" },
+      { label: "Resume Autofill: leave open prompts blank", href: "/projects/autofill#decision-timeline" },
+      { label: "On The Beat: sending back deceptive AI polish", href: "/projects/onthebeat#decision-timeline" },
     ],
-    bestCases: ["pricewise", "onthebeat", "connect"],
+    bestCases: ["walkie", "lamplight", "autofill", "onthebeat"],
     risk:
-      "The examples focus on interaction scoping, prototyping, and real behavior under human oversight across course and independent builds.",
-    interviewAngle: "Ask how I found that PriceWise's semantic search never used a vector.",
+      "The examples focus on interaction scoping, prototyping, and real behavior under human oversight across independent and course builds.",
+    interviewAngle: "Ask why Lamplight locks focus to 'Not now' and why Walkie rejects voice-only tool approvals.",
   },
   {
     id: "accessibility",
@@ -88,43 +88,45 @@ const zhHiringRoleFits: HiringRoleFit[] = [
   {
     id: "ux-product",
     label: "UX / 产品设计",
-    fit: "适合需要把研究变成产品方向、信息架构、流程与可迭代决策的团队。",
+    fit: "适合需要把人文矛盾拆解成产品结构、交互边界与可运行原型的团队。",
     proofLinks: [
-      { label: "UQ Connect：回到纸上", href: "/projects/connect#decision-timeline" },
-      { label: "MazeRunners 的软硬件取舍", href: "/projects/maze#decision-timeline" },
-      { label: "Hoop Dream 的生产管线", href: "/projects/hoop#decision-timeline" },
-      { label: "PriceWise：范围是怎么变大的", href: "/projects/pricewise#iteration-gallery" },
+      { label: "Walkie：手腕实体键唯一审批", href: "/projects/walkie#decision-timeline" },
+      { label: "Lamplight Nook：咖啡馆黑板与「先不要」", href: "/projects/lamplight#decision-timeline" },
+      { label: "Resume Autofill：三态分流与刻意留白", href: "/projects/autofill#decision-timeline" },
+      { label: "MazeRunners：软硬件安全取舍", href: "/projects/maze#decision-timeline" },
+      { label: "草原铁潮：跨五关统一语法", href: "/projects/grassland#decision-timeline" },
     ],
-    bestCases: ["connect", "maze", "hoop", "pricewise"],
-    risk: "我最强的地方是把模糊的产品问题结构化；生产环境的约束我会尽早找工程一起看。",
-    interviewAngle: "可以问我怎么把研究信号收敛成有范围的产品决策。",
+    bestCases: ["walkie", "lamplight", "autofill", "maze", "grassland"],
+    risk: "我最强的地方是把模糊的人因与产品约束结构化；生产环境的工程约束我会尽早与研发协同确认。",
+    interviewAngle: "可以问我怎么把用户摩擦与安全焦虑收敛成明确的交互规则。",
   },
   {
     id: "ux-research",
     label: "UX 研究",
-    fit: "适合需要混合方法、谨慎取样，并且要让研究真的改变产品决策的团队。",
+    fit: "适合需要现场行为观察、真实使用卡点记录，并且严格区分「观察现象」与「量化验证」的团队。",
     proofLinks: [
-      { label: "Connect 的研究证据", href: "/projects/connect#evidence-board" },
-      { label: "Spectra 的证据", href: "/projects/spectra#evidence-board" },
-      { label: "研究的限制", href: "/projects/connect#outcome-limits" },
-      { label: "走夜路：一条被文献推翻的假设", href: "/projects/gapmapper#evidence-board" },
+      { label: "MazeRunners：展览多人试玩观察", href: "/projects/maze#evidence-board" },
+      { label: "Resume Autofill：合成表单与真实网站边界", href: "/projects/autofill#outcome-limits" },
+      { label: "Lamplight Nook：个人自用与外部对比边界", href: "/projects/lamplight#outcome-limits" },
+      { label: "On The Beat：真机联调与未测路径清单", href: "/projects/onthebeat#evidence-board" },
     ],
-    bestCases: ["connect", "spectra", "gapmapper"],
-    risk: "多数项目是课程或自发项目，所以我会讲清楚哪些有证据、哪些还需要实地验证。",
-    interviewAngle: "可以问我在问题还很模糊时怎么选方法。",
+    bestCases: ["maze", "autofill", "lamplight", "onthebeat"],
+    risk: "当前 6 件作品多为独立原型或展览装置，尚未补齐大样本受试实验，我会明确划出待验证空白。",
+    interviewAngle: "可以问我这些作品目前已经证明了什么、又故意没有宣称什么。",
   },
   {
     id: "ai-ux",
     label: "AI 交互设计",
-    fit: "适合这样的团队：需要有人判断一个 AI 功能值得多少信任，也需要有人去核实这个功能实际做了什么。",
+    fit: "适合需要有人判断 AI 功能该给多少信任、设计礼貌阻力，并守住人类最终控制权的团队。",
     proofLinks: [
-      { label: "PriceWise：核实 AI 功能到底做了什么", href: "/projects/pricewise#decision-timeline" },
-      { label: "On The Beat：把只是看起来做完的 AI 输出打回去", href: "/projects/onthebeat#decision-timeline" },
-      { label: "UQ Connect：会说明理由的匹配（团队发现）", href: "/projects/connect#decision-timeline" },
+      { label: "Walkie：实体按键对抗语音误放行", href: "/projects/walkie#decision-timeline" },
+      { label: "Lamplight Nook：风险卡默认锁死「先不要」", href: "/projects/lamplight#decision-timeline" },
+      { label: "Resume Autofill：开放题留空不瞎猜", href: "/projects/autofill#decision-timeline" },
+      { label: "On The Beat：打回「看起来像做完」的 AI 输出", href: "/projects/onthebeat#decision-timeline" },
     ],
-    bestCases: ["pricewise", "onthebeat", "connect"],
-    risk: "案例均来自课程项目或独立原型，重点展示了我如何把交互边界、人工复核与诚实反馈做进 AI 协助流程。",
-    interviewAngle: "可以聊聊我怎么察觉 PriceWise 的语义搜索其实一直退回了关键词匹配。",
+    bestCases: ["walkie", "lamplight", "autofill", "onthebeat"],
+    risk: "案例均来自独立或课程实作原型，重点展示了我如何把交互边界、默认拒绝与人工复核做进 AI 流程。",
+    interviewAngle: "可以聊聊为什么 Lamplight 要反常规默认聚焦「先不要」，以及 Walkie 为何拒绝纯语音审批。",
   },
   {
     id: "accessibility",
@@ -150,183 +152,167 @@ const hiringRoleFits: Record<ProofLocale, HiringRoleFit[]> = {
 const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
   {
     id: "research-framing",
-    label: "Research framing",
-    summary: "Turns broad ambiguity into scoped questions, samples, and product decisions.",
+    label: "Human tension framing",
+    summary: "Frames social friction, attention cost, and safety anxiety before writing interface rules.",
     cases: {
-      connect: {
+      maze: {
         strength: "primary",
-        proof: "Every hypothesis carried a numeric pass mark written before fieldwork. The marks were never scored, so two assumptions were challenged by qualitative evidence, not formally refuted.",
-        href: "/projects/connect#evidence-board",
+        proof: "Exhibition play across 9 groups (36 people) showed players felt sleeve buzz and looked up rather than reading score displays.",
+        href: "/projects/maze#evidence-board",
       },
-      spectra: {
+      onthebeat: {
         strength: "supporting",
-        proof: "WCAG text-spacing criteria decided which controls the extension exposes.",
-        href: "/projects/spectra#evidence-board",
+        proof: "Replaces profile radar with blind waves and mutual consent so strangers never risk public face-loss at a gig.",
+        href: "/projects/onthebeat#decision-timeline",
       },
-        gapmapper: {
-          strength: "primary",
-          proof: "In the team's coding, most of the 18 interviews named people presence and lighting; what split my three was whether a system may judge for them.",
-          href: "/projects/gapmapper#evidence-board",
-        },
+      walkie: {
+        strength: "supporting",
+        proof: "Bound approvals to physical watch keys after away-from-desk probing showed voice-only triggers fail in noisy rooms.",
+        href: "/projects/walkie#evidence-board",
+      },
     },
   },
   {
     id: "information-architecture",
     label: "Information architecture",
-    summary: "Gives a sprawling product a structure people can navigate, then checks whether they can.",
+    summary: "Turns multi-state systems into structures people can read at a glance.",
     cases: {
-      connect: {
+      lamplight: {
         strength: "primary",
-        proof: "Redrew the whole app as five screens on paper, mid-build, with every route off the home page.",
-        href: "/projects/connect#decision-timeline",
+        proof: "Splits 300-line scrolling agent logs into a spatial café blackboard, crew roles, and a corner monitor.",
+        href: "/projects/lamplight#decision-timeline",
+      },
+      grassland: {
+        strength: "primary",
+        proof: "Locks camera zoom so objectives, minimap, and command grid sit at edges while the battlefield keeps center stage.",
+        href: "/projects/grassland#decision-timeline",
+      },
+      walkie: {
+        strength: "supporting",
+        proof: "Separates OFFLINE states explicitly into no-Wi-Fi, relay-unreachable, and PC-offline on a thumb-sized screen.",
+        href: "/projects/walkie#decision-timeline",
       },
     },
   },
   {
     id: "accessibility",
-    label: "Accessibility",
-    summary: "Converts inclusive research into product behavior and constraints.",
+    label: "Explicit refusal & legibility",
+    summary: "Uses non-color cues, polite friction, and reversible pauses to protect human control.",
     cases: {
-      spectra: {
+      autofill: {
         strength: "primary",
-        proof: "Settings save per site, so a reader sets a page once and it stays.",
-        href: "/projects/spectra#decision-timeline",
+        proof: "Every fill tier pairs stroke style (solid/dashed/double), word badge, and icon—never relying on color alone.",
+        href: "/projects/autofill#decision-timeline",
       },
-      connect: {
+      lamplight: {
         strength: "supporting",
-        proof: "Plain-language labels reduced navigation friction.",
-        href: "/projects/connect#decision-timeline",
+        proof: "Locks risky-card initial focus onto 'Not now' so habitual Enter presses pause safely instead of overwriting.",
+        href: "/projects/lamplight#decision-timeline",
       },
-        rules: {
-          strength: "supporting",
-          proof: "A 48 px tap-target floor on the checklist, and warnings delivered by audio and haptics because a rider cannot look at a screen.",
-          href: "/projects/rules#decision-timeline",
-        },
     },
   },
   {
     id: "ai-trust",
     label: "AI UX and trust",
-    summary: "Keeps a system's confidence in line with its evidence.",
-    // Supporting only. With no finished AI-native case, no cell here may claim
-    // to be primary evidence.
+    summary: "Keeps a system's authority, privacy, and certainty in line with human oversight.",
+    // Supporting only: no listed case claims clinical or wide-cohort external validation yet.
     cases: {
-      pricewise: {
+      walkie: {
         strength: "supporting",
-        proof: "Four classes of defect passed every automatic gate in AI-built code. Also decided that an unsure match should show as unmatched.",
-        href: "/projects/pricewise#decision-timeline",
+        proof: "Physical Front/Side buttons own pairing and tool permissions over AES-256-GCM zero-knowledge relay.",
+        href: "/projects/walkie#decision-timeline",
       },
-      gapmapper: {
+      lamplight: {
         strength: "supporting",
-        proof: "Argued to drop a route recommender that claimed more certainty than its evidence.",
-        href: "/projects/gapmapper#decision-timeline",
+        proof: "Staff operate strictly on file copies with spending caps and default-safe 'Not now' interruption cards.",
+        href: "/projects/lamplight#decision-timeline",
       },
-      connect: {
+      autofill: {
         strength: "supporting",
-        proof: "Team finding: students acted on a match once it named a reason.",
-        href: "/projects/connect#decision-timeline",
+        proof: "Leaves open questions blank, blocks network calls, and locks final Submit strictly to human hands.",
+        href: "/projects/autofill#decision-timeline",
       },
-      hoop: {
+      onthebeat: {
         strength: "supporting",
-        proof: "Generative art production ran against a written art bible and reject list.",
-        href: "/projects/hoop#decision-timeline",
+        proof: "Caught mocked MEET data and '1 of 4' canvas errors in AI-generated builds before real wristband pairing.",
+        href: "/projects/onthebeat#decision-timeline",
       },
     },
   },
   {
     id: "product-judgment",
     label: "Product judgment",
-    summary: "Makes explicit trade-offs between evidence, constraints, and product direction.",
+    summary: "Makes explicit trade-offs between human friction, constraints, and product direction.",
     cases: {
-      connect: {
+      walkie: {
         strength: "primary",
-        proof: "Protected measurable IA before polishing interface fidelity.",
-        href: "/projects/connect#decision-timeline",
+        proof: "Chose spoken summaries + two-key wrist gates over streaming full terminal logs or voice-only approval.",
+        href: "/projects/walkie#decision-timeline",
       },
-      spectra: {
+      autofill: {
         strength: "primary",
-        proof: "Bundled the font locally so the tool works offline and leaks no browsing data.",
-        href: "/projects/spectra#decision-timeline",
+        proof: "Sacrificed '100% filled' theater by leaving unsure ATS fields blank and keeping resumes off external servers.",
+        href: "/projects/autofill#decision-timeline",
       },
-      vigil: {
-        strength: "supporting",
-        proof: "Refused search, batch actions, and severity tiers to protect the measure.",
-        href: "/projects/vigil#decision-timeline",
+      grassland: {
+        strength: "primary",
+        proof: "Cut command count below commercial RTS norms so one grammar stays predictable across all five missions.",
+        href: "/projects/grassland#decision-timeline",
       },
-        pricewise: {
-          strength: "supporting",
-          proof: "An AI-generated plan set the scope, and it never came back down. Looking back, an app on simulated data with no registered users should not have kept growing.",
-          href: "/projects/pricewise#iteration-gallery",
-        },
-        gapmapper: {
-          strength: "primary",
-          proof: "Retired my own working prototype because it promised a safety it could not guarantee.",
-          href: "/projects/gapmapper#decision-timeline",
-        },
-        rules: {
-          strength: "supporting",
-          proof: "Refused the superlative: the button reads 'See safer routes', and the detour states its own cost in minutes.",
-          href: "/projects/rules#iteration-gallery",
-        },
+      maze: {
+        strength: "primary",
+        proof: "Replaced electric shock with sleeve vibration for unsupervised exhibition safety, trading intensity for consent.",
+        href: "/projects/maze#decision-timeline",
+      },
     },
   },
   {
     id: "measurement-validation",
     label: "Measurement and validation",
-    summary: "Uses measured outcomes and limits to keep proof honest.",
+    summary: "Uses reproducible checks and explicit limits to separate what holds from what is untested.",
     cases: {
-      connect: {
+      walkie: {
         strength: "primary",
-        proof: "The MVP ran on mock data and no round was timed, so the case claims a direction, not a measured gain.",
-        href: "/projects/connect#outcome-limits",
+        proof: "Backed by host C++ tests plus gate-h, gate-p5, and gate-l hardware/crypto scripts, while noting no external users.",
+        href: "/projects/walkie#outcome-limits",
       },
-      spectra: {
+      grassland: {
         strength: "primary",
-        proof: "Hand-testing a docs site, a news site and a single-page app showed that inline styles beat the injected layer and route changes wipe it.",
-        href: "/projects/spectra#outcome-limits",
+        proof: "430/430 tests, asset gate, and 1280×720 / 1920×1080 playthroughs—explicitly claiming consistency, not learnability.",
+        href: "/projects/grassland#outcome-limits",
       },
-      vigil: {
+      autofill: {
         strength: "supporting",
-        proof: "The build fails if confidence starts predicting the classifier's errors.",
-        href: "/projects/vigil#outcome-limits",
+        proof: "6/6 visual checks on synthetic forms plus network-import unit test; real-site accuracy explicitly marked unmeasured.",
+        href: "/projects/autofill#outcome-limits",
       },
-        pricewise: {
-          strength: "primary",
-          proof: "Four classes of defect passed build, type-check and 307 tests without a single error thrown.",
-          href: "/projects/pricewise#evidence-board",
-        },
-        rules: {
-          strength: "supporting",
-          proof: "States that the 6/6 self-check is not external validation, and that the effect figures belong to the cited paper.",
-          href: "/projects/rules#outcome-limits",
-        },
+      onthebeat: {
+        strength: "supporting",
+        proof: "Verified dual wristbands via Fly.io in 65 min while flagging untested battery, Plus front button, and gig participants.",
+        href: "/projects/onthebeat#outcome-limits",
+      },
     },
   },
   {
     id: "communication",
-    label: "Communication and facilitation",
-    summary: "Explains decisions, invites critique, and turns evidence into shared direction.",
+    label: "Communication and systems",
+    summary: "Turns rules into shared state machines, clear copy, and inspectable artifacts.",
     cases: {
-      connect: {
+      maze: {
         strength: "supporting",
-        proof: "Decision log makes IA trade-offs inspectable.",
-        href: "/projects/connect#interview-takeaway",
+        proof: "Single round state machine syncs score, timer, sleeve buzz, LEDs, audio, and Web Serial demo parity tests.",
+        href: "/projects/maze#iteration-gallery",
       },
-      spectra: {
+      lamplight: {
         strength: "supporting",
-        proof: "Inclusive rationale is framed for critique and next validation.",
-        href: "/projects/spectra#interview-takeaway",
+        proof: "Commission slips, blackboard steps, and bilingual cards keep waiting tasks legible without terminal jargon.",
+        href: "/projects/lamplight#interview-takeaway",
       },
-        gapmapper: {
-          strength: "primary",
-          proof: "A one-page brief that turns an ethical position into system requirements someone building it has to satisfy.",
-          href: "/projects/gapmapper#iteration-gallery",
-        },
-        rules: {
-          strength: "supporting",
-          proof: "An AI usage register naming what each of four tools got wrong, and the concrete correction for each.",
-          href: "/projects/rules#evidence-board",
-        },
+      onthebeat: {
+        strength: "supporting",
+        proof: "Sent generated canvases back 5+ times until card counts and post-selection transitions matched the spec.",
+        href: "/projects/onthebeat#evidence-board",
+      },
     },
   },
 ];
@@ -338,181 +324,166 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
 const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
   {
     id: "research-framing",
-    label: "研究框定",
-    summary: "把宽泛的模糊问题收敛成答得了的问题、取得到的样本、落得了地的产品决策。",
+    label: "人文矛盾框定",
+    summary: "在落笔规则前，先厘清社交面子风险、注意力碎片与安全焦虑。",
     cases: {
-      connect: {
+      maze: {
         strength: "primary",
-        proof: "每条假设都带着进场前写好的数字及格线。及格线从没逐条打分，两项初始假设只是被定性证据挑战，不算正式否证。",
-        href: "/projects/connect#evidence-board",
+        proof: "9 组 36 人现场观察发现玩家先感受到指套震动才抬头看屏幕，确立触觉第一信号原则。",
+        href: "/projects/maze#evidence-board",
       },
-      spectra: {
+      onthebeat: {
         strength: "supporting",
-        proof: "WCAG 的文本间距条款决定了这个扩展开放哪几个控件。",
-        href: "/projects/spectra#evidence-board",
+        proof: "用匿名挥手脉冲与双向确认取代附近人雷达，保护暗光演出现场的社交安全距离。",
+        href: "/projects/onthebeat#decision-timeline",
       },
-        gapmapper: {
-          strength: "primary",
-          proof: "团队的编码里，18 个访谈多数提到有没有人和路灯；把我做的三个分开的，是愿不愿意让系统替自己判断。",
-          href: "/projects/gapmapper#evidence-board",
-        },
+      walkie: {
+        strength: "supporting",
+        proof: "离桌场景探测表明嘈杂环境纯语音易误放行，因此将审批锁回实体双键。",
+        href: "/projects/walkie#evidence-board",
+      },
     },
   },
   {
     id: "information-architecture",
     label: "信息架构",
-    summary: "给一个不断膨胀的产品一套能走得通的结构，再去验证用户是不是真的走得通。",
+    summary: "把多状态系统梳理成一眼可读的心智秩序。",
     cases: {
-      connect: {
+      lamplight: {
         strength: "primary",
-        proof: "开发中途把整个应用在纸上重画成五个屏，并画出从首页出发的每条路径。",
-        href: "/projects/connect#decision-timeline",
+        proof: "把 300 行滚动终端日志拆成咖啡馆黑板计划、店员分工与桌角状态小窗。",
+        href: "/projects/lamplight#decision-timeline",
+      },
+      grassland: {
+        strength: "primary",
+        proof: "固定镜头倍率，目标、小地图与命令格靠边排布，主战场始终占最大面积。",
+        href: "/projects/grassland#decision-timeline",
+      },
+      walkie: {
+        strength: "supporting",
+        proof: "拇指微屏将离线态拆分为「无 Wi-Fi / 中继不可达 / 电脑离线」，杜绝盲猜。",
+        href: "/projects/walkie#decision-timeline",
       },
     },
   },
   {
     id: "accessibility",
-    label: "无障碍",
-    summary: "把包容性研究变成产品行为和写得明白的约束。",
+    label: "可辨识性与克制阻力",
+    summary: "不靠单色区分状态，用温和阻力与无损暂停护住人类控制权。",
     cases: {
-      spectra: {
+      autofill: {
         strength: "primary",
-        proof: "设置按站点保存，读者对一个页面设一次就一直有效。",
-        href: "/projects/spectra#decision-timeline",
+        proof: "三档分流同时采用实线/虚线/双线边框、文字标签与图标，不依赖单一颜色。",
+        href: "/projects/autofill#decision-timeline",
       },
-      connect: {
+      lamplight: {
         strength: "supporting",
-        proof: "用大白话写的标签，降低了导航时的理解成本。",
-        href: "/projects/connect#decision-timeline",
+        proof: "高风险确认卡默认焦点落在「先不要」，防止习惯性敲回车误覆写。",
+        href: "/projects/lamplight#decision-timeline",
       },
-        rules: {
-          strength: "supporting",
-          proof: "自查清单里的 48px 点击区下限，以及走音频与触觉的提示，因为人在骑车时看不了屏。",
-          href: "/projects/rules#decision-timeline",
-        },
     },
   },
   {
     id: "ai-trust",
     label: "AI 交互与信任",
-    summary: "让系统的把握和证据相称。",
+    summary: "让系统的权限、隐私与把握程度始终与人类监督相称。",
     cases: {
-      pricewise: {
+      walkie: {
         strength: "supporting",
-        proof: "AI 写的代码里，四类缺陷过了所有自动关卡。也定下了拿不准就显示「未匹配」。",
-        href: "/projects/pricewise#decision-timeline",
+        proof: "M5StickS3 实体前/侧键掌管配对与工具放行，AES-256-GCM 中继只转密文。",
+        href: "/projects/walkie#decision-timeline",
       },
-      gapmapper: {
+      lamplight: {
         strength: "supporting",
-        proof: "主张放弃一个把握超过证据的路线推荐。",
-        href: "/projects/gapmapper#decision-timeline",
+        proof: "仅操作文件副本、标明开销上限，并以默认「先不要」卡挡住风险写入。",
+        href: "/projects/lamplight#decision-timeline",
       },
-      connect: {
+      autofill: {
         strength: "supporting",
-        proof: "团队发现：匹配一说出具体理由，学生就愿意行动。",
-        href: "/projects/connect#decision-timeline",
+        proof: "开放题刻意留空不编造，测试锁定零外网请求，最终提交严格由人手完成。",
+        href: "/projects/autofill#decision-timeline",
       },
-      hoop: {
+      onthebeat: {
         strength: "supporting",
-        proof: "生成美术对照成文的美术圣经和拒绝清单。",
-        href: "/projects/hoop#decision-timeline",
+        proof: "在真手环配对前拦截 AI 初稿里的假 MEET 数据与「1 of 4」画布错误。",
+        href: "/projects/onthebeat#decision-timeline",
       },
     },
   },
   {
     id: "product-judgment",
     label: "产品判断",
-    summary: "在证据、约束和产品方向之间，做出摊得开来讲的取舍。",
+    summary: "在人因摩擦、真实约束与产品方向之间做出讲得通的取舍。",
     cases: {
-      connect: {
+      walkie: {
         strength: "primary",
-        proof: "先把信息架构做到可验证，再去打磨界面保真度。",
-        href: "/projects/connect#decision-timeline",
+        proof: "舍弃手表读长日志或纯语音确认，选择一句话简报 + 双键物理确权。",
+        href: "/projects/walkie#decision-timeline",
       },
-      spectra: {
+      autofill: {
         strength: "primary",
-        proof: "字体打包在本地，所以离线能用，也不会泄露读者在看什么。",
-        href: "/projects/spectra#decision-timeline",
+        proof: "宁可牺牲「100% 填满」观感，也要留空不确定的框并守住本地隐私。",
+        href: "/projects/autofill#decision-timeline",
       },
-      vigil: {
-        strength: "supporting",
-        proof: "为了守住测量，主动砍掉搜索、批量操作和风险分级。",
-        href: "/projects/vigil#decision-timeline",
+      grassland: {
+        strength: "primary",
+        proof: "主动压缩命令数量，换取跨五关零特例、完全可预测的指令语法。",
+        href: "/projects/grassland#decision-timeline",
       },
-        pricewise: {
-          strength: "supporting",
-          proof: "范围由 AI 生成的规划定下，之后没有缩回去。回头看，一个建在拟真数据上、没有注册用户的比价应用，不该继续长下去。",
-          href: "/projects/pricewise#iteration-gallery",
-        },
-        gapmapper: {
-          strength: "primary",
-          proof: "杀掉自己做出来的可用原型，因为它承诺了一种保证不了的安全。",
-          href: "/projects/gapmapper#decision-timeline",
-        },
-        rules: {
-          strength: "supporting",
-          proof: "拒绝最高级：按钮写的是「See safer routes」，绕路按钮把多花的分钟数写在自己身上。",
-          href: "/projects/rules#iteration-gallery",
-        },
+      maze: {
+        strength: "primary",
+        proof: "因展览无法逐人校准电击而改用指套震动，用刺激强度换公共安全边界。",
+        href: "/projects/maze#decision-timeline",
+      },
     },
   },
   {
     id: "measurement-validation",
     label: "测量与验证",
-    summary: "用测到的结果和讲清楚的限制，让证据保持诚实。",
+    summary: "用可复现检查与坦诚边界，区分已验证事实与未测范围。",
     cases: {
-      connect: {
+      walkie: {
         strength: "primary",
-        proof: "MVP 跑在 mock 数据上，也没有任何一轮计时，所以这个案例说的是方向，不是测出来的提升。",
-        href: "/projects/connect#outcome-limits",
+        proof: "宿主机 C++ 单测加 gate-h / gate-p5 / gate-l 真机门禁，同时写明无外部用户测试。",
+        href: "/projects/walkie#outcome-limits",
       },
-      spectra: {
+      grassland: {
         strength: "primary",
-        proof: "手动跑过文档站、新闻站和单页应用，发现内联样式会盖过注入层，路由一换，注入的样式也被冲掉。",
-        href: "/projects/spectra#outcome-limits",
+        proof: "430/430 测试、资产闸门与双分辨率通关，明确只主张一致性而不宣称易学性。",
+        href: "/projects/grassland#outcome-limits",
       },
-      vigil: {
+      autofill: {
         strength: "supporting",
-        proof: "一旦置信度开始能预测分类器的错误，构建就直接失败。",
-        href: "/projects/vigil#outcome-limits",
+        proof: "合成表单 6/6 截图验收加断网单测；真实求职网站准确率明确标为未量测。",
+        href: "/projects/autofill#outcome-limits",
       },
-        pricewise: {
-          strength: "primary",
-          proof: "四类缺陷通过了构建、类型检查与 307 个测试，没有一处报错。",
-          href: "/projects/pricewise#evidence-board",
-        },
-        rules: {
-          strength: "supporting",
-          proof: "写明 6/6 是自查，不是外部验证；效果数字属于所引论文，不是自己的实验。",
-          href: "/projects/rules#outcome-limits",
-        },
+      onthebeat: {
+        strength: "supporting",
+        proof: "65 分钟迁入 Fly.io 完成双真手环联调，同时坦诚标注续航、Plus 前键与现场试戴未测。",
+        href: "/projects/onthebeat#outcome-limits",
+      },
     },
   },
   {
     id: "communication",
-    label: "表达与协作",
-    summary: "把决策讲清楚、主动请人挑刺，并把证据变成团队的共同方向。",
+    label: "表达与系统化",
+    summary: "把规则落成共享状态机、清晰文案与可复查制品。",
     cases: {
-      connect: {
+      maze: {
         strength: "supporting",
-        proof: "决策记录让信息架构的取舍可以逐条检查。",
-        href: "/projects/connect#interview-takeaway",
+        proof: "单一回合状态机同步计分、指套震动、灯带与 Web Serial 一致性回归测试。",
+        href: "/projects/maze#iteration-gallery",
       },
-      spectra: {
+      lamplight: {
         strength: "supporting",
-        proof: "包容性设计的理由是摊开来给人挑刺的，并写明了下一步要验证什么。",
-        href: "/projects/spectra#interview-takeaway",
+        proof: "委托单、黑板进度与双语决策卡让长任务进度无需终端术语即可读懂。",
+        href: "/projects/lamplight#interview-takeaway",
       },
-        gapmapper: {
-          strength: "primary",
-          proof: "一页 brief 把伦理立场变成系统要求，做这个东西的人必须满足这些条件。",
-          href: "/projects/gapmapper#iteration-gallery",
-        },
-        rules: {
-          strength: "supporting",
-          proof: "一份 AI 使用标注册，逐个说明四个工具各自出了什么问题，以及具体怎么修的。",
-          href: "/projects/rules#evidence-board",
-        },
+      onthebeat: {
+        strength: "supporting",
+        proof: "逐屏审查并打回 AI 画布 5 轮以上，直至页码与选歌后状态完全自洽。",
+        href: "/projects/onthebeat#evidence-board",
+      },
     },
   },
 ];

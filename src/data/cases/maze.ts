@@ -176,6 +176,90 @@ export const mazeCase: CaseRecord = {
       ]
     }
   },
+  "designDecisions": [
+    {
+      "id": "co-touch-coordination",
+      "decisionTitle": {
+        "en": "Couple direction controls across players instead of issuing solo controllers",
+        "zh": "用跨手腕互锁协同控制替代「一人一个独立手柄」"
+      },
+      "humanTension": {
+        "en": "In public exhibition installations, giving each visitor an independent controller isolates everyone onto their own mechanical task—players stare down at the board and barely talk or coordinate with the people beside them.",
+        "zh": "在公开展览桌面游戏里，只要给每人发一个独立手柄，玩家就会各自低头盯住机关，彼此很少抬头沟通或协调动作节奏。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Four independent Bluetooth controllers, one direction per player",
+            "zh": "四只相互独立的蓝牙手柄，各自单按即生效"
+          },
+          "flaw": {
+            "en": "Eliminates mutual dependency; stronger players take over while others drift out of the round.",
+            "zh": "没有实时互锁机制，强势玩家容易接管节奏，其余人沦为旁观者。"
+          }
+        },
+        {
+          "option": {
+            "en": "Post-round aggregate scoreboard as the only feedback",
+            "zh": "只靠结束后的大屏总分结算反馈"
+          },
+          "flaw": {
+            "en": "Exhibition observations showed players did not read the score display mid-round—delayed feedback misses the moment of physical coordination.",
+            "zh": "现场观察发现玩家根本不看计分屏，延迟到回合末的数字反馈撑不起过程中的协作心流。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Pair shared color wristbands across players (A/B, B/C coupling) so no single person can drive any direction alone, while wiring instant visual, audio, and haptic cues into one round state machine.",
+        "zh": "让相邻玩家共用同色腕带触发链路（A/B、B/C 耦合），任何人都无法单人完成单一方向驱动，并用单一回合状态机即时联动声、光、触觉反馈，有意制造「温和的协同阻力」。"
+      },
+      "residualCostOrRisk": {
+        "en": "Wearable finger sleeves had to be fitted for visitors rather than self-fitted (making setup part of the facilitation ritual), and exhibition play was observed across 9 groups (36 people) rather than logged by channel.",
+        "zh": "可穿戴指套需要主持人协助佩戴才能上场，仪式门槛变高；现场观察了 9 组共 36 人，但未按通道埋点量化各路反馈权重。"
+      }
+    },
+    {
+      "id": "haptics-and-debounce-trust",
+      "decisionTitle": {
+        "en": "Replace electric shock with sleeve haptics and debounce every IR trigger",
+        "zh": "以指套震动取代微弱电击，并为十路红外传感器强制防抖"
+      },
+      "humanTension": {
+        "en": "Unsupervised strangers of varying ages cannot safely calibrate or consent to electric shock, and raw IR double-fires make the score and the buzz on your finger disagree—destroying trust in physical rules.",
+        "zh": "无人逐人看管的公开展览无法向不同年龄与体质的访客校准电击强度；而原始红外光束一抖动触发两三次，计分与手指震动就会对不上，玩家立刻怀疑装置坏了。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Mild electric shock trap from the initial concept",
+            "zh": "沿用最初构想的轻微电击惩罚机制"
+          },
+          "flaw": {
+            "en": "Requires per-person medical consent and threshold calibration that public exhibition flow cannot enforce.",
+            "zh": "在开放展览场景下无法做到逐人知情同意与安全阈值校准。"
+          }
+        },
+        {
+          "option": {
+            "en": "Let subsystems read raw FC-51 IR pins independently",
+            "zh": "各子系统直接读取未去抖的 FC-51 红外原始电平"
+          },
+          "flaw": {
+            "en": "Causes score, timer, LEDs, and console logs to drift out of sync on a single ball pass.",
+            "zh": "单次球经过就会引起计分、计时、灯带与网页日志计数撕裂。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Relay-driven vibration motors in finger sleeves keep feedback on the body safely, per-sensor debounce + cooldown locks one ball pass to one round event, and servo tilt runs on an isolated SafeTouchServoController.",
+        "zh": "改用继电器驱动的指套震动马达把触觉留在身体上，十路红外各自配备防抖与冷却窗口以锁定「一过一事件」，平台倾斜则隔离到独立的 SafeTouchServoController。"
+      },
+      "residualCostOrRisk": {
+        "en": "Vibration is a gentler sensation than shock and the cooldown introduces a brief blind window for rapid re-triggers; built as one hand-wired exhibition unit rather than a manufacturable harness.",
+        "zh": "震动冲击感弱于电击，且冷却窗口会制造短暂盲区；目前仅验证了手工走线的单台展览机，不代表可量产耐久性。"
+      }
+    }
+  ],
   "card": {
     "en": {
       "kicker": "Flagship · Physical computing",

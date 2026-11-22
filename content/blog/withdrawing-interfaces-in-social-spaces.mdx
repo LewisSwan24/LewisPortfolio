@@ -1,0 +1,42 @@
+---
+title: "When good social hardware steps out of the way"
+date: "2026-11-20"
+excerpt: "In dark rooms and crowded exhibitions, software often interrupts the very moment it claims to bridge. Comparing On The Beat and MazeRunners around initiation risk, tactile interdependence, and polite device withdrawal."
+tags:
+  - Interaction Design
+  - Physical Computing
+  - Design Rationale
+author: "Lewis Dong"
+published: true
+---
+
+Most social tools are tuned to stay on stage. They ask for feeds, avatars, mutual likes, and persistent notifications long after two people could simply talk. In two physical-digital builds — [On The Beat](/projects/onthebeat) and [MazeRunners](/projects/maze) — I explored the opposite rule: technology should carry only enough structure to absorb initial human friction, then withdraw the moment face-to-face dialogue begins.
+
+## The cost of "nearby radar" in social spaces
+
+At a dark live concert, wanting to talk to someone standing three steps away comes with immediate social face-loss anxiety. Misreading signals feels awkward on both sides.
+
+When teams try to fix that friction with a smartphone screen, the common reflex is a nearby-people radar: thumbnails, interests, match percentages, and public prompts. Yet in a room built around live music, pulling up a bright comparison feed does two harmful things at once:
+
+1. **It replaces shared presence with silent browsing.** People tilt their heads downward into screens rather than catching eye contact when a song ends.
+2. **It creates asymmetric exposure.** Putting names and bios on display forces people to perform socially even before anyone opts into talking.
+
+On [On The Beat](/projects/onthebeat), a teammate framed a calmer alternative around three fixed cue cards (`SAY HI`, `FIRST SONG?`, `LET'S DANCE!`), and I implemented the firmware dual-boot slot and independent relay bridge so two wristbands could test that rhythm without a laptop. A wave sends only an anonymous pulse — "someone nearby signalled" — never a name or face. Only when both people intentionally nod back do names and a neutral meetup landmark unlock. Once that threshold clears, the screen has finished its job and stays quiet.
+
+**Where evidence currently stops:** hardware sync, dual-boot isolation against [Walkie](/projects/walkie), and relay handoff ran through test windows, yet no wearer study at a real concert has run so far. We treat the social withdrawal threshold as a deliberate design hypothesis waiting for field observation, not a proven demographic statistic.
+
+## Designing gentle resistance into co-play
+
+If *On The Beat* uses minimalism to lower the risk of a first greeting, [MazeRunners](/projects/maze) adds *helpful friction* so players cannot stay isolated while standing beside one another.
+
+Handing four exhibition visitors four independent wireless controllers creates parallel solo play: each person stares at the board in silence. By locking each movement axis into paired conductive wristbands (`A + B`, `B + C`, `C + D`, `D + A`), no single player can move the marble alone. And when an early course idea suggested small electric shocks as punishment, we rejected fear-based stakes and replaced them with gentle vibrating sleeves — keeping physical consequence lively without triggering hesitation.
+
+During public exhibition play, 9 groups (36 people) stepped up to the board and roughly 3 finished; the handwritten score sheet stayed on paper at the venue rather than an archived telemetry dataset. That still taught a clear structural lesson: when coordination lives inside the physical wiring rather than in printed instructions, groups talk naturally within seconds.
+
+## The withdrawal rule
+
+Across both systems, interaction design succeeded in direct proportion to how gracefully hardware disappeared:
+
+- Absorb cold-start embarrassment privately without exposing profiles prematurely.
+- Keep physical rules legible on the body or shared surface, not hidden inside dense menus.
+- Document honestly where prototype benches end and outside human observation still awaits.

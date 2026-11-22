@@ -2,8 +2,7 @@ import type { CaseRecord } from "@/lib/cases/schema";
 
 export const connectCase: CaseRecord = {
   "slug": "connect",
-  "status": "listed",
-  "featuredOrder": 6,
+  "status": "unlisted",
   "roleTracks": [
     "product",
     "interaction"

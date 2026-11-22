@@ -19,48 +19,6 @@ type DeckCard = {
 
 const DECK: DeckCard[] = [
   {
-    id: "thinkaloud",
-    kind: { en: "Think-aloud session note", zh: "出声思考记录" },
-    stamp: { en: "UQ Connect · Iteration 2", zh: "UQ Connect · 第二轮" },
-    date: "2025.09.17",
-    project: { en: "UQ Connect", zh: "UQ Connect" },
-    body: {
-      en: [
-        "Moderated · working prototype · thinking out loud",
-        "“it shows I’m attending this. Oh wait, but it’s still clickable”",
-        "“Can I go to the previous page? How can I do that?”",
-        "→ 3 Oct: stop patching, redraw the structure on paper",
-      ],
-      zh: [
-        "主持式 · 可运行原型 · 出声思考",
-        "「上面显示我已经报名了。等等，可是还能点」",
-        "「我能回上一页吗？要怎么回？」",
-        "→ 10/03：不再打补丁，回到纸上重画结构",
-      ],
-    },
-  },
-  {
-    id: "bible",
-    kind: { en: "Art bible", zh: "美术圣经" },
-    stamp: { en: "Hoop Dream · three bibles", zh: "Hoop Dream · 三份规范" },
-    date: "2026.05.01",
-    project: { en: "Hoop Dream", zh: "Hoop Dream" },
-    body: {
-      en: [
-        "Three bibles, split by canvas: logos · sprites · scenes",
-        "A written rejected-style list, so the eye has a test",
-        "Laid side by side, the logos had converged: two set rules",
-        "→ a script can read the manifest; style still needs a person.",
-      ],
-      zh: [
-        "三份规范，按画布尺寸分开：队徽 · 人物 · 场景",
-        "写下来的「拒绝风格」清单，让肉眼有据可查",
-        "队徽并排一摆就看出趋同，补上两条整组规则",
-        "→ 脚本读得了清单，风格还得靠人看。",
-      ],
-    },
-  },
-  {
     id: "walkie",
     kind: { en: "Hardware & protocol gate", zh: "硬件与协议边界" },
     stamp: { en: "Walkie · wrist approval", zh: "Walkie · 手腕实体审批" },
@@ -69,57 +27,15 @@ const DECK: DeckCard[] = [
     body: {
       en: [
         "Dual-boot M5StickS3 firmware sharing one watch with On The Beat.",
-        "AES-256-GCM sealed transport: USB always wins; away from cable, zero-knowledge relay.",
-        "Voice never auto-runs destructive bash commands or file writes.",
-        "→ physical wrist buttons own every permission gate.",
+        "Voice captures context; destructive bash and file writes never auto-approve.",
+        "Three explicit offline errors separate Wi-Fi, relay, and laptop loss.",
+        "→ physical wrist buttons own every high-risk gate (single-user tested).",
       ],
       zh: [
-        "与 On The Beat 共用一块 M5StickS3 的双启动固件。",
-        "AES-256-GCM 端到端加密：插线时 USB 优先，离缆切换零知识中继。",
-        "语音绝不越权自动执行高风险命令或改写文件。",
-        "→ 每道权限审批都落回手腕实体按键。",
-      ],
-    },
-  },
-  {
-    id: "scope",
-    kind: { en: "Commit log", zh: "提交记录" },
-    stamp: { en: "PriceWise · 5,884 lines, one commit", zh: "PriceWise · 单次提交 5884 行" },
-    date: "2026.03.01",
-    project: { en: "PriceWise", zh: "PriceWise" },
-    body: {
-      en: [
-        "A v1 API, AI function calling, i18n, price prediction, a social layer.",
-        "The feature list was AI-generated planning, not anything a user asked for.",
-        "Stopped the next day for five months. The scope never came back down.",
-        "→ looking back, an app with no users should not have kept growing.",
-      ],
-      zh: [
-        "v1 接口、AI 函数调用、双语、价格预测，还有一层社交功能。",
-        "功能清单是 AI 生成的规划，不是从「用户要什么」推出来的。",
-        "第二天停下，五个月没有再碰，范围也没有缩回去。",
-        "→ 回头看，没有用户的应用不该继续长下去。",
-      ],
-    },
-  },
-  {
-    id: "fencepost",
-    kind: { en: "Safety & schema boundary", zh: "安全与数据结构边界" },
-    stamp: { en: "Fencepost · revocable context", zh: "Fencepost · 可吊销上下文" },
-    date: "2026.10",
-    project: { en: "Fencepost", zh: "Fencepost" },
-    body: {
-      en: [
-        "Photo uploads strip EXIF at the schema level; only the storage key persists.",
-        "Neighbours view sightings strictly through revocable QR access_grants.",
-        "Three-role Python safety proxy keeps LLM inference separate from gating.",
-        "→ verified by 431 offline tests and 29 red-line safety cases.",
-      ],
-      zh: [
-        "数据表结构设计即剥离照片 EXIF，数据库仅保留存储键。",
-        "邻里访问严格走可随时吊销的二维码权限凭证 access_grants。",
-        "三角色 Python AI 安全代理将审批闸门与模型推理彻底隔离。",
-        "→ 通过 431 项离线测试与 29 条 AI 安全红线用例验证。",
+        "与 On The Beat 共用 M5StickS3 的双启动固件。",
+        "语音只采集上下文；高风险命令行与改写操作绝不口头放行。",
+        "离线界面拆开报错 Wi-Fi、云中继或电脑断连原因。",
+        "→ 每道高风险闸门都落回实体按键（暂限作者本人日常使用）。",
       ],
     },
   },
@@ -131,16 +47,100 @@ const DECK: DeckCard[] = [
     project: { en: "Lamplight Nook", zh: "Lamplight Nook" },
     body: {
       en: [
-        "Long-running Claude tasks staged as a pixel café crew with the plan on a blackboard.",
-        "Every destructive step waits behind an explicit confirmation card.",
-        "Closing or dismissing defaults safely to 'not now' rather than auto-approving.",
-        "→ legible calm state without hiding behind fake automation.",
+        "Long-running agent sessions staged as a pixel café with the plan on a blackboard.",
+        "Risky commands wait behind one visible card instead of auto-running.",
+        "Closing or dismissing defaults to 'not now' so silence is never consent.",
+        "→ calm visibility over fake hands-free polish (external user study pending).",
       ],
       zh: [
-        "把长时间运行的 Claude 任务变成像素咖啡馆小队与黑板计划流。",
-        "每个高风险动作必须经过独立确认卡片拦截。",
-        "关闭或忽略默认回到「先不要」，绝不替人悄悄放行。",
-        "→ 用清晰的状态反馈守住边界，而非伪装无感全自动。",
+        "把长耗时 Agent 任务变成像素咖啡馆与黑板上的透明计划流。",
+        "涉及删除或外发的操作一律卡在确认卡上等待。",
+        "关闭或忽略弹窗默认退回「先不要」，沉默永不等于同意。",
+        "→ 用稳重的边界替代虚假无感全自动（尚待外部用户测试）。",
+      ],
+    },
+  },
+  {
+    id: "autofill",
+    kind: { en: "Refusal threshold · Local AI UX", zh: "拒填阈值 · 本地填表" },
+    stamp: { en: "Resume Autofill · zero guessing", zh: "Resume Autofill · 宁缺毋猜" },
+    date: "2026.10",
+    project: { en: "Resume Autofill", zh: "Resume Autofill" },
+    body: {
+      en: [
+        "Resumes stay on the local browser/phone instead of remote scraping clouds.",
+        "Ambiguous work-rights or custom questions stop below threshold instead of guessing.",
+        "Every run logs why a field was filled or skipped, never auto-submitting forms.",
+        "→ 100% across 5 synthetic test forms (real ATS portals still unmeasured).",
+      ],
+      zh: [
+        "简历文本仅留本地浏览器或手机存储，不经过远程云端中转。",
+        "遇到签证合规等歧义项时低于阈值即停填，绝不硬凑答案。",
+        "保留逐字段命中与跳过日志，并拒绝替人点击提交按钮。",
+        "→ 5 套合成表单 100% 稳定，真实求职网站尚待统计对比。",
+      ],
+    },
+  },
+  {
+    id: "maze",
+    kind: { en: "Public exhibition · Co-play", zh: "公开展出 · 多人协作" },
+    stamp: { en: "MazeRunners · shared bands", zh: "MazeRunners · 共用腕带" },
+    date: "2026.06",
+    project: { en: "MazeRunners", zh: "MazeRunners" },
+    body: {
+      en: [
+        "Replaced frightening electric-shock feedback with safe vibrating sleeves.",
+        "Each colour wristband is shared by two players so nobody steers solo.",
+        "Physical wire-contact logic forces spoken coordination under time pressure.",
+        "→ 9 groups (36 players) tested publicly; about 3 groups finished.",
+      ],
+      zh: [
+        "用柔和的振袖替代原本容易吓退试玩者的电击惩罚设想。",
+        "每种颜色的导电腕带由两名玩家共用，任何方向都无法单人独自完成。",
+        "把协作规则写进接触电路，用轻触即发代替繁琐口令教学。",
+        "→ 公开展出 9 组共 36 人实测，约 3 组通关（纸质榜未存档）。",
+      ],
+    },
+  },
+  {
+    id: "onthebeat",
+    kind: { en: "Social proximity · BLE", zh: "临近社交 · 低压破冰" },
+    stamp: { en: "On The Beat · 3 card levels", zh: "On The Beat · 三档提示卡" },
+    date: "2026.08",
+    project: { en: "On The Beat", zh: "On The Beat" },
+    body: {
+      en: [
+        "Fixed three-level card deck ('SAY HI', 'FIRST SONG?', 'LET'S DANCE!') curbs anxiety.",
+        "Signal thresholds (-68 / -58 dBm) pace greetings without visible leaderboards.",
+        "Replaces awkward cold-open typing with an optional wrist-level icebreaker.",
+        "→ firmware & dual app protocol verified; external wearers not tested yet.",
+      ],
+      zh: [
+        "三档递进提示卡把「不知如何搭讪」收束为低门槛自然开场。",
+        "依靠近场 RSSI 阈值（-68 / -58 dBm）控制节奏，不引入公众点赞排行榜。",
+        "组员主导概念卡片视觉与蓝牙交互，并配合写入嵌入式双启动分区。",
+        "→ 固件协议跑通；尚待真实派对场景穿戴测试。",
+      ],
+    },
+  },
+  {
+    id: "grassland",
+    kind: { en: "Tactical clarity · Dual skin", zh: "策略清晰 · 双风格对比" },
+    stamp: { en: "Grassland Iron Tide · no auto-play", zh: "草原铁潮 · 拒绝托管" },
+    date: "2026.10",
+    project: { en: "Grassland Iron Tide", zh: "草原铁潮" },
+    body: {
+      en: [
+        "Side-by-side Tactical Slate and Tactile Brass modes keep battlefield reads crisp.",
+        "Withholds passive auto-battler toggles so economy/squad timing stays felt.",
+        "Engineered state machine & deterministic PixiJS + React bridge.",
+        "→ 430 local tests green; live outside player sessions scoped next.",
+      ],
+      zh: [
+        "提供冷静战术灰板与厚重机械青铜双视觉，专注战场信息可辨识度。",
+        "有意舍弃纯自动托管挂机逻辑，让节奏判断留在玩家手里。",
+        "基于 PixiJS 与 React 状态桥接实现双界面同步驱动。",
+        "→ 本地 430 条单测全绿；外部实人试玩体验待下一步收集。",
       ],
     },
   },

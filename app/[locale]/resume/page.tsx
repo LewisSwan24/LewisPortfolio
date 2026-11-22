@@ -47,8 +47,8 @@ export default async function ResumePage() {
       </section>
 
       <section className="container">
-        <div className="res-body">
-          <div>
+        <div className="res-body v4-editorial-grid">
+          <div className="v4-span-8">
             <div className="res-section">
               <h3>{t("resume.section.exp")}</h3>
 
@@ -63,24 +63,24 @@ export default async function ResumePage() {
                   {/* Unlisted projects are intentionally excluded from every public resume line. */}
                   <p className="org">
                     {isZh
-                      ? "AI 辅助产品与设计工程实践 · Walkie / Fencepost / Lamplight Nook / Resume Autofill / On The Beat / Hoop Dream / 个人作品集"
-                      : "AI-assisted product & design engineering · Walkie, Fencepost, Lamplight Nook, Resume Autofill, On The Beat, Hoop Dream, this site"}
+                      ? "AI 辅助产品与设计工程实践 · Walkie / Lamplight Nook / Resume Autofill / On The Beat / 草原铁潮 / 个人作品集"
+                      : "AI-assisted product & design engineering · Walkie, Lamplight Nook, Resume Autofill, On The Beat, Grassland Iron Tide, this site"}
                   </p>
                   <ul>
                     <li>
                       {isZh
-                        ? "物理数字协同（Walkie / On The Beat）：与 On The Beat 共用 M5StickS3 的双启动固件，以 USB 优先与 AES-256-GCM 零知识中继驱动手腕实体按钮审批 Claude 工具，并完成实机屏幕状态与传输切换验证。"
-                        : "Physical-digital control (Walkie & On The Beat): dual-boot M5StickS3 firmware with USB-first AES-256-GCM relay and wrist button approvals for Claude Code, verified across on-device screen states and link handover."}
+                        ? "物理数字协同（Walkie / On The Beat）：与 On The Beat 共用 M5StickS3 的双启动固件，以 USB 优先与 AES-256-GCM 零知识中继驱动手腕实体按钮审批 Claude 工具，并让社交卡片停在非侵入式的握手阈值上。"
+                        : "Physical-digital control (Walkie & On The Beat): dual-boot M5StickS3 firmware with USB-first AES-256-GCM relay and wrist button approvals for Claude Code, paired with three-card BLE social pacing anchored at non-intrusive proximity thresholds."}
                     </li>
                     <li>
                       {isZh
-                        ? "AI 安全与风险确认边界（Fencepost / Lamplight Nook）：设计可吊销权限二维码与三角色安全代理机制，并打造风险动作默认「先不要」的 Electron + Phaser 任务确认界面。"
-                        : "AI safety & risk gating (Fencepost & Lamplight Nook): revocable QR access grants and a three-role AI safety proxy paired with a desktop task UI where risky actions default to 'not now'."}
+                        ? "温柔陪伴与低压力确认（Lamplight Nook）：打造风险动作默认「先不要」、把停滞任务拆成低负担微动作的 Electron + Phaser 桌面陪伴界面，并坦诚标注未经外部受试验证的边界。"
+                        : "Calm agency & low-pressure confirmation (Lamplight Nook): an Electron + Phaser companion UI where risky actions default to 'not now' and stalled tasks break into micro-steps, with unverified user-study scope marked explicitly."}
                     </li>
                     <li>
                       {isZh
-                        ? "求职工作流与视觉规范（Resume Autofill / Hoop Dream）：打造不猜测、不替投、简历不出设备的本地填表工具，并以三份按画布尺寸拆分的规范与拒绝风格清单约束游戏美术资产（自标 DEMO v0.6）。"
-                        : "Workflow tools & design systems (Resume Autofill & Hoop Dream): local-first Chrome/Android autofill that never guesses or submits, alongside a three-tier art bible and rejected-style sheet governing game assets (self-labelled DEMO v0.6)."}
+                        ? "求职工作流与策略交互边界（Resume Autofill / 草原铁潮）：打造不猜测、不替投、简历不出设备的本地填表工具，以及拒绝自动化代操作、突出决策清晰度的即时策略（RTS）双界面原型。"
+                        : "Trustworthy workflow & strategy boundaries (Resume Autofill & Grassland Iron Tide): local-first Chrome/Android autofill that never guesses or submits, alongside an RTS prototype that withholds automation shortcuts so tactical clarity stays legible."}
                     </li>
                   </ul>
                 </div>
@@ -168,7 +168,7 @@ export default async function ResumePage() {
             </div>
           </div>
 
-          <aside className="res-side">
+          <aside className="res-side v4-span-4 v4-rail-sticky">
             <div className="res-side-card role-fit-card">
               <h4>{isZh ? "目标岗位" : "Target roles"}</h4>
               <p className="role-fit-availability">{roleFit.availability}</p>

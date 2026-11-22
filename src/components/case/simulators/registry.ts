@@ -50,6 +50,16 @@ const ConnectIaResetSim = dynamic<SimulatorProps>(
   { ssr: false, loading: SimulatorChunkLoading }
 );
 
+const GrasslandRulesSim = dynamic<SimulatorProps>(
+  () => import("./GrasslandRulesSim").then((mod) => mod.GrasslandRulesSim),
+  { ssr: false, loading: SimulatorChunkLoading }
+);
+
+const OntheBeatHandshakeSim = dynamic<SimulatorProps>(
+  () => import("./OntheBeatHandshakeSim").then((mod) => mod.OntheBeatHandshakeSim),
+  { ssr: false, loading: SimulatorChunkLoading }
+);
+
 const SIMULATOR_REGISTRY: Record<CaseSimulatorId, ComponentType<SimulatorProps>> = {
   "maze-contact": MazeContactSim,
   "walkie-wrist": WalkieWristSim,
@@ -57,6 +67,8 @@ const SIMULATOR_REGISTRY: Record<CaseSimulatorId, ComponentType<SimulatorProps>>
   "autofill-confidence": AutofillConfidenceSim,
   "fencepost-revoke": FencepostRevokeSim,
   "connect-ia-reset": ConnectIaResetSim,
+  "grassland-rules": GrasslandRulesSim,
+  "onthebeat-handshake": OntheBeatHandshakeSim,
 };
 
 export function getSimulatorComponent(

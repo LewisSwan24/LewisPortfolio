@@ -181,6 +181,90 @@ export const walkieCase: CaseRecord = {
       ],
     },
   },
+  designDecisions: [
+    {
+      id: "physical-key-over-voice-approval",
+      decisionTitle: {
+        en: "Bind tool approvals to physical watch buttons rather than spoken 'yes'",
+        zh: "用手表实体双键握住最终审批权，而非语音口令自动放行",
+      },
+      humanTension: {
+        en: "Stepping away from the desk leaves an autonomous coding agent stalled on a single permission prompt, yet speaking commands aloud in shared spaces creates privacy discomfort and makes accidental approval feel effortless.",
+        zh: "离开电脑后，编码 Agent 常常卡在一条工具权限确认上；但在公共或共享办公空间里出声审批既让人不自在，也容易因环境人声误识别而带来“不知不觉就放行了”的失控焦虑。",
+      },
+      rejectedAlternatives: [
+        {
+          option: {
+            en: "Hands-free voice confirmation ('Yes, run it')",
+            zh: "纯语音口令确认（识别到「同意」即执行）",
+          },
+          flaw: {
+            en: "Speech-to-text cannot distinguish deliberate user intent from background conversation or media audio, offering zero tactile boundary before a destructive shell command executes.",
+            zh: "语音转文字无法区分环境旁白与刻意授权，高危命令行执行前缺乏不可混淆的物理确认手感。",
+          },
+        },
+        {
+          option: {
+            en: "Mirror the full terminal session on a phone screen",
+            zh: "在手机大屏上重开完整桌面终端窗口",
+          },
+          flaw: {
+            en: "Pulling out a phone re-exposes notifications and drags a two-second decision back into full-screen desktop context switching.",
+            zh: "掏出手机会立刻被各类通知打断，把原本 2 秒钟的点头决策重新拖回桌面级的注意力碎片里。",
+          },
+        },
+      ],
+      chosenTradeoff: {
+        en: "Asymmetric physical key grammar on M5StickS3: hold the Front Key to record press-to-talk audio, press Front Key to approve, press Side Key to deny (with an optional spoken reason), and require a 30-second physical Front Key press to pair any new PC.",
+        zh: "在 M5StickS3 上建立非对称实体按键语法：按住前键录音、前键批准、侧键拒绝（可选口述原因），新电脑配对亦须 30 秒内按实体前键才落盘 pair.key，依靠拇指本体感觉建立明确的人机责任边界。",
+      },
+      residualCostOrRisk: {
+        en: "Slightly slower than hands-free speech, requires keeping the watch charged, and multi-user ergonomics outside Lewis's own desk remain unverified (wrist photos not yet committed).",
+        zh: "响应比纯语音慢半拍，且目前仅在 Lewis 本人桌边日常验证过；他人佩戴手感与长续航尚未实地测过，仓库也暂未归档实拍照片。",
+      },
+    },
+    {
+      id: "summary-and-honest-offline-states",
+      decisionTitle: {
+        en: "Compress context into spoken summaries and explicit offline diagnostics",
+        zh: "只回传一句话风险摘要，并把三种断连原因拆开说清",
+      },
+      humanTension: {
+        en: "A thumb-sized wrist screen cannot carry diffs or stack traces; showing raw logs overwhelms glanceability, whereas generic 'Disconnected' errors leave the user guessing whether Wi-Fi, cloud relay, or the laptop failed.",
+        zh: "拇指大小的腕表屏幕装不下代码 diff 与堆栈；塞满滚动文本会彻底丧失可瞥视性，而笼统的一句「已断线」只会让人在桌边盲猜到底是 Wi-Fi、云中继还是电脑挂了。",
+      },
+      rejectedAlternatives: [
+        {
+          option: {
+            en: "Stream full Claude terminal output onto paginated watch cards",
+            zh: "把完整的终端标准输出直接分页推到手表屏幕",
+          },
+          flaw: {
+            en: "Scrolling dozens of tiny pages turns a quick check into miniature terminal reading and defeats stepping away from the monitor.",
+            zh: "在小屏上翻几十页字符会重新消耗阅读带宽，违背「离桌轻接力」的初衷。",
+          },
+        },
+        {
+          option: {
+            en: "Attempt seamless mid-turn handover between USB and cloud relay",
+            zh: "尝试在单轮对话进行中做 USB 与无线中继的静默无缝切换",
+          },
+          flaw: {
+            en: "Masking link transitions hides transport failures and risks partial or duplicated audio frames across two channels.",
+            zh: "隐藏链路切换状态容易掩盖传输异常，且双通道并发可能引发残帧或重复指令。",
+          },
+        },
+      ],
+      chosenTradeoff: {
+        en: "The Node 24 bridge distills replies into short spoken summaries, USB always preempts the AES-256-GCM Fly.io relay when plugged in, and OFFLINE screens distinguish no-Wi-Fi, relay-unreachable, and PC-bridge-offline explicitly.",
+        zh: "Node 24 桥接将执行结果收敛为简短语音简报回传手腕；插线时 USB 永远抢占 AES-256-GCM 加密 Fly.io 中继，离线界面明确区分「无 Wi-Fi / 中继不可达 / 电脑离线」三种状态。",
+      },
+      residualCostOrRisk: {
+        en: "Plugging or unplugging the USB cable mid-turn intentionally drops the in-flight turn rather than stitching streams; complex code diffs still require returning to the monitor.",
+        zh: "单轮对话中途插拔 USB 会主动放弃当前这轮交互而非强行拼接流；复杂代码审查依然必须回到电脑屏幕前完成。",
+      },
+    },
+  ],
   card: {
     en: {
       kicker: "Physical AI Agent · Tactile Approvals",

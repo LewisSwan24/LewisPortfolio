@@ -245,3 +245,41 @@
 @media (max-width: 820px) {
   .idx-flag { grid-template-columns: 1fr; gap: var(--s-4); padding: var(--s-5) 0; }
 }
+
+/* DECISION COMPARATOR MATRIX */
+.comparator-section { display: grid; gap: var(--s-5); }
+.comparator-head {
+  display: flex; flex-wrap: wrap; justify-content: space-between;
+  align-items: flex-end; gap: var(--s-4);
+  padding-top: var(--s-6); border-top: 1px solid var(--border);
+}
+.comparator-table-wrap { overflow-x: auto; border: 1px solid var(--border); background: var(--surface); }
+.comparator-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; line-height: 1.55; }
+.comparator-table th, .comparator-table td {
+  padding: 14px 16px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
+  vertical-align: top; color: var(--text-2);
+}
+.comparator-table thead th {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-3); background: var(--bg);
+}
+.comparator-table td strong { display: block; color: var(--text); margin-bottom: 4px; }
+.comparator-case-cell { display: grid; gap: 4px; min-width: 150px; }
+.comparator-case-cell strong { color: var(--text); font-size: 14px; }
+.comparator-case-cell span { font-size: 11px; color: var(--text-3); font-weight: 400; }
+.comparator-case-cell a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 12px; }
+.comparator-mobile-list { display: none; gap: var(--s-3); }
+.comparator-accordion { border: 1px solid var(--border); background: var(--surface); }
+.comparator-accordion-summary {
+  padding: 14px 16px; cursor: pointer; display: grid; gap: 4px; list-style: none;
+}
+.comparator-acc-title { font-weight: 600; color: var(--text); font-size: 15px; }
+.comparator-acc-meta { font-size: 13px; color: var(--text-2); }
+.comparator-accordion-body { padding: 0 16px 16px; display: grid; gap: var(--s-3); border-top: 1px solid var(--border); }
+.comparator-accordion-body dl { margin: 12px 0 0; display: grid; gap: 10px; }
+.comparator-accordion-body dt { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--text-3); }
+.comparator-accordion-body dd { margin: 2px 0 0; font-size: 13px; line-height: 1.5; color: var(--text-2); }
+@media (max-width: 780px) {
+  .comparator-table-wrap { display: none; }
+  .comparator-mobile-list { display: grid; }
+}

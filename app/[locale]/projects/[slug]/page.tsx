@@ -9,6 +9,8 @@ import { CaseInvariantLink, isLabLinkedCase } from "@/components/case/CaseInvari
 import { CaseMediaGallery } from "@/components/case/CaseMediaGallery";
 import { CaseCoverVisual, hasScreenshotCover } from "@/components/case/CaseCoverVisual";
 import { CaseSummaryBlock } from "@/components/case/CaseSummaryBlock";
+import { CaseDesignDecisions } from "@/components/case/CaseDesignDecisions";
+import { HardwareFieldCanvas } from "@/components/three/HardwareFieldCanvas";
 import { CaseSimulatorFrame } from "@/components/case/CaseSimulatorFrame";
 import { CaseTerminologyNotes } from "@/components/case/CaseTerminologyNotes";
 import { BeforeAfterScrubber } from "@/components/case/BeforeAfterScrubber";
@@ -143,9 +145,16 @@ export default async function CasePage({ params }: Props) {
     ? ["process-artifacts", isZh ? "过程手稿与调研" : "Process & research"]
     : null;
 
+  const designDecisions = record.designDecisions ?? [];
+  const designDecisionsJump: [string, string] | null =
+    designDecisions.length > 0
+      ? ["design-decisions", isZh ? "设计决策论证" : "Design Decisions"]
+      : null;
+
   const jumpSections: Array<readonly [string, string]> = [
     ["artifact", isZh ? "核心产物" : "Artifact"],
     ["snapshot", isZh ? "案例摘要" : "Summary"],
+    ...(designDecisionsJump ? [designDecisionsJump] : []),
     ...(interactiveJump && interactiveDemo?.placement === "after-summary"
       ? [interactiveJump]
       : []),
@@ -292,12 +301,23 @@ export default async function CasePage({ params }: Props) {
             </figure>
 
             <CaseSummaryBlock locale={proofLocale} summary={caseSummary} />
+
+            <CaseDesignDecisions
+              decisions={designDecisions}
+              locale={proofLocale}
+            />
           </div>
         </div>
       </section>
 
       {interactiveDemo?.placement === "after-summary" && (
         <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} />
+      )}
+
+      {(k === "walkie" || k === "maze" || k === "onthebeat") && (
+        <section className="container" style={{ marginTop: "var(--s-6)" }}>
+          <HardwareFieldCanvas slug={k} locale={proofLocale} />
+        </section>
       )}
 
       {isLabLinkedCase(k) && <CaseInvariantLink slug={k} isZh={isZh} />}

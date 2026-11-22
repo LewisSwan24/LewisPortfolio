@@ -1,9 +1,8 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
-// Listed cases only: vigil, spectra, rules and gapmapper are unlisted, so no
-// proof link may point at them.
+// Listed cases only: vigil, spectra, rules, gapmapper, fencepost, connect, hoop, and pricewise are unlisted.
 const anchoredCaseProofHref =
-    /\/projects\/(connect|ai|maze|hoop|pricewise|grassland|onthebeat|lamplight|autofill|walkie|fencepost)#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
+    /\/projects\/(walkie|lamplight|autofill|maze|onthebeat|grassland)#(design-decisions|decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
 /**
  * Next's dev server sometimes issues a full reload while it compiles a route for
@@ -40,10 +39,8 @@ test.describe("Portfolio Homepage", () => {
     });
 
     test("should display the current hero", async ({ page }) => {
-        // Two-layer positioning: the headline states the capability with no tool
-        // names, the lede underneath names the tools.
-        await expect(page.getByRole("heading", { level: 1 })).toContainText(/actually use/i);
-        await expect(page.locator(".hero-lede")).toContainText(/Claude Code|Codex/);
+        await expect(page.getByRole("heading", { level: 1 })).toContainText(/working software|human rule/i);
+        await expect(page.locator(".hero-lede")).toContainText(/human friction|refusal paths/i);
     });
 
     // Homepage focuses directly on practice notes, featured cases, and
@@ -109,15 +106,17 @@ test.describe("Projects Page", () => {
 
         await expect(matrix.getByText("Evidence matrix")).toBeVisible();
         await expect(matrix.getByText("Information architecture")).toBeVisible();
-        await expect(matrix.getByRole("columnheader", { name: "UQ Connect" })).toBeVisible();
+        await expect(matrix.getByRole("columnheader", { name: "Walkie" })).toBeVisible();
         await expect(matrix.locator("a[href*='#']").first()).toBeVisible();
 
         await page.setViewportSize({ width: 390, height: 844 });
         await expect(
             matrix.locator(".evidence-matrix-mobile-label").filter({ hasText: "MazeRunners" }).first(),
         ).toBeVisible();
-        // Vigil is unlisted, so it has no column at any width.
+        // Unlisted cases never appear in the capability matrix at any width.
         await expect(matrix.getByText("Vigil")).toHaveCount(0);
+        await expect(matrix.getByText("Fencepost")).toHaveCount(0);
+        await expect(matrix.getByText("UQ Connect")).toHaveCount(0);
     });
 
     // waitForURL rather than an immediate toHaveURL: clicking straight after
@@ -378,15 +377,14 @@ test.describe("Projects Page", () => {
     });
 
     test("project detail should keep related visuals inside their cards", async ({ page }) => {
-        // MazeRunners' neighbours (UQ Connect, Hoop Dream) both draw a diagram.
         await page.goto("/projects/maze");
         const relatedViz = page.locator(".cs-related-viz").first();
-        const nestedViz = relatedViz.locator(".viz");
+        const nestedVisual = relatedViz.locator("img, .viz").first();
 
         await expect(relatedViz).toBeVisible();
 
         const parentBox = await relatedViz.boundingBox();
-        const childBox = await nestedViz.boundingBox();
+        const childBox = await nestedVisual.boundingBox();
 
         if (!parentBox || !childBox) {
             throw new Error("Expected related project visual bounds to be measurable.");
@@ -507,10 +505,10 @@ test.describe("Hire Page", () => {
         const thread = page.locator("#ai-trust-thread");
 
         await expect(thread.getByRole("heading", { name: "Designing trust across AI-assisted workflows" })).toBeVisible();
-        await expect(thread.getByText(/uncertainty legible/i)).toBeVisible();
+        await expect(thread.getByText(/refusal boundaries legible/i)).toBeVisible();
         await expect(thread.locator(".ai-trust-thread-limit")).toContainText(/mock data|production traffic/i);
-        await expect(thread.locator("li")).toHaveCount(3);
-        for (const slug of ["pricewise", "connect", "hoop"]) {
+        await expect(thread.locator("li")).toHaveCount(4);
+        for (const slug of ["walkie", "lamplight", "autofill", "onthebeat"]) {
             await expect(thread.locator(`a[href='/projects/${slug}#decision-timeline']`)).toBeVisible();
         }
         await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
@@ -523,7 +521,7 @@ test.describe("Hire Page", () => {
 
         await expect(thread.getByText(/交互原则/)).toBeVisible();
         await expect(thread.locator(".ai-trust-thread-limit")).toContainText(/模拟数据|生产流量/);
-        await expect(thread.locator("a[href='/zh/projects/pricewise#decision-timeline']")).toBeVisible();
+        await expect(thread.locator("a[href='/zh/projects/walkie#decision-timeline']")).toBeVisible();
         await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
     });
 });
@@ -759,7 +757,7 @@ test.describe("Unlisted cases", () => {
             const resume = page.locator("main[data-screen-label='05 Resume']");
             // Visible first, so a missing page cannot pass the negative check.
             await expect(resume.locator(".res-entry").first(), url).toBeVisible();
-            await expect(resume, url).not.toContainText(/vigil/i);
+            await expect(resume, url).not.toContainText(/vigil|fencepost|hoop dream/i);
         }
     });
 
@@ -825,18 +823,17 @@ test.describe("V3 Flagship Routes & Role Lens", () => {
         const aiTab = page.getByRole("tab", { name: /AI UX/i });
         await aiTab.click();
         await expect(grid).toHaveAttribute("data-active-lens", "ai-ux");
-        await expect(grid.locator("a[href*='/projects/fencepost']")).toBeVisible();
+        await expect(grid.locator("a[href*='/projects/autofill']")).toBeVisible();
     });
 
-    test("new V3 flagship case studies walkie and fencepost render in EN and ZH", async ({ page }) => {
-        for (const url of [
-            "/projects/walkie",
-            "/zh/projects/walkie",
-            "/projects/fencepost",
-            "/zh/projects/fencepost",
-        ]) {
-            await gotoStable(page, url);
-            await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+    test("all 6 listed cases render Design Decisions & Tradeoffs right after Summary in EN and ZH", async ({ page }) => {
+        for (const slug of ["walkie", "lamplight", "autofill", "maze", "onthebeat", "grassland"]) {
+            for (const url of [`/projects/${slug}`, `/zh/projects/${slug}`]) {
+                await gotoStable(page, url);
+                await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+                await expect(page.locator("#design-decisions")).toBeAttached();
+                await expect(page.locator(".case-decision-card")).toHaveCount(2);
+            }
         }
     });
 });

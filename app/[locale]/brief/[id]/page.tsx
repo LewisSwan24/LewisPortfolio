@@ -125,11 +125,11 @@ export default async function TailoredBriefPage({ params }: BriefPageProps) {
           </header>
 
           <div className="case-sim-stage proc-stage">
-            <div className="v3-card-grid">
+            <div className="v4-editorial-grid">
               {selectedCases.map((record, index) => {
                 const card = record.card[proofLocale];
                 return (
-                  <article key={record.slug} className="sim-field">
+                  <article key={record.slug} className="sim-field v4-span-6">
                     <div className="sim-scenario-head">
                       <span className="tag">0{index + 1}</span>
                       <span className="eyebrow">{card.kicker}</span>

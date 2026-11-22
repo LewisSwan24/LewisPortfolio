@@ -91,6 +91,20 @@
   color: var(--text-3);
 }
 
+.lab-only-dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .lab-only-light,
+.dark .lab-only-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .lab-only-dark,
+.dark .lab-only-dark {
+  display: inline;
+}
+
 .lab-type-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

@@ -2,7 +2,7 @@ import type { CaseRecord } from "@/lib/cases/schema";
 
 export const hoopCase: CaseRecord = {
   "slug": "hoop",
-  "status": "listed",
+  "status": "unlisted",
   "roleTracks": [
     "product",
     "design-eng",

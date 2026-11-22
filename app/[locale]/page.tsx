@@ -4,6 +4,7 @@ import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { TransitionLink } from "@/components/navigation/TransitionLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { FeaturedDeck } from "@/components/home/FeaturedDeck";
+import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
 import { SectionReveal } from "@/components/motion/SectionReveal";
 import {
   VizConnect,
@@ -193,6 +194,8 @@ export default async function HomePage() {
           })}
         />
       </section>
+
+      <SpecimenAxisCanvas locale={proofLocale} />
 
       <section className="section container">
         <div className="v4-editorial-grid">

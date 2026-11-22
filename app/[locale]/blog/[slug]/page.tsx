@@ -167,11 +167,11 @@ export default async function BlogPostPage({ params }: Props) {
         </section>
 
         <section className="container">
-          <div className="blog-layout">
-            <div className="blog-toc-col">
+          <div className="v4-reading-grid">
+            <div className="v4-reading-rail">
               <TOC items={tocItems} />
             </div>
-            <div className="blog-article-col">
+            <div className="v4-reading-main">
               <article className="blog-article">
                 <MDXRemote source={post.content} components={getMdxComponents(locale)} />
               </article>

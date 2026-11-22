@@ -467,6 +467,15 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
   color: var(--text-2);
 }
 
+@supports not (anchor-name: --a) {
+  [popover].anchor-note-popover:popover-open {
+    inset: auto;
+    inset-block-end: 24px;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 @supports (anchor-name: --a) {
   [popover].anchor-note-popover {
     inset: auto;
@@ -475,12 +484,14 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
     position-area: block-start;
     position-try-fallbacks: flip-block;
     margin-block-end: 8px;
+    overflow: visible;
   }
 }
 
 @supports (container-type: anchored) {
   [popover].anchor-note-popover {
     container-type: anchored;
+    overflow: visible;
   }
 
   .anchor-note-content::before {

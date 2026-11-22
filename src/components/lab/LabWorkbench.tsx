@@ -23,15 +23,24 @@ const SWATCHES = [
 const CASE_MOOD_SWATCHES = [
   { label: "Hardware Steel", token: "#2B4D6F", darkHex: "#92BAE0", cases: "maze / onthebeat" },
   { label: "Signal Vermilion", token: "#A63F2A", darkHex: "#E69682", cases: "walkie" },
-  { label: "AI Safety Moss", token: "#2F5939", darkHex: "#8EC29A", cases: "fencepost / rules" },
-  { label: "Slate Indigo", token: "#3B4D70", darkHex: "#A3B6E0", cases: "autofill / pricewise" },
-  { label: "Narrative Umber", token: "#6E451F", darkHex: "#DAB082", cases: "lamplight / hoop" },
+  { label: "AI Safety Moss", token: "#2F5939", darkHex: "#8EC29A", cases: "grassland" },
+  { label: "Slate Indigo", token: "#3B4D70", darkHex: "#A3B6E0", cases: "autofill" },
+  { label: "Narrative Umber", token: "#6E451F", darkHex: "#DAB082", cases: "lamplight" },
 ] as const;
 
 export function LabWorkbench({ locale }: { locale: Locale }) {
   const isZh = locale === "zh";
   const { resolvedTheme, setTheme } = useTheme();
   const osReducedMotion = useReducedMotion();
+
+  const toggleTheme = () => {
+    const isDomDark =
+      typeof document !== "undefined" &&
+      (document.documentElement.dataset.theme === "dark" ||
+        document.documentElement.classList.contains("dark"));
+    const isDark = resolvedTheme ? resolvedTheme === "dark" : isDomDark;
+    setTheme(isDark ? "light" : "dark");
+  };
 
   // Module 02 state: GSAP Paper Motion Sandbox
   const [duration, setDuration] = useState(0.36);
@@ -84,11 +93,23 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           <button
             type="button"
             className="btn btn-ghost"
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            onClick={toggleTheme}
           >
-            {isZh
-              ? `切换主题（当前：${resolvedTheme === "dark" ? "暗色" : "亮色"}）`
-              : `Toggle theme (${resolvedTheme === "dark" ? "dark" : "light"})`}
+            {isZh ? (
+              <>
+                切换主题（当前：
+                <span className="lab-only-light">亮色</span>
+                <span className="lab-only-dark">暗色</span>
+                ）
+              </>
+            ) : (
+              <>
+                Toggle theme (
+                <span className="lab-only-light">light</span>
+                <span className="lab-only-dark">dark</span>
+                )
+              </>
+            )}
           </button>
         </div>
 
@@ -98,7 +119,10 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
               <div className="lab-swatch-chip" style={{ background: `var(${s.token})` }} />
               <div className="lab-swatch-meta">
                 <code>{s.token}</code>
-                <span>{resolvedTheme === "dark" ? s.hexDark : s.hexLight}</span>
+                <span>
+                  <span className="lab-only-light">{s.hexLight}</span>
+                  <span className="lab-only-dark">{s.hexDark}</span>
+                </span>
                 <span>{s.ratio}</span>
               </div>
             </div>
@@ -122,7 +146,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           </div>
           <div className="lab-type-card">
             <div className="eyebrow">03 · Technical Index (400)</div>
-            <div className="lab-type-sample-mono">2026-11-22 · v4.0 · 16.4:1</div>
+            <div className="lab-type-sample-mono">2026-11-22 · v4.1 · 16.4:1</div>
             <span className="eyebrow">Geist Mono · tokens, specs, telemetry</span>
           </div>
         </div>

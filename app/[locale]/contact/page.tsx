@@ -50,7 +50,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   return (
     <main className="page" data-screen-label="06 Contact">
       <section className="container contact-hero">
-        <div className="contact-hero-copy">
+        <div className="v4-editorial-grid" style={{ alignItems: "center" }}>
+          <div className="contact-hero-copy v4-span-7">
           <div className="label">{t("contact.kicker")}</div>
           <h1 className="h-display h1">
             {isZh ? (
@@ -94,28 +95,31 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </Link>
           </p>
         </div>
-        {isInterviewIntent ? (
-          <FollowThroughContactContext
-            role={matchedRole}
-            intent={query?.intent}
-            locale={proofLocale}
-            labels={proofLabels}
-          />
-        ) : matchedRole ? (
-          <ContactRoleContext role={matchedRole} locale={proofLocale} />
-        ) : (
-          <aside className="contact-note-card" aria-label={isZh ? "来信建议" : "Note guide"}>
-            <div className="contact-note-label">
-              {isZh ? "写信时顺便带上一句" : "Helpful in your note"}
-            </div>
-            <p>
-              {isZh
-                ? "附上团队方向、产品阶段或想深聊的一件作品，我回信时可以直接把相关设计与边界整理给你。"
-                : "Share the role scope, product stage, or specific build you want to unpack — I will reply with the right context ready."}
-            </p>
-            <span>{isZh ? "布里斯班 · 欢迎远程与澳洲本地机会" : "Brisbane · Open to AU & remote"}</span>
-          </aside>
-        )}
+        <div className="v4-span-5">
+          {isInterviewIntent ? (
+            <FollowThroughContactContext
+              role={matchedRole}
+              intent={query?.intent}
+              locale={proofLocale}
+              labels={proofLabels}
+            />
+          ) : matchedRole ? (
+            <ContactRoleContext role={matchedRole} locale={proofLocale} />
+          ) : (
+            <aside className="contact-note-card" aria-label={isZh ? "来信建议" : "Note guide"}>
+              <div className="contact-note-label">
+                {isZh ? "写信时顺便带上一句" : "Helpful in your note"}
+              </div>
+              <p>
+                {isZh
+                  ? "附上团队方向、产品阶段或想深聊的一件作品，我回信时可以直接把相关设计与边界整理给你。"
+                  : "Share the role scope, product stage, or specific build you want to unpack — I will reply with the right context ready."}
+              </p>
+              <span>{isZh ? "布里斯班 · 欢迎远程与澳洲本地机会" : "Brisbane · Open to AU & remote"}</span>
+            </aside>
+          )}
+        </div>
+        </div>
       </section>
 
       <QuickContactForm locale={proofLocale} initialRole={matchedRole ?? ""} />

@@ -18,9 +18,9 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "Case depth",
-        value: "Live interactive builds",
+        value: "6 curated builds",
         detail:
-          "UQ Connect, MazeRunners, Hoop Dream, PriceWise, Walkie, Fencepost, and Grassland open straight into interactive demos and research records.",
+          "Walkie, Lamplight Nook, Resume Autofill, MazeRunners, On The Beat, and Grassland Iron Tide open with structured design tradeoffs and honest limits.",
       },
       {
         label: "Decision trail",
@@ -52,6 +52,36 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       whyItMatters:
         "Shows inclusive constraints becoming interaction behavior instead of a checklist.",
       href: "/projects/spectra#evidence-board",
+    },
+    {
+      id: "walkie-physical-proof",
+      capability: "Physical-AI approval boundaries",
+      caseSlug: "walkie",
+      proof:
+        "Walkie keeps Claude Code tool approvals and pairing tied to physical M5StickS3 keys over AES-256-GCM transport.",
+      whyItMatters:
+        "Shows tactile human authority overriding ambient voice convenience.",
+      href: "/projects/walkie#decision-timeline",
+    },
+    {
+      id: "lamplight-safety-proof",
+      capability: "Cognitive safety in AI agencies",
+      caseSlug: "lamplight",
+      proof:
+        "Lamplight Nook turns opaque logs into a café blackboard and locks risky card focus onto 'Not now' on file copies.",
+      whyItMatters:
+        "Shows polite friction guarding users against habitual Enter-key fatigue.",
+      href: "/projects/lamplight#decision-timeline",
+    },
+    {
+      id: "autofill-trust-proof",
+      capability: "Automation refusal & local privacy",
+      caseSlug: "autofill",
+      proof:
+        "Resume Autofill leaves ambiguous fields blank, locks Submit to humans, and enforces zero network calls.",
+      whyItMatters:
+        "Shows trust built by explicitly stating what automation refuses to do.",
+      href: "/projects/autofill#decision-timeline",
     },
     {
       id: "hardware-proof",
@@ -130,6 +160,30 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/connect#outcome-limits",
     },
     {
+      id: "walkie-button-gate",
+      group: "product",
+      question: "Why require physical wrist button presses instead of voice approvals?",
+      proves: "Physical-AI safety boundaries, noise immunity, and transport trade-offs.",
+      caseSlug: "walkie",
+      href: "/projects/walkie#decision-timeline",
+    },
+    {
+      id: "lamplight-default-refusal",
+      group: "product",
+      question: "Why lock risky desktop cards to 'Not now' instead of standard Continue focus?",
+      proves: "Cognitive safety and countering muscle-memory confirmation fatigue.",
+      caseSlug: "lamplight",
+      href: "/projects/lamplight#decision-timeline",
+    },
+    {
+      id: "autofill-blank-fields",
+      group: "limits",
+      question: "Why leave open ATS questions blank instead of using an LLM to draft answers?",
+      proves: "Trust calibration, privacy boundaries, and honest real-site limits.",
+      caseSlug: "autofill",
+      href: "/projects/autofill#outcome-limits",
+    },
+    {
       id: "hardware-constraint-maze",
       group: "product",
       question: "Where did hardware constraints change the interaction, not just the build?",
@@ -170,7 +224,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
         "They should not be treated as proof of large-scale production ownership.",
       validation:
         "I would pair with engineering early to validate delivery constraints.",
-      href: "/projects/connect#outcome-limits",
+      href: "/projects/onthebeat#outcome-limits",
     },
     {
       id: "prototype-metrics",
@@ -179,8 +233,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
         "The before-and-after outcomes were never formally measured, so I quote methods and observations rather than effect sizes.",
       validation:
         "I would define production telemetry before claiming durable product impact.",
-      // Pointed at Spectra Lens until it was unlisted (2026-11-20).
-      href: "/projects/pricewise#outcome-limits",
+      href: "/projects/autofill#outcome-limits",
     },
     {
       id: "scope-of-build",
@@ -211,9 +264,9 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       },
       {
         label: "作品落点",
-        value: "可交互的真实原型",
+        value: "6 件精选实作原型",
         detail:
-          "UQ Connect、MazeRunners、Walkie、Fencepost 与草原铁潮均提供可上手体验的版本，记录了设计动机与演进取舍。",
+          "Walkie、Lamplight Nook、Resume Autofill、MazeRunners、On The Beat 与草原铁潮均提供结构化设计取舍论证与诚实边界。",
       },
       {
         label: "推理链条",
@@ -245,6 +298,36 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       whyItMatters:
         "证明无障碍约束能变成实际交互行为，而不只是 checklist。",
       href: "/projects/spectra#evidence-board",
+    },
+    {
+      id: "walkie-physical-proof",
+      capability: "穿戴端 AI 审批边界",
+      caseSlug: "walkie",
+      proof:
+        "Walkie 把 Claude Code 工具审批与设备配对锁在 M5StickS3 实体双键上，并走 AES-256-GCM 零知识中继。",
+      whyItMatters:
+        "体现用触觉确权替代嘈杂环境纯语音确认的人因判断。",
+      href: "/projects/walkie#decision-timeline",
+    },
+    {
+      id: "lamplight-safety-proof",
+      capability: "长任务 AI 认知安全",
+      caseSlug: "lamplight",
+      proof:
+        "Lamplight Nook 把滚屏日志拆成咖啡馆黑板，并把风险卡焦点锁在「先不要」与副本处理上。",
+      whyItMatters:
+        "用礼貌的交互阻力护住用户，对抗习惯性敲回车的肌肉疲劳。",
+      href: "/projects/lamplight#decision-timeline",
+    },
+    {
+      id: "autofill-trust-proof",
+      capability: "自动化克制与本地隐私",
+      caseSlug: "autofill",
+      proof:
+        "Resume Autofill 对有歧义栏位刻意留空、禁止代点最终提交，并由测试锁定零外网请求。",
+      whyItMatters:
+        "展示「明确声明系统不做什么」比强行全填更能建立信任。",
+      href: "/projects/autofill#decision-timeline",
     },
     {
       id: "hardware-proof",
@@ -321,6 +404,30 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/connect#outcome-limits",
     },
     {
+      id: "walkie-button-gate",
+      group: "product",
+      question: "为什么工具审批非要按手表实体键，而不直接用语音说同意？",
+      proves: "软硬边界划分、防误触人与物理确权取舍。",
+      caseSlug: "walkie",
+      href: "/projects/walkie#decision-timeline",
+    },
+    {
+      id: "lamplight-default-refusal",
+      group: "product",
+      question: "为什么把桌面风险卡的默认焦点锁在「先不要」，而不是按惯例聚焦「继续」？",
+      proves: "认知安全设计，防止习惯性回车误操作。",
+      caseSlug: "lamplight",
+      href: "/projects/lamplight#decision-timeline",
+    },
+    {
+      id: "autofill-blank-fields",
+      group: "limits",
+      question: "为什么开放式网申题宁可留空，也不接云端大模型代写？",
+      proves: "信任边界设定、本地隐私约束与诚实局限披露。",
+      caseSlug: "autofill",
+      href: "/projects/autofill#outcome-limits",
+    },
+    {
       id: "hardware-constraint-maze",
       group: "product",
       question: "硬件约束在哪些地方改变了交互本身，而不只是改变了实现方式？",
@@ -361,7 +468,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
         "别把这些案例当成大规模生产系统 ownership 的证明。",
       validation:
         "我会尽早和工程配合，验证交付约束。",
-      href: "/projects/connect#outcome-limits",
+      href: "/projects/onthebeat#outcome-limits",
     },
     {
       id: "prototype-metrics",
@@ -370,7 +477,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
         "前后对比的结果从来没有正式测量过，所以我只讲方法和观察到的现象，不报效应量。",
       validation:
         "在声称长期产品影响前，我会先定义生产 telemetry。",
-      href: "/projects/pricewise#outcome-limits",
+      href: "/projects/autofill#outcome-limits",
     },
     {
       id: "scope-of-build",

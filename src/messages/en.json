@@ -23,11 +23,11 @@
   "hero": {
     "eyebrow": "Interaction & Product Designer · Master's in Interaction Design, UQ",
     "headline": {
-      "a": "From idea to",
-      "b": "something people can",
-      "c": "actually use."
+      "a": "Shape the human rule,",
+      "b": "then prove it in",
+      "c": "working software."
     },
-    "body": "I design interactions and build working prototypes early enough to test real behavior with users, rather than guessing from static screens. Claude Code and Codex help me bridge concept and code quickly.",
+    "body": "I start from human friction — trust boundaries, cognitive load, and refusal paths — then build working software and physical prototypes early enough to falsify my own assumptions.",
     "deck": {
       "label": "The practice log —",
       "hint": "Drag or click any card",
@@ -57,26 +57,26 @@
   "approach": {
     "label": "How I work",
     "title": {
-      "text": "Research in, working interaction out.",
-      "em": "Every time."
+      "text": "Human tension in, testable rules out.",
+      "em": "With limits left visible."
     },
-    "body": "I don't hand off static mockups and hope for the best. I run the interviews, synthesize what people actually struggle with, shape the information architecture, build the prototype, and watch real users test it.",
+    "body": "I don't hand off static screens or smooth over uncertainty. I surface real user friction, argue down weaker alternatives, encode clear refusal and recovery paths in working software or hardware, and mark what remains untested.",
     "step": {
       "1": {
-        "t": "Listen",
-        "b": "Field notes, transcripts, task observation, and the quiet friction people rarely voice."
+        "t": "Surface Friction",
+        "b": "Field observation, failure modes, and the moments where automation overreaches human comfort."
       },
       "2": {
-        "t": "Synthesize",
-        "b": "Affinity maps, jobs to be done, testable hypotheses — structured reasoning."
+        "t": "Weigh Tradeoffs",
+        "b": "Explicitly reject tempting shortcuts and document why the chosen boundary protects users."
       },
       "3": {
-        "t": "Prototype",
-        "b": "Figma, Framer, HTML/CSS/React, or hardware — whichever fidelity tests the real risk."
+        "t": "Prove in Motion",
+        "b": "Real Next.js, Electron, browser extension, or ESP32 builds — high enough fidelity to fail fast."
       },
       "4": {
-        "t": "Refine",
-        "b": "Usability testing, iteration, and handoff with design rationale intact."
+        "t": "Mark Limits",
+        "b": "Separate observed evidence from synthetic benchmarks, and list what still needs user study."
       }
     }
   },
@@ -108,8 +108,8 @@
     "site": "Site",
     "write": "Write",
     "meta": {
-      "built": "Built with Next.js and Tailwind, prototyped with Codex and Claude Code, and refined across iterations.",
-      "version": "v4.0 · updated November 2026"
+      "built": "Built with Next.js and CSS Grid, focused on human-centered tradeoffs and reproducible prototypes.",
+      "version": "v4.2 · updated November 2026"
     }
   },
   "tw": {
@@ -344,7 +344,7 @@
     "cv": "Download CV",
     "tl": {
       "label": "Briefly",
-      "y2026": "Exhibited MazeRunners; built Walkie, Fencepost, and Hoop Dream. Graduating in Nov, looking for a product design team.",
+      "y2026": "Exhibited MazeRunners; built Walkie, Lamplight Nook, and Resume Autofill. Graduating in Nov, looking for a product design team.",
       "y2025": "Started the Master of Interaction Design at UQ in Feb: research methods, IA, physical computing.",
       "y2024": "Graduated from Swansea University in Jul with a BSc (Hons) in Computer Science, 2:1.",
       "y2020": "Moved to Wales to study Computer Science at Swansea University."

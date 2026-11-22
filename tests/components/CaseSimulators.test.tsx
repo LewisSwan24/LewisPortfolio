@@ -7,6 +7,8 @@ import { AutofillConfidenceSim } from "@/components/case/simulators/AutofillConf
 import { MazeContactSim } from "@/components/case/simulators/MazeContactSim";
 import { FencepostRevokeSim } from "@/components/case/simulators/FencepostRevokeSim";
 import { ConnectIaResetSim } from "@/components/case/simulators/ConnectIaResetSim";
+import { GrasslandRulesSim } from "@/components/case/simulators/GrasslandRulesSim";
+import { OntheBeatHandshakeSim } from "@/components/case/simulators/OntheBeatHandshakeSim";
 import { walkieCase } from "@/data/cases/walkie";
 
 describe("CaseSimulatorFrame & Phase 3.6A Simulators", () => {
@@ -203,5 +205,32 @@ describe("CaseSimulatorFrame & Phase 3.6A Simulators", () => {
     expect(screen.getByRole("button", { name: /Enrolled ✓/i })).toHaveAttribute("aria-disabled", "true");
     fireEvent.click(screen.getByRole("button", { name: /Back to Events/i }));
     expect(screen.getByText("Enrolled ✓")).toBeInTheDocument();
+  });
+
+  it("GrasslandRulesSim validates shared command grammar across missions and restores cleanly from checkpoint", () => {
+    const onStatus = vi.fn();
+    render(<GrasslandRulesSim locale="en" onStatusChange={onStatus} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /M04 · Night Patrol/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Box-select & Scout/i }));
+    expect(onStatus).toHaveBeenLastCalledWith(expect.stringMatching(/Mission 4 uses the exact same/i));
+
+    fireEvent.click(screen.getByRole("button", { name: /Trigger failure & restore checkpoint/i }));
+    expect(screen.getByText(/Restored at checkpoint/i)).toBeInTheDocument();
+  });
+
+  it("OntheBeatHandshakeSim preserves anonymity until mutual nod and then withdraws device quietly", () => {
+    const onStatus = vi.fn();
+    render(<OntheBeatHandshakeSim locale="zh" onStatusChange={onStatus} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /FIRST SONG\?/i }));
+    expect(screen.getByText(/附近有人发出匿名脉冲/)).toBeInTheDocument();
+    expect(screen.queryByText(/吧台左侧音响柱旁/)).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /对方手环双向点头确认/i }));
+    expect(screen.getByText(/吧台左侧音响柱旁/)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: /收起手机 · 硬件退场/i }));
+    expect(screen.getByText(/设备已静默退居二线/)).toBeInTheDocument();
   });
 });

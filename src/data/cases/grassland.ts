@@ -3,6 +3,7 @@ import type { CaseRecord } from "@/lib/cases/schema";
 export const grasslandCase: CaseRecord = {
   "slug": "grassland",
   "status": "listed",
+  "featuredOrder": 6,
   "roleTracks": [
     "interaction",
     "design-eng"
@@ -105,6 +106,26 @@ export const grasslandCase: CaseRecord = {
       }
     ]
   },
+  "interactiveDemo": {
+    "id": "grassland-rules",
+    "placement": "after-summary",
+    "eyebrow": {
+      "en": "Interactive prototype · Unified tactical grammar",
+      "zh": "可操作活原型 · 五关统一命令语法与回滚链"
+    },
+    "title": {
+      "en": "Verify five-mission control consistency & checkpoint restore",
+      "zh": "验证五关共用语法与检查点因果恢复链"
+    },
+    "prompt": {
+      "en": "Switch between Mission 1 and Mission 5, issue a shared directive, then trigger a checkpoint failure to see how players avoid replaying the whole chapter.",
+      "zh": "切换第 1 到第 5 关并执行同套指令，随后触发一次检查点失败恢复，观察玩家如何避免因规则变更被迫重打整章。"
+    },
+    "takeaway": {
+      "en": "Consistent command grammar keeps escalating tactical challenge fair without inventing per-level special buttons.",
+      "zh": "五关锁死同一套指令语法，让难度真正落在战术判断而不是记特殊按钮上。"
+    }
+  },
   "processArtifacts": {
     "microLoop": {
       "eyebrow": {
@@ -145,6 +166,90 @@ export const grasslandCase: CaseRecord = {
       ]
     }
   },
+  "designDecisions": [
+    {
+      "id": "single-command-grammar",
+      "decisionTitle": {
+        "en": "Enforce one command grammar across five missions instead of per-level special controls",
+        "zh": "五关共用一套命令语法，宁少勿乱，拒绝关卡特例按键"
+      },
+      "humanTension": {
+        "en": "Real-time strategy players manage multiple squads under a ticking clock; when designers patch in custom buttons or override selection rules for later levels, escalating challenge turns into interface betrayal.",
+        "zh": "即时战略玩家在持续推进的倒计时下同时调度多支队伍；如果关卡一复杂就临时打补丁改按键或特例规则，所谓的「策略难度」就会偷换成「界面背叛」。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Per-mission custom shortcuts and bespoke UI buttons",
+            "zh": "为每一关单独设计专属快捷按钮与特殊交互方式"
+          },
+          "flaw": {
+            "en": "Forces players to unlearn muscle memory mid-chapter and obscures whether a mistake came from strategy or misread controls.",
+            "zh": "迫使玩家在章节中途重学肌肉记忆，分不清失误究竟源于战术误判还是按错了新控件。"
+          }
+        },
+        {
+          "option": {
+            "en": "Commercial-RTS command density (dozens of micro-abilities and stances)",
+            "zh": "照搬商业 RTS 的高密度指令表与复杂姿态切换"
+          },
+          "flaw": {
+            "en": "Overloads new browser players before core tactical timing and terrain reading ever register.",
+            "zh": "在网页有限认知带宽内过载操作记忆，掩盖了真正的核心战术判断。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Lock click, box-select, Shift add/remove, Ctrl grouping, and right-click commands into one immutable grammar—missions may restrict which commands are available, never change what an action means.",
+        "zh": "将点击、框选、Shift 增减、Ctrl 编队与右键菜单锁定为不可变语法：关卡可以限制「开放哪些命令」，绝不允许篡改「同一操作意味着什么」。"
+      },
+      "residualCostOrRisk": {
+        "en": "Offers fewer tactical verbs than full commercial RTS titles; rule consistency is verified by 430/430 tests and full playthroughs at two resolutions, while new-player learnability remains untested with outside players.",
+        "zh": "战术指令广度低于大型商业 RTS；规则一致性已由 430/430 测试与双分辨率通关验证，但新玩家初见上手速度尚未做过外部试玩测试。"
+      }
+    },
+    {
+      "id": "fixed-camera-and-save-chain",
+      "decisionTitle": {
+        "en": "Pair a fixed battlefield camera with one unified failure-and-checkpoint save chain",
+        "zh": "固定镜头保住主战场视野，并把失败原因与恢复收进同一条存档链"
+      },
+      "humanTension": {
+        "en": "Crowded HUD chrome eats the playable map, while restarts that visually reset units without restoring exact mission flags shatter player trust after a hard defeat.",
+        "zh": "堆满屏幕边缘的信息栏会挤压操作视野；而战败重来时若画面回去了、底层任务状态却串台，玩家会瞬间对整套系统丧失信任。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Restarting the whole stretch or chapter from scratch on defeat",
+            "zh": "任务失败后直接退回关卡起点或章节开头重打"
+          },
+          "flaw": {
+            "en": "Punishes tactical experimentation in longer missions like Mission 4 with repetitive early-game tedium.",
+            "zh": "在第四关这类长线任务里会用重复劳动惩罚战术试错。"
+          }
+        },
+        {
+          "option": {
+            "en": "Free camera zoom with floating mission-text overlays over the map",
+            "zh": "开放自由缩放镜头并在战场中央浮动大段任务说明"
+          },
+          "flaw": {
+            "en": "Text overlays block unit clicks under live pressure and zoom variability complicates HUD predictability.",
+            "zh": "浮动文本会遮挡实时点击区，自由缩放也容易打散信息层级的一致预期。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Fix camera zoom so the battlefield claims the largest screen area while objectives, minimap, and command grid sit cleanly on edges; pause, defeat reason, checkpoint, and unit restoration share one 20 Hz simulation save chain.",
+        "zh": "锁定镜头倍率使主战场始终占最大面积，目标、小地图与命令格停在边缘；暂停、失败归因、检查点与单位状态全部写入同一条 20 Hz 模拟存档链。"
+      },
+      "residualCostOrRisk": {
+        "en": "Gives up macro zoom-out inspection across large maps, local RC acceptance has not yet been mirrored identically on the live URL, and the Phaser web bundle carries a known size warning.",
+        "zh": "放弃了大地图宏观缩放视角；五关完整验收来自本地 RC 记录（线上链接未跑同规格逐屏复验），且网页构建仍保留 Phaser 包体偏大的已知警告。"
+      }
+    }
+  ],
   "card": {
     "en": {
       "kicker": "Complex interaction · Real-time systems",

@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.0] - 2026-11-22
+
+### Shared Three.js Specimen Kernel, DecisionComparator & Essay #1
+- **Shared Three.js Specimen Kernel (`src/components/three/`)** — Added `SpecimenAxisCanvas` (Home & `/lab`) plotting the 6 listed cases across human friction, boundary stance, and medium physicality with a `0ms` SSR SVG drafting frame, equal keyboard controls, lazy WebGL2 mounting, explicit `dispose()` lifecycle, and silent 2D fallback (`--disable-webgl` / reduced motion). Added `HardwareFieldCanvas` architectural specimens for `walkie`, `maze`, and `onthebeat`.
+- **Lazy 3D Chunk Budget Guard (`scripts/check-bundle-budget.mjs`)** — Extended bundle budget checks to isolate lazy Three.js chunks (`<= 160 kB gz`) and verify zero WebGL code leaks into initial App route bundles (`<= 20 kB gz`).
+- **Interactive Prototypes & `DecisionComparator` (`src/components/case/`)** — Completed `GrasslandRulesSim` (`grassland-rules`) and `OntheBeatHandshakeSim` (`onthebeat-handshake` featuring blind pulse -> mutual nod -> polite device withdrawal), plus `/projects` `DecisionComparator` prioritizing human tension, rejected alternatives, chosen tradeoff, and residual cost (`375px` accessible accordions with `0px` overflow).
+- **Essay #1 (`content/blog/{,zh/}withdrawing-interfaces-in-social-spaces.mdx`)** — Published bilingual essay examining polite device withdrawal (`On The Beat`) and anti-isolation physical co-play (`MazeRunners`) with explicit empirical boundaries.
+
+## [4.1.0] - 2026-11-22
+
+### Human-Centered Design Rationale, 6-Case Curation & Grid Unification
+- **Curated `10 -> 6` Listed Portfolio + 8 Unlisted Archives (`src/lib/project-routes.ts`, `src/lib/project-covers.ts`, `src/data/cases/`)** — Curated listed portfolio to the 6 strongest human-centered cases (`walkie`, `lamplight`, `autofill`, `maze`, `onthebeat`, `grassland`), moved `fencepost`, `connect`, `hoop`, and `pricewise` to `unlisted` (preserving direct URL access + `noindex` while removing all public links from Home `PracticeDeck`, `/resume`, `seo.tsx`, `search-index`, `llms.txt`, and `src/lib/proof/`).
+- **Structured `designDecisions` Schema & `CaseDesignDecisions.tsx`** — Extended `CaseRecordSchema` with `DesignDecisionTradeoffSchema` (`decisionTitle`, `humanTension`, `rejectedAlternatives`, `chosenTradeoff`, `residualCostOrRisk`), authored `>= 2` bilingual entries for every listed case, and mounted `#design-decisions` directly below `#snapshot` across all case pages.
+- **Human-Centered POV & Cross-Page Grid Unification (`src/styles/v4/grid.css`)** — Reframed Home Hero, `How I work`, `/about`, and `PracticeDeck` around human friction, refusal boundaries, and falsifiable prototypes; added `.v4-reading-grid` (`Sticky TOC + 68ch` reading column) for `/blog/[slug]`; unified `/contact`, `/resume`, `/brief/[id]`, `/lab`, and `/hire` hero onto `.v4-editorial-grid`; refactored `/lab` theme inspector swatches to zero-hydration pure CSS `[data-theme="dark"]` toggles; pruned dead V1–V3 selectors (`MAX_APP_CSS_GZ_KB = 30`).
+
 ## [4.0.0] - 2026-11-22
 
 ### Modern Swiss Editorial & Digital Studio Visual System

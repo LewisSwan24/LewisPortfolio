@@ -238,10 +238,6 @@ describe("portfolio proof content", () => {
     const roleFits = getHiringRoleFits("en");
     const ids = roleFits.map((role) => role.id);
 
-    // ai-ux went with Vigil when Vigil was unlisted, and came back on 2026-09-28
-    // as a thread through listed cases (see the "AI and trust thread" block).
-    // accessibility went on 2026-11-20 with Spectra Lens and Requirements into
-    // Rules, the only cases behind it; no listed case is left to back it.
     expect(ids).toEqual(["ux-product", "ux-research", "ai-ux"]);
 
     for (const role of roleFits) {
@@ -378,27 +374,24 @@ describe("portfolio proof content", () => {
   });
 });
 
-// AI UX as a thread through several cases (plan 甲, 2026-09-28). The limits
-// are the canonical facts file's: no finished AI-native case, every entry says
-// who did the work, and every cell is supporting rather than primary.
+// AI UX as a thread across the curated 6-case portfolio (V4.1). Every entry
+// names authorship and verification scope, and every cell stays supporting.
 describe("AI and trust thread", () => {
-  // Perception Gap Mapper left the thread when it was unlisted (2026-11-20).
-  const THREAD_SLUGS: ProjectEvidenceSlug[] = ["pricewise", "connect", "hoop"];
-  // On The Beat took Gap Mapper's place in the role: reviewing AI output.
-  const ROLE_SLUGS: ProjectEvidenceSlug[] = ["pricewise", "onthebeat", "connect"];
+  const THREAD_SLUGS: ProjectEvidenceSlug[] = ["walkie", "lamplight", "autofill", "onthebeat"];
+  const ROLE_SLUGS: ProjectEvidenceSlug[] = ["walkie", "lamplight", "autofill", "onthebeat"];
   const slugOf = (href: string) => href.match(/^\/projects\/([^#/?]+)/)?.[1];
 
-  it("backs the AI UX role with PriceWise, On The Beat and UQ Connect, not an unlisted case", () => {
+  it("backs the AI UX role with Walkie, Lamplight, Autofill and On The Beat, not unlisted cases", () => {
     for (const locale of ["en", "zh"] as const) {
       const role = getHiringRoleFits(locale).find((fit) => fit.id === "ai-ux");
       expect(role).toBeDefined();
       expect(role!.proofLinks.map((link) => slugOf(link.href))).toEqual(ROLE_SLUGS);
       expect(role!.bestCases).toEqual(ROLE_SLUGS);
-      expect(JSON.stringify(role)).not.toMatch(/vigil/i);
+      expect(JSON.stringify(role)).not.toMatch(/vigil|pricewise|fencepost|connect/i);
     }
   });
 
-  it("restores the AI UX and trust row with supporting evidence only", () => {
+  it("exposes the AI UX and trust row with supporting evidence only", () => {
     for (const locale of ["en", "zh"] as const) {
       const row = getEvidenceMatrix(locale).find((capability) => capability.id === "ai-trust");
       expect(row).toBeDefined();
@@ -409,19 +402,19 @@ describe("AI and trust thread", () => {
     }
   });
 
-  it("points the AI UX proof route at PriceWise and the resume link at the thread", () => {
+  it("points the AI UX proof route at Walkie and the resume link at the thread", () => {
     for (const locale of ["en", "zh"] as const) {
-      const route = getHiringConversion(locale).proofRoutes.find((item) => item.audience.startsWith("AI UX"));
-      expect(route?.href).toBe("/projects/pricewise#decision-timeline");
+      const route = getHiringConversion(locale).proofRoutes.find((item) => item.audience.startsWith("AI trust") || item.audience.startsWith("AI 信任"));
+      expect(route?.href).toBe("/projects/autofill#decision-timeline");
       expect(getRoleFit(locale).proofLinks.map((link) => link.href)).toContain(AI_TRUST_THREAD_HREF);
       expect(getRolePacket("ai-ux", locale)?.thread?.href).toBe(AI_TRUST_THREAD_HREF);
     }
   });
 
-  it("frames the AI and trust thread around legible uncertainty and honest prototype scope", () => {
+  it("frames the AI and trust thread around legible uncertainty and human authority", () => {
     const en = getAiTrustThread("en");
     const zh = getAiTrustThread("zh");
-    expect(en.intro).toMatch(/uncertainty legible/i);
+    expect(en.intro).toMatch(/uncertainty|human authority/i);
     expect(en.intro).not.toMatch(/^I have not finished/i);
     expect(zh.intro).toMatch(/交互原则/);
     expect(zh.intro).not.toMatch(/^我还没有做完/);
@@ -430,9 +423,9 @@ describe("AI and trust thread", () => {
   it("states explicit scope boundaries in both locales without apologizing", () => {
     const en = getAiTrustThread("en");
     const zh = getAiTrustThread("zh");
-    expect(en.limit).toMatch(/mock data|manual style review|production traffic/i);
+    expect(en.limit).toMatch(/solo desk|synthetic|production traffic/i);
     expect(en.limit).not.toMatch(/^None of these is a finished/i);
-    expect(zh.limit).toMatch(/模拟数据|人工视觉走查|生产流量/);
+    expect(zh.limit).toMatch(/日常运行|合成表单|生产流量/);
     expect(zh.limit).not.toMatch(/^这三条里没有一个是做完的/);
   });
 
@@ -453,13 +446,10 @@ describe("AI and trust thread", () => {
     }
   });
 
-  it("keeps the counts the canonical facts reject out of the thread", () => {
+  it("keeps unlisted legacy cases out of the AI trust thread", () => {
     for (const locale of ["en", "zh"] as const) {
       const copy = JSON.stringify(getAiTrustThread(locale));
-      // PriceWise is four classes of defect, not five defects; Hoop Dream's 299
-      // are registry records whose images were never verified.
-      expect(copy).not.toMatch(/five defects|五处|299/i);
-      expect(copy).not.toMatch(/vigil/i);
+      expect(copy).not.toMatch(/\b(?:vigil|pricewise|hoop|fencepost|connect)\b/i);
     }
   });
 });
@@ -500,9 +490,7 @@ describe("claims checked against their sources", () => {
         getCaseDepth("hoop", locale),
         getCaseInterviewScan("hoop", locale),
         getCaseInterviewPack("hoop", locale),
-        getProjectEvidence(locale).find((project) => project.slug === "hoop"),
         getInterviewDecisionRoom(locale).evidenceBrief.filter((item) => item.caseSlug === "hoop"),
-        getAiTrustThread(locale).entries.find((entry) => entry.slug === "hoop"),
       ]);
       expect(copy).not.toMatch(/style gate|\bgating\b|runtime anchors|闸门|锚点/i);
       expect(copy).not.toMatch(/PASS/);
@@ -510,10 +498,10 @@ describe("claims checked against their sources", () => {
   });
 
   it("states clearly that Hoop Dream style review stays manual", () => {
-    const en = getAiTrustThread("en").entries.find((entry) => entry.slug === "hoop");
-    const zh = getAiTrustThread("zh").entries.find((entry) => entry.slug === "hoop");
-    expect(en?.body).toMatch(/reviewed manually|side by side/i);
-    expect(zh?.body).toMatch(/人工走查|对照规范/);
+    const en = JSON.stringify([getCaseSummary("hoop", "en"), getCaseDepth("hoop", "en")]);
+    const zh = JSON.stringify([getCaseSummary("hoop", "zh"), getCaseDepth("hoop", "zh")]);
+    expect(en).toMatch(/by eye|manual/i);
+    expect(zh).toMatch(/人眼|人工/);
   });
 });
 
@@ -606,11 +594,10 @@ describe("PriceWise canonical facts (rows 14, 15 and 16)", () => {
 
   it("gives 311 as the current test count, and keeps 307 for history only", () => {
     for (const locale of ["en", "zh"] as const) {
-      // The case summary's evidence and the work index's sample describe the
-      // app as it stands, so they carry the current count.
+      // The case summary's evidence describes the app as it stands, so it
+      // carries the current count (PriceWise is now unlisted from getProjectEvidence).
       const inventory = JSON.stringify([
         getCaseSummary("pricewise", locale).evidence,
-        getProjectEvidence(locale).find((project) => project.slug === "pricewise")?.sample,
       ]);
       expect(inventory).toContain("311");
       expect(inventory).not.toContain("307");
@@ -635,18 +622,19 @@ describe("unlisted cases", () => {
     expect(LISTED_PROJECT_SLUGS).not.toContain("vigil");
     // 2026-11-20: Lewis took down the three cases with no recent work and put
     // up his newest builds in their place.
-    for (const slug of ["spectra", "rules", "gapmapper"]) {
+    for (const slug of ["spectra", "rules", "gapmapper", "fencepost", "connect", "hoop", "pricewise"]) {
       expect(UNLISTED_PROJECT_SLUGS).toContain(slug);
       expect(LISTED_PROJECT_SLUGS).not.toContain(slug);
     }
-    for (const slug of ["grassland", "onthebeat", "lamplight", "autofill", "walkie", "fencepost"]) {
+    for (const slug of ["grassland", "onthebeat", "lamplight", "autofill", "walkie", "maze"]) {
       expect(LISTED_PROJECT_SLUGS).toContain(slug);
     }
 
     expect(linksToUnlistedProject("/projects/vigil")).toBe(true);
     expect(linksToUnlistedProject("/zh/projects/vigil#outcome-limits")).toBe(true);
     expect(linksToUnlistedProject("/projects/vigil/prototype.html")).toBe(true);
-    expect(linksToUnlistedProject("/projects/connect#decision-timeline")).toBe(false);
+    expect(linksToUnlistedProject("/projects/connect#decision-timeline")).toBe(true);
+    expect(linksToUnlistedProject("/projects/walkie#decision-timeline")).toBe(false);
     expect(linksToUnlistedProject("/resume")).toBe(false);
   });
 

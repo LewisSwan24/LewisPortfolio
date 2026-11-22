@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
+import { DecisionComparator } from "@/components/case/DecisionComparator";
 import {
   VizConnect,
   VizMaze,
@@ -10,6 +11,7 @@ import {
 import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
 import { getProjectCover } from "@/lib/project-covers";
 import { getWorkIndexItems } from "@/lib/cases/registry";
+import { getDecisionComparatorRows } from "@/lib/cases/comparator";
 import {
   getEvidenceMatrix,
   type ProofLocale,
@@ -23,8 +25,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = t("nav.work");
   const description =
     locale === "zh"
-      ? "十个案例，涵盖 UX、交互设计、物理计算、AI Agent 与可运行全栈原型。"
-      : "Ten cases across UX, interaction design, physical computing, AI agents, and working full-stack prototypes.";
+      ? "六个精挑细选的公开案例，呈现以人为本的设计论证、实体交互原型与诚实边界。"
+      : "Six curated case studies grounding human-centered tradeoffs in working software and hardware prototypes.";
   return {
     title,
     description,
@@ -95,6 +97,7 @@ export default async function ProjectsPage() {
   );
 
   const evidenceMatrix = getEvidenceMatrix(locale);
+  const comparatorRows = getDecisionComparatorRows(locale);
 
   return (
     <main className="page" data-screen-label="02 Work">
@@ -111,6 +114,8 @@ export default async function ProjectsPage() {
         matrixSlot={<EvidenceMatrix capabilities={evidenceMatrix} locale={locale} />}
         locale={locale}
       />
+
+      <DecisionComparator rows={comparatorRows} locale={locale} />
     </main>
   );
 }
