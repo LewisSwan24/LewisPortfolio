@@ -6,6 +6,7 @@ import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
 import { RoleLensSwitch, type RoleLensCaseItem } from "@/components/hiring/RoleLensSwitch";
+import { JdMatcherPanel } from "@/components/hiring/JdMatcherPanel";
 import { TailoredBriefBuilder } from "@/components/hiring/TailoredBriefBuilder";
 import { buildHiringDeck } from "@/lib/presentation/build-deck";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
@@ -104,6 +105,8 @@ export default async function HirePage() {
       <section className="section container">
         <InterviewBoundaryNotes notes={room.boundaries} labels={proofLabels} />
       </section>
+
+      <JdMatcherPanel locale={proofLocale} />
 
       <TailoredBriefBuilder
         cases={listedCases.map((record) => ({

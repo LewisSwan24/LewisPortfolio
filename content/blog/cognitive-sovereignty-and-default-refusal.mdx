@@ -1,0 +1,40 @@
+---
+title: "Cognitive sovereignty and default refusal in AI tools"
+date: "2026-11-21"
+excerpt: "In automated agents and form helpers, polite polish often trains users to stop thinking. Drawing from Lamplight Nook, Resume Autofill, and Walkie to argue for intentional friction and refusal boundaries."
+tags:
+  - AI UX
+  - Human Agency
+  - Design Rationale
+author: "Lewis Dong"
+published: true
+---
+
+Many AI interfaces optimize for one goal: making every action look effortless. Prompts auto-complete, destructive confirmations highlight a glowing primary button, and job-application tools guess answers to questions the user never checked. When everything looks smooth, human oversight shrinks into passive muscle memory.
+
+Across three recent builds — [Lamplight Nook](/projects/lamplight), [Resume Autofill](/projects/autofill), and [Walkie](/projects/walkie) — I treated deliberate refusal and asymmetrical friction as core interaction primitives.
+
+## Why "100% auto-fill" is a false kindness
+
+When someone applies to dozens of graduate positions, repeating work history across forms is genuinely exhausting. An autofiller that wants to impress users feels tempted to fill every visible field — calling an LLM to infer visa eligibility, salary expectations, or custom essay answers.
+
+In [Resume Autofill](/projects/autofill), that temptation turns into asymmetric risk: the extension gets credit for convenience, while the applicant carries 100% of the legal and career consequence if a hallucinated compliance checkbox goes through.
+
+So we engineered three explicit confidence lanes instead of one magic button:
+1. Deterministic local profile matches fill immediately.
+2. Ambiguous dropdowns pause for explicit human selection.
+3. Sensitive or open-ended prompts remain blank by rule, and final form submission stays permanently locked out of software automation.
+
+**Measured scope:** across five synthetic fixture pages matching local test patterns, mapping hit cleanly; real-world ATS DOM drift outside Lewis's own daily runs has not yet been sampled.
+
+## Blocking habitual Enter-key fatigue
+
+A similar failure mode appears when supervising long-running coding agents. Text logs stream faster than a person can verify, and standard desktop dialogs often default focus to **Continue / Proceed** so pressing `Return` keeps work moving.
+
+In [Lamplight Nook](/projects/lamplight), staging an agent task as a spatial café crew is never meant to invite blind cuteness-driven trust; its blackboard separates *plan steps* from *execution risks*, and every destructive file overwrite or command card locks initial focus onto **Not now**. Dismissing the card refuses execution rather than silently proceeding.
+
+Likewise on [Walkie](/projects/walkie), hardware buttons create tactile asymmetry: background speech triggers only an audio summary, while destructive tool permissions pause until a deliberate thumb press on the M5StickS3 Front or Side key (tested across automated relay & device gates on Lewis's watch, prior to external wearer studies).
+
+## Intentionally un-automated
+
+Good human-centered AI design declares clearly what the machine **refuses to guess or trigger silently**. Protecting cognitive sovereignty means designing calm friction right before irreversible commitments — even if that costs one extra click.

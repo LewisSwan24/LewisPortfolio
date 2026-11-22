@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.0] - 2026-11-22
+
+### Zero-Hallucination Design-Defense AI Navigator & Essay #2
+- **Bilingual Evidence Corpus & BM25 Retrieval (`src/lib/ai/`)** — Indexed `design-rationale` (`2.8`), `research-quote` (`2.4`), `metric-limit` (`2.0`), and `narrative` chunks exclusively from the 6 listed cases with bilingual tokenization/synonym matching and client-side PII redaction (`redactPii`, `<= 1200` chars).
+- **Physical Table Hydration Endpoint (`app/api/ai/match/route.ts`)** — Zero-Key default (`bm25-local`) with optional native `fetch` OpenAI/Gemini reranking returning strict Zod `{ slug, evidenceIds, reasonCode }`, hydrating 100% of returned copy and anchors from static `EVIDENCE_CORPUS_MAP` (`20 req/hr` rate limit).
+- **Tri-Entry AI Navigator (`CommandPalette`, `JdMatcherPanel`, `StudioAssistantDrawer`)** — Extended `⌘K` with `Ask Rationale` mode, added `/hire` JD-to-Brief pipeline, and added collapsible `.no-print` `StudioAssistantDrawer` safely positioned for `375px` viewports.
+- **Essay #2 (`content/blog/{,zh/}cognitive-sovereignty-and-default-refusal.mdx`)** — Published bilingual essay examining default refusal and asymmetrical friction across `Lamplight Nook`, `Resume Autofill`, and `Walkie`.
+
 ## [4.2.0] - 2026-11-22
 
 ### Shared Three.js Specimen Kernel, DecisionComparator & Essay #1

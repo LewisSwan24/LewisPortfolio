@@ -1,4 +1,4 @@
-# Lewis Dong — Portfolio (v4.2)
+# Lewis Dong — Portfolio (v4.3)
 
 A statically generated, bilingual digital studio log and hiring decision platform for a UQ Master of Interaction Design graduate & Design Engineer. Built with **Next.js 15 App Router**, **React 19**, **TypeScript 5.7**, **Tailwind CSS v4**, **GSAP 3**, **Zod 4**, and **next-intl**. Case studies live in a schema-validated **Unified Case Registry** (`src/data/cases/` + `src/lib/cases/`), writing lives in file-based **MDX**, and interactive presentation decks & company briefs run with zero-config static fallbacks or optional Upstash Redis / Vercel KV persistence.
 

@@ -6,6 +6,7 @@ const BLOG_SLUGS = [
   "v3-architecture-and-performance-moat",
   "walkie-and-fencepost-invariants",
   "withdrawing-interfaces-in-social-spaces",
+  "cognitive-sovereignty-and-default-refusal",
 ];
 
 const PUBLIC_ROUTES = [

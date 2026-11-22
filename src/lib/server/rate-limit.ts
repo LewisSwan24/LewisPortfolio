@@ -30,14 +30,15 @@ export function hashClientIp(ip: string, now: Date = new Date()): string {
   return createHash("sha256").update(`${day}:${ip}:${dailySalt}`).digest("hex").slice(0, 24);
 }
 
-export async function checkContactRateLimit(
+export async function checkScopedRateLimit(
+  scope: string,
   ip: string,
-  limit: number = 3,
-  windowSeconds: number = 600,
+  limit: number,
+  windowSeconds: number,
   nowMs: number = Date.now()
 ): Promise<{ allowed: boolean; remaining: number; backend: "kv" | "memory" }> {
   const ipHash = hashClientIp(ip, new Date(nowMs));
-  const key = `rl:contact:${ipHash}`;
+  const key = `rl:${scope}:${ipHash}`;
 
   const kvCount = await kvIncrementRateLimit(key, windowSeconds);
   if (kvCount !== null) {
@@ -65,4 +66,13 @@ export async function checkContactRateLimit(
     remaining: Math.max(0, limit - current.count),
     backend: "memory",
   };
+}
+
+export async function checkContactRateLimit(
+  ip: string,
+  limit: number = 3,
+  windowSeconds: number = 600,
+  nowMs: number = Date.now()
+): Promise<{ allowed: boolean; remaining: number; backend: "kv" | "memory" }> {
+  return checkScopedRateLimit("contact", ip, limit, windowSeconds, nowMs);
 }

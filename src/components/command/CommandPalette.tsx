@@ -2,10 +2,16 @@
 
 import { useEffect, useState } from "react";
 import { Command } from "cmdk";
+import Link from "next/link";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
 import { siteConfig } from "@/lib/site";
+import {
+  fetchGroundedEvidence,
+  PRESET_DESIGN_QUESTIONS,
+  type GroundedMatchGroup,
+} from "@/lib/ai/client";
 
 export interface PaletteItem {
   type: "project" | "blog";
@@ -28,6 +34,10 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
   const [copied, setCopied] = useState(false);
+  const [mode, setMode] = useState<"search" | "rationale">("search");
+  const [aiQuery, setAiQuery] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiMatches, setAiMatches] = useState<GroundedMatchGroup[]>([]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -54,6 +64,18 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
 
   const projects = items.filter((item) => item.type === "project");
   const posts = items.filter((item) => item.type === "blog");
+  const proofLocale = isZh ? "zh" : "en";
+
+  const runRationaleQuery = async (q: string) => {
+    if (q.trim().length < 3) return;
+    setAiLoading(true);
+    try {
+      const { response } = await fetchGroundedEvidence(q, proofLocale);
+      setAiMatches(response.matches ?? []);
+    } finally {
+      setAiLoading(false);
+    }
+  };
 
   const copyEmail = async () => {
     try {
@@ -77,16 +99,55 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
             <span aria-hidden="true" style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--text-3)" }}>
               ⌘K
             </span>
-            <Command.Input
-              className="cmdk-input"
-              aria-label="Search"
-              autoFocus
-              placeholder={
-                isZh
-                  ? "搜索案例、文章，或输入命令（主题 / 语言 / 岗位视角）..."
-                  : "Search cases, articles, or jump to role lenses & actions..."
-              }
-            />
+            <div style={{ display: "flex", gap: 6 }}>
+              <button
+                type="button"
+                className={`idx-filter${mode === "search" ? " active" : ""}`}
+                style={{ padding: "3px 10px", fontSize: 11 }}
+                onClick={() => setMode("search")}
+              >
+                {isZh ? "全站搜索" : "Search"}
+              </button>
+              <button
+                type="button"
+                className={`idx-filter${mode === "rationale" ? " active" : ""}`}
+                style={{ padding: "3px 10px", fontSize: 11 }}
+                onClick={() => setMode("rationale")}
+              >
+                {isZh ? "问设计理由" : "Ask Rationale"}
+              </button>
+            </div>
+            {mode === "search" ? (
+              <Command.Input
+                className="cmdk-input"
+                aria-label="Search"
+                autoFocus
+                placeholder={
+                  isZh
+                    ? "搜索案例、文章，或输入命令（主题 / 语言 / 岗位视角）..."
+                    : "Search cases, articles, or jump to role lenses & actions..."
+                }
+              />
+            ) : (
+              <input
+                className="cmdk-input"
+                aria-label={isZh ? "输入设计论证问题" : "Ask a grounded design question"}
+                autoFocus
+                value={aiQuery}
+                onChange={(e) => setAiQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    void runRationaleQuery(aiQuery);
+                  }
+                }}
+                placeholder={
+                  isZh
+                    ? "输入设计追问并回车（如：为什么不用语音批准）..."
+                    : "Ask design rationale & press Enter (e.g. why physical buttons)..."
+                }
+              />
+            )}
             <button
               type="button"
               onClick={onClose}
@@ -105,7 +166,49 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
             </button>
           </div>
 
-          <Command.List className="cmdk-list">
+          {mode === "rationale" ? (
+            <div className="cmdk-list" style={{ padding: "14px 16px", display: "grid", gap: 12 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                {PRESET_DESIGN_QUESTIONS.map((q) => (
+                  <button
+                    key={q.en}
+                    type="button"
+                    className="idx-filter"
+                    style={{ fontSize: 12 }}
+                    onClick={() => {
+                      setAiQuery(q[proofLocale]);
+                      void runRationaleQuery(q[proofLocale]);
+                    }}
+                  >
+                    {q[proofLocale]}
+                  </button>
+                ))}
+              </div>
+              {aiLoading && (
+                <div className="eyebrow">{isZh ? "正在匹配静态证据库..." : "Searching evidence corpus..."}</div>
+              )}
+              {aiMatches.map((m) => (
+                <div
+                  key={m.slug}
+                  style={{ border: "1px solid var(--border)", padding: 12, display: "grid", gap: 6 }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <strong>{m.caseTitle}</strong>
+                    <span className="tag">{m.reasonLabel}</span>
+                  </div>
+                  {m.citations.map((c) => (
+                    <div key={c.id} style={{ fontSize: 13, color: "var(--text-2)" }}>
+                      <p style={{ margin: "0 0 4px" }}>{c.text}</p>
+                      <Link href={c.href} onClick={onClose} style={{ color: "var(--accent)", fontWeight: 600 }}>
+                        {isZh ? "查看论证原文 ↗" : "Inspect citation ↗"}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <Command.List className="cmdk-list">
             <Command.Empty className="cmdk-empty">
               {isZh ? "没有匹配的案例或命令。" : "No matching cases or commands."}
             </Command.Empty>
@@ -239,6 +342,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
               </Command.Item>
             </Command.Group>
           </Command.List>
+          )}
 
           <div className="cmdk-foot">
             <span>{isZh ? "↑↓ 选择 · Enter 打开 · Esc 关闭" : "↑↓ navigate · Enter select · Esc close"}</span>

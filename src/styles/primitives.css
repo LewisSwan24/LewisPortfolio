@@ -512,3 +512,55 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
     }
   }
 }
+
+/* V4.3 STUDIO RATIONALE ASSISTANT DRAWER */
+.studio-assistant-wrap {
+  position: fixed;
+  inset-block-end: max(20px, env(safe-area-inset-bottom));
+  inset-inline-start: 20px;
+  z-index: 55;
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  max-width: calc(100vw - 40px);
+}
+.studio-assistant-pill {
+  border-radius: var(--r-pill);
+  padding: 9px 16px;
+  font-size: 13px;
+}
+.studio-assistant-drawer {
+  width: min(400px, calc(100vw - 40px));
+  max-height: min(72vh, 520px);
+  overflow-y: auto;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 12px 32px rgba(21, 20, 18, 0.14);
+}
+.studio-assistant-head {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+  border-bottom: 1px solid var(--border); padding-bottom: 10px;
+}
+.studio-assistant-head strong { display: block; font-size: 15px; margin-top: 2px; }
+.studio-assistant-presets { display: grid; gap: 6px; }
+.studio-assistant-form { display: flex; gap: 8px; }
+.studio-assistant-form input {
+  flex: 1; min-width: 0; padding: 8px 10px; font-size: 13px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text);
+}
+.studio-assistant-results {
+  list-style: none; padding: 0; margin: 0; display: grid; gap: 10px;
+}
+.studio-assistant-card {
+  border: 1px solid var(--border); background: var(--bg); padding: 10px 12px;
+  display: grid; gap: 8px;
+}
+.studio-assistant-card-head {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+}
+.studio-assistant-cit p { margin: 0 0 4px; font-size: 13px; line-height: 1.5; color: var(--text-2); }
+.studio-assistant-cit a { font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; }

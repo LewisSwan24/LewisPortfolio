@@ -1,0 +1,147 @@
+import { getListedCases } from "@/lib/cases/registry";
+import type { RoleTrack } from "@/lib/cases/schema";
+import { localizeInternalHref } from "@/lib/locale-href";
+import { getCaseDepth } from "@/lib/proof/case-depth";
+
+export type EvidencePillar =
+  | "design-rationale"
+  | "research-quote"
+  | "metric-limit"
+  | "narrative"
+  | "writing";
+
+export interface EvidenceChunk {
+  id: string;
+  slug: string;
+  type: "case" | "blog";
+  pillar: EvidencePillar;
+  weight: number;
+  roleTracks: RoleTrack[];
+  caseTitle: { en: string; zh: string };
+  title: { en: string; zh: string };
+  text: { en: string; zh: string };
+  href: { en: string; zh: string };
+}
+
+export const PILLAR_WEIGHT: Record<EvidencePillar, number> = {
+  "design-rationale": 2.8,
+  "research-quote": 2.4,
+  "metric-limit": 2.0,
+  writing: 1.8,
+  narrative: 1.0,
+};
+
+function buildCorpus(): EvidenceChunk[] {
+  const chunks: EvidenceChunk[] = [];
+
+  // Listed cases ONLY — all 8 unlisted slugs are excluded structurally.
+  for (const record of getListedCases()) {
+    const slug = record.slug;
+    const caseTitle = {
+      en: record.card.en.title,
+      zh: record.card.zh.title,
+    };
+
+    for (const dec of record.designDecisions ?? []) {
+      const rejectedEn = dec.rejectedAlternatives
+        .map((a) => `${a.option.en} (${a.flaw.en})`)
+        .join("; ");
+      const rejectedZh = dec.rejectedAlternatives
+        .map((a) => `${a.option.zh}（${a.flaw.zh}）`)
+        .join("；");
+
+      chunks.push({
+        id: `${slug}:decision:${dec.id}`,
+        slug,
+        type: "case",
+        pillar: "design-rationale",
+        weight: PILLAR_WEIGHT["design-rationale"],
+        roleTracks: record.roleTracks,
+        caseTitle,
+        title: dec.decisionTitle,
+        text: {
+          en: `Tension: ${dec.humanTension.en} | Rejected: ${rejectedEn} | Chosen: ${dec.chosenTradeoff.en} | Limit: ${dec.residualCostOrRisk.en}`,
+          zh: `人因冲突：${dec.humanTension.zh} | 否决方案：${rejectedZh} | 最终取舍：${dec.chosenTradeoff.zh} | 诚实边界：${dec.residualCostOrRisk.zh}`,
+        },
+        href: {
+          en: localizeInternalHref(`/projects/${slug}#design-decisions`, "en"),
+          zh: localizeInternalHref(`/projects/${slug}#design-decisions`, "zh"),
+        },
+      });
+    }
+
+    if (record.processArtifacts?.quotes) {
+      record.processArtifacts.quotes.items.forEach((item, idx) => {
+        chunks.push({
+          id: `${slug}:quote:${idx}`,
+          slug,
+          type: "case",
+          pillar: "research-quote",
+          weight: PILLAR_WEIGHT["research-quote"],
+          roleTracks: record.roleTracks,
+          caseTitle,
+          title: { en: item.category, zh: item.category },
+          text: {
+            en: `"${item.quote.en}" -> Decision: ${item.decision.en}`,
+            zh: `「${item.quote.zh}」→ 对应决策：${item.decision.zh}`,
+          },
+          href: {
+            en: localizeInternalHref(`/projects/${slug}#process-artifacts`, "en"),
+            zh: localizeInternalHref(`/projects/${slug}#process-artifacts`, "zh"),
+          },
+        });
+      });
+    }
+
+    const depthEn = getCaseDepth(slug, "en");
+    const depthZh = getCaseDepth(slug, "zh");
+    depthEn.limits.forEach((lim, idx) => {
+      const limZh = depthZh.limits[idx];
+      chunks.push({
+        id: `${slug}:limit:${idx}`,
+        slug,
+        type: "case",
+        pillar: "metric-limit",
+        weight: PILLAR_WEIGHT["metric-limit"],
+        roleTracks: record.roleTracks,
+        caseTitle,
+        title: { en: lim.constraint, zh: limZh?.constraint ?? lim.constraint },
+        text: {
+          en: `${lim.constraint} — ${lim.whyItMatters} Next: ${lim.nextValidation}`,
+          zh: `${limZh?.constraint ?? lim.constraint} — ${limZh?.whyItMatters ?? ""} 下一步：${limZh?.nextValidation ?? ""}`,
+        },
+        href: {
+          en: localizeInternalHref(`/projects/${slug}#outcome-limits`, "en"),
+          zh: localizeInternalHref(`/projects/${slug}#outcome-limits`, "zh"),
+        },
+      });
+    });
+
+    chunks.push({
+      id: `${slug}:narrative:decision`,
+      slug,
+      type: "case",
+      pillar: "narrative",
+      weight: PILLAR_WEIGHT.narrative,
+      roleTracks: record.roleTracks,
+      caseTitle,
+      title: { en: record.narrative.en.sy.title, zh: record.narrative.zh.sy.title },
+      text: {
+        en: `${record.narrative.en.ch.p} ${record.narrative.en.sy.p}`,
+        zh: `${record.narrative.zh.ch.p} ${record.narrative.zh.sy.p}`,
+      },
+      href: {
+        en: localizeInternalHref(`/projects/${slug}#decision-timeline`, "en"),
+        zh: localizeInternalHref(`/projects/${slug}#decision-timeline`, "zh"),
+      },
+    });
+  }
+
+  return chunks;
+}
+
+export const EVIDENCE_CORPUS_ITEMS: readonly EvidenceChunk[] = buildCorpus();
+
+export const EVIDENCE_CORPUS_MAP: ReadonlyMap<string, EvidenceChunk> = new Map(
+  EVIDENCE_CORPUS_ITEMS.map((item) => [item.id, item])
+);
