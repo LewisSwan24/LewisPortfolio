@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
+import { StructuredRationaleCard } from "@/components/ai/StructuredRationaleCard";
 import { siteConfig } from "@/lib/site";
 import {
   fetchGroundedEvidence,
@@ -190,22 +191,32 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
               {aiMatches.map((m) => (
                 <div
                   key={m.slug}
-                  style={{ border: "1px solid var(--border)", padding: 12, display: "grid", gap: 6 }}
+                  style={{ border: "1px solid var(--border)", padding: 12, display: "grid", gap: 8 }}
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <strong>{m.caseTitle}</strong>
                     <span className="tag">{m.reasonLabel}</span>
                   </div>
                   {m.citations.map((c) => (
-                    <div key={c.id} style={{ fontSize: 13, color: "var(--text-2)" }}>
-                      <p style={{ margin: "0 0 4px" }}>{c.text}</p>
-                      <Link href={c.href} onClick={onClose} style={{ color: "var(--accent)", fontWeight: 600 }}>
-                        {isZh ? "查看论证原文 ↗" : "Inspect citation ↗"}
-                      </Link>
+                    <div key={c.id} onClick={onClose}>
+                      <StructuredRationaleCard
+                        citation={c}
+                        locale={proofLocale}
+                        compact
+                        showInspector={false}
+                      />
                     </div>
                   ))}
                 </div>
               ))}
+              <button
+                type="button"
+                className="btn btn-ghost"
+                style={{ justifySelf: "start", fontSize: 12 }}
+                onClick={() => navigate("/ai")}
+              >
+                {isZh ? "打开完整 AI 实验室与追溯详情 (/ai) →" : "Open full AI Lab with pipeline telemetry (/ai) →"}
+              </button>
             </div>
           ) : (
             <Command.List className="cmdk-list">
@@ -282,6 +293,14 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
             </Command.Group>
 
             <Command.Group className="cmdk-group-heading" heading={isZh ? "快捷操作" : "Quick Actions"}>
+              <Command.Item
+                value="ai lab rationale bm25 grounded evidence 实验室 辩护 证据"
+                className="cmdk-item"
+                onSelect={() => navigate("/ai")}
+              >
+                <span>{isZh ? "打开 AI 实验室 (/ai)" : "Open AI Lab (/ai)"}</span>
+                <span className="cmdk-item-meta">AI</span>
+              </Command.Item>
               <Command.Item
                 value="lab design system lively icons motion workbench 实验室 设计系统"
                 className="cmdk-item"

@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { localizeInternalHref } from "@/lib/locale-href";
 
 type Locale = "en" | "zh";
 export type PrimitiveId =
@@ -142,6 +144,34 @@ export function LabPrimitivesGallery({ locale }: { locale: Locale }) {
         {activeId === "drag" && <PrimitiveDragSnap locale={locale} />}
         {activeId === "popover" && <PrimitiveAnchorFocus locale={locale} />}
       </div>
+
+      <p className="prose" style={{ marginTop: 14, fontSize: 13.5, color: "var(--text-2)" }}>
+        {isZh ? (
+          <>
+            其余两套多通道实机交互系统请前往案例页亲自操作：{" "}
+            <Link href={localizeInternalHref("/projects/maze#interactive-demo", locale)} className="u-underline">
+              MazeRunners 触控迷宫
+            </Link>{" "}
+            ·{" "}
+            <Link href={localizeInternalHref("/projects/grassland#interactive-demo", locale)} className="u-underline">
+              《草原铁潮》RTS 规则推演
+            </Link>
+            。
+          </>
+        ) : (
+          <>
+            Interactive simulators for the remaining two flagship builds live inside their case studies:{" "}
+            <Link href={localizeInternalHref("/projects/maze#interactive-demo", locale)} className="u-underline">
+              MazeRunners Co-Touch Lab
+            </Link>{" "}
+            ·{" "}
+            <Link href={localizeInternalHref("/projects/grassland#interactive-demo", locale)} className="u-underline">
+              Grassland RTS Grammar Sim
+            </Link>
+            .
+          </>
+        )}
+      </p>
     </section>
   );
 }

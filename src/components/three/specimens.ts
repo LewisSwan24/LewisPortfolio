@@ -111,8 +111,8 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
     title: "Grassland Iron Tide",
     axisCoords: [-0.25, -0.35, -0.5],
     svgPos: [265, 252],
-    colorLight: "#2F5939",
-    colorDark: "#8EC29A",
+    colorLight: "#6E451F",
+    colorDark: "#DAB082",
     mediumTag: { en: "Rules Grammar × Dual UI", zh: "统一规则语法 × 双界面" },
     thesisQuestion: {
       en: "How do five strategy chapters escalate without betraying player muscle memory?",

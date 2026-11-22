@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+import matter from "gray-matter";
 import { getListedCases } from "@/lib/cases/registry";
 import type { RoleTrack } from "@/lib/cases/schema";
 import { localizeInternalHref } from "@/lib/locale-href";
@@ -10,6 +13,13 @@ export type EvidencePillar =
   | "narrative"
   | "writing";
 
+export interface StructuredRationaleFields {
+  tension: { en: string; zh: string };
+  rejected: { en: string; zh: string };
+  chosen: { en: string; zh: string };
+  limit: { en: string; zh: string };
+}
+
 export interface EvidenceChunk {
   id: string;
   slug: string;
@@ -20,6 +30,7 @@ export interface EvidenceChunk {
   caseTitle: { en: string; zh: string };
   title: { en: string; zh: string };
   text: { en: string; zh: string };
+  structured?: StructuredRationaleFields;
   href: { en: string; zh: string };
 }
 
@@ -30,6 +41,69 @@ export const PILLAR_WEIGHT: Record<EvidencePillar, number> = {
   writing: 1.8,
   narrative: 1.0,
 };
+
+function stripMarkdownForIndex(raw: string): string {
+  return raw
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/[*_`>|]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function loadPublishedBlogChunks(): EvidenceChunk[] {
+  const blogDir = path.join(process.cwd(), "content", "blog");
+  if (!fs.existsSync(blogDir)) return [];
+
+  const files = fs.readdirSync(blogDir).filter((f) => f.endsWith(".mdx"));
+  const chunks: EvidenceChunk[] = [];
+
+  for (const file of files) {
+    const slug = file.replace(/\.mdx$/, "");
+    const enPath = path.join(blogDir, file);
+    const zhPath = path.join(blogDir, "zh", file);
+    try {
+      const enParsed = matter(fs.readFileSync(enPath, "utf8"));
+      if (enParsed.data.published === false) continue;
+
+      const zhParsed = fs.existsSync(zhPath)
+        ? matter(fs.readFileSync(zhPath, "utf8"))
+        : enParsed;
+
+      const enTitle = String(enParsed.data.title ?? slug);
+      const zhTitle = String(zhParsed.data.title ?? enTitle);
+      const enExcerpt = String(enParsed.data.excerpt ?? "").trim();
+      const zhExcerpt = String(zhParsed.data.excerpt ?? enExcerpt).trim();
+      const enBody = stripMarkdownForIndex(enParsed.content).slice(0, 420);
+      const zhBody = stripMarkdownForIndex(zhParsed.content).slice(0, 320);
+
+      chunks.push({
+        id: `essay:${slug}:thesis`,
+        slug: `essay:${slug}`,
+        type: "blog",
+        pillar: "writing",
+        weight: PILLAR_WEIGHT.writing,
+        roleTracks: ["design-eng", "interaction", "ai-ux"],
+        caseTitle: { en: `Essay · ${enTitle}`, zh: `专栏文章 · ${zhTitle}` },
+        title: { en: enTitle, zh: zhTitle },
+        text: {
+          en: `${enExcerpt} ${enBody}`.trim(),
+          zh: `${zhExcerpt} ${zhBody}`.trim(),
+        },
+        href: {
+          en: localizeInternalHref(`/blog/${slug}`, "en"),
+          zh: localizeInternalHref(`/blog/${slug}`, "zh"),
+        },
+      });
+    } catch {
+      // Skip unreadable file without crashing build
+    }
+  }
+
+  return chunks;
+}
 
 function buildCorpus(): EvidenceChunk[] {
   const chunks: EvidenceChunk[] = [];
@@ -44,7 +118,7 @@ function buildCorpus(): EvidenceChunk[] {
 
     for (const dec of record.designDecisions ?? []) {
       const rejectedEn = dec.rejectedAlternatives
-        .map((a) => `${a.option.en} (${a.flaw.en})`)
+        .map((a) => `${a.option.en} — ${a.flaw.en}`)
         .join("; ");
       const rejectedZh = dec.rejectedAlternatives
         .map((a) => `${a.option.zh}（${a.flaw.zh}）`)
@@ -59,6 +133,12 @@ function buildCorpus(): EvidenceChunk[] {
         roleTracks: record.roleTracks,
         caseTitle,
         title: dec.decisionTitle,
+        structured: {
+          tension: dec.humanTension,
+          rejected: { en: rejectedEn, zh: rejectedZh },
+          chosen: dec.chosenTradeoff,
+          limit: dec.residualCostOrRisk,
+        },
         text: {
           en: `Tension: ${dec.humanTension.en} | Rejected: ${rejectedEn} | Chosen: ${dec.chosenTradeoff.en} | Limit: ${dec.residualCostOrRisk.en}`,
           zh: `人因冲突：${dec.humanTension.zh} | 否决方案：${rejectedZh} | 最终取舍：${dec.chosenTradeoff.zh} | 诚实边界：${dec.residualCostOrRisk.zh}`,
@@ -72,6 +152,8 @@ function buildCorpus(): EvidenceChunk[] {
 
     if (record.processArtifacts?.quotes) {
       record.processArtifacts.quotes.items.forEach((item, idx) => {
+        const cleanEnQuote = item.quote.en.replace(/^["“]+|["”]+$/g, "");
+        const cleanZhQuote = item.quote.zh.replace(/^[「"“]+|[」"”]+$/g, "");
         chunks.push({
           id: `${slug}:quote:${idx}`,
           slug,
@@ -80,10 +162,10 @@ function buildCorpus(): EvidenceChunk[] {
           weight: PILLAR_WEIGHT["research-quote"],
           roleTracks: record.roleTracks,
           caseTitle,
-          title: { en: item.category, zh: item.category },
+          title: item.context,
           text: {
-            en: `"${item.quote.en}" -> Decision: ${item.decision.en}`,
-            zh: `「${item.quote.zh}」→ 对应决策：${item.decision.zh}`,
+            en: `"${cleanEnQuote}" — Decision: ${item.decision.en}`,
+            zh: `「${cleanZhQuote}」— 对应决策：${item.decision.zh}`,
           },
           href: {
             en: localizeInternalHref(`/projects/${slug}#process-artifacts`, "en"),
@@ -136,6 +218,8 @@ function buildCorpus(): EvidenceChunk[] {
       },
     });
   }
+
+  chunks.push(...loadPublishedBlogChunks());
 
   return chunks;
 }

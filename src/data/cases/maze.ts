@@ -123,6 +123,38 @@ export const mazeCase: CaseRecord = {
     }
   },
   "processArtifacts": {
+    "scrubber": {
+      "eyebrow": {
+        "en": "Process scrubber · Isolated hardware vs unified state loop",
+        "zh": "前后对比拉杆 · 离散硬件误触发 ↔ 五通道单一状态机"
+      },
+      "title": {
+        "en": "Consolidate unbuffered IR sensors & solo triggers into one debounced co-touch loop",
+        "zh": "从各自为战的红外毛刺与单人按键收拢为防抖互锁与全同步控制台"
+      },
+      "summary": {
+        "en": "Compare early failure modes against MazeRunners' SafeTouchServoController, sleeve haptics, and Web Serial state chain.",
+        "zh": "拉动对比初始版本的传感器连击/电击隐患与终版指套震动、伺服隔离和浏览器实时回放体系。"
+      },
+      "beforeLabel": {
+        "en": "Before · Unbuffered & Solo",
+        "zh": "改造前 · 未防抖与孤立控制"
+      },
+      "afterLabel": {
+        "en": "After · Synced Co-Touch State",
+        "zh": "改造后 · 五通道单一状态机"
+      },
+      "wireframeId": "maze-solo",
+      "afterImage": {
+        "src": "/projects/maze/after-architecture.svg",
+        "alt": {
+          "en": "MazeRunners unified Mega state machine syncing co-touch bracelets, IR debounce, finger-sleeve vibration, SafeTouchServoController, TM1637 display, and Web Serial console",
+          "zh": "MazeRunners 统一架构图：协同手环互锁、红外防抖、指套震动、SafeTouchServoController 倾斜控制与 Web Serial 五通道同步"
+        },
+        "width": 800,
+        "height": 500
+      }
+    },
     "quotes": {
       "eyebrow": {
         "en": "Exhibition observation · Bench & public play",
@@ -171,6 +203,51 @@ export const mazeCase: CaseRecord = {
           "decision": {
             "en": "Added per-sensor debounce + cooldown windows feeding one round state machine.",
             "zh": "为每个传感器增加防抖与冷却窗口，全部收拢进单一回合状态机。"
+          }
+        }
+      ]
+    },
+    "microLoop": {
+      "eyebrow": {
+        "en": "Vector micro-loop · Co-touch to 5-channel hardware feedback",
+        "zh": "矢量交互微循环 · 双人耦合到五路物理同步输出"
+      },
+      "title": {
+        "en": "Wrist Co-Touch → Safe Servo → IR Debounce → 5-Channel Sync",
+        "zh": "腕带双人耦合 → 安全舵机倾斜 → 红外防抖判定 → 声光震屏五路同步"
+      },
+      "summary": {
+        "en": "Step through the physical closed loop aligning players' fingertips, the wooden board, and the Web Serial browser console.",
+        "zh": "按帧查看物理迷宫如何在不破坏玩家直觉的前提下保证计分、灯效与指尖震动绝对同拍。"
+      },
+      "loopId": "maze-state",
+      "steps": [
+        {
+          "label": { "en": "Wrist Co-Touch", "zh": "双人互锁触发" },
+          "detail": {
+            "en": "Adjacent players must bridge matching color wristbands simultaneously before any axis tilts.",
+            "zh": "同色腕带相邻两人必须同时触碰通电，彻底禁止单人孤立独占方向。"
+          }
+        },
+        {
+          "label": { "en": "Safe Servo", "zh": "隔离舵机驱动" },
+          "detail": {
+            "en": "SafeTouchServoController isolates tilt actuation with thermal/range guards so boards never slam.",
+            "zh": "由独立 SafeTouchServoController 限位执行倾斜动作，兼顾物理手感和展场安全。"
+          }
+        },
+        {
+          "label": { "en": "IR Debounce", "zh": "十路红外防抖" },
+          "detail": {
+            "en": "FC-51 sensors pass per-channel debounce + cooldown windows so one ball pass fires exactly once.",
+            "zh": "十路 FC-51 传感器经由防抖与冷却门控，确保小球单次通过严格仅记录一次事件。"
+          }
+        },
+        {
+          "label": { "en": "5-Way Output", "zh": "五端毫秒同步" },
+          "detail": {
+            "en": "One Mega round state triggers finger haptics, buzzer audio, LED strips, TM1637 counter, and Web Serial together.",
+            "zh": "同一状态机同时下发指套震动、蜂鸣音效、灯带、TM1637 计分牌与 Web Serial 回放日志。"
           }
         }
       ]
@@ -257,6 +334,47 @@ export const mazeCase: CaseRecord = {
       "residualCostOrRisk": {
         "en": "Vibration is a gentler sensation than shock and the cooldown introduces a brief blind window for rapid re-triggers; built as one hand-wired exhibition unit rather than a manufacturable harness.",
         "zh": "震动冲击感弱于电击，且冷却窗口会制造短暂盲区；目前仅验证了手工走线的单台展览机，不代表可量产耐久性。"
+      }
+    },
+    {
+      "id": "dual-mode-web-serial-and-fallback-demo",
+      "decisionTitle": {
+        "en": "Drive both real Mega hardware and browser Demo Mode from one Web Serial protocol contract",
+        "zh": "Web Serial 实机调试台与无硬件 Demo 模式共用同一套状态机与渲染管线"
+      },
+      "humanTension": {
+        "en": "Exhibition wiring degrades without fast bench diagnostics, yet external reviewers reading a web portfolio never own an Arduino Mega harness—without parity, either hardware debugging stalls or remote evaluators inspect a dead mock.",
+        "zh": "缺乏直观串口监控时，现场接线故障极难排查；但线上的简历审阅者手头不可能插着 Arduino Mega 实体迷宫，若把演示版单独重画成假动画，既难维护又会失真。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Serial monitor text-only logs plus a separate scripted video on the portfolio",
+            "zh": "串口端仅看文本日志，作品集只放一段预设播放动画"
+          },
+          "flaw": {
+            "en": "Text logs hide which of the 10 IR zones jittered during setup, while passive videos cannot prove trap timing or recovery.",
+            "zh": "纯文本难以及时定位 10 路传感器的抖动区段，录屏也无法让访问者直接点击验证状态联动。"
+          }
+        },
+        {
+          "option": {
+            "en": "Build two divergent front-end UIs for exhibition laptop vs online portfolio",
+            "zh": "为展场电脑和作品集网页各自维护两套完全独立的控制台"
+          },
+          "flaw": {
+            "en": "Visual polish and timing logic drift between exhibition truth and portfolio artifact.",
+            "zh": "两份代码很快就会出现状态分叉，导致作品集展示的逻辑脱离真实硬件。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "The JS Canvas console shares one event dispatcher: when USB Serial connects to Arduino Mega it logs live traps and relays; without hardware attached it replays the exact same trap, score, and haptic state transitions deterministically in the browser.",
+        "zh": "JS Canvas 控制台基于单一状态分发器：接上 USB Serial 时直接读取 Mega 的 10 路实时状态与错误恢复测试；脱离硬件时无缝退化为完全一致的浏览器本地状态回放引擎。"
+      },
+      "residualCostOrRisk": {
+        "en": "Chrome Web Serial requires a desktop Chromium browser with USB permission for live mode; remote viewers remain limited to deterministic simulation rather than physical wrist torque.",
+        "zh": "Live 模式依赖桌面端 Chromium 浏览器的 Web Serial 授权；纯网页访客能验证完整规则逻辑，但仍无法替代现场手腕拉扯的实体阻力。"
       }
     }
   ],

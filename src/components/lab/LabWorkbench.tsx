@@ -21,11 +21,34 @@ const SWATCHES = [
 ] as const;
 
 const CASE_MOOD_SWATCHES = [
-  { label: "Hardware Steel", token: "#2B4D6F", darkHex: "#92BAE0", cases: "maze / onthebeat" },
-  { label: "Signal Vermilion", token: "#A63F2A", darkHex: "#E69682", cases: "walkie" },
-  { label: "AI Safety Moss", token: "#2F5939", darkHex: "#8EC29A", cases: "grassland" },
-  { label: "Slate Indigo", token: "#3B4D70", darkHex: "#A3B6E0", cases: "autofill" },
-  { label: "Narrative Umber", token: "#6E451F", darkHex: "#DAB082", cases: "lamplight" },
+  {
+    labelEn: "Signal Vermilion · Physical Control",
+    labelZh: "信号朱砂 · 实体控制回路",
+    token: "#A63F2A",
+    darkHex: "#E69682",
+    cases: "walkie",
+  },
+  {
+    labelEn: "Steel Blue · Hardware & Signal",
+    labelZh: "冷钢蓝 · 硬件物理通道",
+    token: "#2B4D6F",
+    darkHex: "#92BAE0",
+    cases: "maze / onthebeat",
+  },
+  {
+    labelEn: "Slate Indigo · Precision Gate",
+    labelZh: "岩板靛 · 精确校验门控",
+    token: "#3B4D70",
+    darkHex: "#A3B6E0",
+    cases: "autofill",
+  },
+  {
+    labelEn: "Warm Umber · Play & Narrative",
+    labelZh: "琥珀棕 · 叙事与游戏系统",
+    token: "#6E451F",
+    darkHex: "#DAB082",
+    cases: "lamplight / grassland",
+  },
 ] as const;
 
 export function LabWorkbench({ locale }: { locale: Locale }) {
@@ -146,17 +169,17 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           </div>
           <div className="lab-type-card">
             <div className="eyebrow">03 · Technical Index (400)</div>
-            <div className="lab-type-sample-mono">2026-11-22 · AA/AAA · 16.4:1</div>
+            <div className="lab-type-sample-mono">2026-11-22 · AAA · #151412 / #F6F4EF</div>
             <span className="eyebrow">Geist Mono · tokens, specs, telemetry</span>
           </div>
         </div>
 
-        <div className="lab-pill-row" aria-label={isZh ? "案例氛围色带" : "Per-case mood tokens"}>
+        <div className="lab-pill-row" aria-label={isZh ? "六大案例氛围色带" : "Listed case mood tokens"}>
           {CASE_MOOD_SWATCHES.map((m) => (
             <span
-              key={m.label}
+              key={m.labelEn}
               className="tag"
-              data-case-mood={m.label}
+              data-case-mood={m.labelEn}
               style={
                 {
                   "--case-mood-light": m.token,
@@ -166,7 +189,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
                 } as CSSProperties
               }
             >
-              {m.label} ({m.cases})
+              {isZh ? m.labelZh : m.labelEn} ({m.cases})
             </span>
           ))}
         </div>
@@ -182,8 +205,8 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
             </h2>
             <p>
               {isZh
-                ? "全站统一采用 GSAP（移除 framer-motion），只动画 x / rotation / opacity，并在 reduced-motion 下自动退化为 0ms 瞬时切换。"
-                : "Powered by a single GSAP layer (framer-motion removed), animating transform properties only and snapping instantly under reduced motion."}
+                ? "全站统一采用轻量化 GSAP 曲线层，仅驱动 x / rotation / opacity 合成属性，并在 reduced-motion 下自动退化为 0ms 瞬时切换。"
+                : "Powered by a single calibrated GSAP layer animating transform and opacity properties only, snapping instantly to settled states under reduced motion."}
             </p>
           </div>
         </div>

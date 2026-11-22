@@ -7,6 +7,11 @@ const SYNONYMS: Record<string, string[]> = {
   safety: ["privacy", "trust", "consent", "边界", "隐私", "信任"],
   social: ["crowd", "gig", "stranger", "concert", "社交", "搭话"],
   strategy: ["rts", "mission", "command", "checkpoint", "策略", "语法", "关卡"],
+  hardware: ["arduino", "firmware", "sensor", "servo", "relay", "usb", "ble", "硬件", "固件", "串口"],
+  architecture: ["ssg", "rsc", "csp", "bundle", "performance", "hydration", "静态", "架构", "性能", "安全"],
+  accessibility: ["a11y", "wcag", "aaa", "dialog", "keyboard", "focus", "contrast", "无障碍", "键盘", "对比"],
+  research: ["limit", "boundary", "study", "sample", "empirical", "observation", "样本", "实测", "研究"],
+  writing: ["essay", "blog", "article", "文章", "专栏"],
 };
 
 const STOP_WORDS = new Set([
@@ -18,7 +23,6 @@ export function tokenizeBilingual(input: string): string[] {
   const tokens: string[] = [];
   const lower = input.toLowerCase();
 
-  // Latin words >= 2 chars
   const latinMatches = lower.match(/[a-z0-9]+/g) ?? [];
   for (const w of latinMatches) {
     if (w.length < 2 || STOP_WORDS.has(w)) continue;
@@ -27,7 +31,6 @@ export function tokenizeBilingual(input: string): string[] {
     if (syns) tokens.push(...syns);
   }
 
-  // CJK contiguous runs -> unigrams + overlapping bigrams
   const cjkRuns = input.match(/[\u4e00-\u9fff]+/g) ?? [];
   for (const run of cjkRuns) {
     const chars = Array.from(run);
@@ -60,6 +63,7 @@ const AVG_LEN =
 
 export interface ScoredEvidence extends EvidenceChunk {
   score: number;
+  matchedTerms: string[];
 }
 
 export function rankEvidenceBm25(
@@ -96,6 +100,8 @@ export function rankEvidenceBm25(
 
     let bm25 = 0;
     let titleMatches = 0;
+    const hitTerms: string[] = [];
+
     for (const q of qTokens) {
       const tf = tfMap.get(q) ?? 0;
       if (tf === 0) continue;
@@ -103,13 +109,15 @@ export function rankEvidenceBm25(
       const idf = Math.log(1 + (N - dfVal + 0.5) / (dfVal + 0.5));
       bm25 += idf * ((tf * (k1 + 1)) / (tf + k1 * (1 - b + b * (dl / AVG_LEN))));
       if (titleSet.has(q)) titleMatches += 1;
+      if (q.length >= 2 && hitTerms.length < 6) hitTerms.push(q);
     }
 
     if (bm25 > 0) {
       const titleMultiplier = titleMatches > 0 ? 1 + Math.min(titleMatches, 3) * 0.25 : 1;
       scored.push({
         ...row.chunk,
-        score: bm25 * row.chunk.weight * titleMultiplier,
+        score: Number((bm25 * row.chunk.weight * titleMultiplier).toFixed(2)),
+        matchedTerms: hitTerms,
       });
     }
   }

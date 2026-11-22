@@ -1,0 +1,324 @@
+.workbenchWrap {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.pipelineBar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.pipelineStep {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 14px;
+  display: grid;
+  gap: 6px;
+  min-inline-size: 0;
+}
+
+.pipelineIndex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+}
+
+.pipelineStep strong {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.pipelineStep p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.perspectiveTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.perspectiveBtn {
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  color: var(--text-2);
+  padding: 8px 14px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  cursor: pointer;
+  min-block-size: 38px;
+}
+
+.perspectiveBtn[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.queryForm {
+  display: grid;
+  gap: 10px;
+}
+
+.queryControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.queryInput {
+  flex: 1 1 280px;
+  min-inline-size: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  font-family: var(--font-ui);
+}
+
+.presetRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.telemetryStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.historyBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.resultsStack {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.groupCard {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: clamp(16px, 2.2vw, 24px);
+  display: grid;
+  gap: var(--s-3);
+  min-inline-size: 0;
+}
+
+.groupHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.groupTitle {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.citationList {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.citationCard {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  min-inline-size: 0;
+}
+
+.citationHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.citationTitle {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.corpusTag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+.quadGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.quadGridCompact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+
+.quadCell {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  padding: 10px 12px;
+  display: grid;
+  gap: 4px;
+  min-inline-size: 0;
+}
+
+.quadCell p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.quadLimit {
+  border-inline-start: 3px solid var(--accent);
+}
+
+.quadLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.plainCitation {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.citationFoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.jumpLink {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.jumpLink:hover {
+  text-decoration: underline;
+}
+
+.traceDetails {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.traceSummary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-2);
+}
+
+.traceBody {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  word-break: break-word;
+}
+
+.termList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.termChip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.matrixTableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.matrixTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.matrixTable th,
+.matrixTable td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.matrixTable th {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+  background: var(--bg-alt);
+}
+
+@media (max-width: 860px) {
+  .pipelineBar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .quadGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .pipelineBar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -21,20 +21,27 @@ When someone applies to dozens of graduate positions, repeating work history acr
 In [Resume Autofill](/projects/autofill), that temptation turns into asymmetric risk: the extension gets credit for convenience, while the applicant carries 100% of the legal and career consequence if a hallucinated compliance checkbox goes through.
 
 So we engineered three explicit confidence lanes instead of one magic button:
-1. Deterministic local profile matches fill immediately.
-2. Ambiguous dropdowns pause for explicit human selection.
-3. Sensitive or open-ended prompts remain blank by rule, and final form submission stays permanently locked out of software automation.
+1. Deterministic local profile matches fill immediately (solid visual frame + word badge).
+2. Ambiguous dropdowns pause for explicit human selection (dashed frame + review reason).
+3. Sensitive or open-ended prompts remain blank by rule (double frame), and final form submission stays permanently locked out of software automation.
 
-**Measured scope:** across five synthetic fixture pages matching local test patterns, mapping hit cleanly; real-world ATS DOM drift outside Lewis's own daily runs has not yet been sampled.
+**Measured scope:** across five synthetic fixture pages matching local test patterns (6 of 6 light/dark screenshot suites), mapping hit cleanly; real-world ATS DOM drift outside Lewis's own daily runs has not yet been sampled.
 
 ## Blocking habitual Enter-key fatigue
 
 A similar failure mode appears when supervising long-running coding agents. Text logs stream faster than a person can verify, and standard desktop dialogs often default focus to **Continue / Proceed** so pressing `Return` keeps work moving.
 
-In [Lamplight Nook](/projects/lamplight), staging an agent task as a spatial café crew is never meant to invite blind cuteness-driven trust; its blackboard separates *plan steps* from *execution risks*, and every destructive file overwrite or command card locks initial focus onto **Not now**. Dismissing the card refuses execution rather than silently proceeding.
+In [Lamplight Nook](/projects/lamplight), staging an agent task as a spatial café crew is never meant to invite blind cuteness-driven trust; its blackboard separates *plan steps* from *execution risks*, staff operate exclusively on working file copies, and every destructive overwrite or shell permission locks initial focus onto **Not now**. Dismissing the card refuses execution safely rather than silently proceeding.
 
 Likewise on [Walkie](/projects/walkie), hardware buttons create tactile asymmetry: background speech triggers only an audio summary, while destructive tool permissions pause until a deliberate thumb press on the M5StickS3 Front or Side key (tested across automated relay & device gates on Lewis's watch, prior to external wearer studies).
 
+| Pattern | Convenience-First Default | Cognitive Sovereignty Default |
+| --- | --- | --- |
+| Uncertain application field (`Autofill`) | LLM predicts best-fit answer silently | Leaves blank with dashed/double state badge & human reason |
+| Final job submission (`Autofill`) | Auto-advances straight through Submit | Advances Next only; stops dead before Submit selector |
+| Risky desktop modal (`Lamplight Nook`) | Primary button highlights Proceed on Enter | Focus traps onto **Not now**; copies isolate original files |
+| Away-from-desk approval (`Walkie`) | Spoken "Yes" triggers shell execution | Physical S3 Front/Side button required after speech capture |
+
 ## Intentionally un-automated
 
-Good human-centered AI design declares clearly what the machine **refuses to guess or trigger silently**. Protecting cognitive sovereignty means designing calm friction right before irreversible commitments — even if that costs one extra click.
+Good human-centered AI design declares clearly what the machine **refuses to guess or trigger silently**. Protecting cognitive sovereignty means designing calm friction right before irreversible commitments — even if that costs one extra click. Stress-test all three gates directly inside our [Interaction Lab](/lab) or interrogate them via the [Rationale AI Lab](/ai).

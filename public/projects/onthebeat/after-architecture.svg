@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <rect width="800" height="500" fill="#FCFBF8"/>
+  <rect x="28" y="28" width="744" height="444" rx="10" fill="#F6F4EF" stroke="#151412" stroke-width="2"/>
+  <text x="56" y="70" fill="#151412" font-family="monospace" font-size="15" font-weight="700">AFTER: THREE-CARD BLE PACING + POLITE DEVICE WITHDRAWAL</text>
+  <rect x="56" y="114" width="210" height="220" rx="8" fill="#FCFBF8" stroke="#2B4D6F" stroke-width="2"/>
+  <text x="76" y="148" fill="#2B4D6F" font-family="monospace" font-size="13" font-weight="700">CARD 1 · BLIND PULSE</text>
+  <text x="76" y="184" fill="#3E3A33" font-family="sans-serif" font-size="13">Warm ambient glow only</text>
+  <text x="76" y="212" fill="#3E3A33" font-family="sans-serif" font-size="13">No avatars or exact meters</text>
+
+  <rect x="295" y="114" width="210" height="220" rx="8" fill="#FCFBF8" stroke="#A63F2A" stroke-width="2"/>
+  <text x="315" y="148" fill="#A63F2A" font-family="monospace" font-size="13" font-weight="700">CARD 2 · MUTUAL NOD</text>
+  <text x="315" y="184" fill="#3E3A33" font-family="sans-serif" font-size="13">Requires bilateral button ACK</text>
+  <text x="315" y="212" fill="#3E3A33" font-family="sans-serif" font-size="13">No unsolicited alerts sent</text>
+
+  <rect x="534" y="114" width="210" height="220" rx="8" fill="#ECE8DF" stroke="#151412" stroke-width="2"/>
+  <text x="554" y="148" fill="#151412" font-family="monospace" font-size="13" font-weight="700">CARD 3 · WITHDRAWAL</text>
+  <text x="554" y="184" fill="#3E3A33" font-family="sans-serif" font-size="13">Screen dims immediately</text>
+  <text x="554" y="212" fill="#3E3A33" font-family="sans-serif" font-size="13">Face-to-face talk takes over</text>
+
+  <text x="56" y="408" fill="#4E4940" font-family="monospace" font-size="12">Prototype note: Documents dual-boot S3 slot safety &amp; 3-card aesthetic; public field wearer study not yet conducted.</text>
+</svg>

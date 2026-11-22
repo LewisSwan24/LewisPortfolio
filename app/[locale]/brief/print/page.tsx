@@ -85,7 +85,7 @@ export default async function BriefPrintPage({
       <div className="container brief-print-stack">
         {selectedRecords.map((record, index) => {
           const decision = record.designDecisions?.[0];
-          const secondDecision = record.designDecisions?.[1];
+          const extraDecisions = record.designDecisions?.slice(1) ?? [];
           const depth = getCaseDepth(record.slug, locale);
           const card = record.card[locale];
           const liveUrl = `${siteConfig.url}/${locale}/projects/${record.slug}${
@@ -140,17 +140,18 @@ export default async function BriefPrintPage({
                     </div>
                   )}
 
-                  {secondDecision && (
-                    <div className="brief-print-block" style={{ marginTop: 12 }}>
+                  {extraDecisions.map((extra, decIdx) => (
+                    <div className="brief-print-block" key={extra.id} style={{ marginTop: 10 }}>
                       <span className="eyebrow">
-                        {isZh ? "02 · 延伸交互规则" : "02 · Secondary Interaction Rule"}
+                        {String(decIdx + 2).padStart(2, "0")} ·{" "}
+                        {isZh ? "关键交互取舍" : "Key Interaction Rule"}
                       </span>
-                      <h3 style={{ fontSize: 15, margin: "4px 0" }}>
-                        {secondDecision.decisionTitle[locale]}
+                      <h3 style={{ fontSize: 14, margin: "4px 0" }}>
+                        {extra.decisionTitle[locale]}
                       </h3>
-                      <p style={{ margin: 0 }}>{secondDecision.chosenTradeoff[locale]}</p>
+                      <p style={{ margin: 0, fontSize: 12.5 }}>{extra.chosenTradeoff[locale]}</p>
                     </div>
-                  )}
+                  ))}
                 </section>
 
                 <aside className="brief-print-sidebar">

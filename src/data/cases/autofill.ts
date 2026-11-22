@@ -92,6 +92,38 @@ export const autofillCase: CaseRecord = {
     ]
   },
   "processArtifacts": {
+    "scrubber": {
+      "eyebrow": {
+        "en": "Process scrubber · 100% auto-guess vs three-tier certainty",
+        "zh": "前后对比拉杆 · 盲猜全填 ↔ 三态分流与人体提交锁"
+      },
+      "title": {
+        "en": "Replace silent LLM guessing with visible Solid / Dashed / Double lanes",
+        "zh": "把静默猜填高风险栏位改造成三档可见状态分流与本地密钥托管"
+      },
+      "summary": {
+        "en": "Compare unconstrained auto-fill behavior against Resume Autofill's deterministic local engine and hard Human Submit Lock.",
+        "zh": "对比盲目追求 100% 自动填表率带来的拒信隐患，与当前严格区分确定、待核、留白三态的本地架构。"
+      },
+      "beforeLabel": {
+        "en": "Before · Silent Guesswork",
+        "zh": "改造前 · 盲猜高风险栏位"
+      },
+      "afterLabel": {
+        "en": "After · Three-Tier Local Engine",
+        "zh": "改造后 · 三档本地隔离引擎"
+      },
+      "wireframeId": "autofill-guess",
+      "afterImage": {
+        "src": "/projects/autofill/after-architecture.svg",
+        "alt": {
+          "en": "Resume Autofill local-first architecture showing three certainty lanes, Human Submit Lock before final Submit, Chrome CSP isolation, and Android Keystore",
+          "zh": "Resume Autofill 本地架构图：实线确定 / 虚线待核 / 双线留空三态分流，最终提交人手锁定及本地存储隔离"
+        },
+        "width": 800,
+        "height": 500
+      }
+    },
     "quotes": {
       "eyebrow": {
         "en": "Applicant friction · Real ATS application runs",
@@ -140,6 +172,51 @@ export const autofillCase: CaseRecord = {
           "decision": {
             "en": "Enforced an explicit Human Submit Lock in both extension logic and side-panel copy.",
             "zh": "在扩展逻辑与侧栏说明中硬性锁定：最终提交按钮永远仅限申请人亲手点击。"
+          }
+        }
+      ]
+    },
+    "microLoop": {
+      "eyebrow": {
+        "en": "Vector micro-loop · Control-adapter & certainty flow",
+        "zh": "矢量交互微循环 · 控件适配与提交锁定流程"
+      },
+      "title": {
+        "en": "Scan local DOM → Split 3 lanes → Advance Next → Human Submit Lock",
+        "zh": "本地控件识别 → 三档状态分流 → 仅代翻 Next → 最终提交交还本人"
+      },
+      "summary": {
+        "en": "Inspect how the local matching engine handles heterogeneous ATS widgets while guaranteeing zero off-device resume leaks.",
+        "zh": "无需上传任何简历数据即可查看本地扩展如何跨控件框架精准匹配并严格止步于最终提交。"
+      },
+      "loopId": "autofill-lanes",
+      "steps": [
+        {
+          "label": { "en": "Detect Widget", "zh": "识别控件框架" },
+          "detail": {
+            "en": "Identify native HTML, Ant Design, Element Plus, react-select, or ARIA widgets locally without cloud APIs.",
+            "zh": "在本地页面直接识别原生 HTML、Ant Design、Element Plus、react-select 与 ARIA 控件。"
+          }
+        },
+        {
+          "label": { "en": "3-Tier Split", "zh": "三态精准分流" },
+          "detail": {
+            "en": "Fill exact matches (solid), pause ambiguous selects (dashed), and leave open prompts blank (double).",
+            "zh": "确定栏位直接填入（实线），歧义下拉标虚线等待核对，开放问答题刻意双线留白。"
+          }
+        },
+        {
+          "label": { "en": "Next Only", "zh": "翻页不越权" },
+          "detail": {
+            "en": "Multi-page Beisen/Moka wizards auto-advance through intermediate steps while strictly skipping Submit selectors.",
+            "zh": "北森/Moka 多页网申仅协助点开「下一步」逐页填充，遇到「提交」即刻停手。"
+          }
+        },
+        {
+          "label": { "en": "Human Submit", "zh": "人手最终拍板" },
+          "detail": {
+            "en": "Side panel explains every filled/unfilled count and hands the final click squarely to the applicant.",
+            "zh": "侧栏清晰列出已填/待核/留白数量与依据，确保最后一击由求职者本人完成。"
           }
         }
       ]
@@ -226,6 +303,47 @@ export const autofillCase: CaseRecord = {
       "residualCostOrRisk": {
         "en": "Requires one manual final click and separate setup per device; not yet published on Chrome Web Store or Google Play, no iOS version, no Chinese IME in the Android keyboard, and WeChat-login-only portals stay unreachable.",
         "zh": "每份投递仍需人工多点一次最终确认，双端无法云同步；尚未上架应用商店、无 iOS 版、Android 简历键盘暂不支持中文输入法，且无法触及纯微信登录页面。"
+      }
+    },
+    {
+      "id": "widget-adapters-and-android-ime-fallback",
+      "decisionTitle": {
+        "en": "Match by UI component library first and pair with a network-free Android Resume Keyboard",
+        "zh": "按前端组件库抽象适配层，并以无网络权限的 Android 简历键盘兜底小程序壁垒"
+      },
+      "humanTension": {
+        "en": "Writing fragile CSS selectors per company domain breaks every few weeks, while closed mobile surfaces like WeChat campus mini-programs block browser extensions outright.",
+        "zh": "按每家公司站点硬写 CSS 选择器极易随官网改版失效；而国内大批校招干脆只开放微信小程序，桌面浏览器扩展根本进不去。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "One brittle URL-specific DOM script per employer careers page",
+            "zh": "为每家目标企业官网单独维护一套 URL 专属 DOM 脚本"
+          },
+          "flaw": {
+            "en": "Breaks whenever markup IDs rotate and scales poorly across hundreds of ATS portals.",
+            "zh": "只要页面 DOM 稍微改版就会整站瘫痪，无法复用给同源招聘平台。"
+          }
+        },
+        {
+          "option": {
+            "en": "Accessibility auto-clicking service injecting touches across closed mobile apps",
+            "zh": "申请 Android 无障碍辅助权限强行读取并自动点击微信小程序界面"
+          },
+          "flaw": {
+            "en": "Grants sweeping screen-reading privileges over sensitive personal apps and violates user trust boundaries.",
+            "zh": "无障碍权限会带来过大的全屏读取暴露面，与本地零越权的设计底线相冲突。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Adapter matching abstracts controls by underlying library (Ant Design, Element Plus, react-select, ARIA) plus ATS presets, while on Android a Keystore-encrypted custom IME lets applicants tap-insert local resume fields cleanly—verified by unit tests rejecting any network import.",
+        "zh": "桌面端按组件库抽象（Ant Design / Element Plus / react-select / ARIA）加主流 ATS 适配器覆写，移动端则在 Android 提供 Keystore 加密的「简历专用输入法」逐项点选输入，且用单元测试禁止任何网络类依赖。"
+      },
+      "residualCostOrRisk": {
+        "en": "Android Resume Keyboard currently has no built-in Chinese Pinyin IME (requiring keyboard switching for open Chinese text) and non-standard custom web portals still fall into manual needs-review lanes.",
+        "zh": "Android 简历键盘暂不附带中文拼音输入法（遇到开放中文字段仍需切换输入法），遇到深度魔改的非标组件也会诚实退回待人工复核列表。"
       }
     }
   ],

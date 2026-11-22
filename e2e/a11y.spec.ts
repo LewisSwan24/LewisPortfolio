@@ -8,6 +8,9 @@ const AUDIT_ROUTES = [
   "/en/projects/walkie",
   "/en/projects/lamplight",
   "/en/lab",
+  "/en/ai",
+  "/zh/ai",
+  "/en/about",
   "/en/hire",
   "/en/resume",
   "/en/contact",
@@ -19,6 +22,7 @@ const DARK_AND_MOBILE_ROUTES = [
   "/en/projects/walkie",
   "/en/projects/lamplight",
   "/en/lab",
+  "/en/ai",
   "/en/hire",
   "/en/resume",
 ];

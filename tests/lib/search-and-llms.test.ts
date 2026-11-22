@@ -17,9 +17,11 @@ describe("Search index & llms.txt builders", () => {
     }
   });
 
-  it("generates /llms.txt covering all 6 listed cases while excluding unlisted projects", async () => {
+  it("generates /llms.txt covering AI Lab and all 6 listed cases with 3 structured decisions", async () => {
     const body = await buildLlmsTxt();
     expect(body).toContain("# Lewis Dong");
+    expect(body).toContain("/en/ai");
+    expect(body).toContain("Structured Design Decisions (3):");
 
     for (const slug of LISTED_PROJECT_SLUGS) {
       expect(body).toContain(`/projects/${slug}`);

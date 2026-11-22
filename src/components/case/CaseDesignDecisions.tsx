@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { localizeInternalHref } from "@/lib/locale-href";
 import type { DesignDecisionTradeoff } from "@/lib/cases/schema";
 import type { ProofLocale } from "@/lib/portfolio-proof";
 
@@ -84,6 +86,14 @@ export function CaseDesignDecisions({ decisions, locale }: CaseDesignDecisionsPr
               </div>
             </article>
           ))}
+        </div>
+
+        <div style={{ marginTop: 18, display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
+          <Link href={localizeInternalHref("/ai", locale)} className="u-underline" style={{ fontSize: 13.5, fontWeight: 600 }}>
+            {isZh
+              ? "在 AI 实验室核验本案与其他项目的冲突及边界依据 →"
+              : "Interrogate tradeoffs & cross-case receipts in AI Lab →"}
+          </Link>
         </div>
       </section>
     </>

@@ -127,6 +127,90 @@ export const grasslandCase: CaseRecord = {
     }
   },
   "processArtifacts": {
+    "scrubber": {
+      "eyebrow": {
+        "en": "Process scrubber · Per-level patches vs unified data pipeline",
+        "zh": "前后对比拉杆 · 关卡特例按钮 ↔ 数据驱动 20 Hz 全局引擎"
+      },
+      "title": {
+        "en": "Unify ad-hoc mission controls into one immutable RTS grammar & single save chain",
+        "zh": "把每关打补丁式的自动宏与特设按钮统一成不可变命令语法与单一存档链"
+      },
+      "summary": {
+        "en": "Compare bespoke level-specific overrides against the five-mission data pipeline and deterministic checkpoint architecture.",
+        "zh": "拉动对比早期破坏心智模型的特设按键方案与终版数据驱动 5 关 20 Hz 统一引擎。"
+      },
+      "beforeLabel": {
+        "en": "Before · Ad-Hoc Per-Level Macros",
+        "zh": "改造前 · 关卡特设快捷外挂"
+      },
+      "afterLabel": {
+        "en": "After · Unified 20 Hz RTS Pipeline",
+        "zh": "改造后 · 统一语法与快照链"
+      },
+      "wireframeId": "grassland-auto",
+      "afterImage": {
+        "src": "/projects/grassland/after-architecture.svg",
+        "alt": {
+          "en": "Grassland Iron Tide unified five-mission architecture showing chapter manifest, 20 Hz simulation clock, edge-docked HUD, and shared checkpoint restoration",
+          "zh": "《草原铁潮》五关统一引擎架构图：章节清单数据驱动、20 Hz 固定逻辑钟与单一失败检查点恢复链"
+        },
+        "width": 800,
+        "height": 500
+      }
+    },
+    "quotes": {
+      "eyebrow": {
+        "en": "Playtest & architecture audit",
+        "zh": "双分辨率通关与架构自查记录"
+      },
+      "title": {
+        "en": "Structural invariants locked during five-mission RC acceptance",
+        "zh": "五关本地 RC 连续通关中锁定的交互与状态守恒纪律"
+      },
+      "items": [
+        {
+          "id": "grassland-grammar-invariant",
+          "category": "structure",
+          "quote": {
+            "en": "\"A mission may restrict which commands are available, never silently change what a click or key means.\"",
+            "zh": "「关卡可以限制目前开放哪些命令，但绝不能暗中改写同一次点击或按键的含义。」"
+          },
+          "context": {
+            "en": "Five-mission interaction ruleset & 430/430 unit test suite",
+            "zh": "五关统一指令集与 430/430 自动化规则校验"
+          },
+          "friction": {
+            "en": "Special per-level mechanics tempt designers to overload standard selection or command gestures.",
+            "zh": "新关卡一旦增加机制，设计上最容易偷懒把旧键位改作特例功能。"
+          },
+          "decision": {
+            "en": "Enforced one unified grammar (click, drag-box, Shift, Ctrl, right-click grid) across the chapter manifest.",
+            "zh": "从章节 Manifest 到场景加载层锁死唯一操作语法，不留关卡特设后门。"
+          }
+        },
+        {
+          "id": "grassland-checkpoint-truth",
+          "category": "trust",
+          "quote": {
+            "en": "\"If defeated units respawn on canvas while mission objective flags stay desynced, players lose trust immediately.\"",
+            "zh": "「战败读档时只要画面人物回去了、背后任务状态却串了位，玩家立刻会对整场推演失去信任。」"
+          },
+          "context": {
+            "en": "Mission 4 checkpoint restore & desktop two-resolution playthrough",
+            "zh": "第四关检查点恢复与双分辨率完整实机推演"
+          },
+          "friction": {
+            "en": "Decoupled UI counters and simulation timers split during pause and retry flows.",
+            "zh": "独立维护界面状态与游戏计时器在暂停重开时极易分叉。"
+          },
+          "decision": {
+            "en": "Bound pause, defeat causality, checkpoint snapshot, and unit arrays inside one 20 Hz simulation tick.",
+            "zh": "将暂停、战败原因、检查点快照与单位状态收拢进同一条 20 Hz 模拟主循环与存档链。"
+          }
+        }
+      ]
+    },
     "microLoop": {
       "eyebrow": {
         "en": "Vector micro-loop · Unified RTS command grammar",
@@ -247,6 +331,47 @@ export const grasslandCase: CaseRecord = {
       "residualCostOrRisk": {
         "en": "Gives up macro zoom-out inspection across large maps, local RC acceptance has not yet been mirrored identically on the live URL, and the Phaser web bundle carries a known size warning.",
         "zh": "放弃了大地图宏观缩放视角；五关完整验收来自本地 RC 记录（线上链接未跑同规格逐屏复验），且网页构建仍保留 Phaser 包体偏大的已知警告。"
+      }
+    },
+    {
+      "id": "manifest-lazy-load-over-mega-bundle",
+      "decisionTitle": {
+        "en": "Load Phaser atlases per mission via a data-driven manifest instead of preloading all five chapters",
+        "zh": "以数据驱动章节 Manifest 按关按需加载图集与地图，拒绝首屏硬塞五关全量资源"
+      },
+      "humanTension": {
+        "en": "Desktop web RTS players abandon a game if the first loading bar freezes for five chapters of spritesheets, yet late-game missions still need instant retry loops without re-fetching assets.",
+        "zh": "桌面网页即时战略游戏最忌首屏加载卡死五关所有高分图集；但一旦进到长线关卡如第四、五关，战败后重开检查点又必须秒回战场。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Upfront boot preload of all five mission spritesheets and maps",
+            "zh": "应用启动阶段一次性全量预下载五关地图与美术图集"
+          },
+          "flaw": {
+            "en": "Front-loads initial bandwidth latency onto first-time Mission 1 visitors before any tactical verb is tested.",
+            "zh": "把第 5 关的重资源塞给第 1 关初访玩家，大幅拉高首屏跳出率。"
+          }
+        },
+        {
+          "option": {
+            "en": "Duplicate separate Phaser scene classes per mission file",
+            "zh": "为第 1 至第 5 关复制五个高度相似却各自改写的 Phaser 场景类"
+          },
+          "flaw": {
+            "en": "Bugfixes to unit box-selection or checkpoint restoration would need manual propagation across five codebases.",
+            "zh": "任何框选、寻路与存档修复都得在五个孤立文件间重复同步，极易留下回归漏洞。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Express missions 1–5 as typed manifest definitions consumed by a shared runtime scene loader: only the active mission's assets mount into memory while retries reset state purely via in-memory checkpoints.",
+        "zh": "将第 1–5 关抽离为统一 Manifest 配置表，由单一运行时场景加载器按当前关卡懒加载地图与图集，战败读档直接在同关内存态瞬时复原。"
+      },
+      "residualCostOrRisk": {
+        "en": "First-time chapter transitions still show a brief between-mission asset fetch, and the Phaser 4 runtime chunk itself continues to trigger standard Vite bundle-size warnings.",
+        "zh": "切入下一新关卡时仍会有短促的资源切换缓冲，且 Phaser 4 运行时本体仍然会触及构建产物体积提示阈值。"
       }
     }
   ],

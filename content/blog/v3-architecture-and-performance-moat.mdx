@@ -10,26 +10,35 @@ author: "Lewis Dong"
 published: true
 ---
 
-A portfolio for interaction and design-engineering roles should feel effortless to read and hold up to basic web hygiene. During the V3 refactor of this site, I audited what actually reached the reader's browser and every place where case-study facts drifted apart across files.
+A portfolio for interaction and design-engineering roles should feel effortless to read and hold up to basic web hygiene. During the V3–V4 evolution of this site, I audited what actually reached the reader's browser and every place where case-study facts drifted apart across files.
 
 The goal was never a visual overhaul—the warm-paper typography and editorial pacing already fit the work. The real goal was eliminating duplicated data, keeping initial page loads responsive, and catching accessibility or broken-link slips before they reach production.
 
 ## Moving case studies out of client JSON bundles
 
-Earlier versions stored narrative case-study copy inside global translation dictionaries (`en.json` and `zh.json`). Because `NextIntlClientProvider` serialized the whole object into HTML, visiting the home page meant downloading bilingual essays for ten projects just to render the top bar.
+Earlier versions stored narrative case-study copy inside global translation dictionaries (`en.json` and `zh.json`). Because `NextIntlClientProvider` serialized the whole object into HTML, visiting the home page meant downloading bilingual essays for every project just to render the top bar.
 
-Consolidating all case records into typed `src/data/cases/*.ts` modules validated with **Zod** reversed that weight right away: client bundles now receive only interactive interface labels (`nav`, `contact`, `resume`, `search`), cutting translation payloads to a fraction of their former size while keeping project slugs, media paths, and review schedules checked automatically.
+Consolidating all case records into typed `src/data/cases/*.ts` modules validated with **Zod** reversed that weight right away: client bundles now receive only interactive interface labels (`nav`, `contact`, `resume`, `search`), cutting translation payloads sharply while keeping project slugs, media paths, and `DesignDecisionTradeoff` matrices checked automatically.
 
-## Stopping client boundary creep on the Work Index
+## Stopping client boundary creep and enforcing CSS budgets
 
-Even after slimming dictionaries, build inspection flagged `/projects` as noticeably heavier than other routes because `WorkIndex` sat behind a `"use client"` boundary—pulling interactive thumbnails, summaries, and helpers into client JavaScript just to power a filter bar.
+Even after slimming dictionaries, build inspection flagged `/projects` as heavier than other routes because `WorkIndex` sat behind a `"use client"` boundary—pulling interactive thumbnails, summaries, and helpers into client JavaScript just to power a filter bar.
 
 Lifting those presentational blocks back into the Server Component (`app/[locale]/projects/page.tsx`) and passing rendered slots left only the lightweight tab toggle on the client, dropping the `/projects` route script to roughly **1.25 kB** so automated CI budget checks can keep interaction pages crisp. <AnchorNote term="RSC slot pattern" label="Engineering note" note="Passing pre-rendered server ReactNode trees as props into a small client wrapper keeps heavy SVG/media helpers off the browser bundle." />
 
-## Lighter assets, calmer motion, and accessibility checks
+When we later added the dedicated [Rationale AI Lab](/ai) with telemetry inspectors and structured 4-part cards, new layout rules went into a route-scoped CSS Module (`ai-workbench.module.css`) rather than swelling global `primitives.css`, preserving our global `App/UI CSS <= 30 kB gz` ceiling.
+
+| Architectural Gate | What Fails Without It | Automated Check Enforced |
+| --- | --- | --- |
+| Zod case-study registry | EN/ZH drift, missing honest limits, broken media refs | `tests/lib/case-registry.test.ts` |
+| RSC Server-Client split | Entire essays & UI Chrome hydrated in client JS | Next.js build budget inspector |
+| Route-scoped CSS Modules | Dedicated lab widgets bloat every portfolio page | `pnpm budget:check` (`<= 30 kB gz`) |
+| 3-viewport accessibility scan | Dark-mode `#141413` contrast or `375px` horizontal overflow | `e2e/a11y.spec.ts` + `@axe-core/playwright` |
+
+## Lighter assets, calmer motion, and continuous verification
 
 Three practical habits closed the loop:
 
-1. **Media discipline (`pnpm media:check`)**: Compressing screenshots and looping clips kept the entire visual archive light and snappy without degrading type clarity.
-2. **Restrained GSAP motion**: Centralizing subtle reveals with `useGsapContext` cleanup and `prefers-reduced-motion` support makes transitions settle immediately for visitors who prefer reduced motion.
-3. **Multi-viewport accessibility scans**: Automated `@axe-core/playwright` checks cover Desktop Light, Desktop Dark (`#141413`), and Mobile viewports together, ensuring contrast and focus rings stay intact across themes.
+1. **Media discipline (`pnpm media:check`)**: Compressing screenshots and generating vector architecture SVGs kept the archive snappy without degrading legibility.
+2. **Restrained GSAP motion**: Centralizing subtle reveals with `useGsapContext` cleanup and `prefers-reduced-motion` support makes transitions settle immediately when motion is reduced.
+3. **Live Lab & AI Grounding**: All six public cases now connect directly into the [Interaction Lab](/lab) and our zero-hallucination [Rationale AI Lab](/ai), where hiring reviewers can stress-test the exact tradeoffs backed by source code rather than decorative copy.

@@ -1,6 +1,6 @@
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 
-type LabDemoSlug = "walkie" | "autofill" | "onthebeat";
+type LabDemoSlug = "walkie" | "autofill" | "onthebeat" | "lamplight";
 
 const INVARIANT_CARDS: Record<
   LabDemoSlug,
@@ -45,10 +45,27 @@ const INVARIANT_CARDS: Record<
       cta: "前往 /lab 走查 On The Beat 状态机 →",
     },
   },
+  lamplight: {
+    en: {
+      title: "Interactive State Machine · Default 'Not Now' Focus Lock",
+      rule: "Dangerous file writes lock keyboard focus on 'Not now' to block Enter-key fatigue while keeping completed steps safe on working copies.",
+      cta: "Inspect Lamplight in /lab →",
+    },
+    zh: {
+      title: "交互状态机 · 风险确认卡默认锁死「先不要」",
+      rule: "高危覆写操作初始焦点硬锁在「先不要」，阻断惯性按 Enter 误确认，所有任务仅操作文件副本。",
+      cta: "前往 /lab 走查 Lamplight 状态机 →",
+    },
+  },
 };
 
 export function isLabLinkedCase(slug: string): slug is LabDemoSlug {
-  return slug === "walkie" || slug === "autofill" || slug === "onthebeat";
+  return (
+    slug === "walkie" ||
+    slug === "autofill" ||
+    slug === "onthebeat" ||
+    slug === "lamplight"
+  );
 }
 
 export function CaseInvariantLink({

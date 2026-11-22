@@ -27,7 +27,20 @@ describe("Grounded Design-Defense Rationale Matching", () => {
     }
     const rationaleChunks = EVIDENCE_CORPUS_ITEMS.filter((c) => c.pillar === "design-rationale");
     expect(rationaleChunks.length).toBeGreaterThanOrEqual(12);
+    expect(rationaleChunks[0]?.structured).toBeDefined();
+    const writingChunks = EVIDENCE_CORPUS_ITEMS.filter((c) => c.pillar === "writing");
+    expect(writingChunks.length).toBeGreaterThanOrEqual(7);
     expect(EVIDENCE_CORPUS_MAP.size).toBe(EVIDENCE_CORPUS_ITEMS.length);
+  });
+
+  it("matches architecture, WCAG, and hardware terms with matchedTerms transparency", () => {
+    const hwHits = rankEvidenceBm25("Arduino firmware debounce sensor servo timing", "en");
+    expect(hwHits.some((h) => h.slug === "maze")).toBe(true);
+    expect(hwHits[0]?.matchedTerms.length).toBeGreaterThan(0);
+
+    const archHits = rankEvidenceBm25("静态生成 SSG 与严格 CSP 安全隔离", "zh");
+    expect(archHits.length).toBeGreaterThan(0);
+    expect(archHits.some((h) => h.pillar === "writing")).toBe(true);
   });
 
   it("redactPii strips email, phone, internal URLs and caps at 1200 characters", () => {
@@ -75,9 +88,21 @@ describe("Grounded Design-Defense Rationale Matching", () => {
     const data = (await okRes.json()) as {
       ok: boolean;
       mode: string;
-      matches: Array<{ slug: string; citations: Array<{ id: string; href: string; text: string }> }>;
+      pipeline?: { corpusCount: number; candidateCount: number };
+      matches: Array<{
+        slug: string;
+        type?: "case" | "blog";
+        citations: Array<{
+          id: string;
+          href: string;
+          text: string;
+          matchedTerms?: string[];
+          structured?: { tension: string; rejected: string; chosen: string; limit: string };
+        }>;
+      }>;
     };
     expect(data.ok).toBe(true);
+    expect(data.pipeline?.corpusCount).toBe(EVIDENCE_CORPUS_MAP.size);
     expect(data.matches.length).toBeGreaterThanOrEqual(1);
     for (const match of data.matches) {
       expect(UNLISTED_PROJECT_SLUGS).not.toContain(match.slug);

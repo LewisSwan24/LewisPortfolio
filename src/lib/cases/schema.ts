@@ -208,6 +208,11 @@ export const CaseWireframeIdSchema = z.enum([
   "pricewise-match",
   "hoop-style",
   "lamplight-log",
+  "walkie-voice",
+  "autofill-guess",
+  "maze-solo",
+  "onthebeat-radar",
+  "grassland-auto",
 ]);
 
 export type CaseWireframeId = z.infer<typeof CaseWireframeIdSchema>;
@@ -224,6 +229,9 @@ export const CaseMicroLoopIdSchema = z.enum([
   "onthebeat-wave",
   "walkie-relay",
   "grassland-rts",
+  "lamplight-triage",
+  "autofill-lanes",
+  "maze-state",
 ]);
 
 export type CaseMicroLoopId = z.infer<typeof CaseMicroLoopIdSchema>;

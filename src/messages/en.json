@@ -9,6 +9,7 @@
     "more": "More",
     "work": "Work",
     "lab": "Lab",
+    "ai": "AI Lab",
     "hire": "Hire me",
     "writing": "Writing",
     "lang": {
@@ -249,36 +250,30 @@
     ],
     "toolCategories": [
       {
-        "name": "Design",
+        "name": "Design & Motion",
         "tools": [
           "Figma",
-          "Adobe XD",
-          "Sketch",
-          "Framer",
-          "Photoshop",
-          "Illustrator"
-        ]
-      },
-      {
-        "name": "Research",
-        "tools": [
           "Miro",
-          "Notion",
-          "Maze",
-          "Hotjar",
-          "UserTesting",
-          "Optimal Workshop"
+          "GSAP",
+          "Three.js"
         ]
       },
       {
-        "name": "Development",
+        "name": "Hardware & Prototyping",
         "tools": [
-          "HTML/CSS",
-          "JavaScript",
-          "React",
+          "Arduino Mega",
+          "ESP32 / M5StickS3",
+          "Web Serial",
+          "Phaser / Canvas"
+        ]
+      },
+      {
+        "name": "Engineering & QA",
+        "tools": [
           "TypeScript",
+          "React / Next.js",
           "Tailwind CSS",
-          "Next.js"
+          "Playwright / Vitest"
         ]
       }
     ],
@@ -319,9 +314,10 @@
       "text": "I design interactions that help people stay oriented.",
       "em": "oriented"
     },
-    "p1": "I'm finishing my Master of Interaction Design at the University of Queensland after four years studying Computer Science in Wales. That mix makes it natural for me to sit in the gap between design intent and working software.",
-    "p2": "Most of my favorite work lives where research, information architecture, and craft overlap. I enjoy messy, early-stage problems — before anyone agrees what the product should be — and the quiet discipline of reading transcripts until a clear mental model emerges.",
-    "p3": "Outside the studio, I cook with too much garlic, read non-fiction about cities, and keep chipping away at Japanese. Write to me directly and I'll reply promptly.",
+    "p1": "I'm finishing my Master of Interaction Design at The University of Queensland in November 2026 after earning a BSc (Hons) in Computer Science (2:1) at Swansea University in Wales. Having both engineering and design training keeps me grounded in what software and hardware can actually uphold under latency, permissions, and human fatigue.",
+    "p2": "My work focuses on complex human-system boundaries: where AI tools overreach user confidence, where multi-player hardware breaks solo silence, and where workflows hide failure or privacy risk. Instead of ending at static slides, I ship working prototypes in TypeScript, Electron, Chrome extensions, or ESP32 C++ so the rules can fail honestly and be revised.",
+    "p3": "In AI-assisted builds, I keep clear ownership: I define the human tension, the rejected shortcuts, the refusal limits, and the real hardware or Playwright acceptance checks — treating generated code as a draft to be interrogated rather than truth by default.",
+    "p4": "Outside the studio, I cook with too much garlic, read non-fiction about cities and urban systems, and keep practicing Japanese. If you have a complex interaction problem or graduate opening, write directly and I will respond promptly.",
     "philo": {
       "1": {
         "t": "Research is not decoration.",
@@ -341,10 +337,10 @@
       },
       "label": "What I believe"
     },
-    "cv": "Download CV",
+    "cv": "View Resume & Role Decks",
     "tl": {
       "label": "Briefly",
-      "y2026": "Exhibited MazeRunners; built Walkie, Lamplight Nook, and Resume Autofill. Graduating in Nov, looking for a product design team.",
+      "y2026": "Exhibited MazeRunners; built On The Beat, Grassland Iron Tide, Walkie, Lamplight Nook, and Resume Autofill. Graduating in Nov, open to product/interaction design & design engineering teams.",
       "y2025": "Started the Master of Interaction Design at UQ in Feb: research methods, IA, physical computing.",
       "y2024": "Graduated from Swansea University in Jul with a BSc (Hons) in Computer Science, 2:1.",
       "y2020": "Moved to Wales to study Computer Science at Swansea University."

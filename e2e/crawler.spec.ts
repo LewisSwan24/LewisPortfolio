@@ -19,6 +19,8 @@ const PUBLIC_ROUTES = [
   "/zh/about",
   "/en/lab",
   "/zh/lab",
+  "/en/ai",
+  "/zh/ai",
   "/en/hire",
   "/zh/hire",
   "/en/resume",

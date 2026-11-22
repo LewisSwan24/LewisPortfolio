@@ -19,7 +19,9 @@ test.describe("Grounded Design-Defense AI Navigator & Essay #2", () => {
       .click();
 
     await expect(dialog.getByText("Walkie")).toBeVisible({ timeout: 10000 });
-    await expect(dialog.getByRole("link", { name: /Jump to rationale/i }).first()).toHaveAttribute(
+    await expect(
+      dialog.getByRole("link", { name: /Inspect in case study|Read source essay|Jump to rationale/i }).first()
+    ).toHaveAttribute(
       "href",
       /\/projects\/walkie#/
     );
@@ -59,15 +61,19 @@ test.describe("Grounded Design-Defense AI Navigator & Essay #2", () => {
   test("Cmd+K dual-mode CommandPalette queries grounded rationale in ZH", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/zh", { waitUntil: "networkidle" });
+    await page.locator("header.pd-nav").waitFor({ state: "visible" });
+    await page.locator("#main-content").click({ position: { x: 10, y: 10 } });
 
     await page.keyboard.press("Control+k");
     const dialog = page.getByRole("dialog", { name: "命令面板" });
-    await expect(dialog).toBeVisible();
+    await expect(dialog).toBeVisible({ timeout: 10000 });
 
     await dialog.getByRole("button", { name: "问设计理由" }).click();
     await dialog.getByRole("button", { name: /Lamplight 与 Autofill/i }).click();
 
-    await expect(dialog.getByRole("link", { name: /查看论证原文/i }).first()).toBeVisible({
+    await expect(
+      dialog.getByRole("link", { name: /直达案例论证|阅读专栏原文|查看论证原文/i }).first()
+    ).toBeVisible({
       timeout: 10000,
     });
   });

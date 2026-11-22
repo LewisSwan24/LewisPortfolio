@@ -105,6 +105,90 @@ export const onthebeatCase: CaseRecord = {
     }
   },
   "processArtifacts": {
+    "scrubber": {
+      "eyebrow": {
+        "en": "Process scrubber · Proximity radar vs zero-identity nod",
+        "zh": "前后对比拉杆 · 身份暴露雷达 ↔ 匿名脉冲与退场式配对"
+      },
+      "title": {
+        "en": "Replace invasive nearby-people radars with blind waves that withdraw once paired",
+        "zh": "把窥探感强的人群雷达改造成「匿名挥手 → 双向确认解锁 → 手机退回口袋」"
+      },
+      "summary": {
+        "en": "Scrub between traditional gig-radar surveillance risks and On The Beat's bidirectional Fly.io wristband flow.",
+        "zh": "拖动对比强暴露定位雷达与现行匿名挥手、悉尼常驻中继与硬件双向确认逻辑。"
+      },
+      "beforeLabel": {
+        "en": "Before · Invasive GPS Radar",
+        "zh": "改造前 · 暴露头像的距离雷达"
+      },
+      "afterLabel": {
+        "en": "After · Blind Mutual Nod",
+        "zh": "改造后 · 匿名双向互认"
+      },
+      "wireframeId": "onthebeat-radar",
+      "afterImage": {
+        "src": "/projects/onthebeat/after-architecture.svg",
+        "alt": {
+          "en": "On The Beat post-redesign architecture showing blind wave presence, always-on Sydney Fly.io relay, dual-wristband mutual MEET confirmation, and device withdrawal",
+          "zh": "On The Beat 架构图：匿名脉冲预探、Fly.io 常驻悉尼中继、双腕表同步 MEET 互认及界面主动退场"
+        },
+        "width": 800,
+        "height": 500
+      }
+    },
+    "quotes": {
+      "eyebrow": {
+        "en": "Hardware & generated-canvas audit",
+        "zh": "真机调试与产出审查记录"
+      },
+      "title": {
+        "en": "Failures caught on StickS3 & StickC Plus before hardware sign-off",
+        "zh": "两支实体手环与设计画布审查暴露的三类关键断点"
+      },
+      "items": [
+        {
+          "id": "onthebeat-no-laptop",
+          "category": "physical",
+          "quote": {
+            "en": "\"Without a computer sitting beside them, neither the phone nor these two wristbands can even connect.\"",
+            "zh": "「离开桌边这台电脑，手机和这两只手环一个都跑不起来。」"
+          },
+          "context": {
+            "en": "25 September hardware pairing failure audit",
+            "zh": "9 月 25 日两支真机离桌连测排查"
+          },
+          "friction": {
+            "en": "Early generated relay code defaulted to a localhost port, breaking portability inside any real venue.",
+            "zh": "早期生成代码默认把中继绑在本地开发机端口上，根本无法带离桌面进入演出现场。"
+          },
+          "decision": {
+            "en": "Deployed the Node relay onto an always-on Sydney Fly.io instance; both bands hit real MEET 65 minutes later.",
+            "zh": "将 Node 中继迁往悉尼常驻 Fly.io 节点；65 分钟后两支实体手环在无电脑条件下同步显示 MEET。"
+          }
+        },
+        {
+          "id": "onthebeat-ai-lie",
+          "category": "trust",
+          "quote": {
+            "en": "\"All four prompt cards read '1 of 4', MEET was mocked static JSON, and picking a song left a black screen.\"",
+            "zh": "「AI 第一版生成的四张卡全标着『1 of 4』，MEET 是写死的假数据，点选歌曲后直接黑屏。」"
+          },
+          "context": {
+            "en": "15–21 September Claude Design canvas review loops",
+            "zh": "9 月 15–21 日 AI 设计产出多轮人工走查"
+          },
+          "friction": {
+            "en": "Polished visual frames masked broken pagination, one-way mirroring, and non-mutual state transitions.",
+            "zh": "精致排版掩盖了翻页卡死、手环仅能被动镜像以及伪造双方同意的结构性缺陷。"
+          },
+          "decision": {
+            "en": "Sent canvases back across 5+ rework rounds (12+ on the earlier flow) and wired physical side-button selection.",
+            "zh": "连续打回 5 轮以上（早期版本 12 轮以上）返工，并以手环侧键逆向同步验证真双向状态机。"
+          }
+        }
+      ]
+    },
     "microLoop": {
       "eyebrow": {
         "en": "Vector micro-loop · Zero-identity icebreaker",
@@ -232,6 +316,47 @@ export const onthebeatCase: CaseRecord = {
       "residualCostOrRisk": {
         "en": "Depends on cloud connectivity in crowded venues; full-night battery life, StickC Plus front button, band-initiated wave-back, and the post-fix iPhone clip remain unverified, and firmware/app code was written and flashed by Claude Code.",
         "zh": "现场仍依赖云端连接；整晚续航、Plus 正面键、手环端按实体键回挥以及 iPhone 片段修复后的复测仍未验证，且固件与 App 代码由 Claude Code 编写并烧录。"
+      }
+    },
+    {
+      "id": "wrist-side-button-agency-over-mirroring",
+      "decisionTitle": {
+        "en": "Let the ESP32 wristband side button drive state transitions back to the phone",
+        "zh": "赋权 ESP32 手环侧键反向驱动状态，拒绝让硬件沦为手机的纯被动副屏"
+      },
+      "humanTension": {
+        "en": "If the wristband merely mirrors whatever is tapped on React, attendees in a packed crowd are forced back onto unlocking a bright phone screen just to browse or switch icebreaker cards.",
+        "zh": "如果手环只能单向映射手机点按结果，人在拥挤演出现场还是不得不掏出亮屏手机去切换破冰语卡片——手环就彻底沦为了多此一举的挂件。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Phone-master display-only wristband",
+            "zh": "手机端绝对主控，手环只负责接收推送亮屏"
+          },
+          "flaw": {
+            "en": "Forces eyes back down to handheld glass at the exact second an icebreaker should keep people looking around.",
+            "zh": "把本来要抬眼找人的时刻重新拽回手机屏幕，彻底丧失穿戴设备免掏手机的意义。"
+          }
+        },
+        {
+          "option": {
+            "en": "Hardware-only blind Morse patterns with no mobile landmark fallback",
+            "zh": "彻底砍掉手机端界面，全靠小屏盲敲确认碰撞"
+          },
+          "flaw": {
+            "en": "Once two strangers agree to meet in a dark room, a tiny 1.14-inch screen lacks clear shared landmark clarity.",
+            "zh": "在昏暗噪声场地真正要找彼此站位时，手表小屏承载不了清晰碰面地标，需手机收尾后再收进口袋。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Wire StickS3 and StickC Plus side buttons as first-class state emitters across the Fly.io relay so band cycling updates React in real time, then leave both phones for landmark reveal before pocketing.",
+        "zh": "将 StickS3 与 StickC Plus 侧键接为通过 Fly.io 中继双向同步的一等事件源：逛卡片靠手环盲按切换，一旦双方点头后再在手机弹出唯一地标，随后立即息屏退场。"
+      },
+      "residualCostOrRisk": {
+        "en": "StickC Plus front-button gesture and direct band-initiated wave-back remain unverified edge cases; the three icebreaker phrases came from a teammate's coursework Figma concept rather than Lewis.",
+        "zh": "StickC Plus 正面短按与从手环直接反向回挥目前尚未完成实机收口；同时三句破冰词条均源自课程同组队友的 Figma 概念原型（非本人原创）。"
       }
     }
   ],

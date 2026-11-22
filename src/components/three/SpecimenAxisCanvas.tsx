@@ -47,7 +47,7 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
 
   const copy = isZh
     ? {
-        eyebrow: "设计标本坐标系 · 6 个公开案例",
+        eyebrow: "04 · 设计标本坐标系 · 6 个公开案例",
         title: "人因摩擦 × 边界态度 × 媒介实体度",
         sub: "把六个案例放到同一个空间标尺下观察：越靠近右上角，边界越落在物理动作与实时社交摩擦中；越靠近左上角，工作越聚焦 AI 协同规则与拒绝边界。",
         axisX: "人因摩擦重心（规则/认知 ← → 社交/物理）",
@@ -61,7 +61,7 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
         limitsLabel: "诚实边界",
       }
     : {
-        eyebrow: "Design Specimen Axes · 6 Listed Cases",
+        eyebrow: "04 · Design Specimen Axes · 6 Listed Cases",
         title: "Human friction × boundary stance × physicality",
         sub: "Six cases plotted along one drafting frame: physical devices lock consent into buttons and bands, while local software encodes explicit refusal thresholds.",
         axisX: "Human tension (cognitive/rule ← → social/physical)",

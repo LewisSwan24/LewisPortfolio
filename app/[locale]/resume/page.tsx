@@ -122,6 +122,32 @@ export default async function ResumePage() {
             </div>
 
             <div className="res-section">
+              <h3>{isZh ? "工程架构与验证方法" : "Engineering & Verification Practices"}</h3>
+              <div className="res-entry">
+                <div className="date">CI · E2E · Embedded</div>
+                <div>
+                  <h4>
+                    {isZh
+                      ? "全栈质量门禁、双语无障碍与嵌入式硬件测试"
+                      : "Full-Stack Quality Gates, A11y Audits & Hardware-in-the-Loop Tests"}
+                  </h4>
+                  <ul>
+                    <li>
+                      {isZh
+                        ? "基于 Next.js App Router + Zod Schema 管理 18 条设计取舍结构与全站 100% 路由门禁；每次合并触发 TypeScript、Vitest、媒体体积预算与 Playwright 三视口 Axe 扫描。"
+                        : "Structured Next.js App Router + Zod schema registry enforcing 18 design-decision tradeoffs and zero-drift bilingual routes under Playwright 3-viewport @axe-core/playwright and CSS budget checks."}
+                    </li>
+                    <li>
+                      {isZh
+                        ? "在嵌入式 AI 原型中建立宿主机 g++ 协议测试、防误擦烧录守卫（guard.py）、AES-256-GCM 零知识中继与传感器去抖冷却状态机。"
+                        : "Built host g++ frame unit tests, pre-flash partition safety guards (guard.py), AES-256-GCM zero-knowledge WebSocket relays, and debounced hardware state machines across M5StickS3 & Arduino Mega."}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="res-section">
               <h3>{t("resume.section.edu")}</h3>
               <div className="res-entry">
                 <div className="date">2025.02 – 2026.11</div>
@@ -182,6 +208,9 @@ export default async function ResumePage() {
               <div className="role-fit-links">
                 <Link href="/hire">
                   {isZh ? "查看岗位与证据简报 →" : "Open hiring dossier →"}
+                </Link>
+                <Link href="/ai">
+                  {isZh ? "用 AI 辩护工作台评估匹配度 →" : "Interrogate Rationale AI Lab →"}
                 </Link>
               </div>
             </div>
