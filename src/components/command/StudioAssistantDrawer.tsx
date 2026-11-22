@@ -1,15 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { StructuredRationaleCard } from "@/components/ai/StructuredRationaleCard";
 import {
   fetchGroundedEvidence,
   PRESET_DESIGN_QUESTIONS,
   type GroundedMatchGroup,
 } from "@/lib/ai/client";
+import { localizeInternalHref } from "@/lib/locale-href";
+import { trackInteraction } from "@/lib/web-vitals";
 
 export function StudioAssistantDrawer({ locale }: { locale: "en" | "zh" }) {
   const isZh = locale === "zh";
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,11 +22,17 @@ export function StudioAssistantDrawer({ locale }: { locale: "en" | "zh" }) {
   const [modeNote, setModeNote] = useState("");
   const [error, setError] = useState("");
 
+  // Hide the floating drawer trigger inside the dedicated /ai workbench
+  if (/^\/(en|zh)?\/?ai(\/|$)/.test(pathname ?? "")) {
+    return null;
+  }
+
   const runQuery = async (text: string) => {
     const clean = text.trim();
     if (clean.length < 3) return;
     setLoading(true);
     setError("");
+    trackInteraction("rationale-ai");
     try {
       const { response, clientRedactedCount } = await fetchGroundedEvidence(clean, locale);
       if (!response.ok) {
@@ -30,14 +41,15 @@ export function StudioAssistantDrawer({ locale }: { locale: "en" | "zh" }) {
       } else {
         setMatches(response.matches ?? []);
         const scrubbed = Math.max(clientRedactedCount, response.redactedCount ?? 0);
+        const corpusCount = response.pipeline?.corpusCount ?? 0;
         setModeNote(
           scrubbed > 0
             ? isZh
-              ? `已自动剥离 ${scrubbed} 处敏感信息 · 物理证据查表还原`
-              : `Scrubbed ${scrubbed} PII item(s) · Physical corpus hydration`
+              ? `已本地脱敏 ${scrubbed} 处敏感信息 · ${corpusCount} 条证明库查表`
+              : `Scrubbed ${scrubbed} PII item(s) · ${corpusCount}-chunk static corpus`
             : isZh
-              ? "纯静态证据库检索 · 零幻觉查表"
-              : "Static evidence corpus · Zero-hallucination lookup"
+              ? `纯静态证明库（${corpusCount} 条）· 零幻觉结构化回表`
+              : `Static corpus (${corpusCount} chunks) · Zero-hallucination cards`
         );
       }
     } catch {
@@ -61,19 +73,29 @@ export function StudioAssistantDrawer({ locale }: { locale: "en" | "zh" }) {
               <span className="eyebrow">{isZh ? "零幻觉证据检索" : "Grounded Rationale AI"}</span>
               <strong>{isZh ? "设计取舍追问台" : "Ask Design Tradeoffs"}</strong>
             </div>
-            <button
-              type="button"
-              className="btn btn-ghost"
-              style={{ padding: "4px 10px", fontSize: 12 }}
-              onClick={() => setOpen(false)}
-              aria-label={isZh ? "收起助手" : "Close rationale assistant"}
-            >
-              {isZh ? "收起" : "Close"}
-            </button>
+            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <Link
+                href={localizeInternalHref("/ai", locale)}
+                className="btn btn-ghost"
+                style={{ padding: "4px 10px", fontSize: 12 }}
+                onClick={() => setOpen(false)}
+              >
+                {isZh ? "AI 实验室 ↗" : "AI Lab ↗"}
+              </Link>
+              <button
+                type="button"
+                className="btn btn-ghost"
+                style={{ padding: "4px 10px", fontSize: 12 }}
+                onClick={() => setOpen(false)}
+                aria-label={isZh ? "收起助手" : "Close rationale assistant"}
+              >
+                {isZh ? "收起" : "Close"}
+              </button>
+            </div>
           </header>
 
           <div className="studio-assistant-presets">
-            {PRESET_DESIGN_QUESTIONS.map((q) => (
+            {PRESET_DESIGN_QUESTIONS.slice(0, 4).map((q) => (
               <button
                 key={q.en}
                 type="button"
@@ -104,7 +126,7 @@ export function StudioAssistantDrawer({ locale }: { locale: "en" | "zh" }) {
               aria-label={isZh ? "设计追问输入框" : "Design rationale query"}
             />
             <button type="submit" className="btn btn-primary" disabled={loading || query.trim().length < 3}>
-              {loading ? (isZh ? "检索中" : "...") : isZh ? "查证" : "Ask"}
+              {loading ? "..." : isZh ? "查证" : "Ask"}
             </button>
           </form>
 
@@ -114,9 +136,9 @@ export function StudioAssistantDrawer({ locale }: { locale: "en" | "zh" }) {
             </p>
           )}
           {modeNote && (
-            <div className="eyebrow" style={{ color: "var(--text-3)" }}>
+            <output role="status" aria-live="polite" className="eyebrow" style={{ color: "var(--text-3)" }}>
               {modeNote}
-            </div>
+            </output>
           )}
 
           {matches.length > 0 && (
@@ -128,11 +150,13 @@ export function StudioAssistantDrawer({ locale }: { locale: "en" | "zh" }) {
                     <span className="tag">{group.reasonLabel}</span>
                   </div>
                   {group.citations.map((cit) => (
-                    <div key={cit.id} className="studio-assistant-cit">
-                      <p>{cit.text}</p>
-                      <Link href={cit.href} onClick={() => setOpen(false)}>
-                        {isZh ? "直达案例论证 ↗" : "Jump to rationale ↗"}
-                      </Link>
+                    <div key={cit.id} onClick={() => setOpen(false)}>
+                      <StructuredRationaleCard
+                        citation={cit}
+                        locale={locale}
+                        compact
+                        showInspector={false}
+                      />
                     </div>
                   ))}
                 </li>

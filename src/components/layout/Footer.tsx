@@ -20,6 +20,7 @@ export function Footer() {
             <ul>
               <li><Link href="/projects">{t("nav.work")}</Link></li>
               <li><Link href="/lab">{t("nav.lab")}</Link></li>
+              <li><Link href="/ai">{t("nav.ai")}</Link></li>
               <li><Link href="/about">{t("nav.about")}</Link></li>
               <li><Link href="/resume">{t("nav.resume")}</Link></li>
               <li><Link href="/hire">{t("nav.hire")}</Link></li>

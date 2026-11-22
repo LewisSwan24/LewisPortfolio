@@ -6,12 +6,7 @@ import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { FeaturedDeck } from "@/components/home/FeaturedDeck";
 import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
 import { SectionReveal } from "@/components/motion/SectionReveal";
-import {
-  VizConnect,
-  VizMaze,
-  VizHoop,
-  VizPricewise,
-} from "@/components/viz/ProjectViz";
+import { VizMaze } from "@/components/viz/ProjectViz";
 import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
 import { getProjectCover } from "@/lib/project-covers";
 import { getCaseCard, getFeaturedDeckCases } from "@/lib/cases/registry";
@@ -113,7 +108,7 @@ export default async function HomePage() {
       <section className="hero container">
         <div className="v4-editorial-grid" style={{ alignItems: "center" }}>
           <div className="hero-text v4-span-5">
-            <div className="eyebrow">{t("hero.eyebrow")} · V4 STUDIO</div>
+            <div className="eyebrow">{t("hero.eyebrow")}</div>
             <h1 className="h-display h1">
               {t("hero.headline.a")}{" "}
               <br />{" "}
@@ -125,6 +120,9 @@ export default async function HomePage() {
             <div className="hero-ctas">
               <Link href="/projects" className="btn btn-primary">
                 {t("hero.cta.work")} <span className="arrow">→</span>
+              </Link>
+              <Link href="/ai" className="btn btn-ghost">
+                {isZh ? "AI 实验室" : "AI Lab"} <span className="arrow">→</span>
               </Link>
               <Link href="/contact" className="btn btn-ghost">
                 {t("hero.cta.note")} <span className="arrow">→</span>
@@ -168,12 +166,6 @@ export default async function HomePage() {
             const fallbackViz =
               record.slug === "maze" ? (
                 <VizMaze locale={proofLocale} />
-              ) : record.slug === "connect" ? (
-                <VizConnect locale={proofLocale} />
-              ) : record.slug === "pricewise" ? (
-                <VizPricewise locale={proofLocale} />
-              ) : record.slug === "hoop" ? (
-                <VizHoop locale={proofLocale} />
               ) : undefined;
             return {
               key: record.slug,

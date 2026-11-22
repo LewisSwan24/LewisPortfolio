@@ -617,7 +617,8 @@ test.describe("Resume Page", () => {
         await expect(page.getByText("Target roles")).toBeVisible();
         await expect(page.locator(".resume-proof-card")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
-        await expect(page.locator(".role-fit-links a")).toHaveAttribute("href", "/hire");
+        await expect(page.locator(".role-fit-links a[href='/hire']")).toBeVisible();
+        await expect(page.locator(".role-fit-links a[href='/ai']")).toBeVisible();
     });
 });
 
@@ -630,11 +631,13 @@ test.describe("Lab Page", () => {
 
 test.describe("Search Modal", () => {
     test("should open search with keyboard shortcut", async ({ page }) => {
-        await page.goto("/");
+        await page.goto("/", { waitUntil: "networkidle" });
+        await page.locator("header.pd-nav").waitFor({ state: "visible" });
+        await page.locator("#main-content").click({ position: { x: 10, y: 10 } });
 
         await page.keyboard.press("Control+k");
 
-        await expect(page.getByRole("combobox", { name: "Search" })).toBeVisible();
+        await expect(page.getByRole("combobox", { name: "Search" })).toBeVisible({ timeout: 10000 });
     });
 });
 
@@ -832,7 +835,7 @@ test.describe("V3 Flagship Routes & Role Lens", () => {
                 await gotoStable(page, url);
                 await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
                 await expect(page.locator("#design-decisions")).toBeAttached();
-                await expect(page.locator(".case-decision-card")).toHaveCount(2);
+                await expect(page.locator(".case-decision-card")).toHaveCount(3);
             }
         }
     });

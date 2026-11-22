@@ -27,12 +27,12 @@ A statically generated, bilingual (`en` / `zh`) interaction-design practice log 
 - **Lazy 3D Coordinate Stage (`src/components/three/SpecimenAxisCanvas.tsx`)** — Plots all 6 listed cases by human friction, boundary stance, and medium physicality. Renders an immediate `0ms` SSR SVG baseline with full keyboard selection, lazily mounts WebGL2 only when visible (`<= 160 kB gz` chunk, zero WebGL leaked into initial routes), cleans up via `dispose()`, and falls back silently when WebGL is disabled. Includes hardware specimens (`HardwareFieldCanvas.tsx`) on physical cases.
 - **Bilingual `/lab` Workbench** — Token & AAA contrast inspector, GSAP paper-motion curve sandbox (`prefers-reduced-motion` aware), URL-linkable rule micro-demos (`/lab?demo=walkie|autofill|onthebeat`), and live zero-PII telemetry readout.
 
-### 4. Grounded BM25 Rationale Matcher & A4 Critique Dossiers
-- **Zero-Hallucination Rationale Navigator (`src/lib/ai/`, `app/api/ai/match/route.ts`)** — Bilingual BM25 index over verified listed-case evidence chunks (`EVIDENCE_CORPUS_MAP`) with client-side PII redaction (`redactPii`, `<= 1200` chars). Runs cleanly key-free (`bm25-local`) with optional OpenAI/Gemini reranking returning strict Zod `{ slug, evidenceIds, reasonCode }` references hydrated strictly from static proof records. Surfaces via `⌘K` Command Palette, `/hire` JD Matcher, and `StudioAssistantDrawer`.
-- **Editorial Critique A4 Print & Role Decks (`/[locale]/brief/print`, `pnpm decks:build`)** — Allocates `>= 60%` of each A4 page width to human tension, rejected paths, and validation limits paired with an offline vector SVG QR code (`src/lib/pdf/qr-svg.ts`), plus 3 pre-built static PDFs under `public/decks/`.
+### 4. Grounded BM25 Rationale AI Lab & A4 Critique Dossiers
+- **Zero-Hallucination Rationale AI Lab (`/[locale]/ai`, `src/lib/ai/`, `app/api/ai/match/route.ts`)** — Bilingual BM25 index covering 18 structured design-decision tradeoffs (`3` per listed flagship case), research observations (`2.4x`), validation limits (`2.0x`), and 7 published bilingual technical essays (`1.8x`), with client-side PII redaction (`redactPii`, `<= 1200` chars). Runs key-free (`bm25-local`) with optional OpenAI/Gemini reranking returning strict ID allowlists hydrated verbatim into 4-quadrant cards (`Human Tension / Rejected Path / Chosen Tradeoff / Honest Limit`). Surfaces consistently across `/[locale]/ai`, `⌘K` Command Palette, `/hire` JD Matcher, and `StudioAssistantDrawer`.
+- **Editorial Critique A4 Print & Role Decks (`/[locale]/brief/print`, `pnpm decks:build`)** — Allocates `>= 60%` of each A4 page width to human tension, rejected paths, and all structured tradeoffs paired with an offline vector SVG QR code (`src/lib/pdf/qr-svg.ts`), plus 3 pre-built static PDFs under `public/decks/`.
 
 ### 5. Security Hardening, Native Primitives & Zero-PII Telemetry
-- **Layered CSP Without Breaking SSG (`next.config.js`, `middleware.ts`)** — Removes `'unsafe-eval'` from production CSP, enforces `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and `frame-ancestors 'none'`, and keeps all 77 static App Router pages `● (SSG)`. Dynamic `/brief/*` routes receive per-request cryptographic nonces (`x-request-nonce`) and `private, no-store` caching.
+- **Layered CSP Without Breaking SSG (`next.config.js`, `middleware.ts`)** — Removes `'unsafe-eval'` from production CSP, enforces `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and `frame-ancestors 'none'`, and keeps all 79 static App Router pages `● (SSG)`. Dynamic `/brief/*` routes receive per-request cryptographic nonces (`x-request-nonce`) and `private, no-store` caching.
 - **Native Top-Layer `<dialog>` Primitives** — Keyboard shortcuts help (`?` / `⌘/` via `KeyboardShortcutsModal.tsx`), `CaseLightbox.tsx`, and `PresentationShell.tsx` use `.showModal()` with automatic `Esc` dismissal and focus restoration.
 - **Zero-PII RUM (`app/api/vitals/route.ts`, `src/lib/vitals-store.ts`)** — Strict Zod `.strict()` schema accepting only enum `metric` (`LCP`, `INP`, `CLS`, `FCP`, `TTFB`, `INTERACTION`), numeric value, and enum `routeGroup` / `interactionTarget`.
 
@@ -89,6 +89,7 @@ portfolio/
 │   ├── page.tsx                # Home (Featured deck + 3D/SVG specimen coordinates)
 │   ├── projects/               # Work index (DecisionComparator) + modular case pages
 │   ├── lab/                    # Token inspector, GSAP sandbox, specimens & RUM panel
+│   ├── ai/                     # Dedicated AI Lab (4-quadrant BM25 rationale & refusal matrix)
 │   ├── hire/                   # Role lens, JD matcher, tailored brief & print/PDF decks
 │   ├── brief/                  # Dynamic tailored brief ([id]) & A4 critique print
 │   └── resume/, about/, contact/, blog/
@@ -103,11 +104,11 @@ portfolio/
 │   │   ├── pdf/qr-svg.ts       # Pure TypeScript byte-mode QR SVG encoder
 │   │   └── proof/              # Hiring role claims, matrix, Q&A & maintenance metadata
 │   ├── components/
-│   │   ├── brief/, case/, command/, hiring/, lab/, providers/, three/
+│   │   ├── ai/, brief/, case/, command/, hiring/, lab/, providers/, three/
 │   ├── messages/               # Minimal UI-only i18n bundles (en.json, zh.json)
 │   └── styles/                 # v4/tokens.css, v4/grid.css, base, primitives, sections/*
 ├── scripts/                    # Validation, media & bundle budget checks, PDF generators
-├── tests/                      # Vitest suites (40 files / 205 unit & component tests)
+├── tests/                      # Vitest suites (40 files / 206 unit & component tests)
 └── e2e/                        # Playwright E2E + Axe WCAG 2.1 AA + CSP/CWV specs
 ```
 

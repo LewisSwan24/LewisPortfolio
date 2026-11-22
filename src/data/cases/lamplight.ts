@@ -203,6 +203,51 @@ export const lamplightCase: CaseRecord = {
           }
         }
       ]
+    },
+    "microLoop": {
+      "eyebrow": {
+        "en": "Vector micro-loop · Copy-first agent workflow",
+        "zh": "矢量交互微循环 · 副本隔离与安全暂停链路"
+      },
+      "title": {
+        "en": "Budget commission → Crew on copies → Risk Focus Trap → Corner peek",
+        "zh": "预算上限委托 → 副本隔离执行 → 「先不要」默认聚焦 → 桌角小窗静默守望"
+      },
+      "summary": {
+        "en": "Follow how Lamplight Nook translates opaque Claude Agent SDK events into safe, interruptible café rituals.",
+        "zh": "查看 Lamplight Nook 如何把隐晦的 Claude Agent SDK 事件翻译为安全可中断的咖啡馆日常交互。"
+      },
+      "loopId": "lamplight-triage",
+      "steps": [
+        {
+          "label": { "en": "Budget Slip", "zh": "预算委托单" },
+          "detail": {
+            "en": "Set max step spend and target files on the commission slip so staff only touch safe working copies.",
+            "zh": "开单时预先写明开销上限并自动切到文件副本，保护原始工作目录不被直接覆盖。"
+          }
+        },
+        {
+          "label": { "en": "Chalkboard", "zh": "黑板拆解计划" },
+          "detail": {
+            "en": "Wick writes each real Claude Agent SDK subtask on the blackboard instead of burying progress in terminal stdout.",
+            "zh": "Wick 将真实 Agent 子任务逐条挂上黑板并划掉完成项，替代滚动日志。"
+          }
+        },
+        {
+          "label": { "en": "Not Now Focus", "zh": "默认「先不要」" },
+          "detail": {
+            "en": "Dangerous file writes or shell actions trap keyboard focus on 'Not now' so reflexive Enter presses pause safely.",
+            "zh": "高风险工具调用弹窗将初始焦点锁死「先不要」，防止习惯性敲回车误放行。"
+          }
+        },
+        {
+          "label": { "en": "Corner Monitor", "zh": "桌角安静小窗" },
+          "detail": {
+            "en": "Minimizing collapses the crew to a tiny corner status window that only calls attention when human choice is required.",
+            "zh": "最小化为桌面角落静默监控窗，只在必须人工拍板时才发出轻声提示。"
+          }
+        }
+      ]
     }
   },
   "designDecisions": [
@@ -286,6 +331,47 @@ export const lamplightCase: CaseRecord = {
       "residualCostOrRisk": {
         "en": "Tasks intentionally stall until a human chooses to proceed, the Windows installer is unsigned, and there is no external participant testing on record yet.",
         "zh": "任务会因安全暂停而等待人工拍板；目前 Windows 安装包尚无代码签名、未上架商店，也还没有外部用户测试记录。"
+      }
+    },
+    {
+      "id": "bilingual-budget-cap-and-corner-calm",
+      "decisionTitle": {
+        "en": "Enforce explicit commission spending caps and collapse the crew into a corner status card",
+        "zh": "把花费上限写进委托单，并用桌角迷你状态卡替代全屏常驻注意力掠夺"
+      },
+      "humanTension": {
+        "en": "Looping subagents can silently burn token budget overnight, while full-screen agent dashboards demand continuous monitoring like a cockpit instead of letting you focus on your primary work.",
+        "zh": "后台循环运行的 Agent 既可能在无人盯盘时悄悄烧穿预算，又常以全屏仪表盘形态霸占注意力，让人反而没法专心做手头正事。"
+      },
+      "rejectedAlternatives": [
+        {
+          "option": {
+            "en": "Keep a persistent full-window activity feed open beside the editor",
+            "zh": "在编辑器旁常驻完整尺寸的实时动态消息流界面"
+          },
+          "flaw": {
+            "en": "Animated sprites and live tickers in full-window view turn peripheral awareness into continuous visual distraction.",
+            "zh": "完整尺寸画面的高频角色走动和事件刷屏会从“余光感知”退化成持续视觉干扰。"
+          }
+        },
+        {
+          "option": {
+            "en": "Unlimited background retries with post-run API billing alerts",
+            "zh": "后台无限重试工具调用，仅在任务结束后提示账单金额"
+          },
+          "flaw": {
+            "en": "Discovery comes too late after tokens are spent, creating reluctance to delegate autonomous runs at all.",
+            "zh": "事后告警无法阻止失控循环，最终会让使用者彻底不敢放心把任务交出去。"
+          }
+        }
+      ],
+      "chosenTradeoff": {
+        "en": "Every commission sets a pre-flight budget limit alongside full EN/ZH parity across cards, while minimizing shrinks the UI to one calm desk-corner window displaying 'step X of Y' and active owner.",
+        "zh": "每次开单均预先设定花费上限，全界面提供完整中英双语说明；最小化时退避为桌面角落状态小窗，只保留「第几步 / 谁在处理」，无决断不打扰。"
+      },
+      "residualCostOrRisk": {
+        "en": "Hard caps pause productive multi-step runs early when limits are conservative; built and run daily on Lewis's Windows workstation without external team telemetry.",
+        "zh": "偏保守的花费上限会在任务正推进时主动叫停；目前仅在作者个人 Windows 日常工作流跑通并验证，尚无外部团队长期统计。"
       }
     }
   ],

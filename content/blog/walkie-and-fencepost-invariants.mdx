@@ -36,6 +36,13 @@ In Fencepost, two rules live in the data boundary itself:
 
 The live public build on Vercel intentionally leaves demo handle login lightweight so reviewers can inspect flows directly, while keeping grant enforcement intact at the data layer.
 
-## Shared lesson
+| Trust Failure Surface | Soft UI Warning (Brittle) | Structural Hard Invariant (Walkie / Fencepost) |
+| --- | --- | --- |
+| Destructive shell prompt | Voice confirmation (`"Yes"`) or modal dialog | Physical S3 Front/Side button pause inside Node 24 bridge |
+| Shared firmware flashing | Warning banner in README before running esptool | `firmware/guard.py` aborts `-t erase` and `-t uploadfs` |
+| Cloud relay privacy | TLS transport while relay parses plaintext JSON | End-to-end AES-256-GCM envelope keyed to `pair.key` |
+| Revoked AI retrieval access | Hiding item in React UI while prompt context stays stale | SQL `access_grants` join enforced directly before prompt assembly |
 
-Good interaction design for autonomous tools does not stop at polite microcopy. Whether the boundary is a tactile watch switch over AES-256-GCM or a SQL join gate before prompt construction, placing the safety invariant where bypassing it is structurally impossible makes every higher-level interface calmer to use.
+## Shared lesson & next inspection
+
+Good interaction design for autonomous tools does not stop at polite microcopy. Whether the boundary is a tactile watch switch over AES-256-GCM or a SQL join gate before prompt construction, placing the safety invariant where bypassing it is structurally impossible makes every higher-level interface calmer to use. Try Walkie's hardware gate flow in the [Interaction Lab](/lab) or interrogate these architecture decisions inside our [Rationale AI Lab](/ai).

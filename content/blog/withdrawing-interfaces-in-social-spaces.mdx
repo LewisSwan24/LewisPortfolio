@@ -23,7 +23,7 @@ When teams try to fix that friction with a smartphone screen, the common reflex 
 
 On [On The Beat](/projects/onthebeat), a teammate framed a calmer alternative around three fixed cue cards (`SAY HI`, `FIRST SONG?`, `LET'S DANCE!`), and I implemented the firmware dual-boot slot and independent relay bridge so two wristbands could test that rhythm without a laptop. A wave sends only an anonymous pulse — "someone nearby signalled" — never a name or face. Only when both people intentionally nod back do names and a neutral meetup landmark unlock. Once that threshold clears, the screen has finished its job and stays quiet.
 
-**Where evidence currently stops:** hardware sync, dual-boot isolation against [Walkie](/projects/walkie), and relay handoff ran through test windows, yet no wearer study at a real concert has run so far. We treat the social withdrawal threshold as a deliberate design hypothesis waiting for field observation, not a proven demographic statistic.
+**Where evidence currently stops:** hardware sync, dual-boot isolation against [Walkie](/projects/walkie), and Fly.io relay handoff ran through real ESP32 windows, yet no wearer study at a real concert has run so far. We treat the social withdrawal threshold as a deliberate design hypothesis waiting for field observation, not a proven demographic statistic.
 
 ## Designing gentle resistance into co-play
 
@@ -33,10 +33,17 @@ Handing four exhibition visitors four independent wireless controllers creates p
 
 During public exhibition play, 9 groups (36 people) stepped up to the board and roughly 3 finished; the handwritten score sheet stayed on paper at the venue rather than an archived telemetry dataset. That still taught a clear structural lesson: when coordination lives inside the physical wiring rather than in printed instructions, groups talk naturally within seconds.
 
+| Design Dimension | Typical Screen-First Reflex | Physical Withdrawal / Co-Presence Choice |
+| --- | --- | --- |
+| Icebreaker initiation (`On The Beat`) | Nearby avatar radar & bio browsing | Blind pulse first; identity unlocks only after mutual nod |
+| Attention posture after match | Ongoing chat cards & notification badges | Landmark shown once so phones return cleanly to pockets |
+| Multiplayer steering (`MazeRunners`) | 4 isolated handheld buttons | Coupled adjacent conductive wristbands requiring live dialogue |
+| Penalty feedback (`MazeRunners`) | Mild electric shock risk | Relayed finger-sleeve haptics synced with debounced IR counters |
+
 ## The withdrawal rule
 
 Across both systems, interaction design succeeded in direct proportion to how gracefully hardware disappeared:
 
 - Absorb cold-start embarrassment privately without exposing profiles prematurely.
 - Keep physical rules legible on the body or shared surface, not hidden inside dense menus.
-- Document honestly where prototype benches end and outside human observation still awaits.
+- Document honestly where prototype benches end and outside human observation still awaits — you can test both state machines in the [Interaction Lab](/lab) and inspect their tradeoffs in the [Rationale AI Lab](/ai).

@@ -169,7 +169,7 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
 }
 .pd-nav-links a {
   color: var(--text-2); text-decoration: none;
-  padding: 8px 12px; border-radius: var(--r-sm);
+  padding: 8px 10px; border-radius: var(--r-sm);
   white-space: nowrap;
   transition: color var(--dur-2) var(--ease-out), background var(--dur-2) var(--ease-out);
   position: relative;
@@ -530,15 +530,18 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
   font-size: 13px;
 }
 .studio-assistant-drawer {
-  width: min(400px, calc(100vw - 40px));
-  max-height: min(72vh, 520px);
+  width: min(460px, calc(100vw - 24px));
+  max-height: min(78dvh, 680px);
   overflow-y: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
   border: 1px solid var(--border-strong);
   background: var(--surface);
   color: var(--text);
   padding: 16px;
   display: grid;
   gap: 12px;
+  min-inline-size: 0;
   box-shadow: 0 12px 32px rgba(21, 20, 18, 0.14);
 }
 .studio-assistant-head {

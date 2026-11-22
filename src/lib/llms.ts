@@ -11,12 +11,19 @@ export async function buildLlmsTxt(): Promise<string> {
     const card = record.card.en;
     const url = `${baseUrl}/en/projects/${record.slug}`;
     const ext = record.links.map((l) => `${l.label}: ${l.href}`).join(" | ");
+    const decisionLines = (record.designDecisions ?? []).map(
+      (dec, i) =>
+        `    ${i + 1}. ${dec.decisionTitle.en} | Tradeoff: ${dec.chosenTradeoff.en} | Limit: ${dec.residualCostOrRisk.en}`
+    );
     return [
       `- [${card.title}](${url}) — ${card.kicker}`,
       `  - Summary: ${card.sub}`,
       `  - Scope & Role: ${card.role} (${card.date})`,
       `  - Evidence Metrics: ${card.m1}; ${card.m2}; ${card.m3}`,
       `  - Change Delivered: ${record.workSummary.changed.en}`,
+      ...(decisionLines.length > 0
+        ? [`  - Structured Design Decisions (${decisionLines.length}):`, ...decisionLines]
+        : []),
       ...(ext ? [`  - Public Links: ${ext}`] : []),
     ].join("\n");
   });
@@ -34,9 +41,12 @@ export async function buildLlmsTxt(): Promise<string> {
     "## Key Hiring & Interactive Surfaces",
     "",
     `- [Home (Top 6 Featured Deck)](${baseUrl}/en): Curated overview of flagship physical, AI, and design-engineering builds.`,
-    `- [All Work Index](${baseUrl}/en/projects): Filterable matrix of ${listedCases.length} listed case studies and capability proof table.`,
-    `- [Hiring Decision Room](${baseUrl}/en/hire): Role-tailored lens (?role=product|interaction|design-eng|ai-ux), evidence brief, and honest project limits.`,
-    `- [Interactive Workbench (/lab)](${baseUrl}/en/lab): Lively Icons token inspector, GSAP paper-motion sandbox, and live state-machine walkthroughs (?demo=onthebeat|autofill|walkie).`,
+    `- [All Work Index](${baseUrl}/en/projects): Filterable matrix of ${listedCases.length} listed case studies, capability proof table, and cross-case DecisionComparator.`,
+    `- [Lab (/lab)](${baseUrl}/en/lab): Swiss Editorial token/contrast inspector, GSAP paper-motion sandbox, 3D/SVG specimen coordinates, and 6 interaction primitives.`,
+    `- [AI Lab (/ai)](${baseUrl}/en/ai): Zero-hallucination bilingual BM25 rationale workbench indexing all ${listedCases.length} listed cases (18 tradeoffs) and ${posts.length} essays with local PII scrubbing.`,
+    `- [Hiring Decision Room](${baseUrl}/en/hire): Role-tailored lens (?role=product|interaction|design-eng|ai-ux), JD evidence matcher, A4 critique print dossiers, and honest project limits.`,
+    `- [About](${baseUrl}/en/about): Design stance, UQ/Swansea timeline, and automated engineering verification methodology.`,
+    `- [Writing (/blog)](${baseUrl}/en/blog): ${posts.length} bilingual essays with structured methodology comparisons and cross-links.`,
     `- [Resume](${baseUrl}/en/resume): Print-ready A4 experience and verified project history (EN & ZH).`,
     `- [Contact](${baseUrl}/en/contact): Direct outreach details.`,
     "",

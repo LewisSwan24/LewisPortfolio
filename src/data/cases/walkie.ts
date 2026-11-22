@@ -60,6 +60,28 @@ export const walkieCase: CaseRecord = {
         captionZh:
           "插线时 USB 永远优先；离缆后，加密帧经零知识 Fly.io 中继传输，所有工具权限都在手腕上等待实体按键确认。",
       },
+      {
+        src: "/projects/walkie/02-key-state-machine.svg",
+        width: 800,
+        height: 500,
+        alt: "Walkie M5StickS3 hardware key grammar (Front PTT/Approve, Side Deny+Reason, Dual-3s dual-boot slot switch) and three explicit offline diagnostic screens",
+        altZh: "Walkie 手表物理按键状态机：前键录音与批准、侧键拒绝与翻页、双键 3 秒切换双系统分区及三段式离线排查界面",
+        caption:
+          "Asymmetric Front/Side hardware key binding and three-way offline diagnostics (No Wi-Fi / Relay Unreachable / PC Bridge Offline).",
+        captionZh:
+          "非对称实体前/侧键权限语法与三段式离线状态诊断（区分无 Wi-Fi、云中继不可达与电脑桥离线）。",
+      },
+      {
+        src: "/projects/walkie/03-sealed-relay-frame.svg",
+        width: 800,
+        height: 500,
+        alt: "Walkie AES-256-GCM sealed packet framing and three reproducible host/device/relay verification gates",
+        altZh: "Walkie AES-256-GCM 密文封包结构及三道可复现自动化验收门禁示意图",
+        caption:
+          "End-to-end AES-256-GCM envelope keyed to physical 30-second pair.key and verified through host g++, S3 gate-h/p5, and Fly.io gate-l checks.",
+        captionZh:
+          "由 30 秒实体按键配对派生的 AES-256-GCM 零知识封包结构，经宿主机 g++ 单测、S3 gate-h/p5 与中继 gate-l 三重验证。",
+      },
     ],
   },
   interactiveDemo: {
@@ -83,6 +105,38 @@ export const walkieCase: CaseRecord = {
     },
   },
   processArtifacts: {
+    scrubber: {
+      eyebrow: {
+        en: "Process scrubber · Hands-free voice vs physical key gate",
+        zh: "前后对比拉杆 · 纯语音盲审 ↔ 手腕实体双键门控",
+      },
+      title: {
+        en: "Replace ambient voice approvals with deliberate S3 key gating & explicit offline splits",
+        zh: "把容易误触的纯语音确认改造成「前键放行 / 侧键拦截 + 三段式离线诊断」",
+      },
+      summary: {
+        en: "Scrub between hands-free speech failure modes and Walkie's hardware-gated transport & dual-boot architecture.",
+        zh: "拉动滑杆对照纯语音审批隐患与当前 Walkie 硬件门控、加密中继与离线排障架构。",
+      },
+      beforeLabel: {
+        en: "Before · Hands-Free Speech Risk",
+        zh: "改造前 · 纯语音误触风险",
+      },
+      afterLabel: {
+        en: "After · Key-Gated Sealed Architecture",
+        zh: "改造后 · 实体门控加密架构",
+      },
+      wireframeId: "walkie-voice",
+      afterImage: {
+        src: "/projects/walkie/after-architecture.svg",
+        alt: {
+          en: "Walkie post-iteration architecture showing physical key gate, USB preemption, AES-256-GCM Fly.io relay, and explicit three-state offline diagnostics",
+          zh: "Walkie 迭代后系统架构图：M5StickS3 实体键审批、USB 优先抢占、AES-256-GCM 零知识中继与三段离线诊断",
+        },
+        width: 800,
+        height: 500,
+      },
+    },
     quotes: {
       eyebrow: {
         en: "Hardware & protocol insights",
@@ -264,6 +318,47 @@ export const walkieCase: CaseRecord = {
         zh: "单轮对话中途插拔 USB 会主动放弃当前这轮交互而非强行拼接流；复杂代码审查依然必须回到电脑屏幕前完成。",
       },
     },
+    {
+      id: "dual-boot-partition-and-pair-seal",
+      decisionTitle: {
+        en: "Enforce sibling-partition flash guards and zero-knowledge key pairing across shared hardware",
+        zh: "共机双启动防误擦保护与 Fly.io 零知识配对握手",
+      },
+      humanTension: {
+        en: "Walkie shares one ESP32-S3 watch with On The Beat; one reckless uploadfs command or leaky cloud relay could simultaneously brick another coursework device or expose live repository prompts over public WebSockets.",
+        zh: "Walkie 与 On The Beat 共享同一块 M5StickS3 开发板，一次失误的全片擦除命令或明文云端中继，会同时毁掉另一套课程原型并把私密仓库上下文暴露在公网。",
+      },
+      rejectedAlternatives: [
+        {
+          option: {
+            en: "Use default esptool full-chip flash commands and unencrypted JSON relay frames",
+            zh: "沿用默认全片擦除烧录命令，并通过明文 WebSocket 转发 JSON",
+          },
+          flaw: {
+            en: "Erases sibling firmware partitions silently and exposes repository instructions and speech transcripts on the Fly.io relay host.",
+            zh: "每次刷写都会无声抹掉同机双系统，并让 Fly.io 中继服务可以直接窥视明文语音与命令内容。",
+          },
+        },
+        {
+          option: {
+            en: "Require manual hexadecimal token typing on a 1.14-inch screen for every session",
+            zh: "每次连接都在 1.14 寸小屏上手动输入十六进制配对码",
+          },
+          flaw: {
+            en: "Makes daily desk-to-sofa handoffs painful and tempts developers into hardcoding static development secrets.",
+            zh: "每次切回桌面都重输密钥太反人类，反而诱导开发者偷懒写死明文密钥。",
+          },
+        },
+      ],
+      chosenTradeoff: {
+        en: "firmware/guard.py blocks -t erase and -t uploadfs pre-flash, pairing locks an AES-256-GCM shared key to pair.key only after a 30-second physical Front Key confirmation, and Fly.io routes opaque binary envelopes without decrypting them.",
+        zh: "用 firmware/guard.py 在烧录前拦截 `-t erase` 与 `-t uploadfs`；配对须在 30 秒内物理按下手表前键方将 AES-256-GCM 共享密钥写入 pair.key，Fly.io 仅转发不可解密的二进制信封。",
+      },
+      residualCostOrRisk: {
+        en: "Adding a third co-resident firmware would still require manual partition table rebalancing, and if pair.key on the workstation is lost the watch must be physically re-paired.",
+        zh: "若日后继续往手表塞入第三套固件仍需重新平衡分区表；且电脑端一旦删除 pair.key，必须当面重走实体按键配对流程。",
+      },
+    },
   ],
   card: {
     en: {
@@ -317,6 +412,8 @@ export const walkieCase: CaseRecord = {
           t: "Away-from-cable relay gate",
           b: "check-relay-roots pins ISRG Root X1/X2 certificates; gate-l tests a 75-second idle keep-alive, reconnect, and second-bridge takeover across the Fly.io wss:// relay.",
         },
+        quote: "Physical pair.key + Front/Side confirmation ensures noisy rooms never execute destructive tool calls.",
+        quoteWho: "Core hardware safety invariant documented in protocol/frames.md",
       },
       sy: {
         label: "Core Design Moves",
@@ -376,6 +473,8 @@ export const walkieCase: CaseRecord = {
           t: "离缆中继与证书门禁",
           b: "check-relay-roots 校验 ISRG Root X1/X2 证书链；gate-l 在 Fly.io wss:// 中继上验证 75 秒空闲保活、断线重连与双桥接抢占。",
         },
+        quote: "只有手腕实体键能写入配对密钥并放行高危工具调用，环境杂音与误识别绝无越权通道。",
+        quoteWho: "写进 protocol/frames.md 与 firmware/guard.py 的核心安全不变量",
       },
       sy: {
         label: "核心设计决策",

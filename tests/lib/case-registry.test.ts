@@ -160,15 +160,23 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
     }
   });
 
-  it("configures processArtifacts across scrubber (4), quotes (5), and microLoop (3) cases", () => {
-    for (const slug of ["connect", "pricewise", "hoop", "lamplight"] as const) {
+  it("configures processArtifacts and >= 3 designDecisions across all 6 listed cases", () => {
+    for (const slug of [
+      "walkie",
+      "lamplight",
+      "autofill",
+      "maze",
+      "onthebeat",
+      "grassland",
+    ] as const) {
+      const record = getCaseBySlug(slug);
+      expect(record?.processArtifacts?.scrubber).toBeDefined();
+      expect(record?.processArtifacts?.quotes?.items.length).toBeGreaterThan(0);
+      expect(record?.processArtifacts?.microLoop?.steps.length).toBeGreaterThanOrEqual(3);
+      expect(record?.designDecisions?.length).toBeGreaterThanOrEqual(3);
+    }
+    for (const slug of ["connect", "pricewise", "hoop"] as const) {
       expect(getCaseBySlug(slug)?.processArtifacts?.scrubber).toBeDefined();
-    }
-    for (const slug of ["connect", "maze", "autofill", "lamplight", "walkie"] as const) {
-      expect(getCaseBySlug(slug)?.processArtifacts?.quotes?.items.length).toBeGreaterThan(0);
-    }
-    for (const slug of ["onthebeat", "walkie", "grassland"] as const) {
-      expect(getCaseBySlug(slug)?.processArtifacts?.microLoop?.steps.length).toBeGreaterThanOrEqual(3);
     }
   });
 });

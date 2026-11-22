@@ -23,7 +23,7 @@ const FILTERS: Array<{ id: WorkFilterId; en: string; zh: string }> = [
   { id: "all", en: "All", zh: "全部" },
   { id: "flag", en: "Flagship", zh: "旗舰" },
   { id: "research", en: "Research-led", zh: "研究驱动" },
-  { id: "ai", en: "AI / ML", zh: "AI" },
+  { id: "ai", en: "AI UX", zh: "AI 交互" },
   { id: "hardware", en: "Hardware", zh: "硬件" },
 ];
 
@@ -56,7 +56,7 @@ export function WorkIndex({
             {FILTERS.map((f) => (
               <button
                 key={f.id}
-                className={`idx-filter ${filter === f.id ? "active" : ""}`}
+                className={`idx-filter ${view === "index" && filter === f.id ? "active" : ""}`}
                 onClick={() => {
                   setFilter(f.id);
                   setView("index");

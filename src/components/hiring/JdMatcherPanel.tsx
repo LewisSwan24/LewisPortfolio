@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { StructuredRationaleCard } from "@/components/ai/StructuredRationaleCard";
 import {
   fetchGroundedEvidence,
   PRESET_DESIGN_QUESTIONS,
   type GroundedMatchGroup,
 } from "@/lib/ai/client";
+import { localizeInternalHref } from "@/lib/locale-href";
 import type { ProofLocale } from "@/lib/portfolio-proof";
 
 export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
@@ -59,10 +61,18 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
   };
 
   const handleExportBrief = async () => {
-    if (matches.length === 0) return;
+    const caseMatches = matches.filter((m) => m.type !== "blog" && !m.slug.startsWith("essay:"));
+    if (caseMatches.length === 0) {
+      setStatus(
+        isZh
+          ? "当前命中均为专栏文章，请至少命中 1 个案例后再生成定向简报。"
+          : "Only essays matched so far — match at least one case study to build a tailored brief."
+      );
+      return;
+    }
     setLoading(true);
     try {
-      const topSlugs = matches.map((m) => m.slug).slice(0, 4);
+      const topSlugs = caseMatches.map((m) => m.slug).slice(0, 4);
       const res = await fetch("/api/brief", {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -72,7 +82,7 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
           locale,
           slugs: topSlugs,
           intro:
-            matches
+            caseMatches
               .map((m) => `${m.caseTitle}: ${m.reasonLabel}`)
               .join(" · ")
               .slice(0, 260) || "Matched design rationale review",
@@ -194,13 +204,14 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
               {matches.map((group) => (
                 <article
                   key={group.slug}
-                  className="v4-span-4"
+                  className="v4-span-6"
                   style={{
                     border: "1px solid var(--border)",
                     padding: "var(--s-4)",
                     background: "var(--bg)",
                     display: "grid",
-                    gap: 8,
+                    gap: 10,
+                    minInlineSize: 0,
                   }}
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "center" }}>
@@ -208,12 +219,13 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
                     <span className="tag">{group.reasonLabel}</span>
                   </div>
                   {group.citations.map((cit) => (
-                    <div key={cit.id} style={{ fontSize: 13, lineHeight: 1.55, color: "var(--text-2)" }}>
-                      <p style={{ margin: "0 0 6px" }}>{cit.text}</p>
-                      <Link href={cit.href} style={{ color: "var(--accent)", fontWeight: 600 }}>
-                        {isZh ? "查看案例决策论证 →" : "Inspect decision in case →"}
-                      </Link>
-                    </div>
+                    <StructuredRationaleCard
+                      key={cit.id}
+                      citation={cit}
+                      locale={locale}
+                      compact
+                      showInspector
+                    />
                   ))}
                 </article>
               ))}
@@ -228,6 +240,12 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
               >
                 {isZh ? "一键生成这组案例的专属简报 →" : "Export matched cases to tailored brief →"}
               </button>
+              <Link
+                href={localizeInternalHref("/ai", locale)}
+                className="btn btn-ghost"
+              >
+                {isZh ? "进入完整 AI 辩护工作台 ↗" : "Open full AI Workbench ↗"}
+              </Link>
               {briefUrl && (
                 <Link href={briefUrl} className="btn btn-primary">
                   {isZh ? "打开定制简报 ↗" : "Open matched brief ↗"}

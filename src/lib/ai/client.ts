@@ -1,16 +1,28 @@
 import { redactPii } from "./redact-jd";
 
+export interface StructuredCitationPayload {
+  tension: string;
+  rejected: string;
+  chosen: string;
+  limit: string;
+}
+
 export interface GroundedCitation {
   id: string;
   pillar: string;
+  weight?: number;
+  score?: number;
+  matchedTerms?: string[];
   title: string;
   text: string;
+  structured?: StructuredCitationPayload;
   href: string;
   caseTitle: string;
 }
 
 export interface GroundedMatchGroup {
   slug: string;
+  type?: "case" | "blog";
   caseTitle: string;
   reasonLabel: string;
   citations: GroundedCitation[];
@@ -20,6 +32,10 @@ export interface AiMatchResponse {
   ok: boolean;
   mode?: string;
   redactedCount?: number;
+  pipeline?: {
+    corpusCount: number;
+    candidateCount: number;
+  };
   matches?: GroundedMatchGroup[];
   error?: string;
 }
@@ -40,6 +56,10 @@ export const PRESET_DESIGN_QUESTIONS: ReadonlyArray<{ en: string; zh: string }> 
   {
     en: "How does five-mission RTS grammar stay fair without special level buttons?",
     zh: "多关卡策略交互如何在复杂度递增时不背叛玩家肌肉记忆？",
+  },
+  {
+    en: "How does the site maintain static SSG with strict CSP and WCAG AAA?",
+    zh: "网站如何同时守住 77 个静态页面、严格 CSP 与 WCAG AAA 对比度？",
   },
 ];
 

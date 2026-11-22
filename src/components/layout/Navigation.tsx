@@ -7,12 +7,13 @@ import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { ThemeToggle } from "@/components/providers/ThemeToggle";
 
 const NAV_ITEMS: Array<{
-  key: "work" | "lab" | "writing" | "about" | "contact" | "hire";
+  key: "work" | "lab" | "ai" | "writing" | "about" | "contact" | "hire";
   href: string;
   accent?: boolean;
 }> = [
   { key: "work", href: "/projects" },
   { key: "lab", href: "/lab" },
+  { key: "ai", href: "/ai" },
   { key: "writing", href: "/blog" },
   { key: "about", href: "/about" },
   { key: "contact", href: "/contact" },
