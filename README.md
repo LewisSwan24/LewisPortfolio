@@ -1,65 +1,59 @@
-# Lewis Dong — Portfolio (v4.5)
+# Lewis Dong — Portfolio (`v4.5`)
 
-A statically generated, bilingual digital studio log and hiring decision platform for a UQ Master of Interaction Design graduate & Design Engineer. Built with **Next.js 15 App Router**, **React 19**, **TypeScript 5.7**, **Tailwind CSS v4**, **GSAP 3**, **Zod 4**, and **next-intl**. Case studies live in a schema-validated **Unified Case Registry** (`src/data/cases/` + `src/lib/cases/`), writing lives in file-based **MDX**, and interactive presentation decks & company briefs run with zero-config static fallbacks or optional Upstash Redis / Vercel KV persistence.
+**Live site:** [lewisdong.vercel.app](https://lewisdong.vercel.app)
 
+A statically generated, bilingual (`en` / `zh`) interaction-design practice log and design-engineering portfolio built with **Next.js 15 App Router**, **React 19**, **TypeScript 5.7**, **Tailwind CSS v4**, **Three.js**, **GSAP 3**, **Zod 4**, and **next-intl**. Case studies live in a schema-validated **Unified Case Registry** (`src/data/cases/` + `src/lib/cases/`), essays live in file-based **MDX**, and interactive rationale exploration runs with offline/static defaults plus optional Redis persistence.
+
+[![Live](https://img.shields.io/badge/Live-lewisdong.vercel.app-151412)](https://lewisdong.vercel.app)
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.5-black)](#tech-stack)
 [![React 19](https://img.shields.io/badge/React-19-blue)](#tech-stack)
-[![i18n](https://img.shields.io/badge/i18n-EN%20%7C%20ZH-blue)](#internationalization)
-[![A11y](https://img.shields.io/badge/WCAG%202.1-AA%20Audited-brightgreen)](#testing)
+[![i18n](https://img.shields.io/badge/i18n-EN%20%7C%20ZH-blue)](#project-structure)
+[![Accessibility](https://img.shields.io/badge/WCAG-AA%20Audited%20%2B%20AAA%20Text-brightgreen)](#quality-gates--testing)
 
 ---
 
-## Features
+## Core Architecture & Features
 
-### Core Architecture (V4)
-- **Next.js 15 + React 19 App Router** — Server Components by default, static generation across EN/ZH locales, minimal client hydration boundary
-- **Unified Case Registry (`src/data/cases/*.ts`)** — Modular TypeScript case records validated at build & CI time via **Zod 4** (`src/lib/cases/schema.ts`), paired with the hiring proof registry (`src/lib/proof/`)
-- **Swiss Editorial Design System (`src/styles/v4/`)** — Tailwind CSS v4 (`@theme inline`) + Warm Bone White surfaces (`#F6F4EF` / `#FCFBF8`), Deep Charcoal ink (`#151412`), three-tier Deep Charcoal dark workbench (`#111110` / `#181816` / `#222220`), per-case AA `--case-mood` signature ribbons, `Space Grotesk` + `Inter` + `Geist Mono`, 12-column asymmetric studio grid, and 1px structural borders
-- **Interactive Simulators, Process Artifacts & Presentation Mode** — Lazy-loaded V3.6 flagship simulators (`WalkieWristSim`, `MazeContactSim`, `LamplightTriageSim`, `AutofillConfidenceSim`, `FencepostRevokeSim`, `ConnectIaResetSim`), V3.8 before/after scrubbers + research quote decks + vector loops, and V3.9 `Shift + P` `<dialog>` interview presentation decks + `/[locale]/brief/[id]` tailored dossiers with Upstash KV or Base64url/HMAC fallback
-- **Single-point GSAP Motion (`src/lib/motion/gsap.ts`)** — Centralized GSAP registration, `useGsapContext` cleanup, `prefers-reduced-motion` gating, native Pointer Events (no `framer-motion`)
-- **Minimal i18n Client Payload** — Case study copy moved out of JSON bundles into TypeScript registry modules; `NextIntlClientProvider` ships only the 11 UI namespaces needed on the client
+### 1. Swiss Editorial Design System & WCAG AAA Calibration
+- **Surface & Text Tokens (`src/styles/v4/tokens.css`, `src/lib/design-tokens.ts`)** — Warm Bone White light theme (`#F6F4EF` / `#FCFBF8` / `#ECE8DF`) and Deep Charcoal studio dark theme (`#111110` / `#181816` / `#222220`) toggled via CSS `data-theme`. Body/secondary/tertiary text tokens (`--text`, `--text-2`, `--text-3`, `--text-4`) are calibrated and unit-tested (`tests/lib/design-tokens.test.ts`) to exceed `>= 7.0:1` WCAG AAA contrast across elevated surfaces.
+- **12-Column Asymmetric Grid (`src/styles/v4/grid.css`)** — `.v4-editorial-grid` (`4-col` sticky rail + `8-col` studio showcase), `.v4-reading-grid` (`Sticky TOC + 68ch` blog reader), per-case `--case-mood` accent ribbons (`src/lib/cases/mood.ts`), and `Space Grotesk` + `Inter` + `Noto Sans SC` + `Geist Mono` typography.
 
-### Flagship Experience & Hiring Engine
-- **6 Listed Case Studies (+ 8 Unlisted Archives)** — Curated 6-case portfolio (`walkie`, `lamplight`, `autofill`, `maze`, `onthebeat`, `grassland`), structured `Design Decisions & Tradeoffs` (`#design-decisions`) on every listed case, native `<dialog>` gallery lightbox (`CaseLightbox.tsx`), interactive `/lab?demo=` rule cards, and click-to-load embeds (`lewisswan24.github.io/lamplight-nook-site/`, `onon-wolf-iron-tide.vercel.app`)
-- **Interactive `/lab` Workbench** — Bilingual V4 Swiss Editorial Token Inspector with zero-hydration CSS theme swatches, live GSAP Motion Sandbox, and URL-linkable state-machine micro-demos (`On The Beat`, `Resume Autofill`, `Walkie`)
-- **Lazy `cmdk` Warm-Paper Command Palette (`⌘K`)** — Dynamically mounted on demand and backed by static `/search-index/{en,zh}` JSON endpoints
-- **Machine-Readable `/llms.txt`** — Static summary of all 6 listed case studies, capabilities, and evidence boundaries (excluding all 8 unlisted archives)
-- **Role-Tailored Hiring Lens (`/hire?role=product|interaction|design-eng|ai-ux`)** — URL-driven case filtering with one-click copyable tailored links, evidence matrix, interview question bank, and proof packets
-- **Print-First `/resume` + Playwright PDF Builder** — Clean print-to-PDF layout with `pnpm resume:pdf` generating crisp EN/ZH A4 vector PDFs on demand
+### 2. Curated Case Studies, Tradeoffs & Evidence Boundaries
+- **6 Listed Flagships + 8 Unlisted Archives (`src/data/cases/*.ts`)** — Public listings focus on 6 core works (`walkie`, `lamplight`, `autofill`, `maze`, `onthebeat`, `grassland`), while 8 earlier coursework/archive records stay direct-link accessible with `noindex, nofollow` and strict isolation from `/`, `/resume`, `/llms.txt`, and `/search-index/{en,zh}`.
+- **Structured Design Decisions (`#design-decisions`)** — Every listed case documents `humanTension`, `rejectedAlternatives`, `chosenTradeoff`, and `residualCostOrRisk` via Zod `DesignDecisionTradeoffSchema`, accompanied by `/projects` `DecisionComparator` (`src/components/case/DecisionComparator.tsx`).
+- **Interactive Prototypes & Process Artifacts** — Lazy-loaded simulators (`WalkieWristSim`, `LamplightTriageSim`, `AutofillConfidenceSim`, `MazeContactSim`, `GrasslandRulesSim`, `OntheBeatHandshakeSim`, etc.), before/after pointer scrubbers, research quote decks, vector micro-loops, and `Shift + P` 16:9 presentation slides (`PresentationShell.tsx`).
 
-### QA & Performance Moat
-- **Media Optimization & Budget Gate (`pnpm media:optimize` / `pnpm media:check`)** — `sharp` + `ffmpeg` pipeline enforcing per-project and total media budgets
-- **Bundle Budget Gate (`pnpm budget:check`)** — Enforces gzipped JS chunk and CSS payload ceilings after every production build
-- **WCAG 2.1 AA Automated Audit (`e2e/a11y.spec.ts`)** — `@axe-core/playwright` scanning 9 primary EN/ZH routes in CI
+### 3. Shared Three.js Specimen Kernel & `/lab` Workbench
+- **Lazy 3D Coordinate Stage (`src/components/three/SpecimenAxisCanvas.tsx`)** — Plots all 6 listed cases by human friction, boundary stance, and medium physicality. Renders an immediate `0ms` SSR SVG baseline with full keyboard selection, lazily mounts WebGL2 only when visible (`<= 160 kB gz` chunk, zero WebGL leaked into initial routes), cleans up via `dispose()`, and falls back silently when WebGL is disabled. Includes hardware specimens (`HardwareFieldCanvas.tsx`) on physical cases.
+- **Bilingual `/lab` Workbench** — Token & AAA contrast inspector, GSAP paper-motion curve sandbox (`prefers-reduced-motion` aware), URL-linkable rule micro-demos (`/lab?demo=walkie|autofill|onthebeat`), and live zero-PII telemetry readout.
+
+### 4. Grounded BM25 Rationale Matcher & A4 Critique Dossiers
+- **Zero-Hallucination Rationale Navigator (`src/lib/ai/`, `app/api/ai/match/route.ts`)** — Bilingual BM25 index over verified listed-case evidence chunks (`EVIDENCE_CORPUS_MAP`) with client-side PII redaction (`redactPii`, `<= 1200` chars). Runs cleanly key-free (`bm25-local`) with optional OpenAI/Gemini reranking returning strict Zod `{ slug, evidenceIds, reasonCode }` references hydrated strictly from static proof records. Surfaces via `⌘K` Command Palette, `/hire` JD Matcher, and `StudioAssistantDrawer`.
+- **Editorial Critique A4 Print & Role Decks (`/[locale]/brief/print`, `pnpm decks:build`)** — Allocates `>= 60%` of each A4 page width to human tension, rejected paths, and validation limits paired with an offline vector SVG QR code (`src/lib/pdf/qr-svg.ts`), plus 3 pre-built static PDFs under `public/decks/`.
+
+### 5. Security Hardening, Native Primitives & Zero-PII Telemetry
+- **Layered CSP Without Breaking SSG (`next.config.js`, `middleware.ts`)** — Removes `'unsafe-eval'` from production CSP, enforces `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and `frame-ancestors 'none'`, and keeps all 77 static App Router pages `● (SSG)`. Dynamic `/brief/*` routes receive per-request cryptographic nonces (`x-request-nonce`) and `private, no-store` caching.
+- **Native Top-Layer `<dialog>` Primitives** — Keyboard shortcuts help (`?` / `⌘/` via `KeyboardShortcutsModal.tsx`), `CaseLightbox.tsx`, and `PresentationShell.tsx` use `.showModal()` with automatic `Esc` dismissal and focus restoration.
+- **Zero-PII RUM (`app/api/vitals/route.ts`, `src/lib/vitals-store.ts`)** — Strict Zod `.strict()` schema accepting only enum `metric` (`LCP`, `INP`, `CLS`, `FCP`, `TTFB`, `INTERACTION`), numeric value, and enum `routeGroup` / `interactionTarget`.
 
 ---
 
 ## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| **Framework** | [Next.js 15.5](https://nextjs.org/) (App Router) + [React 19](https://react.dev/) |
-| **Language** | [TypeScript 5.7](https://www.typescriptlang.org/) (strict) + [Zod 4](https://zod.dev/) |
-| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) + layered Lively Icons CSS tokens |
-| **Motion** | [GSAP 3](https://gsap.com/) + native CSS / Pointer Events |
-| **Search** | [cmdk](https://cmdk.paco.me/) |
-| **i18n** | [next-intl 4](https://next-intl.dev/) |
-| **Content** | Typed Case & Proof Registries + [MDX](https://mdxjs.com/) (`next-mdx-remote`) |
-| **Linting** | [ESLint 9](https://eslint.org/) Flat Config (`eslint.config.mjs`) |
-| **Testing** | [Vitest 4](https://vitest.dev/) + [Playwright](https://playwright.dev/) + [`@axe-core/playwright`](https://github.com/dequelabs/axe-core-npm) |
-| **Media** | [sharp](https://sharp.pixelplumbing.com/) + `ffmpeg` |
-| **Analytics** | [Vercel Analytics](https://vercel.com/analytics) + `web-vitals` |
-| **Package Manager** | [pnpm 9](https://pnpm.io/) |
+|---|---|
+| **Framework** | Next.js `15.5.29` (App Router) + React `19.3` |
+| **Language & Schema** | TypeScript `5.7` (strict) + Zod `4` |
+| **Styling** | Tailwind CSS v4 (`@theme inline`) + custom CSS tokens (`src/styles/`) |
+| **Motion & 3D** | GSAP `3.15` + Three.js `0.187` (lazy isolated chunk) |
+| **Search & i18n** | `cmdk` + static `/search-index/{en,zh}` + `next-intl` `4.8` |
+| **Content** | Typed Case & Proof Registries + MDX (`next-mdx-remote` v6) |
+| **Linting & QA** | ESLint 9 Flat Config + Vitest 4 + Playwright Chromium + `@axe-core/playwright` |
+| **Media & Assets** | `sharp` + `ffmpeg` optimization pipeline |
 
 ---
 
 ## Getting Started
-
-### Prerequisites
-- Node.js 20+
-- pnpm 9+
-
-### Installation & Dev
 
 ```bash
 git clone https://github.com/LewisSwan24/LewisPortfolio.git
@@ -69,20 +63,20 @@ cp .env.example .env.local   # optional
 pnpm dev
 ```
 
-Open <http://localhost:3000> (redirects to `/en` or `/zh`).
+Open <http://localhost:3000> (routes to `/en` or `/zh`).
 
 ### Environment Variables
 
-All optional; the site builds and runs with none set (see `.env.example`):
+All environment variables are optional; the site builds and operates statically without them (see [`.env.example`](.env.example)):
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://lewisdong.vercel.app
 NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=
-NEXT_PUBLIC_GISCUS_REPO=
-NEXT_PUBLIC_GISCUS_REPO_ID=
-NEXT_PUBLIC_GISCUS_CATEGORY=
-NEXT_PUBLIC_GISCUS_CATEGORY_ID=
 NEXT_PUBLIC_ENABLE_PROOF_MAINTENANCE=false
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+PORTFOLIO_ADMIN_SECRET=
+CONTACT_WEBHOOK_URL=
 ```
 
 ---
@@ -91,29 +85,30 @@ NEXT_PUBLIC_ENABLE_PROOF_MAINTENANCE=false
 
 ```text
 portfolio/
-├── app/[locale]/               # Locale-scoped App Router pages (en | zh)
-│   ├── page.tsx                # Home (Featured Top 6 deck)
-│   ├── projects/               # Work index & modular case study routes
-│   ├── lab/                    # Lively Icons Design System + GSAP + State Machines
-│   ├── hire/                   # Role lens (?role=...), evidence matrix, interview Q&A
-│   ├── resume/, about/, contact/, blog/
-├── content/blog/               # Bilingual MDX blog posts (en + zh/)
+├── app/[locale]/               # Locale-scoped routes (en | zh)
+│   ├── page.tsx                # Home (Featured deck + 3D/SVG specimen coordinates)
+│   ├── projects/               # Work index (DecisionComparator) + modular case pages
+│   ├── lab/                    # Token inspector, GSAP sandbox, specimens & RUM panel
+│   ├── hire/                   # Role lens, JD matcher, tailored brief & print/PDF decks
+│   ├── brief/                  # Dynamic tailored brief ([id]) & A4 critique print
+│   └── resume/, about/, contact/, blog/
+├── content/blog/               # Bilingual MDX essays (en + zh/)
+├── public/decks/               # Static pre-built role A4 PDF decks
 ├── src/
-│   ├── data/cases/             # 14 modular TypeScript case records (10 listed, 4 unlisted)
+│   ├── data/cases/             # 14 modular Zod-validated case records (6 listed, 8 unlisted)
 │   ├── lib/
-│   │   ├── cases/              # Zod schema + unified case registry selectors
-│   │   ├── proof/              # Hiring proof modules, evidence matrix, role packets
-│   │   └── motion/gsap.ts      # Centralized GSAP bootstrap & hooks
+│   │   ├── ai/                 # Bilingual evidence corpus index, PII redactor & BM25 matcher
+│   │   ├── cases/              # Zod schema, registry selectors & mood color tokens
+│   │   ├── motion/gsap.ts      # Centralized GSAP bootstrap & cleanup hook
+│   │   ├── pdf/qr-svg.ts       # Pure TypeScript byte-mode QR SVG encoder
+│   │   └── proof/              # Hiring role claims, matrix, Q&A & maintenance metadata
 │   ├── components/
-│   │   ├── case/               # Decomposed Server Components for case pages
-│   │   ├── command/            # cmdk warm-paper CommandPalette
-│   │   ├── hiring/             # RoleLensSwitch, EvidenceMatrix, InterviewQuestionBank
-│   │   └── lab/                # Interactive LabWorkbench
+│   │   ├── brief/, case/, command/, hiring/, lab/, providers/, three/
 │   ├── messages/               # Minimal UI-only i18n bundles (en.json, zh.json)
-│   └── styles/                 # globals.css + tokens, base, primitives, sections/*
-├── scripts/                    # Validation, media optimization, bundle budget, resume PDF
-├── tests/                      # Vitest unit & component tests
-└── e2e/                        # Playwright E2E + axe WCAG 2.1 AA specs
+│   └── styles/                 # v4/tokens.css, v4/grid.css, base, primitives, sections/*
+├── scripts/                    # Validation, media & bundle budget checks, PDF generators
+├── tests/                      # Vitest suites (40 files / 205 unit & component tests)
+└── e2e/                        # Playwright E2E + Axe WCAG 2.1 AA + CSP/CWV specs
 ```
 
 ---
@@ -121,19 +116,25 @@ portfolio/
 ## Scripts
 
 | Command | Description |
-|---------|-------------|
-| `pnpm dev` | Local Next.js 15 dev server |
-| `pnpm build` / `pnpm start` | Production build & start |
+|---|---|
+| `pnpm dev` / `pnpm build` / `pnpm start` | Next.js 15 dev server, production build (`77` pages) & server |
 | `pnpm typecheck` | TypeScript strict check (`tsc --noEmit`) |
 | `pnpm lint` | ESLint 9 Flat Config (`eslint .`) |
-| `pnpm test` / `pnpm test:ci` | Vitest watch / single CI run |
-| `pnpm automation:check` | Content validation + Zod/Proof validation + automation tests |
-| `pnpm proof:validate` | Case & Proof registry schema/asset verification |
-| `pnpm media:optimize` / `pnpm media:check` | Optimize images/videos or enforce media budget |
-| `pnpm budget:check` | Enforce gzipped JS & CSS bundle budgets after build |
-| `pnpm resume:pdf` | Generate bilingual A4 vector resume PDFs (`output/resume/`) |
-| `pnpm exec playwright test` | Run E2E + `@axe-core/playwright` WCAG 2.1 AA suite |
-| `pnpm analyze` | Production build with `@next/bundle-analyzer` |
+| `pnpm test:ci` | Vitest full run (`40` files / `205` tests) |
+| `pnpm automation:check` | Content validation + `proof:validate` + blog/automation tests |
+| `pnpm media:optimize` / `pnpm media:check` | Optimize project assets (`<= 12.00 MB` budget check) |
+| `pnpm budget:check` | Enforce JS chunk (`<= 70 kB`, lazy 3D `<= 160 kB`, route `<= 20 kB`) & App CSS (`<= 30 kB`) |
+| `pnpm resume:pdf` | Generate EN/ZH A4 resume PDFs via Chromium |
+| `pnpm decks:build` | Generate the 3 curated A4 role critique PDF decks (`public/decks/*.pdf`) |
+| `pnpm exec playwright test --project=chromium` | Full Chromium E2E, crawler, dark/mobile Axe A11y & security headers suite |
+
+---
+
+## Quality Gates & Testing
+
+Every push and Pull Request runs both `quality` and `e2e` jobs in [GitHub Actions CI](.github/workflows/ci.yml) on `ubuntu-24.04` (Node 22, Chromium):
+- **Unit & Integration**: `40` test files / `205` tests covering Zod schemas, WCAG AAA relative-luminance contrast math, PII redaction, BM25 hydration, QR matrix generation, zero-PII vitals validation, and RTL component interactions.
+- **E2E & Accessibility**: Automated Chromium crawl across all public EN/ZH routes, light/dark/375px `@axe-core/playwright` audits, native `<dialog>` focus traps, interactive simulator state machines, WebGL silent fallback, and `0` `securitypolicyviolation` checks.
 
 ---
 
