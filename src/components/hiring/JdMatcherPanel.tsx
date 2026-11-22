@@ -97,7 +97,7 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
     >
       <div className="v4-studio-plate" style={{ display: "grid", gap: "var(--s-4)" }}>
         <div>
-          <div className="label">{isZh ? "V4.3 零幻觉 JD 与设计论证匹配" : "V4.3 Grounded JD & Rationale Matcher"}</div>
+          <div className="label">{isZh ? "零幻觉 JD 与设计论证匹配" : "Grounded JD & Rationale Matcher"}</div>
           <h2 id="jd-matcher-heading" className="h-display" style={{ fontSize: "clamp(22px, 2.5vw, 30px)", marginTop: 8 }}>
             {isZh
               ? "粘贴岗位描述（JD）或面试追问，自动对照真实取舍与诚实边界"

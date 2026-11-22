@@ -23,7 +23,7 @@ export const spectraCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Confirmed unlisted archive status (2026-11-20) and local font bundling rationale for V3.1 baseline."
+    "auditNote": "Confirmed unlisted archive status (2026-11-20) and local font bundling rationale."
   },
   "links": [],
   "card": {

@@ -374,7 +374,7 @@ describe("portfolio proof content", () => {
   });
 });
 
-// AI UX as a thread across the curated 6-case portfolio (V4.1). Every entry
+// AI UX as a thread across the curated 6-case portfolio. Every entry
 // names authorship and verification scope, and every cell stays supporting.
 describe("AI and trust thread", () => {
   const THREAD_SLUGS: ProjectEvidenceSlug[] = ["walkie", "lamplight", "autofill", "onthebeat"];

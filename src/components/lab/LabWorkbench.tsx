@@ -14,8 +14,8 @@ const SWATCHES = [
   { token: "--surface", hexLight: "#FCFBF8", hexDark: "#181816", ratio: "Primary Card Layer" },
   { token: "--surface-2", hexLight: "#ECE8DF", hexDark: "#222220", ratio: "Elevated Workbench" },
   { token: "--text", hexLight: "#151412", hexDark: "#F4F2ED", ratio: "16.4:1 / 16.9:1" },
-  { token: "--text-2", hexLight: "#4A453D", hexDark: "#CECBC3", ratio: "8.5:1 / 11.6:1" },
-  { token: "--text-3", hexLight: "#5C564D", hexDark: "#A3A098", ratio: "6.3:1 / 7.2:1" },
+  { token: "--text-2", hexLight: "#3E3A33", hexDark: "#D6D3CB", ratio: "10.3:1 / 12.6:1 (AAA)" },
+  { token: "--text-3", hexLight: "#4E4940", hexDark: "#B8B5AD", ratio: "8.1:1 / 9.2:1 (AAA)" },
   { token: "--border-strong", hexLight: "#6E675C", hexDark: "#726F67", ratio: "1px structural grid" },
   { token: "--accent", hexLight: "#A63F2A", hexDark: "#F4F2ED", ratio: "5.4:1 · primary action" },
 ] as const;
@@ -146,7 +146,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           </div>
           <div className="lab-type-card">
             <div className="eyebrow">03 · Technical Index (400)</div>
-            <div className="lab-type-sample-mono">2026-11-22 · v4.1 · 16.4:1</div>
+            <div className="lab-type-sample-mono">2026-11-22 · AA/AAA · 16.4:1</div>
             <span className="eyebrow">Geist Mono · tokens, specs, telemetry</span>
           </div>
         </div>

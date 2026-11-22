@@ -1,104 +1,130 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
+import { useEffect, useRef, useState } from "react";
+import { useLocale } from "next-intl";
 
 interface ShortcutItem {
   keys: string[];
-  description: string;
+  en: string;
+  zh: string;
 }
 
-const shortcuts: ShortcutItem[] = [
-  { keys: ["⌘", "K"], description: "Open search" },
-  { keys: ["⌘", "/"], description: "Show keyboard shortcuts" },
-  { keys: ["↑", "↓"], description: "Navigate items" },
-  { keys: ["Enter"], description: "Select item" },
-  { keys: ["Esc"], description: "Close modal" },
-  { keys: ["Tab"], description: "Next focusable element" },
-  { keys: ["Shift", "Tab"], description: "Previous focusable element" },
+const SHORTCUTS: readonly ShortcutItem[] = [
+  { keys: ["⌘", "K"], en: "Open command & rationale palette", zh: "打开指令面板与 AI 设计辩护问答" },
+  { keys: ["Shift", "P"], en: "Launch case presentation deck", zh: "在案例页启动演示幻灯片模式" },
+  { keys: ["←", "→"], en: "Navigate slides or lightbox frames", zh: "切换幻灯片或灯箱图片" },
+  { keys: ["?"], en: "Toggle keyboard shortcuts dialog", zh: "打开或关闭快捷键说明" },
+  { keys: ["Esc"], en: "Close active dialog or drawer", zh: "关闭当前弹窗或抽屉" },
 ];
 
-export function KeyboardShortcutsModal({ initialOpen = false }: { initialOpen?: boolean }) {
-  const [isOpen, setIsOpen] = useState(initialOpen);
+function isTypingTarget(target: EventTarget | null): boolean {
+  const el = target as HTMLElement | null;
+  if (!el) return false;
+  return (
+    el.tagName === "INPUT" ||
+    el.tagName === "TEXTAREA" ||
+    el.tagName === "SELECT" ||
+    el.isContentEditable
+  );
+}
 
-  useKeyboardShortcuts([
-    {
-      key: "/",
-      meta: true,
-      handler: () => setIsOpen((prev) => !prev),
-    },
-    {
-      key: "Escape",
-      handler: () => setIsOpen(false),
-    },
-  ]);
+export function KeyboardShortcutsModal({ initialOpen = false }: { initialOpen?: boolean }) {
+  const locale = useLocale() === "zh" ? "zh" : "en";
+  const isZh = locale === "zh";
+  const [isOpen, setIsOpen] = useState(initialOpen);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const lastFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (isTypingTarget(event.target)) return;
+      const isQuestion = event.key === "?" && !event.metaKey && !event.ctrlKey && !event.altKey;
+      const isMetaSlash = (event.metaKey || event.ctrlKey) && event.key === "/";
+      if (isQuestion || isMetaSlash) {
+        event.preventDefault();
+        setIsOpen((prev) => {
+          if (!prev && document.activeElement instanceof HTMLElement) {
+            lastFocusRef.current = document.activeElement;
+          }
+          return !prev;
+        });
+      }
     };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    if (isOpen && !dialog.open) {
+      if (!lastFocusRef.current && document.activeElement instanceof HTMLElement) {
+        lastFocusRef.current = document.activeElement;
+      }
+      dialog.showModal();
+    } else if (!isOpen && dialog.open) {
+      dialog.close();
+      lastFocusRef.current?.focus();
+      lastFocusRef.current = null;
+    }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <>
-      <div
-        className="fixed inset-0 z-[100] bg-background/80 transition-opacity duration-150"
-        onClick={() => setIsOpen(false)}
-      />
-
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-label="Keyboard Shortcuts"
-        className="fixed left-1/2 top-1/2 z-[101] w-full max-w-md -translate-x-1/2 -translate-y-1/2 p-4"
-      >
-        <div className="rounded-xl border border-border bg-card p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-foreground">
-              Keyboard Shortcuts
+    <dialog
+      ref={dialogRef}
+      className="shortcuts-dialog"
+      aria-labelledby="shortcuts-dialog-title"
+      onClose={() => {
+        setIsOpen(false);
+        lastFocusRef.current?.focus();
+        lastFocusRef.current = null;
+      }}
+      onClick={(event) => {
+        if (event.target === dialogRef.current) {
+          handleClose();
+        }
+      }}
+    >
+      <div className="shortcuts-dialog-surface">
+        <header className="shortcuts-dialog-head">
+          <div>
+            <span className="eyebrow">{isZh ? "键盘导航" : "Keyboard Navigation"}</span>
+            <h2 id="shortcuts-dialog-title">
+              {isZh ? "快捷键面板" : "Keyboard Shortcuts"}
             </h2>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-              aria-label="Close"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
           </div>
+          <button
+            type="button"
+            className="btn btn-ghost"
+            onClick={handleClose}
+            aria-label={isZh ? "关闭快捷键说明" : "Close keyboard shortcuts"}
+          >
+            ✕
+          </button>
+        </header>
 
-          <div className="space-y-3">
-            {shortcuts.map((shortcut, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between py-2 border-b border-border/50 last:border-0"
-              >
-                <span className="text-sm text-muted-foreground">
-                  {shortcut.description}
-                </span>
-                <div className="flex items-center gap-1">
-                  {shortcut.keys.map((key, keyIndex) => (
-                    <kbd
-                      key={keyIndex}
-                      className="px-2 py-1 text-xs font-medium rounded bg-muted text-foreground border border-border"
-                    >
-                      {key}
-                    </kbd>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+        <ul className="shortcuts-dialog-list">
+          {SHORTCUTS.map((item) => (
+            <li key={item.en} className="shortcuts-dialog-row">
+              <span>{isZh ? item.zh : item.en}</span>
+              <span className="shortcuts-dialog-keys">
+                {item.keys.map((k) => (
+                  <kbd key={k}>{k}</kbd>
+                ))}
+              </span>
+            </li>
+          ))}
+        </ul>
 
-          <p className="mt-6 text-xs text-muted-foreground text-center">
-            Press <kbd className="px-1.5 py-0.5 text-xs rounded bg-muted border border-border">⌘ /</kbd> to toggle this modal
-          </p>
-        </div>
+        <p className="shortcuts-dialog-foot">
+          {isZh ? "按 ? 或 ⌘/ 随时切换本窗口" : "Press ? or ⌘/ anytime to toggle this dialog"}
+        </p>
       </div>
-    </>
+    </dialog>
   );
 }

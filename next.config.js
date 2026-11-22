@@ -76,6 +76,8 @@ function disabledSurfaceRedirects() {
   ];
 }
 
+const isDev = process.env.NODE_ENV === "development";
+
 const nextConfig = {
   outputFileTracingRoot: __dirname,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
@@ -155,8 +157,19 @@ const nextConfig = {
             // 'self', and the browser refuses to even request the MazeRunners
             // showcase for the case-page embed — no request at all, just an
             // error frame. frame-ancestors stays 'none': nobody frames us.
-            value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://avatars.githubusercontent.com https://images.unsplash.com; font-src 'self'; connect-src 'self' https://vitals.vercel-insights.com; frame-src 'self' https://maze-runners.vercel.app https://hoop-dream.vercel.app https://fencepost-app.vercel.app https://lewisswan24.github.io; frame-ancestors 'none';",
+            value: [
+              "default-src 'self'",
+              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: https://avatars.githubusercontent.com https://images.unsplash.com",
+              "font-src 'self'",
+              "connect-src 'self' https://vitals.vercel-insights.com",
+              "frame-src 'self' https://maze-runners.vercel.app https://hoop-dream.vercel.app https://fencepost-app.vercel.app https://lewisswan24.github.io https://onon-wolf-iron-tide.vercel.app",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "frame-ancestors 'none'",
+            ].join("; "),
           },
         ],
       },

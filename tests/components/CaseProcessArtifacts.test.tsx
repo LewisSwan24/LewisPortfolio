@@ -13,7 +13,7 @@ vi.mock("next/image", () => ({
   ),
 }));
 
-describe("V3.8 Design Process Artifacts", () => {
+describe("Design Process Artifacts", () => {
   afterEach(() => {
     vi.useRealTimers();
     vi.restoreAllMocks();

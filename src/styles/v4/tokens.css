@@ -58,7 +58,7 @@
 }
 
 /* ============================================================
-   V4.0 Swiss Editorial & Studio Log Design Tokens
+   Swiss Editorial & Studio Log Design Tokens
    Light: Warm Bone White (#F6F4EF / #FCFBF8) + Deep Charcoal Ink (#151412)
    Dark: Three-tier Charcoal Workbench (#111110 / #181816 / #222220)
    ============================================================ */
@@ -96,9 +96,9 @@
     --border-strong:  #6E675C;
     --rule:           var(--paper-300);
     --text:           var(--paper-900);
-    --text-2:         #4A453D;
-    --text-3:         #5C564D;
-    --text-4:         #635D53;
+    --text-2:         #3E3A33;
+    --text-3:         #4E4940;
+    --text-4:         #4E4940;
     --accent:         var(--terra-600);
     --accent-ink:     var(--terra-700);
     --on-accent:      var(--paper-50);
@@ -182,9 +182,9 @@
     --border-strong: #726F67;
     --rule:          #2A2925;
     --text:          #F4F2ED;
-    --text-2:        #CECBC3;
-    --text-3:        #A3A098;
-    --text-4:        #99968E;
+    --text-2:        #D6D3CB;
+    --text-3:        #B8B5AD;
+    --text-4:        #B8B5AD;
     --accent:        #F4F2ED;
     --accent-ink:    #F4F2ED;
     --on-accent:     #111110;

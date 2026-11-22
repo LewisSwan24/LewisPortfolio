@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("V3.7 Modern Web Primitives & /lab Exhibition", () => {
+test.describe("Modern Web Primitives & /lab Exhibition", () => {
   test("TransitionLink routes from /projects to case page and focuses h1", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/en/projects");

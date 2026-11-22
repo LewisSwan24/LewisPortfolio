@@ -25,7 +25,7 @@ export const pricewiseCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Verified defect taxonomy and live prototype boundary for V3.1 baseline."
+    "auditNote": "Verified defect taxonomy and live prototype boundary."
   },
   "cover": {
     "src": "/projects/pricewise/01-home.png",

@@ -1,5 +1,5 @@
 /* ============================================================
-   CASE STUDY — sprint 3
+   CASE STUDY
    ============================================================ */
 .cs-hero {
   padding: var(--s-6) var(--grid-margin) var(--s-6);
@@ -555,7 +555,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 @media (max-width: 640px) { .cs-tree { grid-template-columns: 1fr; } }
 
 /* ============================================================
-   V3.7 Terminology Footnotes & Scroll-Driven Progress Rail
+   Terminology Footnotes & Scroll-Driven Progress Rail
    ============================================================ */
 .case-term-note-bar {
   display: flex;

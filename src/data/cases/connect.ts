@@ -24,7 +24,7 @@ export const connectCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Verified session counts (71 total, 14 mine) and October paper reset evidence for V3.1 baseline."
+    "auditNote": "Verified session counts (71 total, 14 mine) and October paper reset evidence."
   },
   "cover": {
     "src": "/projects/connect/02-app-studybuddy.png",

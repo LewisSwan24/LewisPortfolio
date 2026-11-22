@@ -37,26 +37,13 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 
-# Testing
+# Testing & local outputs
 coverage
 test-results/
 playwright-report/
-
-# Playwright MCP artifacts (console logs, snapshots, yaml traces)
-.playwright-mcp/
-
-# Local audit/crawl artifacts and tool indexes. Large, machine-specific, and
-# otherwise swept into the index by `git add -A`.
 output/
-.codegraph/
-.cursor/
-
-# Local tool caches
 .worktrees/
 
-# Stray portfolio HTML exports dropped in repo root (local only)
+# Local docs & stray exports
 /Lewis Dong Portfolio*.html
-
-# Design & generated docs (local only)
-DESIGN.md
 /docs/

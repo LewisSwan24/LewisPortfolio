@@ -21,7 +21,7 @@ export const fencepostCase: CaseRecord = {
   reviewMeta: {
     reviewedAt: "2026-11-21",
     nextReviewAt: "2027-02-21",
-    auditNote: "Verified LewisSwan24/fencepost 431 offline tests, 29 red-line cases, and public deployment note for V3.1 baseline.",
+    auditNote: "Verified LewisSwan24/fencepost 431 offline tests, 29 red-line cases, and public deployment note.",
   },
   cover: {
     src: "/projects/fencepost/01-ringtail-brisbane.jpg",

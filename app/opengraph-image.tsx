@@ -40,7 +40,7 @@ export default async function Image() {
     headline +
     sub +
     name +
-    " · STUDIO LOG — PORTFOLIO / V4.0 " +
+    " · STUDIO LOG — PORTFOLIO " +
     siteConfig.url.replace(/^https?:\/\//, "") +
     "abcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -121,7 +121,7 @@ export default async function Image() {
             letterSpacing: "0.18em",
           }}
         >
-          <div>— STUDIO LOG / V4.0</div>
+          <div>— STUDIO LOG</div>
           <div>{siteConfig.url.replace(/^https?:\/\//, "")}</div>
         </div>
       </div>

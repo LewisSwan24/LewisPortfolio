@@ -9,7 +9,7 @@ const SIMULATOR_CASES = [
   { slug: "connect", locale: "en", simulatorId: "connect-ia-reset" },
 ] as const;
 
-test.describe("V3.6 Interactive Case Prototypes", () => {
+test.describe("Interactive Case Prototypes", () => {
   for (const item of SIMULATOR_CASES) {
     test(`${item.slug} (${item.locale}) mounts lazily, passes keyboard/touch checks, and holds 0px mobile overflow`, async ({
       page,

@@ -1,4 +1,4 @@
-/* V4.0 Swiss Editorial & Digital Studio Log — layered stylesheet entrypoint */
+/* Swiss Editorial & Digital Studio Log — layered stylesheet entrypoint */
 @import "tailwindcss";
 @import "./v4/tokens.css";
 @import "./v4/grid.css";

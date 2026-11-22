@@ -25,7 +25,7 @@ export const mazeCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Verified exhibition build scope, Arduino firmware role, and media assets for V3.1 baseline."
+    "auditNote": "Verified exhibition build scope, Arduino firmware role, and media assets."
   },
   "cover": {
     "src": "/projects/maze/06-final-contact.jpg",
@@ -274,7 +274,7 @@ export const mazeCase: CaseRecord = {
     "zh": {
       "kicker": "旗舰 · 物理计算",
       "title": "MazeRunners",
-      "sub": "一台会回手的迷宫：传感器、震动与浏览器控制台接成同一个闭环。",
+      "sub": "一台会回手的迷宫：传感器、震动与浏览器控制台接成同一条物理回路。",
       "role": "Design Technologist",
       "date": "2026 · 已搭建并展出",
       "m1": "Arduino Mega · 10 个红外传感器",
@@ -420,7 +420,7 @@ export const mazeCase: CaseRecord = {
       },
       "rf": {
         "label": "反思",
-        "p": "最重要的一课是：在硬件上，时序就是设计。防抖听起来像电子细节，直到一次重复触发让分数和你手指上的震动对不上，玩家就不再信任这套系统。最弱的一环是我证明了闭环能跑，却没有测量其中哪些部分真正起作用，如果重做，我会从第一天就记录每一次传感器事件和反馈触发，然后开始逐个关掉通道，看玩家实际在用哪几条。"
+        "p": "最重要的一课是：在硬件上，时序就是设计。防抖听起来像电子细节，直到一次重复触发让分数和你手指上的震动对不上，玩家就不再信任这套系统。最弱的一环是我证明了整条物理回路能跑通，却没有测量其中哪些部分真正起作用，如果重做，我会从第一天就记录每一次传感器事件和反馈触发，然后开始逐个关掉通道，看玩家实际在用哪几条。"
       }
     }
   }

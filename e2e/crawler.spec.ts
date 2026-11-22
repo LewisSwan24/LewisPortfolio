@@ -47,7 +47,7 @@ const UNLISTED_SLUGS = [
   "pricewise",
 ];
 
-test.describe("V3.2 Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
+test.describe("Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
   test("crawls all public routes with zero console/page errors, valid anchors, and no unlisted or retired leaks", async ({
     page,
   }) => {

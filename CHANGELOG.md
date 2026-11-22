@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.0] - 2026-11-22
+
+### Rhetoric Polish, Layered Strict CSP, WCAG AAA Tokens & Native Shortcuts Dialog
+- **Bilingual Voice & Cliché Audit (`src/data/cases/walkie.ts`, `maze.ts`, `src/messages/{en,zh}.json`)** — Removed buzzword phrasing (`seamless`, `闭环`) in favor of grounded engineering phrasing (`live`, `回路`, `往返`) and updated portfolio version stamps to `v4.5`.
+- **Layered Strict CSP & SSG Protection (`next.config.js`, `middleware.ts`)** — Removed `'unsafe-eval'` from production Content Security Policy, added `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and companion embed origins (`onon-wolf-iron-tide.vercel.app`) without invoking `headers()` in root layouts so static routes remain `● (SSG)`. Attached per-request cryptographic `x-request-nonce` headers and `private, no-store` isolation on dynamic `/[locale]/brief/*` routes.
+- **WCAG AAA Contrast Calibration (`src/styles/v4/tokens.css`, `src/lib/design-tokens.ts`, `tests/lib/design-tokens.test.ts`)** — Calibrated light/dark secondary and tertiary text tokens (`--text-2`, `--text-3`, `--text-4`) to `>= 7.3:1` even on elevated surface tiers (`#ECE8DF` / `#222220`), guarded by exact WCAG luminance unit tests.
+- **Native `<dialog>` Keyboard Shortcuts (`src/components/providers/KeyboardShortcutsModal.tsx`, `LazyKeyboardShortcuts.tsx`)** — Upgraded the shortcut overlay from `<div role="dialog">` to native `.showModal()` `<dialog>` triggered via `?` or `⌘/`, listing `⌘K`, `Shift+P`, `←/→`, `?`, and `Esc` with automatic focus restoration.
+
 ## [4.4.0] - 2026-11-22
 
 ### Editorial Critique A4 Print Dossier, Static Role PDFs, Zero-PII RUM & Essay #3

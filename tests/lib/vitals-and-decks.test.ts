@@ -8,7 +8,7 @@ import {
 } from "../../app/api/vitals/route";
 import { resetTelemetryForTests } from "@/lib/vitals-store";
 
-describe("V4.4 Design-Rationale PDF Dossier, QR SVG & Zero-PII Vitals", () => {
+describe("Design-Rationale PDF Dossier, QR SVG & Zero-PII Vitals", () => {
   beforeEach(() => {
     resetTelemetryForTests();
   });

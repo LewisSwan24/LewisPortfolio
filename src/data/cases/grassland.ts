@@ -25,7 +25,7 @@ export const grasslandCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Verified 430/430 test baseline and Chapter 1 scope for V3.1 baseline."
+    "auditNote": "Verified 430/430 test baseline and Chapter 1 scope."
   },
   "cover": {
     "src": "/projects/grassland/03-mission-02.jpg",

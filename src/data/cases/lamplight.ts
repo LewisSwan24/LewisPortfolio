@@ -26,7 +26,7 @@ export const lamplightCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Verified v1.0 release date (2026-11-05) and simulation-staged media note for V3.1 baseline."
+    "auditNote": "Verified v1.0 release date (2026-11-05) and simulation-staged media note."
   },
   "cover": {
     "src": "/projects/lamplight/02-board.jpg",

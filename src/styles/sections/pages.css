@@ -1,5 +1,5 @@
 /* ============================================================
-   ABOUT — sprint 3
+   ABOUT
    ============================================================ */
 .about-hero { padding-block: var(--s-8) var(--s-7); }
 .about-hero .h-display { max-width: 14em; }
@@ -110,7 +110,7 @@
 }
 
 /* ============================================================
-   RESUME — sprint 3
+   RESUME
    ============================================================ */
 .res-hero {
   padding-block: var(--s-8) var(--s-6);
@@ -298,7 +298,7 @@
 }
 
 /* ============================================================
-   CONTACT — sprint 3
+   CONTACT
    ============================================================ */
 .contact-hero {
   padding: var(--s-8) var(--grid-margin) var(--s-7);
@@ -1156,7 +1156,7 @@
 }
 
 /* ==========================================================================
-   V4.4 Editorial Critique Print Dossier (/brief/print)
+   Editorial Critique Print Dossier (/brief/print)
    ========================================================================== */
 .brief-print-main {
   padding-top: var(--s-6);
@@ -1330,4 +1330,86 @@
   .brief-print-grid {
     grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
   }
+}
+
+/* ==========================================================================
+   Native Keyboard Shortcuts <dialog>
+   ========================================================================== */
+.shortcuts-dialog {
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  width: min(480px, calc(100vw - 32px));
+  max-width: none;
+  margin: auto;
+}
+
+.shortcuts-dialog::backdrop {
+  background: rgb(17 17 16 / 0.62);
+}
+
+.shortcuts-dialog-surface {
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.shortcuts-dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.shortcuts-dialog-head h2 {
+  margin: 4px 0 0;
+  font-size: 20px;
+}
+
+.shortcuts-dialog-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.shortcuts-dialog-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.shortcuts-dialog-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.shortcuts-dialog-keys {
+  display: inline-flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.shortcuts-dialog-keys kbd {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 3px 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.shortcuts-dialog-foot {
+  margin: 0;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-3);
+  text-align: center;
 }

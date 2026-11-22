@@ -26,7 +26,7 @@ export const autofillCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Verified synthetic-form screenshot test provenance (2026-11-20) and local-only invariant for V3.1 baseline."
+    "auditNote": "Verified synthetic-form screenshot test provenance (2026-11-20) and local-only invariant."
   },
   "cover": {
     "src": "/projects/autofill/01-form-filled.png",

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("V4.3 Zero-Hallucination Design-Defense AI Navigator & Essay #2", () => {
+test.describe("Grounded Design-Defense AI Navigator & Essay #2", () => {
   test("StudioAssistantDrawer opens from floating pill, returns grounded Walkie rationale, and holds 0px overflow at 375px", async ({
     page,
   }) => {

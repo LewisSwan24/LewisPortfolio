@@ -3,7 +3,7 @@
  * Build-output JS & CSS bundle budget gate.
  * Reads `.next/static` after `next build` and fails if shared/vendor chunks,
  * per-route app chunks (`chunks/app/`), authored App/UI CSS, or total CSS
- * regress past V3.1 performance budgets.
+ * regress past performance budgets.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -83,7 +83,7 @@ for (const file of cssFiles) {
 }
 const totalCssGzKb = appCssGzKb + fontCssGzKb;
 
-console.log("=== V3.2 Bundle Budget Report ===");
+console.log("=== Bundle Budget Report ===");
 console.log(`  JS chunks analyzed     : ${jsChunks.length}`);
 console.log(`  Largest standard JS    : ${largestJs.file} (${largestJs.gzKb.toFixed(1)} kB gz, budget <= ${MAX_SINGLE_CHUNK_GZ_KB} kB)`);
 console.log(`  Largest Lazy 3D chunk  : ${largestLazy3dJs.file || "none"} (${largestLazy3dJs.gzKb.toFixed(1)} kB gz, budget <= ${MAX_LAZY_3D_CHUNK_GZ_KB} kB)`);

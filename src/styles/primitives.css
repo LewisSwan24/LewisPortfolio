@@ -1,5 +1,5 @@
 /* ============================================================
-   Practice Log — primitives (from docs/design-handoff app.css)
+   Practice Log — primitives
    ============================================================ */
 .container {
   width: 100%;
@@ -296,7 +296,7 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
 }
 
 /* ============================================================
-   V3.3 Editorial Layout & Disclosure Primitives
+   Editorial Layout & Disclosure Primitives
    ============================================================ */
 .v3-card-grid {
   display: grid;
@@ -397,7 +397,7 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
 }
 
 /* ============================================================
-   V3.7 Anchor Note Popover (Native Popover + Anchor Positioning)
+   Anchor Note Popover (Native Popover + Anchor Positioning)
    ============================================================ */
 .anchor-note-wrap {
   display: inline-flex;
@@ -513,7 +513,7 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
   }
 }
 
-/* V4.3 STUDIO RATIONALE ASSISTANT DRAWER */
+/* STUDIO RATIONALE ASSISTANT DRAWER */
 .studio-assistant-wrap {
   position: fixed;
   inset-block-end: max(20px, env(safe-area-inset-bottom));

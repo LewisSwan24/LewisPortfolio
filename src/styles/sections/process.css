@@ -1,4 +1,4 @@
-/* V3.8 Design Process Artifacts */
+/* Design Process Artifacts */
 .proc-stage, .proc-meta { display: grid; gap: var(--s-4); }
 .proc-stage { min-height: 0; }
 .proc-scrub, .proc-loop { border: 1px solid var(--border); border-radius: var(--r-sm); }

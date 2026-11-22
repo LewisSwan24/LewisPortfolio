@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("V4.4 Editorial Critique Print Dossier, Static Role PDFs & Zero-PII RUM", () => {
+test.describe("Editorial Critique Print Dossier, Static Role PDFs & Zero-PII RUM", () => {
   test("Editorial critique /en/brief/print allocates >= 60% width to rationale and embeds vector QR codes", async ({
     page,
   }) => {

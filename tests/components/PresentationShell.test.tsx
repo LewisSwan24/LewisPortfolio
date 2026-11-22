@@ -11,7 +11,7 @@ import {
   getInterviewDecisionRoom,
 } from "@/lib/portfolio-proof";
 
-describe("V3.9 PresentationShell & Deck Builders", () => {
+describe("PresentationShell & Deck Builders", () => {
   beforeEach(() => {
     window.sessionStorage.clear();
   });

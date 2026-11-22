@@ -53,7 +53,7 @@ export default async function Image({ params }: Props) {
     excerpt +
     name +
     kicker +
-    " — STUDIO LOG / V4.0 WRITING " +
+    " — STUDIO LOG WRITING " +
     siteConfig.url.replace(/^https?:\/\//, "") +
     `/blog/${slug}` +
     "abcdefghijklmnopqrstuvwxyz0123456789 ·—";
@@ -146,7 +146,7 @@ export default async function Image({ params }: Props) {
             letterSpacing: "0.18em",
           }}
         >
-          <div>— STUDIO LOG / V4.0</div>
+          <div>— STUDIO LOG</div>
           <div>{`${siteConfig.url.replace(/^https?:\/\//, "")}/blog/${slug}`}</div>
         </div>
       </div>

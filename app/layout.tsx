@@ -5,7 +5,7 @@ import { getLocale } from "next-intl/server";
 import "@/styles/globals.css";
 import { siteConfig } from "@/lib/site";
 
-// V4.0 Swiss Editorial & Digital Studio Typography:
+// Swiss Editorial & Digital Studio Typography:
 // Space Grotesk for geometric architectural headings, Inter + Noto Sans SC for
 // high-readability bilingual UI/body copy, and Geist Mono for technical indices.
 const inter = Inter({

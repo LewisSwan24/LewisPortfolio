@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("V3.9 Presentation Mode, Tailored Briefs, and Contact Loop", () => {
+test.describe("Presentation Mode, Tailored Briefs, and Contact Loop", () => {
   test("Presentation Mode opens via Shift+P on a case study, navigates slides, toggles speaker notes, and closes cleanly", async ({
     page,
   }) => {

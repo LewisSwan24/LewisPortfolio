@@ -7,7 +7,7 @@ import { POST as matchPost } from "../../app/api/ai/match/route";
 import { resetMemoryRateLimiterForTests } from "@/lib/server/rate-limit";
 import { UNLISTED_PROJECT_SLUGS } from "@/lib/project-routes";
 
-describe("Zero-Hallucination Design-Defense AI Grounding (V4.3)", () => {
+describe("Grounded Design-Defense Rationale Matching", () => {
   beforeEach(() => {
     resetMemoryRateLimiterForTests();
   });

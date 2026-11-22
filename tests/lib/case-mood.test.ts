@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { getCaseMood, getCaseMoodStyle } from "@/lib/cases/mood";
 import { CURRENT_PROJECT_SLUGS } from "@/lib/project-routes";
 
-describe("V4.0 Case Mood Tokens", () => {
+describe("Case Mood Tokens", () => {
   it("provides light/dark mood palettes and CSS variables for all 14 project slugs", () => {
     for (const slug of CURRENT_PROJECT_SLUGS) {
       const mood = getCaseMood(slug);

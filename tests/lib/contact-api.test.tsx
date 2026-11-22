@@ -4,7 +4,7 @@ import { POST } from "../../app/api/contact/route";
 import { resetMemoryRateLimiterForTests } from "@/lib/server/rate-limit";
 import { QuickContactForm } from "@/components/contact/QuickContactForm";
 
-describe("V3.9 /api/contact Rate Limit, Zero-PII & QuickContactForm", () => {
+describe("/api/contact Rate Limit, Zero-PII & QuickContactForm", () => {
   const originalKvUrl = process.env.UPSTASH_REDIS_REST_URL;
   const originalKvToken = process.env.UPSTASH_REDIS_REST_TOKEN;
 

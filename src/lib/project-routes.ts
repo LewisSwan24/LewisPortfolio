@@ -34,7 +34,7 @@ export const UNLISTED_PROJECT_SLUGS: readonly CurrentProjectSlug[] = [
   "spectra",
   "rules",
   "gapmapper",
-  // 2026-11-22 (V4.1): Curated the public portfolio to 6 core cases; these
+  // Curated public portfolio focuses on 6 core cases; these
   // four remain buildable and reachable by direct link with noindex.
   "fencepost",
   "connect",

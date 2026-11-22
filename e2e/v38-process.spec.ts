@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("V3.8 Design Process Artifacts", () => {
+test.describe("Design Process Artifacts", () => {
   test("BeforeAfterScrubber & ResearchQuoteDeck work on /projects/connect with 0px mobile overflow", async ({
     page,
   }) => {

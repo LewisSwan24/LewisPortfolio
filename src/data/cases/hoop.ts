@@ -25,7 +25,7 @@ export const hoopCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Verified DEMO v0.6 registry claim boundaries for V3.1 baseline."
+    "auditNote": "Verified DEMO v0.6 registry claim boundaries."
   },
   "cover": {
     "src": "/projects/hoop/01-main-menu.png",

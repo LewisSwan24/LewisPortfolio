@@ -22,7 +22,7 @@ export const walkieCase: CaseRecord = {
   reviewMeta: {
     reviewedAt: "2026-11-21",
     nextReviewAt: "2027-02-21",
-    auditNote: "Verified LewisSwan24/walkie gates (gate-h, gate-p5, gate-l) and fake-claude test isolation for V3.1 baseline.",
+    auditNote: "Verified LewisSwan24/walkie gates (gate-h, gate-p5, gate-l) and fake-claude test isolation.",
   },
   cover: {
     src: "/projects/walkie/01-architecture.svg",
@@ -71,7 +71,7 @@ export const walkieCase: CaseRecord = {
     },
     title: {
       en: "Test the wrist permission loop yourself",
-      zh: "亲手试一下手腕语音与工具审批闭环",
+      zh: "亲手试一下手腕语音与工具审批链路",
     },
     prompt: {
       en: "Switch between USB cable and zero-knowledge relay, trigger a Claude Code tool request on the right, then press the watch Front Key (Enter) to approve or Side Key (Backspace) to deny.",
@@ -138,15 +138,15 @@ export const walkieCase: CaseRecord = {
     microLoop: {
       eyebrow: {
         en: "Vector micro-loop · Sealed wrist cycle",
-        zh: "矢量交互微循环 · 手腕加密审批闭环",
+        zh: "矢量交互微循环 · 手腕加密审批流程",
       },
       title: {
         en: "Press-to-talk → USB/Relay switch → Wrist gate → Spoken summary",
-        zh: "按住录音 → 链路无缝切换 → 手腕物理审批 → 语音简报回传",
+        zh: "按住录音 → 链路切换 → 手腕物理审批 → 语音简报回传",
       },
       summary: {
         en: "Inspect the 4-stage wire and attention loop without loading heavy video captures.",
-        zh: "无需加载大体积录屏视频，按帧步进或暂停查看端到端加密与实体确认闭环。",
+        zh: "无需加载大体积录屏视频，按帧步进或暂停查看端到端加密与实体确认流程。",
       },
       loopId: "walkie-relay",
       steps: [
@@ -175,7 +175,7 @@ export const walkieCase: CaseRecord = {
           label: { en: "Voice Brief Back", zh: "语音简报回传" },
           detail: {
             en: "Node 24 bridge synthesizes a brief summary and streams audio to the wrist speaker.",
-            zh: "Node 24 桥接合成简短摘要语音回传至手腕扬声器，免看电脑屏完成闭环。",
+            zh: "Node 24 桥接合成简短摘要语音回传至手腕扬声器，免看电脑屏完成审批往返。",
           },
         },
       ],
@@ -246,8 +246,8 @@ export const walkieCase: CaseRecord = {
         },
         {
           option: {
-            en: "Attempt seamless mid-turn handover between USB and cloud relay",
-            zh: "尝试在单轮对话进行中做 USB 与无线中继的静默无缝切换",
+            en: "Attempt silent mid-turn handover between USB and cloud relay",
+            zh: "尝试在单轮对话进行中做 USB 与无线中继的静默自动切换",
           },
           flaw: {
             en: "Masking link transitions hides transport failures and risks partial or duplicated audio frames across two channels.",

@@ -6,7 +6,7 @@ import {
   type BriefPayload,
 } from "@/lib/server/brief-codec";
 
-describe("V3.9 Brief Codec & /api/brief Route", () => {
+describe("Brief Codec & /api/brief Route", () => {
   const originalSecret = process.env.PORTFOLIO_ADMIN_SECRET;
   const originalKvUrl = process.env.UPSTASH_REDIS_REST_URL;
   const originalKvToken = process.env.UPSTASH_REDIS_REST_TOKEN;

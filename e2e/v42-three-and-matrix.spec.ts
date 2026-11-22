@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("V4.2 Shared Three.js Specimen Kernel, DecisionComparator & Essay #1", () => {
+test.describe("Shared Three.js Specimen Kernel, DecisionComparator & Essay #1", () => {
   test("Home displays 0ms SVG specimen axes with 6 keyboard-navigable design thesis nodes", async ({
     page,
   }) => {

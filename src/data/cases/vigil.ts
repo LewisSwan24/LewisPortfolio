@@ -23,7 +23,7 @@ export const vigilCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Confirmed unlisted/abandoned status (2026-09-27) and noindex/no-resume invariant for V3.1 baseline."
+    "auditNote": "Confirmed unlisted/abandoned status (2026-09-27) and noindex/no-resume invariant."
   },
   "links": [],
   "media": {

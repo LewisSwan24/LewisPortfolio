@@ -160,7 +160,7 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
     }
   });
 
-  it("configures V3.8 processArtifacts across scrubber (4), quotes (5), and microLoop (3) cases", () => {
+  it("configures processArtifacts across scrubber (4), quotes (5), and microLoop (3) cases", () => {
     for (const slug of ["connect", "pricewise", "hoop", "lamplight"] as const) {
       expect(getCaseBySlug(slug)?.processArtifacts?.scrubber).toBeDefined();
     }

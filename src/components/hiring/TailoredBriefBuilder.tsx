@@ -40,7 +40,7 @@ export function TailoredBriefBuilder({ cases, locale }: TailoredBriefBuilderProp
 
   const copy = isZh
     ? {
-        eyebrow: "V3.9 定向投递简报生成器",
+        eyebrow: "定向投递简报生成器",
         title: "为指定公司与岗位生成专属短链",
         summary: "选择最多 4 个重点案例并填写开场说明，自动生成带 noindex 隐私隔离的定制简报链接。",
         company: "目标公司 / 团队名称",
@@ -59,7 +59,7 @@ export function TailoredBriefBuilder({ cases, locale }: TailoredBriefBuilderProp
         copied: "已复制到剪贴板。",
       }
     : {
-        eyebrow: "V3.9 Tailored Brief Generator",
+        eyebrow: "Tailored Brief Generator",
         title: "Generate a company-specific review link",
         summary: "Select 1–4 curated cases and a custom opener to generate a noindex tailored dossier URL.",
         company: "Target company or team",

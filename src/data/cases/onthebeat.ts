@@ -25,7 +25,7 @@ export const onthebeatCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Verified dual-wristband pairing proof and unstudied participant limit for V3.1 baseline."
+    "auditNote": "Verified dual-wristband pairing proof and unstudied participant limit."
   },
   "cover": {
     "src": "/projects/onthebeat/03-match.jpg",

@@ -23,7 +23,7 @@ export const rulesCase: CaseRecord = {
   "reviewMeta": {
     "reviewedAt": "2026-11-21",
     "nextReviewAt": "2027-02-21",
-    "auditNote": "Confirmed unlisted archive status and DECO7250 coursework boundary for V3.1 baseline."
+    "auditNote": "Confirmed unlisted archive status and DECO7250 coursework boundary."
   },
   "links": [],
   "media": {

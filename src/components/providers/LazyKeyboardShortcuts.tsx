@@ -12,8 +12,7 @@ const KeyboardShortcutsModal = dynamic(
 );
 
 /**
- * Defers loading the keyboard-shortcuts modal chunk until the user first
- * triggers `?` or `Cmd/Ctrl + /`.
+ * Defers loading the keyboard-shortcuts native `<dialog>` chunk until `?` or `Cmd/Ctrl + /`.
  */
 export function LazyKeyboardShortcuts() {
   const [mounted, setMounted] = useState(false);
@@ -21,7 +20,21 @@ export function LazyKeyboardShortcuts() {
   useEffect(() => {
     if (mounted) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === "/") {
+      const target = event.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      const isQuestion = event.key === "?" && !event.metaKey && !event.ctrlKey && !event.altKey;
+      const isMetaSlash = (event.metaKey || event.ctrlKey) && event.key === "/";
+      if (isQuestion || isMetaSlash) {
+        event.preventDefault();
         setMounted(true);
       }
     };

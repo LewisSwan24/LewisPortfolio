@@ -10,7 +10,7 @@ import { LabPrimitivesGallery } from "@/components/lab/primitives/LabPrimitivesG
 import { PrimitiveConfidence } from "@/components/lab/primitives/PrimitiveConfidence";
 import { PrimitiveRiskCard } from "@/components/lab/primitives/PrimitiveRiskCard";
 
-describe("V3.7 Web Platform Primitives & /lab Exhibition", () => {
+describe("Web Platform Primitives & /lab Exhibition", () => {
   afterEach(() => {
     document.body.innerHTML = "";
     vi.restoreAllMocks();

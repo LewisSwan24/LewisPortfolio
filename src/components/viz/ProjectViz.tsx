@@ -403,7 +403,7 @@ export function VizVigil({ locale = "en" }: VizProps) {
 export function VizHoop({ locale = "en" }: VizProps) {
   // What the repo supports: six batches logged into one registry, rules written
   // before them, and one automated check that reads the registry, never the
-  // style. Counts transcribed from the project's own stage15 production log.
+  // style. Counts transcribed from the project log.
   const zh = locale === "zh";
   const batches = [
     { label: zh ? "人物立绘" : "PORTRAITS", n: 64 },
