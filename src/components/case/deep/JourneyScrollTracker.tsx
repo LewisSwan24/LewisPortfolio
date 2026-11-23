@@ -24,7 +24,13 @@ export function JourneyScrollTracker({
   const isZh = locale === "zh";
 
   useEffect(() => {
-    if (typeof window === "undefined" || items.length === 0) return;
+    if (
+      typeof window === "undefined" ||
+      typeof IntersectionObserver === "undefined" ||
+      items.length === 0
+    ) {
+      return;
+    }
 
     const elements = items
       .map((item) => document.getElementById(`journey-stage-${item.id}`))
@@ -76,27 +82,26 @@ export function JourneyScrollTracker({
       <span className={styles.trackerLabel}>
         {isZh ? "阶段进度" : "Stage progress"}
       </span>
-      <ol className={styles.trackerList}>
+      <div className={styles.trackerList}>
         {items.map((item) => {
           const isCurrent = item.id === activeId;
           return (
-            <li key={item.id}>
-              <button
-                type="button"
-                className={styles.trackerChip}
-                aria-current={isCurrent ? "step" : undefined}
-                data-active={isCurrent ? "true" : "false"}
-                onClick={() => jumpToStage(item.id)}
-              >
-                <span className={styles.trackerNum}>
-                  {String(item.step).padStart(2, "0")}
-                </span>
-                <span className={styles.trackerTitle}>{item.title}</span>
-              </button>
-            </li>
+            <button
+              key={item.id}
+              type="button"
+              className={styles.trackerChip}
+              aria-current={isCurrent ? "step" : undefined}
+              data-active={isCurrent ? "true" : "false"}
+              onClick={() => jumpToStage(item.id)}
+            >
+              <span className={styles.trackerNum}>
+                {String(item.step).padStart(2, "0")}
+              </span>
+              <span className={styles.trackerTitle}>{item.title}</span>
+            </button>
           );
         })}
-      </ol>
+      </div>
     </nav>
   );
 }
