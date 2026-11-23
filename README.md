@@ -1,4 +1,4 @@
-# Lewis Dong — Portfolio (`v4.5`)
+# Lewis Dong — Portfolio (`v5.0`)
 
 **Live site:** [lewisdong.vercel.app](https://lewisdong.vercel.app)
 
@@ -23,13 +23,16 @@ A statically generated, bilingual (`en` / `zh`) interaction-design practice log 
 - **Structured Design Decisions (`#design-decisions`)** — Every listed case documents `humanTension`, `rejectedAlternatives`, `chosenTradeoff`, and `residualCostOrRisk` via Zod `DesignDecisionTradeoffSchema`, accompanied by `/projects` `DecisionComparator` (`src/components/case/DecisionComparator.tsx`).
 - **Interactive Prototypes & Process Artifacts** — Lazy-loaded simulators (`WalkieWristSim`, `LamplightTriageSim`, `AutofillConfidenceSim`, `MazeContactSim`, `GrasslandRulesSim`, `OntheBeatHandshakeSim`, etc.), before/after pointer scrubbers, research quote decks, vector micro-loops, and `Shift + P` 16:9 presentation slides (`PresentationShell.tsx`).
 
-### 3. Shared Three.js Specimen Kernel & `/lab` Workbench
-- **Lazy 3D Coordinate Stage (`src/components/three/SpecimenAxisCanvas.tsx`)** — Plots all 6 listed cases by human friction, boundary stance, and medium physicality. Renders an immediate `0ms` SSR SVG baseline with full keyboard selection, lazily mounts WebGL2 only when visible (`<= 160 kB gz` chunk, zero WebGL leaked into initial routes), cleans up via `dispose()`, and falls back silently when WebGL is disabled. Includes hardware specimens (`HardwareFieldCanvas.tsx`) on physical cases.
-- **Bilingual `/lab` Workbench** — Token & AAA contrast inspector, GSAP paper-motion curve sandbox (`prefers-reduced-motion` aware), URL-linkable rule micro-demos (`/lab?demo=walkie|autofill|onthebeat`), and live zero-PII telemetry readout.
+- **Case Depth Modules & Review Lens (`src/data/cases/modules/`, `src/components/case/deep/`)** — All 6 listed flagships include 5+ stage journeys with scroll progress tracking, mandatory 5-state interface matrices (`Normal / Empty / Offline / Error / Refused`), logged rework & rejection archives, and `?focus=all|ux-research|systems-hardware|ai-trust` perspective switching.
+- **Interaction Pattern Atlas (`/[locale]/patterns`) & Essay Library (`content/blog/`)** — 6 executable cross-case interaction patterns with live micro-sandboxes, anti-pattern toggles, accessibility guarantees, copyable TypeScript/CSS snippets, and 13 bilingual (`EN` / `ZH`) technical MDX essays.
 
-### 4. Grounded BM25 Rationale AI Lab & A4 Critique Dossiers
-- **Zero-Hallucination Rationale AI Lab (`/[locale]/ai`, `src/lib/ai/`, `app/api/ai/match/route.ts`)** — Bilingual BM25 index covering 18 structured design-decision tradeoffs (`3` per listed flagship case), research observations (`2.4x`), validation limits (`2.0x`), and 7 published bilingual technical essays (`1.8x`), with client-side PII redaction (`redactPii`, `<= 1200` chars). Runs key-free (`bm25-local`) with optional OpenAI/Gemini reranking returning strict ID allowlists hydrated verbatim into 4-quadrant cards (`Human Tension / Rejected Path / Chosen Tradeoff / Honest Limit`). Surfaces consistently across `/[locale]/ai`, `⌘K` Command Palette, `/hire` JD Matcher, and `StudioAssistantDrawer`.
-- **Editorial Critique A4 Print & Role Decks (`/[locale]/brief/print`, `pnpm decks:build`)** — Allocates `>= 60%` of each A4 page width to human tension, rejected paths, and all structured tradeoffs paired with an offline vector SVG QR code (`src/lib/pdf/qr-svg.ts`), plus 3 pre-built static PDFs under `public/decks/`.
+### 3. Shared Three.js Specimen Kernel, GSAP Manuscript Choreography & `/lab` Engines
+- **Calibrated GSAP Manuscript System (`src/lib/motion/useGsapChoreography.ts`)** — Transform/opacity-only `ScrollTrigger` drafting hairlines (`ManuscriptReveal`) with `gsap.matchMedia()` breakpoints, automatic `mm.revert()` cleanup, `0ms` `prefers-reduced-motion: reduce` settle, and theme-adaptive (`#FCFBF8` Light / `#141413` Dark) vector architecture SVGs.
+- **Bilingual `/lab` Workbench (`01` → `07`)** — Token & AAA contrast inspector, GSAP paper-motion curve sandbox, 6 interaction primitives, 3D/SVG specimen coordinates, zero-PII RUM readout, **BFS deadlock-verified FSM Explorer & Micro-Latency Simulator (`src/components/lab/fsm/`)**, and **Nielsen 10 Heuristics × WCAG 2.1 Auditor (`src/components/lab/auditor/`)**.
+
+### 4. Grounded BM25 Rationale AI Lab, Custom A4 Resume Composer & Critique Dossiers
+- **Zero-Hallucination Rationale AI Lab (`/[locale]/ai`)** — Bilingual BM25 index across design decisions, research quotes, interaction patterns, FSM/heuristic audits, honest limits, and 13 essays with local PII redaction (`<= 1200` chars) and key-free fallback.
+- **Custom Resume & Dossier Composer (`/[locale]/resume/compose`) & Critique Studio (`/[locale]/brief/print`)** — Role specialization presets (`IxD × AI`, `Design Technologist`, `Product & UX`), case/tradeoff/ceiling toggles, bilingual A4 live preview, print PDF export, and Markdown copy, paired with pre-built PDF role decks (`public/decks/*.pdf`).
 
 ### 5. Security Hardening, Native Primitives & Zero-PII Telemetry
 - **Layered CSP Without Breaking SSG (`next.config.js`, `middleware.ts`)** — Removes `'unsafe-eval'` from production CSP, enforces `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and `frame-ancestors 'none'`, and keeps all 79 static App Router pages `● (SSG)`. Dynamic `/brief/*` routes receive per-request cryptographic nonces (`x-request-nonce`) and `private, no-store` caching.
@@ -124,7 +127,7 @@ portfolio/
 | `pnpm test:ci` | Vitest full run (`40` files / `205` tests) |
 | `pnpm automation:check` | Content validation + `proof:validate` + blog/automation tests |
 | `pnpm media:optimize` / `pnpm media:check` | Optimize project assets (`<= 12.00 MB` budget check) |
-| `pnpm budget:check` | Enforce JS chunk (`<= 70 kB`, lazy 3D `<= 160 kB`, route `<= 20 kB`) & App CSS (`<= 30 kB`) |
+| `pnpm budget:check` | Enforce JS chunk (`<= 70 kB`, lazy 3D `<= 160 kB`, route `<= 20 kB`) & App CSS (`<= 55 kB`) |
 | `pnpm resume:pdf` | Generate EN/ZH A4 resume PDFs via Chromium |
 | `pnpm decks:build` | Generate the 3 curated A4 role critique PDF decks (`public/decks/*.pdf`) |
 | `pnpm exec playwright test --project=chromium` | Full Chromium E2E, crawler, dark/mobile Axe A11y & security headers suite |

@@ -326,6 +326,14 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 <span className="cmdk-item-meta">Resume</span>
               </Command.Item>
               <Command.Item
+                value="custom resume composer dossier a4 print export 定制简历 组装"
+                className="cmdk-item"
+                onSelect={() => navigate("/resume/compose")}
+              >
+                <span>{isZh ? "打开定制简历组装台 (/resume/compose)" : "Open Custom Resume Composer (/resume/compose)"}</span>
+                <span className="cmdk-item-meta">Composer</span>
+              </Command.Item>
+              <Command.Item
                 value="toggle theme dark light mode 切换主题 暗黑 亮色"
                 className="cmdk-item"
                 onSelect={() => {

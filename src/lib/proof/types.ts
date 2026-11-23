@@ -371,10 +371,14 @@ export type ApplicationPacketActionHref =
   | `/hire?role=${HiringRoleId}`
   | `/contact?role=${HiringRoleId}&intent=interview`
   | `/contact?role=${HiringRoleId}`
-  | "/resume";
+  | "/resume"
+  | "/resume/compose"
+  | "/patterns"
+  | "/lab#fsm-explorer"
+  | "/brief/print";
 
 export interface ApplicationPacketAction {
-  kind: "role-room" | "contact" | "next" | "resume";
+  kind: "role-room" | "contact" | "next" | "resume" | "compose" | "patterns" | "lab" | "critique";
   label: string;
   href: ApplicationPacketActionHref;
 }

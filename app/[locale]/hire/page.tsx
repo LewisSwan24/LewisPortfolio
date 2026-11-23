@@ -131,6 +131,9 @@ export default async function HirePage() {
             <Link className="btn btn-primary" href={localizeInternalHref("/brief/print", proofLocale)}>
               {proofLocale === "zh" ? "打开在线 A4 评注打印工作台" : "Open Interactive A4 Critique Studio"}
             </Link>
+            <Link className="btn btn-ghost" href={localizeInternalHref("/resume/compose", proofLocale)}>
+              {proofLocale === "zh" ? "打开定制双语简历组装台" : "Open Custom Resume Composer"}
+            </Link>
             <a className="btn btn-ghost" href="/decks/ai-product-engineer.pdf" download>
               {proofLocale === "zh" ? "AI 产品工程师 Deck (PDF)" : "AI Product Engineer (PDF)"}
             </a>

@@ -15,6 +15,10 @@ const packetCopy = {
     contact: "Contact Lewis for this role",
     next: "Open next-step plan",
     resume: "Open resume",
+    compose: "Customize tailored A4 dossier",
+    patterns: "Inspect Pattern Atlas",
+    lab: "Inspect Lab FSM graphs",
+    critique: "Open A4 critique print studio",
   },
   zh: {
     headlineSuffix: "申请包",
@@ -23,6 +27,10 @@ const packetCopy = {
     contact: "按这个岗位联系 Lewis",
     next: "打开下一步计划",
     resume: "查看简历",
+    compose: "定制双语 A4 履历",
+    patterns: "查看交互模式图谱",
+    lab: "查看实验室状态机",
+    critique: "打开 A4 评注打印",
   },
 } as const;
 
@@ -31,6 +39,10 @@ function packetActions(role: HiringRoleId, locale: ProofLocale): ApplicationPack
 
   return [
     { kind: "role-room", label: copy.roleRoom, href: `/hire?role=${role}` },
+    { kind: "compose", label: copy.compose, href: "/resume/compose" },
+    { kind: "patterns", label: copy.patterns, href: "/patterns" },
+    { kind: "lab", label: copy.lab, href: "/lab#fsm-explorer" },
+    { kind: "critique", label: copy.critique, href: "/brief/print" },
     { kind: "contact", label: copy.contact, href: `/contact?role=${role}` },
     { kind: "next", label: copy.next, href: `/contact?role=${role}&intent=interview` },
     { kind: "resume", label: copy.resume, href: "/resume" },
