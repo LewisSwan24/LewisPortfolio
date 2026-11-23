@@ -1,0 +1,39 @@
+.manuscriptWrap {
+  position: relative;
+}
+
+.manuscriptWrap[data-with-hairline="true"] {
+  padding-inline-start: 16px;
+}
+
+.draftHairline {
+  position: absolute;
+  inset-block: 4px;
+  inset-inline-start: 0;
+  inline-size: 2px;
+  background: var(--hairline, #d6cdbc);
+  border-radius: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.draftHairlineFill {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background: var(--case-mood, var(--accent, #a63f2a));
+  transform-origin: top center;
+  will-change: transform;
+}
+
+@media (max-width: 720px) {
+  .manuscriptWrap[data-with-hairline="true"] {
+    padding-inline-start: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draftHairlineFill {
+    transform: none !important;
+  }
+}

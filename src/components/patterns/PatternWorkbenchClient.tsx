@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { getSimulatorComponent } from "@/components/case/simulators/registry";
 import { VerifiedStatusBadge } from "@/components/case/deep/VerifiedStatusBadge";
+import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
 import type { InteractionPattern, PatternCategory } from "@/lib/patterns/schema";
 import styles from "./patterns.module.css";
 
@@ -109,37 +110,40 @@ export function PatternWorkbenchClient({
       </div>
 
       <div className={styles.workbenchGrid}>
-        <nav
-          className={styles.selectorRail}
-          aria-label={isZh ? "交互模式目录" : "Interaction pattern index"}
-        >
-          {visiblePatterns.map((pattern) => {
-            const selected = pattern.slug === activePattern.slug;
-            return (
-              <button
-                key={pattern.slug}
-                type="button"
-                className={styles.patternCardBtn}
-                aria-pressed={selected}
-                onClick={() => selectPattern(pattern.slug)}
-              >
-                <div className={styles.cardTop}>
-                  <span className={styles.cardOrder}>
-                    {String(pattern.order).padStart(2, "0")}
+        <ManuscriptReveal itemSelector="[data-manuscript-item]">
+          <nav
+            className={styles.selectorRail}
+            aria-label={isZh ? "交互模式目录" : "Interaction pattern index"}
+          >
+            {visiblePatterns.map((pattern) => {
+              const selected = pattern.slug === activePattern.slug;
+              return (
+                <button
+                  key={pattern.slug}
+                  type="button"
+                  className={styles.patternCardBtn}
+                  data-manuscript-item=""
+                  aria-pressed={selected}
+                  onClick={() => selectPattern(pattern.slug)}
+                >
+                  <div className={styles.cardTop}>
+                    <span className={styles.cardOrder}>
+                      {String(pattern.order).padStart(2, "0")}
+                    </span>
+                    <span className={styles.cardCategory}>
+                      {CATEGORY_LABELS[pattern.category][locale]}
+                    </span>
+                  </div>
+                  <span className={styles.cardTitle}>{pattern.title[locale]}</span>
+                  <span className={styles.cardSource}>
+                    {isZh ? "源自案例：" : "Source: "}
+                    {pattern.sourceCaseSlug}
                   </span>
-                  <span className={styles.cardCategory}>
-                    {CATEGORY_LABELS[pattern.category][locale]}
-                  </span>
-                </div>
-                <span className={styles.cardTitle}>{pattern.title[locale]}</span>
-                <span className={styles.cardSource}>
-                  {isZh ? "源自案例：" : "Source: "}
-                  {pattern.sourceCaseSlug}
-                </span>
-              </button>
-            );
-          })}
-        </nav>
+                </button>
+              );
+            })}
+          </nav>
+        </ManuscriptReveal>
 
         <article className={styles.specimenPane} aria-live="off">
           <header className={styles.specimenHead}>

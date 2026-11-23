@@ -5,7 +5,7 @@ import { TransitionLink } from "@/components/navigation/TransitionLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
 import { FeaturedDeck } from "@/components/home/FeaturedDeck";
 import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
-import { SectionReveal } from "@/components/motion/SectionReveal";
+import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
 import { VizMaze } from "@/components/viz/ProjectViz";
 import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
 import { getProjectCover } from "@/lib/project-covers";
@@ -199,17 +199,17 @@ export default async function HomePage() {
             <p className="prose">{t("approach.body")}</p>
           </div>
           <div className="v4-span-8">
-            <SectionReveal>
+            <ManuscriptReveal withHairline itemSelector="[data-reveal-item]">
               <div className="approach-steps">
                 {[1, 2, 3, 4].map((i) => (
-                  <div className="approach-step" key={i} data-reveal-item>
+                  <div className="approach-step" key={i} data-reveal-item="">
                     <div className="num">0{i}</div>
                     <h4>{t(`approach.step.${i}.t`)}</h4>
                     <p>{t(`approach.step.${i}.b`)}</p>
                   </div>
                 ))}
               </div>
-            </SectionReveal>
+            </ManuscriptReveal>
           </div>
         </div>
       </section>

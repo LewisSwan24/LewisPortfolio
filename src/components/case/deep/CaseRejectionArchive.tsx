@@ -1,4 +1,5 @@
 import type { CaseRejectionEntry } from "@/lib/cases/modules-schema";
+import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
 import { FocusTagList, VerifiedStatusBadge } from "./VerifiedStatusBadge";
 import styles from "./cases-deep.module.css";
 
@@ -44,48 +45,50 @@ export function CaseRejectionArchive({
         <p className={styles.lead}>{copy.lead}</p>
       </header>
 
-      <ol className={styles.rejectionList}>
-        {entries.map((entry) => (
-          <li
-            key={entry.id}
-            className={styles.rejectionCard}
-            data-focus-item=""
-            data-focus-tags={entry.focusTags.join(" ")}
-          >
-            <div className={styles.rejectionHead}>
-              <div className={styles.rejectionMeta}>
-                <h3 className={styles.cardTitle}>{entry.round[locale]}</h3>
-                <span className={styles.rejectionDate}>{entry.date}</span>
+      <ManuscriptReveal withHairline itemSelector="[data-focus-item]">
+        <ol className={styles.rejectionList}>
+          {entries.map((entry) => (
+            <li
+              key={entry.id}
+              className={styles.rejectionCard}
+              data-focus-item=""
+              data-focus-tags={entry.focusTags.join(" ")}
+            >
+              <div className={styles.rejectionHead}>
+                <div className={styles.rejectionMeta}>
+                  <h3 className={styles.cardTitle}>{entry.round[locale]}</h3>
+                  <span className={styles.rejectionDate}>{entry.date}</span>
+                </div>
+
+                <div className={styles.badgeRow}>
+                  <VerifiedStatusBadge status={entry.verifiedStatus} locale={locale} />
+                  <FocusTagList tags={entry.focusTags} locale={locale} />
+                </div>
               </div>
 
-              <div className={styles.badgeRow}>
-                <VerifiedStatusBadge status={entry.verifiedStatus} locale={locale} />
-                <FocusTagList tags={entry.focusTags} locale={locale} />
-              </div>
-            </div>
+              <dl className={styles.rejectionGrid}>
+                <div className={styles.fieldCell}>
+                  <dt>{copy.before}</dt>
+                  <dd>{entry.artifactBefore[locale]}</dd>
+                </div>
+                <div className={`${styles.fieldCell} ${styles.frictionCell}`}>
+                  <dt>{copy.failure}</dt>
+                  <dd>{entry.failureExposed[locale]}</dd>
+                </div>
+                <div className={styles.fieldCell}>
+                  <dt>{copy.fix}</dt>
+                  <dd>{entry.fixApplied[locale]}</dd>
+                </div>
+              </dl>
 
-            <dl className={styles.rejectionGrid}>
-              <div className={styles.fieldCell}>
-                <dt>{copy.before}</dt>
-                <dd>{entry.artifactBefore[locale]}</dd>
-              </div>
-              <div className={`${styles.fieldCell} ${styles.frictionCell}`}>
-                <dt>{copy.failure}</dt>
-                <dd>{entry.failureExposed[locale]}</dd>
-              </div>
-              <div className={styles.fieldCell}>
-                <dt>{copy.fix}</dt>
-                <dd>{entry.fixApplied[locale]}</dd>
-              </div>
-            </dl>
-
-            <p className={styles.rejectionReceipt}>
-              {copy.receipt}
-              {entry.sourceReceipt[locale]}
-            </p>
-          </li>
-        ))}
-      </ol>
+              <p className={styles.rejectionReceipt}>
+                {copy.receipt}
+                {entry.sourceReceipt[locale]}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </ManuscriptReveal>
     </section>
   );
 }
