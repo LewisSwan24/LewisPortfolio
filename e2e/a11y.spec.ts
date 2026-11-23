@@ -14,6 +14,7 @@ const AUDIT_ROUTES = [
   "/en/about",
   "/en/hire",
   "/en/resume",
+  "/en/resume/compose",
   "/en/contact",
 ];
 
@@ -27,6 +28,7 @@ const DARK_AND_MOBILE_ROUTES = [
   "/en/ai",
   "/en/hire",
   "/en/resume",
+  "/en/resume/compose",
 ];
 
 async function runAxeAudit(page: Page) {

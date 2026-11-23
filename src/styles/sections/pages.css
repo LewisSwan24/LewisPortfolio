@@ -118,7 +118,7 @@
   flex-wrap: wrap; gap: var(--s-5);
   border-bottom: 1px solid var(--border);
 }
-.res-actions { display: flex; gap: 10px; }
+.res-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 @media (max-width: 640px) {
   .res-actions {
     width: 100%;
