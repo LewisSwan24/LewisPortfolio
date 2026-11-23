@@ -57,9 +57,13 @@ export function StructuredRationaleCard({
               ? isZh
                 ? "查看交互模式图谱 ↗"
                 : "Inspect in Pattern Atlas ↗"
-              : isZh
-                ? "直达案例论证 ↗"
-                : "Inspect in case study ↗"}
+              : citation.href.includes("/lab")
+                ? isZh
+                  ? "进入实验室状态机 / 审计台 ↗"
+                  : "Inspect in Lab Workbench ↗"
+                : isZh
+                  ? "直达案例论证 ↗"
+                  : "Inspect in case study ↗"}
         </Link>
 
         {showInspector && (

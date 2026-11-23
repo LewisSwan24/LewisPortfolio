@@ -3,6 +3,10 @@ import { getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { LabWorkbench } from "@/components/lab/LabWorkbench";
 import { LabTelemetryPanel } from "@/components/lab/LabTelemetryPanel";
+import { FsmExplorerPanel } from "@/components/lab/fsm/FsmExplorerPanel";
+import { HeuristicAuditWorkbench } from "@/components/lab/auditor/HeuristicAuditWorkbench";
+import { CASE_FSM_SPECS } from "@/data/fsm/case-fsms";
+import { CASE_HEURISTIC_AUDITS } from "@/data/heuristics/case-heuristics";
 import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
 import patternStyles from "@/components/patterns/patterns.module.css";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
@@ -67,6 +71,10 @@ export default async function LabPage() {
       <LabWorkbench locale={locale} />
       <SpecimenAxisCanvas locale={locale} />
       <LabTelemetryPanel locale={locale} />
+      <div className="container lab-grid">
+        <FsmExplorerPanel specs={CASE_FSM_SPECS} locale={locale} />
+        <HeuristicAuditWorkbench audits={CASE_HEURISTIC_AUDITS} locale={locale} />
+      </div>
     </main>
   );
 }

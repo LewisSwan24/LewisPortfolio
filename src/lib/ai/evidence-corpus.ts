@@ -5,12 +5,15 @@ import { getListedCases } from "@/lib/cases/registry";
 import type { RoleTrack } from "@/lib/cases/schema";
 import { localizeInternalHref } from "@/lib/locale-href";
 import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
+import { CASE_FSM_SPECS } from "@/data/fsm/case-fsms";
+import { CASE_HEURISTIC_AUDITS } from "@/data/heuristics/case-heuristics";
 import { getCaseDepth } from "@/lib/proof/case-depth";
 
 export type EvidencePillar =
   | "design-rationale"
   | "research-quote"
   | "pattern"
+  | "heuristic"
   | "metric-limit"
   | "narrative"
   | "writing";
@@ -40,6 +43,7 @@ export const PILLAR_WEIGHT: Record<EvidencePillar, number> = {
   "design-rationale": 2.8,
   "research-quote": 2.4,
   pattern: 2.2,
+  heuristic: 1.9,
   "metric-limit": 2.0,
   writing: 1.8,
   narrative: 1.0,
@@ -250,6 +254,54 @@ function buildCorpus(): EvidenceChunk[] {
       href: {
         en: localizeInternalHref(`/patterns?pattern=${pat.slug}`, "en"),
         zh: localizeInternalHref(`/patterns?pattern=${pat.slug}`, "zh"),
+      },
+    });
+  }
+
+  for (const fsm of CASE_FSM_SPECS) {
+    chunks.push({
+      id: `fsm:${fsm.slug}`,
+      slug: fsm.slug,
+      type: "case",
+      pillar: "heuristic",
+      weight: PILLAR_WEIGHT.heuristic,
+      roleTracks: ["interaction", "design-eng"],
+      caseTitle: fsm.caseName,
+      title: {
+        en: `FSM Simulator · ${fsm.caseName.en}`,
+        zh: `有限状态机模型 · ${fsm.caseName.zh}`,
+      },
+      text: {
+        en: `${fsm.summary.en} Timing bounds: debounce ${fsm.timing.defaults.debounceMs}ms, hold ${fsm.timing.defaults.holdThresholdMs}ms, cooldown ${fsm.timing.defaults.cooldownMs}ms. ${fsm.timing.rationale.en}`,
+        zh: `${fsm.summary.zh} 时序边界：防抖 ${fsm.timing.defaults.debounceMs}ms、长按阈值 ${fsm.timing.defaults.holdThresholdMs}ms、冷却 ${fsm.timing.defaults.cooldownMs}ms。${fsm.timing.rationale.zh}`,
+      },
+      href: {
+        en: localizeInternalHref(`/lab#fsm-explorer`, "en"),
+        zh: localizeInternalHref(`/lab#fsm-explorer`, "zh"),
+      },
+    });
+  }
+
+  for (const audit of CASE_HEURISTIC_AUDITS) {
+    chunks.push({
+      id: `heuristic:${audit.id}`,
+      slug: audit.slug,
+      type: "case",
+      pillar: "heuristic",
+      weight: PILLAR_WEIGHT.heuristic,
+      roleTracks: ["interaction", "ai-ux"],
+      caseTitle: {
+        en: `${audit.slug} · ${audit.wcagRef}`,
+        zh: `${audit.slug} · ${audit.wcagRef}`,
+      },
+      title: {
+        en: audit.heuristic,
+        zh: `${audit.heuristic} (${audit.wcagRef})`,
+      },
+      text: audit.finding,
+      href: {
+        en: localizeInternalHref(`/lab#heuristic-auditor`, "en"),
+        zh: localizeInternalHref(`/lab#heuristic-auditor`, "zh"),
       },
     });
   }

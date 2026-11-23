@@ -1,0 +1,336 @@
+.engineSection {
+  display: grid;
+  gap: var(--s-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  padding: var(--s-6);
+  min-inline-size: 0;
+}
+
+.engineHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s-4);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.engineTitle {
+  margin: var(--s-2) 0 0;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.engineLead {
+  margin: var(--s-2) 0 0;
+  max-width: 56ch;
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.pillBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.pillBtn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill, 999px);
+  background: var(--bg);
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 140ms var(--ease-out), color 140ms var(--ease-out),
+    background-color 140ms var(--ease-out);
+}
+
+.pillBtn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.pillBtn[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.fsmLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+  gap: var(--s-5);
+  align-items: start;
+}
+
+.graphCard {
+  display: grid;
+  gap: var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg);
+  padding: var(--s-4);
+  min-inline-size: 0;
+}
+
+.fsmSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+
+.triggerTray {
+  display: grid;
+  gap: 10px;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.triggerButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.triggerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.triggerBtn:hover {
+  border-color: var(--accent);
+}
+
+.triggerBtn[data-kind="error"] {
+  border-color: var(--danger);
+}
+
+.triggerBtn[data-kind="recover"] {
+  border-style: dashed;
+}
+
+.triggerKindTag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+
+.controlPanel {
+  display: grid;
+  gap: var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg);
+  padding: var(--s-4);
+  min-inline-size: 0;
+}
+
+.telemetryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.telemetryCell {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+}
+
+.telemetryValue {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.sliderList {
+  display: grid;
+  gap: 12px;
+}
+
+.sliderRow {
+  display: grid;
+  gap: 4px;
+}
+
+.sliderHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.sliderOutput {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.sliderInput {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule);
+}
+
+.statusBar {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  border: 1px dashed var(--border);
+  background: var(--surface-2);
+}
+
+.auditGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: var(--s-4);
+}
+
+.auditCard {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg);
+  min-inline-size: 0;
+}
+
+.auditMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.severityPill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-2);
+  background: var(--surface);
+}
+
+.severityPill[data-severity="structural-guard"] {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.severityPill[data-severity="open-risk"] {
+  border-style: dashed;
+}
+
+.auditHeading {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.auditFinding {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.auditFoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--rule);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+@media (max-width: 960px) {
+  .fsmLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .engineSection {
+    padding: var(--s-4);
+  }
+  .telemetryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillBtn {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .engineSection,
+  .graphCard,
+  .controlPanel,
+  .auditCard,
+  .pillBtn,
+  .triggerBtn {
+    border: 1px solid ButtonBorder;
+  }
+}
