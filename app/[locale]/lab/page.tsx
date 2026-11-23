@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
+import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { LabWorkbench } from "@/components/lab/LabWorkbench";
 import { LabTelemetryPanel } from "@/components/lab/LabTelemetryPanel";
 import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
+import patternStyles from "@/components/patterns/patterns.module.css";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
@@ -44,6 +46,21 @@ export default async function LabPage() {
                 ? "这里不放装饰性的特效模板，而是直接呈现本站的 V4 Swiss Editorial 色彩对比度规范、GSAP 纸面动效曲线，以及三个项目中最核心的交互状态规则。"
                 : "No decorative templates — this workbench exposes the live V4 Swiss Editorial contrast tokens, the GSAP paper-motion curve layer, and the core state rules behind three projects."}
             </p>
+            <div className={patternStyles.bannerCard} style={{ marginTop: "var(--s-4)" }}>
+              <div style={{ display: "grid", gap: 4 }}>
+                <span className={patternStyles.kicker}>
+                  {isZh ? "模式标本库 · Pattern Atlas" : "Pattern Specimen Library"}
+                </span>
+                <p style={{ margin: 0, fontSize: 14, color: "var(--text-2)" }}>
+                  {isZh
+                    ? "查看 6 项跨案例交互模式与可复制 TypeScript/React 参考片段。"
+                    : "Test all 6 cross-case interaction rules with live sandboxes and copyable code snippets."}
+                </p>
+              </div>
+              <Link href="/patterns" className="btn btn-ghost">
+                {isZh ? "进入模式图谱 →" : "Open Pattern Atlas →"}
+              </Link>
+            </div>
           </div>
         </div>
       </section>

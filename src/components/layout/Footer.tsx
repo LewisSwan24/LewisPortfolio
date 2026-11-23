@@ -1,11 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { siteConfig } from "@/lib/site";
 
 export function Footer() {
   const t = useTranslations();
+  const locale = useLocale();
+  const isZh = locale === "zh";
 
   return (
     <footer className="pd-footer">
@@ -19,6 +21,7 @@ export function Footer() {
             <h4>{t("foot.site")}</h4>
             <ul>
               <li><Link href="/projects">{t("nav.work")}</Link></li>
+              <li><Link href="/patterns">{isZh ? "模式图谱" : "Patterns"}</Link></li>
               <li><Link href="/lab">{t("nav.lab")}</Link></li>
               <li><Link href="/ai">{t("nav.ai")}</Link></li>
               <li><Link href="/about">{t("nav.about")}</Link></li>

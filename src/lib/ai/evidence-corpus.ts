@@ -4,11 +4,13 @@ import matter from "gray-matter";
 import { getListedCases } from "@/lib/cases/registry";
 import type { RoleTrack } from "@/lib/cases/schema";
 import { localizeInternalHref } from "@/lib/locale-href";
+import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
 import { getCaseDepth } from "@/lib/proof/case-depth";
 
 export type EvidencePillar =
   | "design-rationale"
   | "research-quote"
+  | "pattern"
   | "metric-limit"
   | "narrative"
   | "writing";
@@ -37,6 +39,7 @@ export interface EvidenceChunk {
 export const PILLAR_WEIGHT: Record<EvidencePillar, number> = {
   "design-rationale": 2.8,
   "research-quote": 2.4,
+  pattern: 2.2,
   "metric-limit": 2.0,
   writing: 1.8,
   narrative: 1.0,
@@ -220,6 +223,36 @@ function buildCorpus(): EvidenceChunk[] {
   }
 
   chunks.push(...loadPublishedBlogChunks());
+
+  for (const pat of getAllInteractionPatterns()) {
+    chunks.push({
+      id: `pattern:${pat.slug}`,
+      slug: pat.sourceCaseSlug,
+      type: "case",
+      pillar: "pattern",
+      weight: PILLAR_WEIGHT.pattern,
+      roleTracks: pat.roleTracks,
+      caseTitle: {
+        en: `Pattern · ${pat.title.en}`,
+        zh: `交互模式 · ${pat.title.zh}`,
+      },
+      title: pat.title,
+      structured: {
+        tension: pat.humanTension,
+        rejected: pat.commonAntiPattern,
+        chosen: pat.chosenRule,
+        limit: pat.metricsCeiling.summary,
+      },
+      text: {
+        en: `${pat.tagline.en} Rule: ${pat.chosenRule.en} Limit: ${pat.metricsCeiling.summary.en}`,
+        zh: `${pat.tagline.zh} 规则：${pat.chosenRule.zh} 边界：${pat.metricsCeiling.summary.zh}`,
+      },
+      href: {
+        en: localizeInternalHref(`/patterns?pattern=${pat.slug}`, "en"),
+        zh: localizeInternalHref(`/patterns?pattern=${pat.slug}`, "zh"),
+      },
+    });
+  }
 
   return chunks;
 }

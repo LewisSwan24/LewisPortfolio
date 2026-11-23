@@ -1,0 +1,25 @@
+---
+title: "Designing Bilingual Technical Case Studies Without Translation Drift"
+date: "2026-11-14"
+excerpt: "Translating finished prose after launch turns English and Chinese sites into two diverging stories. How Zod schemas, parallel EN/ZH fields, and automated symmetry gates prevent drift."
+tags:
+  - Engineering
+  - Bilingual UX
+  - Content Systems
+author: "Lewis Dong"
+published: true
+---
+
+Most bilingual portfolios treat the second language as an afterthought: ship English pages first, batch-translate copy weeks later, and hope metrics, dates, and honest caveats never go out of sync. Within two edits, the Chinese page promises something the English page already retracted.
+
+## Structural parity enforced at schema level
+
+In this portfolio — as well as in [Lamplight Nook](/projects/lamplight) where every café commission card follows system EN/ZH locale — bilingual parity lives inside the data contract rather than manual spreadsheets:
+
+1. **Co-located `LocalizedString` fields**: Every case study decision (`CaseRecordSchema`), deep interaction module (`CaseModulesRecordSchema`), and [Pattern Atlas](/patterns) entry stores `{ en, zh }` side-by-side inside the exact same TypeScript object.
+2. **Server-only modular loading**: Large bilingual datasets under `src/data/cases/modules/` and `src/data/patterns/` stay strictly on the server while `src/messages/{en,zh}.json` carries only lightweight UI chrome labels — keeping client hydration bundles small.
+3. **Automated Vitest & Playwright parity gates**: `src/lib/__tests__/blog.test.ts` fails CI if any essay slug or `date` diverges across locales, if an English title leaks Han characters, or if a Chinese essay falls back to untranslated English. Meanwhile `e2e/crawler.spec.ts` fails if any `/zh/blog/` internal link accidentally drops its `/zh/` prefix.
+
+## Writing the nuance natively, never machine-translating idioms
+
+Because English technical brevity and Chinese structural phrasing follow different rhythms, keeping `{ en, zh }` adjacent lets both versions stay crisp and faithful to the exact same evidence boundary — never inflating sample sizes on one side while hedging on the other. See the live cross-case evidence index in the [AI Lab](/ai).

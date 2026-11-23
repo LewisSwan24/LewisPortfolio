@@ -12,6 +12,7 @@ const SYNONYMS: Record<string, string[]> = {
   accessibility: ["a11y", "wcag", "aaa", "dialog", "keyboard", "focus", "contrast", "无障碍", "键盘", "对比"],
   research: ["limit", "boundary", "study", "sample", "empirical", "observation", "样本", "实测", "研究"],
   writing: ["essay", "blog", "article", "文章", "专栏"],
+  pattern: ["patterns", "atlas", "anti-pattern", "rule", "widget", "模式", "图谱", "反模式", "范式"],
 };
 
 const STOP_WORDS = new Set([

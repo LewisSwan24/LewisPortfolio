@@ -5,6 +5,7 @@ const AUDIT_ROUTES = [
   "/en",
   "/zh",
   "/en/projects",
+  "/en/patterns",
   "/en/projects/walkie",
   "/en/projects/lamplight",
   "/en/lab",
@@ -19,6 +20,7 @@ const AUDIT_ROUTES = [
 const DARK_AND_MOBILE_ROUTES = [
   "/en",
   "/en/projects",
+  "/en/patterns",
   "/en/projects/walkie",
   "/en/projects/lamplight",
   "/en/lab",

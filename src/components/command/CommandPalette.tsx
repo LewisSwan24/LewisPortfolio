@@ -294,6 +294,14 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
 
             <Command.Group className="cmdk-group-heading" heading={isZh ? "快捷操作" : "Quick Actions"}>
               <Command.Item
+                value="patterns atlas anti-pattern code snippet 模式 图谱 范式"
+                className="cmdk-item"
+                onSelect={() => navigate("/patterns")}
+              >
+                <span>{isZh ? "打开交互模式图谱 (/patterns)" : "Open Pattern Atlas (/patterns)"}</span>
+                <span className="cmdk-item-meta">Patterns</span>
+              </Command.Item>
+              <Command.Item
                 value="ai lab rationale bm25 grounded evidence 实验室 辩护 证据"
                 className="cmdk-item"
                 onSelect={() => navigate("/ai")}

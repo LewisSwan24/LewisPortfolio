@@ -1,10 +1,12 @@
 import { getListedCases } from "@/lib/cases/registry";
+import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
 import { getAllBlogPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 
 export async function buildLlmsTxt(): Promise<string> {
   const baseUrl = siteConfig.url.replace(/\/$/, "");
   const listedCases = getListedCases();
+  const patterns = getAllInteractionPatterns();
   const posts = await getAllBlogPosts("en");
 
   const caseLines = listedCases.map((record) => {
@@ -28,6 +30,10 @@ export async function buildLlmsTxt(): Promise<string> {
     ].join("\n");
   });
 
+  const patternLines = patterns.map(
+    (p) => `- [${p.title.en}](${baseUrl}/en/patterns?pattern=${p.slug}) (source: ${p.sourceCaseSlug}) — ${p.tagline.en}`
+  );
+
   const postLines = posts.map(
     (p) => `- [${p.title}](${baseUrl}/en/blog/${p.slug}) (${p.date}) — ${p.excerpt}`
   );
@@ -42,6 +48,7 @@ export async function buildLlmsTxt(): Promise<string> {
     "",
     `- [Home (Top 6 Featured Deck)](${baseUrl}/en): Curated overview of flagship physical, AI, and design-engineering builds.`,
     `- [All Work Index](${baseUrl}/en/projects): Filterable matrix of ${listedCases.length} listed case studies, capability proof table, and cross-case DecisionComparator.`,
+    `- [Interaction Pattern Atlas (/patterns)](${baseUrl}/en/patterns): ${patterns.length} reusable interaction patterns with live micro-sandboxes, anti-pattern contrasts, and copyable reference snippets.`,
     `- [Lab (/lab)](${baseUrl}/en/lab): Swiss Editorial token/contrast inspector, GSAP paper-motion sandbox, 3D/SVG specimen coordinates, and 6 interaction primitives.`,
     `- [AI Lab (/ai)](${baseUrl}/en/ai): Zero-hallucination bilingual BM25 rationale workbench indexing all ${listedCases.length} listed cases (18 tradeoffs) and ${posts.length} essays with local PII scrubbing.`,
     `- [Hiring Decision Room](${baseUrl}/en/hire): Role-tailored lens (?role=product|interaction|design-eng|ai-ux), JD evidence matcher, A4 critique print dossiers, and honest project limits.`,
@@ -53,6 +60,10 @@ export async function buildLlmsTxt(): Promise<string> {
     `## Listed Case Studies (${listedCases.length})`,
     "",
     ...caseLines,
+    "",
+    `## Interaction Pattern Atlas (${patterns.length})`,
+    "",
+    ...patternLines,
     "",
     `## Published Engineering & Design Notes (${posts.length})`,
     "",

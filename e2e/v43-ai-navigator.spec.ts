@@ -18,7 +18,7 @@ test.describe("Grounded Design-Defense AI Navigator & Essay #2", () => {
       .getByRole("button", { name: /Why physical watch buttons instead of hands-free voice/i })
       .click();
 
-    await expect(dialog.getByText("Walkie")).toBeVisible({ timeout: 10000 });
+    await expect(dialog.getByText("Walkie", { exact: true })).toBeVisible({ timeout: 10000 });
     await expect(
       dialog.getByRole("link", { name: /Inspect in case study|Read source essay|Jump to rationale/i }).first()
     ).toHaveAttribute(
