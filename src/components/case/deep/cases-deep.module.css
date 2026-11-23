@@ -1,0 +1,587 @@
+/* ============================================================
+   v4.6 Deep Interaction Case Study Modules (Isolated CSS Module)
+   Honors modern-web-guidance: logical properties, min-inline-size: 0,
+   scrollbar-gutter: stable, overscroll-behavior: contain, forced-colors.
+   ============================================================ */
+
+.focusScope {
+  display: grid;
+  gap: var(--s-7);
+  min-inline-size: 0;
+}
+
+.section {
+  position: relative;
+  min-inline-size: 0;
+  padding: var(--s-6);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+
+.anchorTarget {
+  scroll-margin-top: 96px;
+}
+
+.sectionHeader {
+  display: grid;
+  gap: var(--s-2);
+  padding-block-end: var(--s-4);
+  margin-block-end: var(--s-5);
+  border-block-end: 1px dashed var(--border);
+}
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.lead {
+  margin: 0;
+  max-inline-size: 68ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+/* ---------- Review Role Lens Switcher ---------- */
+
+.lensShell {
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  border: 1px solid var(--border);
+  border-inline-start: 3px solid var(--case-mood, var(--accent));
+  border-radius: var(--r-md);
+  background: var(--bg-alt);
+  min-inline-size: 0;
+}
+
+.lensTopRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  min-inline-size: 0;
+}
+
+.lensHeadingBlock {
+  display: grid;
+  gap: 4px;
+  min-inline-size: 0;
+}
+
+.lensTitle {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.lensControls {
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: balance;
+  gap: var(--s-2);
+  min-inline-size: 0;
+}
+
+.lensButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-inline-size: 44px;
+  min-block-size: 36px;
+  padding-inline: 14px;
+  padding-block: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--text-2);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.lensButton:hover {
+  border-color: var(--case-mood, var(--accent));
+  color: var(--text);
+}
+
+.lensButton:focus-visible {
+  outline: 2px solid var(--case-mood, var(--accent));
+  outline-offset: 2px;
+}
+
+.lensButton[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+@media (pointer: coarse) {
+  .lensButton {
+    min-block-size: 44px;
+  }
+}
+
+.lensCallout {
+  margin: 0;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-sm);
+  background: var(--case-mood-soft, var(--surface-2));
+  border: 1px solid color-mix(in srgb, var(--case-mood, var(--border)) 40%, transparent);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.srStatus {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Verified Status & Focus Tag Badges ---------- */
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-inline: 10px;
+  padding-block: 3px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-2);
+}
+
+.verifiedDot {
+  inline-size: 7px;
+  block-size: 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  background: var(--text-3);
+}
+
+.verifiedBadge[data-status="observed"] .verifiedDot {
+  background: var(--success);
+}
+
+.verifiedBadge[data-status="bench-tested"] .verifiedDot {
+  background: var(--info);
+}
+
+.verifiedBadge[data-status="synthetic-gate"] .verifiedDot {
+  background: var(--case-mood, var(--accent));
+}
+
+.verifiedBadge[data-status="unverified-hypothesis"] {
+  border-style: dashed;
+}
+
+.verifiedBadge[data-status="unverified-hypothesis"] .verifiedDot {
+  background: var(--warning);
+}
+
+.focusTag {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 8px;
+  padding-block: 2px;
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* ---------- Focus Lens Filtering (Zero Layout Thrashing) ---------- */
+
+.focusScope[data-active-focus="ux-research"] [data-focus-item]:not([data-focus-tags~="ux-research"]),
+.focusScope[data-active-focus="systems-hardware"] [data-focus-item]:not([data-focus-tags~="systems-hardware"]),
+.focusScope[data-active-focus="ai-trust"] [data-focus-item]:not([data-focus-tags~="ai-trust"]) {
+  opacity: 0.48;
+  transition: opacity 160ms ease, border-color 160ms ease;
+}
+
+.focusScope[data-active-focus="ux-research"] [data-focus-item][data-focus-tags~="ux-research"],
+.focusScope[data-active-focus="systems-hardware"] [data-focus-item][data-focus-tags~="systems-hardware"],
+.focusScope[data-active-focus="ai-trust"] [data-focus-item][data-focus-tags~="ai-trust"] {
+  border-color: var(--case-mood, var(--accent));
+  box-shadow: inset 3px 0 0 var(--case-mood, var(--accent));
+  transition: opacity 160ms ease, border-color 160ms ease;
+}
+
+/* ---------- Journey Rail ---------- */
+
+.journeyList {
+  display: grid;
+  gap: var(--s-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-inline-size: 0;
+}
+
+.journeyCard {
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg-alt);
+  min-inline-size: 0;
+}
+
+.journeyHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+  min-inline-size: 0;
+}
+
+.journeyTitleGroup {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  min-inline-size: 0;
+}
+
+.stepNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 28px;
+  block-size: 28px;
+  padding-inline: 6px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.journeyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--s-3);
+  margin: 0;
+  min-inline-size: 0;
+}
+
+.fieldCell {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: var(--s-3);
+  border: 1px solid var(--rule, var(--border));
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  min-inline-size: 0;
+}
+
+.fieldCell dt {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.fieldCell dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.frictionCell {
+  background: var(--case-mood-soft, var(--surface));
+}
+
+/* ---------- 5-State Interaction Matrix ---------- */
+
+.tableScroll {
+  inline-size: 100%;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg-alt);
+}
+
+.stateTable {
+  inline-size: 100%;
+  min-inline-size: 760px;
+  border-collapse: collapse;
+  text-align: start;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.tableCaption {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.stateTable thead th {
+  padding: var(--s-3) var(--s-4);
+  background: var(--surface-2);
+  border-block-end: 1px solid var(--border);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.stateTable tbody tr {
+  border-block-end: 1px solid var(--rule, var(--border));
+}
+
+.stateTable tbody tr:last-child {
+  border-block-end: 0;
+}
+
+.stateTable tbody th[scope="row"] {
+  padding: var(--s-4);
+  vertical-align: top;
+  min-inline-size: 175px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border-inline-end: 1px solid var(--rule, var(--border));
+}
+
+.stateTable tbody td {
+  padding: var(--s-4);
+  vertical-align: top;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.stateHeading {
+  display: grid;
+  gap: 8px;
+}
+
+.stateCode {
+  display: inline-flex;
+  align-self: start;
+  padding-inline: 8px;
+  padding-block: 2px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.mobileMatrix {
+  display: none;
+}
+
+.mobileStateList {
+  display: grid;
+  gap: var(--s-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mobileStateCard {
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg-alt);
+  min-inline-size: 0;
+}
+
+.mobileStateDl {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+}
+
+.mobileStateRow {
+  display: grid;
+  gap: 2px;
+  padding-block-start: var(--s-2);
+  border-block-start: 1px solid var(--rule, var(--border));
+}
+
+.mobileStateRow dt {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.mobileStateRow dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding: var(--s-4);
+  }
+  .lensShell {
+    padding: var(--s-4);
+  }
+  .desktopMatrix {
+    display: none;
+  }
+  .mobileMatrix {
+    display: block;
+  }
+}
+
+/* ---------- Rejection & Rework Archive ---------- */
+
+.rejectionList {
+  display: grid;
+  gap: var(--s-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-inline-size: 0;
+}
+
+.rejectionCard {
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg-alt);
+  min-inline-size: 0;
+}
+
+.rejectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  min-inline-size: 0;
+}
+
+.rejectionMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-2);
+}
+
+.rejectionDate {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.rejectionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s-3);
+  margin: 0;
+  min-inline-size: 0;
+}
+
+.rejectionReceipt {
+  margin: 0;
+  padding-block-start: var(--s-3);
+  border-block-start: 1px dashed var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-3);
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lensButton,
+  .focusScope [data-focus-item] {
+    transition: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .section,
+  .lensShell,
+  .lensButton,
+  .journeyCard,
+  .mobileStateCard,
+  .rejectionCard,
+  .tableScroll {
+    border: 1px solid ButtonBorder;
+  }
+  .lensButton[aria-pressed="true"] {
+    outline: 2px solid Highlight;
+  }
+}

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -39,6 +40,13 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 import { getCaseCard, getCaseRecordOrThrow } from "@/lib/cases/registry";
+import { getCaseDepthModules } from "@/data/cases/modules";
+import { CaseReviewLensSwitch } from "@/components/case/deep/CaseReviewLensSwitch";
+import { CaseFocusRegion } from "@/components/case/deep/CaseFocusRegion";
+import { CaseJourneyRail } from "@/components/case/deep/CaseJourneyRail";
+import { CaseStateMatrixTable } from "@/components/case/deep/CaseStateMatrixTable";
+import { CaseRejectionArchive } from "@/components/case/deep/CaseRejectionArchive";
+import deepStyles from "@/components/case/deep/cases-deep.module.css";
 
 type Slug = CurrentProjectSlug;
 const SLUGS = [...CURRENT_PROJECT_SLUGS];
@@ -151,10 +159,20 @@ export default async function CasePage({ params }: Props) {
       ? ["design-decisions", isZh ? "设计决策论证" : "Design Decisions"]
       : null;
 
+  const depthModules = getCaseDepthModules(k);
+  const depthJumps: Array<readonly [string, string]> = depthModules
+    ? [
+        ["journey-map", isZh ? "全流程旅程" : "Journey map"],
+        ["state-matrix", isZh ? "五态边界矩阵" : "5-State matrix"],
+        ["rejection-archive", isZh ? "打回重做档案" : "Rejection archive"],
+      ]
+    : [];
+
   const jumpSections: Array<readonly [string, string]> = [
     ["artifact", isZh ? "核心产物" : "Artifact"],
     ["snapshot", isZh ? "案例摘要" : "Summary"],
     ...(designDecisionsJump ? [designDecisionsJump] : []),
+    ...depthJumps,
     ...(interactiveJump && interactiveDemo?.placement === "after-summary"
       ? [interactiveJump]
       : []),
@@ -271,6 +289,25 @@ export default async function CasePage({ params }: Props) {
           )}
         </dl>
 
+        {depthModules && (
+          <div style={{ marginTop: "var(--s-5)" }}>
+            <Suspense
+              fallback={
+                <div className={deepStyles.lensShell} aria-hidden="true">
+                  <p className={deepStyles.lensCallout}>
+                    {depthModules.lensCallouts.all[proofLocale]}
+                  </p>
+                </div>
+              }
+            >
+              <CaseReviewLensSwitch
+                callouts={depthModules.lensCallouts}
+                locale={proofLocale}
+              />
+            </Suspense>
+          </div>
+        )}
+
         <div className="v4-editorial-grid" style={{ marginTop: "var(--s-6)" }}>
           <aside className="v4-span-4 v4-rail-sticky" aria-label={isZh ? "案例导航轨" : "Case rail"}>
             <CaseTerminologyNotes slug={k} locale={proofLocale} />
@@ -360,6 +397,29 @@ export default async function CasePage({ params }: Props) {
             <ResearchQuoteDeck data={processArtifacts.quotes} locale={proofLocale} />
           )}
         </section>
+      )}
+
+      {depthModules && (
+        <div
+          className="container"
+          style={{ marginTop: "var(--s-7)" }}
+        >
+          <Suspense
+            fallback={
+              <div id="case-deep-root" className={deepStyles.focusScope} data-active-focus="all">
+                <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
+                <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
+                <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
+              </div>
+            }
+          >
+            <CaseFocusRegion>
+              <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
+              <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
+              <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
+            </CaseFocusRegion>
+          </Suspense>
+        </div>
       )}
 
       <section id="long-form" className="container">
