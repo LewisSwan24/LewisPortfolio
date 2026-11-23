@@ -42,6 +42,7 @@ export function CaseMediaGridClient({
                 height={image.height}
                 alt={image.alt}
                 sizes="(max-width: 720px) 100vw, 50vw"
+                decorative
               />
               <span className="case-build-zoom-badge" aria-hidden="true">
                 {isZh ? "放大 ↗" : "Inspect ↗"}
