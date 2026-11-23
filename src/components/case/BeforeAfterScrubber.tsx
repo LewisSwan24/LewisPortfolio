@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useId, useRef, useState } from "react";
 import type { CaseScrubber } from "@/lib/cases/schema";
+import { AdaptiveCaseMedia } from "./AdaptiveCaseMedia";
 import { ProcessWireframe } from "./wireframes/ProcessWireframes";
 
 interface BeforeAfterScrubberProps {
@@ -114,7 +114,7 @@ export function BeforeAfterScrubber({ data, locale }: BeforeAfterScrubberProps) 
           onPointerCancel={onPointerUp}
         >
           <div className="proc-layer">
-            <Image
+            <AdaptiveCaseMedia
               src={data.afterImage.src}
               alt={data.afterImage.alt[locale]}
               width={data.afterImage.width}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { AdaptiveCaseMedia } from "./AdaptiveCaseMedia";
 import { CaseLightbox, type LightboxSlide } from "./CaseLightbox";
 
 export interface CaseGalleryCardItem extends LightboxSlide {
@@ -36,7 +36,7 @@ export function CaseMediaGridClient({
                   : `Inspect image ${idx + 1}: ${image.alt}`
               }
             >
-              <Image
+              <AdaptiveCaseMedia
                 src={image.src}
                 width={image.width}
                 height={image.height}

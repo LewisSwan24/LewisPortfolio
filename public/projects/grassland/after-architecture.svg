@@ -1,18 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
-  <rect width="800" height="500" fill="#FCFBF8"/>
-  <rect x="28" y="28" width="744" height="444" rx="10" fill="#F6F4EF" stroke="#151412" stroke-width="2"/>
-  <text x="56" y="70" fill="#151412" font-family="monospace" font-size="15" font-weight="700">AFTER: SINGLE RTS GRAMMAR ACROSS ALL 5 MISSIONS</text>
-  <rect x="56" y="110" width="688" height="106" rx="8" fill="#FCFBF8" stroke="#2F5939" stroke-width="2"/>
-  <text x="80" y="144" fill="#2F5939" font-family="monospace" font-size="13" font-weight="700">SHARED TACTICAL VERBS (ZERO LEVEL-ONLY BUTTONS)</text>
-  <text x="80" y="176" fill="#151412" font-family="sans-serif" font-size="13.5">Select Group → Reposition Under Rain/Cover → Spend Stance Tradeoff → Trigger Objective</text>
+  <defs><style>
+  :where(:root) {
+    --svg-ground: #F6F4EF;
+    --svg-surface: #FCFBF8;
+    --svg-card: #ECE8DF;
+    --svg-warn: #FBEFE9;
+    --svg-ink: #151412;
+    --svg-muted: #3E3A33;
+    --svg-subtle: #4E4940;
+    --svg-border: #6E675C;
+    --svg-hairline: #D6CDBC;
+    --svg-accent: #A63F2A;
+    --svg-navy: #2B4D6F;
+    --svg-green: #2F5939;
+    --svg-amber: #9A6B26;
+    --svg-pill-bg: #161412;
+    --svg-pill-fg: #F7F4EC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :where(:root) {
+      --svg-ground: #141413;
+      --svg-surface: #181816;
+      --svg-card: #222220;
+      --svg-warn: #291D1A;
+      --svg-ink: #EFECE6;
+      --svg-muted: #C2BDB2;
+      --svg-subtle: #9E988D;
+      --svg-border: #524F48;
+      --svg-hairline: #33312C;
+      --svg-accent: #E27A63;
+      --svg-navy: #7FA7D1;
+      --svg-green: #72B382;
+      --svg-amber: #E0A952;
+      --svg-pill-bg: #EFECE6;
+      --svg-pill-fg: #141413;
+    }
+  }
+</style></defs>
+  <rect width="800" height="500" fill="var(--svg-surface)"/>
+  <rect x="28" y="28" width="744" height="444" rx="10" fill="var(--svg-ground)" stroke="var(--svg-ink)" stroke-width="2"/>
+  <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace" font-size="15" font-weight="700">AFTER: SINGLE RTS GRAMMAR ACROSS ALL 5 MISSIONS</text>
+  <rect x="56" y="110" width="688" height="106" rx="8" fill="var(--svg-surface)" stroke="var(--svg-green)" stroke-width="2"/>
+  <text x="80" y="144" fill="var(--svg-green)" font-family="monospace" font-size="13" font-weight="700">SHARED TACTICAL VERBS (ZERO LEVEL-ONLY BUTTONS)</text>
+  <text x="80" y="176" fill="var(--svg-ink)" font-family="sans-serif" font-size="13.5">Select Group → Reposition Under Rain/Cover → Spend Stance Tradeoff → Trigger Objective</text>
 
-  <rect x="56" y="236" width="334" height="128" rx="8" fill="#FCFBF8" stroke="#151412" stroke-width="1.5"/>
-  <text x="78" y="270" fill="#151412" font-family="monospace" font-size="13" font-weight="700">No Auto-Pilot Shortcuts</text>
-  <text x="78" y="302" fill="#3E3A33" font-family="sans-serif" font-size="13">Preserves player accountability and tactical legibility.</text>
+  <rect x="56" y="236" width="334" height="128" rx="8" fill="var(--svg-surface)" stroke="var(--svg-ink)" stroke-width="1.5"/>
+  <text x="78" y="270" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">No Auto-Pilot Shortcuts</text>
+  <text x="78" y="302" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Preserves player accountability and tactical legibility.</text>
 
-  <rect x="410" y="236" width="334" height="128" rx="8" fill="#FCFBF8" stroke="#151412" stroke-width="1.5"/>
-  <text x="432" y="270" fill="#151412" font-family="monospace" font-size="13" font-weight="700">Deterministic Test Suite</text>
-  <text x="432" y="302" fill="#3E3A33" font-family="sans-serif" font-size="13">430+ local parser/consistency tests verify rule parity.</text>
+  <rect x="410" y="236" width="334" height="128" rx="8" fill="var(--svg-surface)" stroke="var(--svg-ink)" stroke-width="1.5"/>
+  <text x="432" y="270" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">Deterministic Test Suite</text>
+  <text x="432" y="302" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">430+ local parser/consistency tests verify rule parity.</text>
 
-  <text x="56" y="424" fill="#4E4940" font-family="monospace" font-size="12">Measured locally across 430+ tests; external player telemetry across all 5 missions remains uncollected.</text>
+  <text x="56" y="424" fill="var(--svg-subtle)" font-family="monospace" font-size="12">Measured locally across 430+ tests; external player telemetry across all 5 missions remains uncollected.</text>
 </svg>

@@ -1,4 +1,6 @@
 import type { CaseJourneyStage } from "@/lib/cases/modules-schema";
+import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
+import { JourneyScrollTracker } from "./JourneyScrollTracker";
 import { FocusTagList, VerifiedStatusBadge } from "./VerifiedStatusBadge";
 import styles from "./cases-deep.module.css";
 
@@ -46,53 +48,66 @@ export function CaseJourneyRail({
         <p className={styles.lead}>{copy.lead}</p>
       </header>
 
-      <ol className={styles.journeyList}>
-        {stages.map((stage) => (
-          <li
-            key={stage.id}
-            className={styles.journeyCard}
-            data-focus-item=""
-            data-focus-tags={stage.focusTags.join(" ")}
-          >
-            <div className={styles.journeyHead}>
-              <div className={styles.journeyTitleGroup}>
-                <span className={styles.stepNum} aria-hidden="true">
-                  {String(stage.step).padStart(2, "0")}
-                </span>
-                <h3 className={styles.cardTitle}>{stage.title[locale]}</h3>
+      <JourneyScrollTracker
+        items={stages.map((stage) => ({
+          id: stage.id,
+          step: stage.step,
+          title: stage.title[locale],
+        }))}
+        locale={locale}
+      />
+
+      <ManuscriptReveal withHairline itemSelector="[data-focus-item]">
+        <ol className={styles.journeyList}>
+          {stages.map((stage) => (
+            <li
+              key={stage.id}
+              id={`journey-stage-${stage.id}`}
+              data-stage-id={stage.id}
+              className={styles.journeyCard}
+              data-focus-item=""
+              data-focus-tags={stage.focusTags.join(" ")}
+            >
+              <div className={styles.journeyHead}>
+                <div className={styles.journeyTitleGroup}>
+                  <span className={styles.stepNum} aria-hidden="true">
+                    {String(stage.step).padStart(2, "0")}
+                  </span>
+                  <h3 className={styles.cardTitle}>{stage.title[locale]}</h3>
+                </div>
+
+                <div className={styles.badgeRow}>
+                  <VerifiedStatusBadge status={stage.verifiedStatus} locale={locale} />
+                  <FocusTagList tags={stage.focusTags} locale={locale} />
+                </div>
               </div>
 
-              <div className={styles.badgeRow}>
-                <VerifiedStatusBadge status={stage.verifiedStatus} locale={locale} />
-                <FocusTagList tags={stage.focusTags} locale={locale} />
-              </div>
-            </div>
-
-            <dl className={styles.journeyGrid}>
-              <div className={styles.fieldCell}>
-                <dt>{copy.trigger}</dt>
-                <dd>{stage.trigger[locale]}</dd>
-              </div>
-              <div className={styles.fieldCell}>
-                <dt>{copy.mentalModel}</dt>
-                <dd>{stage.userMentalModel[locale]}</dd>
-              </div>
-              <div className={styles.fieldCell}>
-                <dt>{copy.systemAction}</dt>
-                <dd>{stage.systemAction[locale]}</dd>
-              </div>
-              <div className={`${styles.fieldCell} ${styles.frictionCell}`}>
-                <dt>{copy.friction}</dt>
-                <dd>{stage.cognitiveFriction[locale]}</dd>
-              </div>
-              <div className={styles.fieldCell}>
-                <dt>{copy.recovery}</dt>
-                <dd>{stage.edgeRecovery[locale]}</dd>
-              </div>
-            </dl>
-          </li>
-        ))}
-      </ol>
+              <dl className={styles.journeyGrid}>
+                <div className={styles.fieldCell}>
+                  <dt>{copy.trigger}</dt>
+                  <dd>{stage.trigger[locale]}</dd>
+                </div>
+                <div className={styles.fieldCell}>
+                  <dt>{copy.mentalModel}</dt>
+                  <dd>{stage.userMentalModel[locale]}</dd>
+                </div>
+                <div className={styles.fieldCell}>
+                  <dt>{copy.systemAction}</dt>
+                  <dd>{stage.systemAction[locale]}</dd>
+                </div>
+                <div className={`${styles.fieldCell} ${styles.frictionCell}`}>
+                  <dt>{copy.friction}</dt>
+                  <dd>{stage.cognitiveFriction[locale]}</dd>
+                </div>
+                <div className={styles.fieldCell}>
+                  <dt>{copy.recovery}</dt>
+                  <dd>{stage.edgeRecovery[locale]}</dd>
+                </div>
+              </dl>
+            </li>
+          ))}
+        </ol>
+      </ManuscriptReveal>
     </section>
   );
 }

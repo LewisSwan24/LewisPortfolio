@@ -1,67 +1,105 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img" aria-label="Walkie architecture: M5StickS3 wrist remote over AES-256-GCM USB or Fly.io relay to Node 24 bridge and Claude Code">
-  <rect width="1280" height="720" fill="#EFE8DA"/>
-  <rect x="40" y="40" width="1200" height="640" rx="12" fill="#F7F4EC" stroke="#9C9182" stroke-width="1.5"/>
+  <defs><style>
+  :where(:root) {
+    --svg-ground: #F6F4EF;
+    --svg-surface: #FCFBF8;
+    --svg-card: #ECE8DF;
+    --svg-warn: #FBEFE9;
+    --svg-ink: #151412;
+    --svg-muted: #3E3A33;
+    --svg-subtle: #4E4940;
+    --svg-border: #6E675C;
+    --svg-hairline: #D6CDBC;
+    --svg-accent: #A63F2A;
+    --svg-navy: #2B4D6F;
+    --svg-green: #2F5939;
+    --svg-amber: #9A6B26;
+    --svg-pill-bg: #161412;
+    --svg-pill-fg: #F7F4EC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :where(:root) {
+      --svg-ground: #141413;
+      --svg-surface: #181816;
+      --svg-card: #222220;
+      --svg-warn: #291D1A;
+      --svg-ink: #EFECE6;
+      --svg-muted: #C2BDB2;
+      --svg-subtle: #9E988D;
+      --svg-border: #524F48;
+      --svg-hairline: #33312C;
+      --svg-accent: #E27A63;
+      --svg-navy: #7FA7D1;
+      --svg-green: #72B382;
+      --svg-amber: #E0A952;
+      --svg-pill-bg: #EFECE6;
+      --svg-pill-fg: #141413;
+    }
+  }
+</style></defs>
+  <rect width="1280" height="720" fill="var(--svg-card)"/>
+  <rect x="40" y="40" width="1200" height="640" rx="12" fill="var(--svg-surface)" stroke="var(--svg-border)" stroke-width="1.5"/>
 
   <!-- Header bar -->
-  <line x1="40" y1="112" x2="1240" y2="112" stroke="#D6CDBC" stroke-width="1"/>
-  <text x="72" y="84" font-family="ui-monospace, Consolas, monospace" font-size="18" fill="#5F584F">WALKIE · WRIST VOICE REMOTE FOR CLAUDE CODE</text>
-  <text x="1208" y="84" text-anchor="end" font-family="ui-monospace, Consolas, monospace" font-size="16" fill="#5F584F">M5STICKS3 APP1 · AES-256-GCM · NODE 24</text>
+  <line x1="40" y1="112" x2="1240" y2="112" stroke="var(--svg-hairline)" stroke-width="1"/>
+  <text x="72" y="84" font-family="ui-monospace, Consolas, monospace" font-size="18" fill="var(--svg-subtle)">WALKIE · WRIST VOICE REMOTE FOR CLAUDE CODE</text>
+  <text x="1208" y="84" text-anchor="end" font-family="ui-monospace, Consolas, monospace" font-size="16" fill="var(--svg-subtle)">M5STICKS3 APP1 · AES-256-GCM · NODE 24</text>
 
   <!-- Node 1: M5StickS3 -->
-  <rect x="76" y="180" width="270" height="350" rx="12" fill="#EFE8DA" stroke="#161412" stroke-width="2"/>
-  <rect x="96" y="204" width="230" height="44" rx="6" fill="#161412"/>
-  <text x="211" y="232" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="16" fill="#F7F4EC">M5StickS3 (app1)</text>
-  <text x="98" y="286" font-family="system-ui, sans-serif" font-size="17" font-weight="600" fill="#161412">Dual-boot wrist firmware</text>
-  <text x="98" y="316" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="#4E4840">• Hold front key: 16 kHz PTT</text>
-  <text x="98" y="344" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="#4E4840">• Front/Side: Approve / Deny</text>
-  <text x="98" y="372" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="#4E4840">• Both keys 3s: boot app0</text>
-  <text x="98" y="400" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="#4E4840">• PCM (USB) / 4-bit ADPCM</text>
-  <rect x="96" y="438" width="230" height="68" rx="8" fill="#F7F4EC" stroke="#A63F2A" stroke-width="1.5"/>
-  <text x="112" y="466" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#A63F2A">PHYSICAL CONFIRMATION</text>
-  <text x="112" y="490" font-family="system-ui, sans-serif" font-size="14" fill="#161412">pair.key sealed in NVS</text>
+  <rect x="76" y="180" width="270" height="350" rx="12" fill="var(--svg-card)" stroke="var(--svg-ink)" stroke-width="2"/>
+  <rect x="96" y="204" width="230" height="44" rx="6" fill="var(--svg-pill-bg)"/>
+  <text x="211" y="232" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="16" fill="var(--svg-pill-fg)">M5StickS3 (app1)</text>
+  <text x="98" y="286" font-family="system-ui, sans-serif" font-size="17" font-weight="600" fill="var(--svg-ink)">Dual-boot wrist firmware</text>
+  <text x="98" y="316" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="var(--svg-muted)">• Hold front key: 16 kHz PTT</text>
+  <text x="98" y="344" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="var(--svg-muted)">• Front/Side: Approve / Deny</text>
+  <text x="98" y="372" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="var(--svg-muted)">• Both keys 3s: boot app0</text>
+  <text x="98" y="400" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="var(--svg-muted)">• PCM (USB) / 4-bit ADPCM</text>
+  <rect x="96" y="438" width="230" height="68" rx="8" fill="var(--svg-surface)" stroke="var(--svg-accent)" stroke-width="1.5"/>
+  <text x="112" y="466" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-accent)">PHYSICAL CONFIRMATION</text>
+  <text x="112" y="490" font-family="system-ui, sans-serif" font-size="14" fill="var(--svg-ink)">pair.key sealed in NVS</text>
 
   <!-- Arrow 1 -> 2 -->
-  <line x1="346" y1="310" x2="430" y2="310" stroke="#A63F2A" stroke-width="2.5"/>
-  <polygon points="430,303 444,310 430,317" fill="#A63F2A"/>
-  <text x="394" y="294" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#A63F2A">USB wins</text>
-  <line x1="346" y1="395" x2="430" y2="395" stroke="#5F584F" stroke-width="1.5" stroke-dasharray="6 4"/>
-  <polygon points="430,389 444,395 430,401" fill="#5F584F"/>
-  <text x="394" y="420" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#5F584F">Wi-Fi fallback</text>
+  <line x1="346" y1="310" x2="430" y2="310" stroke="var(--svg-accent)" stroke-width="2.5"/>
+  <polygon points="430,303 444,310 430,317" fill="var(--svg-accent)"/>
+  <text x="394" y="294" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="var(--svg-accent)">USB wins</text>
+  <line x1="346" y1="395" x2="430" y2="395" stroke="var(--svg-subtle)" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <polygon points="430,389 444,395 430,401" fill="var(--svg-subtle)"/>
+  <text x="394" y="420" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="var(--svg-subtle)">Wi-Fi fallback</text>
 
   <!-- Node 2: Sealed Transport -->
-  <rect x="446" y="210" width="240" height="290" rx="12" fill="#F7F4EC" stroke="#9C9182" stroke-width="1.5"/>
-  <text x="566" y="252" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="#A63F2A">SEALED LINK</text>
-  <text x="566" y="284" text-anchor="middle" font-family="system-ui, sans-serif" font-size="19" font-weight="600" fill="#161412">AES-256-GCM + HKDF</text>
-  <line x1="470" y1="306" x2="662" y2="306" stroke="#D6CDBC" stroke-width="1"/>
-  <text x="470" y="340" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#4E4840">• USB Serial (primary)</text>
-  <text x="470" y="368" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#4E4840">• Fly.io wss:// relay</text>
-  <text x="470" y="396" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#4E4840">• ISRG Root X1/X2 pin</text>
-  <text x="470" y="424" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#4E4840">• Relay sees ciphertext</text>
-  <text x="470" y="452" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#4E4840">  only (zero knowledge)</text>
+  <rect x="446" y="210" width="240" height="290" rx="12" fill="var(--svg-surface)" stroke="var(--svg-border)" stroke-width="1.5"/>
+  <text x="566" y="252" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="var(--svg-accent)">SEALED LINK</text>
+  <text x="566" y="284" text-anchor="middle" font-family="system-ui, sans-serif" font-size="19" font-weight="600" fill="var(--svg-ink)">AES-256-GCM + HKDF</text>
+  <line x1="470" y1="306" x2="662" y2="306" stroke="var(--svg-hairline)" stroke-width="1"/>
+  <text x="470" y="340" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-muted)">• USB Serial (primary)</text>
+  <text x="470" y="368" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-muted)">• Fly.io wss:// relay</text>
+  <text x="470" y="396" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-muted)">• ISRG Root X1/X2 pin</text>
+  <text x="470" y="424" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-muted)">• Relay sees ciphertext</text>
+  <text x="470" y="452" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-muted)">  only (zero knowledge)</text>
 
   <!-- Arrow 2 -> 3 -->
-  <line x1="686" y1="355" x2="770" y2="355" stroke="#161412" stroke-width="2"/>
-  <polygon points="770,348 784,355 770,362" fill="#161412"/>
+  <line x1="686" y1="355" x2="770" y2="355" stroke="var(--svg-ink)" stroke-width="2"/>
+  <polygon points="770,348 784,355 770,362" fill="var(--svg-ink)"/>
 
   <!-- Node 3: Node 24 Bridge + Claude Code -->
-  <rect x="786" y="180" width="418" height="350" rx="12" fill="#EFE8DA" stroke="#161412" stroke-width="2"/>
-  <text x="814" y="220" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="#5F584F">DESKTOP BRIDGE (NODE 24)</text>
-  <text x="814" y="252" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#161412">Speech → Intent → Claude Code</text>
+  <rect x="786" y="180" width="418" height="350" rx="12" fill="var(--svg-card)" stroke="var(--svg-ink)" stroke-width="2"/>
+  <text x="814" y="220" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="var(--svg-subtle)">DESKTOP BRIDGE (NODE 24)</text>
+  <text x="814" y="252" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="var(--svg-ink)">Speech → Intent → Claude Code</text>
 
-  <rect x="814" y="276" width="362" height="62" rx="8" fill="#F7F4EC" stroke="#9C9182" stroke-width="1"/>
-  <text x="832" y="302" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#161412">1. STT / TTS: OpenAI (Gemini fallback)</text>
-  <text x="832" y="324" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#5F584F">keys loaded outside repo · never logged</text>
+  <rect x="814" y="276" width="362" height="62" rx="8" fill="var(--svg-surface)" stroke="var(--svg-border)" stroke-width="1"/>
+  <text x="832" y="302" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-ink)">1. STT / TTS: OpenAI (Gemini fallback)</text>
+  <text x="832" y="324" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="var(--svg-subtle)">keys loaded outside repo · never logged</text>
 
-  <rect x="814" y="352" width="362" height="62" rx="8" fill="#F7F4EC" stroke="#9C9182" stroke-width="1"/>
-  <text x="832" y="378" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#161412">2. Per-project Claude session manager</text>
-  <text x="832" y="400" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#5F584F">prewarm · resume · switch · stop · compact</text>
+  <rect x="814" y="352" width="362" height="62" rx="8" fill="var(--svg-surface)" stroke="var(--svg-border)" stroke-width="1"/>
+  <text x="832" y="378" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-ink)">2. Per-project Claude session manager</text>
+  <text x="832" y="400" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="var(--svg-subtle)">prewarm · resume · switch · stop · compact</text>
 
-  <rect x="814" y="428" width="362" height="78" rx="8" fill="#F7F4EC" stroke="#A63F2A" stroke-width="1.5"/>
-  <text x="832" y="454" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#A63F2A">3. TOOL PERMISSION QUEUE → WRIST</text>
-  <text x="832" y="478" font-family="system-ui, sans-serif" font-size="14" fill="#161412">Approvals wait for physical S3 button press</text>
-  <text x="832" y="496" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="#5F584F">gate-h (11 scenes) · gate-p5 · gate-l verified</text>
+  <rect x="814" y="428" width="362" height="78" rx="8" fill="var(--svg-surface)" stroke="var(--svg-accent)" stroke-width="1.5"/>
+  <text x="832" y="454" font-family="ui-monospace, Consolas, monospace" font-size="13" fill="var(--svg-accent)">3. TOOL PERMISSION QUEUE → WRIST</text>
+  <text x="832" y="478" font-family="system-ui, sans-serif" font-size="14" fill="var(--svg-ink)">Approvals wait for physical S3 button press</text>
+  <text x="832" y="496" font-family="ui-monospace, Consolas, monospace" font-size="12" fill="var(--svg-subtle)">gate-h (11 scenes) · gate-p5 · gate-l verified</text>
 
   <!-- Footer legend -->
-  <line x1="40" y1="596" x2="1240" y2="596" stroke="#D6CDBC" stroke-width="1"/>
-  <text x="72" y="644" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="#5F584F">SCHEMATIC FROM SOURCE (LewisSwan24/walkie) · NO WRIST PHOTOGRAPHS COMMITTED YET</text>
+  <line x1="40" y1="596" x2="1240" y2="596" stroke="var(--svg-hairline)" stroke-width="1"/>
+  <text x="72" y="644" font-family="ui-monospace, Consolas, monospace" font-size="14" fill="var(--svg-subtle)">SCHEMATIC FROM SOURCE (LewisSwan24/walkie) · NO WRIST PHOTOGRAPHS COMMITTED YET</text>
 </svg>

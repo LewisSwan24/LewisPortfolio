@@ -564,8 +564,81 @@
   overflow-wrap: anywhere;
 }
 
+.trackerRail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md, 10px);
+  background: var(--surface, var(--bg));
+  margin-block-end: var(--s-4);
+}
+
+.trackerLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-inline-end: 4px;
+}
+
+.trackerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.trackerChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: 12px;
+  cursor: pointer;
+  min-height: 32px;
+  transition: border-color 140ms var(--ease-out), color 140ms var(--ease-out),
+    background-color 140ms var(--ease-out);
+}
+
+.trackerChip:hover {
+  border-color: var(--case-mood, var(--accent));
+  color: var(--text);
+}
+
+.trackerChip[data-active="true"] {
+  border-color: var(--case-mood, var(--accent));
+  background: var(--case-mood-soft, var(--surface-2));
+  color: var(--text);
+  font-weight: 600;
+}
+
+.trackerNum {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--case-mood, var(--accent));
+}
+
+.trackerTitle {
+  max-inline-size: 24ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lensButton,
+  .trackerChip,
   .focusScope [data-focus-item] {
     transition: none !important;
   }
