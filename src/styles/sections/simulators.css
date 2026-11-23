@@ -232,7 +232,7 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: background var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out);
+  transition: border-color var(--dur-1) var(--ease-out);
 }
 
 .sim-seg-btn[aria-pressed="true"],

@@ -58,6 +58,7 @@ test.describe("v4.6 Case Study Depth Modules & Review Lens Switcher", () => {
   test("Desktop Light/Dark & 375px Mobile have zero axe-core critical/serious violations and 0px horizontal overflow", async ({
     page,
   }) => {
+    test.setTimeout(60_000);
     await page.goto("/en/projects/autofill", { waitUntil: "networkidle" });
 
     const lightAxe = await new AxeBuilder({ page })

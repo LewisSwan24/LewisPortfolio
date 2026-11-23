@@ -16,7 +16,9 @@ import {
   getEvidenceMatrix,
   type ProofLocale,
 } from "@/lib/portfolio-proof";
+import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import patternStyles from "@/components/patterns/patterns.module.css";
 import { WorkIndex, type WorkIndexClientRow } from "./WorkIndex";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -106,6 +108,21 @@ export default async function ProjectsPage() {
         <h1 className="h-display h1" style={{ marginTop: 16 }}>
           {isZh ? "精选作品" : "Selected work"}
         </h1>
+        <div className={patternStyles.bannerCard} style={{ marginTop: "var(--s-5)" }}>
+          <div style={{ display: "grid", gap: 4 }}>
+            <span className={patternStyles.kicker}>
+              {isZh ? "跨案例抽象 · 交互模式图谱" : "Cross-Case Primitives · Pattern Atlas"}
+            </span>
+            <p style={{ margin: 0, fontSize: 14, color: "var(--text-2)" }}>
+              {isZh
+                ? "把 6 个案例里的实体确权、三态分流与默契退场抽象为可复现活原型与代码标本。"
+                : "Inspect the 6 reusable interaction rules, live micro-sandboxes, and copyable code extracted from these cases."}
+            </p>
+          </div>
+          <Link href="/patterns" className="btn btn-ghost">
+            {isZh ? "打开交互模式图谱 →" : "Explore Pattern Atlas →"}
+          </Link>
+        </div>
       </section>
 
       <WorkIndex

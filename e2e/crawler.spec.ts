@@ -8,6 +8,12 @@ const BLOG_SLUGS = [
   "withdrawing-interfaces-in-social-spaces",
   "cognitive-sovereignty-and-default-refusal",
   "honest-limits-as-design-rigor",
+  "five-state-interface-audits",
+  "timing-as-interaction-design",
+  "flat-state-machines-over-nested-tabs",
+  "asymmetric-friction-against-enter-fatigue",
+  "calibrated-motion-cognitive-bandwidth",
+  "bilingual-design-systems-without-drift",
 ];
 
 const PUBLIC_ROUTES = [
@@ -15,6 +21,8 @@ const PUBLIC_ROUTES = [
   "/zh",
   "/en/projects",
   "/zh/projects",
+  "/en/patterns",
+  "/zh/patterns",
   "/en/about",
   "/zh/about",
   "/en/lab",
@@ -53,7 +61,7 @@ test.describe("Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
   test("crawls all public routes with zero console/page errors, valid anchors, and no unlisted or retired leaks", async ({
     page,
   }) => {
-    test.setTimeout(240_000);
+    test.setTimeout(360_000);
 
     const pageErrors: string[] = [];
     const consoleErrors: string[] = [];

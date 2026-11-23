@@ -1,0 +1,28 @@
+---
+title: "Flat State Machines Over Nested Tabs: Preventing Dead Ends"
+date: "2026-11-17"
+excerpt: "Deeply nested panels and per-screen overrides breed silent drift and broken back paths. Why flat, explicit state machines keep multi-surface prototypes inspectable."
+tags:
+  - State Architecture
+  - Engineering
+  - Interaction Design
+author: "Lewis Dong"
+published: true
+---
+
+When an interactive prototype grows beyond three screens, teams often bolt on nested tabs, per-page local state, or mission-specific overrides. Every shortcut feels fast on day one — and guarantees state desynchronization by day ten.
+
+## One shared grammar across five escalating missions
+
+In [Grassland Iron Tide](/projects/grassland), five tactical missions escalate from skirmishes to night stealth and camp searches. The tempting implementation was duplicating separate Phaser scene classes and adding custom shortcut buttons per level.
+
+Instead, we separated **mission data** from **interaction grammar**:
+1. Missions live as typed manifest definitions consumed by one runtime loader, so only the active mission's atlases enter memory.
+2. Click, drag-box, `Shift` toggling, `Ctrl` grouping, and right-click commands stay immutable across all five missions. A level can lock which verbs are permitted, never redefine what an input means.
+3. Pause, defeat explanation, checkpoint snapshot, and unit restoration share one 20 Hz simulation save chain.
+
+## Flat visibility across hardware and desktop views
+
+The same principle shaped [MazeRunners](/projects/maze) and [Lamplight Nook](/projects/lamplight). Rather than burying errors inside nested diagnostic sub-tabs, [MazeRunners](/projects/maze) feeds both live USB Web Serial frames and offline browser Demo Mode through one parity-tested event dispatcher (`4` regression checks covering serial, feedback, servo, and audio sync).
+
+Similarly, [Lamplight Nook](/projects/lamplight) maps real Claude Agent SDK events straight onto Wick's flat blackboard plan (`Step X of Y`) rather than trapping users inside collapsible log trees. Flat state machines eliminate hidden dead ends because every transition lives in one inspectable table — test the immutable command contract directly in our [Pattern Atlas](/patterns?pattern=immutable-cross-stage-grammar).

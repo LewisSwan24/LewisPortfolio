@@ -1,0 +1,31 @@
+---
+title: "Timing Is Interaction Design: Debounce, Cooldowns & Physical Latency"
+date: "2026-11-19"
+excerpt: "In physical computing and wearable relays, milliseconds shape credibility. Lessons from tuning FC-51 IR sensors in MazeRunners and 30-second pairing windows in Walkie."
+tags:
+  - Physical Computing
+  - Hardware UX
+  - Timing
+author: "Lewis Dong"
+published: true
+---
+
+Firmware engineers often dismiss debounce and cooldown intervals as low-level electrical housekeeping. On an exhibition floor or a wrist screen, however, **timing is the user interface**: a few unbuffered milliseconds can turn a crisp physical rule into a system that players stop trusting.
+
+## When 1 ball pass fires 3 buzzes
+
+While building [MazeRunners](/projects/maze), ten FC-51 infrared sensors sat across trap, diagnostic, spare, and finish zones on the wooden maze board. During early bench tests, raw sensor pins routinely fired two or three state interrupts during a single rolling ball pass.
+
+Because the maze coupled score counters, buzzer audio, LED strips, and wearable finger-sleeve vibration motors, one electrical stutter made the TM1637 score jump twice while the player felt three pulses on their finger. Exhibition play quickly proved a human rule: **players don't read the score screen first — they feel the buzz and look up**. When tactile and visual truth disagree by even one pulse, people conclude the game is broken.
+
+Adding per-sensor debounce plus a deterministic cooldown window compressed one physical ball pass into exactly one round state transition — traded deliberately against a brief blind window if a second ball enters immediately after.
+
+## Deliberate human windows vs. frantic timeouts
+
+Timing also defines security boundaries in [Walkie](/projects/walkie) and [On The Beat](/projects/onthebeat):
+
+- **30-second physical pairing (`Walkie`)**: long enough to calmly walk back to your watch and press the Front Key, short enough that stray pairing challenges never linger open on a desk.
+- **75-second relay keep-alive (`Walkie`)**: tuned and verified in `gate-l` across Fly.io TLS so away-from-cable connections survive silent thinking pauses without constant reconnect chatter.
+- **Unmeasured wearable estimates (`On The Beat`)**: constants like 6-second wake windows and 1.5-second holds are documented honestly as unverified wrist estimates until live-gig wear tests run.
+
+Examine the live co-touch debounce loop inside our [Pattern Atlas](/patterns?pattern=zero-dead-end-flat-routing) or inspect the hardware gates on [Walkie](/projects/walkie).

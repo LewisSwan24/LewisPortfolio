@@ -1,0 +1,27 @@
+---
+title: "Calibrated GSAP Motion: Respecting Cognitive Bandwidth & Reduced Motion"
+date: "2026-11-15"
+excerpt: "Motion in technical portfolios should clarify hierarchy without taxing CPU budgets or violating prefers-reduced-motion. Notes on transform-only timelines, ScrollTrigger discipline, and zero layout shift."
+tags:
+  - Motion Design
+  - Performance
+  - Accessibility
+author: "Lewis Dong"
+published: true
+---
+
+Unbounded scroll choreography hurts technical readers twice: heavy layout animations cause Cumulative Layout Shift (`CLS`), while unguarded timelines trap users who rely on `prefers-reduced-motion: reduce`.
+
+In this portfolio's [Lab](/lab) and case templates, GSAP acts as an editorial pacing instrument governed by three strict engineering constraints rather than decorative spectacle.
+
+## 1. Lazy-load ScrollTrigger and animate transforms only
+
+Every GSAP timeline runs strictly through transform and opacity properties (`x`, `y`, `scale`, `autoAlpha`) so compositor layers never trigger layout reflows (`width`, `height`, `top`, `left`). Plugins register once via dynamic import (`getGsapWithScrollTrigger()` in `src/lib/motion/gsap.ts`), keeping initial route JS budgets lean (`<= 20 kB gz` per app route chunk and `<= 70 kB gz` per standard vendor chunk).
+
+## 2. Deterministic cleanup and `0ms` instant settle
+
+React StrictMode and client-side route transitions punish un-reverted timelines with orphaned scroll listeners. Every animated container binds inside `gsap.context()` / `gsap.matchMedia()` and calls `.revert()` on unmount. When `(prefers-reduced-motion: reduce)` matches, timelines settle immediately at `0ms` so reading flow never stalls behind invisible elements.
+
+## 3. Keeping WebGL and motion orthogonal to core text
+
+Even on the home specimen stage, SVG axes render in `0ms` statically while `Three.js` loads lazily (`ssr: false`), verified by Playwright tests (`e2e/v42-three-and-matrix.spec.ts` and `e2e/v45-security-and-cwv.spec.ts`) keeping `CLS <= 0.05` across primary routes. Inspect the live paper-motion curve sandbox inside [/lab](/lab).
