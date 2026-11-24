@@ -15,16 +15,39 @@ import {
   TorusGeometry,
   CylinderGeometry,
   WebGLRenderer,
+  type Object3D,
 } from "three";
+import type { HardwareTwinRenderState, HardwareZoneId } from "@/lib/replay/hardware-twin-map";
 import type { HardwareSpecimenSlug } from "./types";
 
 interface HardwareFieldWebGLProps {
   slug: HardwareSpecimenSlug;
+  twinState?: HardwareTwinRenderState;
   onContextLost?: () => void;
+  onContextRestored?: () => void;
 }
 
-export function HardwareFieldWebGL({ slug, onContextLost }: HardwareFieldWebGLProps) {
+interface ZoneVisualRig {
+  group: Group;
+  meshMats: MeshBasicMaterial[];
+  lineMats: LineBasicMaterial[];
+  baseScale: number;
+}
+
+export function HardwareFieldWebGL({
+  slug,
+  twinState,
+  onContextLost,
+  onContextRestored,
+}: HardwareFieldWebGLProps) {
   const hostRef = useRef<HTMLDivElement>(null);
+  const twinStateRef = useRef<HardwareTwinRenderState | undefined>(twinState);
+  const renderOnceRef = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    twinStateRef.current = twinState;
+    renderOnceRef.current?.();
+  }, [twinState]);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -53,13 +76,17 @@ export function HardwareFieldWebGL({ slug, onContextLost }: HardwareFieldWebGLPr
       e.preventDefault();
       onContextLost?.();
     };
+    const handleContextRestored = () => {
+      onContextRestored?.();
+    };
     renderer.domElement.addEventListener("webglcontextlost", handleContextLost);
+    renderer.domElement.addEventListener("webglcontextrestored", handleContextRestored);
 
     const isDark =
       document.documentElement.dataset.theme === "dark" ||
       document.documentElement.classList.contains("dark");
     const ink = new Color(isDark ? "#F4F2ED" : "#151412");
-    const accent = new Color(
+    const nominalAccent = new Color(
       slug === "walkie"
         ? isDark
           ? "#E69682"
@@ -68,6 +95,8 @@ export function HardwareFieldWebGL({ slug, onContextLost }: HardwareFieldWebGLPr
           ? "#92BAE0"
           : "#2B4D6F"
     );
+    const faultAccent = new Color(isDark ? "#F07B68" : "#C43D2D");
+    const recoveredAccent = new Color(isDark ? "#67C496" : "#226F4C");
 
     const scene = new Scene();
     const camera = new PerspectiveCamera(36, width / height, 0.1, 100);
@@ -78,80 +107,179 @@ export function HardwareFieldWebGL({ slug, onContextLost }: HardwareFieldWebGLPr
     scene.add(root);
 
     const disposables: Array<{ dispose: () => void }> = [];
-    const wireMat = new LineBasicMaterial({ color: ink, transparent: true, opacity: 0.72 });
-    const accentMat = new MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.24 });
-    const solidAccentMat = new LineBasicMaterial({ color: accent });
-    disposables.push(wireMat, accentMat, solidAccentMat);
+    const zoneRigs = new Map<HardwareZoneId, ZoneVisualRig>();
+
+    const makeZoneRig = (zoneId: HardwareZoneId, baseScale = 1): ZoneVisualRig => {
+      const group = new Group();
+      root.add(group);
+      const rig: ZoneVisualRig = { group, meshMats: [], lineMats: [], baseScale };
+      zoneRigs.set(zoneId, rig);
+      return rig;
+    };
+
+    const addPart = (
+      rig: ZoneVisualRig,
+      meshOrLine: Object3D,
+      meshMat?: MeshBasicMaterial,
+      lineMat?: LineBasicMaterial
+    ) => {
+      rig.group.add(meshOrLine);
+      if (meshMat) {
+        rig.meshMats.push(meshMat);
+        disposables.push(meshMat);
+      }
+      if (lineMat) {
+        rig.lineMats.push(lineMat);
+        disposables.push(lineMat);
+      }
+    };
 
     if (slug === "walkie") {
-      // M5StickS3 rectangular chassis + front approval keycap + USB/relay ring
+      const chassisRig = makeZoneRig("chassis", 1);
       const bodyGeom = new BoxGeometry(1.1, 1.8, 0.42);
       const bodyWire = new EdgesGeometry(bodyGeom);
-      root.add(new Mesh(bodyGeom, accentMat));
-      root.add(new LineSegments(bodyWire, wireMat));
+      const cMeshMat = new MeshBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.22 });
+      const cLineMat = new LineBasicMaterial({ color: ink, transparent: true, opacity: 0.72 });
+      addPart(chassisRig, new Mesh(bodyGeom, cMeshMat), cMeshMat);
+      addPart(chassisRig, new LineSegments(bodyWire, cLineMat), undefined, cLineMat);
 
+      const keyRig = makeZoneRig("front-key", 1);
       const btnGeom = new BoxGeometry(0.46, 0.34, 0.16);
       const btnWire = new EdgesGeometry(btnGeom);
-      const btnMesh = new Mesh(btnGeom, accentMat);
+      const kMeshMat = new MeshBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.32 });
+      const kLineMat = new LineBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.92 });
+      const btnMesh = new Mesh(btnGeom, kMeshMat);
       btnMesh.position.set(0, -0.35, 0.24);
-      const btnLines = new LineSegments(btnWire, solidAccentMat);
+      const btnLines = new LineSegments(btnWire, kLineMat);
       btnLines.position.copy(btnMesh.position);
-      root.add(btnMesh, btnLines);
+      addPart(keyRig, btnMesh, kMeshMat);
+      addPart(keyRig, btnLines, undefined, kLineMat);
 
-      const linkGeom = new TorusGeometry(1.25, 0.015, 8, 48);
-      const linkMesh = new Mesh(linkGeom, accentMat);
+      const relayRig = makeZoneRig("usb-relay", 1);
+      const linkGeom = new TorusGeometry(1.25, 0.02, 8, 48);
+      const rMeshMat = new MeshBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.28 });
+      const linkMesh = new Mesh(linkGeom, rMeshMat);
       linkMesh.rotation.x = Math.PI / 2.4;
-      root.add(linkMesh);
+      addPart(relayRig, linkMesh, rMeshMat);
+
       disposables.push(bodyGeom, bodyWire, btnGeom, btnWire, linkGeom);
     } else if (slug === "maze") {
-      // 4-quadrant contact tray + 2 paired wristband interlock rings
+      const trayRig = makeZoneRig("tray", 1);
       const trayGeom = new BoxGeometry(2.1, 0.2, 2.1);
       const trayWire = new EdgesGeometry(trayGeom);
-      root.add(new Mesh(trayGeom, accentMat));
-      root.add(new LineSegments(trayWire, wireMat));
+      const tMeshMat = new MeshBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.22 });
+      const tLineMat = new LineBasicMaterial({ color: ink, transparent: true, opacity: 0.72 });
+      addPart(trayRig, new Mesh(trayGeom, tMeshMat), tMeshMat);
+      addPart(trayRig, new LineSegments(trayWire, tLineMat), undefined, tLineMat);
 
-      const ringGeom = new TorusGeometry(0.46, 0.04, 10, 32);
-      const r1 = new Mesh(ringGeom, accentMat);
-      r1.position.set(-0.45, 0.45, 0);
+      const bandARig = makeZoneRig("wristband-a", 1);
+      const bandBRig = makeZoneRig("wristband-b", 1);
+      const ringGeom = new TorusGeometry(0.46, 0.045, 10, 32);
+      const aMat = new MeshBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.3 });
+      const bMat = new MeshBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.24 });
+      const r1 = new Mesh(ringGeom, aMat);
+      r1.position.set(-0.48, 0.45, 0);
       r1.rotation.y = Math.PI / 4;
-      const r2 = new Mesh(ringGeom, accentMat);
-      r2.position.set(0.45, 0.45, 0);
+      const r2 = new Mesh(ringGeom, bMat);
+      r2.position.set(0.48, 0.45, 0);
       r2.rotation.y = -Math.PI / 4;
-      root.add(r1, r2);
-      disposables.push(trayGeom, trayWire, ringGeom);
+      addPart(bandARig, r1, aMat);
+      addPart(bandBRig, r2, bMat);
+
+      const irRig = makeZoneRig("ir-gate", 1);
+      const irGeom = new CylinderGeometry(0.06, 0.06, 0.9, 12);
+      const irWire = new EdgesGeometry(irGeom);
+      const irMat = new MeshBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.35 });
+      const irLineMat = new LineBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.9 });
+      const irMesh = new Mesh(irGeom, irMat);
+      irMesh.position.set(0, 0.55, 0.78);
+      const irLines = new LineSegments(irWire, irLineMat);
+      irLines.position.copy(irMesh.position);
+      addPart(irRig, irMesh, irMat);
+      addPart(irRig, irLines, undefined, irLineMat);
+
+      disposables.push(trayGeom, trayWire, ringGeom, irGeom, irWire);
     } else {
-      // On The Beat: two wrist beacons + quiet RSSI proximity boundary rings
       const bandGeom = new CylinderGeometry(0.32, 0.32, 0.45, 20, 1, true);
       const bandWire = new EdgesGeometry(bandGeom);
-      const leftBand = new LineSegments(bandWire, solidAccentMat);
-      leftBand.position.set(-0.75, 0, 0);
-      const rightBand = new LineSegments(bandWire, wireMat);
-      rightBand.position.set(0.75, 0, 0);
-      root.add(leftBand, rightBand);
 
-      const pulseGeom = new TorusGeometry(1.15, 0.012, 8, 48);
-      const pulse = new Mesh(pulseGeom, accentMat);
+      const bandARig = makeZoneRig("band-a", 1);
+      const aLineMat = new LineBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.88 });
+      const leftBand = new LineSegments(bandWire, aLineMat);
+      leftBand.position.set(-0.75, 0, 0);
+      addPart(bandARig, leftBand, undefined, aLineMat);
+
+      const bandBRig = makeZoneRig("band-b", 1);
+      const bLineMat = new LineBasicMaterial({ color: ink, transparent: true, opacity: 0.72 });
+      const rightBand = new LineSegments(bandWire, bLineMat);
+      rightBand.position.set(0.75, 0, 0);
+      addPart(bandBRig, rightBand, undefined, bLineMat);
+
+      const rssiRig = makeZoneRig("rssi-ring", 1);
+      const pulseGeom = new TorusGeometry(1.15, 0.018, 8, 48);
+      const pMat = new MeshBasicMaterial({ color: nominalAccent, transparent: true, opacity: 0.28 });
+      const pulse = new Mesh(pulseGeom, pMat);
       pulse.rotation.x = Math.PI / 2;
-      root.add(pulse);
+      addPart(rssiRig, pulse, pMat);
+
       disposables.push(bandGeom, bandWire, pulseGeom);
     }
 
+    const applyTwinHighlights = () => {
+      const st = twinStateRef.current;
+      if (!st) return;
+
+      const stateColor =
+        st.faultState === "fault"
+          ? faultAccent
+          : st.faultState === "recovered"
+            ? recoveredAccent
+            : nominalAccent;
+      const pulseScale = 1 + Math.max(0, Math.min(1, st.signalLevel / 100)) * 0.08;
+
+      for (const [zoneId, rig] of zoneRigs.entries()) {
+        const isActive = zoneId === st.activeZoneId;
+        rig.group.scale.setScalar(isActive ? rig.baseScale * pulseScale : rig.baseScale * 0.98);
+        for (const mat of rig.meshMats) {
+          mat.color.copy(isActive ? stateColor : nominalAccent);
+          mat.opacity = isActive ? 0.56 : 0.12;
+        }
+        for (const lMat of rig.lineMats) {
+          lMat.color.copy(isActive ? stateColor : ink);
+          lMat.opacity = isActive ? 1 : 0.34;
+        }
+      }
+    };
+
+    const renderFrame = () => {
+      applyTwinHighlights();
+      renderer.render(scene, camera);
+    };
+    renderOnceRef.current = renderFrame;
+
     let rafId = 0;
     const renderLoop = () => {
-      root.rotation.y += 0.004;
-      renderer.render(scene, camera);
-      rafId = window.requestAnimationFrame(renderLoop);
+      const reduced = twinStateRef.current?.reducedMotion ?? false;
+      if (!reduced) {
+        root.rotation.y += 0.004;
+      }
+      renderFrame();
+      if (!reduced) {
+        rafId = window.requestAnimationFrame(renderLoop);
+      }
     };
     renderLoop();
 
     return () => {
+      renderOnceRef.current = null;
       window.cancelAnimationFrame(rafId);
       renderer.domElement.removeEventListener("webglcontextlost", handleContextLost);
+      renderer.domElement.removeEventListener("webglcontextrestored", handleContextRestored);
       for (const d of disposables) d.dispose();
       renderer.dispose();
       renderer.domElement.remove();
     };
-  }, [slug, onContextLost]);
+  }, [slug, onContextLost, onContextRestored]);
 
-  return <div ref={hostRef} className="hardware-webgl-host" />;
+  return <div ref={hostRef} className="hardware-webgl-host" data-testid="hardware-twin-webgl" />;
 }

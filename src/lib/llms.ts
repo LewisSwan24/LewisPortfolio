@@ -41,10 +41,10 @@ export async function buildLlmsTxt(): Promise<string> {
   );
 
   return [
-    `# ${siteConfig.name} — Interaction Designer & Design Engineer Portfolio (v5.7)`,
+    `# ${siteConfig.name} — Interaction Designer & Design Engineer Portfolio (v5.8)`,
     "",
     `> Bilingual static portfolio (English & Simplified Chinese) built with Next.js 15, React 19, TypeScript, Zod 4, Tailwind CSS v4, and GSAP.`,
-    `> Focus: interaction systems, physical-digital prototyping, AI safety boundaries, ${posts.length} bilingual engineering monographs, WCAG 2.2 AA accessibility, MCP endpoints, and causal lineage mapping.`,
+    `> Focus: interaction systems, physical-digital prototyping, AI safety boundaries, ${posts.length} bilingual engineering monographs, WCAG 2.2 AA accessibility, MCP endpoints, causal lineage mapping, and frame-locked 3D hardware digital twins.`,
     "",
     "## Machine-Readable & Agentic Discovery",
     "",
@@ -60,7 +60,7 @@ export async function buildLlmsTxt(): Promise<string> {
     `- [Archive Vault (/vault)](${baseUrl}/en/vault): Honest death-autopsy and design-lineage retrospectives mapping 8 retired studies into the 6 listed flagships.`,
     `- [Causal Lineage Graph (/studio/graph)](${baseUrl}/en/studio/graph): Server-computed 4-layer DAG linking 8 Vault autopsies -> 6 Flagships -> 6 Patterns -> 4 Monograph clusters with honest-gap overlay.`,
     `- [Lab (/lab)](${baseUrl}/en/lab): Swiss Editorial token/contrast inspector, GSAP paper-motion sandbox, 3D/SVG specimen coordinates, deadlock-verified FSM Explorer, and Nielsen 10 Heuristics x WCAG 2.1 Auditor.`,
-    `- [Protocol Replay Studio (/studio/replay)](${baseUrl}/en/studio/replay): Millisecond-indexed Walkie AES-256-GCM, MazeRunners 45 ms IR debounce, and On The Beat BLE proximity replay with fault injection.`,
+    `- [Protocol Replay Studio (/studio/replay)](${baseUrl}/en/studio/replay): Millisecond-indexed Walkie AES-256-GCM, MazeRunners 45 ms IR debounce, and On The Beat BLE proximity replay linked bidirectionally to persistent 3D/SVG hardware twins.`,
     `- [AI Lab (/ai)](${baseUrl}/en/ai): Zero-hallucination bilingual BM25 rationale workbench indexing all ${listedCases.length} listed cases, interaction patterns, FSM/heuristic audits, and ${posts.length} essays with local PII scrubbing.`,
     `- [Hiring Decision Room](${baseUrl}/en/hire): Role-tailored lens (?role=product|interaction|design-eng|ai-ux), JD evidence matcher, A4 critique print dossiers, and honest project limits.`,
     `- [About](${baseUrl}/en/about): Design stance, UQ/Swansea timeline, and automated engineering verification methodology.`,
