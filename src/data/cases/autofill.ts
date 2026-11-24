@@ -349,24 +349,24 @@ export const autofillCase: CaseRecord = {
   ],
   "card": {
     "en": {
-      "kicker": "Automation that acts for you · Privacy",
+      "kicker": "Trustworthy AI · Local Privacy Tool",
       "title": "Resume Autofill",
-      "sub": "A job-application autofill for Chrome and Android that never guesses, never submits for you and keeps your resume on the device.",
-      "role": "Problem + rules",
-      "date": "2026 · used on my own applications",
-      "m1": "Unsure fields left empty for review",
-      "m2": "Stops before the final submit",
-      "m3": "Your resume stays on the device"
+      "sub": "Chrome and Android resume autofill that visibly separates certain matches from guesswork—and never submits on your behalf.",
+      "role": "Solo · Full-stack architecture & rules",
+      "date": "2026 · used on real applications",
+      "m1": "3-tier certainty & Submit lock",
+      "m2": "Chrome MV3 · Kotlin Android · Zero net",
+      "m3": "6/6 visual checks · Personal daily use"
     },
     "zh": {
-      "kicker": "代你行事的自动化 · 隐私",
+      "kicker": "隐私优先 AI · 本地求职填表",
       "title": "Resume Autofill",
-      "sub": "一个 Chrome 和 Android 上的求职自动填表工具：不猜、不替你提交，简历也不离开设备。",
-      "role": "问题与规则",
-      "date": "2026 · 我投递时用过",
-      "m1": "拿不准的栏位留空待确认",
-      "m2": "在最终提交前停下",
-      "m3": "简历不离开设备"
+      "sub": "Chrome 扩展 + Android 键盘双端填表工具：明确拆分直填/复核/留白三档把握度，不猜开放题、不代点提交、简历不出设备。",
+      "role": "独立产品设计、双端原型与规则测试",
+      "date": "2026 · 用于本人真实投递",
+      "m1": "三档置信分流 + 人手提交锁",
+      "m2": "Chrome MV3 · Kotlin · 零联网权限",
+      "m3": "6/6 截图验收 · 真实投递验证"
     }
   },
   "narrative": {

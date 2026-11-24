@@ -42,6 +42,11 @@ export default async function ResumePage() {
           <h1 className="h-display h2" style={{ marginTop: 16 }}>
             {t("resume.headline")}
           </h1>
+          <p className="res-hr-strip">
+            {isZh
+              ? "2026 年 11 月毕业 · 布里斯班基地 · 面向澳新全职（可搬迁 / 远程）及亚太设计工程 / AI 产品研发团队 · CS 工程底座 × UQ 交互设计"
+              : "Graduating Nov 2026 · Brisbane · Open to AU full-time (relocation/remote) & APAC Design Engineer / AI Product Engineer roles · Swansea CS (2:1) × UQ IxD"}
+          </p>
         </div>
         <ResumeActions />
       </section>
@@ -57,32 +62,39 @@ export default async function ResumePage() {
                 <div>
                   <h4>
                     {isZh
-                      ? "产品与交互设计师（自主项目）"
-                      : "Product & Interaction Designer (self-initiated)"}
+                      ? "设计工程师与产品交互构建（近一年独立主力项目）"
+                      : "Design Engineer & Product Builder (recent solo shipped builds)"}
                   </h4>
                   {/* Unlisted projects are intentionally excluded from every public resume line. */}
                   <p className="org">
                     {isZh
-                      ? "AI 辅助产品与设计工程实践 · Walkie / Lamplight Nook / Resume Autofill / On The Beat / 草原铁潮 / 个人作品集"
-                      : "AI-assisted product & design engineering · Walkie, Lamplight Nook, Resume Autofill, On The Beat, Grassland Iron Tide, this site"}
+                      ? "聚焦最近 1–2 年高完整度项目 · Walkie / Lamplight Nook / Resume Autofill / On The Beat / 草原铁潮"
+                      : "Flagship 2026 builds · Walkie, Lamplight Nook, Resume Autofill, On The Beat, Grassland Iron Tide, this portfolio"}
                   </p>
                   <ul>
                     <li>
                       {isZh
-                        ? "物理数字协同（Walkie / On The Beat）：与 On The Beat 共用 M5StickS3 的双启动固件，以 USB 优先与 AES-256-GCM 零知识中继驱动手腕实体按钮审批 Claude 工具，并让社交卡片停在非侵入式的握手阈值上。"
-                        : "Physical-digital control (Walkie & On The Beat): dual-boot M5StickS3 firmware with USB-first AES-256-GCM relay and wrist button approvals for Claude Code, paired with three-card BLE social pacing anchored at non-intrusive proximity thresholds."}
+                        ? "物理数字协同（Walkie / On The Beat）：与 On The Beat 共用 M5StickS3 双启动固件，用有线 USB 优先 + AES-256-GCM 零知识中继驱动手腕实体按钮审批 Claude 工具，并完成两支真机手环离桌独立联调。"
+                        : "Physical-AI & wearables (Walkie & On The Beat): dual-boot M5StickS3 C++ firmware with USB preemption and AES-256-GCM wrist approvals for Claude Code, paired with two-wristband BLE mutual-consent social pacing."}
                     </li>
                     <li>
                       {isZh
-                        ? "温柔陪伴与低压力确认（Lamplight Nook）：打造风险动作默认「先不要」、把停滞任务拆成低负担微动作的 Electron + Phaser 桌面陪伴界面，并坦诚标注未经外部受试验证的边界。"
-                        : "Calm agency & low-pressure confirmation (Lamplight Nook): an Electron + Phaser companion UI where risky actions default to 'not now' and stalled tasks break into micro-steps, with unverified user-study scope marked explicitly."}
+                        ? "AI 桌面工作台与安全护栏（Lamplight Nook）：打造风险操作默认锁在「先不要」、让后台任务以咖啡馆分工图透明呈现的 Electron + Phaser 桌面应用（Windows 1.0 已发布日常自用），严守未做外部受试的界限。"
+                        : "Calm AI workbench (Lamplight Nook): shipped v1.0 Electron + Phaser desktop companion that visualizes Claude agent steps and locks risky keyboard focus onto 'Not now' on file copies."}
                     </li>
                     <li>
                       {isZh
-                        ? "求职工作流与策略交互边界（Resume Autofill / 草原铁潮）：打造不猜测、不替投、简历不出设备的本地填表工具，以及拒绝自动化代操作、突出决策清晰度的即时策略（RTS）双界面原型。"
-                        : "Trustworthy workflow & strategy boundaries (Resume Autofill & Grassland Iron Tide): local-first Chrome/Android autofill that never guesses or submits, alongside an RTS prototype that withholds automation shortcuts so tactical clarity stays legible."}
+                        ? "隐私求职工具与复杂系统（Resume Autofill / 草原铁潮）：做出不猜开放题、不代点提交且零联网的 Chrome + Android 双端填表工具，及 430 项单测全通过的 5 关 20 Hz 即时战略网页原型。"
+                        : "Local privacy & systems rigor (Resume Autofill & Grassland Iron Tide): built zero-network Chrome/Android autofill with Submit lock, plus a 5-mission 20 Hz browser RTS verified across 430/430 unit tests."}
                     </li>
                   </ul>
+                  <div className="res-inline-links no-print" aria-label={isZh ? "核查公开源码与原型" : "Verify public repositories and prototypes"}>
+                    <a href="https://github.com/LewisSwan24/walkie" target="_blank" rel="noopener noreferrer">Walkie GitHub ↗</a>
+                    <a href="https://lewisswan24.github.io/lamplight-nook-site/" target="_blank" rel="noopener noreferrer">Lamplight Site ↗</a>
+                    <a href="https://github.com/LewisSwan24/lamplight-nook" target="_blank" rel="noopener noreferrer">Lamplight GitHub ↗</a>
+                    <a href="https://github.com/LewisSwan24/resume-autofill" target="_blank" rel="noopener noreferrer">Autofill GitHub ↗</a>
+                    <a href="https://on-the-beat.fly.dev" target="_blank" rel="noopener noreferrer">On The Beat Live ↗</a>
+                  </div>
                 </div>
               </div>
 
@@ -91,7 +103,7 @@ export default async function ResumePage() {
                 <div>
                   <h4>
                     {isZh
-                      ? "交互设计与控制层开发（小组项目）"
+                      ? "交互设计与硬件控制层开发（小组项目）"
                       : "Interaction design & control layer (group project)"}
                   </h4>
                   <p className="org">
@@ -103,18 +115,46 @@ export default async function ResumePage() {
                   <ul>
                     <li>
                       {isZh
-                        ? "设计核心机制：每种颜色的腕带由两名玩家共用，任何方向都无法单人完成，四个人必须配合。"
-                        : "Designed the core mechanic: each colour wristband is shared by two players, so no direction can be triggered alone and the four have to coordinate."}
+                        ? "设计核心机制：每种颜色腕带由两名玩家共用，任何方向都无法单人触发，四个人必须真实开口协作。"
+                        : "Designed the core co-touch mechanic: two players share each directional wristband, making solo shortcuts physically impossible."}
                     </li>
                     <li>
                       {isZh
-                        ? "我的部分：交互机制、Arduino 程序、电路和全部布线，以及展出用的实时计分网页。程序有 AI 编码工具参与实现，调试与验收由我负责；迷宫本体和外观由组员完成。"
-                        : "My part: interaction mechanics, Arduino firmware (AI coding tools helped implement it; I debugged and signed it off), the circuit and all wiring, plus the live scoring page used at the exhibition; teammates built the maze body and exterior."}
+                        ? "个人负责：交互机制设计、Arduino Mega 固件（AI 工具辅助编写、我完成台架调试与签署验收）、十路红外传感器硬件接线及展览现场 Web Serial 实时计分网页。"
+                        : "Owned mechanics, Arduino Mega firmware (AI coding assisted; personally debugged and signed off), 10-zone IR wiring, and the live Web Serial scoreboard."}
                     </li>
                     <li>
                       {isZh
-                        ? "展出期间 9 组共 36 人试玩，约 3 组通关；手写排行榜没有留档，所以没有量化数据。"
-                        : "9 groups (36 people) played during the exhibition and about 3 finished; the handwritten leaderboard was not archived, so there are no quantified metrics."}
+                        ? "真实展览反馈：展出期间 9 组共 36 人现场试玩，约 3 组通关；如实标注手写榜未留档，未事后估算量化指标。"
+                        : "Exhibition outcome: 9 groups (36 players) played live (~3 completed); handwritten leaderboard was not archived, keeping scope claims strictly observed."}
+                    </li>
+                  </ul>
+                  <div className="res-inline-links no-print">
+                    <a href="https://maze-runners.vercel.app" target="_blank" rel="noopener noreferrer">
+                      {isZh ? "在线模拟控制台 ↗" : "Web Console Demo ↗"}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="res-entry">
+                <div className="date">2025 · 02 – 12</div>
+                <div>
+                  <h4>
+                    {isZh
+                      ? "研究方法与高约束交互专项训练（UQ 研究生课程实践）"
+                      : "Research Synthesis & High-Constraint Interaction Systems (UQ Coursework)"}
+                  </h4>
+                  <p className="org">
+                    {isZh
+                      ? "信息架构推倒重构 · 无障碍样式注入 · AI 权限隐私隔离（能力脱敏摘要）"
+                      : "Information Architecture Redraws · WCAG Style Injection · Scoped AI Access"}
+                  </p>
+                  <ul>
+                    <li>
+                      {isZh
+                        ? "通过用户出声思考测试重绘移动端多路由架构、构建面向第三方页面的 WCAG 间距增强扩展，并将 AI 摘要读写严格限制在动态授权范围内，把系统边界思维融入后续全栈主力作品。"
+                        : "Practiced paper-first IA redraws grounded in think-aloud logs, third-party page WCAG style injection, and strict consent-scoped AI boundaries—shaping every flagship build shipped in 2026."}
                     </li>
                   </ul>
                 </div>
@@ -185,8 +225,8 @@ export default async function ResumePage() {
                   <ul>
                     <li>
                       {isZh
-                        ? "二等一级荣誉学位（2:1）。"
-                        : "Second-class honours, upper division (2:1)."}
+                        ? "二等一级荣誉学位（2:1）：系统修习算法、软件工程、并发与数据库基础并完成长篇本科荣誉毕业论文，奠定日后用确定性状态机写原型的工程习惯。"
+                        : "Upper Second-Class Honours (2:1): four years of core Computer Science (algorithms, software engineering, concurrent systems, databases) culminating in an extended honours dissertation."}
                     </li>
                   </ul>
                 </div>

@@ -1,7 +1,7 @@
 ---
 title: "From Swansea CS Determinism to UQ Physical Computing"
 date: "2026-11-11"
-excerpt: "Four years of Computer Science taught me to distrust loose prose; two years of Interaction Design at UQ taught me why deterministic software still fails when human attention and social friction intervene."
+excerpt: "Four years of Computer Science and an extended honours dissertation taught me to distrust loose specifications; two years of Interaction Design at UQ showed why deterministic systems still fail under human attention and social friction."
 tags:
   - CS x IxD
   - Physical Computing
@@ -11,16 +11,24 @@ author: "Lewis Dong"
 published: true
 ---
 
-Studying Computer Science at Swansea University (2020–2024) trains a specific reflex: before building a feature, ask what breaks under concurrency, bad input, or power loss. Transitioning into the Master of Interaction Design at The University of Queensland (2025–2026) initially felt like stepping out of strict invariants into ambiguous human behavior—until physical computing bridged both worlds.
+Studying Computer Science at Swansea University (2020–2024, graduating Upper Second-Class Honours 2:1) trains a specific engineering reflex: long before polishing an interface, ask what breaks under bad input, concurrency collisions, network partitions, or power loss. Writing an extended undergraduate honours dissertation reinforced the same discipline—an argument holds only to the boundary of what its implementation can actually prove.
 
-## Where pure CS abstractions stop holding
+Transitioning into the Master of Interaction Design at The University of Queensland (2025–2026) initially felt like stepping out of strict determinism into messy human interviews. Yet once 2025 studio coursework and 2026 physical-computing builds forced software rules into real tables, wrists, and noisy rooms, both trainings locked together.
 
-A clean state machine on a desktop monitor assumes an operator looking directly at the screen with both hands on a keyboard. Put four strangers around a wooden table in [MazeRunners](/projects/maze), or put a developer three meters away from their workstation with [Walkie](/projects/walkie), and three non-negotiable realities replace textbook assumptions:
+## What pure CS abstractions miss in the room
 
-1. **Physical posture dictates cognitive bandwidth**: Exhibition players never read the scoring monitor while the steel ball was rolling—their eyes stayed glued to the wood until finger-sleeve haptics fired.
-2. **Debounce thresholds are UX decisions**: A `45 ms` FC-51 infrared gate and `1200 ms` zone cooldown are firmware constants, yet they determine whether a player trusts the score or assumes the table is broken.
-3. **Refusal beats convenience when mistakes cost real state**: Defaulting a risk card to `'Not now'` in [Lamplight Nook](/projects/lamplight) or reserving wrist approvals for a perpendicular Front Key is state-machine safety applied to human muscle memory.
+A clean desktop state machine assumes an operator seated at a desk with both eyes fixed on a crisp monitor. Put four strangers around a wooden table in [MazeRunners](/projects/maze), or put a developer three meters away from their workstation with [Walkie](/projects/walkie), and textbook assumptions collapse into three physical realities:
 
-## Why both degrees live in every build
+1. **Posture sets cognitive bandwidth**: At our public exhibition across 9 groups (36 players), almost nobody watched the digital scoreboard while guiding the steel ball—eyes stayed locked on the physical wood until sleeve haptics buzzed under their fingertips.
+2. **Firmware timing constants are UX rules**: A `45 ms` FC-51 infrared stabilization check and a `1200 ms` per-zone cooldown read like embedded constants, yet without them a double-bounce makes players suspect the whole scoring system is broken.
+3. **Constructive friction prevents automation regret**: Locking risky card focus onto `'Not now'` in [Lamplight Nook](/projects/lamplight), separating Front Approve from Side Deny on [Walkie](/projects/walkie), or keeping open ATS answers blank in [Resume Autofill](/projects/autofill) applies state-machine safety directly to human habit loops.
 
-My CS foundation ensures prototypes run on real silicon, typed schemas, and reproducible build gates rather than disposable clickable slides. My UQ design training ensures those engineering guarantees target an actual human tension—and state honestly where user observation stopped. Inspect the live hardware traces in the [Protocol Replay Studio](/studio/replay) or see how earlier abandoned prototypes shaped these habits in the [Archive Vault](/vault).
+## How 2025 foundations bridged into 2026 shipped systems
+
+During my first year at UQ in 2025, structured think-aloud testing, paper-first information architecture redraws, WCAG browser injection experiments, and scoped AI consent rules reshaped how I approach problem framing. Rather than diving straight into component code or relying on Swansea-era classroom exercises, I focused my public portfolio squarely on high-conviction builds from the past one to two years—systems I could test end to end in browser, desktop, extension, and embedded runtimes.
+
+That bridge carries directly into how I build as a Design Engineer today:
+
+- **Clear ownership boundaries with AI coding tools**: Generated code serves as an accelerator after state transitions, Zod contracts, and refusal limits are defined—never as unquestioned truth.
+- **Reproducible engineering gates**: Every shipped case in [the Archive Vault](/vault) and [Protocol Replay Studio](/studio/replay) distinguishes real hardware/code verification (such as `gate-h`, `gate-p5`, `gate-l`, or `430/430` unit checks) from outside participant testing still left to run.
+- **Bilingual parity without glossing over limits**: Designing and engineering across both English and Chinese teams keeps terminology honest, crisp, and verifiable.

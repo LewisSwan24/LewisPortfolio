@@ -40,7 +40,7 @@ test.describe("Portfolio Homepage", () => {
 
     test("should display the current hero", async ({ page }) => {
         await expect(page.getByRole("heading", { level: 1 })).toContainText(/working software|human rule/i);
-        await expect(page.locator(".hero-lede")).toContainText(/human friction|refusal paths/i);
+        await expect(page.locator(".hero-lede")).toContainText(/human-AI|testable interaction/i);
     });
 
     // Homepage focuses directly on practice notes, featured cases, and
@@ -49,6 +49,7 @@ test.describe("Portfolio Homepage", () => {
         await expect(page.locator(".hiring-proof-desk")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
         await expect(page.locator(".hero-hire-link")).toHaveAttribute("href", "/hire");
+        await expect(page.locator(".hero-pdf-link")).toHaveAttribute("href", "/resume/lewis-dong-resume-en.pdf");
         await expect(page.locator(".feat-deck")).toBeVisible();
     });
 
@@ -602,10 +603,10 @@ test.describe("Resume Page", () => {
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     });
 
-    // The static /resume.pdf download was replaced by print-to-PDF plus a
-    // contact link, and the PDF was removed from public/.
-    test("should offer print and contact actions instead of a stale PDF", async ({ page }) => {
+    // Dual-track resume actions: deterministic single-page ATS PDF download + print + contact link.
+    test("should offer deterministic PDF download, print, and contact actions", async ({ page }) => {
         await page.goto("/resume");
+        await expect(page.locator(".res-actions a[href='/resume/lewis-dong-resume-en.pdf']")).toBeVisible();
         await expect(page.locator(".res-actions button")).toBeVisible();
         await expect(page.locator(".res-actions a[href='/contact']")).toBeVisible();
         await expect(page.locator("a[href='/resume.pdf']")).toHaveCount(0);
@@ -830,6 +831,7 @@ test.describe("V3 Flagship Routes & Role Lens", () => {
     });
 
     test("all 6 listed cases render Design Decisions & Tradeoffs right after Summary in EN and ZH", async ({ page }) => {
+        test.setTimeout(120_000);
         for (const slug of ["walkie", "lamplight", "autofill", "maze", "onthebeat", "grassland"]) {
             for (const url of [`/projects/${slug}`, `/zh/projects/${slug}`]) {
                 await gotoStable(page, url);

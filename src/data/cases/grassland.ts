@@ -377,24 +377,24 @@ export const grasslandCase: CaseRecord = {
   ],
   "card": {
     "en": {
-      "kicker": "Complex interaction · Real-time systems",
+      "kicker": "Complex Systems · Real-Time Strategy",
       "title": "Grassland Iron Tide",
-      "sub": "A five-mission browser RTS chapter where selection, command grammar, and checkpoint recovery follow one consistent mental model.",
-      "role": "Solo, with AI tools",
-      "date": "2026 · chapter one playable",
-      "m1": "Unified RTS command grammar",
-      "m2": "Single checkpoint recovery chain",
-      "m3": "Two-resolution desktop playthrough"
+      "sub": "A five-mission browser RTS chapter keeping selection grammar, battlefield sightlines, and defeat recovery strictly unified.",
+      "role": "Solo · Systems design, specs & QA sign-off",
+      "date": "2026 · Chapter One playable",
+      "m1": "Immutable 5-mission command model",
+      "m2": "TypeScript · Phaser 4 · 20 Hz Sim",
+      "m3": "430/430 tests · Dual-res playthrough"
     },
     "zh": {
-      "kicker": "复杂交互 · 即时操作心智模型",
+      "kicker": "复杂系统 · 即时战略交互",
       "title": "草原铁潮",
-      "sub": "一章五关、在桌面浏览器运行的即时战略游戏：用统一的操作语法与单一检查点状态链，让玩家越往后越笃定。",
-      "role": "独立设计，借助 AI 工具开发",
-      "date": "2026 · 第一章可玩",
-      "m1": "跨五关一致的命令语法",
-      "m2": "统一检查点状态还原链",
-      "m3": "双分辨率实机连续通关"
+      "sub": "五关连玩的桌面浏览器即时战略章节：严守跨关不漂移的控制语法与单一检查点恢复链，让高节奏战局始终可控。",
+      "role": "独立产品策划、规则架构与全流程验收",
+      "date": "2026 · 第一章可连续通关",
+      "m1": "跨五关统一框选与指令手感",
+      "m2": "TypeScript · Phaser 4 · 20 Hz 时钟",
+      "m3": "430/430 单测 + 双分辨率连续通关"
     }
   },
   "narrative": {
@@ -404,7 +404,7 @@ export const grasslandCase: CaseRecord = {
         "sub": "Five historical missions built into one real-time strategy chapter you can play through in a desktop browser, where selection, commands, feedback, failure recovery and story all run on one set of rules."
       },
       "roleVal": "Solo: product direction, mission design, interaction rules, implementation acceptance and evidence",
-      "timeVal": "2026 · chapter one, 《苍狼余火》, playable",
+      "timeVal": "2026 · Chapter One: Embers of the Pale Wolf (playable)",
       "teamVal": "Solo, with AI tools assisting the code, the copy and the original assets",
       "toolsVal": "TypeScript · Phaser 4 · EasyStar.js · Vitest · AI coding tools",
       "ch": {

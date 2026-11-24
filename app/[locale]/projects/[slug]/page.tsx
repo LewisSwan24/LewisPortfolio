@@ -53,6 +53,7 @@ import { RawResearchVault } from "@/components/case/deep/RawResearchVault";
 import { CaseCodeDiffViewer } from "@/components/case/deep/CaseCodeDiffViewer";
 import { RedTeamCritiquePanel } from "@/components/ai/RedTeamCritiquePanel";
 import deepStyles from "@/components/case/deep/cases-deep.module.css";
+import { WalkieTactileSchematicSvg } from "@/components/editorial/CapabilityDiagrams";
 
 type Slug = CurrentProjectSlug;
 const SLUGS = [...CURRENT_PROJECT_SLUGS];
@@ -384,6 +385,12 @@ export default async function CasePage({ params }: Props) {
       {isLabLinkedCase(k) && <CaseInvariantLink slug={k} isZh={isZh} />}
 
       {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
+
+      {k === "walkie" && (
+        <div className="container" style={{ marginBottom: "var(--s-6)" }}>
+          <WalkieTactileSchematicSvg locale={proofLocale} />
+        </div>
+      )}
 
       {record.demo && (
         <DemoEmbed

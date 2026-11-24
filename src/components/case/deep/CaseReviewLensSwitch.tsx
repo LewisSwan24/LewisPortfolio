@@ -74,8 +74,8 @@ export function CaseReviewLensSwitch({
           </span>
           <h2 id="case-review-lens-heading" className={styles.lensTitle}>
             {isZh
-              ? "按你的评审重点，高亮对应旅程、五态规范与打回记录"
-              : "Highlight matching journey steps, 5-state rules & rework logs"}
+              ? "按你的评审重点，高亮对应旅程、状态规范与重做记录"
+              : "Highlight matching journey steps, state rules & rework logs"}
           </h2>
         </div>
 

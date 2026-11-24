@@ -8,9 +8,9 @@
     "blog": "Blog",
     "more": "More",
     "work": "Work",
-    "lab": "Lab",
-    "ai": "AI Lab",
-    "hire": "Hire me",
+    "lab": "UI Lab",
+    "ai": "Ask AI",
+    "hire": "Hire & CV",
     "writing": "Writing",
     "lang": {
       "en": "EN",
@@ -19,16 +19,16 @@
   },
   "brand": {
     "name": "Lewis Dong",
-    "tagline": "interaction design log"
+    "tagline": "design engineer · ixD"
   },
   "hero": {
-    "eyebrow": "Interaction & Product Designer · Master's in Interaction Design, UQ",
+    "eyebrow": "Design Engineer · Swansea CS BSc + UQ Interaction Design (Nov 2026)",
     "headline": {
       "a": "Shape the human rule,",
       "b": "then prove it in",
       "c": "working software."
     },
-    "body": "I start from human friction — trust boundaries, cognitive load, and refusal paths — then build working software and physical prototypes early enough to falsify my own assumptions.",
+    "body": "Trained in Computer Science at Swansea and Interaction Design at UQ, I turn messy human-AI and hardware edge cases into testable interaction rules—then ship working TypeScript, Electron, extension, and ESP32 prototypes to see where those rules hold.",
     "deck": {
       "label": "The practice log —",
       "hint": "Drag or click any card",
@@ -41,49 +41,49 @@
     }
   },
   "now": {
-    "label": "Currently",
+    "label": "Hiring snapshot",
     "reading": {
-      "label": "Reading",
-      "val": "Weiss on loneliness; Ryan & Deci on self-determination"
+      "label": "Degrees",
+      "val": "BSc (Hons) CS (Swansea 2:1) · Master of IxD (UQ, Nov 2026)"
     },
     "learning": {
-      "label": "Exploring",
-      "val": "Where AI coding tools sharpen interaction craft, and where human judgment takes over"
+      "label": "Strength",
+      "val": "Bridging human boundaries, TypeScript/Next.js apps, and ESP32/Arduino hardware"
     },
     "location": {
-      "label": "Location",
-      "val": "Brisbane, AU — graduating November 2026, open to full-time graduate roles"
+      "label": "Availability",
+      "val": "Brisbane · Graduating Nov 2026 · Open to AU & APAC full-time roles"
     }
   },
   "approach": {
     "label": "How I work",
     "title": {
-      "text": "Human tension in, testable rules out.",
-      "em": "With limits left visible."
+      "text": "Put the user in control,",
+      "em": "verify it in real code."
     },
-    "body": "I don't hand off static screens or smooth over uncertainty. I surface real user friction, argue down weaker alternatives, encode clear refusal and recovery paths in working software or hardware, and mark what remains untested.",
+    "body": "Instead of polishing static slides, I diagnose where automation or interfaces break people's trust, design clear refusal and recovery paths, and build running software or hardware prototypes to test those choices early.",
     "step": {
       "1": {
-        "t": "Surface Friction",
-        "b": "Field observation, failure modes, and the moments where automation overreaches human comfort."
+        "t": "Spot Real Friction",
+        "b": "Find where people hesitate, misclick, or stop trusting an automated workflow."
       },
       "2": {
-        "t": "Weigh Tradeoffs",
-        "b": "Explicitly reject tempting shortcuts and document why the chosen boundary protects users."
+        "t": "Lock Safety Rules",
+        "b": "Reject flashy auto-shortcuts when explicit confirmation or leaving blanks blank protects the user."
       },
       "3": {
-        "t": "Prove in Motion",
-        "b": "Real Next.js, Electron, browser extension, or ESP32 builds — high enough fidelity to fail fast."
+        "t": "Ship Running Builds",
+        "b": "Build real Next.js, Electron, extension, or ESP32 prototypes backed by automated tests."
       },
       "4": {
-        "t": "Mark Limits",
-        "b": "Separate observed evidence from synthetic benchmarks, and list what still needs user study."
+        "t": "Keep Scope Honest",
+        "b": "Separate measured device/repo verification from outside participant testing still left to run."
       }
     }
   },
   "feat": {
     "label": "Selected work",
-    "title": "Six featured cases, each showing how far the design goes.",
+    "title": "Six shipped builds—from problem framing to working proof.",
     "footer": "Full index",
     "deckPrev": "Previous case",
     "deckNext": "Next case",

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { SectionReveal } from "@/components/motion/SectionReveal";
+import { CrossPracticeArchitectureSvg } from "@/components/editorial/CapabilityDiagrams";
 
 interface ToolCategory {
   name: string;
@@ -38,25 +39,25 @@ export default async function AboutPage() {
 
   const charter = isZh
     ? {
-        eyebrow: "背景桥接与协作边界",
-        title: "计算机科班底座 × 交互设计方法 × 清晰的人机署名规则",
-        leftHeading: "我亲自定规并签署验收的环节",
+        eyebrow: "分工与署名边界",
+        title: "计算机科班底座 × 交互设计方法 × 人机分工原则",
+        leftHeading: "由我拍板并签署验收的环节",
         leftItems: [
-          "识别真实人因摩擦、社会尴尬门槛与误触隐患（不靠想象捏造需求）",
-          "裁决交互状态边界与拒绝红线（如 Walkie 实体批准、Lamplight 默认「先不要」、Autofill 禁猜与禁代投）",
-          "真机物理连接、ESP32 双启动隔离与 Playwright 三视口无障碍实测走查",
-          "把「已测上限」与「尚未开展的外部受试研究」拆开写明，绝不美化实验缺口",
+          "识别真实使用阻滞、误触成本与社交尴尬门槛（靠现场与日志判断，不靠凭空想象）",
+          "定夺高风险交互规则（如 Walkie 实体键确认、Lamplight 默认「先不要」、Autofill 拒绝乱猜与代投）",
+          "亲自完成硬件接线、ESP32 双系统烧录隔离与 Playwright 三视口无障碍走查",
+          "坦诚拆清「已跑通的代码/真机门禁」与「尚待开展的外部受试研究」，绝不美化实验缺口",
         ],
-        rightHeading: "AI 编码与设计工具负责提速的环节",
+        rightHeading: "AI 编码工具负责提速的环节",
         rightItems: [
-          "依据锁定后的协议帧规格与数据结构，快速展开 TypeScript / C++ / Electron 代码脚手架",
-          "批量起草可运行交互态供我逐轮审阅并打回修正（如 On The Beat 连续返工 5–12 轮设计画布）",
-          "辅助生成离线合规测试夹具与双语专栏文字草稿（均经源码、测试与人工复核对齐后方可发布）",
+          "在协议帧格式、Zod 数据约束和交互规则确定后，快速展开 TypeScript / C++ / Electron 脚手架",
+          "并行尝试多套可执行交互版本供我评审并打回重构（如 On The Beat 连续打回多轮修改）",
+          "辅助起草双语测试用例与初稿说明（均须经源码、单测与人工核对一致后才发布）",
         ],
       }
     : {
-        eyebrow: "CS Foundation × Interaction Craft × Authorship",
-        title: "How Computer Science training, design judgment, and AI tooling divide work",
+        eyebrow: "CS Base × IxD Craft × Authorship",
+        title: "How Computer Science training, design judgment, and AI tooling split work",
         leftHeading: "Owned & signed off by Lewis",
         leftItems: [
           "Human friction framing, interview transcript coding, and refusal-rule architecture before screens are drawn",
@@ -107,8 +108,8 @@ export default async function AboutPage() {
           data-testid="about-trajectory-pill"
         >
           {isZh
-            ? "斯旺西大学 CS 工程底座 (2020–24) × 昆士兰大学交互设计方法 (2025–26) × 软硬协同与 AI 信任实证 · 面向亚太 AI 团队与澳新产品工程岗"
-            : "Swansea CS Engineering Base (2020–24) × UQ Interaction Methods (2025–26) × Hardware/AI Proof · Open to ANZ & APAC Product/Design Engineering Roles"}
+            ? "斯旺西 CS 荣誉本科 (2020–24, 2:1) × 昆士兰大学交互硕士 (2025–26.11) · 布里斯班基地 · 欢迎澳新与亚太全职机会"
+            : "Swansea CS BSc (2020–24, 2:1) × UQ IxD Master (2025–Nov 2026) · Brisbane · Open to AU & APAC Design Engineering Roles"}
         </p>
       </section>
 
@@ -132,6 +133,7 @@ export default async function AboutPage() {
             </div>
           </aside>
         </div>
+        <CrossPracticeArchitectureSvg locale={isZh ? "zh" : "en"} />
       </section>
 
       <section className="container section" aria-labelledby="about-charter-heading">
@@ -164,11 +166,11 @@ export default async function AboutPage() {
 
       <section className="container section about-workflow-section" aria-labelledby="about-workflow-heading">
         <div className="about-workflow-head">
-          <div className="label">{isZh ? "论证立场与协作边界" : "Design stance & working loop"}</div>
+          <div className="label">{isZh ? "工作方法闭环" : "How ideas get tested"}</div>
           <h2 id="about-workflow-heading" className="h-display h2" style={{ marginTop: 12 }}>
             {isZh
-              ? "先替人写清交互规则与拒答边界，再让代码与原型去撞真实摩擦。"
-              : "I define the human rule and refusal boundary first; prototypes exist to test where it holds."}
+              ? "先替用户守住操作底线，再把原型拉进真实场景试错。"
+              : "Lock the safety rule first; prototypes exist to test where it breaks."}
           </h2>
         </div>
 
@@ -178,8 +180,8 @@ export default async function AboutPage() {
               ? [
                   { n: "01", t: "找准人的摩擦", d: "先识别打扰注意力、引发误触风险或让人尴尬的真实场景，再决定界面长什么样。" },
                   { n: "02", t: "明示设计取舍", d: "写清否决了哪几种看似顺滑但伤害用户掌控感的备选路径。" },
-                  { n: "03", t: "真原型压测", d: "用软件或硬件实体搭配自动化门禁跑到可测保真度，不止于口头讲故事。" },
-                  { n: "04", t: "诚实标注空白", d: "实测没跑的部分直接标明，不拿离线模拟或自我体验冒充外部真实研究。" },
+                  { n: "03", t: "跑通真原型", d: "用软件或硬件实体搭配自动化门禁跑到可测保真度，不止于口头讲故事。" },
+                  { n: "04", t: "诚实标清边界", d: "实测没跑的部分直接标明，不拿离线模拟或自我体验冒充外部真实研究。" },
                 ]
               : [
                   { n: "01", t: "Human friction first", d: "Pin down attention overload, error cost, and social discomfort before choosing visual components." },

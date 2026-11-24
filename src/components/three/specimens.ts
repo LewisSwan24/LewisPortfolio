@@ -18,8 +18,8 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
       zh: "前后实体手表键握住工具审批闸门；语音仅录上下文，绝不自动放行高危命令。",
     },
     honestScope: {
-      en: "Three hardware/relay gates pass on S3; external wearer study & wrist photos pending.",
-      zh: "真机与加密中继三道门禁已通过；外部开发者试戴与手腕实拍图尚待补充。",
+      en: "Three hardware/relay gates pass on S3; represented here via schematics and live simulation pending real wearer photography.",
+      zh: "真机与加密中继三道门禁已通过；目前以系统架构图与手腕交互模拟呈现，暂未录入外部开发者试戴实拍。",
     },
   },
   {

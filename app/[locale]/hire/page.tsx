@@ -150,6 +150,18 @@ export default async function HirePage() {
             <a className="btn btn-ghost" href="/decks/hardware-interaction.pdf" download>
               {proofLocale === "zh" ? "软硬交互设计师 Deck (PDF)" : "Hardware & Interaction (PDF)"}
             </a>
+            <a className="btn btn-ghost" href={`/resume/lewis-dong-resume-${proofLocale}.pdf`} download>
+              {proofLocale === "zh" ? "单页 ATS 简历 (PDF)" : "1-Page ATS Resume (PDF)"}
+            </a>
+          </div>
+          <div className="res-inline-links" aria-label={proofLocale === "zh" ? "直达公开源码仓库与在线原型" : "Verify public GitHub repositories and live builds"}>
+            <a href="https://github.com/LewisSwan24/walkie" target="_blank" rel="noopener noreferrer">Walkie GitHub ↗</a>
+            <a href="https://lewisswan24.github.io/lamplight-nook-site/" target="_blank" rel="noopener noreferrer">Lamplight Site ↗</a>
+            <a href="https://github.com/LewisSwan24/lamplight-nook" target="_blank" rel="noopener noreferrer">Lamplight GitHub ↗</a>
+            <a href="https://github.com/LewisSwan24/resume-autofill" target="_blank" rel="noopener noreferrer">Resume Autofill GitHub ↗</a>
+            <a href="https://on-the-beat.fly.dev" target="_blank" rel="noopener noreferrer">On The Beat Live ↗</a>
+            <a href="https://github.com/LewisSwan24/on-the-beat" target="_blank" rel="noopener noreferrer">On The Beat GitHub ↗</a>
+            <a href="https://maze-runners.vercel.app" target="_blank" rel="noopener noreferrer">MazeRunners Console ↗</a>
           </div>
         </div>
       </section>

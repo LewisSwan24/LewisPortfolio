@@ -29,7 +29,7 @@ export const grasslandModules: CaseModulesRecord = {
         zh: "零开发杂讯主菜单与五关战略地图入口",
       },
       trigger: {
-        en: "Player opens Chapter One (《苍狼余火》) in a desktop browser",
+        en: "Player opens Chapter One (Embers of the Pale Wolf) in a desktop browser",
         zh: "玩家在桌面浏览器打开第一章《苍狼余火》",
       },
       userMentalModel: {

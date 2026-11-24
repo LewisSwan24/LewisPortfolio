@@ -47,19 +47,28 @@ interface FeatItemProps {
   locale: ProofLocale;
 }
 
-function FeatItem({ n, k, href, flip, priority = false, viz, t, locale }: FeatItemProps) {
+function FeatItem({ n, k, href, flip, priority = false, viz, t, locale, externalLinks }: FeatItemProps & {
+  externalLinks: ReadonlyArray<{ label: string; href: string; external?: boolean }>;
+}) {
   // The real artefact leads where one exists; the concept diagram stands in
   // only for a case that has no screenshot or photo of its own.
   const cover = getProjectCover(k);
   const card = getCaseCard(k, locale);
+  const localizedExternalLabel = (rawLabel: string) => {
+    if (locale !== "zh") return rawLabel;
+    if (rawLabel.includes("GitHub")) return "GitHub 源码";
+    if (rawLabel.includes("companion site")) return "产品展示页";
+    if (rawLabel.includes("live web")) return "在线原型";
+    return rawLabel;
+  };
   return (
-    <TransitionLink
-      className={`feat-item ${flip ? "flip" : ""}`}
-      href={href}
-      style={{ textDecoration: "none", color: "inherit" }}
-    >
-      <div className={`feat-visual${cover ? " has-cover" : ""}`} data-vt-media>
-        <span className="num">{n}</span>
+    <article className={`feat-item ${flip ? "flip" : ""}`}>
+      <TransitionLink
+        className={`feat-visual${cover ? " has-cover" : ""}`}
+        href={href}
+        data-vt-media
+      >
+        <span className="num" aria-hidden="true">{n}</span>
         {cover ? (
           <ProjectCoverImage
             cover={cover}
@@ -70,10 +79,14 @@ function FeatItem({ n, k, href, flip, priority = false, viz, t, locale }: FeatIt
         ) : (
           viz
         )}
-      </div>
+      </TransitionLink>
       <div className="feat-body">
         <div className="eyebrow">{card.kicker}</div>
-        <h3 data-vt-title>{card.title}</h3>
+        <h3 data-vt-title>
+          <TransitionLink href={href} className="feat-title-link">
+            {card.title}
+          </TransitionLink>
+        </h3>
         <p className="sub">{card.sub}</p>
         <dl className="feat-meta">
           <dt>{t("cs.role")}</dt>
@@ -86,11 +99,24 @@ function FeatItem({ n, k, href, flip, priority = false, viz, t, locale }: FeatIt
           <span className="m">{card.m2}</span>
           <span className="m">{card.m3}</span>
         </div>
-        <span className="feat-cta">
-          {t("common.viewCaseStudy")} <span>→</span>
-        </span>
+        <div className="feat-actions">
+          <TransitionLink href={href} className="feat-cta">
+            {t("common.viewCaseStudy")} <span>→</span>
+          </TransitionLink>
+          {externalLinks.map((ext) => (
+            <a
+              key={ext.href}
+              href={ext.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="feat-ext-link"
+            >
+              {localizedExternalLabel(ext.label)} <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
       </div>
-    </TransitionLink>
+    </article>
   );
 }
 
@@ -128,16 +154,35 @@ export default async function HomePage() {
                 {t("hero.cta.note")} <span className="arrow">→</span>
               </Link>
             </div>
-            <div className="hero-focus-strip" aria-label={isZh ? "状态与招聘入口" : "Status and hiring focus"}>
-              <span>{isZh ? "背景与方向" : "Track"}</span>
+            <div className="hero-focus-strip" aria-label={isZh ? "招聘速览与快捷入口" : "Hiring snapshot and quick links"}>
+              <span>{isZh ? "10秒优势" : "10s edge"}</span>
               <strong>
                 {isZh
-                  ? "CS 工程底座 × UQ 交互方法 × 软硬与 AI 实证 · 面向亚太及澳新设计工程团队"
-                  : "Swansea CS Base × UQ Interaction Craft × Hardware/AI Proof · ANZ & APAC Roles"}
+                  ? "斯旺西 CS 本科 (2:1) × UQ 交互硕士 (2026.11 毕业)"
+                  : "Swansea CS BSc (2:1) × UQ IxD Master (Nov 2026)"}
               </strong>
-              <Link href="/hire" className="hero-hire-link">
-                {isZh ? "招聘决策简报 ↗" : "Hiring dossier ↗"}
-              </Link>
+              <strong>
+                {isZh
+                  ? "TypeScript · Electron · ESP32 · 可验证真实原型"
+                  : "TypeScript · Electron · ESP32 · Testable builds"}
+              </strong>
+              <strong>
+                {isZh
+                  ? "布里斯班基地 · 面向澳新全职（可搬迁/远程）及亚太团队"
+                  : "Brisbane · AU & APAC Full-Time Roles"}
+              </strong>
+              <div className="hero-hr-links">
+                <a
+                  href={`/resume/lewis-dong-resume-${proofLocale}.pdf`}
+                  download
+                  className="hero-pdf-link"
+                >
+                  {isZh ? "单页 PDF 简历 ↗" : "1-Page PDF CV ↗"}
+                </a>
+                <Link href="/hire" className="hero-hire-link">
+                  {isZh ? "招聘决策简报 ↗" : "Hiring dossier ↗"}
+                </Link>
+              </div>
             </div>
           </div>
           <div className="hero-visual v4-span-7 v4-studio-plate">
@@ -184,6 +229,7 @@ export default async function HomePage() {
                   t={t}
                   locale={proofLocale}
                   viz={fallbackViz}
+                  externalLinks={record.links.filter((l) => l.external)}
                 />
               ),
             };

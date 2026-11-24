@@ -48,7 +48,7 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
   const copy = isZh
     ? {
         eyebrow: "04 · 设计标本坐标系 · 6 个公开案例",
-        title: "人因摩擦 × 边界态度 × 媒介实体度",
+        title: "人因摩擦 × 决策边界 × 硬件实体感",
         sub: "把六个案例放到同一个空间标尺下观察：越靠近右上角，边界越落在物理动作与实时社交摩擦中；越靠近左上角，工作越聚焦 AI 协同规则与拒绝边界。",
         axisX: "人因摩擦重心（规则/认知 ← → 社交/物理）",
         axisY: "边界强硬度（明确拒绝 / 实体门禁 ↑）",

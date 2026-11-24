@@ -16,7 +16,10 @@ import { spawn } from "node:child_process";
 import { chromium } from "@playwright/test";
 
 const ROOT = process.cwd();
-const OUT_DIR = path.join(ROOT, "output", "resume");
+const OUT_DIRS = [
+  path.join(ROOT, "public", "resume"),
+  path.join(ROOT, "output", "resume"),
+];
 const PORT = 3211;
 const BASE_URL = `http://127.0.0.1:${PORT}`;
 const MIN_PDF_BYTES = 8 * 1024;
@@ -52,7 +55,9 @@ async function main() {
     process.exit(1);
   }
 
-  fs.mkdirSync(OUT_DIR, { recursive: true });
+  for (const dir of OUT_DIRS) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
   const nextBin = path.join(ROOT, "node_modules", "next", "dist", "bin", "next");
   const server = spawn(process.execPath, [nextBin, "start", "-p", String(PORT)], {
     cwd: ROOT,
@@ -76,15 +81,17 @@ async function main() {
         const url = `${BASE_URL}/${locale}/resume`;
         await page.goto(url, { waitUntil: "networkidle" });
         await page.emulateMedia({ media: "print" });
-        const outFile = path.join(OUT_DIR, `lewis-dong-resume-${locale}.pdf`);
+        const publicFile = path.join(OUT_DIRS[0], `lewis-dong-resume-${locale}.pdf`);
         await page.pdf({
-          path: outFile,
+          path: publicFile,
           format: "A4",
           printBackground: false,
-          margin: { top: "14mm", right: "14mm", bottom: "14mm", left: "14mm" },
+          margin: { top: "12mm", right: "12mm", bottom: "12mm", left: "12mm" },
         });
-        const bytes = assertValidPdf(outFile);
-        console.log(`Generated ${path.relative(ROOT, outFile)} (${(bytes / 1024).toFixed(1)} KB, %PDF verified)`);
+        const outputFile = path.join(OUT_DIRS[1], `lewis-dong-resume-${locale}.pdf`);
+        fs.copyFileSync(publicFile, outputFile);
+        const bytes = assertValidPdf(publicFile);
+        console.log(`Generated ${path.relative(ROOT, publicFile)} & ${path.relative(ROOT, outputFile)} (${(bytes / 1024).toFixed(1)} KB, %PDF verified)`);
       }
     } finally {
       await browser.close();

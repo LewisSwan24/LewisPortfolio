@@ -380,24 +380,24 @@ export const mazeCase: CaseRecord = {
   ],
   "card": {
     "en": {
-      "kicker": "Flagship · Physical computing",
+      "kicker": "Physical Computing · Co-Play System",
       "title": "MazeRunners",
-      "sub": "A maze that hits back — sensors, haptics, and a browser console in one loop.",
-      "role": "Design Technologist",
-      "date": "2026 · built & exhibited",
-      "m1": "Arduino Mega · 10 IR sensors",
-      "m2": "Vibration replaced electric shock",
-      "m3": "Web Serial live + demo console"
+      "sub": "Two players share one wristband control—forcing physical coordination across sensors, finger-sleeve haptics, and a live web scoreboard.",
+      "role": "Lead Interaction & Hardware/Web Dev",
+      "date": "2026 · exhibited live",
+      "m1": "Wrist co-touch & haptic traps",
+      "m2": "Arduino Mega · 10 IR · Web Serial",
+      "m3": "Publicly exhibited · 9 groups (36 players)"
     },
     "zh": {
-      "kicker": "旗舰 · 物理计算",
+      "kicker": "物理计算 · 多人协作装置",
       "title": "MazeRunners",
-      "sub": "一台会回手的迷宫：传感器、震动与浏览器控制台接成同一条物理回路。",
-      "role": "Design Technologist",
-      "date": "2026 · 已搭建并展出",
-      "m1": "Arduino Mega · 10 个红外传感器",
-      "m2": "用震动取代电击",
-      "m3": "Web Serial 实时 + demo 控制台"
+      "sub": "双人共用同一腕带才能触发方向，用十路红外防抖、指套震动与浏览器实时控制台把实体木迷宫变成必须开口配合的四人协同游戏。",
+      "role": "交互规则、全套接线、Arduino 固件与网页控制台",
+      "date": "2026 · 已公开展出",
+      "m1": "跨玩家共触互锁 + 震动反馈",
+      "m2": "Arduino Mega · 10 路红外 · Web Serial",
+      "m3": "公开展出实测 · 9 组 36 人试玩"
     }
   },
   "narrative": {

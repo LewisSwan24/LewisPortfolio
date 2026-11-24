@@ -168,7 +168,7 @@ export function StudioAssistantDrawer({ locale }: { locale: "en" | "zh" }) {
 
       <button
         type="button"
-        className="studio-assistant-pill btn btn-primary"
+        className="studio-assistant-pill btn btn-primary no-print"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
       >

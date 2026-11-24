@@ -38,15 +38,15 @@ export function resolveSiteUrl(
 
 export const siteConfig = {
   name: "Lewis Dong",
-  title: "Graduate Interaction Designer (Full-time) · UX Designer · UX Researcher",
+  title: "Design Engineer · Interaction & AI Product Designer",
   description:
-    "UQ Master of Interaction Design student in Brisbane crafting research-driven experiences through usability testing, AI, prototyping, and accessibility.",
+    "Swansea CS BSc (Hons) + UQ Master of Interaction Design (Nov 2026) in Brisbane — shipping testable AI boundaries, physical computing builds, and WCAG 2.2 AA web systems.",
   // Single source for the zh surfaces. These used to be inline literals in
   // app/[locale]/page.tsx, which left the RSS feed with no Chinese copy to fall
   // back to — /zh/feed.xml was serving the English description.
-  titleZh: "交互设计师 · 产品设计师",
+  titleZh: "设计工程师 · AI 产品与交互设计",
   descriptionZh:
-    "昆士兰大学交互设计硕士在读，常驻布里斯班。擅长通过用户研究、快速原型与可用性测试，打造清晰可感、以人为本的数字与软硬件交互体验。",
+    "斯旺西大学 CS 本科 × 昆士兰大学交互设计硕士（2026 年 11 月毕业），专注 AI 交互边界、全栈前端工程与软硬协同真实原型验证。",
   url: resolveSiteUrl(),
   author: {
     name: "Lewis Dong",

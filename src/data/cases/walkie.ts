@@ -45,9 +45,9 @@ export const walkieCase: CaseRecord = {
     label: "Hardware & protocol schematic",
     labelZh: "硬件与协议架构图",
     blurb:
-      "Drawn directly from the public repository (README, protocol/frames.md, firmware/ and bridge/). No wrist photographs are committed yet, so this case shows the architecture honestly rather than staged renders.",
+      "Drawn directly from the public repository (README, protocol/frames.md, firmware/ and bridge/). Real wearer photography has not been added yet, so this case uses interactive hardware schematics and protocol simulations.",
     blurbZh:
-      "直接依据公开仓库（README、protocol/frames.md、firmware/ 与 bridge/）绘制。目前尚未留存手腕实拍照片，因此本案例诚实展示系统架构图而非摆拍渲染图。",
+      "全部图解依据公开仓库（README、protocol/frames.md、firmware/ 与 bridge/）真实结构绘制。目前尚未录入外部开发者实拍照片，现以高精度系统图解与交互模拟展示。",
     images: [
       {
         src: "/projects/walkie/01-architecture.svg",
@@ -362,24 +362,24 @@ export const walkieCase: CaseRecord = {
   ],
   card: {
     en: {
-      kicker: "Physical AI Agent · Tactile Approvals",
+      kicker: "Physical AI · Tactile Control",
       title: "Walkie",
-      sub: "A wrist voice remote for Claude Code on M5StickS3 — keeping risky agent approvals anchored to deliberate physical button presses.",
-      role: "Solo · Product, hardware UX & verification",
+      sub: "An M5StickS3 wrist voice remote for Claude Code—keeping every high-risk tool approval locked to deliberate physical key presses.",
+      role: "Solo · Product direction, firmware & verification",
       date: "2026 · Oct",
-      m1: "Dual-boot S3 watch",
-      m2: "Physical key approvals",
-      m3: "Encrypted USB & Fly.io relay",
+      m1: "Dual-boot S3 key-locked approvals",
+      m2: "ESP32 C++ · AES-256-GCM · Node 24",
+      m3: "3 hardware/relay CI gates pass",
     },
     zh: {
-      kicker: "穿戴式 AI 交互 · 实体按键确认",
+      kicker: "穿戴式 AI · 实体防误触",
       title: "Walkie",
-      sub: "跑在 M5StickS3 手表上的 Claude Code 语音遥控器：把高风险操作确认留在手腕实体按键上，离开桌面也能放心接力。",
-      role: "独立完成 · 交互边界与硬件实测",
+      sub: "跑在 M5StickS3 手表上的 Claude Code 语音遥控器：语音只负责提需求，高风险审批全部锁在手腕实体按键上。",
+      role: "独立设计、硬件双系统防误擦与实机门禁验收",
       date: "2026 · 10",
-      m1: "双系统共存不误擦",
-      m2: "实体按键握住最终审批",
-      m3: "端到端加密无线中继",
+      m1: "前键放行 / 侧键拦截防误触",
+      m2: "ESP32 C++ · AES-256-GCM · Node 24",
+      m3: "真机、中继与宿主机三道门禁通过",
     },
   },
   narrative: {

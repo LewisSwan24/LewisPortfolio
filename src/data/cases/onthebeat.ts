@@ -362,24 +362,24 @@ export const onthebeatCase: CaseRecord = {
   ],
   "card": {
     "en": {
-      "kicker": "Social Wearables · Ambient Interaction",
+      "kicker": "Social Wearables · Ambient Consent",
       "title": "On The Beat",
-      "sub": "At a live gig, help two strangers break the ice without staring at a phone—names only appear once both nod on the wrist.",
-      "role": "Requirements, review & hardware pairing",
-      "date": "2026 · coursework prototype",
-      "m1": "Two real wristbands paired live",
-      "m2": "Standalone cloud relay, no laptop",
-      "m3": "Mutual-consent name reveal"
+      "sub": "Breaks the ice between two gig-goers without phone staring—revealing names and meet spots only after mutual wrist confirmation.",
+      "role": "Solo · Interaction rules, audit & BLE pairing",
+      "date": "2026 · coursework build",
+      "m1": "Mutual-nod identity reveal",
+      "m2": "BLE Wristband · Mobile Web · Fly.io",
+      "m3": "Verified live on 2 paired wristbands"
     },
     "zh": {
-      "kicker": "社交穿戴体验 · 现场轻交互",
+      "kicker": "社交穿戴 · 现场防尴尬破冰",
       "title": "On The Beat",
-      "sub": "在演出人群里帮两个想搭话的人破冰，不必低头盯手机：双方都在手腕端同意后，才互相显示名字与碰面地点。",
-      "role": "交互规则、输出审查与真机配对",
+      "sub": "在演出人群里帮两个陌生人自然开口而不必盯手机：只有双方手环都点头确认，彼此界面才出现姓名和碰面点。",
+      "role": "交互规则、代码抽检打回与双真机手环联调",
       "date": "2026 · 课程原型个人实现版",
-      "m1": "两支实体手环双向配对",
-      "m2": "脱离电脑独立运转云端中继",
-      "m3": "双向同意后才揭示身份"
+      "m1": "双向同意后才揭示身份",
+      "m2": "BLE 手环 · 移动 Web · Fly.io 中继",
+      "m3": "双真机腕带离桌独立联调通过"
     }
   },
   "narrative": {

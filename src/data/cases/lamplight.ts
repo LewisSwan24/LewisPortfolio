@@ -377,24 +377,24 @@ export const lamplightCase: CaseRecord = {
   ],
   "card": {
     "en": {
-      "kicker": "AI agent interface · Desktop app",
+      "kicker": "AI Agent UX · Desktop Workbench",
       "title": "Lamplight Nook",
-      "sub": "A pixel-art desktop app that plays out a long-running Claude task as a small café crew at work, and stops to ask before anything risky.",
-      "role": "Direction + interaction",
-      "date": "2026 · 1.0, in my daily use",
-      "m1": "1.0 on 5 November 2026",
-      "m2": "Risky steps default to 'not now'",
-      "m3": "Chinese and English throughout"
+      "sub": "Turns an opaque background coding run into a readable café crew plan—locking risky approvals onto 'Not now' by default.",
+      "role": "Solo · Direction, UX & acceptance",
+      "date": "2026 · v1.0 in daily use",
+      "m1": "Default-safe 'Not now' risk lock",
+      "m2": "Electron · Phaser · TypeScript · SDK",
+      "m3": "Daily solo driver · v1.0 shipped"
     },
     "zh": {
-      "kicker": "AI 代理界面 · 桌面应用",
+      "kicker": "AI 代理交互 · 桌面工作台",
       "title": "Lamplight Nook",
-      "sub": "一个像素风桌面应用，把跑很久的 Claude 任务演成一组咖啡馆店员在干活，碰到有风险的步骤会先停下来问。",
-      "role": "方向与交互",
-      "date": "2026 · 1.0，我日常在用",
-      "m1": "2026 年 11 月 5 日发布 1.0",
-      "m2": "风险步骤默认「先不要」",
-      "m3": "全程中英双语"
+      "sub": "把跑在后台的黑盒日志改造成一眼读懂的咖啡馆黑板进度，风险确认弹窗默认锁在「先不要」，防连按误批。",
+      "role": "独立产品方向、交互规范与验收",
+      "date": "2026 · 1.0 日常自用中",
+      "m1": "高风险默认聚焦「先不要」",
+      "m2": "Electron · Phaser · TS · Agent SDK",
+      "m3": "Windows 1.0 已发布并日常自用"
     }
   },
   "narrative": {
