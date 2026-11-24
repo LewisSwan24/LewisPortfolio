@@ -1,5 +1,7 @@
 import { getListedCases } from "@/lib/cases/registry";
 import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
+import { getCaseResearchVault } from "@/data/cases/research-vault";
+import { getAllReplayTraces } from "@/data/replay/traces";
 import { getAllBlogPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 
@@ -39,10 +41,16 @@ export async function buildLlmsTxt(): Promise<string> {
   );
 
   return [
-    `# ${siteConfig.name} — Interaction Designer & Design Engineer Portfolio (v5.5)`,
+    `# ${siteConfig.name} — Interaction Designer & Design Engineer Portfolio (v5.6)`,
     "",
     `> Bilingual static portfolio (English & Simplified Chinese) built with Next.js 15, React 19, TypeScript, Zod 4, Tailwind CSS v4, and GSAP.`,
-    `> Focus: interaction systems, physical-digital prototyping, AI safety boundaries, 24 bilingual engineering monographs, and WCAG 2.2 AA accessibility.`,
+    `> Focus: interaction systems, physical-digital prototyping, AI safety boundaries, ${posts.length} bilingual engineering monographs, WCAG 2.2 AA accessibility, and read-only MCP agent endpoints.`,
+    "",
+    "## Machine-Readable & Agentic Discovery",
+    "",
+    `- [Full Evidence Corpus (/llms-full.txt)](${baseUrl}/llms-full.txt): Complete structured corpus with design tradeoffs, raw research vault observations, protocol traces, and code snippets.`,
+    `- [MCP Manifest (/.well-known/mcp.json)](${baseUrl}/.well-known/mcp.json): Read-only Model Context Protocol JSON-RPC descriptor.`,
+    `- [MCP JSON-RPC Endpoint (/api/mcp)](${baseUrl}/api/mcp): Stateless POST endpoint supporting initialize, tools/list, and tools/call.`,
     "",
     "## Key Hiring & Interactive Surfaces",
     "",
@@ -76,6 +84,73 @@ export async function buildLlmsTxt(): Promise<string> {
     "",
     "- Every listed case states explicit evidence status, solo vs team boundaries, and unverified constraints.",
     "- Unlisted/abandoned exploratory briefs are excluded from public navigation, feeds, and AI agent indexes.",
+    "",
+  ].join("\n");
+}
+
+export async function buildLlmsFullTxt(): Promise<string> {
+  const baseText = await buildLlmsTxt();
+  const baseUrl = siteConfig.url.replace(/\/$/, "");
+  const listedCases = getListedCases();
+  const patterns = getAllInteractionPatterns();
+  const traces = getAllReplayTraces();
+
+  const deepVaultBlocks = listedCases.map((record) => {
+    const vault = getCaseResearchVault(record.slug);
+    if (!vault) return "";
+    const obs = vault.observationLogs.map(
+      (o) => `  - Observation [${o.sessionRef.en}]: ${o.observation.en} (Response: ${o.designResponse.en})`
+    );
+    const tensions = vault.triRoleTension.map(
+      (t) => `  - Tri-Role Tension (${t.roleLabel.en}): Priority=${t.priority.en} | Conflict=${t.tension.en} | Rule=${t.resolution.en}`
+    );
+    const rebuild = vault.rebuildToday.map((r) => `  - Rebuild (${r.question.en}): ${r.answer.en}`);
+    return [
+      `### ${record.card.en.title} (${baseUrl}/en/projects/${record.slug})`,
+      ...obs,
+      ...tensions,
+      ...rebuild.slice(0, 2),
+    ].join("\n");
+  });
+
+  const patternSnippets = patterns.map((p) =>
+    [
+      `### Pattern ${p.order}: ${p.title.en} (${p.sourceCaseSlug})`,
+      `- Human Tension: ${p.humanTension.en}`,
+      `- Anti-Pattern Rejected: ${p.commonAntiPattern.en}`,
+      `- Chosen Rule: ${p.chosenRule.en}`,
+      `- Evidence Ceiling: ${p.metricsCeiling.summary.en}`,
+      `- Reference Code (${p.codeSnippet.filename}):`,
+      "```" + p.codeSnippet.language,
+      p.codeSnippet.code,
+      "```",
+    ].join("\n")
+  );
+
+  const traceBlocks = traces.map((tr) =>
+    [
+      `### Hardware Replay Trace: ${tr.title.en} (${baseUrl}/en/studio/replay?track=${tr.slug})`,
+      `- Transport: ${tr.transportSummary.en}`,
+      `- Calibration Note: ${tr.honestCalibrationNote.en}`,
+      `- Fault Scenario (${tr.faultInjectionLabel.en}): ${tr.faultInjectionSummary.en}`,
+    ].join("\n")
+  );
+
+  return [
+    baseText,
+    "---",
+    "",
+    "## Deep Raw Research Vaults (6 Flagships)",
+    "",
+    ...deepVaultBlocks.filter(Boolean),
+    "",
+    "## Executable Pattern Code Specifications (6)",
+    "",
+    ...patternSnippets,
+    "",
+    "## Deterministic Hardware & Protocol Traces (3)",
+    "",
+    ...traceBlocks,
     "",
   ].join("\n");
 }

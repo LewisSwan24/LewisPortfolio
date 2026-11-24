@@ -2,6 +2,7 @@ const EMAIL_RE = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
 const PHONE_RE = /(?:\+?\d{1,3}[\s.-]?)?(?:\(?\d{2,4}\)?[\s.-]?){2,4}\d{3,4}/g;
 const URL_RE = /(?:https?:\/\/|www\.)[^\s<>"']+/gi;
 const INTERNAL_HOST_RE = /\b(?:localhost|127\.0\.0\.1|[\w-]+\.(?:internal|local|corp))\b(?::\d+)?/gi;
+const SECRET_TOKEN_RE = /\b(?:Bearer\s+[A-Za-z0-9._-]+|sk-(?:proj-|live-|test-)?[A-Za-z0-9_-]{12,}|gh[pousr]_[A-Za-z0-9_]{12,}|AIza[0-9A-Za-z_-]{16,})\b/g;
 
 export const MAX_JD_QUERY_CHARS = 1200;
 
@@ -26,6 +27,7 @@ export function redactPii(raw: string): RedactResult {
     });
   };
 
+  replaceWithCount(SECRET_TOKEN_RE, "[redacted-secret]");
   replaceWithCount(EMAIL_RE, "[redacted-email]");
   replaceWithCount(URL_RE, "[redacted-url]");
   replaceWithCount(INTERNAL_HOST_RE, "[redacted-host]");
