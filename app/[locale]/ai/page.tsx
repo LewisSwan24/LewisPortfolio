@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import Link from "next/link";
 import { AiWorkbenchPageClient } from "@/components/ai/AiWorkbenchPageClient";
+import { McpProtocolSandbox } from "@/components/ai/McpProtocolSandbox";
 import { RedTeamCritiquePanel } from "@/components/ai/RedTeamCritiquePanel";
 import styles from "@/components/ai/ai-workbench.module.css";
 import { getAllRedTeamDecks } from "@/data/critique/red-team";
@@ -121,6 +122,8 @@ export default async function AiWorkbenchPage() {
       </section>
 
       <AiWorkbenchPageClient locale={locale} semanticStats={semanticStats} />
+
+      <McpProtocolSandbox locale={locale} />
 
       <section className="section container">
         <RedTeamCritiquePanel decks={redTeamDecks} locale={locale} />

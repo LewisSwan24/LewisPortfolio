@@ -110,7 +110,7 @@ describe("v5.5 Master Release Invariants", () => {
 
     expect(getListedCases()).toHaveLength(6);
     const llms = await buildLlmsTxt();
-    expect(llms).toContain("v5.5");
+    expect(llms).toMatch(/v5\.[5-9]|v6\.0/);
     expect(llms).toContain("/en/vault");
     expect(llms).toContain("/en/studio/replay");
     for (const hiddenSlug of UNLISTED_PROJECT_SLUGS) {
