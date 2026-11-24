@@ -49,6 +49,9 @@ jobs:
       - name: Media asset budget check
         run: pnpm media:check
 
+      - name: CSS zero-warning check
+        run: pnpm css:check
+
       - name: Build
         run: pnpm build
 

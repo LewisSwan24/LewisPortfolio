@@ -1,0 +1,99 @@
+.arenaShell {
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.controlsBar {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.pillGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.groupLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-inline-end: 4px;
+}
+
+.pillBtn {
+  min-inline-size: 44px;
+  min-block-size: 32px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg-alt);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.pillBtn[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.pillBtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.questionCard {
+  display: grid;
+  gap: 8px;
+  padding: var(--s-4);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: var(--r-sm);
+  background: var(--bg-alt);
+}
+
+.comparisonGrid {
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.answerBox {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+}
+
+.answerBox[data-stance="trap"] {
+  border-style: dashed;
+  opacity: 0.92;
+}
+
+.answerBox[data-stance="grounded"] {
+  border-color: var(--accent);
+}
+
+.receiptRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--border);
+}

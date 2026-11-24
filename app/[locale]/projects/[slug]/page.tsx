@@ -42,6 +42,7 @@ import {
 import { getCaseCard, getCaseRecordOrThrow } from "@/lib/cases/registry";
 import { getCaseDepthModules } from "@/data/cases/modules";
 import { getCaseResearchVault } from "@/data/cases/research-vault";
+import { getCaseCodeDiff } from "@/data/cases/code-diffs";
 import { getCaseRedTeamDeck } from "@/data/critique/red-team";
 import { CaseReviewLensSwitch } from "@/components/case/deep/CaseReviewLensSwitch";
 import { CaseFocusRegion } from "@/components/case/deep/CaseFocusRegion";
@@ -49,6 +50,7 @@ import { CaseJourneyRail } from "@/components/case/deep/CaseJourneyRail";
 import { CaseStateMatrixTable } from "@/components/case/deep/CaseStateMatrixTable";
 import { CaseRejectionArchive } from "@/components/case/deep/CaseRejectionArchive";
 import { RawResearchVault } from "@/components/case/deep/RawResearchVault";
+import { CaseCodeDiffViewer } from "@/components/case/deep/CaseCodeDiffViewer";
 import { RedTeamCritiquePanel } from "@/components/ai/RedTeamCritiquePanel";
 import deepStyles from "@/components/case/deep/cases-deep.module.css";
 
@@ -165,6 +167,7 @@ export default async function CasePage({ params }: Props) {
 
   const depthModules = getCaseDepthModules(k);
   const researchVault = getCaseResearchVault(k);
+  const caseCodeDiff = getCaseCodeDiff(k);
   const redTeamDeck = getCaseRedTeamDeck(k);
   const depthJumps: Array<readonly [string, string]> = [
     ...(depthModules
@@ -493,6 +496,12 @@ export default async function CasePage({ params }: Props) {
             locale={proofLocale}
             sectionId="red-team-defense"
           />
+        </section>
+      )}
+
+      {caseCodeDiff && (
+        <section className="container" style={{ marginTop: "var(--s-6)" }}>
+          <CaseCodeDiffViewer diff={caseCodeDiff} locale={proofLocale} />
         </section>
       )}
 
