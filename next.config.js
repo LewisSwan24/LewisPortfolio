@@ -124,6 +124,19 @@ const nextConfig = {
         ],
       },
       {
+        source: "/sw.js",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-cache, no-store, must-revalidate",
+          },
+          {
+            key: "Service-Worker-Allowed",
+            value: "/",
+          },
+        ],
+      },
+      {
         // Security headers for all pages
         source: "/:path*",
         headers: [
@@ -163,6 +176,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https://avatars.githubusercontent.com https://images.unsplash.com",
               "font-src 'self'",
+              "worker-src 'self'",
               "connect-src 'self' https://vitals.vercel-insights.com",
               "frame-src 'self' https://maze-runners.vercel.app https://hoop-dream.vercel.app https://fencepost-app.vercel.app https://lewisswan24.github.io https://onon-wolf-iron-tide.vercel.app",
               "object-src 'none'",

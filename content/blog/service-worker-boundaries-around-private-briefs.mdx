@@ -1,0 +1,22 @@
+---
+title: "Service Worker Caching Boundaries Around Private Hiring Briefs"
+date: "2026-11-24"
+excerpt: "Making essays and case studies work offline is trivial—right until a naive fetch handler caches private hiring briefs or API responses. Explicit bypass lists keep security and offline resilience separated."
+tags:
+  - Offline Shell
+  - Security Headers
+  - Service Worker
+cluster: "bilingual-systems"
+author: "Lewis Dong"
+published: true
+---
+
+Adding a service worker to an essay platform improves plane and commuter reading instantly, yet blanket caching breaks cache-control invariants when dynamic `/brief/[id]` snapshots or `/api/*` endpoints coexist on the same origin.
+
+## Explicit fail-closed bypass rules alongside `worker-src 'self'`
+
+In `v6.0.0`, `public/sw.js` ships with strict scoping rules verified against `next.config.js`:
+
+- **Private route immunity**: Requests under `/api/` and `/brief/` (plus `/{en,zh}/brief/`) return directly to the browser network stack—never touched by Cache Storage.
+- **No-cache worker updates**: `next.config.js` pairs `worker-src 'self'` CSP with `Cache-Control: no-cache, no-store, must-revalidate` on `/sw.js` so stale workers rotate reliably.
+- **Network-first reading shell**: Public EN/ZH case pages and the 30 monographs gracefully serve last-visited HTML copies when connectivity drops.

@@ -107,6 +107,18 @@ html { scroll-behavior: smooth; }
       transform: translateY(0);
     }
   }
+
+  @keyframes v6-reading-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .reading-progress-fill {
+      animation: v6-reading-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
 }
 
 .skip-link {

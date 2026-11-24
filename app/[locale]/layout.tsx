@@ -10,6 +10,7 @@ import { BackToTop } from "@/components/navigation/BackToTop";
 import { ErrorBoundary } from "@/components/providers/ErrorBoundary";
 import { PageTransition } from "@/components/effects/PageTransition";
 import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
+import { OfflineShellRegister } from "@/components/providers/OfflineShellRegister";
 import { LazyKeyboardShortcuts } from "@/components/providers/LazyKeyboardShortcuts";
 import { StudioAssistantDrawer } from "@/components/command/StudioAssistantDrawer";
 import { SearchProvider } from "@/components/SearchProvider";
@@ -97,6 +98,7 @@ export default async function LocaleLayout({
           <StudioAssistantDrawer locale={caseLocale} />
           <LazyKeyboardShortcuts />
           <PerformanceMonitor />
+          <OfflineShellRegister />
           <Analytics />
         </SearchProvider>
       </ThemeProvider>

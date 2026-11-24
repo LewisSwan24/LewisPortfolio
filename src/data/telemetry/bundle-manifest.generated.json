@@ -9,8 +9,8 @@
     "largestLazy3dGzKb": 82.4,
     "largestLazy3dChunk": "chunks/192f0001.f1536b8d39c5b2a0.js",
     "largestAppRouteGzKb": 15.3,
-    "largestAppRouteChunk": "chunks/app/[locale]/lab/page-1fe52646d8765775.js",
-    "appCssGzKb": 39.3,
+    "largestAppRouteChunk": "chunks/app/[locale]/lab/page-911bf26b2f472957.js",
+    "appCssGzKb": 39.2,
     "totalCssGzKb": 40.2,
     "ceilings": {
       "standardJsGzKb": 70,
@@ -31,7 +31,7 @@
     "archivalVaultCases": 8,
     "unlistedLeaks": 0,
     "interactionPatterns": 6,
-    "publishedEssaysPerLocale": 25,
+    "publishedEssaysPerLocale": 31,
     "semanticChunks": 151,
     "cssCompilerWarnings": 0
   }

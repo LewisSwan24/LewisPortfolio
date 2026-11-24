@@ -1,0 +1,22 @@
+---
+title: "离线阅读壳的隐私边界：绝不让 Service Worker 缓存私密定制简报"
+date: "2026-11-24"
+excerpt: "让 30 篇专栏与 6 大主案支持离线阅读并不难，真正危险的是粗放缓存策略误存带权限或私密特征的定制简报。拆解 `/api/*` 与 `/brief/*` 的硬隔离规则。"
+tags:
+  - 离线架构
+  - 安全策略
+  - Service Worker
+cluster: "bilingual-systems"
+author: "Lewis Dong"
+published: true
+---
+
+为双语长文站点加上离线阅读外壳能明显改善断网或通勤查阅体验，但如果缓存拦截器写得太宽泛，就会连同 `private, no-store` 的动态访谈简报甚至接口响应一并存进共享缓存。
+
+## 明确的白名单绕行与 CSP 配对策略
+
+在 `v6.0.0` 版本中，`public/sw.js` 与 `next.config.js` 按以下三条约束协同运行：
+
+- **绝对绕行动态与私密路径**：所有命中 `/api/`、`/brief/` 及 `/{en,zh}/brief/` 的请求一律直通浏览器网络层，Cache Storage 写零字节。
+- **强更新与 CSP 锁域**：安全响应头声明 `worker-src 'self'`，并对 `/sw.js` 本身施加 `no-cache, no-store, must-revalidate` 保证版本切换不卡死。
+- **公开阅读壳优雅降级**：面向公众的 6 大主案与 30 篇工程专论采用 Network-First，并在 `/_next/static/` 使用 Stale-While-Revalidate。

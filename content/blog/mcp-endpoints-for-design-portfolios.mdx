@@ -1,0 +1,22 @@
+---
+title: "Shipping Read-Only MCP Tools Without Leaking Unlisted Drafts"
+date: "2026-11-18"
+excerpt: "Recruiters increasingly inspect engineering candidates with coding agents. Why exposing typed JSON-RPC endpoints requires the same fail-closed isolation and PII scrubbing as production APIs."
+tags:
+  - AI Safety
+  - MCP Protocol
+  - Architecture
+cluster: "ai-safety"
+author: "Lewis Dong"
+published: true
+---
+
+Hiring teams now run candidate repositories and portfolios through MCP clients directly inside editors. Treating that traffic like casual HTML scraping invites silent leaks: unlisted coursework fragments surface in generic queries, or raw job descriptions echo secrets in plain text.
+
+## Enforcing contract boundaries on the server
+
+In this site, `/api/mcp` ships strictly read-only Zod `.strict()` handlers alongside `/.well-known/mcp.json` and `/llms-full.txt`:
+
+1. **Five scoped tools, zero writes**: Queries run against static listed flagships, pattern specs, protocol replay frames, and archive vault lessons without database side effects.
+2. **Hard unlisted isolation**: Search and tradeoff tools physically filter to `LISTED_PROJECT_SLUGS`; archival studies appear only inside the explicit `audit_vault_lineage` tool.
+3. **Secret scrubbing before scoring**: Input sanitizers strip emails, phone tokens, `Bearer`, `sk-`, `ghp_`, and `AIza` keys prior to local BM25 ranking inside [AI Lab](/ai).
