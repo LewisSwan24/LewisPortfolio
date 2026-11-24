@@ -59,7 +59,7 @@ export default async function PatternsPage() {
       </section>
 
       <section className="container" style={{ paddingBottom: "var(--s-9)" }}>
-        <Suspense fallback={null}>
+        <Suspense fallback={<div style={{ minHeight: 720 }} aria-hidden="true" />}>
           <PatternWorkbenchClient patterns={patterns} locale={locale} />
         </Suspense>
       </section>

@@ -407,7 +407,13 @@
   align-items: flex-start; gap: var(--s-3);
 }
 .specimen-mode-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.specimen-mode-btn { padding: 4px 10px; font-size: 12px; }
+.specimen-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 6px 12px;
+  font-size: 12px;
+}
 .specimen-canvas-frame {
   position: relative; width: 100%; aspect-ratio: 2 / 1; min-height: 220px;
   border: 1px solid var(--border); background: var(--bg); overflow: hidden;

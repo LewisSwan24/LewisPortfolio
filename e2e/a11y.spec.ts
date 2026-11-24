@@ -13,6 +13,12 @@ const AUDIT_ROUTES = [
   "/zh/ai",
   "/en/about",
   "/en/hire",
+  "/en/vault",
+  "/zh/vault",
+  "/en/studio/replay",
+  "/zh/studio/replay",
+  "/en/blog",
+  "/zh/blog",
   "/en/resume",
   "/en/resume/compose",
   "/en/contact",
@@ -27,13 +33,16 @@ const DARK_AND_MOBILE_ROUTES = [
   "/en/lab",
   "/en/ai",
   "/en/hire",
+  "/en/vault",
+  "/en/studio/replay",
+  "/en/blog",
   "/en/resume",
   "/en/resume/compose",
 ];
 
 async function runAxeAudit(page: Page) {
   const results = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
     .analyze();
 
   const blocking = results.violations.filter(

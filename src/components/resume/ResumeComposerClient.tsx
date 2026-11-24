@@ -1,7 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import {
+  RESUME_COMPOSER_MARKETS,
+  type ComposerMarketMode,
+} from "@/lib/resume/composer-markets";
 import type {
   ComposerRoleId,
   ComposerSlug,
@@ -21,6 +25,9 @@ export function ResumeComposerClient({
   initialLocale: "en" | "zh";
 }) {
   const [roleId, setRoleId] = useState<ComposerRoleId>("ixd-ai");
+  const [marketMode, setMarketMode] = useState<ComposerMarketMode>(
+    initialLocale === "zh" ? "apac-closed-loop" : "anz-critique"
+  );
   const [previewLocale, setPreviewLocale] = useState<"en" | "zh">(initialLocale);
   const [selectedSlugs, setSelectedSlugs] = useState<ComposerSlug[]>([
     ...(presets[0]?.defaultCaseSlugs ?? ["walkie", "lamplight", "autofill", "onthebeat"]),
@@ -30,6 +37,13 @@ export function ResumeComposerClient({
   const [includeLabLinks, setIncludeLabLinks] = useState(true);
   const [statusMessage, setStatusMessage] = useState("");
 
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("market");
+    if (param === "apac-closed-loop" || param === "anz-critique") {
+      setMarketMode(param);
+    }
+  }, []);
+
   const isUiZh = initialLocale === "zh";
   const isDocZh = previewLocale === "zh";
 
@@ -37,6 +51,11 @@ export function ResumeComposerClient({
     () => presets.find((p) => p.id === roleId) ?? presets[0]!,
     [presets, roleId]
   );
+  const activeMarketSpec = useMemo(
+    () => RESUME_COMPOSER_MARKETS.find((m) => m.id === marketMode) ?? RESUME_COMPOSER_MARKETS[0]!,
+    [marketMode]
+  );
+  const activeMarketEmphasis = activePreset.marketEmphasis[marketMode];
 
   const activeCases = useMemo(
     () => cases.filter((c) => selectedSlugs.includes(c.slug)),
@@ -66,11 +85,12 @@ export function ResumeComposerClient({
   const buildMarkdownDossier = () => {
     const lines = [
       `# ${isDocZh ? `${siteConfig.author.nameZh} (${siteConfig.name})` : siteConfig.name}`,
-      `**${activePreset.roleTitle[previewLocale]}**`,
-      `${siteConfig.author.email} | ${siteConfig.url}`,
+      `**${activeMarketEmphasis.headline[previewLocale]}**`,
+      `${siteConfig.author.email} | ${siteConfig.url} | ${activeMarketSpec.label[previewLocale]}`,
       "",
       `## ${isDocZh ? "岗位匹配摘要" : "Role Alignment"}`,
-      activePreset.summary[previewLocale],
+      activeMarketEmphasis.pitch[previewLocale],
+      `> ${activeMarketEmphasis.evidenceOrderNote[previewLocale]}`,
       "",
       `## ${isDocZh ? "精选案例与设计论证" : "Selected Works & Design Rationale"} (${activeCases.length})`,
       ...activeCases.flatMap((c) => [
@@ -159,6 +179,25 @@ export function ResumeComposerClient({
             >
               中文 A4 版
             </button>
+          </div>
+          <div
+            role="group"
+            aria-label={isUiZh ? "目标市场叙事模板" : "Target Market Framing"}
+            style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}
+          >
+            {RESUME_COMPOSER_MARKETS.map((m) => (
+              <button
+                key={m.id}
+                type="button"
+                data-testid={`composer-market-${m.id}`}
+                className={styles.pillBtn}
+                style={{ minHeight: 32 }}
+                aria-pressed={marketMode === m.id}
+                onClick={() => setMarketMode(m.id)}
+              >
+                {m.shortLabel[initialLocale]}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -250,7 +289,7 @@ export function ResumeComposerClient({
               {isDocZh ? `${siteConfig.author.nameZh} · ${siteConfig.name}` : siteConfig.name}
             </h2>
             <p className={styles.a4Subtitle} data-testid="composer-doc-role-title">
-              {activePreset.roleTitle[previewLocale]}
+              {activePreset.roleTitle[previewLocale]} · {activeMarketSpec.shortLabel[previewLocale]}
             </p>
           </div>
           <div className={styles.a4Meta}>
@@ -264,9 +303,17 @@ export function ResumeComposerClient({
 
         <section className={styles.a4Section}>
           <h3 className={styles.a4SectionTitle}>
-            {isDocZh ? "核心聚焦" : "Profile Summary"}
+            {isDocZh ? `核心聚焦 · ${activeMarketSpec.shortLabel[previewLocale]}` : `Profile Summary · ${activeMarketSpec.shortLabel[previewLocale]}`}
           </h3>
-          <p className={styles.a4Summary}>{activePreset.summary[previewLocale]}</p>
+          <p className={styles.a4CaseText} data-testid="composer-doc-market-headline" style={{ fontWeight: 600 }}>
+            {activeMarketEmphasis.headline[previewLocale]}
+          </p>
+          <p className={styles.a4Summary} data-testid="composer-doc-market-pitch">
+            {activeMarketEmphasis.pitch[previewLocale]}
+          </p>
+          <p className={styles.a4CaseCeiling} style={{ marginTop: 4 }}>
+            {activeMarketEmphasis.evidenceOrderNote[previewLocale]}
+          </p>
         </section>
 
         <section className={styles.a4Section}>

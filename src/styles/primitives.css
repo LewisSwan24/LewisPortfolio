@@ -124,6 +124,10 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
 .page { animation: page-in var(--dur-4) var(--ease-out) both; }
 
 /* NAV */
+html {
+  scroll-padding-top: 88px;
+  scroll-padding-bottom: 84px;
+}
 .pd-nav {
   position: sticky; top: 0; z-index: 50;
   background: var(--bg);
@@ -219,6 +223,14 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
   line-height: 1; text-decoration: none;
 }
 .pd-nav-tools button:hover, .pd-nav-tools a.tool:hover { border-color: var(--text); color: var(--text); }
+.pd-nav-tools .pd-lang {
+  display: inline-flex; align-items: center;
+}
+.pd-lang a {
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  min-height: 30px; min-width: 48px; padding: 6px 8px;
+  text-decoration: none; line-height: 1; border-radius: var(--r-sm);
+}
 .pd-lang span { color: var(--text-4); }
 .pd-lang span.active { color: var(--text); font-weight: 600; }
 .pd-mobile-toggle { display: none; width: 38px; height: 38px; padding: 0; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
