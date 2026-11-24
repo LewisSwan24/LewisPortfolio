@@ -140,20 +140,30 @@ function measureBuildArtifacts() {
 }
 
 function countSemanticChunks() {
-  const semPath = path.join(ROOT, "src", "data", "semantic-index.generated.json");
-  if (!fs.existsSync(semPath)) return 151;
+  const semPath = path.join(ROOT, "src", "data", "ai", "semantic-index.generated.json");
+  if (!fs.existsSync(semPath)) return 157;
   try {
     const parsed = JSON.parse(fs.readFileSync(semPath, "utf8"));
-    return Array.isArray(parsed.chunks) ? parsed.chunks.length : 151;
+    if (typeof parsed.count === "number") return parsed.count;
+    if (parsed.entries && typeof parsed.entries === "object") {
+      return Object.keys(parsed.entries).length;
+    }
+    return Array.isArray(parsed.chunks) ? parsed.chunks.length : 157;
   } catch {
-    return 151;
+    return 157;
   }
 }
 
 function countBlogPostsEn() {
   const blogDir = path.join(ROOT, "content", "blog");
-  if (!fs.existsSync(blogDir)) return 24;
-  return fs.readdirSync(blogDir).filter((f) => f.endsWith(".mdx")).length;
+  if (!fs.existsSync(blogDir)) return 30;
+  return fs
+    .readdirSync(blogDir)
+    .filter((f) => f.endsWith(".mdx"))
+    .filter((f) => {
+      const raw = fs.readFileSync(path.join(blogDir, f), "utf8");
+      return !/^published:\s*false\b/m.test(raw);
+    }).length;
 }
 
 function countCssWarningsStatic() {

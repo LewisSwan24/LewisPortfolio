@@ -33,6 +33,7 @@ export function HardwareTwinCanvas({
   const [manualZoneId, setManualZoneId] = useState<HardwareZoneId | null>(null);
 
   const webgl = useWebGLSupport(!webglLost && !forceSchematic);
+  const showWebGL = webgl.supported && !webglLost && !forceSchematic;
   const zones = HARDWARE_TWIN_ZONES[slug];
   const mapped = mapReplayFrameToHardwareTwin(slug, frame);
 
@@ -53,7 +54,7 @@ export function HardwareTwinCanvas({
     setWebglLost(false);
   }, []);
 
-  const renderMode = webgl.supported ? "webgl-3d" : "svg-fallback";
+  const renderMode = showWebGL ? "webgl-3d" : "svg-fallback";
 
   return (
     <section
@@ -93,7 +94,7 @@ export function HardwareTwinCanvas({
               }
             }}
           >
-            {webgl.supported
+            {showWebGL
               ? isZh
                 ? "切换 2D 图纸"
                 : "2D Schematic"
@@ -110,7 +111,7 @@ export function HardwareTwinCanvas({
         onContextMenu={(e) => e.preventDefault()}
       >
         <div className={styles.hudCorner} data-testid="twin-hud-mode">
-          {webgl.supported
+          {showWebGL
             ? isZh
               ? "WebGL 3D 联动"
               : "WebGL 3D Live"
@@ -132,7 +133,7 @@ export function HardwareTwinCanvas({
           className={styles.svgStage}
           data-testid="hardware-twin-svg"
           aria-hidden="true"
-          style={{ opacity: webgl.supported ? 0.14 : 1 }}
+          style={{ opacity: showWebGL ? 0.14 : 1 }}
         >
           <rect
             x="18"
@@ -232,7 +233,7 @@ export function HardwareTwinCanvas({
           />
         </svg>
 
-        {webgl.supported && (
+        {showWebGL && (
           <div className={styles.webglWrap}>
             <HardwareFieldWebGL
               slug={slug}

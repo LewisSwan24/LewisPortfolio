@@ -4,14 +4,14 @@
   "budgets": {
     "source": "next-build-static",
     "jsChunksCount": 89,
-    "largestStandardJsGzKb": 67,
-    "largestStandardJsChunk": "chunks/framework-cf49209491471eb5.js",
+    "largestStandardJsGzKb": 67.3,
+    "largestStandardJsChunk": "chunks/framework-d1e034bc0aa55c98.js",
     "largestLazy3dGzKb": 82.4,
-    "largestLazy3dChunk": "chunks/192f0001.f1536b8d39c5b2a0.js",
+    "largestLazy3dChunk": "chunks/d02cf09b.1c03ee5024ece2a1.js",
     "largestAppRouteGzKb": 15.3,
-    "largestAppRouteChunk": "chunks/app/[locale]/lab/page-911bf26b2f472957.js",
-    "appCssGzKb": 39.2,
-    "totalCssGzKb": 40.2,
+    "largestAppRouteChunk": "chunks/app/[locale]/lab/page-fccf1afdbd44db19.js",
+    "appCssGzKb": 39.4,
+    "totalCssGzKb": 40.3,
     "ceilings": {
       "standardJsGzKb": 70,
       "lazy3dGzKb": 160,
@@ -31,8 +31,8 @@
     "archivalVaultCases": 8,
     "unlistedLeaks": 0,
     "interactionPatterns": 6,
-    "publishedEssaysPerLocale": 31,
-    "semanticChunks": 151,
+    "publishedEssaysPerLocale": 30,
+    "semanticChunks": 157,
     "cssCompilerWarnings": 0
   }
 }

@@ -9,6 +9,7 @@ import { auditTranslationese } from "@/lib/i18n/editorial-voice";
 import { buildLlmsFullTxt, buildLlmsTxt } from "@/lib/llms";
 import { buildMcpManifest } from "@/lib/mcp/server";
 import { UNLISTED_PROJECT_SLUGS } from "@/lib/project-routes";
+import telemetryManifest from "@/data/telemetry/bundle-manifest.generated.json";
 
 const ROOT = process.cwd();
 
@@ -103,5 +104,8 @@ describe("v6.0 Platform GA Release Invariants", () => {
       expect(llmsFull).not.toContain(`/projects/${unlisted}`);
       expect(manifest).not.toContain(`/projects/${unlisted}`);
     }
+
+    expect(telemetryManifest.integrity.publishedEssaysPerLocale).toBe(30);
+    expect(telemetryManifest.integrity.semanticChunks).toBe(157);
   });
 });
