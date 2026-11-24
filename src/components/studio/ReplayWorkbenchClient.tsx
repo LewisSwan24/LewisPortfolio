@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { VerifiedStatusBadge } from "@/components/case/deep/VerifiedStatusBadge";
 import type { ReplayTrackSlug, ReplayTrace } from "@/lib/replay/schema";
+import { mapReplayFrameToHardwareTwin, type HardwareZoneId } from "@/lib/replay/hardware-twin-map";
+import { HardwareTwinCanvas } from "@/components/three/HardwareTwinCanvas";
 import { ReplayWaveformSvg } from "./ReplayWaveformSvg";
 import { WebSerialProbePanel } from "./WebSerialProbePanel";
 import styles from "./replay.module.css";
@@ -152,6 +154,21 @@ export function ReplayWorkbenchClient({
           </p>
 
           <ReplayWaveformSvg frames={frames} activeIndex={safeIndex} locale={locale} />
+
+          <HardwareTwinCanvas
+            slug={activeTrace.slug}
+            frame={activeFrame}
+            locale={locale}
+            onSelectZone={(zoneId: HardwareZoneId) => {
+              const matchingIdx = frames.findIndex(
+                (f) => mapReplayFrameToHardwareTwin(activeTrace.slug, f).activeZoneId === zoneId
+              );
+              if (matchingIdx !== -1 && matchingIdx !== safeIndex) {
+                setPlaying(false);
+                setFrameIndex(matchingIdx);
+              }
+            }}
+          />
 
           <div className={styles.transportRow}>
             <div className={styles.transportControls}>
