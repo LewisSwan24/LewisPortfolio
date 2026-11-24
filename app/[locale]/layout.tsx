@@ -87,11 +87,11 @@ export default async function LocaleLayout({
           <SkipLink />
           <div className="flex min-h-screen flex-col">
             <Navigation />
-            <main id="main-content" className="flex-1">
+            <div id="main-content" className="flex-1" tabIndex={-1}>
               <ErrorBoundary>
                 <PageTransition>{children}</PageTransition>
               </ErrorBoundary>
-            </main>
+            </div>
             <Footer />
           </div>
           <BackToTop />

@@ -214,6 +214,8 @@ html {
 }
 .pd-nav-tools { display: flex; align-items: center; gap: 8px; font-family: var(--font-ui); font-size: 13px; }
 .pd-nav-tools button, .pd-nav-tools a.tool {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 36px; min-height: 36px;
   background: transparent; border: 1px solid var(--border-strong);
   color: var(--text-2); padding: 7px 12px;
   border-radius: var(--r-sm);
@@ -284,7 +286,10 @@ html {
   margin: 0 0 var(--s-4);
 }
 .pd-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.pd-footer a { color: var(--text-2); text-decoration: none; font-size: 15px; }
+.pd-footer a {
+  display: inline-flex; align-items: center; min-height: 24px;
+  color: var(--text-2); text-decoration: none; font-size: 15px;
+}
 .pd-footer a:hover { color: var(--accent); }
 .pd-footer-signature {
   font-family: var(--font-display);

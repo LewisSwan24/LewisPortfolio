@@ -107,5 +107,9 @@ describe("v6.0 Platform GA Release Invariants", () => {
 
     expect(telemetryManifest.integrity.publishedEssaysPerLocale).toBe(30);
     expect(telemetryManifest.integrity.semanticChunks).toBe(157);
+
+    const localeLayout = fs.readFileSync(path.join(ROOT, "app", "[locale]", "layout.tsx"), "utf8");
+    expect(localeLayout).not.toContain("<main id=\"main-content\"");
+    expect(localeLayout).toContain("id=\"main-content\"");
   });
 });
