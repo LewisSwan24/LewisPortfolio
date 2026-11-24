@@ -82,6 +82,14 @@ export function ResumeComposerClient({
       "",
       `## ${isDocZh ? "核心能力栈" : "Core Capabilities"}`,
       activePreset.skills[previewLocale].map((s) => `- ${s}`).join("\n"),
+      "",
+      `## ${isDocZh ? "教育背景" : "Education"}`,
+      isDocZh
+        ? "- **昆士兰大学（布里斯班）** — 交互设计硕士 · 2025.02 – 2026.11"
+        : "- **The University of Queensland, Brisbane** — Master of Interaction Design · 2025.02 – 2026.11",
+      isDocZh
+        ? "- **斯旺西大学（英国威尔士）** — 计算机科学（荣誉）理学士，二等一级学位（2:1）· 2020.09 – 2024.07"
+        : "- **Swansea University, Wales, UK** — BSc (Hons) Computer Science, Upper Second-Class (2:1) · 2020.09 – 2024.07",
     ];
     return lines.join("\n");
   };
@@ -248,7 +256,9 @@ export function ResumeComposerClient({
           <div className={styles.a4Meta}>
             <div>{siteConfig.author.email}</div>
             <div>{siteConfig.url.replace(/^https?:\/\//, "")}</div>
-            <div>Melbourne · EN / 中文 Bilingual</div>
+            <div>
+              {isDocZh ? "澳洲布里斯班 · 中英双语" : "Brisbane, AU · EN / 中文 Bilingual"}
+            </div>
           </div>
         </header>
 
@@ -314,8 +324,23 @@ export function ResumeComposerClient({
             {isDocZh ? "教育背景" : "Education"}
           </h3>
           <p className={styles.a4CaseText}>
-            <strong>{isDocZh ? "墨尔本大学 (University of Melbourne)" : "University of Melbourne"}</strong>{" "}
-            — {isDocZh ? "交互设计与数字技术硕士 · 2024 – 2026" : "Master of Interaction Design · 2024 – 2026"}
+            <strong>
+              {isDocZh
+                ? "昆士兰大学 (The University of Queensland, Brisbane)"
+                : "The University of Queensland, Brisbane"}
+            </strong>{" "}
+            — {isDocZh ? "交互设计硕士 · 2025.02 – 2026.11" : "Master of Interaction Design · 2025.02 – 2026.11"}
+          </p>
+          <p className={styles.a4CaseText}>
+            <strong>
+              {isDocZh
+                ? "斯旺西大学 (Swansea University, Wales, UK)"
+                : "Swansea University, Wales, UK"}
+            </strong>{" "}
+            —{" "}
+            {isDocZh
+              ? "计算机科学（荣誉）理学士（2:1）· 2020.09 – 2024.07"
+              : "BSc (Hons) Computer Science (2:1) · 2020.09 – 2024.07"}
           </p>
         </section>
 

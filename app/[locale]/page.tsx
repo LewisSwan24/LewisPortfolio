@@ -129,8 +129,12 @@ export default async function HomePage() {
               </Link>
             </div>
             <div className="hero-focus-strip" aria-label={isZh ? "状态与招聘入口" : "Status and hiring focus"}>
-              <span>{isZh ? "当前关注" : "Focus"}</span>
-              <strong>{isZh ? "交互设计 · UX 研究 · 设计工程" : "Interaction · UX research · Design engineering"}</strong>
+              <span>{isZh ? "背景与方向" : "Track"}</span>
+              <strong>
+                {isZh
+                  ? "CS 工程底座 × UQ 交互方法 × 软硬与 AI 实证 · 面向亚太及澳新设计工程团队"
+                  : "Swansea CS Base × UQ Interaction Craft × Hardware/AI Proof · ANZ & APAC Roles"}
+              </strong>
               <Link href="/hire" className="hero-hire-link">
                 {isZh ? "招聘决策简报 ↗" : "Hiring dossier ↗"}
               </Link>
