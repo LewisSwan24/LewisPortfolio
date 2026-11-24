@@ -449,7 +449,7 @@
   },
   "blog": {
     "title": "博客",
-    "description": "24 篇中英双语交互工程复盘，涵盖 AI 信任边界、状态不变量与物理计算实践。",
+    "description": "30 篇中英双语交互工程复盘，涵盖 AI 信任边界、状态不变量与物理计算实践。",
     "emptyTitle": "暂无博客文章",
     "emptyDescription": "敬请期待关于设计思维和 UX 最佳实践的文章。",
     "breadcrumbHome": "首页",

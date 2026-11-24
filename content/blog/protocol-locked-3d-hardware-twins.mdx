@@ -1,0 +1,22 @@
+---
+title: "Locking 3D Hardware Wireframes to Millisecond Protocol Frames"
+date: "2026-11-20"
+excerpt: "Spinning standalone WebGL props waste battery and explain nothing. Binding Three.js subsystem materials directly to protocol hex traces turns 3D geometry into a diagnostic tool."
+tags:
+  - Physical Computing
+  - Three.js
+  - WebGL
+cluster: "physical-computing"
+author: "Lewis Dong"
+published: true
+---
+
+Purely decorative 3D canvases look slick for three seconds before feeling detached from real engineering behavior. When hardware designers talk about USB preemption or 45 ms IR debouncing, visitors should inspect both the signal glitch and the exact sensor component simultaneously.
+
+## Persistent WebGL state without context churn
+
+In [/studio/replay](/studio/replay), `HardwareFieldWebGL` reuses a single mounted `WebGLRenderer` across every frame step:
+
+1. **In-place material mutation**: Stepping frames mutates zone color, opacity, and signal scale through a lightweight ref without tearing down Three.js scenes.
+2. **Bidirectional subsystem jump**: Selecting `Dual-Key Approval Gate` or `FC-51 IR[04]` steps the byte inspector straight to the matching firmware frame.
+3. **Resilient 2D SVG parity**: On `webglcontextlost`, reduced-motion preferences, or explicit schematic toggle, an identical 2D SVG anchor frame takes over with zero console errors.

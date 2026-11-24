@@ -38,6 +38,12 @@ const POST_CLUSTER_MAP: Record<string, BlogCluster> = {
   "usb-preemption-over-wireless-assumptions": "physical-computing",
   "shared-wristband-collaborative-friction": "physical-computing",
   "bilingual-editorial-voice-without-translationese": "bilingual-systems",
+  "mcp-endpoints-for-design-portfolios": "ai-safety",
+  "causal-lineage-graphs-over-flat-tags": "cs-ixd",
+  "protocol-locked-3d-hardware-twins": "physical-computing",
+  "zero-hallucination-red-team-defense": "ai-safety",
+  "bundle-ceilings-and-css-zero-warning-gates": "cs-ixd",
+  "service-worker-boundaries-around-private-briefs": "bilingual-systems",
 };
 
 /**
