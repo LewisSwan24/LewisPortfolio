@@ -39,10 +39,10 @@ export async function buildLlmsTxt(): Promise<string> {
   );
 
   return [
-    `# ${siteConfig.name} — Interaction Designer & Design Engineer Portfolio`,
+    `# ${siteConfig.name} — Interaction Designer & Design Engineer Portfolio (v5.5)`,
     "",
     `> Bilingual static portfolio (English & Simplified Chinese) built with Next.js 15, React 19, TypeScript, Zod 4, Tailwind CSS v4, and GSAP.`,
-    `> Focus: interaction systems, physical-digital prototyping, AI safety boundaries, and accessible front-end engineering.`,
+    `> Focus: interaction systems, physical-digital prototyping, AI safety boundaries, 24 bilingual engineering monographs, and WCAG 2.2 AA accessibility.`,
     "",
     "## Key Hiring & Interactive Surfaces",
     "",

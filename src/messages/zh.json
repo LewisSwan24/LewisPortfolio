@@ -109,8 +109,8 @@
     "site": "站内导航",
     "write": "联系我",
     "meta": {
-      "built": "使用 Next.js 与 CSS Grid 搭建，聚焦以人为本的交互取舍与可验证原型。",
-      "version": "v4.5 · 2026 年 11 月更新"
+      "built": "基于 Next.js 与 CSS Grid 构建，聚焦可证伪交互取舍、可溯源 AI 论证与软硬实测边界。",
+      "version": "v5.5 · 2026 年 11 月更新"
     }
   },
   "tw": {
@@ -171,11 +171,11 @@
   "home": {
     "greeting": "你好，我是",
     "name": "Lewis",
-    "subHeadline": "UX 设计师 & 昆士兰大学交互设计在读研究生，致力于打造以人为本的数字体验。",
+    "subHeadline": "设计工程师 / 昆士兰大学交互设计硕士，打通用户痛点、状态机约束与软硬件验证闭环。",
     "findMeOn": "社交平台",
     "portfolioLabel": "作品集",
     "featuredProjects": "精选项目",
-    "featuredProjectsDescription": "精选案例展示我的设计过程与解决问题能力。",
+    "featuredProjectsDescription": "六件代表案例，各自完整交代用户痛点、否决路径、工程实现与实测上限。",
     "expertise": "能力",
     "skillsAndTools": "技能与工具",
     "skillsAndToolsDescription": "通过课程与项目实践形成的核心能力。",
@@ -195,30 +195,30 @@
   "about": {
     "badge": "关于我",
     "title": {
-      "prefix": "打造",
-      "highlight": "有意义的",
-      "suffix": "数字体验"
+      "prefix": "把交互边界，",
+      "highlight": "写进",
+      "suffix": "可验证的系统。"
     },
     "intro": {
-      "p1": "我目前正在昆士兰大学攻读交互设计硕士，在学习中不断提升用户研究、原型制作与以人为本的设计方法能力。",
-      "p2": "我的方法结合了分析性思维与创造性的解决问题能力。我相信优秀的设计来自对用户需求的深入理解，并通过持续迭代打磨出既实用又令人愉悦的方案。"
+      "p1": "昆士兰大学交互设计硕士在读（2026 年 11 月毕业），此前获斯旺西大学计算机科学二等一荣誉学士（2:1），习惯从状态约束与真实硬件限制出发推导界面规则。",
+      "p2": "比起静态效果图，我更倾向尽早把规则写进可跑的 TypeScript、Electron、浏览器扩展或 ESP32 原型，让高风险动作默认停在安全侧并接受端到端证伪。"
     },
     "profilePhoto": "个人照片",
     "sections": {
       "philosophy": {
         "label": "理念",
         "title": "设计原则",
-        "description": "指导我每一个设计决策的核心价值。"
+        "description": "贯穿 AI 交互、嵌入式固件与工作室复盘的四条工作守则。"
       },
       "toolbox": {
         "label": "技能",
         "title": "工具箱",
-        "description": "我经常使用的技术与工具。"
+        "description": "真机联调、前端工程与自动化测试链路里每天使用的工具栈。"
       },
       "journey": {
         "label": "经历",
         "title": "我的路径",
-        "description": "设计旅程中的关键里程碑。"
+        "description": "从威尔士计算机科学本科到布里斯班交互设计与物理计算的衔接脉络。"
       },
       "personal": {
         "label": "个人",
@@ -229,23 +229,23 @@
     "designPrinciples": [
       {
         "icon": "👤",
-        "title": "以用户为中心",
-        "description": "每一次设计决策都从理解真实用户需求开始，通过研究与共情找到关键洞察。"
+        "title": "先抓真实卡点",
+        "description": "从现场摩擦、误触代价与注意力中断出发，不用事后问卷粉饰结构问题。"
       },
       {
         "icon": "🔄",
-        "title": "迭代式流程",
-        "description": "通过原型、测试与不断优化的循环持续改进，逐步接近更好的解决方案。"
+        "title": "真原型早证伪",
+        "description": "用最小可运行软件或硬件尽早试错，把否决过的方案和原因一起记进文档。"
       },
       {
         "icon": "♿",
-        "title": "默认可访问",
-        "description": "设计包容性的体验，让不同能力与不同情境的用户都能顺畅使用。"
+        "title": "默认可达与可控",
+        "description": "键盘可达、24px 以上触控热区、AAA 文本对比度与减动效都是硬门槛，不做装饰性补丁。"
       },
       {
         "icon": "📊",
-        "title": "以证据为依据",
-        "description": "用数据、研究结论与验证过的反馈来支撑设计选择。"
+        "title": "实证分级不越界",
+        "description": "严格区分外部用户实测、台架自测与合成压测，未知风险直接写进边界说明。"
       }
     ],
     "toolCategories": [
@@ -449,7 +449,7 @@
   },
   "blog": {
     "title": "博客",
-    "description": "关于 UX 设计、交互设计与设计思维的思考。",
+    "description": "24 篇中英双语交互工程复盘，涵盖 AI 信任边界、状态不变量与物理计算实践。",
     "emptyTitle": "暂无博客文章",
     "emptyDescription": "敬请期待关于设计思维和 UX 最佳实践的文章。",
     "breadcrumbHome": "首页",
@@ -462,7 +462,7 @@
   },
   "projects": {
     "title": "项目",
-    "description": "来自课程与个人项目的案例研究与设计作品。",
+    "description": "六大代表系统与软硬件案例，完整呈现交互规则、工程闭环与诚实上限。",
     "searchPlaceholder": "搜索项目…",
     "all": "全部",
     "empty": "没有找到符合条件的项目。",

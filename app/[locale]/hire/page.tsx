@@ -8,11 +8,13 @@ import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
 import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
 import { RoleLensSwitch, type RoleLensCaseItem } from "@/components/hiring/RoleLensSwitch";
+import { HireMarketLensSwitch } from "@/components/hiring/HireMarketLensSwitch";
 import { JdMatcherPanel } from "@/components/hiring/JdMatcherPanel";
 import { TailoredBriefBuilder } from "@/components/hiring/TailoredBriefBuilder";
 import { buildHiringDeck } from "@/lib/presentation/build-deck";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
+import { getMarketLensProfiles } from "@/lib/proof/market-lens";
 import { getListedCases } from "@/lib/cases/registry";
 import {
   getAiTrustThread,
@@ -84,6 +86,8 @@ export default async function HirePage() {
         locale={proofLocale}
         presentationDeck={hiringDeck}
       />
+
+      <HireMarketLensSwitch profiles={getMarketLensProfiles()} locale={proofLocale} />
 
       <Suspense fallback={null}>
         <RoleLensSwitch cases={lensCases} locale={proofLocale} />
