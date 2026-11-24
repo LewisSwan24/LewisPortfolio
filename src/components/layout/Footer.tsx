@@ -23,6 +23,7 @@ export function Footer() {
               <li><Link href="/projects">{t("nav.work")}</Link></li>
               <li><Link href="/patterns">{isZh ? "模式图谱" : "Patterns"}</Link></li>
               <li><Link href="/vault">{isZh ? "演进档案馆" : "Archive Vault"}</Link></li>
+              <li><Link href="/studio/graph">{isZh ? "因果谱系图" : "Lineage Graph"}</Link></li>
               <li><Link href="/lab">{t("nav.lab")}</Link></li>
               <li><Link href="/studio/replay">{isZh ? "协议重放台" : "Replay Studio"}</Link></li>
               <li><Link href="/ai">{t("nav.ai")}</Link></li>
