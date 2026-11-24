@@ -12,6 +12,9 @@ export interface GroundedCitation {
   pillar: string;
   weight?: number;
   score?: number;
+  bm25Score?: number;
+  vectorScore?: number;
+  hybridScore?: number;
   matchedTerms?: string[];
   title: string;
   text: string;

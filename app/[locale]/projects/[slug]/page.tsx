@@ -42,12 +42,14 @@ import {
 import { getCaseCard, getCaseRecordOrThrow } from "@/lib/cases/registry";
 import { getCaseDepthModules } from "@/data/cases/modules";
 import { getCaseResearchVault } from "@/data/cases/research-vault";
+import { getCaseRedTeamDeck } from "@/data/critique/red-team";
 import { CaseReviewLensSwitch } from "@/components/case/deep/CaseReviewLensSwitch";
 import { CaseFocusRegion } from "@/components/case/deep/CaseFocusRegion";
 import { CaseJourneyRail } from "@/components/case/deep/CaseJourneyRail";
 import { CaseStateMatrixTable } from "@/components/case/deep/CaseStateMatrixTable";
 import { CaseRejectionArchive } from "@/components/case/deep/CaseRejectionArchive";
 import { RawResearchVault } from "@/components/case/deep/RawResearchVault";
+import { RedTeamCritiquePanel } from "@/components/ai/RedTeamCritiquePanel";
 import deepStyles from "@/components/case/deep/cases-deep.module.css";
 
 type Slug = CurrentProjectSlug;
@@ -163,6 +165,7 @@ export default async function CasePage({ params }: Props) {
 
   const depthModules = getCaseDepthModules(k);
   const researchVault = getCaseResearchVault(k);
+  const redTeamDeck = getCaseRedTeamDeck(k);
   const depthJumps: Array<readonly [string, string]> = [
     ...(depthModules
       ? ([
@@ -173,6 +176,9 @@ export default async function CasePage({ params }: Props) {
       : []),
     ...(researchVault
       ? ([["research-vault", isZh ? "原始研究档案" : "Research vault"]] as const)
+      : []),
+    ...(redTeamDeck
+      ? ([["red-team-defense", isZh ? "红队对抗答辩" : "Red-Team defense"]] as const)
       : []),
   ];
 
@@ -472,6 +478,16 @@ export default async function CasePage({ params }: Props) {
       </section>
 
       <CaseInterviewPack pack={caseInterviewPack} locale={proofLocale} />
+
+      {redTeamDeck && (
+        <section className="container" style={{ marginTop: "var(--s-6)" }}>
+          <RedTeamCritiquePanel
+            decks={[redTeamDeck]}
+            locale={proofLocale}
+            sectionId="red-team-defense"
+          />
+        </section>
+      )}
 
       <section className="container">
         <CaseRelatedNav

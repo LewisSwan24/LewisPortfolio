@@ -7,11 +7,13 @@ import { localizeInternalHref } from "@/lib/locale-href";
 import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
 import { CASE_FSM_SPECS } from "@/data/fsm/case-fsms";
 import { CASE_HEURISTIC_AUDITS } from "@/data/heuristics/case-heuristics";
+import { getAllResearchVaults } from "@/data/cases/research-vault";
 import { getCaseDepth } from "@/lib/proof/case-depth";
 
 export type EvidencePillar =
   | "design-rationale"
   | "research-quote"
+  | "research-vault"
   | "pattern"
   | "heuristic"
   | "metric-limit"
@@ -42,6 +44,7 @@ export interface EvidenceChunk {
 export const PILLAR_WEIGHT: Record<EvidencePillar, number> = {
   "design-rationale": 2.8,
   "research-quote": 2.4,
+  "research-vault": 2.3,
   pattern: 2.2,
   heuristic: 1.9,
   "metric-limit": 2.0,
@@ -304,6 +307,59 @@ function buildCorpus(): EvidenceChunk[] {
         zh: localizeInternalHref(`/lab#heuristic-auditor`, "zh"),
       },
     });
+  }
+
+  for (const vault of getAllResearchVaults()) {
+    const slug = vault.slug;
+    const roleTracks: RoleTrack[] = ["interaction", "product", "ai-ux", "design-eng"];
+
+    for (const log of vault.observationLogs) {
+      chunks.push({
+        id: `${slug}:vault:${log.id}`,
+        slug,
+        type: "case",
+        pillar: "research-vault",
+        weight: PILLAR_WEIGHT["research-vault"],
+        roleTracks,
+        caseTitle: {
+          en: `Research Vault · ${slug}`,
+          zh: `原始研究档案 · ${slug}`,
+        },
+        title: log.sessionRef,
+        text: {
+          en: `${log.context.en} Observation: ${log.observation.en} Response: ${log.designResponse.en}`,
+          zh: `${log.context.zh} 观察：${log.observation.zh} 响应：${log.designResponse.zh}`,
+        },
+        href: {
+          en: localizeInternalHref(`/projects/${slug}#research-vault`, "en"),
+          zh: localizeInternalHref(`/projects/${slug}#research-vault`, "zh"),
+        },
+      });
+    }
+
+    for (const tension of vault.triRoleTension) {
+      chunks.push({
+        id: `${slug}:vault:tension:${tension.role}`,
+        slug,
+        type: "case",
+        pillar: "research-vault",
+        weight: PILLAR_WEIGHT["research-vault"],
+        roleTracks,
+        caseTitle: {
+          en: `Tri-Role Tension · ${slug}`,
+          zh: `三方冲突 · ${slug}`,
+        },
+        title: tension.roleLabel,
+        text: {
+          en: `Priority: ${tension.priority.en} Tension: ${tension.tension.en} Resolution: ${tension.resolution.en}`,
+          zh: `诉求：${tension.priority.zh} 冲突：${tension.tension.zh} 裁决：${tension.resolution.zh}`,
+        },
+        href: {
+          en: localizeInternalHref(`/projects/${slug}#research-vault`, "en"),
+          zh: localizeInternalHref(`/projects/${slug}#research-vault`, "zh"),
+        },
+      });
+    }
   }
 
   return chunks;
