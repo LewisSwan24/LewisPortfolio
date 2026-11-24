@@ -82,7 +82,13 @@ interface HistoryEntry {
   matches: GroundedMatchGroup[];
 }
 
-export function AiWorkbenchPageClient({ locale }: { locale: "en" | "zh" }) {
+export function AiWorkbenchPageClient({
+  locale,
+  semanticStats,
+}: {
+  locale: "en" | "zh";
+  semanticStats?: { version: string; dim: number; indexedCount: number };
+}) {
   const isZh = locale === "zh";
   const [perspective, setPerspective] = useState<PerspectiveId>("interviewer");
   const [query, setQuery] = useState(PERSPECTIVE_PRESETS.interviewer.prompts[0]![locale]);
@@ -147,9 +153,13 @@ export function AiWorkbenchPageClient({ locale }: { locale: "en" | "zh" }) {
             <p>{isZh ? "邮箱、电话与内网域名在发送前于浏览器端剥离（<=1200 字）。" : "Emails, phone numbers, and internal URLs stripped client-side."}</p>
           </div>
           <div className={styles.pipelineStep}>
-            <span className={styles.pipelineIndex}>02 · BM25 INDEX</span>
-            <strong>{isZh ? "双语加权召回" : "Weighted Bilingual BM25"}</strong>
-            <p>{isZh ? "覆盖 6 公开案例取舍（2.8x）、研究引语、诚实边界与专栏文章（1.8x）。" : "Scores rationale (2.8x), quotes (2.4x), limits (2.0x), and essays (1.8x)."}</p>
+            <span className={styles.pipelineIndex}>02 · HYBRID INDEX</span>
+            <strong>{isZh ? "BM25F + 量化语义向量" : "BM25F + Quantized Vector"}</strong>
+            <p>
+              {isZh
+                ? `融合字段加权 BM25F 与 ${semanticStats?.dim ?? 64} 维量化向量（覆盖 ${semanticStats?.indexedCount ?? 140} 条案例、Vault 与专栏证据）。`
+                : `Fuses weighted BM25F with ${semanticStats?.dim ?? 64}-dim quantized vectors across ${semanticStats?.indexedCount ?? 140} verified chunks.`}
+            </p>
           </div>
           <div className={styles.pipelineStep}>
             <span className={styles.pipelineIndex}>03 · ID ALLOWLIST</span>

@@ -77,7 +77,13 @@ export function StructuredRationaleCard({
               </div>
               {typeof citation.score === "number" && (
                 <div>
-                  <strong>BM25 score:</strong> <code>{citation.score}</code>
+                  <strong>Hybrid score:</strong> <code>{citation.hybridScore ?? citation.score}</code>
+                  {typeof citation.bm25Score === "number" && typeof citation.vectorScore === "number" ? (
+                    <span>
+                      {" "}
+                      (BM25 {citation.bm25Score} · vec {citation.vectorScore})
+                    </span>
+                  ) : null}
                   {typeof citation.weight === "number" && (
                     <span> · weight {citation.weight}x</span>
                   )}

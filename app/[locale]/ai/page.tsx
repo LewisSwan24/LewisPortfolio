@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import Link from "next/link";
 import { AiWorkbenchPageClient } from "@/components/ai/AiWorkbenchPageClient";
+import { RedTeamCritiquePanel } from "@/components/ai/RedTeamCritiquePanel";
 import styles from "@/components/ai/ai-workbench.module.css";
+import { getAllRedTeamDecks } from "@/data/critique/red-team";
+import { getSemanticIndexStats } from "@/lib/ai/hybrid-retrieval";
 import { localizeInternalHref } from "@/lib/locale-href";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -86,6 +89,8 @@ export default async function AiWorkbenchPage() {
   const rawLocale = await getLocale();
   const locale: "en" | "zh" = rawLocale === "zh" ? "zh" : "en";
   const isZh = locale === "zh";
+  const redTeamDecks = getAllRedTeamDecks();
+  const semanticStats = getSemanticIndexStats();
 
   return (
     <main className="page" data-screen-label="09 Rationale AI">
@@ -115,7 +120,11 @@ export default async function AiWorkbenchPage() {
         </div>
       </section>
 
-      <AiWorkbenchPageClient locale={locale} />
+      <AiWorkbenchPageClient locale={locale} semanticStats={semanticStats} />
+
+      <section className="section container">
+        <RedTeamCritiquePanel decks={redTeamDecks} locale={locale} />
+      </section>
 
       <section className="section container" aria-labelledby="refusal-matrix-heading">
         <div style={{ marginBottom: 16 }}>

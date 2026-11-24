@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { EVIDENCE_CORPUS_MAP } from "@/lib/ai/evidence-corpus";
 import { redactPii, MAX_JD_QUERY_CHARS } from "@/lib/ai/redact-jd";
-import { rankEvidenceBm25 } from "@/lib/ai/bm25";
+import { hybridRetrieve } from "@/lib/ai/hybrid-retrieval";
 import {
   optionalLlmRerank,
   REASON_CODE_LABELS,
@@ -41,12 +41,12 @@ export async function POST(req: Request) {
 
   const locale = parsed.data.locale;
   const { sanitized, redactedCount } = redactPii(parsed.data.query);
-  const candidates = rankEvidenceBm25(sanitized, locale, 10);
+  const candidates = hybridRetrieve(sanitized, locale, 10);
 
   if (candidates.length === 0) {
     return NextResponse.json({
       ok: true,
-      mode: "bm25-local",
+      mode: "hybrid-bm25-vector",
       redactedCount,
       pipeline: {
         corpusCount: EVIDENCE_CORPUS_MAP.size,
@@ -57,7 +57,16 @@ export async function POST(req: Request) {
   }
 
   const candidateMeta = new Map(
-    candidates.map((c) => [c.id, { score: c.score, matchedTerms: c.matchedTerms }])
+    candidates.map((c) => [
+      c.id,
+      {
+        score: c.score,
+        bm25Score: c.bm25Score,
+        vectorScore: c.vectorScore,
+        hybridScore: c.hybridScore,
+        matchedTerms: c.matchedTerms,
+      },
+    ])
   );
 
   const { mode, selection } = await optionalLlmRerank({
@@ -77,7 +86,10 @@ export async function POST(req: Request) {
             id: c.id,
             pillar: c.pillar,
             weight: c.weight,
-            score: meta?.score ?? c.weight,
+            score: meta?.hybridScore ?? meta?.score ?? c.weight,
+            bm25Score: meta?.bm25Score ?? 0,
+            vectorScore: meta?.vectorScore ?? 0,
+            hybridScore: meta?.hybridScore ?? c.weight,
             matchedTerms: meta?.matchedTerms ?? [],
             title: c.title[locale],
             text: c.text[locale],
@@ -108,7 +120,7 @@ export async function POST(req: Request) {
 
   return NextResponse.json({
     ok: true,
-    mode,
+    mode: mode === "bm25-local" ? "hybrid-bm25-vector" : mode,
     redactedCount,
     pipeline: {
       corpusCount: EVIDENCE_CORPUS_MAP.size,
