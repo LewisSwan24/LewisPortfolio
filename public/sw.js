@@ -3,9 +3,14 @@ const SHELL_CACHE = `portfolio-shell-${CACHE_VERSION}`;
 const ASSET_CACHE = `portfolio-assets-${CACHE_VERSION}`;
 
 function isBypassedPath(pathname) {
-  if (pathname.startsWith("/api/")) return true;
-  if (pathname.startsWith("/brief/") || /^\/(en|zh)\/brief(\/|$)/.test(pathname)) return true;
-  if (pathname.startsWith("/_next/webpack-hmr")) return true;
+  let decoded = pathname;
+  try {
+    decoded = decodeURIComponent(pathname);
+  } catch {}
+  if (decoded.startsWith("/api/")) return true;
+  if (decoded.startsWith("/brief/") || /^\/(en|zh)\/brief(\/|$)/.test(decoded)) return true;
+  if (decoded.includes("/brief/")) return true;
+  if (decoded.startsWith("/_next/webpack-hmr")) return true;
   return false;
 }
 

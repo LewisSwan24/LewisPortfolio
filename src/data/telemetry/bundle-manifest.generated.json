@@ -11,7 +11,7 @@
     "largestAppRouteGzKb": 15.3,
     "largestAppRouteChunk": "chunks/app/[locale]/lab/page-fccf1afdbd44db19.js",
     "appCssGzKb": 39.4,
-    "totalCssGzKb": 40.3,
+    "totalCssGzKb": 40.4,
     "ceilings": {
       "standardJsGzKb": 70,
       "lazy3dGzKb": 160,
