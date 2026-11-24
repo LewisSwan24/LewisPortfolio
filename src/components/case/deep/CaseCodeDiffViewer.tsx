@@ -95,7 +95,16 @@ export function CaseCodeDiffViewer({
         </div>
       </div>
 
-      <pre className={styles.codeBlock}>
+      <pre
+        className={styles.codeBlock}
+        tabIndex={0}
+        role="region"
+        aria-label={
+          isZh
+            ? `${diff.filePath} 反模式与线上铁律代码对比，聚焦后可左右键滚动`
+            : `${diff.filePath} anti-pattern and invariant diff, focusable for keyboard horizontal scroll`
+        }
+      >
         <code>
           {visibleHunks.map((line, idx) => {
             const prefix = line.kind === "remove" ? "- " : line.kind === "add" ? "+ " : "  ";
