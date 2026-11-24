@@ -9,6 +9,7 @@ import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNot
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
 import { RoleLensSwitch, type RoleLensCaseItem } from "@/components/hiring/RoleLensSwitch";
 import { HireMarketLensSwitch } from "@/components/hiring/HireMarketLensSwitch";
+import { InterviewDefenseArena } from "@/components/hiring/InterviewDefenseArena";
 import { JdMatcherPanel } from "@/components/hiring/JdMatcherPanel";
 import { TailoredBriefBuilder } from "@/components/hiring/TailoredBriefBuilder";
 import { buildHiringDeck } from "@/lib/presentation/build-deck";
@@ -107,6 +108,8 @@ export default async function HirePage() {
       <section className="section container">
         <AiTrustThread thread={aiTrustThread} />
       </section>
+
+      <InterviewDefenseArena locale={proofLocale} />
 
       <section className="section container">
         <InterviewBoundaryNotes notes={room.boundaries} labels={proofLabels} />

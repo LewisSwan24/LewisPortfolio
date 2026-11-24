@@ -41,10 +41,10 @@ export async function buildLlmsTxt(): Promise<string> {
   );
 
   return [
-    `# ${siteConfig.name} — Interaction Designer & Design Engineer Portfolio (v5.8)`,
+    `# ${siteConfig.name} — Interaction Designer & Design Engineer Portfolio (v5.9)`,
     "",
     `> Bilingual static portfolio (English & Simplified Chinese) built with Next.js 15, React 19, TypeScript, Zod 4, Tailwind CSS v4, and GSAP.`,
-    `> Focus: interaction systems, physical-digital prototyping, AI safety boundaries, ${posts.length} bilingual engineering monographs, WCAG 2.2 AA accessibility, MCP endpoints, causal lineage mapping, and frame-locked 3D hardware digital twins.`,
+    `> Focus: interaction systems, physical-digital prototyping, AI safety boundaries, ${posts.length} bilingual engineering monographs, WCAG 2.2 AA accessibility, MCP endpoints, causal lineage mapping, 3D hardware twins, and zero-warning telemetry observability.`,
     "",
     "## Machine-Readable & Agentic Discovery",
     "",

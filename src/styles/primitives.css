@@ -500,31 +500,6 @@ html {
   }
 }
 
-@supports (container-type: anchored) {
-  [popover].anchor-note-popover {
-    container-type: anchored;
-    overflow: visible;
-  }
-
-  .anchor-note-content::before {
-    content: "▼" / "";
-    position: absolute;
-    inset-block-end: -13px;
-    inset-inline-start: 16px;
-    font-size: 11px;
-    line-height: 1;
-    color: var(--border-strong);
-  }
-
-  @container anchored(fallback: flip-block) {
-    .anchor-note-content::before {
-      content: "▲" / "";
-      inset-block-start: -13px;
-      inset-block-end: auto;
-    }
-  }
-}
-
 /* STUDIO RATIONALE ASSISTANT DRAWER */
 .studio-assistant-wrap {
   position: fixed;

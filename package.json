@@ -26,6 +26,8 @@
     "media:check": "node scripts/optimize-media.mjs --check",
     "budget:check": "node scripts/check-bundle-budget.mjs",
     "semantic:build": "node scripts/build-semantic-index.mjs",
+    "telemetry:build": "node scripts/build-telemetry-manifest.mjs",
+    "css:check": "node scripts/check-css-warnings.mjs",
     "agent:check": "node scripts/check-agent-readiness.mjs",
     "resume:pdf": "node scripts/build-resume-pdf.mjs",
     "decks:build": "node scripts/build-role-decks.mjs"
