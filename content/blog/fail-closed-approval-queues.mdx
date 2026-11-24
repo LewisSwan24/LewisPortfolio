@@ -1,0 +1,27 @@
+---
+title: "Designing Fail-Closed Approval Queues for Autonomous Agents"
+date: "2026-11-05"
+excerpt: "When an AI coding workflow loses Wi-Fi, hits a 30-second pairing timeout, or encounters an unreadable diff, the safest state transition is stopping cleanly—never guessing forward."
+tags:
+  - AI Safety
+  - Fail-Closed UX
+  - Systems Design
+cluster: "ai-safety"
+author: "Lewis Dong"
+published: true
+---
+
+Autonomous coding workflows rarely fail cleanly when optimism is baked into their queues. A tool call times out, a mobile bridge drops half a packet, or a cloud relay returns an ambiguous error—and a fail-open UI quietly retries or falls back to a default permission.
+
+## Four fail-closed rules across hardware and web
+
+Across [Walkie](/projects/walkie), [Lamplight Nook](/projects/lamplight), and [Resume Autofill](/projects/autofill), every approval queue obeys four fail-closed invariants:
+
+1. **Timeout writes zero trust**: If Walkie's 30-second physical pairing countdown expires, zero bytes of `pair.key` land on disk (`gate-p5`).
+2. **Disconnects classify before retrying**: Walkie splits offline failures into `No Wi-Fi`, `Relay Unreachable`, and `Bridge Offline` instead of flashing a vague spinner.
+3. **Human Submit stays structurally unreachable**: Autofill automates multi-page `Next` advancement yet refuses programmatic clicks on any final `Submit` control.
+4. **Grounded retrieval refuses ungrounded synthesis**: In [AI Lab](/ai), if neither BM25F nor the 64-dim quantized semantic index hits real corpus evidence, the workbench explicitly declines to synthesize prose.
+
+## Inspecting failure transitions live
+
+You can scrub directly through fault-injection frames—including mid-utterance USB cable pulls and dropped peer ACKs—inside the [Protocol Replay Studio](/studio/replay) or inspect every case's 4-lens [Red-Team defense](/ai).

@@ -1,0 +1,26 @@
+---
+title: "Writing State Invariants Before Opening Figma"
+date: "2026-11-09"
+excerpt: "Visual polish hides broken rules. Defining non-negotiable data, refusal, and recovery invariants first stops AI scaffolding and UI layouts from drifting into plausible lies."
+tags:
+  - Systems Thinking
+  - Invariants
+  - Prototyping
+cluster: "cs-ixd"
+author: "Lewis Dong"
+published: true
+---
+
+Open a visual canvas too early and every screen looks negotiable. When an LLM generates ten sleek dark-mode cards in forty seconds, it becomes dangerously easy to ship a persuasive flow whose core trust boundary never held.
+
+## What an interaction invariant actually specifies
+
+Before sketching pixels for [Walkie](/projects/walkie), [Resume Autofill](/projects/autofill), or [Grassland Iron Tide](/projects/grassland), I write three hard assertions that neither a layout polish nor an AI code pass may violate:
+
+1. **Authority boundary**: Which actions can run silently (read-only search, local form scanning) vs which actions lock behind explicit human action (physical Front Key, manual Submit click)?
+2. **Silence vs noise rule**: When the system lacks certainty, does it fabricate a plausible guess or freeze into an auditable blank/review tier?
+3. **Recovery chain**: After a cable pull, checkpoint loss, or denied grant, what exact bytes or UI elements guarantee the user returns to a clean slate?
+
+## Enforcing invariants in schemas and CI
+
+In this portfolio itself, Zod schemas (`CaseRecordSchema`, `CaseModulesRecordSchema`, `RawResearchVaultRecordSchema`) and Vitest suites enforce those rules before a single pixel reaches production. You can inspect the extracted cross-case rules inside the [Pattern Atlas](/patterns) or query them directly in the [AI Lab](/ai).

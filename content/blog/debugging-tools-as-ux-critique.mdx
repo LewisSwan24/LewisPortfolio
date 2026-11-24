@@ -1,0 +1,25 @@
+---
+title: "Building Debugging Tools as First-Class UX Critique"
+date: "2026-11-10"
+excerpt: "Replay debuggers, FSM deadlock checkers, and protocol steppers are not internal developer luxuries—they expose deceptive UI states before users ever encounter them."
+tags:
+  - Design Engineering
+  - Debugging
+  - State Machines
+cluster: "cs-ixd"
+author: "Lewis Dong"
+published: true
+---
+
+Most teams treat debugging utilities as disposable scaffolding hidden behind dev flags. Yet across hardware, desktop AI agents, and browser strategy games, building an inspectable debugger repeatedly uncovered design flaws that static Figma artboards hid cleanly.
+
+## Four times a debugger caught a UX lie
+
+1. **Lamplight Nook's zero-API event replay**: Running live Claude SDK streams made rare budget-cap and stall modals nearly impossible to critique consistently. Adding an offline JSONL replay debugger turned fleeting failure screens into scrubbable artifacts ready for side-by-side design review inside [Lamplight Nook](/projects/lamplight).
+2. **Protocol frame stepping across Walkie & Maze**: Watching raw `15 ms` IR chatter vs `45 ms` confirmed breaks—or watching a USB DTR drop abort an in-flight voice buffer—proves why deterministic recovery belongs in the [Protocol Replay Studio](/studio/replay).
+3. **BFS deadlock checks in Lab FSM Explorer**: Drawing transition arrows in Miro looks complete until a breadth-first graph check exposes a disconnected error recovery path inside the [Lab Workbench](/lab#fsm-explorer).
+4. **Exposing silent fallback defects**: Early prototypes in the [Archive Vault](/vault) passed TypeScript and unit builds yet fell back silently to broken heuristics at runtime—teaching me that every silent fallback needs its own visible UI state.
+
+## Inspectability as design honesty
+
+When an interface ships alongside its replay trace, heuristic matrix, and 4-lens [Red-Team defense](/ai), reviewers do not have to take smooth screenshots on faith. They can step directly to the edge state and test whether the guardrail holds.

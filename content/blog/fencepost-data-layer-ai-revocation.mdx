@@ -1,0 +1,26 @@
+---
+title: "Data-Layer AI Revocation: Why Prompt Disclaimers Never Hold"
+date: "2026-11-08"
+excerpt: "Telling an LLM in a system prompt to ignore revoked or private records fails under prompt injection and stale caches. Real revocation must happen inside the SQL query boundary."
+tags:
+  - AI Safety
+  - Privacy Boundaries
+  - Architecture
+cluster: "ai-safety"
+author: "Lewis Dong"
+published: true
+---
+
+A dangerous pattern keeps appearing in AI product demos: load an entire user table into context, append `"Do not mention private or deleted items"` to the system prompt, and ship a privacy badge on the landing page. The moment a user revokes a shared link or asks a clever follow-up question, the model still quotes the deleted entry.
+
+## Query isolation before the model ever sees a token
+
+In the community wildlife storyboard documented inside our [Archive Vault](/vault), as well as in the zero-hallucination retrieval pipeline powering the [AI Lab](/ai), access revocation lives strictly below the prompt layer:
+
+1. **Separate contributor vs model queries**: The UI timeline query and the assistant context query never share a loose cache. Revoking a hashed share token updates `access_grants` immediately so the very next assistant call omits that row from context entirely.
+2. **EXIF and storage key isolation**: Media records store only an opaque storage key (`web/public/frames/`), leaving zero database column where GPS coordinates or street addresses could leak into assistant summaries.
+3. **Static ID allowlist hydration**: Here in the [AI Lab](/ai), even when an optional LLM reranks candidates, it may return corpus IDs only—copy renders verbatim from verified static tables so redacted or unlisted works stay mathematically unreachable.
+
+## Transferring query isolation to local-first tools
+
+The same refusal-at-data-boundary principle underpins [Resume Autofill](/projects/autofill), where a build-time unit check fails if the Android keyboard target imports any networking class, and [Walkie](/projects/walkie), where Fly.io relays handle opaque AES-256-GCM ciphertext only.

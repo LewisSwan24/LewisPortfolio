@@ -1,0 +1,29 @@
+---
+title: "Confidence Tiers Over Silent Hallucination"
+date: "2026-11-06"
+excerpt: "Showing an opaque 87% confidence score invites lazy trust; hiding low-certainty guesses behind uniform green inputs causes silent disasters. Why three-tier tri-coding wins."
+tags:
+  - AI Safety
+  - Uncertainty UX
+  - Accessibility
+cluster: "ai-safety"
+author: "Lewis Dong"
+published: true
+---
+
+Across both an abandoned email triage workbench in the [Archive Vault](/vault) and [Resume Autofill](/projects/autofill), one lesson kept returning: users misread continuous confidence percentages (`0.84` vs `0.91`), yet blindly trust uniform filled fields when uncertainty is hidden.
+
+## Why binary or percentage UI breaks operator judgment
+
+1. **Continuous scores invite gaming or false precision**: In earlier oversight experiments, reviewers latched onto arbitrary score cutoffs rather than inspecting context—a flaw that pushed us toward discrete, honest uncertainty tiers.
+2. **Guessing ambiguous inputs ruins high-stakes forms**: Filling a visa sponsorship dropdown or fabricating an open motivation essay in [Resume Autofill](/projects/autofill) is worse than skipping the field.
+
+## Designing the three-tier tri-coded split
+
+Instead of guessing or displaying raw floats, Autofill classifies every form input into one of three unmistakable states:
+
+- **Tier 1 · Exact 1:1 Match (Solid border + Filled)**: Deterministic identity fields fill immediately with a side-panel audit line.
+- **Tier 2 · Ambiguous Select (Dashed border + Review)**: Borderline dropdowns pause for explicit human choice.
+- **Tier 3 · Open / Unknown (Double border + Blank)**: Essay prompts and unrecognized custom widgets stay intentionally empty with a clear reason logged.
+
+Pairing border stroke geometry (`solid` / `dashed` / `double`) with text badges and side-panel explanations ensures color-blind users and dark-mode portals read every boundary without ambiguity. Compare the live sandbox in [Pattern Atlas](/patterns).

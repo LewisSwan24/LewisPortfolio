@@ -3,6 +3,11 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
+import {
+  BLOG_CLUSTERS,
+  BLOG_CLUSTER_LABELS,
+  type BlogCluster,
+} from "@/lib/blog-clusters";
 
 export type PostItem = {
   slug: string;
@@ -10,6 +15,7 @@ export type PostItem = {
   date: string;
   excerpt: string;
   tags: string[];
+  cluster: BlogCluster;
   readingTime: string;
 };
 
@@ -17,9 +23,15 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
   const t = useTranslations();
   const locale = useLocale();
   const isZh = locale === "zh";
+  const proofLocale: "en" | "zh" = isZh ? "zh" : "en";
+  const [activeCluster, setActiveCluster] = useState<"all" | BlogCluster>("all");
   const [active, setActive] = useState<string>("all");
 
-  const shown = active === "all" ? posts : posts.filter((p) => p.tags.includes(active));
+  const shown = posts.filter((p) => {
+    if (activeCluster !== "all" && p.cluster !== activeCluster) return false;
+    if (active !== "all" && !p.tags.includes(active)) return false;
+    return true;
+  });
   const empty = posts.length === 0;
 
   return (
@@ -53,10 +65,58 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
             {t("blog.rss")} →
           </a>
         </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 16 }}>
+          <Link href="/patterns" className="btn btn-ghost">
+            {isZh ? "交互模式图谱 (/patterns) →" : "Pattern Atlas (/patterns) →"}
+          </Link>
+          <Link href="/studio/replay" className="btn btn-ghost">
+            {isZh ? "协议帧重放台 (/studio/replay) →" : "Replay Studio (/studio/replay) →"}
+          </Link>
+          <Link href="/vault" className="btn btn-ghost">
+            {isZh ? "演进档案馆 (/vault) →" : "Archive Vault (/vault) →"}
+          </Link>
+        </div>
       </section>
 
       {!empty && (
-        <section className="container">
+        <section className="container" style={{ display: "grid", gap: 12 }}>
+          <div
+            className="idx-filters v3-pill-row"
+            role="group"
+            aria-label={isZh ? "专论主题集群" : "Monograph clusters"}
+          >
+            <button
+              className={`idx-filter ${activeCluster === "all" ? "active" : ""}`}
+              onClick={() => {
+                setActiveCluster("all");
+                setActive("all");
+              }}
+              aria-pressed={activeCluster === "all"}
+              data-testid="blog-cluster-all"
+              type="button"
+            >
+              {isZh ? `全部 ${posts.length} 篇` : `All ${posts.length}`}
+            </button>
+            {BLOG_CLUSTERS.map((cluster) => {
+              const count = posts.filter((p) => p.cluster === cluster).length;
+              return (
+                <button
+                  key={cluster}
+                  className={`idx-filter ${activeCluster === cluster ? "active" : ""}`}
+                  onClick={() => {
+                    setActiveCluster(cluster);
+                    setActive("all");
+                  }}
+                  aria-pressed={activeCluster === cluster}
+                  data-testid={`blog-cluster-${cluster}`}
+                  type="button"
+                >
+                  {BLOG_CLUSTER_LABELS[cluster][proofLocale]} ({count})
+                </button>
+              );
+            })}
+          </div>
+
           <div
             className="idx-filters v3-pill-row"
             role="tablist"
@@ -112,7 +172,9 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
               <Link className="idx-flag" href={`/blog/${p.slug}`} key={p.slug}>
                 <div className="idx-flag-n">{n}</div>
                 <div className="idx-flag-body">
-                  <div className="eyebrow">{date}</div>
+                  <div className="eyebrow">
+                    {BLOG_CLUSTER_LABELS[p.cluster][proofLocale]} · {date}
+                  </div>
                   <h3 className="idx-flag-title">{p.title}</h3>
                   <p>{p.excerpt}</p>
                   <div className="idx-flag-tags v3-pill-row">

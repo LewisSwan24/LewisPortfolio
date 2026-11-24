@@ -1,10 +1,44 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import {
+  BLOG_CLUSTERS,
+  BLOG_CLUSTER_LABELS,
+  type BlogCluster,
+} from "@/lib/blog-clusters";
+
+export { BLOG_CLUSTERS, BLOG_CLUSTER_LABELS, type BlogCluster };
 
 const blogDirectory = path.join(process.cwd(), "content/blog");
 
 export type BlogLocale = "en" | "zh";
+
+const POST_CLUSTER_MAP: Record<string, BlogCluster> = {
+  "ux-research-methods-guide": "cs-ixd",
+  "accessibility-in-design": "bilingual-systems",
+  "v3-architecture-and-performance-moat": "cs-ixd",
+  "walkie-and-fencepost-invariants": "ai-safety",
+  "withdrawing-interfaces-in-social-spaces": "physical-computing",
+  "cognitive-sovereignty-and-default-refusal": "ai-safety",
+  "honest-limits-as-design-rigor": "cs-ixd",
+  "five-state-interface-audits": "cs-ixd",
+  "timing-as-interaction-design": "physical-computing",
+  "flat-state-machines-over-nested-tabs": "cs-ixd",
+  "asymmetric-friction-against-enter-fatigue": "ai-safety",
+  "calibrated-motion-cognitive-bandwidth": "bilingual-systems",
+  "bilingual-design-systems-without-drift": "bilingual-systems",
+  "swansea-cs-to-uq-physical-computing": "cs-ixd",
+  "debugging-tools-as-ux-critique": "cs-ixd",
+  "writing-state-invariants-before-figma": "cs-ixd",
+  "fencepost-data-layer-ai-revocation": "ai-safety",
+  "psychology-of-default-not-now-modals": "ai-safety",
+  "confidence-tiers-over-silent-hallucination": "ai-safety",
+  "fail-closed-approval-queues": "ai-safety",
+  "dual-boot-ota-slot-safety-ergonomics": "physical-computing",
+  "usb-preemption-over-wireless-assumptions": "physical-computing",
+  "shared-wristband-collaborative-friction": "physical-computing",
+  "bilingual-editorial-voice-without-translationese": "bilingual-systems",
+};
 
 /**
  * Chinese posts live in content/blog/zh/ under the same filename, so a slug is
@@ -33,6 +67,7 @@ export interface BlogPost {
     date: string;
     excerpt: string;
     tags: string[];
+    cluster: BlogCluster;
     author: string;
     readingTime: string;
     published: boolean;
@@ -83,6 +118,11 @@ export async function getBlogPost(
             .filter(Boolean).length;
         const readingMinutes = Math.max(1, Math.ceil(cjkCount / 350 + latinWordCount / 200));
 
+        const rawCluster = typeof data.cluster === "string" ? data.cluster : "";
+        const cluster: BlogCluster = BLOG_CLUSTERS.includes(rawCluster as BlogCluster)
+            ? (rawCluster as BlogCluster)
+            : POST_CLUSTER_MAP[realSlug] ?? "cs-ixd";
+
         return {
             metadata: {
                 slug: realSlug,
@@ -90,6 +130,7 @@ export async function getBlogPost(
                 date: data.date || "",
                 excerpt: data.excerpt || "",
                 tags: data.tags || [],
+                cluster,
                 author: data.author || "Lewis Dong",
                 readingTime: locale === "zh" ? `${readingMinutes} 分钟阅读` : `${readingMinutes} min read`,
                 published: data.published !== false,
