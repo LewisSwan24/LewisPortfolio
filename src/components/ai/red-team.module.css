@@ -259,6 +259,11 @@
 }
 
 .ssePreview {
+  margin: 0;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   padding: var(--s-3) var(--s-4);
   border: 1px dashed var(--border);
   border-radius: var(--r-sm);
