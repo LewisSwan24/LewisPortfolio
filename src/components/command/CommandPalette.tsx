@@ -326,6 +326,14 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 <span className="cmdk-item-meta">Lab</span>
               </Command.Item>
               <Command.Item
+                value="replay studio hardware protocol frame serial usb ble 协议重放 帧调试 硬件"
+                className="cmdk-item"
+                onSelect={() => navigate("/studio/replay")}
+              >
+                <span>{isZh ? "打开硬件协议帧重放台 (/studio/replay)" : "Open Protocol Replay Studio (/studio/replay)"}</span>
+                <span className="cmdk-item-meta">Replay</span>
+              </Command.Item>
+              <Command.Item
                 value="resume cv pdf 简历"
                 className="cmdk-item"
                 onSelect={() => navigate("/resume")}

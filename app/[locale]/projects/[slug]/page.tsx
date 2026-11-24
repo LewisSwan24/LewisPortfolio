@@ -366,8 +366,15 @@ export default async function CasePage({ params }: Props) {
       )}
 
       {(k === "walkie" || k === "maze" || k === "onthebeat") && (
-        <section className="container" style={{ marginTop: "var(--s-6)" }}>
+        <section className="container" style={{ marginTop: "var(--s-6)", display: "grid", gap: "var(--s-4)" }}>
           <HardwareFieldCanvas slug={k} locale={proofLocale} />
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Link href={`/studio/replay?track=${k}`} className="btn btn-ghost">
+              {isZh
+                ? "进入硬件协议帧步进重放工作台 (/studio/replay) →"
+                : "Inspect millisecond protocol frames in Replay Studio →"}
+            </Link>
+          </div>
         </section>
       )}
 
