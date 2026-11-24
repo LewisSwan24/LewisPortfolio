@@ -157,7 +157,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       maze: {
         strength: "primary",
-        proof: "Exhibition play across 9 groups (36 people) showed players felt sleeve buzz and looked up rather than reading score displays.",
+        proof: "Exhibition play across 9 groups (36 people): attention went to the maze, score and time display, LEDs and sounds, and some players were surprised by the sleeve vibration the first time.",
         href: "/projects/maze#evidence-board",
       },
       onthebeat: {
@@ -201,7 +201,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       autofill: {
         strength: "primary",
-        proof: "Every fill tier pairs stroke style (solid/dashed/double), word badge, and icon—never relying on color alone.",
+        proof: "Every fill tier pairs stroke style (2px solid / 2px dashed / 3px solid), word badge, and icon—never relying on color alone.",
         href: "/projects/autofill#decision-timeline",
       },
       lamplight: {
@@ -219,7 +219,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       walkie: {
         strength: "supporting",
-        proof: "Physical Front/Side buttons own pairing and tool permissions over AES-256-GCM zero-knowledge relay.",
+        proof: "Physical Front/Side buttons own pairing and tool permissions over AES-256-GCM end-to-end encrypted relay.",
         href: "/projects/walkie#decision-timeline",
       },
       lamplight: {
@@ -234,7 +234,7 @@ const sharedEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       onthebeat: {
         strength: "supporting",
-        proof: "Caught mocked MEET data and '1 of 4' canvas errors in AI-generated builds before real wristband pairing.",
+        proof: "Caught mocked MEET data in AI-generated builds before real wristband pairing.",
         href: "/projects/onthebeat#decision-timeline",
       },
     },
@@ -329,7 +329,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       maze: {
         strength: "primary",
-        proof: "9 组 36 人现场观察发现玩家先感受到指套震动才抬头看屏幕，确立触觉第一信号原则。",
+        proof: "9 组 36 人现场试玩：注意力在迷宫、分数与时间显示、灯光和声音上，有些玩家第一次被指套震动吓了一跳。",
         href: "/projects/maze#evidence-board",
       },
       onthebeat: {
@@ -351,7 +351,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       lamplight: {
         strength: "primary",
-        proof: "把 300 行滚动终端日志拆成咖啡馆黑板计划、店员分工与桌角状态小窗。",
+        proof: "把滚动的终端日志拆成咖啡馆黑板计划、店员分工与桌角状态小窗。",
         href: "/projects/lamplight#decision-timeline",
       },
       grassland: {
@@ -373,7 +373,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
     cases: {
       autofill: {
         strength: "primary",
-        proof: "三档分流同时采用实线/虚线/双线边框、文字标签与图标，不依赖单一颜色。",
+        proof: "三档分流同时采用实线/虚线/粗实线边框、文字标签与图标，不依赖单一颜色。",
         href: "/projects/autofill#decision-timeline",
       },
       lamplight: {
@@ -405,7 +405,7 @@ const zhEvidenceMatrix: EvidenceMatrixCapability[] = [
       },
       onthebeat: {
         strength: "supporting",
-        proof: "在真手环配对前拦截 AI 初稿里的假 MEET 数据与「1 of 4」画布错误。",
+        proof: "在真手环配对前拦截 AI 初稿里的假 MEET 数据。",
         href: "/projects/onthebeat#decision-timeline",
       },
     },
@@ -538,12 +538,12 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
     answers: [
       {
         id: "spectra-colour-feedback",
-        question: "Why four spacing controls and not a general CSS editor?",
+        question: "Why a fixed-value dyslexia mode and not adjustable spacing controls?",
         answer:
-          "WCAG's text-spacing criteria set explicit thresholds for line height, letter spacing, word spacing and paragraph spacing, so those four became the control list.",
+          "The extension has one dyslexia toggle that applies OpenDyslexic with a fixed line height (1.5) and letter spacing (0.05em). WCAG's text-spacing criteria name line height, letter, word and paragraph spacing; the extension does not expose any of them as a slider, and the repo records no reason for that.",
         evidenceHref: "/projects/spectra#decision-timeline",
         boundary:
-          "It is a DEMO with no user research behind it, so I cannot say these four are the controls readers need.",
+          "It is a DEMO with no user research behind it, so I cannot say the fixed values suit the readers who need them.",
       },
       {
         id: "spectra-privacy",
@@ -558,7 +558,7 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
         id: "spectra-field-testing",
         question: "What would testing need to prove before this ships?",
         answer:
-          "That real readers can reach the controls and that per-site saving fits how they read. So far I have only hand-tested a docs site, a news site and a single-page app, plus Jest on the settings layer.",
+          "That real readers can reach the controls and that one global setting fits how they read. So far I have only hand-tested a docs site, a news site and a single-page app, plus Jest on the settings layer.",
         evidenceHref: "/projects/spectra#outcome-limits",
         boundary:
           "Those checks show the injection works. They do not show that readers benefit from it.",
@@ -568,7 +568,7 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
       id: "spectra-manager-follow-up",
       question: "How would you decide whether this belongs in an extension or in the browser itself?",
       answer:
-        "I would weigh what an extension can do that the browser does not, such as per-site settings, against asking readers to install it and the pages where injected styles lose to the page's own CSS.",
+        "I would weigh what an extension can do that the browser does not, such as a dyslexia typeface on every page, against asking readers to install it and the pages where injected styles lose to the page's own CSS.",
       evidenceHref: "/projects/spectra#interview-takeaway",
       boundary:
         "I would drop the extension entirely if the browser shipped the same controls natively.",
@@ -614,53 +614,13 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
         "It is one exhibition unit with hand-run wiring, so it proves build capability and system thinking, not manufacturability.",
     },
   },
-  vigil: {
-    answers: [
-      {
-        id: "vigil-weak-confidence",
-        question: "Why make the classifier's confidence a deliberately weak signal?",
-        answer:
-          "I would show that in the first build confidence separated perfectly — every correct call at 0.84 and above, every error at 0.82 and below — so a reviewer could have caught all 17 errors by reading a number instead of an email, and the interface comparison would have measured nothing. Stratified resampling brought error-ranking AUC to 0.72, and the build script now fails if it drifts back above 0.75.",
-        evidenceHref: "/projects/vigil#decision-timeline",
-        boundary:
-          "That is a property of an authored corpus, not a claim about how real classifiers behave.",
-      },
-      {
-        id: "vigil-predictions-first",
-        question: "You wrote down which variants you expected to win. Why?",
-        answer:
-          "I would point at the prediction table dated before the first variant was flipped, and to the shape of it: two bets on adding friction, one on removing search cost. Predictions written afterwards always agree with the result, which makes them useless as evidence that any reasoning happened.",
-        evidenceHref: "/projects/vigil#evidence-board",
-        boundary:
-          "The predictions are on record; the outcomes are not, because no one has run the test yet.",
-      },
-      {
-        id: "vigil-ai-workflow",
-        question: "An AI wrote all the code. What was actually your work?",
-        answer:
-          "I would separate the two: Claude Code and Codex wrote the corpus pipeline, the prototype, and the React build, and they were fast. What did not delegate was deciding that confidence had to be uninformative, that a rationale describing cues the email does not contain is a study-ending defect, and that this interface is an instrument rather than an inbox.",
-        evidenceHref: "/projects/vigil#iteration-gallery",
-        boundary:
-          "The first visual pass the workflow produced was competent and generic — that is the failure mode this way of working has, and the second pass is mine.",
-      },
-    ],
-    managerFollowUp: {
-      id: "vigil-manager-follow-up",
-      question: "Nobody has tested it. Why is it in the portfolio?",
-      answer:
-        "I would say it shows the part of the work that usually stays invisible: the material, the variants, the protocol, and the validation gates that decide whether a study can answer anything at all. The three design questions are marked open, and the predictions are on record so the eventual answer is checkable against them.",
-      evidenceHref: "/projects/vigil#outcome-limits",
-      boundary:
-        "Until participants run it, every variant argument here is reasoning rather than evidence, and the case says so.",
-    },
-  },
   hoop: {
     answers: [
       {
         id: "hoop-style-coherence",
         question: "How do you keep a 299-spec asset registry looking like one world?",
         answer:
-          "I would show the order, and what each step does not prove. Three art bibles, split by canvas size, came before the batches; their forbidden lists went into the prompt templates as negative prompts; style was reviewed by eye, with the assets side by side; and a registry logs 299 asset specs across six batches. The only automated check reads that registry, not the style. The original image files are not yet verified, so what I can show is the process, not a finished set.",
+          "I would show the order, and what each step does not prove. Three art bibles, split by canvas size, were committed together with the first 38 images, before the 299-entry registry; only the avatar prompt template says outright that it cites its bible; style was reviewed by eye, with the assets side by side; and a registry logs 299 asset specs across six batches. The only automated check reads that registry, not the style. The original image files are not yet verified, so what I can show is the process, not a finished set.",
         evidenceHref: "/projects/hoop#decision-timeline",
         boundary:
           "It shows a process, not a consistent finished set: the log itself calls this batch provisional, pending hand-polish.",
@@ -715,7 +675,7 @@ const sharedCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> =
         },
         {
           id: "pricewise-scope",
-          question: "The scope grew from an AI-generated plan and never came back down. What would you check before accepting a plan like that again?",
+          question: "The scope grew from a feature plan you now judge to be AI-generated, and never came back down. What would you check before accepting a plan like that again?",
           answer:
             "What the plan was derived from. This one came from what a complete product should have, not from anyone's need, and the build followed it. On 1 March 2026 a single commit added 5,884 lines, about a quarter of them social features. Commits stopped the next day for five months, and the scope never came back down: the v1 routes were later moved to unversioned paths, not removed. Looking back, a comparison app on simulated data with no registered users should not have kept growing.",
           evidenceHref: "/projects/pricewise#iteration-gallery",
@@ -861,12 +821,12 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
     answers: [
       {
         id: "spectra-colour-feedback",
-        question: "为什么只开放四个间距控件，而不是做成通用的 CSS 编辑器？",
+        question: "为什么阅读障碍模式用固定数值，而不是开放可调的间距控件？",
         answer:
-          "WCAG 的文本间距条款对行高、字距、词距、段距都给了明确阈值，所以控件清单就定在这四项上。",
+          "扩展只有一个阅读障碍开关，打开后换成 OpenDyslexic，行高固定 1.5，字距固定 0.05em。WCAG 的文本间距条款列了行高、字距、词距、段距，扩展没有把其中任何一项做成滑杆，仓库里也没有记录原因。",
         evidenceHref: "/projects/spectra#decision-timeline",
         boundary:
-          "这是 DEMO，背后没有用户研究，我没法说这四项就是读者需要的控件。",
+          "这是 DEMO，背后没有用户研究，我没法说这些固定数值适合需要的读者。",
       },
       {
         id: "spectra-privacy",
@@ -881,7 +841,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         id: "spectra-field-testing",
         question: "上线之前，测试还需要证明什么？",
         answer:
-          "要证明真实读者够得到这些控件，也要证明按站点保存符合他们的阅读习惯。目前我只手动跑过文档站、新闻站和单页应用，再加上设置层的 Jest 测试。",
+          "要证明真实读者够得到这些控件，也要证明一套全局设置符合他们的阅读习惯。目前我只手动跑过文档站、新闻站和单页应用，再加上设置层的 Jest 测试。",
         evidenceHref: "/projects/spectra#outcome-limits",
         boundary:
           "这些检查只能说明注入是成立的，说明不了读者能从中得到什么好处。",
@@ -891,7 +851,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
       id: "spectra-manager-follow-up",
       question: "你怎么判断这件事该做成扩展，还是该由浏览器自己来做？",
       answer:
-        "我会比两样东西。一边是扩展能做、浏览器没做的事，比如按站点保存设置。另一边是让读者自己安装的门槛，以及注入的样式输给网页自己 CSS 的那些页面。",
+        "我会比两样东西。一边是扩展能做、浏览器没做的事，比如在每个页面换上阅读障碍字体。另一边是让读者自己安装的门槛，以及注入的样式输给网页自己 CSS 的那些页面。",
       evidenceHref: "/projects/spectra#interview-takeaway",
       boundary:
         "如果浏览器自己内建了同样的控件，我愿意直接放弃这个扩展。",
@@ -937,53 +897,13 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         "它只是一台展览用的机器，线是手工走的，证明的是搭建能力和系统思维，不是可量产。",
     },
   },
-  vigil: {
-    answers: [
-      {
-        id: "vigil-weak-confidence",
-        question: "为什么要故意把分类器的置信度做成弱信号？",
-        answer:
-          "第一版里置信度分得干干净净：判断对的全在 0.84 以上，判断错的全在 0.82 以下。参与者不用读任何一封邮件，光看这个数字就能把 17 个错误全挑出来，那样界面之间的对比就什么都测不到。分层重采样之后，错误排序的 AUC 降到 0.72；现在只要它漂回 0.75 以上，构建脚本就直接失败。",
-        evidenceHref: "/projects/vigil#decision-timeline",
-        boundary:
-          "这是人工撰写语料的性质，不是在说真实的分类器就长这样。",
-      },
-      {
-        id: "vigil-predictions-first",
-        question: "你在测试之前就写下了预期哪个变体会赢。为什么？",
-        answer:
-          "我会把那张预测表拿出来：日期在第一个变体被打开之前。它的形状也值得看：两注押在「加摩擦」，一注押在「减少搜索成本」。事后补写的预测永远和结果一致，所以它证明不了任何推理真的发生过。",
-        evidenceHref: "/projects/vigil#evidence-board",
-        boundary:
-          "预测在案，结果不在，因为还没有人跑过这个测试。",
-      },
-      {
-        id: "vigil-ai-workflow",
-        question: "代码都是 AI 写的。那你的工作到底是什么？",
-        answer:
-          "这两件事要分开说。Claude Code 和 Codex 写了语料管线、原型和 React 版本，而且很快。交不出去的是这几个判断：置信度必须做到不提供信息；一条描述了邮件里根本不存在的线索的解释，是会毁掉整个研究的缺陷；以及这个界面应该是一台仪器，而不是一个收件箱。",
-        evidenceHref: "/projects/vigil#iteration-gallery",
-        boundary:
-          "这套工作流产出的第一版视觉合格但没有主张：那就是它的失败模式，第二版才是我的。",
-      },
-    ],
-    managerFollowUp: {
-      id: "vigil-manager-follow-up",
-      question: "都还没人测过，为什么放进作品集？",
-      answer:
-        "因为它展示的正是平时看不见的那部分：材料、变体、协议，以及那些决定「这个研究到底能不能回答问题」的验证闸门。三个设计问题都标着未解，预测都在案，所以将来真跑出结果，是可以拿回来对的。",
-      evidenceHref: "/projects/vigil#outcome-limits",
-      boundary:
-        "在有人真的跑之前，这里每一个关于变体的论证都是推理而不是证据，案例本身就是这么写的。",
-    },
-  },
   hoop: {
     answers: [
       {
         id: "hoop-style-coherence",
         question: "299 条资产规格的登记表，你怎么让它们看起来像同一个世界？",
         answer:
-          "我会按顺序讲，也讲清每一步证明不了什么。三份美术圣经按画布尺寸分开，写在批次之前；里面的禁止项写进提示词模板，成了负面提示词。风格靠人工审查，把资产并排摆开看。登记表记下六个批次、299 条资产规格，唯一的自动检查读的是这份登记表，不查风格。原始图像文件还没核实，所以我能拿出来的是这套流程，不是一整套成品。",
+          "我会按顺序讲，也讲清每一步证明不了什么。三份美术圣经按画布尺寸分开，和首批 38 张图在同一个提交里，早于 299 条登记表；明确写着引用美术圣经的，只有头像那份提示词模板。风格靠人工审查，把资产并排摆开看。登记表记下六个批次、299 条资产规格，唯一的自动检查读的是这份登记表，不查风格。原始图像文件还没核实，所以我能拿出来的是这套流程，不是一整套成品。",
         evidenceHref: "/projects/hoop#decision-timeline",
         boundary:
           "这只证明流程在，成品是否统一还说不上：日志自己就把这一批标成临时产能，留待以后手工打磨。",
@@ -1011,7 +931,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
       id: "hoop-manager-follow-up",
       question: "体量大、也够完整，但没有玩家。为什么放进作品集？",
       answer:
-        "因为这里有意思的问题是「上了量之后怎么守住生产纪律」，这件事不需要玩家就看得见。规则写在批次之前，拒绝清单靠人眼对照，登记表记下每一批。再加上 1,975 个测试，在内容不断落地的同时守住一个系统很重的构建。游戏自己标着 DEMO v0.6，案例也没有多说一个字。",
+        "因为这里有意思的问题是「上了量之后怎么守住生产纪律」，这件事不需要玩家就看得见。规则写成文档，拒绝清单靠人眼对照，登记表记下每一批。再加上 1,975 个测试，在内容不断落地的同时守住一个系统很重的构建。游戏自己标着 DEMO v0.6，案例也没有多说一个字。",
       evidenceHref: "/projects/hoop#outcome-limits",
       boundary:
         "体量证明的是流程，不是这个节奏对除我之外的人也成立，那需要我还没跑过的玩家测试。",
@@ -1037,7 +957,7 @@ const zhCaseInterviewPacks: Record<ProjectEvidenceSlug, CaseInterviewPack> = {
         },
         {
           id: "pricewise-scope",
-          question: "范围跟着 AI 生成的规划长大，后来一直没有缩回去。再接一份这样的规划，你会先查什么？",
+          question: "范围跟着一份功能规划长大，你事后判断那份规划是 AI 生成的，范围后来也一直没有缩回去。再接一份这样的规划，你会先查什么？",
           answer:
             "先查这份规划从哪里来。PriceWise 那份是从「一个完整的产品该有什么」推出来的，不是从任何人的需求推出来的，开发一路照着做。2026 年 3 月 1 日单次提交 5884 行，社交功能约占四分之一。第二天之后，五个月没有提交。范围也一直没有缩回去，v1 路由后来只是换了路径，没有删。回头看，一个建在拟真数据上、注册用户为 0 的比价应用，不该继续长下去。",
           evidenceHref: "/projects/pricewise#iteration-gallery",
@@ -1141,8 +1061,8 @@ const caseInterviewPacks: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
 
 // Links into an unlisted case are dropped. A role left with no proof link, or
 // a capability left with no evidence in any listed case, is dropped with them
-// rather than shown as a claim with nothing behind it. When Vigil was unlisted
-// that took out the AI UX role and the AI UX and trust row: Vigil was the only
+// rather than shown as a claim with nothing behind it. When the abandoned case
+// was unlisted that took out the AI UX role and the AI UX and trust row: it was the only
 // evidence either had. Both came back on 2026-09-28 as a thread through
 // PriceWise, Perception Gap Mapper, UQ Connect and Hoop Dream, every cell
 // supporting rather than primary (see ai-trust-thread.ts).

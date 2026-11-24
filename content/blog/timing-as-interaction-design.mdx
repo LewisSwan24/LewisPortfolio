@@ -1,7 +1,7 @@
 ---
 title: "Timing Is Interaction Design: Debounce, Cooldowns & Physical Latency"
-date: "2026-11-19"
-excerpt: "In physical computing and wearable relays, milliseconds shape credibility. Lessons from tuning FC-51 IR sensors in MazeRunners and 30-second pairing windows in Walkie."
+date: "2026-11-24"
+excerpt: "In physical computing and wearable relays, timing decides whether a rule looks fair. Notes from the FC-51 IR debounce in MazeRunners and the 30-second pairing window in Walkie."
 tags:
   - Physical Computing
   - Hardware UX
@@ -10,22 +10,22 @@ author: "Lewis Dong"
 published: true
 ---
 
-Firmware engineers often dismiss debounce and cooldown intervals as low-level electrical housekeeping. On an exhibition floor or a wrist screen, however, **timing is the user interface**: a few unbuffered milliseconds can turn a crisp physical rule into a system that players stop trusting.
+Firmware engineers often treat debounce and cooldown intervals as electrical housekeeping. On an exhibition floor or a wrist screen, **timing is part of the interface**: an unfiltered reading can turn a clear physical rule into one that looks random.
 
-## When 1 ball pass fires 3 buzzes
+## One ball pass, one event
 
-While building [MazeRunners](/projects/maze), ten FC-51 infrared sensors sat across trap, diagnostic, spare, and finish zones on the wooden maze board. During early bench tests, raw sensor pins routinely fired two or three state interrupts during a single rolling ball pass.
+In [MazeRunners](/projects/maze), ten FC-51 infrared sensors sat in the trap, ball-drop and finish zones of the acrylic maze. Their readings were sensitive to distance, angle and venue lighting, and they swung sharply. One Mega 2560 ran game state, the sensors, scoring, the LED strip and the finger-sleeve vibration, so a noisy reading reached every output at once.
 
-Because the maze coupled score counters, buzzer audio, LED strips, and wearable finger-sleeve vibration motors, one electrical stutter made the TM1637 score jump twice while the player felt three pulses on their finger. Exhibition play quickly proved a human rule: **players don't read the score screen first — they feel the buzz and look up**. When tactile and visual truth disagree by even one pulse, people conclude the game is broken.
+A three-sample debounce and a 400 ms cooldown made one pass of the ball count once. The trade is a short blind window if a second event arrives inside the cooldown.
 
-Adding per-sensor debounce plus a deterministic cooldown window compressed one physical ball pass into exactly one round state transition — traded deliberately against a brief blind window if a second ball enters immediately after.
+What the exhibition record shows is narrower than a rule about perception: players watched the ball and looked for their teammates, and some were startled by the vibration the first time it fired. My view that a mismatch between what players feel and what the score shows would cost their trust is a hypothesis; we did not test it.
 
-## Deliberate human windows vs. frantic timeouts
+## Windows sized for people
 
-Timing also defines security boundaries in [Walkie](/projects/walkie) and [On The Beat](/projects/onthebeat):
+Timing also sets safety boundaries in [Walkie](/projects/walkie) and [On The Beat](/projects/onthebeat). Claude Code wrote most of the code for both; I set the rules, reviewed the output and tested them on the devices.
 
-- **30-second physical pairing (`Walkie`)**: long enough to calmly walk back to your watch and press the Front Key, short enough that stray pairing challenges never linger open on a desk.
-- **75-second relay keep-alive (`Walkie`)**: tuned and verified in `gate-l` across Fly.io TLS so away-from-cable connections survive silent thinking pauses without constant reconnect chatter.
-- **Unmeasured wearable estimates (`On The Beat`)**: constants like 6-second wake windows and 1.5-second holds are documented honestly as unverified wrist estimates until live-gig wear tests run.
+- **30-second physical pairing (`Walkie`)**: long enough to look at the watch and press the front key, short enough that a pairing request does not stay open on a desk.
+- **Relay keep-alive (`Walkie`)**: the relay pings every 30 seconds. Gate L holds an idle link for 75 seconds, long enough to cover two pings, and it ran with a stand-in device through the relay, not with the watch. Whether the watch stays connected away from the cable has no run record yet.
+- **Unmeasured wearable values (`On The Beat`)**: the 6-second wake window and the 1.5-second hold are in the firmware, but nobody has worn the bands at a gig, so both are estimates.
 
-Examine the live co-touch debounce loop inside our [Pattern Atlas](/patterns?pattern=zero-dead-end-flat-routing) or inspect the hardware gates on [Walkie](/projects/walkie).
+See the related debounce sandbox in the [Pattern Atlas](/patterns?pattern=zero-dead-end-flat-routing), or the device checks on [Walkie](/projects/walkie).

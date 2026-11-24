@@ -72,8 +72,8 @@ describe("v5.5 Master Release Invariants", () => {
     }
   });
 
-  it("enforces 8 Archive Vault autopsies, 3 Replay traces, and zero unlisted leakage", async () => {
-    expect(VAULT_AUTOPSIES).toHaveLength(8);
+  it("enforces 7 Archive Vault autopsies, 3 Replay traces, and zero unlisted leakage", async () => {
+    expect(VAULT_AUTOPSIES).toHaveLength(7);
     expect(new Set(VAULT_AUTOPSIES.map((a) => a.slug))).toEqual(
       new Set(UNLISTED_PROJECT_SLUGS)
     );

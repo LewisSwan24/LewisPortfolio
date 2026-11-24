@@ -1,6 +1,6 @@
 ---
 title: "Cognitive sovereignty and default refusal in AI tools"
-date: "2026-11-21"
+date: "2026-11-22"
 excerpt: "In automated agents and form helpers, polite polish often trains users to stop thinking. Drawing from Lamplight Nook, Resume Autofill, and Walkie to argue for intentional friction and refusal boundaries."
 tags:
   - AI UX
@@ -10,38 +10,39 @@ author: "Lewis Dong"
 published: true
 ---
 
-Many AI interfaces optimize for one goal: making every action look effortless. Prompts auto-complete, destructive confirmations highlight a glowing primary button, and job-application tools guess answers to questions the user never checked. When everything looks smooth, human oversight shrinks into passive muscle memory.
+Many AI interfaces optimize for one goal: making every action look effortless. Prompts auto-complete, destructive confirmations highlight a glowing primary button, and job-application tools guess answers the user never checked. My argument, which is a design position rather than a measured result, is that when everything looks smooth, oversight shrinks into muscle memory.
 
-Across three recent builds — [Lamplight Nook](/projects/lamplight), [Resume Autofill](/projects/autofill), and [Walkie](/projects/walkie) — I treated deliberate refusal and asymmetrical friction as core interaction primitives.
+Three of my personal projects, [Lamplight Nook](/projects/lamplight), [Resume Autofill](/projects/autofill) and [Walkie](/projects/walkie), build refusal and uneven friction into the interaction. AI coding tools (Claude Code) wrote most of their code; I set the rules, reviewed the output and verified it. So far only I have used them.
 
 ## Why "100% auto-fill" is a false kindness
 
-When someone applies to dozens of graduate positions, repeating work history across forms is genuinely exhausting. An autofiller that wants to impress users feels tempted to fill every visible field — calling an LLM to infer visa eligibility, salary expectations, or custom essay answers.
+Applying to dozens of graduate positions means retyping the same work history again and again. An autofiller that wants to impress is tempted to fill every visible field, including visa eligibility, salary expectations or custom essay answers.
 
-In [Resume Autofill](/projects/autofill), that temptation turns into asymmetric risk: the extension gets credit for convenience, while the applicant carries 100% of the legal and career consequence if a hallucinated compliance checkbox goes through.
+In [Resume Autofill](/projects/autofill), that temptation carries uneven risk: the extension gets credit for convenience, while the applicant carries the consequence if a wrong compliance answer goes through. So instead of one magic button, every field lands in one of three visible outcomes:
 
-So we engineered three explicit confidence lanes instead of one magic button:
-1. Deterministic local profile matches fill immediately (solid visual frame + word badge).
-2. Ambiguous dropdowns pause for explicit human selection (dashed frame + review reason).
-3. Sensitive or open-ended prompts remain blank by rule (double frame), and final form submission stays permanently locked out of software automation.
+1. Matched fields fill (2px solid outline).
+2. Uncertain matches, or dropdowns with no matching option, wait for the person (2px dashed outline).
+3. Fields the tool cannot map, or where filling failed, are left for the person (3px solid outline).
 
-**Measured scope:** across five synthetic fixture pages matching local test patterns (6 of 6 light/dark screenshot suites), mapping hit cleanly; real-world ATS DOM drift outside Lewis's own daily runs has not yet been sampled.
+Consent boxes, declarations, passwords and verification codes are never filled, and the extension never presses Submit.
+
+**Measured scope:** the repo has six synthetic fixture pages and a six-shot light/dark screenshot suite of the extension's own UI. The screenshots check how the button, side panel and options page look, not how accurately fields are mapped. How the mapping holds up as job sites change has not been sampled.
 
 ## Blocking habitual Enter-key fatigue
 
-A similar failure mode appears when supervising long-running coding agents. Text logs stream faster than a person can verify, and standard desktop dialogs often default focus to **Continue / Proceed** so pressing `Return` keeps work moving.
+A similar failure appears when supervising long-running coding agents. Logs stream faster than a person can check them, and many desktop dialogs put default focus on **Continue**, so pressing `Return` keeps work moving.
 
-In [Lamplight Nook](/projects/lamplight), staging an agent task as a spatial café crew is never meant to invite blind cuteness-driven trust; its blackboard separates *plan steps* from *execution risks*, staff operate exclusively on working file copies, and every destructive overwrite or shell permission locks initial focus onto **Not now**. Dismissing the card refuses execution safely rather than silently proceeding.
+In [Lamplight Nook](/projects/lamplight), an agent task is staged as a café crew with a blackboard plan. Risky cards put initial focus on **Not now**, and Enter or Esc on such a card means "Not now", so dismissing it refuses rather than proceeds. When it works in a folder you lend it, it keeps the originals so changes can be undone.
 
-Likewise on [Walkie](/projects/walkie), hardware buttons create tactile asymmetry: background speech triggers only an audio summary, while destructive tool permissions pause until a deliberate thumb press on the M5StickS3 Front or Side key (tested across automated relay & device gates on Lewis's watch, prior to external wearer studies).
+On [Walkie](/projects/walkie), the keys create the same asymmetry: speech can describe an intent, but a tool permission waits for a deliberate press of the front key (allow) or side key (deny) on the M5StickS3. The keys were checked on the watch itself; using Walkie away from the cable has no on-device run record yet.
 
-| Pattern | Convenience-First Default | Cognitive Sovereignty Default |
+| Pattern | Convenience-first default | Default used here |
 | --- | --- | --- |
-| Uncertain application field (`Autofill`) | LLM predicts best-fit answer silently | Leaves blank with dashed/double state badge & human reason |
-| Final job submission (`Autofill`) | Auto-advances straight through Submit | Advances Next only; stops dead before Submit selector |
-| Risky desktop modal (`Lamplight Nook`) | Primary button highlights Proceed on Enter | Focus traps onto **Not now**; copies isolate original files |
-| Away-from-desk approval (`Walkie`) | Spoken "Yes" triggers shell execution | Physical S3 Front/Side button required after speech capture |
+| Uncertain application field (`Autofill`) | A model fills its best guess silently | Dashed or thick outline, with the field left for the person |
+| Final job submission (`Autofill`) | Auto-advances through Submit | Presses Next only; Submit stays with the person |
+| Risky desktop card (`Lamplight Nook`) | Enter triggers Proceed | Focus starts on **Not now**; originals kept in lent folders |
+| Tool approval (`Walkie`) | A spoken "Yes" runs the command | A front or side key press on the watch is required |
 
 ## Intentionally un-automated
 
-Good human-centered AI design declares clearly what the machine **refuses to guess or trigger silently**. Protecting cognitive sovereignty means designing calm friction right before irreversible commitments — even if that costs one extra click. Stress-test all three gates directly inside our [Interaction Lab](/lab) or interrogate them via the [Rationale AI Lab](/ai).
+Good AI interaction design says clearly what the machine **will not guess or trigger on its own**, and puts a calm pause right before irreversible steps, even at the cost of one more click. Try all three in the [Interaction Lab](/lab) or question them in the [Rationale AI Lab](/ai).

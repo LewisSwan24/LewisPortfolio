@@ -18,7 +18,7 @@ export function PrimitiveWrist({ locale }: { locale: Locale }) {
       <p className="lab-prim-summary">
         {isZh
           ? "对比插线 USB（0ms 抢占）与离缆加密中继（+180ms 模拟延迟），并测试手腕前键批准与侧键拒绝附原因。"
-          : "Compare wired USB preemption (0ms) vs zero-knowledge relay (+180ms simulated RTT) with physical Front Approve / Side Deny."}
+          : "Compare wired USB preemption (0ms) vs end-to-end encrypted relay (+180ms simulated RTT) with physical Front Approve / Side Deny."}
       </p>
 
       <div className="lab-pill-row" role="group" aria-label={isZh ? "链路模式" : "Transport link"}>
@@ -36,7 +36,7 @@ export function PrimitiveWrist({ locale }: { locale: Locale }) {
           aria-pressed={linkMode === "relay"}
           onClick={() => setLinkMode("relay")}
         >
-          {isZh ? "Fly.io 零知识中继 (+180ms · ADPCM)" : "Fly.io Sealed Relay (+180ms · ADPCM)"}
+          {isZh ? "Fly.io 端到端加密中继 (+180ms · ADPCM)" : "Fly.io Sealed Relay (+180ms · ADPCM)"}
         </button>
       </div>
 

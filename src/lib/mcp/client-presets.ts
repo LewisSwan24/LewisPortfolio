@@ -70,11 +70,11 @@ export const MCP_SANDBOX_PRESETS: readonly McpSandboxPreset[] = [
       zh: "audit_vault_lineage（档案库演进解剖）",
     },
     summary: {
-      en: "Audits the 8 archived-unlisted concepts cleanly, showing structural flaws exposed and flagship successors.",
-      zh: "显式审计 8 项已退役非公开课题的死亡解剖与向 6 大主案的演化脉络。",
+      en: "Audits an archived, unlisted project: the flaw it exposed and the listed cases it relates to.",
+      zh: "查看一项已归档的非公开课题：暴露了什么问题，和哪些公开主案相关。",
     },
     sampleArgs: {
-      slug: "vigil",
+      slug: "fencepost",
       locale: "zh",
     },
   },

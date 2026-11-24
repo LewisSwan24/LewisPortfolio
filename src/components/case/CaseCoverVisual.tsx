@@ -3,7 +3,6 @@ import {
   VizConnect,
   VizSpectra,
   VizMaze,
-  VizVigil,
   VizHoop,
   VizPricewise,
   VizGapmapper,
@@ -47,7 +46,6 @@ export function CaseCoverVisual({
     );
   }
   if (slug === "maze") return <VizMaze locale={locale} />;
-  if (slug === "vigil") return <VizVigil locale={locale} />;
   if (slug === "hoop") return <VizHoop locale={locale} />;
   if (slug === "connect") return <VizConnect locale={locale} />;
   if (slug === "pricewise") return <VizPricewise locale={locale} />;

@@ -8,8 +8,8 @@ export const mazeModules: CaseModulesRecord = {
       zh: "MazeRunners 完整档案：展场多人协同旅程、五态 Mega 与 Web Serial 矩阵，以及电击改指套震动与红外防抖打回档案。",
     },
     "ux-research": {
-      en: "UX Research & IA focus: why players ignored the score display until finger-sleeve vibration fired, and why sleeve fitting became part of facilitation.",
-      zh: "UX 研究与架构视角：为何玩家不看计分屏却先因指套震动抬头，以及协助佩戴如何成为展场交互仪式的一部分。",
+      en: "UX Research & IA focus: where players' attention went during exhibition rounds, and why many still struggled with the rules after the explanation.",
+      zh: "UX 研究与架构视角：展出时玩家的注意力落在哪里，以及讲解之后为何仍有不少人没弄懂规则。",
     },
     "systems-hardware": {
       en: "Systems & Hardware focus: 10 FC-51 IR debounce/cooldown tuning, SafeTouchServoController tilt isolation, and dual-mode Web Serial console.",
@@ -37,12 +37,12 @@ export const mazeModules: CaseModulesRecord = {
         zh: "如果每人一把独立手柄就会各玩各的；共用连线与指套一开始就暗示必须彼此沟通配合。",
       },
       systemAction: {
-        en: "Host assists fitting vibration finger sleeves; adjacent color wristbands (A/B, B/C) gate tilt axes so solo taps lock cleanly.",
-        zh: "主持人协助戴好震动手指套；相邻同色腕带电路耦合控制轴向，单人试按仅触发锁定提示，无法推动迷宫。",
+        en: "A team member explains the rules and players put on the vibration finger sleeves; adjacent color wristbands (A/B, B/C) gate tilt axes so solo taps lock cleanly.",
+        zh: "组员先讲解规则，玩家戴上震动手指套；相邻同色腕带电路耦合控制轴向，单人试按仅触发锁定提示，无法推动迷宫。",
       },
       cognitiveFriction: {
-        en: "Exhibition play showed visitors struggled to self-fit finger sleeves cleanly, turning fitting into part of the onboarding ritual.",
-        zh: "展场观察发现访客自己很难戴好手指套，协助佩戴反倒成了不可或缺的开局交互仪式。",
+        en: "At the exhibition, gearing up took each group about a minute, and many players still struggled with the rules after the explanation.",
+        zh: "展出时每组戴装备大约要一分钟，讲解之后仍有不少玩家没弄懂规则。",
       },
       edgeRecovery: {
         en: "If a single wristband taps alone, console & board immediately signal lock feedback so players discover co-touch rules without reading manuals.",
@@ -255,8 +255,8 @@ export const mazeModules: CaseModulesRecord = {
         zh: "异常发生后焦点可顺畅移回复位或 Demo 模式切换键，绝不卡死页面。",
       },
       fallbackGuarantee: {
-        en: "Dedicated diagnostic IR zone aids bench pin checks; servo isolation prevents motor stall from freezing PlanB feedback.",
-        zh: "板载专用诊断红外区辅助现场排查走线；舵机物理隔离确保单路故障不拖垮主反馈板。",
+        en: "Dedicated diagnostic IR zone aids bench pin checks; servos run on a separate Uno that shares the Mega's ground.",
+        zh: "板载专用诊断红外区辅助现场排查走线；舵机跑在单独一块 Uno 上，和 Mega 共地。",
       },
       focusTags: ["systems-hardware", "ai-trust"],
       verifiedStatus: "bench-tested",
@@ -269,16 +269,16 @@ export const mazeModules: CaseModulesRecord = {
         zh: "早期方案涉及不可校准的人体电击惩罚，或球体在同一冷却窗内触发硬件抖动连击。",
       },
       uiFeedback: {
-        en: "Hardware routes feedback exclusively to relay-isolated sleeve vibration motors; cooldown suppresses duplicate bounce triggers.",
-        zh: "系统仅输出物理隔离的指套马达震动；冷却窗内对连续毛刺静默拦截并保持单事件计数。",
+        en: "Hardware routes feedback to relay-driven sleeve vibration motors; a three-sample debounce and a 400 ms cooldown suppress duplicate triggers.",
+        zh: "反馈只走继电器驱动的指套震动马达；三次取样去抖加 400 ms 冷却，拦下重复触发，保持单事件计数。",
       },
       keyboardFocus: {
         en: "Hold-to-move stops tilt immediately upon key/contact release.",
         zh: "一旦松开按键或断开腕带接触，舵机输出即刻归零停转。",
       },
       fallbackGuarantee: {
-        en: "Unsupervised exhibition visitors of any age never encounter electrical shock risk or phantom double-penalties.",
-        zh: "无人逐人看管的展场访客绝不会面临电击伤害风险或莫名其妙的连续扣分。",
+        en: "There is no shock hardware in the build, and one ball pass cannot charge two penalties.",
+        zh: "成品里没有电击硬件，一次过球也不会被扣两次分。",
       },
       focusTags: ["ai-trust", "ux-research"],
       verifiedStatus: "observed",
@@ -287,15 +287,15 @@ export const mazeModules: CaseModulesRecord = {
   rejectionArchive: [
     {
       id: "maze-reject-electric-shock",
-      round: { en: "Exhibition Safety Review", zh: "展场安全设计审查" },
-      date: "2026-08",
+      round: { en: "Mid-Fi Decision", zh: "Mid-Fi 阶段决定" },
+      date: "2026-04",
       artifactBefore: {
         en: "Mild electric shock trap concept delivered on wall contact",
         zh: "初版构想：撞击迷宫陷阱时施加轻微电流电击惩罚",
       },
       failureExposed: {
-        en: "In a public university exhibition with unsupervised strangers of varying ages and health states, per-person medical consent and threshold calibration were impossible.",
-        zh: "公开展览面对不同年龄与体质的陌生访客，无人逐人看管时根本无法完成知情同意与电流耐受校准。",
+        en: "Complexity and safety could not both be met (decision record, 25 Apr 2026).",
+        zh: "复杂度与安全性均无法达标（2026 年 4 月 25 日的决定记录）。",
       },
       fixApplied: {
         en: "Replaced shock hardware entirely with relay-driven vibration motors inside wearable finger sleeves.",
@@ -311,18 +311,18 @@ export const mazeModules: CaseModulesRecord = {
     {
       id: "maze-reject-raw-ir-polling",
       round: { en: "Bench Calibration & Console Sync", zh: "台架传感器与控制台联调" },
-      date: "2026-09",
+      date: "2026-05",
       artifactBefore: {
         en: "Uncalibrated raw FC-51 IR polling mixed on one microcontroller with servo PWM",
         zh: "将未防抖的 FC-51 红外原始电平读取与舵机驱动混跑在单块板子上",
       },
       failureExposed: {
-        en: "One ball pass double- or triple-fired score and buzz out of sync, while servo motion interfered with time-critical sensor polling.",
-        zh: "小球滚过一次连发两三次造成分值与手指震动打架，同时舵机占时干扰传感器轮询精度。",
+        en: "One ball pass could fire more than once, putting score and buzz out of sync.",
+        zh: "小球滚过一次可能触发不止一次，分数和手指震动就对不上。",
       },
       fixApplied: {
-        en: "Added per-sensor debounce + cooldown feeding one Mega round state machine, moved tilt to SafeTouchServoController, and wrote serial/feedback/servo/audio parity tests.",
-        zh: "十路红外加防抖与冷却窗口收拢进单一状态机，倾斜拆至 SafeTouchServoController，并补齐四维一致性回归测试。",
+        en: "Gave each sensor a three-sample debounce and a 400 ms cooldown feeding one Mega round state machine, put tilt on its own Uno (SafeTouchServoController), and wrote serial/feedback/servo/audio parity tests.",
+        zh: "十路红外各加三次取样去抖与 400 ms 冷却，收拢进 Mega 上的单一状态机；倾斜放到单独一块 Uno（SafeTouchServoController），并补齐四类一致性回归测试。",
       },
       sourceReceipt: {
         en: "04-engineering-overview.png + firmware/web parity regression suite",

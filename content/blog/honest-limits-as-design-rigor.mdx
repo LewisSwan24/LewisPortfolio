@@ -10,31 +10,33 @@ author: "Lewis Dong"
 published: true
 ---
 
-Too many case studies borrow the visual grammar of finished consumer launches for what were actually student prototypes, personal utilities, or architectural experiments. "Increased efficiency by 42%" sounds polished on a slide deck until a hiring engineer asks for the baseline script or cohort size.
+Too many case studies borrow the visual grammar of finished consumer launches for what were actually student prototypes, personal utilities or architectural experiments. "Increased efficiency by 42%" sounds polished on a slide until someone asks for the baseline or the sample size.
 
-Across the six public works in this portfolio, the fastest way to make a design decision credible was to publish the exact ceiling where testing stopped.
+For the projects on this site, the most useful thing I can publish next to each design decision is the exact point where testing stopped.
 
-## Separation between local proof and unmeasured field claims
+## Separating local proof from field claims
 
-Take three prototypes built under completely different verification regimes:
+Three projects sit under very different kinds of evidence:
 
-- **[Grassland Iron Tide](/projects/grassland)** passes **430/430** unit tests across its unified five-mission command grammar and 20 Hz checkpoint restoration chain alongside two-resolution desktop playthroughs. That proves rule determinism and local RC stability, not how outside players onboard unassisted on the public URL.
-- **[MazeRunners](/projects/maze)** ran live during public exhibition play at The University of Queensland across **9 groups (36 people, roughly 3 groups finishing)** wired with 10 debounced FC-51 IR sensors and vibration sleeves. That validates physical co-touch pressure and noisy-room visibility, while the handwritten score sheet stayed unarchived without channel telemetry.
-- **[On The Beat](/projects/onthebeat)** verifies real dual-wristband mutual `MEET` state over an always-on Sydney Fly.io relay and dual-boot partition isolation alongside Walkie, while explicitly noting zero live concert wearer studies conducted to date.
+- **[Grassland Iron Tide](/projects/grassland)** is a personal browser strategy game with a shared command grammar across five missions and a fixed 20 Hz simulation step. A 2026-07-27 audit recorded **430/430** tests passing, and the local release-candidate record shows all five missions completed in a real browser at two desktop resolutions. The repo kept changing until October and the count has not been re-run since. None of this shows how outside players learn the game.
+- **[MazeRunners](/projects/maze)** ran at a June 2026 exhibition at The University of Queensland: **9 groups (36 people, roughly 3 groups finishing)**, with 10 debounced FC-51 infrared sensors and vibration finger sleeves. Our notes show the paired wristbands made groups call out short instructions. The handwritten score sheet was not kept, so there is no timing data.
+- **[On The Beat](/projects/onthebeat)** showed `MEET` on two real wristbands at the same time through a Fly.io relay in Sydney. It shares the watch with Walkie in a separate partition. Nobody has worn it at a gig.
 
-Treating CI test counts, single-venue group observation, and bench-verified hardware loops as interchangeable "production KPIs" destroys signal for both human and automated readers.
+Treating test counts, a single exhibition and bench-verified hardware loops as interchangeable "production KPIs" destroys the signal for human and automated readers alike.
 
-| Project | Verified In-Repo / Venue Proof | Explicit Unproven Ceiling | Next Falsification Step |
+Walkie, On The Beat, Lamplight Nook, Resume Autofill and Grassland Iron Tide are mine. Claude Code wrote most of the code for the first four; On Grassland Iron Tide, AI tools helped with the code, copy and original assets. I set the rules, reviewed the output and verified the results listed below. Only I have used Walkie, Lamplight Nook and Resume Autofill.
+
+| Project | Verified evidence | Not yet shown | Next check |
 | --- | --- | --- | --- |
-| [Walkie](/projects/walkie) | Host `g++` framing tests, `guard.py` flash block, AES-256-GCM relay checks on S3 | Single-user desk ergonomics & wet/gloved corridor walking | 7-day corridor walk test with external testers & ambient noise log |
-| [Lamplight Nook](/projects/lamplight) | Live Claude Agent SDK mapping, `'Not now'` focus trap & copy isolation | No external teammate comprehension study beyond daily self-use | Blinded A/B first-turn clarity audit against raw terminal logs |
-| [Resume Autofill](/projects/autofill) | 6/6 light/dark synthetic fixture suite + zero-network Android Keystore unit gate | Longitudinal ATS DOM drift & unmeasured external conversion rate | Weekly snapshot checks across live Workday/Moka/Beisen updates |
-| [MazeRunners](/projects/maze) | 9-group (36-person) live exhibition + synchronized Web Serial Console | Handwritten scores unarchived; hand-wired unit durability unmeasured | Instrument round timings per channel on the serial event log |
-| [On The Beat](/projects/onthebeat) | Real StickS3 & StickC Plus `MEET` via Fly.io relay + 5+ AI canvas rework audits | Zero real concert wearer trials; StickC Plus front button timing | Field wear trial in dim acoustic spaces testing pocket-exit rhythm |
-| [Grassland Iron Tide](/projects/grassland) | 430/430 deterministic tests + 5-mission two-resolution local RC playthrough | Live production load-time audit & first-time outside player learnability | Hosted URL telemetry run across all 5 chapter loads + novice tutorial probe |
+| [Walkie](/projects/walkie) | Host `g++` framing tests, `guard.py` target block, screen and key checks (gate H) on the real watch | Relay use on the watch: gate L ran a stand-in device, gates M and N have no run record | Run gates M and N on the watch away from the cable |
+| [Lamplight Nook](/projects/lamplight) | Claude Agent SDK event mapping, `'Not now'` default focus, per-run budget cap | No one but me has used it | A first-session clarity check with another user |
+| [Resume Autofill](/projects/autofill) | Six light/dark UI screenshots (button, side panel, options page) and a no-network unit test for the Android keyboard | How well field mapping holds up as job sites change | Snapshot checks against live application forms |
+| [MazeRunners](/projects/maze) | 9-group (36-person) exhibition with the team's observation notes | Scores not kept; durability of the hand wiring not measured | Log round timings per sensor on the serial console |
+| [On The Beat](/projects/onthebeat) | Two real wristbands showing `MEET` via the Fly.io relay; at least five review rounds on the AI design canvas | No wearer testing at a real gig | A wear trial in a dim, loud room |
+| [Grassland Iron Tide](/projects/grassland) | 430/430 tests in the July audit; five missions completed at two resolutions in the local RC run | Current test count; load time on the hosted URL; first-time player learnability | Re-run the suite and time all five mission loads on the hosted URL |
 
-## Why printable dossiers and the AI Workbench foreground failure modes
+## Why the dossier and the AI Workbench lead with limits
 
-When we added the A4 Editorial Critique dossier (`/brief/print`) and expanded the [Rationale AI Lab](/ai), every exported sheet placed **Human Tension**, **Rejected Alternatives**, and **Honest Scope & Limits** front and center beside an offline-safe vector QR code pointing directly to the live interactive prototype or case record. And when a recruiter asks our BM25 workbench a question outside verified records, the endpoint responds transparently with `Honest Limit` gaps rather than fabricating missing telemetry.
+The A4 critique dossier (`/brief/print`) and the [Rationale AI Lab](/ai) both put **Human Tension**, **Rejected Alternatives** and **Honest Scope & Limits** up front, next to a QR code that links to the live prototype or case record. When a question goes beyond the verified records, the workbench answers with the gap instead of filling it.
 
-Naming what has *not* been proven is not modesty; it is how a design engineer prevents teams from mistaking prototype confidence for production guarantees.
+Naming what has *not* been proven is not modesty. It keeps prototype confidence from being mistaken for a production guarantee.

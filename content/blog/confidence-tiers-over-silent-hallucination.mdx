@@ -1,7 +1,7 @@
 ---
 title: "Confidence Tiers Over Silent Hallucination"
-date: "2026-11-06"
-excerpt: "Showing an opaque 87% confidence score invites lazy trust; hiding low-certainty guesses behind uniform green inputs causes silent disasters. Why three-tier tri-coding wins."
+date: "2026-11-24"
+excerpt: "A bare confidence percentage asks people to trust a number, and a field filled on a guess looks the same as one filled on a match. How Resume Autofill marks three outcomes with line style, not colour alone."
 tags:
   - AI Safety
   - Uncertainty UX
@@ -11,19 +11,21 @@ author: "Lewis Dong"
 published: true
 ---
 
-Across both an abandoned email triage workbench in the [Archive Vault](/vault) and [Resume Autofill](/projects/autofill), one lesson kept returning: users misread continuous confidence percentages (`0.84` vs `0.91`), yet blindly trust uniform filled fields when uncertainty is hidden.
+[Resume Autofill](/projects/autofill) is the browser extension I use to fill job application forms. One rule carries most of its design: a field the tool is unsure about should look unsure, not filled. AI coding tools (Claude Code) wrote most of the code; I set the rules, reviewed the output and used it on my own applications.
 
-## Why binary or percentage UI breaks operator judgment
+## Why a percentage or a silent guess is the wrong signal
 
-1. **Continuous scores invite gaming or false precision**: In earlier oversight experiments, reviewers latched onto arbitrary score cutoffs rather than inspecting context—a flaw that pushed us toward discrete, honest uncertainty tiers.
-2. **Guessing ambiguous inputs ruins high-stakes forms**: Filling a visa sponsorship dropdown or fabricating an open motivation essay in [Resume Autofill](/projects/autofill) is worse than skipping the field.
+1. **A bare score invites false precision.** This is my working assumption, not a measured finding: shown `0.84` next to a field, people are more likely to pick a cutoff than to read the field. I have not run a study on it.
+2. **A guessed answer on a high-stakes field is worse than a blank.** A wrong visa or work-rights answer costs far more than the minute it takes to fill the field by hand.
 
-## Designing the three-tier tri-coded split
+## Three outcomes, three line styles
 
-Instead of guessing or displaying raw floats, Autofill classifies every form input into one of three unmistakable states:
+Autofill sorts every field it touches into one of three visible outcomes:
 
-- **Tier 1 · Exact 1:1 Match (Solid border + Filled)**: Deterministic identity fields fill immediately with a side-panel audit line.
-- **Tier 2 · Ambiguous Select (Dashed border + Review)**: Borderline dropdowns pause for explicit human choice.
-- **Tier 3 · Open / Unknown (Double border + Blank)**: Essay prompts and unrecognized custom widgets stay intentionally empty with a clear reason logged.
+- **Filled (2px solid outline)**: the field matched resume data and was filled.
+- **Needs review (2px dashed outline)**: the match was uncertain, or the dropdown had no matching option. The tool stops and waits for the person.
+- **Not matched or failed (3px solid outline)**: the tool could not tell what the field asks for, or the fill action failed. The field is left for the person.
 
-Pairing border stroke geometry (`solid` / `dashed` / `double`) with text badges and side-panel explanations ensures color-blind users and dark-mode portals read every boundary without ambiguity. Compare the live sandbox in [Pattern Atlas](/patterns).
+Fields for which the resume holds no data get no outline at all.
+
+The states differ in line weight and style, not only in colour, so they stay readable for colour-blind users and on dark pages. Compare the sandbox in [Pattern Atlas](/patterns).

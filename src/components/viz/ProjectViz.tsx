@@ -122,7 +122,7 @@ export function VizSpectra({ locale = "en" }: VizProps) {
   const zh = locale === "zh";
   // The extension rewrites type and spacing on a page the reader does not
   // control, so the picture is one paragraph twice: as the author set it, and
-  // after the reader's four spacing controls. Bars stand in for text on
+  // after the reader turns on the dyslexia mode. Bars stand in for text on
   // purpose; no invented sentence, no numbers.
   const rawBars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const rawWidth = [190, 200, 176, 198, 192, 150, 200, 164, 196, 182, 200, 172, 120];
@@ -274,126 +274,6 @@ export function VizMaze({ locale = "en" }: VizProps) {
         </text>
         <text x="30" y="378" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
           {zh ? "arduino mega · 10 个传感器 · 已公开展出" : "arduino mega · 10 sensors · exhibited"}
-        </text>
-      </svg>
-    </div>
-  );
-}
-
-export function VizVigil({ locale = "en" }: VizProps) {
-  // The one fact the whole case turns on: the classifier's confidence spans
-  // almost the same range whether it is right or wrong, so a reviewer cannot
-  // read the number instead of the message. Drawn as ranges rather than
-  // individual dots, because ranges are what the corpus actually validates.
-  const zh = locale === "zh";
-  const x = (confidence: number) => 60 + ((confidence - 0.55) / 0.45) * 410;
-  const ticks = [0.6, 0.7, 0.8, 0.9, 1.0];
-  const namedErrors = [
-    { confidence: 0.89, label: "em_128" },
-    { confidence: 0.91, label: "em_052" },
-  ];
-
-  return (
-    <div className="viz viz-vigil">
-      <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <pattern id="paper-v" width="40" height="40" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="39.5" x2="40" y2="39.5" stroke="var(--viz-rule)" strokeWidth="0.5" />
-          </pattern>
-        </defs>
-        <rect width="520" height="400" fill="url(#paper-v)" opacity="0.5" />
-
-        <text x="30" y="34" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="2" fill="var(--viz-muted)">
-          {zh ? "置信度 · 分类器落在哪里" : "CONFIDENCE · WHERE THE CLASSIFIER LANDS"}
-        </text>
-
-        {/* The overlap is the argument: both bands occupy the same stretch. */}
-        <rect x={x(0.61)} y="86" width={x(0.91) - x(0.61)} height="128" fill="var(--viz-focus)" opacity="0.07" />
-
-        <rect
-          x={x(0.58)}
-          y="98"
-          width={x(0.97) - x(0.58)}
-          height="26"
-          fill="var(--viz-surface)"
-          stroke="var(--viz-ink)"
-          strokeWidth="1"
-        />
-        <text x={x(0.58) + 10} y="115" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="var(--viz-ink)">
-          {zh ? "判断对的 123 封" : "123 CALLS IT GOT RIGHT"}
-        </text>
-
-        <rect
-          x={x(0.61)}
-          y="176"
-          width={x(0.91) - x(0.61)}
-          height="26"
-          fill="var(--viz-surface)"
-          stroke="var(--viz-focus)"
-          strokeWidth="1.2"
-        />
-        <text x={x(0.61) + 10} y="193" fontFamily="var(--font-mono)" fontSize="9" letterSpacing="1" fill="var(--viz-focus)">
-          {zh ? "判断错的 17 封" : "17 IT GOT WRONG"}
-        </text>
-
-        {namedErrors.map((error) => (
-          <g key={error.label}>
-            <line
-              x1={x(error.confidence)}
-              y1="176"
-              x2={x(error.confidence)}
-              y2="228"
-              stroke="var(--viz-focus)"
-              strokeWidth="1"
-            />
-            <circle cx={x(error.confidence)} cy="189" r="3.4" fill="var(--viz-focus)" />
-            <text
-              x={x(error.confidence)}
-              y="242"
-              fontFamily="var(--font-mono)"
-              fontSize="8"
-              textAnchor="middle"
-              fill="var(--viz-focus)"
-            >
-              {error.label}
-            </text>
-          </g>
-        ))}
-
-        <line x1="60" y1="272" x2="470" y2="272" stroke="var(--viz-muted)" strokeWidth="0.8" />
-        {ticks.map((tick) => (
-          <g key={tick}>
-            <line x1={x(tick)} y1="272" x2={x(tick)} y2="278" stroke="var(--viz-muted)" strokeWidth="0.8" />
-            <text
-              x={x(tick)}
-              y="292"
-              fontFamily="var(--font-mono)"
-              fontSize="9"
-              textAnchor="middle"
-              fill="var(--viz-muted)"
-            >
-              {tick.toFixed(1)}
-            </text>
-          </g>
-        ))}
-
-        <text
-          x="30"
-          y="336"
-          fontFamily="var(--font-display)"
-          fontStyle={displayStyle(locale)}
-          fontSize="22"
-          fill="var(--viz-ink)"
-        >
-          {zh ? "这个数字不会告诉你哪一次判断是错的" : "the number can’t tell you when it’s wrong"}
-        </text>
-        <text x="30" y="362" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
-          {zh
-            ? "140 封邮件 · 准确率 87.9% · 错误排序 auc 0.72"
-            : "140 messages · 87.9% accurate · error-ranking auc 0.72"}
-        </text>
-        <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
-          {zh ? "一旦这个数字爬过 0.75，构建就失败" : "the build fails if that number climbs past 0.75"}
         </text>
       </svg>
     </div>

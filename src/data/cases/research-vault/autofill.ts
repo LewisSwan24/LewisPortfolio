@@ -13,8 +13,8 @@ export const autofillResearchVault: RawResearchVaultRecord = {
       zh: "零猜测三档分流与人手提交锁可用性验证规程",
     },
     cohortAndSetting: {
-      en: "Scoped for graduating applicants filling 15–30 repetitive ATS applications (Workday, Greenhouse, Beisen, Moka, Feishu) per week.",
-      zh: "针对每周需填 15–30 份中英文网申（Workday / Greenhouse / 北森 / Moka / 飞书）的应届生场景设计。",
+      en: "Planned, not run: graduating applicants filling repetitive ATS applications (Workday, Greenhouse, Beisen, Moka, Feishu).",
+      zh: "计划中，未执行：面向反复填写中英文网申（Workday / Greenhouse / 北森 / Moka / 飞书）的应届生。",
     },
     openingBrief: {
       en: "Run autofill on this multi-step application form, resolve the flagged yellow dashed fields, complete the open prompt yourself, and stop right before the final Submit.",
@@ -28,14 +28,14 @@ export const autofillResearchVault: RawResearchVaultRecord = {
           zh: "查看顶部统计汇总（如 45 已填 / 1 待确认 / 1 刻意留空），并找出那 1 个空白栏位为何没被填上。",
         },
         whatWeWatchFor: {
-          en: "Whether tri-coding (solid/dashed/double border + label + icon) communicates intentional refusal vs parser failure without relying on color alone.",
+          en: "Whether tri-coding (2px solid / 2px dashed / 3px solid border + label + icon) communicates intentional refusal vs parser failure without relying on color alone.",
           zh: "检验「线型 + 文字 + 图标」三重编码能否让用户秒懂「AI 故意不猜」与「识别失败」的差别。",
         },
         failureSignal: {
           en: "User assumes the blank field is a broken parser bug rather than an explicit no-guess boundary.",
           zh: "若用户把刻意留空误认为插件崩溃漏填，说明侧栏逐栏原因解释不够显眼。",
         },
-        verifiedStatus: "synthetic-gate",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "autofill-probe-submit-lock",
@@ -51,7 +51,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
           en: "Confusion when 'Next' stops working on the last page without an explanatory Submit Lock note.",
           zh: "抵达末页时若未给出明确的「人手提交锁」提示，容易让人误以为向导按钮卡死。",
         },
-        verifiedStatus: "synthetic-gate",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "autofill-probe-android-ime",
@@ -67,7 +67,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
           en: "Expecting cloud sync edits from desktop Chrome to appear automatically on Android.",
           zh: "若用户理所当然以为桌面改完手机端会自动同步，则说明本地隔离提示需前置强调。",
         },
-        verifiedStatus: "synthetic-gate",
+        verifiedStatus: "unverified-hypothesis",
       },
     ],
     debriefQuestion: {
@@ -78,7 +78,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
   observationLogs: [
     {
       id: "autofill-obs-1",
-      sessionRef: { en: "CI Fixture · UI Library Adapters", zh: "CI 夹具实测 · 组件库适配器" },
+      sessionRef: { en: "Synthetic Fixture · UI Library Adapters", zh: "合成夹具实测 · 组件库适配器" },
       context: {
         en: "Tested Ant Design, Element Plus, react-select, and ARIA custom select widgets under React/Vue state validation.",
         zh: "在 React 与 Vue 状态校验环境下实测 Ant Design、Element Plus、react-select 与 ARIA 自定义下拉框。",
@@ -97,7 +97,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
       id: "autofill-obs-2",
       sessionRef: { en: "Visual Audit · Dark & Color-Blind Contrast", zh: "视觉走查 · 暗色与色觉对比度" },
       context: {
-        en: "Checked solid/dashed/double field outlines on light and dark ATS mock pages.",
+        en: "Checked 2px solid / 2px dashed / 3px solid field outlines on light and dark ATS mock pages.",
         zh: "在明暗两套模拟网申表单背景下逐一核验三档边框样式。",
       },
       observation: {
@@ -105,8 +105,8 @@ export const autofillResearchVault: RawResearchVaultRecord = {
         zh: "浅灰背景下的纯黄色细框不仅对比度吃紧，对红绿色觉障碍者也几乎无法与已填项区分。",
       },
       designResponse: {
-        en: "Paired border stroke patterns (solid / dashed / double) with explicit word badges and side-panel per-field rationale.",
-        zh: "定死「实线 / 虚线 / 双线」加文字标签与侧栏原因的三重编码，彻底摆脱对颜色的单一依赖。",
+        en: "Paired border stroke patterns (2px solid / 2px dashed / 3px solid) with explicit word badges and side-panel per-field rationale.",
+        zh: "定死「实线 / 虚线 / 粗实线」加文字标签与侧栏原因的三重编码，彻底摆脱对颜色的单一依赖。",
       },
       verifiedStatus: "synthetic-gate",
     },
@@ -158,7 +158,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
       },
       {
         dimension: { en: "Tier 3 · Open / Unknown", zh: "三档 · 刻意留空" },
-        constraint: { en: "Double border + blank value + explicit skip reason", zh: "双线边框 + 保持空白 + 写明跳过理由" },
+        constraint: { en: "3px solid border + blank value + explicit skip reason", zh: "粗实线边框 + 保持空白 + 写明跳过理由" },
         rationale: {
           en: "Never fabricates motivation essays or 'Why this company?' answers; skips unrecognized widgets honestly.",
           zh: "绝不替人编造求职动机小作文，也不强行往未适配控件硬塞字符。",

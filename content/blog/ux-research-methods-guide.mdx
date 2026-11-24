@@ -1,7 +1,7 @@
 ---
 title: "The cheapest method caught what the expensive ones missed"
-date: "2026-01-10"
-excerpt: "We planned validated loneliness scales and correlation thresholds. What actually changed the product was one participant asking how to get back to the previous page."
+date: "2026-08-07"
+excerpt: "We wrote validated loneliness scales and correlation thresholds into the plan and never used them. The clearest defects came from one participant asking how to get back to the previous page."
 tags:
   - UX Research
   - Usability Testing
@@ -10,9 +10,9 @@ author: "Lewis Dong"
 published: true
 ---
 
-Method guides usually read as a menu: here are twelve techniques, here is when to use each. That framing is not wrong, but it skips the part that actually matters — what a given method structurally *cannot* tell you, and what you therefore still have to go and find some other way.
+Method guides usually read as a menu: here are twelve techniques, here is when to use each. That framing is not wrong, but it skips the part that matters most: what a given method structurally *cannot* tell you, and what you therefore still have to find some other way.
 
-On **UQ Connect** — a semester-long team project building a social platform for international students — we ran three rounds of research between August and November. We also set up more measurement apparatus than most student projects ever touch. The finding that changed the product most came from none of it, and cost nothing.
+On **UQ Connect**, a semester-long team project building a social platform for international students, five of us ran three rounds of research between August and November 2025. We also wrote more measurement into the plan than most student projects do. As the end of this post explains, most of it was never used. The clearest defects came from the cheapest method.
 
 ## We wrote the pass mark first
 
@@ -20,29 +20,27 @@ Before a single interview, every hypothesis got a written threshold. Not "we thi
 
 > We are right if ≥70% report that participation tracks weekly energy and load, and the logs show a negative correlation at `p<.05`.
 
-Thirteen hypotheses, thirteen thresholds — eight about the problem space, written before we spoke to anyone, and five about specific MVP features, written before we prototyped them. One planned to use UCLA-3 for loneliness and WHO-5 for wellbeing, looking for r ≤ −0.4 between the two. We picked instruments with published norms deliberately: it puts a scale on a word like "lonely" that someone outside the team also recognizes.
+Thirteen hypotheses, thirteen thresholds: eight about the problem space, written before we spoke to anyone, and five about specific MVP features, written before we prototyped them. One threshold named UCLA-3 for loneliness and WHO-5 for wellbeing, looking for r ≤ −0.4 between the two. Those scales were only written into the threshold; we never administered them.
 
-I still think this was the right instinct, and I would do it again. The whole point of writing a threshold down is that it can fail. Without one, whatever the interviews return can be read as support — you go looking for quotes that fit, and interviews are generous enough to supply them.
+I still think writing thresholds down was the right instinct. The point of a threshold is that it can fail. Without one, whatever the interviews return can be read as support: you go looking for quotes that fit, and interviews are generous enough to supply them.
 
-## What the interviews actually killed
+## Where the interviews pointed away from us
 
-Thirty-three transcripts in the first round, across five interviewers, between 15 and 30 August. Two assumptions did not survive.
+The first round produced thirty-three transcripts between 15 and 30 August. The team's learning cards record two places where what we heard pointed away from our assumptions. We did not score this formally, so these are qualitative patterns, not falsified hypotheses.
 
-The first was that language proficiency was the barrier. It was not. The same students, at the same level of English, went quiet in fast, loud, crowded rooms and spoke freely in small, slow ones. The barrier is pace and group size — which is a completely different product problem, because you cannot fix proficiency but you can absolutely fix format.
+The first was language. We had assumed proficiency was the barrier; the learning card puts it as "barriers are about pace/size more than absolute proficiency". That is a different product problem, because you cannot change someone's proficiency, but you can change the format of an event.
 
-The second was that the gap was exposure. It was follow-through. People found the events fine. They still did not go.
-
-Both are written down in the learning cards as things we got wrong, which is the only reason I can tell you about them now.
+The second was exposure. We had assumed students did not know about events; the card records that the gap was follow-through. People found the events. They still did not go.
 
 ## And two the thresholds could never have caught
 
 Thirteen hypotheses went in. Fourteen learning cards came out. Twelve map back to a hypothesis. Two do not.
 
-The first is **cost**. Event fees of $100–200 kept people out. One participant said events charging $150–200 are too expensive. We had written thirteen hypotheses and not one of them mentioned money.
+The first is **cost**. Event fees of $100–200 kept people out. One participant said events charging $150–200 are too expensive. Not one of our thirteen hypotheses mentioned money.
 
-The second is **continuity**. Clubs recruit at market day and then go quiet, so signing up never becomes attending. What retains people is visible, ongoing activity — the clubs you can see are still running.
+The second is **continuity**. Clubs recruit at Market Day and then go quiet, so signing up never becomes attending. What keeps people is visible, ongoing activity.
 
-Between them those two moved the product more than anything we had predicted, and they are the argument against treating pre-registration as the whole method. A threshold can only test a question you already thought to ask. You still need something in the process that lets the unasked question in.
+Neither came from a hypothesis, and that is the argument against treating pre-registration as the whole method. A threshold can only test a question you already thought to ask. The process still needs something that lets the unasked question in.
 
 ## Think-aloud: where people give up
 
@@ -56,34 +54,30 @@ Second round, September, on a prototype that already ran. A participant clicking
 
 > Skill swap. Share your skills. Not sure what that is.
 
-Four defects in one session. None of them needs a validated scale to detect, and none of them would have surfaced in a demo, because in a demo the person driving already knows where everything is.
+Four defects in one session. None of them needs a validated scale to detect, and none would have surfaced in a demo, because in a demo the person driving already knows where everything is.
 
-This is what think-aloud is uniquely good at: the moment of abandonment. Structural analysis cannot see it, because structural analysis assumes the person is still inside the structure.
+This is what think-aloud is good at: the moment of abandonment. What it cannot do is tell you what to build instead. Four people stuck in four places is not a design.
 
-What it cannot do is tell you what to build instead. Four people stuck in four places is not a design.
+## Back to paper
 
-## The response was structural, so the answer had to be
+On 3 October the team went back to paper and redrew the structure on one sheet: five screens, an arrow for every route off the home page, and one person's name against each feature area. The sheet does not say why it was redrawn. The timing follows the September sessions, but with no reason recorded I cannot claim those sessions caused it. In November we tested a Figma Make prototype and then a clickable React MVP.
 
-On 3 October we stopped patching and redrew the whole application on one sheet of paper: five screens, an arrow for every route off the home page, and one person's name against each feature area.
-
-That is the decision I am most pleased with, and it is not a clever one. It is just the recognition that "there is no way back" and "this card contradicts its own button" are not component bugs. You cannot fix a missing return path one screen at a time. The November build started from that sheet.
-
-## What the expensive apparatus never produced
+## What the measurement plan never produced
 
 Here is the part I would rather state than let a reader assume.
 
-We wrote the thresholds. We never formally scored the transcripts against them. There is no table anywhere in that repository showing hypothesis one passing at 74% and hypothesis three failing at 31%. What I have is a set of qualitative patterns that happen to point in the direction the thresholds anticipated — which is precisely the failure mode pre-registration is supposed to prevent.
+We wrote the thresholds. We never formally scored the transcripts against them. There is no table showing hypothesis one passing at 74% and hypothesis three failing at 31%. What I have is a set of qualitative patterns that happen to point where the thresholds anticipated, which is exactly the failure mode pre-registration is supposed to prevent.
 
-So the honest scoreboard: the pre-written thresholds shaped what we asked, and kept us from quietly reframing misses as findings. They did not, in the end, produce a number. The cheap method produced four fixable defects in an afternoon.
+So the honest scoreboard: the thresholds shaped what we asked and kept us from quietly reframing misses as findings. They did not produce a number. The cheap method produced four fixable defects in one session.
 
 ## The honest boundary
 
-This was a course project with five people. I ran 14 of the 71 sessions and owned the front-end component system and the shared state layer; the map, the wellness hub and the matching logic were other people's work.
+This was a course project with five people. The team produced 71 research and test records over three rounds (33 interviews, 28 think-aloud sessions and 10 MVP tests). I ran 14 of the 71 (7, 5 and 2 across the rounds) and owned the front-end component system and the shared state layer; the map, the wellness hub and the matching logic were other people's work.
 
-The MVP runs on mock data. The backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user, or an empty state. And no round recorded completion times or a fixed success criterion — which means I can tell you the September navigation defect did not recur in the November task chain, and I cannot tell you by how much anything improved.
+The MVP runs on mock data. The backend was written and never connected, so matching, messaging and scheduling have never met a real record, a concurrent user or an empty state. No round recorded completion times or a fixed success criterion, so I can say the September navigation defect did not recur in the November task chain, and I cannot say by how much anything improved.
 
 ## The actual takeaway
 
-Choosing a method is less about matching a technique to a question than about knowing what each one is blind to, and covering that blind spot with something else — often something much cheaper.
+Choosing a method is less about matching a technique to a question than about knowing what each one is blind to, and covering that blind spot with something else, often something much cheaper.
 
-Set the pass mark in advance anyway. It disciplines the question even when it does not produce the number. But do not mistake the apparatus for the evidence: the thing that moved this product was one person, one prototype, and the question *how do I go back?*
+Set the pass mark in advance anyway. It disciplines the question even when it does not produce the number. But do not mistake the plan for the evidence: the clearest defects in this project came from one person, one prototype and the question *how do I go back?*

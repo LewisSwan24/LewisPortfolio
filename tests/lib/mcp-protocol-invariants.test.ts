@@ -61,7 +61,7 @@ describe("v5.6 MCP Agent Protocol, llms-full.txt & Security Invariants", () => {
   });
 
   it("enforces unlisted isolation on search_portfolio_evidence & inspect_case_tradeoff while supporting audit_vault_lineage", async () => {
-    for (const probe of ["Spectra colorblind", "Vigil telemetry", "Fencepost dashboard"]) {
+    for (const probe of ["Spectra colorblind", "PriceWise receipt", "Fencepost dashboard"]) {
       const searchRes = await handleMcpRpcRequest({
         jsonrpc: "2.0",
         id: probe,
@@ -110,7 +110,7 @@ describe("v5.6 MCP Agent Protocol, llms-full.txt & Security Invariants", () => {
       method: "tools/call",
       params: {
         name: "audit_vault_lineage",
-        arguments: { slug: "vigil", locale: "en" },
+        arguments: { slug: "fencepost", locale: "en" },
       },
     });
     const vaultText = ((vaultRes.result as { content: Array<{ text: string }> }).content[0]?.text) ?? "";

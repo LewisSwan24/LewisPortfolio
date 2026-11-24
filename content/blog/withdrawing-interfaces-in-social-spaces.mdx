@@ -1,6 +1,6 @@
 ---
 title: "When good social hardware steps out of the way"
-date: "2026-11-20"
+date: "2026-11-22"
 excerpt: "In dark rooms and crowded exhibitions, software often interrupts the very moment it claims to bridge. Comparing On The Beat and MazeRunners around initiation risk, tactile interdependence, and polite device withdrawal."
 tags:
   - Interaction Design
@@ -10,40 +10,40 @@ author: "Lewis Dong"
 published: true
 ---
 
-Most social tools are tuned to stay on stage. They ask for feeds, avatars, mutual likes, and persistent notifications long after two people could simply talk. In two physical-digital builds — [On The Beat](/projects/onthebeat) and [MazeRunners](/projects/maze) — I explored the opposite rule: technology should carry only enough structure to absorb initial human friction, then withdraw the moment face-to-face dialogue begins.
+Most social tools are tuned to stay on stage. They ask for feeds, avatars, mutual likes and persistent notifications long after two people could simply talk. In two physical-digital projects, [On The Beat](/projects/onthebeat) and [MazeRunners](/projects/maze), I worked from the opposite rule: technology should carry only enough structure to get past the first awkward moment, then step back once people are talking.
 
 ## The cost of "nearby radar" in social spaces
 
-At a dark live concert, wanting to talk to someone standing three steps away comes with immediate social face-loss anxiety. Misreading signals feels awkward on both sides.
+At a dark live gig, wanting to talk to someone three steps away comes with a real risk of losing face. Misreading the signal is awkward for both sides.
 
-When teams try to fix that friction with a smartphone screen, the common reflex is a nearby-people radar: thumbnails, interests, match percentages, and public prompts. Yet in a room built around live music, pulling up a bright comparison feed does two harmful things at once:
+The common screen-first answer is a nearby-people radar: thumbnails, interests, match percentages, public prompts. My argument against it in a room built around live music, which is reasoning rather than a tested result:
 
-1. **It replaces shared presence with silent browsing.** People tilt their heads downward into screens rather than catching eye contact when a song ends.
-2. **It creates asymmetric exposure.** Putting names and bios on display forces people to perform socially even before anyone opts into talking.
+1. **It replaces shared presence with silent browsing.** Heads tilt down into screens instead of catching eye contact when a song ends.
+2. **It creates uneven exposure.** Names and bios on display ask people to perform before anyone has agreed to talk.
 
-On [On The Beat](/projects/onthebeat), a teammate framed a calmer alternative around three fixed cue cards (`SAY HI`, `FIRST SONG?`, `LET'S DANCE!`), and I implemented the firmware dual-boot slot and independent relay bridge so two wristbands could test that rhythm without a laptop. A wave sends only an anonymous pulse — "someone nearby signalled" — never a name or face. Only when both people intentionally nod back do names and a neutral meetup landmark unlock. Once that threshold clears, the screen has finished its job and stays quiet.
+On [On The Beat](/projects/onthebeat), a teammate designed the original three cards (`SAY HI`, `FIRST SONG?`, `LET'S DANCE!`). I turned that concept into a running system with AI tools: Claude Code wrote the phone app, the wristband firmware and the relay, while I set the rules, reviewed the output and caught what was wrong, including a MEET screen that was only mocked data at first. Neither person learns the other's name until both say yes; only then does each see the other's first name and where to meet. When they end the meeting with LET'S FINISH, the card they met on goes off.
 
-**Where evidence currently stops:** hardware sync, dual-boot isolation against [Walkie](/projects/walkie), and Fly.io relay handoff ran through real ESP32 windows, yet no wearer study at a real concert has run so far. We treat the social withdrawal threshold as a deliberate design hypothesis waiting for field observation, not a proven demographic statistic.
+**Where the evidence stops:** on 25 September 2026 two wristbands showed MEET at the same time through the Fly.io relay. Nobody has worn them at a gig. The idea that the device should step back after a mutual yes is a design hypothesis waiting for field observation.
 
-## Designing gentle resistance into co-play
+## Designing resistance into co-play
 
-If *On The Beat* uses minimalism to lower the risk of a first greeting, [MazeRunners](/projects/maze) adds *helpful friction* so players cannot stay isolated while standing beside one another.
+If On The Beat uses minimalism to lower the risk of a first greeting, [MazeRunners](/projects/maze) adds friction so players cannot play alone while standing side by side.
 
-Handing four exhibition visitors four independent wireless controllers creates parallel solo play: each person stares at the board in silence. By locking each movement axis into paired conductive wristbands (`A + B`, `B + C`, `C + D`, `D + A`), no single player can move the marble alone. And when an early course idea suggested small electric shocks as punishment, we rejected fear-based stakes and replaced them with gentle vibrating sleeves — keeping physical consequence lively without triggering hesitation.
+The first input idea was buttons and a joystick; the course paper records it was dropped as too much like an arcade game. Instead, each tilt direction is wired to a pair of same-coloured conductive wristbands (`A + B`, `B + C`, `C + D`, `D + A`), so no single player can move the ball alone. An early idea of small electric shocks as the penalty was dropped because we could not meet both the complexity and the safety requirements; trap events drive finger-sleeve vibration instead. That vibration turned out stronger than we expected, and some players were startled the first time it fired.
 
-During public exhibition play, 9 groups (36 people) stepped up to the board and roughly 3 finished; the handwritten score sheet stayed on paper at the venue rather than an archived telemetry dataset. That still taught a clear structural lesson: when coordination lives inside the physical wiring rather than in printed instructions, groups talk naturally within seconds.
+At the June 2026 exhibition, 9 groups (36 people) played and roughly 3 groups finished; the handwritten score sheet was not kept. A team member explained the rules first, and many players still struggled at first to match their colour to a move. The calls we noted were short ("wait", "stop", "left", "right"), and groups with a clear leader moved more smoothly.
 
-| Design Dimension | Typical Screen-First Reflex | Physical Withdrawal / Co-Presence Choice |
+| Design dimension | Typical screen-first reflex | Choice in these projects |
 | --- | --- | --- |
-| Icebreaker initiation (`On The Beat`) | Nearby avatar radar & bio browsing | Blind pulse first; identity unlocks only after mutual nod |
-| Attention posture after match | Ongoing chat cards & notification badges | Landmark shown once so phones return cleanly to pockets |
-| Multiplayer steering (`MazeRunners`) | 4 isolated handheld buttons | Coupled adjacent conductive wristbands requiring live dialogue |
-| Penalty feedback (`MazeRunners`) | Mild electric shock risk | Relayed finger-sleeve haptics synced with debounced IR counters |
+| Icebreaker (`On The Beat`) | Nearby avatar radar and bio browsing | Names stay hidden until both people say yes |
+| After the match (`On The Beat`) | Ongoing chat cards and badges | First name and meeting place shown, then LET'S FINISH turns the card off |
+| Multiplayer steering (`MazeRunners`) | Buttons and a joystick (first idea, dropped) | Paired conductive wristbands, each direction needing two players |
+| Penalty feedback (`MazeRunners`) | Electric shock (dropped: complexity and safety) | Relay-driven finger-sleeve vibration on debounced IR events |
 
 ## The withdrawal rule
 
-Across both systems, interaction design succeeded in direct proportion to how gracefully hardware disappeared:
+Neither project has proved this rule in the field, but it is the one I design to:
 
-- Absorb cold-start embarrassment privately without exposing profiles prematurely.
-- Keep physical rules legible on the body or shared surface, not hidden inside dense menus.
-- Document honestly where prototype benches end and outside human observation still awaits — you can test both state machines in the [Interaction Lab](/lab) and inspect their tradeoffs in the [Rationale AI Lab](/ai).
+- Let people get past the cold start without exposing profiles early.
+- Keep physical rules on the body or the shared surface, not inside menus.
+- Say plainly where bench tests end and outside observation still has to happen. You can try both state machines in the [Interaction Lab](/lab) and read their tradeoffs in the [Rationale AI Lab](/ai).

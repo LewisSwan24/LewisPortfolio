@@ -104,7 +104,7 @@ export const walkieDepth: Record<ProofLocale, { walkie: CaseDepth }> = {
         },
         {
           version: "Stage 3 — Sealed frames & Fly.io relay (Plans 5–6)",
-          change: "Added HKDF/AES-256-GCM sealing, 4-bit ADPCM codec, ISRG root pinning, and zero-knowledge wss:// relay.",
+          change: "Added HKDF/AES-256-GCM sealing, 4-bit ADPCM codec, ISRG root pinning, and end-to-end encrypted wss:// relay.",
           reason: "Allow stepping away from the USB cable without exposing prompts or approvals to the relay.",
           improvement: "Seamless dual-transport fallback while preserving end-to-end confidentiality.",
         },
@@ -127,7 +127,7 @@ export const walkieDepth: Record<ProofLocale, { walkie: CaseDepth }> = {
         },
       ],
       takeaway:
-        "Controlling an autonomous coding agent from a wrist watch reduces AI UX to its essentials: physical confirmation for risky actions, zero-knowledge transport, and honest offline states.",
+        "Controlling an autonomous coding agent from a wrist watch reduces AI UX to its essentials: physical confirmation for risky actions, end-to-end encrypted transport, and honest offline states.",
     },
   },
   zh: {
@@ -187,7 +187,7 @@ export const walkieDepth: Record<ProofLocale, { walkie: CaseDepth }> = {
         },
         {
           version: "阶段三 — 加密封包与 Fly.io 离缆中继（计划 5–6）",
-          change: "加入 HKDF/AES-256-GCM 加密、4-bit ADPCM、ISRG 根证书锁定与零知识 wss:// 中继。",
+          change: "加入 HKDF/AES-256-GCM 加密、4-bit ADPCM、ISRG 根证书锁定与端到端加密 wss:// 中继。",
           reason: "离开数据线后仍可遥控，同时不向中继暴露任何明文指令或审批。",
           improvement: "实现双通道自动回退与端到端机密性。",
         },
@@ -210,7 +210,7 @@ export const walkieDepth: Record<ProofLocale, { walkie: CaseDepth }> = {
         },
       ],
       takeaway:
-        "在手腕上指挥自主编码 Agent，会把 AI 交互压缩到最核心的骨架：高风险动作归实体按键、云端传输零知识、离线状态说实话。",
+        "在手腕上指挥自主编码 Agent，会把 AI 交互压缩到最核心的骨架：高风险动作归实体按键、云端传输端到端加密、离线状态说实话。",
     },
   },
 };
@@ -219,7 +219,7 @@ export const walkieScan: Record<ProofLocale, { walkie: CaseInterviewScan }> = {
   en: {
     walkie: {
       proves: "Shows I can design physical-digital AI agent controls with explicit security boundaries and reproducible hardware verification gates.",
-      inspect: ["Why physical buttons own pairing and tool approvals.", "How USB and zero-knowledge Fly.io relay hand off.", "What the three automated hardware/protocol gates actually check."],
+      inspect: ["Why physical buttons own pairing and tool approvals.", "How USB and end-to-end encrypted Fly.io relay hand off.", "What the three automated hardware/protocol gates actually check."],
       questions: ["Why not let voice alone approve tool calls?", "How did you verify hardware screens without manual tapping?"],
       bestFit: ["Design Engineering and Creative Technology teams.", "Teams building human-in-the-loop controls for autonomous AI agents."],
     },
@@ -227,7 +227,7 @@ export const walkieScan: Record<ProofLocale, { walkie: CaseInterviewScan }> = {
   zh: {
     walkie: {
       proves: "说明我能为软硬结合的 AI Agent 设计清晰的安全边界与可复现的真机门禁。",
-      inspect: ["为何配对与工具审批必须由实体按键确认。", "USB 与零知识 Fly.io 中继如何切换与报错。", "三组硬件与协议门禁分别验证了什么。"],
+      inspect: ["为何配对与工具审批必须由实体按键确认。", "USB 与端到端加密 Fly.io 中继如何切换与报错。", "三组硬件与协议门禁分别验证了什么。"],
       questions: ["为什么不直接靠语音说同意来放行工具调用？", "没有人工一直点手表时，怎么验收固件屏幕？"],
       bestFit: ["Design Engineering 与创意技术团队。", "打造自主 AI Agent 人在回路控制界面的团队。"],
     },

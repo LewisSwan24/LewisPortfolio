@@ -513,7 +513,7 @@
 }
 
 .lab-conf-card[data-tier="blank"] {
-  border-style: double;
+  border-style: solid;
   border-width: 3px;
 }
 

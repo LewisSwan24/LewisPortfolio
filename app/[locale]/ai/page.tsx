@@ -57,7 +57,7 @@ const REFUSAL_MATRIX: ReadonlyArray<{
       zh: "高风险确认弹窗默认聚焦「先不要」，阻断惯性按回车误确认",
     },
     fallback: {
-      en: "Folder-scoped local execution + spoken micro-step cues",
+      en: "Folder-scoped local execution + café crew showing who is doing what",
       zh: "限定用户主动授权目录内读写 + 低压力咖啡馆 Crew 分工展示",
     },
     href: "/projects/lamplight#design-decisions",
@@ -65,12 +65,12 @@ const REFUSAL_MATRIX: ReadonlyArray<{
   {
     name: { en: "Resume Autofill", zh: "Resume Autofill" },
     rule: {
-      en: "Visa, salary, and open-ended essays stay blank rather than LLM-guessed",
-      zh: "签证身份、薪资期望与开放式长问答题强制留白，绝不 AI 代猜",
+      en: "Fields the stored resume does not settle stay blank and flagged, never guessed",
+      zh: "简历里定不下来的栏位留空并标出，绝不代猜",
     },
     fallback: {
-      en: "Deterministic exact match fills first; final form submit locked manual",
-      zh: "仅确定字段自动填充；最终 Submit 按钮永久锁定纯手动提交",
+      en: "Dictionary matches fill first; it stops before Submit and the person presses it",
+      zh: "词典匹配的栏位先填；工具停在提交前，由本人按提交",
     },
     href: "/projects/autofill#design-decisions",
   },

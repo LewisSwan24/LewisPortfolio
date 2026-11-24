@@ -1,7 +1,7 @@
 ---
 title: "Building Debugging Tools as First-Class UX Critique"
-date: "2026-11-10"
-excerpt: "Replay debuggers, FSM deadlock checkers, and protocol steppers are not internal developer luxuries—they expose deceptive UI states before users ever encounter them."
+date: "2026-11-24"
+excerpt: "Replay debuggers, reachability checkers and protocol steppers are not only developer scaffolding: they let reviewers inspect the rare states that static artboards skip."
 tags:
   - Design Engineering
   - Debugging
@@ -11,15 +11,14 @@ author: "Lewis Dong"
 published: true
 ---
 
-Most teams treat debugging utilities as disposable scaffolding hidden behind dev flags. Yet across hardware, desktop AI agents, and browser strategy games, building an inspectable debugger repeatedly uncovered design flaws that static Figma artboards hid cleanly.
+Most teams treat debugging utilities as disposable scaffolding hidden behind dev flags. Across a desktop AI agent, two hardware projects and this site, I have found inspectable tools more useful than that: they let a reviewer look at the rare states that static artboards and happy-path demos skip.
 
-## Four times a debugger caught a UX lie
+## Where an inspectable tool earns its place
 
-1. **Lamplight Nook's zero-API event replay**: Running live Claude SDK streams made rare budget-cap and stall modals nearly impossible to critique consistently. Adding an offline JSONL replay debugger turned fleeting failure screens into scrubbable artifacts ready for side-by-side design review inside [Lamplight Nook](/projects/lamplight).
-2. **Protocol frame stepping across Walkie & Maze**: Watching raw `15 ms` IR chatter vs `45 ms` confirmed breaks—or watching a USB DTR drop abort an in-flight voice buffer—proves why deterministic recovery belongs in the [Protocol Replay Studio](/studio/replay).
-3. **BFS deadlock checks in Lab FSM Explorer**: Drawing transition arrows in Miro looks complete until a breadth-first graph check exposes a disconnected error recovery path inside the [Lab Workbench](/lab#fsm-explorer).
-4. **Exposing silent fallback defects**: Early prototypes in the [Archive Vault](/vault) passed TypeScript and unit builds yet fell back silently to broken heuristics at runtime—teaching me that every silent fallback needs its own visible UI state.
+1. **Lamplight Nook's recorded-event replay.** Live Claude SDK runs make rare budget-cap and stall states hard to reproduce on demand. [Lamplight Nook](/projects/lamplight) has a debug panel that replays anonymised recordings of real events, so those screens can be reviewed side by side. Claude Code wrote most of Lamplight's code; I set the rules, reviewed the output and used it myself.
+2. **Protocol frame stepping for Walkie and MazeRunners.** The [Protocol Replay Studio](/studio/replay) steps through what happens when Walkie's USB cable is plugged in mid-turn (the turn in progress is dropped) and how MazeRunners' three-sample debounce and 400 ms cooldown turn one ball pass into one event. The frames are hand-authored simulations of that logic, not captured hardware traces, so they explain a rule rather than prove it.
+3. **Reachability checks in the Lab FSM Explorer.** A transition diagram drawn on a whiteboard can look closed when it is not. The [Lab Workbench](/lab#fsm-explorer) runs a breadth-first check that flags any state with no path back to idle. I built it as a review aid; I have no record yet of it catching a real defect in one of my projects.
 
 ## Inspectability as design honesty
 
-When an interface ships alongside its replay trace, heuristic matrix, and 4-lens [Red-Team defense](/ai), reviewers do not have to take smooth screenshots on faith. They can step directly to the edge state and test whether the guardrail holds.
+When an interface ships alongside its replay trace and the [Red-Team defense](/ai), reviewers do not have to take smooth screenshots on faith. They can step to the edge state themselves, as long as they are told which traces are simulated.

@@ -61,7 +61,6 @@ export const CASE_MOOD_MAP: Record<CurrentProjectSlug, CaseMoodPalette> = {
   walkie: HARDWARE_SIGNAL,
   maze: HARDWARE_STEEL,
   onthebeat: HARDWARE_STEEL,
-  vigil: HARDWARE_STEEL,
   fencepost: AI_MOSS,
   autofill: AI_SLATE,
   pricewise: AI_SLATE,

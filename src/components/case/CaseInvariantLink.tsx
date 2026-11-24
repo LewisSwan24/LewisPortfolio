@@ -12,19 +12,19 @@ const INVARIANT_CARDS: Record<
   walkie: {
     en: {
       title: "Interactive State Machine · Physical Tool Approval",
-      rule: "Press-to-talk captures audio locally; AES-256-GCM frames cross a zero-knowledge relay; destructive agent permissions block until a watch button is physically pressed.",
+      rule: "Press-to-talk captures audio locally; AES-256-GCM frames cross a end-to-end encrypted relay; destructive agent permissions block until a watch button is physically pressed.",
       cta: "Inspect Walkie in /lab →",
     },
     zh: {
       title: "交互状态机 · 实体按键工具审批闭环",
-      rule: "前键按住说话本地采集；AES-256-GCM 密文走零知识中继；Claude 工具权限必须等待手表物理前/侧键确认才会放行。",
+      rule: "前键按住说话本地采集；AES-256-GCM 密文走端到端加密中继；Claude 工具权限必须等待手表物理前/侧键确认才会放行。",
       cta: "前往 /lab 走查 Walkie 状态机 →",
     },
   },
   autofill: {
     en: {
       title: "Interactive State Machine · Zero-Guess Confidence Gate",
-      rule: "45 high-confidence fields fill deterministically, ambiguous controls stay empty with review outlines, and the final Submit action stays locked strictly for the human applicant.",
+      rule: "Dictionary-matched fields fill first, ambiguous controls stay empty with review outlines, and the final Submit action stays locked strictly for the human applicant.",
       cta: "Inspect Autofill in /lab →",
     },
     zh: {

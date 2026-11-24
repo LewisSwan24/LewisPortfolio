@@ -134,7 +134,7 @@ export const mazeCase: CaseRecord = {
       },
       "summary": {
         "en": "Compare early failure modes against MazeRunners' SafeTouchServoController, sleeve haptics, and Web Serial state chain.",
-        "zh": "拉动对比初始版本的传感器连击/电击隐患与终版指套震动、伺服隔离和浏览器实时回放体系。"
+        "zh": "拉动对比初始版本的传感器连击/电击隐患与终版指套震动、舵机分板和浏览器实时回放体系。"
       },
       "beforeLabel": {
         "en": "Before · Unbuffered & Solo",
@@ -169,28 +169,28 @@ export const mazeCase: CaseRecord = {
           "id": "maze-look-up",
           "category": "physical",
           "quote": {
-            "en": "\"People don't read the score display. They feel the buzz and look up.\"",
-            "zh": "「大家不看计分屏。他们先感觉到那一下震动，然后才抬头。」"
+            "en": "\"Some players were surprised by the vibration the first time.\"",
+            "zh": "「有些玩家第一次被震动吓了一跳。」"
           },
           "context": {
-            "en": "Observed during group exhibition play (2026)",
-            "zh": "展览现场多人同玩观察记录（2026）"
+            "en": "Course paper, from the June 2026 exhibition",
+            "zh": "课程论文，记 2026 年 6 月的展出"
           },
           "friction": {
-            "en": "Visual scoreboards compete with the physical board for players' eyes.",
-            "zh": "视觉计分屏会和桌面实体迷宫争夺玩家视线。"
+            "en": "Attention was spread across the maze, the score and time display, the LEDs and the sounds.",
+            "zh": "玩家的注意力分散在迷宫、分数与时间显示、灯光和声音上。"
           },
           "decision": {
-            "en": "Made finger-sleeve vibration the primary trap signal, synced with audio and LED strips.",
-            "zh": "以手指套触觉震动作为第一信号，再联动音效与灯带同步响应。"
+            "en": "Fired finger-sleeve vibration together with audio, LED strips and the score display from one round event.",
+            "zh": "由同一个回合事件同时触发指套震动、音效、灯带和分数显示。"
           }
         },
         {
           "id": "maze-debounce",
           "category": "structure",
           "quote": {
-            "en": "\"Raw IR sensor reads double- and triple-fired on one ball pass, breaking trust between score and buzz.\"",
-            "zh": "「原始红外读数会在一次经过里连发两三次，计分与震动对不上就会让玩家怀疑系统坏了。」"
+            "en": "\"Raw IR sensor reads could fire more than once on one ball pass, so score and buzz disagreed.\"",
+            "zh": "「原始红外读数在一次经过里可能触发不止一次，计分与震动就对不上了。」"
           },
           "context": {
             "en": "Bench calibration on FC-51 IR array",
@@ -230,10 +230,10 @@ export const mazeCase: CaseRecord = {
           }
         },
         {
-          "label": { "en": "Safe Servo", "zh": "隔离舵机驱动" },
+          "label": { "en": "Safe Servo", "zh": "独立舵机板" },
           "detail": {
-            "en": "SafeTouchServoController isolates tilt actuation with thermal/range guards so boards never slam.",
-            "zh": "由独立 SafeTouchServoController 限位执行倾斜动作，兼顾物理手感和展场安全。"
+            "en": "SafeTouchServoController runs tilt on its own Uno, moving only while players hold the contacts.",
+            "zh": "SafeTouchServoController 跑在单独一块 Uno 上执行倾斜，玩家按住时才动。"
           }
         },
         {
@@ -261,28 +261,28 @@ export const mazeCase: CaseRecord = {
         "zh": "用跨手腕互锁协同控制替代「一人一个独立手柄」"
       },
       "humanTension": {
-        "en": "In public exhibition installations, giving each visitor an independent controller isolates everyone onto their own mechanical task—players stare down at the board and barely talk or coordinate with the people beside them.",
-        "zh": "在公开展览桌面游戏里，只要给每人发一个独立手柄，玩家就会各自低头盯住机关，彼此很少抬头沟通或协调动作节奏。"
+        "en": "With one control per person, each visitor can play alone and nothing makes the group act together.",
+        "zh": "如果一人一套操控，每个人都能各玩各的，没有什么逼大家一起行动。"
       },
       "rejectedAlternatives": [
         {
           "option": {
-            "en": "Four independent Bluetooth controllers, one direction per player",
-            "zh": "四只相互独立的蓝牙手柄，各自单按即生效"
+            "en": "Buttons and a joystick (the first concept)",
+            "zh": "按钮加摇杆（最初的构想）"
           },
           "flaw": {
-            "en": "Eliminates mutual dependency; stronger players take over while others drift out of the round.",
-            "zh": "没有实时互锁机制，强势玩家容易接管节奏，其余人沦为旁观者。"
+            "en": "Rejected as too much like an arcade game.",
+            "zh": "太像街机游戏，被否决。"
           }
         },
         {
           "option": {
-            "en": "Post-round aggregate scoreboard as the only feedback",
-            "zh": "只靠结束后的大屏总分结算反馈"
+            "en": "Weight sensing or a five-finger pressure pad",
+            "zh": "体重感应或五指压力板"
           },
           "flaw": {
-            "en": "Exhibition observations showed players did not read the score display mid-round—delayed feedback misses the moment of physical coordination.",
-            "zh": "现场观察发现玩家根本不看计分屏，延迟到回合末的数字反馈撑不起过程中的协作心流。"
+            "en": "Considered but never tested; the team went with shared conductive wristbands.",
+            "zh": "只停在构思阶段，没有测试过。团队最后选了共用的导电腕带。"
           }
         }
       ],
@@ -291,8 +291,8 @@ export const mazeCase: CaseRecord = {
         "zh": "让相邻玩家共用同色腕带触发链路（A/B、B/C 耦合），任何人都无法单人完成单一方向驱动，并用单一回合状态机即时联动声、光、触觉反馈，有意制造「温和的协同阻力」。"
       },
       "residualCostOrRisk": {
-        "en": "Wearable finger sleeves had to be fitted for visitors rather than self-fitted (making setup part of the facilitation ritual), and exhibition play was observed across 9 groups (36 people) rather than logged by channel.",
-        "zh": "可穿戴指套需要主持人协助佩戴才能上场，仪式门槛变高；现场观察了 9 组共 36 人，但未按通道埋点量化各路反馈权重。"
+        "en": "Putting on wristbands and finger sleeves took each group about a minute, and many players struggled with the rules even after a team member explained them. Play was observed across 9 groups (36 people) rather than logged by channel.",
+        "zh": "每组戴腕带和指套大约要一分钟；组员讲解之后，仍有不少玩家没弄懂规则。现场观察了 9 组共 36 人，但没有按通道记录各路反馈的作用。"
       }
     },
     {
@@ -302,8 +302,8 @@ export const mazeCase: CaseRecord = {
         "zh": "以指套震动取代微弱电击，并为十路红外传感器强制防抖"
       },
       "humanTension": {
-        "en": "Unsupervised strangers of varying ages cannot safely calibrate or consent to electric shock, and raw IR double-fires make the score and the buzz on your finger disagree—destroying trust in physical rules.",
-        "zh": "无人逐人看管的公开展览无法向不同年龄与体质的访客校准电击强度；而原始红外光束一抖动触发两三次，计分与手指震动就会对不上，玩家立刻怀疑装置坏了。"
+        "en": "The electric-shock idea could not meet both complexity and safety, and a raw IR double-fire makes the score and the buzz on your finger disagree.",
+        "zh": "电击设想的复杂度与安全性均无法达标；而原始红外一旦重复触发，计分与手指上的震动就对不上。"
       },
       "rejectedAlternatives": [
         {
@@ -312,8 +312,8 @@ export const mazeCase: CaseRecord = {
             "zh": "沿用最初构想的轻微电击惩罚机制"
           },
           "flaw": {
-            "en": "Requires per-person medical consent and threshold calibration that public exhibition flow cannot enforce.",
-            "zh": "在开放展览场景下无法做到逐人知情同意与安全阈值校准。"
+            "en": "Complexity and safety could not both be met; dropped at the Mid-Fi stage (25 Apr 2026).",
+            "zh": "复杂度与安全性均无法达标，在 Mid-Fi 阶段（2026 年 4 月 25 日）放弃。"
           }
         },
         {
@@ -328,8 +328,8 @@ export const mazeCase: CaseRecord = {
         }
       ],
       "chosenTradeoff": {
-        "en": "Relay-driven vibration motors in finger sleeves keep feedback on the body safely, per-sensor debounce + cooldown locks one ball pass to one round event, and servo tilt runs on an isolated SafeTouchServoController.",
-        "zh": "改用继电器驱动的指套震动马达把触觉留在身体上，十路红外各自配备防抖与冷却窗口以锁定「一过一事件」，平台倾斜则隔离到独立的 SafeTouchServoController。"
+        "en": "Relay-driven vibration motors in finger sleeves keep feedback on the body, each IR sensor needs three consecutive samples and then cools down for 400 ms so one ball pass is one round event, and servo tilt runs on its own Uno (SafeTouchServoController).",
+        "zh": "改用继电器驱动的指套震动马达把触觉留在身体上；每个红外传感器要连续三次取样才触发，之后冷却 400 ms，锁定「一过一事件」；平台倾斜放在单独一块 Uno 上的 SafeTouchServoController。"
       },
       "residualCostOrRisk": {
         "en": "Vibration is a gentler sensation than shock and the cooldown introduces a brief blind window for rapid re-triggers; built as one hand-wired exhibition unit rather than a manufacturable harness.",
@@ -408,12 +408,12 @@ export const mazeCase: CaseRecord = {
       },
       "roleVal": "Design technologist & interaction prototyper",
       "timeVal": "2026 · built and exhibited",
-      "teamVal": "Team project; I owned firmware, sensing, feedback, and the web console",
+      "teamVal": "Team project; I wrote the IR and vibration code, drafted the servo code that an AI tool rewrote, did the wiring and testing, and built the web console",
       "toolsVal": "Arduino Mega · Arduino C/C++ · FC-51 IR · TM1637 · Web Serial · JS Canvas",
       "ch": {
         "label": "The problem",
         "title": "A maze is furniture until it answers you.",
-        "p": "The brief was a physical maze game for a public exhibition. The failure mode showed up in the first build: a nice object that people pushed a ball around while nothing happened. Scoring lived in someone's head, traps were painted lines, and the only feedback was other players laughing. The design problem was not the maze — it was making the system notice events and answer them fast enough that a stranger learns the rules without being told."
+        "p": "The brief was a physical maze game for a public exhibition. The failure mode showed up in the first build: a nice object that people pushed a ball around while nothing happened. Scoring lived in someone's head, traps were painted lines, and the only feedback was other players laughing. The design problem was not the maze — it was making the system notice events and answer them fast enough that players can follow what just happened. Even so, a team member had to explain the rules before each round."
       },
       "re": {
         "label": "Groundwork",
@@ -424,14 +424,14 @@ export const mazeCase: CaseRecord = {
         },
         "m2": {
           "t": "Safety review",
-          "b": "The original trap concept was a mild electric shock. Unsupervised exhibition play made per-person consent and calibration impossible."
+          "b": "The original trap concept was a mild electric shock. It was dropped at the Mid-Fi stage because complexity and safety could not both be met."
         },
         "m3": {
           "t": "Feedback inventory",
           "b": "Score, timer, vibration, lights, audio, and a browser console — each a channel that could carry or muddy the same event."
         },
-        "quote": "People don't read the score display. They feel the buzz and look up.",
-        "quoteWho": "Observation from exhibition play"
+        "quote": "Some players were surprised by the vibration the first time.",
+        "quoteWho": "Course paper, June 2026 exhibition"
       },
       "sy": {
         "label": "System concept",
@@ -440,7 +440,7 @@ export const mazeCase: CaseRecord = {
       },
       "id": {
         "label": "Technical decisions",
-        "p": "Vibration replaced the electric shock: relay-driven motors in wearable finger sleeves keep the sensation on the body without a risk that needs supervision. Each IR sensor got debounce and a cooldown window, because raw reads double- and triple-fired on a single pass and broke agreement between score, timer, and haptics. Platform tilt moved to its own SafeTouchServoController with hold-to-move behavior, so servo motion stopped competing with time-sensitive sensor polling and a servo fault could not take down the round."
+        "p": "Vibration replaced the electric shock at the Mid-Fi stage, because the shock could not meet both complexity and safety: relay-driven motors in wearable finger sleeves keep the sensation on the body. Each IR sensor needs three consecutive samples before it triggers and then cools down for 400 ms, because raw reads could fire more than once on a single pass and broke agreement between score, timer, and haptics. Platform tilt runs on its own Uno (SafeTouchServoController) with hold-to-move behavior, the ball launcher's stepper on a second Uno, and the Mega handles sensing; all boards share one ground."
       },
       "pr": {
         "label": "The web console",
@@ -448,7 +448,7 @@ export const mazeCase: CaseRecord = {
       },
       "te": {
         "label": "Testing and iteration",
-        "p": "Bench testing tuned debounce and cooldown until one ball pass produced exactly one game event. Parity tests caught drift whenever the firmware or the console was edited alone. Group play at the exhibition then surfaced what the bench could not: players reacted to vibration and audio faster than to the score display, and the finger sleeves had to be fitted for people rather than self-fitted — the setup ritual turned out to be part of the interaction."
+        "p": "Bench testing tuned debounce and cooldown until one ball pass produced exactly one game event. Parity tests caught drift whenever the firmware or the console was edited alone. Group play at the exhibition then surfaced what the bench could not: each group took about a minute to put on wristbands and finger sleeves, some players were surprised by the vibration the first time, and many struggled with the rules even after a team member explained them."
       },
       "ou": {
         "label": "What it produced",
@@ -464,7 +464,7 @@ export const mazeCase: CaseRecord = {
           "label": "Control",
           "v": "Live + demo console"
         },
-        "p": "A working, exhibited system: firmware modules for game state, IR sensing, player chain input, vibration and audio; a two-controller hardware split; and a browser console with parity tests. Evidence status — this is a university project built for one exhibition. Play was observed, not instrumented, so I can describe what players reacted to but cannot quantify which channel carried the most information."
+        "p": "A working, exhibited system: firmware modules for game state, IR sensing, player chain input, vibration and audio; a Mega plus two Uno boards on a shared ground; and a browser console with parity tests. Evidence status — this is a university project built for one exhibition. Play was observed, not instrumented, so I can describe what players reacted to but cannot quantify which channel carried the most information."
       },
       "rf": {
         "label": "Reflection",
@@ -478,12 +478,12 @@ export const mazeCase: CaseRecord = {
       },
       "roleVal": "Design Technologist / 交互原型开发",
       "timeVal": "2026 · 已搭建并展出",
-      "teamVal": "团队项目；我负责固件、感测、反馈与网页控制台",
+      "teamVal": "团队项目；红外与震动程序由我编写，舵机程序由 AI 工具在我的草稿上改写，接线与测试由我负责，网页控制台也由我搭建",
       "toolsVal": "Arduino Mega · Arduino C/C++ · FC-51 红外 · TM1637 · Web Serial · JS Canvas",
       "ch": {
         "label": "问题",
         "title": "迷宫在会回应你之前，只是一件家具。",
-        "p": "题目是给公开展览做一台实体迷宫游戏。第一版就暴露了失败模式：一个还算好看的物件，人们推着球转，但什么都没发生。计分靠人记，陷阱是画上去的线，唯一的反馈是旁边的人在笑。真正的设计问题不是迷宫本身，而是让系统察觉到事件，并且回应得够快，让一个陌生人不用被讲解就学会规则。"
+        "p": "题目是给公开展览做一台实体迷宫游戏。第一版就暴露了失败模式：一个还算好看的物件，人们推着球转，但什么都没发生。计分靠人记，陷阱是画上去的线，唯一的反馈是旁边的人在笑。真正的设计问题不是迷宫本身，而是让系统察觉到事件，并且回应得够快，让玩家看得出刚才发生了什么。即便如此，每轮开始前仍要由组员讲解规则。"
       },
       "re": {
         "label": "前期工作",
@@ -494,14 +494,14 @@ export const mazeCase: CaseRecord = {
         },
         "m2": {
           "t": "安全评估",
-          "b": "最初的陷阱概念是轻微电击。无人看管的展览场景让逐人取得同意与校准变得不可能。"
+          "b": "最初的陷阱概念是轻微电击。复杂度与安全性均无法达标，在 Mid-Fi 阶段放弃。"
         },
         "m3": {
           "t": "反馈盘点",
           "b": "计分、计时、震动、灯光、音效与浏览器控制台：每一个都是可能承载、也可能搅浑同一事件的通道。"
         },
-        "quote": "大家不看计分屏。他们先感觉到那一下震动，然后才抬头。",
-        "quoteWho": "展览现场的观察"
+        "quote": "有些玩家第一次被震动吓了一跳。",
+        "quoteWho": "课程论文，记 2026 年 6 月的展出"
       },
       "sy": {
         "label": "系统概念",
@@ -510,7 +510,7 @@ export const mazeCase: CaseRecord = {
       },
       "id": {
         "label": "技术决策",
-        "p": "用震动取代电击：继电器驱动的马达装在可穿戴手指套里，把感受留在身体上，同时去掉需要专人看管的风险。每个红外传感器都加了防抖与冷却窗口，因为原始读数会在一次经过里重复触发两三次，让计分、计时与震动对不上。平台倾斜移交给独立的 SafeTouchServoController，采用「按住才动」，让舵机运动不再和对时间敏感的传感器轮询抢资源，一次舵机故障也不会拖垮整轮。"
+        "p": "Mid-Fi 阶段用震动取代了电击，因为电击的复杂度与安全性均无法达标。继电器驱动的马达装在可穿戴手指套里，把感受留在身体上。每个红外传感器要连续三次取样才触发，之后冷却 400 ms，因为原始读数在一次经过里可能重复触发，让计分、计时与震动对不上。平台倾斜放在单独一块 Uno 上的 SafeTouchServoController，采用「按住才动」；发球机的步进电机在另一块 Uno 上，Mega 负责感测，所有板子共地。"
       },
       "pr": {
         "label": "网页控制台",
@@ -518,7 +518,7 @@ export const mazeCase: CaseRecord = {
       },
       "te": {
         "label": "测试与迭代",
-        "p": "台架测试反复调校防抖与冷却，直到一次球的经过刚好产生一个游戏事件。一致性测试则在只改动固件或只改动控制台时抓出漂移。之后展览上的多人游玩暴露了台架测不出来的东西：玩家对震动和音效的反应比对计分屏更快，而手指套需要别人帮忙戴，这个佩戴过程本身就是交互的一部分。"
+        "p": "台架测试反复调校防抖与冷却，直到一次球的经过刚好产生一个游戏事件。一致性测试则在只改动固件或只改动控制台时抓出漂移。之后展览上的多人游玩暴露了台架测不出来的东西：每组戴腕带和指套大约要一分钟，有些玩家第一次被震动吓了一跳，组员讲解之后仍有不少人没弄懂规则。"
       },
       "ou": {
         "label": "产出与边界",
@@ -534,7 +534,7 @@ export const mazeCase: CaseRecord = {
           "label": "控制",
           "v": "实时 + demo 控制台"
         },
-        "p": "一套真的在运行、也真的展出过的系统：涵盖游戏状态、红外感测、玩家链路输入、震动与音频的固件模块；双控制器的硬件拆分；以及带一致性测试的浏览器控制台。证据状态：这是为一次展览搭建的课程项目。现场游玩是观察记录，不是数据埋点，所以我能描述玩家对什么有反应，但无法量化哪条通道承载了最多信息。"
+        "p": "一套真的在运行、也真的展出过的系统：涵盖游戏状态、红外感测、玩家链路输入、震动与音频的固件模块；一块 Mega 加两块 Uno、全部共地的硬件分工；以及带一致性测试的浏览器控制台。证据状态：这是为一次展览搭建的课程项目。现场游玩是观察记录，不是数据埋点，所以我能描述玩家对什么有反应，但无法量化哪条通道承载了最多信息。"
       },
       "rf": {
         "label": "反思",

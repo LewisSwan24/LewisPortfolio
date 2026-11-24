@@ -60,8 +60,8 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
       zh: "低于确定性阈值直接停填，全部简历文本不出本地设备，并禁止自动替投按钮。",
     },
     honestScope: {
-      en: "100% pass across 5 synthetic test forms; real ATS field variance still unmeasured.",
-      zh: "5 套合成测试表单稳定命中；真实外部招聘网站字段准确率尚未做大规模实测。",
+      en: "Tested on 3 synthetic sites (native HTML, Ant Design, Element Plus); real ATS field variance still unmeasured.",
+      zh: "在 3 个合成测试站点上测过（原生 HTML、Ant Design、Element Plus）；真实招聘网站的字段准确率尚未实测。",
     },
   },
   {
@@ -92,7 +92,7 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
     svgPos: [445, 172],
     colorLight: "#2B4D6F",
     colorDark: "#92BAE0",
-    mediumTag: { en: "Social Friction × BLE", zh: "社交退让 × 临近破冰" },
+    mediumTag: { en: "Social Friction × ESP-NOW", zh: "社交退让 × 临近破冰" },
     thesisQuestion: {
       en: "When should an interactive social wearable step out of the way?",
       zh: "现场社交工具什么时候应当帮人开口，又在什么时候立刻静默退场？",

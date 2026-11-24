@@ -32,7 +32,7 @@ const TIMING_CONTROLS: Array<{
   {
     key: "holdThresholdMs",
     min: 80,
-    max: 800,
+    max: 1600,
     step: 20,
     unit: "ms",
     en: "Deliberate Hold Dwell",

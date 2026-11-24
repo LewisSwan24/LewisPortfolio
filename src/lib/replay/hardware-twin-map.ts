@@ -98,20 +98,20 @@ export const HARDWARE_TWIN_ZONES: Record<
     {
       id: "wristband-b",
       pinOrBus: "ADC A1 · Servo Guard",
-      label: { en: "Wristband B & Servo Guard", zh: "导电腕带 B 与舵机隔离" },
+      label: { en: "Wristband B & Servo Uno", zh: "导电腕带 B 与舵机 Uno" },
       role: {
-        en: "Drives orthogonal axis while isolating servo ground spikes away from analog threshold reads.",
-        zh: "驱动正交轴向，同时隔离舵机回流脉冲对传感采样的串扰。",
+        en: "Drives the other axis. Tilt servos run on a separate Uno; all boards share one ground.",
+        zh: "驱动另一条轴。倾斜舵机跑在单独的 Uno 上，所有板子共地。",
       },
       svgFocus: { x: 168, y: 62, w: 60, h: 56 },
     },
     {
       id: "ir-gate",
-      pinOrBus: "FC-51 IR[04] · 45 ms Debounce",
-      label: { en: "Infrared Gate Sensor", zh: "45 ms 红外防抖门柱" },
+      pinOrBus: "FC-51 IR[04] · 3-Sample Debounce",
+      label: { en: "Infrared Gate Sensor", zh: "三次取样红外去抖门柱" },
       role: {
-        en: "Filters rapid reflective chatter within 45 ms so half-lit hallway glitches never mis-score walls.",
-        zh: "对高反光瞬时毛刺施加 45 ms 防抖窗，避免强光下误判撞墙扣分。",
+        en: "Counts a pass only after three consecutive samples, then cools down for 400 ms, so one ball pass scores once.",
+        zh: "连续三次取样都被遮断才算一次经过，之后冷却 400 ms，一次过球只记一次分。",
       },
       svgFocus: { x: 140, y: 38, w: 40, h: 104 },
     },
@@ -132,18 +132,18 @@ export const HARDWARE_TWIN_ZONES: Record<
       pinOrBus: "Fly.io WSS · Mutual Nod",
       label: { en: "Peer Beacon & Reveal Gate", zh: "对端信标与双向揭示门" },
       role: {
-        en: "Unlocks stepped icebreaker cards only after reciprocal confirmation, then dims out to exit cleanly.",
-        zh: "仅在双方同时确认点头后展示名片并立刻熄屏退场，拒绝持续打扰。",
+        en: "Reveals first names and where to meet only after reciprocal confirmation, then shows the same two-digit number on both bands.",
+        zh: "双方都确认后才显示名字和碰面地点，随后两支手环显示同一个两位数编号。",
       },
       svgFocus: { x: 184, y: 64, w: 52, h: 52 },
     },
     {
       id: "rssi-ring",
-      pinOrBus: "BLE 5.0 RSSI (-68 / -58 dBm)",
-      label: { en: "Proximity Threshold Ring", zh: "BLE 临近分层阈值环" },
+      pinOrBus: "ESP-NOW (-56 / -45 dBm)",
+      label: { en: "Proximity Threshold Ring", zh: "ESP-NOW 近场阈值环" },
       role: {
-        en: "Separates room-scale ambient awareness from intentional conversational reach across RSSI bands.",
-        zh: "用 -68/-58 dBm 梯度区分同场共处与主动靠近，避免无意义的远距离弹窗。",
+        en: "Names an area only when a marker is heard at -56 dBm or louder; a knock between two bands needs -45 dBm.",
+        zh: "标记信号达到 -56 dBm 或更强才说出所在区域；两支手环相碰要 -45 dBm 才算数。",
       },
       svgFocus: { x: 68, y: 46, w: 184, h: 88 },
     },
@@ -177,7 +177,7 @@ function pickZoneForFrame(slug: ReplayTrackSlug, frame: ReplayFrame): HardwareZo
   }
 
   // onthebeat
-  if (ch.includes("BLE") || ch.includes("RSSI")) {
+  if (ch.includes("ESP-NOW") || ch.includes("RSSI")) {
     return "rssi-ring";
   }
   if (ch.includes("FLY-IO") || ch.includes("CARD")) {

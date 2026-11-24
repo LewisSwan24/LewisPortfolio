@@ -192,7 +192,7 @@ export const recentCaseDepth: Record<ProofLocale, Record<RecentSlug, CaseDepth>>
         {
           label: "Review the AI canvas and catch its errors",
           choice: "I imported each Claude Design canvas into Claude Code for review and sent it back when something was wrong.",
-          evidence: "I caught all four cards reading '1 of 4' on 15 September, and on 21 September what looked like a black screen after picking a song.",
+          evidence: "On 25 September I caught that the MEET the canvas showed was simulated rather than a real exchange between the bands.",
           tradeoff: "Review rounds take time a single generated canvas would not.",
           impact: "At least 5 rounds on the On The Beat canvas that night, and at least 12 on the earlier Say Hello canvas.",
         },
@@ -216,7 +216,7 @@ export const recentCaseDepth: Record<ProofLocale, Record<RecentSlug, CaseDepth>>
           method: "Canvas review",
           sample: "At least 5 review rounds on the On The Beat canvas, at least 12 on Say Hello",
           question: "Does the generated canvas behave the way the cards describe?",
-          finding: "It did not at first: all four cards read '1 of 4', and picking a song appeared to black out the screen.",
+          finding: "It did not at first: the MEET it showed was mocked, static data.",
           implication: "Generated design needs a reviewer who tests it, not only one who looks at it.",
         },
       ],
@@ -367,7 +367,7 @@ export const recentCaseDepth: Record<ProofLocale, Record<RecentSlug, CaseDepth>>
         {
           label: "审查 AI 画布，抓出画布的错",
           choice: "每版 Claude Design 画布我都导入 Claude Code 审查，发现问题就打回返工。",
-          evidence: "9 月 15 日我发现四张卡都显示 1 of 4；21 日发现点选音乐后疑似黑屏。",
+          evidence: "9 月 25 日我发现画布上的 MEET 是模拟出来的，两支手环之间并没有真正交换。",
           tradeoff: "多轮审查比直接用生成结果更花时间。",
           impact: "On The Beat 画布当晚至少 5 轮，此前的 Say Hello 画布至少 12 轮。",
         },
@@ -391,7 +391,7 @@ export const recentCaseDepth: Record<ProofLocale, Record<RecentSlug, CaseDepth>>
           method: "画布审查",
           sample: "On The Beat 画布至少 5 轮，Say Hello 画布至少 12 轮",
           question: "生成的画布行为是否和卡片的描述一致？",
-          finding: "一开始不一致：四张卡都显示 1 of 4，点选音乐后疑似黑屏。",
+          finding: "一开始不一致：画面上的 MEET 是写死的模拟数据。",
           implication: "生成的设计需要一个会动手测的审查者，光看不够。",
         },
       ],
@@ -590,7 +590,7 @@ export const recentCaseInterviewPacks: Record<ProofLocale, Record<RecentSlug, Ca
           id: "onthebeat-canvas-review",
           question: "What did reviewing the AI canvas catch?",
           answer:
-            "All four cards read '1 of 4', and picking a song appeared to black out the screen. I found both by testing the canvas myself, and the On The Beat canvas went back for rework at least five times that night.",
+            "The MEET it showed was mocked, static data. I found that by testing the canvas myself, and the On The Beat canvas went back for rework at least five times in one night.",
           evidenceHref: "/projects/onthebeat#evidence-board",
           boundary: "These are problems I found in self-testing; there is no participant testing on record.",
         },
@@ -660,7 +660,7 @@ export const recentCaseInterviewPacks: Record<ProofLocale, Record<RecentSlug, Ca
         {
           id: "onthebeat-canvas-review",
           question: "审查 AI 画布抓到了什么？",
-          answer: "四张卡都显示 1 of 4，点选音乐后疑似黑屏。两个问题都是我自己动手测画布时发现的，当晚 On The Beat 画布至少返工 5 次。",
+          answer: "画面上的 MEET 是写死的模拟数据。这是我自己动手测画布时发现的；On The Beat 画布有一晚至少返工 5 次。",
           evidenceHref: "/projects/onthebeat#evidence-board",
           boundary: "这些都是我自测发现的问题，没有参与者测试记录。",
         },

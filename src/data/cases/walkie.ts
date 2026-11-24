@@ -56,9 +56,9 @@ export const walkieCase: CaseRecord = {
         alt: "System diagram connecting M5StickS3 dual-boot firmware, AES-256-GCM sealed frames over USB or Fly.io relay, Node 24 bridge, and Claude Code permission approvals",
         altZh: "系统架构图：连接 M5StickS3 双启动固件、基于 USB 或 Fly.io 中继的 AES-256-GCM 加密帧、Node 24 桥接与 Claude Code 权限审批队列",
         caption:
-          "USB always wins when plugged in; away from the cable, sealed frames cross a zero-knowledge Fly.io relay and tool permissions wait for a physical button press on the wrist.",
+          "USB always wins when plugged in; away from the cable, sealed frames cross a end-to-end encrypted Fly.io relay and tool permissions wait for a physical button press on the wrist.",
         captionZh:
-          "插线时 USB 永远优先；离缆后，加密帧经零知识 Fly.io 中继传输，所有工具权限都在手腕上等待实体按键确认。",
+          "插线时 USB 永远优先；离缆后，加密帧经 Fly.io 中继传输，所有工具权限都在手腕上等待实体按键确认。",
       },
       {
         src: "/projects/walkie/02-key-state-machine.svg",
@@ -80,7 +80,7 @@ export const walkieCase: CaseRecord = {
         caption:
           "End-to-end AES-256-GCM envelope keyed to physical 30-second pair.key and verified through host g++, S3 gate-h/p5, and Fly.io gate-l checks.",
         captionZh:
-          "由 30 秒实体按键配对派生的 AES-256-GCM 零知识封包结构，经宿主机 g++ 单测、S3 gate-h/p5 与中继 gate-l 三重验证。",
+          "由 30 秒实体按键配对派生的 AES-256-GCM 端到端加密封包结构，经宿主机 g++ 单测、S3 gate-h/p5 与中继 gate-l 三重验证。",
       },
     ],
   },
@@ -96,8 +96,8 @@ export const walkieCase: CaseRecord = {
       zh: "亲手试一下手腕语音与工具审批链路",
     },
     prompt: {
-      en: "Switch between USB cable and zero-knowledge relay, trigger a Claude Code tool request on the right, then press the watch Front Key (Enter) to approve or Side Key (Backspace) to deny.",
-      zh: "先切换 USB 有线或无线零知识中继，在右侧触发一条 Claude Code 请求，再按下手表前键（Enter）批准或侧键（Backspace）拒绝。",
+      en: "Switch between USB cable and end-to-end encrypted relay, trigger a Claude Code tool request on the right, then press the watch Front Key (Enter) to approve or Side Key (Backspace) to deny.",
+      zh: "先切换 USB 有线或无线端到端加密中继，在右侧触发一条 Claude Code 请求，再按下手表前键（Enter）批准或侧键（Backspace）拒绝。",
     },
     takeaway: {
       en: "High-impact agent calls block until a deliberate physical key press on the wrist; USB preempts wireless whenever plugged in.",
@@ -131,7 +131,7 @@ export const walkieCase: CaseRecord = {
         src: "/projects/walkie/after-architecture.svg",
         alt: {
           en: "Walkie post-iteration architecture showing physical key gate, USB preemption, AES-256-GCM Fly.io relay, and explicit three-state offline diagnostics",
-          zh: "Walkie 迭代后系统架构图：M5StickS3 实体键审批、USB 优先抢占、AES-256-GCM 零知识中继与三段离线诊断",
+          zh: "Walkie 迭代后系统架构图：M5StickS3 实体键审批、USB 优先抢占、AES-256-GCM 端到端加密中继与三段离线诊断",
         },
         width: 800,
         height: 500,
@@ -215,7 +215,7 @@ export const walkieCase: CaseRecord = {
           label: { en: "USB / Sealed Relay", zh: "USB / 加密中继" },
           detail: {
             en: "USB PCM wins whenever plugged in; unplugging switches cleanly to AES-256-GCM 4-bit ADPCM over Fly.io.",
-            zh: "插线时 USB PCM 优先抢占；拔线后自动切换为 AES-256-GCM 4-bit ADPCM 零知识中继。",
+            zh: "插线时 USB PCM 优先抢占；拔线后自动切换为 AES-256-GCM 4-bit ADPCM 端到端加密中继。",
           },
         },
         {
@@ -321,8 +321,8 @@ export const walkieCase: CaseRecord = {
     {
       id: "dual-boot-partition-and-pair-seal",
       decisionTitle: {
-        en: "Enforce sibling-partition flash guards and zero-knowledge key pairing across shared hardware",
-        zh: "共机双启动防误擦保护与 Fly.io 零知识配对握手",
+        en: "Enforce sibling-partition flash guards and button-confirmed key pairing across shared hardware",
+        zh: "共机双启动防误擦保护与 实体按键确认的配对握手",
       },
       humanTension: {
         en: "Walkie shares one ESP32-S3 watch with On The Beat; one reckless uploadfs command or leaky cloud relay could simultaneously brick another coursework device or expose live repository prompts over public WebSockets.",
@@ -365,11 +365,11 @@ export const walkieCase: CaseRecord = {
       kicker: "Physical AI · Tactile Control",
       title: "Walkie",
       sub: "An M5StickS3 wrist voice remote for Claude Code—keeping every high-risk tool approval locked to deliberate physical key presses.",
-      role: "Solo · Product direction, firmware & verification",
+      role: "Solo · Product direction, interaction rules & on-device checks",
       date: "2026 · Oct",
       m1: "Dual-boot S3 key-locked approvals",
       m2: "ESP32 C++ · AES-256-GCM · Node 24",
-      m3: "3 hardware/relay CI gates pass",
+      m3: "3 manual hardware/relay gates",
     },
     zh: {
       kicker: "穿戴式 AI · 实体防误触",
@@ -379,14 +379,14 @@ export const walkieCase: CaseRecord = {
       date: "2026 · 10",
       m1: "前键放行 / 侧键拦截防误触",
       m2: "ESP32 C++ · AES-256-GCM · Node 24",
-      m3: "真机、中继与宿主机三道门禁通过",
+      m3: "三道手动门禁（真机与中继）",
     },
   },
   narrative: {
     en: {
       hero: {
         title: "Talking to an autonomous coding agent from the wrist — without giving up physical approval.",
-        sub: "A PlatformIO C++ firmware, a Node 24 desktop bridge, and a zero-knowledge Fly.io relay sharing one M5StickS3 watch with On The Beat.",
+        sub: "A PlatformIO C++ firmware, a Node 24 desktop bridge, and a end-to-end encrypted Fly.io relay sharing one M5StickS3 watch with On The Beat.",
       },
       roleVal: "Solo — interaction model, protocol constraints, hardware flashing and gate checks (AI coding tools assisted implementation)",
       timeVal: "2026 · September–October",
@@ -430,11 +430,11 @@ export const walkieCase: CaseRecord = {
       },
       te: {
         label: "Testing & Limits",
-        p: "Automated tests never invoke live paid APIs or real Claude sessions — they run against bridge/test/claude/fake-claude.js. Hardware gates validate screens, buttons, encryption vectors, and relay keep-alive on the physical S3. What is not verified yet is multi-user ergonomics or long-term daily wear outside Lewis's own desk.",
+        p: "Automated tests never invoke live paid APIs or real Claude sessions — they run against bridge/test/claude/fake-claude.js. Manual gates check the screens and keys on the physical S3 (gate H) and pairing (gate P5); gate L runs a stand-in S3 and a PC through the relay and needs no COM port. The three OFFLINE screens exist in code, but the on-device checks away from the cable (gates M and N) have not been run. Nobody but Lewis has used it.",
       },
       ou: {
         label: "Outcome",
-        p: "A working dual-boot wrist voice remote with sealed USB and Wi-Fi relay transports, multi-project Claude session switching, and verified physical button confirmations. Publicly documented in LewisSwan24/walkie; used day-to-day by Lewis so far, with external developer testing and wrist photos scoped next.",
+        p: "A working dual-boot wrist voice remote with sealed USB and Wi-Fi relay transports, multi-project Claude session switching, and verified physical button confirmations. Publicly documented in LewisSwan24/walkie. Only Lewis has used it so far; external developer testing and wrist photos are not done.",
         m1: { v: "USB + Wi-Fi", label: "USB preempts; encrypted relay away from desk" },
         m2: { v: "On-device", label: "automated screen, key & pairing checks" },
         m3: { v: "Dual-boot", label: "protected slot beside On The Beat" },
@@ -447,7 +447,7 @@ export const walkieCase: CaseRecord = {
     zh: {
       hero: {
         title: "在手腕上跟编码 Agent 对话——同时把高风险审批留在实体按键上。",
-        sub: "一套 PlatformIO C++ 固件、Node 24 桌面桥接与零知识 Fly.io 中继，与 On The Beat 共享同一块 M5StickS3 双启动手表。",
+        sub: "一套 PlatformIO C++ 固件、Node 24 桌面桥接与端到端加密 Fly.io 中继，与 On The Beat 共享同一块 M5StickS3 双启动手表。",
       },
       roleVal: "独立负责：交互模型、协议约束、固件刷写与硬件门禁验收（AI 编码工具辅助实现）",
       timeVal: "2026 年 9–10 月",
@@ -483,7 +483,7 @@ export const walkieCase: CaseRecord = {
       },
       id: {
         label: "加密与传输",
-        p: "除 HELLO 与 PAIR 外的所有帧均由 pair.key 派生的会话密钥以 AES-256-GCM 加密。插线时走 USB 原始 PCM，离缆后走 Wi-Fi + Fly.io 零知识中继并可选 4-bit ADPCM（带宽降至 1/4）。USB 只要插入即自动抢占；离线界面清晰区分「连不上 Wi-Fi」「连不上中继」与「电脑没在线」。",
+        p: "除 HELLO 与 PAIR 外的所有帧均由 pair.key 派生的会话密钥以 AES-256-GCM 加密。插线时走 USB 原始 PCM，离缆后走 Wi-Fi + Fly.io 端到端加密中继并可选 4-bit ADPCM（带宽降至 1/4）。USB 只要插入即自动抢占；离线界面清晰区分「连不上 Wi-Fi」「连不上中继」与「电脑没在线」。",
       },
       pr: {
         label: "桥接与语音管线",
@@ -491,11 +491,11 @@ export const walkieCase: CaseRecord = {
       },
       te: {
         label: "测试与诚实边界",
-        p: "自动化单测不消耗真实付费 API，而是使用 bridge/test/claude/fake-claude.js 替身进程。硬件门禁已在 S3 真机跑通协议、按键与加密向量；但目前仅由 Lewis 本人使用，没有外部用户测试，仓库中也尚未归档手表屏幕实拍照片。",
+        p: "自动化单测不消耗真实付费 API，而是使用 bridge/test/claude/fake-claude.js 替身进程。手动门禁在 S3 真机上检查画面与按键（gate H）和配对（gate P5）；gate L 用一台替身 S3 和电脑走一遍中继，不需要 COM 口。代码里有三个离线画面，但离开数据线的真机检查（gate M、N）还没做。目前只有 Lewis 本人用过，没有外部用户测试，仓库中也尚未归档手表屏幕实拍照片。",
       },
       ou: {
         label: "产出与边界",
-        p: "完成了一台日常可用的双启动手腕语音遥控器，跑通有线 USB 优先与端到端加密云中继切换、多项目对话管理及真机屏幕与按键验证。目前仅在作者本人桌边日常验证，外部开发者试戴体验与真机佩戴摄影列在下一步。",
+        p: "完成了一台能用的双启动手腕语音遥控器，跑通有线 USB 优先与端到端加密云中继切换、多项目对话管理及真机屏幕与按键验证。目前只有作者本人用过，外部开发者试戴与真机佩戴照片都还没做。",
         m1: { v: "双通道", label: "USB 有线优先 · 离桌切端到端加密中继" },
         m2: { v: "真机实测", label: "小屏分页、实体审批键与加密链路验证" },
         m3: { v: "双分区", label: "与 On The Beat 同机防误擦隔离" },

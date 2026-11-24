@@ -35,7 +35,7 @@ export const mazeResearchVault: RawResearchVaultRecord = {
           en: "Loose finger sleeves sliding off mid-tilt, causing players to miss trap feedback entirely.",
           zh: "指套过松在晃动中脱落，导致撞陷阱时触觉反馈直接失灵。",
         },
-        verifiedStatus: "observed",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "maze-probe-cotouch",
@@ -51,7 +51,7 @@ export const mazeResearchVault: RawResearchVaultRecord = {
           en: "Players repeatedly slamming the single contact assuming the wiring is broken.",
           zh: "若玩家反复猛拍单个触点却以为电路接触不良，则说明锁定提示不够直观。",
         },
-        verifiedStatus: "observed",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "maze-probe-attention",
@@ -67,7 +67,7 @@ export const mazeResearchVault: RawResearchVaultRecord = {
           en: "Scoreboard updates while physical feedback lags or misfires twice.",
           zh: "计分屏已扣分但指套未震，或一次经过误触连震两下，破坏体感因果直觉。",
         },
-        verifiedStatus: "observed",
+        verifiedStatus: "unverified-hypothesis",
       },
     ],
     debriefQuestion: {
@@ -80,16 +80,16 @@ export const mazeResearchVault: RawResearchVaultRecord = {
       id: "maze-obs-1",
       sessionRef: { en: "Exhibition · Groups 1–9 (n=36)", zh: "展场实测 · 9 组 36 人现场观察" },
       context: {
-        en: "Unscripted public gallery onboarding across all 9 four-player rounds.",
-        zh: "公共展场全部 9 轮四人开局引导现场。",
+        en: "Public exhibition in June 2026, nine rounds of four. A team member explained the rules before each round.",
+        zh: "2026 年 6 月公开展出，共九轮，每轮四人。每轮开始前由组员讲解规则。",
       },
       observation: {
-        en: "Visitors consistently fumbled fitting the finger sleeves on their own, and during play almost nobody watched the score screen—eyes stayed glued to the ball until the finger buzz fired.",
-        zh: "观众几乎都戴不好指套，需要主持人搭把手；开局后大家的眼睛死死盯着滚动钢球，根本不看旁边屏幕，全靠手指突如其来的震动感知扣分。",
+        en: "Each group took about a minute to put on the wristbands and finger sleeves. Attention went to the maze, the score and time display, the LEDs and the sounds. Some players were surprised by the finger-sleeve vibration the first time. Many still struggled with the rules even after the explanation; about 3 of 9 groups finished.",
+        zh: "每组戴腕带和指套大约要一分钟。玩的时候，注意力在迷宫、分数与时间显示、灯光和声音上。有些玩家第一次被指套震动吓了一跳。讲解之后仍有不少人没弄懂规则，九组里大约三组通关。",
       },
       designResponse: {
-        en: "Reframed host sleeve-fitting as an intentional opening ritual and anchored all critical trap feedback in immediate tactile haptics + audio rather than visual HUD banners.",
-        zh: "干脆把协助佩戴纳入正式开局仪式，并将一切关键惩罚/命中信息押注在零延迟指套震动与蜂鸣上，屏幕只作旁观汇总。",
+        en: "No change was made during the exhibition. The rule explanation before each round stayed part of the setup, and the struggle with the rules is recorded as a limit.",
+        zh: "展出期间没有改动。每轮开始前的规则讲解保留为固定环节，玩家搞不懂规则这一点记作局限。",
       },
       verifiedStatus: "observed",
     },
@@ -101,29 +101,29 @@ export const mazeResearchVault: RawResearchVaultRecord = {
         zh: "不同滚速下钢球穿越 10 路红外光束门。",
       },
       observation: {
-        en: "Unfiltered digital reads bounced 2–3 times per crossing (18 ms noise spikes), deducting multiple penalties for one roll.",
-        zh: "未加过滤的原始数字口会在单次过球时抖出 2–3 次毛刺（约 18 ms），导致撞一次洞连扣三回分。",
+        en: "On raw reads, a single ball pass could fire more than once and charge more than one penalty.",
+        zh: "直接读原始电平时，一次过球可能触发不止一次，扣不止一次分。",
       },
       designResponse: {
-        en: "Implemented per-channel debounce (45 ms stable window) + 1200 ms cooldown lockout, compressing every physical pass into 1 atomic serial event.",
-        zh: "为十路红外各自引入 45 ms 稳态消抖 + 1200 ms 冷却锁定，严格保证一过一事件。",
+        en: "Each sensor now needs three consecutive samples to trigger, followed by a 400 ms cooldown, so one physical pass is one serial event.",
+        zh: "每个传感器要连续三次取样才算触发，之后冷却 400 ms，一次过球只产生一个串口事件。",
       },
       verifiedStatus: "bench-tested",
     },
     {
       id: "maze-obs-3",
-      sessionRef: { en: "Safety Pivot · Shock Removal", zh: "安全重构 · 废除微电击方案" },
+      sessionRef: { en: "Mid-Fi Decision · 25 Apr 2026", zh: "Mid-Fi 决定 · 2026 年 4 月 25 日" },
       context: {
-        en: "Transitioning from early classroom brief to an unattended public exhibition floor.",
-        zh: "从早期课堂概念走向无专人全程盯守的公共展台。",
+        en: "Moving from the concept to the Mid-Fi build.",
+        zh: "从概念走到 Mid-Fi 版本。",
       },
       observation: {
-        en: "Mild electric shock modules pose medical/pacemaker unpredictability and visitor consent liability in public spaces.",
-        zh: "哪怕极微弱的电击模块，在公共展场也存在起搏器隐患与参观者知情同意风险。",
+        en: "The electric-shock idea could not meet both complexity and safety.",
+        zh: "电击设想的复杂度与安全性均无法达标。",
       },
       designResponse: {
-        en: "Replaced shock circuitry completely with SafeTouchServo isolation and wearable haptic sleeves.",
-        zh: "果断砍掉电击硬件，改以隔离舵机控制器加可穿戴震动指套承担全部惩罚体感。",
+        en: "Replaced it with vibration motors in wearable finger sleeves at the Mid-Fi stage.",
+        zh: "在 Mid-Fi 阶段改用可穿戴指套里的震动马达。",
       },
       verifiedStatus: "observed",
     },
@@ -134,13 +134,13 @@ export const mazeResearchVault: RawResearchVaultRecord = {
       zh: "实体木质迷宫与十路红外防抖时序规格",
     },
     subtitle: {
-      en: "Electrical isolation, debounce thresholds, and five-channel round synchronization.",
+      en: "Board split, debounce thresholds, and five-channel round synchronization.",
       zh: "展场高强度连续试玩下守住安全与一致性的物理层参数。",
     },
     rows: [
       {
         dimension: { en: "IR Debounce & Cooldown", zh: "红外消抖与冷却窗口" },
-        constraint: { en: "45 ms stable break + 1200 ms per-zone lockout", zh: "45 ms 稳态确认 + 1200 ms 单通道冷却锁" },
+        constraint: { en: "3 consecutive samples + 400 ms cooldown", zh: "连续三次取样 + 400 ms 冷却" },
         rationale: {
           en: "Eliminates double/triple penalty firing when the steel ball wobbles over an FC-51 sensor rim.",
           zh: "消除钢球擦边震荡导致的连环误扣分，确保计分屏与指套震动 1:1 对齐。",
@@ -148,11 +148,11 @@ export const mazeResearchVault: RawResearchVaultRecord = {
         verifiedStatus: "bench-tested",
       },
       {
-        dimension: { en: "Servo Controller Isolation", zh: "舵机双板物理隔离" },
-        constraint: { en: "Dedicated SafeTouchServoController offloads PWM", zh: "独立 SafeTouchServoController 接管倾斜舵机" },
+        dimension: { en: "Board Split", zh: "多板分工" },
+        constraint: { en: "One Mega + two Uno (wristbands & servos; ball-launcher stepper), shared ground", zh: "一块 Mega 加两块 Uno（一块管腕带与舵机，一块管发球机步进电机），全部共地" },
         rationale: {
-          en: "Prevents high-current servo stalls from brownout-resetting the Arduino Mega score and IR loop.",
-          zh: "防止舵机堵转拉低供电或抢占中断，拖垮主控板红外采样与当前局分数。",
+          en: "Keeps servo and stepper code in their own sketches, apart from the Mega's sensing and scoring.",
+          zh: "舵机和步进电机的程序各自独立，不和 Mega 上的感测与计分写在一起。",
         },
         verifiedStatus: "bench-tested",
       },
@@ -160,8 +160,8 @@ export const mazeResearchVault: RawResearchVaultRecord = {
         dimension: { en: "Solo-Tap Gate", zh: "单人触发锁" },
         constraint: { en: "Requires simultaneous pair conductivity per axis", zh: "单轴向必须两名搭档同时接通方可执行倾斜" },
         rationale: {
-          en: "Transforms silent parallel play into vocal coordination across the wooden table.",
-          zh: "通过物理电路强制把各玩各的变成四人口头协作。",
+          en: "No one can tilt an axis alone, so partners have to act together.",
+          zh: "谁都无法单独倾斜一条轴，搭档必须一起动手。",
         },
         verifiedStatus: "observed",
       },
@@ -181,16 +181,16 @@ export const mazeResearchVault: RawResearchVaultRecord = {
       role: "pm-product",
       roleLabel: { en: "Exhibition Experience Lead", zh: "展场体验设计负责人" },
       priority: {
-        en: "Get four strangers collaborating loudly within 30 seconds of walking up to the table.",
-        zh: "让四个互不相识的参观者在站到桌旁 30 秒内就开口协同指挥。",
+        en: "Get four visitors playing together soon after they walk up to the table.",
+        zh: "让四位参观者走到桌旁后能尽快一起玩起来。",
       },
       tension: {
         en: "Complex multi-page rule placards go unread in loud gallery spaces.",
         zh: "嘈杂展区里没人愿意低头读长篇规则说明书。",
       },
       resolution: {
-        en: "Use physical color-paired wristbands + host-assisted sleeve ritual so rules are discovered through the first two touches.",
-        zh: "靠同色腕带配对与主持人协助戴指套开局，前两次试按锁死即让规则不言自明。",
+        en: "A team member explained the rules before each round. Many players still struggled with them, which stays an open problem.",
+        zh: "每轮开始前由组员讲解规则。讲完之后仍有不少玩家没弄懂，这一点还没解决。",
       },
     },
     {
@@ -201,12 +201,12 @@ export const mazeResearchVault: RawResearchVaultRecord = {
         zh: "让 10 路红外、舵机、灯带、蜂鸣器与串口网页连续运转不复位、不连环误报。",
       },
       tension: {
-        en: "Single-MCU servo PWM + tight IR polling starved interrupts and caused erratic buzzer glitches.",
-        zh: "初期全塞在一块板上既拖慢轮询又引起供电跌落重连。",
+        en: "Sensing, wristbands, servos and the ball launcher are too much to keep in one sketch.",
+        zh: "感测、腕带、舵机和发球机全塞在一份程序里太多了。",
       },
       resolution: {
-        en: "Split actuation onto SafeTouchServoController and add 45 ms / 1200 ms firmware debounce gates.",
-        zh: "拆出独立舵机板并用 45 ms / 1200 ms 软硬防抖锁死单一事件源。",
+        en: "Use one Mega plus two Uno boards on a shared ground, and give each IR sensor a three-sample debounce and a 400 ms cooldown.",
+        zh: "用一块 Mega 加两块 Uno，全部共地；每个红外传感器做三次取样去抖，加 400 ms 冷却。",
       },
     },
     {
@@ -217,12 +217,12 @@ export const mazeResearchVault: RawResearchVaultRecord = {
         zh: "安全有感官刺激的惩罚反馈、扣分不冤枉，且佩戴装备不手忙脚乱。",
       },
       tension: {
-        en: "Electric shock felt unsafe in public; tiny finger sleeves were awkward to slip on alone.",
-        zh: "电击惩罚在公共场所让人心存顾虑，细小指套单手很难顺畅戴稳。",
+        en: "The shock idea could not meet both complexity and safety; putting on wristbands and sleeves took each group about a minute.",
+        zh: "电击设想的复杂度与安全性均无法达标；每组戴腕带和指套大约要一分钟。",
       },
       resolution: {
-        en: "Replace shock with safe finger vibration sleeves and build fitting directly into facilitator onboarding.",
-        zh: "全面切换震动指套并由主持人顺手帮戴，兼顾安全感与仪式感。",
+        en: "Replace the shock with finger-sleeve vibration, and fit the gear as part of the round setup.",
+        zh: "用指套震动取代电击，佩戴装备放进每轮开局的准备环节。",
       },
     },
   ],
@@ -254,12 +254,12 @@ export const mazeResearchVault: RawResearchVaultRecord = {
     {
       id: "maze-q3",
       question: {
-        en: "What hardware boundary proved its worth on day one?",
-        zh: "哪项硬件架构决策在展场第一天就证明了价值？",
+        en: "Which hardware decision would I keep?",
+        zh: "哪项硬件决定我会保留？",
       },
       answer: {
-        en: "Isolating the servo board from the PlanB Mega. Even when players jammed the tilt limits physically, the round clock and score kept counting cleanly.",
-        zh: "把倾斜舵机拆出独立控制板。哪怕现场玩家用力顶住木板导致舵机限位，主控板计分与计时丝毫不受牵连。",
+        en: "Splitting the work across a Mega and two Uno boards on a shared ground, so the servo and stepper code stay out of the scoring sketch.",
+        zh: "把工作分到一块 Mega 和两块 Uno 上、全部共地，舵机和步进电机的程序不混进计分程序。",
       },
       verifiedStatus: "observed",
     },

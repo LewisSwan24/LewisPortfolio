@@ -86,7 +86,7 @@ export const walkieModules: CaseModulesRecord = {
       step: 3,
       title: {
         en: "Deterministic USB preemption & relay routing",
-        zh: "有线 USB 优先抢占与零知识中继路由",
+        zh: "有线 USB 优先抢占与端到端加密中继路由",
       },
       trigger: {
         en: "USB-C cable is plugged in at the desk or unplugged to move across the room",
@@ -162,7 +162,7 @@ export const walkieModules: CaseModulesRecord = {
       },
       cognitiveFriction: {
         en: "External developer wrist ergonomics and multi-hour battery wear outside Lewis's own desk remain unverified hypotheses.",
-        zh: "目前仅 Lewis 本人日常使用，其他开发者离桌佩戴的舒适度与整日续航尚无外部样本。",
+        zh: "目前只有 Lewis 本人用过，其他开发者离桌佩戴的舒适度与整日续航尚无外部样本。",
       },
       edgeRecovery: {
         en: "Flashing scripts enforce firmware/guard.py pre-checks, blocking -t erase and -t uploadfs so sibling partitions cannot be wiped.",

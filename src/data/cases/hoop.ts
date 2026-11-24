@@ -163,7 +163,7 @@ export const hoopCase: CaseRecord = {
         "title": "Deciding what the world is, and what it is not.",
         "m1": {
           "t": "Art bible",
-          "b": "Three reference documents — pixel players, organic scenes, flat logos — split by canvas size and written before the asset batches. Their forbidden lists went into the prompt templates as negative prompts."
+          "b": "Three reference documents — pixel players, organic scenes, flat logos — split by canvas size. They were committed together with the first 38 images (commit 9582f30), before the 299-entry registry. Only the avatar prompt template says outright that it cites its bible."
         },
         "m2": {
           "t": "Reference teardown",
@@ -217,7 +217,7 @@ export const hoopCase: CaseRecord = {
     "zh": {
       "hero": {
         "title": "Hoop Dream",
-        "sub": "一段从 12 岁的小区球场一路打到退役的生涯模拟，以及那条在资产批次之前，先写下世界长什么样的生产管线。"
+        "sub": "一段从 12 岁的小区球场一路打到退役的生涯模拟，以及一条先写清世界长什么样、再登记每批资产的生产管线。"
       },
       "roleVal": "设计、美术方向与技术方向由我定，通过一套 AI 生产管线实现",
       "timeVal": "2026 · 可玩，游戏自标 DEMO v0.6",
@@ -233,7 +233,7 @@ export const hoopCase: CaseRecord = {
         "title": "先决定这个世界是什么，以及不是什么。",
         "m1": {
           "t": "美术圣经",
-          "b": "三份参考文档：像素球员、有机场景、扁平队徽，按画布尺寸分开，写在资产批次之前。里面的禁止项写进了提示词模板，成了负面提示词。"
+          "b": "三份参考文档：像素球员、有机场景、扁平队徽，按画布尺寸分开。它们和首批 38 张图在同一个提交里（9582f30），早于 299 条登记表。明确写着引用美术圣经的，只有头像那份提示词模板。"
         },
         "m2": {
           "t": "参考拆解",

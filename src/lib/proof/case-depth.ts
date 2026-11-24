@@ -50,7 +50,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       role: "Solo design and build",
       methods: ["WCAG text-spacing criteria", "existing-extension teardown", "cross-site injection testing"],
       evidence: ["a working Chrome extension", "Jest coverage of the settings layer", "manual checks across documentation, news and single-page apps"],
-      outcome: "An extension that rewrites type and spacing on any page from one popup, in English and Simplified Chinese, with settings saved per site. DEMO stage.",
+      outcome: "An extension that rewrites type and spacing on any page from one popup, in English and Simplified Chinese, with one global set of settings. DEMO stage.",
       next: "I would put it in front of someone who actually reads this way and watch which controls they never touch.",
     },
     maze: {
@@ -62,20 +62,6 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       outcome:
         "A ball passing a sensor advances round state and drives score, timer, haptics, lights, audio, and the browser console together. Built and exhibited.",
       next: "I would instrument sessions to see which feedback channel players actually rely on, and cut the ones they ignore.",
-    },
-    vigil: {
-      challenge:
-        "A phishing classifier that is right 88% of the time still needs a human on the other side of it — and the interface decides whether that human genuinely checks the call or just clicks through it.",
-      role: "Designer and technical director; I specified, Claude Code and Codex built to the spec",
-      methods: ["spec freeze", "synthetic stimulus design", "A/B variant prototyping", "contrast auditing", "usability test protocol design"],
-      evidence: [
-        "140-email synthetic corpus with a validated error profile",
-        "six switchable interface variants across three questions",
-        "predictions recorded in writing before any testing",
-      ],
-      outcome:
-        "Six variants built and running, a working React build behind them, and a five-participant test protocol ready to run. No participants yet — the three design questions are still open.",
-      next: "I would run the five hallway sessions, then a counterbalanced study on whichever question survives them.",
     },
     hoop: {
       challenge:
@@ -157,7 +143,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       role: "独立设计与开发",
       methods: ["WCAG 文本间距条款", "现有扩展拆解", "跨站点注入测试"],
       evidence: ["一个能跑的 Chrome 扩展", "Jest 覆盖设置层", "在文档站、新闻站与单页应用上的手动验证"],
-      outcome: "一个扩展：从一个扩展弹窗就能改写任意页面的字体与间距，中英双语，设置按站点保存。DEMO 阶段。",
+      outcome: "一个扩展：从一个扩展弹窗就能改写任意页面的字体与间距，中英双语，一套设置对所有网站生效。DEMO 阶段。",
       next: "我会把这个扩展交给一个真的这样读东西的人，看他们从来不碰哪几个控件。",
     },
     maze: {
@@ -169,20 +155,6 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
       outcome:
         "球经过传感器就推进回合状态，并同时驱动计分、计时、震动、灯光、音效与浏览器控制台。已完成搭建并展出。",
       next: "我会记录实际游玩数据，看玩家真正依赖哪一种反馈通道，然后砍掉他们忽略的那些。",
-    },
-    vigil: {
-      challenge:
-        "一个准确率 88% 的钓鱼邮件分类器，另一端仍然需要一个人。而界面决定了这个人是真的在复核，还是一路点过去。",
-      role: "设计与技术方向由我定；Claude Code 与 Codex 按规格实现",
-      methods: ["规格冻结", "合成测试素材设计", "A/B 变体原型", "对比度审计", "可用性测试脚本设计"],
-      evidence: [
-        "140 封合成邮件，错误分布经过验证",
-        "三个设计问题、六个可切换变体",
-        "测试之前先把预测写下来",
-      ],
-      outcome:
-        "六个变体已经跑起来，背后有一版可运行的 React 实现，五人测试脚本也已就绪。目前还没有受试者：三个设计问题都还没有答案。",
-      next: "我会先跑完五场走廊测试，再针对活下来的那个问题做一次对照实验。",
     },
     hoop: {
       challenge:
@@ -392,15 +364,15 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
             "The extension works offline and leaks nothing about the reader's browsing.",
         },
         {
-          label: "Save settings per site, not globally",
+          label: "Keep one global set of settings",
           choice:
-            "Each origin keeps its own spacing and typeface state.",
+            "All settings live in chrome.storage.local under global keys and apply on every site. The dyslexia mode is one toggle that sets OpenDyslexic with a fixed line height (1.5) and letter spacing (0.05em).",
           evidence:
-            "Loose spacing that helps on a dense documentation page is unwanted on a news site, and one global switch forces the reader to keep toggling.",
+            "The repo records no reason for choosing global storage over per-site storage.",
           tradeoff:
-            "More storage bookkeeping, and a first visit to a new site starts unstyled.",
+            "A reader who wants looser spacing on one site gets it on every site, and the spacing values cannot be tuned.",
           impact:
-            "The reader sets a site once and it stays that way.",
+            "One switch turns the mode on or off everywhere, with no per-site state to manage.",
         },
         {
           label: "Put the controls in a popup, not a context menu",
@@ -420,20 +392,20 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           sample: "WCAG text-spacing criteria",
           question: "Which typographic properties does the tool have to expose to be useful at all?",
           finding: "Line height, letter spacing, word spacing and paragraph spacing are the ones with published thresholds.",
-          implication: "Those four became the control set, rather than a general CSS editor.",
+          implication: "The dyslexia mode raises line height and letter spacing to fixed values. Word and paragraph spacing are not adjusted, and there are no spacing sliders.",
         },
         {
           method: "Cross-site injection testing",
           sample: "Documentation, news, and single-page-app sites, by hand",
           question: "Where do injected styles lose to the page's own CSS?",
-          finding: "Inline styles and high-specificity selectors override the injected layer, and single-page apps re-render it away on navigation.",
-          implication: "The content script has to re-apply on route changes, not only on load.",
+          finding: "Inline styles and high-specificity selectors can override an injected layer.",
+          implication: "Injected rules use !important under a class set on <html>. The content script does not watch single-page-app route changes.",
         },
         {
           method: "Unit tests",
           sample: "Jest over the settings and utility layer",
-          question: "Does per-site state survive save, reload, and reset?",
-          finding: "Covered at the utility level, where the persistence logic lives.",
+          question: "Do the storage keys, defaults and settings validation behave?",
+          finding: "Jest covers the utility layer: storage keys, defaults, settings validation and colour helpers.",
           implication: "Regressions in settings behaviour surface before they reach a page.",
         },
       ],
@@ -446,15 +418,15 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         },
         {
           version: "Popup controls",
-          change: "Added a popup panel with the four spacing controls and the typeface switch.",
+          change: "Added a popup panel with toggles and sliders: colour filter, dyslexia mode, focus ruler, high contrast, font scale and others.",
           reason: "Editing values by hand is not a tool anyone would use twice.",
           improvement: "The adjustable range became visible instead of implied.",
         },
         {
-          version: "Per-site state and bilingual UI",
-          change: "Added per-origin persistence and English and Simplified Chinese locale files.",
-          reason: "Settings that reset every visit are worse than no settings, and I read in both languages.",
-          improvement: "It became something usable daily rather than a demonstration of injection.",
+          version: "Saved settings and bilingual UI",
+          change: "Saved settings to chrome.storage.local under global keys, and added English and Simplified Chinese locale files.",
+          reason: "Settings that reset every visit are worse than no settings.",
+          improvement: "Settings now survive a reload and apply on every site.",
         },
       ],
       limits: [
@@ -539,7 +511,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           sample: "Group play at a university exhibition; sessions not formally logged",
           question: "Do players understand what the system is telling them without instruction?",
           finding:
-            "Players reacted to vibration and audio faster than to the score display, and needed the finger sleeves fitted for them rather than self-fitted.",
+            "Attention went to the maze, the score and time display, the LEDs and the sounds; some players were surprised by the vibration the first time. Gearing up took each group about a minute, and many players still struggled with the rules after the explanation.",
           implication: "Wearable fit and setup ritual are part of the interaction, not preconditions to it.",
         },
       ],
@@ -582,146 +554,12 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "This case proves I can take an interaction concept through firmware, sensing, and physical feedback into a browser control surface, and make safety and calibration calls on hardware that strangers will actually touch.",
     },
-    vigil: {
-      decisions: [
-        {
-          label: "Write the corpus instead of downloading one",
-          choice:
-            "All 140 messages are written from scratch inside a fictional company, rather than sampled from SpamAssassin, Nazario, or Enron.",
-          evidence:
-            "The public corpora are 2002–2015 mail, they carry real personal data, and cue highlighting needs exact character offsets that only authored text can guarantee.",
-          tradeoff:
-            "Constructed stimuli buy control at the cost of ecological validity — nothing here proves how the interface behaves against real mail.",
-          impact:
-            "Error placement, difficulty, and cue offsets all became design parameters instead of accidents of the dataset.",
-        },
-        {
-          label: "Make confidence deliberately weak evidence",
-          choice:
-            "Confidence is stratified so it cannot predict which calls the classifier got wrong, and the build script fails if that stops being true.",
-          evidence:
-            "In the first build confidence separated cleanly — correct calls all sat at 0.84 and above, errors at 0.82 and below. A participant reading only the number would have caught every error without reading a single email.",
-          tradeoff:
-            "Every future content edit now has to survive a statistical gate, which makes the corpus more expensive to change.",
-          impact:
-            "Error-ranking AUC sits at 0.72 against a 0.75 ceiling, with 7 high-confidence errors and 36 low-confidence-but-correct calls, so the interface question is askable at all.",
-        },
-        {
-          label: "Generate each rationale from that email's own cues",
-          choice:
-            "The classifier's one-line explanation is assembled from the cues actually present in the message, replacing a fixed pool of plausible sentences.",
-          evidence:
-            "A spot check found em_052 explained as an external sender with an attachment or sign-in prompt. The message had neither.",
-          tradeoff:
-            "Cue-driven rationales read more formulaic than hand-written ones.",
-          impact:
-            "Explanation quality is the thing being studied — once a participant catches the explanation being fake, every measurement after it is contaminated.",
-        },
-        {
-          label: "Record the variant predictions before testing anything",
-          choice:
-            "Which variant I expected to win, and the bet behind each, went into the repository in writing before a single variant was flipped.",
-          evidence:
-            "Predictions written after the fact always agree with the outcome, which makes them worthless as evidence of reasoning.",
-          tradeoff:
-            "It commits a wrong call to the record permanently.",
-          impact:
-            "The gap between prediction and result becomes the most useful thing the write-up can contain, in either direction.",
-        },
-      ],
-      evidence: [
-        {
-          method: "Corpus validation gate",
-          sample: "140 synthetic messages, 17 classifier errors (9 false positives, 8 false negatives)",
-          question: "Can the confidence number alone tell you which calls the classifier got wrong?",
-          finding:
-            "In the first build, yes — completely. After stratified resampling, error-ranking AUC is 0.72 with 7 high-confidence errors in the set.",
-          implication:
-            "The stimulus set had to be engineered before the interface question could be measured at all.",
-        },
-        {
-          method: "Rationale audit",
-          sample: "Spot check of generated explanations against their own message bodies",
-          question: "Does the classifier's stated reasoning match the message it is reasoning about?",
-          finding:
-            "Rationales drawn from a fixed pool described cues that were not in the email.",
-          implication:
-            "Explanation fidelity is a precondition of the study, not a polish item.",
-        },
-        {
-          method: "Contrast measurement",
-          sample: "Every text-on-surface pair in the palette, measured with a script rather than eyeballed",
-          question: "Does the palette hold WCAG AA at normal text size?",
-          finding: "One rail token failed at 4.41 and was reworked to 5.11; the palette now passes throughout.",
-          implication:
-            "Accessibility was checked with a measurement rather than an assumption, and can be re-run after any palette change.",
-        },
-        {
-          method: "Prototype smoke test",
-          sample: "176 assertions across eight variant combinations, run against the real decision code",
-          question: "Does the decision and scoring logic survive every combination of the three variants?",
-          finding: "All 176 pass; the React build carries 101 unit tests over the same rules.",
-          implication:
-            "The rewrite has a behavioural baseline, so a variant cannot quietly break scoring on the way to Phase 3.",
-        },
-      ],
-      iterations: [
-        {
-          version: "First visual pass",
-          change: "White cards on grey, a safe blue accent, six uppercase letterspaced labels on one screen, system-ui throughout.",
-          reason: "It was the default any generator reaches for, and it was competent.",
-          improvement: "Rejected. It looked like software rather than like a decision, which named the actual problem.",
-        },
-        {
-          version: "Instrument, not inbox",
-          change:
-            "Everything the system says moved to monospace; the message body is the only thing in a text face. The verdict is carried by weight and a rule rather than a tinted card.",
-          reason:
-            "A coloured verdict card lends the classifier authority it has not earned, and impersonation hides in letter pairs a proportional face closes up.",
-          improvement: "The reader has to read the word, and a lookalike domain stays legible as a lookalike.",
-        },
-        {
-          version: "Industry-convention pass",
-          change:
-            "Added authentication results with a note on what they do not prove, domain-first-seen dates, campaign clustering, and an optional note on escalation.",
-          reason:
-            "An audit against real mail-security consoles showed the interface was missing signals an analyst would expect to have.",
-          improvement:
-            "The sharpest teaching case now exists: CEO fraud sent from a real consumer account passes every authentication check over a domain registered in 1995.",
-        },
-      ],
-      limits: [
-        {
-          constraint: "No participant has run it yet.",
-          whyItMatters:
-            "All three design questions are still open. Every argument for a variant in this case is reasoning, not evidence — and the predictions are on record precisely so that stays visible.",
-          nextValidation:
-            "Five hallway sessions on the config rotation already written into the test protocol, then fill in the decision and what-it-gives-up blocks.",
-        },
-        {
-          constraint: "The corpus is synthetic and the classifier is scripted.",
-          whyItMatters:
-            "Error placement is authored, so this measures how an interface shapes oversight — not how a real detection system fails.",
-          nextValidation:
-            "The honest version needs an organisational partner and ethics approval, which is out of scope for a coursework build.",
-        },
-        {
-          constraint: "The evaluation study is designed but not run.",
-          whyItMatters:
-            "The counterbalanced comparison, the measures, and the 2×2 payoff matrix all exist on paper only.",
-          nextValidation:
-            "Recruit 8–12 participants, run both conditions per person, and report the result even if the conditions do not separate.",
-        },
-      ],
-      takeaway:
-        "This case proves I can turn a research brief into a running system — corpus, variants, protocol, and a validation gate that fails the build when the material stops being usable — and that I can direct an AI coding workflow without handing it the design argument.",
-    },
     hoop: {
       decisions: [
         {
-          label: "Write the art bible before the batches, split by canvas size",
+          label: "Write the art bibles, split by canvas size",
           choice:
-            "Three reference documents — pixel players, organic scenes, flat logos — were written before the asset batches, and each prompt template carries its bible's forbidden items as a negative prompt.",
+            "Three reference documents — pixel players, organic scenes, flat logos — were committed together with the first 38 images (commit 9582f30), before the 299-entry registry. Only the avatar prompt template says outright that it cites its bible.",
           evidence:
             "A 256×256 logo, a 32×32 sprite and a 1280×720 scene cannot share one style language. Canvas size decides how much an image can hold, so each bible starts from its canvas.",
           tradeoff:
@@ -859,9 +697,9 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
               "It is the strongest evidence for the method, because it shows the check catching its own author rather than only catching the AI.",
           },
           {
-            label: "Let an AI-generated feature plan set the scope",
+            label: "Let a feature plan set the scope",
             choice:
-              "The feature list was AI-generated planning, derived from what a complete product ought to have rather than from what anyone asked for, and the build followed it. Phases 2 through 6 all landed within two days, 9–10 January 2026.",
+              "Looking back, I judge that the feature list was AI-generated planning, derived from what a complete product ought to have rather than from what anyone asked for; the repo does not record this. The build followed the list. Phases 2 through 6 all landed within two days, 9–10 January 2026.",
             evidence:
               "On 1 March 2026 a single commit added 5,884 lines: a v1 API, AI function calling, bilingual text, price prediction and a social layer, which made up about a quarter of it. The last commits were on 2 March, and the next came five months later.",
             tradeoff:
@@ -1317,15 +1155,15 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
             "离线能用，也不会泄露读者的浏览行为。",
         },
         {
-          label: "设置按站点保存，不做全局",
+          label: "只保存一套全局设置",
           choice:
-            "每个域名各自保存自己的间距和字体状态。",
+            "所有设置用全局键存在 chrome.storage.local 里，对每个网站都生效。阅读障碍模式是一个开关，打开后换成 OpenDyslexic，行高固定 1.5，字距固定 0.05em。",
           evidence:
-            "在密集的文档页有用的宽行距，放到新闻站就是多余的；一个全局开关只会逼读者反复切换。",
+            "仓库里没有记录为什么选全局保存，而没有分站点存。",
           tradeoff:
-            "存储上要多记一层，第一次访问新站点也是没有样式的。",
+            "读者想在某一个站放宽间距，就会在所有站都放宽，间距数值也调不了。",
           impact:
-            "读者对一个站点设置一次，之后就一直是那样。",
+            "一个开关在所有网站上统一开关，不用管理按站点的状态。",
         },
         {
           label: "控件放弹窗，不放右键菜单",
@@ -1345,20 +1183,20 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           sample: "WCAG 文本间距条款",
           question: "这个工具至少要开放哪些排版属性，才算有用？",
           finding: "行高、字距、词距、段距，这四项有明确阈值可依。",
-          implication: "控件就定在这四项上，而不是做成一个通用 CSS 编辑器。",
+          implication: "阅读障碍模式把行高和字距提到固定值；词距和段距没有调整，也没有间距滑杆。",
         },
         {
           method: "Cross-site injection testing",
           sample: "手动跑文档站、新闻站与单页应用",
           question: "注入的样式在什么地方会输给网页自己的 CSS？",
-          finding: "内联样式和高优先级选择器会盖掉注入层；单页应用一切换路由就把它重新渲染掉了。",
-          implication: "内容脚本必须在路由变化时重新应用，不能只在页面加载时跑一次。",
+          finding: "内联样式和高优先级选择器可能盖掉注入层。",
+          implication: "注入的规则挂在 <html> 的类名下，并加 !important。内容脚本不监听单页应用的路由变化。",
         },
         {
           method: "Unit tests",
           sample: "Jest 覆盖设置与工具层",
-          question: "按站点保存的状态，经得起保存、重载和重置吗？",
-          finding: "持久化逻辑所在的工具层已经被覆盖。",
+          question: "存储键、默认值和设置校验都正常吗？",
+          finding: "Jest 覆盖了工具层：存储键、默认值、设置校验和颜色工具函数。",
           implication: "设置出问题会在到达页面之前就被测出来。",
         },
       ],
@@ -1371,15 +1209,15 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         },
         {
           version: "弹窗控件",
-          change: "加了弹窗面板，放四项间距控件和字体切换。",
+          change: "加了弹窗面板，放开关和滑杆：色觉滤镜、阅读障碍模式、聚焦尺、高对比度、字号缩放等。",
           reason: "要手改数值的东西，没人会用第二次。",
           improvement: "「能调到什么程度」从暗示变成了看得见。",
         },
         {
-          version: "按站点保存 + 双语界面",
-          change: "加上按域名持久化，以及中英两套语系文件。",
-          reason: "每次访问都重置的设置比没有设置更糟，而且我两种语言都读。",
-          improvement: "它从一个注入演示，变成了每天真能用的东西。",
+          version: "保存设置 + 双语界面",
+          change: "用全局键把设置存进 chrome.storage.local，并加上中英两套语系文件。",
+          reason: "每次访问都重置的设置比没有设置更糟。",
+          improvement: "设置在重新加载后还在，并对所有网站生效。",
         },
       ],
       limits: [
@@ -1447,7 +1285,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           method: "公开展览游玩观察",
           sample: "大学展览中的多人游玩；未做正式场次记录",
           question: "玩家不经讲解，能否理解系统在告诉他们什么？",
-          finding: "玩家对震动和音效的反应比对计分显示更快，而且手指套需要别人帮忙戴，自己戴不顺。",
+          finding: "玩的时候，注意力在迷宫、分数与时间显示、灯光和声音上，有些玩家第一次被震动吓了一跳。每组戴装备大约一分钟，讲解之后仍有不少人没弄懂规则。",
           implication: "可穿戴的佩戴方式与布置流程本身就是交互的一部分，不是交互开始前的杂事。",
         },
       ],
@@ -1486,116 +1324,11 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
       takeaway:
         "这个案例证明我能把一个交互概念一路做穿固件、感测与实体反馈，再接回浏览器控制界面，并在陌生人真的会上手的硬件上做安全与校准判断。",
     },
-    vigil: {
-      decisions: [
-        {
-          label: "语料自己写，不下载现成的",
-          choice: "140 封邮件全部在一家虚构公司的设定里从头写，没有取自 SpamAssassin、Nazario 或 Enron。",
-          evidence:
-            "公开语料都是 2002–2015 年的邮件，带真实个资，而线索高亮需要精确到字元的偏移量：只有受控撰写才保证得了。",
-          tradeoff: "构建型测试素材换来的是控制力，代价是生态效度：这里没有任何东西能证明界面在真实邮件里的表现。",
-          impact: "错误的落点、难度分布和线索偏移全部变成可设计的参数，而不是数据集的偶然产物。",
-        },
-        {
-          label: "刻意把置信度做成弱证据",
-          choice: "置信度经过分层采样，无法单独预测分类器判错在哪里；一旦这个性质失效，建构脚本直接让 build 失败。",
-          evidence:
-            "第一版的置信度是完全可分离的：判对的全在 0.84 以上，判错的全在 0.82 以下。使用者只读数字、一封邮件都不看，就能抓出全部 17 个错误。",
-          tradeoff: "之后每一次内容修改都得先过统计闸门，语料的改动成本变高了。",
-          impact: "错误排序 AUC 现在是 0.72（上限 0.75），含 7 个高置信度错误与 36 个低置信度但判对的案例，界面这个问题才问得下去。",
-        },
-        {
-          label: "解释由该封邮件自己的线索组装",
-          choice: "分类器那一句解释改成从邮件里实际存在的线索拼出来，不再从一个固定文案池里抽。",
-          evidence: "抽查发现 em_052 被解释成「外部寄件人带附件或登入提示」，但那封信两者都没有。",
-          tradeoff: "由线索驱动的解释读起来比手写的更公式化。",
-          impact: "解释品质本身就是研究对象：参与者一旦识破解释是假的，后面所有测量都被污染。",
-        },
-        {
-          label: "测试之前先把预测写下来",
-          choice: "我预期哪个变体会赢、每个赌注押的是什么，在翻动第一个变体之前就写进了仓库。",
-          evidence: "事后补的预测永远和结果一致，因此完全不能当作推理过程的证据。",
-          tradeoff: "这等于把一个可能猜错的判断永久留在记录里。",
-          impact: "预测与结果之间的落差，反而成了这份记录里最有价值的东西，无论哪个方向。",
-        },
-      ],
-      evidence: [
-        {
-          method: "语料验证闸门",
-          sample: "140 封合成邮件，17 个分类器错误（9 个误报、8 个漏报）",
-          question: "光看置信度这个数字，能不能判断出分类器错在哪里？",
-          finding: "第一版完全可以。分层重采样之后，错误排序 AUC 是 0.72，其中有 7 个高置信度错误。",
-          implication: "测试素材必须先被工程化，界面这个问题才有得测。",
-        },
-        {
-          method: "解释内容审查",
-          sample: "把生成的解释逐条对回它所解释的那封邮件",
-          question: "分类器给出的理由，和它正在判断的那封信对得上吗？",
-          finding: "从固定文案池抽出来的解释，描述了邮件里根本不存在的线索。",
-          implication: "解释的可信度是研究的前提，不是收尾时的打磨项。",
-        },
-        {
-          method: "对比度实测",
-          sample: "配色里每一组文字与底色的搭配，用脚本量测，不靠肉眼",
-          question: "这套配色在正常字号下守得住 WCAG AA 吗？",
-          finding: "有一个侧栏色以 4.41 未过，调整后为 5.11；整套配色现在全数通过。",
-          implication: "无障碍是量出来的，不是假设出来的，而且改配色之后可以直接重跑。",
-        },
-        {
-          method: "原型冒烟测试",
-          sample: "八种变体组合、176 条断言，跑的是真实的决策程式码",
-          question: "三个变体的每一种组合下，决策与计分逻辑还站得住吗？",
-          finding: "176 条全过；React 版本另有 101 个单元测试覆盖同一套规则。",
-          implication: "重写有了行为基准，某个变体不会在通往 Phase 3 的路上悄悄弄坏计分。",
-        },
-      ],
-      iterations: [
-        {
-          version: "第一版视觉",
-          change: "灰底白卡片、安全的蓝色强调色、同一屏上六个大写加字距的标签、全篇 system-ui。",
-          reason: "这是任何生成器都会先给出的默认解，而且它并不差。",
-          improvement: "被否决。它看起来像一个软件，而不像一个判断：问题就出在这句话上。",
-        },
-        {
-          version: "仪器，而不是收件箱",
-          change: "系统说的每一句话改成等宽字，只有邮件正文留在文字字体里；判定靠字重与一条横线承载，不用色块卡片。",
-          reason: "着色的判定卡片会赋予分类器它并没有挣得的权威；而仿冒藏在字母对里，比例字体恰好会把那几对挤在一起。",
-          improvement: "读者必须真的去读那个词，仿冒域名也仍然看得出是仿冒。",
-        },
-        {
-          version: "行业惯例补强",
-          change: "补上认证结果与「它证明不了什么」的附注、域名首见时间、campaign 聚类提示，以及升级时的选填备注。",
-          reason: "对照真实邮件安全产品做了一次审计，发现界面缺了分析师本来就期待看到的信号。",
-          improvement:
-            "最锋利的教学案例因此成立：用真实个人邮箱寄出的 CEO 诈骗，在一个 1995 年注册的域名上通过了每一项认证检查。",
-        },
-      ],
-      limits: [
-        {
-          constraint: "目前还没有任何一个受试者跑过它。",
-          whyItMatters:
-            "三个设计问题全都还开着。这个案例里每一个支持某个变体的论证都是推理，不是证据：预测之所以留在记录里，就是为了让这件事一直看得见。",
-          nextValidation: "按已经写好的 config 轮替表跑完五场走廊测试，再回头把「选了哪个 / 为什么 / 放弃了什么」填上。",
-        },
-        {
-          constraint: "语料是合成的，分类器是脚本写死的。",
-          whyItMatters: "错误落在哪里是我安排的，所以它衡量的是界面如何塑造监督行为，而不是一个真实检测系统会怎么失败。",
-          nextValidation: "诚实的版本需要一个组织方合作与伦理审查，这超出了课程项目的范围。",
-        },
-        {
-          constraint: "评估实验设计好了，但还没跑。",
-          whyItMatters: "对照设计、测量指标、以及那张 2×2 收益矩阵，目前都只存在于纸面上。",
-          nextValidation: "招募 8–12 人，每人跑两个条件，就算两组之间没有显著差异也照样把结果写出来。",
-        },
-      ],
-      takeaway:
-        "这个案例证明我能把一份研究 brief 变成一套真的跑得起来的系统：语料、变体、测试脚本，以及一道材料一旦失效就让 build 挂掉的验证闸门，同时证明我能指挥 AI 写代码，而不把设计论证一并交出去。",
-    },
     hoop: {
       decisions: [
         {
-          label: "批次之前先写美术圣经，按画布尺寸分三份",
-          choice: "三份参考文档：像素球员、有机场景、扁平队徽，写在资产批次之前。规范里的禁止项，到了提示词模板里就是负面提示词。",
+          label: "写美术圣经，按画布尺寸分三份",
+          choice: "三份参考文档：像素球员、有机场景、扁平队徽。它们和首批 38 张图在同一个提交里（9582f30），早于 299 条登记表。明确写着引用美术圣经的，只有头像那份提示词模板。",
           evidence:
             "256×256 的队徽、32×32 的像素人物、1280×720 的场景，共用不了一套风格语言。画布尺寸决定一张图装得下多少信息，所以每份规范都从画布出发。",
           tradeoff: "在看到产出之前就把规则定死，等于对一个还没被验证过的风格先下注。",
@@ -1712,9 +1445,9 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
             impact: "但它恰恰是这套方法最强的证据：这道检查连它自己的作者一起抓，而不只抓 AI。",
           },
           {
-            label: "让 AI 生成的功能规划定下范围",
+            label: "让一份功能规划定下范围",
             choice:
-              "功能清单是 AI 生成的规划，从「一个完整的产品该有什么」推出来的，不是从任何人的需求推出来的。开发一路照着这份清单做，Phase 2 到 Phase 6 全部落在 2026 年 1 月 9 到 10 日这两天。",
+              "事后回看，我判断功能清单是 AI 生成的规划，从「一个完整的产品该有什么」推出来，没有从任何人的需求出发；仓库里没有这条记录。开发一路照着这份清单做，Phase 2 到 Phase 6 全部落在 2026 年 1 月 9 到 10 日这两天。",
             evidence:
               "2026 年 3 月 1 日，单次提交 5884 行：v1 接口、AI 函数调用、中英双语文案、价格预测，还有一层社交功能，约占四分之一。最后几次提交在 3 月 2 日，下一次要到五个月后。",
             tradeoff: "回头看，一个建在拟真数据上、注册用户为 0 的比价应用，不该继续长下去。",
@@ -2041,7 +1774,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "This case proves I can turn accessibility guidance into a working tool, and keep it working on pages I do not control.",
       inspect: [
         "Why the font is bundled in the extension instead of fetched from a CDN.",
-        "Why settings are saved per site rather than globally.",
+        "Why settings are one global set, and what that costs a reader.",
         "Where injected styles lose to a page's own CSS, and what that forced.",
       ],
       questions: [
@@ -2068,23 +1801,6 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
       bestFit: [
         "Design technologist, creative technologist, or prototyping roles.",
         "Teams building physical products, installations, or hardware-software interfaces.",
-      ],
-    },
-    vigil: {
-      proves:
-        "This case proves I can design the conditions under which a study is worth running — and direct an AI coding workflow through spec, corpus, variants, and protocol without losing the design argument.",
-      inspect: [
-        "Why the classifier's confidence had to be made a deliberately weak signal before any interface question could be asked.",
-        "Why the variant predictions were written down before testing, and what each one bets on.",
-        "What the interface refuses to do: no search, no batch actions, no severity tiers, no success green.",
-      ],
-      questions: [
-        "How do you design an interface that makes someone check an AI rather than defer to it?",
-        "What did you keep for yourself when an AI wrote all the code?",
-      ],
-      bestFit: [
-        "AI UX, human-AI interaction, and trust-and-safety teams.",
-        "Teams that need a designer who can specify a system precisely enough to be built fast.",
       ],
     },
     hoop: {
@@ -2114,7 +1830,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         ],
         questions: [
           "The AI wrote the code. What was left for you to do?",
-          "The scope grew from an AI-generated plan and never came back down. What would you check before accepting a plan like that again?",
+          "The scope grew from a feature plan you now judge to be AI-generated, and never came back down. What would you check before accepting a plan like that again?",
         ],
         bestFit: [
           "Teams shipping AI-written code who need someone asking whether it actually runs.",
@@ -2184,7 +1900,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         "这个案例证明我能把无障碍准则做成一个真能用的工具，并让它在我控制不了的页面上继续可用。",
       inspect: [
         "为什么字体打包进扩展，而不是从 CDN 取。",
-        "为什么设置按站点保存，而不是做成全局。",
+        "为什么设置只有全局一套，这让读者付出了什么。",
         "注入的样式在哪里会输给网页自己的 CSS，以及这件事逼出了什么改动。",
       ],
       questions: [
@@ -2211,23 +1927,6 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
       bestFit: [
         "Design technologist、creative technologist 或原型开发岗位。",
         "做实体产品、装置或软硬件接口的团队。",
-      ],
-    },
-    vigil: {
-      proves:
-        "这个案例证明我能先把「这个实验值不值得做」的条件设计好，并且能带着 AI 走完规格、语料、变体到测试脚本的全程，而不把设计论证一起交出去。",
-      inspect: [
-        "为什么必须先把分类器的置信度做成弱信号，界面这个问题才问得下去。",
-        "为什么变体预测要写在测试之前，以及每一个预测押的是什么。",
-        "这个界面刻意不做什么：没有搜索、没有批量操作、没有严重度分级、没有代表成功的绿色。",
-      ],
-      questions: [
-        "你怎么设计一个界面，让人真的去复核 AI，而不是顺着它点下去？",
-        "代码全部由 AI 写的时候，你把什么留给了自己？",
-      ],
-      bestFit: [
-        "AI UX、人机协作与 trust & safety 团队。",
-        "需要一个能把系统说清楚到可以被快速实现的设计师的团队。",
       ],
     },
     hoop: {
@@ -2257,7 +1956,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
         ],
         questions: [
           "代码是 AI 写的，那你做了什么？",
-          "范围跟着 AI 生成的规划长大，后来一直没有缩回去。再接一份这样的规划，你会先查什么？",
+          "范围跟着一份功能规划长大，你事后判断那份规划是 AI 生成的，范围后来也一直没有缩回去。再接一份这样的规划，你会先查什么？",
         ],
         bestFit: [
           "在用 AI 写代码、需要有人追问「它是不是真的在跑」的团队。",
@@ -2422,7 +2121,7 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
   ],
   spectra: [
     {
-      question: "Why four spacing controls and not a general CSS editor?",
+      question: "Why a fixed-value dyslexia mode and not adjustable spacing controls?",
       reason: "Shows whether an accessibility decision starts from a stated guideline and a scope, not from a feature list.",
       anchorId: "decision-timeline",
     },
@@ -2454,26 +2153,9 @@ const sharedCaseReaderPrompts: Record<ProjectEvidenceSlug, CaseInterviewPrompt[]
       anchorId: "outcome-limits",
     },
   ],
-  vigil: [
-    {
-      question: "Why did the classifier's confidence have to be a weak signal by construction?",
-      reason: "Tests whether the study was designed to be measurable before it was designed to look good.",
-      anchorId: "decision-timeline",
-    },
-    {
-      question: "You wrote your predictions before testing. What are you betting on, and why?",
-      reason: "Checks whether design reasoning exists independently of the result.",
-      anchorId: "evidence-board",
-    },
-    {
-      question: "Nobody has run it yet. What does the case actually prove today?",
-      reason: "Keeps an unfinished project honest about the line between built and validated.",
-      anchorId: "outcome-limits",
-    },
-  ],
   hoop: [
     {
-      question: "Why write the art bible before the asset batches?",
+      question: "Why write art bibles at all, when they landed in the same commit as the first images?",
       reason: "Tests whether coherence was designed into the process or patched in afterwards.",
       anchorId: "decision-timeline",
     },

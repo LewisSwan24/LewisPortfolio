@@ -26,7 +26,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
         label: "Decision trail",
         value: "Documented trade-offs",
         detail:
-          "Every case connects design claims directly to usability findings, revised architecture, and realistic next steps.",
+          "Every case ties its design claims to bench checks and Lewis's own use, names what was revised, and says plainly that no external usability testing has been run.",
       },
     ],
     primaryAction: { label: "Contact Lewis", href: "/contact" },
@@ -94,21 +94,11 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
       href: "/projects/maze#outcome-limits",
     },
     {
-      id: "ai-oversight-proof",
-      capability: "Human oversight of AI",
-      caseSlug: "vigil",
-      proof:
-        "Vigil makes the classifier's confidence deliberately weak evidence, and fails its own build if that stops being true.",
-      whyItMatters:
-        "Shows the harder half of AI UX: designing so a person keeps checking rather than deferring.",
-      href: "/projects/vigil#decision-timeline",
-    },
-    {
       id: "generative-pipeline-proof",
       capability: "Design systems at generated scale",
       caseSlug: "hoop",
       proof:
-        "Hoop Dream established visual standards before generation began—using art bibles, rejected-style criteria, and manual side-by-side audits across six asset batches.",
+        "Hoop Dream wrote its visual standards down—art bibles committed with the first 38 images, rejected-style criteria, and manual side-by-side audits across six asset batches.",
       whyItMatters:
         "Shows clear visual direction and knowing where script checks stop and human taste takes over.",
       href: "/projects/hoop#decision-timeline",
@@ -272,7 +262,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
         label: "推理链条",
         value: "决策有迹可循",
         detail:
-          "每项能力结论都对应具体案例片段，看得到方案为什么改、改了哪里，以及当前未覆盖的验证范围。",
+          "每项能力结论都对应具体案例片段：证据来自台架检查和本人使用，看得到方案改了哪里；也写明了没有做过外部可用性测试。",
       },
     ],
     primaryAction: { label: "联系 Lewis", href: "/contact" },
@@ -304,7 +294,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "穿戴端 AI 审批边界",
       caseSlug: "walkie",
       proof:
-        "Walkie 把 Claude Code 工具审批与设备配对锁在 M5StickS3 实体双键上，并走 AES-256-GCM 零知识中继。",
+        "Walkie 把 Claude Code 工具审批与设备配对锁在 M5StickS3 实体双键上，并走 AES-256-GCM 端到端加密中继。",
       whyItMatters:
         "体现用触觉确权替代嘈杂环境纯语音确认的人因判断。",
       href: "/projects/walkie#decision-timeline",
@@ -338,16 +328,6 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       whyItMatters:
         "证明这些工作经得起真实世界的碰撞，而不只是经得起原型工具。",
       href: "/projects/maze#outcome-limits",
-    },
-    {
-      id: "ai-oversight-proof",
-      capability: "人对 AI 的监督",
-      caseSlug: "vigil",
-      proof:
-        "Vigil 把分类器的置信度刻意做成弱证据，而且一旦这一点失效，Vigil 自己的 build 就会挂掉。",
-      whyItMatters:
-        "证明我做得了 AI UX 里更难的那一半：让人继续复核，而不是顺着模型点下去。",
-      href: "/projects/vigil#decision-timeline",
     },
     {
       id: "generative-pipeline-proof",

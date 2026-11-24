@@ -34,7 +34,7 @@ const SHIFT_COMPARISONS: Partial<Record<CurrentProjectSlug, ShiftComparison>> = 
     ],
     after: [
       { en: "Physical wrist buttons own every approval gate", zh: "所有工具权限均由手腕实体按键确认" },
-      { en: "USB cable wins; zero-knowledge Fly.io fallback", zh: "插线时 USB 优先，离缆切换零知识中继" },
+      { en: "USB cable wins; end-to-end encrypted Fly.io fallback", zh: "插线时 USB 优先，离缆切换端到端加密中继" },
     ],
   },
   fencepost: {
@@ -80,7 +80,7 @@ const SHIFT_COMPARISONS: Partial<Record<CurrentProjectSlug, ShiftComparison>> = 
       { en: "AI predictions & social layers before real users", zh: "无真实用户先堆砌预测与社交 5,884 行" },
     ],
     after: [
-      { en: "Stopped bloat; pinned deterministic 65-item checks", zh: "及时停掉无效扩展，聚焦 65 商品比价核对脚本" },
+      { en: "Pinned deterministic 65-item checks", zh: "65 商品比价核对脚本" },
     ],
   },
 };

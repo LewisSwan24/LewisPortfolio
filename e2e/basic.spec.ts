@@ -1,6 +1,6 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
-// Listed cases only: vigil, spectra, rules, gapmapper, fencepost, connect, hoop, and pricewise are unlisted.
+// Listed cases only: spectra, rules, gapmapper, fencepost, connect, hoop, and pricewise are unlisted.
 const anchoredCaseProofHref =
     /\/projects\/(walkie|lamplight|autofill|maze|onthebeat|grassland)#(design-decisions|decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway|interviewer-scan)$/;
 
@@ -207,32 +207,13 @@ test.describe("Projects Page", () => {
         }
     });
 
-    // Same click-to-load contract as MazeRunners, but this prototype is served
-    // from our own origin, so the test also proves the file actually shipped.
-    test("vigil prototype should load only on click, from our own origin", async ({ page }) => {
-        await gotoStable(page, "/projects/vigil");
-
-        const demo = page.locator(".case-demo");
-        await expect(demo).toBeVisible();
-        await expect(demo.locator("iframe")).toHaveCount(0);
-
-        await demo.locator(".case-demo-poster").click();
-        await expect(demo.locator("iframe")).toHaveAttribute(
-            "src",
-            "/projects/vigil/prototype.html",
-        );
-
-        // A real prototype, not a 404 rendered inside a frame. The prototype
-        // opens on its briefing screen, so assert that rather than the review
-        // pane behind it.
-        await expect(
-            page.frameLocator(".case-demo iframe").getByText(/last check before the inbox/i),
-        ).toBeVisible();
-    });
-
-    test("the embedded prototype should stay out of the search index", async ({ page }) => {
-        const robots = await page.goto("/robots.txt");
-        expect(await robots!.text()).toContain("/projects/vigil/prototype.html");
+    // The abandoned email-review case was removed outright on 2026-11-25
+    // (Lewis's decision): its page and its prototype must no longer render.
+    test("the removed case and its prototype should 404", async ({ page }) => {
+        for (const path of ["/projects/vigil", "/zh/projects/vigil", "/projects/vigil/prototype.html"]) {
+            const res = await page.goto(path);
+            expect(res!.status()).toBe(404);
+        }
     });
 
     // Both demos were once shipped broken: the tests asserted the iframe src
@@ -287,37 +268,8 @@ test.describe("Projects Page", () => {
         // We still refuse to be framed by anyone else.
         expect(csp).toContain("frame-ancestors 'none'");
 
-        const prototype = await page.goto("/projects/vigil/prototype.html");
-        expect(prototype!.status()).toBe(200);
-        expect(prototype!.headers()["x-frame-options"]).toBe("SAMEORIGIN");
-        expect(prototype!.headers()["content-security-policy"]).toContain(
-            "frame-ancestors 'self'",
-        );
     });
 
-    test("vigil case should render and stay honest about not being tested", async ({ page }) => {
-        await page.goto("/projects/vigil");
-
-        await expect(page.getByRole("heading", { level: 1, name: "Vigil" })).toBeVisible();
-
-        // The variant screenshots are this case's artefact, the way the build
-        // photographs are MazeRunners'.
-        const evidence = page.locator(".case-build-evidence");
-        await expect(evidence).toBeVisible();
-        await expect(evidence.locator("img")).toHaveCount(4);
-
-        // Standing rule for this portfolio: an unvalidated case has to say so.
-        // If this ever fails because the copy softened, that is the bug.
-        await expect(page.locator(".case-limits")).toContainText(/no participant has run it yet/i);
-    });
-
-    test("zh vigil case should be translated, not fall back to English", async ({ page }) => {
-        await gotoStable(page, "/zh/projects/vigil");
-
-        await expect(page.locator(".case-summary")).toContainText("分类器");
-        // The label lost its passive (被) in a zh copy edit; this follows the copy.
-        await expect(page.locator(".case-build-evidence .label")).toHaveText("正在测试的变体");
-    });
 
     test("case page should not overflow on mobile", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 844 });
@@ -727,9 +679,9 @@ test.describe("Responsive Design", () => {
     });
 });
 
-// Vigil was unlisted on 2026-09-27. Its page still answers at its URL (the
-// vigil case tests above go there directly), but nothing on the site may link
-// to it, and the sitemap and feeds leave it out.
+// Vigil was unlisted on 2026-09-27 and removed outright on 2026-11-25. The
+// other unlisted cases still answer at their URLs, but nothing on the site may
+// link to them, and the sitemap and feeds leave them out.
 test.describe("Unlisted cases", () => {
     test("no page links to an unlisted case", async ({ page }) => {
         // The Vigil blog post used to be on this list. It is a draft now and

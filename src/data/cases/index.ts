@@ -1,7 +1,6 @@
 import { connectCase } from "./connect";
 import { spectraCase } from "./spectra";
 import { mazeCase } from "./maze";
-import { vigilCase } from "./vigil";
 import { hoopCase } from "./hoop";
 import { pricewiseCase } from "./pricewise";
 import { gapmapperCase } from "./gapmapper";
@@ -18,7 +17,6 @@ export const ALL_CASE_RECORDS: readonly CaseRecord[] = [
   connectCase,
   spectraCase,
   mazeCase,
-  vigilCase,
   hoopCase,
   pricewiseCase,
   gapmapperCase,

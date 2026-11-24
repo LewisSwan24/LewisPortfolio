@@ -19,4 +19,4 @@ In `v6.0.0`, `public/sw.js` ships with strict scoping rules verified against `ne
 
 - **Private route immunity**: Requests under `/api/` and `/brief/` (plus `/{en,zh}/brief/`) return directly to the browser network stack—never touched by Cache Storage.
 - **No-cache worker updates**: `next.config.js` pairs `worker-src 'self'` CSP with `Cache-Control: no-cache, no-store, must-revalidate` on `/sw.js` so stale workers rotate reliably.
-- **Network-first reading shell**: Public EN/ZH case pages and the 30 monographs gracefully serve last-visited HTML copies when connectivity drops.
+- **Network-first reading shell**: public EN/ZH case pages and the 30 essays serve the last-visited HTML copy when connectivity drops, and immutable `/_next/static/` assets use stale-while-revalidate.

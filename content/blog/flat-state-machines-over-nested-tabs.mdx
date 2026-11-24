@@ -1,6 +1,6 @@
 ---
 title: "Flat State Machines Over Nested Tabs: Preventing Dead Ends"
-date: "2026-11-17"
+date: "2026-11-24"
 excerpt: "Deeply nested panels and per-screen overrides breed silent drift and broken back paths. Why flat, explicit state machines keep multi-surface prototypes inspectable."
 tags:
   - State Architecture
@@ -10,19 +10,18 @@ author: "Lewis Dong"
 published: true
 ---
 
-When an interactive prototype grows beyond three screens, teams often bolt on nested tabs, per-page local state, or mission-specific overrides. Every shortcut feels fast on day one — and guarantees state desynchronization by day ten.
+When an interactive prototype grows beyond three screens, it is tempting to bolt on nested tabs, per-page local state or mission-specific overrides. Each shortcut feels fast at first; my view is that they make state drift apart later.
 
-## One shared grammar across five escalating missions
+## One shared grammar across five missions
 
-In [Grassland Iron Tide](/projects/grassland), five tactical missions escalate from skirmishes to night stealth and camp searches. The tempting implementation was duplicating separate Phaser scene classes and adding custom shortcut buttons per level.
+[Grassland Iron Tide](/projects/grassland) is a personal browser strategy game. Its five missions escalate from skirmishes to night crossings and stealth. AI tools helped with the code, copy and original assets; I set the product direction, mission design and interaction rules, reviewed the output and verified it.
 
-Instead, we separated **mission data** from **interaction grammar**:
-1. Missions live as typed manifest definitions consumed by one runtime loader, so only the active mission's atlases enter memory.
-2. Click, drag-box, `Shift` toggling, `Ctrl` grouping, and right-click commands stay immutable across all five missions. A level can lock which verbs are permitted, never redefine what an input means.
-3. Pause, defeat explanation, checkpoint snapshot, and unit restoration share one 20 Hz simulation save chain.
+The design separates **mission data** from **interaction grammar**:
 
-## Flat visibility across hardware and desktop views
+1. Missions are defined as data, so a level describes its map and objectives rather than its own controls.
+2. Click, drag-box, `Shift` to add or remove, `Ctrl` grouping and right-click commands work the same in all five missions. A mission can limit which commands are available, never redefine what an input means.
+3. Pause, failure reasons, checkpoints and the restored unit state share one save chain, on a fixed 20 Hz simulation step.
 
-The same principle shaped [MazeRunners](/projects/maze) and [Lamplight Nook](/projects/lamplight). Rather than burying errors inside nested diagnostic sub-tabs, [MazeRunners](/projects/maze) feeds both live USB Web Serial frames and offline browser Demo Mode through one parity-tested event dispatcher (`4` regression checks covering serial, feedback, servo, and audio sync).
+## Flat visibility in a desktop tool
 
-Similarly, [Lamplight Nook](/projects/lamplight) maps real Claude Agent SDK events straight onto Wick's flat blackboard plan (`Step X of Y`) rather than trapping users inside collapsible log trees. Flat state machines eliminate hidden dead ends because every transition lives in one inspectable table — test the immutable command contract directly in our [Pattern Atlas](/patterns?pattern=immutable-cross-stage-grammar).
+The same idea shapes [Lamplight Nook](/projects/lamplight), another personal project built the same way: agent progress is shown on Wick's blackboard as a flat plan rather than buried in collapsible log trees. A flat state machine keeps each transition in one place where it can be checked. Try the shared command contract in the [Pattern Atlas](/patterns?pattern=immutable-cross-stage-grammar).

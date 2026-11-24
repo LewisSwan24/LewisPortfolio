@@ -1,6 +1,6 @@
 ---
 title: "Designing Fail-Closed Approval Queues for Autonomous Agents"
-date: "2026-11-05"
+date: "2026-11-24"
 excerpt: "When an AI coding workflow loses Wi-Fi, hits a 30-second pairing timeout, or encounters an unreadable diff, the safest state transition is stopping cleanly—never guessing forward."
 tags:
   - AI Safety
@@ -11,17 +11,17 @@ author: "Lewis Dong"
 published: true
 ---
 
-Autonomous coding workflows rarely fail cleanly when optimism is baked into their queues. A tool call times out, a mobile bridge drops half a packet, or a cloud relay returns an ambiguous error—and a fail-open UI quietly retries or falls back to a default permission.
+Autonomous coding workflows rarely fail cleanly when optimism is built into their queues. A tool call times out, a bridge drops half a packet, or a cloud relay returns an ambiguous error, and a fail-open interface quietly retries or falls back to a default permission.
 
 ## Four fail-closed rules across hardware and web
 
-Across [Walkie](/projects/walkie), [Lamplight Nook](/projects/lamplight), and [Resume Autofill](/projects/autofill), every approval queue obeys four fail-closed invariants:
+Across [Walkie](/projects/walkie), [Resume Autofill](/projects/autofill) and this site's [AI Lab](/ai), the approval paths follow four fail-closed rules. Walkie and Resume Autofill are personal projects whose code was mostly written by AI coding tools (Claude Code); I set the rules, reviewed the output and verified it.
 
-1. **Timeout writes zero trust**: If Walkie's 30-second physical pairing countdown expires, zero bytes of `pair.key` land on disk (`gate-p5`).
-2. **Disconnects classify before retrying**: Walkie splits offline failures into `No Wi-Fi`, `Relay Unreachable`, and `Bridge Offline` instead of flashing a vague spinner.
-3. **Human Submit stays structurally unreachable**: Autofill automates multi-page `Next` advancement yet refuses programmatic clicks on any final `Submit` control.
-4. **Grounded retrieval refuses ungrounded synthesis**: In [AI Lab](/ai), if neither BM25F nor the 64-dim quantized semantic index hits real corpus evidence, the workbench explicitly declines to synthesize prose.
+1. **No answer, no trust**: Walkie writes a new pairing key as a candidate, `pair.key.new`, before the watch answers. Only after a front-key press within 30 seconds is it renamed over `pair.key`; a refusal or a timeout leaves the working key untouched, and the unanswered candidate is offered again next time.
+2. **Classify the disconnect before retrying**: Walkie's offline screen says which link is down (no Wi-Fi, no relay, or PC offline) instead of showing a vague spinner.
+3. **The final submit stays human**: Autofill can press "Next" on multi-page forms but never presses the final Submit.
+4. **No evidence, no answer**: in the [AI Lab](/ai), if retrieval finds no matching record in the site's evidence corpus, the workbench declines rather than writing prose to fill the gap.
 
-## Inspecting failure transitions live
+## Stepping through failure transitions
 
-You can scrub directly through fault-injection frames—including mid-utterance USB cable pulls and dropped peer ACKs—inside the [Protocol Replay Studio](/studio/replay) or inspect every case's 4-lens [Red-Team defense](/ai).
+The [Protocol Replay Studio](/studio/replay) steps through simulated fault frames, such as a USB cable change mid-turn. The frames are hand-authored to explain the rules, not captured from the device. Each case's [Red-Team defense](/ai) lists the challenges these rules have to answer.

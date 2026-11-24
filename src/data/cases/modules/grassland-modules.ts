@@ -288,7 +288,7 @@ export const grasslandModules: CaseModulesRecord = {
     {
       id: "grassland-reject-per-level-controls",
       round: { en: "Grammar & Mission Audit", zh: "五关交互语法统一审查" },
-      date: "2026-10",
+      date: "2026-07",
       artifactBefore: {
         en: "Per-mission custom buttons, ad-hoc macro shortcuts, and separate Phaser scene overrides per level",
         zh: "为第 1–5 关各写一份 Phaser 场景类，并随关卡机制增加专属特例快捷键与自动外挂宏",
@@ -310,8 +310,8 @@ export const grasslandModules: CaseModulesRecord = {
     },
     {
       id: "grassland-reject-desynced-retry",
-      round: { en: "Mission 4–5 RC Playthrough", zh: "第四至五关双分辨率实机通关排查" },
-      date: "2026-11",
+      round: { en: "Release-Candidate Audit · Missions 4–5", zh: "发布候选审计 · 第四至五关双分辨率通关" },
+      date: "2026-07",
       artifactBefore: {
         en: "Separate UI objective tracking vs troop reset on failure, plus upfront preloading of all 5 chapters' heavy atlases",
         zh: "战败重开时UI任务状态与单位数组分离存储，且启动首屏一次性预加载五关全部图集",

@@ -1,7 +1,7 @@
 ---
 title: "Shipping Read-Only MCP Tools Without Leaking Unlisted Drafts"
-date: "2026-11-18"
-excerpt: "Recruiters increasingly inspect engineering candidates with coding agents. Why exposing typed JSON-RPC endpoints requires the same fail-closed isolation and PII scrubbing as production APIs."
+date: "2026-11-24"
+excerpt: "If a reviewer points a coding agent at a portfolio, typed read-only endpoints need the same scoping and secret scrubbing as a production API. How this site's MCP endpoint is built."
 tags:
   - AI Safety
   - MCP Protocol
@@ -11,12 +11,12 @@ author: "Lewis Dong"
 published: true
 ---
 
-Hiring teams now run candidate repositories and portfolios through MCP clients directly inside editors. Treating that traffic like casual HTML scraping invites silent leaks: unlisted coursework fragments surface in generic queries, or raw job descriptions echo secrets in plain text.
+Some reviewers may read a candidate's portfolio through an MCP client inside their editor. I have no data on how many do; this endpoint is a bet that a few will. If that traffic is treated like casual HTML scraping, unlisted coursework can surface in generic queries, and pasted job descriptions can echo secrets back in plain text.
 
 ## Enforcing contract boundaries on the server
 
-In this site, `/api/mcp` ships strictly read-only Zod `.strict()` handlers alongside `/.well-known/mcp.json` and `/llms-full.txt`:
+In this site, `/api/mcp` ships read-only Zod `.strict()` handlers alongside `/.well-known/mcp.json` and `/llms-full.txt`:
 
-1. **Five scoped tools, zero writes**: Queries run against static listed flagships, pattern specs, protocol replay frames, and archive vault lessons without database side effects.
-2. **Hard unlisted isolation**: Search and tradeoff tools physically filter to `LISTED_PROJECT_SLUGS`; archival studies appear only inside the explicit `audit_vault_lineage` tool.
-3. **Secret scrubbing before scoring**: Input sanitizers strip emails, phone tokens, `Bearer`, `sk-`, `ghp_`, and `AIza` keys prior to local BM25 ranking inside [AI Lab](/ai).
+1. **Five scoped tools, zero writes**: queries run against listed case studies, pattern specs, protocol replay frames and archive lessons, with no database side effects.
+2. **Unlisted work kept out of general answers**: search and tradeoff tools filter to `LISTED_PROJECT_SLUGS`; archived studies are reachable only through the separate `audit_vault_lineage` tool. This is scoping, not access control: the archive itself is not secret.
+3. **Secret scrubbing before scoring**: input sanitizers strip emails, phone tokens, `Bearer`, `sk-`, `ghp_` and `AIza` keys before local ranking inside [AI Lab](/ai).

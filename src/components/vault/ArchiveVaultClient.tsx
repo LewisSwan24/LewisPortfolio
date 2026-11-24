@@ -12,7 +12,7 @@ const CATEGORY_OPTIONS: ReadonlyArray<{
   id: CategoryFilter;
   label: { en: string; zh: string };
 }> = [
-  { id: "all", label: { en: "All 8 Archives", zh: "全部 8 项档案" } },
+  { id: "all", label: { en: "All archives", zh: "全部档案" } },
   { id: "abandoned", label: { en: "Abandoned", zh: "主动中止" } },
   { id: "superseded", label: { en: "Superseded", zh: "被主案取代" } },
   { id: "scoped-out", label: { en: "Scoped Out", zh: "退出主展位" } },
@@ -41,6 +41,10 @@ export function ArchiveVaultClient({
   const [category, setCategory] = useState<CategoryFilter>("all");
   const [successorSlug, setSuccessorSlug] = useState<string>("all");
   const isZh = locale === "zh";
+  // Only offer a status that at least one archived case still has.
+  const categoryOptions = CATEGORY_OPTIONS.filter(
+    (opt) => opt.id === "all" || autopsies.some((a) => a.archiveCategory === opt.id)
+  );
 
   const filtered = useMemo(() => {
     return autopsies.filter((item) => {
@@ -72,18 +76,20 @@ export function ArchiveVaultClient({
       {/* Interactive Lineage Genealogy Map */}
       <section
         className={styles.lineagePanel}
-        aria-label={isZh ? "设计基因演化图谱" : "Design lineage genealogy map"}
+        aria-label={isZh ? "归档作品与主案的关联" : "Related cases map"}
         data-testid="vault-lineage-map"
       >
         <div className={styles.lineageHeader}>
           <div>
             <span className="eyebrow">
-              {isZh ? "设计演进脉络 · 8 项退场作品 → 6 大公开旗舰" : "Design Lineage · 8 Retired Studies → 6 Flagships"}
+              {isZh
+                ? `相关案例 · ${autopsies.length} 项归档作品 · ${FLAGSHIP_NODES.length} 个公开主案`
+                : `Related cases · ${autopsies.length} archived · ${FLAGSHIP_NODES.length} listed`}
             </span>
             <h2 className="h-display h3" style={{ marginTop: 6, marginBottom: 0 }}>
               {isZh
-                ? "每一项中止或退场的设计，都把踩坑教训喂进了后来的主案"
-                : "How retired and abandoned prototypes shaped the six listed flagships"}
+                ? "每个公开主案和哪些归档作品相关"
+                : "Which archived projects relate to each listed case"}
             </h2>
           </div>
           {successorSlug !== "all" && (
@@ -92,7 +98,7 @@ export function ArchiveVaultClient({
               className={styles.filterBtn}
               onClick={() => setSuccessorSlug("all")}
             >
-              {isZh ? "显示全部脉络" : "Reset lineage filter"}
+              {isZh ? "显示全部" : "Show all"}
             </button>
           )}
         </div>
@@ -113,7 +119,7 @@ export function ArchiveVaultClient({
                     setSuccessorSlug((prev) => (prev === node.slug ? "all" : node.slug))
                   }
                 >
-                  {isZh ? `${node.ancestors.length} 项前身` : `${node.ancestors.length} ancestors`}
+                  {isZh ? `${node.ancestors.length} 项相关` : `${node.ancestors.length} related`}
                 </button>
               </div>
               <div className={styles.lineageAncestors}>
@@ -132,7 +138,7 @@ export function ArchiveVaultClient({
       <div className={styles.filterStrip} role="region" aria-label={isZh ? "档案馆筛选" : "Archive filters"}>
         <div className={styles.filterGroup} role="group" aria-label={isZh ? "按归档类别筛选" : "Filter by archive status"}>
           <span className={styles.filterLabel}>{isZh ? "归档类型" : "Status"}</span>
-          {CATEGORY_OPTIONS.map((opt) => (
+          {categoryOptions.map((opt) => (
             <button
               key={opt.id}
               type="button"
@@ -141,7 +147,9 @@ export function ArchiveVaultClient({
               data-testid={`vault-cat-${opt.id}`}
               onClick={() => setCategory(opt.id)}
             >
-              {opt.label[locale]}
+              {opt.id === "all"
+                ? `${opt.label[locale]} (${autopsies.length})`
+                : opt.label[locale]}
             </button>
           ))}
         </div>
@@ -191,7 +199,7 @@ export function ArchiveVaultClient({
 
             <div className={styles.successorBox}>
               <span className="eyebrow">
-                {isZh ? "基因传承至公开旗舰" : "Inherited by flagship case(s)"}
+                {isZh ? "相关的公开主案" : "Related listed case(s)"}
               </span>
               {item.lineageSuccessors.map((succ) => (
                 <div key={succ.slug} style={{ fontSize: 13.5, lineHeight: 1.55 }}>

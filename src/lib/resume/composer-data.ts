@@ -97,7 +97,7 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
       ],
       zh: [
         "Human-AI 确权边界与默认拒绝交互设计",
-        "非对称物理按键语法（ESP32-S3 / BLE）",
+        "非对称物理按键语法（ESP32-S3 / ESP-NOW）",
         "三层置信度分流与显性故障归因诊断",
         "BM25 可溯源零幻觉问答架构",
         "WCAG 2.1 AA 焦点流与键盘无障碍规范",

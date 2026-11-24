@@ -1,7 +1,7 @@
 ---
 title: "USB Preemption Over Wireless Assumptions"
-date: "2026-11-03"
-excerpt: "When a wearable remote sits beside a laptop, routing audio through a cloud relay wastes battery and invites packet loss—yet stitching USB and Wi-Fi mid-sentence invites duplicate commands."
+date: "2026-11-24"
+excerpt: "When a wearable remote sits beside a laptop, the cable is the sensible default over a cloud relay. Stitching USB and Wi-Fi together mid-sentence, though, invites half-heard and duplicate commands."
 tags:
   - Physical Computing
   - Protocols
@@ -11,15 +11,17 @@ author: "Lewis Dong"
 published: true
 ---
 
-Every wireless-first gadget demo promises seamless handoff between desk and sofa. In practice, mid-utterance channel stitching between USB Serial and WebSocket relays is where subtle duplicate tool invocations are born.
+Wireless-first gadget demos promise seamless handoff between desk and sofa. My concern is that stitching one spoken turn across USB serial and a WebSocket relay is exactly where half-heard commands and duplicate tool calls could come from.
 
-## Deterministic preemption without silent stitching
+## Preemption without silent stitching
 
-In [Walkie](/projects/walkie), hardware transport arbitration follows two crisp rules verified on silicon and inspectable frame by frame inside the [Protocol Replay Studio](/studio/replay?track=walkie):
+In [Walkie](/projects/walkie), the bridge follows two rules, documented in the project README. Claude Code wrote most of Walkie's code; I set the rules, reviewed the output and verified what is marked as verified below.
 
-1. **USB DTR immediately preempts `wss://`**: Plugging in USB-C at the desk switches capture to raw `16 kHz` PCM over CDC serial with zero watch menu diving.
-2. **Mid-turn cable swaps abort cleanly**: Pulling or plugging the USB cable during an active hold immediately drops the partial audio buffer and notifies the operator (`Link switched — release and retry`) instead of splicing half an ADPCM turn onto a half-recorded PCM stream.
+1. **The cable comes first**: the bridge looks for the watch on USB first and uses the relay only when there is no cable and a pairing key and relay host are set. While on the relay it looks for the cable every 3 seconds and moves to it when it appears. Over the cable, audio goes as `16 kHz` PCM by default.
+2. **A move abandons the turn**: moving between cable and relay is not seamless. A turn in progress is dropped, as on any lost link, rather than splicing half a turn from one link onto the other.
+
+**What has been checked:** whole turns over USB have run on the watch. The on-device check of moving between relay and cable (gate M) has not been run yet, so the second rule is designed and documented but not verified on the watch. The [Protocol Replay Studio](/studio/replay?track=walkie) steps through a hand-authored simulation of it.
 
 ## Why honest interruption beats brittle continuity
 
-Users recover from a 1-second explicit retry cue effortlessly; they do not recover easily when a spliced audio buffer fires a half-parsed shell command. Honest state transitions preserve operator trust across every physical transition.
+My reasoning, not a measured result: saying a turn again costs a few seconds, while a spliced recording that reaches an agent as a half-formed shell command can cost much more. Dropping the turn is the cheaper failure.

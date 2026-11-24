@@ -187,31 +187,6 @@ const nextConfig = {
           },
         ],
       },
-      {
-        // The Vigil prototype is served from our own origin and embedded in its
-        // own case page, so it has to permit being framed by us. The blanket
-        // X-Frame-Options: DENY and frame-ancestors 'none' above block that;
-        // both are relaxed to same-origin here and nowhere else. Its own policy
-        // is tighter than the site default: the file is self-contained and
-        // makes no network calls, so connect-src is 'none'.
-        source: "/projects/vigil/prototype.html",
-        headers: [
-          // The case is unlisted and abandoned; keep the prototype out of search too.
-          {
-            key: "X-Robots-Tag",
-            value: "noindex, nofollow",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
-          },
-          {
-            key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; frame-ancestors 'self';",
-          },
-        ],
-      },
     ];
   },
   async rewrites() {

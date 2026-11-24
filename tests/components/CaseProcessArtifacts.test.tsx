@@ -50,7 +50,7 @@ describe("Design Process Artifacts", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "信任边界" }));
     expect(screen.queryByText(/我能回上一页吗/)).not.toBeInTheDocument();
-    expect(screen.getByText(/光写 94% 匹配/)).toBeInTheDocument();
+    expect(screen.getByText(/只给一个匹配百分比/)).toBeInTheDocument();
     expect(screen.getByRole("status")).toHaveTextContent(/直接在匹配卡列出课程/);
   });
 

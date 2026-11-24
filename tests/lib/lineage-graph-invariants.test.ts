@@ -8,7 +8,7 @@ import { LISTED_PROJECT_SLUGS, UNLISTED_PROJECT_SLUGS } from "@/lib/project-rout
 import { BLOG_CLUSTERS } from "@/lib/blog-clusters";
 
 describe("v5.7 Causal Lineage Knowledge Graph Invariants", () => {
-  it("constructs a deterministic 4-layer acyclic graph with 8 Vault, 6 Flagship, 6 Pattern, and 4 Cluster nodes", async () => {
+  it("constructs a deterministic 4-layer acyclic graph with 7 Vault, 6 Flagship, 6 Pattern, and 4 Cluster nodes", async () => {
     const graph = await buildCausalLineageGraph();
 
     const byLayer = {
@@ -18,7 +18,7 @@ describe("v5.7 Causal Lineage Knowledge Graph Invariants", () => {
       cluster: graph.nodes.filter((n) => n.layer === "cluster"),
     };
 
-    expect(byLayer.vault).toHaveLength(8);
+    expect(byLayer.vault).toHaveLength(7);
     expect(byLayer.flagship).toHaveLength(6);
     expect(byLayer.pattern).toHaveLength(6);
     expect(byLayer.cluster).toHaveLength(BLOG_CLUSTERS.length);
@@ -54,11 +54,12 @@ describe("v5.7 Causal Lineage Knowledge Graph Invariants", () => {
   it("traces complete upstream/downstream causal BFS paths and surfaces honest-gap verifiedStatus", async () => {
     const graph = await buildCausalLineageGraph();
 
-    const vigilTrace = traceCausalPath(graph, "vault:vigil");
-    expect(vigilTrace.nodeIds.has("vault:vigil")).toBe(true);
-    expect(vigilTrace.nodeIds.has("flagship:autofill")).toBe(true);
-    expect(vigilTrace.nodeIds.has("pattern:three-tier-confidence-split")).toBe(true);
-    expect(vigilTrace.edgeIds.size).toBeGreaterThanOrEqual(2);
+    const gapTrace = traceCausalPath(graph, "vault:gapmapper");
+    expect(gapTrace.nodeIds.has("vault:gapmapper")).toBe(true);
+    expect(gapTrace.nodeIds.has("flagship:autofill")).toBe(true);
+    expect(gapTrace.nodeIds.has("pattern:three-tier-confidence-split")).toBe(true);
+    expect(gapTrace.edgeIds.size).toBeGreaterThanOrEqual(2);
+    expect(graph.nodes.some((n) => n.id === "vault:vigil")).toBe(false);
 
     const walkieTrace = traceCausalPath(graph, "flagship:walkie");
     expect(walkieTrace.upstreamNodeIds.size).toBeGreaterThanOrEqual(1);
@@ -67,6 +68,7 @@ describe("v5.7 Causal Lineage Knowledge Graph Invariants", () => {
     // Every flagship must map at least one verifiedStatus bucket
     const statuses = new Set(graph.nodes.map((n) => n.verifiedStatus));
     expect(statuses.has("bench-tested")).toBe(true);
-    expect(statuses.has("unverified-hypothesis")).toBe(true);
+    // Vigil was the only unverified-hypothesis node; it was removed on 2026-11-25.
+    expect(statuses.size).toBeGreaterThanOrEqual(2);
   });
 });

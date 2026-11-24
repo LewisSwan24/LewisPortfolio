@@ -96,8 +96,8 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
           zh: "掏手机会顺带解锁消息红点与社交信息流，打断离桌休息；腕表物理按住即说无需亮屏解锁，把操作压回纯粹的「单手按压—听取简报—物理拍板」闭环。",
         },
         codeOrTestReceipt: {
-          en: "Verified 250 ms PTT anti-bounce gate and 3-line approval queue UI in M5StickS3 firmware + /projects/walkie#research-vault.",
-          zh: "M5StickS3 固件已实装 250 ms 最短按住防抖与 3 行精简审批卡片，详见 /projects/walkie#research-vault。",
+          en: "300 ms PTT hold (HOLD_MS in the firmware's gesture.h) and the 3-line approval queue UI in M5StickS3 firmware + /projects/walkie#research-vault.",
+          zh: "M5StickS3 固件里按住 300 ms 才算对讲（gesture.h 的 HOLD_MS），并实装了 3 行精简审批卡片，详见 /projects/walkie#research-vault。",
         },
         unresolvedHypothesis: {
           en: "Multi-week developer diary testing comparing wrist abandonment rate against a phone lock-screen notification widget remains unexecuted.",
@@ -110,16 +110,16 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         lens: "systems-architect",
         severity: "blocking",
         challengeQuestion: {
-          en: "Co-hosting Walkie on the same 16 MB flash as companion firmware risks bricking otadata, and plugging in USB mid-speech risks splitting ADPCM/PCM buffers.",
-          zh: "和另一套工程固件共用 16 MB 闪存极易误擦分区，而且在单轮语音中途插拔 USB-C 线缆会直接把音频流撕成两半。",
+          en: "Co-hosting Walkie on the same 8 MB flash as companion firmware risks bricking otadata, and plugging in USB mid-speech risks splitting ADPCM/PCM buffers.",
+          zh: "和另一套工程固件共用 8 MB 闪存极易误擦分区，而且在单轮语音中途插拔 USB-C 线缆会直接把音频流撕成两半。",
         },
         empiricalDefense: {
-          en: "guard.py blocks unsafe partition offsets pre-flash so app0 stays untouched. At runtime, USB Serial immediately preempts the Fly.io wss:// relay; mid-turn cable swaps intentionally abort and surface a link-transition notice instead of stitching broken packets.",
-          zh: "烧录前由 guard.py 锁死 app1 偏移防止擦毁 app0；运行时 USB 接入立即抢占 wss:// 中继，若在说话中途插拔则主动中止当轮并明示链路切换，绝不硬拼残帧。",
+          en: "guard.py refuses the PlatformIO targets (erase, uploadfs, uploadfsota) that would write outside app1, so app0 stays untouched. At runtime, USB Serial immediately preempts the Fly.io wss:// relay; mid-turn cable swaps intentionally abort and surface a link-transition notice instead of stitching broken packets.",
+          zh: "烧录前由 guard.py 拒绝会写到 app1 以外的 PlatformIO 目标（erase、uploadfs、uploadfsota），防止擦毁 app0；运行时 USB 接入立即抢占 wss:// 中继，若在说话中途插拔则主动中止当轮并明示链路切换，绝不硬拼残帧。",
         },
         codeOrTestReceipt: {
-          en: "gate-p5 pairing abort, guard.py pre-flash guard, host g++ frame tests, and 15/15 fake-claude regression suites pass.",
-          zh: "已通过 gate-p5 配对中止门禁、guard.py 烧录守卫、宿主机 g++ 协议测试与 15/15 fake-claude 回归。",
+          en: "guard.py pre-flash guard, host g++ frame tests, and bridge tests against the fake-claude stand-in; gate P5 (pairing abort) is written but has no run record.",
+          zh: "guard.py 烧录守卫、宿主机 g++ 协议测试，以及用 fake-claude 替身跑的桥接测试；gate P5（配对中止）已写好，但没有执行记录。",
         },
         unresolvedHypothesis: {
           en: "Thermal battery drain across > 90 continuous minutes of Wi-Fi ADPCM streaming off USB power has not been profiled in a formal endurance bench.",
@@ -133,7 +133,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         severity: "high",
         challengeQuestion: {
           en: "A 135×240 watch screen with TTS audio breaks down if the operator has low vision or works in a noisy room where speakers are inaudible.",
-          zh: "135×240 微屏配合语音播报，在厨房嘈杂环境听不清声音、或低视力开发者场景下如何避免看错放行项？",
+          zh: "135×240 微屏配合语音播报，在嘈杂房间里听不清声音、或低视力开发者场景下如何避免看错放行项？",
         },
         empiricalDefense: {
           en: "Never relies on audio alone: every approval pauses on a high-contrast summary card capped at concise action verbs, while complex multi-file diffs queue safely for full desktop monitor review instead of shrinking tiny scrollbars.",
@@ -289,7 +289,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "In hiring forms, a silent hallucinated visa status or wrong salary expectation disqualifies an applicant silently. Tri-tier triage (e.g. 45 Filled / 1 Review / 1 Blank) handles repetitive drudgery while reserving human judgment strictly for career-critical fields.",
-          zh: "网申填错工作签证或编造求职动机，代价是直接被系统筛掉且浑然不知。三档分流（如 45 直填 / 1 待核 / 1 留空）消灭 90% 机械重复，把真正影响录用的判断留给人手把关。",
+          zh: "网申填错工作签证或编造求职动机，代价是直接被系统筛掉且浑然不知。三档分流（如 45 直填 / 1 待核 / 1 留空）接住重复的填写，把真正影响录用的判断留给人手把关。",
         },
         codeOrTestReceipt: {
           en: "Three-tier summary tally & side-panel per-field reason log verified in Chrome MV3 extension + /projects/autofill#design-decisions.",
@@ -314,8 +314,8 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
           zh: "不写按公司硬编码的脆弱脚本，而是围绕 AntD / Element Plus / react-select / ARIA 通用组件库派发事件并回读校验；移动端则以 Android Keystore 加密输入法兜底封闭小程序。",
         },
         codeOrTestReceipt: {
-          en: "UI-library widget adapter suite + Android Keystore IME isolation verified in automated CI gates.",
-          zh: "组件库适配器回归测试与 Android Keystore 加密输入法均已通过自动化测试。",
+          en: "Android unit tests, including the IME no-network bytecode check, run in CI; the UI-library adapters are tested against local synthetic fixtures.",
+          zh: "Android 单元测试（含输入法零网络字节码检查）在 CI 里跑；组件库适配器用本地合成夹具测试。",
         },
         unresolvedHypothesis: {
           en: "Production DOM drift on live Workday, Beisen, Moka, and Feishu portals remains an ongoing maintenance surface outside static test fixtures.",
@@ -332,8 +332,8 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
           zh: "用绿/黄/红边框区分已填、待核与留空，色弱用户根本分不清，切换到暗黑主题网页时对比度也会崩掉。",
         },
         empiricalDefense: {
-          en: "Tri-coded every tier with distinct border strokes (solid / dashed / double), explicit text badges, icons, and a side-panel log—checked across both light and dark ATS mock themes.",
-          zh: "强制落地「线型（实线 / 虚线 / 双线）+ 文字标签 + 图标 + 侧栏原因」三重冗余编码，并在明暗两套主题下逐项截图核验对比度。",
+          en: "Tri-coded every tier with distinct border strokes (2px solid / 2px dashed / 3px solid), explicit text badges, icons, and a side-panel log—checked across both light and dark ATS mock themes.",
+          zh: "强制落地「线型（实线 / 虚线 / 粗实线）+ 文字标签 + 图标 + 侧栏原因」三重冗余编码，并在明暗两套主题下逐项截图核验对比度。",
         },
         codeOrTestReceipt: {
           en: "Light/dark tri-coded outline screenshots & contrast checks archived in Autofill module verification.",
@@ -374,20 +374,20 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
     slug: "maze",
     caseTitle: { en: "MazeRunners", zh: "MazeRunners 多人触控迷宫" },
     executiveThesis: {
-      en: "Shared physical conductivity turns silent solo play into loud table negotiation—backed by electrical isolation and IR debounce so hardware glitches never break player trust.",
-      zh: "跨玩家串联导电把单机哑巴操作逼成围桌喊话配合；双板电气隔离与红外防抖则保证硬件绝不扣冤枉分。",
+      en: "Shared wristbands mean no player can steer alone. A three-sample IR debounce and a 400 ms cooldown keep one ball pass to one penalty.",
+      zh: "腕带两人共用，谁都无法单独操控。红外连续三次取样去抖，再加 400 ms 冷却，一次过球只扣一次分。",
     },
     lenses: [
       {
         lens: "design-director",
         severity: "high",
         challengeQuestion: {
-          en: "During the exhibition, 9 groups played yet players ignored the score display and struggled to put on finger sleeves—did the onboarding design actually work?",
-          zh: "展场 9 组 36 人试玩时，观众戴不好指套而且根本不看计分大屏，这算不算开局引导和视觉反馈双双失灵？",
+          en: "During the exhibition, 9 groups played, many still struggled with the rules after the explanation, and only about 3 groups finished—did the onboarding design actually work?",
+          zh: "展场 9 组 36 人试玩，讲解之后仍有不少人没弄懂规则，大约只有三组通关。开局引导算不算失灵？",
         },
         empiricalDefense: {
-          en: "Observation revealed sleeve fitting worked best as a brief host-assisted ritual that sparked table banter, while ignoring the screen proved tactile finger vibration + buzzer carried penalty urgency directly to the hands where attention already lived.",
-          zh: "现场观察恰恰校准了两点：主持人帮忙戴指套成了自然的开局破冰仪式；而玩家眼睛死盯钢球不看大屏，正好证明高优先级惩罚必须由指套震动与蜂鸣瞬间直达手指。",
+          en: "Only partly. A team member explained the rules before each round and gearing up took about a minute per group, yet many players still struggled with the rules. Attention went to the maze, the score and time display, the LEDs and the sounds, and some players were surprised by the vibration the first time. Rule onboarding stays an open problem.",
+          zh: "只算部分有效。每轮开始前有组员讲解规则，每组戴装备大约一分钟，讲完仍有不少玩家没弄懂。玩的时候，注意力在迷宫、分数与时间显示、灯光和声音上，有些玩家第一次被震动吓了一跳。规则引导还是没解决的问题。",
         },
         codeOrTestReceipt: {
           en: "Exhibition observation logs across 9 groups (36 players, ~3 completions) archived in /projects/maze#research-vault.",
@@ -408,16 +408,16 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
           zh: "同一块单片机既推大电流舵机又轮询 10 路红外传感器，极易拉低供电复位，还会把滚球一次经过误判成连扣三次分。",
         },
         empiricalDefense: {
-          en: "Physically isolated tilt actuation onto SafeTouchServoController away from the PlanB Mega sensing board, and locked per-channel 45 ms stability debounce + 1200 ms cooldown lockout so 1 ball pass = 1 atomic serial event.",
-          zh: "硬件层面将舵机拆到独立 SafeTouchServoController 与主感测板隔离；固件层面为十路红外各自设定 45 ms 稳态消抖 + 1200 ms 冷却锁定，死守一过一事件。",
+          en: "Tilt servos run on a separate Uno (SafeTouchServoController) and the ball-launcher stepper on another, with every board on a shared ground. Each IR sensor needs three consecutive samples to trigger, then a 400 ms cooldown, so one ball pass is one serial event.",
+          zh: "倾斜舵机跑在单独的一块 Uno 上（SafeTouchServoController），发球机步进电机在另一块 Uno 上，所有板子共地。每个红外传感器要连续三次取样才算触发，之后冷却 400 ms，一次过球只产生一个串口事件。",
         },
         codeOrTestReceipt: {
-          en: "Bench-tuned 45 ms / 1200 ms IR thresholds + shared Web Serial / Demo reducer parity tests.",
-          zh: "45 ms / 1200 ms 红外门限与网页/真机同源状态机一致性均经台架调校验证。",
+          en: "Three-sample debounce and 400 ms cooldown (course paper) + shared Web Serial / Demo reducer parity tests.",
+          zh: "三次取样去抖与 400 ms 冷却（见课程论文），加上网页与真机同源状态机的一致性测试。",
         },
         unresolvedHypothesis: {
-          en: "1200 ms lockout prevents rapid intentional double-trap hits within 1.2 s—an explicit latency trade-off made to guarantee zero bounce errors.",
-          zh: "1200 ms 冷却窗口意味着 1.2 秒内连续跨两个近距陷阱会忽略第二次，是用微盲窗换绝对不误扣的刻意取舍。",
+          en: "The 400 ms cooldown ignores a second trap hit inside that window, a trade-off made so one pass never costs two penalties.",
+          zh: "400 ms 冷却期内的第二次落陷会被忽略。这是有意的取舍，换来一次经过不会被扣两次分。",
         },
         verifiedStatus: "bench-tested",
         evidenceHref: "/projects/maze#state-matrix",
@@ -472,20 +472,20 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
     slug: "onthebeat",
     caseTitle: { en: "On The Beat", zh: "On The Beat 演出社交手环" },
     executiveThesis: {
-      en: "Anonymous blind waves protect social dignity until mutual agreement, then Card 3 intentionally dims out so software yields to eye-to-eye conversation.",
-      zh: "双向点头之前匿名挥手保护尊严，一旦确认碰面则由三号地标卡主动息屏退场，把现场还给人与人面对面交流。",
+      en: "Anonymous blind waves protect social dignity until mutual agreement, then names and a meeting place show and the phones go back in pockets; after LET'S FINISH the card goes off.",
+      zh: "双方都同意之前，挥手一直匿名，保住面子。同意之后才显示名字和碰面地点，手机放回口袋；按下 LET'S FINISH，碰面用的那张卡就熄灭。",
     },
     lenses: [
       {
         lens: "design-director",
         severity: "blocking",
         challengeQuestion: {
-          en: "Why cap the app at 3 cards and ban text chat when two strangers at a noisy gig might lose each other without a quick DM?",
-          zh: "演出现场又黑又吵，只有一张唯一地标卡而不给站内发文字私信，万一两个人站在场边找不到彼此怎么办？",
+          en: "Why cap the app at 4 cards and ban text chat when two strangers at a noisy gig might lose each other without a quick DM?",
+          zh: "演出现场又黑又吵，只给名字和碰面地点，不让站内发文字私信，万一两个人站在场边找不到彼此怎么办？",
         },
         empiricalDefense: {
-          en: "Adding a chat feed turns a live music night back into staring at glowing phones. Limiting Card 3 to a fixed venue landmark + intentional dim-out forces immediate real-world look-up—though whether landmark-only recovery holds in real crowds is flagged honestly as unverified.",
-          zh: "一旦开放聊天框，工具就退化成让人继续低头回消息的社交软件；三号卡锁死单一地标并主动变暗，就是要逼出抬头张望的现实互动——但这一假设仍诚实标为未在真人群体实测。",
+          en: "Adding a chat feed turns a live music night back into staring at glowing phones. Giving only a first name, where to meet, a few words on where you are and a shared number pushes people to look up—though whether that holds in real crowds is flagged honestly as unverified.",
+          zh: "一旦开放聊天框，工具就退化成让人继续低头回消息的社交软件。只给名字、碰面地点、几个字的位置和同一个编号，就是要让人抬头去找。这一假设仍未在真实人群里测过。",
         },
         codeOrTestReceipt: {
           en: "3-card state flow (SAY HI / FIRST SONG? / LET'S DANCE!) + Sep 29 Ava/Leo dual-session walkthrough.",
@@ -510,12 +510,12 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
           zh: "淘汰早期强依赖电脑本地端口的脚本，将中继常驻部署于悉尼 Fly.io，并打通手环侧键双向状态回传；9 月 25 日已脱离电脑完成双环真机握手。",
         },
         codeOrTestReceipt: {
-          en: "Sep 25 no-laptop StickS3 + StickC Plus handshake over Sydney Fly.io relay + Sep 29 dual-browser parity.",
-          zh: "9 月 25 日脱离电脑双环握手与 9 月 29 日双客户端状态对齐已通过台架验证。",
+          en: "Sep 25 no-laptop StickS3 + StickC Plus handshake over Sydney Fly.io relay.",
+          zh: "9 月 25 日脱离电脑，StickS3 与 StickC Plus 两支手环经悉尼 Fly.io 中继完成握手。",
         },
         unresolvedHypothesis: {
-          en: "StickC Plus front-button short-press ergonomics and true BLE RSSI attenuation inside dense human crowds (> 200 bodies) need venue RF testing.",
-          zh: "StickC Plus 正面短按防误触及 200+ 人密集人体遮挡下的真实蓝牙信号衰减仍需现场射频实测。",
+          en: "StickC Plus front-button ergonomics, and how ESP-NOW nearness holds up through a dense crowd, need testing at a venue. The repo's crowd figures come from a model, and two worn bands knocked together were not recognised.",
+          zh: "StickC Plus 正面按键的手感，以及 ESP-NOW 近场感知在密集人群里是否可靠，都要到现场测。仓库里的人群数据来自模型；两支戴在手上的手环相碰时，也没有被识别出来。",
         },
         verifiedStatus: "bench-tested",
         evidenceHref: "/projects/onthebeat#state-matrix",
@@ -524,12 +524,12 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         lens: "wcag-auditor",
         severity: "high",
         challengeQuestion: {
-          en: "Dark venue screens that deliberately dim out on Card 3 risk falling below contrast thresholds for low-vision attendees.",
-          zh: "配合演出现场暗光又要在三号卡主动变暗退场，低视力观众会不会根本看不清碰面地标文字？",
+          en: "In a dark venue, the meeting place and the shared two-digit number risk falling below contrast thresholds for low-vision attendees.",
+          zh: "演出现场光线很暗，低视力观众会不会看不清碰面地点和那个两位数编号？",
         },
         empiricalDefense: {
-          en: "Dim-out transitions reduce ambient screen glare after a deliberate hold/read cue while preserving high-contrast foreground text ratios on the landmark title and providing wrist side-button tactile feedback.",
-          zh: "主动退场并非把字变灰到看不见，而是撤除高亮度背景光污染，同时维持地标核心标题的高对比度，并辅以手环侧键实体回馈。",
+          en: "The shared number can be held up full screen over a crowd, the wristband shows the same number, and knocking bands together confirms the meeting without reading any text.",
+          zh: "那个编号可以全屏举过人群，手环上也显示同一个数字。两支手环一碰就能确认找到彼此，不用读任何文字。",
         },
         codeOrTestReceipt: {
           en: "Verified dual-theme UI contrast and wrist/phone state parity across 12+ design review iterations.",
@@ -546,16 +546,16 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         lens: "ai-safety",
         severity: "blocking",
         challengeQuestion: {
-          en: "Earlier AI-generated builds faked MEET states with static JSON and mislabeled every card '1 of 4'. How do you guarantee bilateral consent isn't spoofed?",
-          zh: "之前 AI 生成初版曾用静态假 MEET 数据蒙混过关、页码也全写着「1 of 4」，怎么确保现在的双向同意门禁不是表面作秀？",
+          en: "The code was written by AI tools. How do you know the both-say-yes gate is real and not a mock screen?",
+          zh: "代码是 AI 工具写的。你怎么确认「双方都同意」这道门是真的，不是做出来的假画面？",
         },
         empiricalDefense: {
-          en: "Rejected 12+ deceptive AI canvas iterations until two independent live clients (Ava & Leo) and two real wristbands negotiated blind wave (-68 dBm) -> mutual nod (-58 dBm) before unlocking names and landmarks.",
-          zh: "连续打回 12 余轮伪联调 AI 画布，严格要求两个独立真实客户端及两块真机手环分别完成匿名感知与双向确认协商后，才允许解锁名字与地标。",
+          en: "Sent the generated canvas back for rework at least 5 times (and the earlier Say Hello canvas at least 12), and did not call it working until two real wristbands showed MEET together through the cloud relay.",
+          zh: "生成的画布至少打回 5 次（更早的 Say Hello 画布至少 12 次）。直到两支真手环经云端中继同时显示 MEET，才算跑通。",
         },
         codeOrTestReceipt: {
-          en: "12+ rejection receipts & Sep 25/29 dual-endpoint verification logs in /projects/onthebeat#rejection-archive.",
-          zh: "12 余轮打回实录与双端真机/双视窗签收日志已存证于 #rejection-archive。",
+          en: "Canvas review counts and the 25 Sep two-band MEET through Fly.io, in /projects/onthebeat#rejection-archive.",
+          zh: "画布打回次数与 9 月 25 日两支手环经 Fly.io 碰面的记录，见 #rejection-archive。",
         },
         unresolvedHypothesis: {
           en: "Rate-limiting spam blind waves from a single bad-faith attendee in a crowded room requires venue abuse testing.",

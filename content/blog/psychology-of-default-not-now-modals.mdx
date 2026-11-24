@@ -1,6 +1,6 @@
 ---
 title: "The Psychology of Default 'Not Now' Confirmation Modals"
-date: "2026-11-07"
+date: "2026-11-24"
 excerpt: "When background AI agents steal window focus mid-typing, habitual Enter presses turn confirmation dialogs into silent rubber stamps. Why focus must default to safe deferral."
 tags:
   - AI Safety
@@ -11,16 +11,16 @@ author: "Lewis Dong"
 published: true
 ---
 
-Watch anyone work with an IDE, a browser, and a background coding agent simultaneously. Focus jumps are inevitable—and humans clear modal interruptions faster than they read them. That mismatch creates **Enter-key fatigue**: the moment a confirmation dialog defaults keyboard focus onto `Approve`, an unintended keystroke commits an irreversible file write or shell command.
+Anyone working with an IDE, a browser and a background coding agent at once will see focus jump. My working assumption, which I have not measured, is that people dismiss modal interruptions faster than they read them. If a confirmation dialog puts keyboard focus on `Approve`, one unintended keystroke can commit an irreversible file write or shell command. I call that **Enter-key fatigue**.
 
 ## Designing against muscle-memory rubber-stamping
 
-In [Lamplight Nook](/projects/lamplight), we paired visual calm with an uncompromising keyboard default across every risk confirmation card:
+[Lamplight Nook](/projects/lamplight) is a personal project whose code was mostly written by AI coding tools (Claude Code); I set the rules, reviewed the output and verified it, and so far only I have used it. Its risk confirmation cards follow three rules:
 
-1. **Default focus stays anchored on `'Not now'`**: Pressing `Enter` or `Space` reflexively defers or cancels the risky action rather than executing it. Approving requires an intentional `Tab` move or deliberate pointer click.
-2. **Copy-only file isolation behind the scenes**: Even before an operator approves anything, lent reference files live inside working copies alongside a hard per-run spending ceiling.
-3. **Honest naming over dark patterns**: `'Not now'` avoids shaming language (`"No, keep my workflow slow"`) and leaves prior subtasks intact so deferral carries zero penalty.
+1. **Default focus stays on `'Not now'`**: pressing `Enter` or `Esc` out of reflex means "Not now", so the risky action does not run. Approving takes a deliberate move to the other button.
+2. **Limits behind the card**: each run has a spending cap, and when the agent works in a folder you lend it, the originals are kept so changes can be undone.
+3. **Plain naming over dark patterns**: `'Not now'` is neutral. It does not shame the person (`"No, keep my workflow slow"`) for choosing to wait.
 
 ## Physical parallels beyond desktop modals
 
-The same anti-fatigue principle drove [Walkie](/projects/walkie), where approval and denial sit on perpendicular watch faces so thumb muscle memory never confuses them. Inspect the reusable code pattern inside the [Pattern Atlas](/patterns) and the full safety interrogation in [AI Lab](/ai).
+The same idea shapes [Walkie](/projects/walkie), where approve and deny sit on different faces of the watch, the front key and the side key, so one thumb movement cannot easily be mistaken for the other. See the reusable pattern in the [Pattern Atlas](/patterns) and the safety questions in the [AI Lab](/ai).

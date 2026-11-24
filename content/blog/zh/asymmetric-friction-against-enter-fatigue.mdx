@@ -1,6 +1,6 @@
 ---
 title: "用不对称摩擦对抗「习惯性敲回车」疲劳"
-date: "2026-11-16"
+date: "2026-11-24"
 excerpt: "当所有弹窗都把默认焦点交给高亮「继续」，高频协作下的人手极易变成橡皮图章。从 Lamplight Nook、Walkie 与 Resume Autofill 出发，看如何把默认路径留给安全暂停。"
 tags:
   - AI 信任边界
@@ -10,14 +10,16 @@ author: "Lewis Dong"
 published: true
 ---
 
-传统桌面界面习惯在确认框左侧放淡色「取消」，右侧用高饱和度主按钮高亮并默认聚焦「继续」。在保存文档时这叫顺手；在自主 Agent 请求覆写文件夹或执行 Shell 命令时，这叫诱导误触。
+传统桌面界面习惯在确认框左边放一个淡色的「取消」，右边放一个高亮、默认聚焦的「继续」。保存文档时，这样很顺手。我的看法是，等到自主代理请求覆写文件或执行 Shell 命令时，这种对称就会诱导误按。
 
-在日常高频使用 [Lamplight Nook](/zh/projects/lamplight)、[Walkie](/zh/projects/walkie) 与 [Resume Autofill](/zh/projects/autofill) 的过程中，我把确认动作改成了**不对称摩擦**：暂停与拒绝零成本，不可逆提交才需要刻意多一步动作。
+在 [Lamplight Nook](/zh/projects/lamplight)、[Walkie](/zh/projects/walkie) 与 [Resume Autofill](/zh/projects/autofill) 里，我想做的是**不对称摩擦**：暂停很省力，不可逆的提交才需要刻意多一步。三个都是个人项目，代码大部分由 AI 编码工具（Claude Code）写成。规则由我来定，输出由我审查和验证，目前也只有我自己用过。
 
-## 让安全暂停成为默认肌肉记忆
+## 让安全暂停成为最省力的一条路
 
-1. **默认聚焦「先不要」（[Lamplight Nook](/zh/projects/lamplight)）**：在 2026 年 11 月 5 日 1.0 版发布前的 *Safety before 1.0* 专项审查中，所有高风险确认卡将初始键盘焦点与主对比权重锁死在**「先不要」**。分心敲下 `Enter` 或 `Esc` 只会安全挂起任务，黑板已完成进度与原文件安然无恙。
-2. **实体按键非对称确权（[Walkie](/zh/projects/walkie)）**：语音采集可以靠按住前键顺滑完成，但工具审批绝不听信语音「同意」——必须等待拇指按下前键批准或侧键拒绝。
-3. **人手提交锁（[Resume Autofill](/zh/projects/autofill)）**：国内校招系统的「提交」按钮常常长在上一页「下一步」的同一坐标。扩展只在中间页代翻「下一步」，把拿不准的栏位标成虚线或双线留白，遇到最终提交立刻停手。
+1. **默认聚焦「先不要」（[Lamplight Nook](/zh/projects/lamplight)）**：Lamplight Nook 1.0 于 2026 年 11 月 5 日发布。在高风险卡片上，初始键盘焦点落在「**先不要**」上。出于习惯按下 `Enter` 或 `Esc`，结果都是「先不要」，不会继续执行。
+2. **实体按键不对称（[Walkie](/zh/projects/walkie)）**：按住前键可以录音，但转写出来的文字永远批准不了工具调用。权限请求会停在手表屏幕上，等人短按前键（同意）或侧键（拒绝）。长按前键则是拒绝，并录一句口述理由。
+3. **提交留给人（[Resume Autofill](/zh/projects/autofill)）**：多页表单里，插件可以代按「下一步」。拿不准的栏位用虚线（待核）或粗实线（未匹配）标出，最后的「提交」从不代按。
 
-不对称摩擦从不用说教式连环弹窗惹烦用户，而是确保人在走神时按下的第一下永远落在最安全、可逆的结果上。欢迎到 [交互模式图谱](/zh/patterns?pattern=default-safe-focus-lock) 亲自试按「先不要」风控卡。
+## 保住主动权，又不说教
+
+不对称摩擦不会用连环弹窗训人。它要确保的只有一件事：人在走神时下意识按下的那一下，落在最安全、可以撤回的结果上。可以到 [交互模式图谱](/zh/patterns?pattern=default-safe-focus-lock) 试一试。

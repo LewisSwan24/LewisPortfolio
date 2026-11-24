@@ -4,17 +4,17 @@ export const lamplightResearchVault: RawResearchVaultRecord = {
   slug: "lamplight",
   studyStatus: "observed",
   honestScopeNote: {
-    en: "Live Electron + Claude Agent SDK runs, deterministic replay, and focus-default audits were verified in self-use builds. The planned September 2026 external user study remains unexecuted.",
-    zh: "Electron 主进程接入真实 Claude Agent SDK、零 API 回放调试与默认聚焦边界已在自用版本跑通；原定 2026 年 9 月的外部受试实验尚未开展。",
+    en: "Live Electron + Claude Agent SDK runs, deterministic replay, and focus-default audits were verified in self-use builds. A planned external user study has not been run.",
+    zh: "Electron 主进程接入真实 Claude Agent SDK、零 API 回放调试与默认聚焦边界已在自用版本跑通；计划中的外部用户测试尚未开展。",
   },
   moderatorGuide: {
     protocolTitle: {
-      en: "Enter-Fatigue Resistance & Calm Corner-Window Protocol (Drafted Sep 2026)",
-      zh: "防回车惯性误触与桌角安静监控测试规程（2026 年 9 月拟定，未外测）",
+      en: "Enter-Fatigue Resistance & Calm Corner-Window Protocol (planned, not run)",
+      zh: "防回车惯性误触与桌角安静监控测试规程（计划中，未执行）",
     },
     cohortAndSetting: {
-      en: "Designed for 6 developers or knowledge workers running a 10–15 minute coding/writing delegation alongside their main IDE or browser.",
-      zh: "面向同时开着主力编辑器或文档工作的 6 名开发者/知识工作者设计，观察 10–15 分钟长任务委派期间的打断感与审批安全感。",
+      en: "Planned, not run: 6 developers or knowledge workers running a 10–15 minute coding/writing delegation alongside their main IDE or browser.",
+      zh: "计划中，未执行：6 名同时开着编辑器或文档的开发者/知识工作者，观察 10–15 分钟长任务委派时的打断感与审批安全感。",
     },
     openingBrief: {
       en: "Hand the café crew a real folder copy with a $0.50 cap, minimize the window into the corner while you read an article, and respond only when the crew calls you back.",
@@ -35,7 +35,7 @@ export const lamplightResearchVault: RawResearchVaultRecord = {
           en: "Any focus jump onto the 'Approve' button or keyboard shortcut that confirms on Enter.",
           zh: "只要有任何状态把初始焦点落到「批准」按钮，或允许回车直接确认，即视为防呆失败。",
         },
-        verifiedStatus: "observed",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "lamplight-probe-blackboard",

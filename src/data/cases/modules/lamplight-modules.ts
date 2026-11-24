@@ -63,7 +63,7 @@ export const lamplightModules: CaseModulesRecord = {
         zh: "Electron 主进程接收到 Claude Agent SDK 的实时规划与工具事件",
       },
       userMentalModel: {
-        en: "A single glance should tell me how many steps exist, which step is active now, and who is stalled—without parsing 300 lines of stdout.",
+        en: "A single glance should tell me how many steps exist, which step is active now, and who is stalled—without reading back through the terminal output.",
         zh: "抬眼一瞥就该知道一共几步、正在推进第几步、有没有卡住，不必自己翻几百行终端输出。",
       },
       systemAction: {

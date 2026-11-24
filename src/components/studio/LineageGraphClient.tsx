@@ -29,7 +29,7 @@ const STATUS_FILTERS: ReadonlyArray<{
   en: string;
   zh: string;
 }> = [
-  { id: "all", en: "All Nodes (24)", zh: "全部节点 (24)" },
+  { id: "all", en: "All Nodes", zh: "全部节点" },
   { id: "observed", en: "Observed", zh: "现场/实测观察" },
   { id: "bench-tested", en: "Bench-Tested", zh: "真机/台架验证" },
   { id: "synthetic-gate", en: "Synthetic Gate", zh: "合成自动化门禁" },
@@ -44,7 +44,7 @@ export function LineageGraphClient({
   locale: "en" | "zh";
 }) {
   const isZh = locale === "zh";
-  const [selectedId, setSelectedId] = useState<string>("vault:vigil");
+  const [selectedId, setSelectedId] = useState<string>(graph.nodes[0]?.id ?? "");
   const [statusFilter, setStatusFilter] = useState<"all" | CaseVerifiedStatus>("all");
   const [viewMode, setViewMode] = useState<"split" | "table">("split");
   const nodeButtonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -134,7 +134,7 @@ export function LineageGraphClient({
             aria-pressed={viewMode === "split"}
             onClick={() => setViewMode("split")}
           >
-            {isZh ? "因果图谱 + 同步表" : "Causal Graph + Table"}
+            {isZh ? "关联图谱 + 同步表" : "Lineage Graph + Table"}
           </button>
           <button
             type="button"
@@ -153,7 +153,7 @@ export function LineageGraphClient({
           <div
             className={styles.canvasScroller}
             role="region"
-            aria-label={isZh ? "四层设计因果拓扑图" : "Four-layer causal design lineage graph"}
+            aria-label={isZh ? "四层设计关联图" : "Four-layer design lineage graph"}
           >
             <div className={styles.canvasStage}>
               <div className={styles.colHeaderRow} aria-hidden="true">
@@ -240,7 +240,7 @@ export function LineageGraphClient({
           <div className={styles.tableWrap}>
             <table className={styles.matrixTable}>
               <caption className="visually-hidden">
-                {isZh ? "因果节点邻接列表" : "Causal lineage node matrix"}
+                {isZh ? "节点关联列表" : "Lineage node matrix"}
               </caption>
               <thead>
                 <tr>
@@ -306,8 +306,8 @@ export function LineageGraphClient({
           <div className={styles.inspectorSection}>
             <span className="eyebrow">
               {isZh
-                ? `上游演进诱因 (${incomingEdges.length})`
-                : `Upstream Causes (${incomingEdges.length})`}
+                ? `上游相关节点 (${incomingEdges.length})`
+                : `Related upstream (${incomingEdges.length})`}
             </span>
             {incomingEdges.length === 0 ? (
               <p style={{ margin: 0, fontSize: 13, color: "var(--text-3)" }}>
@@ -340,8 +340,8 @@ export function LineageGraphClient({
           <div className={styles.inspectorSection}>
             <span className="eyebrow">
               {isZh
-                ? `下游继承机制 (${outgoingEdges.length})`
-                : `Downstream Inheritance (${outgoingEdges.length})`}
+                ? `下游相关节点 (${outgoingEdges.length})`
+                : `Related downstream (${outgoingEdges.length})`}
             </span>
             {outgoingEdges.length === 0 ? (
               <p style={{ margin: 0, fontSize: 13, color: "var(--text-3)" }}>
@@ -377,7 +377,7 @@ export function LineageGraphClient({
         <div className={styles.tableWrap} data-testid="graph-adjacency-table">
           <table className={styles.matrixTable}>
             <caption className="visually-hidden">
-              {isZh ? "跨层因果演化同步索引表" : "Synchronized causal lineage adjacency matrix"}
+              {isZh ? "跨层关联同步索引表" : "Synchronized lineage adjacency matrix"}
             </caption>
             <thead>
               <tr>

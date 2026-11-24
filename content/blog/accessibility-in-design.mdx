@@ -1,7 +1,7 @@
 ---
 title: "Accessibility guidelines are the easy part"
-date: "2026-01-08"
-excerpt: "I built a browser extension that lets a reader change type and spacing on any page. The guidelines told me which controls to build. Nothing told me how to win against a page that did not want to be changed."
+date: "2026-08-07"
+excerpt: "Spectra Lens is an archived browser extension that adds reading aids to any page. Guidelines describe a good interface you control; they say little about working on a page you do not own."
 tags:
   - Accessibility
   - Front-end
@@ -10,40 +10,36 @@ author: "Lewis Dong"
 published: true
 ---
 
-Accessibility work has a default checklist: check the contrast, size touch targets generously, write alt text, never encode meaning in color alone. That list is genuine and I use it. Yet building Spectra Lens — an archived browser extension experiment letting readers adjust type and spacing on any site — taught me that checklists only cover the part someone else has already settled.
+Accessibility work has a default checklist: check the contrast, size touch targets generously, write alt text, never encode meaning in colour alone. That list is genuine and I use it. Building Spectra Lens, an archived browser extension experiment that adds reading aids to any site, showed me that the checklist covers the part someone else has already settled.
 
-The hard part has no guideline. You are a guest on someone else's page, and every page fights you differently.
+The hard part has no guideline. You are a guest on someone else's page.
 
-## What the guidelines did settle
+## What the extension actually does
 
-WCAG's text-spacing criterion is unusually concrete. It names four properties — line height, letter spacing, word spacing, paragraph spacing — and gives thresholds a page should survive without breaking. That decided the control set. Without it I would have built a general CSS editor, which is a tool nobody wants to operate.
+The popup offers a set of separate aids rather than a general CSS editor: colour-vision filters, an "OpenDyslexic + spacing" switch, a reading ruler with adjustable height, colour and opacity, high contrast, a font-size scale, link highlighting, a large cursor and reduced motion.
 
-So the popup exposes those four, plus a typeface switch. Not because four felt like the right number, but because those four are the ones with published thresholds behind them.
+The dyslexia switch is a single toggle with fixed values. When it is on, the page's text uses OpenDyslexic with a line height of 1.5 and letter spacing of 0.05em. There are no separate sliders for line height, letter, word or paragraph spacing. WCAG's text-spacing criterion names those four properties with thresholds a page should survive; the extension does not expose them one by one, and its letter spacing sits below the WCAG figure.
 
-## What the guidelines did not settle
+## What the guidelines do not settle
 
-**Injected styles lose by default.** A stylesheet added at the end still loses to an inline `style` attribute, and loses to a selector with higher specificity. Documentation sites were fine. News sites, with their layered themes, mostly ignored me.
+**Injected styles compete with the page.** A stylesheet added by an extension has to beat the page's own rules. Spectra Lens marks its rules `!important`, which wins over ordinary page styles, though a page's own `!important` rules can still interfere. I did not keep notes on which sites resisted.
 
-**Single-page apps throw your work away.** Inject on load, navigate to another route, and the framework re-renders the subtree without your styles. The content script has to watch for route changes and re-apply — which no accessibility document mentions, because it is not an accessibility problem. It is a "you do not own this page" problem.
+**Single-page apps are untested.** The repo has no code that watches for route changes, and I did not test single-page apps, so whether the settings survive their navigation is unknown.
 
-**Global settings are the wrong default.** Loose line height helps enormously on a dense documentation page. On a news site it just makes an article twice as long to scroll. A single global toggle means the reader is constantly turning the tool on and off, which is a good way to make them stop using it. Settings save per origin instead.
+**Settings are global.** They are stored once in `chrome.storage.local` and apply on every site. Saving settings separately for each site is a possible next step, since loose spacing may suit a dense documentation page more than a long article. The extension does not do this.
 
-## The decision I most want to be asked about
+## The font
 
-The OpenDyslexic font ships inside the extension package rather than being fetched from a CDN at runtime.
-
-A CDN would be smaller to distribute and easier to update. But a remote font request tells whoever hosts it which pages are being read, and it breaks the moment the host changes or the reader is offline. An accessibility tool that quietly reports your browsing to a third party is not one I want to have written.
-
-The cost is real: the package is heavier, and updating the font means shipping a new version. I took it.
+At runtime the extension loads OpenDyslexic from a file in its own folder, not from a CDN; a setup script downloads that file once at install. One argument for this is privacy: a runtime request to a font host tells the host which pages are being read. I did not record whether that was my reason at the time, so treat it as an argument, not a decision log.
 
 ## The honest boundary
 
-Nobody who needs this has used it.
+Nobody who needs this has used it. I did no user research for it.
 
-Every control here is reasoned from a guideline or from watching a page break. That is enough to build something, and nowhere near enough to claim it helps. The obvious next step is the one I have not taken: give it to someone who reads this way and watch which controls they never touch. My guess is that at least one of the four is dead weight, and I would rather find that out than keep it because a specification mentions it.
+Every control is reasoned from general guidance, not from watching a reader. That is enough to build something and nowhere near enough to claim it helps. The next step is the one I have not taken: give it to someone who reads this way and watch which aids they never touch.
 
-It is a DEMO. It runs, the settings layer has tests, and it has never faced a store review or a site changing underneath it.
+It is a demo. It runs, the settings layer has unit tests, and it has never faced a store review.
 
 ## What I took from it
 
-Compliance rules are a floor, and a floor worth having — they encode failures the field has already paid for. But they describe properties of an *interface you control*. The moment your work has to survive on someone else's page, most of the difficulty sits somewhere the checklist never looks.
+Compliance rules are a floor, and a floor worth having: they encode failures the field has already paid for. But they describe an *interface you control*. Once your work has to live on someone else's page, much of the difficulty sits where the checklist never looks.

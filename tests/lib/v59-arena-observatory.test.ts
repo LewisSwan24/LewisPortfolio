@@ -4,20 +4,11 @@ import { describe, expect, it } from "vitest";
 import { auditTranslationese } from "@/lib/i18n/editorial-voice";
 import { UNLISTED_PROJECT_SLUGS } from "@/lib/project-routes";
 import { DEFENSE_DRILLS } from "@/data/critique/defense-drills";
-import { getCaseCodeDiff } from "@/data/cases/code-diffs";
 import telemetryManifest from "@/data/telemetry/bundle-manifest.generated.json";
 
 const ROOT = process.cwd();
-const LISTED_SLUGS = [
-  "walkie",
-  "lamplight",
-  "autofill",
-  "maze",
-  "onthebeat",
-  "grassland",
-] as const;
 
-describe("v5.9 Defense Arena, Code Diff Viewer & Telemetry Observatory Invariants", () => {
+describe("v5.9 Defense Arena, Telemetry Observatory Invariants", () => {
   it("provides grounded APAC & ANZ challenge drills across all 4 roles without unlisted leaks or translationese", () => {
     expect(DEFENSE_DRILLS.length).toBeGreaterThanOrEqual(8);
 
@@ -42,19 +33,6 @@ describe("v5.9 Defense Arena, Code Diff Viewer & Telemetry Observatory Invariant
     for (const role of ["product", "interaction", "design-eng", "ai-ux"]) {
       expect(roleMarketPairs.has(`${role}:apac`)).toBe(true);
       expect(roleMarketPairs.has(`${role}:anz`)).toBe(true);
-    }
-  });
-
-  it("provides anti-pattern vs production invariant diffs for all 6 listed flagships", () => {
-    for (const slug of LISTED_SLUGS) {
-      const diff = getCaseCodeDiff(slug);
-      expect(diff).toBeDefined();
-      expect(diff!.hunks.some((h) => h.kind === "remove")).toBe(true);
-      expect(diff!.hunks.some((h) => h.kind === "add")).toBe(true);
-      expect(auditTranslationese(diff!.title.en, "en")).toEqual([]);
-      expect(auditTranslationese(diff!.title.zh, "zh")).toEqual([]);
-      expect(auditTranslationese(diff!.rationale.en, "en")).toEqual([]);
-      expect(auditTranslationese(diff!.rationale.zh, "zh")).toEqual([]);
     }
   });
 

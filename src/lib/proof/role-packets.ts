@@ -99,7 +99,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "ux-research-observation",
           claim: "Lewis can run structured observation when the setting will not allow clean instrumentation.",
           evidence:
-            "MazeRunners was watched across 9 groups and 36 people at a public exhibition; the useful signal was that players felt the buzz and looked up rather than reading score displays.",
+            "MazeRunners was watched across 9 groups and 36 people at a public exhibition; many players still struggled with the rules after the explanation, and about 3 groups finished.",
           boundary:
             "The handwritten leaderboard was never archived, so completion times and drop counts do not exist as data.",
           strongestAnchor: "/projects/maze#outcome-limits",
@@ -136,7 +136,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "ai-ux-review-ai-output",
           claim: "Lewis sends back AI output that only looks finished and blocks silent AI guesswork.",
           evidence:
-            "On The Beat rejected mocked MEET data, laptop dependency, and '1 of 4' generated cards; Resume Autofill leaves open ATS answers blank and locks final Submit to humans.",
+            "On The Beat rejected mocked MEET data and laptop dependency; Resume Autofill leaves open ATS answers blank and locks final Submit to humans.",
           boundary:
             "On The Beat has no participant gig tests yet; Resume Autofill accuracy on real portals is unmeasured beyond solo use.",
           strongestAnchor: "/projects/autofill#decision-timeline",
@@ -161,7 +161,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "accessibility-multimodal-feedback",
           claim: "Lewis encodes every system state with structure, words, and icons rather than color alone.",
           evidence:
-            "Resume Autofill distinguishes filled (solid), needs review (dashed), and not filled (double) with distinct stroke patterns, text labels, and side-panel reasons.",
+            "Resume Autofill distinguishes filled (solid), needs review (dashed), and not filled (3px solid) with distinct stroke patterns, text labels, and side-panel reasons.",
           boundary:
             "Checked in light and dark visual tests on synthetic forms; not yet evaluated with assistive-technology users.",
           strongestAnchor: "/projects/autofill#decision-timeline",
@@ -174,7 +174,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           evidence:
             "Lamplight Nook places initial keyboard focus and visual weight on 'Not now' for risky steps, while Walkie prints explicit offline causes on a tiny watch screen.",
           boundary:
-            "These are interaction-safety patterns grounded in solo daily use rather than formal accessibility certification.",
+            "These are interaction-safety patterns grounded in Lewis's own use rather than formal accessibility certification.",
           strongestAnchor: "/projects/lamplight#decision-timeline",
           nextValidation:
             "Evaluate interruption clarity and keyboard focus flow with diverse users running multi-step tasks.",
@@ -246,7 +246,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "ux-research-observation",
           claim: "Lewis 能在无法干净埋点的场合用观察法拿到有用信号。",
           evidence:
-            "MazeRunners 在公开展出时被观察了 9 组共 36 人；关键信号是玩家先感觉到指套震动才抬头看屏幕。",
+            "MazeRunners 在公开展出时观察了 9 组共 36 人；讲解之后仍有不少玩家没弄懂规则，大约三组通关。",
           boundary:
             "手写排行榜没有留档，所以完成时间和掉球次数没有量化数据集。",
           strongestAnchor: "/projects/maze#outcome-limits",
@@ -283,7 +283,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "ai-ux-review-ai-output",
           claim: "只是看起来做完的 AI 输出，Lewis 会打回去，并禁止工具替用户瞎猜。",
           evidence:
-            "On The Beat 拒收了假 MEET 数据、笔电依赖与「1 of 4」错卡；Resume Autofill 对开放题留空并锁定人工提交。",
+            "On The Beat 拒收了假 MEET 数据与笔电依赖；Resume Autofill 对开放题留空并锁定人工提交。",
           boundary:
             "On The Beat 尚无现场参与者试戴；Resume Autofill 仅有作者本人真实投递记录。",
           strongestAnchor: "/projects/autofill#decision-timeline",
@@ -308,7 +308,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "accessibility-multimodal-feedback",
           claim: "Lewis 为系统状态同时配备线型、文字标签与图标，不依赖单一颜色。",
           evidence:
-            "Resume Autofill 用实线（已填）、虚线（待确认）、双线（未填）配合文字与侧栏原因区分三态。",
+            "Resume Autofill 用实线（已填）、虚线（待确认）、粗实线（未填）配合文字与侧栏原因区分三态。",
           boundary:
             "已在亮暗色截图测试中验证，尚未经过屏幕阅读器或真实辅助技术用户测试。",
           strongestAnchor: "/projects/autofill#decision-timeline",

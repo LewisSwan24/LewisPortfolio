@@ -1,6 +1,6 @@
 ---
 title: "Bundle Ceilings and Zero-Warning CSS Gates in Next.js 15"
-date: "2026-11-22"
+date: "2026-11-24"
 excerpt: "Performance promises rot quietly unless automated builds reject bloat and parser warnings. Enforcing 22 kB route ceilings and LightningCSS cleanliness inside CI."
 tags:
   - Performance
@@ -15,8 +15,8 @@ Performance budgets die slowly: a helper imports a heavy server barrel into one 
 
 ## Turning bundle budgets into failing build assertions
 
-On [Lab Section 08](/lab#bundle-observatory), telemetry comes straight from CI build output rather than static bragging:
+On [Lab Section 08](/lab#bundle-observatory), telemetry comes from the build output rather than hand-typed numbers:
 
-1. **Isolated shared lazy chunks**: WebGL runs solely inside a single `dynamic(ssr: false)` chunk (`~82.4 kB gz`), keeping interactive routes under `16 kB gz` against a `22 kB gz` hard ceiling.
+1. **Isolated shared lazy chunks**: WebGL runs only inside a `dynamic(ssr: false)` chunk. `pnpm budget:check` fails the build if that lazy 3D chunk passes `160 kB gz` or any app route chunk passes `22 kB gz`. The build manifest generated on 24 November 2026 recorded `82.4 kB gz` and `15.3 kB gz` respectively.
 2. **LightningCSS zero-warning guard**: `pnpm css:check` rejects unsupported experimental `@container anchored(...)` rules before compilation begins.
 3. **Manifest snapshot discipline**: `pnpm telemetry:build` extracts real gzipped `.next/static` measurements alongside proof metadata review dates.

@@ -100,8 +100,8 @@ const MARKET_LENS_PROFILES: readonly MarketLensProfile[] = [
         zh: "把协议时序不变量、双槽位防变砖回滚、键盘焦点不被遮挡纳入同等交互一等公民。",
       },
       {
-        en: "Trace how 8 retired academic concepts directly informed the structural guardrails of 6 production builds.",
-        zh: "通过 Archive Vault 追溯 8 个早期停做课题如何直接演进为 6 个主力系统的结构护栏。",
+        en: "Read why the archived coursework projects stopped and which listed builds they relate to.",
+        zh: "在 Archive Vault 里看早期停做的课题为什么停下，以及它们和哪些主案相关。",
       },
     ],
     recommendedOrder: ["walkie", "maze", "lamplight", "grassland"],

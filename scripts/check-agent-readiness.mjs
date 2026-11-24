@@ -43,7 +43,7 @@ if (!fs.existsSync(semPath)) {
 }
 
 const sem = JSON.parse(fs.readFileSync(semPath, "utf-8"));
-const UNLISTED = ["fencepost", "connect", "spectra", "vigil", "rules", "gapmapper", "hoop", "pricewise"];
+const UNLISTED = ["fencepost", "connect", "spectra", "rules", "gapmapper", "hoop", "pricewise"];
 for (const key of Object.keys(sem.entries || {})) {
   const prefix = key.split(":")[0] || "";
   if (UNLISTED.includes(prefix)) {

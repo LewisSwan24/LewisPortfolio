@@ -39,25 +39,25 @@
 </style></defs>
   <rect width="800" height="500" fill="var(--svg-surface)"/>
   <rect x="28" y="28" width="744" height="444" rx="10" fill="var(--svg-ground)" stroke="var(--svg-ink)" stroke-width="2"/>
-  <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace" font-size="15" font-weight="700">AFTER: TWO-CONTROLLER HARDWARE ISOLATION + HAPTIC CO-PLAY</text>
+  <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace" font-size="15" font-weight="700">AFTER: MEGA + TWO UNOS, SHARED WRISTBANDS + HAPTIC CO-PLAY</text>
   <rect x="56" y="110" width="214" height="230" rx="8" fill="var(--svg-surface)" stroke="var(--svg-ink)" stroke-width="1.5"/>
   <text x="76" y="144" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">1. Shared Wristband</text>
-  <text x="76" y="178" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">2 players per axis</text>
+  <text x="76" y="178" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">2 players per colour</text>
   <text x="76" y="208" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Co-touch required to tilt</text>
   <text x="76" y="242" fill="var(--svg-accent)" font-family="sans-serif" font-size="13" font-weight="700">Vibration replaces shock</text>
 
   <rect x="292" y="110" width="214" height="230" rx="8" fill="var(--svg-surface)" stroke="var(--svg-ink)" stroke-width="1.5"/>
   <text x="312" y="144" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">2. Arduino Split</text>
   <text x="312" y="178" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">IR debounce &amp; cooldown</text>
-  <text x="312" y="208" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">One pass = one round tick</text>
-  <text x="312" y="242" fill="var(--svg-navy)" font-family="sans-serif" font-size="13">SafeTouchServo isolated</text>
+  <text x="312" y="208" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Ten FC-51 IR sensors</text>
+  <text x="312" y="242" fill="var(--svg-navy)" font-family="sans-serif" font-size="13">Servos on their own Uno</text>
 
   <rect x="528" y="110" width="216" height="230" rx="8" fill="var(--svg-surface)" stroke="var(--svg-ink)" stroke-width="1.5"/>
-  <text x="548" y="144" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">3. Web Serial HUD</text>
-  <text x="548" y="178" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Mirrors score + timers</text>
-  <text x="548" y="208" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Parity-tested offline demo</text>
-  <text x="548" y="242" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">All 5 channels synced</text>
+  <text x="548" y="144" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">3. Web Game Status</text>
+  <text x="548" y="178" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Shows score + status</text>
+  <text x="548" y="208" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">START / CENTER from laptop</text>
+  <text x="548" y="242" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">On TV beside the maze</text>
 
   <rect x="56" y="366" width="688" height="74" rx="6" fill="var(--svg-card)" stroke="var(--svg-border)"/>
-  <text x="78" y="408" fill="var(--svg-ink)" font-family="sans-serif" font-size="13.5">Exhibited outcome: 9 groups (36 players) played physically; haptics &amp; audio cued players before the scoreboard.</text>
+  <text x="78" y="408" fill="var(--svg-ink)" font-family="sans-serif" font-size="13.5">Exhibited outcome: 9 groups (36 players), about 3 finished; eyes went to maze, score, time and LEDs.</text>
 </svg>

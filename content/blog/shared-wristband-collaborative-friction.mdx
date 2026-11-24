@@ -1,7 +1,7 @@
 ---
 title: "Turning Solo Wristband Mechanics into Co-Presence Friction"
-date: "2026-11-02"
-excerpt: "In MazeRunners, wiring one shared wristband per pair of strangers forced quiet gallery visitors to negotiate aloud—and taught us where tactile haptics replace neglected monitors."
+date: "2026-11-24"
+excerpt: "In MazeRunners, every tilt of the board needed two players touching the same-coloured wristband. What the exhibition record shows about that coupling, and what it cannot show."
 tags:
   - Physical Computing
   - Co-Presence
@@ -11,16 +11,20 @@ author: "Lewis Dong"
 published: true
 ---
 
-Give four strangers four independent buttons around a physical game and they will often play silently in parallel. Wire each color axis so no single player can tilt the board alone, and physical conductivity becomes an immediate social mechanic.
+The first input idea for [MazeRunners](/projects/maze) was buttons and a joystick. Our course paper records why it was dropped: it felt too much like an arcade game. The version we built wires each tilt direction to a pair of same-coloured conductive wristbands, so no single player can move the board alone.
 
-## Three field lessons from 36 exhibition players
+## What the exhibition record shows
 
-Across 9 public groups (36 players, ~3 completions) on [MazeRunners](/projects/maze), observing real bodies around the wooden table overturned three studio assumptions:
+At the June 2026 exhibition, 9 groups of four (36 players) played, and about 3 groups finished. The handwritten score sheet was not kept, so there is no timing data. The notes we do have record three things:
 
-1. **Sleeve fitting became an onboarding ritual**: Visitors struggled to slip on the vibration finger sleeves solo, so facilitator-assisted fitting naturally kicked off conversation before Round 1 even started.
-2. **Players never looked at the score screen**: Eyes stayed locked on the rolling steel ball—meaning finger-sleeve haptics and the board buzzer carried 100% of real-time penalty communication.
-3. **Sensor debounce protects table morale**: Without our `45 ms` FC-51 stability window and `1200 ms` zone lockout (inspectable in the [Protocol Replay Studio](/studio/replay?track=maze)), a wobbling ball double-fired penalties and broke group trust immediately.
+1. **The coupling was hard at first.** A team member explained the rules before play, and many players still struggled at first to match their colour to the right move.
+2. **The talk came from the wiring.** The calls we noted were short: "wait", "stop", "left", "right", "don't touch the trap", "you two move now". Groups with a clear leader moved more smoothly; when all four competed for the call, they hit more traps or dropped the ball.
+3. **The feedback was stronger than planned.** The finger-sleeve vibration was stronger than we expected, and some players were startled the first time it fired.
 
-## Carrying social friction into wearable gigs
+## A sensor detail behind it
 
-The same insight—designing hardware to pull attention back to the room rather than the glass screen—shaped [On The Beat](/projects/onthebeat), where Card 3 intentionally dims out after matching.
+The ten FC-51 infrared sensors swung with distance, angle and venue lighting. A three-sample debounce and a 400 ms cooldown made one pass of the ball count once. The [Protocol Replay Studio](/studio/replay?track=maze) steps through a hand-authored simulation of that logic, not captured hardware data.
+
+## Carrying the idea into wearables
+
+The same aim, pulling attention back to the room, shaped [On The Beat](/projects/onthebeat): when two people end a meeting with LET'S FINISH, the card they met on goes off. Claude Code wrote most of On The Beat's code; I set the rules, reviewed the output and checked it on two wristbands. Nobody has worn it at a gig yet, so this is a design intent, not a result.

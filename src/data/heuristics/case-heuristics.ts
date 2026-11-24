@@ -143,8 +143,8 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     wcagRef: "WCAG 3.3.6 Error Prevention (All)",
     severity: "structural-guard",
     finding: {
-      en: "Hard-coded Lane 03 Blank-on-Doubt forces visa/salary/open essays empty and locks auto-submit permanently.",
-      zh: "Lane 03 强制对签证/薪资/开放问答留白且永不自动触发提交按键。",
+      en: "Fields it cannot match or fill get a 3px red outline instead of a guess, and it never presses Submit.",
+      zh: "认不出或填不上的栏位标 3px 红框，不去猜，也从不代按提交。",
     },
     verifiedStatus: "observed",
     proofHref: "/patterns?pattern=three-tier-confidence-blank-on-doubt",
@@ -210,8 +210,8 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     wcagRef: "WCAG 4.1.3 Status Messages",
     severity: "feedback",
     finding: {
-      en: "45 ms IR debounce + 1200 ms cooldown lock syncs all 5 physical channels cleanly to offline Web Serial HUD.",
-      zh: "45 ms 红外去抖 + 1200 ms 冷却窗口确保桌面 Web HUD 计分屏零连跳。",
+      en: "Three-sample IR debounce + 400 ms cooldown keeps one ball pass to one score event on the Web Serial HUD.",
+      zh: "红外连续三次取样去抖，再加 400 ms 冷却，Web Serial 计分屏上一次过球只记一次。",
     },
     verifiedStatus: "bench-tested",
     proofHref: "/patterns?pattern=flat-state-debounce-zero-dead-end",
@@ -251,7 +251,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     wcagRef: "WCAG 3.2.1 On Focus",
     severity: "structural-guard",
     finding: {
-      en: "Mutual reveal strictly requires bilateral wrist button ACK inside -58 dBm window; solitary passersby stay private.",
+      en: "Names and where to meet appear only after both people say yes; anyone who has not said yes stays private.",
       zh: "互相点亮须双端实体确认，单向路过始终处于匿名安全态。",
     },
     verifiedStatus: "bench-tested",
@@ -264,8 +264,8 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     wcagRef: "WCAG 2.2.2 Pause / Stop / Hide",
     severity: "feedback",
     finding: {
-      en: "Card 3 automatically dims the S3 OLED after handshake completion so hardware recedes during human conversation.",
-      zh: "配对打招呼完成后设备主动暗屏退出视线，避免屏幕绑架面对面社交。",
+      en: "LET'S FINISH ends a meeting kindly and turns off the card the two people met on.",
+      zh: "LET'S FINISH 温和地结束碰面，并熄灭两人碰面用的那张卡。",
     },
     verifiedStatus: "bench-tested",
     proofHref: "/projects/onthebeat#state-matrix",
@@ -277,8 +277,8 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     wcagRef: "WCAG 3.3.1 Error Identification",
     severity: "structural-guard",
     finding: {
-      en: "Solved 12-round canvas loop + Sep 25 localhost blocker; BLE drop returns quietly to scan without harsh alert buzzer.",
-      zh: "解决 12 轮画布死循环及本地阻塞，蓝牙失联静默复位，绝不发出社交尴尬警告音。",
+      en: "Fixed the Sep 25 localhost blocker by moving the relay to Fly.io; a band gone quiet hides nobody and is hidden from nobody.",
+      zh: "9 月 25 日把中继迁到 Fly.io，解决了依赖本机的问题。没了信号的手环不会把谁藏起来，也不会被谁藏起来。",
     },
     verifiedStatus: "bench-tested",
     proofHref: "/projects/onthebeat#rejection-archive",

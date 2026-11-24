@@ -38,7 +38,7 @@ describe("blog i18n", () => {
 });
 
 describe("blog drafts", () => {
-  // designing-for-ai was taken down on 2026-09-28: it is about Vigil, which was
+  // designing-for-ai was taken down on 2026-09-28: it is about the email-review case, which was
   // abandoned. The files stay on disk, but no listing may carry the post. The
   // blog index, homepage, search, sitemap and both feeds all read
   // getAllBlogPosts, so this one check covers every one of them.

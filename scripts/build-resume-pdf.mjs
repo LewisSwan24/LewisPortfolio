@@ -81,6 +81,27 @@ async function main() {
         const url = `${BASE_URL}/${locale}/resume`;
         await page.goto(url, { waitUntil: "networkidle" });
         await page.emulateMedia({ media: "print" });
+        // A CV that leaves the site must carry its owner's name and a way to reply, and must not
+        // print web-only controls. CJK text uses system fonts so the PDF text layer stays
+        // extractable for ATS parsers (the web font subset produced unmappable glyphs).
+        await page.evaluate((loc) => {
+          const main = document.querySelector("main") ?? document.body;
+          const head = document.createElement("header");
+          head.setAttribute("data-pdf-contact", "");
+          head.style.cssText = "margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid #999;";
+          const name = loc === "zh" ? "董子铭 Ziming (Lewis) Dong" : "Ziming (Lewis) Dong";
+          head.innerHTML =
+            `<div style="font-size:20px;font-weight:600;line-height:1.2">${name}</div>` +
+            `<div style="font-size:11px;margin-top:3px">24kplo@gmail.com · lewisdong.vercel.app · github.com/LewisSwan24 · Brisbane</div>`;
+          main.prepend(head);
+          const webOnly = /^(Print|打印|Customize Dossier|定制|Contact for PDF|Download PDF CV|下载 PDF|Open hiring dossier|Interrogate Rationale AI Lab)/i;
+          for (const el of document.querySelectorAll("main a, main button")) {
+            if (webOnly.test((el.textContent || "").trim())) el.style.display = "none";
+          }
+          const style = document.createElement("style");
+          style.textContent = `*{font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",Arial,sans-serif !important}`;
+          document.head.appendChild(style);
+        }, locale);
         const publicFile = path.join(OUT_DIRS[0], `lewis-dong-resume-${locale}.pdf`);
         await page.pdf({
           path: publicFile,

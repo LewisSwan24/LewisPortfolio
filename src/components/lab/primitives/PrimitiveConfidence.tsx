@@ -37,8 +37,8 @@ export function PrimitiveConfidence({ locale }: { locale: Locale }) {
   };
 
   const tierLabels = isZh
-    ? { fill: "实线 · 自动直填", review: "虚线 · 待人工确认", blank: "双线 · 刻意留空" }
-    : { fill: "Solid · Auto-fill", review: "Dashed · Review", blank: "Double · Left blank" };
+    ? { fill: "实线 · 自动直填", review: "虚线 · 待人工确认", blank: "粗实线 · 刻意留空" }
+    : { fill: "Solid · Auto-fill", review: "Dashed · Review", blank: "Thick · Left blank" };
 
   return (
     <div className="lab-prim-panel">

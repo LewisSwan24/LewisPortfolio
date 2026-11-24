@@ -1,6 +1,6 @@
 ---
 title: "From Swansea CS Determinism to UQ Physical Computing"
-date: "2026-11-11"
+date: "2026-11-24"
 excerpt: "Four years of Computer Science and an extended honours dissertation taught me to distrust loose specifications; two years of Interaction Design at UQ showed why deterministic systems still fail under human attention and social friction."
 tags:
   - CS x IxD
@@ -11,24 +11,22 @@ author: "Lewis Dong"
 published: true
 ---
 
-Studying Computer Science at Swansea University (2020–2024, graduating Upper Second-Class Honours 2:1) trains a specific engineering reflex: long before polishing an interface, ask what breaks under bad input, concurrency collisions, network partitions, or power loss. Writing an extended undergraduate honours dissertation reinforced the same discipline—an argument holds only to the boundary of what its implementation can actually prove.
+Studying Computer Science at Swansea University (2020–2024, Upper Second-Class Honours, 2:1) trains a specific reflex: before polishing an interface, ask what breaks under bad input, collisions, network loss or power loss. Writing an extended honours dissertation added a second habit: an argument holds only as far as its evidence reaches.
 
-Transitioning into the Master of Interaction Design at The University of Queensland (2025–2026) initially felt like stepping out of strict determinism into messy human interviews. Yet once 2025 studio coursework and 2026 physical-computing builds forced software rules into real tables, wrists, and noisy rooms, both trainings locked together.
+Moving into the Master of Interaction Design at The University of Queensland (2025–2026) at first felt like leaving determinism for messy interviews. The two trainings met once course projects put software rules onto real tables, wrists and noisy rooms.
 
-## What pure CS abstractions miss in the room
+## What desk-bound abstractions miss in the room
 
-A clean desktop state machine assumes an operator seated at a desk with both eyes fixed on a crisp monitor. Put four strangers around a wooden table in [MazeRunners](/projects/maze), or put a developer three meters away from their workstation with [Walkie](/projects/walkie), and textbook assumptions collapse into three physical realities:
+A desktop state machine assumes one seated person watching a monitor. Put four strangers around a tilting acrylic maze in [MazeRunners](/projects/maze), or move a Claude Code remote onto a wrist with [Walkie](/projects/walkie), and three things change:
 
-1. **Posture sets cognitive bandwidth**: At our public exhibition across 9 groups (36 players), almost nobody watched the digital scoreboard while guiding the steel ball—eyes stayed locked on the physical wood until sleeve haptics buzzed under their fingertips.
-2. **Firmware timing constants are UX rules**: A `45 ms` FC-51 infrared stabilization check and a `1200 ms` per-zone cooldown read like embedded constants, yet without them a double-bounce makes players suspect the whole scoring system is broken.
-3. **Constructive friction prevents automation regret**: Locking risky card focus onto `'Not now'` in [Lamplight Nook](/projects/lamplight), separating Front Approve from Side Deny on [Walkie](/projects/walkie), or keeping open ATS answers blank in [Resume Autofill](/projects/autofill) applies state-machine safety directly to human habit loops.
+1. **Attention goes where the body is.** At the MazeRunners exhibition (9 groups, 36 players, about 3 groups finished), our notes record players watching the ball and looking for their same-coloured teammate. The finger-sleeve vibration told them when a trap fired, and some players were startled by it the first time.
+2. **Firmware timing constants are interaction rules.** The FC-51 infrared readings swung with distance, angle and lighting. A three-sample debounce and a 400 ms cooldown made one pass of the ball count once, which is what made a trap read as fair rather than random.
+3. **Some friction belongs before risky actions.** [Lamplight Nook](/projects/lamplight) puts default focus on "Not now" for risky cards, [Walkie](/projects/walkie) puts approve on the front key and deny on the side key, and [Resume Autofill](/projects/autofill) stops at "Next" and never presses "Submit". Each one writes a state-machine safety rule into a habit loop.
 
-## How 2025 foundations bridged into 2026 shipped systems
+## How I build now
 
-During my first year at UQ in 2025, structured think-aloud testing, paper-first information architecture redraws, WCAG browser injection experiments, and scoped AI consent rules reshaped how I approach problem framing. Rather than diving straight into component code or relying on Swansea-era classroom exercises, I focused my public portfolio squarely on high-conviction builds from the past one to two years—systems I could test end to end in browser, desktop, extension, and embedded runtimes.
+UQ coursework in 2025, such as think-aloud testing and paper redraws in a team project, changed how I frame problems before any component exists. That carries into the personal builds on this site:
 
-That bridge carries directly into how I build as a Design Engineer today:
-
-- **Clear ownership boundaries with AI coding tools**: Generated code serves as an accelerator after state transitions, Zod contracts, and refusal limits are defined—never as unquestioned truth.
-- **Reproducible engineering gates**: Every shipped case in [the Archive Vault](/vault) and [Protocol Replay Studio](/studio/replay) distinguishes real hardware/code verification (such as `gate-h`, `gate-p5`, `gate-l`, or `430/430` unit checks) from outside participant testing still left to run.
-- **Bilingual parity without glossing over limits**: Designing and engineering across both English and Chinese teams keeps terminology honest, crisp, and verifiable.
+- **Clear ownership with AI coding tools.** On Walkie, On The Beat, Lamplight Nook and Resume Autofill, Claude Code wrote most of the code. On Grassland Iron Tide, AI tools helped with the code, copy and original assets. I set the rules, reviewed the output and verified it. Generated code comes after the state transitions and refusal limits are written down, and it is never taken as true on sight.
+- **Saying which checks ran where.** For Walkie, gate H (screens and keys) passed on the real watch, and gate L ran a stand-in device through the relay. The checks of the watch working away from the cable have no run record yet, and only I have used it.
+- **Bilingual parity without glossing over limits.** Writing every case in English and Chinese keeps the numbers in both versions the same.

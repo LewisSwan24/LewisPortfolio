@@ -37,25 +37,25 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
     marketLabel: { en: "APAC Fast-Shipping Lens", zh: "亚太敏捷团队追问" },
     projectSlug: "lamplight",
     challengeQuestion: {
-      en: "Why enforce a two-phase confirmation card inside Lamplight instead of launching a sleek 1-click AI triage button to lift weekly task completion?",
-      zh: "为什么要在 Lamplight 里加两步确认卡片，而不是直接做一个“AI 一键自动分流”提升周活跃效率？",
+      en: "Why does Lamplight stop a long Claude task at a risk card whose default is 'Not now', instead of letting the agent run straight through?",
+      zh: "Lamplight 为什么要在长任务里停下来弹风险卡，而且默认选「先不要」，不让代理一口气跑完？",
     },
     overclaimedWeakAnswer: {
-      en: "Users loved our AI triage flow and it boosted productivity by 45% with high accuracy across daily work sessions.",
-      zh: "我们实测发现用户非常喜欢一键 AI 建议，整体分流准确率和任务完成度提升了 45% 左右。",
+      en: "Users loved the café and it made their agent sessions 45% more productive.",
+      zh: "用户都很喜欢这个咖啡馆，代理任务的效率提升了 45% 左右。",
     },
     groundedDefense: {
-      en: "Caregiver triage mistakes carry asymmetric emotional fallout: silently reassigning or dropping a family chore creates distrust that destroys retention faster than a 2-second tap saves. Keeping AI proposals reversible before commit guarantees human sign-off without adding clutter.",
-      zh: "家庭照护协作一旦静默改写责任人，引发的信任裂痕远比多点一次确认致命。因此我们把 AI 建议锁定为可预览、可撤回的提案卡片，未确认前绝不落库改动日程。",
+      en: "A risky file write or shell step turns into a card, and keyboard focus starts on 'Not now', so a reflexive Enter pauses instead of approving. Files handed to the crew are worked on as copies, and each job states its spending cap. Only I have used it, so this is a design rule, not a measured result.",
+      zh: "有风险的写文件或命令行步骤会变成一张卡，键盘焦点默认停在「先不要」，顺手按回车只会暂停，不会放行。交给店员的文件一律在副本上处理，每个任务都写明花费上限。目前只有我自己用过，所以这是设计规则，不是测出来的结果。",
     },
     verificationReceipt: {
-      en: "Inspect Lamplight Rejection Archive & Five-State Audit matrix",
-      zh: "核查 Lamplight 否决档案与五态审计矩阵",
+      en: "Inspect the Lamplight case: risk cards and working copies",
+      zh: "查看 Lamplight 案例：风险卡与副本处理",
     },
     evidenceHref: "/projects/lamplight",
     residualGap: {
-      en: "Longitudinal compliance across 6-month multi-household routines remains untested beyond bench walkthroughs.",
-      zh: "多家庭连续六个月跨季使用的真实留存与疲劳度尚未开展实地追踪。",
+      en: "No user testing: whether other developers would accept the pause, or find it tiring, is unknown.",
+      zh: "没有做过用户测试。其他开发者能否接受这种暂停、会不会觉得烦，目前都不知道。",
     },
   },
   {
@@ -70,21 +70,21 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
       zh: "在澳新注重边界感与低打扰的线下场域中，On The Beat 如何避免演变成令人尴尬的社交追踪雷达？",
     },
     overclaimedWeakAnswer: {
-      en: "Our proprietary Bluetooth algorithm matches compatible attendees instantly and creates seamless social bonding at conferences.",
-      zh: "我们的蓝牙算法能精准匹配参会者兴趣，让线下活动里的破冰交互转化率大幅提升。",
+      en: "Our proprietary matching algorithm pairs compatible attendees instantly and creates seamless social bonding at gigs.",
+      zh: "我们的匹配算法能精准配对兴趣相投的观众，让线下活动里的破冰转化率大幅提升。",
     },
     groundedDefense: {
-      en: "On The Beat strips persistent identity and distance graphs by design: RSSI tiers (-68 / -58 dBm) only unlock 3 stepped anonymous wave cards, require reciprocal physical nods, and auto-dim the OLED screen right after eye contact starts.",
-      zh: "系统从底层放弃持久化身份档案和雷达地图：BLE 分层仅触发三阶无名波形卡，必须双向物理点头才临时解锁名片，见面后手环屏幕主动熄灭退场，绝不滞留线上关系链。",
+      en: "No name and no photo appear until both people say yes, and one tap makes you invisible. Bands hear each other over ESP-NOW, but no signal strength, score or order ever reaches a phone or a band; an area is named only at -56 dBm or louder, otherwise the person stays 'in this room'.",
+      zh: "双方都同意之前，看不到名字和照片；点一下就能隐身。手环之间用 ESP-NOW 互相感知，但信号强度、评分和排序都不会传到手机或手环上。信号达到 -56 dBm 或更强才说出所在区域，否则只显示「在这个房间」。",
     },
     verificationReceipt: {
-      en: "Step through BLE RSSI gating & mutual dim-out replay",
-      zh: "步进回放 BLE 阈值与熄屏退场状态帧",
+      en: "Step through the ESP-NOW nearness & both-say-yes replay",
+      zh: "步进回放 ESP-NOW 近场与双方同意状态帧",
     },
     evidenceHref: "/studio/replay?track=onthebeat",
     residualGap: {
-      en: "Co-located multi-body RF attenuation logs cover small test sessions rather than 200-person crowded halls.",
-      zh: "两百人以上高密度展厅场景的人体遮挡衰减实测数据目前仍属空白。",
+      en: "Crowd figures come from a model in the repo's tests; no wearer or crowd testing at a gig has been run.",
+      zh: "人群数据来自仓库测试里的模型，还没有做过佩戴者测试，也没有在演出人群里测过。",
     },
   },
   {
@@ -103,12 +103,12 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
       zh: "我们在界面上增加了平滑过渡动画，玩家在现场几乎感觉不到传感器延迟或报错。",
     },
     groundedDefense: {
-      en: "Cosmetic smoothing lies to players about physical contact. Instead, MazeRunners enforces a strict 45 ms hardware debounce window on FC-51 channels and electrically decouples servo current returns so bounce chatter at 15 ms never charges a wall penalty.",
-      zh: "纯靠视觉缓冲只会制造错觉。MazeRunners 在 FC-51 通道底层焊死了 45 ms 硬件防抖门限，并将舵机供电回路隔离，让 15 ms 的地面高反光毛刺直接被固件丢弃，绝不冤枉扣分。",
+      en: "Cosmetic smoothing lies to players about physical contact. Instead, each FC-51 sensor in MazeRunners needs three consecutive samples before it triggers, then cools down for 400 ms, so a one-sample flicker never charges a penalty. Servos run on a separate Uno, and all boards share one ground.",
+      zh: "纯靠视觉缓冲只会制造错觉。MazeRunners 的每个 FC-51 传感器要连续三次取样才算触发，之后冷却 400 ms，只闪一次的毛刺不会被误扣分。舵机跑在单独的 Uno 上，所有板子共地。",
     },
     verificationReceipt: {
-      en: "Inspect MazeRunners 15ms glitch rejection trace in Protocol Replay",
-      zh: "打开 MazeRunners 15ms 毛刺拦截波形与防抖实证",
+      en: "Inspect the MazeRunners one-sample flicker replay (simulated)",
+      zh: "打开 MazeRunners 单次闪烁拦截的模拟重放",
     },
     evidenceHref: "/studio/replay?track=maze",
     residualGap: {

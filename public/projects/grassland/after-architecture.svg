@@ -41,16 +41,16 @@
   <rect x="28" y="28" width="744" height="444" rx="10" fill="var(--svg-ground)" stroke="var(--svg-ink)" stroke-width="2"/>
   <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace" font-size="15" font-weight="700">AFTER: SINGLE RTS GRAMMAR ACROSS ALL 5 MISSIONS</text>
   <rect x="56" y="110" width="688" height="106" rx="8" fill="var(--svg-surface)" stroke="var(--svg-green)" stroke-width="2"/>
-  <text x="80" y="144" fill="var(--svg-green)" font-family="monospace" font-size="13" font-weight="700">SHARED TACTICAL VERBS (ZERO LEVEL-ONLY BUTTONS)</text>
-  <text x="80" y="176" fill="var(--svg-ink)" font-family="sans-serif" font-size="13.5">Select Group → Reposition Under Rain/Cover → Spend Stance Tradeoff → Trigger Objective</text>
+  <text x="80" y="144" fill="var(--svg-green)" font-family="monospace" font-size="13" font-weight="700">ONE COMMAND GRAMMAR (MISSIONS ONLY LIMIT COMMANDS)</text>
+  <text x="80" y="176" fill="var(--svg-ink)" font-family="sans-serif" font-size="13.5">Click / Box-select → Shift Add/Remove → Ctrl Groups → Right-click Command</text>
 
   <rect x="56" y="236" width="334" height="128" rx="8" fill="var(--svg-surface)" stroke="var(--svg-ink)" stroke-width="1.5"/>
-  <text x="78" y="270" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">No Auto-Pilot Shortcuts</text>
-  <text x="78" y="302" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Preserves player accountability and tactical legibility.</text>
+  <text x="78" y="270" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">Pause/Checkpoint Save Chain</text>
+  <text x="78" y="302" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Pause, failure reason and restored unit state share it.</text>
 
   <rect x="410" y="236" width="334" height="128" rx="8" fill="var(--svg-surface)" stroke="var(--svg-ink)" stroke-width="1.5"/>
-  <text x="432" y="270" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">Deterministic Test Suite</text>
-  <text x="432" y="302" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">430+ local parser/consistency tests verify rule parity.</text>
+  <text x="432" y="270" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">Automated Test Suite</text>
+  <text x="432" y="302" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Missions, commands, movement, vision, checkpoints.</text>
 
-  <text x="56" y="424" fill="var(--svg-subtle)" font-family="monospace" font-size="12">Measured locally across 430+ tests; external player telemetry across all 5 missions remains uncollected.</text>
+  <text x="56" y="424" fill="var(--svg-subtle)" font-family="monospace" font-size="12">A local RC record shows one run through all five missions; no outside playtesting has been done.</text>
 </svg>

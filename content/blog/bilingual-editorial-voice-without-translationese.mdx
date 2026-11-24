@@ -1,6 +1,6 @@
 ---
 title: "Dual-Register Editorial Voice: Native EN Critique & Natural ZH Systems Prose"
-date: "2026-11-01"
+date: "2026-11-24"
 excerpt: "Translating Chinese idioms word-for-word yields stiff Chinglish; translating English passive clauses yields robotic 'translationese'. Why bilingual design systems need independent transcreation plus automated lint rules."
 tags:
   - Bilingual Systems
@@ -11,7 +11,7 @@ author: "Lewis Dong"
 published: true
 ---
 
-A bilingual portfolio serves two genuinely different technical audiences: ANZ and global Design Engineering teams who expect crisp, verb-first architectural critique, and APAC AI-native product teams who scan quickly for clear causal arcs—**User Pain → Mechanism → Engineering Loop → Honest Boundary**.
+A bilingual portfolio serves two different reading habits. My working assumption, which is not based on research, is that English-language design engineering readers prefer crisp, verb-first critique, while Chinese-language product readers scan for a clear causal arc: **User Pain → Mechanism → Engineering Loop → Honest Boundary**.
 
 ## Why literal translation breaks both audiences
 
@@ -21,6 +21,6 @@ Machine-translated English drifts into padded calques (`"carry out a research"`,
 
 Rather than trusting manual proofreading alone, this portfolio treats linguistic quality as an automated test gate inside `src/lib/i18n/editorial-voice.ts`:
 
-1. **Independent transcreation over parallel syntax**: Every `RawResearchVault`, `RedTeamDeck`, `ReplayTrace`, and essay pair shares identical factual ceilings and timestamps while phrasing arguments natively per language.
+1. **Independent transcreation over parallel syntax**: the aim is that every `RawResearchVault`, `RedTeamDeck`, `ReplayTrace` and essay pair shares the same facts and dates while each language phrases the argument its own way. Tests check slugs and dates; matching the facts in the body still depends on review.
 2. **Automated anti-translationese linting**: Vitest invariants reject stiff passive ZH patterns and EN Chinglish calques across new research dossiers, red-team defenses, and monograph titles.
 3. **Cross-surface parity**: You can compare both registers side-by-side in the [Custom Resume Composer](/resume/compose), [AI Lab](/ai), and [Archive Vault](/vault).

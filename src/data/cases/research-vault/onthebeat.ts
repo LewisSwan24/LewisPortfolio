@@ -4,8 +4,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
   slug: "onthebeat",
   studyStatus: "bench-tested",
   honestScopeNote: {
-    en: "Dual-wristband hardware handshake (StickS3 + StickC Plus over always-on Sydney Fly.io relay, no laptop) passed on Sep 25, and dual-browser flow (Ava & Leo) passed on Sep 29. Real crowd testing at a live music gig remains unexecuted.",
-    zh: "9 月 25 日脱离电脑完成 StickS3 + StickC Plus 双环经悉尼 Fly.io 中继真机握手，9 月 29 日走通 Ava 与 Leo 双浏览器完整流程；真实拥挤演出现场的陌生人试玩尚未执行。",
+    en: "On 25 Sep two real wristbands (StickS3 and StickC Plus), each paired to its own device, showed MEET together through the always-on Sydney Fly.io relay with no laptop in the loop. The code was written by Claude Code. No wearer or crowd testing at a live gig has been run.",
+    zh: "9 月 25 日，两支真手环（StickS3 与 StickC Plus）各配一部设备，不经电脑，经悉尼常驻 Fly.io 中继同时显示 MEET。代码由 Claude Code 编写。还没有佩戴者测试，也没有在真实演出人群里测过。",
   },
   moderatorGuide: {
     protocolTitle: {
@@ -13,11 +13,11 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
       zh: "演出现场三卡破冰与设备主动退场验证规程",
     },
     cohortAndSetting: {
-      en: "Scoped for pairs of solo concertgoers standing within 3–8 m in a dim live-music venue before set change.",
-      zh: "面向演出现场换场间隙、彼此相距 3–8 米的陌生乐迷场景设定。",
+      en: "Planned for pairs of solo gig-goers in a live-music venue between sets. Not run.",
+      zh: "计划面向演出换场间隙的陌生乐迷，两人一组。尚未执行。",
     },
     openingBrief: {
-      en: "Pick one opener card using the wristband side button, send an anonymous wave, and stop looking at the phone as soon as the landmark screen dims out.",
+      en: "Pick one opener card using the wristband side button, send an anonymous wave, and put the phone away once the meeting place shows.",
       zh: "「请直接按手环侧键选一张开场卡片发出匿名脉冲；一旦双方确认碰面并显示唯一地标，就把手机放回口袋别再低头刷屏幕。」",
     },
     taskProbes: [
@@ -51,17 +51,17 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
           en: "One-way stale phone UI diverging from what the wearer clicked on their wrist.",
           zh: "若手机页与手环各说各话、出现单向状态撕裂，即判同步失败。",
         },
-        verifiedStatus: "bench-tested",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
-        id: "otb-probe-dimout",
+        id: "otb-probe-meeting-end",
         prompt: {
-          en: "Confirm MEET on both devices and observe Card 3 landmark reveal + intentional dim-out.",
-          zh: "双端同时点头触发 MEET 后，观察第三张唯一地标卡与主动熄屏退场提示。",
+          en: "Confirm MEET on both devices, observe the name and meeting-place reveal, then end it with LET'S FINISH.",
+          zh: "双端都同意触发 MEET 后，观察名字和碰面地点如何出现，再用 LET'S FINISH 结束这次碰面。",
         },
         whatWeWatchFor: {
-          en: "Whether a single venue landmark + dim-out cue nudges users to look up and meet in person instead of starting a text chat.",
-          zh: "评估「唯一碰面地标 + 主动变暗退场」能否顺势把注意力交还现实见面，而非开启站内文字聊天。",
+          en: "Whether a first name, a meeting place and a shared number get people to look up and meet in person instead of starting a text chat.",
+          zh: "评估名字、碰面地点加上同一个编号，能否让人抬头去现场见面，而不是开始站内文字聊天。",
         },
         failureSignal: {
           en: "Users looking for a chat box or map pin because the landmark felt too ambiguous.",
@@ -71,8 +71,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
       },
     ],
     debriefQuestion: {
-      en: "When the screen deliberately dimmed out after matching, did it feel like relief or did you want a text chat fallback?",
-      zh: "「配对成功显示地标后界面主动变暗退场，让你觉得松了口气，还是反而想抓紧补个发消息按钮？」",
+      en: "When the card went off after LET'S FINISH, did it feel like relief or did you want a text chat fallback?",
+      zh: "「按下 LET'S FINISH 后卡片熄灭，你觉得松了口气，还是想要一个发消息的按钮？」",
     },
   },
   observationLogs: [
@@ -84,8 +84,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
         zh: "脱离笔记本电脑，两块硬件手环（StickS3 与 StickC Plus）直连悉尼 Fly.io 常驻中继。",
       },
       observation: {
-        en: "Both wristbands negotiated card state and synchronized MEET illumination independently over venue-simulated Wi-Fi.",
-        zh: "两块手环无需任何电脑桥接即可完成选卡同步与双端同时点亮 MEET 状态。",
+        en: "Both wristbands showed MEET together through the cloud relay, 65 minutes after Lewis said that without a computer neither device could run.",
+        zh: "两支手环经云端中继同时显示 MEET。距离 Lewis 说「没有电脑两样东西都无法运转」只过了 65 分钟。",
       },
       designResponse: {
         en: "Retired earlier localhost-only demo scripts and verified standalone field portability.",
@@ -95,42 +95,42 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
     },
     {
       id: "otb-obs-2",
-      sessionRef: { en: "Session Test · Sep 29 Ava & Leo", zh: "联调实测 · 9 月 29 日双端视窗" },
+      sessionRef: { en: "Canvas Review · Sep 21", zh: "画布审查 · 9 月 21 日" },
       context: {
-        en: "Two independent React browser sessions (Ava & Leo) stepping through all 3 cards + MEET state.",
-        zh: "使用 Ava 与 Leo 两个独立浏览器会话走通三张卡片到 MEET 的全状态流转。",
+        en: "Reviewing the AI-generated Claude Design canvases screen by screen.",
+        zh: "逐屏审查 AI 生成的 Claude Design 画布。",
       },
       observation: {
-        en: "Earlier AI-generated prototypes had hardcoded static MEET JSON and mislabeled every card '1 of 4' on a 3-card deck.",
-        zh: "此前 AI 生成画布曾用写死的假 MEET JSON 蒙混过关，甚至把三张卡片全标成「1 of 4」。",
+        en: "Generated canvases kept coming back with problems that had to be caught by eye.",
+        zh: "生成的画布反复出现问题，要靠人眼一屏屏抓出来。",
       },
       designResponse: {
-        en: "Rejected 12+ defective AI passes until live two-party state agreement, accurate pagination, and zero black-screen deadlocks held.",
-        zh: "连续打回 12 余轮虚假顺滑稿，直至真实双端状态协商、准确页码与零黑屏死锁全部过关。",
+        en: "Sent the On The Beat canvas back at least 5 times on the night of 21 Sep, and the earlier Say Hello canvas at least 12 times (lower bounds from the session index).",
+        zh: "9 月 21 日当晚，On The Beat 画布至少打回 5 次；更早的 Say Hello 画布至少打回 12 次（会话索引的下限）。",
       },
       verifiedStatus: "bench-tested",
     },
     {
       id: "otb-obs-3",
-      sessionRef: { en: "BLE Model · Proximity Thresholds", zh: "近场建模 · RSSI 握手台阶" },
+      sessionRef: { en: "ESP-NOW Thresholds · Sep 27 & Oct 9", zh: "ESP-NOW 阈值 · 9 月 27 日与 10 月 9 日" },
       context: {
-        en: "Calibrating blind pulse vs bilateral hold RSSI tiers for indoor gig pacing.",
-        zh: "围绕室内演出人群密度校准匿名挥手脉冲与双向握手的信号台阶。",
+        en: "Deciding when a band may say where someone is, and when two bands touching counts as a knock.",
+        zh: "决定手环什么时候可以说出对方在哪里，以及两支手环相碰什么时候算一次碰手。",
       },
       observation: {
-        en: "Continuous proximity radar displays turn a music gig into a stressful surveillance grid.",
-        zh: "持续刷新的米级距离雷达会把听歌现场变成令人焦虑的「附近人扫描仪」。",
+        en: "Far from every marker, the loudest marker is still some marker, heard faintly across the room. Two bands knocked while worn on two wrists were not recognised.",
+        zh: "离所有标记都很远时，最响的那个标记也只是隔着房间隐约听到。两支戴在手上的手环相碰时，没有被识别出来。",
       },
       designResponse: {
-        en: "Stepped down to coarse proximity tiers (-68 dBm blind pulse -> -58 dBm mutual hold) with zero live distance numbers shown to users.",
-        zh: "在界面上完全隐藏冷冰冰的米数与信号值，只用 -68 dBm 匿名感知与 -58 dBm 双向握稳两个粗台阶驱动卡片节奏。",
+        en: "A marker names an area only at -56 dBm or louder; otherwise the person stays 'in this room'. A knock needs -45 dBm or louder. No signal strength is shown to anyone.",
+        zh: "标记信号达到 -56 dBm 或更强才说出所在区域，否则只显示「在这个房间」。碰手环要 -45 dBm 或更强才算数。信号强度不显示给任何人。",
       },
       verifiedStatus: "bench-tested",
     },
   ],
   ergonomicsOrStageSpec: {
     title: {
-      en: "3-Card Pacing & BLE/Relay Handshake Spec",
+      en: "3-Card Pacing & ESP-NOW/Relay Handshake Spec",
       zh: "三卡社交节奏与低功耗信号阶梯规格",
     },
     subtitle: {
@@ -139,8 +139,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
     },
     rows: [
       {
-        dimension: { en: "Card 1 · Blind Pulse", zh: "一卡 · 匿名挥手脉冲" },
-        constraint: { en: "-68 dBm range · Zero name/photo broadcast", zh: "-68 dBm 感知窗 · 零姓名/头像广播" },
+        dimension: { en: "Wave · No Identity", zh: "挥手 · 不带身份" },
+        constraint: { en: "No name or photo until both say yes", zh: "双方都同意之前，不显示名字和照片" },
         rationale: {
           en: "Allows low-stakes openness signaling without creating a public rejection trail.",
           zh: "让单方挥手零社交成本，没回应也不会留下任何个人曝光痕迹。",
@@ -148,17 +148,17 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
         verifiedStatus: "bench-tested",
       },
       {
-        dimension: { en: "Card 2 · Mutual Nod Gate", zh: "二卡 · 对称点头门禁" },
-        constraint: { en: "-58 dBm bilateral hold · Both sides must confirm", zh: "-58 dBm 双向握稳 · 必须双端均点确认" },
+        dimension: { en: "Area Names · ESP-NOW", zh: "区域名称 · ESP-NOW" },
+        constraint: { en: "Named only at -56 dBm or louder · Otherwise 'in this room'", zh: "信号达到 -56 dBm 或更强才说出区域 · 否则只显示「在这个房间」" },
         rationale: {
-          en: "Prevents one-sided pushiness from forcing a name/location reveal on an unwilling attendee.",
-          zh: "严防单方面强行解锁，只有双方同一窗口点头才进入下一步。",
+          en: "Chosen on 27 Sep 2026: better not to say than to say it wrong.",
+          zh: "9 月 27 日定下的原则：说错不如不说。",
         },
         verifiedStatus: "bench-tested",
       },
       {
-        dimension: { en: "Card 3 · Intentional Dim-Out", zh: "三卡 · 唯一地标与主动退场" },
-        constraint: { en: "Single landmark + automatic dim-out · No chat feed", zh: "仅给一处现场地标 + 界面变暗 · 禁止站内聊天框" },
+        dimension: { en: "After Yes · Meeting Place & LET'S FINISH", zh: "同意之后 · 碰面地点与 LET'S FINISH" },
+        constraint: { en: "Names + where to meet only after both agree · No chat feed", zh: "双方同意后才给名字和碰面地点 · 不设站内聊天框" },
         rationale: {
           en: "Forces the software to step back so real conversation happens eye-to-eye rather than inside a glowing phone.",
           zh: "强迫软件在完成撮合后体面退场，把时间还给线下听歌与面对面寒暄。",
@@ -189,8 +189,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
         zh: "传统社交产品追求站内留存与私信条数，恰恰与看现场演出的沉浸感背道而驰。",
       },
       resolution: {
-        en: "Cap the entire experience at 3 cards and celebrate success by dimming the screen out.",
-        zh: "把全流程死锁在三张卡片，把「界面主动变暗退场」定义成最终成功态。",
+        en: "Keep the night to four armable cards and end each meeting with a kind LET'S FINISH that turns the card off.",
+        zh: "整晚只有四张可选卡片，每次碰面用 LET'S FINISH 好好收尾，结束后那张卡随之关闭。",
       },
     },
     {
@@ -201,8 +201,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
         zh: "让两块不同型号 ESP32 手环与手机端在无笔记本现场稳定对齐状态。",
       },
       tension: {
-        en: "AI coding tools produced deceptive mock screens (fake MEET states, broken pagination, localhost-only scripts).",
-        zh: "早期 AI 编码反复吐出静态假状态、错乱页码与强依赖本地端口的伪联调。",
+        en: "AI coding tools produced mock screens that only looked finished (a static MEET, localhost-only scripts).",
+        zh: "早期 AI 编码反复吐出只是看起来做完的界面：写死的 MEET，以及强依赖本地端口的伪联调。",
       },
       resolution: {
         en: "Deploy always-on Sydney Fly.io relay and enforce real dual-session + dual-band sign-off.",
@@ -221,8 +221,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
         zh: "既渴望释放「我愿意聊聊」的信号，又怕被全场雷达盯上。",
       },
       resolution: {
-        en: "Anonymous wave hides identity completely until mutual nod; landmark card retires screens immediately.",
-        zh: "单向挥手全匿名，双方互点头才亮名字与唯一碰面点，随后即刻息屏。",
+        en: "Anonymous wave hides identity completely until both say yes; only then do names and a meeting place appear.",
+        zh: "单向挥手全匿名，双方都同意后才亮出名字和碰面地点。",
       },
     },
   ],
@@ -234,8 +234,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
         zh: "目前最核心的未验证社交假设是什么？",
       },
       answer: {
-        en: "Whether strangers at an actual crowded gig trust a dim-out landmark card enough to walk over and say hello without a quick confirmation chat message.",
-        zh: "在嘈杂拥挤的真实演出现场，没有文字确认私信、只凭唯一地标熄屏退场，陌生人到底能不能顺利找对人并开口寒暄。",
+        en: "Whether strangers at an actual crowded gig trust a first name, a meeting place and a shared number enough to walk over and say hello without a chat thread.",
+        zh: "在嘈杂拥挤的真实演出现场，没有聊天私信，只凭名字、碰面地点和同一个编号，陌生人能不能找对人并开口打招呼。",
       },
       verifiedStatus: "unverified-hypothesis",
     },
@@ -258,7 +258,7 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
         zh: "这个项目踩出的 AI 原型协作经验如何反哺其他作品？",
       },
       answer: {
-        en: "Never trust visually polished mock JSON—always test two separate live clients side by side and verify pagination and error boundaries directly.",
+        en: "Never trust visually polished mock JSON—always test two separate live clients side by side and verify state transitions and error boundaries directly.",
         zh: "绝不轻信表面顺滑的静态假联调，必须开两个独立真实客户端并排验证双向状态与边界文案。",
       },
       verifiedStatus: "bench-tested",
@@ -270,8 +270,8 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
         zh: "在不破坏「安静退场」原则下，下一步可以补什么细节？",
       },
       answer: {
-        en: "A one-tap 60-second 'Did you find each other?' haptic nudge at the wrist—only if neither band moves—so missed landmarks recover gracefully without typing.",
-        zh: "仅在配对 60 秒后补充一次轻柔的手腕震动小确认（找没找到彼此），无需掏手机打字即可体面收尾或微调。",
+        en: "A 'Did you find each other?' prompt on the band's screen after a minute, so a missed meeting can recover without typing. The boards have no vibration motor, so it would have to be visual or a sound.",
+        zh: "配对一分钟后，在手环屏幕上问一句「找到对方了吗」，没碰上也不用掏手机打字。板子上没有震动马达，所以只能用画面或声音提示。",
       },
       verifiedStatus: "unverified-hypothesis",
     },

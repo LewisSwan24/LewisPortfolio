@@ -135,8 +135,8 @@ describe("Grounded Design-Defense Rationale Matching", () => {
                 content: JSON.stringify({
                   selections: [
                     {
-                      slug: "vigil",
-                      evidenceIds: ["vigil:fake:1"],
+                      slug: "ghost",
+                      evidenceIds: ["ghost:fake:1"],
                       reasonCode: "safety-boundary",
                     },
                     {

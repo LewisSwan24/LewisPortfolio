@@ -1,6 +1,6 @@
 ---
 title: "Writing State Invariants Before Opening Figma"
-date: "2026-11-09"
+date: "2026-11-24"
 excerpt: "Visual polish hides broken rules. Defining non-negotiable data, refusal, and recovery invariants first stops AI scaffolding and UI layouts from drifting into plausible lies."
 tags:
   - Systems Thinking
@@ -11,16 +11,18 @@ author: "Lewis Dong"
 published: true
 ---
 
-Open a visual canvas too early and every screen looks negotiable. When an LLM generates ten sleek dark-mode cards in forty seconds, it becomes dangerously easy to ship a persuasive flow whose core trust boundary never held.
+Open a visual canvas too early and every screen looks negotiable. When a model can generate ten sleek dark-mode cards in under a minute, it becomes easy to ship a persuasive flow whose core trust boundary never held.
 
-## What an interaction invariant actually specifies
+## What an interaction invariant should specify
 
-Before sketching pixels for [Walkie](/projects/walkie), [Resume Autofill](/projects/autofill), or [Grassland Iron Tide](/projects/grassland), I write three hard assertions that neither a layout polish nor an AI code pass may violate:
+This is the checklist I now recommend, not a record of how my earlier projects were run. Before any screen is drawn, three assertions should be written down that neither layout polish nor an AI code pass may break:
 
-1. **Authority boundary**: Which actions can run silently (read-only search, local form scanning) vs which actions lock behind explicit human action (physical Front Key, manual Submit click)?
-2. **Silence vs noise rule**: When the system lacks certainty, does it fabricate a plausible guess or freeze into an auditable blank/review tier?
-3. **Recovery chain**: After a cable pull, checkpoint loss, or denied grant, what exact bytes or UI elements guarantee the user returns to a clean slate?
+1. **Authority boundary**: which actions may run silently (read-only search, local form scanning) and which wait for an explicit human action (a physical front-key press, a manual Submit click)?
+2. **Silence over noise**: when the system is unsure, does it fill a plausible guess, or stop in a visible review or blank state?
+3. **Recovery chain**: after a cable is pulled, a checkpoint is lost or a grant is denied, what returns the person to a clean state?
+
+Each of my personal builds has answers to these somewhere in its spec or code: [Walkie](/projects/walkie) holds every tool permission prompt until a key is pressed, [Resume Autofill](/projects/autofill) never presses Submit, and [Grassland Iron Tide](/projects/grassland) keeps pause, failure reasons and checkpoints on one save chain. Claude Code wrote most of the code for Walkie and Resume Autofill, and AI tools helped with Grassland Iron Tide's code, copy and assets. For all three I set the rules, reviewed the output and verified it.
 
 ## Enforcing invariants in schemas and CI
 
-In this portfolio itself, Zod schemas (`CaseRecordSchema`, `CaseModulesRecordSchema`, `RawResearchVaultRecordSchema`) and Vitest suites enforce those rules before a single pixel reaches production. You can inspect the extracted cross-case rules inside the [Pattern Atlas](/patterns) or query them directly in the [AI Lab](/ai).
+On this site, Zod schemas (`CaseRecordSchema`, `CaseModulesRecordSchema`, `RawResearchVaultRecordSchema`) and Vitest suites check case records on every build. You can read the extracted cross-case rules in the [Pattern Atlas](/patterns) or query them in the [AI Lab](/ai).

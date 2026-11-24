@@ -11,7 +11,7 @@ const TAB_DEFS: ReadonlyArray<{
   id: VaultTabId;
   label: { en: string; zh: string };
 }> = [
-  { id: "protocol", label: { en: "01 · Moderator Guide", zh: "01 · 测试引导词" } },
+  { id: "protocol", label: { en: "01 · Planned protocol (not run as written)", zh: "01 · 计划中的测试方案（未按此执行）" } },
   { id: "logs", label: { en: "02 · Field & Bench Logs", zh: "02 · 现场与台架实录" } },
   { id: "spec", label: { en: "03 · Ergonomics / Stage Spec", zh: "03 · 人因与阶段规格" } },
   { id: "tension", label: { en: "04 · Tri-Role Tension", zh: "04 · 三方诉求冲突" } },
@@ -86,7 +86,7 @@ export function RawResearchVault({
       <header className={styles.vaultHeader}>
         <div className={styles.vaultHeadTop}>
           <span className={styles.eyebrow}>
-            {isZh ? "原始研究档案库 · RAW RESEARCH VAULT" : "Raw Research Vault · Primary Evidence"}
+            {isZh ? "研究档案库 · RESEARCH VAULT" : "Research Vault"}
           </span>
           <VerifiedStatusBadge status={vault.studyStatus} locale={locale} />
         </div>
@@ -151,7 +151,7 @@ export function RawResearchVault({
           </div>
           <div className={styles.briefBox}>
             <span className={styles.eyebrow} style={{ display: "block", marginBottom: 4 }}>
-              {isZh ? "开场任务引导词" : "Opening participant prompt"}
+              {isZh ? "计划中的开场说明（未执行）" : "Planned opening prompt (not run)"}
             </span>
             {vault.moderatorGuide.openingBrief[locale]}
           </div>
@@ -182,7 +182,7 @@ export function RawResearchVault({
             ))}
           </div>
           <p className={styles.subMeta}>
-            <strong>{isZh ? "访后收尾追问：" : "Debrief prompt: "}</strong>
+            <strong>{isZh ? "计划中的收尾追问：" : "Planned debrief question: "}</strong>
             {vault.moderatorGuide.debriefQuestion[locale]}
           </p>
         </div>

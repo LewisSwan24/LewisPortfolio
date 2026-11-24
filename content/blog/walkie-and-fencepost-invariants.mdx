@@ -1,7 +1,7 @@
 ---
 title: "Designing hard boundaries: physical approvals in Walkie and data-layer privacy in Fencepost"
-date: "2026-11-18"
-excerpt: "Two recent systems taught the same lesson from opposite ends of the stack: when an AI agent or community model acts asynchronously, trust lives in physical buttons and database invariants rather than prompt wording."
+date: "2026-11-21"
+excerpt: "Two recent projects approach the same problem from opposite ends of the stack: when an AI agent or a community assistant acts asynchronously, I put the trust boundary in physical buttons and query rules rather than prompt wording."
 tags:
   - AI UX
   - Hardware
@@ -10,39 +10,41 @@ author: "Lewis Dong"
 published: true
 ---
 
-Prompts can ask a model to stay cautious, and confirmation dialogs can ask a user to double-check. Neither holds up well under fatigue or asynchronous workflows. Across two recent builds—[Walkie](/projects/walkie) on an M5StickS3 watch and **Fencepost** as a community wildlife storyboarding app—I pushed critical safety boundaries down out of UI copy and into hardware inputs or query invariants.
+Prompts can ask a model to stay cautious, and confirmation dialogs can ask a user to double-check. Neither holds up well under fatigue or asynchronous work. In two recent projects, I tried to move critical safety boundaries out of UI copy and into hardware inputs or query rules: [Walkie](/projects/walkie), a personal project on an M5StickS3 watch, and **Fencepost**, a DECO7285 course project built with teammates where neighbours share possum sighting videos.
+
+On Walkie, AI coding tools (Claude Code) wrote most of the code; I set the rules, reviewed the output and verified it on the watch.
 
 ## Walkie: physical keys as the permission boundary
 
-When directing Claude Code across long tasks away from a desk, voice interaction is tempting right up until the agent asks to run a destructive shell command or write outside its workspace. Approving that solely by voice fails easily in a noisy room or via mis-transcription.
+Walkie is meant to let me answer Claude Code from my wrist during long tasks. Voice is tempting right up until the agent asks to run a destructive shell command or write outside its workspace; approving that by voice alone fails easily with a noisy room or a mis-transcription.
 
-Walkie solves that by making the **physical button layer** on the M5StickS3 non-negotiable:
+So the **physical keys** on the M5StickS3 carry the decision:
 
-- **Explicit pairing**: Saving a desktop pairing key requires pressing the front button on the watch within a 30-second window.
-- **Discrete approval queue**: Tool permission prompts pause the Node 24 bridge until the front key (approve) or side key (deny, with optional spoken reason) is physically pressed.
-- **Dual-boot safety guard**: Because Walkie shares the watch with [On The Beat](/projects/onthebeat), `firmware/guard.py` blocks full flash erase commands so updating one app cannot wipe the sibling partition.
-- **Zero-knowledge relay**: Beyond the USB cable, frames use AES-256-GCM under a session key derived from `pair.key`, so the Fly.io relay never sees plaintext prompts or tool names.
+- **Explicit pairing**: a new key is offered to the watch, and the desktop adopts it as `pair.key` only after the front key is pressed. The side key, or 30 seconds without an answer, refuses it.
+- **Discrete approval**: a tool permission prompt pauses the Node 24 bridge until a key is pressed. A short front press allows; a short side press denies; holding the front key denies and records a spoken reason.
+- **Dual-boot guard**: Walkie shares the watch with [On The Beat](/projects/onthebeat), so `firmware/guard.py` refuses the `erase`, `uploadfs` and `uploadfsota` build targets by name, because they would write outside Walkie's own partition.
+- **Blind relay**: off the cable, frames are sealed with AES-256-GCM under a key derived from `pair.key`, so the Fly.io relay forwards ciphertext and cannot read prompts or tool names.
 
-All three hardware verification scripts confirm pairing cryptography, on-device pagination, and relay keep-alive behavior on real M5StickS3 hardware before connecting any live model key.
+**What has run where:** gate H, the check of the screens and keys, passed on the real watch, and a whole turn ran over USB with synthetic speech fed into the watch microphone. Gate L ran a stand-in device through a real relay, not the watch. Gate P5 (pairing and the sealed link on the watch) was written, and I have no record of it being run. Gates M and N, the watch working away from the cable, have no run record either. Only I have used Walkie.
 
 ## Fencepost: revoking access cuts the model off too
 
-In neighborhood wildlife storyboarding, sharing backyard sightings involves private home context, family reading, and neighbor moderation. UI visibility toggles alone feel fragile if text from a revoked link lingers inside an AI assistant's retrieval context.
+Sharing backyard sightings can expose a home and a household's evening routine. Hiding a shared item in the interface is not enough if its text lingers in an AI assistant's retrieval context.
 
 In Fencepost, two rules live in the data boundary itself:
 
-1. **No EXIF storage**: Media uploads strip location metadata on ingest so home coordinates never enter the database.
-2. **Query-level `access_grants` enforcement**: Every retrieval query joins active sharing grants before assembling model context, verified through automated privacy checks and red-line prompt reviews. When a resident revokes a QR grant, subsequent assistant answers immediately stop referencing the hidden sighting. <AnchorNote term="query-layer invariant" label="Architecture note" note="Separating timeline queries from assistant context queries means UI caching never leaks revoked data back into an LLM prompt." />
+1. **No location metadata stored**: video frames are re-encoded in the browser, which drops metadata, and the server drops any still that arrives carrying an EXIF or XMP block. The schema has no location field.
+2. **Grants checked before context**: the assistant's context is built from a separate query that checks active sharing grants. The data-layer tests check that once a resident revokes a share, the next assistant call no longer reads the hidden sighting. <AnchorNote term="query-layer invariant" label="Architecture note" note="Separating timeline queries from assistant context queries means UI caching does not carry revoked data back into an LLM prompt." />
 
-The live public build on Vercel intentionally leaves demo handle login lightweight so reviewers can inspect flows directly, while keeping grant enforcement intact at the data layer.
+The public demo leaves handle login lightweight so reviewers can try the flows, while grant checks stay in the data layer.
 
-| Trust Failure Surface | Soft UI Warning (Brittle) | Structural Hard Invariant (Walkie / Fencepost) |
+| Trust failure surface | Soft UI warning | Structural rule (Walkie / Fencepost) |
 | --- | --- | --- |
-| Destructive shell prompt | Voice confirmation (`"Yes"`) or modal dialog | Physical S3 Front/Side button pause inside Node 24 bridge |
-| Shared firmware flashing | Warning banner in README before running esptool | `firmware/guard.py` aborts `-t erase` and `-t uploadfs` |
-| Cloud relay privacy | TLS transport while relay parses plaintext JSON | End-to-end AES-256-GCM envelope keyed to `pair.key` |
-| Revoked AI retrieval access | Hiding item in React UI while prompt context stays stale | SQL `access_grants` join enforced directly before prompt assembly |
+| Destructive shell prompt | Voice confirmation (`"Yes"`) or a modal | The bridge waits for a front or side key press on the watch |
+| Shared firmware flashing | A README warning before flashing | `firmware/guard.py` refuses the `erase` and `uploadfs` targets |
+| Cloud relay privacy | TLS only, with the relay reading plaintext | AES-256-GCM envelope keyed from `pair.key` |
+| Revoked AI retrieval | Item hidden in the UI while prompt context stays stale | Active grants checked before the assistant's context is built |
 
-## Shared lesson & next inspection
+## Shared lesson
 
-Good interaction design for autonomous tools does not stop at polite microcopy. Whether the boundary is a tactile watch switch over AES-256-GCM or a SQL join gate before prompt construction, placing the safety invariant where bypassing it is structurally impossible makes every higher-level interface calmer to use. Try Walkie's hardware gate flow in the [Interaction Lab](/lab) or interrogate these architecture decisions inside our [Rationale AI Lab](/ai).
+Good interaction design for autonomous tools does not stop at polite microcopy. Putting the rule where skipping it is structurally hard makes the interface above it calmer to use. Try Walkie's key flow in the [Interaction Lab](/lab) or question these decisions in the [Rationale AI Lab](/ai).

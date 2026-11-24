@@ -783,7 +783,7 @@
 }
 
 .sim-field[data-tier="blank"] {
-  border-style: double;
+  border-style: solid;
   border-width: 3px;
   border-color: var(--border-strong);
 }
@@ -821,7 +821,7 @@
 }
 
 .sim-tier-badge[data-tier="blank"] {
-  border-style: double;
+  border-style: solid;
   border-width: 3px;
 }
 
@@ -887,7 +887,7 @@
 }
 
 .sim-tier-counts > div[data-tier="blank"] {
-  border-style: double;
+  border-style: solid;
   border-width: 3px;
 }
 

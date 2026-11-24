@@ -1,6 +1,6 @@
 ---
 title: "Asymmetric Friction as Defense Against Habitual Enter-Key Fatigue"
-date: "2026-11-16"
+date: "2026-11-24"
 excerpt: "When confirmation dialogs and form tools reward muscle-memory clicking, users rubber-stamp irreversible risks. How Walkie, Lamplight Nook, and Resume Autofill invert default emphasis."
 tags:
   - AI Trust
@@ -10,16 +10,16 @@ author: "Lewis Dong"
 published: true
 ---
 
-Standard desktop UX treats symmetry as polish: *"Cancel"* on the left, a bright *"Continue"* button focused by default on the right. That symmetry works for saving a draft — and fails dangerously when autonomous agents ask to overwrite files or execute shell commands.
+Standard desktop UX treats symmetry as polish: *"Cancel"* on the left, a bright *"Continue"* button focused by default on the right. That works for saving a draft. My argument is that it fails when an autonomous agent asks to overwrite files or run shell commands.
 
-After watching my own daily workflows in [Lamplight Nook](/projects/lamplight), [Walkie](/projects/walkie), and [Resume Autofill](/projects/autofill), I stopped treating friction as an enemy and started designing **asymmetric friction**: cheap to pause, deliberate to commit.
+In [Lamplight Nook](/projects/lamplight), [Walkie](/projects/walkie) and [Resume Autofill](/projects/autofill), I aimed for **asymmetric friction**: cheap to pause, deliberate to commit. All three are personal projects whose code was mostly written by AI coding tools (Claude Code); I set the rules, reviewed the output and verified it, and so far only I have used them.
 
 ## Making refusal the path of least resistance
 
-1. **Default-Safe Focus Lock ([Lamplight Nook](/projects/lamplight))**: Before releasing v1.0 on 5 November 2026, a dedicated *"Safety before 1.0"* pass inverted every risky confirmation card. Initial keyboard focus and primary visual weight land strictly on **Not now**. Pressing `Enter` or `Escape` out of habit pauses the step cleanly without discarding blackboard progress, while staff work exclusively on duplicated file copies.
-2. **Tactile Key Asymmetry ([Walkie](/projects/walkie))**: Speech capture uses holding the Front Key, yet voice transcripts can never authorize a shell command. Tool permissions pause on the watch screen until a deliberate Front Key press (approve) or Side Key press (deny, with optional spoken reason).
-3. **Human Submit Lock ([Resume Autofill](/projects/autofill))**: On Beisen and Moka campus portals, *"Submit"* frequently occupies the exact screen slot where *"Next"* stood on earlier pages. The extension advances intermediate pages cleanly, splits uncertain fields into dashed/double borders, and refuses to touch the final Submit control.
+1. **Default-safe focus ([Lamplight Nook](/projects/lamplight))**: Lamplight Nook 1.0 was released on 5 November 2026. On risky cards, initial keyboard focus lands on **Not now**, and pressing `Enter` or `Escape` out of habit means "Not now" rather than "go ahead".
+2. **Key asymmetry ([Walkie](/projects/walkie))**: holding the front key records speech, but a transcript can never approve a tool call. A permission prompt waits on the watch screen until a short front-key press (allow) or side-key press (deny); holding the front key denies and records a spoken reason.
+3. **Human submit ([Resume Autofill](/projects/autofill))**: the extension can press "Next" on multi-page forms, marks uncertain fields with dashed (needs review) or thick solid (not matched) outlines, and never presses the final Submit.
 
 ## Friction that preserves agency without lecturing
 
-Asymmetric friction never scolds the user with three confirmation popups. It simply ensures that reflexively pressing `Enter` or glancing away produces the safest reversible outcome. Test all three patterns interactively in the [Pattern Atlas](/patterns).
+Asymmetric friction does not scold the user with three confirmation pop-ups. It makes sure that pressing `Enter` on reflex, or looking away, lands on the safest reversible outcome. Try the patterns in the [Pattern Atlas](/patterns).

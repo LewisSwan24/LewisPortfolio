@@ -58,12 +58,12 @@ export default async function ResumePage() {
               <h3>{t("resume.section.exp")}</h3>
 
               <div className="res-entry">
-                <div className="date">2026 · 01 – {isZh ? "至今" : "Now"}</div>
+                <div className="date">2026 · 07 – {isZh ? "至今" : "Now"}</div>
                 <div>
                   <h4>
                     {isZh
                       ? "设计工程师与产品交互构建（近一年独立主力项目）"
-                      : "Design Engineer & Product Builder (recent solo shipped builds)"}
+                      : "Design Engineer & Product Builder (recent builds)"}
                   </h4>
                   {/* Unlisted projects are intentionally excluded from every public resume line. */}
                   <p className="org">
@@ -74,13 +74,13 @@ export default async function ResumePage() {
                   <ul>
                     <li>
                       {isZh
-                        ? "物理数字协同（Walkie / On The Beat）：与 On The Beat 共用 M5StickS3 双启动固件，用有线 USB 优先 + AES-256-GCM 零知识中继驱动手腕实体按钮审批 Claude 工具，并完成两支真机手环离桌独立联调。"
-                        : "Physical-AI & wearables (Walkie & On The Beat): dual-boot M5StickS3 C++ firmware with USB preemption and AES-256-GCM wrist approvals for Claude Code, paired with two-wristband BLE mutual-consent social pacing."}
+                        ? "物理数字协同（Walkie / On The Beat）：与 On The Beat 共用 M5StickS3 双启动固件，用有线 USB 优先 + AES-256-GCM 端到端加密中继驱动手腕实体按钮审批 Claude 工具，并完成两支真机手环离桌独立联调（代码由 Claude Code 编写，没有佩戴者测试）。"
+                        : "Physical-AI & wearables (Walkie & On The Beat): dual-boot M5StickS3 C++ firmware with USB preemption and AES-256-GCM wrist approvals for Claude Code, paired with two wristbands that hear each other over ESP-NOW and reveal names only after both people say yes (code written with Claude Code; no wearer testing)."}
                     </li>
                     <li>
                       {isZh
                         ? "AI 桌面工作台与安全护栏（Lamplight Nook）：打造风险操作默认锁在「先不要」、让后台任务以咖啡馆分工图透明呈现的 Electron + Phaser 桌面应用（Windows 1.0 已发布日常自用），严守未做外部受试的界限。"
-                        : "Calm AI workbench (Lamplight Nook): shipped v1.0 Electron + Phaser desktop companion that visualizes Claude agent steps and locks risky keyboard focus onto 'Not now' on file copies."}
+                        : "Calm AI workbench (Lamplight Nook): shipped v1.0 Electron + Phaser desktop companion that shows Claude agent steps, and risky steps open a confirmation card that defaults to 'Not now'."}
                     </li>
                     <li>
                       {isZh
@@ -115,8 +115,8 @@ export default async function ResumePage() {
                   <ul>
                     <li>
                       {isZh
-                        ? "设计核心机制：每种颜色腕带由两名玩家共用，任何方向都无法单人触发，四个人必须真实开口协作。"
-                        : "Designed the core co-touch mechanic: two players share each directional wristband, making solo shortcuts physically impossible."}
+                        ? "与组员共同设计核心机制：同色腕带由两名玩家共用，任何方向都无法单人触发，四个人必须一起配合。"
+                        : "Co-designed the core co-touch mechanic with the team: two players share each directional wristband, so no direction can be triggered alone."}
                     </li>
                     <li>
                       {isZh
@@ -179,8 +179,8 @@ export default async function ResumePage() {
                     </li>
                     <li>
                       {isZh
-                        ? "在嵌入式 AI 原型中建立宿主机 g++ 协议测试、防误擦烧录守卫（guard.py）、AES-256-GCM 零知识中继与传感器去抖冷却状态机。"
-                        : "Built host g++ frame unit tests, pre-flash partition safety guards (guard.py), AES-256-GCM zero-knowledge WebSocket relays, and debounced hardware state machines across M5StickS3 & Arduino Mega."}
+                        ? "嵌入式原型：Walkie 的宿主机 g++ 协议测试、防误擦烧录守卫（guard.py）和 AES-256-GCM 端到端加密中继（代码由 Claude Code 编写，我定规则并验证），以及 MazeRunners 在 Arduino Mega 上的红外去抖与冷却。"
+                        : "Embedded prototypes: Walkie's host g++ frame unit tests, pre-flash partition guards (guard.py) and AES-256-GCM end-to-end encrypted relay (code by Claude Code; I set the rules and verified them), and MazeRunners' IR debounce and cooldown on an Arduino Mega."}
                     </li>
                   </ul>
                 </div>

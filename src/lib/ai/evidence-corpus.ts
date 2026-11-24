@@ -118,7 +118,7 @@ function loadPublishedBlogChunks(): EvidenceChunk[] {
 function buildCorpus(): EvidenceChunk[] {
   const chunks: EvidenceChunk[] = [];
 
-  // Listed cases ONLY — all 8 unlisted slugs are excluded structurally.
+  // Listed cases ONLY — every unlisted slug is excluded structurally.
   for (const record of getListedCases()) {
     const slug = record.slug;
     const caseTitle = {

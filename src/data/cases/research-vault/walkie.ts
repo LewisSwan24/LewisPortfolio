@@ -4,8 +4,8 @@ export const walkieResearchVault: RawResearchVaultRecord = {
   slug: "walkie",
   studyStatus: "bench-tested",
   honestScopeNote: {
-    en: "Hardware transport, 30s pairing, and 15/15 fake-claude regression suites ran on physical M5StickS3 silicon and host g++ harnesses. Multi-week external developer field trials remain unexecuted.",
-    zh: "物理配对倒计时、USB 抢占与 15/15 fake-claude 回归均在真实 M5StickS3 硬件与宿主机 g++ 台架跑通；跨多名外部工程师的数周自然场景实测尚未开展。",
+    en: "Automated tests run on the host against a stand-in Claude (bridge/test/claude/fake-claude.js). Gate H passed its screen and key scenarios on a real S3, and a whole turn ran over USB on 2 Oct. The checks away from the cable (gates M and N) have no run record, and nobody but Lewis has used it.",
+    zh: "自动化测试在电脑上跑，用的是替身 Claude（bridge/test/claude/fake-claude.js）。gate H 的画面与按键场景在真 S3 上通过，10 月 2 日经 USB 整轮跑通。离开数据线的检查（gate M、N）没有执行记录，除了 Lewis 也没有别人用过。",
   },
   moderatorGuide: {
     protocolTitle: {
@@ -13,8 +13,8 @@ export const walkieResearchVault: RawResearchVaultRecord = {
       zh: "离桌场景实体审批与语音召回台架测试规程",
     },
     cohortAndSetting: {
-      en: "Bench protocol scoped for solo developers stepping 3–6 m away from their primary coding monitor while Claude Code executes multi-step refactors.",
-      zh: "面向离开主力显示器 3–6 米的开发者场景设定，覆盖在客厅/茶水间远程监管 Claude Code 多步重构任务的真实链路。",
+      en: "Planned for solo developers who step away from their desk while Claude Code runs a multi-step task. Not run.",
+      zh: "计划面向离开工位、让 Claude Code 跑多步任务的开发者。尚未执行。",
     },
     openingBrief: {
       en: "Your agent is running in the studio while you grab coffee. Listen only to what comes through the wrist speaker, and decide whether to let each tool call proceed without walking back to the desk.",
@@ -35,7 +35,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
           en: "Any ambiguity over whether Side Key cancels pairing or silently retries in the background.",
           zh: "若侧键取消后界面的中止状态不够果断，或让人误以为仍在后台静默重试，即判定为交互失明。",
         },
-        verifiedStatus: "bench-tested",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "walkie-probe-asymmetric-gate",
@@ -51,7 +51,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
           en: "Accidental thumb slip onto Front Key when intending to pause or reject an unexpected file edit.",
           zh: "本想暂停或拒绝对文件动刀，拇指却因键位距离或提示模棱两可误触前键放行。",
         },
-        verifiedStatus: "bench-tested",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "walkie-probe-cable-preempt",
@@ -67,7 +67,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
           en: "Silent fallback stitching half an ADPCM packet with a half-recorded USB PCM buffer.",
           zh: "任何试图静默拼接半截无线 ADPCM 与半截有线 PCM 缓冲的行为都会造成指令错乱，直接判死。",
         },
-        verifiedStatus: "bench-tested",
+        verifiedStatus: "unverified-hypothesis",
       },
     ],
     debriefQuestion: {
@@ -84,48 +84,48 @@ export const walkieResearchVault: RawResearchVaultRecord = {
         zh: "实测无 pair.key 启动桥接时的 30 秒倒计时超时与侧键主动拒签。",
       },
       observation: {
-        en: "Aborted pairing left zero stale key bytes on disk and reset S3 state cleanly without requiring a power cycle.",
-        zh: "超时或侧键取消后磁盘零密钥残留，S3 无需拔电重启即可自动归位等待下一次配对。",
+        en: "Design assumption, not a recorded run: an aborted pairing should leave no key on disk and return the S3 to waiting without a power cycle. Gate P5 was written on 3 Oct; the repo does not record a run.",
+        zh: "这是设计假设，不是执行记录：配对中止后，磁盘上不应留下密钥，S3 也不用拔电就能回到等待状态。gate P5 在 10 月 3 日写好，仓库里没有执行记录。",
       },
       designResponse: {
-        en: "Locked fail-closed pairing invariant into gate-p5 rather than caching unconfirmed session tokens.",
-        zh: "将「未物理确认绝不落盘」写死进 gate-p5 门禁，杜绝临时会话密钥偷跑。",
+        en: "Wrote the fail-closed pairing rule into gate P5 rather than caching unconfirmed session keys.",
+        zh: "把「未经实体确认就不落盘」写进 gate P5，不缓存未确认的会话密钥。",
       },
-      verifiedStatus: "bench-tested",
+      verifiedStatus: "unverified-hypothesis",
     },
     {
       id: "walkie-obs-2",
       sessionRef: { en: "Bench Log · Flash Guardrail", zh: "台架记录 · 双启动防误擦守卫" },
       context: {
-        en: "Co-hosting Walkie (app1) and companion firmware (app0) on a single 16 MB ESP32-S3 partition table.",
-        zh: "在同一块 16 MB ESP32-S3 闪存上并存主副两套固件分区（app0 / app1）。",
+        en: "Co-hosting Walkie (app1) and companion firmware (app0) on a single 8 MB ESP32-S3 partition table.",
+        zh: "在同一块 8 MB ESP32-S3 闪存上并存主副两套固件分区（app0 / app1）。",
       },
       observation: {
         en: "Standard esptool flash commands risk wiping NVS/otadata or overwriting app0 unless explicitly blocked.",
         zh: "常规烧录命令稍不留神就会擦掉 otadata 或把 app0 原固件覆盖。",
       },
       designResponse: {
-        en: "Added guard.py pre-flash check refusing unsafe offsets and surfacing explicit partition target feedback.",
-        zh: "在烧录前加装 guard.py 分区守卫，一旦目标偏移越界立即中断，并给出清晰文字提示。",
+        en: "Added guard.py, which refuses the PlatformIO targets (erase, uploadfs, uploadfsota) that would write outside app1 and says which tools to use instead.",
+        zh: "加了 guard.py：遇到会写到 app1 以外的 PlatformIO 目标（erase、uploadfs、uploadfsota）就拒绝执行，并提示改用哪个工具。",
       },
       verifiedStatus: "bench-tested",
     },
     {
       id: "walkie-obs-3",
-      sessionRef: { en: "Bench Log · 3-Way Offline Fault", zh: "台架记录 · 三段式断联归因" },
+      sessionRef: { en: "Design · Three OFFLINE Screens", zh: "设计 · 三个离线画面" },
       context: {
-        en: "Disconnected Fly.io relay, unplugged workstation bridge, and revoked OpenAI key independently.",
-        zh: "分别切断 Fly.io 中继、关闭桌面桥接进程、制造上游语音接口失败三类离线故障。",
+        en: "Away from the cable, the watch's OFFLINE screen has to say what it lacks.",
+        zh: "离开数据线时，手表的离线画面要说清缺的是什么。",
       },
       observation: {
-        en: "A generic 'Connection Failed' badge left the operator unsure whether to walk to the router, restart Node, or check API quota.",
-        zh: "若腕表只笼统报错「连接失败」，用户根本分不清该查路由器、重启桌面桥接还是换 API 密钥。",
+        en: "Design assumption, not a recorded run: one generic 'connection failed' would leave the wearer unsure whether Wi-Fi, the relay or the PC is down.",
+        zh: "这是设计假设，不是执行记录：如果只笼统报「连接失败」，戴的人分不清是 Wi-Fi、中继还是电脑出了问题。",
       },
       designResponse: {
-        en: "Split watch diagnostics into three distinct badges: Wi-Fi / Relay / Bridge-AI, paired with spoken retry guidance.",
-        zh: "将故障状态拆成 Wi-Fi / Relay / Bridge-AI 三段独立指示灯，配合短语音告知具体卡点。",
+        en: "The firmware has three OFFLINE screens: 连不上 Wi-Fi, 连不上中继 and 电脑没在线. The on-device checks away from the cable (gates M and N) have not been run.",
+        zh: "固件里有三个离线画面：连不上 Wi-Fi、连不上中继、电脑没在线。离开数据线的真机检查（gate M、N）还没做。",
       },
-      verifiedStatus: "bench-tested",
+      verifiedStatus: "unverified-hypothesis",
     },
   ],
   ergonomicsOrStageSpec: {
@@ -149,7 +149,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
       },
       {
         dimension: { en: "Minimum PTT Hold", zh: "最短按住防抖门限" },
-        constraint: { en: "Discard clicks < 250 ms locally", zh: "短于 250 ms 的轻触直接在本地丢弃" },
+        constraint: { en: "Front key must be held 300 ms (HOLD_MS)", zh: "前键要按住 300 ms 才算（HOLD_MS）" },
         rationale: {
           en: "Stops accidental pocket or wrist-flex bumps from burning STT calls or injecting stray commands.",
           zh: "过滤掉袖口摩擦或误碰产生的短按脉冲，不向后端发空音频。",
@@ -201,7 +201,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
         zh: "确保公网 Fly.io 中继零明文泄露，且与另一套副固件共享闪存时绝不互相擦毁。",
       },
       tension: {
-        en: "Streaming raw PCM over BLE/Wi-Fi drains battery and drops frames; seamless mid-turn switching risks duplicate tool calls.",
+        en: "Streaming raw PCM over Wi-Fi drains battery and drops frames; seamless mid-turn switching risks duplicate tool calls.",
         zh: "无线传原始音频耗电大且易丢包；若在单轮讲话途中硬切通道，极易引发工具重复执行。",
       },
       resolution: {
@@ -217,12 +217,12 @@ export const walkieResearchVault: RawResearchVaultRecord = {
         zh: "拒绝后台常开麦克风偷听，要求语音简报听得懂，且按下侧键后工具必须真停下来。",
       },
       tension: {
-        en: "Small wrist speakers struggle in noisy kitchens; terse status codes fail to explain why a command stalled.",
-        zh: "嘈杂厨房环境下小扬声器不易听清，而简短错误码让人不知道究竟卡在网络还是模型。",
+        en: "A small wrist speaker is quiet (Lewis compared five volume levels and picked the loudest); terse status codes fail to explain why a command stalled.",
+        zh: "手腕上的小喇叭声音小（Lewis 比过五档音量，选了最响的一档）；简短错误码也说不清命令卡在哪里。",
       },
       resolution: {
-        en: "Hardware PTT button physically gates audio capture; 3-way offline indicator separates Wi-Fi, Relay, and AI faults.",
-        zh: "物理按住才采音从根本消除偷听顾虑，三段故障指示把网络、中继与模型问题拆解清楚。",
+        en: "Hardware PTT button physically gates audio capture; three OFFLINE screens in code separate Wi-Fi, relay and PC faults (not yet checked away from the cable).",
+        zh: "物理按住才采音，从根本上消除偷听顾虑。代码里有三个离线画面，分开显示 Wi-Fi、中继和电脑的问题（离开数据线的检查还没做）。",
       },
     },
   ],
@@ -234,7 +234,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
         zh: "如果今天重做第二版，哪条架构底线绝对不动？",
       },
       answer: {
-        en: "Zero-knowledge AES-256-GCM relay sealing plus physical 30s Front-Key pairing. A cloud relay that can read repository paths or forge tool approvals breaks the trust boundary.",
+        en: "End-to-end AES-256-GCM relay sealing plus physical 30s Front-Key pairing. A cloud relay that can read repository paths or forge tool approvals breaks the trust boundary.",
         zh: "AES-256-GCM 端到端密封中继与 30 秒前键当面配对必须保留。任何能让中继服务器读懂仓库路径或伪造审批的捷径都会彻底毁掉安全边界。",
       },
       verifiedStatus: "bench-tested",
@@ -243,11 +243,11 @@ export const walkieResearchVault: RawResearchVaultRecord = {
       id: "walkie-q2",
       question: {
         en: "Which early assumption proved brittle in practice?",
-        zh: "哪个早期设想在台架实测中暴露出明显脆弱性？",
+        zh: "哪个早期设想在实际使用中站不住？",
       },
       answer: {
-        en: "Assuming spoken TTS alone suffices in domestic spaces. Ambient kitchen noise masks brief voice recaps, so pairing a 3-line high-contrast card on the 1.14-inch screen proved essential.",
-        zh: "最初以为纯靠语音播报简报就够用，但茶水间/厨房环境音极易盖过小喇叭，最终必须配合 1.14 寸高对比三行文字卡才能稳定兜底。",
+        en: "Assuming the wrist speaker would be loud enough. Lewis compared five volume levels and picked the loudest, and the 1.14-inch screen also shows a 3-line card so the reply does not depend on sound alone.",
+        zh: "以为手腕小喇叭的音量够用。Lewis 比过五档音量，最后选了最响的一档；1.14 寸小屏上也会显示三行文字卡，回复不只靠声音。",
       },
       verifiedStatus: "bench-tested",
     },

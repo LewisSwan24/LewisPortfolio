@@ -8,8 +8,8 @@ export const autofillModules: CaseModulesRecord = {
       zh: "Resume Autofill 完整档案：校招网申填表旅程、五态零猜测矩阵，以及飞书/Moka/Android 本地隔离打回记录。",
     },
     "ux-research": {
-      en: "UX Research & IA focus: color-plus-shape-plus-word tri-coding (solid/dashed/double) and side-panel per-field reason transparency.",
-      zh: "UX 研究与架构视角：实线/虚线/双线配合文字与图标的三重编码，及侧栏逐栏原因透明度设计。",
+      en: "UX Research & IA focus: color-plus-shape-plus-word tri-coding (2px solid / 2px dashed / 3px solid) and side-panel per-field reason transparency.",
+      zh: "UX 研究与架构视角：实线/虚线/粗实线配合文字与图标的三重编码，及侧栏逐栏原因透明度设计。",
     },
     "systems-hardware": {
       en: "Systems & Engineering focus: widget-library adapters (Ant Design, Element Plus, react-select, ARIA) + Android Keystore resume IME.",
@@ -93,19 +93,19 @@ export const autofillModules: CaseModulesRecord = {
         zh: "匹配引擎对扫描到的每个表单栏位计算确定性分档",
       },
       userMentalModel: {
-        en: "If the tool isn't 100% sure about visa status, expected salary, or an open motivation question, leave it blank and point it out—never hallucinate.",
-        zh: "只要对签证身份、期望薪资或开放问答题有一丝拿不准，就该留空标给我，千万别帮我瞎编。",
+        en: "If my resume does not settle a field such as visa status or expected salary, leave it blank and point it out rather than guess.",
+        zh: "签证身份、期望薪资这类栏位，简历里定不下来就留空标给我，别替我猜。",
       },
       systemAction: {
-        en: "1:1 exact matches fill with solid border; ambiguous dropdowns pause with dashed outline; open prompts stay empty with double border; summary card tallies counts (e.g., 45 / 1 / 1).",
-        zh: "确定 1:1 栏位直填（实线）；歧义下拉暂停标虚线待核；开放题刻意双线留白；摘要卡同步统计三类计数（如 45 / 1 / 1）。",
+        en: "1:1 exact matches fill with solid border; ambiguous dropdowns pause with dashed outline; unrecognised or failed fields get a 3px solid outline; a summary card counts each group.",
+        zh: "确定 1:1 栏位直填（实线）；歧义下拉暂停标虚线待核；认不出或填失败的栏位标 3px 实线；摘要卡统计各类数量。",
       },
       cognitiveFriction: {
         en: "Color-only field outlines fail color-vision deficiency and hide whether a field was intentionally skipped or silently crashed.",
         zh: "只靠红黄绿边框会伤害色觉障碍用户，也无法解释某个空格究竟是「故意不填」还是「漏填崩溃」。",
       },
       edgeRecovery: {
-        en: "Every tier pairs line style (solid/dashed/double), word label, icon, and side-panel reason line in both light and dark modes.",
+        en: "Every tier pairs line style (2px solid / 2px dashed / 3px solid), word label, icon, and side-panel reason line in both light and dark modes.",
         zh: "每档同时配备线型（实/虚/双）、文字标签、图标与侧栏逐栏原因，且在明暗双色模式均经截图校验。",
       },
       focusTags: ["ux-research", "ai-trust"],
@@ -269,8 +269,8 @@ export const autofillModules: CaseModulesRecord = {
         zh: "遇到开放问答题、低把握歧义下拉框，或匹配到最终「提交」语义按钮。",
       },
       uiFeedback: {
-        en: "Open prompts get double-bordered blank emphasis; side panel states explicitly on screen: 'Final submit stays with you'.",
-        zh: "开放题保留双线留白警示；侧栏以固定常驻提示明示「最终提交留给你」。",
+        en: "Open prompts stay blank inside a 3px solid border; side panel states explicitly on screen: 'Final submit stays with you'.",
+        zh: "开放题保留粗实线留白警示；侧栏以固定常驻提示明示「最终提交留给你」。",
       },
       keyboardFocus: {
         en: "Auto-advancer explicitly skips Submit controls so keyboard/script focus never activates final submission.",
@@ -294,12 +294,12 @@ export const autofillModules: CaseModulesRecord = {
         zh: "常见 AI 填表思路：追求 100% 填满率，尝试推算并补全所有空格与开放题",
       },
       failureExposed: {
-        en: "A plausible-looking wrong visa class, salary expectation, or fabricated motivation paragraph harms an applicant far more than an empty field.",
-        zh: "填错一条签证状态或瞎编一段申请动机，带来的直接淘汰风险远高于老老实实留空让人自己填。",
+        en: "Design premise: a plausible-looking wrong visa class, salary expectation, or invented motivation paragraph does more harm than an empty field.",
+        zh: "设计前提：填错签证状态、薪资期望，或编出一段申请动机，都比留空让人自己填害处更大。",
       },
       fixApplied: {
-        en: "Replaced full-fill ambition with strict three-tier splitting (solid / dashed / double) and zero open-ended generation.",
-        zh: "砍掉猜填与生成逻辑，确立实线/虚线/双线三态分流规则与开放题零编造底线。",
+        en: "Replaced full-fill ambition with strict three-tier splitting (2px solid / 2px dashed / 3px solid) and zero open-ended generation.",
+        zh: "砍掉猜填与生成逻辑，确立实线/虚线/粗实线三态分流规则与开放题零编造底线。",
       },
       sourceReceipt: {
         en: "2026-11-20 6/6 light & dark screenshot test pass + side-panel fill report",

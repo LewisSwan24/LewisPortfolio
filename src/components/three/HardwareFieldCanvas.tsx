@@ -39,12 +39,12 @@ const HARDWARE_SPECS: Record<
   },
   onthebeat: {
     en: {
-      title: "BLE proximity threshold specimen",
-      summary: "RSSI bands (-68 / -58 dBm) unlock anonymous wave cards and fade quietly after mutual nod reveal.",
+      title: "ESP-NOW proximity threshold specimen",
+      summary: "Bands hear each other over ESP-NOW. An area is named only at -56 dBm or louder; a knock needs -45 dBm. Names appear only after both say yes.",
     },
     zh: {
-      title: "BLE 临近感应退场标本",
-      summary: "以 RSSI 距离阈值与三阶无名卡片开启搭话，双方点头揭示身份后硬件即刻静默退场。",
+      title: "ESP-NOW 临近感应标本",
+      summary: "手环之间用 ESP-NOW 互相感知。信号达到 -56 dBm 或更强才说出所在区域，碰手环要 -45 dBm。双方都同意之后才显示名字。",
     },
   },
 };

@@ -100,7 +100,7 @@ export function ProcessWireframe({
         <polygon points="400,165 450,260 350,260" fill="none" stroke="var(--accent)" strokeWidth="2" />
         <rect x="582" y="170" width="92" height="92" rx="20" fill="none" stroke="var(--text)" strokeWidth="1.5" />
         <g fill="var(--text-2)" fontFamily="var(--font-ui)" fontSize="13" textAnchor="middle">
-          <text x="172" y="305">{isZh ? "霓虹发光涂鸦风" : "Neon airbrush style"}</text>
+          <text x="172" y="305">{isZh ? "日系动画风" : "Anime style"}</text>
           <text x="172" y="330">{isZh ? "违背羊皮纸色板" : "Breaks paper palette"}</text>
           <text x="400" y="305">{isZh ? "塑料 3D 渲染质感" : "Glossy 3D plastic"}</text>
           <text x="400" y="330">{isZh ? "缺少禁用词约束" : "No negative prompts"}</text>

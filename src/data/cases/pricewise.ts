@@ -193,7 +193,7 @@ export const pricewiseCase: CaseRecord = {
       },
       "pr": {
         "label": "How the scope grew",
-        "p": "The feature list was AI-generated planning, derived from what a complete product ought to have rather than from anyone's need. Phases 2 through 6 all landed across two days, 9–10 January 2026. On 1 March a single commit added 5,884 lines: a v1 API, AI function calling, bilingual text, price prediction, and a social layer of friends, DMs, feeds, household groups and challenges that made up about a quarter of it. On 2 March I stopped, and did not touch it for five months. The scope never came back down: in August the v1 routes moved to unversioned paths rather than being removed, and the social routes are still in the app. Looking back, a comparison app on simulated data with no registered users should not have kept growing."
+        "p": "Looking back, I judge that the feature list was AI-generated planning, derived from what a complete product ought to have rather than from anyone's need; that is my later reading, not something the repo records. Phases 2 through 6 all landed across two days, 9–10 January 2026. On 1 March a single commit added 5,884 lines: a v1 API, AI function calling, bilingual text, price prediction, and a social layer of friends, DMs, feeds, household groups and challenges that made up about a quarter of it. On 2 March I stopped, and did not touch it for five months. The scope never came back down: in August the v1 routes moved to unversioned paths rather than being removed, and the social routes are still in the app. Looking back, a comparison app on simulated data with no registered users should not have kept growing."
       },
       "te": {
         "label": "The module everything depends on",
@@ -263,7 +263,7 @@ export const pricewiseCase: CaseRecord = {
       },
       "pr": {
         "label": "范围是怎么变大的",
-        "p": "功能清单是 AI 生成的规划，从「一个完整的产品该有什么」推出来的，不是从任何人的需求推出来的。Phase 2 到 Phase 6 全部落在 2026 年 1 月 9 到 10 日这两天。3 月 1 日，单次提交 5884 行：v1 接口、AI 函数调用、中英双语文案、价格预测，还有一层社交功能。好友、私信、动态、家庭群组、挑战赛这些社交代码，约占这 5884 行的四分之一。3 月 2 日停下，五个月没有碰。范围一直没有缩回去：8 月 v1 路由只是搬到了不带版本号的路径，没有删，社交路由至今都在。回头看，一个建在拟真数据上、注册用户为 0 的比价应用，不该继续长下去。"
+        "p": "回头看，我判断功能清单是 AI 生成的规划，从「一个完整的产品该有什么」推出来，没有从任何人的需求出发。这是我事后的判断，仓库里没有记录。Phase 2 到 Phase 6 全部落在 2026 年 1 月 9 到 10 日这两天。3 月 1 日，单次提交 5884 行：v1 接口、AI 函数调用、中英双语文案、价格预测，还有一层社交功能。好友、私信、动态、家庭群组、挑战赛这些社交代码，约占这 5884 行的四分之一。3 月 2 日停下，五个月没有碰。范围一直没有缩回去：8 月 v1 路由只是搬到了不带版本号的路径，没有删，社交路由至今都在。回头看，一个建在拟真数据上、注册用户为 0 的比价应用，不该继续长下去。"
       },
       "te": {
         "label": "一切都压在这个模块上",

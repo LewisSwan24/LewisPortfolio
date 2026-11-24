@@ -4,7 +4,7 @@ import type { AiTrustThread, ProjectEvidenceSlug, ProofLocale } from "./types";
 /**
  * The /hire section that carries AI UX across several cases.
  *
- * AI UX used to rest on Vigil alone, and Vigil was abandoned on 2026-09-23.
+ * AI UX used to rest on one abandoned case alone (dropped on 2026-09-23).
  * On 2026-09-28 Lewis chose to show it as a thread through the work rather
  * than as one case: "AI UX是贯穿整个我的生涯的灵魂之一，而不是只限制于某个项目".
  *
@@ -65,7 +65,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "On The Beat",
         who: "Coursework individual build (Claude Code wrote code)",
         body:
-          "Generated prototypes hid mocked MEET states, laptop dependency, and miscounted cards ('1 of 4'). Reviewing and rejecting deceptive drafts produced a standalone Fly.io relay and mutual-consent wristband pairing.",
+          "Generated prototypes hid mocked MEET states and laptop dependency. Reviewing and rejecting deceptive drafts produced a standalone Fly.io relay and mutual-consent wristband pairing.",
         href: "/projects/onthebeat#decision-timeline",
       },
     ],
@@ -84,7 +84,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "Walkie",
         who: "独立设计（AI 编码工具辅助实现）",
         body:
-          "嘈杂环境下纯靠语音识别放行高危命令极易误触。我将所有 Claude Code 工具审批与新设备配对硬性绑定在 M5StickS3 实体按键上，辅以 AES-256-GCM 零知识中继与三组可复现硬件门禁。",
+          "嘈杂环境下纯靠语音识别放行高危命令极易误触。我将所有 Claude Code 工具审批与新设备配对硬性绑定在 M5StickS3 实体按键上，辅以 AES-256-GCM 端到端加密中继与三组可复现硬件门禁。",
         href: "/projects/walkie#decision-timeline",
       },
       {
@@ -108,7 +108,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "On The Beat",
         who: "课程个人实现版（代码由 Claude Code 编写）",
         body:
-          "AI 生成初稿曾把写死的假配对、离不开笔电的本地链路和数错的卡片（全标「1 of 4」）藏在精美界面下；逐一打回重做后才跑通脱离电脑的双向手环协同。",
+          "AI 生成初稿曾把写死的假配对和离不开笔电的本地链路藏在精美界面下；9 月 25 日我发现画面上的 MEET 是模拟的。逐一打回重做后才跑通脱离电脑的双向手环协同。",
         href: "/projects/onthebeat#decision-timeline",
       },
     ],

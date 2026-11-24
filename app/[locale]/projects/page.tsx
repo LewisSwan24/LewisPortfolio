@@ -124,7 +124,7 @@ export default async function ProjectsPage() {
               {isZh ? "打开交互模式图谱 →" : "Explore Pattern Atlas →"}
             </Link>
             <Link href="/vault" className="btn btn-ghost">
-              {isZh ? "8 项演进与死亡解剖档案馆 →" : "Archive Vault (8 Autopsies) →"}
+              {isZh ? "归档作品复盘档案馆 →" : "Archive Vault →"}
             </Link>
           </div>
         </div>

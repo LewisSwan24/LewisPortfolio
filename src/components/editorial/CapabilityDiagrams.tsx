@@ -279,7 +279,7 @@ export function WalkieTactileSchematicSvg({ locale }: { locale: "en" | "zh" }) {
           app0: On The Beat
         </text>
         <text x="54" y="114" fill="var(--text-3)" fontSize="11" fontFamily="var(--font-mono)">
-          {isZh ? "演出近场互助固件" : "Gig BLE mutual-nod"}
+          {isZh ? "演出近场互助固件" : "Gig ESP-NOW wristband"}
         </text>
         <rect
           x="208"
@@ -305,7 +305,7 @@ export function WalkieTactileSchematicSvg({ locale }: { locale: "en" | "zh" }) {
           {isZh ? "按住录音 / 短按批准" : "Hold talk / Tap approve"}
         </text>
         <text x="54" y="214" fill="var(--text-3)" fontSize="11" fontFamily="var(--font-mono)">
-          {isZh ? "30s 配对确权按键" : "30s pair.key anchor"}
+          {isZh ? "30s 配对确权按键" : "30s pairing press"}
         </text>
         <rect x="208" y="144" width="150" height="92" rx="8" fill="var(--surface)" stroke="var(--text-2)" />
         <text x="220" y="170" fill="var(--text)" fontSize="13" fontWeight="600" fontFamily="var(--font-ui)">
@@ -360,7 +360,7 @@ export function WalkieTactileSchematicSvg({ locale }: { locale: "en" | "zh" }) {
           stroke="var(--accent)"
         />
         <text x="482" y="180" fill="var(--text)" fontSize="13" fontWeight="600" fontFamily="var(--font-ui)">
-          {isZh ? "路径 B · 零知识中继" : "Path B · Fly.io Relay"}
+          {isZh ? "路径 B · 端到端加密中继" : "Path B · Fly.io Relay"}
         </text>
         <text x="482" y="202" fill="var(--accent)" fontSize="11.5" fontFamily="var(--font-mono)">
           AES-256-GCM · ADPCM
@@ -407,7 +407,7 @@ export function WalkieTactileSchematicSvg({ locale }: { locale: "en" | "zh" }) {
       </svg>
       <figcaption>
         {isZh
-          ? "硬件实体门控剖面（响应式内联矢量图，尚未添加外部佩戴实拍图）：Walkie 与 On The Beat 安全共存于同一块 M5StickS3（app0/app1），通过物理正/侧垂直键分离批准与拒绝，并以 USB 抢占和 AES-256-GCM 零知识中继连接本地 Claude Code 桥接端。"
+          ? "硬件实体门控剖面（响应式内联矢量图，尚未添加外部佩戴实拍图）：Walkie 与 On The Beat 安全共存于同一块 M5StickS3（app0/app1），通过物理正/侧垂直键分离批准与拒绝，并以 USB 抢占和 AES-256-GCM 端到端加密中继连接本地 Claude Code 桥接端。"
           : "Tactile M5StickS3 dual-boot schematic (responsive inline SVG while external wearer photography is pending): Walkie (app1) coexists safely alongside On The Beat (app0) under guard.py, physically splits Approve (Front) from Deny (Side), and routes over USB-first or AES-256-GCM Fly.io relay."}
       </figcaption>
     </figure>

@@ -103,7 +103,7 @@ const TOOL_DEFINITIONS: McpToolDefinition[] = [
   {
     name: "audit_vault_lineage",
     description:
-      "Audits an explicitly archived-unlisted study in the Archive Vault, exposing what broke and which listed flagship inherited its structural fix.",
+      "Audits an explicitly archived-unlisted study in the Archive Vault, showing what broke and which listed cases it relates to.",
     inputSchema: {
       type: "object",
       additionalProperties: false,
@@ -111,7 +111,7 @@ const TOOL_DEFINITIONS: McpToolDefinition[] = [
       properties: {
         slug: {
           type: "string",
-          enum: ["fencepost", "connect", "spectra", "vigil", "rules", "gapmapper", "hoop", "pricewise"],
+          enum: ["fencepost", "connect", "spectra", "rules", "gapmapper", "hoop", "pricewise"],
         },
         locale: { type: "string", enum: ["en", "zh"], default: "en" },
       },

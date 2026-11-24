@@ -82,7 +82,7 @@ export function reduceApprovalGate(
     },
     tagline: {
       en: "Separate deterministic 1:1 matches from ambiguous dropdowns and open prompts using stroke, icon, word badge, and a hard human Submit lock.",
-      zh: "把确定性 1:1 映射、歧义下拉框与开放问答题拆成实线/虚线/双线三档可见状态，并在最终提交前硬性停手。",
+      zh: "把确定性 1:1 映射、歧义下拉框与开放问答题拆成实线/虚线/粗实线三档可见状态，并在最终提交前硬性停手。",
     },
     humanTension: {
       en: "Typing one resume across dozens of ATS portals is exhausting, yet AI autofillers that guess visa status, salary, or essays to boast '100% completion' push catastrophic rejection risk onto the applicant.",
@@ -93,8 +93,8 @@ export function reduceApprovalGate(
       zh: "用云端大模型硬填所有空白栏位，并在多页流程末页顺手代点不可撤回的最终提交。",
     },
     chosenRule: {
-      en: "Fill deterministic 1:1 profile matches immediately (solid border), pause ambiguous selects for review (dashed), keep open prompts empty by rule (double), tally counts with per-field reasons in the side panel, and stop dead before Submit.",
-      zh: "仅确定 1:1 栏位直填（实线），歧义下拉暂停标虚线待核，开放题一律双线刻意留空；侧栏逐栏写明填写依据，且绝不触发任何 Submit 选择器。",
+      en: "Fill deterministic 1:1 profile matches immediately (solid border), pause ambiguous selects for review (dashed), keep open prompts empty by rule (3px solid), tally counts with per-field reasons in the side panel, and stop dead before Submit.",
+      zh: "仅确定 1:1 栏位直填（实线），歧义下拉暂停标虚线待核，开放题一律粗实线刻意留空；侧栏逐栏写明填写依据，且绝不触发任何 Submit 选择器。",
     },
     a11yGuarantees: [
       {
@@ -126,12 +126,12 @@ export function classifyField(
   confidence: number,
   isOpenPrompt: boolean,
   isSubmitControl: boolean
-): { tier: CertaintyTier; stroke: "solid" | "dashed" | "double"; allowClick: boolean } {
+): { tier: CertaintyTier; stroke: "solid" | "dashed" | "thick"; allowClick: boolean } {
   if (isSubmitControl) {
-    return { tier: "kept-blank", stroke: "double", allowClick: false };
+    return { tier: "kept-blank", stroke: "thick", allowClick: false };
   }
   if (isOpenPrompt || confidence < 0.7) {
-    return { tier: "kept-blank", stroke: "double", allowClick: false };
+    return { tier: "kept-blank", stroke: "thick", allowClick: false };
   }
   if (confidence < 0.98) {
     return { tier: "needs-review", stroke: "dashed", allowClick: false };
@@ -229,8 +229,8 @@ export function classifyField(
       zh: "对称双向同意后的渐进显名与退场",
     },
     tagline: {
-      en: "Eliminate unilateral social exposure in physical venues by keeping waves anonymous until both people confirm, then withdrawing the interface cleanly.",
-      zh: "先传递无身份压力的匿名挥手信号，唯有双方同步点头确认后才揭示名字与碰面地标，随后设备立即息屏退场。",
+      en: "Eliminate unilateral social exposure in physical venues by keeping waves anonymous until both people confirm, then ending each meeting kindly with LET'S FINISH.",
+      zh: "先传递无身份压力的匿名挥手信号，双方都同意后才揭示名字和碰面地点。聊完用 LET'S FINISH 好好收尾，那张卡随之关闭。",
     },
     humanTension: {
       en: "Wanting to say hello at a dark, loud gig carries real social rejection anxiety, yet opening a proximity profile radar creates surveillance pressure and ruins presence in the music.",

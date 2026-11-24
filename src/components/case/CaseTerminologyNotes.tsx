@@ -9,7 +9,7 @@ interface TermNoteEntry {
 
 const CASE_TERM_NOTES: Partial<Record<CurrentProjectSlug, TermNoteEntry>> = {
   walkie: {
-    term: { en: "zero-knowledge relay", zh: "零知识中继" },
+    term: { en: "end-to-end encrypted relay", zh: "端到端加密中继" },
     label: { en: "Protocol note", zh: "协议注脚" },
     note: {
       en: "Every frame after PAIR is sealed with AES-256-GCM using a key derived from pair.key; the Fly.io relay forwards ciphertext without holding decryption keys.",

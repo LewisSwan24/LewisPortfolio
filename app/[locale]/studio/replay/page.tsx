@@ -14,8 +14,8 @@ export async function generateMetadata(): Promise<Metadata> {
       : "Protocol Replay Studio · Hardware & Frame Stepper";
   const description =
     locale === "zh"
-      ? "按毫秒单步检查 Walkie AES-256-GCM 密封帧、MazeRunners 45 ms 红外防抖与 On The Beat BLE 近场台阶，支持故障注入。"
-      : "Step millisecond-by-millisecond through Walkie AES-256-GCM frames, MazeRunners 45 ms IR debounce, and On The Beat BLE pacing with fault injection.";
+      ? "按毫秒单步检查模拟重放：Walkie AES-256-GCM 密封帧、MazeRunners 三次取样红外去抖与 On The Beat ESP-NOW 近场感知，支持故障注入。"
+      : "Step millisecond-by-millisecond through simulated replays of Walkie AES-256-GCM frames, MazeRunners three-sample IR debounce, and On The Beat ESP-NOW nearness, with fault injection.";
 
   return {
     title,

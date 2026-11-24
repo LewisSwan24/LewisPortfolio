@@ -16,8 +16,8 @@ export const onthebeatModules: CaseModulesRecord = {
       zh: "系统与硬件视角：StickS3 与 StickC Plus 双型号 C++ 固件、悉尼常驻 Fly.io 免电脑中继，以及手环侧键双向状态同步。",
     },
     "ai-trust": {
-      en: "AI Review & Consent Trust focus: symmetric mutual-nod reveal gate and rejecting deceptive AI prototypes (static MEET JSON, '1 of 4' cards, black screens).",
-      zh: "AI 审查与同意信任视角：双向点头才揭示身份的对称门控，以及拆穿写死假 MEET、全标「1 of 4」与黑屏断点的多轮打回。",
+      en: "AI Review & Consent Trust focus: symmetric mutual-nod reveal gate and rejecting AI prototypes that only looked finished (a mocked, static MEET).",
+      zh: "AI 审查与同意信任视角：双向点头才揭示身份的对称门控，以及多轮打回只是看起来做完的 AI 原型（MEET 是写死的模拟数据）。",
     },
   },
   journey: [
@@ -115,8 +115,8 @@ export const onthebeatModules: CaseModulesRecord = {
       id: "onthebeat-pocket-exit",
       step: 4,
       title: {
-        en: "Landmark handover & intentional device withdrawal",
-        zh: "唯一地标交接与设备主动退场",
+        en: "Meeting place handover & a kind LET'S FINISH",
+        zh: "交出碰面地点，再用 LET'S FINISH 收尾",
       },
       trigger: {
         en: "Names and shared venue meeting spot appear after mutual consent",
@@ -127,8 +127,8 @@ export const onthebeatModules: CaseModulesRecord = {
         zh: "找到彼此碰上面之后，手机就该收回口袋——工具在把人送到彼此面前后立刻退场。",
       },
       systemAction: {
-        en: "Displays high-contrast landmark card without chat threads, social feeds, or retention hooks so devices fade quietly.",
-        zh: "仅提供高对比度碰面地标卡，刻意不设长聊天框或留存诱导，引导把手机放回口袋。",
+        en: "Shows first names, where to meet and a shared number without chat threads, social feeds, or retention hooks; LET'S FINISH then turns the card off.",
+        zh: "只给名字、碰面地点和同一个编号，刻意不设长聊天框或留存诱导。聊完用 LET'S FINISH 收尾，那张卡随之关闭。",
       },
       cognitiveFriction: {
         en: "Staff-page push arrived on Android on Sep 30 (with VPN), while an Oct 6 disappearing iPhone clip fix remains un-retested.",
@@ -153,7 +153,7 @@ export const onthebeatModules: CaseModulesRecord = {
         zh: "每轮 Claude Design 画布或 Claude Code 固件/前端构建产出交付审查",
       },
       userMentalModel: {
-        en: "Polished visual output from AI hides broken pagination and localhost assumptions—every claim must be touched on real bands.",
+        en: "Polished visual output from AI hides mocked states and localhost assumptions—every claim must be touched on real bands.",
         zh: "AI 生成的漂亮界面最容易掩盖假状态和本地写死端口，必须拿到两支真手环上逐条拆穿验证。",
       },
       systemAction: {
@@ -241,10 +241,10 @@ export const onthebeatModules: CaseModulesRecord = {
     },
     {
       state: "error",
-      label: { en: "Error · Canvas / Playback Breakpoint", zh: "错误态 · 选卡黑屏与计数偏差" },
+      label: { en: "Error · Canvas / Playback Breakpoint", zh: "错误态 · 画布与播放断点" },
       entryCondition: {
-        en: "Broken state transition after card selection (e.g., Sep 21 post-song black screen or Oct 6 iPhone clip glitch).",
-        zh: "切换分支后状态机未命中有效视图（如 9 月 21 日点选歌曲后黑屏或 iPhone 片段异常）。",
+        en: "A generated screen shows a state the system never reached (e.g., a mocked MEET) or playback breaks (e.g., the Oct 6 iPhone clip glitch).",
+        zh: "生成的界面显示了系统并未到达的状态（如写死的模拟 MEET），或播放出错（如 10 月 6 日的 iPhone 片段异常）。",
       },
       uiFeedback: {
         en: "Caught during manual review loops; fixed state machine ensures valid card or return control stays rendered.",
@@ -252,7 +252,7 @@ export const onthebeatModules: CaseModulesRecord = {
       },
       keyboardFocus: {
         en: "Prevents focus landing inside empty/blank viewport traps.",
-        zh: "避免用户焦点落入黑屏空白区域而失去返回能力。",
+        zh: "避免用户焦点落入空白区域而失去返回能力。",
       },
       fallbackGuarantee: {
         en: "Honest evidence boundary explicitly notes that Oct 6 iPhone clip fix awaits retesting.",
@@ -288,18 +288,18 @@ export const onthebeatModules: CaseModulesRecord = {
     {
       id: "onthebeat-reject-canvas-12",
       round: { en: "Canvas Review (12+ / 5+ rounds)", zh: "AI 画布连续打回（12+ / 5+ 轮）" },
-      date: "2026-09-15",
+      date: "2026-09-21",
       artifactBefore: {
-        en: "Claude Design canvas showing all four cards labeled '1 of 4', static mocked MEET JSON, and post-selection black screen (Sep 21)",
-        zh: "Claude Design 生成画布四张卡全标着「1 of 4」、MEET 写死假 JSON、且 9 月 21 日点选歌曲后黑屏",
+        en: "Claude Design canvas whose MEET was static mocked JSON",
+        zh: "Claude Design 生成的画布，MEET 是写死的模拟 JSON",
       },
       failureExposed: {
         en: "Polished visual frames created the illusion of working interaction while hiding dead state transitions and fake mutual consent.",
-        zh: "精致排版制造了「已经做完」的假象，实则隐藏了分页错乱、黑屏死路与假双端协商。",
+        zh: "精致排版制造了「已经做完」的假象，实则隐藏了走不通的状态转换与假的双方同意。",
       },
       fixApplied: {
-        en: "Sent Say Hello canvas back 12+ rounds and the later canvas 5+ rounds in one night until pagination, live wave-to-nod transitions, and card selection held.",
-        zh: "对早期 Say Hello 画布连续打回至少 12 轮、后续版当晚再打回至少 5 轮，直到分页与真实状态转换全部跑通。",
+        en: "Sent Say Hello canvas back 12+ rounds and the later canvas 5+ rounds in one night until live wave-to-nod transitions and card selection held.",
+        zh: "对早期 Say Hello 画布连续打回至少 12 轮、后续版当晚再打回至少 5 轮，直到真实的状态转换和选卡全部跑通。",
       },
       sourceReceipt: {
         en: "Sep 15–29 Claude Design -> Claude Code audit trail & Ava/Leo local walkthrough",

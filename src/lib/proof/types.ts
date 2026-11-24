@@ -2,7 +2,6 @@ export type ProjectEvidenceSlug =
   | "connect"
   | "spectra"
   | "maze"
-  | "vigil"
   | "hoop"
   | "pricewise"
   | "gapmapper"

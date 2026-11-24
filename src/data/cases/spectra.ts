@@ -16,8 +16,8 @@ export const spectraCase: CaseRecord = {
       "zh": "网页作者写死的排版限制了需要更大字距与行高的阅读者"
     },
     "changed": {
-      "en": "Per-origin Chrome extension injection with offline bundled OpenDyslexic",
-      "zh": "按域名保存设置的浏览器扩展注入与离线本地打包 OpenDyslexic 字体"
+      "en": "Chrome extension style injection with offline bundled OpenDyslexic and one global settings store",
+      "zh": "浏览器扩展样式注入，OpenDyslexic 字体离线打包，设置全局保存"
     }
   },
   "reviewMeta": {
@@ -84,11 +84,11 @@ export const spectraCase: CaseRecord = {
       "sy": {
         "label": "The shape of the problem",
         "title": "It has to work on pages that were never built to allow it.",
-        "p": "Injecting styles into someone else’s page is the whole difficulty. Sites use their own specificity, their own class names, and sometimes inline styles that override anything added later. Anything I inject has to win without breaking layout, and it has to come back the next time that site is opened."
+        "p": "Injecting styles into someone else’s page is the whole difficulty. Sites use their own specificity, their own class names, and sometimes inline styles that override anything added later. Anything I inject has to win without breaking layout, and it has to come back on the next page load."
       },
       "id": {
         "label": "Design decisions",
-        "p": "The font is bundled in the extension rather than pulled from a CDN: it works offline, it does not tell a third party which pages are being read, and it cannot break when a remote host changes. Settings save per site, because someone who needs looser spacing on a dense documentation page usually does not want it on a news site. The controls sit in a popup rather than a context menu, so the whole set is visible at once instead of hidden behind a right-click."
+        "p": "The font is bundled in the extension rather than pulled from a CDN: it works offline, it does not tell a third party which pages are being read, and it cannot break when a remote host changes. Settings are saved once in the extension's local storage and apply to every site; there is no per-site override. The dyslexia mode is a single toggle with fixed spacing values, not a set of sliders. The controls sit in a popup rather than a context menu, so the whole set is visible at once instead of hidden behind a right-click."
       },
       "pr": {
         "label": "Build",
@@ -110,9 +110,9 @@ export const spectraCase: CaseRecord = {
         },
         "m3": {
           "label": "Scope",
-          "v": "Settings per site"
+          "v": "One global settings set"
         },
-        "p": "A working extension that rewrites type and spacing on any page from one popup, in two languages, with settings that persist per site. Evidence status — this is a DEMO. It runs, it is tested at the utility level, and it has never been put in front of a reader who needs it."
+        "p": "A working extension that rewrites type and spacing on any page from one popup, in two languages, with one set of settings that applies on every site. Evidence status — this is a DEMO. It runs, it is tested at the utility level, and it has never been put in front of a reader who needs it."
       },
       "rf": {
         "label": "Reflection",
@@ -154,11 +154,11 @@ export const spectraCase: CaseRecord = {
       "sy": {
         "label": "问题的真正形状",
         "title": "它必须跑在根本没打算让你改的页面上。",
-        "p": "往别人的页面里注入样式，难点全在这里。每个网站有自己的选择器优先级、自己的类名，有时还有内联样式，会盖掉任何后加的东西。我注入的样式既要赢过它们，又不能把布局撑坏，而且下次打开这个站还得自己回来。"
+        "p": "往别人的页面里注入样式，难点全在这里。每个网站有自己的选择器优先级、自己的类名，有时还有内联样式，会盖掉任何后加的东西。我注入的样式既要赢过它们，又不能把布局撑坏，而且下次加载页面时还得自己回来。"
       },
       "id": {
         "label": "设计决策",
-        "p": "字体打包进扩展，不走 CDN：离线能用，不会把「谁在读哪一页」告诉第三方，也不会因为远端主机改动就失效。设置按站点分别保存：需要在密集的文档页放宽行距的人，通常并不想在新闻站也这样。控件放在扩展弹窗里，而不是右键菜单，这样一整组一眼能看全，不用靠右键去猜。"
+        "p": "字体打包进扩展，不走 CDN：离线能用，不会把「谁在读哪一页」告诉第三方，也不会因为远端主机改动就失效。设置统一存在扩展的本地存储里，对所有网站生效，没有按站点单独设置。阅读障碍模式是一个开关，间距数值固定，不能用滑杆调。控件放在扩展弹窗里，而不是右键菜单，这样一整组一眼能看全，不用靠右键去猜。"
       },
       "pr": {
         "label": "实现",
@@ -180,9 +180,9 @@ export const spectraCase: CaseRecord = {
         },
         "m3": {
           "label": "作用域",
-          "v": "按站点保存设置"
+          "v": "全局一套设置"
         },
-        "p": "一个能用的扩展：从一个扩展弹窗就能改写任意页面的字体与间距，中英双语，设置按站点保存。证据状态：这是 DEMO。它能跑，工具层有测试，但从来没有交到真正需要它的读者手里过。"
+        "p": "一个能用的扩展：从一个扩展弹窗就能改写任意页面的字体与间距，中英双语，一套设置对所有网站生效。证据状态：这是 DEMO。它能跑，工具层有测试，但从来没有交到真正需要它的读者手里过。"
       },
       "rf": {
         "label": "反思",

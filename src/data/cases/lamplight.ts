@@ -166,12 +166,12 @@ export const lamplightCase: CaseRecord = {
           "id": "lamplight-log-blind",
           "category": "structure",
           "quote": {
-            "en": "\"Scrolling 300 lines of terminal stdout just to see if Claude is working or waiting on me breaks flow every 5 minutes.\"",
-            "zh": "「每隔五分钟就得翻几百行终端日志，只为确认 Agent 是在干活还是在等我点头。」"
+            "en": "Design premise: a terminal log does not show at a glance whether the agent is working or waiting for me.",
+            "zh": "设计前提：终端日志没法让人一眼看出 Agent 在干活还是在等我确认。"
           },
           "context": {
-            "en": "Daily long-running Claude task observation (Oct 2026)",
-            "zh": "日常长耗时 Claude 任务使用观察（2026 年 10 月）"
+            "en": "My own use of long Claude tasks (Oct 2026); a premise, not a recorded quote",
+            "zh": "我自己跑长耗时 Claude 任务时的体会（2026 年 10 月），属于设计前提，并非录下的原话"
           },
           "friction": {
             "en": "Logs flatten progress, active owner, and blocked input into identical text lines.",

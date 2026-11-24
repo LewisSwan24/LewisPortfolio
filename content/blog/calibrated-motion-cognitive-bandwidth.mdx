@@ -1,6 +1,6 @@
 ---
 title: "Calibrated GSAP Motion: Respecting Cognitive Bandwidth & Reduced Motion"
-date: "2026-11-15"
+date: "2026-11-24"
 excerpt: "Motion in technical portfolios should clarify hierarchy without taxing CPU budgets or violating prefers-reduced-motion. Notes on transform-only timelines, ScrollTrigger discipline, and zero layout shift."
 tags:
   - Motion Design
@@ -16,7 +16,7 @@ In this portfolio's [Lab](/lab) and case templates, GSAP acts as an editorial pa
 
 ## 1. Lazy-load ScrollTrigger and animate transforms only
 
-Every GSAP timeline runs strictly through transform and opacity properties (`x`, `y`, `scale`, `autoAlpha`) so compositor layers never trigger layout reflows (`width`, `height`, `top`, `left`). Plugins register once via dynamic import (`getGsapWithScrollTrigger()` in `src/lib/motion/gsap.ts`), keeping initial route JS budgets lean (`<= 20 kB gz` per app route chunk and `<= 70 kB gz` per standard vendor chunk).
+Every GSAP timeline runs strictly through transform and opacity properties (`x`, `y`, `scale`, `autoAlpha`) so compositor layers never trigger layout reflows (`width`, `height`, `top`, `left`). Plugins register once via dynamic import (`getGsapWithScrollTrigger()` in `src/lib/motion/gsap.ts`), keeping initial route JavaScript lean. The budget check fails the build if an app route chunk passes `22 kB gz` or a standard shared chunk passes `70 kB gz`.
 
 ## 2. Deterministic cleanup and `0ms` instant settle
 

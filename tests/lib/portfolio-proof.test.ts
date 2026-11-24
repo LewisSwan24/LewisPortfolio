@@ -322,8 +322,7 @@ describe("portfolio proof content", () => {
     expect(room.brief.primaryAction.href).toBe("/contact");
     expect(room.brief.secondaryAction.href).toBe("/resume");
 
-    // Four, not five, while Vigil is unlisted: its human-oversight entry is
-    // kept in the data but not shown.
+    // The abandoned case's human-oversight entry was removed on 2026-11-25.
     expect(room.evidenceBrief.length).toBeGreaterThanOrEqual(4);
     expect(room.evidenceBrief.map((item) => item.caseSlug)).toEqual(
       expect.arrayContaining(["grassland", "onthebeat"])
@@ -618,7 +617,8 @@ describe("PriceWise canonical facts (rows 14, 15 and 16)", () => {
 
 describe("unlisted cases", () => {
   it("recognises a link into an unlisted case in either locale", () => {
-    expect(UNLISTED_PROJECT_SLUGS).toContain("vigil");
+    // The abandoned email-review case was removed outright on 2026-11-25.
+    expect(UNLISTED_PROJECT_SLUGS).not.toContain("vigil");
     expect(LISTED_PROJECT_SLUGS).not.toContain("vigil");
     // 2026-11-20: Lewis took down the three cases with no recent work and put
     // up his newest builds in their place.
@@ -630,9 +630,9 @@ describe("unlisted cases", () => {
       expect(LISTED_PROJECT_SLUGS).toContain(slug);
     }
 
-    expect(linksToUnlistedProject("/projects/vigil")).toBe(true);
-    expect(linksToUnlistedProject("/zh/projects/vigil#outcome-limits")).toBe(true);
-    expect(linksToUnlistedProject("/projects/vigil/prototype.html")).toBe(true);
+    expect(linksToUnlistedProject("/projects/hoop")).toBe(true);
+    expect(linksToUnlistedProject("/zh/projects/hoop#outcome-limits")).toBe(true);
+    expect(linksToUnlistedProject("/projects/hoop/demo.html")).toBe(true);
     expect(linksToUnlistedProject("/projects/connect#decision-timeline")).toBe(true);
     expect(linksToUnlistedProject("/projects/walkie#decision-timeline")).toBe(false);
     expect(linksToUnlistedProject("/resume")).toBe(false);

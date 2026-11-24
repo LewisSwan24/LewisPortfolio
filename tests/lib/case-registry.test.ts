@@ -47,7 +47,6 @@ describe("Unified Case Registry (Zod schema & integrity)", () => {
       "pricewise",
       "rules",
       "spectra",
-      "vigil",
     ]);
 
     for (const slug of UNLISTED_PROJECT_SLUGS) {

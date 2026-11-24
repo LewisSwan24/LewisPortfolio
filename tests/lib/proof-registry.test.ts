@@ -250,14 +250,14 @@ describe("proof registry", () => {
       proofAnchorEventAttrs({
         source: "hire-role",
         role: "ai-ux",
-        caseSlug: "vigil",
+        caseSlug: "walkie",
         anchorId: "decision-timeline",
       })
     ).toEqual({
       "data-proof-event": "proof_anchor_click",
       "data-proof-source": "hire-role",
       "data-proof-role": "ai-ux",
-      "data-proof-case": "vigil",
+      "data-proof-case": "walkie",
       "data-proof-anchor": "decision-timeline",
     });
 

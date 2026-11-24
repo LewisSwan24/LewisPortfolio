@@ -174,16 +174,16 @@ export const connectCase: CaseRecord = {
           "id": "connect-reason",
           "category": "trust",
           "quote": {
-            "en": "\"94% match doesn't tell me whether we actually study at the same library or pace.\"",
-            "zh": "「光写 94% 匹配，我不知道我们是不是同一个节奏或去同一座图书馆。」"
+            "en": "Design premise: a bare match percentage does not say whether two students study at the same library or pace.",
+            "zh": "设计前提：只给一个匹配百分比，看不出两人是不是去同一座图书馆、学习节奏合不合。"
           },
           "context": {
-            "en": "Exploratory interviews & September prototype probe",
-            "zh": "第一轮访谈与九月原型对照"
+            "en": "Match-card design rationale; a premise, not a recorded quote",
+            "zh": "匹配卡的设计理由，属于设计前提，并非录下的原话"
           },
           "friction": {
-            "en": "Bare compatibility numbers made students hesitate to message strangers.",
-            "zh": "孤立的匹配分数让学生不敢贸然发起私聊联系。"
+            "en": "A bare compatibility number gives no reason to message a stranger.",
+            "zh": "只有一个匹配分数，给不出联系陌生人的理由。"
           },
           "decision": {
             "en": "Placed course, venue, availability, and small-group size directly on each card.",

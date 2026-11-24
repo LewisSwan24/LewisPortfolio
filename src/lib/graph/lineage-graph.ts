@@ -83,8 +83,8 @@ const PATTERN_TO_CLUSTERS: Record<
     {
       cluster: "physical-computing",
       mechanism: {
-        en: "Captures BLE RSSI step gating and rapid screen dim-out inside live crowds.",
-        zh: "提炼高噪社交现场的 BLE 场强阶梯握手与界面快速退场准则。",
+        en: "Covers ESP-NOW nearness thresholds and ending a meeting kindly with LET'S FINISH.",
+        zh: "整理 ESP-NOW 近场阈值，以及用 LET'S FINISH 温和结束碰面的做法。",
       },
     },
   ],
@@ -92,8 +92,8 @@ const PATTERN_TO_CLUSTERS: Record<
     {
       cluster: "physical-computing",
       mechanism: {
-        en: "Documents 45 ms IR sensor debounce and 1200 ms hardware lockout in exhibition timing logs.",
-        zh: "将展陈现场 45ms 红外消抖与 1200ms 锁定机制写入物理时序复盘。",
+        en: "Documents the three-sample IR debounce and 400 ms cooldown from the course paper.",
+        zh: "整理课程论文里的红外三次取样去抖与 400 ms 冷却。",
       },
     },
     {
@@ -150,8 +150,8 @@ const CLUSTER_DETAILS: Record<
   },
   "physical-computing": {
     summary: {
-      en: "Firmware debounce, dual-boot OTA safety, USB preemption, and RSSI proximity ergonomics.",
-      zh: "总结固件消抖、双分区 OTA 防变砖、有线优先抢占及 BLE 靠近人因测试。",
+      en: "Firmware debounce, dual-boot OTA safety, USB preemption, and ESP-NOW proximity thresholds.",
+      zh: "总结固件去抖、双分区 OTA 防变砖、有线优先抢占及 ESP-NOW 近场阈值。",
     },
     verifiedStatus: "bench-tested",
     honestGap: {
@@ -197,7 +197,7 @@ export async function buildCausalLineageGraph(): Promise<CausalLineageGraph> {
   const nodes: LineageNode[] = [];
   const edges: LineageEdge[] = [];
 
-  // Layer 0: 8 Archive Vault Autopsies
+  // Layer 0: Archive Vault autopsies (count comes from the data)
   const vaultH = 62;
   const vaultLayout = computeVerticalLayout(autopsies.length, vaultH);
   autopsies.forEach((a, idx) => {

@@ -39,18 +39,18 @@
 </style></defs>
   <rect width="800" height="500" fill="var(--svg-surface)"/>
   <rect x="28" y="28" width="744" height="444" rx="10" fill="var(--svg-ground)" stroke="var(--svg-ink)" stroke-width="2"/>
-  <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace" font-size="15" font-weight="700">AFTER: THREE CONFIDENCE LANES + HARD BLANK RULE</text>
+  <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace" font-size="15" font-weight="700">AFTER: THREE BORDER STATES + NEVER-GUESS RULE</text>
   <rect x="56" y="110" width="688" height="78" rx="8" fill="var(--svg-surface)" stroke="var(--svg-green)" stroke-width="2"/>
-  <text x="80" y="144" fill="var(--svg-green)" font-family="monospace" font-size="13" font-weight="700">LANE 01 · DETERMINISTIC MATCH (Auto-filled)</text>
-  <text x="80" y="168" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Exact schema keys (Name, Email, LinkedIn, Degree) populate instantly from local device profile.</text>
+  <text x="80" y="144" fill="var(--svg-green)" font-family="monospace" font-size="13" font-weight="700">LANE 01 · FILLED (Green, 2px solid)</text>
+  <text x="80" y="168" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Dictionary labels (Name, Email, LinkedIn, Degree) fill from the active resume stored locally.</text>
 
   <rect x="56" y="206" width="688" height="78" rx="8" fill="var(--svg-surface)" stroke="var(--svg-amber)" stroke-width="2"/>
-  <text x="80" y="240" fill="var(--svg-amber)" font-family="monospace" font-size="13" font-weight="700">LANE 02 · AMBIGUOUS MATCH (Highlight &amp; Pause)</text>
-  <text x="80" y="264" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Multiple option values trigger visual review badge requiring explicit applicant choice.</text>
+  <text x="80" y="240" fill="var(--svg-amber)" font-family="monospace" font-size="13" font-weight="700">LANE 02 · NEEDS REVIEW (Yellow, 2px dashed)</text>
+  <text x="80" y="264" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Multiple candidates or no matching option: the field stays empty until the applicant picks.</text>
 
   <rect x="56" y="302" width="688" height="78" rx="8" fill="var(--svg-warn)" stroke="var(--svg-accent)" stroke-width="2"/>
-  <text x="80" y="336" fill="var(--svg-accent)" font-family="monospace" font-size="13" font-weight="700">LANE 03 · REFUSAL BY RULE (Mandatory Blank)</text>
-  <text x="80" y="360" fill="var(--svg-ink)" font-family="sans-serif" font-size="13">Visa eligibility, salary expectations, and open essays stay blank; Submit button stays permanently locked.</text>
+  <text x="80" y="336" fill="var(--svg-accent)" font-family="monospace" font-size="13" font-weight="700">LANE 03 · UNRECOGNIZED (Red, 3px solid)</text>
+  <text x="80" y="360" fill="var(--svg-ink)" font-family="sans-serif" font-size="13">Unrecognized or failed fields are flagged; captchas, consent boxes, bot traps are skipped; it stops before Submit.</text>
 
-  <text x="56" y="428" fill="var(--svg-subtle)" font-family="monospace" font-size="12">Chrome Extension + Android App share identical confidence rules without uploading raw CV PII.</text>
+  <text x="56" y="428" fill="var(--svg-subtle)" font-family="monospace" font-size="12">Chrome extension and Android app share one fill engine and send no resume data to any server.</text>
 </svg>

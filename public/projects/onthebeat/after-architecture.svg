@@ -39,21 +39,21 @@
 </style></defs>
   <rect width="800" height="500" fill="var(--svg-surface)"/>
   <rect x="28" y="28" width="744" height="444" rx="10" fill="var(--svg-ground)" stroke="var(--svg-ink)" stroke-width="2"/>
-  <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace" font-size="15" font-weight="700">AFTER: THREE-CARD BLE PACING + POLITE DEVICE WITHDRAWAL</text>
+  <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace" font-size="15" font-weight="700">AFTER: BLIND WAVE + MUTUAL CONSENT + DEVICES STEP BACK</text>
   <rect x="56" y="114" width="210" height="220" rx="8" fill="var(--svg-surface)" stroke="var(--svg-navy)" stroke-width="2"/>
-  <text x="76" y="148" fill="var(--svg-navy)" font-family="monospace" font-size="13" font-weight="700">CARD 1 · BLIND PULSE</text>
-  <text x="76" y="184" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Warm ambient glow only</text>
-  <text x="76" y="212" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">No avatars or exact meters</text>
+  <text x="76" y="148" fill="var(--svg-navy)" font-family="monospace" font-size="13" font-weight="700">STEP 1 · BLIND WAVE</text>
+  <text x="76" y="184" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Only 'someone nearby waved'</text>
+  <text x="76" y="212" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">No names, faces or profiles</text>
 
   <rect x="295" y="114" width="210" height="220" rx="8" fill="var(--svg-surface)" stroke="var(--svg-accent)" stroke-width="2"/>
-  <text x="315" y="148" fill="var(--svg-accent)" font-family="monospace" font-size="13" font-weight="700">CARD 2 · MUTUAL NOD</text>
-  <text x="315" y="184" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Requires bilateral button ACK</text>
-  <text x="315" y="212" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">No unsolicited alerts sent</text>
+  <text x="315" y="148" fill="var(--svg-accent)" font-family="monospace" font-size="13" font-weight="700">STEP 2 · MUTUAL CONSENT</text>
+  <text x="315" y="184" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Both people have to agree</text>
+  <text x="315" y="212" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Then names + meeting place</text>
 
   <rect x="534" y="114" width="210" height="220" rx="8" fill="var(--svg-card)" stroke="var(--svg-ink)" stroke-width="2"/>
-  <text x="554" y="148" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">CARD 3 · WITHDRAWAL</text>
-  <text x="554" y="184" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Screen dims immediately</text>
-  <text x="554" y="212" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Face-to-face talk takes over</text>
+  <text x="554" y="148" fill="var(--svg-ink)" font-family="monospace" font-size="13" font-weight="700">STEP 3 · STEP BACK</text>
+  <text x="554" y="184" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Phones go back in pockets</text>
+  <text x="554" y="212" fill="var(--svg-muted)" font-family="sans-serif" font-size="13">Talk happens face to face</text>
 
-  <text x="56" y="408" fill="var(--svg-subtle)" font-family="monospace" font-size="12">Prototype note: Documents dual-boot S3 slot safety &amp; 3-card aesthetic; public field wearer study not yet conducted.</text>
+  <text x="56" y="408" fill="var(--svg-subtle)" font-family="monospace" font-size="12">Prototype note: not yet worn at a gig; no participant study has been run.</text>
 </svg>

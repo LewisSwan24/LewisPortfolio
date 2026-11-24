@@ -128,7 +128,7 @@ const capabilityPillars: Record<ProofLocale, CapabilityPillar[]> = {
       id: "accessibility",
       title: "非色彩区分与克制阻力",
       summary: "让状态区分不依赖单色，把拒绝边界与人类终审权摆在明处。",
-      proof: "Resume Autofill 用实线/虚线/双线边框配文字标签区分三态置信度，并硬性把最终提交留给人手点击。",
+      proof: "Resume Autofill 用实线/虚线/粗实线边框配文字标签区分三态置信度，并硬性把最终提交留给人手点击。",
       href: "/projects/autofill",
     },
     {
@@ -167,7 +167,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       challenge: "Reading long pages is hard when the typeface, spacing, and contrast are fixed by whoever built the site.",
       methods: ["accessibility heuristics", "typographic tuning", "cross-site regression testing", "bilingual UI"],
       sample: "Self-directed build. Chrome extension: content-script style injection, a popup control panel, OpenDyslexic bundled locally, English and Simplified Chinese locale files, Jest unit tests. No user research yet.",
-      outcome: "A working extension that rewrites type and spacing on any page from a single popup, with settings that persist per site.",
+      outcome: "A working extension that rewrites type and spacing on any page from a single popup, with one set of settings that applies on every site.",
       proves: "I can turn accessibility guidance into a working tool, and keep it working across sites I do not control.",
     },
     {
@@ -191,26 +191,6 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
         "I can carry an interaction idea down to firmware and back up to a browser UI, and make calibration and safety calls on real hardware.",
     },
     {
-      slug: "vigil",
-      href: "/projects/vigil",
-      problemType: "Human oversight of AI, built through an AI-assisted workflow",
-      challenge:
-        "A phishing classifier that is right 88% of the time still needs a human on the other side. The interface decides whether that person genuinely checks the call or clicks through it.",
-      methods: [
-        "spec freeze",
-        "synthetic stimulus design",
-        "A/B variant prototyping",
-        "measured contrast auditing",
-        "usability test protocol design",
-      ],
-      sample:
-        "In progress. A 140-message synthetic corpus with an authored 87.9%-accurate classifier and a validated error profile; six interface variants across three questions; a five-participant protocol written but not yet run.",
-      outcome:
-        "Six variants running behind a working React build, with the corpus gated so confidence cannot predict the classifier's mistakes. The three design questions are still open, and the predictions were recorded before any testing.",
-      proves:
-        "I can specify a system precisely enough for an AI coding workflow to build it fast, and still own the judgement that decides whether it measures anything.",
-    },
-    {
       slug: "hoop",
       href: "/projects/hoop",
       problemType: "Generative production at volume, and narrative systems design",
@@ -226,7 +206,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       sample:
         "Publicly playable, self-labelled DEMO v0.6. 299 asset specs registered across six batches (original images not yet verified), a ten-chapter career on 146 nodes, and 1,975 tests over the career, contract, injury and save systems. No player research.",
       outcome:
-        "A working career sim whose style rules were written first: three art bibles, an explicit rejected list checked by eye, and a registry that logs every batch. The one automated check reads the manifest, not the style.",
+        "A working career sim whose style rules are written down: three art bibles (committed with the first 38 images), an explicit rejected list checked by eye, and a registry that logs every batch. The one automated check reads the manifest, not the style.",
       proves:
         "I can set up generative production with written rules and a plain line between what a script checks and what a person must, and keep a systems-heavy build correct while content keeps landing.",
     },
@@ -360,7 +340,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       href: "/projects/walkie",
       problemType: "Physical voice & approval remote for an AI coding agent",
       challenge:
-        "Directing Claude Code away from the desk requires keeping tool approvals physical, cloud relays zero-knowledge, and dual-boot flashing safe.",
+        "Directing Claude Code away from the desk requires keeping tool approvals physical, cloud relays end-to-end encrypted, and dual-boot flashing safe.",
       methods: ["dual-boot M5StickS3 firmware", "AES-256-GCM sealed link", "hardware-in-the-loop gate scripts"],
       sample:
         "Solo; AI coding tools assisted implementation. Verified via g++ host tests plus three on-device/relay gates (gate-h, gate-p5, gate-l); no external users or wrist photos yet.",
@@ -402,7 +382,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       challenge: "网页的字体、行距和对比度由建站的人决定，读起来吃力的人没有调整余地。",
       methods: ["无障碍准则应用", "字体与间距调校", "跨站点回归测试", "中英双语界面"],
       sample: "自主开发。Chrome 扩展：内容脚本注入样式、弹窗控制面板、本地打包 OpenDyslexic 字体、中英双语语系文件、Jest 单元测试。尚未做过用户研究。",
-      outcome: "一个能用的扩展：从一个扩展弹窗就能改写任意页面的字体与间距，设置按站点分别保存。",
+      outcome: "一个能用的扩展：从一个扩展弹窗就能改写任意页面的字体与间距，一套设置对所有网站生效。",
       proves: "证明我能把无障碍准则做成真正能用的工具，并让这个扩展在我控制不了的网站上持续可用。",
     },
     {
@@ -420,20 +400,6 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
         "证明我能把一个交互想法一路做到固件，再接回浏览器界面，并在真实硬件上做校准与安全取舍。",
     },
     {
-      slug: "vigil",
-      href: "/projects/vigil",
-      problemType: "人对 AI 的监督，用 AI 辅助流程做出来",
-      challenge:
-        "一个准确率 88% 的钓鱼邮件分类器，另一端仍然需要一个人。而界面决定了这个人是真的在复核，还是一路点过去。",
-      methods: ["规格冻结", "合成测试素材设计", "A/B 变体原型", "对比度实测审计", "可用性测试脚本设计"],
-      sample:
-        "进行中。140 封合成邮件、一个准确率 87.9% 的自建分类器与经过验证的错误分布；三个设计问题、六个界面变体；五人测试脚本已写好，尚未执行。",
-      outcome:
-        "六个变体已经跑起来，背后是一版可运行的 React 实现；语料设有闸门，确保置信度无法预测分类器错在哪里。三个设计问题都还开着，而预测在测试之前就已写下。",
-      proves:
-        "证明我能把一套系统说清楚到 AI 可以快速实现，同时把「这套系统到底测不测得到东西」这个判断留在自己手里。",
-    },
-    {
       slug: "hoop",
       href: "/projects/hoop",
       problemType: "大体量生成式生产与叙事系统设计",
@@ -443,7 +409,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       sample:
         "线上公开可玩，游戏自标 DEMO v0.6。六个批次登记了 299 条资产规格（原图尚未核实）、十章生涯跑在 146 个节点上、覆盖生涯与合同与伤病与存档系统的 1975 个测试。没有做过玩家研究。",
       outcome:
-        "一个真的能玩的生涯模拟，风格规则写在前面：三份美术圣经，加一张靠人眼对照的拒绝清单。资产按批次登记；唯一的自动检查读的是资产清单，不查风格。",
+        "一个真的能玩的生涯模拟，风格规则写成了文档：三份美术圣经（和首批 38 张图一起提交），加一张靠人眼对照的拒绝清单。资产按批次登记；唯一的自动检查读的是资产清单，不查风格。",
       proves: "证明我能用成文规则搭生成式生产，分清脚本查得了什么、什么必须靠人看。内容持续落地时，实现也保持正确。",
     },
     {
@@ -534,7 +500,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       slug: "walkie",
       href: "/projects/walkie",
       problemType: "面向编码 Agent 的手腕语音与实体审批终端",
-      challenge: "离开电脑指挥 Claude Code 时，必须让实体按键掌管高风险审批、云中继零知识，且双启动刷机绝不误擦同机应用。",
+      challenge: "离开电脑指挥 Claude Code 时，必须让实体按键掌管高风险审批、云中继端到端加密，且双启动刷机绝不误擦同机应用。",
       methods: ["M5StickS3 双启动固件", "AES-256-GCM 加密链路", "真机门禁测试脚本"],
       sample: "独立负责（AI 编码工具辅助实现）。通过宿主机 g++ 单测与三组真机/中继门禁（gate-h / gate-p5 / gate-l）；尚无外部用户与实拍照片。",
       outcome: "交付可运行的手腕语音遥控器，具备 USB 优先、Fly.io 加密中继兜底与实体工具审批。",

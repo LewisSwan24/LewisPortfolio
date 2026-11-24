@@ -30,7 +30,9 @@
     "css:check": "node scripts/check-css-warnings.mjs",
     "agent:check": "node scripts/check-agent-readiness.mjs",
     "resume:pdf": "node scripts/build-resume-pdf.mjs",
-    "decks:build": "node scripts/build-role-decks.mjs"
+    "decks:build": "node scripts/build-role-decks.mjs",
+    "check:claims": "node scripts/check-banned-claims.mjs",
+    "verify:visual": "node scripts/visual-verify.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",

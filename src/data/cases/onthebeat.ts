@@ -119,7 +119,7 @@ export const onthebeatCase: CaseRecord = {
         "zh": "拖动对比强暴露定位雷达与现行匿名挥手、悉尼常驻中继与硬件双向确认逻辑。"
       },
       "beforeLabel": {
-        "en": "Before · Invasive GPS Radar",
+        "en": "Before · Nearby-People Radar",
         "zh": "改造前 · 暴露头像的距离雷达"
       },
       "afterLabel": {
@@ -171,16 +171,16 @@ export const onthebeatCase: CaseRecord = {
           "id": "onthebeat-ai-lie",
           "category": "trust",
           "quote": {
-            "en": "\"All four prompt cards read '1 of 4', MEET was mocked static JSON, and picking a song left a black screen.\"",
-            "zh": "「AI 第一版生成的四张卡全标着『1 of 4』，MEET 是写死的假数据，点选歌曲后直接黑屏。」"
+            "en": "In a generated canvas, MEET was mocked static JSON rather than a real exchange between two bands.",
+            "zh": "生成的画布里，MEET 是写死的模拟数据，两支手环之间并没有真正交换过。"
           },
           "context": {
             "en": "15–21 September Claude Design canvas review loops",
             "zh": "9 月 15–21 日 AI 设计产出多轮人工走查"
           },
           "friction": {
-            "en": "Polished visual frames masked broken pagination, one-way mirroring, and non-mutual state transitions.",
-            "zh": "精致排版掩盖了翻页卡死、手环仅能被动镜像以及伪造双方同意的结构性缺陷。"
+            "en": "Polished visual frames masked mocked states, one-way mirroring, and non-mutual state transitions.",
+            "zh": "精致排版掩盖了写死的状态、手环仅能被动镜像以及伪造双方同意的结构性缺陷。"
           },
           "decision": {
             "en": "Sent canvases back across 5+ rework rounds (12+ on the earlier flow) and wired physical side-button selection.",
@@ -240,7 +240,7 @@ export const onthebeatCase: CaseRecord = {
       "id": "blind-wave-mutual-consent",
       "decisionTitle": {
         "en": "Use blind waves and mutual consent before revealing names, then let devices withdraw",
-        "zh": "匿名预探 + 双向确认后才显名，开口后设备立即退场"
+        "zh": "匿名预探 + 双向确认后才显名，碰面后设备让到一边"
       },
       "humanTension": {
         "en": "At a dark, loud live gig, wanting to say hello to someone nearby carries real social face-loss anxiety if you misread the room—yet pulling up a bright social-feed screen breaks eye contact and kills the music moment.",
@@ -284,8 +284,8 @@ export const onthebeatCase: CaseRecord = {
         "zh": "用常驻云端中继让手环脱离笔电独立运转，并拒收「假装完成」的 AI 产出"
       },
       "humanTension": {
-        "en": "AI-generated prototypes often look finished on a laptop desk—mocked matches, laptop-tethered relays, and repeated '1 of 4' card counters—that would collapse immediately in a real venue.",
-        "zh": "AI 生成的原型经常在笔记本桌面上「看起来什么都能跑」，实则暗藏写死的假匹配、离不开电脑本地服务的链路，以及四张卡全标着「1 of 4」的错漏——带到现场会瞬间穿帮。"
+        "en": "AI-generated prototypes often look finished on a laptop desk—mocked matches and laptop-tethered relays—that would collapse immediately in a real venue.",
+        "zh": "AI 生成的原型经常在笔记本桌面上「看起来什么都能跑」，实则暗藏写死的假匹配和离不开电脑本地服务的链路，带到现场会瞬间穿帮。"
       },
       "rejectedAlternatives": [
         {
@@ -304,8 +304,8 @@ export const onthebeatCase: CaseRecord = {
             "zh": "默认接受手机单向驱动手环与首轮生成的画布结果"
           },
           "flaw": {
-            "en": "Forces users back onto the phone screen and ships broken pagination and blank post-selection states.",
-            "zh": "强迫用户盯住手机，且把选歌后黑屏、计数错误等断点直接带进演示。"
+            "en": "Forces users back onto the phone screen and ships mocked states into the demo.",
+            "zh": "强迫用户盯住手机，且把写死的模拟状态直接带进演示。"
           }
         }
       ],
@@ -351,8 +351,8 @@ export const onthebeatCase: CaseRecord = {
         }
       ],
       "chosenTradeoff": {
-        "en": "Wire StickS3 and StickC Plus side buttons as first-class state emitters across the Fly.io relay so band cycling updates React in real time, then leave both phones for landmark reveal before pocketing.",
-        "zh": "将 StickS3 与 StickC Plus 侧键接为通过 Fly.io 中继双向同步的一等事件源：逛卡片靠手环盲按切换，一旦双方点头后再在手机弹出唯一地标，随后立即息屏退场。"
+        "en": "Wire StickS3 and StickC Plus side buttons as first-class state emitters across the Fly.io relay so band cycling updates React in real time, then leave the phones to show first names and where to meet once both say yes.",
+        "zh": "将 StickS3 与 StickC Plus 侧键接为通过 Fly.io 中继双向同步的一等事件源。逛卡片靠手环盲按切换，双方都同意后，手机才显示对方名字和碰面地点。"
       },
       "residualCostOrRisk": {
         "en": "StickC Plus front-button gesture and direct band-initiated wave-back remain unverified edge cases; the three icebreaker phrases came from a teammate's coursework Figma concept rather than Lewis.",
@@ -365,20 +365,20 @@ export const onthebeatCase: CaseRecord = {
       "kicker": "Social Wearables · Ambient Consent",
       "title": "On The Beat",
       "sub": "Breaks the ice between two gig-goers without phone staring—revealing names and meet spots only after mutual wrist confirmation.",
-      "role": "Solo · Interaction rules, audit & BLE pairing",
+      "role": "Individual build of DECO3500 team coursework · Interaction rules, AI output review & wristband pairing",
       "date": "2026 · coursework build",
       "m1": "Mutual-nod identity reveal",
-      "m2": "BLE Wristband · Mobile Web · Fly.io",
+      "m2": "ESP-NOW Wristband · Mobile Web · Fly.io",
       "m3": "Verified live on 2 paired wristbands"
     },
     "zh": {
       "kicker": "社交穿戴 · 现场防尴尬破冰",
       "title": "On The Beat",
       "sub": "在演出人群里帮两个陌生人自然开口而不必盯手机：只有双方手环都点头确认，彼此界面才出现姓名和碰面点。",
-      "role": "交互规则、代码抽检打回与双真机手环联调",
+      "role": "DECO3500 团队课程作业的个人版本 · 交互规则、AI 产出审查与真手环配对",
       "date": "2026 · 课程原型个人实现版",
       "m1": "双向同意后才揭示身份",
-      "m2": "BLE 手环 · 移动 Web · Fly.io 中继",
+      "m2": "ESP-NOW 手环 · 移动 Web · Fly.io 中继",
       "m3": "双真机腕带离桌独立联调通过"
     }
   },
@@ -426,7 +426,7 @@ export const onthebeatCase: CaseRecord = {
       },
       "pr": {
         "label": "How it got built",
-        "p": "Everything was built with AI tools. The firmware and the app code were written and flashed by Claude Code. I did the wiring, turned on the hotspot, pressed the buttons, watched the screens and reported back. In September I was new to hardware and needed each step explained before I did it. The design canvas was generated in Claude Design, and I imported each version into Claude Code for review: I caught all four cards reading '1 of 4' on 15 September, and on 21 September what looked like a black screen after picking a song."
+        "p": "Everything was built with AI tools. The firmware and the app code were written and flashed by Claude Code. I did the wiring, turned on the hotspot, pressed the buttons, watched the screens and reported back. In September I was new to hardware and needed each step explained before I did it. The design canvas was generated in Claude Design, and I imported each version into Claude Code for review: on 25 September I caught that the MEET it showed was simulated."
       },
       "te": {
         "label": "Testing and iteration",
@@ -450,7 +450,7 @@ export const onthebeatCase: CaseRecord = {
       },
       "rf": {
         "label": "Reflection",
-        "p": "In this record my part sits at two ends: saying what the system must do, and sending back output that only looked finished. Mock data that showed MEET, a link that only worked with my laptop, and a canvas that counted wrong each looked fine on screen until it was tried. What the case cannot say is whether the cards help two strangers meet. That needs people at a real or staged gig, and it has not happened yet."
+        "p": "In this record my part sits at two ends: saying what the system must do, and sending back output that only looked finished. Mock data that showed MEET and a link that only worked with my laptop each looked fine on screen until it was tried. What the case cannot say is whether the cards help two strangers meet. That needs people at a real or staged gig, and it has not happened yet."
       }
     },
     "zh": {
@@ -496,7 +496,7 @@ export const onthebeatCase: CaseRecord = {
       },
       "pr": {
         "label": "怎么做出来的",
-        "p": "全部用 AI 工具完成。固件和 App 代码由 Claude Code 编写并烧录；我负责接线、开热点、按键、看屏幕并反馈。9 月时我是硬件新手，每一步都要 Claude 先解释。设计画布由 Claude Design 生成，每一版我都导入 Claude Code 审查：9 月 15 日我发现四张卡都显示 1 of 4，21 日发现点选音乐后疑似黑屏。"
+        "p": "全部用 AI 工具完成。固件和 App 代码由 Claude Code 编写并烧录；我负责接线、开热点、按键、看屏幕并反馈。9 月时我是硬件新手，每一步都要 Claude 先解释。设计画布由 Claude Design 生成，每一版我都导入 Claude Code 审查：9 月 25 日我发现画面上的 MEET 是模拟出来的。"
       },
       "te": {
         "label": "测试与迭代",
@@ -520,7 +520,7 @@ export const onthebeatCase: CaseRecord = {
       },
       "rf": {
         "label": "反思",
-        "p": "从记录看，我的部分在两头：说清系统必须做到什么，把只是看起来做完的输出打回去。显示 MEET 的模拟数据、只在我笔电上能跑的链路、数错的画布，在屏幕上看都没问题，一试才露馅。这个案例说不了的，是这些卡片能不能帮两个陌生人碰面。这需要在真实或模拟的演出现场找人来试，目前还没做。"
+        "p": "从记录看，我的部分在两头：说清系统必须做到什么，把只是看起来做完的输出打回去。显示 MEET 的模拟数据、只在我笔电上能跑的链路，在屏幕上看都没问题，一试才露馅。这个案例说不了的，是这些卡片能不能帮两个陌生人碰面。这需要在真实或模拟的演出现场找人来试，目前还没做。"
       }
     }
   }

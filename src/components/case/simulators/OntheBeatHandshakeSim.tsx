@@ -83,8 +83,8 @@ export function OntheBeatHandshakeSim({ locale, onStatusChange }: SimulatorProps
         <p className="case-sim-prompt" style={{ marginTop: "var(--s-3)" }}>
           {stage === "scanning" &&
             (isZh
-              ? "状态：RSSI -68 dBm 范围内静默待机，不展示附近人资料墙与颜值打分。"
-              : "State: Quiet RSSI proximity scan (-68 dBm). No nearby-people wall or public popularity score.")}
+              ? "状态：手环经 ESP-NOW 静默互相感知。信号强度不会显示，也没有附近人资料墙和颜值打分。"
+              : "State: Bands listen to each other quietly over ESP-NOW. No signal strength shown, no nearby-people wall, no popularity score.")}
           {stage === "blind-wave" &&
             (isZh
               ? `状态：附近有人发出匿名脉冲（${card}）。在双向确认前不透漏姓名、照片或微信号。`

@@ -2,7 +2,6 @@ export const CURRENT_PROJECT_SLUGS = [
   "connect",
   "spectra",
   "maze",
-  "vigil",
   "hoop",
   "pricewise",
   "gapmapper",
@@ -23,12 +22,10 @@ export type CurrentProjectSlug = (typeof CURRENT_PROJECT_SLUGS)[number];
  * the homepage, the work index, the sitemap, the feeds, search, structured
  * data and the proof lists all leave it out.
  *
- * Vigil was abandoned on 2026-09-23. On 2026-09-27 Lewis chose to take it off
- * the homepage and the lists rather than delete it, so its case data, images
- * and prototype stay where they are.
+ * An abandoned case was removed outright on 2026-11-25 (Lewis's decision):
+ * its slug, data, images and prototype are gone, so its URL now 404s.
  */
 export const UNLISTED_PROJECT_SLUGS: readonly CurrentProjectSlug[] = [
-  "vigil",
   // 2026-11-20: Lewis took down the three cases with no recent work and put
   // up Grassland Iron Tide and On The Beat in their place.
   "spectra",
@@ -52,8 +49,8 @@ export const LISTED_PROJECT_SLUGS: CurrentProjectSlug[] = CURRENT_PROJECT_SLUGS.
 
 /**
  * True for an internal link into an unlisted case, in either locale and with
- * or without an anchor: `/projects/vigil`, `/zh/projects/vigil#outcome-limits`,
- * `/projects/vigil/prototype.html`.
+ * or without an anchor: `/projects/hoop`, `/zh/projects/hoop#outcome-limits`,
+ * `/projects/hoop/demo.html`.
  */
 export function linksToUnlistedProject(href: string): boolean {
   const slug = href.match(/^(?:\/zh)?\/projects\/([^/?#]+)/)?.[1];
@@ -64,7 +61,7 @@ export const LEGACY_PROJECT_SLUG_REDIRECTS: Record<string, CurrentProjectSlug> =
   "uq-connect": "connect",
   "spectra-lens": "spectra",
   // Only slugs that were genuinely live before the rename belong here; this
-  // list mirrors legacyProjectRedirects in next.config.js. "maze", "vigil" and
+  // list mirrors legacyProjectRedirects in next.config.js. "maze" and
   // "hoop" are newer, so they have no legacy alias to redirect from.
   //
   // "connect-circles" -> "circles" is gone with the case itself: Connect
@@ -87,10 +84,6 @@ export const PROJECT_OG_COPY: Record<
   maze: {
     title: "MazeRunners",
     oneLiner: "A sensor-driven physical maze wired to haptics, audio, and a browser console.",
-  },
-  vigil: {
-    title: "Vigil",
-    oneLiner: "A review desk for deciding when to trust an email classifier that is wrong 12% of the time.",
   },
   hoop: {
     title: "Hoop Dream",

@@ -120,8 +120,8 @@ export function WalkieWristSim({ locale, onStatusChange }: SimulatorProps) {
           ? "链路已切换：USB 直连优先（PCM · 0ms 中继）。"
           : "Transport switched: USB direct priority (uncompressed PCM)."
         : isZh
-          ? "链路已切换：离缆零知识 Fly.io 中继（AES-256-GCM · 4-bit ADPCM）。"
-          : "Transport switched: Away-from-desk zero-knowledge Fly.io relay (AES-256-GCM · 4-bit ADPCM).";
+          ? "链路已切换：离缆端到端加密 Fly.io 中继（AES-256-GCM · 4-bit ADPCM）。"
+          : "Transport switched: Away-from-desk end-to-end encrypted Fly.io relay (AES-256-GCM · 4-bit ADPCM).";
     pushTimeline(next === "usb" ? "USB" : "RELAY", msg);
     onStatusChange?.(msg);
   };
@@ -201,9 +201,9 @@ export function WalkieWristSim({ locale, onStatusChange }: SimulatorProps) {
     ? {
         transportLabel: "传输链路优先级",
         usbBtn: "USB 直连优先",
-        relayBtn: "离缆零知识中继",
+        relayBtn: "离缆端到端加密中继",
         usbMeta: "AES-256-GCM · PCM · 有线抢占",
-        relayMeta: "AES-256-GCM · 4-bit ADPCM · 零知识密文",
+        relayMeta: "AES-256-GCM · 4-bit ADPCM · 端到端密文",
         watchAria: "M5StickS3 手表审批终端，按 Enter 批准，按 Backspace 拒绝",
         screenIdle: "手腕待命",
         screenIdleSub: "触发右侧请求后在此审批",

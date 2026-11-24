@@ -13,8 +13,8 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
       zh: "五关跨章指令一致性与战败恢复可玩性测试规程",
     },
     cohortAndSetting: {
-      en: "Designed for 6 strategy/tactics players testing Missions 1–3 back-to-back on desktop Chromium (1280×720 and 1920×1080).",
-      zh: "面向 6 名策略游戏玩家在桌面浏览器（1280×720 与 1920×1080）连续通关第 1–3 关的观察流程。",
+      en: "Planned, not run: 6 strategy/tactics players testing Missions 1–3 back-to-back on desktop Chromium (1280×720 and 1920×1080).",
+      zh: "计划中，未执行：6 名策略游戏玩家在桌面浏览器（1280×720 与 1920×1080）连续打第 1–3 关。",
     },
     openingBrief: {
       en: "Enter Chapter One from the main menu, command your vanguard using click, box-select, and right-click, and try recovering from an intentional tactical defeat in Mission 2.",
@@ -35,7 +35,7 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
           en: "A mission-specific special mechanic overriding standard right-click move or attack expectations.",
           zh: "一旦某关特例偷偷改写了右键移动或攻击的常规手感，即判定语法污染。",
         },
-        verifiedStatus: "synthetic-gate",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "grassland-probe-defeat",
@@ -51,7 +51,7 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
           en: "Generic 'Defeat' banner or ghost enemy timers leaking from the failed attempt into the restored checkpoint.",
           zh: "若只弹出冷冰冰的「战败」，或读档后上一局残余火势/冷却计时串进新局，即判状态链失守。",
         },
-        verifiedStatus: "bench-tested",
+        verifiedStatus: "unverified-hypothesis",
       },
       {
         id: "grassland-probe-hud",
@@ -67,7 +67,7 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
           en: "Minimap or objective drawer overlapping playable flank paths.",
           zh: "小地图或任务栏哪怕遮住半个可点击单位边缘，即视为布局越界。",
         },
-        verifiedStatus: "bench-tested",
+        verifiedStatus: "unverified-hypothesis",
       },
     ],
     debriefQuestion: {
@@ -231,7 +231,7 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
       id: "grassland-q1",
       question: {
         en: "What invariant made the five-mission scale sustainable?",
-        zh: "哪条工程不变量撑住了五关体量的持续迭代？",
+        zh: "哪条工程约束撑住了五关体量的持续迭代？",
       },
       answer: {
         en: "Treating missions as data manifests validated against one shared command contract and one single-chain checkpoint snapshot.",

@@ -1,7 +1,7 @@
 ---
 title: "Five-State Interface Audits: Why Empty, Offline & Refusal Define Trust"
-date: "2026-11-23"
-excerpt: "Happy-path mockups flatter every product. Across Walkie, Lamplight Nook, and Resume Autofill, specifying Normal, Empty, Offline, Error, and Refused states exposed the real architecture gaps."
+date: "2026-11-24"
+excerpt: "Happy-path mockups flatter every product. Across Walkie, Lamplight Nook, and Resume Autofill, writing out Normal, Empty, Offline, Error and Refused states shows where a design was left vague."
 tags:
   - Interaction Design
   - State Architecture
@@ -10,29 +10,31 @@ author: "Lewis Dong"
 published: true
 ---
 
-Most interface reviews spend ninety percent of their time admiring the **Normal** state — when APIs reply in under 200 ms, hardware cables sit firmly plugged in, and every user input matches the schema. Yet real-world trust collapses exclusively in the remaining four states: **Empty**, **Offline**, **Error**, and **Refused**.
+Most interface reviews spend most of their time on the **Normal** state, when APIs answer quickly, cables stay plugged in and every input matches the schema. My view is that trust is decided in the other four: **Empty**, **Offline**, **Error** and **Refused**.
 
-Across the six public case studies in this portfolio — and codified inside each case's [Five-State Specification](/projects/walkie#state-matrix) and our [Interaction Pattern Atlas](/patterns) — auditing those five states upfront turned vague UX ideals into falsifiable engineering rules.
+Each public case on this site now carries a [Five-State Specification](/projects/walkie#state-matrix), and the [Interaction Pattern Atlas](/patterns) collects the shared rules. These tables were added to the site in November 2026, after the projects were built, so they document decisions rather than having driven them. Writing them out still shows where a state was left vague.
 
-## Splitting "Offline" when hardware and cloud relays collide
+Walkie, Lamplight Nook, Resume Autofill and On The Beat are personal projects whose code was mostly written by AI coding tools (Claude Code). I set the rules, reviewed the output and verified it.
 
-In [Walkie](/projects/walkie), a generic *"Disconnected"* banner on a 1.14-inch wrist screen leaves the developer guessing blindly while standing across the room from their workstation: did home Wi-Fi drop, did the Fly.io `wss://` relay stall, or did the Node 24 desktop bridge go to sleep?
+## Splitting "Offline" when hardware and a cloud relay meet
 
-By refusing a single catch-all offline screen and splitting diagnostics into three explicit states (`No Wi-Fi`, `Relay Unreachable`, and `PC Bridge Offline`), recovery becomes immediately actionable. Plugging in USB-C always preempts wireless frames cleanly, while mid-turn cable changes intentionally drop the in-flight turn rather than risking duplicate tool invocations.
+On [Walkie](/projects/walkie), a generic *"Disconnected"* banner on a 240×135 wrist screen would leave the wearer guessing: did the Wi-Fi drop, did the Fly.io relay stall, or did the PC bridge go offline?
+
+So the offline screen names which link is down (no Wi-Fi, no relay, or PC offline) and says when plugging in USB will help. Plugging in the USB cable always takes over from the wireless link, and a cable change in the middle of a turn drops that turn rather than risking a duplicate tool call. The wireless path itself has not yet been run on the watch away from the cable.
 
 ## Designing the Refused state as a first-class feature
 
-In AI-assisted tools, **Refused** is not an error — it is an intentional protection boundary:
+In AI-assisted tools, **Refused** is not an error. It is a protection boundary:
 
-| State | Conventional Shortcut | Explicit Trust Boundary |
+| State | Conventional shortcut | Explicit boundary |
 | --- | --- | --- |
-| **Empty** (`Walkie` / `Autofill`) | Auto-pair silently or fill placeholder hints | Require 30s Front Key seal; offer isolated sample dry-run |
-| **Offline** (`MazeRunners`) | Throw Web Serial exception on portfolio browsers | Route cleanly to parity-tested Demo Mode |
-| **Error** (`Lamplight Nook`) | Retry tool calls silently until budget burns out | Hard spending cap halt card with file copies intact |
-| **Refused** (`Autofill`) | Guess visa / essay answers to look 100% smart | Leave double-bordered blank + keep Submit human-locked |
+| **Empty** (`Walkie`) | Pair silently | A new pairing key is adopted only after a front-key press within 30 seconds |
+| **Offline** (`Walkie`) | One "Disconnected" banner | Names the link that is down; USB takes over when plugged in |
+| **Error** (`Lamplight Nook`) | Retry tool calls until the budget is gone | Each run has a spending cap and stops when it is reached |
+| **Refused** (`Autofill`) | Guess visa or essay answers to look complete | Leave the field with a 3px outline for the person, and never press Submit |
 
-## Auditable constraints over polished illusions
+## Checkable constraints over polished illusions
 
-In [On The Beat](/projects/onthebeat), early AI-generated mockups passed visual inspection while hardcoding `MEET` state as static JSON and showing `"1 of 4"` on every prompt card. Checking the **Refused** and **Offline** rows immediately exposed that no real mutual-consent state existed — pushing the build onto an always-on Sydney Fly.io relay where neither phone nor wristband depends on a nearby laptop.
+On [On The Beat](/projects/onthebeat), the early AI-built version looked finished, but its `MEET` screen showed mocked data. On 25 September 2026 I pointed out that nothing would run without a laptop. Sixty-five minutes later, two wristbands showed `MEET` together through a relay on Fly.io. I caught that myself; it did not come from a five-state review, and the table came later.
 
-Explore the full state matrices across all six flagship builds or interrogate individual refusal rules in the [Rationale AI Lab](/ai).
+Explore the state tables on each case page, or question individual refusal rules in the [Rationale AI Lab](/ai).

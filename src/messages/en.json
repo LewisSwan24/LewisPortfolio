@@ -83,7 +83,7 @@
   },
   "feat": {
     "label": "Selected work",
-    "title": "Six shipped builds—from problem framing to working proof.",
+    "title": "Six builds—from problem framing to working proof.",
     "footer": "Full index",
     "deckPrev": "Previous case",
     "deckNext": "Next case",
@@ -317,7 +317,7 @@
     "p1": "I'm finishing my Master of Interaction Design at The University of Queensland in November 2026 after earning a BSc (Hons) in Computer Science (2:1) at Swansea University in Wales. Having both engineering and design training keeps me grounded in what software and hardware can actually uphold under latency, permissions, and human fatigue.",
     "p2": "My work focuses on complex human-system boundaries: where AI tools overreach user confidence, where multi-player hardware breaks solo silence, and where workflows hide failure or privacy risk. Instead of ending at static slides, I ship working prototypes in TypeScript, Electron, Chrome extensions, or ESP32 C++ so the rules can fail honestly and be revised.",
     "p3": "In AI-assisted builds, I keep clear ownership: I define the human tension, the rejected shortcuts, the refusal limits, and the real hardware or Playwright acceptance checks — treating generated code as a draft to be interrogated rather than truth by default.",
-    "p4": "Outside the studio, I cook with too much garlic, read non-fiction about cities and urban systems, and keep practicing Japanese. If you have a complex interaction problem or graduate opening, write directly and I will respond promptly.",
+    "p4": "If you have a complex interaction problem or graduate opening, write directly and I will respond promptly.",
     "philo": {
       "1": {
         "t": "Research is not decoration.",

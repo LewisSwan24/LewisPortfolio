@@ -57,8 +57,8 @@ export const autofillCase: CaseRecord = {
       "zh": "在模拟 ATS 申请表上运行一次本地扫描"
     },
     "prompt": {
-      "en": "Click \"Scan this form locally\" to see exact 1:1 fields auto-fill (solid), ambiguous dropdowns pause for you (dashed), open prompts stay blank (double), and Submit stay human-locked.",
-      "zh": "点击「一键本地扫描」，观察确定字段如何直填（实线）、歧义下拉如何标出待确认（虚线）、开放题如何刻意留空（双线），以及提交按钮如何始终由人手掌控。"
+      "en": "Click \"Scan this form locally\" to see exact 1:1 fields auto-fill (solid), ambiguous dropdowns pause for you (dashed), open prompts stay blank (3px solid), and Submit stay human-locked.",
+      "zh": "点击「一键本地扫描」，观察确定字段如何直填（实线）、歧义下拉如何标出待确认（虚线）、开放题如何刻意留空（粗实线），以及提交按钮如何始终由人手掌控。"
     },
     "takeaway": {
       "en": "Trustworthy form automation splits certainty from guesswork visually and structurally—never fabricating open answers and never clicking final Submit.",
@@ -98,7 +98,7 @@ export const autofillCase: CaseRecord = {
         "zh": "前后对比拉杆 · 盲猜全填 ↔ 三态分流与人体提交锁"
       },
       "title": {
-        "en": "Replace silent LLM guessing with visible Solid / Dashed / Double lanes",
+        "en": "Replace silent LLM guessing with visible Solid / Dashed / Thick lanes",
         "zh": "把静默猜填高风险栏位改造成三档可见状态分流与本地密钥托管"
       },
       "summary": {
@@ -118,7 +118,7 @@ export const autofillCase: CaseRecord = {
         "src": "/projects/autofill/after-architecture.svg",
         "alt": {
           "en": "Resume Autofill local-first architecture showing three certainty lanes, Human Submit Lock before final Submit, Chrome CSP isolation, and Android Keystore",
-          "zh": "Resume Autofill 本地架构图：实线确定 / 虚线待核 / 双线留空三态分流，最终提交人手锁定及本地存储隔离"
+          "zh": "Resume Autofill 本地架构图：实线确定 / 虚线待核 / 粗实线留空三态分流，最终提交人手锁定及本地存储隔离"
         },
         "width": 800,
         "height": 500
@@ -138,20 +138,20 @@ export const autofillCase: CaseRecord = {
           "id": "autofill-no-guess",
           "category": "trust",
           "quote": {
-            "en": "\"A wrong visa status or fabricated motivation paragraph is far worse than leaving the field empty for me.\"",
-            "zh": "「填错签证类别或瞎编一段申请动机，比直接留空让我自己填还要致命得多。」"
+            "en": "Design premise: a wrong visa status or an invented motivation paragraph does more harm than an empty field.",
+            "zh": "设计前提：填错签证类别或编出一段申请动机，比留空让我自己填害处更大。"
           },
           "context": {
-            "en": "Graduate application runs across Workday & Moka (Nov 2026)",
-            "zh": "应届校招 Workday / Moka 真实表单投递（2026 年 11 月）"
+            "en": "My own graduate applications (Nov 2026); a premise, not a recorded quote",
+            "zh": "我自己投递应届岗位时的判断（2026 年 11 月），属于设计前提，并非录下的原话"
           },
           "friction": {
             "en": "Aggressive autofillers silently write low-confidence guesses into high-stakes fields.",
             "zh": "激进型填表工具会把低把握猜测静默写入关键字段。"
           },
           "decision": {
-            "en": "Split output into 3 visual tiers (solid, dashed, double) and banned open-ended generation.",
-            "zh": "拆出实线/虚线/双线三档可视化分流，并禁止生成任何开放式回答。"
+            "en": "Split output into 3 visual tiers (2px solid, 2px dashed, 3px solid) and banned open-ended generation.",
+            "zh": "拆出实线/虚线/粗实线三档可视化分流，并禁止生成任何开放式回答。"
           }
         },
         {
@@ -201,8 +201,8 @@ export const autofillCase: CaseRecord = {
         {
           "label": { "en": "3-Tier Split", "zh": "三态精准分流" },
           "detail": {
-            "en": "Fill exact matches (solid), pause ambiguous selects (dashed), and leave open prompts blank (double).",
-            "zh": "确定栏位直接填入（实线），歧义下拉标虚线等待核对，开放问答题刻意双线留白。"
+            "en": "Fill exact matches (solid), pause ambiguous selects (dashed), and leave open prompts blank (3px solid).",
+            "zh": "确定栏位直接填入（实线），歧义下拉标虚线等待核对，开放问答题刻意粗实线留白。"
           }
         },
         {
@@ -256,8 +256,8 @@ export const autofillCase: CaseRecord = {
         }
       ],
       "chosenTradeoff": {
-        "en": "Deterministic 1:1 local matches fill immediately (solid), ambiguous dropdowns pause for review (dashed), open prompts stay blank (double), and every tier pairs stroke style, word badge, and explicit side-panel reason.",
-        "zh": "建立三档可见分流：确定 1:1 字段直填（实线）、歧义下拉标出待核（虚线）、开放题刻意留空（双线），每种状态同时配备边框线型、文字标签与侧栏原因说明。"
+        "en": "Deterministic 1:1 local matches fill immediately (solid), ambiguous dropdowns pause for review (dashed), open prompts stay blank (3px solid), and every tier pairs stroke style, word badge, and explicit side-panel reason.",
+        "zh": "建立三档可见分流：确定 1:1 字段直填（实线）、歧义下拉标出待核（虚线）、开放题刻意留空（粗实线），每种状态同时配备边框线型、文字标签与侧栏原因说明。"
       },
       "residualCostOrRisk": {
         "en": "Applicants still write open answers manually, and 100% fill accuracy is measured only on synthetic fixture forms—real ATS accuracy across outside users remains unmeasured.",
@@ -355,8 +355,8 @@ export const autofillCase: CaseRecord = {
       "role": "Solo · Full-stack architecture & rules",
       "date": "2026 · used on real applications",
       "m1": "3-tier certainty & Submit lock",
-      "m2": "Chrome MV3 · Kotlin Android · Zero net",
-      "m3": "6/6 visual checks · Personal daily use"
+      "m2": "Chrome MV3 · Capacitor Android (Java) · Zero net",
+      "m3": "6/6 visual checks · Used on Lewis's own applications"
     },
     "zh": {
       "kicker": "隐私优先 AI · 本地求职填表",
@@ -365,7 +365,7 @@ export const autofillCase: CaseRecord = {
       "role": "独立产品设计、双端原型与规则测试",
       "date": "2026 · 用于本人真实投递",
       "m1": "三档置信分流 + 人手提交锁",
-      "m2": "Chrome MV3 · Kotlin · 零联网权限",
+      "m2": "Chrome MV3 · Capacitor Android · 零联网权限",
       "m3": "6/6 截图验收 · 真实投递验证"
     }
   },
