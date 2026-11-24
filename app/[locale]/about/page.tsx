@@ -94,10 +94,22 @@ export default async function AboutPage() {
           <Link href="/hire" className="btn btn-ghost">
             {t("nav.hire")}
           </Link>
+          <Link href="/vault" className="btn btn-ghost">
+            {isZh ? "设计演进档案馆" : "Archive Vault"}
+          </Link>
           <Link href="/contact" className="btn btn-ghost">
             {t("hero.cta.note")}
           </Link>
         </div>
+        <p
+          className="eyebrow"
+          style={{ marginTop: 14, color: "var(--text-2)" }}
+          data-testid="about-trajectory-pill"
+        >
+          {isZh
+            ? "斯旺西大学 CS 工程底座 (2020–24) × 昆士兰大学交互设计方法 (2025–26) × 软硬协同与 AI 信任实证 · 面向亚太 AI 团队与澳新产品工程岗"
+            : "Swansea CS Engineering Base (2020–24) × UQ Interaction Methods (2025–26) × Hardware/AI Proof · Open to ANZ & APAC Product/Design Engineering Roles"}
+        </p>
       </section>
 
       <section className="container">

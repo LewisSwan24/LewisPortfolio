@@ -41,11 +41,13 @@ import {
 } from "@/lib/portfolio-proof";
 import { getCaseCard, getCaseRecordOrThrow } from "@/lib/cases/registry";
 import { getCaseDepthModules } from "@/data/cases/modules";
+import { getCaseResearchVault } from "@/data/cases/research-vault";
 import { CaseReviewLensSwitch } from "@/components/case/deep/CaseReviewLensSwitch";
 import { CaseFocusRegion } from "@/components/case/deep/CaseFocusRegion";
 import { CaseJourneyRail } from "@/components/case/deep/CaseJourneyRail";
 import { CaseStateMatrixTable } from "@/components/case/deep/CaseStateMatrixTable";
 import { CaseRejectionArchive } from "@/components/case/deep/CaseRejectionArchive";
+import { RawResearchVault } from "@/components/case/deep/RawResearchVault";
 import deepStyles from "@/components/case/deep/cases-deep.module.css";
 
 type Slug = CurrentProjectSlug;
@@ -160,13 +162,19 @@ export default async function CasePage({ params }: Props) {
       : null;
 
   const depthModules = getCaseDepthModules(k);
-  const depthJumps: Array<readonly [string, string]> = depthModules
-    ? [
-        ["journey-map", isZh ? "全流程旅程" : "Journey map"],
-        ["state-matrix", isZh ? "五态边界矩阵" : "5-State matrix"],
-        ["rejection-archive", isZh ? "打回重做档案" : "Rejection archive"],
-      ]
-    : [];
+  const researchVault = getCaseResearchVault(k);
+  const depthJumps: Array<readonly [string, string]> = [
+    ...(depthModules
+      ? ([
+          ["journey-map", isZh ? "全流程旅程" : "Journey map"],
+          ["state-matrix", isZh ? "五态边界矩阵" : "5-State matrix"],
+          ["rejection-archive", isZh ? "打回重做档案" : "Rejection archive"],
+        ] as const)
+      : []),
+    ...(researchVault
+      ? ([["research-vault", isZh ? "原始研究档案" : "Research vault"]] as const)
+      : []),
+  ];
 
   const jumpSections: Array<readonly [string, string]> = [
     ["artifact", isZh ? "核心产物" : "Artifact"],
@@ -399,26 +407,32 @@ export default async function CasePage({ params }: Props) {
         </section>
       )}
 
-      {depthModules && (
+      {(depthModules || researchVault) && (
         <div
           className="container"
           style={{ marginTop: "var(--s-7)" }}
         >
-          <Suspense
-            fallback={
-              <div id="case-deep-root" className={deepStyles.focusScope} data-active-focus="all">
+          {depthModules ? (
+            <Suspense
+              fallback={
+                <div id="case-deep-root" className={deepStyles.focusScope} data-active-focus="all">
+                  <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
+                  <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
+                  <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
+                  {researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />}
+                </div>
+              }
+            >
+              <CaseFocusRegion>
                 <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
                 <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
                 <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
-              </div>
-            }
-          >
-            <CaseFocusRegion>
-              <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
-              <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
-              <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
-            </CaseFocusRegion>
-          </Suspense>
+                {researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />}
+              </CaseFocusRegion>
+            </Suspense>
+          ) : (
+            researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />
+          )}
         </div>
       )}
 

@@ -119,9 +119,14 @@ export default async function ProjectsPage() {
                 : "Inspect the 6 reusable interaction rules, live micro-sandboxes, and copyable code extracted from these cases."}
             </p>
           </div>
-          <Link href="/patterns" className="btn btn-ghost">
-            {isZh ? "打开交互模式图谱 →" : "Explore Pattern Atlas →"}
-          </Link>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            <Link href="/patterns" className="btn btn-ghost">
+              {isZh ? "打开交互模式图谱 →" : "Explore Pattern Atlas →"}
+            </Link>
+            <Link href="/vault" className="btn btn-ghost">
+              {isZh ? "8 项演进与死亡解剖档案馆 →" : "Archive Vault (8 Autopsies) →"}
+            </Link>
+          </div>
         </div>
       </section>
 

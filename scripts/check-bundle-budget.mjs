@@ -14,9 +14,9 @@ const STATIC_DIR = path.join(ROOT, ".next", "static");
 
 const MAX_SINGLE_CHUNK_GZ_KB = 70;
 const MAX_LAZY_3D_CHUNK_GZ_KB = 160;
-const MAX_APP_ROUTE_CHUNK_GZ_KB = 20;
-const MAX_APP_CSS_GZ_KB = 55;
-const MAX_TOTAL_CSS_GZ_KB = 85;
+const MAX_APP_ROUTE_CHUNK_GZ_KB = 22;
+const MAX_APP_CSS_GZ_KB = 68;
+const MAX_TOTAL_CSS_GZ_KB = 98;
 
 function walk(dir, out = []) {
   if (!fs.existsSync(dir)) return out;

@@ -302,6 +302,14 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 <span className="cmdk-item-meta">Patterns</span>
               </Command.Item>
               <Command.Item
+                value="vault archive autopsy lineage abandoned retired 档案 死亡解剖 演进"
+                className="cmdk-item"
+                onSelect={() => navigate("/vault")}
+              >
+                <span>{isZh ? "打开演进与死亡解剖档案馆 (/vault)" : "Open Archive Vault (/vault)"}</span>
+                <span className="cmdk-item-meta">Vault</span>
+              </Command.Item>
+              <Command.Item
                 value="ai lab rationale bm25 grounded evidence 实验室 辩护 证据"
                 className="cmdk-item"
                 onSelect={() => navigate("/ai")}
