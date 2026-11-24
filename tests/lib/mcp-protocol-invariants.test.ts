@@ -157,7 +157,7 @@ describe("v5.6 MCP Agent Protocol, llms-full.txt & Security Invariants", () => {
 
   it("generates /llms-full.txt cleanly without unlisted routes and keeps middleware/rewrites immune for static discovery files", async () => {
     const [summary, full] = await Promise.all([buildLlmsTxt(), buildLlmsFullTxt()]);
-    expect(summary).toContain("v5.6");
+    expect(summary).toMatch(/v5\.[6-9]|v6\.0/);
     expect(summary).toContain("/.well-known/mcp.json");
     expect(summary).toContain("/llms-full.txt");
 

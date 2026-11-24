@@ -1,0 +1,277 @@
+.shell {
+  display: grid;
+  gap: var(--s-5);
+  min-inline-size: 0;
+}
+
+.controlsBar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  min-inline-size: 0;
+}
+
+.pillGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  min-inline-size: 0;
+}
+
+.pillBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-pill);
+  background: var(--bg);
+  color: var(--text-2);
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: border-color var(--dur-2) var(--ease-out), background var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out);
+}
+
+.pillBtn:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.pillBtn[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.splitLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(290px, 0.85fr);
+  gap: var(--s-5);
+  align-items: start;
+  min-inline-size: 0;
+}
+
+@media (max-width: 1120px) {
+  .splitLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.canvasScroller {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-gutter: stable;
+  min-inline-size: 0;
+}
+
+.canvasStage {
+  position: relative;
+  width: 1120px;
+  height: 720px;
+}
+
+.colHeaderRow {
+  position: absolute;
+  inset-block-start: 10px;
+  inset-inline: 0;
+  display: flex;
+  pointer-events: none;
+}
+
+.colHeader {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.edgeSvg {
+  position: absolute;
+  inset: 0;
+  width: 1120px;
+  height: 720px;
+  pointer-events: none;
+}
+
+.edgePath {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+  opacity: 0.42;
+  transition: opacity 180ms ease-out, stroke 180ms ease-out, stroke-width 180ms ease-out;
+}
+
+.edgePathActive {
+  stroke: var(--accent);
+  stroke-width: 2.4;
+  opacity: 1;
+}
+
+.edgePathDimmed {
+  opacity: 0.14;
+}
+
+.nodeBtn {
+  position: absolute;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  color: var(--text);
+  text-align: start;
+  cursor: pointer;
+  min-height: 44px;
+  transition: border-color 180ms ease-out, background 180ms ease-out, opacity 180ms ease-out;
+}
+
+.nodeBtn:hover {
+  border-color: var(--text);
+}
+
+.nodeBtn[data-state="focus"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+  background: var(--surface-2);
+}
+
+.nodeBtn[data-state="connected"] {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.nodeBtn[data-state="dimmed"] {
+  opacity: 0.34;
+}
+
+.nodeMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-3);
+}
+
+.nodeTitle {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edgePath,
+  .nodeBtn {
+    transition: none;
+  }
+}
+
+.inspectorCard {
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  min-inline-size: 0;
+}
+
+.inspectorSection {
+  display: grid;
+  gap: 8px;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+  min-inline-size: 0;
+}
+
+.hopList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.hopItem {
+  display: grid;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+}
+
+.hopBtn {
+  background: transparent;
+  border: none;
+  padding: 4px 0;
+  min-height: 28px;
+  text-align: start;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.gapCallout {
+  padding: 10px 12px;
+  border: 1px dashed var(--accent);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  min-inline-size: 0;
+}
+
+.matrixTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: start;
+}
+
+.matrixTable th,
+.matrixTable td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.matrixTable th {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+}

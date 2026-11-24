@@ -57,6 +57,9 @@ export default async function ArchiveVaultPage() {
           <Link href="/projects" className="btn btn-primary">
             {isZh ? "回到 6 大公开旗舰 →" : "Back to 6 Listed Flagships →"}
           </Link>
+          <Link href="/studio/graph" className="btn btn-ghost">
+            {isZh ? "打开因果演进图谱 (/studio/graph) →" : "Open Causal Lineage Graph →"}
+          </Link>
           <Link href="/patterns" className="btn btn-ghost">
             {isZh ? "查看交互模式图谱 →" : "Open Pattern Atlas →"}
           </Link>
