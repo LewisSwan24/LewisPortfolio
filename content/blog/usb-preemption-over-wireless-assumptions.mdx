@@ -1,0 +1,25 @@
+---
+title: "USB Preemption Over Wireless Assumptions"
+date: "2026-11-03"
+excerpt: "When a wearable remote sits beside a laptop, routing audio through a cloud relay wastes battery and invites packet loss—yet stitching USB and Wi-Fi mid-sentence invites duplicate commands."
+tags:
+  - Physical Computing
+  - Protocols
+  - Latency
+cluster: "physical-computing"
+author: "Lewis Dong"
+published: true
+---
+
+Every wireless-first gadget demo promises seamless handoff between desk and sofa. In practice, mid-utterance channel stitching between USB Serial and WebSocket relays is where subtle duplicate tool invocations are born.
+
+## Deterministic preemption without silent stitching
+
+In [Walkie](/projects/walkie), hardware transport arbitration follows two crisp rules verified on silicon and inspectable frame by frame inside the [Protocol Replay Studio](/studio/replay?track=walkie):
+
+1. **USB DTR immediately preempts `wss://`**: Plugging in USB-C at the desk switches capture to raw `16 kHz` PCM over CDC serial with zero watch menu diving.
+2. **Mid-turn cable swaps abort cleanly**: Pulling or plugging the USB cable during an active hold immediately drops the partial audio buffer and notifies the operator (`Link switched — release and retry`) instead of splicing half an ADPCM turn onto a half-recorded PCM stream.
+
+## Why honest interruption beats brittle continuity
+
+Users recover from a 1-second explicit retry cue effortlessly; they do not recover easily when a spliced audio buffer fires a half-parsed shell command. Honest state transitions preserve operator trust across every physical transition.

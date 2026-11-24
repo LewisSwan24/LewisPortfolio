@@ -1,0 +1,23 @@
+---
+title: "Dual-Boot OTA Slot Safety on Shared Embedded Silicon"
+date: "2026-11-04"
+excerpt: "Co-hosting two distinct interactive prototypes on a single M5StickS3 flash chip creates silent bricking hazards unless partition guards and slot-switch affordances are designed together."
+tags:
+  - Physical Computing
+  - Embedded UX
+  - ESP32-S3
+cluster: "physical-computing"
+author: "Lewis Dong"
+published: true
+---
+
+Hardware prototypes rarely live on isolated lab benches forever. Both [Walkie](/projects/walkie) and [On The Beat](/projects/onthebeat) share the same 16 MB ESP32-S3 flash on an M5StickS3 (`app0` and `app1`). That single hardware constraint taught me that embedded safety is an ergonomic UX problem long before an operator touches a button.
+
+## Why dual-boot slots fail silently
+
+1. **Unchecked `esptool` offsets wipe sibling projects**: A standard flash invocation easily overwrites `otadata` or stomps `app0` while trying to update `app1`.
+2. **Ambiguous boot feedback leaves testers guessing**: If a dual-boot watch wakes up into the wrong persona after a reboot without an immediate visual header, the user tests the wrong firmware state.
+
+## Pairing `guard.py` with slot clarity
+
+To protect both prototypes during rapid daily iteration, we built `guard.py` as a mandatory pre-flash gate that parses target offsets and aborts any write crossing sibling boundaries. On device, each slot announces its active persona clearly in the top bar—`Walkie` wrist remote vs `On The Beat` venue band—so nobody mistakes a stale boot partition for a broken network relay. Inspect Walkie's hardware matrix in [Raw Research Vault](/projects/walkie#research-vault).

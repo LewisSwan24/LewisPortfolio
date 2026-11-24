@@ -32,6 +32,7 @@ export default async function BlogPage() {
     date: p.date,
     excerpt: p.excerpt,
     tags: p.tags,
+    cluster: p.cluster,
     readingTime: p.readingTime,
   }));
 

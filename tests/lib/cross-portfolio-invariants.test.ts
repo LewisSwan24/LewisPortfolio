@@ -8,7 +8,8 @@ import { CASE_HEURISTIC_AUDITS } from "@/data/heuristics/case-heuristics";
 import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
 import { EVIDENCE_CORPUS_ITEMS } from "@/lib/ai/evidence-corpus";
 import { buildLlmsTxt } from "@/lib/llms";
-import { getAllBlogPosts } from "@/lib/blog";
+import { getAllBlogPosts, BLOG_CLUSTERS } from "@/lib/blog";
+import { auditTranslationese } from "@/lib/i18n/editorial-voice";
 import { getApplicationPackets, getRolePackets } from "@/lib/proof";
 import { RESUME_COMPOSER_CASES, RESUME_COMPOSER_PRESETS } from "@/lib/resume/composer-data";
 
@@ -23,17 +24,27 @@ const ALLOWED_ROUTE_PREFIXES = [
   "/ai",
 ];
 
-describe("v5.0 Cross-Portfolio Integrity & Symmetry Invariants", () => {
-  it("keeps all 13 bilingual MDX essays in frontmatter parity across EN and ZH", async () => {
+describe("v5.4 Cross-Portfolio Integrity & 24-Monograph Symmetry Invariants", () => {
+  it("keeps all 24+ bilingual MDX essays in frontmatter & cluster parity across EN and ZH", async () => {
     const enPosts = await getAllBlogPosts("en");
     const zhPosts = await getAllBlogPosts("zh");
 
-    expect(enPosts.length).toBeGreaterThanOrEqual(13);
+    expect(enPosts.length).toBeGreaterThanOrEqual(24);
     expect(zhPosts.length).toBe(enPosts.length);
 
-    const zhSlugs = new Set(zhPosts.map((p) => p.slug));
+    const zhBySlug = new Map(zhPosts.map((p) => [p.slug, p]));
+    const clusterSet = new Set<string>(BLOG_CLUSTERS);
     for (const post of enPosts) {
-      expect(zhSlugs.has(post.slug), `missing ZH translation for ${post.slug}`).toBe(true);
+      const zhPost = zhBySlug.get(post.slug);
+      expect(zhPost, `missing ZH translation for ${post.slug}`).toBeDefined();
+      expect(clusterSet.has(post.cluster), `invalid EN cluster on ${post.slug}`).toBe(true);
+      expect(zhPost!.cluster).toBe(post.cluster);
+
+      expect(auditTranslationese(post.title, "en")).toEqual([]);
+      expect(auditTranslationese(post.excerpt, "en")).toEqual([]);
+      expect(auditTranslationese(zhPost!.title, "zh")).toEqual([]);
+      expect(auditTranslationese(zhPost!.excerpt, "zh")).toEqual([]);
+
       const enRaw = fs.readFileSync(path.join(process.cwd(), "content/blog", `${post.slug}.mdx`), "utf8");
       const zhRaw = fs.readFileSync(path.join(process.cwd(), "content/blog/zh", `${post.slug}.mdx`), "utf8");
       const enFm = matter(enRaw).data;
@@ -42,6 +53,9 @@ describe("v5.0 Cross-Portfolio Integrity & Symmetry Invariants", () => {
       expect(Boolean(enFm.date) && Boolean(zhFm.date)).toBe(true);
       expect(Boolean(enFm.excerpt || enFm.summary) && Boolean(zhFm.excerpt || zhFm.summary)).toBe(true);
     }
+
+    const writingChunks = EVIDENCE_CORPUS_ITEMS.filter((c) => c.pillar === "writing");
+    expect(writingChunks.length).toBeGreaterThanOrEqual(24);
   });
 
   it("zero unlisted case leakage across FSMs, heuristics, patterns, AI corpus, packets, llms.txt & composer", async () => {
