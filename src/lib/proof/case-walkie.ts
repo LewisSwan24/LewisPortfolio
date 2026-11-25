@@ -16,7 +16,7 @@ export const walkieSummary: Record<ProofLocale, { walkie: CaseSummary }> = {
   en: {
     walkie: {
       challenge:
-        "Stepping away from a laptop while an AI coding agent runs means missing quick confirmation prompts or follow-up questions. A wrist voice remote only earns trust when physical buttons control approvals, cloud relays stay blind, and flashing updates won't erase the sibling wristband app.",
+        "A wrist voice remote for Claude Code only earns trust when physical buttons control approvals, cloud relays carry only ciphertext, and flashing updates won't erase the sibling wristband app.",
       role: "Solo: physical-digital interaction model, tactile approval boundaries, hardware prototyping, and AI-assisted build acceptance",
       methods: ["physical button approval UX", "tactile pairing flow", "dual-boot flash protection", "hardware-in-the-loop verification", "voice intent routing"],
       evidence: [

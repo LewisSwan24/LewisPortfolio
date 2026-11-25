@@ -219,7 +219,7 @@ export function WalkieWristSim({ locale, onStatusChange }: SimulatorProps) {
     : {
         transportLabel: "Transport priority",
         usbBtn: "USB Direct Priority",
-        relayBtn: "Zero-Knowledge Relay",
+        relayBtn: "End-to-End Encrypted Relay",
         usbMeta: "AES-256-GCM · PCM · Cable preempts",
         relayMeta: "AES-256-GCM · 4-bit ADPCM · Ciphertext only",
         watchAria:

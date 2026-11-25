@@ -79,7 +79,7 @@ describe("CaseSimulatorFrame & Phase 3.6A Simulators", () => {
     expect(onStatus).toHaveBeenLastCalledWith(expect.stringMatching(/Trigger a simulated Claude request/i));
 
     // Switch transport to zero-knowledge relay
-    fireEvent.click(screen.getByRole("button", { name: /Zero-Knowledge Relay/i }));
+    fireEvent.click(screen.getByRole("button", { name: /End-to-End Encrypted Relay/i }));
     expect(screen.getByText("FLY·ADPCM")).toBeInTheDocument();
 
     // Trigger read-only search and approve with Front Key

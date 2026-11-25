@@ -14,7 +14,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
       zh: "Walkie · USB 抢占与 AES-256-GCM 腕上审批帧",
     },
     transportSummary: {
-      en: "M5StickS3 (ESP32-S3) <-> Node 24 Workstation Bridge <-> Fly.io wss:// Zero-Knowledge Relay",
+      en: "M5StickS3 (ESP32-S3) <-> Node 24 Workstation Bridge <-> Fly.io wss:// End-to-End Encrypted Relay",
       zh: "M5StickS3 (ESP32-S3) <-> Node 24 桌面桥接 <-> Fly.io wss:// 端到端加密中继",
     },
     honestCalibrationNote: {
@@ -272,11 +272,11 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
     verifiedStatus: "bench-tested",
     faultInjectionLabel: {
       en: "Inject a One-Sample IR Flicker",
-      zh: "注入故障：钢球擦边造成一次取样的红外闪烁",
+      zh: "注入故障：小球擦边造成一次取样的红外闪烁",
     },
     faultInjectionSummary: {
       en: "Simulates a ball grazing the beam for a single sample. The three-sample debounce ignores it, so score and sleeve vibration do not fire twice.",
-      zh: "模拟钢球擦过光束，只遮断了一次取样。三次取样去抖会忽略这次闪烁，分数和指套震动都不会多触发一次。",
+      zh: "模拟小球擦过光束，只遮断了一次取样。三次取样去抖会忽略这次闪烁，分数和指套震动都不会多触发一次。",
     },
     caseHref: "/projects/maze",
     nominalFrames: [
@@ -317,7 +317,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "The ball breaks IR beam #04 for three consecutive samples, which counts as a real pass.",
-          zh: "钢球连续三次取样都遮断了 04 号红外光束，算作一次真实经过。",
+          zh: "小球连续三次取样都遮断了 04 号红外光束，算作一次真实经过。",
         },
         invariantCheck: {
           en: "Confirmed real ball pass vs optical noise.",
@@ -360,7 +360,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "Zone #04 clears lockout cleanly once the ball rolls clear of the trap rim.",
-          zh: "钢球完全滚离陷阱边缘后，04 号通道顺利解除冷却锁进入下一轮待命。",
+          zh: "小球完全滚离陷阱边缘后，04 号通道顺利解除冷却锁进入下一轮待命。",
         },
         invariantCheck: {
           en: "No stuck sensor flags after trap exit.",
@@ -395,7 +395,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         id: "m-flt-1",
         timestampMs: 0,
         channel: "FC51-IR[04]",
-        stateLabel: { en: "Ball Grazing Trap Edge", zh: "钢球擦过陷阱边缘光束" },
+        stateLabel: { en: "Ball Grazing Trap Edge", zh: "小球擦过陷阱边缘光束" },
         signalLevel: 58,
         faultState: "nominal",
         rawHex: "4D 5A 01 04 45 44 47 45 5F 54 4F 55 43 48 00 01",
@@ -404,8 +404,8 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
           { key: "rawPin", value: "LOW_TRANSIENT" },
         ],
         humanSummary: {
-          en: "Rolling steel ball grazes IR emitter rim, causing optical edge flicker.",
-          zh: "滚动钢球擦过红外发射管边缘，引发短暂光电闪烁。",
+          en: "The rolling ball grazes IR emitter rim, causing optical edge flicker.",
+          zh: "滚动的小球擦过红外发射管边缘，引发短暂光电闪烁。",
         },
         invariantCheck: {
           en: "First LOW sample at t=0 ms; two more are needed.",
@@ -469,7 +469,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "The ball drops into the hole and breaks the beam for three samples; one penalty fires and the 400 ms cooldown starts.",
-          zh: "钢球真正落进陷阱，连续三次取样遮断光束。系统发出一次罚分，随即开始 400 ms 冷却。",
+          zh: "小球真正落进陷阱，连续三次取样遮断光束。系统发出一次罚分，随即开始 400 ms 冷却。",
         },
         invariantCheck: {
           en: "1 genuine trap = 1 clean event after suppressing prior chatter.",

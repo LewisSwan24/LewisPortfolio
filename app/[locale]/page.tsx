@@ -177,7 +177,7 @@ export default async function HomePage() {
                   download
                   className="hero-pdf-link"
                 >
-                  {isZh ? "单页 PDF 简历 ↗" : "1-Page PDF CV ↗"}
+                  {isZh ? "PDF 简历 ↗" : "PDF CV ↗"}
                 </a>
                 <Link href="/hire" className="hero-hire-link">
                   {isZh ? "招聘决策简报 ↗" : "Hiring dossier ↗"}

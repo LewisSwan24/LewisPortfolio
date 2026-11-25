@@ -15,6 +15,11 @@ interface TelemetrySummary {
   };
 }
 
+/** The panel only earns its place once the endpoint has real samples to show. */
+export function hasTelemetrySamples(summary: Pick<TelemetrySummary, "sampleCount"> | null): boolean {
+  return (summary?.sampleCount ?? 0) > 0;
+}
+
 export function LabTelemetryPanel({ locale }: { locale: "en" | "zh" }) {
   const isZh = locale === "zh";
   const [summary, setSummary] = useState<TelemetrySummary | null>(null);
@@ -36,6 +41,8 @@ export function LabTelemetryPanel({ locale }: { locale: "en" | "zh" }) {
 
   const fmtMs = (v: number | null | undefined, unit = "ms") =>
     v === null || v === undefined ? (isZh ? "采集待命" : "Awaiting") : `${v}${unit}`;
+
+  if (!summary || !hasTelemetrySamples(summary)) return null;
 
   return (
     <section
@@ -62,19 +69,19 @@ export function LabTelemetryPanel({ locale }: { locale: "en" | "zh" }) {
           <div className="v4-span-4" style={{ border: "1px solid var(--border)", padding: 14, background: "var(--bg)" }}>
             <span className="eyebrow">LCP (p75)</span>
             <div style={{ fontSize: 24, fontFamily: "var(--font-mono)", marginTop: 6 }}>
-              {fmtMs(summary?.metricsP75.LCP)}
+              {fmtMs(summary.metricsP75.LCP)}
             </div>
           </div>
           <div className="v4-span-4" style={{ border: "1px solid var(--border)", padding: 14, background: "var(--bg)" }}>
             <span className="eyebrow">INP (p75)</span>
             <div style={{ fontSize: 24, fontFamily: "var(--font-mono)", marginTop: 6 }}>
-              {fmtMs(summary?.metricsP75.INP)}
+              {fmtMs(summary.metricsP75.INP)}
             </div>
           </div>
           <div className="v4-span-4" style={{ border: "1px solid var(--border)", padding: 14, background: "var(--bg)" }}>
-            <span className="eyebrow">CLS (p75) · {isZh ? "样本" : "Samples"}: {summary?.sampleCount ?? 0}</span>
+            <span className="eyebrow">CLS (p75) · {isZh ? "样本" : "Samples"}: {summary.sampleCount}</span>
             <div style={{ fontSize: 24, fontFamily: "var(--font-mono)", marginTop: 6 }}>
-              {fmtMs(summary?.metricsP75.CLS, "")}
+              {fmtMs(summary.metricsP75.CLS, "")}
             </div>
           </div>
         </div>

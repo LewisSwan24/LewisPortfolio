@@ -151,7 +151,7 @@ export default async function HirePage() {
               {proofLocale === "zh" ? "软硬交互设计师 Deck (PDF)" : "Hardware & Interaction (PDF)"}
             </a>
             <a className="btn btn-ghost" href={`/resume/lewis-dong-resume-${proofLocale}.pdf`} download>
-              {proofLocale === "zh" ? "单页 ATS 简历 (PDF)" : "1-Page ATS Resume (PDF)"}
+              {proofLocale === "zh" ? "ATS 简历 (PDF)" : "ATS Resume (PDF)"}
             </a>
           </div>
           <div className="res-inline-links" aria-label={proofLocale === "zh" ? "直达公开源码仓库与在线原型" : "Verify public GitHub repositories and live builds"}>

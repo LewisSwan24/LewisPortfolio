@@ -32,7 +32,7 @@ export function QuickContactForm({ locale, initialRole = "" }: QuickContactFormP
     ? {
         eyebrow: "快速留言通道",
         title: "直接发送合作或面试留言",
-        summary: "若服务端未接入 KV 通道，提交后会自动生成预设好正文的一键邮件跳转（mailto:），绝不丢失内容。",
+        summary: "留言会直接发到我这里。如果暂时发不出去，会帮你准备一封写好正文的邮件。",
         nameLabel: "你的称呼 *",
         nameErr: "请填写你的称呼。",
         emailLabel: "回复邮箱 *",
@@ -48,7 +48,7 @@ export function QuickContactForm({ locale, initialRole = "" }: QuickContactFormP
         eyebrow: "Direct message",
         title: "Send a quick note",
         summary:
-          "Submits directly when KV/webhook is active, or prepares a pre-filled mailto: handoff cleanly with zero server errors.",
+          "Your note comes straight to me. If it cannot send right now, you get a pre-filled email to send instead.",
         nameLabel: "Your name *",
         nameErr: "Enter your name.",
         emailLabel: "Reply email *",
@@ -127,13 +127,13 @@ export function QuickContactForm({ locale, initialRole = "" }: QuickContactFormP
         setMessage("");
         setTouched({});
         setResult({
-          text: isZh ? "已收到留言，我会在 48 小时内回复。" : "Message received — I typically reply within 48 hours.",
+          text: isZh ? "已收到留言，我会在 48 小时内回复。" : "Message received. I will reply within 48 hours.",
         });
       } else {
         setResult({
           text: isZh
-            ? "当前站点运行于无后端模式，请点击下方按钮直接通过邮件客户端发送。"
-            : "Running in zero-backend fallback mode — click below to send via your email app.",
+            ? "留言暂时发不出去，请点下方按钮，用邮件发送。"
+            : "The form cannot send right now. Use the button below to send it by email.",
           mailtoHref: data.mailtoHref,
         });
       }

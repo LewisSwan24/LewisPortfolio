@@ -17,8 +17,8 @@ export const mazeResearchVault: RawResearchVaultRecord = {
       zh: "公共展场走近即玩的 9 组观众（每局 4 人围绕木质迷宫桌，共计 36 人），包含陌生观众临时组队与朋友结伴。",
     },
     openingBrief: {
-      en: "Put on the finger sleeve and take one wristband. Notice the color pairings—no single person can tilt an axis alone, so talk across the table to guide the steel ball home.",
-      zh: "「请戴好震动指套并握住对应颜色腕带。注意同色成对：单个人按不住任何一条倾斜轴，只能靠四人跨桌口头协调把钢球滚进终点。」",
+      en: "Put on the finger sleeve and take one wristband. Notice the color pairings—no single person can tilt an axis alone, so talk across the table to guide the ball home.",
+      zh: "「请戴好震动指套并握住对应颜色腕带。注意同色成对：单个人按不住任何一条倾斜轴，只能靠四人跨桌口头协调把小球滚进终点。」",
     },
     taskProbes: [
       {
@@ -57,7 +57,7 @@ export const mazeResearchVault: RawResearchVaultRecord = {
         id: "maze-probe-attention",
         prompt: {
           en: "Track where players look when the ball drops into an IR trap zone.",
-          zh: "追踪钢球遮断红外陷阱区的一瞬间，四名玩家的视线焦点落点。",
+          zh: "追踪小球遮断红外陷阱区的一瞬间，四名玩家的视线焦点落点。",
         },
         whatWeWatchFor: {
           en: "Whether players glance at the vertical scoring screen first or react immediately to wrist/finger vibration and board buzzer.",
@@ -97,8 +97,8 @@ export const mazeResearchVault: RawResearchVaultRecord = {
       id: "maze-obs-2",
       sessionRef: { en: "Hardware Bench · FC-51 Bounce", zh: "硬件台架 · FC-51 红外毛刺排查" },
       context: {
-        en: "Rolling steel ball through 10 infrared beam gates at varied speeds.",
-        zh: "不同滚速下钢球穿越 10 路红外光束门。",
+        en: "Rolling the ball past 10 infrared beam gates at varied speeds.",
+        zh: "不同滚速下小球穿越 10 路红外光束门。",
       },
       observation: {
         en: "On raw reads, a single ball pass could fire more than once and charge more than one penalty.",
@@ -142,8 +142,8 @@ export const mazeResearchVault: RawResearchVaultRecord = {
         dimension: { en: "IR Debounce & Cooldown", zh: "红外消抖与冷却窗口" },
         constraint: { en: "3 consecutive samples + 400 ms cooldown", zh: "连续三次取样 + 400 ms 冷却" },
         rationale: {
-          en: "Eliminates double/triple penalty firing when the steel ball wobbles over an FC-51 sensor rim.",
-          zh: "消除钢球擦边震荡导致的连环误扣分，确保计分屏与指套震动 1:1 对齐。",
+          en: "Eliminates double/triple penalty firing when the ball wobbles over an FC-51 sensor rim.",
+          zh: "消除小球擦边震荡导致的连环误扣分，确保计分屏与指套震动 1:1 对齐。",
         },
         verifiedStatus: "bench-tested",
       },

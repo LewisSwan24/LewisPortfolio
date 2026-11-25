@@ -15,7 +15,7 @@ One tempting shortcut in AI prototypes is to load a whole user table into contex
 
 ## Query isolation before the model sees a token
 
-In **Fencepost**, a DECO7285 course project I built with teammates where neighbours share possum sighting videos, and in the retrieval pipeline behind this site's [AI Lab](/ai), revocation lives below the prompt layer:
+In **Fencepost**, a DECO7285 course project I built with teammates where neighbours share possum sighting videos (AI coding tools helped with my part: across the repository's branches, 69 of my 271 commits carry a Claude co-author line, counted on 25 November 2026), and in the retrieval pipeline behind this site's [AI Lab](/ai), revocation lives below the prompt layer:
 
 1. **Separate timeline and assistant queries**: the timeline query and the assistant's context query do not share a cache. Share tokens are stored hashed, and the data-layer tests check that once a share is revoked, the next assistant call no longer reads that record.
 2. **No location to leak**: video frames are re-encoded in the browser, which drops metadata, and the server drops any still that arrives carrying an EXIF or XMP block. Media records keep only a storage key, and the schema has no location column for an assistant summary to draw on.

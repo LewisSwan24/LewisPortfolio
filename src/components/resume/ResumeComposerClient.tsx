@@ -268,7 +268,7 @@ export function ResumeComposerClient({
             {isUiZh ? "复制 Markdown 档案" : "Copy Markdown Dossier"}
           </button>
           <Link href="/resume" className="btn btn-ghost">
-            {isUiZh ? "← 返回标准一页简历" : "← Back to standard resume"}
+            {isUiZh ? "← 返回标准简历" : "← Back to standard resume"}
           </Link>
           <output role="status" className={styles.statusMsg} data-testid="composer-status">
             {statusMessage}

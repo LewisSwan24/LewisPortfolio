@@ -17,8 +17,8 @@ export const INTERACTION_PATTERNS: readonly InteractionPattern[] = [
       zh: "把低摩擦语音采集与不可逆权限审批解耦：语音只负责传达意图，高危放行必须等待拇指按下实体物理按键。",
     },
     humanTension: {
-      en: "Stepping away from the desk leaves an AI coding agent stalled on a short permission check, yet approving shell or write calls purely by spoken 'yes' fails as soon as background conversation or media audio triggers a false match.",
-      zh: "离开电脑前，编码 Agent 常卡在一条简短工具审批上；但若只靠语音喊一句「同意」就放行命令行，室内背景对话或视频外放随时可能引发误批准。",
+      en: "Approving shell or write calls purely by spoken 'yes' fails as soon as background conversation or media audio triggers a false match.",
+      zh: "若只靠语音喊一句「同意」就放行命令行，室内背景对话或视频外放随时可能引发误批准。",
     },
     commonAntiPattern: {
       en: "Hands-free voice confirmation ('Yes, run it') or auto-accepting after a 5-second countdown with zero tactile boundary.",

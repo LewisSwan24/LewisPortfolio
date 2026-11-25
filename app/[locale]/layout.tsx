@@ -16,6 +16,7 @@ import { StudioAssistantDrawer } from "@/components/command/StudioAssistantDrawe
 import { SearchProvider } from "@/components/SearchProvider";
 import type { CaseLocale } from "@/lib/cases/registry";
 import { Analytics } from "@vercel/analytics/react";
+import { shouldLoadVercelAnalytics } from "@/lib/analytics";
 import {
   StructuredData,
   generatePersonSchema,
@@ -99,7 +100,7 @@ export default async function LocaleLayout({
           <LazyKeyboardShortcuts />
           <PerformanceMonitor />
           <OfflineShellRegister />
-          <Analytics />
+          {shouldLoadVercelAnalytics() ? <Analytics /> : null}
         </SearchProvider>
       </ThemeProvider>
     </NextIntlClientProvider>

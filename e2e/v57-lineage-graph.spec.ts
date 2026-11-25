@@ -31,8 +31,13 @@ test.describe("v5.7 Causal Lineage Knowledge Graph (/studio/graph)", () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/zh/studio/graph", { waitUntil: "networkidle" });
 
-    const darkBtn = page.getByRole("button", { name: /Switch theme to dark mode|切换.*暗/i });
-    if (await darkBtn.isVisible()) await darkBtn.click();
+    // Wait for hydration: before ThemeToggle mounts it renders a disabled
+    // "Loading color mode" placeholder, so an immediate isVisible() check on the
+    // real button returned false and the click was skipped (flaky in zh/dark).
+    const themeToggle = page.getByRole("button", { name: /Switch theme to (dark|light) mode/i });
+    await expect(themeToggle).toBeVisible();
+    const darkBtn = page.getByRole("button", { name: /Switch theme to dark mode/i });
+    if ((await darkBtn.count()) > 0) await darkBtn.click();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
     await page.getByTestId("graph-node-flagship:walkie").click();

@@ -5,7 +5,8 @@ test.describe("Editorial Critique Print Dossier, Static Role PDFs & Zero-PII RUM
     page,
   }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
-    await page.goto("/en/brief/print?role=ai-product-engineer", { waitUntil: "domcontentloaded" });
+    // networkidle waits for hydration; the role button click below raced it on a slow dev server.
+    await page.goto("/en/brief/print?role=ai-product-engineer", { waitUntil: "networkidle" });
 
     const robotsMeta = page.locator('meta[name="robots"]');
     await expect(robotsMeta).toHaveAttribute("content", /noindex/i);
@@ -59,8 +60,15 @@ test.describe("Editorial Critique Print Dossier, Static Role PDFs & Zero-PII RUM
     });
     expect(accepted.status()).toBe(200);
 
-    await page.goto("/en/lab", { waitUntil: "domcontentloaded" });
-    await expect(page.locator("#lab-rum-heading")).toBeVisible();
+    // v6.3: the panel renders only after its client fetch returns real samples, so it
+    // appears after hydration, not in the server HTML. The store is in module memory and
+    // a dev-server recompile can empty it between the POST and the page's GET, so post
+    // and load again until the panel shows.
+    await expect(async () => {
+      await request.post("/api/vitals", { data: { metric: "LCP", value: 980, routeGroup: "lab" } });
+      await page.goto("/en/lab", { waitUntil: "networkidle" });
+      await expect(page.locator("#lab-rum-heading")).toBeVisible({ timeout: 5000 });
+    }).toPass({ timeout: 90000 });
     await expect(page.getByText(/LCP \(p75\)/i)).toBeVisible();
   });
 });

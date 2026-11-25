@@ -5,6 +5,7 @@ import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getAllReplayTraces } from "@/data/replay/traces";
 import { ReplayWorkbenchClient } from "@/components/studio/ReplayWorkbenchClient";
+import { ReplayTraceFallback } from "@/components/studio/ReplayTraceFallback";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
@@ -65,7 +66,7 @@ export default async function ProtocolReplayStudioPage() {
       </section>
 
       <section className="container section">
-        <Suspense fallback={null}>
+        <Suspense fallback={<ReplayTraceFallback traces={traces} locale={locale} />}>
           <ReplayWorkbenchClient traces={traces} locale={locale} />
         </Suspense>
       </section>

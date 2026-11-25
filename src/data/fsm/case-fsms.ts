@@ -518,7 +518,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         id: "mz-ir",
         from: "arm-idle",
         to: "ir-debounce",
-        trigger: { en: "Marble Crosses IR", zh: "钢珠遮断红外光束" },
+        trigger: { en: "Ball Crosses IR", zh: "小球遮断红外光束" },
         condition: { en: "LOW pulse observed", zh: "触发低电平边缘" },
         kind: "advance",
       },

@@ -168,7 +168,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </div>
         <div className="res-inline-links" style={{ marginTop: 20 }}>
           <a href={`/resume/lewis-dong-resume-${proofLocale}.pdf`} download>
-            {isZh ? "直下中/英单页 PDF 简历 ↗" : "Download 1-Page PDF CV ↗"}
+            {isZh ? "下载 PDF 简历 ↗" : "Download PDF CV ↗"}
           </a>
           <Link href="/hire">
             {isZh ? "打开 1 分钟招聘简报 →" : "Open 1-min hiring dossier →"}

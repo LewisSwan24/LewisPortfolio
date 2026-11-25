@@ -11,8 +11,8 @@ export const walkieCase: CaseRecord = {
     year: "2026",
     dur: "Dual-boot S3 build",
     problem: {
-      en: "Stepping away from the desk leaves coding agents blocked on short permission checks",
-      zh: "离开电脑前，编码 Agent 常常卡在简短的权限审批与一句追问上",
+      en: "A wrist voice remote for Claude Code must not let speech alone approve a tool call",
+      zh: "手腕上的 Claude Code 语音遥控，不能只凭一句语音就放行工具调用",
     },
     changed: {
       en: "A sealed AES-256-GCM wrist voice remote where physical watch buttons own every approval",
@@ -243,8 +243,8 @@ export const walkieCase: CaseRecord = {
         zh: "用手表实体双键握住最终审批权，而非语音口令自动放行",
       },
       humanTension: {
-        en: "Stepping away from the desk leaves an autonomous coding agent stalled on a single permission prompt, yet speaking commands aloud in shared spaces creates privacy discomfort and makes accidental approval feel effortless.",
-        zh: "离开电脑后，编码 Agent 常常卡在一条工具权限确认上；但在公共或共享办公空间里出声审批既让人不自在，也容易因环境人声误识别而带来“不知不觉就放行了”的失控焦虑。",
+        en: "Speech is the quickest input on a wrist, but a misheard 'yes' could approve a destructive shell command.",
+        zh: "在手腕上，说话是最快的输入方式。可是一句听错的「同意」，就可能放行一条危险的命令行。",
       },
       rejectedAlternatives: [
         {
@@ -294,8 +294,8 @@ export const walkieCase: CaseRecord = {
             zh: "把完整的终端标准输出直接分页推到手表屏幕",
           },
           flaw: {
-            en: "Scrolling dozens of tiny pages turns a quick check into miniature terminal reading and defeats stepping away from the monitor.",
-            zh: "在小屏上翻几十页字符会重新消耗阅读带宽，违背「离桌轻接力」的初衷。",
+            en: "Scrolling dozens of tiny pages turns a quick check into miniature terminal reading.",
+            zh: "在小屏上翻几十页字符，一次快速查看就变成了缩小版的终端阅读。",
           },
         },
         {
@@ -394,8 +394,8 @@ export const walkieCase: CaseRecord = {
       toolsVal: "M5StickS3 · PlatformIO C++ · Node 24 · WebSocket · AES-256-GCM · OpenAI / Gemini Speech · Fly.io",
       ch: {
         label: "Challenge",
-        title: "Long-running coding agents keep blocking on short permission checks when you step away from the desk.",
-        p: "When directing Claude Code across multiple projects, you rarely need a full monitor just to answer a permission prompt or give a one-sentence follow-up. The problem is trust and safety: a voice remote cannot silently approve destructive commands, cannot leak credentials through a cloud relay, and cannot brick the other firmware (On The Beat) living on the same M5StickS3.",
+        title: "A voice remote for Claude Code that cannot approve a risky step by voice alone.",
+        p: "The remote answers Claude Code's permission prompts and short follow-ups from the wrist. Three constraints shaped it: a voice remote cannot silently approve destructive commands, cannot leak credentials through a cloud relay, and cannot brick the other firmware (On The Beat) living on the same M5StickS3.",
       },
       re: {
         label: "System & Gates",
@@ -455,8 +455,8 @@ export const walkieCase: CaseRecord = {
       toolsVal: "M5StickS3 · PlatformIO C++ · Node 24 · WebSocket · AES-256-GCM · OpenAI / Gemini 语音 · Fly.io",
       ch: {
         label: "问题",
-        title: "离开桌面时，长耗时编码 Agent 经常卡在只需一句话或一次点头的权限确认上。",
-        p: "同时指挥多个项目的 Claude Code 时，回答一次工具审批或补一句指令并不需要回到显示器前。真正的难点在于信任与安全：语音遥控绝不能静默放行高风险操作，不能把会话明文暴露给云端中继，也不能在刷机时误擦掉同一块 M5StickS3 上跑着的另一个项目（On The Beat）。",
+        title: "一个 Claude Code 语音遥控，高风险步骤不能只靠语音批准。",
+        p: "这个遥控在手腕上回应 Claude Code 的权限确认和简短追问。设计受三条约束。语音遥控不能静默放行高风险操作，也不能把会话明文暴露给云端中继。刷机时，不能误擦同一块 M5StickS3 上的另一个项目（On The Beat）。",
       },
       re: {
         label: "系统与门禁",

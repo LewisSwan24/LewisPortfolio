@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { PatternWorkbenchClient } from "@/components/patterns/PatternWorkbenchClient";
+import { PatternAtlasFallback } from "@/components/patterns/PatternAtlasFallback";
 import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
@@ -59,7 +60,7 @@ export default async function PatternsPage() {
       </section>
 
       <section className="container" style={{ paddingBottom: "var(--s-9)" }}>
-        <Suspense fallback={<div style={{ minHeight: 720 }} aria-hidden="true" />}>
+        <Suspense fallback={<PatternAtlasFallback patterns={patterns} locale={locale} />}>
           <PatternWorkbenchClient patterns={patterns} locale={locale} />
         </Suspense>
       </section>

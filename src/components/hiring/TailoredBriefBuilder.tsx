@@ -128,8 +128,8 @@ export function TailoredBriefBuilder({ cases, locale }: TailoredBriefBuilderProp
       setGeneratedUrl(data.url);
       setStatusMessage(
         isZh
-          ? `已生成${data.mode === "kv" ? "（KV 短链）" : "（无后端静态签名链）"}：${absolute}`
-          : `Ready (${data.mode === "kv" ? "KV short link" : "stateless fallback"}): ${absolute}`
+          ? `链接已生成：${absolute}`
+          : `Link ready: ${absolute}`
       );
     } catch {
       setStatusMessage(isZh ? "网络请求失败，请稍后再试。" : "Network error while creating brief link.");

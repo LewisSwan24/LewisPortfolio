@@ -236,8 +236,8 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     wcagRef: "WCAG 2.5.1 Pointer Gestures",
     severity: "open-risk",
     finding: {
-      en: "Exhibited with 9 groups (36 players); accessible seated height adjustments for wheelchair co-play need wider physical mount.",
-      zh: "已通过 9 组 36 名玩家物理场测，但桌架高度对轮椅协作玩家尚缺乏免工具升降支座。",
+      en: "Exhibited to 9 groups of four players. Table height for seated or wheelchair players was never measured.",
+      zh: "展出时有 9 组、每组 4 人玩过。坐着或坐轮椅的玩家需要多高的桌面，从未测量。",
     },
     verifiedStatus: "unverified-hypothesis",
     proofHref: "/projects/maze#outcome-limits",

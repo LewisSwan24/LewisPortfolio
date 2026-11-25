@@ -340,7 +340,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       href: "/projects/walkie",
       problemType: "Physical voice & approval remote for an AI coding agent",
       challenge:
-        "Directing Claude Code away from the desk requires keeping tool approvals physical, cloud relays end-to-end encrypted, and dual-boot flashing safe.",
+        "Directing Claude Code from the wrist requires keeping tool approvals physical, cloud relays end-to-end encrypted, and dual-boot flashing safe.",
       methods: ["dual-boot M5StickS3 firmware", "AES-256-GCM sealed link", "hardware-in-the-loop gate scripts"],
       sample:
         "Solo; AI coding tools assisted implementation. Verified via g++ host tests plus three on-device/relay gates (gate-h, gate-p5, gate-l); no external users or wrist photos yet.",
@@ -500,7 +500,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       slug: "walkie",
       href: "/projects/walkie",
       problemType: "面向编码 Agent 的手腕语音与实体审批终端",
-      challenge: "离开电脑指挥 Claude Code 时，必须让实体按键掌管高风险审批、云中继端到端加密，且双启动刷机绝不误擦同机应用。",
+      challenge: "在手腕上指挥 Claude Code，要让实体按键掌管高风险审批，云中继端到端加密，双启动刷机也不能误擦同机应用。",
       methods: ["M5StickS3 双启动固件", "AES-256-GCM 加密链路", "真机门禁测试脚本"],
       sample: "独立负责（AI 编码工具辅助实现）。通过宿主机 g++ 单测与三组真机/中继门禁（gate-h / gate-p5 / gate-l）；尚无外部用户与实拍照片。",
       outcome: "交付可运行的手腕语音遥控器，具备 USB 优先、Fly.io 加密中继兜底与实体工具审批。",
