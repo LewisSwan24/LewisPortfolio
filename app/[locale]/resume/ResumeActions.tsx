@@ -15,7 +15,7 @@ export function ResumeActions() {
         href={`/resume/lewis-dong-resume-${locale}.pdf`}
         download
       >
-        {isZh ? "下载单页 PDF 简历" : "Download PDF CV"}{" "}
+        {isZh ? "下载 PDF 简历" : "Download PDF CV"}{" "}
         <span className="arrow" aria-hidden="true">↓</span>
       </a>
       <button
