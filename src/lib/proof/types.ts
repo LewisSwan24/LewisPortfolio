@@ -61,7 +61,7 @@ export interface RoleFit {
   bestFit: string[];
   proofLinks: Array<{
     label: string;
-    href: `/projects/${ProjectEvidenceSlug}` | "/resume" | "/contact" | "/hire#ai-trust-thread";
+    href: `/projects/${ProjectEvidenceSlug}` | "/resume" | "/contact" | "/interview#ai-trust-thread";
   }>;
 }
 
@@ -332,7 +332,7 @@ export interface RolePacket {
   /** Where the role's evidence is gathered on /hire, when it spans several cases. */
   thread?: {
     label: string;
-    href: "/hire#ai-trust-thread";
+    href: "/interview#ai-trust-thread";
   };
 }
 

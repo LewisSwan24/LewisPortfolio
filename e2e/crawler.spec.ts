@@ -31,6 +31,8 @@ const PUBLIC_ROUTES = [
   "/zh/ai",
   "/en/hire",
   "/zh/hire",
+  "/en/interview",
+  "/zh/interview",
   "/en/resume",
   "/zh/resume",
   "/en/contact",

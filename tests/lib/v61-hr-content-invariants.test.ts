@@ -26,11 +26,11 @@ describe("v6.1 HR Content Richness, Natural Copy & Taxonomy Invariants", () => {
 
   it("maintains crisp 7-item top bar labels without ambiguous Lab vs AI Lab naming", () => {
     expect(enMessages.nav.lab).toBe("UI Lab");
-    expect(enMessages.nav.ai).toBe("Ask AI");
+    expect(enMessages.nav.ai).toBe("AI Lab");
     expect(enMessages.nav.hire).toBe("Hire & CV");
-    expect(zhMessages.nav.lab).toBe("组件规范");
-    expect(zhMessages.nav.ai).toBe("AI 问答");
-    expect(zhMessages.nav.hire).toBe("招聘简报");
+    expect(zhMessages.nav.lab).toBe("UI 实验室");
+    expect(zhMessages.nav.ai).toBe("AI 实验室");
+    expect(zhMessages.nav.hire).toBe("招聘与简历");
   });
 
   it("removes '尚待补充' placeholders across all listed flagship case cards", () => {

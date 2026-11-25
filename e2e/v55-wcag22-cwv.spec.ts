@@ -75,14 +75,10 @@ async function auditFocusNotObscured2411(page: Page, steps = 14) {
 }
 
 test.describe("v5.5 Dual-Market Toggles & WCAG 2.2 AA (2.5.8 / 2.4.11)", () => {
-  test("switches dual-market lenses on /hire and /resume/compose in EN and ZH", async ({ page }) => {
+  // v6.5: the /hire market switch is gone (review C07); the composer keeps its own.
+  test("switches dual-market lenses on /resume/compose in ZH", async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (err) => errors.push(err.message));
-
-    await page.goto("/en/hire", { waitUntil: "networkidle" });
-    await expect(page.getByTestId("hire-market-anz-critique")).toHaveAttribute("aria-pressed", "true");
-    await page.getByTestId("hire-market-apac-closed-loop").click();
-    await expect(page.getByTestId("hire-market-apac-closed-loop")).toHaveAttribute("aria-pressed", "true");
 
     await page.goto("/zh/resume/compose?market=anz-critique", { waitUntil: "networkidle" });
     await expect(page.getByTestId("composer-market-anz-critique")).toHaveAttribute("aria-pressed", "true");

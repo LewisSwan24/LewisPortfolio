@@ -243,6 +243,18 @@ export const CaseScrubberSchema = z.object({
   beforeLabel: LocalizedStringSchema,
   afterLabel: LocalizedStringSchema,
   wireframeId: CaseWireframeIdSchema,
+  /**
+   * A photo of the earlier state. Only a photo-on-photo pair gets the drag
+   * slider; a drawing with text renders as two side-by-side cards instead.
+   */
+  beforeImage: z
+    .object({
+      src: z.string().startsWith("/projects/"),
+      alt: LocalizedStringSchema,
+      width: z.number().int().positive(),
+      height: z.number().int().positive(),
+    })
+    .optional(),
   afterImage: z.object({
     src: z.string().startsWith("/projects/"),
     alt: LocalizedStringSchema,

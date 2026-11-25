@@ -2,15 +2,22 @@ import Link from "next/link";
 import type { CaseInterviewPack as CaseInterviewPackData } from "@/lib/portfolio-proof";
 import type { ProofLocale } from "@/lib/proof";
 import { localizeInternalHref } from "@/lib/locale-href";
+import { resolveCaseEvidenceLink } from "@/lib/cases/case-toc";
 
 interface CaseInterviewPackProps {
   pack: CaseInterviewPackData;
   locale?: ProofLocale;
+  /** The case this pack renders on; its own evidence links become in-page anchors. */
+  currentSlug?: string;
+  /** Section id to the label the page TOC uses for it. */
+  sectionLabels?: Readonly<Record<string, string>>;
 }
 
 export function CaseInterviewPack({
   pack,
   locale = "en",
+  currentSlug = "",
+  sectionLabels = {},
 }: CaseInterviewPackProps) {
   const isZh = locale === "zh";
   const answers = [...pack.answers, pack.managerFollowUp];
@@ -36,9 +43,14 @@ export function CaseInterviewPack({
             <div className="v3-details-body">
               <p>{answer.answer}</p>
               <div className="case-interview-meta">
-                <Link href={localizeInternalHref(answer.evidenceHref, locale)}>
-                  {isZh ? "跳到对应段落 ↗" : "Inspect the evidence ↗"}
-                </Link>
+                <EvidenceLink
+                  link={resolveCaseEvidenceLink(answer.evidenceHref, {
+                    currentSlug,
+                    sectionLabels,
+                    locale,
+                  })}
+                  locale={locale}
+                />
                 <small>{answer.boundary}</small>
               </div>
             </div>
@@ -47,4 +59,15 @@ export function CaseInterviewPack({
       </div>
     </section>
   );
+}
+
+function EvidenceLink({
+  link,
+  locale,
+}: {
+  link: ReturnType<typeof resolveCaseEvidenceLink>;
+  locale: ProofLocale;
+}) {
+  if (link.inPage) return <a href={link.href}>{link.label}</a>;
+  return <Link href={localizeInternalHref(link.href, locale)}>{link.label}</Link>;
 }

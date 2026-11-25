@@ -244,7 +244,7 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
                 href={localizeInternalHref("/ai", locale)}
                 className="btn btn-ghost"
               >
-                {isZh ? "进入完整 AI 辩护工作台 ↗" : "Open full AI Workbench ↗"}
+                {isZh ? "进入完整 AI 实验室 ↗" : "Open the full AI Lab ↗"}
               </Link>
               {briefUrl && (
                 <Link href={briefUrl} className="btn btn-primary">

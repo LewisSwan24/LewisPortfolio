@@ -119,7 +119,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       headline: "Interview Lewis for AI UX roles that need explicit human authority and refusal boundaries.",
       fitThesis:
         "Best fit when a team needs someone to decide how far an AI feature should be trusted, where polite friction belongs, and what stays human-locked.",
-      thread: { label: "Read the AI and trust thread", href: "/hire#ai-trust-thread" },
+      thread: { label: "Read the AI and trust thread", href: "/interview#ai-trust-thread" },
       proofClaims: [
         {
           id: "ai-ux-verify-ai-output",
@@ -266,7 +266,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       headline: "适合需要明确人类控制权与系统拒绝边界的 AI UX 岗位。",
       fitThesis:
         "适合这样的团队：需要有人判断 AI 功能该给多少信任、哪里需要礼貌阻力，以及哪些操作必须锁死给人。",
-      thread: { label: "看 AI 与信任这条线", href: "/hire#ai-trust-thread" },
+      thread: { label: "看 AI 与信任这条线", href: "/interview#ai-trust-thread" },
       proofClaims: [
         {
           id: "ai-ux-verify-ai-output",

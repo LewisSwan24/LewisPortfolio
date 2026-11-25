@@ -26,7 +26,7 @@ export function ResumeActions() {
         {t("resume.print")}
       </button>
       <LocalizedLink className="btn btn-ghost" href="/resume/compose">
-        {isZh ? "定制岗位简历" : "Customize Dossier"}{" "}
+        {isZh ? "定制岗位简历" : "Tailor CV"}{" "}
         <span className="arrow" aria-hidden="true">→</span>
       </LocalizedLink>
       <LocalizedLink className="btn btn-ghost" href="/contact">

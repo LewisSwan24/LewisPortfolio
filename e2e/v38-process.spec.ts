@@ -10,11 +10,11 @@ test.describe("Design Process Artifacts", () => {
     const jumpLink = page.locator('.cs-jump a[href="#process-artifacts"]');
     await expect(jumpLink).toBeVisible();
 
-    const slider = page.locator("#process-artifacts [role='slider']");
-    await slider.scrollIntoViewIfNeeded();
-    await slider.focus();
-    await page.keyboard.press("ArrowRight");
-    await expect(slider).toHaveAttribute("aria-valuenow", "55");
+    // v6.5: a text before/after shows two whole cards, no slider (review row 07).
+    const cards = page.locator("#process-artifacts .proc-compare > figure");
+    await cards.first().scrollIntoViewIfNeeded();
+    await expect(cards).toHaveCount(2);
+    await expect(page.locator("#process-artifacts [role='slider']")).toHaveCount(0);
 
     await page.setViewportSize({ width: 375, height: 812 });
     const overflow = await page.evaluate(

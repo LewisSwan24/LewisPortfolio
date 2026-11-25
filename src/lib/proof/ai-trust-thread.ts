@@ -27,7 +27,7 @@ import type { AiTrustThread, ProjectEvidenceSlug, ProofLocale } from "./types";
  *   manual, side by side against the art bible, and the entry says so.
  */
 export const AI_TRUST_THREAD_ANCHOR = "ai-trust-thread";
-export const AI_TRUST_THREAD_HREF = "/hire#ai-trust-thread" as const;
+export const AI_TRUST_THREAD_HREF = "/interview#ai-trust-thread" as const;
 
 const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
   en: {

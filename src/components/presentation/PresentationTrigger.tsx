@@ -47,12 +47,14 @@ export function PresentationTrigger({ deck, locale, className }: PresentationTri
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [openDeck]);
 
-  const label = locale === "zh" ? "演示模式 (Shift+P)" : "Presentation mode (Shift+P)";
+  const label = locale === "zh" ? "演示模式" : "Presentation mode";
 
   return (
     <>
       <button type="button" className={className ?? "btn btn-ghost"} onClick={openDeck}>
         {label}
+        {/* Keyboard hint; presentation.css hides it where there is no hover (touch). */}
+        <span className="presentation-shortcut"> (Shift+P)</span>
       </button>
       {hasLoaded && (
         <LazyPresentationShell deck={deck} open={open} onClose={closeDeck} />

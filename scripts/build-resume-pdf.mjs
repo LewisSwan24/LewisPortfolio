@@ -94,7 +94,7 @@ async function main() {
             `<div style="font-size:20px;font-weight:600;line-height:1.2">${name}</div>` +
             `<div style="font-size:11px;margin-top:3px">24kplo@gmail.com · lewisdong.vercel.app · github.com/LewisSwan24 · Brisbane</div>`;
           main.prepend(head);
-          const webOnly = /^(Print|打印|Customize Dossier|定制|Contact for PDF|Download PDF CV|下载 PDF|Open hiring dossier|Interrogate Rationale AI Lab)/i;
+          const webOnly = /^(Print|打印|Customize Dossier|Tailor CV|定制|Contact for PDF|Download PDF CV|下载 PDF|Open hiring dossier|Interrogate Rationale AI Lab|Check the fit|在 AI 实验室)/i;
           for (const el of document.querySelectorAll("main a, main button")) {
             if (webOnly.test((el.textContent || "").trim())) el.style.display = "none";
           }

@@ -20,7 +20,13 @@ describe("Design Process Artifacts", () => {
   });
 
   it("BeforeAfterScrubber supports keyboard slider steps (5% arrows, Home/End) and presets", () => {
-    const scrubber = connectCase.processArtifacts!.scrubber!;
+    // v6.5: the slider only runs for a photo-on-photo pair (review row 07).
+    const base = connectCase.processArtifacts!.scrubber!;
+    const scrubber = {
+      ...base,
+      beforeImage: { ...base.afterImage, src: "/projects/connect/01-before.png" },
+      afterImage: { ...base.afterImage, src: "/projects/connect/02-app-studybuddy.png" },
+    };
     render(<BeforeAfterScrubber data={scrubber} locale="en" />);
 
     const slider = screen.getByRole("slider");
@@ -42,15 +48,15 @@ describe("Design Process Artifacts", () => {
     expect(slider).toHaveAttribute("aria-valuenow", "80");
   });
 
-  it("ResearchQuoteDeck filters by category and updates decision callout on card selection", () => {
+  it("ResearchQuoteDeck shows every card and updates the decision callout on card selection", () => {
+    // v6.5 removed the category filter (review row 15); all cards stay visible.
     const quotes = connectCase.processArtifacts!.quotes!;
     render(<ResearchQuoteDeck data={quotes} locale="zh" />);
 
     expect(screen.getByRole("status")).toHaveTextContent(/10 月 3 日/);
+    expect(screen.getByText(/我能回上一页吗/)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "信任边界" }));
-    expect(screen.queryByText(/我能回上一页吗/)).not.toBeInTheDocument();
-    expect(screen.getByText(/只给一个匹配百分比/)).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/只给一个匹配百分比/));
     expect(screen.getByRole("status")).toHaveTextContent(/直接在匹配卡列出课程/);
   });
 

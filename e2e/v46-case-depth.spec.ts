@@ -2,7 +2,8 @@ import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { LISTED_PROJECT_SLUGS } from "../src/lib/project-routes";
 
-test.describe("v4.6 Case Study Depth Modules & Review Lens Switcher", () => {
+// v6.5 removed the Review Lens switcher (review row 05); its test went with it.
+test.describe("v4.6 Case Study Depth Modules", () => {
   for (const slug of LISTED_PROJECT_SLUGS) {
     test(`/en/projects/${slug} renders Journey, 5-State Matrix & Rejection Archive`, async ({
       page,
@@ -24,29 +25,6 @@ test.describe("v4.6 Case Study Depth Modules & Review Lens Switcher", () => {
       expect(rejCount).toBeGreaterThanOrEqual(2);
     });
   }
-
-  test("CaseReviewLensSwitch updates ?focus query, aria-pressed state & #case-deep-root focus attribute", async ({
-    page,
-  }) => {
-    await page.goto("/en/projects/walkie", { waitUntil: "networkidle" });
-
-    const deepRoot = page.locator("#case-deep-root");
-    await expect(deepRoot).toHaveAttribute("data-active-focus", "all");
-
-    const lensGroup = page.getByRole("group", { name: "Choose review lens" });
-    const systemsBtn = lensGroup.getByRole("button", { name: "Systems & Hardware" });
-    await systemsBtn.click();
-
-    await expect(page).toHaveURL(/\/(?:en\/)?projects\/walkie\?focus=systems-hardware/);
-    await expect(systemsBtn).toHaveAttribute("aria-pressed", "true");
-    await expect(deepRoot).toHaveAttribute("data-active-focus", "systems-hardware");
-    await expect(page.getByTestId("case-lens-callout")).toContainText("USB preemption");
-
-    const allBtn = lensGroup.getByRole("button", { name: "All", exact: true });
-    await allBtn.click();
-    await expect(page).toHaveURL(/\/(?:en\/)?projects\/walkie$/);
-    await expect(deepRoot).toHaveAttribute("data-active-focus", "all");
-  });
 
   test("ZH locale renders symmetric deep modules on /zh/projects/onthebeat", async ({ page }) => {
     await page.goto("/zh/projects/onthebeat", { waitUntil: "networkidle" });

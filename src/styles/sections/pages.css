@@ -283,6 +283,10 @@
   text-decoration: none;
   border-bottom: 1px dashed color-mix(in srgb, var(--accent) 38%, transparent);
   width: fit-content;
+  /* v6.5 (review C18): stand-alone links get a 24px target. */
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
 }
 .role-fit-links a:hover {
   border-bottom-color: var(--accent);
@@ -454,6 +458,9 @@
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px dashed color-mix(in srgb, var(--accent) 42%, transparent);
+  /* v6.5 (review C18): this hint reads as a button, so it gets a 24px target. */
+  display: inline-block;
+  padding-block: 4px;
 }
 .contact-hire-hint a:hover {
   border-bottom-color: var(--accent);

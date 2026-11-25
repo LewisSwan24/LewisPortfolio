@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Grounded Design-Defense AI Navigator & Essay #2", () => {
-  test("/hire JdMatcherPanel scrubs PII locally, cites static proof, and exports a matched tailored brief", async ({
+  test("/interview JdMatcherPanel scrubs PII locally, cites static proof, and exports a matched tailored brief", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/en/hire", { waitUntil: "networkidle" });
+    await page.goto("/en/interview", { waitUntil: "networkidle" });
 
     await page.fill(
       "#jd-matcher-input",

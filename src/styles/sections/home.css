@@ -5,9 +5,10 @@
   overflow: hidden;
 }
 .hero-text .h-display {
-  max-width: 8.2em;
+  max-width: 11em;
   margin-bottom: var(--s-4);
-  font-size: clamp(56px, 6vw, 86px);
+  /* v6.5: was up to 86px over six lines, which pushed the CTAs and PDF CV below the fold (review C05). */
+  font-size: clamp(40px, 4.2vw, 60px);
   line-height: 1.02;
   letter-spacing: 0;
   overflow-wrap: anywhere;
@@ -228,16 +229,6 @@
   text-transform: uppercase; color: var(--text-3);
 }
 .dc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-3); }
-.deck-hint {
-  position: absolute;
-  left: 0; right: 76px; bottom: -46px;
-  display: flex; justify-content: space-between; align-items: center;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--text-3);
-  letter-spacing: 0.04em;
-  pointer-events: none;
-}
 .deck-counter {
   position: absolute;
   bottom: -47px; right: 0;
@@ -249,6 +240,25 @@
   font-variant-numeric: tabular-nums;
 }
 .deck-counter .sep { color: var(--text-4); }
+
+/* v6.5 (review C03): at 375px the fanned stack was 233px wide and its text spilled over the
+   counter and hint. On a phone show the top card as one static card instead. */
+@media (max-width: 640px) {
+  /* The card is the frame; the plate around it only took 48px of a 375px screen. */
+  .hero-visual.v4-studio-plate { padding: 0; border: 0; background: none; box-shadow: none; }
+  .hero-deck-wrap { padding: 0; }
+  .hero-deck-ruler,
+  .deck-counter,
+  .deck-kbd,
+  .hero-deck .deck-card:not(.top) { display: none; }
+  .hero-deck { min-height: 0; max-width: none; }
+  .hero-deck .deck-card.top {
+    position: relative;
+    inset: auto;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
 
 /* FEATURED */
 .feat-head {

@@ -2,24 +2,6 @@ import type { CaseModulesRecord } from "@/lib/cases/modules-schema";
 
 export const mazeModules: CaseModulesRecord = {
   slug: "maze",
-  lensCallouts: {
-    all: {
-      en: "Full MazeRunners dossier: exhibition co-touch journey, 5-state Mega + Web Serial matrix, and shock-to-sleeve & IR-debounce archive.",
-      zh: "MazeRunners 完整档案：展场多人协同旅程、五态 Mega 与 Web Serial 矩阵，以及电击改指套震动与红外防抖打回档案。",
-    },
-    "ux-research": {
-      en: "UX Research & IA focus: where players' attention went during exhibition rounds, and why many still struggled with the rules after the explanation.",
-      zh: "UX 研究与架构视角：展出时玩家的注意力落在哪里，以及讲解之后为何仍有不少人没弄懂规则。",
-    },
-    "systems-hardware": {
-      en: "Systems & Hardware focus: 10 FC-51 IR debounce/cooldown tuning, SafeTouchServoController tilt isolation, and dual-mode Web Serial console.",
-      zh: "系统与硬件视角：十路 FC-51 红外防抖冷却调校、SafeTouchServoController 倾斜隔离与 Web Serial 双模控制台。",
-    },
-    "ai-trust": {
-      en: "Safety & Rule Integrity focus: replacing unsupervised electric shock with safe wearable haptics and regression-locking firmware/demo parity.",
-      zh: "安全与规则完整性视角：在无专人看管展场以指套震动取代微弱电击，并用回归测试锁死固件与网页端状态一致。",
-    },
-  },
   journey: [
     {
       id: "maze-sleeve-ritual",
@@ -27,6 +9,10 @@ export const mazeModules: CaseModulesRecord = {
       title: {
         en: "Facilitated sleeve fitting & shared wristband coupling",
         zh: "协助佩戴手指套与跨玩家腕带耦合",
+      },
+      shortTitle: {
+        en: "Sleeve fitting",
+        zh: "佩戴指套",
       },
       trigger: {
         en: "Four strangers gather around the wooden maze table at the public exhibition",
@@ -58,6 +44,10 @@ export const mazeModules: CaseModulesRecord = {
         en: "Hold-to-move isolated servo actuation",
         zh: "「按住才动」的隔离舵机倾斜控制",
       },
+      shortTitle: {
+        en: "Hold-to-move",
+        zh: "按住才动",
+      },
       trigger: {
         en: "Coupled players bridge matching wristbands simultaneously",
         zh: "配对玩家同时触碰同色腕带形成通路",
@@ -87,6 +77,10 @@ export const mazeModules: CaseModulesRecord = {
       title: {
         en: "Debounced 10-zone FC-51 IR ball detection",
         zh: "十路 FC-51 红外光束防抖与冷却判定",
+      },
+      shortTitle: {
+        en: "IR debounce",
+        zh: "红外防抖",
       },
       trigger: {
         en: "Rolling ball breaks an FC-51 infrared beam in trap, diagnostic, spare, or goal zone",
@@ -118,6 +112,10 @@ export const mazeModules: CaseModulesRecord = {
         en: "Single round state machine fanning out to 5 channels",
         zh: "单一回合状态机同步驱动五路输出",
       },
+      shortTitle: {
+        en: "5-channel sync",
+        zh: "五路同步",
+      },
       trigger: {
         en: "Validated IR event advances the Mega round state machine",
         zh: "经过防抖确认的事件推进 Arduino Mega 回合状态机",
@@ -147,6 +145,10 @@ export const mazeModules: CaseModulesRecord = {
       title: {
         en: "Live Web Serial console & parity-tested Demo Mode",
         zh: "Web Serial 实机调试与一致性测试 Demo 模式",
+      },
+      shortTitle: {
+        en: "Web Serial console",
+        zh: "Web Serial 调试",
       },
       trigger: {
         en: "Operator connects Mega over USB Web Serial or portfolio reviewer opens browser Demo Mode",

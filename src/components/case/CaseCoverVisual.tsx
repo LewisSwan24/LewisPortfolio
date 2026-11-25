@@ -45,7 +45,27 @@ export function CaseCoverVisual({
       />
     );
   }
-  if (slug === "maze") return <VizMaze locale={locale} />;
+  if (slug === "maze") {
+    // The schematic's labels shrink to about 3px on a phone, so small screens
+    // get the exhibition photo instead (case.css swaps them at 600px).
+    const photo = getProjectCover(slug);
+    if (!photo) return <VizMaze locale={locale} />;
+    return (
+      <>
+        <div className="cs-cover-schematic">
+          <VizMaze locale={locale} />
+        </div>
+        <Image
+          src={photo.src}
+          fill
+          alt={photo.alt[locale]}
+          className="project-cover project-cover--cover cs-cover-photo-mobile"
+          sizes="(max-width: 600px) 100vw, 1px"
+          loading="eager"
+        />
+      </>
+    );
+  }
   if (slug === "hoop") return <VizHoop locale={locale} />;
   if (slug === "connect") return <VizConnect locale={locale} />;
   if (slug === "pricewise") return <VizPricewise locale={locale} />;

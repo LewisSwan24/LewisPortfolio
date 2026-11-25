@@ -4,7 +4,7 @@
    scrollbar-gutter: stable, overscroll-behavior: contain, forced-colors.
    ============================================================ */
 
-.focusScope {
+.deepStack {
   display: grid;
   gap: var(--s-7);
   min-inline-size: 0;
@@ -54,114 +54,6 @@
   font-size: 15px;
   line-height: 1.6;
   color: var(--text-2);
-}
-
-/* ---------- Review Role Lens Switcher ---------- */
-
-.lensShell {
-  display: grid;
-  gap: var(--s-4);
-  padding: var(--s-5);
-  border: 1px solid var(--border);
-  border-inline-start: 3px solid var(--case-mood, var(--accent));
-  border-radius: var(--r-md);
-  background: var(--bg-alt);
-  min-inline-size: 0;
-}
-
-.lensTopRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-3);
-  min-inline-size: 0;
-}
-
-.lensHeadingBlock {
-  display: grid;
-  gap: 4px;
-  min-inline-size: 0;
-}
-
-.lensTitle {
-  margin: 0;
-  font-family: var(--font-title);
-  font-size: 18px;
-  line-height: 1.3;
-  color: var(--text);
-}
-
-.lensControls {
-  display: flex;
-  flex-wrap: wrap;
-  flex-wrap: balance;
-  gap: var(--s-2);
-  min-inline-size: 0;
-}
-
-.lensButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-inline-size: 44px;
-  min-block-size: 36px;
-  padding-inline: 14px;
-  padding-block: 6px;
-  border: 1px solid var(--border);
-  border-radius: var(--r-pill);
-  background: var(--surface);
-  color: var(--text-2);
-  font-family: var(--font-ui);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.3;
-  cursor: pointer;
-  transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
-}
-
-.lensButton:hover {
-  border-color: var(--case-mood, var(--accent));
-  color: var(--text);
-}
-
-.lensButton:focus-visible {
-  outline: 2px solid var(--case-mood, var(--accent));
-  outline-offset: 2px;
-}
-
-.lensButton[aria-pressed="true"] {
-  background: var(--accent);
-  color: var(--on-accent);
-  border-color: var(--accent);
-  font-weight: 600;
-}
-
-@media (pointer: coarse) {
-  .lensButton {
-    min-block-size: 44px;
-  }
-}
-
-.lensCallout {
-  margin: 0;
-  padding: var(--s-3) var(--s-4);
-  border-radius: var(--r-sm);
-  background: var(--case-mood-soft, var(--surface-2));
-  border: 1px solid color-mix(in srgb, var(--case-mood, var(--border)) 40%, transparent);
-  color: var(--text);
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-.srStatus {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
 }
 
 /* ---------- Verified Status & Focus Tag Badges ---------- */
@@ -227,23 +119,6 @@
   font-family: var(--font-ui);
   font-size: 11px;
   line-height: 1.4;
-}
-
-/* ---------- Focus Lens Filtering (Zero Layout Thrashing) ---------- */
-
-.focusScope[data-active-focus="ux-research"] [data-focus-item]:not([data-focus-tags~="ux-research"]),
-.focusScope[data-active-focus="systems-hardware"] [data-focus-item]:not([data-focus-tags~="systems-hardware"]),
-.focusScope[data-active-focus="ai-trust"] [data-focus-item]:not([data-focus-tags~="ai-trust"]) {
-  opacity: 0.48;
-  transition: opacity 160ms ease, border-color 160ms ease;
-}
-
-.focusScope[data-active-focus="ux-research"] [data-focus-item][data-focus-tags~="ux-research"],
-.focusScope[data-active-focus="systems-hardware"] [data-focus-item][data-focus-tags~="systems-hardware"],
-.focusScope[data-active-focus="ai-trust"] [data-focus-item][data-focus-tags~="ai-trust"] {
-  border-color: var(--case-mood, var(--accent));
-  box-shadow: inset 3px 0 0 var(--case-mood, var(--accent));
-  transition: opacity 160ms ease, border-color 160ms ease;
 }
 
 /* ---------- Journey Rail ---------- */
@@ -491,9 +366,6 @@
   .section {
     padding: var(--s-4);
   }
-  .lensShell {
-    padding: var(--s-4);
-  }
   .desktopMatrix {
     display: none;
   }
@@ -637,24 +509,17 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lensButton,
-  .trackerChip,
-  .focusScope [data-focus-item] {
+  .trackerChip {
     transition: none !important;
   }
 }
 
 @media (forced-colors: active) {
   .section,
-  .lensShell,
-  .lensButton,
   .journeyCard,
   .mobileStateCard,
   .rejectionCard,
   .tableScroll {
     border: 1px solid ButtonBorder;
-  }
-  .lensButton[aria-pressed="true"] {
-    outline: 2px solid Highlight;
   }
 }

@@ -393,7 +393,7 @@ export default async function ResumePage() {
                   {isZh ? "查看岗位与证据简报 →" : "Open hiring dossier →"}
                 </Link>
                 <Link href="/ai">
-                  {isZh ? "用 AI 辩护工作台评估匹配度 →" : "Interrogate Rationale AI Lab →"}
+                  {isZh ? "在 AI 实验室评估匹配度 →" : "Check the fit in the AI Lab →"}
                 </Link>
               </div>
             </div>

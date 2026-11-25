@@ -9,6 +9,7 @@ import {
   type RedTeamLensId,
 } from "@/data/critique/red-team";
 import { VerifiedStatusBadge } from "@/components/case/deep/VerifiedStatusBadge";
+import { resolveCaseEvidenceLink } from "@/lib/cases/case-toc";
 import styles from "./red-team.module.css";
 
 const SEVERITY_LABEL: Record<"blocking" | "high" | "watch", { en: string; zh: string }> = {
@@ -22,11 +23,20 @@ export function RedTeamCritiquePanel({
   locale,
   sectionId = "red-team-defense",
   allowSseProbe = true,
+  currentSlug = "",
+  sectionLabels = {},
+  probeVariant = "primary",
 }: {
   decks: readonly RedTeamDeck[];
   locale: "en" | "zh";
   sectionId?: string;
   allowSseProbe?: boolean;
+  /** The case page this panel renders on; its own evidence links become in-page anchors. */
+  currentSlug?: string;
+  /** Section id to the label the page TOC uses for it. */
+  sectionLabels?: Readonly<Record<string, string>>;
+  /** Case pages keep one primary action, so the probe drops to a ghost button there. */
+  probeVariant?: "primary" | "ghost";
 }) {
   const [activeSlug, setActiveSlug] = useState<string>(decks[0]?.slug ?? "walkie");
   const [activeLens, setActiveLens] = useState<RedTeamLensId>("design-director");
@@ -43,6 +53,11 @@ export function RedTeamCritiquePanel({
   const activeEntry =
     activeDeck.lenses.find((l) => l.lens === activeLens) ?? activeDeck.lenses[0]!;
   const lensMeta = RED_TEAM_LENS_META[activeEntry.lens];
+  const evidenceLink = resolveCaseEvidenceLink(activeEntry.evidenceHref, {
+    currentSlug,
+    sectionLabels,
+    locale,
+  });
 
   const handleTabKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, currentIdx: number) => {
     let nextIdx: number | null = null;
@@ -102,7 +117,7 @@ export function RedTeamCritiquePanel({
         <div className={styles.headRow}>
           <span className={styles.eyebrow}>
             {isZh
-              ? "四重对抗式红队答辩 · 4-Lens Red-Team Defense"
+              ? "四重对抗式红队答辩"
               : "4-Lens Adversarial Red-Team Defense"}
           </span>
           <VerifiedStatusBadge status={activeEntry.verifiedStatus} locale={locale} />
@@ -209,13 +224,19 @@ export function RedTeamCritiquePanel({
         </article>
 
         <div className={styles.footerBar}>
-          <Link href={activeEntry.evidenceHref} className="btn btn-ghost">
-            {isZh ? "直达案例证据章节 ↗" : "Inspect source evidence in case ↗"}
-          </Link>
+          {evidenceLink.inPage ? (
+            <a href={evidenceLink.href} className="btn btn-ghost">
+              {evidenceLink.label}
+            </a>
+          ) : (
+            <Link href={activeEntry.evidenceHref} className="btn btn-ghost">
+              {isZh ? "直达案例证据章节 ↗" : "Inspect source evidence in case ↗"}
+            </Link>
+          )}
           {allowSseProbe && (
             <button
               type="button"
-              className="btn btn-primary"
+              className={`btn ${probeVariant === "ghost" ? "btn-ghost" : "btn-primary"}`}
               disabled={sseBusy}
               data-testid="redteam-sse-trigger"
               onClick={() => void runLiveCritiqueProbe()}

@@ -3,7 +3,6 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { TransitionLink } from "@/components/navigation/TransitionLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
-import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
 import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
 import { VizMaze } from "@/components/viz/ProjectViz";
 import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
@@ -199,8 +198,6 @@ export default async function HomePage() {
           ))}
         </ol>
       </section>
-
-      <SpecimenAxisCanvas locale={proofLocale} />
 
       <section className="section container">
         <div className="v4-editorial-grid">

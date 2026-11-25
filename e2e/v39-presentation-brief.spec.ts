@@ -29,7 +29,8 @@ test.describe("Presentation Mode, Tailored Briefs, and Contact Loop", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/en/hire");
+    // v6.5: the brief builder moved from /hire to /interview (review C10).
+    await page.goto("/en/interview");
 
     await page.fill("#brief-company", "Atlassian");
     await page.fill("#brief-intro", "Curated walkthrough of systems and AI guardrails.");

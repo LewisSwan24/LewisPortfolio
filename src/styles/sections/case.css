@@ -749,3 +749,59 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 @media (max-width: 760px) {
   .hardware-field-card { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ---------- v6.5 case review fixes ---------- */
+
+/* Breadcrumb: 4px above and below lifts each link to a 24px target. */
+.cs-breadcrumb a {
+  display: inline-block;
+  padding-block: 4px;
+}
+
+/* Zh headings no longer strand one Han character; paragraphs avoid orphans. */
+.v4-case-page h2,
+.v4-case-page h3 {
+  text-wrap: balance;
+}
+.v4-case-page p {
+  text-wrap: pretty;
+}
+
+/* Secondary entry points read as links, so the page keeps one simulator CTA. */
+.case-text-link {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding-block: 4px;
+}
+.case-text-link:hover {
+  color: var(--text);
+}
+
+/* Hero: a mobile screen shrinks the schematic's labels to about 3px, so it
+   shows the real photo there and drops the overlay callout. */
+.cs-cover-photo-mobile {
+  display: none;
+}
+@media (max-width: 600px) {
+  .cs-cover-schematic,
+  .cs-cover figcaption {
+    display: none;
+  }
+  .cs-cover-photo-mobile {
+    display: block;
+  }
+}
+
+/* Interview pack: same width as the other containers, heading on the left. */
+.v4-case-page .case-interview-pack.container {
+  max-width: var(--grid-max);
+}
+.v4-case-page .case-interview-pack-head {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-2);
+  justify-items: start;
+  text-align: start;
+}

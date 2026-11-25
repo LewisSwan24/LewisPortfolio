@@ -2,24 +2,6 @@ import type { CaseModulesRecord } from "@/lib/cases/modules-schema";
 
 export const walkieModules: CaseModulesRecord = {
   slug: "walkie",
-  lensCallouts: {
-    all: {
-      en: "Full Walkie dossier: away-from-desk journey, 5-state M5StickS3 hardware matrix, and dual-boot / protocol rejection receipts.",
-      zh: "Walkie 完整档案：离桌语音接力旅程、M5StickS3 五态硬件矩阵，以及双启动防误擦与协议打回记录。",
-    },
-    "ux-research": {
-      en: "UX Research & IA focus: why phone mirroring and ambient voice lose to thumb-sized glanceability and tactile confirmation.",
-      zh: "UX 研究与架构视角：为何手机镜像与纯语音确认会败给腕表可瞥视性与拇指触觉确认。",
-    },
-    "systems-hardware": {
-      en: "Systems & Hardware focus: USB preemption over Fly.io ADPCM relay, dual-boot app1 partitioning, and three-way offline fault isolation.",
-      zh: "系统与硬件视角：USB 优先抢占 Fly.io ADPCM 中继、双启动 app1 分区及三段式离线故障隔离。",
-    },
-    "ai-trust": {
-      en: "AI Trust & Rules focus: Front/Side asymmetric approval gates, 30s physical pairing seal, and fake-claude test isolation.",
-      zh: "AI 信任与规则视角：前/侧键非对称审批门禁、30 秒实体配对锁钥与 fake-claude 测试隔离。",
-    },
-  },
   journey: [
     {
       id: "walkie-pair-trust",
@@ -27,6 +9,10 @@ export const walkieModules: CaseModulesRecord = {
       title: {
         en: "30-second physical pairing & key sealing",
         zh: "30 秒实体配对与密钥封存",
+      },
+      shortTitle: {
+        en: "Physical pairing",
+        zh: "实体配对",
       },
       trigger: {
         en: "Workstation bridge starts without an existing pair.key file",
@@ -58,6 +44,10 @@ export const walkieModules: CaseModulesRecord = {
         en: "Press-to-talk capture from away from the desk",
         zh: "离桌单手按住录音采集",
       },
+      shortTitle: {
+        en: "Press-to-talk",
+        zh: "按住说话",
+      },
       trigger: {
         en: "User steps away from the monitor and holds the M5StickS3 Front Key",
         zh: "用户离开显示器后按住 M5StickS3 实体前键",
@@ -87,6 +77,10 @@ export const walkieModules: CaseModulesRecord = {
       title: {
         en: "Deterministic USB preemption & relay routing",
         zh: "有线 USB 优先抢占与端到端加密中继路由",
+      },
+      shortTitle: {
+        en: "USB preemption",
+        zh: "USB 优先",
       },
       trigger: {
         en: "USB-C cable is plugged in at the desk or unplugged to move across the room",
@@ -118,6 +112,10 @@ export const walkieModules: CaseModulesRecord = {
         en: "Asymmetric Front/Side physical tool permission gate",
         zh: "前键批准 / 侧键拒绝的非对称实体审批门控",
       },
+      shortTitle: {
+        en: "Wrist approval",
+        zh: "实体审批",
+      },
       trigger: {
         en: "Prewarmed Claude Code session requests permission for a shell or file-write tool",
         zh: "预热中的 Claude Code 会话请求执行命令或改写文件的工具权限",
@@ -147,6 +145,10 @@ export const walkieModules: CaseModulesRecord = {
       title: {
         en: "Spoken brief return & dual-boot slot handoff",
         zh: "语音简报回传与双启动安全切区",
+      },
+      shortTitle: {
+        en: "Spoken brief",
+        zh: "语音简报",
       },
       trigger: {
         en: "Claude completes the turn or user holds both watch buttons for 3 seconds",

@@ -25,6 +25,7 @@
   align-items: center;
   gap: 10px;
 }
+:lang(zh) .label { font-size: 12px; letter-spacing: 0.1em; } /* v6.5 review C19 */
 .label::before {
   content: ""; width: 24px; height: 1px;
   background: var(--text-4); display: inline-block;
@@ -235,7 +236,8 @@ html {
 }
 .pd-lang span { color: var(--text-4); }
 .pd-lang span.active { color: var(--text); font-weight: 600; }
-.pd-mobile-toggle { display: none; width: 38px; height: 38px; padding: 0; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
+/* v6.5: scoped under .pd-nav-tools so it outranks `.pd-nav-tools button`, which showed it at 1440px (review C06). */
+.pd-nav-tools .pd-mobile-toggle { display: none; width: 38px; height: 38px; padding: 0; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
 .pd-mobile-toggle span { display: block; width: 16px; height: 1px; background: currentColor; }
 .pd-mobile-menu {
   display: none;
@@ -256,7 +258,7 @@ html {
 .pd-mobile-menu a[aria-current="page"] { color: var(--text); font-weight: 600; }
 @media (max-width: 960px) {
   .pd-nav-links { display: none; }
-  .pd-mobile-toggle { display: inline-flex; }
+  .pd-nav-tools .pd-mobile-toggle { display: inline-flex; }
   .pd-mobile-menu { display: block; }
 }
 @media (min-width: 961px) { .pd-mobile-menu { display: none; } }

@@ -2,24 +2,6 @@ import type { CaseModulesRecord } from "@/lib/cases/modules-schema";
 
 export const autofillModules: CaseModulesRecord = {
   slug: "autofill",
-  lensCallouts: {
-    all: {
-      en: "Full Resume Autofill dossier: ATS fill journey, 5-state zero-guess matrix, and Feishu/Moka/Android isolation rejection receipts.",
-      zh: "Resume Autofill 完整档案：校招网申填表旅程、五态零猜测矩阵，以及飞书/Moka/Android 本地隔离打回记录。",
-    },
-    "ux-research": {
-      en: "UX Research & IA focus: color-plus-shape-plus-word tri-coding (2px solid / 2px dashed / 3px solid) and side-panel per-field reason transparency.",
-      zh: "UX 研究与架构视角：实线/虚线/粗实线配合文字与图标的三重编码，及侧栏逐栏原因透明度设计。",
-    },
-    "systems-hardware": {
-      en: "Systems & Engineering focus: widget-library adapters (Ant Design, Element Plus, react-select, ARIA) + Android Keystore resume IME.",
-      zh: "系统与工程视角：按前端组件库抽象的本地适配器，搭配 Android Keystore 加密简历输入法兜底小程序。",
-    },
-    "ai-trust": {
-      en: "AI Trust & Rules focus: three hard refusals (never guess, never submit, never send), Human Submit Lock, and zero-network unit guard.",
-      zh: "AI 信任与规则视角：三条硬拒绝边界（不猜、不提交、不外传）、人手提交锁与零网络依赖测试门禁。",
-    },
-  },
   journey: [
     {
       id: "autofill-local-vault",
@@ -27,6 +9,10 @@ export const autofillModules: CaseModulesRecord = {
       title: {
         en: "Local resume vault & variant selection on-device",
         zh: "本地简历库与多版本变体选择",
+      },
+      shortTitle: {
+        en: "Local resume vault",
+        zh: "本地简历库",
       },
       trigger: {
         en: "Applicant opens Chrome MV3 side panel or Capacitor Android resume vault",
@@ -58,6 +44,10 @@ export const autofillModules: CaseModulesRecord = {
         en: "DOM & UI-library widget scan (Ant Design / Element Plus / ARIA)",
         zh: "本地 DOM 与 UI 组件库控件扫描",
       },
+      shortTitle: {
+        en: "Widget scan",
+        zh: "控件扫描",
+      },
       trigger: {
         en: "Applicant clicks scan on Workday, Greenhouse, Beisen, Moka, or Feishu portal",
         zh: "求职者在 Workday、Greenhouse、北森、Moka 或飞书页面触发本地扫描",
@@ -87,6 +77,10 @@ export const autofillModules: CaseModulesRecord = {
       title: {
         en: "Three-tier confidence split (Filled / Review / Blank)",
         zh: "三档确定性分流（已填 / 待确认 / 刻意留空）",
+      },
+      shortTitle: {
+        en: "Three-tier split",
+        zh: "三档分流",
       },
       trigger: {
         en: "Matching engine scores schema certainty per detected field",
@@ -118,6 +112,10 @@ export const autofillModules: CaseModulesRecord = {
         en: "Multi-step 'Next' advancement & Human Submit Lock",
         zh: "多步向导仅代翻「下一步」与人手提交锁",
       },
+      shortTitle: {
+        en: "Human Submit Lock",
+        zh: "人手提交锁",
+      },
       trigger: {
         en: "Beisen or Moka multi-page application renders intermediate Next vs final Submit",
         zh: "北森或 Moka 多步网申表单进入分页流转环节",
@@ -147,6 +145,10 @@ export const autofillModules: CaseModulesRecord = {
       title: {
         en: "Android Resume Keyboard fallback for closed mobile apps",
         zh: "Android 专用简历键盘兜底封闭小程序",
+      },
+      shortTitle: {
+        en: "Android keyboard",
+        zh: "Android 键盘兜底",
       },
       trigger: {
         en: "Employer campus portal only opens inside WeChat mini-programs or mobile-only shells",

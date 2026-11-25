@@ -5,3 +5,8 @@
 .pres-frame { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; max-height: 92dvh; }
 .pres-stage { padding: var(--s-5); overflow: auto; display: grid; gap: var(--s-4); align-content: start; }
 .sim-field :is(input, textarea):is(:user-invalid, [aria-invalid="true"]) { border-color: var(--error); }
+
+/* Shift+P means nothing without a keyboard; hide the hint on touch screens. */
+@media (hover: none) {
+  .presentation-shortcut { display: none; }
+}

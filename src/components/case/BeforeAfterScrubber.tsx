@@ -10,6 +10,15 @@ interface BeforeAfterScrubberProps {
   locale: "en" | "zh";
 }
 
+const isRasterSrc = (src: string) => /\.(?:jpe?g|png|webp|avif)$/i.test(src);
+
+/** True only when both sides are photos, the one case a drag slider suits. */
+export function isPhotoPair(data: CaseScrubber): boolean {
+  return Boolean(
+    data.beforeImage && isRasterSrc(data.beforeImage.src) && isRasterSrc(data.afterImage.src)
+  );
+}
+
 export function BeforeAfterScrubber({ data, locale }: BeforeAfterScrubberProps) {
   const isZh = locale === "zh";
   const headingId = useId();
@@ -76,14 +85,55 @@ export function BeforeAfterScrubber({ data, locale }: BeforeAfterScrubberProps) 
         ],
       };
 
+  const head = (
+    <div className="case-sim-head-copy">
+      <div className="label">{data.eyebrow[locale]}</div>
+      <h2 id={headingId}>{data.title[locale]}</h2>
+      <p className="case-sim-prompt">{data.summary[locale]}</p>
+    </div>
+  );
+
+  const afterMedia = (
+    <AdaptiveCaseMedia
+      src={data.afterImage.src}
+      alt={data.afterImage.alt[locale]}
+      width={data.afterImage.width}
+      height={data.afterImage.height}
+      sizes="(max-width: 960px) 100vw, 960px"
+      className="proc-wf-svg"
+    />
+  );
+
+  // A drag slider halves whatever it covers, which cuts text mid-word. Only a
+  // photo-on-photo pair gets the slider; drawings with text sit side by side.
+  if (!isPhotoPair(data)) {
+    return (
+      <article className="case-sim-shell" aria-labelledby={headingId}>
+        <div className="case-sim-head">{head}</div>
+        <div className="case-sim-stage proc-stage">
+          <div className="proc-compare">
+            <figure>
+              <figcaption className="eyebrow">{data.beforeLabel[locale]}</figcaption>
+              <div className="proc-compare-media">
+                <ProcessWireframe id={data.wireframeId} locale={locale} />
+              </div>
+            </figure>
+            <figure>
+              <figcaption className="eyebrow">{data.afterLabel[locale]}</figcaption>
+              <div className="proc-compare-media">{afterMedia}</div>
+            </figure>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  const beforeImage = data.beforeImage!;
+
   return (
     <article className="case-sim-shell" aria-labelledby={headingId}>
       <div className="case-sim-head">
-        <div className="case-sim-head-copy">
-          <div className="label">{data.eyebrow[locale]}</div>
-          <h2 id={headingId}>{data.title[locale]}</h2>
-          <p className="case-sim-prompt">{data.summary[locale]}</p>
-        </div>
+        {head}
         <div className="sim-segmented" role="group" aria-label={isZh ? "快速对比比例" : "Quick split presets"}>
           {copy.presets.map((preset) => (
             <button
@@ -113,23 +163,22 @@ export function BeforeAfterScrubber({ data, locale }: BeforeAfterScrubberProps) 
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
         >
-          <div className="proc-layer">
-            <AdaptiveCaseMedia
-              src={data.afterImage.src}
-              alt={data.afterImage.alt[locale]}
-              width={data.afterImage.width}
-              height={data.afterImage.height}
-              sizes="(max-width: 960px) 100vw, 960px"
-              className="proc-wf-svg"
-            />
-          </div>
+          <div className="proc-layer">{afterMedia}</div>
 
           <div
             className="proc-layer"
             style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
             aria-hidden="true"
           >
-            <ProcessWireframe id={data.wireframeId} locale={locale} />
+            <AdaptiveCaseMedia
+              src={beforeImage.src}
+              alt={beforeImage.alt[locale]}
+              width={beforeImage.width}
+              height={beforeImage.height}
+              sizes="(max-width: 960px) 100vw, 960px"
+              className="proc-wf-svg"
+              decorative
+            />
           </div>
 
           <div

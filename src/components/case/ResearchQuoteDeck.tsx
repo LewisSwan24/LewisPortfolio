@@ -8,32 +8,10 @@ interface ResearchQuoteDeckProps {
   locale: "en" | "zh";
 }
 
-type FilterValue = "all" | CaseQuoteCategory;
-
 export function ResearchQuoteDeck({ data, locale }: ResearchQuoteDeckProps) {
   const isZh = locale === "zh";
   const headingId = useId();
-  const [filter, setFilter] = useState<FilterValue>("all");
   const [selectedId, setSelectedId] = useState<string>(data.items[0]?.id ?? "");
-
-  const categoriesPresent = new Set(data.items.map((item) => item.category));
-  const visibleItems =
-    filter === "all"
-      ? data.items
-      : data.items.filter((item) => item.category === filter);
-
-  const filterLabels: ReadonlyArray<{ id: FilterValue; label: string }> = [
-    { id: "all", label: isZh ? "全部" : "All" },
-    ...(categoriesPresent.has("structure")
-      ? [{ id: "structure" as const, label: isZh ? "结构卡点" : "Structure" }]
-      : []),
-    ...(categoriesPresent.has("trust")
-      ? [{ id: "trust" as const, label: isZh ? "信任边界" : "Trust boundary" }]
-      : []),
-    ...(categoriesPresent.has("physical")
-      ? [{ id: "physical" as const, label: isZh ? "物理反馈" : "Physical feedback" }]
-      : []),
-  ];
 
   const categoryTags: Record<CaseQuoteCategory, string> = isZh
     ? { structure: "结构卡点", trust: "信任边界", physical: "物理反馈" }
@@ -44,7 +22,7 @@ export function ResearchQuoteDeck({ data, locale }: ResearchQuoteDeckProps) {
     : { context: "Context", friction: "Friction exposed", decision: "Design decision" };
 
   const activeItem =
-    visibleItems.find((item) => item.id === selectedId) ?? visibleItems[0] ?? null;
+    data.items.find((item) => item.id === selectedId) ?? data.items[0] ?? null;
 
   return (
     <article className="case-sim-shell" aria-labelledby={headingId}>
@@ -53,25 +31,11 @@ export function ResearchQuoteDeck({ data, locale }: ResearchQuoteDeckProps) {
           <div className="label">{data.eyebrow[locale]}</div>
           <h2 id={headingId}>{data.title[locale]}</h2>
         </div>
-
-        <div className="sim-segmented" role="group" aria-label={isZh ? "筛选调研原声" : "Filter research quotes"}>
-          {filterLabels.map((btn) => (
-            <button
-              key={btn.id}
-              type="button"
-              className="sim-seg-btn"
-              aria-pressed={filter === btn.id}
-              onClick={() => setFilter(btn.id)}
-            >
-              {btn.label}
-            </button>
-          ))}
-        </div>
       </div>
 
       <div className="case-sim-stage proc-stage">
         <div className="v3-card-grid">
-          {visibleItems.map((item) => {
+          {data.items.map((item) => {
             const isSelected = activeItem?.id === item.id;
             return (
               <button

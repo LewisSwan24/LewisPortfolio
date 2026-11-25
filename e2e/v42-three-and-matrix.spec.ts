@@ -1,11 +1,12 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Shared Three.js Specimen Kernel, DecisionComparator & Essay #1", () => {
-  test("Home displays 0ms SVG specimen axes with 6 keyboard-navigable design thesis nodes", async ({
+  // v6.5: the specimen axes left the home page (review C13) and stay on /lab.
+  test("/lab displays 0ms SVG specimen axes with 6 keyboard-navigable design thesis nodes", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/en", { waitUntil: "networkidle" });
+    await page.goto("/en/lab", { waitUntil: "networkidle" });
 
     const svgBaseline = page.getByTestId("specimen-svg-baseline");
     await expect(svgBaseline).toBeVisible();
@@ -108,7 +109,7 @@ test.describe("Shared Three.js Specimen Kernel, DecisionComparator & Essay #1", 
       }
     });
 
-    await page.goto("/en", { waitUntil: "networkidle" });
+    await page.goto("/en/lab", { waitUntil: "networkidle" });
     await expect(page.getByTestId("specimen-svg-baseline")).toBeVisible();
     await expect(page.getByText(/2D vector specimen/i)).toBeVisible();
 

@@ -62,13 +62,11 @@
 }
 
 .case-sim-stage {
-  min-height: 700px;
   padding: var(--s-5);
   background: var(--surface);
 }
 
 .case-sim-skeleton {
-  min-height: 652px;
   display: grid;
   align-content: space-between;
   gap: var(--s-5);

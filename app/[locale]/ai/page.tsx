@@ -95,7 +95,7 @@ export default async function AiWorkbenchPage() {
   const semanticStats = getSemanticIndexStats();
 
   return (
-    <main className="page" data-screen-label="09 Rationale AI">
+    <main className="page" data-screen-label="09 AI Lab">
       <section className="container lab-hero">
         <div className="v4-editorial-grid">
           <div className="v4-span-8">

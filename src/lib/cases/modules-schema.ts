@@ -19,15 +19,6 @@ export const CaseModuleFocusTagSchema = z.enum([
 
 export type CaseModuleFocusTag = z.infer<typeof CaseModuleFocusTagSchema>;
 
-export const CaseReviewFocusSchema = z.enum([
-  "all",
-  "ux-research",
-  "systems-hardware",
-  "ai-trust",
-]);
-
-export type CaseReviewFocus = z.infer<typeof CaseReviewFocusSchema>;
-
 export const CaseStateTypeSchema = z.enum([
   "normal",
   "empty",
@@ -50,6 +41,8 @@ export const CaseJourneyStageSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   step: z.number().int().positive(),
   title: LocalizedStringSchema,
+  /** Short name for the stage-progress strip; the full title stays on the card. */
+  shortTitle: LocalizedStringSchema,
   trigger: LocalizedStringSchema,
   userMentalModel: LocalizedStringSchema,
   systemAction: LocalizedStringSchema,
@@ -88,21 +81,11 @@ export const CaseRejectionEntrySchema = z.object({
 
 export type CaseRejectionEntry = z.infer<typeof CaseRejectionEntrySchema>;
 
-export const CaseLensCalloutsSchema = z.object({
-  all: LocalizedStringSchema,
-  "ux-research": LocalizedStringSchema,
-  "systems-hardware": LocalizedStringSchema,
-  "ai-trust": LocalizedStringSchema,
-});
-
-export type CaseLensCallouts = z.infer<typeof CaseLensCalloutsSchema>;
-
 export const CaseModulesRecordSchema = z
   .object({
     slug: z.enum(CURRENT_PROJECT_SLUGS).refine((slug) => !isUnlistedProject(slug), {
       message: "Depth modules must only exist for publicly listed cases.",
     }),
-    lensCallouts: CaseLensCalloutsSchema,
     journey: z.array(CaseJourneyStageSchema).min(5).max(6),
     stateMatrix: z.array(CaseStateSpecSchema).length(5),
     rejectionArchive: z.array(CaseRejectionEntrySchema).min(2),

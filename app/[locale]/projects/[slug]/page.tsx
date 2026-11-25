@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -40,11 +39,10 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 import { getCaseCard, getCaseRecordOrThrow } from "@/lib/cases/registry";
+import { buildCaseToc, type CaseTocSection } from "@/lib/cases/case-toc";
 import { getCaseDepthModules } from "@/data/cases/modules";
 import { getCaseResearchVault } from "@/data/cases/research-vault";
 import { getCaseRedTeamDeck } from "@/data/critique/red-team";
-import { CaseReviewLensSwitch } from "@/components/case/deep/CaseReviewLensSwitch";
-import { CaseFocusRegion } from "@/components/case/deep/CaseFocusRegion";
 import { CaseJourneyRail } from "@/components/case/deep/CaseJourneyRail";
 import { CaseStateMatrixTable } from "@/components/case/deep/CaseStateMatrixTable";
 import { CaseRejectionArchive } from "@/components/case/deep/CaseRejectionArchive";
@@ -151,58 +149,69 @@ export default async function CasePage({ params }: Props) {
       processArtifacts?.quotes ||
       processArtifacts?.microLoop
   );
-  const interactiveJump: [string, string] | null = interactiveDemo
-    ? ["interactive-demo", isZh ? "交互原型" : "Interactive prototype"]
-    : null;
-  const processJump: [string, string] | null = hasProcessArtifacts
-    ? ["process-artifacts", isZh ? "过程手稿与调研" : "Process & research"]
-    : null;
-
   const designDecisions = record.designDecisions ?? [];
-  const designDecisionsJump: [string, string] | null =
-    designDecisions.length > 0
-      ? ["design-decisions", isZh ? "设计决策论证" : "Design Decisions"]
-      : null;
 
   const depthModules = getCaseDepthModules(k);
   const researchVault = getCaseResearchVault(k);
   const redTeamDeck = getCaseRedTeamDeck(k);
-  const depthJumps: Array<readonly [string, string]> = [
-    ...(depthModules
-      ? ([
-          ["journey-map", isZh ? "全流程旅程" : "Journey map"],
-          ["state-matrix", isZh ? "五态边界矩阵" : "5-State matrix"],
-          ["rejection-archive", isZh ? "打回重做档案" : "Rejection archive"],
-        ] as const)
-      : []),
-    ...(researchVault
-      ? ([["research-vault", isZh ? "原始研究档案" : "Research vault"]] as const)
-      : []),
-    ...(redTeamDeck
-      ? ([["red-team-defense", isZh ? "红队对抗答辩" : "Red-Team defense"]] as const)
-      : []),
-  ];
 
-  const jumpSections: Array<readonly [string, string]> = [
-    ["artifact", isZh ? "核心产物" : "Artifact"],
-    ["snapshot", isZh ? "案例摘要" : "Summary"],
-    ...(designDecisionsJump ? [designDecisionsJump] : []),
-    ...depthJumps,
-    ...(interactiveJump && interactiveDemo?.placement === "after-summary"
-      ? [interactiveJump]
-      : []),
-    ...(interactiveJump && interactiveDemo?.placement === "mid-narrative"
-      ? [interactiveJump]
-      : []),
-    ...(processJump ? [processJump] : []),
-    ["long-form", narrative.ch.label],
-    ["evidence-board", narrative.re.label],
-    ["decision-timeline", narrative.id.label],
-    ["iteration-gallery", narrative.te.label],
-    ["outcome-limits", pageCopy.outcomeLimits],
-    ["interview-takeaway", narrative.rf.label],
-    ["interview-pack", pageCopy.interviewPack],
+  // Every anchored section, listed once in the order the page renders it.
+  // The side TOC and the in-page evidence links both read from this list.
+  const interactiveLabel = isZh ? "交互原型" : "Interactive prototype";
+  const pageSections: CaseTocSection[] = [
+    { id: "artifact", label: isZh ? "核心产物" : "Artifact" },
+    { id: "snapshot", label: isZh ? "案例摘要" : "Summary" },
+    {
+      id: "design-decisions",
+      label: isZh ? "设计决策论证" : "Design Decisions",
+      present: designDecisions.length > 0,
+    },
+    {
+      id: "interactive-demo",
+      label: interactiveLabel,
+      present: interactiveDemo?.placement === "after-summary",
+    },
+    {
+      id: "interactive-demo",
+      label: interactiveLabel,
+      present: interactiveDemo?.placement === "mid-narrative",
+    },
+    {
+      id: "process-artifacts",
+      label: isZh ? "过程手稿与调研" : "Process & research",
+      present: hasProcessArtifacts,
+    },
+    { id: "journey-map", label: isZh ? "全流程旅程" : "Journey map", present: Boolean(depthModules) },
+    { id: "state-matrix", label: isZh ? "五态边界矩阵" : "5-State matrix", present: Boolean(depthModules) },
+    {
+      id: "rejection-archive",
+      label: isZh ? "打回重做档案" : "Rejection archive",
+      present: Boolean(depthModules),
+    },
+    {
+      id: "research-vault",
+      label: isZh ? "原始研究档案" : "Research vault",
+      present: Boolean(researchVault),
+    },
+    { id: "long-form", label: narrative.ch.label },
+    { id: "evidence-board", label: narrative.re.label },
+    { id: "decision-timeline", label: narrative.id.label },
+    { id: "iteration-gallery", label: narrative.te.label },
+    { id: "interview-takeaway", label: narrative.rf.label },
+    { id: "outcome-limits", label: pageCopy.outcomeLimits },
+    { id: "interview-pack", label: pageCopy.interviewPack },
+    {
+      id: "red-team-defense",
+      label: isZh ? "红队对抗答辩" : "Red-Team defense",
+      present: Boolean(redTeamDeck),
+    },
   ];
+  const jumpSections = buildCaseToc(pageSections);
+  const sectionLabels: Record<string, string> = Object.fromEntries(
+    pageSections
+      .filter((section) => section.present !== false)
+      .map((section) => [section.id, section.label])
+  );
 
   const mood = getCaseMood(k);
   const moodStyle = getCaseMoodStyle(k);
@@ -297,31 +306,12 @@ export default async function CasePage({ params }: Props) {
           )}
         </dl>
 
-        {depthModules && (
-          <div style={{ marginTop: "var(--s-5)" }}>
-            <Suspense
-              fallback={
-                <div className={deepStyles.lensShell} aria-hidden="true">
-                  <p className={deepStyles.lensCallout}>
-                    {depthModules.lensCallouts.all[proofLocale]}
-                  </p>
-                </div>
-              }
-            >
-              <CaseReviewLensSwitch
-                callouts={depthModules.lensCallouts}
-                locale={proofLocale}
-              />
-            </Suspense>
-          </div>
-        )}
-
         <div className="v4-editorial-grid" style={{ marginTop: "var(--s-6)" }}>
           <aside className="v4-span-4 v4-rail-sticky" aria-label={isZh ? "案例导航轨" : "Case rail"}>
             <CaseTerminologyNotes slug={k} locale={proofLocale} />
 
             <div>
-              <PresentationTrigger deck={presentationDeck} locale={proofLocale} className="btn btn-primary" />
+              <PresentationTrigger deck={presentationDeck} locale={proofLocale} className="btn btn-ghost" />
             </div>
 
             <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
@@ -329,7 +319,7 @@ export default async function CasePage({ params }: Props) {
                 {isZh ? "本页目录" : "On this page"}
               </span>
               <ol>
-                {jumpSections.map(([id, label]) => (
+                {jumpSections.map(({ id, label }) => (
                   <li key={id}>
                     <a href={`#${id}`}>{label}</a>
                   </li>
@@ -363,7 +353,7 @@ export default async function CasePage({ params }: Props) {
         <section className="container" style={{ marginTop: "var(--s-6)", display: "grid", gap: "var(--s-4)" }}>
           <HardwareFieldCanvas slug={k} locale={proofLocale} />
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Link href={`/studio/replay?track=${k}`} className="btn btn-ghost">
+            <Link href={`/studio/replay?track=${k}`} className="case-text-link">
               {isZh
                 ? "进入硬件协议帧步进重放工作台 (/studio/replay) →"
                 : "Inspect millisecond protocol frames in Replay Studio →"}
@@ -426,23 +416,12 @@ export default async function CasePage({ params }: Props) {
           style={{ marginTop: "var(--s-7)" }}
         >
           {depthModules ? (
-            <Suspense
-              fallback={
-                <div id="case-deep-root" className={deepStyles.focusScope} data-active-focus="all">
-                  <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
-                  <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
-                  <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
-                  {researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />}
-                </div>
-              }
-            >
-              <CaseFocusRegion>
-                <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
-                <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
-                <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
-                {researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />}
-              </CaseFocusRegion>
-            </Suspense>
+            <div id="case-deep-root" className={deepStyles.deepStack}>
+              <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
+              <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
+              <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
+              {researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />}
+            </div>
           ) : (
             researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />
           )}
@@ -484,7 +463,12 @@ export default async function CasePage({ params }: Props) {
         </div>
       </section>
 
-      <CaseInterviewPack pack={caseInterviewPack} locale={proofLocale} />
+      <CaseInterviewPack
+        pack={caseInterviewPack}
+        locale={proofLocale}
+        currentSlug={k}
+        sectionLabels={sectionLabels}
+      />
 
       {redTeamDeck && (
         <section className="container" style={{ marginTop: "var(--s-6)" }}>
@@ -492,6 +476,9 @@ export default async function CasePage({ params }: Props) {
             decks={[redTeamDeck]}
             locale={proofLocale}
             sectionId="red-team-defense"
+            currentSlug={k}
+            sectionLabels={sectionLabels}
+            probeVariant="ghost"
           />
         </section>
       )}

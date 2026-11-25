@@ -306,8 +306,9 @@
   gap: var(--s-2);
   margin-top: var(--s-4);
 }
+/* v6.5 (review C20): was 0, which left 12px between the status line and the buttons. */
 .interview-room-primary-actions {
-  margin-top: 0;
+  margin-top: var(--s-5);
 }
 .interview-room-more-grid .btn {
   padding: 8px 11px;
@@ -903,4 +904,22 @@
   .role-lens-card {
     border: 1px solid var(--border);
   }
+}
+
+/* v6.5 (review C09): zh headings on /hire and /interview split words such as 「看得/见」. */
+.interview-room-page h1,
+.interview-room-page h2,
+.interview-room-page h3 {
+  text-wrap: balance;
+}
+
+/* v6.5 (review C19): Chinese small labels were 10.9px. Han characters need 12px to stay legible. */
+:lang(zh) .hiring-role-card dt,
+:lang(zh) .evidence-matrix-cell small,
+:lang(zh) .interview-room-signal small,
+:lang(zh) .interview-evidence-item small,
+:lang(zh) .interview-question-card small,
+:lang(zh) .interview-boundary-card small {
+  font-size: 12px;
+  letter-spacing: 0.06em;
 }

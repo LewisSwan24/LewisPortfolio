@@ -86,7 +86,7 @@ export function RawResearchVault({
       <header className={styles.vaultHeader}>
         <div className={styles.vaultHeadTop}>
           <span className={styles.eyebrow}>
-            {isZh ? "研究档案库 · RESEARCH VAULT" : "Research Vault"}
+            {isZh ? "研究档案库" : "Research Vault"}
           </span>
           <VerifiedStatusBadge status={vault.studyStatus} locale={locale} />
         </div>

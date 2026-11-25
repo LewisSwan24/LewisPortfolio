@@ -181,9 +181,10 @@ test.describe("Projects Page", () => {
         await expect(firstDetails).not.toHaveAttribute("open", "");
         await firstDetails.locator("summary").click();
         await expect(firstDetails).toHaveAttribute("open", "");
-        await expect(firstDetails.getByRole("link", { name: /Inspect the evidence/i })).toHaveAttribute(
+        // v6.5: the link names its section and jumps within the page (review row 20).
+        await expect(firstDetails.getByRole("link", { name: /^Jump to / })).toHaveAttribute(
             "href",
-            /#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway)/,
+            /^#(decision-timeline|evidence-board|iteration-gallery|outcome-limits|interview-takeaway)$/,
         );
     });
 
@@ -425,7 +426,8 @@ test.describe("Hire Page", () => {
         await expect(page.locator(".interview-evidence-brief")).toHaveCount(0);
         await expect(page.locator(".interview-room-close")).toHaveCount(0);
         await expect(page.locator(".hiring-role-fit")).toBeVisible();
-        await expect(page.locator("#interview-boundaries-title")).toBeVisible();
+        // v6.5: boundaries moved to /interview; /hire links there.
+        await expect(page.locator("main a[href='/interview']").first()).toBeVisible();
         await expect(page.getByRole("link", { name: /Contact/i }).first()).toBeVisible();
     });
 
@@ -454,7 +456,9 @@ test.describe("Hire Page", () => {
 
     // AI UX is a thread through several cases, framing legible uncertainty
     // under scoped prototype testing rather than defensive self-disclaimers.
-    test("hire should show the AI and trust thread with explicit scope", async ({ page }) => {
+    test("interview pack should show the AI and trust thread with explicit scope", async ({ page }) => {
+        await page.goto("/interview");
+        await expect(page.locator("#interview-boundaries-title")).toBeVisible();
         const thread = page.locator("#ai-trust-thread");
 
         await expect(thread.getByRole("heading", { name: "Designing trust across AI-assisted workflows" })).toBeVisible();
@@ -465,11 +469,12 @@ test.describe("Hire Page", () => {
             await expect(thread.locator(`a[href='/projects/${slug}#decision-timeline']`)).toBeVisible();
         }
         await expect(thread.locator("a[href*='vigil']")).toHaveCount(0);
+        await page.goto("/hire");
         await expect(page.locator(".hiring-role-fit").getByRole("heading", { name: "AI UX" })).toBeVisible();
     });
 
-    test("zh hire should state scoped prototype boundaries in Chinese", async ({ page }) => {
-        await gotoStable(page, "/zh/hire");
+    test("zh interview pack should state scoped prototype boundaries in Chinese", async ({ page }) => {
+        await gotoStable(page, "/zh/interview");
         const thread = page.locator("#ai-trust-thread");
 
         await expect(thread.getByText(/交互原则/)).toBeVisible();

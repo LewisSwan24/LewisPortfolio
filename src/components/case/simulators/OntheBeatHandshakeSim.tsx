@@ -72,7 +72,7 @@ export function OntheBeatHandshakeSim({ locale, onStatusChange }: SimulatorProps
           </button>
           <button
             type="button"
-            className="btn btn-primary"
+            className={`btn ${stage === "mutual-nod" ? "btn-primary" : "btn-ghost"}`}
             disabled={stage !== "mutual-nod"}
             onClick={withdrawDevice}
           >

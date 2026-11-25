@@ -8,9 +8,9 @@
     "blog": "博客",
     "more": "更多",
     "work": "作品",
-    "lab": "组件规范",
-    "ai": "AI 问答",
-    "hire": "招聘简报",
+    "lab": "UI 实验室",
+    "ai": "AI 实验室",
+    "hire": "招聘与简历",
     "writing": "写作",
     "lang": {
       "en": "EN",
@@ -31,7 +31,6 @@
     "body": "英国斯旺西计算机科学底座，加上布里斯班 UQ 交互设计训练。我不交只停在 PPT 里的静态线框图——碰到 AI 越界、现场失灵或表单歧义时，直接用 TypeScript、Electron、浏览器扩展和 ESP32 搭出实机原型，跑通再交付。",
     "deck": {
       "label": "实践笔记 —",
-      "hint": "拖动或点击卡片查看",
       "roledesc": "案例卡组",
       "kbd": "支持拖动、点击，或用 ← → 方向键切换"
     },
@@ -110,7 +109,7 @@
     "write": "联系我",
     "meta": {
       "built": "基于 Next.js 与 CSS Grid 构建，聚焦可证伪交互取舍、可溯源 AI 论证与软硬实测边界。",
-      "version": "v6.4.0 · 2026 年 11 月更新"
+      "version": "v6.5.0 · 2026 年 11 月更新"
     }
   },
   "tw": {
@@ -436,7 +435,7 @@
       "institutionAndYears": "昆士兰大学 • 2025 – 2026"
     },
     "kicker": "简历",
-    "headline": "经历",
+    "headline": "董子铭 · 交互与产品设计师",
     "download": "索取 PDF",
     "contact": "联系我",
     "print": "打印",

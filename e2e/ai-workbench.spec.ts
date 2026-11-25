@@ -36,7 +36,7 @@ test.describe("Dedicated Rationale AI Lab & Case Study Enrichment", () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/zh", { waitUntil: "networkidle" });
 
-    const navLink = page.getByRole("navigation").getByRole("link", { name: "AI 问答" });
+    const navLink = page.getByRole("navigation").getByRole("link", { name: "AI 实验室" });
     await expect(navLink).toBeVisible();
     await navLink.click();
 
@@ -57,7 +57,8 @@ test.describe("Dedicated Rationale AI Lab & Case Study Enrichment", () => {
       "grassland",
     ]) {
       await page.goto(`/en/projects/${slug}`, { waitUntil: "domcontentloaded" });
-      await expect(page.locator("#process-artifacts [role='slider']")).toBeVisible();
+      // v6.5: text before/after renders as two cards, not a slider (review row 07).
+      await expect(page.locator("#process-artifacts .proc-compare > figure")).toHaveCount(2);
       await expect(
         page.locator("#process-artifacts").getByRole("button", { name: /Pause loop|Play loop/i })
       ).toBeVisible();

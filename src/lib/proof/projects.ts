@@ -705,7 +705,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     proofLinks: [
       { label: "Physical AI control proof", href: "/projects/walkie" },
       { label: "Cognitive safety proof", href: "/projects/lamplight" },
-      { label: "AI UX thread", href: "/hire#ai-trust-thread" },
+      { label: "AI UX thread", href: "/interview#ai-trust-thread" },
       { label: "Resume", href: "/resume" },
     ],
   },
@@ -720,7 +720,7 @@ const roleFits: Record<ProofLocale, RoleFit> = {
     proofLinks: [
       { label: "穿戴端 AI 控制证据", href: "/projects/walkie" },
       { label: "AI 认知安全证据", href: "/projects/lamplight" },
-      { label: "AI UX 这条线", href: "/hire#ai-trust-thread" },
+      { label: "AI UX 这条线", href: "/interview#ai-trust-thread" },
       { label: "简历", href: "/resume" },
     ],
   },

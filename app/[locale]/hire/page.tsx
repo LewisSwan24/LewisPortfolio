@@ -3,22 +3,14 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { localizeInternalHref } from "@/lib/locale-href";
-import { AiTrustThread } from "@/components/hiring/AiTrustThread";
 import { HiringRoleFitPanel } from "@/components/hiring/HiringRoleFitPanel";
-import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
 import { InterviewDecisionBrief } from "@/components/hiring/InterviewDecisionBrief";
 import { RoleLensSwitch, type RoleLensCaseItem } from "@/components/hiring/RoleLensSwitch";
-import { HireMarketLensSwitch } from "@/components/hiring/HireMarketLensSwitch";
-import { InterviewDefenseArena } from "@/components/hiring/InterviewDefenseArena";
-import { JdMatcherPanel } from "@/components/hiring/JdMatcherPanel";
-import { TailoredBriefBuilder } from "@/components/hiring/TailoredBriefBuilder";
 import { buildHiringDeck } from "@/lib/presentation/build-deck";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getProofUiLabels } from "@/lib/proof";
-import { getMarketLensProfiles } from "@/lib/proof/market-lens";
 import { getListedCases } from "@/lib/cases/registry";
 import {
-  getAiTrustThread,
   getHiringRoleFits,
   getInterviewDecisionRoom,
   type ProofLocale,
@@ -47,7 +39,6 @@ export default async function HirePage() {
   const proofLocale: ProofLocale = locale === "zh" ? "zh" : "en";
   const room = getInterviewDecisionRoom(proofLocale);
   const roleFits = getHiringRoleFits(proofLocale);
-  const aiTrustThread = getAiTrustThread(proofLocale);
   const proofLabels = getProofUiLabels(proofLocale);
 
   const listedCases = getListedCases();
@@ -88,8 +79,6 @@ export default async function HirePage() {
         presentationDeck={hiringDeck}
       />
 
-      <HireMarketLensSwitch profiles={getMarketLensProfiles()} locale={proofLocale} />
-
       <Suspense fallback={null}>
         <RoleLensSwitch cases={lensCases} locale={proofLocale} />
       </Suspense>
@@ -105,74 +94,23 @@ export default async function HirePage() {
         />
       </section>
 
-      <section className="section container">
-        <AiTrustThread thread={aiTrustThread} />
-      </section>
-
-      <InterviewDefenseArena locale={proofLocale} />
-
-      <section className="section container">
-        <InterviewBoundaryNotes notes={room.boundaries} labels={proofLabels} />
-      </section>
-
-      <JdMatcherPanel locale={proofLocale} />
-
-      <section className="section container" aria-labelledby="hire-decks-heading">
+      {/* v6.5 (review C10): the interview material moved to /interview so this page stays a
+          one-minute read: role fit, cases, resume and contact. */}
+      <section className="section container" aria-labelledby="hire-more-heading">
         <div className="v4-studio-plate" style={{ display: "grid", gap: "var(--s-3)" }}>
-          <div>
-            <span className="eyebrow">
-              {proofLocale === "zh" ? "A4 设计论证评注本与角色 PDF Deck" : "Editorial Critique Print & Role Decks"}
-            </span>
-            <h2 id="hire-decks-heading" className="h-display" style={{ fontSize: "clamp(20px, 2.2vw, 28px)", marginTop: 6 }}>
-              {proofLocale === "zh"
-                ? "带进面试会议室的论证手稿（附直达活原型的 QR 二维码）"
-                : "Bringable A4 critique manuscripts with live QR jump codes"}
-            </h2>
-            <p className="prose" style={{ marginTop: 6, maxWidth: "66ch" }}>
-              {proofLocale === "zh"
-                ? "每页 >= 60% 版面聚焦人类冲突、被否决方案与坦诚边界，避免堆砌大号装饰标题；支持在线自定义角色组合打印，或直接下载预设岗位 PDF。"
-                : "Over 60% of each A4 sheet covers human tension, rejected paths, and explicit limits — printable per custom case selection or downloadable directly per role."}
-            </p>
-          </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            <Link className="btn btn-primary" href={localizeInternalHref("/brief/print", proofLocale)}>
-              {proofLocale === "zh" ? "打开在线 A4 评注打印工作台" : "Open Interactive A4 Critique Studio"}
+          <h2 id="hire-more-heading" className="h-display" style={{ fontSize: "clamp(20px, 2.2vw, 28px)" }}>
+            {proofLocale === "zh" ? "简历与面试资料" : "Resume and interview material"}
+          </h2>
+          <div className="interview-room-actions" style={{ marginTop: 0 }}>
+            <a className="btn btn-primary" href={`/resume/lewis-dong-resume-${proofLocale}.pdf`} download>
+              {proofLocale === "zh" ? "下载 PDF 简历" : "Download PDF CV"}
+            </a>
+            <Link className="btn btn-ghost" href={localizeInternalHref("/interview", proofLocale)}>
+              {proofLocale === "zh" ? "面试准备资料 →" : "Interview pack →"}
             </Link>
-            <Link className="btn btn-ghost" href={localizeInternalHref("/resume/compose", proofLocale)}>
-              {proofLocale === "zh" ? "打开定制双语简历组装台" : "Open Custom Resume Composer"}
-            </Link>
-            <a className="btn btn-ghost" href="/decks/ai-product-engineer.pdf" download>
-              {proofLocale === "zh" ? "AI 产品工程师 Deck (PDF)" : "AI Product Engineer (PDF)"}
-            </a>
-            <a className="btn btn-ghost" href="/decks/design-engineer.pdf" download>
-              {proofLocale === "zh" ? "设计工程师 Deck (PDF)" : "Design Engineer (PDF)"}
-            </a>
-            <a className="btn btn-ghost" href="/decks/hardware-interaction.pdf" download>
-              {proofLocale === "zh" ? "软硬交互设计师 Deck (PDF)" : "Hardware & Interaction (PDF)"}
-            </a>
-            <a className="btn btn-ghost" href={`/resume/lewis-dong-resume-${proofLocale}.pdf`} download>
-              {proofLocale === "zh" ? "ATS 简历 (PDF)" : "ATS Resume (PDF)"}
-            </a>
-          </div>
-          <div className="res-inline-links" aria-label={proofLocale === "zh" ? "直达公开源码仓库与在线原型" : "Verify public GitHub repositories and live builds"}>
-            <a href="https://github.com/LewisSwan24/walkie" target="_blank" rel="noopener noreferrer">Walkie GitHub ↗</a>
-            <a href="https://lewisswan24.github.io/lamplight-nook-site/" target="_blank" rel="noopener noreferrer">Lamplight Site ↗</a>
-            <a href="https://github.com/LewisSwan24/lamplight-nook" target="_blank" rel="noopener noreferrer">Lamplight GitHub ↗</a>
-            <a href="https://github.com/LewisSwan24/resume-autofill" target="_blank" rel="noopener noreferrer">Resume Autofill GitHub ↗</a>
-            <a href="https://on-the-beat.fly.dev" target="_blank" rel="noopener noreferrer">On The Beat Live ↗</a>
-            <a href="https://github.com/LewisSwan24/on-the-beat" target="_blank" rel="noopener noreferrer">On The Beat GitHub ↗</a>
-            <a href="https://maze-runners.vercel.app" target="_blank" rel="noopener noreferrer">MazeRunners Console ↗</a>
           </div>
         </div>
       </section>
-
-      <TailoredBriefBuilder
-        cases={listedCases.map((record) => ({
-          slug: record.slug,
-          title: record.card[proofLocale].title,
-        }))}
-        locale={proofLocale}
-      />
     </main>
   );
 }

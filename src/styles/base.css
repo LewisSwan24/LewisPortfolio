@@ -33,9 +33,10 @@
     background: var(--text-3);
   }
 
+  /* v6.5: no opacity here. Starting from transparent hid the home headline for up to 3s (review C04). */
   @keyframes page-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { transform: translateY(8px); }
+    to   { transform: translateY(0); }
   }
 }
 

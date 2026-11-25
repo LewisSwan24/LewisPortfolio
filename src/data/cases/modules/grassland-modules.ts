@@ -2,24 +2,6 @@ import type { CaseModulesRecord } from "@/lib/cases/modules-schema";
 
 export const grasslandModules: CaseModulesRecord = {
   slug: "grassland",
-  lensCallouts: {
-    all: {
-      en: "Full Grassland Iron Tide dossier: 5-mission RTS journey, 5-state 20 Hz simulation matrix, and grammar/checkpoint rejection receipts.",
-      zh: "《草原铁潮》完整档案：五关即时战略体验旅程、五态 20 Hz 模拟矩阵，以及关卡特例与读档串台打回档案。",
-    },
-    "ux-research": {
-      en: "UX Research & IA focus: fixed camera maximizing battlefield readability, edge-docked HUD discipline, and uncluttered main menu.",
-      zh: "UX 研究与架构视角：固定镜头确保主战场占最大面积、边缘 HUD 克制布局与零开发废料主菜单。",
-    },
-    "systems-hardware": {
-      en: "Systems & Engineering focus: data-driven mission manifests, per-mission lazy atlas loading, 20 Hz fixed clock, and 75-asset provenance pipeline.",
-      zh: "系统与工程视角：数据驱动章节 Manifest、按关懒加载图集、20 Hz 固定逻辑时钟及 75 项资产溯源管线。",
-    },
-    "ai-trust": {
-      en: "Rule Integrity & Verification focus: immutable cross-mission command grammar, single checkpoint save chain, and 430/430 RC test gate.",
-      zh: "规则一致性与验收视角：跨五关不可变命令语法、单一检查点还原链及 430/430 发布候选验收门禁。",
-    },
-  },
   journey: [
     {
       id: "grassland-strategic-entry",
@@ -27,6 +9,10 @@ export const grasslandModules: CaseModulesRecord = {
       title: {
         en: "Clean chapter manifest menu & five-mission strategic map",
         zh: "零开发杂讯主菜单与五关战略地图入口",
+      },
+      shortTitle: {
+        en: "Mission map",
+        zh: "五关战略地图",
       },
       trigger: {
         en: "Player opens Chapter One (Embers of the Pale Wolf) in a desktop browser",
@@ -58,6 +44,10 @@ export const grasslandModules: CaseModulesRecord = {
         en: "Immutable click, box-select & command grammar across all 5 missions",
         zh: "跨五关完全一致的框选与指令语法",
       },
+      shortTitle: {
+        en: "Shared grammar",
+        zh: "统一指令语法",
+      },
       trigger: {
         en: "Player selects squads via click, drag-box, Shift toggle, or Ctrl groups and issues right-click commands",
         zh: "玩家使用点击、拖拽框选、Shift 增减、Ctrl 编队及右键命令调度兵团",
@@ -87,6 +77,10 @@ export const grasslandModules: CaseModulesRecord = {
       title: {
         en: "Fixed battlefield camera & edge-docked tactical HUD",
         zh: "固定镜头倍率与贴边克制战术 HUD",
+      },
+      shortTitle: {
+        en: "Edge-docked HUD",
+        zh: "贴边战术 HUD",
       },
       trigger: {
         en: "Real-time 20 Hz simulation runs combat, EasyStar.js pathfinding, vision, and mission triggers simultaneously",
@@ -118,6 +112,10 @@ export const grasslandModules: CaseModulesRecord = {
         en: "Causal defeat explanation & single-chain checkpoint restore",
         zh: "因果明确的战败说明与单一检查点快照恢复",
       },
+      shortTitle: {
+        en: "Checkpoint restore",
+        zh: "检查点恢复",
+      },
       trigger: {
         en: "Player suffers defeat during a long stretch such as Mission 4 or Mission 5 (Night Ford)",
         zh: "玩家在第四关或第五关（夜渡）等长线任务中触发失败条件",
@@ -147,6 +145,10 @@ export const grasslandModules: CaseModulesRecord = {
       title: {
         en: "Four-pillar RC verification & asset provenance gate",
         zh: "四维 RC 验收与 75 项资产溯源审计",
+      },
+      shortTitle: {
+        en: "RC audit",
+        zh: "RC 验收",
       },
       trigger: {
         en: "Release candidate build runs automated tests, asset contract gate, web bundle build, and dual-res playthrough",

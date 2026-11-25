@@ -9,7 +9,7 @@
     "more": "More",
     "work": "Work",
     "lab": "UI Lab",
-    "ai": "Ask AI",
+    "ai": "AI Lab",
     "hire": "Hire & CV",
     "writing": "Writing",
     "lang": {
@@ -31,7 +31,6 @@
     "body": "Trained in Computer Science at Swansea and Interaction Design at UQ, I turn messy human-AI and hardware edge cases into testable interaction rules—then ship working TypeScript, Electron, extension, and ESP32 prototypes to see where those rules hold.",
     "deck": {
       "label": "The practice log —",
-      "hint": "Drag or click any card",
       "roledesc": "Card deck",
       "kbd": "Drag, click, or use ← → to step through"
     },
@@ -110,7 +109,7 @@
     "write": "Write",
     "meta": {
       "built": "Built with Next.js and CSS Grid — verifiable trade-offs, grounded AI citations, and zero-mock hardware specs.",
-      "version": "v6.4.0 · updated November 2026"
+      "version": "v6.5.0 · updated November 2026"
     }
   },
   "tw": {
@@ -436,7 +435,7 @@
       "institutionAndYears": "The University of Queensland • 2025 – 2026"
     },
     "kicker": "Résumé",
-    "headline": "Experience",
+    "headline": "Lewis Dong · Interaction & Product Designer",
     "download": "Request PDF",
     "contact": "Contact me",
     "print": "Print",

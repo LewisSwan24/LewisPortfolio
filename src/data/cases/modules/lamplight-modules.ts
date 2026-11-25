@@ -2,24 +2,6 @@ import type { CaseModulesRecord } from "@/lib/cases/modules-schema";
 
 export const lamplightModules: CaseModulesRecord = {
   slug: "lamplight",
-  lensCallouts: {
-    all: {
-      en: "Full Lamplight Nook dossier: commission-to-corner workflow, 5-state desktop safety matrix, and pre-1.0 safety audit rejections.",
-      zh: "Lamplight Nook 完整档案：从开委托单到桌角守望的旅程、五态桌面风控矩阵，以及 1.0 前安全打回记录。",
-    },
-    "ux-research": {
-      en: "UX Research & IA focus: replacing opaque terminal stdout walls with Wick's blackboard plan and low-distraction corner monitor.",
-      zh: "UX 研究与架构视角：如何用 Wick 黑板进度与桌角静默监控窗替代令人焦虑的滚动终端日志。",
-    },
-    "systems-hardware": {
-      en: "Systems & Engineering focus: Electron main SDK event normalizer, YAML-driven Phaser director pacing, and deterministic replay debugger.",
-      zh: "系统与工程视角：Electron 主进程 Claude SDK 事件标准化、YAML 驱动的 Phaser 导演状态机与免 API 回放调试面板。",
-    },
-    "ai-trust": {
-      en: "AI Trust & Rules focus: Enter-key fatigue defense ('Not now' default focus), copy-only file isolation, and per-job spending caps.",
-      zh: "AI 信任与规则视角：防御回车惯性误触（默认聚焦「先不要」）、副本文件隔离与任务前预算封顶。",
-    },
-  },
   journey: [
     {
       id: "lamplight-commission",
@@ -27,6 +9,10 @@ export const lamplightModules: CaseModulesRecord = {
       title: {
         en: "Commission slip with explicit spending cap & copy isolation",
         zh: "带预算上限与副本隔离的咖啡馆委托单",
+      },
+      shortTitle: {
+        en: "Commission slip",
+        zh: "委托单",
       },
       trigger: {
         en: "User opens Lamplight Nook to delegate a multi-minute Claude Code task",
@@ -58,6 +44,10 @@ export const lamplightModules: CaseModulesRecord = {
         en: "Real-time SDK event translation onto Wick's blackboard",
         zh: "真实 SDK 事件映射至 Wick 黑板计划",
       },
+      shortTitle: {
+        en: "Wick's blackboard",
+        zh: "Wick 黑板",
+      },
       trigger: {
         en: "Electron main process receives live Claude Agent SDK plan and tool events",
         zh: "Electron 主进程接收到 Claude Agent SDK 的实时规划与工具事件",
@@ -87,6 +77,10 @@ export const lamplightModules: CaseModulesRecord = {
       title: {
         en: "Minimizing into a calm corner status monitor",
         zh: "收起为桌面角落安静守望小窗",
+      },
+      shortTitle: {
+        en: "Corner monitor",
+        zh: "角落小窗",
       },
       trigger: {
         en: "User minimizes the main café window to focus on primary desk work",
@@ -118,6 +112,10 @@ export const lamplightModules: CaseModulesRecord = {
         en: "Explicit question card with 'leave it to the staff' option",
         zh: "明确分工的提问卡（含「交给店员决定」选项）",
       },
+      shortTitle: {
+        en: "Question card",
+        zh: "提问卡",
+      },
       trigger: {
         en: "Agent encounters a non-destructive preference choice (e.g., page accent palette)",
         zh: "Agent 遇到非破坏性的风格或结构偏好选择题（如页面主色调）",
@@ -147,6 +145,10 @@ export const lamplightModules: CaseModulesRecord = {
       title: {
         en: "Default-safe 'Not now' focus lock on risky steps",
         zh: "高风险步骤默认焦点锁死「先不要」",
+      },
+      shortTitle: {
+        en: "'Not now' lock",
+        zh: "默认「先不要」",
       },
       trigger: {
         en: "Classifier flags a destructive file write, overwrite, or high-impact tool action",

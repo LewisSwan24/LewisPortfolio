@@ -2,24 +2,6 @@ import type { CaseModulesRecord } from "@/lib/cases/modules-schema";
 
 export const onthebeatModules: CaseModulesRecord = {
   slug: "onthebeat",
-  lensCallouts: {
-    all: {
-      en: "Full On The Beat dossier: blind-wave gig journey, 5-state phone+relay+wristband matrix, and 12+ canvas / Sep-25 localhost rejection receipts.",
-      zh: "On The Beat 完整档案：演出现场匿名破冰旅程、五态手机+中继+手环矩阵，以及 12+ 轮画布与 9 月 25 日本地端口打回实录。",
-    },
-    "ux-research": {
-      en: "UX Research & IA focus: replacing swipe-style proximity radars with low-stakes blind waves and device withdrawal once real conversation begins.",
-      zh: "UX 研究与架构视角：用零暴露匿名脉冲替代刷脸附近人雷达，并在双方开口后让手机主动退居二线。",
-    },
-    "systems-hardware": {
-      en: "Systems & Hardware focus: StickS3 + StickC Plus dual-board C++ firmware, Sydney Fly.io always-on relay (no laptop), and side-button bidirectional sync.",
-      zh: "系统与硬件视角：StickS3 与 StickC Plus 双型号 C++ 固件、悉尼常驻 Fly.io 免电脑中继，以及手环侧键双向状态同步。",
-    },
-    "ai-trust": {
-      en: "AI Review & Consent Trust focus: symmetric mutual-nod reveal gate and rejecting AI prototypes that only looked finished (a mocked, static MEET).",
-      zh: "AI 审查与同意信任视角：双向点头才揭示身份的对称门控，以及多轮打回只是看起来做完的 AI 原型（MEET 是写死的模拟数据）。",
-    },
-  },
   journey: [
     {
       id: "onthebeat-arm-card",
@@ -27,6 +9,10 @@ export const onthebeatModules: CaseModulesRecord = {
       title: {
         en: "Pick a low-stakes prompt card via phone or wristband side button",
         zh: "通过手机或手环侧键点亮低压力破冰卡片",
+      },
+      shortTitle: {
+        en: "Prompt card",
+        zh: "破冰卡片",
       },
       trigger: {
         en: "Attendee at a live gig wants to signal openness to chat without staring at a feed",
@@ -58,6 +44,10 @@ export const onthebeatModules: CaseModulesRecord = {
         en: "Send an anonymous wave without exposing identity",
         zh: "发送匿名挥手脉冲，对方零身份泄露",
       },
+      shortTitle: {
+        en: "Anonymous wave",
+        zh: "匿名挥手",
+      },
       trigger: {
         en: "User sends a wave across the venue relay",
         zh: "用户向场地附近中继发出一次挥手试探",
@@ -87,6 +77,10 @@ export const onthebeatModules: CaseModulesRecord = {
       title: {
         en: "Symmetric mutual-nod unlocks MEET, names & landmark",
         zh: "双方点头确认后才同步解锁 MEET、名字与地标",
+      },
+      shortTitle: {
+        en: "Mutual MEET",
+        zh: "双方确认",
       },
       trigger: {
         en: "Second attendee acknowledges the anonymous wave on phone/wristband",
@@ -118,6 +112,10 @@ export const onthebeatModules: CaseModulesRecord = {
         en: "Meeting place handover & a kind LET'S FINISH",
         zh: "交出碰面地点，再用 LET'S FINISH 收尾",
       },
+      shortTitle: {
+        en: "Meeting & finish",
+        zh: "碰面与收尾",
+      },
       trigger: {
         en: "Names and shared venue meeting spot appear after mutual consent",
         zh: "双向互认成功后屏幕给出双方姓名与单一碰面地标",
@@ -147,6 +145,10 @@ export const onthebeatModules: CaseModulesRecord = {
       title: {
         en: "Rigorous AI canvas & firmware verification loop",
         zh: "针对 AI 产出的多轮挑错与真机打回闭环",
+      },
+      shortTitle: {
+        en: "AI review loop",
+        zh: "AI 挑错闭环",
       },
       trigger: {
         en: "Claude Design canvas or Claude Code firmware/app build is imported for inspection",

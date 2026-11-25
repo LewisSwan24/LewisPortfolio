@@ -109,7 +109,7 @@ export default async function AboutPage() {
         >
           {isZh
             ? "斯旺西 CS 荣誉本科 (2020–24, 2:1) × 昆士兰大学交互硕士 (2025–26.11) · 布里斯班基地 · 欢迎澳新与亚太全职机会"
-            : "Swansea CS BSc (2020–24, 2:1) × UQ IxD Master (2025–Nov 2026) · Brisbane · Open to AU & APAC Design Engineering Roles"}
+            : "Swansea CS BSc (2020–24, 2:1) × UQ IxD Master (2025–Nov 2026) · Brisbane · Open to AU & APAC Interaction & Product Design Roles"}
         </p>
       </section>
 

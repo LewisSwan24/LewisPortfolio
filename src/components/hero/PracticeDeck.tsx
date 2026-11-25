@@ -389,20 +389,6 @@ export function PracticeDeck() {
               aria-hidden={!isTop}
             >
               <DeckCardContent card={c} lang={lang} />
-              {isTop && (
-                <div className="deck-hint" aria-hidden="true">
-                  <span>{t("hint")}</span>
-                  <svg width="34" height="12" viewBox="0 0 34 12" fill="none">
-                    <path
-                      d="M2 6 L32 6 M26 2 L32 6 L26 10"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              )}
             </article>
           );
         })}

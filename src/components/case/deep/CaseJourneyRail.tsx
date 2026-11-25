@@ -52,7 +52,7 @@ export function CaseJourneyRail({
         items={stages.map((stage) => ({
           id: stage.id,
           step: stage.step,
-          title: stage.title[locale],
+          title: stage.shortTitle[locale],
         }))}
         locale={locale}
       />
