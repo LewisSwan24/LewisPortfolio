@@ -32,10 +32,10 @@ export default async function CausalLineageGraphPage() {
   const graph = await buildCausalLineageGraph();
 
   return (
-    <main className="page" data-screen-label="Causal Lineage Graph · v5.7">
+    <main className="page" data-screen-label="Causal Lineage Graph">
       <section className="container idx-hero">
         <div className="label">
-          {isZh ? "STUDIO · 关联图谱 (v5.7)" : "STUDIO · LINEAGE GRAPH (v5.7)"}
+          {isZh ? "STUDIO · 关联图谱" : "STUDIO · LINEAGE GRAPH"}
         </div>
         <h1 className="h-display h1" style={{ marginTop: 14 }}>
           {isZh ? (

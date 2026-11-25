@@ -16,6 +16,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
+        with:
+          # check:claims compares blog dates with each file's first commit,
+          # which a shallow clone would report as today.
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
@@ -36,6 +40,9 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+
+      - name: Banned-claims check
+        run: pnpm check:claims
 
       - name: Unit tests
         run: pnpm test:ci

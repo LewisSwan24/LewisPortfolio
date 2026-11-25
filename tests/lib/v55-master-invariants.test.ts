@@ -110,7 +110,7 @@ describe("v5.5 Master Release Invariants", () => {
 
     expect(getListedCases()).toHaveLength(6);
     const llms = await buildLlmsTxt();
-    expect(llms).toMatch(/v5\.[5-9]|v6\.0/);
+    expect(llms).toMatch(/\(v\d+\.\d+\.\d+\)/); // exact value: site-version.test.ts
     expect(llms).toContain("/en/vault");
     expect(llms).toContain("/en/studio/replay");
     for (const hiddenSlug of UNLISTED_PROJECT_SLUGS) {
@@ -122,9 +122,7 @@ describe("v5.5 Master Release Invariants", () => {
     const enLeaves = collectLeafStrings(enMessages, "en");
     const zhLeaves = collectLeafStrings(zhMessages, "zh");
 
-    expect(enMessages.foot.meta.version).toContain("v5.5");
-    expect(zhMessages.foot.meta.version).toContain("v5.5");
-
+    
     assertCleanTranslationese(enLeaves, "en");
     assertCleanTranslationese(zhLeaves, "zh");
 
@@ -212,7 +210,7 @@ describe("v5.5 Master Release Invariants", () => {
 
   it("keeps README aligned with v5.5+ milestone", () => {
     const readme = fs.readFileSync(path.join(process.cwd(), "README.md"), "utf-8");
-    expect(readme).toMatch(/v5\.[5-9]|v6\.0/);
+    expect(readme).toMatch(/v\d+\.\d+\.\d+/); // exact value: site-version.test.ts
     expect(readme).toContain("/vault");
     expect(readme).toContain("/studio/replay");
     expect(readme).toContain("WCAG 2.2 AA");

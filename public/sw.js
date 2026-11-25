@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v6.0.0";
+const CACHE_VERSION = "v6.2.0";
 const SHELL_CACHE = `portfolio-shell-${CACHE_VERSION}`;
 const ASSET_CACHE = `portfolio-assets-${CACHE_VERSION}`;
 

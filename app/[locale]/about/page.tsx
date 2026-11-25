@@ -45,7 +45,7 @@ export default async function AboutPage() {
         leftItems: [
           "识别真实使用阻滞、误触成本与社交尴尬门槛（靠现场与日志判断，不靠凭空想象）",
           "定夺高风险交互规则（如 Walkie 实体键确认、Lamplight 默认「先不要」、Autofill 拒绝乱猜与代投）",
-          "亲自完成硬件接线、ESP32 双系统烧录隔离与 Playwright 三视口无障碍走查",
+          "MazeRunners 的硬件接线，ESP32 双系统烧录隔离的验收，以及 Playwright 三视口无障碍走查",
           "坦诚拆清「已跑通的代码/真机门禁」与「尚待开展的外部受试研究」，绝不美化实验缺口",
         ],
         rightHeading: "AI 编码工具负责提速的环节",
@@ -62,7 +62,7 @@ export default async function AboutPage() {
         leftItems: [
           "Human friction framing, interview transcript coding, and refusal-rule architecture before screens are drawn",
           "Explicit tradeoff gates across Walkie physical keys, Lamplight 'Not now' defaults, and Autofill hard Submit locks",
-          "Real hardware wiring, ESP32 dual-boot partition isolation, and Chromium 3-viewport Playwright/Axe verification",
+          "MazeRunners hardware wiring, sign-off on ESP32 dual-boot partition isolation, and Chromium 3-viewport Playwright/Axe verification",
           "Honest separation between repository/bench proofs and unmeasured outside participant testing",
         ],
         rightHeading: "Where AI coding & design tools accelerate",
@@ -254,8 +254,8 @@ export default async function AboutPage() {
             <h4>{isZh ? "前端架构与服务端边界" : "RSC Boundaries & CSS Budgets"}</h4>
             <p>
               {isZh
-                ? "使用 Next.js App Router、TypeScript 与 Zod 强校验把重内容留在服务端，并通过持续集成守住全局 CSS <= 30 kB gz 与零静态图片膨胀。"
-                : "Keep heavy bilingual case payloads inside Server Components validated by Zod, paired with CI bundle checks enforcing global CSS <= 30 kB gz and zero static bloat."}
+                ? "使用 Next.js App Router、TypeScript 与 Zod 强校验把重内容留在服务端。持续集成卡住 CSS 体积（应用 ≤ 68 kB、总计 ≤ 98 kB，gzip 后），项目素材总量不超过 12 MB。"
+                : "Keep heavy bilingual case payloads inside Server Components validated by Zod, with CI budgets holding app CSS to 68 kB and total CSS to 98 kB gzipped, and project media to 12 MB."}
             </p>
           </div>
           <div className="about-philo-item">
@@ -267,11 +267,11 @@ export default async function AboutPage() {
             </p>
           </div>
           <div className="about-philo-item">
-            <h4>{isZh ? "零幻想 AI 检索证据库" : "Deterministic BM25 Rationale Search"}</h4>
+            <h4>{isZh ? "有据可查的 AI 检索" : "Grounded Hybrid Rationale Search"}</h4>
             <p>
               {isZh
-                ? "作品集内的 AI 实验室采用确定性 BM25 证据检索与敏感信息脱敏；找不到实证就坦诚拒答，不替作者编造未测指标。"
-                : "Our AI Lab uses deterministic BM25 indexing across case decisions and essays with PII redaction—refusing ungrounded claims whenever proof is missing."}
+                ? "AI 实验室用 BM25F 加 64 维 int8 语义索引检索案例决策和专文，查询里的个人信息先脱敏。找不到证据就直说没有，不替作者编造未测指标。"
+                : "The AI Lab ranks case decisions and essays with BM25F plus a 64-dim int8 semantic index, redacts personal details from queries, and says so plainly when no evidence matches."}
             </p>
           </div>
           <div className="about-philo-item">

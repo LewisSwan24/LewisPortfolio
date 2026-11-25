@@ -23,8 +23,8 @@ export const MCP_SANDBOX_PRESETS: readonly McpSandboxPreset[] = [
       zh: "search_portfolio_evidence（混合证据检索）",
     },
     summary: {
-      en: "Hybrid BM25F + 64-dim int8 search across listed flagships, raw research vaults, patterns, and 24 essays.",
-      zh: "执行 BM25F + 64 维 int8 混合检索（仅命中 6 大公开主案、原始研档、模式与 24 篇专文）。",
+      en: "Hybrid BM25F + 64-dim int8 search across listed flagships, raw research vaults, patterns, and 30 essays.",
+      zh: "执行 BM25F + 64 维 int8 混合检索（仅命中 6 大公开主案、原始研档、模式与 30 篇专文）。",
     },
     sampleArgs: {
       query: "physical watch key approval AES-256-GCM",

@@ -1,4 +1,4 @@
-# Lewis Dong — Portfolio (`v6.0.0`)
+# Lewis Dong — Portfolio (`v6.2.0`)
 
 **Live site:** [lewisdong.vercel.app](https://lewisdong.vercel.app)
 
@@ -19,23 +19,23 @@ A statically generated, bilingual (`en` / `zh`) interaction-design practice log 
 - **12-Column Asymmetric Grid (`src/styles/v4/grid.css`)** — `.v4-editorial-grid` (`4-col` sticky rail + `8-col` studio showcase), `.v4-reading-grid` (`Sticky TOC + 68ch` blog reader), per-case `--case-mood` accent ribbons (`src/lib/cases/mood.ts`), and `Space Grotesk` + `Inter` + `Noto Sans SC` + `Geist Mono` typography.
 
 ### 2. Curated Case Studies, Tradeoffs & Evidence Boundaries
-- **6 Listed Flagships + 8 Unlisted Archives (`src/data/cases/*.ts`)** — Public listings focus on 6 core works (`walkie`, `lamplight`, `autofill`, `maze`, `onthebeat`, `grassland`), while 8 earlier coursework/archive records stay direct-link accessible with `noindex, nofollow` and strict isolation from `/`, `/resume`, `/llms.txt`, and `/search-index/{en,zh}`.
+- **6 Listed Flagships + 7 Unlisted Archives (`src/data/cases/*.ts`)** — Public listings focus on 6 core works (`walkie`, `lamplight`, `autofill`, `maze`, `onthebeat`, `grassland`), while 7 earlier coursework/archive records stay direct-link accessible with `noindex, nofollow` and strict isolation from `/`, `/resume`, `/llms.txt`, and `/search-index/{en,zh}`.
 - **Structured Design Decisions (`#design-decisions`)** — Every listed case documents `humanTension`, `rejectedAlternatives`, `chosenTradeoff`, and `residualCostOrRisk` via Zod `DesignDecisionTradeoffSchema`, accompanied by `/projects` `DecisionComparator` (`src/components/case/DecisionComparator.tsx`).
 - **Interactive Prototypes & Process Artifacts** — Lazy-loaded simulators (`WalkieWristSim`, `LamplightTriageSim`, `AutofillConfidenceSim`, `MazeContactSim`, `GrasslandRulesSim`, `OntheBeatHandshakeSim`, etc.), before/after pointer scrubbers, research quote decks, vector micro-loops, and `Shift + P` 16:9 presentation slides (`PresentationShell.tsx`).
 
 - **Case Depth Modules & Review Lens (`src/data/cases/modules/`, `src/components/case/deep/`)** — All 6 listed flagships include 5+ stage journeys with scroll progress tracking, mandatory 5-state interface matrices (`Normal / Empty / Offline / Error / Refused`), logged rework & rejection archives, Server-Only Raw Research Vaults, and `?focus=all|ux-research|systems-hardware|ai-trust` perspective switching.
-- **Archive Vault (`/vault`), Lineage Graph (`/studio/graph`), 3D Protocol Replay (`/studio/replay`), Pattern Atlas & 30-Essay Monograph Library** — 8 early/unlisted project autopsies mapped to their evolved successors (`/vault`), a server-computed 4-layer causal DAG (`/studio/graph`), millisecond hardware traces linked bidirectionally to persistent Three.js/SVG twins (`/studio/replay`), 6 executable cross-case patterns (`/patterns`), case-level invariant code diffs (`CaseCodeDiffViewer`), and 30 bilingual (`EN` / `ZH`) MDX monographs across 4 clusters.
+- **Archive Vault (`/vault`), Lineage Graph (`/studio/graph`), 3D Protocol Replay (`/studio/replay`), Pattern Atlas & 30-Essay Monograph Library** — 7 early/unlisted project autopsies mapped to their evolved successors (`/vault`), a server-computed 4-layer causal DAG (`/studio/graph`), millisecond hardware traces linked bidirectionally to persistent Three.js/SVG twins (`/studio/replay`), 6 executable cross-case patterns (`/patterns`), and 30 bilingual (`EN` / `ZH`) MDX monographs across 4 clusters.
 
 ### 3. Shared Three.js Specimen Kernel, GSAP Manuscript Choreography & `/lab` Engines
 - **Calibrated GSAP Manuscript System (`src/lib/motion/useGsapChoreography.ts`)** — Transform/opacity-only `ScrollTrigger` drafting hairlines (`ManuscriptReveal`) with `gsap.matchMedia()` breakpoints, automatic `mm.revert()` cleanup, `0ms` `prefers-reduced-motion: reduce` settle, and theme-adaptive (`#FCFBF8` Light / `#141413` Dark) vector architecture SVGs.
 - **Bilingual `/lab` Workbench (`01` → `08`)** — Token & AAA contrast inspector, GSAP paper-motion curve sandbox, 6 interaction primitives, 3D/SVG specimen coordinates, zero-PII RUM readout, **BFS deadlock-verified FSM Explorer**, **Nielsen 10 Heuristics × WCAG 2.1 Auditor**, and **Live Build & Bundle Observatory (`08`)** backed by zero-warning CSS gates.
 
 ### 4. Hybrid BM25F + Quantized Vector AI Lab, Red-Team Critiques & Dual-Market Dossiers
-- **Zero-Hallucination Rationale AI Lab (`/[locale]/ai`)** — Hybrid retrieval combining BM25F lexical fields with a precomputed 64-dim `int8` semantic index across design decisions, raw research vaults, interaction patterns, FSM/heuristic audits, honest limits, and 24 essays; paired with 4-lens Red-Team adversarial critiques (`/api/ai/critique`).
+- **Grounded Rationale AI Lab (`/[locale]/ai`)** — Hybrid retrieval combining BM25F lexical fields with a precomputed 64-dim `int8` semantic index across design decisions, raw research vaults, interaction patterns, FSM/heuristic audits, honest limits, and 30 essays; paired with 4-lens Red-Team adversarial critiques (`/api/ai/critique`).
 - **Dual-Market Resume Composer (`/[locale]/resume/compose`) & Hiring Decision Room (`/[locale]/hire`)** — Role presets + market framing switcher (`APAC AI / Big-Tech Closed-Loop` vs `ANZ / Global Engineering Critique`), bilingual A4 live preview, print PDF export, Markdown copy, and pre-built PDF role decks (`public/decks/*.pdf`).
 
 ### 5. Security Hardening, Native Primitives & Zero-PII Telemetry
-- **Layered CSP Without Breaking SSG (`next.config.js`, `middleware.ts`)** — Removes `'unsafe-eval'` from production CSP, enforces `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and `frame-ancestors 'none'`, and keeps all 79 static App Router pages `● (SSG)`. Dynamic `/brief/*` routes receive per-request cryptographic nonces (`x-request-nonce`) and `private, no-store` caching.
+- **Layered CSP Without Breaking SSG (`next.config.js`, `middleware.ts`)** — Removes `'unsafe-eval'` from production CSP, enforces `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, and `frame-ancestors 'none'`, and keeps the static App Router output `● (SSG)` (`137` pages generated). Dynamic `/brief/*` routes receive per-request cryptographic nonces (`x-request-nonce`) and `private, no-store` caching.
 - **Native Top-Layer `<dialog>` Primitives** — Keyboard shortcuts help (`?` / `⌘/` via `KeyboardShortcutsModal.tsx`), `CaseLightbox.tsx`, and `PresentationShell.tsx` use `.showModal()` with automatic `Esc` dismissal and focus restoration.
 - **Zero-PII RUM (`app/api/vitals/route.ts`, `src/lib/vitals-store.ts`)** — Strict Zod `.strict()` schema accepting only enum `metric` (`LCP`, `INP`, `CLS`, `FCP`, `TTFB`, `INTERACTION`), numeric value, and enum `routeGroup` / `interactionTarget`.
 
@@ -99,7 +99,7 @@ portfolio/
 ├── content/blog/               # Bilingual MDX essays (en + zh/)
 ├── public/decks/               # Static pre-built role A4 PDF decks
 ├── src/
-│   ├── data/cases/             # 14 modular Zod-validated case records (6 listed, 8 unlisted)
+│   ├── data/cases/             # 13 modular Zod-validated case records (6 listed, 7 unlisted)
 │   ├── lib/
 │   │   ├── ai/                 # Bilingual evidence corpus index, PII redactor & BM25 matcher
 │   │   ├── cases/              # Zod schema, registry selectors & mood color tokens
@@ -111,7 +111,7 @@ portfolio/
 │   ├── messages/               # Minimal UI-only i18n bundles (en.json, zh.json)
 │   └── styles/                 # v4/tokens.css, v4/grid.css, base, primitives, sections/*
 ├── scripts/                    # Validation, media & bundle budget checks, PDF generators
-├── tests/                      # Vitest suites (40 files / 206 unit & component tests)
+├── tests/                      # Vitest suites (58 files / 266 unit & component tests)
 └── e2e/                        # Playwright E2E + Axe WCAG 2.1 AA + CSP/CWV specs
 ```
 
@@ -121,16 +121,18 @@ portfolio/
 
 | Command | Description |
 |---|---|
-| `pnpm dev` / `pnpm build` / `pnpm start` | Next.js 15 dev server, production build (`77` pages) & server |
+| `pnpm dev` / `pnpm build` / `pnpm start` | Next.js 15 dev server, production build (`137` pages) & server |
 | `pnpm typecheck` | TypeScript strict check (`tsc --noEmit`) |
 | `pnpm lint` | ESLint 9 Flat Config (`eslint .`) |
-| `pnpm test:ci` | Vitest full run (`40` files / `205` tests) |
+| `pnpm test:ci` | Vitest full run (`58` files / `266` tests) |
 | `pnpm automation:check` | Content validation + `proof:validate` + blog/automation tests |
 | `pnpm media:optimize` / `pnpm media:check` | Optimize project assets (`<= 12.00 MB` budget check) |
 | `pnpm semantic:build` | Build quantized `64-dim int8` hybrid retrieval vector index (`src/data/ai/semantic-index.generated.json`) |
 | `pnpm budget:check` | Enforce JS chunk (`<= 70 kB`, lazy 3D `<= 160 kB`, route `<= 22 kB`) & CSS (`<= 68 kB` app / `<= 98 kB` total) |
-| `pnpm resume:pdf` | Generate EN/ZH A4 resume PDFs via Chromium |
+| `pnpm resume:pdf` | Generate EN/ZH A4 resume PDFs via Chromium (name and contact header, extractable CJK text) |
 | `pnpm decks:build` | Generate the 3 curated A4 role critique PDF decks (`public/decks/*.pdf`) |
+| `pnpm check:claims` | Fail on any claim Lewis's records rule out (`scripts/banned-claims.json`, each rule names its source); scans `src/`, `app/`, `content/`, `public/` incl. SVG, and back-dated posts. `-- --url <base>` scans the rendered site instead |
+| `pnpm verify:visual -- --base <url>` | Screenshot 18 routes × EN/ZH × desktop/mobile (72 pages), check status, overflow, broken images, console errors and banned text, record a walkthrough video |
 | `pnpm exec playwright test --project=chromium` | Full Chromium E2E, crawler, dark/mobile Axe WCAG 2.2 AA & security headers suite |
 
 ---
@@ -138,7 +140,8 @@ portfolio/
 ## Quality Gates & Testing
 
 Every push and Pull Request runs both `quality` and `e2e` jobs in [GitHub Actions CI](.github/workflows/ci.yml) on `ubuntu-24.04` (Node 22, Chromium):
-- **Unit & Integration**: `40` test files / `205` tests covering Zod schemas, WCAG AAA relative-luminance contrast math, PII redaction, BM25 hydration, QR matrix generation, zero-PII vitals validation, and RTL component interactions.
+- **Claims gate**: `pnpm check:claims` fails the build on any claim Lewis's records rule out; the job checks out full history so blog dates can be compared with each post's first commit.
+- **Unit & Integration**: `58` test files / `266` tests covering Zod schemas, WCAG AAA relative-luminance contrast math, PII redaction, BM25 hydration, QR matrix generation, zero-PII vitals validation, and RTL component interactions.
 - **E2E & Accessibility**: Automated Chromium crawl across all public EN/ZH routes, light/dark/375px `@axe-core/playwright` audits, native `<dialog>` focus traps, interactive simulator state machines, WebGL silent fallback, and `0` `securitypolicyviolation` checks.
 
 ---

@@ -68,7 +68,7 @@ describe("v6.0 Platform GA Release Invariants", () => {
     const swPath = path.join(ROOT, "public", "sw.js");
     expect(fs.existsSync(swPath)).toBe(true);
     const sw = fs.readFileSync(swPath, "utf8");
-    expect(sw).toContain("v6.0.0");
+    expect(sw).toMatch(/CACHE_VERSION = "v\d+\.\d+\.\d+"/); // exact value: site-version.test.ts
     expect(sw).toContain("/api/");
     expect(sw).toContain("/brief/");
 
@@ -90,11 +90,11 @@ describe("v6.0 Platform GA Release Invariants", () => {
 
   it("aligns README, /llms.txt, /llms-full.txt & MCP manifest at v6.0.0 with zero unlisted leaks", async () => {
     const readme = fs.readFileSync(path.join(ROOT, "README.md"), "utf8");
-    expect(readme).toContain("v6.0.0");
+    expect(readme).toMatch(/v\d+\.\d+\.\d+/);
     expect(readme).toContain("30");
 
     const [llms, llmsFull] = await Promise.all([buildLlmsTxt(), buildLlmsFullTxt()]);
-    expect(llms).toContain("v6.0.0");
+    expect(llms).toMatch(/\(v\d+\.\d+\.\d+\)/);
     expect(llms).toContain("30 bilingual");
     expect(llmsFull.length).toBeGreaterThan(llms.length);
 
