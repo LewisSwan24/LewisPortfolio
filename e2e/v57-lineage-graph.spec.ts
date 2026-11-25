@@ -7,12 +7,12 @@ test.describe("v5.7 Causal Lineage Knowledge Graph (/studio/graph)", () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/en/studio/graph", { waitUntil: "networkidle" });
 
-    await expect(page.getByTestId("graph-node-vault:vigil")).toHaveAttribute("aria-pressed", "true");
-    await expect(page.getByTestId("graph-inspector")).toContainText("Vigil");
+    await expect(page.getByTestId("graph-node-vault:fencepost")).toHaveAttribute("aria-pressed", "true");
+    await expect(page.getByTestId("graph-inspector")).toContainText("Fencepost");
     await expect(page.getByTestId("graph-node-flagship:autofill")).toHaveAttribute("data-state", "connected");
 
     // Keyboard arrow-right jumps layer cleanly
-    await page.getByTestId("graph-node-vault:vigil").focus();
+    await page.getByTestId("graph-node-vault:fencepost").focus();
     await page.keyboard.press("ArrowRight");
     await expect(page.getByTestId("graph-inspector")).toContainText(/flagship/i);
 

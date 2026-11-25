@@ -28,7 +28,7 @@ test.describe("v5.9 Defense Arena, Code Diff Inspector & Lab 08 Telemetry Observ
     expect(errors).toEqual([]);
   });
 
-  test("renders Lab Section 08 Bundle Observatory tabs and Case Code Diff Viewer safely across dark mode & mobile 375px", async ({
+  test("renders Lab Section 08 Bundle Observatory tabs and the Walkie case safely across dark mode & mobile 375px", async ({
     page,
   }) => {
     const errors: string[] = [];
@@ -49,9 +49,8 @@ test.describe("v5.9 Defense Arena, Code Diff Inspector & Lab 08 Telemetry Observ
     await page.addInitScript(() => localStorage.setItem("portfolio-theme", "dark"));
     await page.goto("/zh/projects/walkie", { waitUntil: "networkidle" });
 
-    const diffViewer = page.getByTestId("case-code-diff-viewer");
-    await expect(diffViewer).toBeVisible();
-    await page.getByTestId("diff-mode-safe").click();
+    // The code-diff viewer was removed on 2026-11-25 (its files did not exist in any repo).
+    await expect(page.getByTestId("case-code-diff-viewer")).toHaveCount(0);
 
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - window.innerWidth

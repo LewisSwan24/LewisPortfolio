@@ -41,14 +41,14 @@ test.describe("v5.1 Raw Research Vault, UQ/Swansea Education & Archive Vault", (
     expect(blocking).toEqual([]);
   });
 
-  test("renders bilingual Archive Vault (/vault) with 8 autopsies, lineage filtering, Dark #141413 & Mobile 375px", async ({
+  test("renders bilingual Archive Vault (/vault) with 7 autopsies, lineage filtering, Dark #141413 & Mobile 375px", async ({
     page,
   }) => {
     for (const route of ["/en/vault", "/zh/vault"]) {
       await page.setViewportSize({ width: 1440, height: 900 });
       await page.goto(route, { waitUntil: "networkidle" });
       await expect(page.getByTestId("vault-lineage-map")).toBeVisible();
-      await expect(page.getByTestId("vault-autopsy-grid").locator("article")).toHaveCount(8);
+      await expect(page.getByTestId("vault-autopsy-grid").locator("article")).toHaveCount(7);
 
       const axe = await new AxeBuilder({ page })
         .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
@@ -59,15 +59,17 @@ test.describe("v5.1 Raw Research Vault, UQ/Swansea Education & Archive Vault", (
 
     // Filter by category and lineage successor
     await page.goto("/en/vault", { waitUntil: "networkidle" });
-    await page.getByTestId("vault-cat-abandoned").click();
-    await expect(page.getByTestId("vault-card-vigil")).toBeVisible();
+    // Vigil (the only "abandoned" record) was removed on 2026-11-25; scoped-out now holds Fencepost alone.
+    await page.getByTestId("vault-cat-scoped-out").click();
+    await expect(page.getByTestId("vault-card-fencepost")).toBeVisible();
     await expect(page.getByTestId("vault-autopsy-grid").locator("article")).toHaveCount(1);
 
     await page.getByTestId("vault-cat-all").click();
     await page.getByTestId("lineage-filter-autofill").click();
-    await expect(page.getByTestId("vault-card-vigil")).toBeVisible();
     await expect(page.getByTestId("vault-card-fencepost")).toBeVisible();
     await expect(page.getByTestId("vault-card-pricewise")).toBeVisible();
+    await expect(page.getByTestId("vault-card-spectra")).toBeVisible();
+    await expect(page.getByTestId("vault-autopsy-grid").locator("article")).toHaveCount(4);
 
     // Dark mode check
     const toggle = page.getByRole("button", { name: /Switch theme to dark mode/i });

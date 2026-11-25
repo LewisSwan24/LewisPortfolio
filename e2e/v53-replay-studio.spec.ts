@@ -12,7 +12,7 @@ test.describe("v5.3 Hardware & Protocol Frame Replay Studio", () => {
     // Step via keyboard ArrowRight on stage
     await page.getByTestId("replay-stage").focus();
     await page.keyboard.press("ArrowRight");
-    await expect(page.getByTestId("replay-active-state")).toContainText("HELLO 30s Physical Key Hold");
+    await expect(page.getByTestId("replay-active-state")).toContainText("HELLO 30s Physical Key Press");
 
     // Inject fault and inspect deterministic fault frame
     await page.getByTestId("replay-fault-toggle").click();
