@@ -1,37 +1,6 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Grounded Design-Defense AI Navigator & Essay #2", () => {
-  test("StudioAssistantDrawer opens from floating pill, returns grounded Walkie rationale, and holds 0px overflow at 375px", async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto("/en", { waitUntil: "networkidle" });
-
-    const pill = page.getByRole("button", { name: /Rationale AI/i });
-    await expect(pill).toBeVisible();
-    await pill.click();
-
-    const dialog = page.getByRole("dialog", { name: /Design Rationale Navigator/i });
-    await expect(dialog).toBeVisible();
-
-    await dialog
-      .getByRole("button", { name: /Why physical watch buttons instead of hands-free voice/i })
-      .click();
-
-    await expect(dialog.getByText("Walkie", { exact: true })).toBeVisible({ timeout: 10000 });
-    await expect(
-      dialog.getByRole("link", { name: /Inspect in case study|Read source essay|Jump to rationale/i }).first()
-    ).toHaveAttribute(
-      "href",
-      /\/projects\/walkie#/
-    );
-
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - window.innerWidth
-    );
-    expect(overflow).toBeLessThanOrEqual(0);
-  });
-
   test("/hire JdMatcherPanel scrubs PII locally, cites static proof, and exports a matched tailored brief", async ({
     page,
   }) => {

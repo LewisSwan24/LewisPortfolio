@@ -12,7 +12,6 @@ import { PageTransition } from "@/components/effects/PageTransition";
 import { PerformanceMonitor } from "@/components/providers/PerformanceMonitor";
 import { OfflineShellRegister } from "@/components/providers/OfflineShellRegister";
 import { LazyKeyboardShortcuts } from "@/components/providers/LazyKeyboardShortcuts";
-import { StudioAssistantDrawer } from "@/components/command/StudioAssistantDrawer";
 import { SearchProvider } from "@/components/SearchProvider";
 import type { CaseLocale } from "@/lib/cases/registry";
 import { Analytics } from "@vercel/analytics/react";
@@ -96,7 +95,6 @@ export default async function LocaleLayout({
             <Footer />
           </div>
           <BackToTop />
-          <StudioAssistantDrawer locale={caseLocale} />
           <LazyKeyboardShortcuts />
           <PerformanceMonitor />
           <OfflineShellRegister />

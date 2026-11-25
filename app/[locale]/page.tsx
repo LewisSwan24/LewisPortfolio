@@ -3,7 +3,6 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { TransitionLink } from "@/components/navigation/TransitionLink";
 import { PracticeDeck } from "@/components/hero/PracticeDeck";
-import { FeaturedDeck } from "@/components/home/FeaturedDeck";
 import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
 import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
 import { VizMaze } from "@/components/viz/ProjectViz";
@@ -35,23 +34,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 type ProjKey = CurrentProjectSlug;
 
-interface FeatItemProps {
+function FeatCard({ n, k, href, priority = false, viz, t, locale, externalLinks }: {
+  externalLinks: ReadonlyArray<{ label: string; href: string; external?: boolean }>;
   n: string;
-  k: ProjKey;
+  k: CurrentProjectSlug;
   href: string;
-  flip?: boolean;
   priority?: boolean;
-  /** Only shown when the case has no cover image. */
   viz?: React.ReactNode;
   t: Awaited<ReturnType<typeof getTranslations>>;
   locale: ProofLocale;
-}
-
-function FeatItem({ n, k, href, flip, priority = false, viz, t, locale, externalLinks }: FeatItemProps & {
-  externalLinks: ReadonlyArray<{ label: string; href: string; external?: boolean }>;
 }) {
-  // The real artefact leads where one exists; the concept diagram stands in
-  // only for a case that has no screenshot or photo of its own.
   const cover = getProjectCover(k);
   const card = getCaseCard(k, locale);
   const localizedExternalLabel = (rawLabel: string) => {
@@ -62,47 +54,33 @@ function FeatItem({ n, k, href, flip, priority = false, viz, t, locale, external
     return rawLabel;
   };
   return (
-    <article className={`feat-item ${flip ? "flip" : ""}`}>
-      <TransitionLink
-        className={`feat-visual${cover ? " has-cover" : ""}`}
-        href={href}
-        data-vt-media
-      >
-        <span className="num" aria-hidden="true">{n}</span>
-        {cover ? (
-          <ProjectCoverImage
-            cover={cover}
-            locale={locale}
-            sizes="(max-width: 960px) 100vw, 600px"
-            priority={priority}
-          />
-        ) : (
-          viz
-        )}
+    <article className="feat-card">
+      <TransitionLink href={href} className="feat-card-link" data-vt-media>
+        <span className={`feat-card-visual${cover ? " has-cover" : ""}`}>
+          <span className="num" aria-hidden="true">{n}</span>
+          {cover ? (
+            <ProjectCoverImage
+              cover={cover}
+              locale={locale}
+              sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 420px"
+              priority={priority}
+            />
+          ) : (
+            viz
+          )}
+        </span>
+        <span className="eyebrow">{card.kicker}</span>
+        <span className="feat-card-title" data-vt-title>{card.title}</span>
+        <span className="feat-card-sub">{card.sub}</span>
+        <span className="feat-card-meta">
+          {card.role} · {card.date}
+        </span>
+        <span className="feat-card-cta">
+          {t("common.viewCaseStudy")} <span aria-hidden="true">→</span>
+        </span>
       </TransitionLink>
-      <div className="feat-body">
-        <div className="eyebrow">{card.kicker}</div>
-        <h3 data-vt-title>
-          <TransitionLink href={href} className="feat-title-link">
-            {card.title}
-          </TransitionLink>
-        </h3>
-        <p className="sub">{card.sub}</p>
-        <dl className="feat-meta">
-          <dt>{t("cs.role")}</dt>
-          <dd>{card.role}</dd>
-          <dt>{t("cs.time")}</dt>
-          <dd>{card.date}</dd>
-        </dl>
-        <div className="feat-metrics">
-          <span className="m">{card.m1}</span>
-          <span className="m">{card.m2}</span>
-          <span className="m">{card.m3}</span>
-        </div>
+      {externalLinks.length > 0 ? (
         <div className="feat-actions">
-          <TransitionLink href={href} className="feat-cta">
-            {t("common.viewCaseStudy")} <span>→</span>
-          </TransitionLink>
           {externalLinks.map((ext) => (
             <a
               key={ext.href}
@@ -115,7 +93,7 @@ function FeatItem({ n, k, href, flip, priority = false, viz, t, locale, external
             </a>
           ))}
         </div>
-      </div>
+      ) : null}
     </article>
   );
 }
@@ -136,9 +114,9 @@ export default async function HomePage() {
           <div className="hero-text v4-span-5">
             <div className="eyebrow">{t("hero.eyebrow")}</div>
             <h1 className="h-display h1">
-              {t("hero.headline.a")}{" "}
+              {t.rich("hero.headline.a", { nobr: (c) => <span className="nobr">{c}</span> })}{" "}
               <br />{" "}
-              <em>{t("hero.headline.b")}</em>{" "}
+              <em>{t.rich("hero.headline.b", { nobr: (c) => <span className="nobr">{c}</span> })}</em>{" "}
               <br />{" "}
               {t("hero.headline.c")}
             </h1>
@@ -202,39 +180,24 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        {/* One case at a time, stacked cleanly so crawlers get all featured entries
-            without turning the homepage into an endless vertical wall. */}
-        <FeaturedDeck
-          labels={{
-            prev: t("feat.deckPrev"),
-            next: t("feat.deckNext"),
-            kbd: t("feat.deckKbd"),
-          }}
-          items={getFeaturedDeckCases().map((record, index) => {
-            const n = String(index + 1).padStart(2, "0");
-            const fallbackViz =
-              record.slug === "maze" ? (
-                <VizMaze locale={proofLocale} />
-              ) : undefined;
-            return {
-              key: record.slug,
-              n,
-              node: (
-                <FeatItem
-                  n={n}
-                  k={record.slug}
-                  href={`/projects/${record.slug}`}
-                  flip={index % 2 === 1}
-                  priority={index === 0}
-                  t={t}
-                  locale={proofLocale}
-                  viz={fallbackViz}
-                  externalLinks={record.links.filter((l) => l.external)}
-                />
-              ),
-            };
-          })}
-        />
+        {/* v6.4: all six cases at once. The carousel showed one at a time, so a
+            recruiter needed five clicks to see what Lewis has built. */}
+        <ol className="feat-grid">
+          {getFeaturedDeckCases().map((record, index) => (
+            <li key={record.slug}>
+              <FeatCard
+                n={String(index + 1).padStart(2, "0")}
+                k={record.slug}
+                href={`/projects/${record.slug}`}
+                priority={index < 3}
+                t={t}
+                locale={proofLocale}
+                viz={record.slug === "maze" ? <VizMaze locale={proofLocale} /> : undefined}
+                externalLinks={record.links.filter((l) => l.external)}
+              />
+            </li>
+          ))}
+        </ol>
       </section>
 
       <SpecimenAxisCanvas locale={proofLocale} />

@@ -50,7 +50,7 @@ test.describe("Portfolio Homepage", () => {
         await expect(page.locator(".hiring-role-fit")).toHaveCount(0);
         await expect(page.locator(".hero-hire-link")).toHaveAttribute("href", "/hire");
         await expect(page.locator(".hero-pdf-link")).toHaveAttribute("href", "/resume/lewis-dong-resume-en.pdf");
-        await expect(page.locator(".feat-deck")).toBeVisible();
+        await expect(page.locator(".feat-grid")).toBeVisible();
     });
 
     test("should have working navigation", async ({ page }) => {
