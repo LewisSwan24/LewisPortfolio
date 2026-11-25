@@ -57,6 +57,14 @@ const UNLISTED_SLUGS = [
   "pricewise",
 ];
 
+// /resume carries the resume Lewis sends word for word, and that resume links the UQ
+// Connect case. Lewis chose on 2026-11-25 to keep that link on /resume only; every other
+// public page still must not link an unlisted case.
+const ALLOWED_UNLISTED_BY_ROUTE: Record<string, readonly string[]> = {
+  "/en/resume": ["connect"],
+  "/zh/resume": ["connect"],
+};
+
 test.describe("Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
   test("crawls all public routes with zero console/page errors, valid anchors, and no unlisted or retired leaks", async ({
     page,
@@ -104,6 +112,7 @@ test.describe("Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
 
       for (const href of [...mainHrefs, ...headerHrefs]) {
         for (const hidden of UNLISTED_SLUGS) {
+          if (ALLOWED_UNLISTED_BY_ROUTE[route]?.includes(hidden)) continue;
           expect(href, `Unlisted leak (${hidden}) found on ${route}`).not.toContain(
             `/projects/${hidden}`
           );
