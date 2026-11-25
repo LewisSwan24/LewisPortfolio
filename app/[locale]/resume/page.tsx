@@ -116,7 +116,7 @@ const COPY = {
       { name: "Walkie", text: "Solo, 2026 · wrist-worn voice remote for Claude Code (M5StickS3), approving tool permissions directly on the wrist. The full flow works over USB.", href: "https://github.com/LewisSwan24/walkie", linkLabel: "github.com/LewisSwan24/walkie" },
     ] satisfies Row[],
     courseRows: [
-      { name: "DECO7381 capstone", text: "Clipyard, a shared workspace for small video teams with a web app and Discord bot. I contributed 17 merged pull requests covering sign-in and workspace membership, video uploads to Google Drive, asset versions and variations, archive and restore, and end-to-end tests. The team ran six usability sessions in October, and I moderated some of them. The team chose not to deploy it." },
+      { name: "DECO7381 capstone", text: "Clipyard, a shared workspace for small video teams with a web app and Discord bot. I contributed 17 merged pull requests covering sign-in and workspace membership, video uploads to Google Drive, asset versions and variations, archive and restore, and end-to-end tests. The team ran six usability sessions in October, and I moderated some of them. The team chose not to deploy it. Course grade: High Distinction (7/7)." },
       { name: "DECO6500 Advanced HCI", text: "TidyMint, a team evaluation study on the unseen half of housework (SDG 5.4): noticing what needs doing, remembering when, knowing what “done” means. 20 participants, task sessions, NASA-TLX and self-report items. I built the prototype, wrote the consent materials and moderated some of the sessions. For the individual A3 I analysed nine published household studies and framed the findings as hypotheses." },
       { name: "Completed", text: "Interaction Design Studio (produced MazeRunners) · Physical Computing (sensor tuning, haptic, light and sound feedback)" },
     ] satisfies Row[],
@@ -217,7 +217,7 @@ const COPY = {
       { name: "Walkie", text: "个人项目，2026 · 腕戴式 Claude Code 语音遥控器（M5StickS3），可在手腕上审批工具权限。USB 连接下已跑通全流程。", href: "https://github.com/LewisSwan24/walkie", linkLabel: "github.com/LewisSwan24/walkie" },
     ] satisfies Row[],
     courseRows: [
-      { name: "DECO7381 毕业设计", text: "团队产品 Clipyard，面向小型视频团队的共享工作区，含网页应用和 Discord 机器人。我合入 17 个 PR，涵盖登录与工作区成员、视频直传 Google Drive、素材版本与变体、归档与恢复及端到端测试。团队 10 月做了 6 场可用性测试，其中几场由我主持。团队决定不上线部署。" },
+      { name: "DECO7381 毕业设计", text: "团队产品 Clipyard，面向小型视频团队的共享工作区，含网页应用和 Discord 机器人。我合入 17 个 PR，涵盖登录与工作区成员、视频直传 Google Drive、素材版本与变体、归档与恢复及端到端测试。团队 10 月做了 6 场可用性测试，其中几场由我主持。团队决定不上线部署。课程成绩 HD（7 分制满分）。" },
       { name: "DECO6500 高阶人机交互", text: "团队评估研究 TidyMint，关注家务中看不见的那一半：留意到该做、记得何时做、知道怎样算做完（SDG 5.4）。共 20 位参与者，采用任务测试、NASA-TLX 和自评题。我完成原型与知情同意材料，并主持部分测试。个人作业 A3 分析了 9 篇已发表家庭研究，结论定性为假设。" },
       { name: "已修", text: "交互设计工作室（产出 MazeRunners）、物理计算（传感器调校、触觉与声光反馈）" },
     ] satisfies Row[],
