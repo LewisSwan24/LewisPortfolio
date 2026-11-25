@@ -7,8 +7,9 @@
 .hero-text .h-display {
   max-width: 11em;
   margin-bottom: var(--s-4);
-  /* v6.5: was up to 86px over six lines, which pushed the CTAs and PDF CV below the fold (review C05). */
-  font-size: clamp(40px, 4.2vw, 60px);
+  /* v6.5: was up to 86px over six lines, which pushed the CTAs and PDF CV below the fold (review C05).
+     54px, not 60: at 60 "working software." filled 524 of 526px and wrapped on CI fonts. */
+  font-size: clamp(40px, 3.8vw, 54px);
   line-height: 1.02;
   letter-spacing: 0;
   overflow-wrap: anywhere;
