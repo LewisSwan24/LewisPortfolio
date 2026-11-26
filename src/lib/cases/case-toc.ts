@@ -52,15 +52,19 @@ export function resolveCaseEvidenceLink(
   {
     currentSlug,
     sectionLabels,
+    sectionAliases = {},
     locale,
   }: {
     currentSlug: string;
     sectionLabels: Readonly<Record<string, string>>;
+    /** Old section ids that now live under another id on this page. */
+    sectionAliases?: Readonly<Record<string, string>>;
     locale: "en" | "zh";
   }
 ): CaseEvidenceLink {
   const match = /^\/projects\/([^#?/]+)(?:#(.+))?$/.exec(href);
-  const sectionId = match?.[2];
+  const rawId = match?.[2];
+  const sectionId = rawId ? (sectionAliases[rawId] ?? rawId) : undefined;
 
   if (match && match[1] === currentSlug && sectionId) {
     const name = sectionLabels[sectionId] ?? sectionId;

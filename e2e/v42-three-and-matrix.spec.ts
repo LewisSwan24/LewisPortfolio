@@ -53,7 +53,8 @@ test.describe("Shared Three.js Specimen Kernel, DecisionComparator & Essay #1", 
     await grassSim.getByRole("button", { name: /Box-select & Scout/i }).click();
     await expect(grassSim.getByRole("status")).toContainText(/Mission 4 uses the exact same/i);
 
-    await page.goto("/en/projects/onthebeat", { waitUntil: "networkidle" });
+    // v6.6: the hardware scene sits in the collapsed appendix; the hash opens it.
+    await page.goto("/en/projects/onthebeat#for-interviewers", { waitUntil: "networkidle" });
     const hardwareSvg = page.getByTestId("hardware-field-svg");
     await expect(hardwareSvg).toBeVisible();
 
@@ -113,7 +114,7 @@ test.describe("Shared Three.js Specimen Kernel, DecisionComparator & Essay #1", 
     await expect(page.getByTestId("specimen-svg-baseline")).toBeVisible();
     await expect(page.getByText(/2D vector specimen/i)).toBeVisible();
 
-    await page.goto("/en/projects/walkie", { waitUntil: "networkidle" });
+    await page.goto("/en/projects/walkie#for-interviewers", { waitUntil: "networkidle" });
     await expect(page.getByTestId("hardware-field-svg")).toBeVisible();
 
     expect(pageErrors).toEqual([]);

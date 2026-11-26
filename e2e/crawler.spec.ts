@@ -223,13 +223,10 @@ test.describe("Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
     const walkieTab = page.getByRole("tab", { name: /Walkie/i });
     await expect(walkieTab).toHaveAttribute("aria-selected", "true");
 
+    // v6.6: the companion site is a text link under "Try it yourself", not a second embed.
     await page.goto("/en/projects/lamplight", { waitUntil: "networkidle" });
-    const embedBtn = page.getByRole("button", { name: /Load Lamplight Nook site/i });
-    await expect(embedBtn).toBeVisible();
-    await embedBtn.click();
-    await expect(page.locator(".case-demo iframe")).toHaveAttribute(
-      "src",
-      "https://lewisswan24.github.io/lamplight-nook-site/"
-    );
+    await expect(
+      page.locator("#interactive-demo a[href='https://lewisswan24.github.io/lamplight-nook-site/']")
+    ).toBeVisible();
   });
 });

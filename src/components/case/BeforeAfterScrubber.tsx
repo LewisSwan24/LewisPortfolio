@@ -8,6 +8,8 @@ import { ProcessWireframe } from "./wireframes/ProcessWireframes";
 interface BeforeAfterScrubberProps {
   data: CaseScrubber;
   locale: "en" | "zh";
+  /** Inside the case appendix this sits one heading level down. */
+  headingLevel?: 2 | 3 | 4;
 }
 
 const isRasterSrc = (src: string) => /\.(?:jpe?g|png|webp|avif)$/i.test(src);
@@ -19,7 +21,8 @@ export function isPhotoPair(data: CaseScrubber): boolean {
   );
 }
 
-export function BeforeAfterScrubber({ data, locale }: BeforeAfterScrubberProps) {
+export function BeforeAfterScrubber({ data, locale, headingLevel = 2 }: BeforeAfterScrubberProps) {
+  const HeadingTag = headingLevel === 4 ? "h4" : headingLevel === 3 ? "h3" : "h2";
   const isZh = locale === "zh";
   const headingId = useId();
   const trackRef = useRef<HTMLDivElement>(null);
@@ -88,7 +91,7 @@ export function BeforeAfterScrubber({ data, locale }: BeforeAfterScrubberProps) 
   const head = (
     <div className="case-sim-head-copy">
       <div className="label">{data.eyebrow[locale]}</div>
-      <h2 id={headingId}>{data.title[locale]}</h2>
+      <HeadingTag id={headingId}>{data.title[locale]}</HeadingTag>
       <p className="case-sim-prompt">{data.summary[locale]}</p>
     </div>
   );

@@ -7,9 +7,14 @@ import { getSimulatorComponent } from "./simulators/registry";
 interface CaseSimulatorFrameProps {
   demo: CaseInteractiveDemo;
   locale: "en" | "zh";
+  /**
+   * Story-first case pages (v6.6) put the frame inside their own "Try it
+   * yourself" section: no section wrapper, heading or takeaway of its own.
+   */
+  embedded?: boolean;
 }
 
-export function CaseSimulatorFrame({ demo, locale }: CaseSimulatorFrameProps) {
+export function CaseSimulatorFrame({ demo, locale, embedded = false }: CaseSimulatorFrameProps) {
   const isZh = locale === "zh";
   const headingId = useId();
   const stageRef = useRef<HTMLDivElement>(null);
@@ -76,18 +81,12 @@ export function CaseSimulatorFrame({ demo, locale }: CaseSimulatorFrameProps) {
         unavailable: "This interactive simulator is scheduled for the next milestone.",
       };
 
-  return (
-    <section
-      id="interactive-demo"
-      className="container case-sim-section"
-      aria-labelledby={headingId}
-      data-simulator-id={demo.id}
-    >
+  const shell = (
       <div className="case-sim-shell">
         <header className="case-sim-head">
           <div className="case-sim-head-copy">
-            <div className="label">{demo.eyebrow[locale]}</div>
-            <h2 id={headingId}>{demo.title[locale]}</h2>
+            {!embedded && <div className="label">{demo.eyebrow[locale]}</div>}
+            {!embedded && <h2 id={headingId}>{demo.title[locale]}</h2>}
             <p className="case-sim-prompt">{demo.prompt[locale]}</p>
           </div>
           <div className="case-sim-head-actions">
@@ -144,11 +143,31 @@ export function CaseSimulatorFrame({ demo, locale }: CaseSimulatorFrameProps) {
           <span>{statusMessage || copy.idleStatus}</span>
         </div>
 
-        <footer className="case-sim-takeaway">
-          <span className="case-sim-takeaway-label">{copy.takeawayLabel}</span>
-          <p>{demo.takeaway[locale]}</p>
-        </footer>
+        {!embedded && (
+          <footer className="case-sim-takeaway">
+            <span className="case-sim-takeaway-label">{copy.takeawayLabel}</span>
+            <p>{demo.takeaway[locale]}</p>
+          </footer>
+        )}
       </div>
+  );
+
+  if (embedded) {
+    return (
+      <div className="case-sim-section case-sim-section--embedded" data-simulator-id={demo.id}>
+        {shell}
+      </div>
+    );
+  }
+
+  return (
+    <section
+      id="interactive-demo"
+      className="container case-sim-section"
+      aria-labelledby={headingId}
+      data-simulator-id={demo.id}
+    >
+      {shell}
     </section>
   );
 }

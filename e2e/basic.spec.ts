@@ -132,8 +132,9 @@ test.describe("Projects Page", () => {
         await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
         // exact: a case figcaption also contains these phrases, which trips
         // Playwright strict mode on a substring match.
-        await expect(page.getByText("Case summary", { exact: true })).toBeVisible();
-        await expect(page.getByText("What I would do next", { exact: true })).toBeVisible();
+        // v6.6 story layout: the first screen states the problem and the result.
+        await expect(page.locator("[data-story-problem]")).toBeVisible();
+        await expect(page.locator("[data-story-result]")).toBeVisible();
     });
 
     test("project detail should have breadcrumb navigation", async ({ page }) => {
@@ -190,15 +191,14 @@ test.describe("Projects Page", () => {
 
     // The showcase pulls a 31 MB audio track and three videos, so the iframe
     // must stay unmounted until someone actually asks for it.
-    test("maze demo should load only on click", async ({ page }) => {
+    // v6.6: one simulator per case; the maze showcase became a plain text
+    // link, so the heavy iframe is never mounted on the case page.
+    test("maze showcase is a link, never an eager iframe", async ({ page }) => {
         await page.goto("/projects/maze");
 
-        const demo = page.locator(".case-demo");
-        await expect(demo).toBeVisible();
-        await expect(demo.locator("iframe")).toHaveCount(0);
-
-        await demo.locator(".case-demo-poster").click();
-        await expect(demo.locator("iframe")).toHaveAttribute("src", /maze-runners\.vercel\.app/);
+        await expect(page.locator(".case-demo")).toHaveCount(0);
+        await expect(page.locator("iframe[src*='maze-runners.vercel.app']")).toHaveCount(0);
+        await expect(page.locator("a[href='https://maze-runners.vercel.app']").first()).toBeVisible();
     });
 
     test("cases without a playable build should not show a demo", async ({ page }) => {
@@ -306,9 +306,10 @@ test.describe("Projects Page", () => {
     test("on the beat detail should state who wrote the code and what is untested", async ({ page }) => {
         await page.goto("/projects/onthebeat");
 
-        await expect(page.locator(".case-limits").getByText(/Outcome limits/i)).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/written and flashed by Claude Code/i).first()).toBeVisible();
-        await expect(page.locator("#long-form").getByText(/no record of any participant testing/i).first()).toBeVisible();
+        // v6.6 story layout: limits sit under "Results, limits and next steps".
+        await expect(page.locator("#outcome-limits h2")).toBeVisible();
+        await expect(page.locator("main").getByText(/written and flashed by Claude Code/i).first()).toBeVisible();
+        await expect(page.locator("main").getByText(/no record of any participant testing/i).first()).toBeVisible();
         await expect(page.locator(".case-build-evidence img")).toHaveCount(3);
     });
 
@@ -316,8 +317,8 @@ test.describe("Projects Page", () => {
         for (const slug of ["lamplight", "autofill"]) {
             await page.goto(`/projects/${slug}`);
             await expect(page.locator(".cs-cover img")).toHaveCount(1);
-            await expect(page.locator("#long-form").getByText(/written by Claude Code/i).first()).toBeVisible();
-            await expect(page.locator("#long-form").getByText(/no one but me|the only user on record/i).first()).toBeVisible();
+            await expect(page.locator("main").getByText(/written by Claude Code/i).first()).toBeVisible();
+            await expect(page.locator("main").getByText(/no one but me|the only user on record/i).first()).toBeVisible();
         }
     });
 
@@ -326,7 +327,7 @@ test.describe("Projects Page", () => {
 
         await expect(page.locator(".cs-cover img")).toHaveCount(1);
         await expect(page.locator(".case-build-evidence img")).toHaveCount(6);
-        await expect(page.locator("#long-form").getByText(/no structured usability testing with outside players/i).first()).toBeVisible();
+        await expect(page.locator("main").getByText(/no structured usability testing with outside players/i).first()).toBeVisible();
         await expect(page.locator("a[href='https://onon-wolf-iron-tide.vercel.app']").first()).toBeVisible();
     });
 
@@ -787,14 +788,14 @@ test.describe("V3 Flagship Routes & Role Lens", () => {
         await expect(grid.locator("a[href*='/projects/autofill']")).toBeVisible();
     });
 
-    test("all 6 listed cases render Design Decisions & Tradeoffs right after Summary in EN and ZH", async ({ page }) => {
+    test("all 6 listed cases render three decisions in EN and ZH", async ({ page }) => {
         test.setTimeout(120_000);
         for (const slug of ["walkie", "lamplight", "autofill", "maze", "onthebeat", "grassland"]) {
             for (const url of [`/projects/${slug}`, `/zh/projects/${slug}`]) {
                 await gotoStable(page, url);
                 await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
                 await expect(page.locator("#design-decisions")).toBeAttached();
-                await expect(page.locator(".case-decision-card")).toHaveCount(3);
+                await expect(page.locator(".cs-story-decision")).toHaveCount(3);
             }
         }
     });

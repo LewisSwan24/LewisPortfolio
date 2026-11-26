@@ -6,9 +6,12 @@ import type { CaseQuoteCategory, CaseResearchQuotes } from "@/lib/cases/schema";
 interface ResearchQuoteDeckProps {
   data: CaseResearchQuotes;
   locale: "en" | "zh";
+  /** Inside the case appendix this sits one heading level down. */
+  headingLevel?: 2 | 3 | 4;
 }
 
-export function ResearchQuoteDeck({ data, locale }: ResearchQuoteDeckProps) {
+export function ResearchQuoteDeck({ data, locale, headingLevel = 2 }: ResearchQuoteDeckProps) {
+  const HeadingTag = headingLevel === 4 ? "h4" : headingLevel === 3 ? "h3" : "h2";
   const isZh = locale === "zh";
   const headingId = useId();
   const [selectedId, setSelectedId] = useState<string>(data.items[0]?.id ?? "");
@@ -29,7 +32,7 @@ export function ResearchQuoteDeck({ data, locale }: ResearchQuoteDeckProps) {
       <div className="case-sim-head">
         <div className="case-sim-head-copy">
           <div className="label">{data.eyebrow[locale]}</div>
-          <h2 id={headingId}>{data.title[locale]}</h2>
+          <HeadingTag id={headingId}>{data.title[locale]}</HeadingTag>
         </div>
       </div>
 

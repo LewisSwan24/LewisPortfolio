@@ -1,4 +1,5 @@
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
@@ -50,6 +51,21 @@ import { RawResearchVault } from "@/components/case/deep/RawResearchVault";
 import { RedTeamCritiquePanel } from "@/components/ai/RedTeamCritiquePanel";
 import deepStyles from "@/components/case/deep/cases-deep.module.css";
 import { WalkieTactileSchematicSvg } from "@/components/editorial/CapabilityDiagrams";
+import { getCaseStory } from "@/data/cases/story";
+import { CaseAppendixHashOpener } from "@/components/case/story/CaseAppendixHashOpener";
+import {
+  STORY_SECTION_ALIASES,
+  StoryAppendix,
+  StoryAppendixGroup,
+  StoryBuilt,
+  StoryDecisions,
+  StoryLede,
+  StoryOutcome,
+  StoryProblem,
+  StoryTryIt,
+  storyCopyLabels,
+  storyToc,
+} from "@/components/case/story/CaseStoryBody";
 
 type Slug = CurrentProjectSlug;
 const SLUGS = [...CURRENT_PROJECT_SLUGS];
@@ -216,6 +232,251 @@ export default async function CasePage({ params }: Props) {
   const mood = getCaseMood(k);
   const moodStyle = getCaseMoodStyle(k);
 
+  const breadcrumbSchema = (
+    <StructuredData
+      data={generateBreadcrumbSchema([
+        { name: t("nav.home"), url: siteUrl },
+        { name: t("nav.projects"), url: `${siteUrl}/projects` },
+        { name: card.title, url: `${siteUrl}/projects/${k}` },
+      ])}
+    />
+  );
+  const relatedNav = (
+    <section className="container">
+      <CaseRelatedNav
+        prevSlug={prevSlug}
+        prevCard={getCaseCard(prevSlug, proofLocale)}
+        nextSlug={nextSlug}
+        nextCard={getCaseCard(nextSlug, proofLocale)}
+        locale={proofLocale}
+        labels={{
+          related: t("cs.related"),
+          prev: t("cs.prev"),
+          next: t("cs.next"),
+          work: t("nav.work"),
+        }}
+      />
+    </section>
+  );
+
+  const story = getCaseStory(k)?.[proofLocale];
+  if (story) {
+    const labels = storyCopyLabels(isZh);
+    const toc = storyToc(labels);
+    const storySectionLabels: Record<string, string> = {
+      ...Object.fromEntries(toc.map((entry) => [entry.id, entry.label])),
+      "journey-map": labels.journey,
+      "process-artifacts": labels.beforeAfter,
+      "rejection-archive": labels.rejected,
+      "research-vault": labels.research,
+      "interview-pack": labels.interview,
+      "red-team-defense": labels.redTeam,
+    };
+    return (
+      <main
+        className="page v4-case-page v66-case-story"
+        data-screen-label={`03 Case · ${k}`}
+        data-case-mood={k}
+        data-case-story=""
+        style={moodStyle}
+      >
+        <div className="cs-scroll-progress" aria-hidden="true" />
+        {breadcrumbSchema}
+        <CaseAppendixHashOpener aliases={STORY_SECTION_ALIASES} />
+        <section className="container cs-hero cs-story-hero">
+          <div className="v4-case-ribbon" aria-hidden="true" />
+          <Breadcrumb
+            className="cs-breadcrumb"
+            locale={locale}
+            items={[
+              { label: t("nav.home"), href: "/" },
+              { label: t("nav.projects"), href: "/projects" },
+              { label: card.title },
+            ]}
+          />
+          <span className="eyebrow">{card.kicker}</span>
+          <h1 tabIndex={-1}>{card.title}</h1>
+          <div className="cs-story-first">
+            <StoryLede copy={story} labels={labels} />
+            <figure id="artifact" className="cs-cover cs-story-cover">
+              {record.cover ? (
+                <Image
+                  src={record.cover.src}
+                  fill
+                  priority
+                  sizes="(max-width: 960px) 100vw, 58vw"
+                  alt={record.cover.alt[proofLocale]}
+                  className={`project-cover project-cover--${record.cover.fit}`}
+                />
+              ) : (
+                <>
+                  <CaseCoverVisual slug={k} locale={proofLocale} />
+                  {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
+                </>
+              )}
+            </figure>
+          </div>
+          <dl className="cs-meta cs-story-meta">
+            <div>
+              <dt>{labels.time}</dt>
+              <dd>{narrative.timeVal}</dd>
+            </div>
+            <div>
+              <dt>{labels.tools}</dt>
+              <dd>{narrative.toolsVal}</dd>
+            </div>
+            {(record.links.length > 0 || aiTrustMarker) && (
+              <div>
+                <dt>{labels.links}</dt>
+                <dd>
+                  <ul className="cs-links">
+                    {record.links.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          target={link.external ? "_blank" : undefined}
+                          rel={link.external ? "noopener noreferrer" : undefined}
+                        >
+                          {link.label}
+                          {link.external && (
+                            <span aria-hidden className="cs-links-arrow">
+                              ↗
+                            </span>
+                          )}
+                        </Link>
+                      </li>
+                    ))}
+                    {aiTrustMarker && (
+                      <li>
+                        <Link href={AI_TRUST_THREAD_HREF}>{aiTrustMarker.link}</Link>
+                      </li>
+                    )}
+                  </ul>
+                </dd>
+              </div>
+            )}
+          </dl>
+        </section>
+
+        <div className="container v4-editorial-grid cs-story-grid">
+          <aside className="v4-span-3 v4-rail-sticky" aria-label={isZh ? "案例导航轨" : "Case rail"}>
+            <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
+              <span className="cs-jump-label" aria-hidden="true">
+                {isZh ? "本页目录" : "On this page"}
+              </span>
+              <ol>
+                {toc.map(({ id, label }) => (
+                  <li key={id}>
+                    <a href={`#${id}`}>{label}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+            <div>
+              <PresentationTrigger deck={presentationDeck} locale={proofLocale} className="btn btn-ghost" />
+            </div>
+          </aside>
+
+          <article className="v4-span-9 cs-story-body">
+            <StoryProblem copy={story} labels={labels} />
+            <StoryDecisions copy={story} labels={labels} />
+            <StoryTryIt
+              copy={story}
+              labels={labels}
+              simulatorId={interactiveDemo?.id}
+              simulator={
+                interactiveDemo ? (
+                  <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} embedded />
+                ) : null
+              }
+            />
+            <StoryBuilt
+              copy={story}
+              labels={labels}
+              media={
+                <>
+                  {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
+                  {k === "walkie" && <WalkieTactileSchematicSvg locale={proofLocale} />}
+                </>
+              }
+            />
+            <StoryOutcome copy={story} labels={labels} />
+
+            <StoryAppendix labels={labels}>
+              <CaseTerminologyNotes slug={k} locale={proofLocale} />
+              {depthModules && (
+                <CaseJourneyRail
+                  stages={depthModules.journey}
+                  locale={proofLocale}
+                  headingLevel={3}
+                  headingText={labels.journey}
+                />
+              )}
+              {hasProcessArtifacts && (
+                <StoryAppendixGroup id="process-artifacts" title={labels.beforeAfter}>
+                  {processArtifacts?.scrubber && (
+                    <BeforeAfterScrubber data={processArtifacts.scrubber} locale={proofLocale} headingLevel={4} />
+                  )}
+                  {processArtifacts?.microLoop && (
+                    <CaseMicroLoop data={processArtifacts.microLoop} locale={proofLocale} headingLevel={4} />
+                  )}
+                  {processArtifacts?.quotes && (
+                    <ResearchQuoteDeck data={processArtifacts.quotes} locale={proofLocale} headingLevel={4} />
+                  )}
+                </StoryAppendixGroup>
+              )}
+              {depthModules && (
+                <CaseRejectionArchive
+                  entries={depthModules.rejectionArchive}
+                  locale={proofLocale}
+                  headingLevel={3}
+                  headingText={labels.rejected}
+                />
+              )}
+              {researchVault && (
+                <RawResearchVault
+                  vault={researchVault}
+                  locale={proofLocale}
+                  headingLevel={3}
+                  headingText={labels.research}
+                />
+              )}
+              {(k === "walkie" || k === "maze" || k === "onthebeat") && (
+                <StoryAppendixGroup title={labels.hardware}>
+                  <HardwareFieldCanvas slug={k} locale={proofLocale} />
+                </StoryAppendixGroup>
+              )}
+              <CaseInterviewPack
+                pack={caseInterviewPack}
+                locale={proofLocale}
+                currentSlug={k}
+                sectionLabels={storySectionLabels}
+                sectionAliases={STORY_SECTION_ALIASES}
+                headingLevel={3}
+                headingText={labels.interview}
+              />
+              {redTeamDeck && (
+                <RedTeamCritiquePanel
+                  decks={[redTeamDeck]}
+                  locale={proofLocale}
+                  sectionId="red-team-defense"
+                  currentSlug={k}
+                  sectionLabels={storySectionLabels}
+                  sectionAliases={STORY_SECTION_ALIASES}
+                  probeVariant="ghost"
+                  headingLevel={3}
+                  headingText={labels.redTeam}
+                />
+              )}
+            </StoryAppendix>
+          </article>
+        </div>
+
+        {relatedNav}
+      </main>
+    );
+  }
+
   return (
     <main
       className="page v4-case-page"
@@ -224,13 +485,7 @@ export default async function CasePage({ params }: Props) {
       style={moodStyle}
     >
       <div className="cs-scroll-progress" aria-hidden="true" />
-      <StructuredData
-        data={generateBreadcrumbSchema([
-          { name: t("nav.home"), url: siteUrl },
-          { name: t("nav.projects"), url: `${siteUrl}/projects` },
-          { name: card.title, url: `${siteUrl}/projects/${k}` },
-        ])}
-      />
+      {breadcrumbSchema}
       <section className="container cs-hero">
         <div className="v4-case-ribbon" aria-hidden="true" />
         <Breadcrumb
@@ -483,21 +738,7 @@ export default async function CasePage({ params }: Props) {
         </section>
       )}
 
-      <section className="container">
-        <CaseRelatedNav
-          prevSlug={prevSlug}
-          prevCard={getCaseCard(prevSlug, proofLocale)}
-          nextSlug={nextSlug}
-          nextCard={getCaseCard(nextSlug, proofLocale)}
-          locale={proofLocale}
-          labels={{
-            related: t("cs.related"),
-            prev: t("cs.prev"),
-            next: t("cs.next"),
-            work: t("nav.work"),
-          }}
-        />
-      </section>
+      {relatedNav}
     </main>
   );
 }

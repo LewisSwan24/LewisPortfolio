@@ -7,10 +7,16 @@ import styles from "./cases-deep.module.css";
 export function CaseJourneyRail({
   stages,
   locale,
+  headingLevel = 2,
+  headingText,
 }: {
   stages: readonly CaseJourneyStage[];
   locale: "en" | "zh";
+  /** Inside the case appendix the section sits one level down, under a plainer title. */
+  headingLevel?: 2 | 3;
+  headingText?: string;
 }) {
+  const HeadingTag = headingLevel === 3 ? "h3" : "h2";
   const isZh = locale === "zh";
   const copy = isZh
     ? {
@@ -42,9 +48,9 @@ export function CaseJourneyRail({
     >
       <header className={styles.sectionHeader}>
         <span className={styles.eyebrow}>{copy.eyebrow}</span>
-        <h2 id="journey-map-heading" className={styles.heading}>
-          {copy.heading}
-        </h2>
+        <HeadingTag id="journey-map-heading" className={styles.heading}>
+{headingText ?? (copy.heading)}
+</HeadingTag>
         <p className={styles.lead}>{copy.lead}</p>
       </header>
 

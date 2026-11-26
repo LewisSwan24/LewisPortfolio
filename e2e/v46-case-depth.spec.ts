@@ -3,6 +3,9 @@ import AxeBuilder from "@axe-core/playwright";
 import { LISTED_PROJECT_SLUGS } from "../src/lib/project-routes";
 
 // v6.5 removed the Review Lens switcher (review row 05); its test went with it.
+// v6.6: journey and rejection archive moved into the collapsed "For
+// interviewers" appendix; the state matrix became a five-row table under
+// "Built and tested" with capitalised state names.
 test.describe("v4.6 Case Study Depth Modules", () => {
   for (const slug of LISTED_PROJECT_SLUGS) {
     test(`/en/projects/${slug} renders Journey, 5-State Matrix & Rejection Archive`, async ({
@@ -17,7 +20,7 @@ test.describe("v4.6 Case Study Depth Modules", () => {
       const matrixRows = page.locator("#state-matrix table tbody tr");
       await expect(matrixRows).toHaveCount(5);
       for (const stateName of ["normal", "empty", "offline", "error", "refused"]) {
-        await expect(page.locator("#state-matrix table").getByText(stateName, { exact: true })).toBeVisible();
+        await expect(page.locator("#state-matrix table").getByText(new RegExp(`^${stateName}$`, "i"))).toBeVisible();
       }
 
       const rejectionItems = page.locator("#rejection-archive ol > li");
@@ -28,9 +31,9 @@ test.describe("v4.6 Case Study Depth Modules", () => {
 
   test("ZH locale renders symmetric deep modules on /zh/projects/onthebeat", async ({ page }) => {
     await page.goto("/zh/projects/onthebeat", { waitUntil: "networkidle" });
-    await expect(page.locator("#journey-map h2")).toContainText("用户心智");
+    await expect(page.locator("#journey-map h3").first()).toContainText("一步步怎么做出来");
     await expect(page.locator("#state-matrix table tbody tr")).toHaveCount(5);
-    await expect(page.locator("#rejection-archive h2")).toContainText("真实暴露的漏洞");
+    await expect(page.locator("#rejection-archive h3").first()).toContainText("被我丢掉的版本");
   });
 
   test("Desktop Light/Dark & 375px Mobile have zero axe-core critical/serious violations and 0px horizontal overflow", async ({

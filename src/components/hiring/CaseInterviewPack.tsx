@@ -11,6 +11,11 @@ interface CaseInterviewPackProps {
   currentSlug?: string;
   /** Section id to the label the page TOC uses for it. */
   sectionLabels?: Readonly<Record<string, string>>;
+  /** Old section ids that now live under another id on this page. */
+  sectionAliases?: Readonly<Record<string, string>>;
+  /** Inside the case appendix the section sits one level down, under a plainer title. */
+  headingLevel?: 2 | 3;
+  headingText?: string;
 }
 
 export function CaseInterviewPack({
@@ -18,7 +23,11 @@ export function CaseInterviewPack({
   locale = "en",
   currentSlug = "",
   sectionLabels = {},
+  sectionAliases = {},
+  headingLevel = 2,
+  headingText,
 }: CaseInterviewPackProps) {
+  const HeadingTag = headingLevel === 3 ? "h3" : "h2";
   const isZh = locale === "zh";
   const answers = [...pack.answers, pack.managerFollowUp];
 
@@ -30,11 +39,11 @@ export function CaseInterviewPack({
     >
       <div className="case-interview-pack-head">
         <div className="label">{isZh ? "面试深入问答" : "Interview pack"}</div>
-        <h2 id="interview-pack-title">
-          {isZh
+        <HeadingTag id="interview-pack-title">
+{headingText ?? (isZh
             ? "围绕取舍与验证细节的追问清单。"
-            : "Questions I can answer with evidence."}
-        </h2>
+            : "Questions I can answer with evidence.")}
+</HeadingTag>
       </div>
       <div className="v3-accordion case-interview-accordion">
         {answers.map((answer) => (
@@ -47,6 +56,7 @@ export function CaseInterviewPack({
                   link={resolveCaseEvidenceLink(answer.evidenceHref, {
                     currentSlug,
                     sectionLabels,
+                    sectionAliases,
                     locale,
                   })}
                   locale={locale}

@@ -56,13 +56,14 @@ test.describe("Dedicated Rationale AI Lab & Case Study Enrichment", () => {
       "onthebeat",
       "grassland",
     ]) {
-      await page.goto(`/en/projects/${slug}`, { waitUntil: "domcontentloaded" });
+      // v6.6: process artifacts sit in the collapsed appendix; the hash opens it.
+      await page.goto(`/en/projects/${slug}#process-artifacts`, { waitUntil: "domcontentloaded" });
       // v6.5: text before/after renders as two cards, not a slider (review row 07).
       await expect(page.locator("#process-artifacts .proc-compare > figure")).toHaveCount(2);
       await expect(
         page.locator("#process-artifacts").getByRole("button", { name: /Pause loop|Play loop/i })
       ).toBeVisible();
-      const decisionCards = page.locator(".case-decisions .case-decision-card");
+      const decisionCards = page.locator(".cs-story-decisions .cs-story-decision");
       expect(await decisionCards.count(), `Decision count on ${slug}`).toBeGreaterThanOrEqual(3);
     }
   });

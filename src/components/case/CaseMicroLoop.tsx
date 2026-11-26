@@ -7,9 +7,12 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 interface CaseMicroLoopProps {
   data: CaseMicroLoopData;
   locale: "en" | "zh";
+  /** Inside the case appendix this sits one heading level down. */
+  headingLevel?: 2 | 3 | 4;
 }
 
-export function CaseMicroLoop({ data, locale }: CaseMicroLoopProps) {
+export function CaseMicroLoop({ data, locale, headingLevel = 2 }: CaseMicroLoopProps) {
+  const HeadingTag = headingLevel === 4 ? "h4" : headingLevel === 3 ? "h3" : "h2";
   const isZh = locale === "zh";
   const headingId = useId();
   const reducedMotion = useReducedMotion();
@@ -40,7 +43,7 @@ export function CaseMicroLoop({ data, locale }: CaseMicroLoopProps) {
       <div className="case-sim-head">
         <div className="case-sim-head-copy">
           <div className="label">{data.eyebrow[locale]}</div>
-          <h2 id={headingId}>{data.title[locale]}</h2>
+          <HeadingTag id={headingId}>{data.title[locale]}</HeadingTag>
           <p className="case-sim-prompt">{data.summary[locale]}</p>
         </div>
 
