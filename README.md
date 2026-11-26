@@ -1,4 +1,4 @@
-# Lewis Dong — Portfolio (`v6.6.0`)
+# Lewis Dong — Portfolio (`v6.7.0`)
 
 **Live site:** [lewisdong.vercel.app](https://lewisdong.vercel.app)
 
