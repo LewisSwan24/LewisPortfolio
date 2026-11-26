@@ -25,7 +25,8 @@ test.describe("Design Process Artifacts", () => {
 
   test("CaseMicroLoop renders pause control on /projects/onthebeat", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/projects/onthebeat");
+    // v6.6: process artifacts live in the collapsed appendix; the hash opens it.
+    await page.goto("/projects/onthebeat#process-artifacts");
 
     const pauseBtn = page
       .locator("#process-artifacts")

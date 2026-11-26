@@ -40,7 +40,8 @@ test.describe("v6.5 case review fixes", () => {
   test("07: text before/after renders as two whole cards, side by side on desktop and stacked on mobile", async ({
     page,
   }) => {
-    await open(page, "/en/projects/maze");
+    // v6.6: the before/after cards sit in the collapsed appendix; the hash opens it.
+    await open(page, "/en/projects/maze#process-artifacts");
     const stage = page.locator("#process-artifacts");
     await expect(stage.locator("[role='slider']")).toHaveCount(0);
     const cards = stage.locator(".proc-compare > figure");
@@ -51,7 +52,7 @@ test.describe("v6.5 case review fixes", () => {
     expect(Math.abs(a!.y - b!.y)).toBeLessThanOrEqual(2);
     expect(b!.x).toBeGreaterThanOrEqual(a!.x + a!.width - 1);
 
-    await open(page, "/en/projects/maze", 375, 812);
+    await open(page, "/en/projects/maze#process-artifacts", 375, 812);
     const m = page.locator("#process-artifacts .proc-compare > figure");
     await m.first().scrollIntoViewIfNeeded();
     const [c, d] = [await m.nth(0).boundingBox(), await m.nth(1).boundingBox()];
@@ -125,8 +126,9 @@ test.describe("v6.5 case review fixes", () => {
     await expect(page.locator(".cs-cover .viz")).toBeHidden();
     await expect(page.locator(".cs-cover img")).toBeVisible();
 
+    // v6.6 (review row 09): the desktop first screen also shows the real photo.
     await open(page, "/en/projects/maze");
-    await expect(page.locator(".cs-cover .viz")).toBeVisible();
+    await expect(page.locator(".cs-cover img")).toBeVisible();
   });
 
   test("13: zh case headings balance and paragraphs avoid orphans", async ({ page }) => {
@@ -138,7 +140,7 @@ test.describe("v6.5 case review fixes", () => {
         const cs = getComputedStyle(el) as CSSStyleDeclaration & { textWrapStyle?: string };
         return `${cs.textWrapStyle ?? ""} ${cs.getPropertyValue("text-wrap")}`;
       };
-      return { h2: wrap("#long-form h2"), h3: wrap("#outcome-limits h3"), p: wrap("#long-form p") };
+      return { h2: wrap("#problem h2"), h3: wrap("#outcome-limits h3"), p: wrap("#problem p") };
     });
     expect(styles.h2).toContain("balance");
     expect(styles.h3).toContain("balance");
@@ -270,7 +272,8 @@ test.describe("v6.5 case review fixes", () => {
   });
 
   test("22: interview pack sits on the main grid with a left-aligned heading", async ({ page }) => {
-    await open(page, "/en/projects/maze");
+    // v6.6: the pack sits in the collapsed appendix; the hash opens it.
+    await open(page, "/en/projects/maze#interview-pack");
     const m = await page.evaluate(() => {
       const left = (sel: string) => document.querySelector(sel)!.getBoundingClientRect().left;
       return {

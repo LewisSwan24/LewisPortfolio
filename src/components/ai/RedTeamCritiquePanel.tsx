@@ -26,6 +26,9 @@ export function RedTeamCritiquePanel({
   currentSlug = "",
   sectionLabels = {},
   probeVariant = "primary",
+  sectionAliases = {},
+  headingLevel = 2,
+  headingText,
 }: {
   decks: readonly RedTeamDeck[];
   locale: "en" | "zh";
@@ -37,7 +40,14 @@ export function RedTeamCritiquePanel({
   sectionLabels?: Readonly<Record<string, string>>;
   /** Case pages keep one primary action, so the probe drops to a ghost button there. */
   probeVariant?: "primary" | "ghost";
+  /** Old section ids that now live under another id on this page. */
+  sectionAliases?: Readonly<Record<string, string>>;
+  /** Inside the case appendix the section sits one level down, under a plainer title. */
+  headingLevel?: 2 | 3;
+  headingText?: string;
 }) {
+  const HeadingTag = headingLevel === 3 ? "h3" : "h2";
+
   const [activeSlug, setActiveSlug] = useState<string>(decks[0]?.slug ?? "walkie");
   const [activeLens, setActiveLens] = useState<RedTeamLensId>("design-director");
   const [sseLog, setSseLog] = useState<string>("");
@@ -56,6 +66,7 @@ export function RedTeamCritiquePanel({
   const evidenceLink = resolveCaseEvidenceLink(activeEntry.evidenceHref, {
     currentSlug,
     sectionLabels,
+    sectionAliases,
     locale,
   });
 
@@ -122,11 +133,11 @@ export function RedTeamCritiquePanel({
           </span>
           <VerifiedStatusBadge status={activeEntry.verifiedStatus} locale={locale} />
         </div>
-        <h2 id={`${baseId}-heading`} className={styles.heading}>
-          {isZh
+        <HeadingTag id={`${baseId}-heading`} className={styles.heading}>
+{headingText ?? (isZh
             ? `直面四个最棘手的质疑视角：${activeDeck.caseTitle.zh}`
-            : `Adversarial Design Interrogation: ${activeDeck.caseTitle.en}`}
-        </h2>
+            : `Adversarial Design Interrogation: ${activeDeck.caseTitle.en}`)}
+</HeadingTag>
         <p className={styles.thesis}>
           <strong>{isZh ? "核心防守命题：" : "Core thesis: "}</strong>
           {activeDeck.executiveThesis[locale]}

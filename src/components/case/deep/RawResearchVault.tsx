@@ -21,10 +21,16 @@ const TAB_DEFS: ReadonlyArray<{
 export function RawResearchVault({
   vault,
   locale,
+  headingLevel = 2,
+  headingText,
 }: {
   vault: RawResearchVaultRecord;
   locale: "en" | "zh";
+  /** Inside the case appendix the section sits one level down, under a plainer title. */
+  headingLevel?: 2 | 3;
+  headingText?: string;
 }) {
+  const HeadingTag = headingLevel === 3 ? "h3" : "h2";
   const [activeTab, setActiveTab] = useState<VaultTabId>("protocol");
   const baseId = useId();
   const isZh = locale === "zh";
@@ -90,11 +96,11 @@ export function RawResearchVault({
           </span>
           <VerifiedStatusBadge status={vault.studyStatus} locale={locale} />
         </div>
-        <h2 id={`${baseId}-heading`} className={styles.heading}>
-          {isZh
+        <HeadingTag id={`${baseId}-heading`} className={styles.heading}>
+{headingText ?? (isZh
             ? "研究引导词、现场台架笔记、三方博弈与重做复盘"
-            : "Moderator guide, observation logs, role tensions & rebuild retrospective"}
-        </h2>
+            : "Moderator guide, observation logs, role tensions & rebuild retrospective")}
+</HeadingTag>
         <p className={styles.scopeNote} data-testid="vault-honest-scope">
           <strong>{isZh ? "实证口径声明：" : "Verification boundary: "}</strong>
           {vault.honestScopeNote[locale]}

@@ -19,7 +19,8 @@ test.describe("v5.1 Raw Research Vault, UQ/Swansea Education & Archive Vault", (
   test("interacts with tabbed Raw Research Vault on flagship cases and passes Axe AA", async ({
     page,
   }) => {
-    await page.goto("/en/projects/walkie", { waitUntil: "networkidle" });
+    // v6.6: the vault sits in the collapsed appendix; the hash opens it.
+    await page.goto("/en/projects/walkie#research-vault", { waitUntil: "networkidle" });
     const vault = page.getByTestId("raw-research-vault");
     await expect(vault).toBeVisible();
     await expect(page.getByTestId("vault-panel-protocol")).toBeVisible();

@@ -14,7 +14,8 @@ test.describe("Modern Web Primitives & /lab Exhibition", () => {
 
   test("AnchorNote opens native popover and dismisses cleanly on Escape", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/en/projects/walkie");
+    // v6.6: term notes sit in the collapsed appendix; the hash opens it.
+    await page.goto("/en/projects/walkie#for-interviewers");
 
     const trigger = page.locator(".anchor-note-trigger").first();
     await expect(trigger).toBeVisible();

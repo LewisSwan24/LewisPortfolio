@@ -101,7 +101,8 @@ test.describe("v4.8 Manuscript Choreography, Dark SVG Calibration & CWV", () => 
   test("adapts vector architecture SVGs to #141413 / #181816 in dark mode and supports journey tracker", async ({
     page,
   }) => {
-    await page.goto("/en/projects/walkie", { waitUntil: "networkidle" });
+    // v6.6: the journey sits in the collapsed appendix; the hash opens it.
+    await page.goto("/en/projects/walkie#journey-map", { waitUntil: "networkidle" });
 
     // Journey scroll tracker chip navigation
     const tracker = page.getByRole("navigation", { name: "Journey stage quick index" });
