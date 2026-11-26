@@ -1,4 +1,5 @@
-import { z } from "@/lib/zod";
+import "@/lib/zod-jitless";
+import { z } from "zod";
 import {
   CaseSimulatorIdSchema,
   LocalizedStringSchema,
