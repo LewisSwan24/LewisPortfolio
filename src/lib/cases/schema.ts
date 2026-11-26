@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "@/lib/zod";
 import { CURRENT_PROJECT_SLUGS } from "@/lib/project-routes";
 
 export const RoleTrackSchema = z.enum([

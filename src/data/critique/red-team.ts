@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "@/lib/zod";
 import { LocalizedStringSchema } from "@/lib/cases/schema";
 import { CaseVerifiedStatusSchema } from "@/lib/cases/modules-schema";
 import { CURRENT_PROJECT_SLUGS, isUnlistedProject } from "@/lib/project-routes";

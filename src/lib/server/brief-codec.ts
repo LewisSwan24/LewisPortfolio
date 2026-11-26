@@ -1,5 +1,5 @@
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
-import { z } from "zod";
+import { z } from "@/lib/zod";
 import { RoleTrackSchema } from "@/lib/cases/schema";
 import { CURRENT_PROJECT_SLUGS } from "@/lib/project-routes";
 

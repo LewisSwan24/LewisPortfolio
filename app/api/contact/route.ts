@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
-import { z } from "zod";
+import { z } from "@/lib/zod";
 import { siteConfig } from "@/lib/site";
 import { isKvConfigured, kvSetJson } from "@/lib/server/kv";
 import { checkContactRateLimit, extractClientIp } from "@/lib/server/rate-limit";

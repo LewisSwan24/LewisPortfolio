@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
+import { z } from "@/lib/zod";
 import { EVIDENCE_CORPUS_MAP } from "@/lib/ai/evidence-corpus";
 import { redactPii, MAX_JD_QUERY_CHARS } from "@/lib/ai/redact-jd";
 import { hybridRetrieve } from "@/lib/ai/hybrid-retrieval";

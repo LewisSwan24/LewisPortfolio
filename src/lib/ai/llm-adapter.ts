@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "@/lib/zod";
 import { EVIDENCE_CORPUS_MAP, type EvidenceChunk } from "./evidence-corpus";
 
 export const ReasonCodeSchema = z.enum([
