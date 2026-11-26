@@ -122,12 +122,14 @@ html { scroll-behavior: smooth; }
   }
 }
 
+/* Fixed and above the sticky nav (z-index 50), so the focused link is never
+   painted under it (WCAG 2.4.11). Off-screen until focused. */
 .skip-link {
-  position: absolute;
+  position: fixed;
   left: 16px;
   top: 16px;
-  z-index: 50;
-  transform: translateY(-64px);
+  z-index: 100;
+  transform: translateY(-80px);
   background: var(--accent);
   color: var(--on-accent);
   padding: 8px 16px;
