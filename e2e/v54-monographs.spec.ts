@@ -42,8 +42,10 @@ test.describe("v5.4+ Monograph Library & Cluster Filtering", () => {
     await page.goto("/zh/blog/swansea-cs-to-uq-physical-computing", { waitUntil: "networkidle" });
     await expect(page.locator("h1")).toContainText("斯旺西");
 
-    const darkBtn = page.getByRole("button", { name: /Switch theme to dark mode|切换.*暗/i });
-    if (await darkBtn.isVisible()) await darkBtn.click();
+    // Wait for the hydrated toggle; a one-shot isVisible() raced its placeholder.
+    const toggle = page.getByRole("button", { name: /Switch theme to (dark|light) mode/i }).first();
+    await expect(toggle).toBeVisible();
+    if ((await toggle.getAttribute("aria-label"))?.includes("dark")) await toggle.click();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
     await page.setViewportSize({ width: 375, height: 812 });

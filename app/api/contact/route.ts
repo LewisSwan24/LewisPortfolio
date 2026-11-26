@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
+import "@/lib/zod-jitless";
 import { z } from "zod";
 import { siteConfig } from "@/lib/site";
 import { isKvConfigured, kvSetJson } from "@/lib/server/kv";

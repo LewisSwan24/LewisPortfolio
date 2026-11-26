@@ -1,3 +1,4 @@
+import "@/lib/zod-jitless";
 import { z } from "zod";
 import { LocalizedStringSchema } from "@/lib/cases/schema";
 import { CURRENT_PROJECT_SLUGS, isUnlistedProject } from "@/lib/project-routes";

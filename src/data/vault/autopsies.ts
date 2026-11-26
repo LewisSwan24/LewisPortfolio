@@ -1,3 +1,4 @@
+import "@/lib/zod-jitless";
 import { z } from "zod";
 import { LocalizedStringSchema } from "@/lib/cases/schema";
 import { CaseVerifiedStatusSchema } from "@/lib/cases/modules-schema";

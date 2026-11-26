@@ -25,6 +25,21 @@ export function hasScreenshotCover(slug: CurrentProjectSlug): boolean {
   return SCREENSHOT_COVER_SLUGS.includes(slug) && getProjectCover(slug) !== undefined;
 }
 
+/** Cases with a schematic drawn for them (others fall back to Spectra's). */
+const SCHEMATIC_SLUGS: readonly CurrentProjectSlug[] = [
+  "maze",
+  "hoop",
+  "connect",
+  "pricewise",
+  "gapmapper",
+  "rules",
+  "spectra",
+];
+
+export function hasCaseSchematic(slug: CurrentProjectSlug): boolean {
+  return SCHEMATIC_SLUGS.includes(slug);
+}
+
 export function CaseCoverVisual({
   slug,
   locale,

@@ -44,8 +44,10 @@ test.describe("v5.3 Hardware & Protocol Frame Replay Studio", () => {
     await page.goto("/zh/studio/replay?track=maze", { waitUntil: "networkidle" });
     await expect(page.getByTestId("replay-active-state")).toContainText("同色双人腕带");
 
-    const darkBtn = page.getByRole("button", { name: /Switch theme to dark mode|切换.*暗/i });
-    if (await darkBtn.isVisible()) await darkBtn.click();
+    // Wait for the hydrated toggle; a one-shot isVisible() raced its placeholder.
+    const toggle = page.getByRole("button", { name: /Switch theme to (dark|light) mode/i }).first();
+    await expect(toggle).toBeVisible();
+    if ((await toggle.getAttribute("aria-label"))?.includes("dark")) await toggle.click();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
     await page.setViewportSize({ width: 375, height: 812 });

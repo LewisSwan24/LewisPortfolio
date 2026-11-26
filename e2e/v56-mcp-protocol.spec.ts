@@ -77,8 +77,12 @@ test.describe("v5.6 MCP Agent Protocol, /llms-full.txt & Sandbox Workbench", () 
 
     // Dark #141413 parity on /zh/ai
     await page.goto("/zh/ai", { waitUntil: "networkidle" });
-    const darkBtn = page.getByRole("button", { name: /Switch theme to dark mode|切换.*暗/i });
-    if (await darkBtn.isVisible()) await darkBtn.click();
+    // Before hydration the toggle is a disabled "Loading color mode" placeholder,
+    // so a one-shot isVisible() check raced it and skipped the click (CI run
+    // 45813420189). Wait for the real button, then switch only if still light.
+    const toggle = page.getByRole("button", { name: /Switch theme to (dark|light) mode/i }).first();
+    await expect(toggle).toBeVisible();
+    if ((await toggle.getAttribute("aria-label"))?.includes("dark")) await toggle.click();
     await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
     await page.getByTestId("mcp-tool-audit_vault_lineage").click();

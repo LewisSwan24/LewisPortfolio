@@ -168,13 +168,18 @@ test.describe("Projects Page", () => {
         }
     });
 
-    test("case detail puts primary cover before summary and opens collapsible interview answers", async ({ page }) => {
+    // v6.7: unlisted cases take the v6.6 layout. The summary box became the
+    // first-screen lede beside the cover; the pack sits in the collapsed appendix.
+    test("case detail puts the cover beside the lede and opens collapsible interview answers", async ({ page }) => {
+        await page.setViewportSize({ width: 1440, height: 900 });
         await page.goto("/projects/connect");
 
-        const coverBox = await page.locator(".cs-cover").boundingBox();
-        const summaryBox = await page.locator(".case-summary").boundingBox();
-        expect(coverBox?.y ?? 99999).toBeLessThan(summaryBox?.y ?? 0);
+        const coverBox = await page.locator(".cs-hero .cs-cover").boundingBox();
+        const ledeBox = await page.locator(".cs-hero [data-story-problem]").boundingBox();
+        expect(coverBox?.y ?? 99999).toBeLessThan(900);
+        expect(ledeBox?.y ?? 99999).toBeLessThan(900);
 
+        await page.locator("details.case-appendix > summary").click();
         const pack = page.locator(".case-interview-pack");
 
         await expect(pack.getByText("Interview pack")).toBeVisible();
@@ -252,7 +257,9 @@ test.describe("Projects Page", () => {
     test("zh hoop case should be translated, not fall back to English", async ({ page }) => {
         await gotoStable(page, "/zh/projects/hoop");
 
-        await expect(page.locator(".case-summary")).toContainText("美术圣经");
+        // v6.7: the summary's methods list moved into the appendix's
+        // "Methods and evidence" group (#snapshot).
+        await expect(page.locator("#snapshot")).toContainText("美术圣经");
         await expect(page.locator(".case-build-evidence .label")).toHaveText("跑起来的样子");
         await expect(page.locator("main.page")).not.toContainText("风格闸门");
     });
@@ -274,7 +281,8 @@ test.describe("Projects Page", () => {
 
     test("case page should not overflow on mobile", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 844 });
-        await page.goto("/projects/connect");
+        // v6.7: the pack lives in the collapsed appendix; the hash opens it.
+        await page.goto("/projects/connect#interview-pack");
 
         const pack = page.locator(".case-interview-pack");
         await expect(pack).toBeVisible();
@@ -337,11 +345,20 @@ test.describe("Projects Page", () => {
         const nestedVisual = relatedViz.locator("img, .viz").first();
 
         await expect(relatedViz).toBeVisible();
+        await expect(nestedVisual).toBeVisible();
 
-        const parentBox = await relatedViz.boundingBox();
-        const childBox = await nestedVisual.boundingBox();
+        // Measure both boxes in one frame: two separate boundingBox() calls
+        // straddled a late layout shift and read 0.02px apart.
+        const { parentBox, childBox } = await relatedViz.evaluate((parent) => {
+            const child = parent.querySelector("img, .viz");
+            const box = (el: Element) => {
+                const r = el.getBoundingClientRect();
+                return { x: r.x, y: r.y, width: r.width, height: r.height };
+            };
+            return { parentBox: box(parent), childBox: child ? box(child) : null };
+        });
 
-        if (!parentBox || !childBox) {
+        if (!childBox) {
             throw new Error("Expected related project visual bounds to be measurable.");
         }
 

@@ -306,12 +306,21 @@ export function StoryOutcome({ copy, labels }: { copy: CaseStoryCopy; labels: St
   );
 }
 
-export function StoryAppendix({ labels, children }: { labels: StoryLabels; children: ReactNode }) {
+export function StoryAppendix({
+  labels,
+  hint,
+  children,
+}: {
+  labels: StoryLabels;
+  /** Overrides the default hint when the appendix holds different material. */
+  hint?: string;
+  children: ReactNode;
+}) {
   return (
     <details id={STORY_SECTION_IDS.appendix} className="case-appendix">
       <summary>
         <h2>{labels.appendix}</h2>
-        <span className="case-appendix-hint">{labels.appendixHint}</span>
+        <span className="case-appendix-hint">{hint ?? labels.appendixHint}</span>
       </summary>
       <div className="case-appendix-body">{children}</div>
     </details>
