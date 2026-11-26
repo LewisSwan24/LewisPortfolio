@@ -8,9 +8,7 @@ import { CaseInterviewPack } from "@/components/hiring/CaseInterviewPack";
 import { DemoEmbed } from "@/components/case/DemoEmbed";
 import { CaseInvariantLink, isLabLinkedCase } from "@/components/case/CaseInvariantLink";
 import { CaseMediaGallery } from "@/components/case/CaseMediaGallery";
-import { CaseCoverVisual, hasScreenshotCover } from "@/components/case/CaseCoverVisual";
-import { CaseSummaryBlock } from "@/components/case/CaseSummaryBlock";
-import { CaseDesignDecisions } from "@/components/case/CaseDesignDecisions";
+import { CaseCoverVisual, hasCaseSchematic, hasScreenshotCover } from "@/components/case/CaseCoverVisual";
 import { HardwareFieldCanvas } from "@/components/three/HardwareFieldCanvas";
 import { CaseSimulatorFrame } from "@/components/case/CaseSimulatorFrame";
 import { CaseTerminologyNotes } from "@/components/case/CaseTerminologyNotes";
@@ -19,7 +17,7 @@ import { ResearchQuoteDeck } from "@/components/case/ResearchQuoteDeck";
 import { CaseMicroLoop } from "@/components/case/CaseMicroLoop";
 import { PresentationTrigger } from "@/components/presentation/PresentationTrigger";
 import { buildCaseDeck } from "@/lib/presentation/build-deck";
-import { getCaseMood, getCaseMoodStyle } from "@/lib/cases/mood";
+import { getCaseMoodStyle } from "@/lib/cases/mood";
 import { CaseNarrative } from "@/components/case/CaseNarrative";
 import { CaseRelatedNav } from "@/components/case/CaseRelatedNav";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
@@ -40,19 +38,23 @@ import {
   type ProofLocale,
 } from "@/lib/portfolio-proof";
 import { getCaseCard, getCaseRecordOrThrow } from "@/lib/cases/registry";
-import { buildCaseToc, type CaseTocSection } from "@/lib/cases/case-toc";
+import type { CaseTocEntry, CaseTocSection } from "@/lib/cases/case-toc";
 import { getCaseDepthModules } from "@/data/cases/modules";
 import { getCaseResearchVault } from "@/data/cases/research-vault";
 import { getCaseRedTeamDeck } from "@/data/critique/red-team";
 import { CaseJourneyRail } from "@/components/case/deep/CaseJourneyRail";
-import { CaseStateMatrixTable } from "@/components/case/deep/CaseStateMatrixTable";
 import { CaseRejectionArchive } from "@/components/case/deep/CaseRejectionArchive";
 import { RawResearchVault } from "@/components/case/deep/RawResearchVault";
 import { RedTeamCritiquePanel } from "@/components/ai/RedTeamCritiquePanel";
-import deepStyles from "@/components/case/deep/cases-deep.module.css";
 import { WalkieTactileSchematicSvg } from "@/components/editorial/CapabilityDiagrams";
 import { getCaseStory } from "@/data/cases/story";
 import { CaseAppendixHashOpener } from "@/components/case/story/CaseAppendixHashOpener";
+import {
+  PlainLimits,
+  SummaryGlance,
+  SummaryLede,
+  ledeCopyLabels,
+} from "@/components/case/story/CaseLedeLayout";
 import {
   STORY_SECTION_ALIASES,
   StoryAppendix,
@@ -222,14 +224,12 @@ export default async function CasePage({ params }: Props) {
       present: Boolean(redTeamDeck),
     },
   ];
-  const jumpSections = buildCaseToc(pageSections);
   const sectionLabels: Record<string, string> = Object.fromEntries(
     pageSections
       .filter((section) => section.present !== false)
       .map((section) => [section.id, section.label])
   );
 
-  const mood = getCaseMood(k);
   const moodStyle = getCaseMoodStyle(k);
 
   const breadcrumbSchema = (
@@ -259,234 +259,50 @@ export default async function CasePage({ params }: Props) {
     </section>
   );
 
+  // v6.6 story cases carry rewritten copy. v6.7: every other case takes the
+  // same layout with its copy untouched (Lewis, 2026-11-26: 「只換版面」).
   const story = getCaseStory(k)?.[proofLocale];
-  if (story) {
-    const labels = storyCopyLabels(isZh);
-    const toc = storyToc(labels);
-    const storySectionLabels: Record<string, string> = {
-      ...Object.fromEntries(toc.map((entry) => [entry.id, entry.label])),
-      "journey-map": labels.journey,
-      "process-artifacts": labels.beforeAfter,
-      "rejection-archive": labels.rejected,
-      "research-vault": labels.research,
-      "interview-pack": labels.interview,
-      "red-team-defense": labels.redTeam,
-    };
-    return (
-      <main
-        className="page v4-case-page v66-case-story"
-        data-screen-label={`03 Case · ${k}`}
-        data-case-mood={k}
-        data-case-story=""
-        style={moodStyle}
-      >
-        <div className="cs-scroll-progress" aria-hidden="true" />
-        {breadcrumbSchema}
-        <CaseAppendixHashOpener aliases={STORY_SECTION_ALIASES} />
-        <section className="container cs-hero cs-story-hero">
-          <div className="v4-case-ribbon" aria-hidden="true" />
-          <Breadcrumb
-            className="cs-breadcrumb"
-            locale={locale}
-            items={[
-              { label: t("nav.home"), href: "/" },
-              { label: t("nav.projects"), href: "/projects" },
-              { label: card.title },
-            ]}
-          />
-          <span className="eyebrow">{card.kicker}</span>
-          <h1 tabIndex={-1}>{card.title}</h1>
-          <div className="cs-story-first">
-            <StoryLede copy={story} labels={labels} />
-            <figure id="artifact" className="cs-cover cs-story-cover">
-              {record.cover ? (
-                <Image
-                  src={record.cover.src}
-                  fill
-                  priority
-                  sizes="(max-width: 960px) 100vw, 58vw"
-                  alt={record.cover.alt[proofLocale]}
-                  className={`project-cover project-cover--${record.cover.fit}`}
-                />
-              ) : (
-                <>
-                  <CaseCoverVisual slug={k} locale={proofLocale} />
-                  {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
-                </>
-              )}
-            </figure>
-          </div>
-          <dl className="cs-meta cs-story-meta">
-            <div>
-              <dt>{labels.time}</dt>
-              <dd>{narrative.timeVal}</dd>
-            </div>
-            <div>
-              <dt>{labels.tools}</dt>
-              <dd>{narrative.toolsVal}</dd>
-            </div>
-            {(record.links.length > 0 || aiTrustMarker) && (
-              <div>
-                <dt>{labels.links}</dt>
-                <dd>
-                  <ul className="cs-links">
-                    {record.links.map((link) => (
-                      <li key={link.href}>
-                        <Link
-                          href={link.href}
-                          target={link.external ? "_blank" : undefined}
-                          rel={link.external ? "noopener noreferrer" : undefined}
-                        >
-                          {link.label}
-                          {link.external && (
-                            <span aria-hidden className="cs-links-arrow">
-                              ↗
-                            </span>
-                          )}
-                        </Link>
-                      </li>
-                    ))}
-                    {aiTrustMarker && (
-                      <li>
-                        <Link href={AI_TRUST_THREAD_HREF}>{aiTrustMarker.link}</Link>
-                      </li>
-                    )}
-                  </ul>
-                </dd>
-              </div>
-            )}
-          </dl>
-        </section>
+  const labels = storyCopyLabels(isZh);
+  const ledeLabels = ledeCopyLabels(isZh);
 
-        <div className="container v4-editorial-grid cs-story-grid">
-          <aside className="v4-span-3 v4-rail-sticky" aria-label={isZh ? "案例导航轨" : "Case rail"}>
-            <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
-              <span className="cs-jump-label" aria-hidden="true">
-                {isZh ? "本页目录" : "On this page"}
-              </span>
-              <ol>
-                {toc.map(({ id, label }) => (
-                  <li key={id}>
-                    <a href={`#${id}`}>{label}</a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-            <div>
-              <PresentationTrigger deck={presentationDeck} locale={proofLocale} className="btn btn-ghost" />
-            </div>
-          </aside>
+  const toc: CaseTocEntry[] = story
+    ? storyToc(labels)
+    : [
+        { id: "long-form", label: narrative.ch.label },
+        { id: "evidence-board", label: narrative.re.label },
+        { id: "decision-timeline", label: narrative.id.label },
+        { id: "iteration-gallery", label: narrative.te.label },
+        { id: "interview-takeaway", label: narrative.rf.label },
+        ...(interactiveDemo ? [{ id: "interactive-demo", label: interactiveLabel }] : []),
+        { id: "outcome-limits", label: ledeLabels.outcomeLimits },
+        { id: "for-interviewers", label: labels.appendix },
+      ];
 
-          <article className="v4-span-9 cs-story-body">
-            <StoryProblem copy={story} labels={labels} />
-            <StoryDecisions copy={story} labels={labels} />
-            <StoryTryIt
-              copy={story}
-              labels={labels}
-              simulatorId={interactiveDemo?.id}
-              simulator={
-                interactiveDemo ? (
-                  <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} embedded />
-                ) : null
-              }
-            />
-            <StoryBuilt
-              copy={story}
-              labels={labels}
-              media={
-                <>
-                  {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
-                  {k === "walkie" && <WalkieTactileSchematicSvg locale={proofLocale} />}
-                </>
-              }
-            />
-            <StoryOutcome copy={story} labels={labels} />
-
-            <StoryAppendix labels={labels}>
-              <CaseTerminologyNotes slug={k} locale={proofLocale} />
-              {depthModules && (
-                <CaseJourneyRail
-                  stages={depthModules.journey}
-                  locale={proofLocale}
-                  headingLevel={3}
-                  headingText={labels.journey}
-                />
-              )}
-              {hasProcessArtifacts && (
-                <StoryAppendixGroup id="process-artifacts" title={labels.beforeAfter}>
-                  {processArtifacts?.scrubber && (
-                    <BeforeAfterScrubber data={processArtifacts.scrubber} locale={proofLocale} headingLevel={4} />
-                  )}
-                  {processArtifacts?.microLoop && (
-                    <CaseMicroLoop data={processArtifacts.microLoop} locale={proofLocale} headingLevel={4} />
-                  )}
-                  {processArtifacts?.quotes && (
-                    <ResearchQuoteDeck data={processArtifacts.quotes} locale={proofLocale} headingLevel={4} />
-                  )}
-                </StoryAppendixGroup>
-              )}
-              {depthModules && (
-                <CaseRejectionArchive
-                  entries={depthModules.rejectionArchive}
-                  locale={proofLocale}
-                  headingLevel={3}
-                  headingText={labels.rejected}
-                />
-              )}
-              {researchVault && (
-                <RawResearchVault
-                  vault={researchVault}
-                  locale={proofLocale}
-                  headingLevel={3}
-                  headingText={labels.research}
-                />
-              )}
-              {(k === "walkie" || k === "maze" || k === "onthebeat") && (
-                <StoryAppendixGroup title={labels.hardware}>
-                  <HardwareFieldCanvas slug={k} locale={proofLocale} />
-                </StoryAppendixGroup>
-              )}
-              <CaseInterviewPack
-                pack={caseInterviewPack}
-                locale={proofLocale}
-                currentSlug={k}
-                sectionLabels={storySectionLabels}
-                sectionAliases={STORY_SECTION_ALIASES}
-                headingLevel={3}
-                headingText={labels.interview}
-              />
-              {redTeamDeck && (
-                <RedTeamCritiquePanel
-                  decks={[redTeamDeck]}
-                  locale={proofLocale}
-                  sectionId="red-team-defense"
-                  currentSlug={k}
-                  sectionLabels={storySectionLabels}
-                  sectionAliases={STORY_SECTION_ALIASES}
-                  probeVariant="ghost"
-                  headingLevel={3}
-                  headingText={labels.redTeam}
-                />
-              )}
-            </StoryAppendix>
-          </article>
-        </div>
-
-        {relatedNav}
-      </main>
-    );
-  }
+  const appendixLabels: Record<string, string> = {
+    ...(story ? {} : sectionLabels),
+    ...Object.fromEntries(toc.map((entry) => [entry.id, entry.label])),
+    "journey-map": labels.journey,
+    "process-artifacts": labels.beforeAfter,
+    "rejection-archive": labels.rejected,
+    "research-vault": labels.research,
+    "interview-pack": labels.interview,
+    "red-team-defense": labels.redTeam,
+  };
+  const aliases = story ? STORY_SECTION_ALIASES : undefined;
 
   return (
     <main
-      className="page v4-case-page"
+      className={`page v4-case-page v66-case-story${story ? "" : " v67-case-lede"}`}
       data-screen-label={`03 Case · ${k}`}
       data-case-mood={k}
+      data-case-story={story ? "" : undefined}
+      data-case-layout={story ? undefined : "lede"}
       style={moodStyle}
     >
       <div className="cs-scroll-progress" aria-hidden="true" />
       {breadcrumbSchema}
-      <section className="container cs-hero">
+      <CaseAppendixHashOpener aliases={aliases ?? {}} />
+      <section className="container cs-hero cs-story-hero">
         <div className="v4-case-ribbon" aria-hidden="true" />
         <Breadcrumb
           className="cs-breadcrumb"
@@ -497,34 +313,53 @@ export default async function CasePage({ params }: Props) {
             { label: card.title },
           ]}
         />
-        <div className="lab-pill-row" style={{ marginBottom: 12, alignItems: "center" }}>
-          <span className="eyebrow">{card.kicker}</span>
-          <span className="tag" style={{ borderColor: "var(--case-mood)", color: "var(--case-mood)" }}>
-            {isZh ? mood.labelZh : mood.labelEn}
-          </span>
-        </div>
+        <span className="eyebrow">{card.kicker}</span>
         <h1 tabIndex={-1}>{card.title}</h1>
-        <p className="sub">{subtitleText}</p>
-        <dl className="cs-meta">
+        {!story && <p className="sub cs-lede-sub">{subtitleText}</p>}
+        <div className="cs-story-first">
+          {story ? <StoryLede copy={story} labels={labels} /> : <SummaryLede summary={caseSummary} />}
+          <figure id="artifact" className="cs-cover cs-story-cover">
+            {record.cover ? (
+              <Image
+                src={record.cover.src}
+                fill
+                priority
+                sizes="(max-width: 960px) 100vw, 58vw"
+                alt={record.cover.alt[proofLocale]}
+                className={`project-cover project-cover--${record.cover.fit}`}
+              />
+            ) : (
+              <>
+                <CaseCoverVisual slug={k} locale={proofLocale} />
+                {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
+              </>
+            )}
+          </figure>
+        </div>
+        <dl className="cs-meta cs-story-meta">
+          {!story && (
+            <>
+              <div>
+                <dt>{ledeLabels.role}</dt>
+                <dd>{narrative.roleVal}</dd>
+              </div>
+              <div>
+                <dt>{ledeLabels.team}</dt>
+                <dd>{narrative.teamVal}</dd>
+              </div>
+            </>
+          )}
           <div>
-            <dt>{t("cs.role")}</dt>
-            <dd>{narrative.roleVal}</dd>
-          </div>
-          <div>
-            <dt>{t("cs.time")}</dt>
+            <dt>{labels.time}</dt>
             <dd>{narrative.timeVal}</dd>
           </div>
           <div>
-            <dt>{t("cs.team")}</dt>
-            <dd>{narrative.teamVal}</dd>
-          </div>
-          <div>
-            <dt>{t("cs.tools")}</dt>
+            <dt>{labels.tools}</dt>
             <dd>{narrative.toolsVal}</dd>
           </div>
-          {record.links.length > 0 && (
+          {(record.links.length > 0 || aiTrustMarker) && (
             <div>
-              <dt>{isZh ? "链接" : "Links"}</dt>
+              <dt>{labels.links}</dt>
               <dd>
                 <ul className="cs-links">
                   {record.links.map((link) => (
@@ -543,200 +378,174 @@ export default async function CasePage({ params }: Props) {
                       </Link>
                     </li>
                   ))}
-                </ul>
-              </dd>
-            </div>
-          )}
-          {aiTrustMarker && (
-            <div>
-              <dt>{aiTrustMarker.label}</dt>
-              <dd>
-                <ul className="cs-links">
-                  <li>
-                    <Link href={AI_TRUST_THREAD_HREF}>{aiTrustMarker.link}</Link>
-                  </li>
+                  {aiTrustMarker && (
+                    <li>
+                      <Link href={AI_TRUST_THREAD_HREF}>{aiTrustMarker.link}</Link>
+                    </li>
+                  )}
                 </ul>
               </dd>
             </div>
           )}
         </dl>
-
-        <div className="v4-editorial-grid" style={{ marginTop: "var(--s-6)" }}>
-          <aside className="v4-span-4 v4-rail-sticky" aria-label={isZh ? "案例导航轨" : "Case rail"}>
-            <CaseTerminologyNotes slug={k} locale={proofLocale} />
-
-            <div>
-              <PresentationTrigger deck={presentationDeck} locale={proofLocale} className="btn btn-ghost" />
-            </div>
-
-            <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
-              <span className="cs-jump-label" aria-hidden="true">
-                {isZh ? "本页目录" : "On this page"}
-              </span>
-              <ol>
-                {jumpSections.map(({ id, label }) => (
-                  <li key={id}>
-                    <a href={`#${id}`}>{label}</a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          </aside>
-
-          <div className="v4-span-8">
-            <div id="artifact" className="case-anchor" aria-hidden />
-            <figure className="cs-cover">
-              <CaseCoverVisual slug={k} locale={proofLocale} />
-              {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
-            </figure>
-
-            <CaseSummaryBlock locale={proofLocale} summary={caseSummary} />
-
-            <CaseDesignDecisions
-              decisions={designDecisions}
-              locale={proofLocale}
-            />
-          </div>
-        </div>
       </section>
 
-      {interactiveDemo?.placement === "after-summary" && (
-        <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} />
-      )}
-
-      {(k === "walkie" || k === "maze" || k === "onthebeat") && (
-        <section className="container" style={{ marginTop: "var(--s-6)", display: "grid", gap: "var(--s-4)" }}>
-          <HardwareFieldCanvas slug={k} locale={proofLocale} />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Link href={`/studio/replay?track=${k}`} className="case-text-link">
-              {isZh
-                ? "进入硬件协议帧步进重放工作台 (/studio/replay) →"
-                : "Inspect millisecond protocol frames in Replay Studio →"}
-            </Link>
-          </div>
-        </section>
-      )}
-
-      {isLabLinkedCase(k) && <CaseInvariantLink slug={k} isZh={isZh} />}
-
-      {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
-
-      {k === "walkie" && (
-        <div className="container" style={{ marginBottom: "var(--s-6)" }}>
-          <WalkieTactileSchematicSvg locale={proofLocale} />
-        </div>
-      )}
-
-      {record.demo && (
-        <DemoEmbed
-          src={record.demo.src}
-          poster={record.demo.poster}
-          title={isZh ? record.demo.titleZh : record.demo.title}
-          posterAlt={isZh ? record.demo.posterAltZh : record.demo.posterAlt}
-          label={isZh ? record.demo.labelZh : record.demo.label}
-          blurb={isZh ? record.demo.blurbZh : record.demo.blurb}
-          action={isZh ? record.demo.actionZh : record.demo.action}
-          openLabel={isZh ? "在新标签页打开 ↗" : "Open in a new tab ↗"}
-        />
-      )}
-
-      {interactiveDemo?.placement === "mid-narrative" && (
-        <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} />
-      )}
-
-      {hasProcessArtifacts && (
-        <section
-          id="process-artifacts"
-          className="container case-sim-section proc-stage"
-          aria-label={isZh ? "设计过程手稿与研究证据" : "Design process artifacts"}
-        >
-          {processArtifacts?.scrubber && (
-            <BeforeAfterScrubber
-              data={processArtifacts.scrubber}
-              locale={proofLocale}
-            />
-          )}
-          {processArtifacts?.microLoop && (
-            <CaseMicroLoop data={processArtifacts.microLoop} locale={proofLocale} />
-          )}
-          {processArtifacts?.quotes && (
-            <ResearchQuoteDeck data={processArtifacts.quotes} locale={proofLocale} />
-          )}
-        </section>
-      )}
-
-      {(depthModules || researchVault) && (
-        <div
-          className="container"
-          style={{ marginTop: "var(--s-7)" }}
-        >
-          {depthModules ? (
-            <div id="case-deep-root" className={deepStyles.deepStack}>
-              <CaseJourneyRail stages={depthModules.journey} locale={proofLocale} />
-              <CaseStateMatrixTable states={depthModules.stateMatrix} locale={proofLocale} />
-              <CaseRejectionArchive entries={depthModules.rejectionArchive} locale={proofLocale} />
-              {researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />}
-            </div>
-          ) : (
-            researchVault && <RawResearchVault vault={researchVault} locale={proofLocale} />
-          )}
-        </div>
-      )}
-
-      <section id="long-form" className="container">
-        <CaseNarrative
-          slug={k}
-          narrative={narrative}
-          impactLabel={t("cs.impactLabel")}
-          isZh={isZh}
-        />
-
-        <div className="case-depth" aria-label={pageCopy.caseDepthAria}>
-          <div id="outcome-limits" className="case-depth-block case-limits">
-            <div className="case-depth-head">
-              <div className="label">{pageCopy.limitsLabel}</div>
-              <h2>{pageCopy.outcomeLimits}</h2>
-            </div>
-            <div className="case-limits-grid">
-              {caseDepth.limits.map((limit) => (
-                <article key={limit.constraint}>
-                  <h3>{limit.constraint}</h3>
-                  <dl className="case-depth-dl">
-                    <div>
-                      <dt>{pageCopy.whyItMatters}</dt>
-                      <dd>{limit.whyItMatters}</dd>
-                    </div>
-                    <div>
-                      <dt>{pageCopy.nextValidation}</dt>
-                      <dd>{limit.nextValidation}</dd>
-                    </div>
-                  </dl>
-                </article>
+      <div className="container v4-editorial-grid cs-story-grid">
+        <aside className="v4-span-3 v4-rail-sticky" aria-label={isZh ? "案例导航轨" : "Case rail"}>
+          <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
+            <span className="cs-jump-label" aria-hidden="true">
+              {isZh ? "本页目录" : "On this page"}
+            </span>
+            <ol>
+              {toc.map(({ id, label }) => (
+                <li key={id}>
+                  <a href={`#${id}`}>{label}</a>
+                </li>
               ))}
-            </div>
+            </ol>
+          </nav>
+          <div>
+            <PresentationTrigger deck={presentationDeck} locale={proofLocale} className="btn btn-ghost" />
           </div>
-        </div>
-      </section>
+        </aside>
 
-      <CaseInterviewPack
-        pack={caseInterviewPack}
-        locale={proofLocale}
-        currentSlug={k}
-        sectionLabels={sectionLabels}
-      />
+        <article className="v4-span-9 cs-story-body">
+          {story ? (
+            <>
+              <StoryProblem copy={story} labels={labels} />
+              <StoryDecisions copy={story} labels={labels} />
+              <StoryTryIt
+                copy={story}
+                labels={labels}
+                simulatorId={interactiveDemo?.id}
+                simulator={
+                  interactiveDemo ? (
+                    <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} embedded />
+                  ) : null
+                }
+              />
+              <StoryBuilt
+                copy={story}
+                labels={labels}
+                media={
+                  <>
+                    {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
+                    {k === "walkie" && <WalkieTactileSchematicSvg locale={proofLocale} />}
+                  </>
+                }
+              />
+              <StoryOutcome copy={story} labels={labels} />
+            </>
+          ) : (
+            <>
+              <section id="long-form" className="cs-lede-longform">
+                <CaseNarrative
+                  slug={k}
+                  narrative={narrative}
+                  impactLabel={t("cs.impactLabel")}
+                  isZh={isZh}
+                />
+              </section>
+              {(interactiveDemo || record.demo || record.media || isLabLinkedCase(k)) && (
+                <div className="cs-lede-proof">
+                  {/* The photo took the hero; the case's own schematic stays here. */}
+                  {record.cover && hasCaseSchematic(k) && (
+                    <figure className="cs-cover cs-lede-schematic">
+                      <CaseCoverVisual slug={k} locale={proofLocale} />
+                      <figcaption>{pageCopy.coverCaption}</figcaption>
+                    </figure>
+                  )}
+                  {interactiveDemo && <CaseSimulatorFrame demo={interactiveDemo} locale={proofLocale} />}
+                  {record.demo && (
+                    <DemoEmbed
+                      src={record.demo.src}
+                      poster={record.demo.poster}
+                      title={isZh ? record.demo.titleZh : record.demo.title}
+                      posterAlt={isZh ? record.demo.posterAltZh : record.demo.posterAlt}
+                      label={isZh ? record.demo.labelZh : record.demo.label}
+                      blurb={isZh ? record.demo.blurbZh : record.demo.blurb}
+                      action={isZh ? record.demo.actionZh : record.demo.action}
+                      openLabel={isZh ? "在新标签页打开 ↗" : "Open in a new tab ↗"}
+                    />
+                  )}
+                  {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
+                  {isLabLinkedCase(k) && <CaseInvariantLink slug={k} isZh={isZh} />}
+                </div>
+              )}
+              <PlainLimits limits={caseDepth.limits} labels={ledeLabels} />
+            </>
+          )}
 
-      {redTeamDeck && (
-        <section className="container" style={{ marginTop: "var(--s-6)" }}>
-          <RedTeamCritiquePanel
-            decks={[redTeamDeck]}
-            locale={proofLocale}
-            sectionId="red-team-defense"
-            currentSlug={k}
-            sectionLabels={sectionLabels}
-            probeVariant="ghost"
-          />
-        </section>
-      )}
+          <StoryAppendix labels={labels} hint={story ? undefined : ledeLabels.appendixHint}>
+            {!story && <SummaryGlance summary={caseSummary} labels={ledeLabels} />}
+            <CaseTerminologyNotes slug={k} locale={proofLocale} />
+            {depthModules && (
+              <CaseJourneyRail
+                stages={depthModules.journey}
+                locale={proofLocale}
+                headingLevel={3}
+                headingText={labels.journey}
+              />
+            )}
+            {hasProcessArtifacts && (
+              <StoryAppendixGroup id="process-artifacts" title={labels.beforeAfter}>
+                {processArtifacts?.scrubber && (
+                  <BeforeAfterScrubber data={processArtifacts.scrubber} locale={proofLocale} headingLevel={4} />
+                )}
+                {processArtifacts?.microLoop && (
+                  <CaseMicroLoop data={processArtifacts.microLoop} locale={proofLocale} headingLevel={4} />
+                )}
+                {processArtifacts?.quotes && (
+                  <ResearchQuoteDeck data={processArtifacts.quotes} locale={proofLocale} headingLevel={4} />
+                )}
+              </StoryAppendixGroup>
+            )}
+            {depthModules && (
+              <CaseRejectionArchive
+                entries={depthModules.rejectionArchive}
+                locale={proofLocale}
+                headingLevel={3}
+                headingText={labels.rejected}
+              />
+            )}
+            {researchVault && (
+              <RawResearchVault
+                vault={researchVault}
+                locale={proofLocale}
+                headingLevel={3}
+                headingText={labels.research}
+              />
+            )}
+            {(k === "walkie" || k === "maze" || k === "onthebeat") && (
+              <StoryAppendixGroup title={labels.hardware}>
+                <HardwareFieldCanvas slug={k} locale={proofLocale} />
+              </StoryAppendixGroup>
+            )}
+            <CaseInterviewPack
+              pack={caseInterviewPack}
+              locale={proofLocale}
+              currentSlug={k}
+              sectionLabels={appendixLabels}
+              sectionAliases={aliases}
+              headingLevel={3}
+              headingText={labels.interview}
+            />
+            {redTeamDeck && (
+              <RedTeamCritiquePanel
+                decks={[redTeamDeck]}
+                locale={proofLocale}
+                sectionId="red-team-defense"
+                currentSlug={k}
+                sectionLabels={appendixLabels}
+                sectionAliases={aliases}
+                probeVariant="ghost"
+                headingLevel={3}
+                headingText={labels.redTeam}
+              />
+            )}
+          </StoryAppendix>
+        </article>
+      </div>
 
       {relatedNav}
     </main>

@@ -5,10 +5,10 @@ test.describe("Design Process Artifacts", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/projects/connect");
-
-    const jumpLink = page.locator('.cs-jump a[href="#process-artifacts"]');
-    await expect(jumpLink).toBeVisible();
+    // v6.7: connect takes the v6.6 layout; process artifacts sit in the
+    // collapsed appendix, reached from the rail's "For interviewers" entry.
+    await page.goto("/projects/connect#process-artifacts");
+    await expect(page.locator('.cs-jump a[href="#for-interviewers"]')).toBeVisible();
 
     // v6.5: a text before/after shows two whole cards, no slider (review row 07).
     const cards = page.locator("#process-artifacts .proc-compare > figure");

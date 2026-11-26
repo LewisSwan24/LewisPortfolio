@@ -918,6 +918,42 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 .cs-story-states tbody th { white-space: nowrap; font-weight: 600; }
 .cs-story-limit { color: var(--text); }
 
+/* v6.7: unlisted cases in the v6.6 layout, copy untouched. The long-form
+   narrative drops its side-label column (the rail already holds the TOC)
+   and takes the story measure and heading scale. */
+/* The subtitle sits under the title but must not outrank the lede. */
+.cs-hero .sub.cs-lede-sub {
+  max-width: 46em;
+  margin: 0 0 var(--s-5);
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+.cs-lede-longform { scroll-margin-top: 96px; min-width: 0; }
+.v67-case-lede .cs-lede-longform .cs-section { padding-block: 0 var(--s-7); border-top: none; }
+.v67-case-lede .cs-lede-longform .cs-row { display: block; }
+.v67-case-lede .cs-lede-longform .cs-row-side .label { margin: 0 0 var(--s-3); }
+.v67-case-lede .cs-lede-longform .cs-row-body h2 {
+  font-family: var(--font-title);
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1.15;
+  letter-spacing: 0;
+  max-width: var(--story-measure);
+  text-wrap: balance;
+}
+.v67-case-lede .cs-lede-longform p.prose { max-width: var(--story-measure); line-height: 1.7; text-wrap: pretty; }
+.v67-case-lede .cs-lede-longform .cs-method-grid { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.cs-lede-proof { display: grid; gap: var(--s-6); min-width: 0; }
+.cs-lede-proof > .container,
+.cs-lede-proof > section { padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0; max-width: none; width: auto; }
+.cs-lede-limit { max-width: var(--story-measure); }
+.cs-lede-limit > p { line-height: 1.7; margin: 0 0 var(--s-3); }
+.cs-lede-limit-next > span { color: var(--text-3); font-size: 14px; margin-right: 0.4em; }
+.cs-lede-glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--s-5); }
+.cs-lede-glance h4 { font-size: 15px; margin: 0 0 var(--s-2); color: var(--text-2); }
+.cs-lede-glance ul { padding-left: 1.2em; margin: 0; display: grid; gap: var(--s-2); line-height: 1.6; }
+.cs-lede-glance p { margin: 0; line-height: 1.6; }
+
 /* Appendix: one plain disclosure row, not another card. */
 .case-appendix { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); scroll-margin-top: 96px; }
 .case-appendix > summary {

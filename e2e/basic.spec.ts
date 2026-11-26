@@ -168,13 +168,18 @@ test.describe("Projects Page", () => {
         }
     });
 
-    test("case detail puts primary cover before summary and opens collapsible interview answers", async ({ page }) => {
+    // v6.7: unlisted cases take the v6.6 layout. The summary box became the
+    // first-screen lede beside the cover; the pack sits in the collapsed appendix.
+    test("case detail puts the cover beside the lede and opens collapsible interview answers", async ({ page }) => {
+        await page.setViewportSize({ width: 1440, height: 900 });
         await page.goto("/projects/connect");
 
-        const coverBox = await page.locator(".cs-cover").boundingBox();
-        const summaryBox = await page.locator(".case-summary").boundingBox();
-        expect(coverBox?.y ?? 99999).toBeLessThan(summaryBox?.y ?? 0);
+        const coverBox = await page.locator(".cs-hero .cs-cover").boundingBox();
+        const ledeBox = await page.locator(".cs-hero [data-story-problem]").boundingBox();
+        expect(coverBox?.y ?? 99999).toBeLessThan(900);
+        expect(ledeBox?.y ?? 99999).toBeLessThan(900);
 
+        await page.locator("details.case-appendix > summary").click();
         const pack = page.locator(".case-interview-pack");
 
         await expect(pack.getByText("Interview pack")).toBeVisible();
@@ -252,7 +257,8 @@ test.describe("Projects Page", () => {
     test("zh hoop case should be translated, not fall back to English", async ({ page }) => {
         await gotoStable(page, "/zh/projects/hoop");
 
-        await expect(page.locator(".case-summary")).toContainText("美术圣经");
+        // v6.7: the summary's outcome sentence is now the first-screen result line.
+        await expect(page.locator(".cs-hero [data-story-result]")).toContainText("美术圣经");
         await expect(page.locator(".case-build-evidence .label")).toHaveText("跑起来的样子");
         await expect(page.locator("main.page")).not.toContainText("风格闸门");
     });
@@ -274,7 +280,8 @@ test.describe("Projects Page", () => {
 
     test("case page should not overflow on mobile", async ({ page }) => {
         await page.setViewportSize({ width: 390, height: 844 });
-        await page.goto("/projects/connect");
+        // v6.7: the pack lives in the collapsed appendix; the hash opens it.
+        await page.goto("/projects/connect#interview-pack");
 
         const pack = page.locator(".case-interview-pack");
         await expect(pack).toBeVisible();
