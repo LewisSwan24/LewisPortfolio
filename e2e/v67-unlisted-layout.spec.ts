@@ -24,7 +24,8 @@ for (const slug of UNLISTED) {
         for (const attr of ["data-story-problem", "data-story-result", "data-story-role"]) {
           const p = page.locator(`.cs-hero [${attr}]`);
           await expect(p).toHaveCount(1);
-          expect((await p.textContent())?.trim().length ?? 0).toBeGreaterThan(10);
+          // Non-empty, not a length floor: spectra's zh role line is seven characters.
+          expect((await p.textContent())?.trim().length ?? 0).toBeGreaterThan(3);
         }
         const problem = await page.locator(".cs-hero [data-story-problem]").boundingBox();
         expect(problem!.y + problem!.height).toBeLessThanOrEqual(900);

@@ -257,8 +257,9 @@ test.describe("Projects Page", () => {
     test("zh hoop case should be translated, not fall back to English", async ({ page }) => {
         await gotoStable(page, "/zh/projects/hoop");
 
-        // v6.7: the summary's outcome sentence is now the first-screen result line.
-        await expect(page.locator(".cs-hero [data-story-result]")).toContainText("美术圣经");
+        // v6.7: the summary's methods list moved into the appendix's
+        // "Methods and evidence" group (#snapshot).
+        await expect(page.locator("#snapshot")).toContainText("美术圣经");
         await expect(page.locator(".case-build-evidence .label")).toHaveText("跑起来的样子");
         await expect(page.locator("main.page")).not.toContainText("风格闸门");
     });
@@ -344,11 +345,20 @@ test.describe("Projects Page", () => {
         const nestedVisual = relatedViz.locator("img, .viz").first();
 
         await expect(relatedViz).toBeVisible();
+        await expect(nestedVisual).toBeVisible();
 
-        const parentBox = await relatedViz.boundingBox();
-        const childBox = await nestedVisual.boundingBox();
+        // Measure both boxes in one frame: two separate boundingBox() calls
+        // straddled a late layout shift and read 0.02px apart.
+        const { parentBox, childBox } = await relatedViz.evaluate((parent) => {
+            const child = parent.querySelector("img, .viz");
+            const box = (el: Element) => {
+                const r = el.getBoundingClientRect();
+                return { x: r.x, y: r.y, width: r.width, height: r.height };
+            };
+            return { parentBox: box(parent), childBox: child ? box(child) : null };
+        });
 
-        if (!parentBox || !childBox) {
+        if (!childBox) {
             throw new Error("Expected related project visual bounds to be measurable.");
         }
 
