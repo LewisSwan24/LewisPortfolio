@@ -80,7 +80,8 @@ html { scroll-behavior: smooth; }
   }
 
   .v3-page-enter {
-    animation: v3-page-enter 220ms var(--ease-out) both;
+    /* backwards: see .page in primitives.css (review D01). */
+    animation: v3-page-enter 220ms var(--ease-out) backwards;
   }
 
   @keyframes v3-scroll-settle {

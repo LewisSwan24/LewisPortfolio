@@ -20,6 +20,8 @@ import { buildCaseDeck } from "@/lib/presentation/build-deck";
 import { getCaseMoodStyle } from "@/lib/cases/mood";
 import { CaseNarrative } from "@/components/case/CaseNarrative";
 import { CaseRelatedNav } from "@/components/case/CaseRelatedNav";
+import { CaseChapterPill } from "@/components/case/CaseChapterPill";
+import { localizeInternalHref } from "@/lib/locale-href";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { StructuredData, generateBreadcrumbSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
@@ -304,6 +306,14 @@ export default async function CasePage({ params }: Props) {
       style={moodStyle}
     >
       <div className="cs-scroll-progress" aria-hidden="true" />
+      <CaseChapterPill
+        entries={toc}
+        locale={proofLocale}
+        next={{
+          href: localizeInternalHref(`/projects/${nextSlug}`, proofLocale),
+          title: getCaseCard(nextSlug, proofLocale).title,
+        }}
+      />
       {breadcrumbSchema}
       <CaseAppendixHashOpener aliases={aliases ?? {}} />
       <section className="container cs-hero cs-story-hero">

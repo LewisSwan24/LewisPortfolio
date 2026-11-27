@@ -730,6 +730,11 @@
 .cs-links a {
   display: inline-flex;
   align-items: center;
+  /* v6.9 (review D04): a 25px tap target (WCAG 2.2 2.5.8) without changing the
+     line: the padding is taken back by the margin, so the meta row R04 sizes
+     to two lines keeps its height. */
+  padding-block: 3px;
+  margin-block: -3px;
   gap: 4px;
   color: var(--accent);
   text-decoration: none;

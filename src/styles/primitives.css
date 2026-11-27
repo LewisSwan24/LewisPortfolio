@@ -122,7 +122,10 @@ h1.h-display { font-family: var(--font-title); font-weight: 700; letter-spacing:
 }
 .quote cite { font-style: normal; font-family: var(--font-ui); font-size: 13px; color: var(--text-3); letter-spacing: 0.02em; }
 
-.page { animation: page-in var(--dur-4) var(--ease-out) both; }
+/* v6.9 (review D01): `backwards`, not `both`. A filled end state leaves transform:
+   translateY(0) on <main>, which makes it the containing block for every
+   position:fixed child, so progress bars and rails scrolled away with the page. */
+.page { animation: page-in var(--dur-4) var(--ease-out) backwards; }
 
 /* NAV */
 html {
@@ -239,6 +242,18 @@ html {
 /* v6.5: scoped under .pd-nav-tools so it outranks `.pd-nav-tools button`, which showed it at 1440px (review C06). */
 .pd-nav-tools .pd-mobile-toggle { display: none; width: 38px; height: 38px; padding: 0; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
 .pd-mobile-toggle span { display: block; width: 16px; height: 1px; background: currentColor; }
+/* v6.9 (review D03): open, the three bars become a cross, so the toggle reads as close. */
+.pd-mobile-toggle span { transition: transform var(--dur-2) var(--ease-out), opacity var(--dur-2) var(--ease-out); }
+.pd-mobile-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.pd-mobile-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.pd-mobile-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+/* Below the sticky header (z-index 50), above the page. */
+.pd-mobile-backdrop {
+  position: fixed; inset: 0; z-index: 49;
+  background: color-mix(in srgb, var(--text) 32%, transparent);
+}
+@media (min-width: 961px) { .pd-mobile-backdrop { display: none; } }
+@media (prefers-reduced-motion: reduce) { .pd-mobile-toggle span { transition: none; } }
 .pd-mobile-menu {
   display: none;
   border-top: 1px solid var(--border);
