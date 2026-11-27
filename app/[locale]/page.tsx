@@ -127,7 +127,7 @@ export default async function HomePage() {
               </Link>
             </div>
             <div className="hero-focus-strip" aria-label={isZh ? "招聘与简历及快捷入口" : "Hire & CV and quick links"}>
-              <span>{isZh ? "10秒优势" : "10s edge"}</span>
+              <span>{isZh ? "教育经历 · 技能" : "Education · Skills"}</span>
               <strong>
                 {isZh
                   ? "斯旺西 CS 本科 (2:1) × UQ 交互硕士 (2026.11 毕业)"

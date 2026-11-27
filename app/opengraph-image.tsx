@@ -33,7 +33,7 @@ const ACCENT = "#A63F2A";
 
 export default async function Image() {
   const headline = "Studio log.";
-  const sub = "Interaction Design · UX Research · Design Engineering";
+  const sub = "Interaction & Product Designer";
   const name = siteConfig.name.toUpperCase();
 
   const alphabet =

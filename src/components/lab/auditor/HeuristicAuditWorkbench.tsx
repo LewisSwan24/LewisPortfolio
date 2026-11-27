@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import type { CaseHeuristicEntry, HeuristicSeverity } from "@/data/heuristics/case-heuristics";
 import { VerifiedStatusBadge } from "@/components/case/deep/VerifiedStatusBadge";
@@ -50,6 +50,16 @@ export function HeuristicAuditWorkbench({
   const [caseFilter, setCaseFilter] = useState<CaseFilter>("all");
   const [severityFilter, setSeverityFilter] = useState<SeverityFilter>("all");
   const [expanded, setExpanded] = useState(false);
+  // v7.0: on a phone the collapsed grid shows PHONE_PREVIEW_COUNT cards (CSS),
+  // and the counter said "24 / 24" anyway.
+  const [isPhone, setIsPhone] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setIsPhone(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const filteredEntries = useMemo(() => {
     return audits.filter((entry) => {
@@ -58,6 +68,9 @@ export function HeuristicAuditWorkbench({
       return true;
     });
   }, [audits, caseFilter, severityFilter]);
+
+  const shownCount =
+    !expanded && isPhone ? Math.min(PHONE_PREVIEW_COUNT, filteredEntries.length) : filteredEntries.length;
 
   return (
     <section
@@ -84,8 +97,8 @@ export function HeuristicAuditWorkbench({
 
         <output role="status" className={styles.statusBar} data-testid="heuristic-count-status">
           {isZh
-            ? `展示 ${filteredEntries.length} / ${audits.length} 条启发式核查`
-            : `Showing ${filteredEntries.length} of ${audits.length} audit checks`}
+            ? `展示 ${shownCount} / ${audits.length} 条启发式核查`
+            : `Showing ${shownCount} of ${audits.length} audit checks`}
         </output>
       </header>
 

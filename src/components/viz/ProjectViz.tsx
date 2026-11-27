@@ -156,7 +156,8 @@ export function VizSpectra({ locale = "en" }: VizProps) {
 
         {controls.map((label, i) => (
           <g key={label}>
-            <rect x={30 + i * 118} y="324" width="104" height="26" rx="13" stroke="var(--viz-paper)" strokeWidth="1" fill="none" />
+            {/* v7.0 R29: plain labels; pill outlines read as buttons in a picture. */}
+            <line x1={30 + i * 118 + 22} y1="348" x2={30 + i * 118 + 82} y2="348" stroke="var(--viz-paper)" strokeWidth="1" />
             <text
               x={30 + i * 118 + 52}
               y="341"

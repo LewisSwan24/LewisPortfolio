@@ -188,7 +188,7 @@ export function CrossPracticeArchitectureSvg({ locale }: { locale: "en" | "zh" }
           fontWeight="600"
           fontFamily="var(--font-display)"
         >
-          {isZh ? "近一年可验证全栈/硬件交付" : "Design Engineering Proof"}
+          {isZh ? "近一年可验证全栈/硬件交付" : "Verified full-stack & hardware delivery, past year"}
         </text>
         <text
           x="636"

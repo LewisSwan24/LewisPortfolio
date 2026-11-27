@@ -46,13 +46,13 @@ export default async function LabPage() {
         <div className="v4-editorial-grid">
           <div className="v4-span-8">
             <div className="eyebrow">{isZh ? "UI 实验室 · 设计系统与原语" : "UI Lab · Design System & Primitives"}</div>
-            <h1 className="h-display h1" style={{ marginTop: 12 }}>
+            <h1 className="h-display h1 lab-h1" style={{ marginTop: 12 }}>
               {isZh ? "把设计规则做成可操作的工作台" : "Design rules you can inspect and test"}
             </h1>
             <p className="sub">
               {isZh
-                ? "这里不放装饰性的特效模板，而是直接呈现本站的 V4 Swiss Editorial 色彩对比度规范、GSAP 纸面动效曲线，以及三个项目中最核心的交互状态规则。"
-                : "No decorative templates — this workbench exposes the live V4 Swiss Editorial contrast tokens, the GSAP paper-motion curve layer, and the core state rules behind three projects."}
+                ? "这一页放的是本站自己的设计规则：色彩对比度、动效曲线，以及三个项目里最核心的交互状态规则。每一条都可以动手检查。"
+                : "This page holds the site's own design rules: its colour contrast, its motion curves, and the core state rules behind three projects. You can inspect and test each one."}
             </p>
             <div className={patternStyles.bannerCard} style={{ marginTop: "var(--s-4)" }}>
               <div style={{ display: "grid", gap: 4 }}>

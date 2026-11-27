@@ -80,6 +80,8 @@ export function RoleLensSwitch({
   const router = useRouter();
   const pathname = usePathname();
   const [copied, setCopied] = useState(false);
+  // v7.0 R28: in-app browsers often block the clipboard; show the link instead.
+  const [manualCopy, setManualCopy] = useState(false);
 
   const activeLens = parseLens(searchParams.get("role"));
   const lensMeta = LENSES.find((l) => l.id === activeLens) ?? LENSES[0];
@@ -106,7 +108,7 @@ export function RoleLensSwitch({
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
     } catch {
-      // Clipboard unavailable in restricted context
+      setManualCopy(true);
     }
   };
 
@@ -116,7 +118,14 @@ export function RoleLensSwitch({
         <div>
           <div className="label">{isZh ? "岗位视角过滤" : "Role-tailored lens"}</div>
           <h2 id="role-lens-heading">
-            {isZh ? "按你的团队岗位，直接筛出最相关案例。" : "Filter the strongest proof for your opening."}
+            {isZh ? (
+              <>
+                按你的团队岗位，<span className="nobr">直接筛出</span>
+                <span className="nobr">最相关案例。</span>
+              </>
+            ) : (
+              "Filter the strongest proof for your opening."
+            )}
           </h2>
           <p>{isZh ? lensMeta.noteZh : lensMeta.noteEn}</p>
         </div>
@@ -134,6 +143,18 @@ export function RoleLensSwitch({
               ? "复制当前视角链接"
               : "Copy tailored link"}
         </button>
+        {manualCopy && (
+          <label className="role-lens-manual-copy">
+            <span>{isZh ? "无法自动复制，请手动复制这个链接" : "Copy this link by hand"}</span>
+            <input
+              type="text"
+              readOnly
+              value={shareUrl}
+              autoFocus
+              onFocus={(e) => e.currentTarget.select()}
+            />
+          </label>
+        )}
       </div>
 
       <div className="role-lens-tabs" role="tablist" aria-label={isZh ? "选择岗位视角" : "Choose role lens"}>
