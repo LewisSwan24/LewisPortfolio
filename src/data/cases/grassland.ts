@@ -40,7 +40,7 @@ export const grasslandCase: CaseRecord = {
   "links": [
     {
       "label": "Play chapter one",
-      "href": "https://onon-wolf-iron-tide.vercel.app",
+      "href": "https://irontide.lewisdong.com",
       "external": true
     }
   ],

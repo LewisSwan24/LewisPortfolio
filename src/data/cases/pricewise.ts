@@ -40,7 +40,7 @@ export const pricewiseCase: CaseRecord = {
   "links": [
     {
       "label": "Open the demo",
-      "href": "https://pricewise-lewisdong.vercel.app",
+      "href": "https://pricewise.lewisdong.com",
       "external": true
     }
   ],
@@ -80,7 +80,7 @@ export const pricewiseCase: CaseRecord = {
     ]
   },
   "demo": {
-    "src": "https://pricewise-lewisdong.vercel.app",
+    "src": "https://pricewise.lewisdong.com",
     "poster": "/projects/pricewise/01-home.png",
     "title": "PriceWise, demo build",
     "titleZh": "PriceWise 演示版本",

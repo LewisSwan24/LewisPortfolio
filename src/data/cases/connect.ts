@@ -39,7 +39,7 @@ export const connectCase: CaseRecord = {
   "links": [
     {
       "label": "Open the demo",
-      "href": "https://uq-connect.vercel.app/",
+      "href": "https://uqconnect.lewisdong.com/",
       "external": true
     }
   ],

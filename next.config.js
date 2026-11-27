@@ -178,7 +178,7 @@ const nextConfig = {
               "font-src 'self'",
               "worker-src 'self'",
               "connect-src 'self' https://vitals.vercel-insights.com",
-              "frame-src 'self' https://maze-runners.vercel.app https://hoop-dream.vercel.app https://fencepost-app.vercel.app https://lewisswan24.github.io https://onon-wolf-iron-tide.vercel.app",
+              "frame-src 'self' https://maze.lewisdong.com https://hoop.lewisdong.com https://fencepost.lewisdong.com https://lewisswan24.github.io https://irontide.lewisdong.com",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",

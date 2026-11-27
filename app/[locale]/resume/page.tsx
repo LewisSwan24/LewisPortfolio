@@ -68,7 +68,7 @@ const COPY = {
           ["At the exhibition", "9 groups (36 players) played it live and about 3 groups finished."],
           ["My part", "interaction mechanics, Arduino firmware (AI coding tools helped implement it; I debugged and signed it off), the circuit and all wiring, and the live scoring page. Teammates built the maze body and exterior."],
         ],
-        links: [{ href: "https://maze-runners.vercel.app", label: "Web console demo ↗" }],
+        links: [{ href: "https://maze.lewisdong.com", label: "Web console demo ↗" }],
       },
       {
         date: "2026 · 11 – Now",
@@ -108,11 +108,11 @@ const COPY = {
         ["Navigation redrawn", "in a think-aloud session I moderated, the participant could not find a way back. The team then went back to paper and redrew the app as five screens; in the third round, “no way back” did not recur (no quantitative comparison)."],
         ["My part", "of the team's 71 research and testing records, I moderated 14 sessions with 9 participants, 4 of whom returned across rounds. In code, 32 of the team's 157 commits are mine."],
       ],
-      links: [{ href: "https://uq-connect.vercel.app", label: "Demo ↗" }],
+      links: [{ href: "https://uqconnect.lewisdong.com", label: "Demo ↗" }],
     } satisfies Entry,
     otherRows: [
-      { name: "PriceWise", text: "Solo, 2025–26 · receipt-based grocery price comparison. Calling each endpoint and checking the database found four classes of defect that a green build and passing tests had missed.", href: "https://pricewise-lewisdong.vercel.app", linkLabel: "pricewise-lewisdong.vercel.app" },
-      { name: "Grassland Iron Tide", text: "Solo, 2026 · five-mission browser strategy game with one shared command grammar and recoverable failures. Not yet tested with outside players.", href: "https://onon-wolf-iron-tide.vercel.app", linkLabel: "onon-wolf-iron-tide.vercel.app" },
+      { name: "PriceWise", text: "Solo, 2025–26 · receipt-based grocery price comparison. Calling each endpoint and checking the database found four classes of defect that a green build and passing tests had missed.", href: "https://pricewise.lewisdong.com", linkLabel: "pricewise.lewisdong.com" },
+      { name: "Grassland Iron Tide", text: "Solo, 2026 · five-mission browser strategy game with one shared command grammar and recoverable failures. Not yet tested with outside players.", href: "https://irontide.lewisdong.com", linkLabel: "irontide.lewisdong.com" },
       { name: "Walkie", text: "Solo, 2026 · wrist-worn voice remote for Claude Code (M5StickS3), approving tool permissions directly on the wrist. The full flow works over USB.", href: "https://github.com/LewisSwan24/walkie", linkLabel: "github.com/LewisSwan24/walkie" },
     ] satisfies Row[],
     courseRows: [
@@ -169,7 +169,7 @@ const COPY = {
           ["展出", "现场 9 组共 36 人试玩，约 3 组通关。"],
           ["个人负责", "交互机制、Arduino 程序、电路与全部布线，以及展出用的实时计分网页。程序由 AI 编码工具参与实现，我负责调试与验收；迷宫本体与外观由组员完成。"],
         ],
-        links: [{ href: "https://maze-runners.vercel.app", label: "在线模拟控制台 ↗" }],
+        links: [{ href: "https://maze.lewisdong.com", label: "在线模拟控制台 ↗" }],
       },
       {
         date: "2026 · 11 – 至今",
@@ -209,11 +209,11 @@ const COPY = {
         ["导航重画", "我主持的一场出声思考测试中，参与者找不到返回入口。团队随后回到纸面，将应用重画为 5 个页面；第 3 轮测试中「无法返回」未再出现（未做量化对照）。"],
         ["个人负责", "团队三轮共 71 份研究与测试记录，我主持其中 14 场，涉及 9 位参与者，4 位跨轮回访。团队 157 次提交中我完成 32 次。"],
       ],
-      links: [{ href: "https://uq-connect.vercel.app", label: "演示版 ↗" }],
+      links: [{ href: "https://uqconnect.lewisdong.com", label: "演示版 ↗" }],
     } satisfies Entry,
     otherRows: [
-      { name: "PriceWise", text: "个人项目，2025–26 · 小票比价应用。逐个调接口并查库，查出四类构建和测试全绿时未暴露的缺陷。", href: "https://pricewise-lewisdong.vercel.app", linkLabel: "pricewise-lewisdong.vercel.app" },
-      { name: "草原铁潮", text: "个人项目，2026 · 五关网页即时战略游戏，全关共用一套命令语法，失败后可恢复。还没有外部玩家试玩。", href: "https://onon-wolf-iron-tide.vercel.app", linkLabel: "onon-wolf-iron-tide.vercel.app" },
+      { name: "PriceWise", text: "个人项目，2025–26 · 小票比价应用。逐个调接口并查库，查出四类构建和测试全绿时未暴露的缺陷。", href: "https://pricewise.lewisdong.com", linkLabel: "pricewise.lewisdong.com" },
+      { name: "草原铁潮", text: "个人项目，2026 · 五关网页即时战略游戏，全关共用一套命令语法，失败后可恢复。还没有外部玩家试玩。", href: "https://irontide.lewisdong.com", linkLabel: "irontide.lewisdong.com" },
       { name: "Walkie", text: "个人项目，2026 · 腕戴式 Claude Code 语音遥控器（M5StickS3），可在手腕上审批工具权限。USB 连接下已跑通全流程。", href: "https://github.com/LewisSwan24/walkie", linkLabel: "github.com/LewisSwan24/walkie" },
     ] satisfies Row[],
     courseRows: [

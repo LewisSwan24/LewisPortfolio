@@ -121,7 +121,7 @@ export default async function InterviewPackPage() {
             <a href="https://github.com/LewisSwan24/resume-autofill" target="_blank" rel="noopener noreferrer">Resume Autofill GitHub ↗</a>
             <a href="https://on-the-beat.fly.dev" target="_blank" rel="noopener noreferrer">On The Beat Live ↗</a>
             <a href="https://github.com/LewisSwan24/on-the-beat" target="_blank" rel="noopener noreferrer">On The Beat GitHub ↗</a>
-            <a href="https://maze-runners.vercel.app" target="_blank" rel="noopener noreferrer">MazeRunners Console ↗</a>
+            <a href="https://maze.lewisdong.com" target="_blank" rel="noopener noreferrer">MazeRunners Console ↗</a>
           </div>
         </div>
       </section>
