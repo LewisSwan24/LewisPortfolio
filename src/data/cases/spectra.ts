@@ -11,6 +11,7 @@ export const spectraCase: CaseRecord = {
     "tags": ["research"],
     "year": "2026",
     "dur": "DEMO (unlisted)",
+    "durZh": "演示版（未列出）",
     "problem": {
       "en": "Locked-down web typography leaves readers unable to adjust line height or font safely",
       "zh": "网页作者写死的排版限制了需要更大字距与行高的阅读者"

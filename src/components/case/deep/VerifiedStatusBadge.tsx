@@ -1,7 +1,7 @@
 import type { CaseModuleFocusTag, CaseVerifiedStatus } from "@/lib/cases/modules-schema";
 import styles from "./cases-deep.module.css";
 
-const VERIFIED_LABELS: Record<CaseVerifiedStatus, { en: string; zh: string }> = {
+export const VERIFIED_LABELS: Record<CaseVerifiedStatus, { en: string; zh: string }> = {
   observed: { en: "Observed in use", zh: "日常实测观察" },
   "bench-tested": { en: "Bench / hardware verified", zh: "台架 / 真机实测" },
   "synthetic-gate": { en: "Automated / synthetic gate", zh: "自动化 / 合成门禁" },

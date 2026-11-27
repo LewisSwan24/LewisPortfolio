@@ -55,12 +55,12 @@ export default async function InterviewPackPage() {
         </h1>
         <p className="prose" style={{ maxWidth: "62ch" }}>
           {isZh
-            ? "一分钟版本在招聘页。这里放面试前用得上的资料：追问练习、能力边界、岗位匹配和可打印的简报。"
-            : "The one-minute version is on the hiring page. This page holds what helps before an interview: practice questions, scope limits, job matching and printable briefs."}
+            ? "一分钟版本在「招聘与简历」页。这里放面试前用得上的资料：追问练习、能力边界、岗位匹配和可打印的简报。"
+            : "The one-minute version is on Hire & CV. This page holds what helps before an interview: practice questions, scope limits, job matching and printable briefs."}
         </p>
         <div className="interview-room-actions">
           <Link className="btn btn-ghost" href={localizeInternalHref("/hire", proofLocale)}>
-            {isZh ? "← 回到招聘页" : "← Back to the hiring page"}
+            {isZh ? "← 回到招聘与简历" : "← Back to Hire & CV"}
           </Link>
         </div>
       </section>
@@ -116,12 +116,12 @@ export default async function InterviewPackPage() {
           </div>
           <div className="res-inline-links" aria-label={isZh ? "直达公开源码仓库与在线原型" : "Verify public GitHub repositories and live builds"}>
             <a href="https://github.com/LewisSwan24/walkie" target="_blank" rel="noopener noreferrer">Walkie GitHub ↗</a>
-            <a href="https://lewisswan24.github.io/lamplight-nook-site/" target="_blank" rel="noopener noreferrer">Lamplight Site ↗</a>
+            <a href="https://lewisswan24.github.io/lamplight-nook-site/" target="_blank" rel="noopener noreferrer">{isZh ? "Lamplight 产品展示页 ↗" : "Lamplight Site ↗"}</a>
             <a href="https://github.com/LewisSwan24/lamplight-nook" target="_blank" rel="noopener noreferrer">Lamplight GitHub ↗</a>
             <a href="https://github.com/LewisSwan24/resume-autofill" target="_blank" rel="noopener noreferrer">Resume Autofill GitHub ↗</a>
-            <a href="https://on-the-beat.fly.dev" target="_blank" rel="noopener noreferrer">On The Beat Live ↗</a>
+            <a href="https://on-the-beat.fly.dev" target="_blank" rel="noopener noreferrer">{isZh ? "On The Beat 在线原型 ↗" : "On The Beat Live ↗"}</a>
             <a href="https://github.com/LewisSwan24/on-the-beat" target="_blank" rel="noopener noreferrer">On The Beat GitHub ↗</a>
-            <a href="https://maze.lewisdong.com" target="_blank" rel="noopener noreferrer">MazeRunners Console ↗</a>
+            <a href="https://maze.lewisdong.com" target="_blank" rel="noopener noreferrer">{isZh ? "MazeRunners 网页控制台 ↗" : "MazeRunners Console ↗"}</a>
           </div>
         </div>
       </section>

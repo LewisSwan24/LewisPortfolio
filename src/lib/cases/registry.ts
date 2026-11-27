@@ -97,7 +97,7 @@ export function getWorkIndexItems(locale: CaseLocale): WorkIndexDto[] {
         kicker: card.kicker,
         role: card.role,
         year: summary.year,
-        dur: summary.dur,
+        dur: locale === "zh" && summary.durZh ? summary.durZh : summary.dur,
         problem: summary.problem[locale],
         changed: summary.changed[locale],
       };

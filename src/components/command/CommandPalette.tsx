@@ -215,7 +215,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 style={{ justifySelf: "start", fontSize: 12 }}
                 onClick={() => navigate("/ai")}
               >
-                {isZh ? "打开完整 AI 实验室与追溯详情 (/ai) →" : "Open full AI Lab with pipeline telemetry (/ai) →"}
+                {isZh ? "打开完整 AI 实验室与追溯详情 →" : "Open full AI Lab with pipeline telemetry →"}
               </button>
             </div>
           ) : (
@@ -263,7 +263,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/hire?role=product")}
               >
-                <span>{isZh ? "产品设计师视角 (/hire?role=product)" : "Product Designer Lens (/hire?role=product)"}</span>
+                <span>{isZh ? "产品设计师视角" : "Product Designer Lens"}</span>
                 <span className="cmdk-item-meta">Hire</span>
               </Command.Item>
               <Command.Item
@@ -271,7 +271,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/hire?role=interaction")}
               >
-                <span>{isZh ? "交互设计师视角 (/hire?role=interaction)" : "Interaction Designer Lens (/hire?role=interaction)"}</span>
+                <span>{isZh ? "交互设计师视角" : "Interaction Designer Lens"}</span>
                 <span className="cmdk-item-meta">Hire</span>
               </Command.Item>
               <Command.Item
@@ -279,7 +279,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/hire?role=design-eng")}
               >
-                <span>{isZh ? "Design Engineer 视角 (/hire?role=design-eng)" : "Design Engineer Lens (/hire?role=design-eng)"}</span>
+                <span>{isZh ? "设计工程师视角" : "Design Engineer Lens"}</span>
                 <span className="cmdk-item-meta">Hire</span>
               </Command.Item>
               <Command.Item
@@ -287,7 +287,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/hire?role=ai-ux")}
               >
-                <span>{isZh ? "AI UX 与信任视角 (/hire?role=ai-ux)" : "AI UX & Trust Lens (/hire?role=ai-ux)"}</span>
+                <span>{isZh ? "AI UX 与信任视角" : "AI UX & Trust Lens"}</span>
                 <span className="cmdk-item-meta">Hire</span>
               </Command.Item>
             </Command.Group>
@@ -298,7 +298,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/patterns")}
               >
-                <span>{isZh ? "打开交互模式图谱 (/patterns)" : "Open Pattern Atlas (/patterns)"}</span>
+                <span>{isZh ? "打开交互模式图谱" : "Open Pattern Atlas"}</span>
                 <span className="cmdk-item-meta">Patterns</span>
               </Command.Item>
               <Command.Item
@@ -306,7 +306,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/vault")}
               >
-                <span>{isZh ? "打开演进与死亡解剖档案馆 (/vault)" : "Open Archive Vault (/vault)"}</span>
+                <span>{isZh ? "打开演进档案馆" : "Open Archive Vault"}</span>
                 <span className="cmdk-item-meta">Vault</span>
               </Command.Item>
               <Command.Item
@@ -314,7 +314,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/studio/graph")}
               >
-                <span>{isZh ? "打开因果演进知识图谱 (/studio/graph)" : "Open Causal Lineage Graph (/studio/graph)"}</span>
+                <span>{isZh ? "打开因果演进知识图谱" : "Open Causal Lineage Graph"}</span>
                 <span className="cmdk-item-meta">Graph</span>
               </Command.Item>
               <Command.Item
@@ -322,7 +322,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/ai")}
               >
-                <span>{isZh ? "打开 AI 实验室 (/ai)" : "Open AI Lab (/ai)"}</span>
+                <span>{isZh ? "打开 AI 实验室" : "Open AI Lab"}</span>
                 <span className="cmdk-item-meta">AI</span>
               </Command.Item>
               <Command.Item
@@ -330,7 +330,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/lab")}
               >
-                <span>{isZh ? "打开实验室工作台 (/lab)" : "Open Lab Workbench (/lab)"}</span>
+                <span>{isZh ? "打开 UI 实验室" : "Open UI Lab"}</span>
                 <span className="cmdk-item-meta">Lab</span>
               </Command.Item>
               <Command.Item
@@ -338,7 +338,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/studio/replay")}
               >
-                <span>{isZh ? "打开硬件协议帧重放台 (/studio/replay)" : "Open Protocol Replay Studio (/studio/replay)"}</span>
+                <span>{isZh ? "打开硬件协议帧重放台" : "Open Protocol Replay Studio"}</span>
                 <span className="cmdk-item-meta">Replay</span>
               </Command.Item>
               <Command.Item
@@ -346,7 +346,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/resume")}
               >
-                <span>{isZh ? "打开简历与 PDF (/resume)" : "Open Resume & PDF (/resume)"}</span>
+                <span>{isZh ? "打开简历与 PDF" : "Open Resume & PDF"}</span>
                 <span className="cmdk-item-meta">Resume</span>
               </Command.Item>
               <Command.Item
@@ -354,7 +354,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 className="cmdk-item"
                 onSelect={() => navigate("/resume/compose")}
               >
-                <span>{isZh ? "打开定制简历组装台 (/resume/compose)" : "Open Custom Resume Composer (/resume/compose)"}</span>
+                <span>{isZh ? "打开定制简历组装台" : "Open Custom Resume Composer"}</span>
                 <span className="cmdk-item-meta">Composer</span>
               </Command.Item>
               <Command.Item

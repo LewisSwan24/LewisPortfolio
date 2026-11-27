@@ -16,11 +16,11 @@ test.describe("v5.0 Hiring Resume Composer & Cross-Route Visual/CWV Gate", () =>
     await page.goto("/en/resume/compose", { waitUntil: "networkidle" });
 
     await expect(page.getByTestId("resume-a4-sheet")).toBeVisible();
-    await expect(page.getByTestId("composer-doc-role-title")).toContainText("Interaction Designer");
+    await expect(page.getByTestId("composer-doc-role-title")).toContainText("Interaction & Product Designer · Human-AI Safety");
 
-    // Switch role preset to Design Technologist
+    // Switch role preset to Design Technologist (v6.9 R16: one job title, the focus after it changes)
     await page.getByTestId("composer-preset-design-tech").click();
-    await expect(page.getByTestId("composer-doc-role-title")).toContainText("Design Technologist");
+    await expect(page.getByTestId("composer-doc-role-title")).toContainText("Interaction & Product Designer · TypeScript, Next.js");
 
     // Toggle Grasslands case inclusion off and verify live preview drops it
     await page.getByTestId("composer-case-grassland").uncheck();
@@ -28,7 +28,7 @@ test.describe("v5.0 Hiring Resume Composer & Cross-Route Visual/CWV Gate", () =>
 
     // Switch live preview language to Chinese A4
     await page.getByRole("button", { name: "中文 A4 版" }).click();
-    await expect(page.getByTestId("composer-doc-role-title")).toContainText("设计工程师");
+    await expect(page.getByTestId("composer-doc-role-title")).toContainText("交互与产品设计师 · TypeScript");
 
     // Copy Markdown dossier
     await page.getByRole("button", { name: "Copy Markdown Dossier" }).click();

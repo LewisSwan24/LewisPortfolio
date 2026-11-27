@@ -101,7 +101,7 @@ const MARKET_LENS_PROFILES: readonly MarketLensProfile[] = [
       },
       {
         en: "Read why the archived coursework projects stopped and which listed builds they relate to.",
-        zh: "在 Archive Vault 里看早期停做的课题为什么停下，以及它们和哪些主案相关。",
+        zh: "在演进档案馆里看早期停做的课题为什么停下，以及它们和哪些主案相关。",
       },
     ],
     recommendedOrder: ["walkie", "maze", "lamplight", "grassland"],

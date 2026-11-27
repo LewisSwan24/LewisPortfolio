@@ -9,6 +9,7 @@ import {
   VizRules,
 } from "@/components/viz/ProjectViz";
 import { getProjectCover } from "@/lib/project-covers";
+import { localizeMediaSrc } from "@/lib/cases/localized-media";
 import type { CurrentProjectSlug } from "@/lib/project-routes";
 import type { ProofLocale } from "@/lib/portfolio-proof";
 
@@ -51,7 +52,7 @@ export function CaseCoverVisual({
     const cover = getProjectCover(slug)!;
     return (
       <Image
-        src={cover.src}
+        src={localizeMediaSrc(cover.src, locale)}
         fill
         priority
         alt={cover.alt[locale]}

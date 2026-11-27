@@ -181,6 +181,7 @@ export default async function BlogPostPage({ params }: Props) {
                   url={postUrl}
                   title={post.metadata.title}
                   description={post.metadata.excerpt}
+                  isZh={isZh}
                 />
               </div>
 

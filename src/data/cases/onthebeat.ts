@@ -13,6 +13,7 @@ export const onthebeatCase: CaseRecord = {
     "tags": ["hardware", "ai"],
     "year": "2026",
     "dur": "Paired on real bands",
+    "durZh": "已在真实手环上配对",
     "problem": {
       "en": "Two strangers at a gig with no easy way to say hello",
       "zh": "演出现场两个陌生人，缺一个容易开口的方式"
@@ -40,11 +41,13 @@ export const onthebeatCase: CaseRecord = {
   "links": [
     {
       "label": "Open live web prototype",
+      "labelZh": "打开在线原型",
       "href": "https://on-the-beat.fly.dev",
       "external": true
     },
     {
       "label": "Source on GitHub",
+      "labelZh": "GitHub 源码",
       "href": "https://github.com/LewisSwan24/on-the-beat",
       "external": true
     }

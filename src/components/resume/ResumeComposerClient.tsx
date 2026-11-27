@@ -94,7 +94,7 @@ export function ResumeComposerClient({
       "",
       `## ${isDocZh ? "精选案例与设计论证" : "Selected Works & Design Rationale"} (${activeCases.length})`,
       ...activeCases.flatMap((c) => [
-        `- **${c.title[previewLocale]}** (${c.scope[previewLocale]} · ${c.date})`,
+        `- **${c.title[previewLocale]}** (${c.scope[previewLocale]} · ${c.date[previewLocale]})`,
         `  - ${c.impactBullet[previewLocale]}`,
         ...(includeTradeoffs ? [`  - ${isDocZh ? "核心取舍：" : "Key tradeoff:"} ${c.tradeoffNote[previewLocale]}`] : []),
         ...(includeCeilings ? [`  - ${isDocZh ? "诚实边界：" : "Honest ceiling:"} ${c.ceilingNote[previewLocale]}`] : []),
@@ -169,7 +169,7 @@ export function ResumeComposerClient({
               aria-pressed={previewLocale === "en"}
               onClick={() => setPreviewLocale("en")}
             >
-              English A4
+              {isUiZh ? "英文 A4 版" : "English A4"}
             </button>
             <button
               type="button"
@@ -332,7 +332,7 @@ export function ResumeComposerClient({
                 <div className={styles.a4CaseTop}>
                   <span className={styles.a4CaseTitle}>{item.title[previewLocale]}</span>
                   <span className={styles.a4CaseScope}>
-                    {item.scope[previewLocale]} · {item.date}
+                    {item.scope[previewLocale]} · {item.date[previewLocale]}
                   </span>
                 </div>
                 <p className={styles.a4CaseText}>{item.impactBullet[previewLocale]}</p>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ProjectCover } from "@/lib/project-covers";
+import { localizeMediaSrc } from "@/lib/cases/localized-media";
 
 /**
  * A case's real image, filling a positioned frame. Portrait phone screens and
@@ -24,7 +25,7 @@ export function ProjectCoverImage({
   return (
     <Image
       className={`project-cover project-cover--${cover.fit}`}
-      src={cover.src}
+      src={localizeMediaSrc(cover.src, locale)}
       alt={cover.alt[locale]}
       fill
       sizes={sizes}

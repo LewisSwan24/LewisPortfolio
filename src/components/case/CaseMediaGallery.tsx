@@ -1,4 +1,5 @@
 import type { CaseMedia } from "@/lib/cases/schema";
+import { localizeMediaSrc } from "@/lib/cases/localized-media";
 import { CaseMediaGridClient, type CaseGalleryCardItem } from "./CaseMediaGridClient";
 
 export function CaseMediaGallery({
@@ -10,7 +11,7 @@ export function CaseMediaGallery({
 }) {
   const allPhones = media.images.every((image) => image.height > image.width);
   const items: CaseGalleryCardItem[] = media.images.map((image) => ({
-    src: image.src,
+    src: localizeMediaSrc(image.src, isZh ? "zh" : "en"),
     width: image.width,
     height: image.height,
     alt: isZh ? image.altZh : image.alt,

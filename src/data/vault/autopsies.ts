@@ -33,6 +33,8 @@ export const VaultAutopsyRecordSchema = z.object({
   }),
   title: LocalizedStringSchema,
   year: z.string().min(4),
+  // v6.9 (R12): Chinese pages showed "Sem 1", "Sep–Nov", "DEMO".
+  yearZh: z.string().min(4).optional(),
   archiveCategory: VaultArchiveCategorySchema,
   statusLabel: LocalizedStringSchema,
   whatItBuilt: LocalizedStringSchema,
@@ -51,6 +53,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     slug: "fencepost",
     title: { en: "Fencepost", zh: "Fencepost 社区野生动物故事板" },
     year: "2026 · Sep–Nov",
+    yearZh: "2026 · 9–11 月",
     archiveCategory: "scoped-out",
     statusLabel: { en: "Scoped Out of Top 6 (Live Demo)", zh: "退出主展 6 案（保留在线归档）" },
     whatItBuilt: {
@@ -94,6 +97,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     slug: "gapmapper",
     title: { en: "Perception Gap Mapper", zh: "走夜路（感知落差测绘）" },
     year: "2026 · Sem 1",
+    yearZh: "2026 · 第 1 学期",
     archiveCategory: "coursework-archive",
     statusLabel: { en: "Coursework Archive (DECO7380)", zh: "课程研究归档（DECO7380）" },
     whatItBuilt: {
@@ -172,6 +176,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     slug: "connect",
     title: { en: "UQ Connect", zh: "UQ Connect 校园社交原型" },
     year: "2025 · Sep–Nov",
+    yearZh: "2025 · 9–11 月",
     archiveCategory: "coursework-archive",
     statusLabel: { en: "Coursework Archive (Mock Data)", zh: "课程归档（静态模拟数据）" },
     whatItBuilt: {
@@ -250,6 +255,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     slug: "spectra",
     title: { en: "Spectra Lens", zh: "Spectra Lens 阅读扩展" },
     year: "2026 · DEMO",
+    yearZh: "2026 · 演示版",
     archiveCategory: "superseded",
     statusLabel: { en: "Superseded Prototype", zh: "早期演示原型（已退出展位）" },
     whatItBuilt: {
@@ -285,6 +291,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     slug: "hoop",
     title: { en: "Hoop Dream", zh: "Hoop Dream 篮球生涯 RPG" },
     year: "2026 · DEMO v0.6",
+    yearZh: "2026 · 演示版 v0.6",
     archiveCategory: "superseded",
     statusLabel: { en: "Superseded (Early Phaser Build)", zh: "早期 Phaser 作品" },
     whatItBuilt: {

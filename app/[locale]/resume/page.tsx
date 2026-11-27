@@ -390,7 +390,7 @@ export default async function ResumePage() {
               </div>
               <div className="role-fit-links">
                 <Link href="/hire">
-                  {isZh ? "查看岗位与证据简报 →" : "Open hiring dossier →"}
+                  {isZh ? "打开招聘与简历 →" : "Open Hire & CV →"}
                 </Link>
                 <Link href="/ai">
                   {isZh ? "在 AI 实验室评估匹配度 →" : "Check the fit in the AI Lab →"}

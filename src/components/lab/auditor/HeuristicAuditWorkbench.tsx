@@ -39,9 +39,12 @@ const SEVERITY_LABELS: Record<HeuristicSeverity, { en: string; zh: string }> = {
 export function HeuristicAuditWorkbench({
   audits,
   locale,
+  heuristicNames,
 }: {
   audits: readonly CaseHeuristicEntry[];
   locale: "en" | "zh";
+  /** v6.9 (R12): localized heuristic names, passed in so the data stays on the server. */
+  heuristicNames?: Readonly<Record<string, string>>;
 }) {
   const isZh = locale === "zh";
   const [caseFilter, setCaseFilter] = useState<CaseFilter>("all");
@@ -141,7 +144,7 @@ export function HeuristicAuditWorkbench({
               </span>
             </div>
 
-            <h3 className={styles.auditHeading}>{entry.heuristic}</h3>
+            <h3 className={styles.auditHeading}>{heuristicNames?.[entry.heuristic] ?? entry.heuristic}</h3>
             <p className={styles.auditFinding}>{entry.finding[locale]}</p>
 
             <div className={styles.auditFoot}>

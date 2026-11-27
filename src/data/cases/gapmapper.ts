@@ -11,6 +11,7 @@ export const gapmapperCase: CaseRecord = {
     "tags": ["research"],
     "year": "2026",
     "dur": "Coursework (unlisted)",
+    "durZh": "课程作业（未列出）",
     "problem": {
       "en": "Safety route-ranking apps claim predictive authority the underlying lighting data cannot earn",
       "zh": "为步行路线给出安全排名容易制造一种底层的照明/治安数据根本支撑不住的权威错觉"

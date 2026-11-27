@@ -13,6 +13,7 @@ export const pricewiseCase: CaseRecord = {
     "tags": ["flag", "ai"],
     "year": "2026",
     "dur": "Prototype, demo data",
+    "durZh": "原型，演示数据",
     "problem": {
       "en": "An AI wrote the code, and a green build proved nothing about whether it ran",
       "zh": "代码是 AI 写的，构建通过却证明不了到底跑没跑"
@@ -40,6 +41,7 @@ export const pricewiseCase: CaseRecord = {
   "links": [
     {
       "label": "Open the demo",
+      "labelZh": "打开演示",
       "href": "https://pricewise.lewisdong.com",
       "external": true
     }

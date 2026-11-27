@@ -55,10 +55,10 @@ export default async function ProtocolReplayStudioPage() {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 18 }}>
               <Link href="/lab" className="btn btn-ghost">
-                {isZh ? "← 返回设计实验室 (/lab)" : "← Back to Lab Workbench (/lab)"}
+                {isZh ? "← 返回 UI 实验室" : "← Back to UI Lab"}
               </Link>
               <Link href="/ai" className="btn btn-ghost">
-                {isZh ? "查看 AI 红队答辩 (/ai) →" : "Open AI Red-Team Defense (/ai) →"}
+                {isZh ? "查看 AI 实验室 →" : "Open AI Lab →"}
               </Link>
             </div>
           </div>

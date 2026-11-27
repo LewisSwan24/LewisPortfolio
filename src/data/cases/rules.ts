@@ -11,6 +11,7 @@ export const rulesCase: CaseRecord = {
     "tags": ["research"],
     "year": "2025",
     "dur": "Coursework (unlisted)",
+    "durZh": "课程作业（未列出）",
     "problem": {
       "en": "High-level UX guidelines stay too vague for engineers to implement or refute",
       "zh": "抽象的 UX 设计准则过软，工程师既难以施工也难以反驳校验"

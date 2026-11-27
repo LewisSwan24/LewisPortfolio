@@ -19,7 +19,7 @@ import {
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
-    locale === "zh" ? "面试 Lewis | 招聘决策页" : "Interview Lewis | Hiring Decision Room";
+    locale === "zh" ? "招聘与简历" : "Hire & CV";
   const description =
     locale === "zh"
       ? "Lewis Dong 的快速招聘档案：岗位视角筛选、最强证据、面试问题与边界。"
@@ -88,6 +88,7 @@ export default async function HirePage() {
           roles={roleFits}
           locale={proofLocale}
           compact
+          eyebrow={proofLocale === "zh" ? "岗位匹配" : "Role fit"}
           title={pageCopy.roleTitle}
           intro={pageCopy.roleIntro}
           labels={proofLabels}

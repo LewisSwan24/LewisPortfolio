@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
 type ProjKey = CurrentProjectSlug;
 
 function FeatCard({ n, k, href, priority = false, viz, t, locale, externalLinks }: {
-  externalLinks: ReadonlyArray<{ label: string; href: string; external?: boolean }>;
+  externalLinks: ReadonlyArray<{ label: string; labelZh?: string; href: string; external?: boolean }>;
   n: string;
   k: CurrentProjectSlug;
   href: string;
@@ -45,13 +45,8 @@ function FeatCard({ n, k, href, priority = false, viz, t, locale, externalLinks 
 }) {
   const cover = getProjectCover(k);
   const card = getCaseCard(k, locale);
-  const localizedExternalLabel = (rawLabel: string) => {
-    if (locale !== "zh") return rawLabel;
-    if (rawLabel.includes("GitHub")) return "GitHub 源码";
-    if (rawLabel.includes("companion site")) return "产品展示页";
-    if (rawLabel.includes("live web")) return "在线原型";
-    return rawLabel;
-  };
+  const localizedExternalLabel = (link: { label: string; labelZh?: string }) =>
+    locale === "zh" && link.labelZh ? link.labelZh : link.label;
   return (
     <article className="feat-card">
       <TransitionLink href={href} className="feat-card-link" data-vt-media>
@@ -88,7 +83,7 @@ function FeatCard({ n, k, href, priority = false, viz, t, locale, externalLinks 
               rel="noopener noreferrer"
               className="feat-ext-link"
             >
-              {localizedExternalLabel(ext.label)} <span aria-hidden="true">↗</span>
+              {localizedExternalLabel(ext)} <span aria-hidden="true">↗</span>
             </a>
           ))}
         </div>
@@ -131,7 +126,7 @@ export default async function HomePage() {
                 {t("hero.cta.note")} <span className="arrow">→</span>
               </Link>
             </div>
-            <div className="hero-focus-strip" aria-label={isZh ? "招聘速览与快捷入口" : "Hiring snapshot and quick links"}>
+            <div className="hero-focus-strip" aria-label={isZh ? "招聘与简历及快捷入口" : "Hire & CV and quick links"}>
               <span>{isZh ? "10秒优势" : "10s edge"}</span>
               <strong>
                 {isZh
@@ -157,7 +152,7 @@ export default async function HomePage() {
                   {isZh ? "PDF 简历 ↗" : "PDF CV ↗"}
                 </a>
                 <Link href="/hire" className="hero-hire-link">
-                  {isZh ? "招聘决策简报 ↗" : "Hiring dossier ↗"}
+                  {isZh ? "招聘与简历 ↗" : "Hire & CV ↗"}
                 </Link>
               </div>
             </div>

@@ -9,6 +9,7 @@ export const fencepostCase: CaseRecord = {
     tags: ["flag", "ai", "research"],
     year: "2026",
     dur: "Live deployment",
+    durZh: "已上线部署",
     problem: {
       en: "Sharing backyard wildlife sightings risks leaking EXIF, private entries, or unsafe AI replies",
       zh: "分享社区野生动物记录容易泄露 EXIF、私密条目或引发不安全的 AI 回复",
@@ -36,11 +37,13 @@ export const fencepostCase: CaseRecord = {
   links: [
     {
       label: "Open live app",
+      labelZh: "打开线上应用",
       href: "https://fencepost.lewisdong.com",
       external: true,
     },
     {
       label: "Source on GitHub",
+      labelZh: "GitHub 源码",
       href: "https://github.com/LewisSwan24/fencepost",
       external: true,
     },

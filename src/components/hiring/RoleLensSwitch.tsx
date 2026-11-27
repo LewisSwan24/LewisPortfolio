@@ -48,7 +48,7 @@ const LENSES: Array<{
   {
     id: "design-eng",
     en: "Design Engineer",
-    zh: "Design Engineer",
+    zh: "设计工程师",
     noteEn: "Working prototypes in Next.js, React, TypeScript, Python, Arduino/ESP32, and reproducible verification gates.",
     noteZh: "基于 Next.js、React、TypeScript、Python 与 Arduino/ESP32 的可运行原型与自动化验证门禁。",
   },

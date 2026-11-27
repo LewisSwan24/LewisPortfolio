@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { localizeInternalHref } from "@/lib/locale-href";
-import { SPECIMEN_NODES } from "./specimens";
 import type { SpecimenNodeSpec, ThreeLocale } from "./types";
 import { useWebGLSupport } from "./useWebGLSupport";
 
@@ -13,7 +12,17 @@ const SpecimenAxisWebGL = dynamic(
   { ssr: false, loading: () => null }
 );
 
-export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
+/**
+ * `nodes` comes from the server page (SPECIMEN_NODES) so the specimen copy
+ * stays out of the /lab route chunk (v6.9 phase C budget).
+ */
+export function SpecimenAxisCanvas({
+  locale,
+  nodes,
+}: {
+  locale: ThreeLocale;
+  nodes: readonly SpecimenNodeSpec[];
+}) {
   const isZh = locale === "zh";
   const [activeSlug, setActiveSlug] = useState<SpecimenNodeSpec["slug"]>("walkie");
   const [webglLost, setWebglLost] = useState(false);
@@ -24,7 +33,7 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
   const webgl = useWebGLSupport(!prefer2D && !webglLost);
   const canRender3D = inView && webgl.supported && !prefer2D && !webglLost;
   const activeNode =
-    SPECIMEN_NODES.find((node) => node.slug === activeSlug) ?? SPECIMEN_NODES[0];
+    nodes.find((node) => node.slug === activeSlug) ?? nodes[0];
 
   useEffect(() => {
     const el = stageRef.current;
@@ -122,7 +131,7 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
                 {copy.axisY}
               </text>
 
-              {SPECIMEN_NODES.map((node) => {
+              {nodes.map((node) => {
                 const active = node.slug === activeSlug;
                 return (
                   <g
@@ -180,7 +189,7 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
             role="group"
             aria-label={isZh ? "切换设计标本" : "Select design specimen"}
           >
-            {SPECIMEN_NODES.map((node) => {
+            {nodes.map((node) => {
               const isSelected = node.slug === activeSlug;
               return (
                 <button

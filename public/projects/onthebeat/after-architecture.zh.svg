@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs><style>
+  :where(:root) {
+    --svg-ground: #F6F4EF;
+    --svg-surface: #FCFBF8;
+    --svg-card: #ECE8DF;
+    --svg-warn: #FBEFE9;
+    --svg-ink: #151412;
+    --svg-muted: #3E3A33;
+    --svg-subtle: #4E4940;
+    --svg-border: #6E675C;
+    --svg-hairline: #D6CDBC;
+    --svg-accent: #A63F2A;
+    --svg-navy: #2B4D6F;
+    --svg-green: #2F5939;
+    --svg-amber: #9A6B26;
+    --svg-pill-bg: #161412;
+    --svg-pill-fg: #F7F4EC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :where(:root) {
+      --svg-ground: #141413;
+      --svg-surface: #181816;
+      --svg-card: #222220;
+      --svg-warn: #291D1A;
+      --svg-ink: #EFECE6;
+      --svg-muted: #C2BDB2;
+      --svg-subtle: #9E988D;
+      --svg-border: #524F48;
+      --svg-hairline: #33312C;
+      --svg-accent: #E27A63;
+      --svg-navy: #7FA7D1;
+      --svg-green: #72B382;
+      --svg-amber: #E0A952;
+      --svg-pill-bg: #EFECE6;
+      --svg-pill-fg: #141413;
+    }
+  }
+</style></defs>
+  <rect width="800" height="500" fill="var(--svg-surface)"/>
+  <rect x="28" y="28" width="744" height="444" rx="10" fill="var(--svg-ground)" stroke="var(--svg-ink)" stroke-width="2"/>
+  <text x="56" y="70" fill="var(--svg-ink)" font-family="monospace, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="700">改版后：匿名挥手 + 双方同意 + 设备退场</text>
+  <rect x="56" y="114" width="210" height="220" rx="8" fill="var(--svg-surface)" stroke="var(--svg-navy)" stroke-width="2"/>
+  <text x="76" y="148" fill="var(--svg-navy)" font-family="monospace, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="700">第 1 步 · 匿名挥手</text>
+  <text x="76" y="184" fill="var(--svg-muted)" font-family="sans-serif, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11.5">只显示「someone nearby waved」</text>
+  <text x="76" y="212" fill="var(--svg-muted)" font-family="sans-serif, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">没有姓名、长相或个人资料</text>
+
+  <rect x="295" y="114" width="210" height="220" rx="8" fill="var(--svg-surface)" stroke="var(--svg-accent)" stroke-width="2"/>
+  <text x="315" y="148" fill="var(--svg-accent)" font-family="monospace, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="700">第 2 步 · 双方同意</text>
+  <text x="315" y="184" fill="var(--svg-muted)" font-family="sans-serif, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">两个人都得同意</text>
+  <text x="315" y="212" fill="var(--svg-muted)" font-family="sans-serif, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">之后才有姓名 + 碰面地点</text>
+
+  <rect x="534" y="114" width="210" height="220" rx="8" fill="var(--svg-card)" stroke="var(--svg-ink)" stroke-width="2"/>
+  <text x="554" y="148" fill="var(--svg-ink)" font-family="monospace, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="700">第 3 步 · 退场</text>
+  <text x="554" y="184" fill="var(--svg-muted)" font-family="sans-serif, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">手机收回口袋</text>
+  <text x="554" y="212" fill="var(--svg-muted)" font-family="sans-serif, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13">面对面聊天</text>
+
+  <text x="56" y="408" fill="var(--svg-subtle)" font-family="monospace, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12">原型说明：还没在演出现场戴过；也没做过参与者研究。</text>
+</svg>
