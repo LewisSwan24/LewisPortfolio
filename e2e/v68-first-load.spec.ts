@@ -28,6 +28,9 @@ async function heroBox(browser: Browser, path: string, width: number, blockFonts
 
 for (const path of PAGES) {
   test(`hero h1 width does not depend on the loaded font: ${path}`, async ({ browser }) => {
+    // Six full page loads in one test: 9 s locally, past the 30 s default on a
+    // slow CI runner (PR #35, run 45940926994).
+    test.setTimeout(90_000);
     for (const width of [768, 1280, 1440]) {
       const web = await heroBox(browser, path, width, false);
       const fallback = await heroBox(browser, path, width, true);
@@ -37,6 +40,7 @@ for (const path of PAGES) {
 }
 
 test("/en/patterns headline keeps its line count when the font loads", async ({ browser }) => {
+  test.setTimeout(120_000); // eight full page loads
   for (const width of [768, 1024, 1280, 1440]) {
     const web = await heroBox(browser, "/en/patterns", width, false);
     const fallback = await heroBox(browser, "/en/patterns", width, true);
