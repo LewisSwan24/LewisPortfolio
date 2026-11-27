@@ -26,7 +26,7 @@ Even after slimming dictionaries, build inspection flagged `/projects` as heavie
 
 Lifting those presentational blocks back into the Server Component (`app/[locale]/projects/page.tsx`) and passing rendered slots left only the lightweight tab toggle on the client, which kept the `/projects` route script small. I have not re-measured that route for this post; the standing guard is `pnpm budget:check`, which fails the build if any app route chunk passes 22 kB gz. <AnchorNote term="RSC slot pattern" label="Engineering note" note="Passing pre-rendered server ReactNode trees as props into a small client wrapper keeps heavy SVG/media helpers off the browser bundle." />
 
-When we later added the dedicated [Rationale AI Lab](/ai) with telemetry inspectors and structured 4-part cards, new layout rules went into a route-scoped CSS Module (`ai-workbench.module.css`) rather than swelling global `primitives.css`. The budget check caps authored app CSS at 68 kB gz and all CSS at 98 kB gz.
+When we later added the dedicated [AI Lab](/ai) with telemetry inspectors and structured 4-part cards, new layout rules went into a route-scoped CSS Module (`ai-workbench.module.css`) rather than swelling global `primitives.css`. The budget check caps authored app CSS at 68 kB gz and all CSS at 98 kB gz.
 
 | Architectural Gate | What Fails Without It | Automated Check Enforced |
 | --- | --- | --- |
@@ -41,4 +41,4 @@ Three practical habits closed the loop:
 
 1. **Media discipline (`pnpm media:check`)**: Compressing screenshots and generating vector architecture SVGs kept the archive snappy without degrading legibility.
 2. **Restrained GSAP motion**: Centralizing subtle reveals with `useGsapContext` cleanup and `prefers-reduced-motion` support makes transitions settle immediately when motion is reduced.
-3. **Live Lab & AI Grounding**: All six public cases now connect directly into the [Interaction Lab](/lab) and the [Rationale AI Lab](/ai), where reviewers can question the tradeoffs against the case records.
+3. **Live Lab & AI Grounding**: All six public cases now connect directly into the [Interaction Lab](/lab) and the [AI Lab](/ai), where reviewers can question the tradeoffs against the case records.

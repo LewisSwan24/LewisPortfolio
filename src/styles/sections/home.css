@@ -104,7 +104,7 @@
   width: 40px;
   font-family: var(--font-mono);
   color: var(--text-4);
-  font-size: 9px;
+  font-size: 11px; /* was 9px (review C19); "100" still fits the 40px ruler */
   user-select: none;
 }
 .ruler-ticks {
@@ -118,7 +118,7 @@
   position: absolute; inset: 0; left: 18px;
   display: flex; flex-direction: column; justify-content: space-between;
 }
-.ruler-nums span { transform: translateY(-4px); color: var(--text-4); }
+.ruler-nums span { transform: translateY(-5px); color: var(--text-4); }
 
 .hero-deck {
   position: relative;
@@ -232,7 +232,9 @@
 .dc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-3); }
 .deck-counter {
   position: absolute;
-  bottom: -47px; right: 0;
+  /* -62px, was -47px: the rotated back card's bottom edge ran through "01 / 06"
+     (review C14). Measured clear at 1024, 1280 and 1440. */
+  bottom: -62px; right: 0;
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--text-3);
@@ -394,6 +396,20 @@
 .specimen-svg-baseline { width: 100%; height: 100%; display: block; color: var(--text); }
 .specimen-webgl-overlay, .specimen-webgl-host { position: absolute; inset: 0; }
 .specimen-node-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+/* v6.9 (review C13): on phones the 640-unit SVG renders at about half size, so
+   its labels fell to 6-7px. Hide them there; the axis names move to this list
+   and the pills below name every case. */
+.specimen-axis-captions { display: none; }
+@media (max-width: 640px) {
+  .specimen-svg-baseline .specimen-axis-label,
+  .specimen-svg-baseline .specimen-node-label { display: none; }
+  .specimen-axis-captions {
+    display: grid; grid-template-columns: auto 1fr; gap: 4px 10px;
+    margin: var(--s-3) 0; font-size: 13px; line-height: 1.5; color: var(--text-2);
+  }
+  .specimen-axis-captions dt { font-family: var(--font-mono); color: var(--text-3); }
+  .specimen-axis-captions dd { margin: 0; }
+}
 .specimen-detail-card { display: grid; gap: var(--s-3); align-content: start; }
 .specimen-question {
   font-family: var(--font-display); font-size: 18px; line-height: 1.4;

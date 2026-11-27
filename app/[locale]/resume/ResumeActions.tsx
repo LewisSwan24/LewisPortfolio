@@ -18,8 +18,9 @@ export function ResumeActions() {
         {isZh ? "下载 PDF 简历" : "Download PDF CV"}{" "}
         <span className="arrow" aria-hidden="true">↓</span>
       </a>
+      {/* Hidden on phones (pages.css, review C17). */}
       <button
-        className="btn btn-ghost"
+        className="btn btn-ghost res-print"
         type="button"
         onClick={() => window.print()}
       >
