@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: ["**"]
 
+# A new push to a pull request cancels that PR's older run. Pushes to master
+# always finish, so every master commit keeps a result.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   quality:
     runs-on: ubuntu-24.04
@@ -59,15 +65,31 @@ jobs:
       - name: CSS zero-warning check
         run: pnpm css:check
 
+      - name: Restore Next.js build cache
+        uses: actions/cache@v6
+        with:
+          path: .next/cache
+          key: nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('app/**', 'src/**', 'content/**') }}
+          restore-keys: nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
+
       - name: Build
         run: pnpm build
 
       - name: Bundle budget check
         run: pnpm budget:check
 
+  # Runs beside `quality`, not after it: it builds on its own and tests the
+  # production server (`next start`), which compiles nothing on demand, so
+  # Playwright can run four files at once (E2E_PROD in playwright.config.ts).
   e2e:
     runs-on: ubuntu-24.04
-    needs: quality
+    # A fresh runner has no image cache, so `next start` encodes every
+    # `_next/image` size on first request (AVIF is slow). With four workers
+    # the phone-size home and case images timed out page.goto (PR #41, run
+    # one: 7 failures, all phone viewports). No test checks the optimizer;
+    # next.config.js serves the originals when this is set, at build and run.
+    env:
+      E2E_UNOPTIMIZED_IMAGES: "1"
 
     steps:
       - uses: actions/checkout@v7
@@ -89,8 +111,20 @@ jobs:
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium
 
+      - name: Restore Next.js build cache
+        uses: actions/cache@v6
+        with:
+          path: .next/cache
+          key: nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('app/**', 'src/**', 'content/**') }}
+          restore-keys: nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
+
+      - name: Build
+        run: pnpm build
+
       - name: Run E2E tests
         run: pnpm exec playwright test --project=chromium
+        env:
+          E2E_PROD: "1"
 
       - name: Upload test results
         if: always()
