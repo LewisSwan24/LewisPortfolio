@@ -39,31 +39,45 @@ async function auditFocusNotObscured2411(page: Page, steps = 14) {
 
   for (let i = 0; i < steps; i++) {
     await page.keyboard.press("Tab");
+    // Measure where focus lands, not where it is on its way: the skip link
+    // slides in over 150ms, and reading it mid-transition made this flaky.
+    await page.evaluate(() =>
+      Promise.all((document.activeElement?.getAnimations() ?? []).map((a) => a.finished))
+    );
     const check = await page.evaluate(() => {
       const el = document.activeElement as HTMLElement | null;
       if (!el || el === document.body || el.tagName === "HTML") return null;
       const rect = el.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) return null;
 
+      // 2.4.11 fails only when the element is entirely hidden by author content,
+      // so ask what is painted on top (z-order), not just whether boxes overlap.
+      const points: Array<[number, number]> = [
+        [rect.left + rect.width / 2, rect.top + rect.height / 2],
+        [rect.left + 2, rect.top + 2],
+        [rect.right - 2, rect.top + 2],
+        [rect.left + 2, rect.bottom - 2],
+        [rect.right - 2, rect.bottom - 2],
+      ];
+      const onScreen = points.filter(
+        ([x, y]) => x >= 0 && y >= 0 && x < window.innerWidth && y < window.innerHeight
+      );
+      if (onScreen.length === 0) return null;
+
       const overlays = Array.from(
         document.querySelectorAll<HTMLElement>("header.pd-nav, .studio-assistant-wrap")
-      );
-      for (const ov of overlays) {
-        if (ov.contains(el)) continue;
-        const ovRect = ov.getBoundingClientRect();
-        if (ovRect.width === 0 || ovRect.height === 0) continue;
-        const overlapX = Math.max(0, Math.min(rect.right, ovRect.right) - Math.max(rect.left, ovRect.left));
-        const overlapY = Math.max(0, Math.min(rect.bottom, ovRect.bottom) - Math.max(rect.top, ovRect.top));
-        const elArea = rect.width * rect.height;
-        const ovArea = overlapX * overlapY;
-        if (elArea > 0 && ovArea >= elArea * 0.98) {
-          return {
-            label: (el.innerText || el.getAttribute("aria-label") || el.tagName).trim().slice(0, 40),
-            overlay: ov.className,
-          };
-        }
+      ).filter((ov) => !ov.contains(el));
+      const coveredBy: string[] = [];
+      for (const [x, y] of onScreen) {
+        const hit = document.elementFromPoint(x, y);
+        const ov = hit && !el.contains(hit) ? overlays.find((o) => o.contains(hit)) : undefined;
+        if (!ov) return null;
+        coveredBy.push(ov.className);
       }
-      return null;
+      return {
+        label: (el.innerText || el.getAttribute("aria-label") || el.tagName).trim().slice(0, 40),
+        overlay: coveredBy[0],
+      };
     });
     if (check) obscured.push(check);
   }

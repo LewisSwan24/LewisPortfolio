@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
-import { getSimulatorComponent } from "@/components/case/simulators/registry";
+import { getPatternSimulator } from "./pattern-simulators";
 import { VerifiedStatusBadge } from "@/components/case/deep/VerifiedStatusBadge";
 import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
 import type { InteractionPattern, PatternCategory } from "@/lib/patterns/schema";
@@ -81,7 +81,7 @@ export function PatternWorkbenchClient({
     }
   };
 
-  const LiveWidget = getSimulatorComponent(activePattern.liveWidgetId);
+  const LiveWidget = getPatternSimulator(activePattern.liveWidgetId);
 
   return (
     <div className={styles.atlasShell}>

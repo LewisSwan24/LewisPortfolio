@@ -3,9 +3,7 @@ import path from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
 import { getAllReplayTraces } from "@/data/replay/traces";
-import { PatternAtlasFallback } from "@/components/patterns/PatternAtlasFallback";
 import { ReplayTraceFallback } from "@/components/studio/ReplayTraceFallback";
 import { hasTelemetrySamples } from "@/components/lab/LabTelemetryPanel";
 import { shouldLoadVercelAnalytics } from "@/lib/analytics";
@@ -39,16 +37,6 @@ describe("v6.3 trust cleanup", () => {
     expect(hasTelemetrySamples(null)).toBe(false);
     expect(hasTelemetrySamples({ sampleCount: 0 })).toBe(false);
     expect(hasTelemetrySamples({ sampleCount: 3 })).toBe(true);
-  });
-
-  it("server-renders every pattern title in the /patterns first screen", () => {
-    const patterns = getAllInteractionPatterns();
-    for (const locale of ["en", "zh"] as const) {
-      const html = renderToStaticMarkup(createElement(PatternAtlasFallback, { patterns, locale }));
-      for (const p of patterns) {
-        expect(html).toContain(esc(p.title[locale]));
-      }
-    }
   });
 
   it("server-renders every replay track title in the /studio/replay first screen", () => {

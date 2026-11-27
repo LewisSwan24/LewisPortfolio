@@ -1,11 +1,17 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { PatternWorkbenchClient } from "@/components/patterns/PatternWorkbenchClient";
-import { PatternAtlasFallback } from "@/components/patterns/PatternAtlasFallback";
 import { getAllInteractionPatterns } from "@/data/patterns/patterns-data";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
+
+/**
+ * Rendered per request so the server can read `?pattern=` itself. As a static
+ * page the workbench had to wait for the URL on the client: the HTML carried a
+ * placeholder list that was swapped for the taller workbench a moment later,
+ * and deep links from the blog opened on the wrong pattern until then.
+ */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
@@ -60,9 +66,7 @@ export default async function PatternsPage() {
       </section>
 
       <section className="container" style={{ paddingBottom: "var(--s-9)" }}>
-        <Suspense fallback={<PatternAtlasFallback patterns={patterns} locale={locale} />}>
-          <PatternWorkbenchClient patterns={patterns} locale={locale} />
-        </Suspense>
+        <PatternWorkbenchClient patterns={patterns} locale={locale} />
       </section>
     </main>
   );
