@@ -357,7 +357,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
         "Co-creating neighbourhood possum storyboards requires revocable QR permissions, zero EXIF storage, and ensuring revoked grants immediately cut off AI context.",
       methods: ["three-role AI safety proxy", "431 offline access-invariant tests", "29 red-line safety checks"],
       sample:
-        "Live course deployment (fencepost-app.vercel.app + Turso libSQL). 431 offline unit tests + 29 red-line prompt cases + live deploy route probe; open signup stays enabled for course evaluation.",
+        "Live course deployment (fencepost.lewisdong.com + Turso libSQL). 431 offline unit tests + 29 red-line prompt cases + live deploy route probe; open signup stays enabled for course evaluation.",
       outcome:
         "A deployed full-stack storyboard and Python AI proxy where soft-deletes and revoked grants remove entries on the very next model call.",
       proves:
@@ -512,7 +512,7 @@ const projectEvidence: Record<ProofLocale, ProjectEvidence[]> = {
       problemType: "具备严格权限不变量的社区 AI 故事板",
       challenge: "居民共创负鼠故事板需要可吊销二维码权限、零 EXIF 入库，并确保权限吊销后 AI 上下文即刻截断。",
       methods: ["三角色 AI 安全代理", "431 项离线权限测试", "29 条红线安全评测"],
-      sample: "线上课程部署（fencepost-app.vercel.app + Turso libSQL）。431 项离线单测 + 29 条红线用例 + 发布后路由探活；演示环境保持开放注册。",
+      sample: "线上课程部署（fencepost.lewisdong.com + Turso libSQL）。431 项离线单测 + 29 条红线用例 + 发布后路由探活；演示环境保持开放注册。",
       outcome: "上线全栈故事板与 Python AI 代理，任何软删或吊销均在下一次模型调用即刻生效。",
       proves: "证明我把 AI 信任与隐私做成可测试的数据层不变量，而非停留在提示词承诺。",
     },

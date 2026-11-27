@@ -90,7 +90,7 @@ export const mazeCase: CaseRecord = {
     }
   },
   "demo": {
-    "src": "https://maze-runners.vercel.app",
+    "src": "https://maze.lewisdong.com",
     "poster": "/projects/maze/01-exhibition-setup.png",
     "title": "MazeRunners interactive demo",
     "titleZh": "MazeRunners 互动 demo",

@@ -75,7 +75,7 @@ export const hoopCase: CaseRecord = {
     ]
   },
   "demo": {
-    "src": "https://hoop-dream.vercel.app",
+    "src": "https://hoop.lewisdong.com",
     "poster": "/projects/hoop/01-main-menu.png",
     "title": "Hoop Dream, playable",
     "titleZh": "Hoop Dream 可玩版本",

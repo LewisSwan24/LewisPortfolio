@@ -20,7 +20,7 @@ export const fencepostSummary: Record<ProofLocale, { fencepost: CaseSummary }> =
       role: "Interaction & privacy architecture, AI safety proxy design, access boundary rules, and deployment verification",
       methods: ["revocable QR sharing", "three-role AI workflow (Screener / Writer / Chat)", "offline invariant checks", "safety red-line review", "post-deploy route verification"],
       evidence: [
-        "live interactive prototype at fencepost-app.vercel.app backed by Python API + Turso libSQL",
+        "live interactive prototype at fencepost.lewisdong.com backed by Python API + Turso libSQL",
         "automated access checks enforcing three privacy rules: context isolation, soft-delete cut-off, and instant QR grant revocation",
         "red-line prompt review alongside automated post-deploy route checks built after a real .vercelignore incident",
       ],
@@ -36,7 +36,7 @@ export const fencepostSummary: Record<ProofLocale, { fencepost: CaseSummary }> =
       role: "交互与隐私架构、AI 代理边界设计、数据层访问控制及部署核验",
       methods: ["可吊销二维码分享", "三角色 AI 协作代理（初筛 / 撰写 / 对话）", "离线权限不变量检查", "安全红线核验", "上线后路由可用性巡检"],
       evidence: [
-        "已部署在线交互原型 fencepost-app.vercel.app（Python API + Turso libSQL）",
+        "已部署在线交互原型 fencepost.lewisdong.com（Python API + Turso libSQL）",
         "自动化权限检查确保三条隐私底线落地：他人上下文隔离、软删除即刻断联、吊销二维码后模型不再引用旧记录",
         "红线边界评审配合上线路由检查脚本，确保界面声明与后端实际行为一致",
       ],
@@ -277,7 +277,7 @@ export const fencepostPack: Record<ProofLocale, { fencepost: CaseInterviewPack }
         id: "fencepost-manager-follow-up",
         question: "Why leave open signup enabled in the live deployment?",
         answer:
-          "It is an explicit trade-off for the course evaluation build so reviewers can open fencepost-app.vercel.app without provisioning accounts, while read visibility stays locked behind access_grants. The README flags it as mandatory to disable before public use.",
+          "It is an explicit trade-off for the course evaluation build so reviewers can open fencepost.lewisdong.com without provisioning accounts, while read visibility stays locked behind access_grants. The README flags it as mandatory to disable before public use.",
         evidenceHref: "/projects/fencepost#outcome-limits",
         boundary: "Acceptable for a demo environment, never for production residents.",
       },
@@ -311,7 +311,7 @@ export const fencepostPack: Record<ProofLocale, { fencepost: CaseInterviewPack }
       managerFollowUp: {
         id: "fencepost-manager-follow-up",
         question: "为什么线上演示版保留了开放注册？",
-        answer: "这是为课程评审刻意保留的权衡，方便直接打开 fencepost-app.vercel.app 体验，而读取权限依然严格走 access_grants。README 已明确标注公开上线前必须关闭。",
+        answer: "这是为课程评审刻意保留的权衡，方便直接打开 fencepost.lewisdong.com 体验，而读取权限依然严格走 access_grants。README 已明确标注公开上线前必须关闭。",
         evidenceHref: "/projects/fencepost#outcome-limits",
         boundary: "仅适用于演示环境，绝不用于真实居民生产环境。",
       },

@@ -202,8 +202,8 @@ test.describe("Projects Page", () => {
         await page.goto("/projects/maze");
 
         await expect(page.locator(".case-demo")).toHaveCount(0);
-        await expect(page.locator("iframe[src*='maze-runners.vercel.app']")).toHaveCount(0);
-        await expect(page.locator("a[href='https://maze-runners.vercel.app']").first()).toBeVisible();
+        await expect(page.locator("iframe[src*='maze.lewisdong.com']")).toHaveCount(0);
+        await expect(page.locator("a[href='https://maze.lewisdong.com']").first()).toBeVisible();
     });
 
     test("cases without a playable build should not show a demo", async ({ page }) => {
@@ -242,7 +242,7 @@ test.describe("Projects Page", () => {
         await demo.locator(".case-demo-poster").click();
         await expect(demo.locator("iframe")).toHaveAttribute(
             "src",
-            "https://hoop-dream.vercel.app",
+            "https://hoop.lewisdong.com",
         );
 
         // A big polished build with no players has to say so.
@@ -271,8 +271,8 @@ test.describe("Projects Page", () => {
         // Without an explicit frame-src, this falls back to default-src 'self'
         // and a cross-origin embed is blocked before a request is even made.
         expect(csp).toContain("frame-src");
-        expect(csp).toContain("https://maze-runners.vercel.app");
-        expect(csp).toContain("https://hoop-dream.vercel.app");
+        expect(csp).toContain("https://maze.lewisdong.com");
+        expect(csp).toContain("https://hoop.lewisdong.com");
         // We still refuse to be framed by anyone else.
         expect(csp).toContain("frame-ancestors 'none'");
 
@@ -336,7 +336,7 @@ test.describe("Projects Page", () => {
         await expect(page.locator(".cs-cover img")).toHaveCount(1);
         await expect(page.locator(".case-build-evidence img")).toHaveCount(6);
         await expect(page.locator("main").getByText(/no structured usability testing with outside players/i).first()).toBeVisible();
-        await expect(page.locator("a[href='https://onon-wolf-iron-tide.vercel.app']").first()).toBeVisible();
+        await expect(page.locator("a[href='https://irontide.lewisdong.com']").first()).toBeVisible();
     });
 
     test("project detail should keep related visuals inside their cards", async ({ page }) => {

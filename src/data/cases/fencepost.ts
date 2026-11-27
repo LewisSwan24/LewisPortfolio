@@ -38,7 +38,7 @@ export const fencepostCase: CaseRecord = {
     {
       label: "Open live app",
       labelZh: "打开线上应用",
-      href: "https://fencepost-app.vercel.app",
+      href: "https://fencepost.lewisdong.com",
       external: true,
     },
     {
@@ -92,7 +92,7 @@ export const fencepostCase: CaseRecord = {
     ],
   },
   demo: {
-    src: "https://fencepost-app.vercel.app",
+    src: "https://fencepost.lewisdong.com",
     poster: "/projects/fencepost/01-ringtail-brisbane.jpg",
     title: "Fencepost live web app",
     titleZh: "Fencepost 线上应用",
@@ -191,7 +191,7 @@ export const fencepostCase: CaseRecord = {
       },
       pr: {
         label: "Two-Project Deployment",
-        p: "One repository serves two Vercel projects: fencepost (Python single-entrypoint api/index.py + Turso libSQL) and fencepost-web (Next.js frontend at fencepost-app.vercel.app). Cursor-paginated timeline (20/page) and forum (30/page) routes keep base64 frames safely under Vercel's 4.5 MB payload limit, while version-tagged tokens (v2|) prevent rollback confusion.",
+        p: "One repository serves two Vercel projects: fencepost (Python single-entrypoint api/index.py + Turso libSQL) and fencepost-web (Next.js frontend at fencepost.lewisdong.com). Cursor-paginated timeline (20/page) and forum (30/page) routes keep base64 frames safely under Vercel's 4.5 MB payload limit, while version-tagged tokens (v2|) prevent rollback confusion.",
       },
       te: {
         label: "Operational Honesty",
@@ -250,7 +250,7 @@ export const fencepostCase: CaseRecord = {
       },
       pr: {
         label: "双工程部署与分页约束",
-        p: "单仓库承载两个 Vercel 项目：Python API（api/index.py + Turso libSQL）与 Next.js 前端（fencepost-app.vercel.app）。时间线（每页 20 条）与讨论区（每页 30 条）均采用游标分页，确保携带图像帧时不触发 Vercel 4.5 MB 响应体上限，并用 v2| 签名版本标签避免回滚期的 Token 误判。",
+        p: "单仓库承载两个 Vercel 项目：Python API（api/index.py + Turso libSQL）与 Next.js 前端（fencepost.lewisdong.com）。时间线（每页 20 条）与讨论区（每页 30 条）均采用游标分页，确保携带图像帧时不触发 Vercel 4.5 MB 响应体上限，并用 v2| 签名版本标签避免回滚期的 Token 误判。",
       },
       te: {
         label: "诚实的运行边界",

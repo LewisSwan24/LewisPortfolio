@@ -1,7 +1,7 @@
 # Portfolio Maintenance Checklist (V3)
 
 ## Weekly
-- [ ] Check Vercel production deployment status and Analytics (`https://lewisdong.vercel.app`)
+- [ ] Check Vercel production deployment status and Analytics (`https://lewisdong.com`)
 - [ ] Verify GitHub Actions CI (`quality` + `e2e` including `a11y.spec.ts`) on `master`
 
 ## Monthly
