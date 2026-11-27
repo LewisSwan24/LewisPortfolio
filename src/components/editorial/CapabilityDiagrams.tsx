@@ -3,7 +3,7 @@ import React from "react";
 export function CrossPracticeArchitectureSvg({ locale }: { locale: "en" | "zh" }) {
   const isZh = locale === "zh";
   return (
-    <figure className="editorial-svg-figure">
+    <figure className="editorial-svg-figure editorial-svg-figure--arc">
       <svg
         aria-hidden="true"
         viewBox="0 0 880 260"

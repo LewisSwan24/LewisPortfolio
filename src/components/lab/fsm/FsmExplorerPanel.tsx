@@ -337,6 +337,32 @@ export function FsmExplorerPanel({
             })}
           </svg>
 
+          {/* v6.9 (review R21): on a phone the graph's labels are ~4px and its
+              nodes are ~56x18px targets, so the same states are listed as buttons. */}
+          <div
+            className={styles.stateList}
+            role="group"
+            aria-label={isZh ? "选择状态节点" : "Choose a state"}
+          >
+            {activeSpec.states.map((node) => (
+              <button
+                key={node.id}
+                type="button"
+                className={styles.stateListBtn}
+                data-testid={`fsm-state-btn-${node.id}`}
+                aria-pressed={node.id === currentState.id}
+                onClick={() => {
+                  setCurrentStateId(node.id);
+                  setStatusMessage(
+                    isZh ? `跳转观察节点：${node.label.zh}` : `Inspecting state: ${node.label.en}`
+                  );
+                }}
+              >
+                {node.label[locale]}
+              </button>
+            ))}
+          </div>
+
           <div className={styles.triggerTray}>
             <span className={styles.kicker}>
               {isZh ? "当前节点与约束保障" : "Active State Guarantee"} ·{" "}

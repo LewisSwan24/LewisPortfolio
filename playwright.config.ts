@@ -63,6 +63,10 @@ export default defineConfig({
             command: `pnpm dev --hostname 127.0.0.1 --port ${e2ePort}`,
             url: baseURL,
             reuseExistingServer: process.env.E2E_REUSE_SERVER === "1",
+            // `next dev` encodes `_next/image` on demand, and in CI some of
+            // those requests never answered (maze, onthebeat), so the page
+            // never reached networkidle. No test checks the optimizer itself.
+            env: { E2E_UNOPTIMIZED_IMAGES: "1" },
             timeout: 120 * 1000,
         },
 });

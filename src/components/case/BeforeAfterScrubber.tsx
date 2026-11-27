@@ -4,6 +4,7 @@ import { useCallback, useId, useRef, useState } from "react";
 import type { CaseScrubber } from "@/lib/cases/schema";
 import { AdaptiveCaseMedia } from "./AdaptiveCaseMedia";
 import { ProcessWireframe } from "./wireframes/ProcessWireframes";
+import { DiagramViewer } from "./DiagramViewer";
 
 interface BeforeAfterScrubberProps {
   data: CaseScrubber;
@@ -118,12 +119,18 @@ export function BeforeAfterScrubber({ data, locale, headingLevel = 2 }: BeforeAf
             <figure>
               <figcaption className="eyebrow">{data.beforeLabel[locale]}</figcaption>
               <div className="proc-compare-media">
-                <ProcessWireframe id={data.wireframeId} locale={locale} />
+                <DiagramViewer label={`${data.title[locale]} · ${data.beforeLabel[locale]}`} isZh={isZh}>
+                  <ProcessWireframe id={data.wireframeId} locale={locale} />
+                </DiagramViewer>
               </div>
             </figure>
             <figure>
               <figcaption className="eyebrow">{data.afterLabel[locale]}</figcaption>
-              <div className="proc-compare-media">{afterMedia}</div>
+              <div className="proc-compare-media">
+                <DiagramViewer label={`${data.title[locale]} · ${data.afterLabel[locale]}`} isZh={isZh}>
+                  {afterMedia}
+                </DiagramViewer>
+              </div>
             </figure>
           </div>
         </div>

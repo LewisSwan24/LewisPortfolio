@@ -341,3 +341,31 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+
+/* v6.9 (review R21): HTML time labels under the waveform. */
+.waveformTicks {
+  position: relative;
+  height: 16px;
+  margin-top: 4px;
+}
+.waveformTick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+.waveformTick:first-child {
+  transform: none;
+}
+.waveformTick:last-child {
+  transform: translateX(-100%);
+}
+/* On a phone neighbouring 11px labels touch; alternate them over two rows. */
+@media (max-width: 767px) {
+  .waveformTicks { height: 32px; }
+  .waveformTick:nth-child(even) { top: 16px; }
+}

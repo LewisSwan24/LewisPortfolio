@@ -82,7 +82,15 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    formats: ["image/avif", "image/webp"],
+    // Set only by Playwright's own dev server (playwright.config.ts): serve
+    // originals so pages are not held up by on-demand encodes.
+    unoptimized: process.env.E2E_UNOPTIMIZED_IMAGES === "1",
+    // AVIF only in production builds. `next dev` encodes on demand; in CI
+    // (e2e runs on `next dev`) AVIF encodes of the large maze PNGs did not
+    // finish inside the 30s test timeout, so maze pages never reached
+    // networkidle. WebP encodes are several times faster.
+    formats:
+      process.env.NODE_ENV === "production" ? ["image/avif", "image/webp"] : ["image/webp"],
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

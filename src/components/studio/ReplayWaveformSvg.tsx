@@ -115,20 +115,19 @@ export function ReplayWaveformSvg({
                 stroke={isFault ? "var(--accent)" : "var(--surface)"}
                 strokeWidth={isFault ? 2.5 : 1.5}
               />
-              <text
-                x={x}
-                y={height - 6}
-                textAnchor="middle"
-                fontSize="10"
-                fontFamily="var(--font-mono)"
-                fill="var(--text-3)"
-              >
-                {frame.timestampMs}ms
-              </text>
             </g>
           );
         })}
       </svg>
+      {/* v6.9 (review R21): the time labels used to be SVG text, which shrank with
+          the drawing to ~4px on a phone. As HTML they stay 11px at any width. */}
+      <div className={styles.waveformTicks} aria-hidden="true">
+        {coords.map(({ x, frame }) => (
+          <span key={frame.id} className={styles.waveformTick} style={{ left: `${(x / width) * 100}%` }}>
+            {frame.timestampMs}ms
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

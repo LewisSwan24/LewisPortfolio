@@ -26,6 +26,10 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
   const proofLocale: "en" | "zh" = isZh ? "zh" : "en";
   const [activeCluster, setActiveCluster] = useState<"all" | BlogCluster>("all");
   const [active, setActive] = useState<string>("all");
+  // v6.9 (review R06/R03): the 60 topic chips pushed the first post below the
+  // fold and reflowed when the web font loaded (CLS 0.17). They fold behind one
+  // button; the five cluster chips stay.
+  const [topicsOpen, setTopicsOpen] = useState(false);
 
   const shown = posts.filter((p) => {
     if (activeCluster !== "all" && p.cluster !== activeCluster) return false;
@@ -117,10 +121,24 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
             })}
           </div>
 
+          <div>
+            <button
+              type="button"
+              className={`idx-filter ${topicsOpen ? "active" : ""}`}
+              aria-expanded={topicsOpen}
+              aria-controls="blog-topic-filters"
+              onClick={() => setTopicsOpen((v) => !v)}
+            >
+              {isZh ? `全部主题 (${tags.length})` : `All topics (${tags.length})`}
+            </button>
+          </div>
+
           <div
+            id="blog-topic-filters"
             className="idx-filters v3-pill-row"
             role="tablist"
             aria-label={isZh ? "筛选文章" : "Filter posts"}
+            hidden={!topicsOpen}
           >
             <button
               className={`idx-filter ${active === "all" ? "active" : ""}`}

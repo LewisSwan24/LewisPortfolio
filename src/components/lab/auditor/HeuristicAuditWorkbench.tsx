@@ -10,6 +10,9 @@ import styles from "../lab-engines.module.css";
 type CaseFilter = "all" | FsmProjectSlug;
 type SeverityFilter = "all" | HeuristicSeverity;
 
+/** Cards shown on a phone before "Show all" (v6.9 review R23). */
+const PHONE_PREVIEW_COUNT = 6;
+
 const CASE_OPTIONS: Array<{ id: CaseFilter; en: string; zh: string }> = [
   { id: "all", en: "All 6 Cases", zh: "全部 6 项案例" },
   { id: "walkie", en: "Walkie", zh: "Walkie" },
@@ -43,6 +46,7 @@ export function HeuristicAuditWorkbench({
   const isZh = locale === "zh";
   const [caseFilter, setCaseFilter] = useState<CaseFilter>("all");
   const [severityFilter, setSeverityFilter] = useState<SeverityFilter>("all");
+  const [expanded, setExpanded] = useState(false);
 
   const filteredEntries = useMemo(() => {
     return audits.filter((entry) => {
@@ -120,7 +124,12 @@ export function HeuristicAuditWorkbench({
         ))}
       </div>
 
-      <div className={styles.auditGrid}>
+      <div
+        id="heuristic-audit-grid"
+        className={
+          expanded ? styles.auditGrid : `${styles.auditGrid} ${styles.auditGridCollapsed}`
+        }
+      >
         {filteredEntries.map((entry) => (
           <article key={entry.id} className={styles.auditCard} data-testid={`audit-card-${entry.id}`}>
             <div className={styles.auditMetaRow}>
@@ -144,6 +153,17 @@ export function HeuristicAuditWorkbench({
           </article>
         ))}
       </div>
+      {!expanded && filteredEntries.length > PHONE_PREVIEW_COUNT && (
+        <button
+          type="button"
+          className={styles.showAllBtn}
+          aria-controls="heuristic-audit-grid"
+          aria-expanded={false}
+          onClick={() => setExpanded(true)}
+        >
+          {isZh ? `显示全部 ${filteredEntries.length} 条` : `Show all ${filteredEntries.length}`}
+        </button>
+      )}
     </section>
   );
 }
