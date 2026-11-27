@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type CSSProperties } from "react";
+import { Foldable } from "@/components/ui/Foldable";
 import { useTheme } from "next-themes";
 import { getGsap } from "@/lib/motion/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -99,7 +100,9 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
 
   return (
     <div className="container lab-grid">
-      {/* Module 01: V4 Swiss Editorial Token & Contrast Inspector */}
+      {/* Module 01: V4 Swiss Editorial Token & Contrast Inspector.
+          v7.0 L2: first screen shown, the rest behind "Show all". */}
+      <Foldable isZh={isZh} testId="lab-fold-tokens" label={isZh ? "设计语言检查器" : "design system inspector"}>
       <section className="lab-module" aria-labelledby="lab-tokens-title">
         <div className="lab-module-head">
           <div>
@@ -194,6 +197,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           ))}
         </div>
       </section>
+      </Foldable>
 
       {/* Module 02: GSAP Paper Motion Sandbox */}
       <section className="lab-module" aria-labelledby="lab-motion-title">

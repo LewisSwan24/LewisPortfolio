@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("v5.7 Causal Lineage Knowledge Graph (/studio/graph)", () => {
+test.describe("v5.7 Causal Lineage Knowledge Graph (/vault#lineage-graph)", () => {
   test("renders 24 topological nodes, traces BFS lineage across layers, and filters by unverified gaps", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/en/studio/graph", { waitUntil: "networkidle" });
+    await page.goto("/vault#lineage-graph", { waitUntil: "networkidle" });
 
     await expect(page.getByTestId("graph-node-vault:fencepost")).toHaveAttribute("aria-pressed", "true");
     await expect(page.getByTestId("graph-inspector")).toContainText("Fencepost");
@@ -25,11 +25,11 @@ test.describe("v5.7 Causal Lineage Knowledge Graph (/studio/graph)", () => {
     await page.getByTestId("graph-view-split").click();
   });
 
-  test("renders /zh/studio/graph cleanly in Dark #141413 and Mobile 375px zero overflow", async ({
+  test("renders /zh/vault#lineage-graph cleanly in Dark #141413 and Mobile 375px zero overflow", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/zh/studio/graph", { waitUntil: "networkidle" });
+    await page.goto("/zh/vault#lineage-graph", { waitUntil: "networkidle" });
 
     // Wait for hydration: before ThemeToggle mounts it renders a disabled
     // "Loading color mode" placeholder, so an immediate isVisible() check on the

@@ -9,9 +9,13 @@ test.describe("v6.0 GA Platform Capabilities", () => {
 
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/en/blog", { waitUntil: "networkidle" });
+    // v7.0 L1: the unfiltered list shows ten until asked.
+    await page.getByRole("button", { name: /^(Show all \d+ posts|显示全部 \d+ 篇)$/ }).click();
     await expect(page.locator(".idx-flag")).toHaveCount(30);
 
     await page.goto("/zh/blog", { waitUntil: "networkidle" });
+    // v7.0 L1: the unfiltered list shows ten until asked.
+    await page.getByRole("button", { name: /^(Show all \d+ posts|显示全部 \d+ 篇)$/ }).click();
     await expect(page.locator(".idx-flag")).toHaveCount(30);
 
     // Open one of the new v6.0 capstone monographs and verify ReadingProgressChapters

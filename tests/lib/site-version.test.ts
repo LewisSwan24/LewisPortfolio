@@ -31,7 +31,8 @@ describe("site version is consistent", () => {
   });
 
   it("no page hard-codes a different release label", () => {
-    const graph = read("app", "[locale]", "studio", "graph", "page.tsx");
+    // The lineage graph moved onto /vault in v7.0 (S2).
+    const graph = read("app", "[locale]", "vault", "page.tsx");
     expect(graph).not.toMatch(/\(v\d+\.\d+(\.\d+)?\)/);
   });
 });

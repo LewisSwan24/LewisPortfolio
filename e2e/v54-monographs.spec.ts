@@ -6,6 +6,8 @@ test.describe("v5.4+ Monograph Library & Cluster Filtering", () => {
     page,
   }) => {
     await page.goto("/en/blog", { waitUntil: "networkidle" });
+    // v7.0 L1: the unfiltered list shows ten until asked.
+    await page.getByRole("button", { name: /^(Show all \d+ posts|显示全部 \d+ 篇)$/ }).click();
     await expect(page.locator(".idx-flag")).toHaveCount(30);
     await expect(page.getByTestId("blog-cluster-all")).toContainText("All 30");
 
@@ -34,6 +36,8 @@ test.describe("v5.4+ Monograph Library & Cluster Filtering", () => {
   }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/zh/blog", { waitUntil: "networkidle" });
+    // v7.0 L1: the unfiltered list shows ten until asked.
+    await page.getByRole("button", { name: /^(Show all \d+ posts|显示全部 \d+ 篇)$/ }).click();
     await expect(page.locator(".idx-flag")).toHaveCount(30);
     await page.getByTestId("blog-cluster-bilingual-systems").click();
     await expect(page.locator(".idx-flag").first()).toContainText("双语");

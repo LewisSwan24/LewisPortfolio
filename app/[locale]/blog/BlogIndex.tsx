@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import {
@@ -19,6 +19,8 @@ export type PostItem = {
   readingTime: string;
 };
 
+const PREVIEW_COUNT = 10;
+
 export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }) {
   const t = useTranslations();
   const locale = useLocale();
@@ -30,6 +32,11 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
   // fold and reflowed when the web font loaded (CLS 0.17). They fold behind one
   // button; the five cluster chips stay.
   const [topicsOpen, setTopicsOpen] = useState(false);
+  // v7.0 L1: the unfiltered list shows the newest ten (the list was 19 phone
+  // screens). Any filter searches every post.
+  const [showAll, setShowAll] = useState(false);
+  const listRef = useRef<HTMLElement>(null);
+  const focusAfterExpand = useRef(false);
 
   const shown = posts.filter((p) => {
     if (activeCluster !== "all" && p.cluster !== activeCluster) return false;
@@ -37,6 +44,15 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
     return true;
   });
   const empty = posts.length === 0;
+  const unfiltered = activeCluster === "all" && active === "all";
+  const folded = unfiltered && !showAll && shown.length > PREVIEW_COUNT;
+  const visible = folded ? shown.slice(0, PREVIEW_COUNT) : shown;
+
+  useEffect(() => {
+    if (!focusAfterExpand.current) return;
+    focusAfterExpand.current = false;
+    listRef.current?.querySelectorAll<HTMLAnchorElement>("a.idx-flag")[PREVIEW_COUNT]?.focus();
+  }, [showAll]);
 
   return (
     <main className="page" data-screen-label="05 Writing">
@@ -165,7 +181,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
         </section>
       )}
 
-      <section className="container">
+      <section className="container" ref={listRef}>
         {empty ? (
           <div style={{ padding: "64px 0", textAlign: "center" }}>
             <h2 className="h-display" style={{ fontSize: 28 }}>
@@ -180,7 +196,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
             {isZh ? "没有匹配的文章。" : "No posts match this topic."}
           </div>
         ) : (
-          shown.map((p, idx) => {
+          visible.map((p, idx) => {
             const n = String(idx + 1).padStart(2, "0");
             const date = new Date(p.date).toLocaleDateString(
               isZh ? "zh-CN" : "en-US",
@@ -212,6 +228,20 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
               </Link>
             );
           })
+        )}
+        {folded && (
+          <div style={{ display: "flex", justifyContent: "center", padding: "var(--s-6) 0" }}>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={() => {
+                focusAfterExpand.current = true;
+                setShowAll(true);
+              }}
+            >
+              {isZh ? `显示全部 ${shown.length} 篇` : `Show all ${shown.length} posts`}
+            </button>
+          </div>
         )}
       </section>
     </main>

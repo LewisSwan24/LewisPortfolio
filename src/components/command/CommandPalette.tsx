@@ -310,14 +310,6 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 <span className="cmdk-item-meta">Vault</span>
               </Command.Item>
               <Command.Item
-                value="graph causal lineage dag topology vault patterns 因果图谱 演进 谱系"
-                className="cmdk-item"
-                onSelect={() => navigate("/studio/graph")}
-              >
-                <span>{isZh ? "打开因果演进知识图谱" : "Open Causal Lineage Graph"}</span>
-                <span className="cmdk-item-meta">Graph</span>
-              </Command.Item>
-              <Command.Item
                 value="ai lab rationale bm25 grounded evidence 实验室 辩护 证据"
                 className="cmdk-item"
                 onSelect={() => navigate("/ai")}

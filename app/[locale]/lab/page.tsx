@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Foldable } from "@/components/ui/Foldable";
 import { getLocale } from "next-intl/server";
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { LabWorkbench } from "@/components/lab/LabWorkbench";
@@ -80,7 +81,9 @@ export default async function LabPage() {
       <SpecimenAxisCanvas locale={locale} nodes={SPECIMEN_NODES} />
       <LabTelemetryPanel locale={locale} />
       <div className="container lab-grid">
-        <FsmExplorerPanel specs={CASE_FSM_SPECS} locale={locale} />
+        <Foldable isZh={locale === "zh"} testId="lab-fold-fsm" label={locale === "zh" ? "状态图" : "state graphs"}>
+          <FsmExplorerPanel specs={CASE_FSM_SPECS} locale={locale} />
+        </Foldable>
         <HeuristicAuditWorkbench
           audits={CASE_HEURISTIC_AUDITS}
           locale={locale}

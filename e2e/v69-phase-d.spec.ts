@@ -7,6 +7,28 @@ import { expect, test, type Page } from "@playwright/test";
 
 const PHONE = { width: 390, height: 844 };
 
+/**
+ * Tap the pill where it is drawn. locator.click() first scrolls the element
+ * into view, and for this position:fixed pill Chrome sometimes scrolled the
+ * page to the very bottom (3 of 8 runs, 28 Nov 2026), behind the footer where
+ * the pill hides. A finger tap never scrolls first.
+ */
+async function tapPill(page: Page) {
+  const el = page.locator("[data-chapter-pill]");
+  await expect(el).toBeVisible();
+  // Wait for the pill to finish sliding in, as locator.click() would.
+  let box = (await el.boundingBox())!;
+  await expect
+    .poll(async () => {
+      const next = (await el.boundingBox())!;
+      const same = next.x === box.x && next.y === box.y;
+      box = next;
+      return same;
+    })
+    .toBe(true);
+  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+}
+
 async function scrollToY(page: Page, y: number) {
   await page.evaluate((y) => window.scrollTo({ top: y, behavior: "instant" }), y);
   await page.waitForTimeout(250);
@@ -53,7 +75,7 @@ test.describe("D02 chapter pill and sheet on case pages", () => {
     await expect(pill(page)).toBeVisible();
     await expect(pill(page)).toContainText("3/6");
     await expect(pill(page)).toContainText("亲手试一试");
-    const box = (await pill(page).boundingBox())!;
+    const box = (await page.locator("[data-chapter-pill]").boundingBox())!;
     expect(box.height).toBeGreaterThanOrEqual(44);
   });
 
@@ -61,7 +83,7 @@ test.describe("D02 chapter pill and sheet on case pages", () => {
     await page.goto("/projects/walkie", { waitUntil: "load" });
     await page.locator("#design-decisions").evaluate((el) => el.scrollIntoView({ block: "start", behavior: "instant" }));
     await page.waitForTimeout(400);
-    await pill(page).click();
+    await tapPill(page);
 
     const dialog = sheet(page);
     await expect(dialog).toBeVisible();
@@ -86,16 +108,30 @@ test.describe("D02 chapter pill and sheet on case pages", () => {
     expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflow)).not.toBe("hidden");
   });
 
+  // Guards tapPill: opening and closing the sheet leaves the page where it was.
+  test("opening and closing the sheet does not move the page", async ({ page }) => {
+    await page.goto("/projects/walkie", { waitUntil: "load" });
+    for (let i = 0; i < 6; i += 1) {
+      await scrollToY(page, 3000);
+      await tapPill(page);
+      await expect(sheet(page)).toBeVisible();
+      expect(await page.evaluate(() => Math.round(scrollY)), `open ${i}`).toBe(3000);
+      await page.keyboard.press("Escape");
+      await expect(sheet(page)).toBeHidden();
+      expect(await page.evaluate(() => Math.round(scrollY)), `closed ${i}`).toBe(3000);
+    }
+  });
+
   test("Escape and the backdrop close it, and focus returns to the pill", async ({ page }) => {
     await page.goto("/projects/walkie", { waitUntil: "load" });
     await scrollToY(page, 3000);
-    await pill(page).click();
+    await tapPill(page);
     await expect(sheet(page)).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(sheet(page)).toBeHidden();
     await expect(pill(page)).toBeFocused();
 
-    await pill(page).click();
+    await tapPill(page);
     await expect(sheet(page)).toBeVisible();
     await page.mouse.click(PHONE.width / 2, 40);
     await expect(sheet(page)).toBeHidden();

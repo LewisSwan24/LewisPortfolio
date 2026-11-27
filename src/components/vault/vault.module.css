@@ -251,3 +251,28 @@
     transition: none;
   }
 }
+
+/* v7.0 L4 */
+.cardReason {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.cardFold {
+  border-bottom: 0;
+}
+
+.cardFold > summary {
+  padding-block: var(--s-2);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.cardFoldBody {
+  display: grid;
+  gap: var(--s-3);
+  padding-block-end: var(--s-2);
+}

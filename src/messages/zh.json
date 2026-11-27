@@ -105,8 +105,9 @@
       "em": "你到底怎么思考和动手。"
     },
     "elsewhere": "其他站点",
-    "site": "站内导航",
-    "write": "联系我",
+    "groupWork": "作品",
+    "groupLabs": "实验室",
+    "groupAbout": "关于我",
     "meta": {
       "built": "基于 Next.js 与 CSS Grid 构建，聚焦可证伪交互取舍、可溯源 AI 论证与软硬实测边界。",
       "version": "v6.9.0 · 2026 年 11 月更新"
