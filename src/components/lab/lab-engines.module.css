@@ -210,6 +210,8 @@
 
 .sliderInput {
   width: 100%;
+  /* v6.9 (review D04): at least a 24px tap target (WCAG 2.2 2.5.8). */
+  min-height: 24px;
   accent-color: var(--accent);
 }
 
@@ -365,4 +367,12 @@
   .showAllBtn {
     display: inline-flex;
   }
+}
+
+
+/* v6.9 (review D04): at least a 24px tap target (WCAG 2.2 2.5.8). */
+.auditFoot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
 }

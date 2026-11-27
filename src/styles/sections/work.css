@@ -295,3 +295,7 @@
 @media (min-width: 768px) {
   .idx-atlas-narrow { display: none; }
 }
+
+
+/* v6.9 (review D04): at least a 24px tap target (WCAG 2.2 2.5.8). */
+.idx-meta a { display: inline-flex; align-items: center; min-height: 24px; }

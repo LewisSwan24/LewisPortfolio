@@ -2,7 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
 import { ThemeToggle } from "@/components/providers/ThemeToggle";
 
@@ -26,6 +27,36 @@ export function Navigation() {
   const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  // v6.9 (review D03): while the phone menu is open the page behind it is
+  // locked and dimmed, and Escape closes it and hands focus back to the toggle.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    root.style.overflow = "hidden";
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      setMobileOpen(false);
+      toggleRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      root.style.overflow = previous;
+    };
+  }, [mobileOpen]);
+
+  // Navigating, or widening past the phone layout, closes it.
+  useEffect(() => setMobileOpen(false), [pathname]);
+  useEffect(() => {
+    const wide = window.matchMedia("(min-width: 961px)");
+    const onChange = () => wide.matches && setMobileOpen(false);
+    wide.addEventListener("change", onChange);
+    return () => wide.removeEventListener("change", onChange);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -82,9 +113,18 @@ export function Navigation() {
 
         <div className="pd-nav-tools">
           <button
+            ref={toggleRef}
             type="button"
             className="pd-mobile-toggle"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-label={
+              currentLocale === "zh"
+                ? mobileOpen
+                  ? "关闭菜单"
+                  : "打开菜单"
+                : mobileOpen
+                  ? "Close menu"
+                  : "Open menu"
+            }
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
             onClick={() => setMobileOpen((open) => !open)}
@@ -105,7 +145,7 @@ export function Navigation() {
       </div>
       {mobileOpen && (
         <div className="pd-mobile-menu" id="mobile-navigation">
-          <nav aria-label="Mobile primary">
+          <nav aria-label={currentLocale === "zh" ? "主导航" : "Mobile primary"}>
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
@@ -120,6 +160,16 @@ export function Navigation() {
           </nav>
         </div>
       )}
+      {mobileOpen && typeof document !== "undefined"
+        ? createPortal(
+            <div
+              className="pd-mobile-backdrop"
+              aria-hidden="true"
+              onClick={() => setMobileOpen(false)}
+            />,
+            document.body,
+          )
+        : null}
     </header>
   );
 }

@@ -71,8 +71,9 @@
 }
 
 .checkLabel input {
-  inline-size: 16px;
-  block-size: 16px;
+  /* v6.9 (review D04): at least a 24px tap target (WCAG 2.2 2.5.8). */
+  inline-size: 18px;
+  block-size: 18px;
   accent-color: var(--accent);
 }
 
