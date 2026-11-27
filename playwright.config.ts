@@ -4,6 +4,16 @@ const e2ePort = process.env.E2E_PORT ?? "3100";
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${e2ePort}`;
 
 /**
+ * E2E_PROD=1 serves an existing `next build` with `next start` (run the build
+ * first; CI does). Production compiles nothing on demand, so files run in
+ * parallel. Measured 27 Nov 2026: 445 chromium tests in 5.7 min at 4 workers,
+ * no retries, against ~25 min for `next dev` at 1 worker on CI.
+ * Without it, tests run against `next dev` at 1 worker, for local iteration.
+ */
+const prod = process.env.E2E_PROD === "1";
+const workers = Number(process.env.E2E_WORKERS ?? (prod ? 4 : 1));
+
+/**
  * Playwright configuration for Portfolio E2E tests
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -16,7 +26,7 @@ export default defineConfig({
     /* Retry on CI only */
     retries: process.env.CI ? 2 : 0,
     /* Next dev can race while compiling routes on demand, especially on Windows. */
-    workers: 1,
+    workers,
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
     reporter: "html",
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -59,14 +69,21 @@ export default defineConfig({
     /* Run your local dev server before starting the tests */
     webServer: process.env.PLAYWRIGHT_BASE_URL
         ? undefined
-        : {
-            command: `pnpm dev --hostname 127.0.0.1 --port ${e2ePort}`,
-            url: baseURL,
-            reuseExistingServer: process.env.E2E_REUSE_SERVER === "1",
-            // `next dev` encodes `_next/image` on demand, and in CI some of
-            // those requests never answered (maze, onthebeat), so the page
-            // never reached networkidle. No test checks the optimizer itself.
-            env: { E2E_UNOPTIMIZED_IMAGES: "1" },
-            timeout: 120 * 1000,
-        },
+        : prod
+          ? {
+              command: `pnpm start --hostname 127.0.0.1 --port ${e2ePort}`,
+              url: baseURL,
+              reuseExistingServer: process.env.E2E_REUSE_SERVER === "1",
+              timeout: 60 * 1000,
+          }
+          : {
+              command: `pnpm dev --hostname 127.0.0.1 --port ${e2ePort}`,
+              url: baseURL,
+              reuseExistingServer: process.env.E2E_REUSE_SERVER === "1",
+              // `next dev` encodes `_next/image` on demand, and in CI some of
+              // those requests never answered (maze, onthebeat), so the page
+              // never reached networkidle. No test checks the optimizer itself.
+              env: { E2E_UNOPTIMIZED_IMAGES: "1" },
+              timeout: 120 * 1000,
+          },
 });
