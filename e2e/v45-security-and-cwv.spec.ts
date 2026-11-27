@@ -51,13 +51,20 @@ test.describe("Layered Security CSP, Native Shortcuts Dialog & CWV Audit", () =>
   test("Keyboard shortcuts native <dialog> opens with ?, shows Shift+P & ⌘K, and restores focus on Esc", async ({
     page,
   }) => {
+    test.setTimeout(60_000);
     await page.goto("/en", { waitUntil: "networkidle" });
     const navLink = page.getByRole("link", { name: "Work" }).first();
     await navLink.focus();
 
-    await page.keyboard.press("?");
     const dialog = page.locator("dialog.shortcuts-dialog");
-    await expect(dialog).toBeVisible();
+    // The first `?` loads the dialog chunk, which `next dev` compiles on demand
+    // (slow in CI), and a press before hydration has no listener yet. Press
+    // again only while the dialog is still closed: a second `?` on an open
+    // dialog would toggle it shut.
+    await expect(async () => {
+      if (!(await dialog.isVisible())) await page.keyboard.press("?");
+      await expect(dialog).toBeVisible({ timeout: 4_000 });
+    }).toPass({ timeout: 25_000 });
     await expect(dialog.getByText(/Shift/i)).toBeVisible();
     await expect(dialog.getByText(/Open command/i)).toBeVisible();
 
