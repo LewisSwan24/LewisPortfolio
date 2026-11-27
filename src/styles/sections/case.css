@@ -859,6 +859,13 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
 .cs-meta.cs-story-meta > div { display: flex; flex-direction: row; gap: var(--s-2); align-items: baseline; min-width: 0; }
 .cs-meta.cs-story-meta dt { flex: none; white-space: nowrap; font-size: 13px; color: var(--text-3); letter-spacing: 0; text-transform: none; }
 .cs-meta.cs-story-meta dd { margin: 0; font-size: 14px; }
+/* v6.9 (review R04): on desktop the line nearly fills the width, so the wider
+   fallback font wraps it to two rows and the web font pulls it back to one,
+   moving the whole article ~28px on first visit (walkie CLS 0.10). Reserving
+   two rows keeps the height the same in either font. */
+@media (min-width: 1024px) {
+  .cs-story-meta { min-height: calc(2lh + var(--s-2)); align-content: flex-start; }
+}
 .cs-story-meta .cs-links { display: inline-flex; flex-wrap: wrap; gap: var(--s-3); margin: 0; padding: 0; list-style: none; }
 
 .cs-story-grid .cs-jump ol { display: grid; grid-template-columns: minmax(0, 1fr); }

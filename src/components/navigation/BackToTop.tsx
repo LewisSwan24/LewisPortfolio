@@ -8,14 +8,30 @@ interface BackToTopProps {
   className?: string;
 }
 
+/** Below this width the button has no gutter to sit in and covers the text column. */
+const NARROW_QUERY = "(max-width: 767px)";
+
 export function BackToTop({ threshold = 400, className }: BackToTopProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // v6.9 (review R18): on phones the fixed 48px button sat over the last words of
+    // each line while reading. There it only shows when the reader scrolls back up,
+    // which is when they are looking for a way back.
+    const narrow = window.matchMedia(NARROW_QUERY);
+    let lastY = window.scrollY;
+
     const toggleVisibility = () => {
-      if (window.scrollY > threshold) {
+      const y = window.scrollY;
+      const delta = y - lastY;
+      lastY = y;
+      if (y <= threshold) {
+        setIsVisible(false);
+      } else if (!narrow.matches) {
         setIsVisible(true);
-      } else {
+      } else if (delta < -4) {
+        setIsVisible(true);
+      } else if (delta > 4) {
         setIsVisible(false);
       }
     };
@@ -34,6 +50,10 @@ export function BackToTop({ threshold = 400, className }: BackToTopProps) {
   return (
     <button
       onClick={scrollToTop}
+      data-testid="back-to-top"
+      // A hidden button must not take keyboard focus.
+      tabIndex={isVisible ? 0 : -1}
+      aria-hidden={isVisible ? undefined : true}
       className={cn(
         "fixed bottom-6 right-6 z-50",
         "flex h-12 w-12 items-center justify-center",
