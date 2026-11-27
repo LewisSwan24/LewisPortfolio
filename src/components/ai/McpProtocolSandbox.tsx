@@ -8,7 +8,7 @@ const MCP_CONFIG_SNIPPET = `{
   "mcpServers": {
     "lewis-dong-portfolio": {
       "type": "http",
-      "url": "https://lewisdong.vercel.app/api/mcp"
+      "url": "https://lewisdong.com/api/mcp"
     }
   }
 }`;
