@@ -582,7 +582,9 @@ test.describe("Resume Page", () => {
     test("should offer deterministic PDF download, print, and contact actions", async ({ page }) => {
         await page.goto("/resume");
         await expect(page.locator(".res-actions a[href='/resume/lewis-dong-resume-en.pdf']")).toBeVisible();
-        await expect(page.locator(".res-actions button")).toBeVisible();
+        // v6.9 (review C17): Print is hidden on phones (<=640px).
+        const narrow = (page.viewportSize()?.width ?? 1280) <= 640;
+        await expect(page.locator(".res-actions button")).toBeVisible({ visible: !narrow });
         await expect(page.locator(".res-actions a[href='/contact']")).toBeVisible();
         await expect(page.locator("a[href='/resume.pdf']")).toHaveCount(0);
     });

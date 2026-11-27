@@ -47,30 +47,30 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
 
   const copy = isZh
     ? {
-        eyebrow: "04 · 设计标本坐标系 · 6 个公开案例",
+        eyebrow: "04 · 六个案例的两轴分布",
         title: "人因摩擦 × 决策边界 × 硬件实体感",
         sub: "把六个案例放到同一个空间标尺下观察：越靠近右上角，边界越落在物理动作与实时社交摩擦中；越靠近左上角，工作越聚焦 AI 协同规则与拒绝边界。",
         axisX: "人因摩擦重心（规则/认知 ← → 社交/物理）",
         axisY: "边界强硬度（明确拒绝 / 实体门禁 ↑）",
         regionLabel: "6 个案例三维设计标本坐标系",
-        mode3D: "3D WebGL 已就绪 · 可拖拽旋转",
-        mode2D: "2D 矢量标本底图（SVG 基线）",
-        toggle2D: "切回 2D 矢量图",
-        toggle3D: "开启 3D 标尺视图",
+        mode3D: "3D 视图 · 可拖拽旋转",
+        mode2D: "2D 平面图",
+        toggle2D: "切到 2D 视图",
+        toggle3D: "切到 3D 视图",
         openCase: "查看决策论证 →",
         limitsLabel: "诚实边界",
       }
     : {
-        eyebrow: "04 · Design Specimen Axes · 6 Listed Cases",
+        eyebrow: "04 · Six cases on two axes",
         title: "Human friction × boundary stance × physicality",
         sub: "Six cases plotted along one drafting frame: physical devices lock consent into buttons and bands, while local software encodes explicit refusal thresholds.",
         axisX: "Human tension (cognitive/rule ← → social/physical)",
         axisY: "Boundary stance (explicit refusal / hardware lock ↑)",
         regionLabel: "6-case design space specimen coordinate frame",
-        mode3D: "3D WebGL live · drag to orbit",
-        mode2D: "2D vector specimen (SVG baseline)",
-        toggle2D: "Switch to 2D SVG",
-        toggle3D: "Enable 3D axes",
+        mode3D: "3D view · drag to rotate",
+        mode2D: "2D view",
+        toggle2D: "Switch to 2D",
+        toggle3D: "Switch to 3D",
         openCase: "Inspect rationale →",
         limitsLabel: "Honest scope",
       };
@@ -115,10 +115,10 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
               <line x1="56" y1="268" x2="594" y2="268" stroke="currentColor" strokeOpacity="0.32" strokeWidth="1" />
               <line x1="320" y1="32" x2="320" y2="290" stroke="currentColor" strokeOpacity="0.32" strokeWidth="1" />
               <rect x="64" y="38" width="512" height="222" fill="none" stroke="currentColor" strokeOpacity="0.14" strokeDasharray="4 4" />
-              <text x="64" y="294" fill="currentColor" fillOpacity="0.58" fontSize="11">
+              <text className="specimen-axis-label" x="64" y="294" fill="currentColor" fillOpacity="0.58" fontSize="11">
                 {copy.axisX}
               </text>
-              <text x="330" y="42" fill="currentColor" fillOpacity="0.58" fontSize="11">
+              <text className="specimen-axis-label" x="330" y="42" fill="currentColor" fillOpacity="0.58" fontSize="11">
                 {copy.axisY}
               </text>
 
@@ -141,6 +141,7 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
                       strokeWidth="1.5"
                     />
                     <text
+                      className="specimen-node-label"
                       x="13"
                       y="4"
                       fill="currentColor"
@@ -165,6 +166,15 @@ export function SpecimenAxisCanvas({ locale }: { locale: ThreeLocale }) {
             )}
           </div>
 
+          {/* On phones the SVG scales to ~0.5x, so its 11-unit labels drop to ~6px.
+              home.css hides them there and shows the axis names here instead;
+              the pills below already name every case. */}
+          <dl className="specimen-axis-captions">
+            <dt>X</dt>
+            <dd>{copy.axisX}</dd>
+            <dt>Y</dt>
+            <dd>{copy.axisY}</dd>
+          </dl>
           <div
             className="specimen-node-pills"
             role="group"

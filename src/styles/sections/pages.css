@@ -157,6 +157,9 @@
     flex: 1 1 140px;
     justify-content: center;
   }
+  /* v6.9 (review C17): Print hidden on phones, Tailor CV and the PDF kept
+     (Lewis's pick, 2026-11-27). */
+  .res-actions .res-print { display: none; }
 }
 
 .res-body {

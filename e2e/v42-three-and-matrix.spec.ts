@@ -112,7 +112,8 @@ test.describe("Shared Three.js Specimen Kernel, DecisionComparator & Essay #1", 
 
     await page.goto("/en/lab", { waitUntil: "networkidle" });
     await expect(page.getByTestId("specimen-svg-baseline")).toBeVisible();
-    await expect(page.getByText(/2D vector specimen/i)).toBeVisible();
+    // v6.9 (review C13): the mode label is plain "2D view" now.
+    await expect(page.getByText("2D view", { exact: true })).toBeVisible();
 
     await page.goto("/en/projects/walkie#for-interviewers", { waitUntil: "networkidle" });
     await expect(page.getByTestId("hardware-field-svg")).toBeVisible();
