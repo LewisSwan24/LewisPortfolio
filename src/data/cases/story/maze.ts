@@ -59,7 +59,7 @@ export const mazeStory: CaseStory = {
     watchFor:
       "Watch for the lock: tap one wristband alone and the maze refuses to move; switch to two-player co-touch and steer the orb to GOAL.",
     tryLinks: [
-      { href: "https://maze-runners.vercel.app", label: "Open the exhibition console in demo mode ↗" },
+      { href: "https://maze.lewisdong.com", label: "Open the exhibition console in demo mode ↗" },
       { href: "/studio/replay?track=maze", label: "Inspect millisecond protocol frames in Replay Studio →" },
     ],
     built: {
@@ -166,7 +166,7 @@ export const mazeStory: CaseStory = {
     ],
     watchFor: "注意看锁定：一个人点腕带，迷宫不动；切到双人同时触碰，才能把球送到终点。",
     tryLinks: [
-      { href: "https://maze-runners.vercel.app", label: "以 demo 模式打开展场控制台 ↗" },
+      { href: "https://maze.lewisdong.com", label: "以 demo 模式打开展场控制台 ↗" },
       { href: "/studio/replay?track=maze", label: "进入硬件协议帧步进重放工作台 →" },
     ],
     built: {

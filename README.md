@@ -1,10 +1,10 @@
 # Lewis Dong — Portfolio (`v6.8.0`)
 
-**Live site:** [lewisdong.vercel.app](https://lewisdong.vercel.app)
+**Live site:** [lewisdong.com](https://lewisdong.com)
 
 A statically generated, bilingual (`en` / `zh`) interaction-design practice log and design-engineering portfolio built with **Next.js 15 App Router**, **React 19**, **TypeScript 5.7**, **Tailwind CSS v4**, **Three.js**, **GSAP 3**, **Zod 4**, and **next-intl**. Case studies live in a schema-validated **Unified Case Registry** (`src/data/cases/` + `src/lib/cases/`), essays live in file-based **MDX** (`30` bilingual monographs across 4 clusters), interactive rationale exploration pairs BM25F with a quantized `64-dim int8` semantic index and read-only MCP endpoints (`/api/mcp`), and public reading pages ship with an offline-capable service worker (`public/sw.js`) strictly bypassing `/api/*` and `/brief/*`.
 
-[![Live](https://img.shields.io/badge/Live-lewisdong.vercel.app-151412)](https://lewisdong.vercel.app)
+[![Live](https://img.shields.io/badge/Live-lewisdong.com-151412)](https://lewisdong.com)
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.5-black)](#tech-stack)
 [![React 19](https://img.shields.io/badge/React-19-blue)](#tech-stack)
 [![i18n](https://img.shields.io/badge/i18n-EN%20%7C%20ZH-blue)](#project-structure)
@@ -73,7 +73,7 @@ Open <http://localhost:3000> (routes to `/en` or `/zh`).
 All environment variables are optional; the site builds and operates statically without them (see [`.env.example`](.env.example)):
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://lewisdong.vercel.app
+NEXT_PUBLIC_SITE_URL=https://lewisdong.com
 NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=
 NEXT_PUBLIC_ENABLE_PROOF_MAINTENANCE=false
 UPSTASH_REDIS_REST_URL=
