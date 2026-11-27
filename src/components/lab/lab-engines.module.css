@@ -334,3 +334,35 @@
     border: 1px solid ButtonBorder;
   }
 }
+
+/* v6.9 (review R21): phone-only list of the graph's states. */
+.stateList {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--s-3);
+}
+.stateListBtn {
+  composes: pillBtn;
+}
+@media (max-width: 767px) {
+  .stateList {
+    display: flex;
+  }
+}
+
+/* v6.9 (review R23): on a phone the 24 audit cards were 8.9 screens long;
+   the first six show until the reader asks for the rest. */
+.showAllBtn {
+  composes: pillBtn;
+  display: none;
+  margin-top: var(--s-4);
+}
+@media (max-width: 767px) {
+  .auditGridCollapsed > .auditCard:nth-child(n + 7) {
+    display: none;
+  }
+  .showAllBtn {
+    display: inline-flex;
+  }
+}

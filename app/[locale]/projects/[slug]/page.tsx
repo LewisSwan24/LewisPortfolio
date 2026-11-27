@@ -49,6 +49,7 @@ import { RedTeamCritiquePanel } from "@/components/ai/RedTeamCritiquePanel";
 import { WalkieTactileSchematicSvg } from "@/components/editorial/CapabilityDiagrams";
 import { getCaseStory } from "@/data/cases/story";
 import { CaseAppendixHashOpener } from "@/components/case/story/CaseAppendixHashOpener";
+import { DiagramViewer } from "@/components/case/DiagramViewer";
 import {
   PlainLimits,
   SummaryGlance,
@@ -140,6 +141,7 @@ export default async function CasePage({ params }: Props) {
   const pageCopy = isZh
     ? {
         coverCaption: "系统示意图 · 下方展开构建证据与诚实边界。",
+        schematicLabel: "示意图",
         caseDepthAria: "案例局限与下步规划",
         limitsLabel: "边界",
         outcomeLimits: "实证局限与边界",
@@ -149,6 +151,7 @@ export default async function CasePage({ params }: Props) {
       }
     : {
         coverCaption: "Concept schematic · build evidence and honest limits follow below.",
+        schematicLabel: "schematic",
         caseDepthAria: "Outcome limits",
         limitsLabel: "Limits",
         outcomeLimits: "Outcome limits",
@@ -330,7 +333,13 @@ export default async function CasePage({ params }: Props) {
               />
             ) : (
               <>
-                <CaseCoverVisual slug={k} locale={proofLocale} />
+                {hasScreenshotCover(k) ? (
+                  <CaseCoverVisual slug={k} locale={proofLocale} />
+                ) : (
+                  <DiagramViewer label={`${card.title} · ${pageCopy.schematicLabel}`} isZh={isZh}>
+                    <CaseCoverVisual slug={k} locale={proofLocale} />
+                  </DiagramViewer>
+                )}
                 {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}
               </>
             )}
@@ -430,7 +439,11 @@ export default async function CasePage({ params }: Props) {
                 media={
                   <>
                     {record.media && <CaseMediaGallery media={record.media} isZh={isZh} />}
-                    {k === "walkie" && <WalkieTactileSchematicSvg locale={proofLocale} />}
+                    {k === "walkie" && (
+                      <DiagramViewer label={`${card.title} · ${pageCopy.schematicLabel}`} isZh={isZh}>
+                        <WalkieTactileSchematicSvg locale={proofLocale} />
+                      </DiagramViewer>
+                    )}
                   </>
                 }
               />
@@ -451,7 +464,9 @@ export default async function CasePage({ params }: Props) {
                   {/* The photo took the hero; the case's own schematic stays here. */}
                   {record.cover && hasCaseSchematic(k) && (
                     <figure className="cs-cover cs-lede-schematic">
-                      <CaseCoverVisual slug={k} locale={proofLocale} />
+                      <DiagramViewer label={`${card.title} · ${pageCopy.schematicLabel}`} isZh={isZh}>
+                        <CaseCoverVisual slug={k} locale={proofLocale} />
+                      </DiagramViewer>
                       <figcaption>{pageCopy.coverCaption}</figcaption>
                     </figure>
                   )}

@@ -3,6 +3,7 @@
 import { useEffect, useId, useState } from "react";
 import type { CaseMicroLoopData } from "@/lib/cases/schema";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { DiagramViewer } from "./DiagramViewer";
 
 interface CaseMicroLoopProps {
   data: CaseMicroLoopData;
@@ -64,6 +65,7 @@ export function CaseMicroLoop({ data, locale, headingLevel = 2 }: CaseMicroLoopP
       </div>
 
       <div className="case-sim-stage proc-stage">
+        <DiagramViewer label={data.title[locale]} isZh={isZh}>
         <svg
           viewBox="0 0 720 150"
           className="proc-loop"
@@ -118,6 +120,7 @@ export function CaseMicroLoop({ data, locale, headingLevel = 2 }: CaseMicroLoopP
             );
           })}
         </svg>
+        </DiagramViewer>
 
         <div className="sim-segmented" role="group" aria-label={isZh ? "循环关键帧" : "Loop keyframes"}>
           {data.steps.map((step, i) => (

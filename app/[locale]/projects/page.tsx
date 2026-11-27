@@ -101,13 +101,9 @@ export default async function ProjectsPage() {
   const evidenceMatrix = getEvidenceMatrix(locale);
   const comparatorRows = getDecisionComparatorRows(locale);
 
-  return (
-    <main className="page" data-screen-label="02 Work">
-      <section className="container idx-hero">
-        <div className="label">{t("nav.work")}</div>
-        <h1 className="h-display h1" style={{ marginTop: 16 }}>
-          {isZh ? "精选作品" : "Selected work"}
-        </h1>
+  // v6.9 (review R07): on a phone this card pushed the first case below the
+  // fold, so there it renders after the list instead (CSS picks one).
+  const atlasCard = (
         <div className={patternStyles.bannerCard} style={{ marginTop: "var(--s-5)" }}>
           <div style={{ display: "grid", gap: 4 }}>
             <span className={patternStyles.kicker}>
@@ -128,6 +124,16 @@ export default async function ProjectsPage() {
             </Link>
           </div>
         </div>
+  );
+
+  return (
+    <main className="page" data-screen-label="02 Work">
+      <section className="container idx-hero">
+        <div className="label">{t("nav.work")}</div>
+        <h1 className="h-display h1" style={{ marginTop: 16 }}>
+          {isZh ? "精选作品" : "Selected work"}
+        </h1>
+        <div className="idx-atlas-wide">{atlasCard}</div>
       </section>
 
       <WorkIndex
@@ -136,6 +142,8 @@ export default async function ProjectsPage() {
         matrixSlot={<EvidenceMatrix capabilities={evidenceMatrix} locale={locale} />}
         locale={locale}
       />
+
+      <section className="container idx-atlas-narrow">{atlasCard}</section>
 
       <DecisionComparator rows={comparatorRows} locale={locale} />
     </main>

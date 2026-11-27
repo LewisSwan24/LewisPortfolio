@@ -6,7 +6,7 @@ test.describe("v4.7 Interaction Pattern Atlas & 6 New Bilingual Essays", () => {
   }) => {
     await page.goto("/en/projects", { waitUntil: "networkidle" });
     await expect(page.locator("header nav a")).toHaveCount(7);
-    await expect(page.locator("main a[href='/patterns']")).toBeVisible();
+    await expect(page.locator("main a[href='/patterns']").filter({ visible: true })).toBeVisible();
 
     await page.goto("/en/lab", { waitUntil: "networkidle" });
     await expect(page.locator("main a[href='/patterns']")).toBeVisible();

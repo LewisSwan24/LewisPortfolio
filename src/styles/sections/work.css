@@ -37,6 +37,8 @@
   gap: 6px;
   flex-wrap: wrap;
 }
+/* v6.9 (R06): the /blog topic row folds behind a button. */
+.idx-filters[hidden] { display: none; }
 .idx-filter {
   font-family: var(--font-ui);
   font-size: 13px;
@@ -282,4 +284,14 @@
 @media (max-width: 780px) {
   .comparator-table-wrap { display: none; }
   .comparator-mobile-list { display: grid; }
+}
+
+/* v6.9 (review R07): one Pattern Atlas card per viewport. On a phone it sits
+   after the case list so the first case is on the first screen. */
+@media (max-width: 767px) {
+  .idx-atlas-wide { display: none; }
+  .idx-atlas-narrow { padding-bottom: var(--s-6); }
+}
+@media (min-width: 768px) {
+  .idx-atlas-narrow { display: none; }
 }

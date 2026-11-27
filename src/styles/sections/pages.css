@@ -949,6 +949,50 @@
   color: var(--accent);
 }
 
+/* v6.9 (review R01): tap-to-enlarge for drawings whose labels are too small. */
+.diagram-zoom { position: relative; }
+.cs-cover > .diagram-zoom { position: absolute; inset: 0; }
+/* Top corner, so it never sits on a cover's figcaption. */
+.diagram-zoom > .case-build-trigger .case-build-zoom-badge { top: 10px; bottom: auto; }
+.case-lightbox.diagram-zoom-dialog { max-width: min(1280px, 96vw); }
+.case-lightbox-stage.diagram-zoom-stage {
+  display: block;
+  padding: 16px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.diagram-zoom-stage .viz {
+  position: relative;
+  inset: auto;
+  padding: 0;
+  display: block;
+  width: max-content;
+  min-width: 100%;
+}
+.diagram-zoom-stage svg { display: block; }
+.diagram-zoom-stage .case-adaptive-svg-host,
+.diagram-zoom-stage .case-adaptive-svg-host > span {
+  width: max-content !important; /* beats the host's inline width:100% */
+  height: auto !important;
+  aspect-ratio: auto !important;
+}
+/* The figure wrapper in the viewer is just a frame for the wide drawing. */
+.diagram-zoom-stage > figure { margin: 0; width: max-content; }
+
+/* The gallery lightbox showed drawings fitted to a phone's width (labels ~3px).
+   On a phone a drawing keeps its natural size and the stage scrolls. */
+@media (max-width: 767px) {
+  .case-lightbox-stage:has(> img[src$=".svg"]) {
+    display: block;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .case-lightbox-stage > img[src$=".svg"] {
+    max-width: none;
+    max-height: none;
+  }
+}
+
 .case-lightbox {
   max-width: min(1080px, 94vw);
   max-height: 92vh;
@@ -1428,6 +1472,12 @@
   display: block;
   width: 100%;
   height: auto;
+}
+/* v6.9 (review R20): on a phone the /about training-arc drawing renders its
+   labels at 4–7px; the caption under it says the same, so only the caption shows. */
+@media (max-width: 767px) {
+  .editorial-svg-figure--arc svg { display: none; }
+  .editorial-svg-figure--arc figcaption { margin-top: 0; }
 }
 .editorial-svg-figure figcaption {
   margin-top: var(--s-3);
