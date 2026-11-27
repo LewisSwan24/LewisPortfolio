@@ -83,6 +83,13 @@ jobs:
   # Playwright can run four files at once (E2E_PROD in playwright.config.ts).
   e2e:
     runs-on: ubuntu-24.04
+    # A fresh runner has no image cache, so `next start` encodes every
+    # `_next/image` size on first request (AVIF is slow). With four workers
+    # the phone-size home and case images timed out page.goto (PR #41, run
+    # one: 7 failures, all phone viewports). No test checks the optimizer;
+    # next.config.js serves the originals when this is set, at build and run.
+    env:
+      E2E_UNOPTIMIZED_IMAGES: "1"
 
     steps:
       - uses: actions/checkout@v7
