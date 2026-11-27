@@ -94,7 +94,7 @@ const COPY = {
           ["Design", "the main agent and its subagents appear as a café crew, with the plan shown on a blackboard. Questions open a dialog, while risky steps open a plain card defaulting to “Not now”. A small window keeps watch when the café is minimised. Bilingual Chinese and English throughout."],
           ["How far it is verified", "released 0.1.0 on 22 October and 1.0.0 on 5 November 2026. I use it daily; no one else has, and it has had no user testing. Pixel art is from purchased packs."],
         ],
-        links: [{ href: "https://lewisswan24.github.io/lamplight-nook-site/", label: "Lamplight site ↗" }],
+        links: [{ href: "https://lamplight.lewisdong.com/", label: "Lamplight site ↗" }],
       },
     ] satisfies Entry[],
     uqConnect: {
@@ -195,7 +195,7 @@ const COPY = {
           ["设计", "主代理与子代理化身为咖啡馆店员，计划写在黑板上。提问时弹出对话框；有风险的步骤弹出确认卡，默认选项为「先不要」。店面最小化后仍有小窗值守。全程中英双语。"],
           ["验证到哪一步", "2026 年 10 月 22 日发布 0.1.0，11 月 5 日发布 1.0.0。我自己每天在用，还没有其他人用过，也没做过用户测试。像素美术来自购买的素材包。"],
         ],
-        links: [{ href: "https://lewisswan24.github.io/lamplight-nook-site/", label: "小灯屋官网 ↗" }],
+        links: [{ href: "https://lamplight.lewisdong.com/", label: "小灯屋官网 ↗" }],
       },
     ] satisfies Entry[],
     uqConnect: {

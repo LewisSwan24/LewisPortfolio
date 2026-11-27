@@ -116,7 +116,7 @@ export default async function InterviewPackPage() {
           </div>
           <div className="res-inline-links" aria-label={isZh ? "直达公开源码仓库与在线原型" : "Verify public GitHub repositories and live builds"}>
             <a href="https://github.com/LewisSwan24/walkie" target="_blank" rel="noopener noreferrer">Walkie GitHub ↗</a>
-            <a href="https://lewisswan24.github.io/lamplight-nook-site/" target="_blank" rel="noopener noreferrer">{isZh ? "Lamplight 产品展示页 ↗" : "Lamplight Site ↗"}</a>
+            <a href="https://lamplight.lewisdong.com/" target="_blank" rel="noopener noreferrer">{isZh ? "Lamplight 产品展示页 ↗" : "Lamplight Site ↗"}</a>
             <a href="https://github.com/LewisSwan24/lamplight-nook" target="_blank" rel="noopener noreferrer">Lamplight GitHub ↗</a>
             <a href="https://github.com/LewisSwan24/resume-autofill" target="_blank" rel="noopener noreferrer">Resume Autofill GitHub ↗</a>
             <a href="https://on-the-beat.fly.dev" target="_blank" rel="noopener noreferrer">{isZh ? "On The Beat 在线原型 ↗" : "On The Beat Live ↗"}</a>

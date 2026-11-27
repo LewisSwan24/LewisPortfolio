@@ -226,7 +226,7 @@ test.describe("Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
     // v6.6: the companion site is a text link under "Try it yourself", not a second embed.
     await page.goto("/en/projects/lamplight", { waitUntil: "networkidle" });
     await expect(
-      page.locator("#interactive-demo a[href='https://lewisswan24.github.io/lamplight-nook-site/']")
+      page.locator("#interactive-demo a[href='https://lamplight.lewisdong.com/']")
     ).toBeVisible();
   });
 });

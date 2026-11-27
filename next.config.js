@@ -186,7 +186,7 @@ const nextConfig = {
               "font-src 'self'",
               "worker-src 'self'",
               "connect-src 'self' https://vitals.vercel-insights.com",
-              "frame-src 'self' https://maze.lewisdong.com https://hoop.lewisdong.com https://fencepost.lewisdong.com https://lewisswan24.github.io https://irontide.lewisdong.com",
+              "frame-src 'self' https://maze.lewisdong.com https://hoop.lewisdong.com https://fencepost.lewisdong.com https://lamplight.lewisdong.com https://irontide.lewisdong.com",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",

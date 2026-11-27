@@ -61,7 +61,7 @@ export const lamplightStory: CaseStory = {
       "Watch where focus lands: jump to a risky step, and the card opens with keyboard focus and emphasis on 'Not now'.",
     tryLinks: [
       { href: "/lab?demo=lamplight#lab-sm-title", label: "Inspect Lamplight in /lab →" },
-      { href: "https://lewisswan24.github.io/lamplight-nook-site/", label: "Inspect the public product site ↗" },
+      { href: "https://lamplight.lewisdong.com/", label: "Inspect the public product site ↗" },
     ],
     built: {
       body: [
@@ -177,7 +177,7 @@ export const lamplightStory: CaseStory = {
       "留意焦点落在哪里：直接跳到风险步骤，确认卡弹出时，默认高亮与初始焦点落在「先不要」而非「继续执行」。",
     tryLinks: [
       { href: "/lab?demo=lamplight#lab-sm-title", label: "前往 /lab 走查 Lamplight 状态机 →" },
-      { href: "https://lewisswan24.github.io/lamplight-nook-site/", label: "查看公开产品展示页 ↗" },
+      { href: "https://lamplight.lewisdong.com/", label: "查看公开产品展示页 ↗" },
     ],
     built: {
       body: [

@@ -43,7 +43,7 @@ export const lamplightCase: CaseRecord = {
     {
       "label": "Open companion site",
       "labelZh": "打开产品展示页",
-      "href": "https://lewisswan24.github.io/lamplight-nook-site/",
+      "href": "https://lamplight.lewisdong.com/",
       "external": true
     },
     {
@@ -54,7 +54,7 @@ export const lamplightCase: CaseRecord = {
     }
   ],
   "demo": {
-    "src": "https://lewisswan24.github.io/lamplight-nook-site/",
+    "src": "https://lamplight.lewisdong.com/",
     "poster": "/projects/lamplight/02-board.jpg",
     "title": "Lamplight Nook companion site",
     "titleZh": "Lamplight Nook 专题展示页",
@@ -62,8 +62,8 @@ export const lamplightCase: CaseRecord = {
     "posterAltZh": "Lamplight Nook 咖啡馆黑板计划场景，点击载入双语展示网站",
     "label": "Inspect the public product site",
     "labelZh": "查看公开产品展示页",
-    "blurb": "Published at lewisswan24.github.io/lamplight-nook-site/ as the Windows 1.0 product presentation with downloadable package details and privacy notes.",
-    "blurbZh": "发布于 lewisswan24.github.io/lamplight-nook-site/ 的 Windows 1.0 公开展示页，包含发布说明与隐私边界。",
+    "blurb": "Published at lamplight.lewisdong.com as the Windows 1.0 product presentation with downloadable package details and privacy notes.",
+    "blurbZh": "发布于 lamplight.lewisdong.com 的 Windows 1.0 公开展示页，包含发布说明与隐私边界。",
     "action": "Load Lamplight Nook site",
     "actionZh": "载入 Lamplight Nook 展示页"
   },
