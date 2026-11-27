@@ -82,6 +82,9 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
+    // Set only by Playwright's own dev server (playwright.config.ts): serve
+    // originals so pages are not held up by on-demand encodes.
+    unoptimized: process.env.E2E_UNOPTIMIZED_IMAGES === "1",
     // AVIF only in production builds. `next dev` encodes on demand; in CI
     // (e2e runs on `next dev`) AVIF encodes of the large maze PNGs did not
     // finish inside the 30s test timeout, so maze pages never reached
