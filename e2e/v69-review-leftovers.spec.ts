@@ -14,6 +14,9 @@ test.describe("/lab chart uses plain labels (C13)", () => {
     test(path, async ({ page }) => {
       await page.goto(path, { waitUntil: "networkidle" });
       const section = page.locator(".specimen-section");
+      // The 2D/3D switch renders only after the client-side WebGL check. Under
+      // `next dev` in CI that lands after networkidle, so wait for it first.
+      await expect(section).toContainText(now[1], { timeout: 15_000 });
       const text = (await section.innerText()) + " " + ((await section.textContent()) ?? "");
       for (const s of now) expect(text).toContain(s);
       for (const s of gone) expect(text).not.toContain(s);
