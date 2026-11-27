@@ -31,8 +31,12 @@ test.describe("v5.8 Bidirectional 3D Hardware Digital Twin", () => {
     await page.getByTestId("twin-zone-btn-ir-gate").click();
     await expect(twinPanel).toHaveAttribute("data-active-zone", "ir-gate");
 
-    // Verify 2D schematic fallback toggle works smoothly with zero console errors
-    await page.getByTestId("twin-toggle-fallback").click();
+    // Verify 2D schematic fallback toggle works smoothly with zero console errors.
+    // v6.9 (R22): the toggle only exists when 3D can run; without WebGL the
+    // panel is already the 2D schematic.
+    const toggle = page.getByTestId("twin-toggle-fallback");
+    await toggle.waitFor({ timeout: 5000 }).catch(() => {});
+    if (await toggle.count()) await toggle.click();
     await expect(twinPanel).toHaveAttribute("data-render-mode", "svg-fallback");
     await expect(page.getByTestId("twin-svg-focus-box")).toBeVisible();
 

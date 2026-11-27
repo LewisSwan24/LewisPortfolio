@@ -18,10 +18,12 @@ const COLUMN_HEADERS: ReadonlyArray<{
   en: string;
   zh: string;
 }> = [
-  { layer: "vault", x: 24, en: "01 · Archive Vault (8)", zh: "01 · 档案解剖 (8)" },
-  { layer: "flagship", x: 304, en: "02 · Flagship Builds (6)", zh: "02 · 公开旗舰 (6)" },
-  { layer: "pattern", x: 584, en: "03 · Patterns (6)", zh: "03 · 模式图谱 (6)" },
-  { layer: "cluster", x: 864, en: "04 · Monograph Clusters (4)", zh: "04 · 专文聚类 (4)" },
+  // v6.9 (review R02): the counts come from the graph's nodes, not the label.
+  // They were typed in, and the vault one said 8 after the vault went to 7.
+  { layer: "vault", x: 24, en: "01 · Archive Vault", zh: "01 · 档案解剖" },
+  { layer: "flagship", x: 304, en: "02 · Flagship Builds", zh: "02 · 公开旗舰" },
+  { layer: "pattern", x: 584, en: "03 · Patterns", zh: "03 · 模式图谱" },
+  { layer: "cluster", x: 864, en: "04 · Monograph Clusters", zh: "04 · 专文聚类" },
 ];
 
 const STATUS_FILTERS: ReadonlyArray<{
@@ -159,7 +161,7 @@ export function LineageGraphClient({
               <div className={styles.colHeaderRow} aria-hidden="true">
                 {COLUMN_HEADERS.map((col) => (
                   <span key={col.layer} className={styles.colHeader} style={{ left: col.x }}>
-                    {col[locale]}
+                    {col[locale]} ({graph.nodes.filter((n) => n.layer === col.layer).length})
                   </span>
                 ))}
               </div>

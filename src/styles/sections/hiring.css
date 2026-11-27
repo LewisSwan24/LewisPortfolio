@@ -261,8 +261,10 @@
 }
 
 /* INTERVIEW DECISION ROOM */
+/* v6.9 (review R19): .interview-room-hero also carries .container, so max-width:100%
+   here undid the container's max-width and its edge sat at 32px instead of the
+   site's 72px on /hire and /interview. */
 .interview-room-page,
-.interview-room-hero,
 .interview-evidence-brief,
 .interview-question-bank,
 .interview-boundary-notes,
@@ -784,11 +786,14 @@
 
 /* ROLE-TAILORED LENS (/hire?role=...) */
 .role-lens-panel {
-  max-width: 100%;
+  /* v6.9 (R19): no max-width override; it shares .container's edges. The rule
+     above it stays full-bleed as before: the border image is pushed out to the
+     viewport edges (ink overflow, so no horizontal scroll). */
   min-width: 0;
   padding-top: var(--s-5);
   padding-bottom: var(--s-5);
   border-top: 1px solid var(--border);
+  border-image: linear-gradient(var(--border), var(--border)) 1 / 1px 0 0 0 / 0 100vw;
 }
 .role-lens-head {
   display: flex;

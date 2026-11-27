@@ -81,6 +81,10 @@ export function HardwareTwinCanvas({
         </div>
 
         <div className={styles.twinControls}>
+          {/* v6.9 (review R22): only offer the switch when it can do something. With
+              reduced motion on, or no WebGL, "Restore 3D" toggled state that changed
+              nothing; the HUD badge already says why the view is 2D. */}
+          {(showWebGL || forceSchematic || webglLost) && (
           <button
             type="button"
             className={styles.modeBtn}
@@ -102,6 +106,7 @@ export function HardwareTwinCanvas({
                 ? "尝试恢复 3D"
                 : "Restore 3D"}
           </button>
+          )}
         </div>
       </div>
 
