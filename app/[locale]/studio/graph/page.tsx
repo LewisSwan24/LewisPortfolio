@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
       : "Design Lineage Graph · /studio/graph";
   const description =
     locale === "zh"
-      ? "把 Archive Vault 归档作品、公开主案、交互模式和专文聚类连成一张关联图，支持实证状态筛选与全键盘遍历。"
+      ? "把演进档案馆的归档作品、公开主案、交互模式和专文聚类连成一张关联图。可按实证状态筛选，也能全程用键盘遍历。"
       : "Interactive server-computed graph showing how archived projects, listed cases, interaction patterns and essay clusters relate.";
 
   return {
@@ -55,13 +55,13 @@ export default async function CausalLineageGraphPage() {
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 16 }}>
           <Link href="/vault" className="btn btn-ghost">
-            {isZh ? "查看 Archive Vault 档案 →" : "Open Archive Vault →"}
+            {isZh ? "查看演进档案馆 →" : "Open Archive Vault →"}
           </Link>
           <Link href="/studio/replay" className="btn btn-ghost">
-            {isZh ? "协议帧重放台 (/studio/replay) →" : "Protocol Replay Studio →"}
+            {isZh ? "协议帧重放台 →" : "Protocol Replay Studio →"}
           </Link>
           <Link href="/patterns" className="btn btn-ghost">
-            {isZh ? "交互模式图谱 (/patterns) →" : "Pattern Atlas →"}
+            {isZh ? "交互模式图谱 →" : "Pattern Atlas →"}
           </Link>
         </div>
       </section>

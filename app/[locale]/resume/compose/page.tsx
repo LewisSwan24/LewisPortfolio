@@ -40,7 +40,7 @@ export default async function ResumeComposePage() {
     <main className="page" data-screen-label="09 Resume Composer">
       <section className="container" style={{ paddingBlock: "var(--s-7) var(--s-5)" }}>
         <div className="eyebrow">
-          {isZh ? "招聘决策定制工具 · CUSTOM DOSSIER COMPOSER" : "HIRING DECISION TOOL · CUSTOM DOSSIER COMPOSER"}
+          {isZh ? "定制简报组装工具" : "HIRING DECISION TOOL · CUSTOM DOSSIER COMPOSER"}
         </div>
         <h1 className="h-display h2" style={{ marginTop: 10 }}>
           {isZh

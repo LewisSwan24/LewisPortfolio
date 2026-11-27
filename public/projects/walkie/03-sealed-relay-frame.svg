@@ -40,7 +40,7 @@
   <rect width="800" height="500" fill="var(--svg-ground)" />
   <rect x="28" y="28" width="744" height="444" rx="12" fill="var(--svg-surface)" stroke="var(--svg-border)" stroke-width="1.5" />
   <text x="52" y="68" fill="var(--svg-ink)" font-family="ui-monospace, SFMono-Regular, monospace" font-size="14" font-weight="700">
-    ZERO-KNOWLEDGE FLY.IO RELAY &amp; REPRODUCIBLE VERIFICATION GATES
+    SEALED FLY.IO RELAY &amp; REPRODUCIBLE VERIFICATION GATES
   </text>
 
   <!-- Wire packet diagram -->

@@ -8,8 +8,9 @@ import telemetryManifest from "@/data/telemetry/bundle-manifest.generated.json";
 import { FsmExplorerPanel } from "@/components/lab/fsm/FsmExplorerPanel";
 import { HeuristicAuditWorkbench } from "@/components/lab/auditor/HeuristicAuditWorkbench";
 import { CASE_FSM_SPECS } from "@/data/fsm/case-fsms";
-import { CASE_HEURISTIC_AUDITS } from "@/data/heuristics/case-heuristics";
+import { CASE_HEURISTIC_AUDITS, HEURISTIC_ZH } from "@/data/heuristics/case-heuristics";
 import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
+import { SPECIMEN_NODES } from "@/components/three/specimens";
 import patternStyles from "@/components/patterns/patterns.module.css";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -18,8 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "实验室 · V4 Swiss Editorial 设计系统与交互状态机"
-      : "Lab · V4 Swiss Editorial & Interaction State Machines";
+      ? "UI 实验室 · 设计系统与原语"
+      : "UI Lab · Design System & Primitives";
   const description =
     locale === "zh"
       ? `${siteConfig.author.nameZh} 的 V4 Swiss Editorial 暖骨白与深炭工作室 Token 检查器、GSAP 动效曲线台与真实硬件/AI 状态机微原型。`
@@ -43,7 +44,7 @@ export default async function LabPage() {
       <section className="container lab-hero">
         <div className="v4-editorial-grid">
           <div className="v4-span-8">
-            <div className="eyebrow">{isZh ? "实验室 · 设计系统与原语" : "Lab · Design System & Primitives"}</div>
+            <div className="eyebrow">{isZh ? "UI 实验室 · 设计系统与原语" : "UI Lab · Design System & Primitives"}</div>
             <h1 className="h-display h1" style={{ marginTop: 12 }}>
               {isZh ? "把设计规则做成可操作的工作台" : "Design rules you can inspect and test"}
             </h1>
@@ -76,11 +77,15 @@ export default async function LabPage() {
         </div>
       </section>
       <LabWorkbench locale={locale} />
-      <SpecimenAxisCanvas locale={locale} />
+      <SpecimenAxisCanvas locale={locale} nodes={SPECIMEN_NODES} />
       <LabTelemetryPanel locale={locale} />
       <div className="container lab-grid">
         <FsmExplorerPanel specs={CASE_FSM_SPECS} locale={locale} />
-        <HeuristicAuditWorkbench audits={CASE_HEURISTIC_AUDITS} locale={locale} />
+        <HeuristicAuditWorkbench
+          audits={CASE_HEURISTIC_AUDITS}
+          locale={locale}
+          heuristicNames={locale === "zh" ? HEURISTIC_ZH : undefined}
+        />
       </div>
       <BundleObservatoryPanel manifest={telemetryManifest} locale={locale} />
     </main>

@@ -171,7 +171,7 @@ export function ArchiveVaultClient({
             <header className={styles.cardHead}>
               <div>
                 <span className={styles.cardMeta}>
-                  {item.year} · {item.statusLabel[locale]}
+                  {locale === "zh" && item.yearZh ? item.yearZh : item.year} · {item.statusLabel[locale]}
                 </span>
                 <h3 className={styles.cardTitle}>{item.title[locale]}</h3>
               </div>

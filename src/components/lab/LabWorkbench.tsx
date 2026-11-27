@@ -10,14 +10,14 @@ type Locale = "en" | "zh";
 type EaseId = "power2.out" | "power3.out" | "back.out(1.2)";
 
 const SWATCHES = [
-  { token: "--bg", hexLight: "#F6F4EF", hexDark: "#111110", ratio: "Warm Bone / Deep Studio" },
-  { token: "--surface", hexLight: "#FCFBF8", hexDark: "#181816", ratio: "Primary Card Layer" },
-  { token: "--surface-2", hexLight: "#ECE8DF", hexDark: "#222220", ratio: "Elevated Workbench" },
+  { token: "--bg", hexLight: "#F6F4EF", hexDark: "#111110", ratio: "Warm Bone / Deep Studio", ratioZh: "暖骨白 / 深炭工作室" },
+  { token: "--surface", hexLight: "#FCFBF8", hexDark: "#181816", ratio: "Primary Card Layer", ratioZh: "主卡片层" },
+  { token: "--surface-2", hexLight: "#ECE8DF", hexDark: "#222220", ratio: "Elevated Workbench", ratioZh: "抬升的工作台层" },
   { token: "--text", hexLight: "#151412", hexDark: "#F4F2ED", ratio: "16.4:1 / 16.9:1" },
   { token: "--text-2", hexLight: "#3E3A33", hexDark: "#D6D3CB", ratio: "10.3:1 / 12.6:1 (AAA)" },
   { token: "--text-3", hexLight: "#4E4940", hexDark: "#B8B5AD", ratio: "8.1:1 / 9.2:1 (AAA)" },
-  { token: "--border-strong", hexLight: "#6E675C", hexDark: "#726F67", ratio: "1px structural grid" },
-  { token: "--accent", hexLight: "#A63F2A", hexDark: "#F4F2ED", ratio: "5.4:1 · primary action" },
+  { token: "--border-strong", hexLight: "#6E675C", hexDark: "#726F67", ratio: "1px structural grid", ratioZh: "1px 结构网格" },
+  { token: "--accent", hexLight: "#A63F2A", hexDark: "#F4F2ED", ratio: "5.4:1 · primary action", ratioZh: "5.4:1 · 主要操作" },
 ] as const;
 
 const CASE_MOOD_SWATCHES = [
@@ -146,7 +146,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
                   <span className="lab-only-light">{s.hexLight}</span>
                   <span className="lab-only-dark">{s.hexDark}</span>
                 </span>
-                <span>{s.ratio}</span>
+                <span>{isZh && "ratioZh" in s ? s.ratioZh : s.ratio}</span>
               </div>
             </div>
           ))}
@@ -154,23 +154,23 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
 
         <div className="lab-type-row">
           <div className="lab-type-card">
-            <div className="eyebrow">01 · Editorial Display (500 / 700)</div>
+            <div className="eyebrow">01 · {isZh ? "编辑展示字体" : "Editorial Display"} (500 / 700)</div>
             <div className="lab-type-sample-title">
               {isZh ? "交互即规则" : "Rules you can feel"}
             </div>
-            <span className="eyebrow">Space Grotesk + Noto Sans SC · 1.25 scale</span>
+            <span className="eyebrow">Space Grotesk + Noto Sans SC · {isZh ? "1.25 字阶比例" : "1.25 scale"}</span>
           </div>
           <div className="lab-type-card">
-            <div className="eyebrow">02 · Bilingual Body & UI (400 / 600)</div>
+            <div className="eyebrow">02 · {isZh ? "双语正文与界面" : "Bilingual Body & UI"} (400 / 600)</div>
             <div className="lab-type-sample-ui">
               {isZh ? "清晰胜过装饰，证据先于修辞。" : "Clarity over ornament, proof before prose."}
             </div>
-            <span className="eyebrow">Inter + Noto Sans SC · high legibility</span>
+            <span className="eyebrow">Inter + Noto Sans SC · {isZh ? "高可读性" : "high legibility"}</span>
           </div>
           <div className="lab-type-card">
-            <div className="eyebrow">03 · Technical Index (400)</div>
+            <div className="eyebrow">03 · {isZh ? "技术索引" : "Technical Index"} (400)</div>
             <div className="lab-type-sample-mono">2026-11-22 · AAA · #151412 / #F6F4EF</div>
-            <span className="eyebrow">Geist Mono · tokens, specs, telemetry</span>
+            <span className="eyebrow">Geist Mono · {isZh ? "令牌、规格、遥测" : "tokens, specs, telemetry"}</span>
           </div>
         </div>
 
@@ -215,7 +215,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           <div className="lab-motion-stage">
             <div ref={cardRef} className="lab-motion-card" style={{ transform: "rotate(-1.5deg)" }}>
               <strong>{isZh ? "纸面卡片样本" : "Paper Card Specimen"}</strong>
-              <span>{effectiveReduced ? "duration: 0ms (reduced)" : `${duration.toFixed(2)}s · ${ease}`}</span>
+              <span>{effectiveReduced ? (isZh ? "时长：0ms（已减弱动效）" : "duration: 0ms (reduced)") : `${duration.toFixed(2)}s · ${ease}`}</span>
             </div>
             <button type="button" className="btn btn-primary" onClick={triggerMotion}>
               {isZh ? "触发位移" : "Trigger motion"} →

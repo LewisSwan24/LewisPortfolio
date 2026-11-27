@@ -14,6 +14,7 @@ export const autofillCase: CaseRecord = {
     "tags": ["ai"],
     "year": "2026",
     "dur": "Used on my applications",
+    "durZh": "我自己求职在用",
     "problem": {
       "en": "One resume typed into Workday, Beisen and Moka, field by field",
       "zh": "同一份简历在 Workday、北森、Moka 里一格格重填"
@@ -41,6 +42,7 @@ export const autofillCase: CaseRecord = {
   "links": [
     {
       "label": "Source on GitHub",
+      "labelZh": "GitHub 源码",
       "href": "https://github.com/LewisSwan24/resume-autofill",
       "external": true
     }

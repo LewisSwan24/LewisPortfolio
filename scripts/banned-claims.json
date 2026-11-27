@@ -30,7 +30,7 @@
     { "re": "directly to usability findings", "why": "no case has external usability testing" },
     { "re": "按站点保存|saved per site|per-site settings|per-origin settings", "why": "Spectra stores settings in global chrome.storage.local keys" },
     { "re": "(visa|salary|签证|薪资)[^.。\n]{0,60}(intentionally empty|forces? [^.\n]{0,20}empty|强制[^。\n]{0,10}留白|保持空白)|locks auto-submit permanently|permanently locked", "why": "Autofill fills visa, work-rights and salary from the stored profile (resume-autofill src/dictionary/fieldData.ts:221-275); it stops before Submit rather than locking it" },
-    { "re": "[Zz]ero[- ][Kk]nowledge|零知识", "why": "Walkie's relay forwards AES-256-GCM ciphertext it cannot read (walkie README:88); that is end-to-end encryption, not a zero-knowledge proof" },
+    { "re": "[Zz]ero[- ][Kk]nowledge|ZERO[- ]KNOWLEDGE|零知识", "why": "Walkie's relay forwards AES-256-GCM ciphertext it cannot read (walkie README:88); that is end-to-end encryption, not a zero-knowledge proof" },
     { "re": "Card 3[^.\n]{0,40}(dim|landmark)|三号卡|dim-?out|dims out|息屏退场|主动变暗", "why": "On The Beat has four armable cards; names and where to meet show after both say yes, and the card goes off only after LET'S FINISH (on-the-beat README:14-25)" },
     { "re": "'1 of 4'|「1 of 4」|『1 of 4』", "why": "no record of a '1 of 4' card counter in On The Beat" },
     { "re": "1-Page (PDF|ATS)|单页 (PDF|ATS) 简历|下载单页|标准一页简历|one-page version|一页纸的诚实版本", "why": "the PDF resumes in public/resume are 2 pages (qpdf --show-npages, 2026-11-25)" },

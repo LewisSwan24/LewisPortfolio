@@ -15,6 +15,8 @@ export default async function NotFound() {
 
   return (
     <main className="page" data-screen-label="— 404">
+      {/* v6.9 (R12): the tab said only the English site title. React hoists this. */}
+      <title>{`404 · ${t("notFound.title")} | Lewis Dong`}</title>
       <section className="container cs-hero">
         <div className="eyebrow" style={{ marginBottom: 12 }}>
           {t("notFound.kicker")}

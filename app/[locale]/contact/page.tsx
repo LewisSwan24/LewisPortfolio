@@ -91,7 +91,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </ul>
           <p className="contact-hire-hint">
             <Link href="/hire">
-              {isZh ? "正在评估岗位匹配？查看 1 分钟招聘简报 →" : "Evaluating role fit? Open the quick hiring dossier →"}
+              {isZh ? "正在评估岗位匹配？打开招聘与简历 →" : "Evaluating role fit? Open Hire & CV →"}
             </Link>
           </p>
         </div>
@@ -171,7 +171,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             {isZh ? "下载 PDF 简历 ↗" : "Download PDF CV ↗"}
           </a>
           <Link href="/hire">
-            {isZh ? "打开 1 分钟招聘简报 →" : "Open 1-min hiring dossier →"}
+            {isZh ? "打开招聘与简历 →" : "Open Hire & CV →"}
           </Link>
         </div>
       </section>

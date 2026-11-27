@@ -13,6 +13,7 @@ export const hoopCase: CaseRecord = {
     "tags": ["ai", "hardware"],
     "year": "2026",
     "dur": "Playable",
+    "durZh": "可玩",
     "problem": {
       "en": "Keeping hundreds of generated game assets looking like one cohesive world",
       "zh": "几百张生成式游戏素材摆在一起，如何看起来像同一个世界"

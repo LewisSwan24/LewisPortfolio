@@ -14,6 +14,7 @@ export const lamplightCase: CaseRecord = {
     "tags": ["ai"],
     "year": "2026",
     "dur": "1.0, in daily use",
+    "durZh": "1.0 版，日常在用",
     "problem": {
       "en": "A long AI task shows up as a log nobody can read at a glance",
       "zh": "AI 长任务只是一屏没人能一眼看懂的日志"
@@ -41,11 +42,13 @@ export const lamplightCase: CaseRecord = {
   "links": [
     {
       "label": "Open companion site",
+      "labelZh": "打开产品展示页",
       "href": "https://lewisswan24.github.io/lamplight-nook-site/",
       "external": true
     },
     {
       "label": "Source on GitHub",
+      "labelZh": "GitHub 源码",
       "href": "https://github.com/LewisSwan24/lamplight-nook",
       "external": true
     }

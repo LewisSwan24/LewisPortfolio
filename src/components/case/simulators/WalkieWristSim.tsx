@@ -90,6 +90,8 @@ interface TimelineEvent {
   text: string;
 }
 
+const RISK_ZH: Record<string, string> = { low: "低风险", medium: "中风险", high: "高风险" };
+
 export function WalkieWristSim({ locale, onStatusChange }: SimulatorProps) {
   const isZh = locale === "zh";
   const [transport, setTransport] = useState<TransportMode>("usb");
@@ -358,7 +360,7 @@ export function WalkieWristSim({ locale, onStatusChange }: SimulatorProps) {
                   <span className="sim-scenario-head">
                     <strong>{scenario.label[locale]}</strong>
                     <span className="sim-risk-tag" data-risk={scenario.risk}>
-                      {scenario.risk.toUpperCase()}
+                      {isZh ? RISK_ZH[scenario.risk] : scenario.risk.toUpperCase()}
                     </span>
                   </span>
                   <code>{scenario.toolCall}</code>

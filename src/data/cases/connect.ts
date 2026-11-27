@@ -12,6 +12,7 @@ export const connectCase: CaseRecord = {
     "tags": ["flag", "research"],
     "year": "Coursework",
     "dur": "Coursework prototype",
+    "durZh": "课程原型",
     "problem": {
       "en": "Disjointed structure and hard-to-find information",
       "zh": "结构割裂，关键信息难找"
@@ -39,6 +40,7 @@ export const connectCase: CaseRecord = {
   "links": [
     {
       "label": "Open the demo",
+      "labelZh": "打开演示",
       "href": "https://uq-connect.vercel.app/",
       "external": true
     }

@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "设计演进与死亡解剖档案馆 · Archive Vault"
+      ? "演进档案馆 · 负向复盘与演进谱系"
       : "Archive Vault · Death Autopsies & Design Lineage";
   const count = getAllVaultAutopsies().length;
   const description =
@@ -36,7 +36,7 @@ export default async function ArchiveVaultPage() {
     <main className="page" data-screen-label="Archive Vault · Death Autopsies">
       <section className="container idx-hero">
         <div className="label">
-          {isZh ? "Archive Vault · 负向复盘与演进谱系" : "Archive Vault · Death Autopsies & Lineage"}
+          {isZh ? "演进档案馆 · 负向复盘与演进谱系" : "Archive Vault · Death Autopsies & Lineage"}
         </div>
         <h1 className="h-display h1" style={{ marginTop: 16 }}>
           {isZh ? (
@@ -59,7 +59,7 @@ export default async function ArchiveVaultPage() {
             {isZh ? "回到 6 大公开旗舰 →" : "Back to 6 Listed Flagships →"}
           </Link>
           <Link href="/studio/graph" className="btn btn-ghost">
-            {isZh ? "打开关联图谱 (/studio/graph) →" : "Open Lineage Graph →"}
+            {isZh ? "打开关联图谱 →" : "Open Lineage Graph →"}
           </Link>
           <Link href="/patterns" className="btn btn-ghost">
             {isZh ? "查看交互模式图谱 →" : "Open Pattern Atlas →"}

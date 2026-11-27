@@ -148,12 +148,12 @@ export function AiWorkbenchPageClient({
 
         <div className={styles.pipelineBar}>
           <div className={styles.pipelineStep}>
-            <span className={styles.pipelineIndex}>01 · PII SCRUB</span>
+            <span className={styles.pipelineIndex}>{isZh ? "01 · 隐私脱敏" : "01 · PII SCRUB"}</span>
             <strong>{isZh ? "本地脱敏截断" : "Local Redaction"}</strong>
             <p>{isZh ? "邮箱、电话与内网域名在发送前于浏览器端剥离（<=1200 字）。" : "Emails, phone numbers, and internal URLs stripped client-side."}</p>
           </div>
           <div className={styles.pipelineStep}>
-            <span className={styles.pipelineIndex}>02 · HYBRID INDEX</span>
+            <span className={styles.pipelineIndex}>{isZh ? "02 · 混合索引" : "02 · HYBRID INDEX"}</span>
             <strong>{isZh ? "BM25F + 量化语义向量" : "BM25F + Quantized Vector"}</strong>
             <p>
               {isZh
@@ -162,12 +162,12 @@ export function AiWorkbenchPageClient({
             </p>
           </div>
           <div className={styles.pipelineStep}>
-            <span className={styles.pipelineIndex}>03 · ID ALLOWLIST</span>
+            <span className={styles.pipelineIndex}>{isZh ? "03 · 编号白名单" : "03 · ID ALLOWLIST"}</span>
             <strong>{isZh ? "仅允许返回编号" : "Strict ID Rerank"}</strong>
             <p>{isZh ? "即使接外置大模型重排，也只准从候选 ID 白名单点选。" : "Optional LLM rerank may pick strictly from verified corpus IDs."}</p>
           </div>
           <div className={styles.pipelineStep}>
-            <span className={styles.pipelineIndex}>04 · HYDRATION</span>
+            <span className={styles.pipelineIndex}>{isZh ? "04 · 原文还原" : "04 · HYDRATION"}</span>
             <strong>{isZh ? "物理证据表还原" : "Physical Table Hydration"}</strong>
             <p>{isZh ? "界面渲染 100% 取自静态校验库原文，彻底封死编造数据。" : "All copy, citations & limits hydrate verbatim from static proof tables."}</p>
           </div>

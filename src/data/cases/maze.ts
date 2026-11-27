@@ -13,6 +13,7 @@ export const mazeCase: CaseRecord = {
     "tags": ["flag", "hardware"],
     "year": "2026",
     "dur": "Built",
+    "durZh": "已建成",
     "problem": {
       "en": "A physical maze that gave players no real-time feedback",
       "zh": "一座毫无反馈的木质实体迷宫"

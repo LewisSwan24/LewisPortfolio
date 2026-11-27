@@ -13,6 +13,7 @@ export const grasslandCase: CaseRecord = {
     "tags": ["flag", "ai"],
     "year": "2026",
     "dur": "Chapter one playable",
+    "durZh": "第一章可玩",
     "problem": {
       "en": "Many units, many commands and a running clock, where one inconsistent rule makes the whole game unpredictable",
       "zh": "单位多、命令多、时钟一直在走，一条规则不一致，整个游戏就不可预测"
@@ -40,6 +41,7 @@ export const grasslandCase: CaseRecord = {
   "links": [
     {
       "label": "Play chapter one",
+      "labelZh": "试玩第一章",
       "href": "https://onon-wolf-iron-tide.vercel.app",
       "external": true
     }

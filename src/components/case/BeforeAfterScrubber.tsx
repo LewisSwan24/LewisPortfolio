@@ -3,6 +3,7 @@
 import { useCallback, useId, useRef, useState } from "react";
 import type { CaseScrubber } from "@/lib/cases/schema";
 import { AdaptiveCaseMedia } from "./AdaptiveCaseMedia";
+import { localizeMediaSrc } from "@/lib/cases/localized-media";
 import { ProcessWireframe } from "./wireframes/ProcessWireframes";
 import { DiagramViewer } from "./DiagramViewer";
 
@@ -99,7 +100,7 @@ export function BeforeAfterScrubber({ data, locale, headingLevel = 2 }: BeforeAf
 
   const afterMedia = (
     <AdaptiveCaseMedia
-      src={data.afterImage.src}
+      src={localizeMediaSrc(data.afterImage.src, locale)}
       alt={data.afterImage.alt[locale]}
       width={data.afterImage.width}
       height={data.afterImage.height}
@@ -181,7 +182,7 @@ export function BeforeAfterScrubber({ data, locale, headingLevel = 2 }: BeforeAf
             aria-hidden="true"
           >
             <AdaptiveCaseMedia
-              src={beforeImage.src}
+              src={localizeMediaSrc(beforeImage.src, locale)}
               alt={beforeImage.alt[locale]}
               width={beforeImage.width}
               height={beforeImage.height}

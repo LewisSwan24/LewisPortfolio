@@ -27,6 +27,7 @@ export const CaseWorkSummarySchema = z.object({
   tags: z.array(WorkTagSchema).min(1),
   year: z.string().min(1),
   dur: z.string().min(1),
+  durZh: z.string().min(1).optional(),
   problem: LocalizedStringSchema,
   changed: LocalizedStringSchema,
 });
@@ -166,6 +167,7 @@ export type CaseDemo = z.infer<typeof CaseDemoSchema>;
 
 export const CaseLinkSchema = z.object({
   label: z.string().min(1),
+  labelZh: z.string().min(1).optional(),
   href: z.string().min(1),
   external: z.boolean().optional(),
 });

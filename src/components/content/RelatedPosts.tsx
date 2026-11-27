@@ -26,7 +26,7 @@ export function RelatedPosts({
 
   return (
     <section className={cn("border-t border-border pt-12", className)}>
-      <h2 className="text-2xl font-bold text-foreground mb-8">Related Articles</h2>
+      <h2 className="text-2xl font-bold text-foreground mb-8">{locale === "zh" ? "相关文章" : "Related Articles"}</h2>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {relatedPosts.map((post) => (
@@ -38,7 +38,7 @@ export function RelatedPosts({
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <time dateTime={post.date}>
-                  {new Date(post.date).toLocaleDateString("en-US", {
+                  {new Date(post.date).toLocaleDateString(locale === "zh" ? "zh-CN" : "en-US", {
                     month: "short",
                     day: "numeric",
                     year: "numeric",

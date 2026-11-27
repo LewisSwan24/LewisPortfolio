@@ -80,6 +80,10 @@ function nodeStrokeColor(node: FsmStateNode, active: boolean): string {
   return "var(--border)";
 }
 
+// v6.9 (R12): these showed as English ids on Chinese pages.
+const EDGE_KIND_ZH: Record<string, string> = { advance: "推进", guard: "守卫", error: "出错", recover: "恢复" };
+const SAFETY_GRADE_ZH: Record<string, string> = { locked: "锁定", balanced: "均衡", "hair-trigger": "一触即发" };
+
 export function FsmExplorerPanel({
   specs,
   locale,
@@ -381,7 +385,7 @@ export function FsmExplorerPanel({
                   data-testid={`fsm-trigger-${edge.id}`}
                   onClick={() => fireTransition(edge.id)}
                 >
-                  <span className={styles.triggerKindTag}>{edge.kind}</span>
+                  <span className={styles.triggerKindTag}>{isZh ? EDGE_KIND_ZH[edge.kind] : edge.kind}</span>
                   <span>{edge.trigger[locale]}</span>
                 </button>
               ))}
@@ -411,7 +415,7 @@ export function FsmExplorerPanel({
                 {isZh ? "误触防御裕度" : "Accidental Margin"}
               </span>
               <span className={styles.telemetryValue} data-testid="fsm-mitigation-margin">
-                {telemetry.mitigationMarginPct}% ({telemetry.safetyGrade})
+                {telemetry.mitigationMarginPct}% ({isZh ? SAFETY_GRADE_ZH[telemetry.safetyGrade] : telemetry.safetyGrade})
               </span>
             </div>
             <div className={styles.telemetryCell}>
@@ -419,7 +423,7 @@ export function FsmExplorerPanel({
                 {isZh ? "可达性 / 死锁审计" : "BFS Deadlock Check"}
               </span>
               <span className={styles.telemetryValue} data-testid="fsm-deadlock-badge">
-                {graphReport.deadlockStates.length} deadlocks · {graphReport.reachableStates.length}/
+                {graphReport.deadlockStates.length} {isZh ? "个死锁" : "deadlocks"} · {graphReport.reachableStates.length}/
                 {activeSpec.states.length}
               </span>
             </div>

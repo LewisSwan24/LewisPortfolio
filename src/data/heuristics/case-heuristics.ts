@@ -13,6 +13,20 @@ export type HeuristicCode =
   | "H9 · Recover from errors cleanly"
   | "H10 · Help and documentation";
 
+/** v6.9 (R12): Chinese names for the ten Nielsen heuristics. */
+export const HEURISTIC_ZH: Record<HeuristicCode, string> = {
+  "H1 · Visibility of system status": "H1 · 系统状态可见",
+  "H2 · Match between system and real world": "H2 · 系统与真实世界一致",
+  "H3 · User control and freedom": "H3 · 用户控制与自由",
+  "H4 · Consistency and standards": "H4 · 一致性与标准",
+  "H5 · Error prevention": "H5 · 预防出错",
+  "H6 · Recognition rather than recall": "H6 · 识别而非回忆",
+  "H7 · Flexibility and efficiency": "H7 · 灵活与高效",
+  "H8 · Aesthetic and minimalist design": "H8 · 美观简约的设计",
+  "H9 · Recover from errors cleanly": "H9 · 从错误中干净地恢复",
+  "H10 · Help and documentation": "H10 · 帮助与文档",
+};
+
 export type HeuristicSeverity = "structural-guard" | "feedback" | "open-risk";
 
 export interface CaseHeuristicEntry {

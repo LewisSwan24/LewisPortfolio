@@ -50,6 +50,7 @@ import { WalkieTactileSchematicSvg } from "@/components/editorial/CapabilityDiag
 import { getCaseStory } from "@/data/cases/story";
 import { CaseAppendixHashOpener } from "@/components/case/story/CaseAppendixHashOpener";
 import { DiagramViewer } from "@/components/case/DiagramViewer";
+import { localizeMediaSrc } from "@/lib/cases/localized-media";
 import {
   PlainLimits,
   SummaryGlance,
@@ -324,7 +325,7 @@ export default async function CasePage({ params }: Props) {
           <figure id="artifact" className="cs-cover cs-story-cover">
             {record.cover ? (
               <Image
-                src={record.cover.src}
+                src={localizeMediaSrc(record.cover.src, locale)}
                 fill
                 priority
                 sizes="(max-width: 960px) 100vw, 58vw"
@@ -378,7 +379,7 @@ export default async function CasePage({ params }: Props) {
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
                       >
-                        {link.label}
+                        {isZh && link.labelZh ? link.labelZh : link.label}
                         {link.external && (
                           <span aria-hidden className="cs-links-arrow">
                             ↗

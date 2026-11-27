@@ -36,7 +36,7 @@ export interface ResumeComposerCaseItem {
   slug: ComposerSlug;
   title: ComposerLocaleText;
   kicker: ComposerLocaleText;
-  date: string;
+  date: ComposerLocaleText;
   scope: ComposerLocaleText;
   impactBullet: ComposerLocaleText;
   tradeoffNote: ComposerLocaleText;
@@ -49,8 +49,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
     id: "ixd-ai",
     label: { en: "IxD × AI Systems", zh: "AI 交互与信任边界" },
     roleTitle: {
-      en: "Interaction Designer · Human-AI Safety & Physical Computing",
-      zh: "交互设计师 · 人机共驾边界与 AI 信任体系",
+      en: "Interaction & Product Designer · Human-AI Safety & Physical Computing",
+      zh: "交互与产品设计师 · 人机共驾边界与 AI 信任体系",
     },
     summary: {
       en: "Designs explicit refusal rules, asymmetric hardware confirmations, and bilingual evaluation boundaries that prevent habitual approval and hallucinated automation.",
@@ -59,8 +59,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
     marketEmphasis: {
       "apac-closed-loop": {
         headline: {
-          en: "AI Interaction & Trust Guardrail Engineer · Human-in-the-Loop Delivery",
-          zh: "AI 交互架构与安全确权设计师 · 面向生产可用与工程闭环",
+          en: "Interaction & Product Designer · Human-in-the-Loop Delivery",
+          zh: "交互与产品设计师 · 面向生产可用与工程闭环",
         },
         pitch: {
           en: "Cuts blind Enter approvals and ATS hallucinations by separating risky triggers into hardware keys and confidence tiers shipped end-to-end.",
@@ -73,8 +73,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
       },
       "anz-critique": {
         headline: {
-          en: "Interaction Designer · Human-AI Control Boundaries & Critical Trade-offs",
-          zh: "人机交互设计师 · 拒绝静默自动化与高风险默认回退",
+          en: "Interaction & Product Designer · Human-AI Control Boundaries & Critical Trade-offs",
+          zh: "交互与产品设计师 · 拒绝静默自动化与高风险默认回退",
         },
         pitch: {
           en: "Rejects ambient voice-only permissions and silent form guessing in favour of inspectable diffs, default refusal states, and explicit bench-vs-cohort caveats.",
@@ -108,8 +108,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
     id: "design-tech",
     label: { en: "Design Technologist", zh: "设计工程师" },
     roleTitle: {
-      en: "Design Technologist · TypeScript, Next.js, Motion & Hardware Prototypes",
-      zh: "设计工程师 · TypeScript / React / GSAP / 硬件原型工程化",
+      en: "Interaction & Product Designer · TypeScript, Next.js, Motion & Hardware Prototypes",
+      zh: "交互与产品设计师 · TypeScript / React / GSAP / 硬件原型工程化",
     },
     summary: {
       en: "Builds production-grade interactive prototypes and design-system infrastructure across Next.js 15, TypeScript, GSAP ScrollTrigger, Three.js, Electron, and ESP32/Arduino.",
@@ -118,8 +118,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
     marketEmphasis: {
       "apac-closed-loop": {
         headline: {
-          en: "Full-Stack Design Engineer · Next.js 15, Motion & Hardware Telemetry",
-          zh: "全栈设计工程师 · 设计系统组件化 + 软硬件全链路交付",
+          en: "Interaction & Product Designer · Next.js 15, Motion & Hardware Telemetry",
+          zh: "交互与产品设计师 · 设计系统组件化 + 软硬件全链路交付",
         },
         pitch: {
           en: "Compresses concept-to-production loop across React 19 UI primitives, BFS-verified FSMs, bundle budgets (<= 22 kB route JS), and ESP32-S3 Web Serial tooling.",
@@ -132,8 +132,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
       },
       "anz-critique": {
         headline: {
-          en: "Design Technologist · Accessible Primitives, Protocol Timing & CI Gates",
-          zh: "设计技术专家 · 原生无障碍原语、通信时序与严谨工程门禁",
+          en: "Interaction & Product Designer · Accessible Primitives, Protocol Timing & CI Gates",
+          zh: "交互与产品设计师 · 原生无障碍原语、通信时序与严谨工程门禁",
         },
         pitch: {
           en: "Eliminates fragile UI state via explicit state machines, WCAG 2.2 AA target/focus enforcement, zero-mock replay telemetry, and deterministic Playwright/Vitest CI gates.",
@@ -167,8 +167,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
     id: "product-ux",
     label: { en: "Product & UX Designer", zh: "产品与体验设计师" },
     roleTitle: {
-      en: "Product & UX Designer · Research Tradeoffs & Multi-State Architecture",
-      zh: "产品与体验设计师 · 决策权衡架构与多状态流程",
+      en: "Interaction & Product Designer · Research Tradeoffs & Multi-State Architecture",
+      zh: "交互与产品设计师 · 决策权衡架构与多状态流程",
     },
     summary: {
       en: "Turns ambiguous problem spaces into verifiable five-state journeys, auditable trade-off archives, and repeatable cross-screen command grammars.",
@@ -177,8 +177,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
     marketEmphasis: {
       "apac-closed-loop": {
         headline: {
-          en: "Product & Systems UX Designer · Complex Workflow Architecture",
-          zh: "产品与体验设计师 · 复杂多状态流转与双语体验规范",
+          en: "Interaction & Product Designer · Complex Workflow Architecture",
+          zh: "交互与产品设计师 · 复杂多状态流转与双语体验规范",
         },
         pitch: {
           en: "Turns noisy agent logs and fragmented multi-portal flows into five-state UI specs, shared grammars across five missions, and dual-locale copy systems.",
@@ -191,8 +191,8 @@ export const RESUME_COMPOSER_PRESETS: readonly ResumeComposerPreset[] = [
       },
       "anz-critique": {
         headline: {
-          en: "Interaction & UX Designer · Evidence Hygiene, Five-State Specs & Critique",
-          zh: "交互与体验设计师 · 实证卫生、五态边界设计与现场调研",
+          en: "Interaction & Product Designer · Evidence Hygiene, Five-State Specs & Critique",
+          zh: "交互与产品设计师 · 实证卫生、五态边界设计与现场调研",
         },
         pitch: {
           en: "Built on observed exhibition friction, privacy-preserving social handshakes (On The Beat), and transparent separation of validated outcomes from untested assumptions.",
@@ -232,7 +232,7 @@ function buildComposerCases(): readonly ResumeComposerCaseItem[] {
       slug: record.slug as ComposerSlug,
       title: { en: record.card.en.title, zh: record.card.zh.title },
       kicker: { en: record.card.en.kicker, zh: record.card.zh.kicker },
-      date: record.card.en.date,
+      date: { en: record.card.en.date, zh: record.card.zh.date },
       scope: { en: record.card.en.role, zh: record.card.zh.role },
       impactBullet: { en: record.workSummary.changed.en, zh: record.workSummary.changed.zh },
       tradeoffNote: {

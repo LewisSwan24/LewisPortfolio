@@ -2,7 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { LocalizedLink as Link } from "@/components/LocalizedLink";
-import { VerifiedStatusBadge } from "@/components/case/deep/VerifiedStatusBadge";
+import { VerifiedStatusBadge, VERIFIED_LABELS } from "@/components/case/deep/VerifiedStatusBadge";
 import type { CaseVerifiedStatus } from "@/lib/cases/modules-schema";
 import {
   traceCausalPath,
@@ -20,11 +20,18 @@ const COLUMN_HEADERS: ReadonlyArray<{
 }> = [
   // v6.9 (review R02): the counts come from the graph's nodes, not the label.
   // They were typed in, and the vault one said 8 after the vault went to 7.
-  { layer: "vault", x: 24, en: "01 · Archive Vault", zh: "01 · 档案解剖" },
+  { layer: "vault", x: 24, en: "01 · Archive Vault", zh: "01 · 演进档案馆" },
   { layer: "flagship", x: 304, en: "02 · Flagship Builds", zh: "02 · 公开旗舰" },
   { layer: "pattern", x: 584, en: "03 · Patterns", zh: "03 · 模式图谱" },
   { layer: "cluster", x: 864, en: "04 · Monograph Clusters", zh: "04 · 专文聚类" },
 ];
+
+const LAYER_ZH: Record<string, string> = {
+  vault: "档案馆",
+  flagship: "旗舰",
+  pattern: "模式",
+  cluster: "专文聚类",
+};
 
 const STATUS_FILTERS: ReadonlyArray<{
   id: "all" | CaseVerifiedStatus;
@@ -46,6 +53,9 @@ export function LineageGraphClient({
   locale: "en" | "zh";
 }) {
   const isZh = locale === "zh";
+  // v6.9 (R12): node tags were raw ids ("flagship", "bench-tested") on zh pages.
+  const layerText = (layer: string) => (isZh ? LAYER_ZH[layer] ?? layer : layer);
+  const statusText = (s: CaseVerifiedStatus) => (isZh ? VERIFIED_LABELS[s].zh : s);
   const [selectedId, setSelectedId] = useState<string>(graph.nodes[0]?.id ?? "");
   const [statusFilter, setStatusFilter] = useState<"all" | CaseVerifiedStatus>("all");
   const [viewMode, setViewMode] = useState<"split" | "table">("split");
@@ -223,13 +233,13 @@ export function LineageGraphClient({
                     onKeyDown={(e) => handleNodeKeyDown(e, node)}
                   >
                     <span className={styles.nodeMeta}>
-                      <span>{node.layer}</span>
+                      <span>{layerText(node.layer)}</span>
                       <span>
                         {node.isArchivedUnlisted
                           ? isZh
                             ? "归档解剖"
                             : "archived"
-                          : node.verifiedStatus}
+                          : statusText(node.verifiedStatus)}
                       </span>
                     </span>
                     <span className={styles.nodeTitle}>{node.title[locale]}</span>
@@ -255,7 +265,7 @@ export function LineageGraphClient({
               <tbody>
                 {visibleTableNodes.map((n) => (
                   <tr key={n.id}>
-                    <td>{n.layer}</td>
+                    <td>{layerText(n.layer)}</td>
                     <td>
                       <button
                         type="button"
@@ -265,7 +275,7 @@ export function LineageGraphClient({
                         {n.title[locale]}
                       </button>
                     </td>
-                    <td>{n.verifiedStatus}</td>
+                    <td>{statusText(n.verifiedStatus)}</td>
                     <td>{traceCausalPath(graph, n.id).edgeIds.size}</td>
                   </tr>
                 ))}
@@ -278,7 +288,7 @@ export function LineageGraphClient({
           <div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
               <span className="eyebrow">
-                {selectedNode.layer.toUpperCase()} · {selectedNode.slug}
+                {isZh ? layerText(selectedNode.layer) : selectedNode.layer.toUpperCase()} · {selectedNode.slug}
               </span>
               <VerifiedStatusBadge status={selectedNode.verifiedStatus} locale={locale} />
             </div>
@@ -313,7 +323,7 @@ export function LineageGraphClient({
             </span>
             {incomingEdges.length === 0 ? (
               <p style={{ margin: 0, fontSize: 13, color: "var(--text-3)" }}>
-                {isZh ? "起源节点（Archive Vault 初始解剖）。" : "Root node in Archive Vault."}
+                {isZh ? "演进档案馆里的起源节点。" : "Root node in Archive Vault."}
               </p>
             ) : (
               <ul className={styles.hopList}>
@@ -392,7 +402,7 @@ export function LineageGraphClient({
             <tbody>
               {visibleTableNodes.map((node) => (
                 <tr key={node.id}>
-                  <td>{node.layer}</td>
+                  <td>{layerText(node.layer)}</td>
                   <td>
                     <button
                       type="button"
@@ -402,7 +412,7 @@ export function LineageGraphClient({
                       {node.title[locale]}
                     </button>
                   </td>
-                  <td>{node.verifiedStatus}</td>
+                  <td>{statusText(node.verifiedStatus)}</td>
                   <td style={{ color: "var(--text-2)" }}>{node.honestGap[locale]}</td>
                 </tr>
               ))}

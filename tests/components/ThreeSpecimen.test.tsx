@@ -1,6 +1,7 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { SpecimenAxisCanvas } from "@/components/three/SpecimenAxisCanvas";
+import { SPECIMEN_NODES } from "@/components/three/specimens";
 import { HardwareFieldCanvas } from "@/components/three/HardwareFieldCanvas";
 
 describe("Three.js Specimen Kernel & Silent Fallback", () => {
@@ -13,7 +14,7 @@ describe("Three.js Specimen Kernel & Silent Fallback", () => {
       .spyOn(HTMLCanvasElement.prototype, "getContext")
       .mockReturnValue(null);
 
-    render(<SpecimenAxisCanvas locale="en" />);
+    render(<SpecimenAxisCanvas locale="en" nodes={SPECIMEN_NODES} />);
 
     expect(screen.getByRole("region", { name: /6-case design space specimen/i })).toBeInTheDocument();
     expect(screen.getByTestId("specimen-svg-baseline")).toBeInTheDocument();

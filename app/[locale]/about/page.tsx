@@ -96,7 +96,7 @@ export default async function AboutPage() {
             {t("nav.hire")}
           </Link>
           <Link href="/vault" className="btn btn-ghost">
-            {isZh ? "设计演进档案馆" : "Archive Vault"}
+            {isZh ? "演进档案馆" : "Archive Vault"}
           </Link>
           <Link href="/contact" className="btn btn-ghost">
             {t("hero.cta.note")}

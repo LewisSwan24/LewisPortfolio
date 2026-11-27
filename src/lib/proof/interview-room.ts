@@ -3,7 +3,7 @@ import { isUnlistedProject } from "../project-routes";
 
 const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
   brief: {
-    eyebrow: "Hiring overview",
+    eyebrow: "Hire & CV",
     headline: "How I work across research and interaction.",
     subhead:
       "A quick guide to role fit, core interaction cases, interview prompts, and project scope.",
@@ -239,7 +239,7 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
 
 const zhInterviewDecisionRoom: InterviewDecisionRoom = {
   brief: {
-    eyebrow: "招聘速览",
+    eyebrow: "招聘与简历",
     headline: "我如何把研究推进到真实交互。",
     subhead:
       "把岗位契合度、关键交互决策、可追问的设计问题和项目真实边界收在一页，方便面试前快速浏览。",

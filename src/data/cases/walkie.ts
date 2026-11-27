@@ -10,6 +10,7 @@ export const walkieCase: CaseRecord = {
     tags: ["flag", "hardware", "ai"],
     year: "2026",
     dur: "Dual-boot S3 build",
+    durZh: "S3 双启动版本",
     problem: {
       en: "A wrist voice remote for Claude Code must not let speech alone approve a tool call",
       zh: "手腕上的 Claude Code 语音遥控，不能只凭一句语音就放行工具调用",
@@ -37,6 +38,7 @@ export const walkieCase: CaseRecord = {
   links: [
     {
       label: "Source on GitHub",
+      labelZh: "GitHub 源码",
       href: "https://github.com/LewisSwan24/walkie",
       external: true,
     },

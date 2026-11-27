@@ -71,13 +71,13 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 16 }}>
           <Link href="/patterns" className="btn btn-ghost">
-            {isZh ? "交互模式图谱 (/patterns) →" : "Pattern Atlas (/patterns) →"}
+            {isZh ? "交互模式图谱 →" : "Pattern Atlas →"}
           </Link>
           <Link href="/studio/replay" className="btn btn-ghost">
-            {isZh ? "协议帧重放台 (/studio/replay) →" : "Replay Studio (/studio/replay) →"}
+            {isZh ? "协议帧重放台 →" : "Replay Studio →"}
           </Link>
           <Link href="/vault" className="btn btn-ghost">
-            {isZh ? "演进档案馆 (/vault) →" : "Archive Vault (/vault) →"}
+            {isZh ? "演进档案馆 →" : "Archive Vault →"}
           </Link>
         </div>
       </section>
