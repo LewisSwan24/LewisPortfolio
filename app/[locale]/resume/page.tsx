@@ -53,7 +53,7 @@ const COPY = {
           ["My part", "I turned a teammate's Figma design into a working system: a phone app, firmware for two ESP32 wristbands and a cloud relay. Claude Code wrote and flashed the code; I defined the requirements, reviewed its output, and paired and tested the physical wristbands. I ran a four-user end-to-end test that found more than ten issues and fixed them the next day. After the trade show, I addressed 2 of the 6 feedback items we noted, including reducing steps before starting."],
         ],
         links: [
-          { href: "https://on-the-beat.fly.dev", label: "Live prototype ↗" },
+          { href: "https://onthebeat.lewisdong.com", label: "Live prototype ↗" },
           { href: "https://github.com/LewisSwan24/on-the-beat", label: "GitHub ↗" },
         ],
       },
@@ -154,7 +154,7 @@ const COPY = {
           ["个人负责", "把组员的 Figma 设计做成可运行系统，包括手机 App、两种 ESP32 手环固件和云端 relay。代码由 Claude Code 编写并烧录，我负责定需求、审查产出，并在手环真机上配对实测。我主持了一场四人端到端测试，测出十多个问题，次日全部修完。展会记下 6 条反馈，我改了其中 2 条，包括精简开始前的步骤。"],
         ],
         links: [
-          { href: "https://on-the-beat.fly.dev", label: "在线原型 ↗" },
+          { href: "https://onthebeat.lewisdong.com", label: "在线原型 ↗" },
           { href: "https://github.com/LewisSwan24/on-the-beat", label: "GitHub ↗" },
         ],
       },

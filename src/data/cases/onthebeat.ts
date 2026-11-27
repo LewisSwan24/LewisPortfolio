@@ -42,7 +42,7 @@ export const onthebeatCase: CaseRecord = {
     {
       "label": "Open live web prototype",
       "labelZh": "打开在线原型",
-      "href": "https://on-the-beat.fly.dev",
+      "href": "https://onthebeat.lewisdong.com",
       "external": true
     },
     {
