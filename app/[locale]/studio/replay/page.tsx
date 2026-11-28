@@ -45,12 +45,12 @@ export default async function ProtocolReplayStudioPage() {
             </div>
             <h1 className="h-display h1 replay-h1" style={{ marginTop: 12 }}>
               {isZh
-                ? "把毫秒级硬件防抖、加密帧与故障退避摆到桌面"
+                ? "逐毫秒查看硬件去抖、加密帧与故障恢复"
                 : "Inspect every millisecond of hardware debounce, sealing & fault recovery"}
             </h1>
             <p className="sub">
               {isZh
-                ? "精选 Walkie、MazeRunners 与 On The Beat 三个软硬协同案例的真实协议状态时序。支持单步步进、注入拔线/毛刺/断连故障，并在支持浏览器中提供只读 Web Serial 串口探针。"
+                ? "精选 Walkie、MazeRunners 与 On The Beat 三个软硬协同案例的真实协议状态时序。支持逐帧步进，可注入拔线、毛刺、断连等故障，并在支持的浏览器中提供只读 Web Serial 串口探针。"
                 : "Deterministic telemetry timelines extracted from Walkie, MazeRunners, and On The Beat firmware protocols — complete with interactive fault injection and an optional read-only Web Serial hardware sniffer."}
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 18 }}>

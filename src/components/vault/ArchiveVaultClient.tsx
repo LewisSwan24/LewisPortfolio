@@ -155,7 +155,7 @@ export function ArchiveVaultClient({
         </div>
         <div className="eyebrow" role="status" data-testid="vault-count-status">
           {isZh
-            ? `当前展示 ${filtered.length} / ${autopsies.length} 项未公开归档解剖`
+            ? `当前展示 ${filtered.length} / ${autopsies.length} 项未公开归档复盘`
             : `Showing ${filtered.length} of ${autopsies.length} archived autopsies`}
         </div>
       </div>

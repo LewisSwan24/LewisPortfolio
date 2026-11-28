@@ -67,7 +67,7 @@ export function CaseSimulatorFrame({ demo, locale, embedded = false }: CaseSimul
     ? {
         reset: "重置",
         loadNow: "立即加载体验",
-        skeletonHint: "接近视口时按需加载独立交互模块，零首屏体积拖累。",
+        skeletonHint: "接近视口时按需加载独立交互模块，不拖累首屏体积。",
         takeawayLabel: "交互设计结论",
         idleStatus: "等待操作：按上方引导试着切换状态或触发边界条件。",
         unavailable: "该交互模拟器将在下一阶段接入。",

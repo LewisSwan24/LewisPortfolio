@@ -24,7 +24,7 @@ export const MCP_SANDBOX_PRESETS: readonly McpSandboxPreset[] = [
     },
     summary: {
       en: "Hybrid BM25F + 64-dim int8 search across listed flagships, raw research vaults, patterns, and 30 essays.",
-      zh: "执行 BM25F + 64 维 int8 混合检索（仅命中 6 大公开主案、原始研档、模式与 30 篇专文）。",
+      zh: "执行 BM25F + 64 维 int8 混合检索（仅命中 6 个公开主案、原始研究档案、交互模式与 30 篇专栏文章）。",
     },
     sampleArgs: {
       query: "physical watch key approval AES-256-GCM",
@@ -55,7 +55,7 @@ export const MCP_SANDBOX_PRESETS: readonly McpSandboxPreset[] = [
     },
     summary: {
       en: "Fetches deterministic millisecond traces (nominal or fault-injected) for Walkie, MazeRunners, or On The Beat.",
-      zh: "拉取 Walkie、MazeRunners 或 On The Beat 正常/故障注入毫秒波形帧。",
+      zh: "拉取 Walkie、MazeRunners 或 On The Beat 的正常或故障注入毫秒波形帧。",
     },
     sampleArgs: {
       slug: "walkie",
@@ -67,7 +67,7 @@ export const MCP_SANDBOX_PRESETS: readonly McpSandboxPreset[] = [
     tool: "audit_vault_lineage",
     label: {
       en: "audit_vault_lineage",
-      zh: "audit_vault_lineage（档案库演进解剖）",
+      zh: "audit_vault_lineage（档案库演进溯源）",
     },
     summary: {
       en: "Audits an archived, unlisted project: the flaw it exposed and the listed cases it relates to.",
@@ -86,7 +86,7 @@ export const MCP_SANDBOX_PRESETS: readonly McpSandboxPreset[] = [
     },
     summary: {
       en: "Generates APAC AI Closed-Loop or ANZ Engineering Critique role briefs backed by live composer presets.",
-      zh: "生成 APAC 业务闭环或 ANZ 工程批判双市场定制简报摘要。",
+      zh: "生成 APAC 业务落地或 ANZ 工程批判双市场定制简报摘要。",
     },
     sampleArgs: {
       role: "design-tech",

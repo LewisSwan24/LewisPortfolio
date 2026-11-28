@@ -133,7 +133,7 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
     },
     groundedDefense: {
       en: "Away from the workstation, developers cannot safely read small 1.14-inch screens while walking. Separating Front Key (commit) and Side Key (abort) onto distinct thumb geometry creates eyes-free proprioceptive certainty — zero chance of accidental destructive approval.",
-      zh: "开发者离开桌面走动时，根本没条件在 1.14 寸小屏上盲点弹窗。把确定批准锁定在前键、拒绝/中断锁定在侧键，依靠实体键帽位置差异提供盲操确定性，从物理触觉层切断误批准。",
+      zh: "开发者离开桌面走动时，根本没条件在 1.14 寸小屏上盲点弹窗。批准固定在前键，拒绝/中断固定在侧键。靠实体键帽的位置差异，盲操也能准确区分，从物理触觉上切断误批准。",
     },
     verificationReceipt: {
       en: "Verify Walkie GPIO37/39 dual-key twin and USB-DTR preemption",
@@ -162,7 +162,7 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
     },
     groundedDefense: {
       en: "Three.js lives strictly behind dynamic(ssr: false) wrappers sharing one lazy chunk (82.4 kB gz), interactive client widgets import zero server registries/zod graphs, and scripts/check-bundle-budget.mjs fails CI if any App route chunk tops 22 kB gz or CSS tops 68 kB gz.",
-      zh: "Three.js 严格隔离在单份共享异步懒加载包（82.4 kB gz）内且绝不渗入首屏；客户端组件严禁引入服务端的 registry 或 zod 图谱；CI 内置体积守门脚本硬性卡死单路由 <= 22 kB gz 与 App CSS <= 68 kB gz。",
+      zh: "Three.js 严格隔离在单份共享异步懒加载包（82.4 kB gz）内，绝不渗入首屏。客户端组件严禁引入服务端的 registry 或 zod 图谱。CI 内置体积守门脚本，硬性卡死单路由 <= 22 kB gz、App CSS <= 68 kB gz。",
     },
     verificationReceipt: {
       en: "Inspect live build chunk telemetry on Lab Section 08",
@@ -191,7 +191,7 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
     },
     groundedDefense: {
       en: "Every 3D twin renders an identical interactive 2D SVG schematic underneath with mapped zone focus frames, listens to webglcontextlost without crashes, disables continuous rAF spin under reduced-motion, and exposes an HTML adjacency table beside every DAG canvas.",
-      zh: "每个 3D 标本底层均配备等位高亮的 2D SVG 原理图与可点击状态芯片，捕获 webglcontextlost 零报错即时切换；「减弱动态」开启后立刻冻结持续旋转，DAG 图谱旁亦同步附带完整语义邻接表。",
+      zh: "每个 3D 标本底层都配有等位高亮的 2D SVG 原理图和可点击状态芯片，捕获 webglcontextlost 时零报错即时切换。「减弱动态」开启后会立刻冻结持续旋转，DAG 图谱旁也同步附带完整语义邻接表。",
     },
     verificationReceipt: {
       en: "Test 2D schematic fallback and WCAG keyboard DAG nav",
@@ -212,7 +212,7 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
     projectSlug: "autofill",
     challengeQuestion: {
       en: "Your /ai workbench and MCP tools answer recruiter queries — what stops a pasted JD or prompt injection from fabricating metrics?",
-      zh: "/ai 工作台和 MCP 接口对外响应招聘查询，什么机制能阻止粘贴进来的长文本诱导它编造不存在的项目指标？",
+      zh: "/ai 工作台和 MCP 接口对外响应招聘查询，什么机制能阻止粘贴进来的长文本诱导系统编造不存在的项目指标？",
     },
     overclaimedWeakAnswer: {
       en: "Our carefully engineered system prompt tells the LLM never to hallucinate and stay strictly grounded.",
@@ -220,7 +220,7 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
     },
     groundedDefense: {
       en: "Zero generative LLM runs on the read-only citation path: client-side PII scrubbers strip emails, phones, Bearer/API secrets before scoring, deterministic bilingual BM25 ranks static verified chunks, and out-of-scope queries return an explicit boundary refusal.",
-      zh: "公开证据问答链不走自由生成：浏览器端先将邮箱、电话与秘钥前缀脱敏后再检索；底层仅按确定性双语 BM25 对已校验静态库打分，超出索引或涉及未公开草稿一律触发边界拒答。",
+      zh: "公开证据问答链不走自由生成。浏览器端会先把邮箱、电话和密钥前缀脱敏，再发起检索。底层只按确定性双语 BM25 对已校验静态库打分，超出索引或涉及未公开草稿，一律触发边界拒答。",
     },
     verificationReceipt: {
       en: "Inspect live PII redaction + 5-tool MCP sandbox on /ai",
@@ -249,7 +249,7 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
     },
     groundedDefense: {
       en: "Autofill refuses silent dirty-field overwrites: pre-existing human input gets flagged as locked unless explicitly replaced per field, every filled slot records a pre-mutation snapshot for one-tap restore, and sensitive declaration checkboxes stay blocked from automation.",
-      zh: "系统严禁覆盖已手动修改字段：原有人工输入默认加锁展示对比，每次写入均同步压入原位可回滚快照；涉及法律声明或合规勾选框则直接锁死拒绝自动代勾。",
+      zh: "系统严禁覆盖已手动修改的字段。原有人工输入默认加锁并展示对比，每次写入都会同步存下原位可回滚快照。涉及法律声明或合规勾选框，直接锁死、拒绝自动代勾。",
     },
     verificationReceipt: {
       en: "Open Autofill Snapshot Rollback & State Diff",

@@ -194,7 +194,7 @@ export const lamplightDepth: Record<ProofLocale, { lamplight: CaseDepth }> = {
           sample: "Lewis 自己跑的 Claude 任务",
           question: "放在真实工作上撑得住吗？",
           finding: "他日常在用。没有其他人使用的记录。",
-          implication: "能证明它在真任务上跑得起来，证明不了能帮别人读懂任务。",
+          implication: "能证明在真任务上跑得起来，证明不了能帮别人读懂任务。",
         },
       ],
       iterations: [
@@ -234,7 +234,7 @@ export const lamplightDepth: Record<ProofLocale, { lamplight: CaseDepth }> = {
           nextValidation: "在任何展示这个应用的地方都保留署名和分工说明。",
         },
       ],
-      takeaway: "比喻要能承载状态才算有用：谁在干活、做完了什么、什么在等你。咖啡馆是我的回答；对别人来说它是否比日志读得更快，还没测过。",
+      takeaway: "比喻要能承载状态才算有用：谁在干活、做完了什么、什么在等你。咖啡馆是我的回答；对别人来说是否比日志读得更快，还没测过。",
     },
   },
 };
@@ -350,9 +350,9 @@ export const lamplightPack: Record<ProofLocale, { lamplight: CaseInterviewPack }
       managerFollowUp: {
         id: "lamplight-manager-follow-up",
         question: "只有你自己在用，为什么放进作品集？",
-        answer: "因为这正是 AI 工具带来的交互问题：等着代理干活的人，需要知道它在做什么，并在对的时候插手。这个案例给出一种回答，做到了 1.0，也用在真实任务上。",
+        answer: "因为这正是 AI 工具带来的交互问题：等着代理干活的人，需要知道代理在做什么，并在对的时候插手。这个案例给出一种回答，做到了 1.0，也用在真实任务上。",
         evidenceHref: "/projects/lamplight#outcome-limits",
-        boundary: "要有其他跑长任务的人用过，它才不只是我个人使用的证据。",
+        boundary: "要有其他跑长任务的人用过，这个案例才不只是我个人使用的证据。",
       },
     },
   },

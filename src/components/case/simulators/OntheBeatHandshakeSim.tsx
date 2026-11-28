@@ -15,7 +15,7 @@ export function OntheBeatHandshakeSim({ locale, onStatusChange }: SimulatorProps
     setCard(selected);
     setStage("blind-wave");
     const msg = isZh
-      ? `已发送匿名脉冲卡「${selected}」：对端只知道附近有人挥手，零姓名零头像。`
+      ? `已发送匿名脉冲卡「${selected}」：对方只知道附近有人挥手，看不到姓名和头像。`
       : `Sent anonymous wave '${selected}': nearby wristbands see a pulse only, zero profile exposed.`;
     onStatusChange?.(msg);
   };
@@ -23,7 +23,7 @@ export function OntheBeatHandshakeSim({ locale, onStatusChange }: SimulatorProps
   const confirmMutualNod = () => {
     setStage("mutual-nod");
     const msg = isZh
-      ? "双向点头完成：仅在双方手环均确认后才显示名字与现场碰面地标。"
+      ? "双向点头完成：只有双方手环都确认后，才显示名字和现场碰面地标。"
       : "Mutual nod completed: both wrists confirmed before showing names and venue landmark.";
     onStatusChange?.(msg);
   };
@@ -31,7 +31,7 @@ export function OntheBeatHandshakeSim({ locale, onStatusChange }: SimulatorProps
   const withdrawDevice = () => {
     setStage("withdrawn");
     const msg = isZh
-      ? "手机已收起，硬件立即静默退居二线，将注意力还给现场真人交流。"
+      ? "手机已收起，硬件立刻静默退居二线，把注意力还给现场真人交流。"
       : "Devices stepped back into quiet mode so attention returns to live music and eye contact.";
     onStatusChange?.(msg);
   };
@@ -40,7 +40,7 @@ export function OntheBeatHandshakeSim({ locale, onStatusChange }: SimulatorProps
     <div className="sim-stack" style={{ display: "grid", gap: "var(--s-4)" }}>
       <div className="sim-field">
         <span className="eyebrow">
-          {isZh ? "1. 选择一张非侵入式破冰脉冲卡" : "1. Pick one low-pressure icebreaker card"}
+          {isZh ? "1. 选一张低压力破冰脉冲卡" : "1. Pick one low-pressure icebreaker card"}
         </span>
         <div className="sim-segmented">
           {(["SAY HI", "FIRST SONG?", "LET'S DANCE!"] as const).map((c) => (
@@ -59,7 +59,7 @@ export function OntheBeatHandshakeSim({ locale, onStatusChange }: SimulatorProps
 
       <div className="sim-field">
         <span className="eyebrow">
-          {isZh ? "2. 隐私门槛与退场流转" : "2. Consent threshold & polite device withdrawal"}
+          {isZh ? "2. 隐私门槛与退场流程" : "2. Consent threshold & polite device withdrawal"}
         </span>
         <div className="sim-segmented">
           <button
@@ -83,19 +83,19 @@ export function OntheBeatHandshakeSim({ locale, onStatusChange }: SimulatorProps
         <p className="case-sim-prompt" style={{ marginTop: "var(--s-3)" }}>
           {stage === "scanning" &&
             (isZh
-              ? "状态：手环经 ESP-NOW 静默互相感知。信号强度不会显示，也没有附近人资料墙和颜值打分。"
+              ? "状态：手环通过 ESP-NOW 静默互相感知。不显示信号强度，也没有附近人资料墙和颜值打分。"
               : "State: Bands listen to each other quietly over ESP-NOW. No signal strength shown, no nearby-people wall, no popularity score.")}
           {stage === "blind-wave" &&
             (isZh
-              ? `状态：附近有人发出匿名脉冲（${card}）。在双向确认前不透漏姓名、照片或微信号。`
+              ? `状态：附近有人发出匿名脉冲（${card}）。双向确认前不透露姓名、照片或微信号。`
               : `State: Someone nearby pulsed (${card}) — zero name, avatar, or contact exposed before mutual consent.`)}
           {stage === "mutual-nod" &&
             (isZh
-              ? "状态：双向确认已成立！屏幕仅显示「Leo · 吧台左侧音响柱旁」供双方会合。"
+              ? "状态：双方已确认！屏幕只显示「Leo · 吧台左侧音响柱旁」，方便双方会合。"
               : "State: Mutual nod confirmed! Screen shows 'Leo · Left speaker stack by bar' so two people can meet.")}
           {stage === "withdrawn" &&
             (isZh
-              ? "状态：已开口碰面，设备已静默退居二线。交互不再发通知弹窗打扰当前音乐现场。"
+              ? "状态：已开口碰面，设备已静默退居二线，不再发通知弹窗打扰音乐现场。"
               : "State: Met in person — device has stepped back into silence with zero follow-up nudges.")}
         </p>
       </div>

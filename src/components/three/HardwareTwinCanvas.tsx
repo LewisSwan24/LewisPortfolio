@@ -129,7 +129,7 @@ export function HardwareTwinCanvas({
                   ? "动态减弱 · 2D 图纸"
                   : "Reduced Motion · 2D"
                 : isZh
-                  ? "2D 原理降级视图"
+                  ? "2D 原理图降级"
                   : "2D Schematic Fallback"}
         </div>
 

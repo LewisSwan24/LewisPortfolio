@@ -52,7 +52,7 @@ export const autofillCase: CaseRecord = {
     "placement": "mid-narrative",
     "eyebrow": {
       "en": "Interactive prototype · Zero-guess confidence gate",
-      "zh": "可操作活原型 · 零猜测三档分流门控"
+      "zh": "可运行原型 · 零猜测三档分流门控"
     },
     "title": {
       "en": "Run a local scan on a simulated ATS form",
@@ -60,11 +60,11 @@ export const autofillCase: CaseRecord = {
     },
     "prompt": {
       "en": "Click \"Scan this form locally\" to see exact 1:1 fields auto-fill (solid), ambiguous dropdowns pause for you (dashed), open prompts stay blank (3px solid), and Submit stay human-locked.",
-      "zh": "点击「一键本地扫描」，观察确定字段如何直填（实线）、歧义下拉如何标出待确认（虚线）、开放题如何刻意留空（粗实线），以及提交按钮如何始终由人手掌控。"
+      "zh": "点击「一键本地扫描」，看确定字段如何直填（实线）、歧义下拉如何标出待确认（虚线）。开放题会刻意留空（粗实线），提交按钮始终由人手掌控。"
     },
     "takeaway": {
       "en": "Trustworthy form automation splits certainty from guesswork visually and structurally—never fabricating open answers and never clicking final Submit.",
-      "zh": "值得信任的自动化工具在结构与视觉上严格区分确定性与猜测：绝不编造开放题，也绝不越权代点最终提交。"
+      "zh": "值得信任的自动化工具，会在结构与视觉上严格区分确定与猜测。绝不编造开放题，也绝不越权代点最终提交。"
     }
   },
   "media": {
@@ -97,11 +97,11 @@ export const autofillCase: CaseRecord = {
     "scrubber": {
       "eyebrow": {
         "en": "Process scrubber · 100% auto-guess vs three-tier certainty",
-        "zh": "前后对比拉杆 · 盲猜全填 ↔ 三态分流与人体提交锁"
+        "zh": "前后对比拉杆 · 盲猜全填 ↔ 三态分流与人手提交锁"
       },
       "title": {
         "en": "Replace silent LLM guessing with visible Solid / Dashed / Thick lanes",
-        "zh": "把静默猜填高风险栏位改造成三档可见状态分流与本地密钥托管"
+        "zh": "把静默猜填高风险字段改造成三档可见状态分流与本地密钥托管"
       },
       "summary": {
         "en": "Compare unconstrained auto-fill behavior against Resume Autofill's deterministic local engine and hard Human Submit Lock.",
@@ -109,7 +109,7 @@ export const autofillCase: CaseRecord = {
       },
       "beforeLabel": {
         "en": "Before · Silent Guesswork",
-        "zh": "改造前 · 盲猜高风险栏位"
+        "zh": "改造前 · 盲猜高风险字段"
       },
       "afterLabel": {
         "en": "After · Three-Tier Local Engine",
@@ -204,7 +204,7 @@ export const autofillCase: CaseRecord = {
           "label": { "en": "3-Tier Split", "zh": "三态精准分流" },
           "detail": {
             "en": "Fill exact matches (solid), pause ambiguous selects (dashed), and leave open prompts blank (3px solid).",
-            "zh": "确定栏位直接填入（实线），歧义下拉标虚线等待核对，开放问答题刻意粗实线留白。"
+            "zh": "确定字段直接填入（实线），歧义下拉标虚线等待核对，开放问答题刻意粗实线留白。"
           }
         },
         {
@@ -233,13 +233,13 @@ export const autofillCase: CaseRecord = {
       },
       "humanTension": {
         "en": "Re-typing one resume across Workday, Beisen, and Moka is exhausting, yet AI autofillers that guess visa status, salary expectations, or motivation essays to look '100% automatic' shift catastrophic error risk onto the applicant.",
-        "zh": "在 Workday、北森、Moka 之间重复抄写同一份简历极其消耗心力；但市面上的工具常为了显得「全自动」而硬猜签证身份、期望薪资或开放问答题，一旦猜错，后果全由求职者承担。"
+        "zh": "在 Workday、北森、Moka 之间重复抄写同一份简历极其消耗心力。但市面上的工具常为了显得「全自动」，硬猜签证身份、期望薪资或开放问答题。一旦猜错，后果全由求职者承担。"
       },
       "rejectedAlternatives": [
         {
           "option": {
             "en": "Cloud LLM auto-generation for every blank and open-ended prompt",
-            "zh": "接入云端大模型自动编造所有未知栏位与开放式问答"
+            "zh": "接入云端大模型自动编造所有未知字段与开放式问答"
           },
           "flaw": {
             "en": "Produces plausible hallucinations on high-stakes compliance fields and requires sending private resume history to external servers.",
@@ -259,11 +259,11 @@ export const autofillCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "Deterministic 1:1 local matches fill immediately (solid), ambiguous dropdowns pause for review (dashed), open prompts stay blank (3px solid), and every tier pairs stroke style, word badge, and explicit side-panel reason.",
-        "zh": "建立三档可见分流：确定 1:1 字段直填（实线）、歧义下拉标出待核（虚线）、开放题刻意留空（粗实线），每种状态同时配备边框线型、文字标签与侧栏原因说明。"
+        "zh": "建立三档可见分流：确定 1:1 字段直填（实线），歧义下拉标出待核（虚线），开放题刻意留空（粗实线）。每种状态都同时配备边框线型、文字标签与侧栏原因说明。"
       },
       "residualCostOrRisk": {
         "en": "Applicants still write open answers manually, and 100% fill accuracy is measured only on synthetic fixture forms—real ATS accuracy across outside users remains unmeasured.",
-        "zh": "求职者仍需亲自填写开放问答；目前的 100% 准确率仅来自合成测试表单，真实求职网站上的跨人群准确率尚未量化统计。"
+        "zh": "求职者仍需亲自填写开放问答。目前的 100% 准确率仅来自合成测试表单，真实求职网站上的跨人群准确率尚未量化统计。"
       }
     },
     {
@@ -274,7 +274,7 @@ export const autofillCase: CaseRecord = {
       },
       "humanTension": {
         "en": "Multi-step campus portals frequently place 'Submit' in the exact pixel slot where 'Next' appeared on earlier steps, creating genuine anxiety that automation will fire an irreversible application prematurely.",
-        "zh": "国内校招与海外多步网申经常把最终「提交」放在上一页「下一步」的同一位置，让使用者担心工具翻页时顺手把半成品投了出去。"
+        "zh": "国内校招与海外多步网申，经常把最终「提交」放在上一页「下一步」的同一位置。这让使用者担心，工具翻页时会顺手把半成品投了出去。"
       },
       "rejectedAlternatives": [
         {
@@ -300,11 +300,11 @@ export const autofillCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "Extension logic advances Next across pages and stops dead before Submit (stated explicitly in the side panel), while Chrome CSP blocks network calls and Android encrypts resumes in the device Keystore (verified by a unit test rejecting network imports).",
-        "zh": "多页流程只代点「下一步」并在最终提交前停下（侧栏明文告知），Chrome 扩展通过严格 CSP 断绝外网请求，Android 端以 Keystore 加密存储并由单元测试拦截任何网络类引用。"
+        "zh": "多页流程只代点「下一步」，在最终提交前停下，侧栏也会明文告知。Chrome 扩展用严格 CSP 断绝外网请求，Android 端以 Keystore 加密存储，并由单元测试拦截任何网络类引用。"
       },
       "residualCostOrRisk": {
         "en": "Requires one manual final click and separate setup per device; not yet published on Chrome Web Store or Google Play, no iOS version, no Chinese IME in the Android keyboard, and WeChat-login-only portals stay unreachable.",
-        "zh": "每份投递仍需人工多点一次最终确认，双端无法云同步；尚未上架应用商店、无 iOS 版、Android 简历键盘暂不支持中文输入法，且无法触及纯微信登录页面。"
+        "zh": "每份投递仍需人工多点一次最终确认，双端无法云同步。尚未上架应用商店，无 iOS 版，Android 简历键盘暂不支持中文输入法，且无法触及纯微信登录页面。"
       }
     },
     {
@@ -315,7 +315,7 @@ export const autofillCase: CaseRecord = {
       },
       "humanTension": {
         "en": "Writing fragile CSS selectors per company domain breaks every few weeks, while closed mobile surfaces like WeChat campus mini-programs block browser extensions outright.",
-        "zh": "按每家公司站点硬写 CSS 选择器极易随官网改版失效；而国内大批校招干脆只开放微信小程序，桌面浏览器扩展根本进不去。"
+        "zh": "按每家公司站点硬写 CSS 选择器，极易随官网改版失效。而国内大批校招干脆只开放微信小程序，桌面浏览器扩展根本进不去。"
       },
       "rejectedAlternatives": [
         {
@@ -341,11 +341,11 @@ export const autofillCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "Adapter matching abstracts controls by underlying library (Ant Design, Element Plus, react-select, ARIA) plus ATS presets, while on Android a Keystore-encrypted custom IME lets applicants tap-insert local resume fields cleanly—verified by unit tests rejecting any network import.",
-        "zh": "桌面端按组件库抽象（Ant Design / Element Plus / react-select / ARIA）加主流 ATS 适配器覆写，移动端则在 Android 提供 Keystore 加密的「简历专用输入法」逐项点选输入，且用单元测试禁止任何网络类依赖。"
+        "zh": "桌面端按组件库抽象（Ant Design / Element Plus / react-select / ARIA），再加主流 ATS 适配器覆写。移动端在 Android 提供 Keystore 加密的「简历专用输入法」，可逐项点选输入，且用单元测试禁止任何网络类依赖。"
       },
       "residualCostOrRisk": {
         "en": "Android Resume Keyboard currently has no built-in Chinese Pinyin IME (requiring keyboard switching for open Chinese text) and non-standard custom web portals still fall into manual needs-review lanes.",
-        "zh": "Android 简历键盘暂不附带中文拼音输入法（遇到开放中文字段仍需切换输入法），遇到深度魔改的非标组件也会诚实退回待人工复核列表。"
+        "zh": "Android 简历键盘暂不附带中文拼音输入法，遇到开放中文字段仍需切换输入法。碰到深度魔改的非标组件，也会诚实退回待人工复核列表。"
       }
     }
   ],
@@ -459,11 +459,11 @@ export const autofillCase: CaseRecord = {
         "title": "工具拒绝做的三件事。",
         "m1": {
           "t": "不猜",
-          "b": "工具拿不准的栏位留空，并标出来等你确认。填写报告把已填、待确认、未填分开计数。"
+          "b": "工具拿不准的字段留空，并标出来等你确认。填写报告把已填、待确认、未填分开计数。"
         },
         "m2": {
           "t": "不提交",
-          "b": "多页申请里，它会点「下一步」逐页填写，在最终提交前停下。侧栏上直接写着这一点。"
+          "b": "多页申请里，工具会点「下一步」逐页填写，在最终提交前停下。侧栏上直接写着这一点。"
         },
         "m3": {
           "t": "不外传",
@@ -477,7 +477,7 @@ export const autofillCase: CaseRecord = {
       },
       "id": {
         "label": "设计决策",
-        "p": "有三条规则是我定的：拿不准的栏位留空并标出来，在最终提交前停下，简历不离开设备。每一条都显示在屏幕上，本人看得到还剩哪些事归自己。具体是三处：填完后的摘要卡，逐栏列出原因的侧栏，以及「最终提交留给你」的说明。每种状态都配文字和图标，不只靠颜色区分。"
+        "p": "有三条规则是我定的：拿不准的字段留空并标出来，在最终提交前停下，简历不离开设备。每一条都显示在屏幕上，本人看得到还剩哪些事归自己。具体是三处：填完后的摘要卡，逐栏列出原因的侧栏，以及「最终提交留给你」的说明。每种状态都配文字和图标，不只靠颜色区分。"
       },
       "pr": {
         "label": "怎么做出来的",
@@ -485,7 +485,7 @@ export const autofillCase: CaseRecord = {
       },
       "te": {
         "label": "测试与迭代",
-        "p": "这里的截图来自仓库自带的截图测试。2026 年 11 月 20 日，亮色与暗色 6 / 6 通过，用的是合成测试表单和扩展内置的示例简历。README 记录这些合成表单上的栏位全部填对；那是仓库自己的测试表单，不是真实网站。键盘代码一旦引用网络类，就有单元测试失败。真实使用的检验是我自己：我在自己的申请上用过。"
+        "p": "这里的截图来自仓库自带的截图测试。2026 年 11 月 20 日，亮色与暗色 6 / 6 通过，用的是合成测试表单和扩展内置的示例简历。README 记录这些合成表单上的字段全部填对；那是仓库自己的测试表单，不是真实网站。键盘代码一旦引用网络类，就有单元测试失败。真实使用的检验是我自己：我在自己的申请上用过。"
       },
       "ou": {
         "label": "产出与边界",
@@ -505,7 +505,7 @@ export const autofillCase: CaseRecord = {
       },
       "rf": {
         "label": "反思",
-        "p": "对一个以别人名义行事的工具，这个案例讲的主要是它拒绝做什么，以及怎样让每一条拒绝被看见。这个案例还说明不了两件事。一是在真实网站上的准确率；二是其他申请人会不会信任待确认标记，真的去核对。这两样都要先量过，才能把工具交给别人用。"
+        "p": "对一个以别人名义行事的工具，这个案例讲的主要是工具拒绝做什么，以及怎样让每一条拒绝都看得见。这个案例还说明不了两件事。一是在真实网站上的准确率；二是其他申请人会不会信任待确认标记，真的去核对。这两样都要先量过，才能把工具交给别人用。"
       }
     }
   }

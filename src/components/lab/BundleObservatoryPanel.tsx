@@ -76,7 +76,7 @@ export function BundleObservatoryPanel({
     },
     {
       id: "std-js",
-      label: isZh ? "最大框架/基础块" : "Max Standard JS Chunk",
+      label: isZh ? "最大框架/基础包" : "Max Standard JS Chunk",
       measured: budgets.largestStandardJsGzKb,
       ceiling: budgets.ceilings.standardJsGzKb,
       unit: "kB gz",
@@ -86,7 +86,7 @@ export function BundleObservatoryPanel({
   const integrityCards = [
     {
       id: "unlisted-leaks",
-      title: isZh ? "未列出项目泄露数" : "Unlisted Slug Leaks",
+      title: isZh ? "未公开项目泄露数" : "Unlisted Slug Leaks",
       value: `${integrity.unlistedLeaks}`,
       note: isZh
         ? `6 主案公开 / ${integrity.archivalVaultCases} 存档仅限 Vault`
@@ -96,7 +96,7 @@ export function BundleObservatoryPanel({
       id: "css-warnings",
       title: isZh ? "LightningCSS 编译告警" : "CSS Compiler Warnings",
       value: `${integrity.cssCompilerWarnings}`,
-      note: isZh ? "构建与 CI 双重零告警拦截" : "Enforced via build & CI guard",
+      note: isZh ? "构建与 CI 双重零告警把关" : "Enforced via build & CI guard",
     },
     {
       id: "semantic-chunks",
@@ -139,7 +139,7 @@ export function BundleObservatoryPanel({
           </h2>
           <p className="prose" style={{ marginTop: 6, maxWidth: "68ch" }}>
             {isZh
-              ? "所有数值均从静态构建清单 scripts/build-telemetry-manifest.mjs 导出，与 CI 体积守门同源。"
+              ? "所有数值均从静态构建清单 scripts/build-telemetry-manifest.mjs 导出，与 CI 体积门禁同源。"
               : "Figures originate directly from scripts/build-telemetry-manifest.mjs and the CI gzipped bundle gate — zero synthetic placeholders."}
           </p>
         </div>

@@ -328,7 +328,7 @@ export const lamplightModules: CaseModulesRecord = {
       },
       sourceReceipt: {
         en: "lamplight-nook v1.0 release notes + debug replay panel",
-        zh: "lamplight-nook v1.0 发布注记与仓库内置回放调试面板",
+        zh: "lamplight-nook v1.0 发布说明与仓库内置回放调试面板",
       },
       focusTags: ["ux-research", "systems-hardware"],
       verifiedStatus: "observed",

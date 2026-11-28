@@ -22,7 +22,7 @@ const packetCopy = {
   },
   zh: {
     headlineSuffix: "申请包",
-    summaryPrefix: "给招聘读者的一页岗位申请包：",
+    summaryPrefix: "给招聘方的一页岗位申请包：",
     roleRoom: "打开完整岗位页",
     contact: "按这个岗位联系 Lewis",
     next: "打开下一步计划",

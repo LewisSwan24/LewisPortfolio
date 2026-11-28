@@ -42,14 +42,14 @@ export function InterviewDefenseArena({ locale }: { locale: "en" | "zh" }) {
           </h2>
           <p className="prose" style={{ margin: 0, maxWidth: "68ch", color: "var(--text-2)" }}>
             {isZh
-              ? "覆盖 APAC 快迭代与 ANZ 稳健合规双重视角；每道辩护直接指向真实状态机、物理引脚或测试限制，绝不虚构指标。"
+              ? "覆盖 APAC 快迭代与 ANZ 稳健合规双重视角。每条回答都对应真实状态机、物理引脚或测试限制，绝不虚构指标。"
               : "Switch across hiring roles and regional expectations. Every grounded response links straight to live protocol specs, diffs, or honest field gaps."}
           </p>
         </header>
 
         <div className={styles.controlsBar}>
           <div className={styles.pillGroup} role="group" aria-label={isZh ? "选择面试岗位视角" : "Select interviewer role lens"}>
-            <span className={styles.groupLabel}>{isZh ? "岗位透镜" : "Role Lens"}</span>
+            <span className={styles.groupLabel}>{isZh ? "岗位视角" : "Role Lens"}</span>
             {DEFENSE_ROLES.map((role) => (
               <button
                 key={role.id}
@@ -120,7 +120,7 @@ export function InterviewDefenseArena({ locale }: { locale: "en" | "zh" }) {
 
           <article className={styles.answerBox} data-stance="grounded" data-testid="defense-grounded-card">
             <span className="eyebrow">
-              {isZh ? "推荐实证答辩 · 受制于真实代码与交互护栏" : "Evidence-Bounded Defense · Code & Spec Grounded"}
+              {isZh ? "推荐实证答法 · 立足真实代码与交互护栏" : "Evidence-Bounded Defense · Code & Spec Grounded"}
             </span>
             <p style={{ margin: 0, lineHeight: 1.65 }}>{activeDrill.groundedDefense[locale]}</p>
           </article>

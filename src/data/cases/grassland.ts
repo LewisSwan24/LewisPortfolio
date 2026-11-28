@@ -59,7 +59,7 @@ export const grasslandCase: CaseRecord = {
         "alt": "The five-mission strategic map of chapter one",
         "altZh": "第一章的五关战略地图",
         "caption": "The strategic map shows progress, sets out the chapter and is the way back into a mission to replay it.",
-        "captionZh": "五关战略地图同时承担进度展示、章节结构与重玩入口。"
+        "captionZh": "五关战略地图用来展示进度、列出章节结构，也是重玩各关的入口。"
       },
       {
         "src": "/projects/grassland/03-mission-02.jpg",
@@ -68,7 +68,7 @@ export const grasslandCase: CaseRecord = {
         "alt": "Mission two: resources, unit status and objectives around a battlefield that fills most of the screen",
         "altZh": "第二关：资源、人物状态与目标围在四周，主战场占据大部分画面",
         "caption": "Mission two. Resources, unit status and objectives are all on screen, and the battlefield still takes the largest area.",
-        "captionZh": "第二关：资源、人物状态与目标同时存在，主战场仍占最大视觉面积。"
+        "captionZh": "第二关：资源、人物状态与目标同屏显示时，主战场仍占最大面积。"
       },
       {
         "src": "/projects/grassland/04-mission-03.jpg",
@@ -113,15 +113,15 @@ export const grasslandCase: CaseRecord = {
     "placement": "after-summary",
     "eyebrow": {
       "en": "Interactive prototype · Unified tactical grammar",
-      "zh": "可操作活原型 · 五关统一命令语法与回滚链"
+      "zh": "可运行原型 · 五关统一命令语法与回滚链"
     },
     "title": {
       "en": "Verify five-mission control consistency & checkpoint restore",
-      "zh": "验证五关共用语法与检查点因果恢复链"
+      "zh": "验证五关操作一致性与检查点恢复"
     },
     "prompt": {
       "en": "Switch between Mission 1 and Mission 5, issue a shared directive, then trigger a checkpoint failure to see how players avoid replaying the whole chapter.",
-      "zh": "切换第 1 到第 5 关并执行同套指令，随后触发一次检查点失败恢复，观察玩家如何避免因规则变更被迫重打整章。"
+      "zh": "切换第 1 到第 5 关并执行同套指令，再触发一次检查点失败恢复。借此观察玩家如何避免因规则变更重打整章。"
     },
     "takeaway": {
       "en": "Consistent command grammar keeps escalating tactical challenge fair without inventing per-level special buttons.",
@@ -136,11 +136,11 @@ export const grasslandCase: CaseRecord = {
       },
       "title": {
         "en": "Unify ad-hoc mission controls into one immutable RTS grammar & single save chain",
-        "zh": "把每关打补丁式的自动宏与特设按钮统一成不可变命令语法与单一存档链"
+        "zh": "把每关打补丁式的自动宏与特设按钮，统一成不可变命令语法与单一存档链"
       },
       "summary": {
         "en": "Compare bespoke level-specific overrides against the five-mission data pipeline and deterministic checkpoint architecture.",
-        "zh": "拉动对比早期破坏心智模型的特设按键方案与终版数据驱动 5 关 20 Hz 统一引擎。"
+        "zh": "拉动对比前后方案。早期按关加特设按键，破坏心智模型；终版改用数据驱动的 5 关 20 Hz 统一引擎。"
       },
       "beforeLabel": {
         "en": "Before · Ad-Hoc Per-Level Macros",
@@ -168,7 +168,7 @@ export const grasslandCase: CaseRecord = {
       },
       "title": {
         "en": "Structural invariants locked during five-mission RC acceptance",
-        "zh": "五关本地 RC 连续通关中锁定的交互与状态守恒纪律"
+        "zh": "五关本地 RC 连续通关中锁定的交互与状态约束"
       },
       "items": [
         {
@@ -204,7 +204,7 @@ export const grasslandCase: CaseRecord = {
           },
           "friction": {
             "en": "Decoupled UI counters and simulation timers split during pause and retry flows.",
-            "zh": "独立维护界面状态与游戏计时器在暂停重开时极易分叉。"
+            "zh": "界面状态与游戏计时器分开维护，在暂停重开时极易分叉。"
           },
           "decision": {
             "en": "Bound pause, defeat causality, checkpoint snapshot, and unit arrays inside one 20 Hz simulation tick.",
@@ -246,7 +246,7 @@ export const grasslandCase: CaseRecord = {
           "label": { "en": "Checkpoint Snap", "zh": "快照回滚" },
           "detail": {
             "en": "On mission failure, players restore cleanly from the saved checkpoint chain instead of restarting the chapter.",
-            "zh": "任务失败后直接从单一存档链检查点恢复，无需被迫重头重打整章。"
+            "zh": "任务失败后直接从单一存档链检查点恢复，不用从头重打整章。"
           }
         }
       ]
@@ -261,7 +261,7 @@ export const grasslandCase: CaseRecord = {
       },
       "humanTension": {
         "en": "Real-time strategy players manage multiple squads under a ticking clock; when designers patch in custom buttons or override selection rules for later levels, escalating challenge turns into interface betrayal.",
-        "zh": "即时战略玩家在持续推进的倒计时下同时调度多支队伍；如果关卡一复杂就临时打补丁改按键或特例规则，所谓的「策略难度」就会偷换成「界面背叛」。"
+        "zh": "即时战略玩家在持续推进的倒计时下同时调度多支队伍。如果关卡一复杂就临时打补丁改按键或加特例规则，所谓的「策略难度」就会偷换成「界面背叛」。"
       },
       "rejectedAlternatives": [
         {
@@ -281,17 +281,17 @@ export const grasslandCase: CaseRecord = {
           },
           "flaw": {
             "en": "Overloads new browser players before core tactical timing and terrain reading ever register.",
-            "zh": "在网页有限认知带宽内过载操作记忆，掩盖了真正的核心战术判断。"
+            "zh": "在网页有限的认知带宽内塞进过多操作记忆，反而掩盖了真正的核心战术判断。"
           }
         }
       ],
       "chosenTradeoff": {
         "en": "Lock click, box-select, Shift add/remove, Ctrl grouping, and right-click commands into one immutable grammar—missions may restrict which commands are available, never change what an action means.",
-        "zh": "将点击、框选、Shift 增减、Ctrl 编队与右键菜单锁定为不可变语法：关卡可以限制「开放哪些命令」，绝不允许篡改「同一操作意味着什么」。"
+        "zh": "将点击、框选、Shift 增减、Ctrl 编队与右键菜单锁定为不可变语法。关卡可以限制「开放哪些命令」，绝不允许篡改「同一操作意味着什么」。"
       },
       "residualCostOrRisk": {
         "en": "Offers fewer tactical verbs than full commercial RTS titles; rule consistency is verified by 430/430 tests and full playthroughs at two resolutions, while new-player learnability remains untested with outside players.",
-        "zh": "战术指令广度低于大型商业 RTS；规则一致性已由 430/430 测试与双分辨率通关验证，但新玩家初见上手速度尚未做过外部试玩测试。"
+        "zh": "战术指令广度低于大型商业 RTS。规则一致性已由 430/430 测试与双分辨率通关验证，但新玩家初次上手速度尚未做过外部试玩测试。"
       }
     },
     {
@@ -302,7 +302,7 @@ export const grasslandCase: CaseRecord = {
       },
       "humanTension": {
         "en": "Crowded HUD chrome eats the playable map, while restarts that visually reset units without restoring exact mission flags shatter player trust after a hard defeat.",
-        "zh": "堆满屏幕边缘的信息栏会挤压操作视野；而战败重来时若画面回去了、底层任务状态却串台，玩家会瞬间对整套系统丧失信任。"
+        "zh": "堆满屏幕边缘的信息栏会挤压操作视野。战败重来时，若画面回去了、底层任务状态却串台，玩家会瞬间对整套系统失去信任。"
       },
       "rejectedAlternatives": [
         {
@@ -328,11 +328,11 @@ export const grasslandCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "Fix camera zoom so the battlefield claims the largest screen area while objectives, minimap, and command grid sit cleanly on edges; pause, defeat reason, checkpoint, and unit restoration share one 20 Hz simulation save chain.",
-        "zh": "锁定镜头倍率使主战场始终占最大面积，目标、小地图与命令格停在边缘；暂停、失败归因、检查点与单位状态全部写入同一条 20 Hz 模拟存档链。"
+        "zh": "锁定镜头倍率，让主战场始终占最大面积，目标、小地图与命令格停在边缘。暂停、失败归因、检查点与单位状态全部写入同一条 20 Hz 模拟存档链。"
       },
       "residualCostOrRisk": {
         "en": "Gives up macro zoom-out inspection across large maps, local RC acceptance has not yet been mirrored identically on the live URL, and the Phaser web bundle carries a known size warning.",
-        "zh": "放弃了大地图宏观缩放视角；五关完整验收来自本地 RC 记录（线上链接未跑同规格逐屏复验），且网页构建仍保留 Phaser 包体偏大的已知警告。"
+        "zh": "放弃了大地图宏观缩放视角。五关完整验收来自本地 RC 记录，线上链接未跑同规格逐屏复验。此外，网页构建仍保留 Phaser 包体偏大的已知警告。"
       }
     },
     {
@@ -343,7 +343,7 @@ export const grasslandCase: CaseRecord = {
       },
       "humanTension": {
         "en": "Desktop web RTS players abandon a game if the first loading bar freezes for five chapters of spritesheets, yet late-game missions still need instant retry loops without re-fetching assets.",
-        "zh": "桌面网页即时战略游戏最忌首屏加载卡死五关所有高分图集；但一旦进到长线关卡如第四、五关，战败后重开检查点又必须秒回战场。"
+        "zh": "桌面网页即时战略游戏最忌首屏加载卡死在五关全部高分图集上。但一旦进到第四、五关这类长线关卡，战败后重开检查点又必须秒回战场。"
       },
       "rejectedAlternatives": [
         {
@@ -369,11 +369,11 @@ export const grasslandCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "Express missions 1–5 as typed manifest definitions consumed by a shared runtime scene loader: only the active mission's assets mount into memory while retries reset state purely via in-memory checkpoints.",
-        "zh": "将第 1–5 关抽离为统一 Manifest 配置表，由单一运行时场景加载器按当前关卡懒加载地图与图集，战败读档直接在同关内存态瞬时复原。"
+        "zh": "将第 1–5 关抽离为统一 Manifest 配置表，由单一运行时场景加载器按当前关卡懒加载地图与图集。战败读档时，直接在同关内存态瞬时复原。"
       },
       "residualCostOrRisk": {
         "en": "First-time chapter transitions still show a brief between-mission asset fetch, and the Phaser 4 runtime chunk itself continues to trigger standard Vite bundle-size warnings.",
-        "zh": "切入下一新关卡时仍会有短促的资源切换缓冲，且 Phaser 4 运行时本体仍然会触及构建产物体积提示阈值。"
+        "zh": "切入下一新关卡时仍有短暂的资源加载缓冲，且 Phaser 4 运行时本体仍会触发构建体积警告。"
       }
     }
   ],
@@ -391,7 +391,7 @@ export const grasslandCase: CaseRecord = {
     "zh": {
       "kicker": "复杂系统 · 即时战略交互",
       "title": "草原铁潮",
-      "sub": "五关连玩的桌面浏览器即时战略章节：严守跨关不漂移的控制语法与单一检查点恢复链，让高节奏战局始终可控。",
+      "sub": "五关连玩的桌面浏览器即时战略章节。严守跨关不漂移的控制语法与单一检查点恢复链，让高节奏战局始终可控。",
       "role": "独立产品策划、规则架构与全流程验收",
       "date": "2026 · 第一章可连续通关",
       "m1": "跨五关统一框选与指令手感",
@@ -495,7 +495,7 @@ export const grasslandCase: CaseRecord = {
         },
         "m3": {
           "t": "一条存档链",
-          "b": "暂停、失败原因、检查点与恢复后的单位共享同一条存档链，屏幕显示的和任务记得的不会各走各的。"
+          "b": "暂停、失败原因、检查点与恢复后的单位共享同一条存档链。屏幕显示的和任务记得的不会各走各的。"
         }
       },
       "sy": {
@@ -513,7 +513,7 @@ export const grasslandCase: CaseRecord = {
       },
       "te": {
         "label": "测试与迭代",
-        "p": "发布候选版的审计把四项检查放在一起。430 / 430 个自动化测试通过，覆盖任务逻辑、命令、移动、视野、检查点和运行时资源契约。资产闸门通过。网页构建通过，保留 Phaser 主包偏大的已知警告。在真实浏览器里，以 1280×720 和 1920×1080 两种分辨率从主菜单连续打完五关，复验选择、编队、命令、暂停、迷你地图与失败恢复，并逐屏检查页面滚动、内容裁切和按钮遮挡。"
+        "p": "发布候选版的审计把四项检查放在一起。430 / 430 个自动化测试通过，覆盖任务逻辑、命令、移动、视野、检查点和运行时资源契约。资产闸门通过。网页构建通过，保留 Phaser 主包偏大的已知警告。在真实浏览器里，以 1280×720 和 1920×1080 两种分辨率从主菜单连续打完五关，复验选择、编队、命令、暂停、迷你地图与失败恢复。同时逐屏检查页面滚动、内容裁切和按钮遮挡。"
       },
       "ou": {
         "label": "产出与边界",

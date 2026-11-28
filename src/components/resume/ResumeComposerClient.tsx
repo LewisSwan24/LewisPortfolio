@@ -67,7 +67,7 @@ export function ResumeComposerClient({
     setSelectedSlugs([...preset.defaultCaseSlugs]);
     setStatusMessage(
       isUiZh
-        ? `已套用「${preset.label.zh}」模板（勾选 ${preset.defaultCaseSlugs.length} 项代表作）`
+        ? `已应用「${preset.label.zh}」模板（勾选 ${preset.defaultCaseSlugs.length} 项代表作）`
         : `Applied ${preset.label.en} preset (${preset.defaultCaseSlugs.length} selected works)`
     );
   };
@@ -105,10 +105,10 @@ export function ResumeComposerClient({
       "",
       `## ${isDocZh ? "教育背景" : "Education"}`,
       isDocZh
-        ? "- **昆士兰大学（布里斯班）** — 交互设计硕士 · 2025.02 – 2026.11"
+        ? "- **昆士兰大学（布里斯班）**：交互设计硕士 · 2025.02 – 2026.11"
         : "- **The University of Queensland, Brisbane** — Master of Interaction Design · 2025.02 – 2026.11",
       isDocZh
-        ? "- **斯旺西大学（英国威尔士）** — 计算机科学（荣誉）理学士，二等一级学位（2:1）· 2020.09 – 2024.07"
+        ? "- **斯旺西大学（英国威尔士）**：计算机科学（荣誉）理学士，二等一级学位（2:1）· 2020.09 – 2024.07"
         : "- **Swansea University, Wales, UK** — BSc (Hons) Computer Science, Upper Second-Class (2:1) · 2020.09 – 2024.07",
     ];
     return lines.join("\n");
@@ -231,7 +231,7 @@ export function ResumeComposerClient({
                 checked={includeTradeoffs}
                 onChange={(e) => setIncludeTradeoffs(e.target.checked)}
               />
-              <span>{isUiZh ? "展示设计权衡与拒绝方案" : "Show structured design tradeoffs"}</span>
+              <span>{isUiZh ? "展示设计取舍与否决方案" : "Show structured design tradeoffs"}</span>
             </label>
             <label className={styles.checkLabel}>
               <input
@@ -303,7 +303,7 @@ export function ResumeComposerClient({
 
         <section className={styles.a4Section}>
           <h3 className={styles.a4SectionTitle}>
-            {isDocZh ? `核心聚焦 · ${activeMarketSpec.shortLabel[previewLocale]}` : `Profile Summary · ${activeMarketSpec.shortLabel[previewLocale]}`}
+            {isDocZh ? `核心摘要 · ${activeMarketSpec.shortLabel[previewLocale]}` : `Profile Summary · ${activeMarketSpec.shortLabel[previewLocale]}`}
           </h3>
           <p className={styles.a4CaseText} data-testid="composer-doc-market-headline" style={{ fontWeight: 600 }}>
             {activeMarketEmphasis.headline[previewLocale]}
@@ -394,7 +394,7 @@ export function ResumeComposerClient({
         {includeLabLinks && (
           <section className={styles.a4Section}>
             <h3 className={styles.a4SectionTitle}>
-              {isDocZh ? "可核验交互原语与实证表面" : "Live Verifiable Proof Surfaces"}
+              {isDocZh ? "可核验交互原语与实证入口" : "Live Verifiable Proof Surfaces"}
             </h3>
             <div className={styles.a4ProofRow}>
               <span>Pattern Atlas: /patterns</span>

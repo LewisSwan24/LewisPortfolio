@@ -84,15 +84,15 @@ export const autofillModules: CaseModulesRecord = {
       },
       trigger: {
         en: "Matching engine scores schema certainty per detected field",
-        zh: "匹配引擎对扫描到的每个表单栏位计算确定性分档",
+        zh: "匹配引擎对扫描到的每个表单字段计算确定性分档",
       },
       userMentalModel: {
         en: "If my resume does not settle a field such as visa status or expected salary, leave it blank and point it out rather than guess.",
-        zh: "签证身份、期望薪资这类栏位，简历里定不下来就留空标给我，别替我猜。",
+        zh: "签证身份、期望薪资这类字段，简历里定不下来就留空标给我，别替我猜。",
       },
       systemAction: {
         en: "1:1 exact matches fill with solid border; ambiguous dropdowns pause with dashed outline; unrecognised or failed fields get a 3px solid outline; a summary card counts each group.",
-        zh: "确定 1:1 栏位直填（实线）；歧义下拉暂停标虚线待核；认不出或填失败的栏位标 3px 实线；摘要卡统计各类数量。",
+        zh: "确定 1:1 字段直填（实线）；歧义下拉暂停标虚线待核；认不出或填失败的字段标 3px 实线；摘要卡统计各类数量。",
       },
       cognitiveFriction: {
         en: "Color-only field outlines fail color-vision deficiency and hide whether a field was intentionally skipped or silently crashed.",
@@ -126,7 +126,7 @@ export const autofillModules: CaseModulesRecord = {
       },
       systemAction: {
         en: "Wizard advances validated 'Next' buttons to fill subsequent steps and stops dead before any Submit selector, displaying 'Final submit stays with you'.",
-        zh: "多步引擎仅协助推进「下一步」以填充后续页面，一旦检测到提交语义按钮立刻停手并在侧栏明示「最终提交留给你」。",
+        zh: "多步引擎仅协助推进「下一步」以填充后续页面。一旦检测到提交语义按钮，立刻停手并在侧栏明示「最终提交留给你」。",
       },
       cognitiveFriction: {
         en: "Real-world fill accuracy outside synthetic test forms and whether external users trust review outlines enough to inspect them remain unmeasured.",
@@ -250,7 +250,7 @@ export const autofillModules: CaseModulesRecord = {
       },
       uiFeedback: {
         en: "Marks unmapped inputs explicitly in the 'Not filled' bucket with reason text and points Android users to the Resume Keyboard.",
-        zh: "将无法安全注入的栏位归入「未填」并给出明确原因，移动端同步提示可用简历键盘点选输入。",
+        zh: "将无法安全注入的字段归入「未填」并给出明确原因，移动端同步提示可用简历键盘点选输入。",
       },
       keyboardFocus: {
         en: "Never leaves half-corrupted synthetic DOM values or traps page focus inside failed dropdown popups.",

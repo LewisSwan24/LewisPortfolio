@@ -40,7 +40,7 @@ export function LabTelemetryPanel({ locale }: { locale: "en" | "zh" }) {
   }, []);
 
   const fmtMs = (v: number | null | undefined, unit = "ms") =>
-    v === null || v === undefined ? (isZh ? "采集待命" : "Awaiting") : `${v}${unit}`;
+    v === null || v === undefined ? (isZh ? "等待采集" : "Awaiting") : `${v}${unit}`;
 
   if (!summary || !hasTelemetrySamples(summary)) return null;
 
@@ -51,7 +51,7 @@ export function LabTelemetryPanel({ locale }: { locale: "en" | "zh" }) {
     >
       <div className="v4-studio-plate" style={{ display: "grid", gap: "var(--s-4)" }}>
         <div>
-          <div className="label">05 · {isZh ? "零个人隐私实测遥测 (RUM)" : "Zero-PII Live Telemetry (RUM)"}</div>
+          <div className="label">05 · {isZh ? "无个人信息实时遥测 (RUM)" : "Zero-PII Live Telemetry (RUM)"}</div>
           <h2 id="lab-rum-heading" className="h-display" style={{ fontSize: "clamp(20px, 2.2vw, 26px)", marginTop: 8 }}>
             {isZh
               ? "只收枚举型核心体验指标，不存 Cookie 与访客身份"

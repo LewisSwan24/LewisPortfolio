@@ -73,12 +73,12 @@ const TABS: ReadonlyArray<{
     id: "drag",
     num: "05",
     label: { en: "Tactile Drag & Snap", zh: "手势阻尼与吸附" },
-    caseRef: { en: "Portfolio Home", zh: "Portfolio 首页" },
+    caseRef: { en: "Portfolio Home", zh: "作品集首页" },
   },
   {
     id: "popover",
     num: "06",
-    label: { en: "Focus & Anchor Popover", zh: "焦点路由与视口避让" },
+    label: { en: "Focus & Anchor Popover", zh: "焦点归位与视口避让" },
     caseRef: { en: "Site Design System", zh: "全站设计系统" },
   },
 ];
@@ -111,11 +111,11 @@ export function LabPrimitivesGallery({ locale }: { locale: Locale }) {
         <div>
           <div className="label">03 · {isZh ? "六大交互原语展厅" : "Interaction Primitives Gallery"}</div>
           <h2 id="lab-sm-title">
-            {isZh ? "面向真实产品的六组核心交互原语" : "Six Core Interaction Primitives from Real Builds"}
+            {isZh ? "来自真实项目的六组核心交互原语" : "Six Core Interaction Primitives from Real Builds"}
           </h2>
           <p>
             {isZh
-              ? "按标签按需加载不同交互原语工作台，涵盖匿名挥手、置信度门控、实体审批、默认安全卡、GSAP 拖拽阻尼与原生锚点浮层。"
+              ? "切换标签可按需加载对应的交互原语工作台。内容涵盖匿名挥手、置信度门控、实体审批、默认安全卡、GSAP 拖拽阻尼与原生锚点浮层。"
               : "Switch tabs to lazy-load each primitive workbench: zero-identity pairing, confidence gating, wrist approvals, default-safe risk cards, GSAP drag physics, and anchored popovers."}
           </p>
         </div>
@@ -148,7 +148,7 @@ export function LabPrimitivesGallery({ locale }: { locale: Locale }) {
       <p className="prose" style={{ marginTop: 14, fontSize: 13.5, color: "var(--text-2)" }}>
         {isZh ? (
           <>
-            其余两套多通道实机交互系统请前往案例页亲自操作：{" "}
+            其余两套多通道实机交互系统，可在对应案例页直接操作：{" "}
             <Link href={localizeInternalHref("/projects/maze#interactive-demo", locale)} className="u-underline">
               MazeRunners 触控迷宫
             </Link>{" "}

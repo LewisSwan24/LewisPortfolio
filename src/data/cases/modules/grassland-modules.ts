@@ -8,7 +8,7 @@ export const grasslandModules: CaseModulesRecord = {
       step: 1,
       title: {
         en: "Clean chapter manifest menu & five-mission strategic map",
-        zh: "零开发杂讯主菜单与五关战略地图入口",
+        zh: "零开发残留主菜单与五关战略地图入口",
       },
       shortTitle: {
         en: "Mission map",
@@ -62,7 +62,7 @@ export const grasslandModules: CaseModulesRecord = {
       },
       cognitiveFriction: {
         en: "Whether brand-new outside RTS players learn this pared-back grammar smoothly remains untested without structured player sessions.",
-        zh: "这套精简 RTS 语法对外部零基础新玩家是否真的容易上手，因尚无结构化试玩测试，诚实保持未定论。",
+        zh: "这套精简 RTS 语法对外部零基础新玩家是否容易上手，因尚无结构化试玩测试，目前仍无定论。",
       },
       edgeRecovery: {
         en: "Automated tests lock Mission 1 through Mission 5 against the identical command contract on every build.",
@@ -130,11 +130,11 @@ export const grasslandModules: CaseModulesRecord = {
       },
       cognitiveFriction: {
         en: "Decoupled UI objectives and entity arrays easily desync on retry, making restored troops stand in obsolete objective states.",
-        zh: "若UI目标计数与战场单位各自存档，读档后常出现「兵回来了但任务判定还停在战败前」的错乱。",
+        zh: "若 UI 目标计数与战场单位各自存档，读档后常出现「兵回来了但任务判定还停在战败前」的错乱。",
       },
       edgeRecovery: {
         en: "Mission 4 checkpoint restore and Mission 5 multi-stage chain (stealth -> camp search -> packs -> way home) are verified end-to-end.",
-        zh: "第四关检查点恢复与第五关多段任务状态链（隐蔽→搜营→行囊→返家）均在 RC 构建连续打通。",
+        zh: "第四关检查点恢复与第五关多段任务状态链（隐蔽→搜营→行囊→返家）均在 RC 构建中连贯跑通。",
       },
       focusTags: ["systems-hardware", "ai-trust"],
       verifiedStatus: "bench-tested",
@@ -236,7 +236,7 @@ export const grasslandModules: CaseModulesRecord = {
       },
       fallbackGuarantee: {
         en: "Between-mission lazy fetch gracefully prompts retry if next-chapter assets cannot load offline.",
-        zh: "仅当跨关切换需要拉取新图集却处于断网时，显式提示重试而非静默卡死黑屏。",
+        zh: "仅当跨关切换需要拉取新图集却处于断网时，明确提示重试，不会静默卡死黑屏。",
       },
       focusTags: ["systems-hardware", "ux-research"],
       verifiedStatus: "observed",
@@ -272,7 +272,7 @@ export const grasslandModules: CaseModulesRecord = {
       },
       uiFeedback: {
         en: "Unavailable verbs stay visibly disabled without mutating other keys; defeat modal explains exact cause + checkpoint restore.",
-        zh: "禁用命令明确置灰而不窜改既有键位语义；战败界面明示原因并提供检查点恢复入口。",
+        zh: "禁用命令明确置灰而不篡改既有键位语义；战败界面明示原因并提供检查点恢复入口。",
       },
       keyboardFocus: {
         en: "Defeat card puts clear focus on 'Restore checkpoint' vs 'Return to strategic map'.",
@@ -297,11 +297,11 @@ export const grasslandModules: CaseModulesRecord = {
       },
       failureExposed: {
         en: "Players had to unlearn selection and command expectations mid-chapter; bugfixes in box-select or checkpoints drifted across five copied scenes.",
-        zh: "玩家打到后几关完全猜不准点击会发生什么，且任何框选或存档修复都要在五个场景间重复同步而产生漏洞。",
+        zh: "玩家打到后几关完全猜不准点击会发生什么。此外，任何框选或存档修复都要在五个场景间重复同步，容易产生漏洞。",
       },
       fixApplied: {
         en: "Consolidated all five missions into typed manifests consumed by one runtime loader and locked one immutable command grammar tested by 430/430 assertions.",
-        zh: "将五关抽离为统一 Manifest 配置表由单一场景加载器消费，锁死跨关不可变命令语法并由 430/430 测试守卫。",
+        zh: "将五关抽离为统一 Manifest 配置表，由单一场景加载器读取。同时锁死跨关不可变命令语法，并由 430/430 测试守住。",
       },
       sourceReceipt: {
         en: "430/430 automated RC test baseline + 04-mission-03.jpg unified HUD layout",
@@ -316,7 +316,7 @@ export const grasslandModules: CaseModulesRecord = {
       date: "2026-07",
       artifactBefore: {
         en: "Separate UI objective tracking vs troop reset on failure, plus upfront preloading of all 5 chapters' heavy atlases",
-        zh: "战败重开时UI任务状态与单位数组分离存储，且启动首屏一次性预加载五关全部图集",
+        zh: "战败重开时 UI 任务状态与单位数组分离存储，且启动首屏一次性预加载五关全部图集",
       },
       failureExposed: {
         en: "Resets risked leaving troops respawned inside stale mission flags while heavy upfront loading delayed Mission 1 entry.",

@@ -13,7 +13,7 @@ type EaseId = "power2.out" | "power3.out" | "back.out(1.2)";
 const SWATCHES = [
   { token: "--bg", hexLight: "#F6F4EF", hexDark: "#111110", ratio: "Warm Bone / Deep Studio", ratioZh: "暖骨白 / 深炭工作室" },
   { token: "--surface", hexLight: "#FCFBF8", hexDark: "#181816", ratio: "Primary Card Layer", ratioZh: "主卡片层" },
-  { token: "--surface-2", hexLight: "#ECE8DF", hexDark: "#222220", ratio: "Elevated Workbench", ratioZh: "抬升的工作台层" },
+  { token: "--surface-2", hexLight: "#ECE8DF", hexDark: "#222220", ratio: "Elevated Workbench", ratioZh: "抬升工作台层" },
   { token: "--text", hexLight: "#151412", hexDark: "#F4F2ED", ratio: "16.4:1 / 16.9:1" },
   { token: "--text-2", hexLight: "#3E3A33", hexDark: "#D6D3CB", ratio: "10.3:1 / 12.6:1 (AAA)" },
   { token: "--text-3", hexLight: "#4E4940", hexDark: "#B8B5AD", ratio: "8.1:1 / 9.2:1 (AAA)" },
@@ -24,28 +24,28 @@ const SWATCHES = [
 const CASE_MOOD_SWATCHES = [
   {
     labelEn: "Signal Vermilion · Physical Control",
-    labelZh: "信号朱砂 · 实体控制回路",
+    labelZh: "信号朱砂 · 实体控制",
     token: "#A63F2A",
     darkHex: "#E69682",
     cases: "walkie",
   },
   {
     labelEn: "Steel Blue · Hardware & Signal",
-    labelZh: "冷钢蓝 · 硬件物理通道",
+    labelZh: "冷钢蓝 · 硬件与信号",
     token: "#2B4D6F",
     darkHex: "#92BAE0",
     cases: "maze / onthebeat",
   },
   {
     labelEn: "Slate Indigo · Precision Gate",
-    labelZh: "岩板靛 · 精确校验门控",
+    labelZh: "岩板靛 · 精确校验把关",
     token: "#3B4D70",
     darkHex: "#A3B6E0",
     cases: "autofill",
   },
   {
     labelEn: "Warm Umber · Play & Narrative",
-    labelZh: "琥珀棕 · 叙事与游戏系统",
+    labelZh: "琥珀棕 · 叙事与游戏",
     token: "#6E451F",
     darkHex: "#DAB082",
     cases: "lamplight / grassland",
@@ -112,7 +112,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
             </h2>
             <p>
               {isZh
-                ? "1px 建筑级分隔线与 12 列不对称编辑网格。旗舰案例在顶栏与交互焦点注册专属 --case-mood 低饱和氛围色带。"
+                ? "1px 建筑级分隔线与 12 列不对称编辑网格。旗舰案例在顶栏与交互焦点配有专属 --case-mood 低饱和氛围色带。"
                 : "1px architectural hairlines on a 12-column asymmetric editorial grid. Flagship cases add a restrained AA-verified --case-mood ribbon."}
             </p>
           </div>
@@ -173,7 +173,7 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           <div className="lab-type-card">
             <div className="eyebrow">03 · {isZh ? "技术索引" : "Technical Index"} (400)</div>
             <div className="lab-type-sample-mono">2026-11-22 · AAA · #151412 / #F6F4EF</div>
-            <span className="eyebrow">Geist Mono · {isZh ? "令牌、规格、遥测" : "tokens, specs, telemetry"}</span>
+            <span className="eyebrow">Geist Mono · {isZh ? "变量、规格、遥测" : "tokens, specs, telemetry"}</span>
           </div>
         </div>
 
@@ -205,11 +205,11 @@ export function LabWorkbench({ locale }: { locale: Locale }) {
           <div>
             <div className="label">02 · {isZh ? "GSAP 纸面动效实验台" : "GSAP Paper Motion Sandbox"}</div>
             <h2 id="lab-motion-title">
-              {isZh ? "克制、仅合成属性的交互曲线" : "Restrained, Transform-Only Motion Curves"}
+              {isZh ? "克制、仅用合成属性的交互曲线" : "Restrained, Transform-Only Motion Curves"}
             </h2>
             <p>
               {isZh
-                ? "全站统一采用轻量化 GSAP 曲线层，仅驱动 x / rotation / opacity 合成属性，并在 reduced-motion 下自动退化为 0ms 瞬时切换。"
+                ? "全站统一采用轻量 GSAP 曲线层，仅驱动 x / rotation / opacity 合成属性，在 reduced-motion 下自动降级为 0ms 瞬时切换。"
                 : "Powered by a single calibrated GSAP layer animating transform and opacity properties only, snapping instantly to settled states under reduced motion."}
             </p>
           </div>

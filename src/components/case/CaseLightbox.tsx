@@ -133,7 +133,7 @@ export function CaseLightbox({
     <dialog
       ref={dialogRef}
       className="case-lightbox"
-      aria-label={isZh ? "放大检验图片" : "Inspect evidence image"}
+      aria-label={isZh ? "放大查看图片" : "Inspect evidence image"}
       {...({ closedby: "any" } as Record<string, string>)}
       onClick={(event) => {
         if (event.target === dialogRef.current) {

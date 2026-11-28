@@ -62,7 +62,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     },
     autopsyReason: {
       en: "Curated out of the 6 public flagships so the portfolio stays tightly focused on physical-digital, calm agency, and systems-craft builds—while keeping open coursework signup clearly isolated from production claims.",
-      zh: "为让 6 大公开旗舰聚焦软硬件协同与设计工程主线，而将这件课程全栈项目退入档案馆；同时把课程开放注册边界与真实生产安全严格区隔。",
+      zh: "为了让 6 大公开旗舰聚焦软硬件协同与设计工程主线，这件课程全栈项目退入档案馆。同时也把课程开放注册边界与真实生产安全严格区隔开。",
     },
     structuralFlawExposed: {
       en: "Prompt-level privacy rules fail silently under edits or stale share links unless visibility isolation lives inside the database query layer itself.",
@@ -70,7 +70,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     },
     lineageLesson: {
       en: "Enforce AI trust boundaries in data queries and cryptographic state rather than polite prompt instructions, and verify live routes after deploy.",
-      zh: "AI 的隐私与权限承诺必须钉死在数据查询隔离与密钥层，而非靠口头提示词赌运气。",
+      zh: "AI 的隐私与权限承诺必须钉死在数据查询隔离与密钥层，不能靠口头提示词赌运气。",
     },
     lineageSuccessors: [
       {
@@ -86,7 +86,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
         title: { en: "Resume Autofill", zh: "Resume Autofill" },
         transferMechanism: {
           en: "Related: another build that handles personal data. Autofill keeps the resume on the device.",
-          zh: "相关：同样处理个人资料。Autofill 的履历只留在本机。",
+          zh: "相关：同样处理个人资料。Autofill 的简历只留在本机。",
         },
       },
     ],
@@ -102,15 +102,15 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     statusLabel: { en: "Coursework Archive (DECO7380)", zh: "课程研究归档（DECO7380）" },
     whatItBuilt: {
       en: "Reframed a 6-person UQ studio project from a predictive 'safe route recommender' into a slow planning tool surfacing gaps between lighting data and pedestrian perception.",
-      zh: "把 6 人团队的「夜路安全路线推荐器」扭转为面向市政规划者的慢界面工具，专门对照客观照明数据与行人主观不安感之间的落差。",
+      zh: "把 6 人团队的「夜路安全路线推荐器」扭转为面向市政规划者的慢界面工具。专门用来对照客观照明数据与行人主观不安感之间的落差。",
     },
     autopsyReason: {
       en: "Retired from featured work on 20 Nov 2026 because it remained a Figma/studio deliverable without real council planner trials or live urban sensor feeds.",
-      zh: "2026 年 11 月 20 日调离首页精选：它是纯课程研究与 Figma 原型交付，未接入真实市政规划人员试测与实时道路传感器，让位于工程实证更完整的主案。",
+      zh: "2026 年 11 月 20 日调离首页精选，让位于工程实证更完整的主案。作品属纯课程研究与 Figma 原型交付，未接入真实市政规划人员试测与实时道路传感器。",
     },
     structuralFlawExposed: {
       en: "A polished route-ranking prototype creates unearned predictive authority—making an unmeasured safety problem look solved just because the UI renders crisp red/green lines.",
-      zh: "做得越顺滑的安全路线打分界面越危险：只要屏幕给出红绿推荐线，用户就会误以为系统真能担保人身安全，其实底层数据根本撑不住这种权威。",
+      zh: "安全路线打分界面做得越顺滑越危险。只要屏幕给出红绿推荐线，用户就会误以为系统真能担保人身安全。其实底层数据根本撑不住这种权威。",
     },
     lineageLesson: {
       en: "Never fabricate an authoritative verdict when underlying data is incomplete; expose evidence limits and contradiction explicitly in the UI.",
@@ -122,7 +122,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
         title: { en: "Resume Autofill", zh: "Resume Autofill" },
         transferMechanism: {
           en: "Related: both decline to show an answer the data cannot support. Autofill leaves an uncertain field blank or marks it for review.",
-          zh: "相关：两者都不给数据撑不住的答案。Autofill 拿不准的栏位就留空，或标出来等人核对。",
+          zh: "相关：两者都不给数据撑不住的答案。Autofill 拿不准的字段就留空，或标出来等人核对。",
         },
       },
       {
@@ -145,7 +145,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     statusLabel: { en: "Superseded (Demo Data Only)", zh: "已退役（仅含演示数据）" },
     whatItBuilt: {
       en: "Australian grocery comparison web prototype (65 demo products across Coles, Woolworths, Aldi) dissecting four silent runtime failures hidden behind green builds.",
-      zh: "覆盖澳洲三大超市 65 件演示商品的比价原型，重点解剖「构建与测试全绿却在真实体验中静默失灵」的四类典型故障。",
+      zh: "覆盖澳洲三大超市 65 件演示商品的比价原型。重点解剖「构建与测试全绿却在真实体验中静默失灵」的四类典型故障。",
     },
     autopsyReason: {
       en: "Moved to archive because it ran strictly on 65 simulated products with zero registered users—its core value was diagnostic methodology rather than a live consumer product.",
@@ -153,7 +153,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     },
     structuralFlawExposed: {
       en: "Semantic search silently fell back to keyword matching on every query, while receipt abbreviations ('MLK FC 2L') looked matched on screen even when the link was dubious.",
-      zh: "语意搜索悄悄退回关键词匹配却毫无提示，小票缩写（如 MLK FC 2L）哪怕置信度极低也照样高亮「最便宜」。",
+      zh: "语义搜索悄悄退回关键词匹配却毫无提示，小票缩写（如 MLK FC 2L）哪怕置信度极低也照样高亮「最便宜」。",
     },
     lineageLesson: {
       en: "Green unit builds prove nothing about silent degradation; every fallback and uncertain match requires a first-class UI state and end-to-end verification.",
@@ -165,7 +165,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
         title: { en: "Resume Autofill", zh: "Resume Autofill" },
         transferMechanism: {
           en: "Related: both deal with uncertain matches. Autofill leaves a field it cannot match blank instead of guessing.",
-          zh: "相关：两者都要处理拿不准的匹配。Autofill 对不上的栏位就留空，不去猜。",
+          zh: "相关：两者都要处理拿不准的匹配。Autofill 对不上的字段就留空，不去猜。",
         },
       },
     ],
@@ -185,7 +185,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     },
     autopsyReason: {
       en: "Archived from top 6 because backend APIs remained unwired and earlier cohort work lacked the hardware/AI systems depth of later 2026 builds.",
-      zh: "因后端接口未真联调且属于早期课程阶段作品，从 6 大旗舰中退场归档，把展位让给深度更高的软硬件与 AI 工程主案。",
+      zh: "因后端接口未真正联调，且属于早期课程阶段作品，项目从 6 大旗舰中退场归档。展位让给深度更高的软硬件与 AI 工程主案。",
     },
     structuralFlawExposed: {
       en: "Think-aloud tests on the clickable prototype found navigation and state problems, such as screens with no clear way back.",
@@ -224,11 +224,11 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     },
     structuralFlawExposed: {
       en: "AI-generated design guidelines sound polished yet flatten contradictory edge cases and smuggle unsourced numbers unless audited line by line.",
-      zh: "大模型写出的设计规范看似头头是道，实则常抹平边缘矛盾并夹带无出处的伪精确数字，必须逐条核源打回。",
+      zh: "大模型写出的设计规范看似头头是道。实际上常抹平边缘矛盾，并夹带无出处的伪精确数字，必须逐条核源打回。",
     },
     lineageLesson: {
       en: "Every soft UX goal ('safe', 'timely', 'accessible') must compile down to falsifiable numeric thresholds, cooldowns, and copy templates before engineering starts.",
-      zh: "一切柔和的体验目标都必须在施工前压实成毫秒、像素、米数与触发冷却窗口，否则工程师无从落地也无法校验。",
+      zh: "一切柔和的体验目标都必须在施工前压实成毫秒、像素、米数与触发冷却窗口。否则工程师无从落地，也无法校验。",
     },
     lineageSuccessors: [
       {
@@ -260,11 +260,11 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     statusLabel: { en: "Superseded Prototype", zh: "早期演示原型（已退出展位）" },
     whatItBuilt: {
       en: "Bilingual Chrome accessibility extension with one global settings store: a dyslexia mode (locally bundled OpenDyslexic, fixed line height and letter spacing), colour filters, a focus ruler and font scaling, with no CDN requests.",
-      zh: "中英双语浏览器无障碍扩展，设置全局保存：阅读障碍模式（本地打包 OpenDyslexic，行高与字距固定）、色觉滤镜、聚焦尺和字号缩放，不向 CDN 发请求。",
+      zh: "中英双语浏览器无障碍扩展，设置全局保存，不向 CDN 发请求。提供阅读障碍模式（本地打包 OpenDyslexic，行高与字距固定）、色觉滤镜、聚焦尺和字号缩放。",
     },
     autopsyReason: {
       en: "Retired on 20 Nov 2026: stayed at utility-tested DEMO fidelity with zero dyslexic or low-vision participant sessions, superseded by deeper accessibility engineering across the portfolio.",
-      zh: "2026 年 11 月 20 日下线主展：长期停留在工具函数单测阶段而未组织阅读障碍受试实验，其离线样式注入经验已融入后续浏览器扩展工程。",
+      zh: "2026 年 11 月 20 日下线主展，长期停留在工具函数单测阶段，未组织阅读障碍受试实验。离线样式注入经验已融入后续浏览器扩展工程。",
     },
     structuralFlawExposed: {
       en: "Host pages fight back with high CSS specificity and inline styles; injecting unguarded overrides easily breaks navigation bars and rigid grids.",
@@ -272,7 +272,7 @@ export const VAULT_AUTOPSIES: readonly VaultAutopsyRecord[] = [
     },
     lineageLesson: {
       en: "When acting as a guest inside third-party DOMs, bundle assets offline for privacy and scope overrides under one class on the page root.",
-      zh: "作为「第三方网页里的访客」，用本地打包的资源守住阅读隐私，注入的样式统一挂在页面根节点的类名下。",
+      zh: "作为「第三方网页里的访客」，用本地打包资源守住阅读隐私，注入样式统一挂在页面根节点的类名下。",
     },
     lineageSuccessors: [
       {

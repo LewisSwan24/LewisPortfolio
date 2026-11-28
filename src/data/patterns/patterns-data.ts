@@ -14,7 +14,7 @@ export const INTERACTION_PATTERNS: readonly InteractionPattern[] = [
     },
     tagline: {
       en: "Decouple low-friction voice capture from irreversible approvals by binding execution strictly to deliberate physical hardware presses.",
-      zh: "把低摩擦语音采集与不可逆权限审批解耦：语音只负责传达意图，高危放行必须等待拇指按下实体物理按键。",
+      zh: "把低摩擦语音采集与不可逆权限审批解耦。语音只负责传达意图，高危放行必须等拇指按下物理按键。",
     },
     humanTension: {
       en: "Approving shell or write calls purely by spoken 'yes' fails as soon as background conversation or media audio triggers a false match.",
@@ -26,12 +26,12 @@ export const INTERACTION_PATTERNS: readonly InteractionPattern[] = [
     },
     chosenRule: {
       en: "Asymmetric dual-button grammar on M5StickS3: hold Front Key for 16 kHz press-to-talk, press Front Key to approve queued tools, press Side Key to deny (+ optional spoken reason), and require a 30-second physical Front Key confirmation before writing pair.key.",
-      zh: "在 M5StickS3 建立非对称物理按键语法：按住前键录音、前键放行队列权限、侧键驳回（可选紧接语音补充原因），且新电脑配对必须在 30 秒内物理按下前键方落盘 pair.key。",
+      zh: "在 M5StickS3 建立非对称物理按键语法。按住前键录音，按前键放行队列权限，按侧键驳回（可紧接语音补充原因）。新电脑配对必须在 30 秒内物理按下前键，才会写入 pair.key。",
     },
     a11yGuarantees: [
       {
         en: "Tactile differentiation between approve (Front) and deny (Side) prevents spatial confusion without staring at the 1.14-inch screen.",
-        zh: "前键批准与侧键拒绝在实体位置上物理隔离，不盯 1.14 寸小屏也能靠本体感觉盲操防误触。",
+        zh: "前键批准与侧键拒绝在实体位置上物理隔离，不盯 1.14 寸小屏也能靠手感盲操防误触。",
       },
       {
         en: "Web simulator exposes equivalent keyboard bindings (Enter to approve, Backspace to deny) with visible focus rings and status output.",
@@ -86,15 +86,15 @@ export function reduceApprovalGate(
     },
     humanTension: {
       en: "Typing one resume across dozens of ATS portals is exhausting, yet AI autofillers that guess visa status, salary, or essays to boast '100% completion' push catastrophic rejection risk onto the applicant.",
-      zh: "重复填写几十份网申极其耗时，但自动填表工具若为炫技强行猜测签证类别、薪资或开放问答，填错的致命淘汰后果却全由求职者本人承担。",
+      zh: "重复填写几十份网申极其耗时。但若自动填表工具为炫技强行猜测签证类别、薪资或开放问答，填错的致命淘汰后果全由求职者承担。",
     },
     commonAntiPattern: {
       en: "Calling a cloud LLM to hallucinate values for every empty input and auto-advancing straight through the final Submit button.",
-      zh: "用云端大模型硬填所有空白栏位，并在多页流程末页顺手代点不可撤回的最终提交。",
+      zh: "用云端大模型硬填所有空白字段，并在多页流程末页顺手代点不可撤回的最终提交。",
     },
     chosenRule: {
       en: "Fill deterministic 1:1 profile matches immediately (solid border), pause ambiguous selects for review (dashed), keep open prompts empty by rule (3px solid), tally counts with per-field reasons in the side panel, and stop dead before Submit.",
-      zh: "仅确定 1:1 栏位直填（实线），歧义下拉暂停标虚线待核，开放题一律粗实线刻意留空；侧栏逐栏写明填写依据，且绝不触发任何 Submit 选择器。",
+      zh: "仅确定的 1:1 字段直接填入（实线），歧义下拉框暂停并标虚线待核，开放题一律用粗实线刻意留空。侧栏逐项写明填写依据，且绝不触发任何 Submit 选择器。",
     },
     a11yGuarantees: [
       {
@@ -103,7 +103,7 @@ export function reduceApprovalGate(
       },
       {
         en: "Side-panel field reasons remain keyboard-navigable to jump focus directly to flagged DOM controls.",
-        zh: "侧栏逐栏原因列表支持键盘直接跳转聚焦到对应待确认表单控件。",
+        zh: "侧栏逐项原因列表支持键盘直接跳转，聚焦到对应待确认表单控件。",
       },
     ],
     metricsCeiling: {
@@ -153,7 +153,7 @@ export function classifyField(
     },
     tagline: {
       en: "Defeat habitual Enter-key fatigue in agent supervision by placing initial keyboard focus and visual weight on 'Not now' while isolating edits to copies.",
-      zh: "在长任务监控中把高风险确认卡的初始键盘焦点与主按钮重心锁死在「先不要」，并强制任务仅操作文件副本。",
+      zh: "在长任务监控中，把高风险确认卡的初始键盘焦点与主按钮重心锁死在「先不要」。同时强制任务只操作文件副本。",
     },
     humanTension: {
       en: "During multi-minute background agent runs, users develop muscle-memory 'Enter-key fatigue'—reflexively dismissing dialogs and authorizing destructive file overwrites.",
@@ -165,12 +165,12 @@ export function classifyField(
     },
     chosenRule: {
       en: "Risky step cards lock initial focus and primary contrast onto 'Not now', treating dismissal or Esc as a reversible pause that preserves all completed blackboard steps, paired with pre-flight spending caps and copy-only files.",
-      zh: "危险步骤弹窗将初始焦点与高对比按钮给到「先不要」，把拒绝或 Esc 变成无损挂起（保留已完成黑板进度），并辅以委托前开销封顶与副本隔离。",
+      zh: "危险步骤弹窗将初始焦点与高对比按钮给到「先不要」，把拒绝或 Esc 设为无损挂起，保留已完成的黑板进度。同时配合委托前开销封顶与副本隔离。",
     },
     a11yGuarantees: [
       {
         en: "Initial modal focus lands deterministically on the non-destructive 'Not now' button inside a proper dialog landmark.",
-        zh: "弹窗打开后初始焦点确定性落在无损的「先不要」按钮上，且 Escape 键与关闭按钮行为一致。",
+        zh: "弹窗打开后，初始焦点固定落在无损的「先不要」按钮上，且 Escape 键与关闭按钮行为一致。",
       },
       {
         en: "Minimized corner monitor never steals OS focus during background progress updates.",
@@ -234,7 +234,7 @@ export function classifyField(
     },
     humanTension: {
       en: "Wanting to say hello at a dark, loud gig carries real social rejection anxiety, yet opening a proximity profile radar creates surveillance pressure and ruins presence in the music.",
-      zh: "在嘈杂昏暗的演出现场想搭话又怕误判尴尬；但打开展示头像与资料的「附近人雷达」又会制造偷窥压力并打断沉浸感。",
+      zh: "在嘈杂昏暗的演出现场，想搭话又怕误判尴尬。但打开展示头像与资料的「附近人雷达」，又会制造偷窥压力，打断沉浸感。",
     },
     commonAntiPattern: {
       en: "LBS nearby-people grids broadcasting faces/bios unilaterally, or infinite in-app chat feeds designed to keep eyes glued to glass.",
@@ -242,7 +242,7 @@ export function classifyField(
     },
     chosenRule: {
       en: "Wrist side button or phone sends a blind wave ('someone nearby waved' with zero name/photo); an always-on Fly.io Sydney relay unlocks names and one shared venue landmark only after mutual wrist/phone MEET agreement.",
-      zh: "通过手环侧键或手机发送零姓名/头像的匿名挥手；常驻悉尼 Fly.io 中继仅在双端真实达成 MEET 互认后同步解锁姓名与唯一地标。",
+      zh: "用手环侧键或手机发送零姓名/头像的匿名挥手。常驻悉尼的 Fly.io 中继仅在双端真实达成 MEET 互认后，才同步解锁姓名与唯一地标。",
     },
     a11yGuarantees: [
       {
@@ -258,7 +258,7 @@ export function classifyField(
       verifiedStatus: "bench-tested",
       summary: {
         en: "Verified live across StickS3 & StickC Plus via Sydney Fly.io relay (65 min after removing localhost blocker on Sep 25) and Ava/Leo twin windows (Sep 29); no live-gig participant study has run yet.",
-        zh: "已于 9 月 25 日完成脱电脑双真机配对与 9 月 29 日双视窗全流转；尚无真实或模拟演出人群参与者测试。",
+        zh: "已于 9 月 25 日完成脱电脑双真机配对与 9 月 29 日双窗口全流转；尚无真实或模拟演出人群参与者测试。",
       },
     },
     codeSnippet: {
@@ -266,7 +266,7 @@ export function classifyField(
       language: "ts",
       caption: {
         en: "Server relay state guard ensuring profile names stay redacted until both peer nods arrive.",
-        zh: "中继端状态守卫：双端均未确认前绝对剥离名字与地标字段。",
+        zh: "中继端状态守卫：双端都确认前，严格剥离名字与地标字段。",
       },
       code: `export function projectPeerPayload(
   waveA: boolean,
@@ -302,7 +302,7 @@ export function classifyField(
     },
     humanTension: {
       en: "When hardware subsystems read raw sensors independently, one ball pass fires score and finger vibration out of sync—and exhibition visitors stop trusting the rules immediately.",
-      zh: "当各硬件模块各自读取原始传感器电平，一次小球经过就会触发多次计分与震动打架，展场玩家立刻怀疑装置失灵。",
+      zh: "各硬件模块如果各自读取原始传感器电平，一次小球经过就会触发多次计分与震动打架。展场玩家会立刻怀疑装置失灵。",
     },
     commonAntiPattern: {
       en: "Coupling raw unbuffered IR interrupts with servo PWM on one controller, or maintaining a fake animated portfolio mock separate from real firmware.",
@@ -310,7 +310,7 @@ export function classifyField(
     },
     chosenRule: {
       en: "Pair adjacent player wristbands (A/B co-touch) so no single player dominates tilt, isolate tilt on SafeTouchServoController, debounce all 10 FC-51 IR channels into one Mega round state, and run live Web Serial + Demo Mode off one parity-tested dispatcher.",
-      zh: "相邻玩家腕带物理互锁禁止单人独控，舵机拆至 SafeTouchServoController，十路 FC-51 红外防抖收进单一 Mega 状态机，Web Serial 实机与 Demo 模式共用同源分发器。",
+      zh: "相邻玩家腕带物理互锁，禁止单人独控；舵机拆至 SafeTouchServoController。十路 FC-51 红外防抖收进单一 Mega 状态机，Web Serial 实机与 Demo 模式共用同源分发器。",
     },
     a11yGuarantees: [
       {
@@ -361,11 +361,11 @@ export function classifyField(
     },
     tagline: {
       en: "Escalate tactical complexity through mission manifests and verb subsets—never by mutating core selection gestures or splitting save state.",
-      zh: "随关卡推进只通过配置清单裁剪开放动词，绝不篡改点击/框选的基本含义，并把失败原因与兵力还原锁进同一条 20 Hz 存档链。",
+      zh: "随关卡推进，只按配置清单裁剪开放动词，绝不篡改点击/框选的基本含义。同时把失败原因与兵力还原锁进同一条 20 Hz 存档链。",
     },
     humanTension: {
       en: "Under a ticking clock, patching custom shortcuts or overriding selection rules for later missions turns strategic challenge into interface betrayal.",
-      zh: "在实时倒计时压力下，一旦为后期关卡临时改写按键含义或新造特例按钮，玩家分不清失败是因为战术失误还是界面背叛。",
+      zh: "在实时倒计时压力下，一旦为后期关卡临时改写按键含义或新造特例按钮，玩家分不清失败是因为战术失误，还是界面背叛。",
     },
     commonAntiPattern: {
       en: "Duplicating separate scene classes per mission with level-specific macro buttons and decoupled UI/entity retry state.",
@@ -373,7 +373,7 @@ export function classifyField(
     },
     chosenRule: {
       en: "Lock click, box-select, Shift add/remove, Ctrl groups, and right-click commands into one immutable contract across all 5 mission manifests; serialize pause, defeat reason, checkpoint snapshot, and units atomically on one 20 Hz simulation tick.",
-      zh: "五关锁定同一套操作语法（可限制开放命令，禁止篡改行为语义）；暂停、战败原因、检查点与单位阵列全部绑定同一条 20 Hz 模拟存档链。",
+      zh: "五关锁定同一套操作语法（可限制开放命令，禁止篡改行为语义）。暂停、战败原因、检查点与单位阵列全部绑定同一条 20 Hz 模拟存档链。",
     },
     a11yGuarantees: [
       {

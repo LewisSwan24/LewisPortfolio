@@ -34,7 +34,7 @@ const SHIFT_COMPARISONS: Partial<Record<CurrentProjectSlug, ShiftComparison>> = 
     ],
     after: [
       { en: "Physical wrist buttons own every approval gate", zh: "所有工具权限均由手腕实体按键确认" },
-      { en: "USB cable wins; end-to-end encrypted Fly.io fallback", zh: "插线时 USB 优先，离缆切换端到端加密中继" },
+      { en: "USB cable wins; end-to-end encrypted Fly.io fallback", zh: "插线时 USB 优先，拔线后切换端到端加密中继" },
     ],
   },
   fencepost: {
@@ -45,8 +45,8 @@ const SHIFT_COMPARISONS: Partial<Record<CurrentProjectSlug, ShiftComparison>> = 
       { en: "Model context reads every saved entry", zh: "模型问答默认读取库内全部邻里条目" },
     ],
     after: [
-      { en: "Schema strips EXIF; revocable QR access_grants", zh: "表结构即剥离 EXIF，仅凭可吊销二维码授权" },
-      { en: "431 offline tests verify context cut on revoke", zh: "431 项离线测试锁定撤权即截断模型上下文" },
+      { en: "Schema strips EXIF; revocable QR access_grants", zh: "表结构直接剥离 EXIF，仅凭可吊销二维码授权" },
+      { en: "431 offline tests verify context cut on revoke", zh: "431 项离线测试验证：撤权即截断模型上下文" },
     ],
   },
   lamplight: {
@@ -69,7 +69,7 @@ const SHIFT_COMPARISONS: Partial<Record<CurrentProjectSlug, ShiftComparison>> = 
       { en: "Send resume to external parsing backend", zh: "将个人简历上传至远端解析服务器" },
     ],
     after: [
-      { en: "Empty or flagged for review; submit stays human", zh: "低把握字段留空标黄，最终提交严格由人手点击" },
+      { en: "Empty or flagged for review; submit stays human", zh: "低把握字段留空标黄，最终提交严格由人手动点击" },
       { en: "Resume data never leaves the local device", zh: "全部简历数据始终停留在本地设备" },
     ],
   },

@@ -174,7 +174,7 @@ export const lamplightStory: CaseStory = {
       },
     ],
     watchFor:
-      "留意焦点落在哪里：直接跳到风险步骤，确认卡弹出时，默认高亮与初始焦点落在「先不要」而非「继续执行」。",
+      "留意焦点落在哪里：直接跳到风险步骤。确认卡弹出时，默认高亮与初始焦点都落在「先不要」，不会指向「继续执行」。",
     tryLinks: [
       { href: "/lab?demo=lamplight#lab-sm-title", label: "前往 /lab 走查 Lamplight 状态机 →" },
       { href: "https://lamplight.lewisdong.com/", label: "查看公开产品展示页 ↗" },
@@ -188,7 +188,7 @@ export const lamplightStory: CaseStory = {
         "仓库里有大约一百个 Vitest 测试文件。",
         "调试面板不调用 API 就能回放随附的一份真实录制，也能预览决定卡、让角色在锚点之间走动。同一个场景每次都能用同样的方式检查。",
         "日常使用：我拿这个应用跑自己的 Claude 任务。",
-        "这一页的截图由应用自带的模拟脚本为商店页生成，不是从谁的真实任务里截的。",
+        "这一页的截图由应用自带的模拟脚本为商店页生成，并非取自某人的真实任务。",
       ],
       states: [
         {

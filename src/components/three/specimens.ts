@@ -15,7 +15,7 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
     },
     decisionSummary: {
       en: "Front & Side physical watch keys own tool approvals; voice never auto-runs destructive bash commands.",
-      zh: "前后实体手表键握住工具审批闸门；语音仅录上下文，绝不自动放行高危命令。",
+      zh: "前后实体手表键守住工具审批闸门；语音只录上下文，绝不自动放行高危命令。",
     },
     honestScope: {
       en: "Three hardware/relay gates pass on S3; represented here via schematics and live simulation pending real wearer photography.",
@@ -36,11 +36,11 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
     },
     decisionSummary: {
       en: "Spatialize the plan onto a calm café blackboard and lock risky modals onto 'Not now' by default.",
-      zh: "用咖啡馆黑板将计划结构化外显，并将高风险弹窗默认聚焦强锁在「先不要」。",
+      zh: "把计划按结构摆在咖啡馆黑板上，高风险弹窗默认把焦点锁在「先不要」。",
     },
     honestScope: {
       en: "Used daily by Lewis on Electron + Phaser; external user testing not yet run.",
-      zh: "Electron + Phaser 已由作者日常使用；尚未开展外部受试者可用性测试。",
+      zh: "作者日常在用这套 Electron + Phaser 版本，尚未做外部用户可用性测试。",
     },
   },
   {
@@ -57,7 +57,7 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
     },
     decisionSummary: {
       en: "Refuse to autofill below deterministic confidence, keep all resume data local, and block auto-submit.",
-      zh: "低于确定性阈值直接停填，全部简历文本不出本地设备，并禁止自动替投按钮。",
+      zh: "低于确定性阈值直接停填，全部简历文本不出本地设备，且禁止自动提交。",
     },
     honestScope: {
       en: "Tested on 3 synthetic sites (native HTML, Ant Design, Element Plus); real ATS field variance still unmeasured.",
@@ -74,7 +74,7 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
     mediumTag: { en: "Tactile Co-Play × Physical", zh: "双人互锁 × 实体协作" },
     thesisQuestion: {
       en: "How can shared hardware mechanics break solo isolation in a public room?",
-      zh: "实体装置怎样靠规则结构（而非口头倡议）促成陌生人抬头配合？",
+      zh: "实体装置怎样靠规则结构（不靠口头倡议）促成陌生人抬头配合？",
     },
     decisionSummary: {
       en: "Paired conductive wristbands interlock two players per axis, swapping shock threats for gentle sleeve vibration.",
@@ -99,7 +99,7 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
     },
     decisionSummary: {
       en: "Three non-intrusive wave cards reveal names only after mutual nod, then withdraw into silence.",
-      zh: "仅三张渐进破冰卡，双方互点头同意才公开姓名与碰面点，随后硬件主动静默退出注意力。",
+      zh: "仅三张渐进破冰卡，双方都点头同意才公开姓名与碰面点，随后硬件主动静默退场。",
     },
     honestScope: {
       en: "Teammate-led 3-card concept; firmware dual-boot & relay verified; live gig wearer study pending.",
@@ -116,15 +116,15 @@ export const SPECIMEN_NODES: readonly SpecimenNodeSpec[] = [
     mediumTag: { en: "Rules Grammar × Dual UI", zh: "统一规则语法 × 双界面" },
     thesisQuestion: {
       en: "How do five strategy chapters escalate without betraying player muscle memory?",
-      zh: "多章节难度递进时，如何保护玩家已建立的操作直觉不被临时补丁背叛？",
+      zh: "多章节难度递进时，如何避免临时补丁破坏玩家已建立的操作直觉？",
     },
     decisionSummary: {
       en: "Enforce one shared command grammar and deterministic checkpoint rollback across all 5 missions.",
-      zh: "五个关卡全程锁定同一套框选/指令/回滚语法，且拒绝自动托管以保战术判断感。",
+      zh: "五个关卡全程锁定同一套框选/指令/回滚语法，且拒绝自动托管，保住战术判断感。",
     },
     honestScope: {
       en: "430 local engine/contract assertions passing; structured outside player usability tests next.",
-      zh: "430 项本地单测通过；下一步安排外部玩家结构化可用性走查。",
+      zh: "430 项本地单测已通过；下一步安排外部玩家做结构化可用性走查。",
     },
   },
 ];

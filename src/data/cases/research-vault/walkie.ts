@@ -25,7 +25,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
         id: "walkie-probe-pair",
         prompt: {
           en: "Initiate bridge startup without an existing pair.key and complete hardware pairing within the 30-second window.",
-          zh: "在本地尚无 pair.key 时启动桥接进程，于 30 秒硬件倒计时窗口内完成当面配对封存。",
+          zh: "在本地尚无 pair.key 时启动桥接进程，在 30 秒硬件倒计时内完成当面配对封存。",
         },
         whatWeWatchFor: {
           en: "Whether the developer recognizes that Front Key seals trust locally rather than typing hex tokens on a 1.14-inch LCD.",
@@ -33,7 +33,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
         },
         failureSignal: {
           en: "Any ambiguity over whether Side Key cancels pairing or silently retries in the background.",
-          zh: "若侧键取消后界面的中止状态不够果断，或让人误以为仍在后台静默重试，即判定为交互失明。",
+          zh: "若侧键取消后界面的中止反馈不够明确，或让人误以为仍在后台静默重试，即判定为交互不清。",
         },
         verifiedStatus: "unverified-hypothesis",
       },
@@ -45,7 +45,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
         },
         whatWeWatchFor: {
           en: "Muscle-memory separation between Front Key (approve) and Side Key (deny + speak reason) under low visual attention.",
-          zh: "检验盲操作状态下前键（放行）与侧键（拒绝并追加语音理由）的触觉防呆隔离度。",
+          zh: "检验盲操作时前键（放行）与侧键（拒绝并追加语音理由）能否靠触觉清晰区分。",
         },
         failureSignal: {
           en: "Accidental thumb slip onto Front Key when intending to pause or reject an unexpected file edit.",
@@ -61,11 +61,11 @@ export const walkieResearchVault: RawResearchVaultRecord = {
         },
         whatWeWatchFor: {
           en: "Clear recognition of USB preemption and honest aborted-turn feedback rather than silent audio truncation.",
-          zh: "观察用户是否立刻察觉有线抢占，且拔线打断当轮语音时能看懂「主动中止重来」而非误以为发成功。",
+          zh: "观察用户是否立刻察觉有线抢占，并在拔线打断当轮语音时看懂「主动中止重来」，不至于误以为发送成功。",
         },
         failureSignal: {
           en: "Silent fallback stitching half an ADPCM packet with a half-recorded USB PCM buffer.",
-          zh: "任何试图静默拼接半截无线 ADPCM 与半截有线 PCM 缓冲的行为都会造成指令错乱，直接判死。",
+          zh: "任何试图静默拼接半截无线 ADPCM 与半截有线 PCM 缓冲的行为都会造成指令错乱，直接判为不通过。",
         },
         verifiedStatus: "unverified-hypothesis",
       },
@@ -271,7 +271,7 @@ export const walkieResearchVault: RawResearchVaultRecord = {
       },
       answer: {
         en: "A 5-developer diary study measuring how often operators genuinely approve from the wrist versus abandoning the remote and walking back to the terminal.",
-        zh: "开展 5 名真实开发者的两周日志跟踪研究，统计有多少工具审批真能在腕上放心拍板，又有多少还是不得不走回显示器前。",
+        zh: "开展 5 名真实开发者的两周日志跟踪研究。统计有多少工具审批真能在腕上放心拍板，又有多少还是不得不走回显示器前。",
       },
       verifiedStatus: "unverified-hypothesis",
     },

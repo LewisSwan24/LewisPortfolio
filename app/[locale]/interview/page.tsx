@@ -99,12 +99,12 @@ export default async function InterviewPackPage() {
             </span>
             <h2 id="hire-decks-heading" className="h-display" style={{ fontSize: "clamp(20px, 2.2vw, 28px)", marginTop: 6 }}>
               {isZh
-                ? "带进面试会议室的论证手稿（附直达活原型的 QR 二维码）"
+                ? "带进面试会议室的论证手稿（附直达可运行原型的 QR 二维码）"
                 : "Bringable A4 critique manuscripts with live QR jump codes"}
             </h2>
             <p className="prose" style={{ marginTop: 6, maxWidth: "66ch" }}>
               {isZh
-                ? "每页 >= 60% 版面聚焦人类冲突、被否决方案与坦诚边界，避免堆砌大号装饰标题；支持在线自定义角色组合打印，或直接下载预设岗位 PDF。"
+                ? "每页 >= 60% 版面聚焦人的冲突、否决过的方案与坦诚边界，不堆砌大号装饰标题。支持在线自定义角色组合打印，或直接下载预设岗位 PDF。"
                 : "Over 60% of each A4 sheet covers human tension, rejected paths, and explicit limits — printable per custom case selection or downloadable directly per role."}
             </p>
           </div>

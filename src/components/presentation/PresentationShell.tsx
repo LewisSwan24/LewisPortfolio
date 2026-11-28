@@ -148,7 +148,7 @@ export function PresentationShell({ deck, open, onClose }: PresentationShellProp
         notes: "备注 (N)",
         fullscreen: isFullscreen ? "退出全屏" : "全屏 (F)",
         close: "退出演示 (Esc)",
-        speakerLabel: "本机演讲备注（仅本机可见）",
+        speakerLabel: "演讲备注（仅本机可见）",
         followUpLabel: "面试官常见追问",
         slideNav: "演示页面导航",
       }

@@ -14,7 +14,7 @@ export function PrimitiveAnchorFocus({ locale }: { locale: Locale }) {
     <div className="lab-prim-panel">
       <p className="lab-prim-summary">
         {isZh
-          ? "切换触发器在迷你边界框的位置（靠近顶边 / 靠近底边），点击带虚线的术语即可验证原生 Popover + CSS Anchor Positioning 自动翻转与 Esc 回焦。"
+          ? "先切换触发按钮在容器里的位置（靠近顶边 / 靠近底边），再点击带虚线的术语。可以验证原生 Popover + CSS Anchor Positioning 的自动翻转，以及按 Esc 后的焦点归位。"
           : "Switch trigger edge placement and open the AnchorNote trigger to test native Popover + CSS Anchor Positioning flip-block fallback and Esc focus return."}
       </p>
 
@@ -39,13 +39,13 @@ export function PrimitiveAnchorFocus({ locale }: { locale: Locale }) {
 
       <div className="lab-anchor-sandbox" data-edge={edge}>
         <p>
-          {isZh ? "示例语境：点击术语 " : "Sample sentence: inspect "}
+          {isZh ? "示例句：点击术语 " : "Sample sentence: inspect "}
           <AnchorNote
             term={isZh ? "position-try-fallbacks" : "position-try-fallbacks"}
             label={isZh ? "原生锚点定位" : "CSS Anchor Positioning"}
             note={
               isZh
-                ? "使用原生 popoverTarget 建立隐式锚点关联，遇屏幕边缘自动 flip-block 避让，且按 Esc 自动将焦点还给触发按钮。"
+                ? "用原生 popoverTarget 建立隐式锚点关联。遇到屏幕边缘时会自动触发 flip-block 避让，按 Esc 后焦点回到触发按钮。"
                 : "Uses native popoverTarget for implicit anchoring, flips via position-try-fallbacks: flip-block, and returns focus cleanly on Esc."
             }
           />

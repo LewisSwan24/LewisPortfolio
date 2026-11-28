@@ -54,7 +54,7 @@ export function PrintDeckSelector({
             <span className="eyebrow">{isZh ? "A4 设计论证评注本" : "A4 Editorial Critique Dossier"}</span>
             <p style={{ margin: "4px 0 0", fontSize: 13, color: "var(--text-2)" }}>
               {isZh
-                ? "每页 >= 60% 版面聚焦「人类冲突、否决方案与取舍依据」，附带直达活原型的 SVG 二维码。"
+                ? "每页 >= 60% 版面聚焦「人类冲突、否决方案与取舍依据」，附带直达可运行原型的 SVG 二维码。"
                 : ">= 60% of every A4 page focuses on human tension, rejected paths & tradeoffs, paired with live QR jump codes."}
             </p>
           </div>
@@ -70,7 +70,7 @@ export function PrintDeckSelector({
               {isZh ? "打印 / 保存为 A4 PDF" : "Print / Save as A4 PDF"}
             </button>
             <a className="btn btn-ghost" href={`/decks/${activeRole}.pdf`} download>
-              {isZh ? `下载静态角色 Deck (${activeRole}.pdf)` : `Download ${activeRole}.pdf`}
+              {isZh ? `下载静态岗位 Deck (${activeRole}.pdf)` : `Download ${activeRole}.pdf`}
             </a>
           </div>
         </div>

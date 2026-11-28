@@ -5,7 +5,7 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
   studyStatus: "bench-tested",
   honestScopeNote: {
     en: "430/430 RC automated unit/integration tests, fixed-resolution HUD sweeps (1280×720 & 1920×1080), and 75-asset provenance verification passed. Structured playtesting with external RTS novices remains unexecuted.",
-    zh: "430/430 发布候选自动化测试、1280×720 与 1920×1080 双分辨率 HUD 零遮挡验收及 75 项美术资产溯源均已通过；尚未面向外部非核心玩家开展结构化上手测试。",
+    zh: "430/430 发布候选自动化测试、1280×720 与 1920×1080 双分辨率 HUD 零遮挡验收及 75 项美术资产溯源均已通过。尚未面向外部非核心玩家开展结构化上手测试。",
   },
   moderatorGuide: {
     protocolTitle: {
@@ -25,7 +25,7 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
         id: "grassland-probe-grammar",
         prompt: {
           en: "Transition from Mission 1 open skirmish into Mission 3 night-stealth rules without re-reading a tutorial.",
-          zh: "不翻新教学弹窗，直接从第 1 关正面遭遇战切入第 3 关夜间隐蔽机制。",
+          zh: "不重看教学弹窗，直接从第 1 关正面遭遇战切入第 3 关夜间隐蔽机制。",
         },
         whatWeWatchFor: {
           en: "Whether immutable box-select, Shift-toggle, Ctrl-group, and right-click verbs hold identical muscle memory across mission rule shifts.",
@@ -85,7 +85,7 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
       },
       observation: {
         en: "Early checkpoint restores left orphaned unit timers and stale fog-of-war flags when missions mutated shared runtime globals.",
-        zh: "早期关卡各自写入全局临时变量时，战败读档常把上一局残余视野迷雾或计时器带进新重开局。",
+        zh: "早期关卡各自写入全局临时变量时，战败读档常把上一局残余的视野迷雾或计时器带进重开局。",
       },
       designResponse: {
         en: "Unified save state into one pure mission snapshot chain verified by regression tests across all 5 missions.",
@@ -106,7 +106,7 @@ export const grasslandResearchVault: RawResearchVaultRecord = {
       },
       designResponse: {
         en: "Stripped debug clutter from player-facing menus and locked edge-docked HUD geometry under fixed camera framing.",
-        zh: "彻底清理玩家向界面的开发调试杂讯，把状态条贴边锚定并锁死固定镜头比例。",
+        zh: "彻底清理玩家界面里的开发调试残留，把状态条贴边锚定并锁死固定镜头比例。",
       },
       verifiedStatus: "bench-tested",
     },

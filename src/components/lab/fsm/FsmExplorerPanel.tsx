@@ -36,7 +36,7 @@ const TIMING_CONTROLS: Array<{
     step: 20,
     unit: "ms",
     en: "Deliberate Hold Dwell",
-    zh: "意图确认长按阈值",
+    zh: "长按确认阈值",
   },
   {
     key: "cooldownMs",
@@ -45,7 +45,7 @@ const TIMING_CONTROLS: Array<{
     step: 50,
     unit: "ms",
     en: "Post-Action Cooldown",
-    zh: "触发后冷却锁定窗",
+    zh: "触发后冷却窗口",
   },
   {
     key: "relayTimeoutMs",
@@ -54,7 +54,7 @@ const TIMING_CONTROLS: Array<{
     step: 100,
     unit: "ms",
     en: "Link / Timeout Cutoff",
-    zh: "断连与超时判定上限",
+    zh: "断连与超时上限",
   },
   {
     key: "confidenceThreshold",
@@ -142,7 +142,7 @@ export function FsmExplorerPanel({
     setCurrentStateId(activeSpec.initialStateId);
     setTiming(activeSpec.timing.defaults);
     setStatusMessage(
-      isZh ? "已复位至初始状态与默认硬件/时序边界。" : "Reset FSM to initial state and default bounds."
+      isZh ? "已重置回初始状态与默认硬件/时序参数。" : "Reset FSM to initial state and default bounds."
     );
   };
 
@@ -178,7 +178,7 @@ export function FsmExplorerPanel({
 
     setStatusMessage(
       isZh
-        ? `已导出 fsm-${activeSpec.slug}-spec.json（${graphReport.deadlockStates.length} 死锁）`
+        ? `已导出 fsm-${activeSpec.slug}-spec.json（${graphReport.deadlockStates.length} 个死锁）`
         : `Exported fsm-${activeSpec.slug}-spec.json (${graphReport.deadlockStates.length} deadlocks)`
     );
   };
@@ -194,7 +194,7 @@ export function FsmExplorerPanel({
       <header className={styles.engineHead}>
         <div>
           <div className="label">
-            06 · {isZh ? "有限状态机模拟器与认知延迟仪表" : "Finite State Machine Explorer & Micro-Latency Simulator"}
+            06 · {isZh ? "有限状态机与微延迟模拟器" : "Finite State Machine Explorer & Micro-Latency Simulator"}
           </div>
           <h2 id="fsm-explorer-heading" className={styles.engineTitle}>
             {isZh
@@ -302,7 +302,7 @@ export function FsmExplorerPanel({
                     setCurrentStateId(node.id);
                     setStatusMessage(
                       isZh
-                        ? `跳转观察节点：${node.label.zh}`
+                        ? `正在查看节点：${node.label.zh}`
                         : `Inspecting state: ${node.label.en}`
                     );
                   }}
@@ -358,7 +358,7 @@ export function FsmExplorerPanel({
                 onClick={() => {
                   setCurrentStateId(node.id);
                   setStatusMessage(
-                    isZh ? `跳转观察节点：${node.label.zh}` : `Inspecting state: ${node.label.en}`
+                    isZh ? `正在查看节点：${node.label.zh}` : `Inspecting state: ${node.label.en}`
                   );
                 }}
               >
@@ -420,7 +420,7 @@ export function FsmExplorerPanel({
             </div>
             <div className={styles.telemetryCell}>
               <span className={styles.kicker}>
-                {isZh ? "可达性 / 死锁审计" : "BFS Deadlock Check"}
+                {isZh ? "可达与死锁检查" : "BFS Deadlock Check"}
               </span>
               <span className={styles.telemetryValue} data-testid="fsm-deadlock-badge">
                 {graphReport.deadlockStates.length} {isZh ? "个死锁" : "deadlocks"} · {graphReport.reachableStates.length}/
@@ -429,7 +429,7 @@ export function FsmExplorerPanel({
             </div>
             <div className={styles.telemetryCell}>
               <span className={styles.kicker}>
-                {isZh ? "关键调参重点" : "Tuning Anchor"}
+                {isZh ? "调参重点" : "Tuning Anchor"}
               </span>
               <span style={{ fontSize: 13, color: "var(--text)", fontWeight: 600 }}>
                 {activeSpec.timing.activeTuningFocus}

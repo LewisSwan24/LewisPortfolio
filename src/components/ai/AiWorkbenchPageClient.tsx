@@ -27,7 +27,7 @@ const PERSPECTIVE_PRESETS: Record<
     prompts: [
       {
         en: "Why physical watch buttons on Walkie instead of hands-free voice approval?",
-        zh: "Walkie 为什么坚持手腕实体按键审批，而不是语音口令放行？",
+        zh: "Walkie 为什么坚持手腕实体按键审批，不用语音口令放行？",
       },
       {
         en: "How do Lamplight & Autofill curb habitual approval or hallucinated guesses?",
@@ -150,7 +150,7 @@ export function AiWorkbenchPageClient({
           <div className={styles.pipelineStep}>
             <span className={styles.pipelineIndex}>{isZh ? "01 · 隐私脱敏" : "01 · PII SCRUB"}</span>
             <strong>{isZh ? "本地脱敏截断" : "Local Redaction"}</strong>
-            <p>{isZh ? "邮箱、电话与内网域名在发送前于浏览器端剥离（<=1200 字）。" : "Emails, phone numbers, and internal URLs stripped client-side."}</p>
+            <p>{isZh ? "发送前在浏览器本地剥离邮箱、电话与内网域名（<=1200 字）。" : "Emails, phone numbers, and internal URLs stripped client-side."}</p>
           </div>
           <div className={styles.pipelineStep}>
             <span className={styles.pipelineIndex}>{isZh ? "02 · 混合索引" : "02 · HYBRID INDEX"}</span>
@@ -169,7 +169,7 @@ export function AiWorkbenchPageClient({
           <div className={styles.pipelineStep}>
             <span className={styles.pipelineIndex}>{isZh ? "04 · 原文还原" : "04 · HYDRATION"}</span>
             <strong>{isZh ? "物理证据表还原" : "Physical Table Hydration"}</strong>
-            <p>{isZh ? "界面渲染 100% 取自静态校验库原文，彻底封死编造数据。" : "All copy, citations & limits hydrate verbatim from static proof tables."}</p>
+            <p>{isZh ? "界面内容 100% 取自静态校验库原文，杜绝编造数据。" : "All copy, citations & limits hydrate verbatim from static proof tables."}</p>
           </div>
         </div>
 
@@ -282,7 +282,7 @@ export function AiWorkbenchPageClient({
             <div className={styles.groupCard}>
               <p style={{ margin: 0, color: "var(--text-2)" }}>
                 {isZh
-                  ? "静态证明库未命中足够关键词。这是系统刻意拒绝兜底编造的表现——请换用案例名称、硬件/交互规则或边界词汇重试。"
+                  ? "静态证明库未命中足够关键词，系统刻意拒绝兜底编造。请换用案例名称、硬件/交互规则或边界词汇重试。"
                   : "No static evidence chunks matched this query. By rule, the navigator refuses to synthesize ungrounded answers — try keywords around hardware, refusal rules, CSS, or specific cases."}
               </p>
             </div>

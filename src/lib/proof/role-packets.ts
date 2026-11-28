@@ -201,7 +201,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           evidence:
             "Lamplight Nook 用咖啡馆黑板计划、店员分工与默认「先不要」的风险卡取代滚动终端日志。",
           boundary:
-            "这证明的是交互方向与本人日常桌面实测，尚未进行外部人群对比测试。",
+            "这证明的是交互方向与本人日常桌面实测，尚未做外部人群对比测试。",
           strongestAnchor: "/projects/lamplight#decision-timeline",
           nextValidation:
             "请其他长任务用户并排试用咖啡馆视图与纯文本日志，观察状态读懂速度。",
@@ -233,9 +233,9 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
       proofClaims: [
         {
           id: "ux-research-ia-validation",
-          claim: "Lewis 严格区隔「合成夹具通过率」与「真实场景准确率」。",
+          claim: "Lewis 严格区分「合成夹具通过率」与「真实场景准确率」。",
           evidence:
-            "Resume Autofill 在合成表单截图验收中 6/6 全通过，同时在案例中明文标出真实招聘网站准确率尚未量测。",
+            "Resume Autofill 在合成表单截图验收中 6/6 全通过，同时在案例中明文标出真实招聘网站准确率尚未测量。",
           boundary:
             "目前仅由 Lewis 本人在真实求职中使用，尚无外部应届生核对标记的记录。",
           strongestAnchor: "/projects/autofill#outcome-limits",
@@ -283,7 +283,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
           id: "ai-ux-review-ai-output",
           claim: "只是看起来做完的 AI 输出，Lewis 会打回去，并禁止工具替用户瞎猜。",
           evidence:
-            "On The Beat 拒收了假 MEET 数据与笔电依赖；Resume Autofill 对开放题留空并锁定人工提交。",
+            "On The Beat 拒收了假 MEET 数据与笔记本依赖；Resume Autofill 对开放题留空并锁定人工提交。",
           boundary:
             "On The Beat 尚无现场参与者试戴；Resume Autofill 仅有作者本人真实投递记录。",
           strongestAnchor: "/projects/autofill#decision-timeline",
@@ -313,7 +313,7 @@ const rolePackets: Record<ProofLocale, RolePacket[]> = {
             "已在亮暗色截图测试中验证，尚未经过屏幕阅读器或真实辅助技术用户测试。",
           strongestAnchor: "/projects/autofill#decision-timeline",
           nextValidation:
-            "补充纯键盘与屏幕阅读器对扩展侧栏与摘要卡的可达性走查。",
+            "补充纯键盘与屏幕阅读器对扩展侧栏与摘要卡的导航走查。",
         },
         {
           id: "accessibility-plain-language",

@@ -94,7 +94,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Pulling out a phone unlocks notifications, chat feeds, and thumb typing loops that derail off-desk breaks. A wrist PTT key requires zero face-ID unlock, zero visual dwell for capture, and keeps approvals scoped to a physical gesture.",
-          zh: "掏手机会顺带解锁消息红点与社交信息流，打断离桌休息；腕表物理按住即说无需亮屏解锁，把操作压回纯粹的「单手按压—听取简报—物理拍板」闭环。",
+          zh: "掏手机会顺带解锁消息红点与社交信息流，打断离桌休息。腕表按住实体键就能说话，无需亮屏解锁，把操作压回纯粹的「单手按压—听取简报—物理拍板」循环。",
         },
         codeOrTestReceipt: {
           en: "300 ms PTT hold (HOLD_MS in the firmware's gesture.h) and the 3-line approval queue UI in M5StickS3 firmware + /projects/walkie#research-vault.",
@@ -116,7 +116,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "guard.py refuses the PlatformIO targets (erase, uploadfs, uploadfsota) that would write outside app1, so app0 stays untouched. At runtime, USB Serial immediately preempts the Fly.io wss:// relay; mid-turn cable swaps intentionally abort and surface a link-transition notice instead of stitching broken packets.",
-          zh: "烧录前由 guard.py 拒绝会写到 app1 以外的 PlatformIO 目标（erase、uploadfs、uploadfsota），防止擦毁 app0；运行时 USB 接入立即抢占 wss:// 中继，若在说话中途插拔则主动中止当轮并明示链路切换，绝不硬拼残帧。",
+          zh: "烧录前，guard.py 会拒绝写到 app1 以外的 PlatformIO 目标（erase、uploadfs、uploadfsota），防止擦毁 app0。运行时 USB 接入会立即抢占 wss:// 中继；说话中途插拔则主动中止当轮并提示链路切换，绝不硬拼残帧。",
         },
         codeOrTestReceipt: {
           en: "guard.py pre-flash guard, host g++ frame tests, and bridge tests against the fake-claude stand-in; gate P5 (pairing abort) is written but has no run record.",
@@ -138,7 +138,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Never relies on audio alone: every approval pauses on a high-contrast summary card capped at concise action verbs, while complex multi-file diffs queue safely for full desktop monitor review instead of shrinking tiny scrollbars.",
-          zh: "拒绝纯语音盲审：每次审批同步锁定高对比度精简文字卡，遇到多文件复杂改动直接挂起留待大屏完整审阅，绝不在小屏里塞微型滚动条。",
+          zh: "不依赖纯语音盲审。每次审批都会同步停在高对比度精简文字卡上。遇到多文件复杂改动，直接挂起留给大屏完整审阅，绝不在小屏里塞微型滚动条。",
         },
         codeOrTestReceipt: {
           en: "Documented in Walkie 5-State Matrix & Hardware Ergonomics Spec (/projects/walkie#research-vault).",
@@ -160,7 +160,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "All relay frames carry AES-256-GCM authentication tags with a 12-byte nonce derived from a pair.key sealed strictly during a physical 30-second Front-Key press—never hardcoded. TLS pins ISRG Root X1/X2, and relay logs see only opaque ciphertext.",
-          zh: "所有中继数据包均以 AES-256-GCM + 12 字节 Nonce 密封，密钥仅在 30 秒硬件前键当面配对时派生落盘；TLS 锁定 ISRG Root X1/X2 证书链，云中继全程零明文可见。",
+          zh: "所有中继数据包均以 AES-256-GCM + 12 字节 Nonce 密封，密钥只在 30 秒硬件前键当面配对时派生落盘。TLS 锁定 ISRG Root X1/X2 证书链，云中继全程零明文可见。",
         },
         codeOrTestReceipt: {
           en: "Verified AES-256-GCM round-trip framing and zero-key abort on pairing timeout in gate-p5.",
@@ -180,7 +180,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
     caseTitle: { en: "Lamplight Nook", zh: "Lamplight Nook 安静桌面代理" },
     executiveThesis: {
       en: "Warm pixel metaphors lower task-initiation dread, yet must immediately drop character banter the moment spend caps or destructive writes enter.",
-      zh: "像素咖啡馆隐喻用来缓解长任务等待焦虑，但一旦触及预算上限或高危写入，必须立刻收起故事感、切回冷峻清晰的拒绝护栏。",
+      zh: "像素咖啡馆的隐喻用来缓解长任务等待的焦虑。但一旦触及预算上限或高危写入，必须立刻收起故事感，切回冷峻清晰的拒绝护栏。",
     },
     lenses: [
       {
@@ -188,11 +188,11 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         severity: "high",
         challengeQuestion: {
           en: "Isn't an animated café sprite scene pure aesthetic fluff that pulls developer attention away from real work?",
-          zh: "在严肃的编码辅助桌面工具里画一群像素咖啡店员走来走去，是不是只图好看的花哨装饰、反而分散注意力？",
+          zh: "在严肃的编码辅助桌面工具里，画一群像素咖啡店员走来走去。这是不是只图好看的花哨装饰，反而分散注意力？",
         },
         empiricalDefense: {
           en: "The full café opens only during task commissioning and post-run review. During active execution, the window collapses into a single-line corner monitor ('4 of 5 · Busy: write summary.md') with full-scene motion paused.",
-          zh: "完整咖啡馆仅在开委派单与复盘时呈现；任务一跑起来主窗可一键缩成屏幕角落的单行进度微窗，停掉所有走动动画，只留低噪外周感知。",
+          zh: "完整咖啡馆只在开委派单和复盘时出现。任务一跑起来，主窗可一键缩成屏幕角落的单行进度微窗。同时停掉所有走动动画，只留低噪的外周感知。",
         },
         codeOrTestReceipt: {
           en: "Implemented in Electron corner-monitor window state + YAML Phaser director rules (/projects/lamplight#journey-map).",
@@ -214,7 +214,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Electron main process normalizes SDK callbacks through declarative YAML pacing rules before Phaser reads them. A built-in deterministic replay debugger scrubs recorded JSONL traces across stall, budget-cap, and refusal paths offline.",
-          zh: "Electron 主进程先用声明式 YAML 节拍规则清洗 SDK 回调再推给 Phaser；内建的确定性回放调试器支持离线单步排查卡顿、超预算与拒答态，不花一分 API 钱。",
+          zh: "Electron 主进程先用声明式 YAML 节拍规则清洗 SDK 回调，再推给 Phaser。内建的确定性回放调试器支持离线单步排查卡顿、超预算和拒答态，不花一分 API 钱。",
         },
         codeOrTestReceipt: {
           en: "Live Electron SDK normalizer + deterministic replay debugger verified in self-use runs.",
@@ -236,7 +236,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Every actionable step list, question card, risk gate, and unmappable technical trace renders in native DOM HTML overlays alongside or outside the canvas—never trapped inside bitmap pixels.",
-          zh: "所有真正需要理解与拍板的黑板任务列表、提问卡、预算警示与报错全文，全部以原生语义化 DOM 叠加层呈现，绝不把关键交互信息埋进 Canvas 像素里。",
+          zh: "所有真正需要理解与拍板的黑板任务列表、提问卡、预算警示与报错全文，都用原生语义化 DOM 叠加层呈现。关键交互信息绝不埋进 Canvas 像素里。",
         },
         codeOrTestReceipt: {
           en: "DOM-backed commission slip, question card, and risk confirmation modal audited in Lamplight Nook.",
@@ -254,11 +254,11 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         severity: "blocking",
         challengeQuestion: {
           en: "If a user is typing rapidly in another window and a risk card pops up, habitual Enter presses will authorize destructive edits.",
-          zh: "用户正在别的窗口飞快敲代码时，如果高风险改写弹窗突然抢占焦点，下意识按一下回车不就直接授权破坏性改写了吗？",
+          zh: "用户正在别的窗口飞快敲代码，高风险改写弹窗突然抢占焦点。这时下意识按一下回车，不就直接授权破坏性改写了吗？",
         },
         empiricalDefense: {
           en: "Every risk gate pins initial focus strictly to 'Not now' (never 'Approve'), duplicates lent files into isolated working copies before execution, and enforces a pre-run dollar spending ceiling.",
-          zh: "所有高风险确认卡初始焦点死锁在「先不要（Not now）」，惯性回车只会安全暂缓；且执行前强制拷贝副本与锁死单次预算上限，保住原文件零损伤。",
+          zh: "所有高风险确认卡的初始焦点都锁在「先不要（Not now）」，惯性回车只会安全暂缓。执行前还强制拷贝副本、锁死单次预算上限，保住原文件零损伤。",
         },
         codeOrTestReceipt: {
           en: "Default 'Not now' focus lock, copy-only file handoff, and per-run spend cap verified in live Electron build.",
@@ -278,7 +278,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
     caseTitle: { en: "Resume Autofill", zh: "Resume Autofill 零猜测填表" },
     executiveThesis: {
       en: "Honest job-application automation stops short of ambiguous eligibility dropdowns and the final Submit button—proving privacy in CI, not marketing copy.",
-      zh: "值得信赖的网申辅助必须敢在歧义下拉框和最终「提交」按钮前停手，并用构建期单测而非隐私政策空话担保简历不出设备。",
+      zh: "值得信赖的网申辅助，必须敢在歧义下拉框和最终「提交」按钮前停手。简历不出设备由构建期单测担保，不靠隐私政策空话。",
     },
     lenses: [
       {
@@ -294,7 +294,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         codeOrTestReceipt: {
           en: "Three-tier summary tally & side-panel per-field reason log verified in Chrome MV3 extension + /projects/autofill#design-decisions.",
-          zh: "三档汇总计数器与侧栏逐栏原因账本已实装于 Chrome MV3 扩展。",
+          zh: "三档汇总计数器与侧栏逐字段原因账本已实装于 Chrome MV3 扩展。",
         },
         unresolvedHypothesis: {
           en: "External applicant preference between 98% risky auto-fill vs 85% explicit-blank precision has not been measured in live ATS cohorts.",
@@ -308,11 +308,11 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         severity: "high",
         challengeQuestion: {
           en: "Employer portals hash CSS classes and wrap React/Vue synthetic inputs; writing `.value` directly breaks form state, and browser extensions fail inside mobile mini-programs.",
-          zh: "各家招聘网站不仅混淆类名，还用 React/Vue 受控组件接管输入；而且微信/钉钉招聘小程序里浏览器扩展根本跑不起来。",
+          zh: "各家招聘网站不仅混淆类名，还用 React/Vue 受控组件接管输入。而且微信/钉钉招聘小程序里，浏览器扩展根本跑不起来。",
         },
         empiricalDefense: {
           en: "Instead of brittle company-specific scrapers, adapters detect shared widget libraries (Ant Design, Element Plus, react-select, ARIA) with readback verification—falling back honestly to 'Not filled' on unknown controls. On mobile, an encrypted Android Keystore IME handles mini-program forms locally.",
-          zh: "不写按公司硬编码的脆弱脚本，而是围绕 AntD / Element Plus / react-select / ARIA 通用组件库派发事件并回读校验；移动端则以 Android Keystore 加密输入法兜底封闭小程序。",
+          zh: "不写按公司硬编码的脆弱脚本，改为围绕 AntD / Element Plus / react-select / ARIA 通用组件库派发事件并回读校验。移动端则以 Android Keystore 加密输入法兜底封闭小程序。",
         },
         codeOrTestReceipt: {
           en: "Android unit tests, including the IME no-network bytecode check, run in CI; the UI-library adapters are tested against local synthetic fixtures.",
@@ -334,7 +334,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Tri-coded every tier with distinct border strokes (2px solid / 2px dashed / 3px solid), explicit text badges, icons, and a side-panel log—checked across both light and dark ATS mock themes.",
-          zh: "强制落地「线型（实线 / 虚线 / 粗实线）+ 文字标签 + 图标 + 侧栏原因」三重冗余编码，并在明暗两套主题下逐项截图核验对比度。",
+          zh: "强制采用「线型（实线 / 虚线 / 粗实线）+ 文字标签 + 图标 + 侧栏原因」三重冗余编码。明暗两套主题下都逐项截图核验了对比度。",
         },
         codeOrTestReceipt: {
           en: "Light/dark tri-coded outline screenshots & contrast checks archived in Autofill module verification.",
@@ -342,7 +342,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         unresolvedHypothesis: {
           en: "Screen reader live-region verbosity when scanning 50+ inputs in one click needs live NVDA timing checks.",
-          zh: "单次扫描 50+ 栏位时屏幕阅读器提示语的播报节奏尚待真实读屏压测。",
+          zh: "单次扫描 50+ 字段时，屏幕阅读器提示语的播报节奏尚待真实读屏压测。",
         },
         verifiedStatus: "synthetic-gate",
         evidenceHref: "/projects/autofill#rejection-archive",
@@ -356,7 +356,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Zero-network invariant is enforced structurally: strict MV3 Content Security Policy with zero external endpoints, plus a CI unit test that fails the build if the Android keyboard target imports any networking class.",
-          zh: "用工程红线替代免责声明：Chrome 扩展受严格 CSP 零外联限制，Android 输入法模块更由单测强制看守——源码一旦出现任何网络通信类引用直接构建失败。",
+          zh: "用工程红线替代免责声明。Chrome 扩展受严格 CSP 零外联限制，Android 输入法模块也由单测强制看守。源码一旦出现任何网络通信类引用，直接构建失败。",
         },
         codeOrTestReceipt: {
           en: "Android zero-network import unit gate + MV3 CSP isolation + permanent Human Submit Lock.",
@@ -406,7 +406,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         severity: "blocking",
         challengeQuestion: {
           en: "Running high-current tilt servos alongside 10 FC-51 IR sensors on one Arduino causes brownouts and triple-fires penalties on a single ball pass.",
-          zh: "同一块单片机既推大电流舵机又轮询 10 路红外传感器，极易拉低供电复位，还会把滚球一次经过误判成连扣三次分。",
+          zh: "同一块单片机既推大电流舵机，又轮询 10 路红外传感器，极易拉低供电复位。而且还会把滚球一次经过误判成连扣三次分。",
         },
         empiricalDefense: {
           en: "Tilt servos run on a separate Uno (SafeTouchServoController) and the ball-launcher stepper on another, with every board on a shared ground. Each IR sensor needs three consecutive samples to trigger, then a 400 ms cooldown, so one ball pass is one serial event.",
@@ -432,7 +432,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Web Serial console shares the exact round reducer with an offline browser Demo mode supporting keyboard-operable contact simulation, high-contrast LED/score mirrors, and ARIA status updates.",
-          zh: "Web Serial 控制台与浏览器离线 Demo 共享同一份状态归约器，支持纯键盘触发双人协同触点，并提供高对比度灯态与 ARIA 状态播报。",
+          zh: "Web Serial 控制台与浏览器离线 Demo 共享同一份状态归约器。支持纯键盘触发双人协同触点，同时提供高对比度灯态与 ARIA 状态播报。",
         },
         codeOrTestReceipt: {
           en: "Verified interactive MazeContactSim + keyboard accessibility under Playwright Axe checks.",
@@ -454,7 +454,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Eliminated shock hardware entirely before public exhibition in favor of isolated low-voltage haptic sleeves and hold-to-move servo limits. Every line of AI-assisted Arduino/serial firmware was wired, bench-debugged, and signed off directly on physical boards.",
-          zh: "进场前彻底废除任何电击方案，改以低压隔离舵机（松手即停）与指套震动；全部 AI 辅助编写的固件代码均在真机电路上逐路示波调试并由本人签署验收。",
+          zh: "进场前彻底废除任何电击方案，改用低压隔离舵机（松手即停）与指套震动。全部 AI 辅助编写的固件代码，都在真机电路上逐路示波调试并由本人验收。",
         },
         codeOrTestReceipt: {
           en: "Shock removal & SafeTouchServo hold-to-move isolation documented in /projects/maze#rejection-archive.",
@@ -508,7 +508,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Moved the Node relay off localhost onto an always-on Sydney Fly.io instance and wired bidirectional wristband side-button state events. Verified standalone dual-band handshake with zero laptop attached on Sep 25.",
-          zh: "淘汰早期强依赖电脑本地端口的脚本，将中继常驻部署于悉尼 Fly.io，并打通手环侧键双向状态回传；9 月 25 日已脱离电脑完成双环真机握手。",
+          zh: "淘汰早期强依赖电脑本地端口的脚本，将中继常驻部署在悉尼 Fly.io，并接通手环侧键双向状态回传。9 月 25 日已脱离电脑完成双环真机握手。",
         },
         codeOrTestReceipt: {
           en: "Sep 25 no-laptop StickS3 + StickC Plus handshake over Sydney Fly.io relay.",
@@ -572,7 +572,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
     caseTitle: { en: "Grassland Iron Tide", zh: "《草原铁潮》浏览器即时战略" },
     executiveThesis: {
       en: "Withholding free camera zoom and auto-battle AI keeps tactical cause-and-effect legible across five missions under one immutable command grammar.",
-      zh: "刻意不做自动代打托管、锁定镜头比例并死守跨五关统一键鼠语法，才能让即时高压下的胜负因果清晰可学。",
+      zh: "刻意不做自动代打托管，同时锁定镜头比例、死守跨五关统一的键鼠语法。这样才能让即时高压下的胜负因果清晰可学。",
     },
     lenses: [
       {
@@ -580,11 +580,11 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         severity: "high",
         challengeQuestion: {
           en: "Modern strategy titles let players zoom out freely and delegate squads to AI stances. Doesn't locking zoom make battles feel cramped?",
-          zh: "现代策略游戏都允许自由滚轮缩放和 AI 自动托管小队，你把镜头锁死还不给自动托管，玩家不会觉得又累又局促吗？",
+          zh: "现代策略游戏都允许自由滚轮缩放，也支持 AI 自动托管小队。你把镜头锁死还不给自动托管，玩家不会觉得又累又局促吗？",
         },
         empiricalDefense: {
           en: "Fixed zoom trades macro map panoramas for stable unit hitboxes and edge-pinned HUD geometry verified at 720p/1080p. Refusing auto-battle ensures players actually feel the tactical tradeoff behind every defeat.",
-          zh: "固定镜头牺牲全景缩览，换来高压交战时稳定不漂移的点选命中区与 720p/1080p 零遮挡 HUD；拒绝自动代打则让每一场胜负都归因于玩家自己的战术判断。",
+          zh: "固定镜头牺牲了全景缩览，换来高压交战时稳定不漂移的点选命中区，以及 720p/1080p 零遮挡 HUD。拒绝自动代打，则让每一场胜负都归因于玩家自己的战术判断。",
         },
         codeOrTestReceipt: {
           en: "720p/1080p HUD geometry checks + causal defeat modal + 75-asset provenance manifest.",
@@ -606,7 +606,7 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         },
         empiricalDefense: {
           en: "Simulation logic ticks on a fixed 20 Hz deterministic clock decoupled from render FPS, while missions are pure data manifests loading atlases lazily per chapter step. Defeat resets strictly through a single verified checkpoint snapshot chain.",
-          zh: "核心模拟运行在独立于显示刷新率的 20 Hz 确定性逻辑钟上；关卡彻底数据化并按关懒加载图集；战败重试只走单一纯函数快照恢复链，根绝残余状态污染。",
+          zh: "核心模拟运行在独立于显示刷新率的 20 Hz 确定性逻辑钟上。关卡彻底数据化，并按关懒加载图集。战败重试只走单一纯函数快照恢复链，根绝残余状态污染。",
         },
         codeOrTestReceipt: {
           en: "430/430 RC automated unit/integration tests covering 20 Hz ticks, EasyStar pathfinding, and Mission 1–5 checkpoints.",
@@ -646,11 +646,11 @@ export const RED_TEAM_DEFENSE_DECKS: readonly RedTeamDeck[] = [
         severity: "high",
         challengeQuestion: {
           en: "With AI-assisted art generation and mission scripting, how did you stop style drift and silent level-specific rule hacks?",
-          zh: "在有 AI 辅助生成部分美术资源与关卡脚本的情况下，如何防住各关画风分裂与后期关卡悄悄篡改基础操作手感？",
+          zh: "部分美术资源与关卡脚本由 AI 辅助生成。如何防住各关画风分裂，避免后期关卡悄悄篡改基础操作手感？",
         },
         empiricalDefense: {
           en: "All 75 assets are locked to a provenance manifest and audited side by side before integration. Shared command tests forbid any mission manifest from altering click, box-select, or right-click semantics.",
-          zh: "75 项资产全部纳入溯源清单并人工并排审校色温；共享契约测试严格禁止任何关卡特例修改点选、框选或右键指令语义。",
+          zh: "75 项资产全部纳入溯源清单，由人工并排审校色温。共享契约测试严格禁止任何关卡特例修改点选、框选或右键指令语义。",
         },
         codeOrTestReceipt: {
           en: "75-asset provenance manifest + immutable command-grammar regression suite across all 5 missions.",

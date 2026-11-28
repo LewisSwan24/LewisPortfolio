@@ -15,7 +15,7 @@ export function PrimitiveDragSnap({ locale }: { locale: Locale }) {
   const [commits, setCommits] = useState(0);
   const [snapBacks, setSnapBacks] = useState(0);
   const [lastEvent, setLastEvent] = useState<string>(
-    isZh ? "水平拖动上方纸面卡片，松手观察吸附或翻页阈值。" : "Drag the card horizontally and release to test snap vs commit."
+    isZh ? "水平拖动上方纸面卡片，松手观察吸附回弹还是切牌提交。" : "Drag the card horizontally and release to test snap vs commit."
   );
 
   const cardRef = useRef<HTMLDivElement>(null);
@@ -56,7 +56,7 @@ export function PrimitiveDragSnap({ locale }: { locale: Locale }) {
       setCommits((c) => c + 1);
       setLastEvent(
         isZh
-          ? `已越过释放阈值 (${Math.round(Math.abs(state.lastDx))}px >= ${threshold}px) -> 触发切牌提交`
+          ? `已超过提交阈值 (${Math.round(Math.abs(state.lastDx))}px >= ${threshold}px) -> 触发切牌提交`
           : `Committed (${Math.round(Math.abs(state.lastDx))}px >= ${threshold}px) -> Next card snapped`
       );
     } else {
@@ -100,7 +100,7 @@ export function PrimitiveDragSnap({ locale }: { locale: Locale }) {
           onPointerUp={finishDrag}
           onPointerCancel={finishDrag}
         >
-          <strong>{isZh ? "按住左右拖动此卡 ↔" : "Drag horizontally ↔"}</strong>
+          <strong>{isZh ? "按住左右拖动卡片 ↔" : "Drag horizontally ↔"}</strong>
           <span className="eyebrow">
             {isZh
               ? `阻尼 ${damping.toFixed(2)} · 阈值 ${threshold}px`

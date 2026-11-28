@@ -97,7 +97,7 @@ export function ReplayWorkbenchClient({
         <div
           className={styles.trackGroup}
           role="group"
-          aria-label={isZh ? "选择硬件与协议轨迹" : "Select hardware or protocol trace"}
+          aria-label={isZh ? "选择硬件与协议时序" : "Select hardware or protocol trace"}
         >
           {traces.map((trace) => (
             <button
@@ -133,7 +133,7 @@ export function ReplayWorkbenchClient({
           onKeyDown={handleStageKeyDown}
           aria-label={
             isZh
-              ? "协议帧时序重放舞台，支持空格播放与左右方向键步进"
+              ? "协议帧时序重放区，支持空格播放与左右方向键步进"
               : "Protocol frame replay stage, press Space to play or Left/Right arrows to step"
           }
           data-testid="replay-stage"
@@ -289,7 +289,7 @@ export function ReplayWorkbenchClient({
 
           <div className={styles.invariantBox}>
             <span className={styles.eyebrow} style={{ display: "block", marginBottom: 4 }}>
-              {isZh ? "交互语义与工程护栏" : "Human & Engineering Invariant"}
+              {isZh ? "交互语义与工程约束" : "Human & Engineering Invariant"}
             </span>
             <p style={{ margin: "0 0 8px" }}>{activeFrame.humanSummary[locale]}</p>
             <p style={{ margin: 0, color: "var(--text-2)", fontSize: 13 }}>
@@ -299,7 +299,7 @@ export function ReplayWorkbenchClient({
           </div>
 
           <Link href={activeTrace.caseHref} className="btn btn-ghost" style={{ justifySelf: "start" }}>
-            {isZh ? "查看完整案例论证 →" : "Open full case study →"}
+            {isZh ? "查看完整案例 →" : "Open full case study →"}
           </Link>
         </aside>
       </div>

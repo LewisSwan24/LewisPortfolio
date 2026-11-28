@@ -1,7 +1,7 @@
 ---
 title: "克制的 GSAP 动效：如何尊重阅读带宽与减弱动态偏好"
 date: "2026-11-24"
-excerpt: "技术型作品集里的动效应当梳理信息节奏，而非消耗认知带宽或制造布局偏移。记录仅变换属性、动态加载 ScrollTrigger 与无障碍 0ms 即时落位的工程规范。"
+excerpt: "技术型作品集里的动效应当梳理信息节奏，不能消耗认知带宽或制造布局偏移。记录只用变换属性、动态加载 ScrollTrigger 与无障碍 0ms 即时落位的工程规范。"
 tags:
   - 动效设计
   - 性能优化
@@ -14,14 +14,14 @@ published: true
 
 在本站的 [实验室](/zh/lab) 与案例详情流中，GSAP 遵循三条克制边界：
 
-## 1. 动态注册插件，仅动画合成层属性
+## 1. 动态注册插件，只用合成层属性做动效
 
 所有动效只驱动 `x`、`y`、`scale` 与 `autoAlpha` 等合成层变换，绝不动 `width`、`height` 或 `top` 等布局属性。插件统一由 `src/lib/motion/gsap.ts` 中的 `getGsapWithScrollTrigger()` 按需异步加载并单次注册，让路由的 JS 保持精简。预算检查规定，单个路由块超过 `22 kB gz`，或者普通共享块超过 `70 kB gz`，构建就会失败。
 
 ## 2. 强制上下文清理与 `0ms` 即时落位
 
-所有 React 组件内创建的动画均托管给 `gsap.context()` 与 `gsap.matchMedia()`，组件卸载时必须执行 `.revert()` 彻底回收监听。一旦检测到 `prefers-reduced-motion: reduce`，所有过渡瞬间按 `0ms` 结算完成态，确保正文内容永远立即可读。
+React 组件内创建的所有动画都交给 `gsap.context()` 与 `gsap.matchMedia()` 托管，组件卸载时必须执行 `.revert()` 彻底回收监听。一旦检测到 `prefers-reduced-motion: reduce`，所有过渡都在 `0ms` 内直接到位，确保正文内容永远立即可读。
 
 ## 3. 动效与 3D 永远退居核心文本之后
 
-WebGL 未启用时，首页的 3D/矢量标尺会在 `0ms` 内静态呈现在 SVG 轴上。Playwright 测试（`e2e/v42-three-and-matrix.spec.ts` 与 `e2e/v45-security-and-cwv.spec.ts`）持续守卫主路由零控制台报错，并把 `CLS` 控制在 `0.05` 以内。你可以前往 [实验室](/zh/lab) 亲自调节并校验动效曲线参数。
+WebGL 未启用时，首页的 3D/矢量标尺会在 `0ms` 内静态呈现在 SVG 轴上。Playwright 测试（`e2e/v42-three-and-matrix.spec.ts` 与 `e2e/v45-security-and-cwv.spec.ts`）持续检查主路由，确保控制台零报错，并把 `CLS` 控制在 `0.05` 以内。你可以前往 [实验室](/zh/lab) 亲自调节并校验动效曲线参数。

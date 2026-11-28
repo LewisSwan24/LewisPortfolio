@@ -15,14 +15,14 @@ export function PrimitiveRiskCard({ locale }: { locale: Locale }) {
     <div className="lab-prim-panel">
       <p className="lab-prim-summary">
         {isZh
-          ? "对比「误导性亮色主按钮确认」与「默认焦点落在先不要的冷静确认卡」。点击各自「聚焦默认按钮」后再按 Enter 键亲自测试防误触效果。"
+          ? "对比「误导性亮色主按钮确认」与「默认焦点落在先不要的冷静确认卡」。分别点击各自的「聚焦默认按钮」，再按 Enter 键测试防误触效果。"
           : "Compare a misleading bright Confirm default against Lamplight's calm card. Focus each card's default button and press Enter to test accidental confirmation."}
       </p>
 
       <div className="lab-dual-view">
         <article className="lab-risk-compare lab-risk-compare--anti">
           <div className="eyebrow">{isZh ? "反例 · 亮色主按钮诱导" : "Anti-pattern · Misleading primary CTA"}</div>
-          <strong>{isZh ? "覆盖既有 config.json？" : "Overwrite existing config.json?"}</strong>
+          <strong>{isZh ? "覆盖现有 config.json？" : "Overwrite existing config.json?"}</strong>
           <div className="lab-sm-actions">
             <button
               ref={antiDefaultRef}
@@ -31,7 +31,7 @@ export function PrimitiveRiskCard({ locale }: { locale: Locale }) {
               onClick={() =>
                 setAntiResult(
                   isZh
-                    ? "误触发生：按 Enter 直接覆写了生产配置。"
+                    ? "发生误触：按 Enter 直接覆盖了生产配置。"
                     : "Accidental overwrite: pressing Enter wiped existing config."
                 )
               }
@@ -41,7 +41,7 @@ export function PrimitiveRiskCard({ locale }: { locale: Locale }) {
             <button
               type="button"
               className="btn btn-ghost"
-              onClick={() => setAntiResult(isZh ? "手动点选了取消。" : "Manually clicked cancel.")}
+              onClick={() => setAntiResult(isZh ? "手动点击了取消。" : "Manually clicked cancel.")}
             >
               {isZh ? "取消" : "Cancel"}
             </button>
@@ -51,14 +51,14 @@ export function PrimitiveRiskCard({ locale }: { locale: Locale }) {
             className="lab-pill"
             onClick={() => antiDefaultRef.current?.focus()}
           >
-            {isZh ? "聚焦此卡默认按钮（试按 Enter）" : "Focus default button (try Enter)"}
+            {isZh ? "聚焦默认按钮（试按 Enter）" : "Focus default button (try Enter)"}
           </button>
           {antiResult && <p className="lab-compare-outcome" role="status">{antiResult}</p>}
         </article>
 
         <article className="lab-risk-compare lab-risk-compare--calm">
           <div className="eyebrow">{isZh ? "Lamplight 规范 · 默认「先不要」" : "Lamplight pattern · Default 'Not now'"}</div>
-          <strong>{isZh ? "覆盖既有 config.json？" : "Overwrite existing config.json?"}</strong>
+          <strong>{isZh ? "覆盖现有 config.json？" : "Overwrite existing config.json?"}</strong>
           <div className="lab-sm-actions">
             <button
               ref={calmDefaultRef}
@@ -67,7 +67,7 @@ export function PrimitiveRiskCard({ locale }: { locale: Locale }) {
               onClick={() =>
                 setCalmResult(
                   isZh
-                    ? "安全暂停：按 Enter 触发「先不要」，已完成进度完整保留。"
+                    ? "安全暂停：按 Enter 触发「先不要」，已有进度完整保留。"
                     : "Paused safely: pressing Enter chose 'Not now' and preserved progress."
                 )
               }
@@ -78,7 +78,7 @@ export function PrimitiveRiskCard({ locale }: { locale: Locale }) {
               type="button"
               className="btn btn-ghost"
               onClick={() =>
-                setCalmResult(isZh ? "经明确二次挑选后执行。" : "Proceeded only after explicit choice.")
+                setCalmResult(isZh ? "明确二次选择后才执行。" : "Proceeded only after explicit choice.")
               }
             >
               {isZh ? "仍要继续" : "Proceed anyway"}
@@ -89,7 +89,7 @@ export function PrimitiveRiskCard({ locale }: { locale: Locale }) {
             className="lab-pill"
             onClick={() => calmDefaultRef.current?.focus()}
           >
-            {isZh ? "聚焦此卡默认按钮（试按 Enter）" : "Focus default button (try Enter)"}
+            {isZh ? "聚焦默认按钮（试按 Enter）" : "Focus default button (try Enter)"}
           </button>
           {calmResult && <p className="lab-compare-outcome" role="status">{calmResult}</p>}
         </article>

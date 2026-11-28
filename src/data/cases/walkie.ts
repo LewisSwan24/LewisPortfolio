@@ -91,7 +91,7 @@ export const walkieCase: CaseRecord = {
     placement: "after-summary",
     eyebrow: {
       en: "Interactive prototype · Hardware approval gate",
-      zh: "可操作活原型 · 手腕实体审批门控",
+      zh: "可运行原型 · 手腕实体审批门控",
     },
     title: {
       en: "Test the wrist permission loop yourself",
@@ -242,7 +242,7 @@ export const walkieCase: CaseRecord = {
       id: "physical-key-over-voice-approval",
       decisionTitle: {
         en: "Bind tool approvals to physical watch buttons rather than spoken 'yes'",
-        zh: "用手表实体双键握住最终审批权，而非语音口令自动放行",
+        zh: "用手表实体双键握住最终审批权，不靠语音口令自动放行",
       },
       humanTension: {
         en: "Speech is the quickest input on a wrist, but a misheard 'yes' could approve a destructive shell command.",
@@ -272,11 +272,11 @@ export const walkieCase: CaseRecord = {
       ],
       chosenTradeoff: {
         en: "Asymmetric physical key grammar on M5StickS3: hold the Front Key to record press-to-talk audio, press Front Key to approve, press Side Key to deny (with an optional spoken reason), and require a 30-second physical Front Key press to pair any new PC.",
-        zh: "在 M5StickS3 上建立非对称实体按键语法：按住前键录音、前键批准、侧键拒绝（可选口述原因），新电脑配对亦须 30 秒内按实体前键才落盘 pair.key，依靠拇指本体感觉建立明确的人机责任边界。",
+        zh: "在 M5StickS3 上建立非对称实体按键规则：按住前键录音，前键批准，侧键拒绝并可选口述原因。新电脑配对也必须在 30 秒内按实体前键确认，才会写入 pair.key，依靠拇指本体感觉划清人机责任边界。",
       },
       residualCostOrRisk: {
         en: "Slightly slower than hands-free speech, requires keeping the watch charged, and multi-user ergonomics outside Lewis's own desk remain unverified (wrist photos not yet committed).",
-        zh: "响应比纯语音慢半拍，且目前仅在 Lewis 本人桌边日常验证过；他人佩戴手感与长续航尚未实地测过，仓库也暂未归档实拍照片。",
+        zh: "响应比纯语音慢半拍，且目前仅在 Lewis 本人桌边日常验证过。他人佩戴手感与长续航尚未实地测过，仓库也暂未归档实拍照片。",
       },
     },
     {
@@ -287,7 +287,7 @@ export const walkieCase: CaseRecord = {
       },
       humanTension: {
         en: "A thumb-sized wrist screen cannot carry diffs or stack traces; showing raw logs overwhelms glanceability, whereas generic 'Disconnected' errors leave the user guessing whether Wi-Fi, cloud relay, or the laptop failed.",
-        zh: "拇指大小的腕表屏幕装不下代码 diff 与堆栈；塞满滚动文本会彻底丧失可瞥视性，而笼统的一句「已断线」只会让人在桌边盲猜到底是 Wi-Fi、云中继还是电脑挂了。",
+        zh: "拇指大小的腕表屏幕装不下代码 diff 与堆栈，塞满滚动文本就没法一眼看清。笼统的一句「已断线」，只会让人在桌边盲猜到底是 Wi-Fi、云中继还是电脑挂了。",
       },
       rejectedAlternatives: [
         {
@@ -313,22 +313,22 @@ export const walkieCase: CaseRecord = {
       ],
       chosenTradeoff: {
         en: "The Node 24 bridge distills replies into short spoken summaries, USB always preempts the AES-256-GCM Fly.io relay when plugged in, and OFFLINE screens distinguish no-Wi-Fi, relay-unreachable, and PC-bridge-offline explicitly.",
-        zh: "Node 24 桥接将执行结果收敛为简短语音简报回传手腕；插线时 USB 永远抢占 AES-256-GCM 加密 Fly.io 中继，离线界面明确区分「无 Wi-Fi / 中继不可达 / 电脑离线」三种状态。",
+        zh: "Node 24 桥接会把执行结果收敛为简短语音简报，回传手腕。插线时 USB 永远抢占 AES-256-GCM 加密的 Fly.io 中继，离线界面明确区分「无 Wi-Fi / 中继不可达 / 电脑离线」三种状态。",
       },
       residualCostOrRisk: {
         en: "Plugging or unplugging the USB cable mid-turn intentionally drops the in-flight turn rather than stitching streams; complex code diffs still require returning to the monitor.",
-        zh: "单轮对话中途插拔 USB 会主动放弃当前这轮交互而非强行拼接流；复杂代码审查依然必须回到电脑屏幕前完成。",
+        zh: "单轮对话中途插拔 USB 会主动放弃当前这轮交互，不会强行拼接数据流。复杂代码审查依然必须回到电脑屏幕前完成。",
       },
     },
     {
       id: "dual-boot-partition-and-pair-seal",
       decisionTitle: {
         en: "Enforce sibling-partition flash guards and button-confirmed key pairing across shared hardware",
-        zh: "共机双启动防误擦保护与 实体按键确认的配对握手",
+        zh: "共机双启动防误擦保护与实体按键确认的配对握手",
       },
       humanTension: {
         en: "Walkie shares one ESP32-S3 watch with On The Beat; one reckless uploadfs command or leaky cloud relay could simultaneously brick another coursework device or expose live repository prompts over public WebSockets.",
-        zh: "Walkie 与 On The Beat 共享同一块 M5StickS3 开发板，一次失误的全片擦除命令或明文云端中继，会同时毁掉另一套课程原型并把私密仓库上下文暴露在公网。",
+        zh: "Walkie 与 On The Beat 共享同一块 M5StickS3 开发板，一次失误的全片擦除命令会毁掉另一套课程原型。明文云端中继则会把私密仓库上下文暴露在公网。",
       },
       rejectedAlternatives: [
         {
@@ -348,17 +348,17 @@ export const walkieCase: CaseRecord = {
           },
           flaw: {
             en: "Makes daily desk-to-sofa handoffs painful and tempts developers into hardcoding static development secrets.",
-            zh: "每次切回桌面都重输密钥太反人类，反而诱导开发者偷懒写死明文密钥。",
+            zh: "每次切回桌面都重输密钥过于繁琐，反而诱导开发者偷懒写死明文密钥。",
           },
         },
       ],
       chosenTradeoff: {
         en: "firmware/guard.py blocks -t erase and -t uploadfs pre-flash, pairing locks an AES-256-GCM shared key to pair.key only after a 30-second physical Front Key confirmation, and Fly.io routes opaque binary envelopes without decrypting them.",
-        zh: "用 firmware/guard.py 在烧录前拦截 `-t erase` 与 `-t uploadfs`；配对须在 30 秒内物理按下手表前键方将 AES-256-GCM 共享密钥写入 pair.key，Fly.io 仅转发不可解密的二进制信封。",
+        zh: "用 firmware/guard.py 在烧录前拦截 `-t erase` 与 `-t uploadfs`。配对须在 30 秒内按下手表实体前键，才会将 AES-256-GCM 共享密钥写入 pair.key，Fly.io 仅转发无法解密的二进制信封。",
       },
       residualCostOrRisk: {
         en: "Adding a third co-resident firmware would still require manual partition table rebalancing, and if pair.key on the workstation is lost the watch must be physically re-paired.",
-        zh: "若日后继续往手表塞入第三套固件仍需重新平衡分区表；且电脑端一旦删除 pair.key，必须当面重走实体按键配对流程。",
+        zh: "若日后继续往手表塞入第三套固件，仍需重新平衡分区表。电脑端一旦删除 pair.key，也必须当面重走实体按键配对流程。",
       },
     },
   ],
@@ -448,7 +448,7 @@ export const walkieCase: CaseRecord = {
     },
     zh: {
       hero: {
-        title: "在手腕上跟编码 Agent 对话——同时把高风险审批留在实体按键上。",
+        title: "在手腕上跟编码 Agent 对话，同时把高风险审批留在实体按键上。",
         sub: "一套 PlatformIO C++ 固件、Node 24 桌面桥接与端到端加密 Fly.io 中继，与 On The Beat 共享同一块 M5StickS3 双启动手表。",
       },
       roleVal: "独立负责：交互模型、协议约束、固件刷写与硬件门禁验收（AI 编码工具辅助实现）",
@@ -481,7 +481,7 @@ export const walkieCase: CaseRecord = {
       sy: {
         label: "核心设计决策",
         title: "用实体物理动作划定安全与注意力边界。",
-        p: "每一个有风险的状态切换都绑定明确的实体按键：按住前键采集 16 kHz 对讲录音、松开发送；新电脑配对必须在 30 秒内按 S3 前键确认才会写入 pair.key；Claude Code 工具权限进入独立审批队列，前键同意、侧键拒绝（并可口述拒绝原因）。同时按住双键 3 秒即可切换回 app0（On The Beat），firmware/guard.py 则直接拦截 -t erase 与 -t uploadfs 防止误擦除。",
+        p: "每一个有风险的状态切换都绑定明确的实体按键。按住前键采集 16 kHz 对讲录音，松开发送。新电脑配对必须在 30 秒内按 S3 前键确认，才会写入 pair.key。Claude Code 工具权限进入独立审批队列，前键同意，侧键拒绝并可口述拒绝原因。同时按住双键 3 秒即可切换回 app0（On The Beat），firmware/guard.py 则直接拦截 -t erase 与 -t uploadfs 防止误擦除。",
       },
       id: {
         label: "加密与传输",
@@ -489,7 +489,7 @@ export const walkieCase: CaseRecord = {
       },
       pr: {
         label: "桥接与语音管线",
-        p: "Node 24 桥接为配置好的每个项目预热独立 Claude Code 进程，录音经 OpenAI 语音接口处理（失败自动回退 Gemini），区分控制指令（同意/拒绝/停止/继续/切换项目）与对话内容，再把摘要语音回传手表。API 密钥放在仓库外的 %APPDATA%\\walkie\\keys.env，永不打印到日志。",
+        p: "Node 24 桥接为配置好的每个项目预热独立 Claude Code 进程。录音经 OpenAI 语音接口处理，失败自动回退 Gemini。桥接会区分控制指令（同意/拒绝/停止/继续/切换项目）与对话内容，再把摘要语音回传手表。API 密钥放在仓库外的 %APPDATA%\\walkie\\keys.env，永不打印到日志。",
       },
       te: {
         label: "测试与诚实边界",
@@ -497,14 +497,14 @@ export const walkieCase: CaseRecord = {
       },
       ou: {
         label: "产出与边界",
-        p: "完成了一台能用的双启动手腕语音遥控器，跑通有线 USB 优先与端到端加密云中继切换、多项目对话管理及真机屏幕与按键验证。目前只有作者本人用过，外部开发者试戴与真机佩戴照片都还没做。",
+        p: "完成了一台能用的双启动手腕语音遥控器。有线 USB 优先与端到端加密云中继切换、多项目对话管理及真机屏幕与按键验证均已跑通。目前只有作者本人用过，外部开发者试戴与真机佩戴照片都还没做。",
         m1: { v: "双通道", label: "USB 有线优先 · 离桌切端到端加密中继" },
         m2: { v: "真机实测", label: "小屏分页、实体审批键与加密链路验证" },
         m3: { v: "双分区", label: "与 On The Beat 同机防误擦隔离" },
       },
       rf: {
         label: "反思",
-        p: "为编码 Agent 做硬件交互，会逼着你把所有模糊的 UX 想法压缩成清晰的帧协议和按键规则。当屏幕只有拇指大小、没有键盘时，哪些 Agent 状态真正不可或缺会立刻浮出水面：正在听、等待审批、当前在哪个项目，以及为什么断连。",
+        p: "为编码 Agent 做硬件交互，会逼着你把所有模糊的 UX 想法压缩成清晰的帧协议和按键规则。屏幕只有拇指大小、没有键盘时，哪些 Agent 状态真正不可或缺会立刻浮出水面。包括正在听、等待审批、当前在哪个项目，以及为什么断连。",
       },
     },
   },

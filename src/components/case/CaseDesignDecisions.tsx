@@ -19,7 +19,7 @@ export function CaseDesignDecisions({ decisions, locale }: CaseDesignDecisionsPr
         eyebrow: "核心论证",
         heading: "设计决策与取舍论证",
         subtitle:
-          "每条交互规则都从人的真实摩擦出发，并列被否决的方案与当前仍保留的代价。",
+          "每条交互规则都从人的真实摩擦出发，同时列出否决的方案与目前仍保留的代价。",
         tension: "人的真实痛点",
         rejected: "被否决的备选方案",
         chosen: "最终交互取舍",

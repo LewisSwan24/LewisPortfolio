@@ -103,7 +103,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
           <div
             className="idx-filters v3-pill-row"
             role="group"
-            aria-label={isZh ? "专论主题集群" : "Monograph clusters"}
+            aria-label={isZh ? "专题分类" : "Monograph clusters"}
           >
             <button
               className={`idx-filter ${activeCluster === "all" ? "active" : ""}`}

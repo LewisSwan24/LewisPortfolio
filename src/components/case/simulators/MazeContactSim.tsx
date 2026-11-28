@@ -102,7 +102,7 @@ export function MazeContactSim({ locale, onStatusChange }: SimulatorProps) {
       ) {
         setPulseCount((c) => c + 1);
         const wallMsg = isZh
-          ? `${band.players} 协同${band.dirLabel.zh}触碰到边界挡板 · 手指套触发防抖震动提示。`
+          ? `${band.players} 协同${band.dirLabel.zh}碰到边界挡板 · 指套触发防抖震动提示。`
           : `${band.players} co-touched ${band.dirLabel.en} into a maze wall · finger sleeve buzzed.`;
         onStatusChange?.(wallMsg);
         return;
@@ -162,7 +162,7 @@ export function MazeContactSim({ locale, onStatusChange }: SimulatorProps) {
         stepsLabel: "已走步数",
         pulsesLabel: "同步反馈脉冲",
         channelsLabel: "联动通道",
-        channelsVal: won ? "通关结算 ✓" : activeBand ? "计分 · 震动 · LED · 串口" : "待机等待接触",
+        channelsVal: won ? "通关结算 ✓" : activeBand ? "计分 · 震动 · LED · 串口" : "等待接触",
         wonBadge: "已到达终点 · 协同通关",
       }
     : {
@@ -216,7 +216,7 @@ export function MazeContactSim({ locale, onStatusChange }: SimulatorProps) {
               setShakingBand(null);
               onStatusChange?.(
                 isZh
-                  ? "已激活「双人协同」：两位玩家同时触碰腕带，可以推动球体。"
+                  ? "已切换为「双人协同」：两位玩家同时触碰腕带，可以推动球体。"
                   : "Two-player co-touch active: wristband pairs now move the orb."
               );
             }}

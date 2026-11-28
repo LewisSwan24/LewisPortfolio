@@ -23,7 +23,7 @@ export const HEURISTIC_ZH: Record<HeuristicCode, string> = {
   "H6 · Recognition rather than recall": "H6 · 识别而非回忆",
   "H7 · Flexibility and efficiency": "H7 · 灵活与高效",
   "H8 · Aesthetic and minimalist design": "H8 · 美观简约的设计",
-  "H9 · Recover from errors cleanly": "H9 · 从错误中干净地恢复",
+  "H9 · Recover from errors cleanly": "H9 · 从错误中顺畅恢复",
   "H10 · Help and documentation": "H10 · 帮助与文档",
 };
 
@@ -50,7 +50,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "feedback",
     finding: {
       en: "Splits generic offline errors into 3 diagnostic cards (No Wi-Fi / Relay Unreachable / PC Bridge Offline) so users see exact failure layer.",
-      zh: "将笼统离线拆分为「无 Wi-Fi / 中继不可达 / PC 休眠」三态清晰诊断卡片。",
+      zh: "把笼统的离线提示拆成「无 Wi-Fi / 中继不可达 / PC 休眠」三态诊断卡。",
     },
     verifiedStatus: "bench-tested",
     proofHref: "/projects/walkie#state-matrix",
@@ -63,7 +63,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Asymmetric Front Approve vs Side Deny keys + firmware/guard.py pre-flash check prevent irreversible tool exec or sibling app erase.",
-      zh: "实体前键批准与侧键否决物理分隔，且 guard.py 硬件脚本阻止误擦除双系统分区。",
+      zh: "实体前键批准与侧键否决在物理上分开，guard.py 硬件脚本也会阻止误擦除双系统分区。",
     },
     verifiedStatus: "bench-tested",
     proofHref: "/projects/walkie#rejection-archive",
@@ -76,7 +76,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Single Side-Key press cleanly aborts pending Claude tool invocation with zero bash execution.",
-      zh: "侧键一键中止高危工具等待队列，零终端执行副作用。",
+      zh: "侧键一键中止高危工具等待队列，不触发终端执行，零副作用。",
     },
     verifiedStatus: "bench-tested",
     proofHref: "/patterns?pattern=physical-key-commitment-gate",
@@ -89,7 +89,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "open-risk",
     finding: {
       en: "Pending outside-desk wrist fatigue & multi-hour field battery study; only Lewis's desk & S3 hardware bench gates have been verified.",
-      zh: "外部程序员长期佩戴的腕部疲劳度与跨工作日续航研究尚属空白。",
+      zh: "外部程序员长期佩戴的腕部疲劳度与跨工作日续航，尚未开展研究。",
     },
     verifiedStatus: "unverified-hypothesis",
     proofHref: "/projects/walkie#outcome-limits",
@@ -104,7 +104,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Places initial modal focus strictly on safe 'Not now' action so habitual Enter presses safely dismiss risk alerts.",
-      zh: "初始弹窗焦点锁定于安全退让键「先不要」，根治盲按回车造成的误批准。",
+      zh: "弹窗初始焦点锁定在安全的「先不要」上，避免盲按回车造成误批准。",
     },
     verifiedStatus: "synthetic-gate",
     proofHref: "/patterns?pattern=default-safe-focus-lock",
@@ -117,7 +117,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Esc always dismisses and restores focus back to the exact origin card; Tab shifts deliberately to proceed.",
-      zh: "Esc 必归还焦距至触发原点，Tab 需显式跨过安全锁才会到达放行动作。",
+      zh: "按 Esc 必定把焦点还回触发原点，Tab 需主动跨过安全锁才会到达放行动作。",
     },
     verifiedStatus: "synthetic-gate",
     proofHref: "/projects/lamplight#state-matrix",
@@ -130,7 +130,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "feedback",
     finding: {
       en: "Swapped bright primary proceed highlights for low-arousal editorial contrast paired with explicit text severity.",
-      zh: "移除高对比主色诱导，以文字与边框清晰呈现危险层级而非视觉情绪绑架。",
+      zh: "去掉高对比主色诱导，改用文字和边框清晰标明危险层级，不靠视觉情绪施压。",
     },
     verifiedStatus: "observed",
     proofHref: "/projects/lamplight#rejection-archive",
@@ -143,7 +143,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "open-risk",
     finding: {
       en: "Protocol drafted in Sep 2026 but external participant diary study did not execute; longitudinal desensitization curves unmeasured.",
-      zh: "受试日记追踪方案已定稿但未对外部受众执行，长期弹窗免疫衰减曲线未收集。",
+      zh: "受试日记追踪方案已定稿，但未对外部受众执行，长期弹窗免疫衰减曲线尚未收集。",
     },
     verifiedStatus: "unverified-hypothesis",
     proofHref: "/projects/lamplight#outcome-limits",
@@ -158,7 +158,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Fields it cannot match or fill get a 3px red outline instead of a guess, and it never presses Submit.",
-      zh: "认不出或填不上的栏位标 3px 红框，不去猜，也从不代按提交。",
+      zh: "认不出或填不上的字段标 3px 红框，不去猜，也从不代按提交。",
     },
     verifiedStatus: "observed",
     proofHref: "/patterns?pattern=three-tier-confidence-blank-on-doubt",
@@ -171,7 +171,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "feedback",
     finding: {
       en: "Color + text confidence chips distinguish Deterministic Auto-fill, Ambiguous Review, and Blank Refusal.",
-      zh: "以图形徽章叠加文字状态同时标注「自动填入 / 模糊待审 / 策略留白」。",
+      zh: "用图形徽章配合文字状态，同时标明「自动填入 / 模糊待审 / 策略留白」。",
     },
     verifiedStatus: "observed",
     proofHref: "/projects/autofill#state-matrix",
@@ -184,7 +184,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Chrome Extension & Android WebView app enforce identical shared confidence thresholds without off-device PII upload.",
-      zh: "Chrome 扩展与 Android 端共享完全同源的三轨阈值规则，隐私留存本地。",
+      zh: "Chrome 扩展与 Android 端共用完全同源的三轨阈值规则，隐私数据留在本地。",
     },
     verifiedStatus: "observed",
     proofHref: "/projects/autofill#rejection-archive",
@@ -197,7 +197,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "open-risk",
     finding: {
       en: "Highly non-standard custom ATS web-component dropdowns outside standard Workday/Greenhouse markup remain brittle.",
-      zh: "非标准 ATS 站点的自定义 Shadow-DOM 下拉器尚未实现 100% 映射稳定性。",
+      zh: "非标准 ATS 站点的自定义 Shadow-DOM 下拉框，目前还做不到 100% 稳定映射。",
     },
     verifiedStatus: "unverified-hypothesis",
     proofHref: "/projects/autofill#outcome-limits",
@@ -212,7 +212,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Replaced wrist electrical shock deterrent cleanly with vibration wristband feedback + isolated SafeTouchServo rail.",
-      zh: "否决并移除高风险触电惩罚，改造为独立供电的安全舵机震动袖标提示。",
+      zh: "否决并移除了高风险触电惩罚，改为独立供电的安全舵机与震动袖标提示。",
     },
     verifiedStatus: "bench-tested",
     proofHref: "/projects/maze#rejection-archive",
@@ -238,7 +238,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "USB Web Serial disconnect triggers automatic standalone board buzzer/vibe fallback so exhibition co-play never freezes.",
-      zh: "串口脱落自动降级板载独立蜂鸣器提示，保障现场展陈双人协作成局不卡死。",
+      zh: "串口脱落时自动降级为板载独立蜂鸣器提示，保证现场展出时双人协作不卡死。",
     },
     verifiedStatus: "bench-tested",
     proofHref: "/projects/maze#state-matrix",
@@ -320,7 +320,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Zero mission-only command buttons: select, reposition, stance tradeoff & objective verbs work identically across Missions 01-05.",
-      zh: "5 关全程共用同一套框选/变阵/目标指令契约，零关卡专用特例按键。",
+      zh: "5 关全程共用同一套框选、变阵与目标指令规则，零关卡专用特例按键。",
     },
     verifiedStatus: "synthetic-gate",
     proofHref: "/patterns?pattern=immutable-cross-stage-grammar",
@@ -346,7 +346,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "structural-guard",
     finding: {
       en: "Impassable cliff clicks reject command without dropping active formation selection or jumping camera focus.",
-      zh: "误触不可通行地形仅明确拒止当前位移指令，完整保留原有战团选中与视角。",
+      zh: "误点不可通行地形时只驳回当前位移指令，完整保留原有战团选中状态与视角。",
     },
     verifiedStatus: "synthetic-gate",
     proofHref: "/projects/grassland#rejection-archive",
@@ -359,7 +359,7 @@ export const CASE_HEURISTIC_AUDITS: readonly CaseHeuristicEntry[] = [
     severity: "open-risk",
     finding: {
       en: "430+ local parser/rule tests pass cleanly; external player blind playtest across all 5 missions remains uncollected.",
-      zh: "已通过 430+ 项自动化数值与脚本测试，外部玩家全 5 关盲测遥测尚待采集。",
+      zh: "已通过 430+ 项自动化数值与脚本测试，外部玩家全 5 关盲测数据尚未采集。",
     },
     verifiedStatus: "unverified-hypothesis",
     proofHref: "/projects/grassland#outcome-limits",

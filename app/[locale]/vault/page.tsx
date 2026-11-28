@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const count = getAllVaultAutopsies().length;
   const description =
     locale === "zh"
-      ? `如实记录 ${count} 项退场与课程归档作品为何停下，以及它们和哪些公开主案相关。`
+      ? `如实记录 ${count} 项退场与课程归档作品为何停下，以及各自和哪些公开主案相关。`
       : `${count} retired and coursework prototypes, documented honestly: why each stopped, and which listed cases it relates to.`;
 
   return {
@@ -89,7 +89,7 @@ export default async function ArchiveVaultPage() {
           </summary>
           <p className="prose" style={{ maxWidth: "70ch", marginTop: 12 }}>
             {isZh
-              ? "四层坐标由服务端预先算好：归档作品、公开主案、交互模式、专文聚类。点击或用方向键选中任一节点，就会高亮和它相连的节点。上方的实证筛选可以找出仍待外部验证的部分。连线只表示相关，不表示因果。"
+              ? "四层坐标由服务端预先算好：归档作品、公开主案、交互模式、专文聚类。点击或用方向键选中任一节点，就会高亮相连的节点。上方的实证筛选可以找出仍待外部验证的部分。连线只表示相关，不表示因果。"
               : "Precomputed on the server with no heavy client graph library. Click or arrow-navigate any node across the four layers to highlight the nodes it links to. Links mean related, not caused by."}
           </p>
           <LineageGraphClient graph={graph} locale={locale} />

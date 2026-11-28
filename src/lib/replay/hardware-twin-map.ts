@@ -46,10 +46,10 @@ export const HARDWARE_TWIN_ZONES: Record<
     {
       id: "chassis",
       pinOrBus: "ESP32-S3 / ST7789 OLED",
-      label: { en: "Core MCU & OLED", zh: "主机芯与 OLED 状态屏" },
+      label: { en: "Core MCU & OLED", zh: "主控与 OLED 状态屏" },
       role: {
         en: "Displays three-way transport diagnostics and frames 16 kHz / 4-bit ADPCM turns.",
-        zh: "显示三段式链路体检，并承担 16 kHz 语音压缩与状态调度。",
+        zh: "显示三段式链路自检，并负责 16 kHz 语音压缩与状态调度。",
       },
       svgFocus: { x: 116, y: 36, w: 88, h: 52 },
     },
@@ -59,7 +59,7 @@ export const HARDWARE_TWIN_ZONES: Record<
       label: { en: "Dual-Key Approval Gate", zh: "实体双键审批门禁" },
       role: {
         en: "Physical thumb tactile lock separates destructive approval (Front) from abort/hold-to-talk (Side).",
-        zh: "前键物理确认高风险动作，侧键专司按住说话与拒批，凭触觉防误触。",
+        zh: "前键实体确认高风险动作，侧键负责按住说话与拒批，靠触觉防误触。",
       },
       svgFocus: { x: 132, y: 88, w: 56, h: 42 },
     },
@@ -81,7 +81,7 @@ export const HARDWARE_TWIN_ZONES: Record<
       label: { en: "Shared Coordinate Tray", zh: "四象限共用触点底盘" },
       role: {
         en: "Maps paired wristband vectors into physical maze clearance without blocking camera views.",
-        zh: "把两名玩家的腕带合力映射为迷宫位移，让实体碰撞反馈直觉清晰。",
+        zh: "把两名玩家的腕带合力映射为迷宫位移，让实体碰撞反馈直观清晰。",
       },
       svgFocus: { x: 64, y: 42, w: 192, h: 96 },
     },
@@ -91,7 +91,7 @@ export const HARDWARE_TWIN_ZONES: Record<
       label: { en: "Conductive Wristband A", zh: "导电腕带 A（水平轴）" },
       role: {
         en: "Holds only one movement axis so two players look up and synchronize physical pace.",
-        zh: "仅掌握单向坐标轴，迫使共处一室的两名玩家抬头对话协作。",
+        zh: "只控制单向坐标轴，迫使共处一室的两名玩家抬头对话协作。",
       },
       svgFocus: { x: 92, y: 62, w: 60, h: 56 },
     },

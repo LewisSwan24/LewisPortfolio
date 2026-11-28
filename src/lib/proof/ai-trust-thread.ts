@@ -77,7 +77,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
     eyebrow: "AI 交互",
     title: "贯穿项目的一条主线：让信任机制与拒绝边界看得见",
     intro:
-      "这组案例背后连着同一条交互原则：当系统底层存在不确定性或越权风险时，界面必须把人的确认权、拒绝分寸与真实状态摆在明处，而不是用过度肯定的视觉去掩盖它。每条记录都写明了署名分工与当前验证边界。",
+      "这组案例背后连着同一条交互原则。系统底层存在不确定性或越权风险时，界面必须把人的确认权、拒绝分寸与真实状态摆在明处。不能用过度肯定的视觉掩盖这些风险。每条记录都写明了署名分工与当前验证边界。",
     entries: [
       {
         slug: "walkie",
@@ -92,7 +92,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "Lamplight Nook",
         who: "独立方向与决策（代码由 Claude Code 编写）",
         body:
-          "不堆叠滚动终端日志，也不把风险弹窗默认聚焦在「继续」；界面用咖啡馆黑板呈现任务计划，把高风险确认卡初始焦点锁死在「先不要」并强制仅处理文件副本。",
+          "不堆叠滚动终端日志，也不把风险弹窗默认聚焦在「继续」。界面用咖啡馆黑板呈现任务计划，把高风险确认卡初始焦点锁死在「先不要」，并强制仅处理文件副本。",
         href: "/projects/lamplight#decision-timeline",
       },
       {
@@ -100,7 +100,7 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "Resume Autofill",
         who: "独立规则与自用实测（代码由 Claude Code 编写）",
         body:
-          "面对有歧义的下拉框与开放问答，宁可标出待核或刻意留白，绝不让模型替求职者编造答案；最终提交永远留给人手点击，简历数据不出本地设备。",
+          "面对有歧义的下拉框与开放问答，宁可标出待核或刻意留白，绝不让模型替求职者编造答案。最终提交永远由人手动点击，简历数据不出本地设备。",
         href: "/projects/autofill#decision-timeline",
       },
       {
@@ -108,11 +108,11 @@ const aiTrustThreads: Record<ProofLocale, AiTrustThread> = {
         caseName: "On The Beat",
         who: "课程个人实现版（代码由 Claude Code 编写）",
         body:
-          "AI 生成初稿曾把写死的假配对和离不开笔电的本地链路藏在精美界面下；9 月 25 日我发现画面上的 MEET 是模拟的。逐一打回重做后才跑通脱离电脑的双向手环协同。",
+          "AI 生成初稿曾把写死的假配对和离不开笔记本的本地链路藏在精美界面下。9 月 25 日我发现画面上的 MEET 是模拟的。逐一打回重做后才跑通脱离电脑的双向手环协同。",
         href: "/projects/onthebeat#decision-timeline",
       },
     ],
-    limit: "这些探索均立足于可运行原型，围绕特定验证范围（作者本人日常运行、合成表单套件或真机双端实测）展开，尚未经历外部参与者测试或真实生产流量考验。",
+    limit: "这些探索都基于可运行原型，只在特定范围内验证（作者本人日常运行、合成表单套件或真机双端实测）。尚未经历外部参与者测试或真实生产流量考验。",
     linkLabel: "查看案例中的设计决策",
     caseMarker: { label: "主线", link: "AI 信任机制" },
   },

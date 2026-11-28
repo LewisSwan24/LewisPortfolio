@@ -118,7 +118,7 @@ export function LineageGraphClient({
         <div
           className={styles.pillGroup}
           role="group"
-          aria-label={isZh ? "实证状态覆盖滤镜" : "Evidence status overlay filter"}
+          aria-label={isZh ? "按验证状态筛选" : "Evidence status overlay filter"}
         >
           {STATUS_FILTERS.map((f) => (
             <button
@@ -237,7 +237,7 @@ export function LineageGraphClient({
                       <span>
                         {node.isArchivedUnlisted
                           ? isZh
-                            ? "归档解剖"
+                            ? "归档复盘"
                             : "archived"
                           : statusText(node.verifiedStatus)}
                       </span>
@@ -258,7 +258,7 @@ export function LineageGraphClient({
                 <tr>
                   <th scope="col">{isZh ? "层级" : "Layer"}</th>
                   <th scope="col">{isZh ? "节点" : "Node"}</th>
-                  <th scope="col">{isZh ? "实证状态" : "Verified Status"}</th>
+                  <th scope="col">{isZh ? "验证状态" : "Verified Status"}</th>
                   <th scope="col">{isZh ? "关联边" : "Links"}</th>
                 </tr>
               </thead>
@@ -312,7 +312,7 @@ export function LineageGraphClient({
             className="btn btn-primary"
             style={{ minHeight: 38, justifySelf: "start" }}
           >
-            {isZh ? "直达该节点源记录 →" : "Open Source Record →"}
+            {isZh ? "查看该节点源记录 →" : "Open Source Record →"}
           </Link>
 
           <div className={styles.inspectorSection}>
@@ -357,7 +357,7 @@ export function LineageGraphClient({
             </span>
             {outgoingEdges.length === 0 ? (
               <p style={{ margin: 0, fontSize: 13, color: "var(--text-3)" }}>
-                {isZh ? "汇入专题研判论文聚类。" : "Terminal Monograph Cluster node."}
+                {isZh ? "末端专文聚类节点。" : "Terminal Monograph Cluster node."}
               </p>
             ) : (
               <ul className={styles.hopList}>

@@ -38,7 +38,7 @@ export function CrossPracticeArchitectureSvg({ locale }: { locale: "en" | "zh" }
           fontWeight="600"
           fontFamily="var(--font-display)"
         >
-          {isZh ? "CS 工程底座 (2:1)" : "BSc (Hons) CS (2:1)"}
+          {isZh ? "CS 科班基础 (2:1)" : "BSc (Hons) CS (2:1)"}
         </text>
         <text
           x="36"
@@ -65,7 +65,7 @@ export function CrossPracticeArchitectureSvg({ locale }: { locale: "en" | "zh" }
           fontSize="12.5"
           fontFamily="var(--font-ui)"
         >
-          {isZh ? "• 本科荣誉毕业论文长篇实践" : "• Extended honours dissertation"}
+          {isZh ? "• 本科长篇荣誉毕业论文" : "• Extended honours dissertation"}
         </text>
         <text
           x="36"
@@ -229,7 +229,7 @@ export function CrossPracticeArchitectureSvg({ locale }: { locale: "en" | "zh" }
       </svg>
       <figcaption>
         {isZh
-          ? "能力演进脉络：2020–2024 年英国斯旺西 CS 科班训练与荣誉毕业论文奠定状态机确定性思考，2025 年 UQ 研究生课程沉淀出以人因和可验证架构为中心的重构习惯，最终在 2026 年汇成六件软硬件兼修的主力交付作品。"
+          ? "能力演进脉络：2020–2024 年英国斯旺西的 CS 科班训练与荣誉毕业论文，打下状态机确定性思考的基础。2025 年 UQ 研究生课程里，养成以人因和可验证架构为中心的重构习惯。最终在 2026 年汇成六件软硬件兼修的主力交付作品。"
           : "Training arc from BSc Computer Science at Swansea (2020–24, 2:1 with extended honours dissertation) through 2025 UQ Interaction Design research methods into six 2026 shipped software and hardware prototypes."}
       </figcaption>
     </figure>
@@ -407,7 +407,7 @@ export function WalkieTactileSchematicSvg({ locale }: { locale: "en" | "zh" }) {
       </svg>
       <figcaption>
         {isZh
-          ? "硬件实体门控剖面（响应式内联矢量图，尚未添加外部佩戴实拍图）：Walkie 与 On The Beat 安全共存于同一块 M5StickS3（app0/app1），通过物理正/侧垂直键分离批准与拒绝，并以 USB 抢占和 AES-256-GCM 端到端加密中继连接本地 Claude Code 桥接端。"
+          ? "硬件实体门控剖面（响应式内联矢量图，尚未添加外部佩戴实拍图）：Walkie 与 On The Beat 安全共存于同一块 M5StickS3（app0/app1）。正面键与垂直侧键在物理上分开批准与拒绝，并经 USB 抢占和 AES-256-GCM 端到端加密中继连接本地 Claude Code 桥接端。"
           : "Tactile M5StickS3 dual-boot schematic (responsive inline SVG while external wearer photography is pending): Walkie (app1) coexists safely alongside On The Beat (app0) under guard.py, physically splits Approve (Front) from Deny (Side), and routes over USB-first or AES-256-GCM Fly.io relay."}
       </figcaption>
     </figure>

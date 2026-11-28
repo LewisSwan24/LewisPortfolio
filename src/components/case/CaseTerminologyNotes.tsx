@@ -13,7 +13,7 @@ const CASE_TERM_NOTES: Partial<Record<CurrentProjectSlug, TermNoteEntry>> = {
     label: { en: "Protocol note", zh: "协议注脚" },
     note: {
       en: "Every frame after PAIR is sealed with AES-256-GCM using a key derived from pair.key; the Fly.io relay forwards ciphertext without holding decryption keys.",
-      zh: "PAIR 配对后的所有帧均使用 pair.key 派生的密钥进行 AES-256-GCM 加密，Fly.io 云端中继仅转发密文，无法读取任何指令与工具名。",
+      zh: "PAIR 配对后的所有帧都用 pair.key 派生的密钥做 AES-256-GCM 加密。Fly.io 云端中继仅转发密文，无法读取任何指令与工具名。",
     },
   },
   lamplight: {
@@ -29,7 +29,7 @@ const CASE_TERM_NOTES: Partial<Record<CurrentProjectSlug, TermNoteEntry>> = {
     label: { en: "Trust boundary", zh: "信任边界" },
     note: {
       en: "Fields only auto-write on deterministic 1:1 schema matches; ambiguous dropdowns require manual selection and final Submit remains strictly human-triggered.",
-      zh: "仅确定性的 1:1 字段映射允许直填；存在歧义的下拉项标出等待人工确认，最终提交永远锁死为人工操作。",
+      zh: "仅确定性的 1:1 字段映射允许直填。有歧义的下拉项标出等待人工确认，最终提交永远锁死为人工操作。",
     },
   },
   fencepost: {
@@ -37,7 +37,7 @@ const CASE_TERM_NOTES: Partial<Record<CurrentProjectSlug, TermNoteEntry>> = {
     label: { en: "Privacy invariant", zh: "隐私不变量" },
     note: {
       en: "Revoking an access_grants token updates the database read join immediately with zero cache lag, so the assistant loses access on the very next prompt.",
-      zh: "吊销 access_grants 权限即时更新数据库查询条件且零缓存延迟，AI 助手在下一次提问时立刻无法读取该条记录。",
+      zh: "吊销 access_grants 权限后会即时更新数据库查询条件，没有缓存延迟。AI 助手在下一次提问时立刻无法读取该条记录。",
     },
   },
   maze: {
@@ -45,7 +45,7 @@ const CASE_TERM_NOTES: Partial<Record<CurrentProjectSlug, TermNoteEntry>> = {
     label: { en: "Hardware timing", zh: "硬件时序" },
     note: {
       en: "Raw FC-51 IR beams flicker two or three times per ball pass; a firmware cooldown locks score, timer, LEDs, and sleeve haptics to one shared event.",
-      zh: "原始 FC-51 红外光束在小球经过时会抖动触发多次；固件冷却窗口把计分、计时、灯带与手指套震动锁定为同一个原子事件。",
+      zh: "原始 FC-51 红外光束在小球经过时会抖动触发多次。固件冷却窗口把计分、计时、灯带与手指套震动锁定为同一个原子事件。",
     },
   },
   connect: {
@@ -53,7 +53,7 @@ const CASE_TERM_NOTES: Partial<Record<CurrentProjectSlug, TermNoteEntry>> = {
     label: { en: "IA inflection", zh: "架构拐点" },
     note: {
       en: "After September think-aloud sessions exposed missing back routes, the team redrew all 5 core screens on one sheet of paper before writing the shared React system.",
-      zh: "九月出声思考测试暴露出缺少返回路径后，团队在一张纸上重画了全部 5 个核心页面，再重新搭起共享 React 组件系统。",
+      zh: "九月出声思考测试暴露出缺少返回路径的问题。团队随后在一张纸上重画了全部 5 个核心页面，再重新搭起共享 React 组件系统。",
     },
   },
 };

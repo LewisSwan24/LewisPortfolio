@@ -262,7 +262,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
         label: "推理链条",
         value: "决策有迹可循",
         detail:
-          "每项能力结论都对应具体案例片段：证据来自台架检查和本人使用，看得到方案改了哪里；也写明了没有做过外部可用性测试。",
+          "每项能力结论都对应具体案例片段：证据来自台架检查和本人使用，看得到方案改了哪里。同时写明了没有做过外部可用性测试。",
       },
     ],
     primaryAction: { label: "联系 Lewis", href: "/contact" },
@@ -276,7 +276,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       proof:
         "UQ Connect 在开发中途停下来，把整个应用在纸上重画成五个屏，并画出从首页出发的每条路径。",
       whyItMatters:
-        "证明我遇到结构层面的缺陷，会用结构去回答，而不是打补丁。",
+        "证明我遇到结构层面的缺陷，会从结构本身入手解决，不靠打补丁。",
       href: "/projects/connect#decision-timeline",
     },
     {
@@ -314,7 +314,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "自动化克制与本地隐私",
       caseSlug: "autofill",
       proof:
-        "Resume Autofill 对有歧义栏位刻意留空、禁止代点最终提交，并由测试锁定零外网请求。",
+        "Resume Autofill 对有歧义的字段刻意留空、禁止代点最终提交，并由测试锁定零外网请求。",
       whyItMatters:
         "展示「明确声明系统不做什么」比强行全填更能建立信任。",
       href: "/projects/autofill#decision-timeline",
@@ -324,7 +324,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       capability: "物理计算与实作",
       caseSlug: "maze",
       proof:
-        "MazeRunners 跑在我自己接线与编程的硬件上：感测、固件状态、震动反馈与浏览器控制台接在同一个闭环里。",
+        "MazeRunners 跑在我自己接线与编程的硬件上：感测、固件状态、震动反馈与浏览器控制台接在同一个循环里。",
       whyItMatters:
         "证明这些工作经得起真实世界的碰撞，而不只是经得起原型工具。",
       href: "/projects/maze#outcome-limits",
@@ -353,7 +353,7 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       id: "ai-output-review-proof",
       capability: "审查 AI 工具做出来的东西",
       caseSlug: "onthebeat",
-      proof: "On The Beat 的代码由 Claude Code 编写。我抓出了冒充真配对的模拟数据、离不开我笔电的链路和数错的画布，再在两支真手环上核对修复。",
+      proof: "On The Beat 的代码由 Claude Code 编写。我抓出了冒充真配对的模拟数据、离不开我笔记本的链路和数错的画布，再在两支真手环上核对修复。",
       whyItMatters: "说明 AI 辅助开发里留给设计者的那部分：决定什么才算做完。",
       href: "/projects/onthebeat#decision-timeline",
     },
@@ -387,14 +387,14 @@ const zhInterviewDecisionRoom: InterviewDecisionRoom = {
       id: "walkie-button-gate",
       group: "product",
       question: "为什么工具审批非要按手表实体键，而不直接用语音说同意？",
-      proves: "软硬边界划分、防误触人与物理确权取舍。",
+      proves: "软硬边界划分、防误触与物理确权取舍。",
       caseSlug: "walkie",
       href: "/projects/walkie#decision-timeline",
     },
     {
       id: "lamplight-default-refusal",
       group: "product",
-      question: "为什么把桌面风险卡的默认焦点锁在「先不要」，而不是按惯例聚焦「继续」？",
+      question: "为什么把桌面风险卡的默认焦点锁在「先不要」，不按惯例聚焦「继续」？",
       proves: "认知安全设计，防止习惯性回车误操作。",
       caseSlug: "lamplight",
       href: "/projects/lamplight#decision-timeline",

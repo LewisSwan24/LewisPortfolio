@@ -17,7 +17,7 @@ export function PrimitiveWrist({ locale }: { locale: Locale }) {
     <div className="lab-prim-panel">
       <p className="lab-prim-summary">
         {isZh
-          ? "对比插线 USB（0ms 抢占）与离缆加密中继（+180ms 模拟延迟），并测试手腕前键批准与侧键拒绝附原因。"
+          ? "对比有线 USB（0ms 抢占）与端到端加密中继（+180ms 模拟延迟），测试手腕前键批准，以及侧键拒绝并附原因。"
           : "Compare wired USB preemption (0ms) vs end-to-end encrypted relay (+180ms simulated RTT) with physical Front Approve / Side Deny."}
       </p>
 
@@ -50,7 +50,7 @@ export function PrimitiveWrist({ locale }: { locale: Locale }) {
 
         <div className="lab-wrist-status" data-outcome={outcome}>
           {outcome === "waiting" &&
-            (isZh ? "等待手腕实体按键确认..." : "Waiting for physical key press on wrist...")}
+            (isZh ? "等待手腕实体按键确认……" : "Waiting for physical key press on wrist...")}
           {outcome === "approved" &&
             (isZh ? "前键批准 -> 桥接已执行并语音回传结果" : "Front key approved -> Executed & spoken summary sent")}
           {outcome === "denied" &&

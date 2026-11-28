@@ -23,15 +23,15 @@ export const RESUME_COMPOSER_MARKETS: readonly ComposerMarketSpec[] = [
     id: "apac-closed-loop",
     label: {
       en: "APAC AI / Big-Tech Closed-Loop",
-      zh: "APAC AI / 大厂业务闭环版",
+      zh: "APAC AI / 大厂业务落地版",
     },
     shortLabel: {
       en: "APAC Closed-Loop",
-      zh: "APAC 业务闭环",
+      zh: "APAC 业务落地",
     },
     summary: {
       en: "Structures every bullet along pain point -> control rule -> engineering delivery -> verification ceiling.",
-      zh: "按「用户痛点 → 交互机制 → 工程闭环 → 系统边界」压缩表述，直击产品与研发联合评审焦点。",
+      zh: "按「用户痛点 → 交互机制 → 工程落地 → 系统边界」压缩表述，直击产品与研发联合评审焦点。",
     },
   },
   {
@@ -46,7 +46,7 @@ export const RESUME_COMPOSER_MARKETS: readonly ComposerMarketSpec[] = [
     },
     summary: {
       en: "Highlights human trade-offs, rejected automation shortcuts, accessibility guarantees, and honest test limits.",
-      zh: "前置人工干预护栏、被否决方案及 WCAG 2.2 AA 边界审计，贴合澳新及欧美资深工程师面试语境。",
+      zh: "前置人工干预护栏、否决方案及 WCAG 2.2 AA 边界检查，贴合澳新及欧美资深工程师面试语境。",
     },
   },
 ];

@@ -69,7 +69,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "Developer presses Front Key on M5StickS3 inside the 30s challenge window; pair.key derives locally and seals into NVS.",
-          zh: "开发者在 30 秒挑战窗口内物理按下前键，pair.key 在本地派生并封存，绝不以明文出表。",
+          zh: "开发者在 30 秒挑战窗口内按下实体前键，pair.key 在本地派生并封存，绝不以明文离开手表。",
         },
         invariantCheck: {
           en: "Fail-closed gate-p5: timeout or Side Key writes 0 bytes.",
@@ -92,11 +92,11 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "Off-cable speech leaves wrist as 4-bit ADPCM sealed under a fresh 12-byte nonce; Fly.io relay sees only ciphertext.",
-          zh: "离桌无线音频压缩为 4-bit ADPCM 并附带独立 12 字节 Nonce 密封传输，云中继全程只过密文。",
+          zh: "拔线后的无线音频压缩为 4-bit ADPCM，附带独立 12 字节 Nonce 密封传输，云端中继全程只过密文。",
         },
         invariantCheck: {
           en: "Zero plaintext repo paths or prompts visible to public relay.",
-          zh: "公网中继节点对仓库路径与对话明文零可见。",
+          zh: "公网中继节点看不到仓库路径与对话明文。",
         },
       },
       {
@@ -118,7 +118,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "Spoken 'yes' never unlocks destructive tools without hardware IRQ.",
-          zh: "口头说「确认」不绕过硬件键位中断，彻底防误识别放行。",
+          zh: "口头说「确认」无法绕过硬件按键中断，彻底防误识别放行。",
         },
       },
       {
@@ -136,7 +136,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "Watch speaks concise two-sentence recap and locks 3-line summary on OLED until next Front Key hold.",
-          zh: "手表播报两句话精简结论并在小屏定格三行摘要，静待下一次按住讲话。",
+          zh: "手表播报两句话的精简结论，小屏定格三行摘要，静待下一次按住讲话。",
         },
         invariantCheck: {
           en: "Hot-mic remains off until a deliberate PTT hold of at least 300 ms.",
@@ -225,7 +225,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "Pinned TLS handshake restores encrypted wss:// channel cleanly with fresh nonce epoch and zero duplicate tool calls.",
-          zh: "锁定证书链的 TLS 握手恢复加密无线通道，重置 Nonce 纪元，确保桌面端零重复工具调用。",
+          zh: "锁定证书链的 TLS 握手恢复加密无线通道，重置 Nonce 纪元，确保桌面端不重复调用工具。",
         },
         invariantCheck: {
           en: "Zero ghost tool mutations emitted during cable swap.",
@@ -250,7 +250,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "End-to-end deterministic recovery verified.",
-          zh: "断线再连状态机完整闭环恢复。",
+          zh: "断线重连状态机完整恢复。",
         },
       },
     ],
@@ -295,7 +295,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "Both players holding the paired color wristband complete circuit; SafeTouchServoController tilts the X axis.",
-          zh: "同色配对的两名玩家同时握紧腕带形成通路，独立舵机板即刻执行 X 轴平稳倾斜。",
+          zh: "同色配对的两名玩家同时握紧腕带形成通路，独立舵机板随即带动 X 轴平稳倾斜。",
         },
         invariantCheck: {
           en: "Single-player contact remains physically locked.",
@@ -339,7 +339,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "One atomic penalty triggers finger sleeve buzz, buzzer tone, LED strip flash, and Web Serial score update simultaneously.",
-          zh: "唯一一次原子罚分同步触发手指震动、蜂鸣器、灯带闪红与串口计分更新。",
+          zh: "只记一次原子罚分，同步触发手指震动、蜂鸣器、灯带闪红与串口计分更新。",
         },
         invariantCheck: {
           en: "1 ball pass = 1 haptic buzz = 1 score deduction.",
@@ -350,7 +350,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         id: "m-nom-4",
         timestampMs: 755,
         channel: "FC51-IR[04]",
-        stateLabel: { en: "Cooldown Expired · Zone Re-Armed", zh: "400 ms 冷却期满重新布防" },
+        stateLabel: { en: "Cooldown Expired · Zone Re-Armed", zh: "400 ms 冷却期满重新就绪" },
         signalLevel: 42,
         faultState: "nominal",
         rawHex: "4D 5A 04 04 52 45 41 52 4D 5F 5A 4F 4E 45 00 04",
@@ -382,11 +382,11 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "Goal IR gate fires round completion across Mega hardware and browser exhibition scoreboard.",
-          zh: "终点红外门触发回合通关，硬件主控与展览网页端同步落盘成绩。",
+          zh: "终点红外门触发回合通关，硬件主控与展览网页端同步记录成绩。",
         },
         invariantCheck: {
           en: "Shared reducer matches hardware and offline web demo identically.",
-          zh: "展场真机与网页离线演示跑同一份回合状态归约器。",
+          zh: "展场真机与网页离线演示跑同一套回合状态归约器。",
         },
       },
     ],
@@ -431,7 +431,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "Prevents phantom double-penalty that erodes player trust.",
-          zh: "成功拦截会毁掉玩家信任的幻影误扣分。",
+          zh: "成功拦截凭空冒出的误扣分，避免消耗玩家信任。",
         },
       },
       {
@@ -473,7 +473,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "1 genuine trap = 1 clean event after suppressing prior chatter.",
-          zh: "前置毛刺已被净化，真实入洞准确计为 1 次。",
+          zh: "前置毛刺已滤除，真实入洞准确计为 1 次。",
         },
       },
       {
@@ -564,7 +564,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "Unilateral exposure blocked prior to bilateral consent.",
-          zh: "单向试探绝对匿名，零社死风险。",
+          zh: "单向试探全程匿名，没有社交尴尬的风险。",
         },
       },
       {
@@ -586,7 +586,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "MEET state strictly gated by real 2-party ACK.",
-          zh: "MEET 状态必须双端真实签署才可解锁。",
+          zh: "MEET 状态必须双端真实确认后才解锁。",
         },
       },
       {
@@ -608,7 +608,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "No distracting in-app chat keeps eyes on the room.",
-          zh: "禁止私信框把线下碰面拖回手机打字。",
+          zh: "不设站内私信，避免把线下碰面拖回手机打字。",
         },
       },
       {
@@ -629,7 +629,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "Software celebrates success by getting out of the way.",
-          zh: "产品以「体面退场」作为交互闭环终点。",
+          zh: "以「体面退场」为整段交互收尾。",
         },
       },
     ],
@@ -669,7 +669,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         ],
         humanSummary: {
           en: "Second attendee chooses not to wave back. Relay strictly blocks transition to MEET.",
-          zh: "另一侧未回应。中继层硬性阻断进入 MEET 态。",
+          zh: "对方未回应。中继层直接阻断进入 MEET 状态。",
         },
         invariantCheck: {
           en: "Fake static MEET progression impossible.",
@@ -694,7 +694,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "Social dignity preserved on non-match.",
-          zh: "未配对时守住双方完全的体面与隐私。",
+          zh: "未配对时完全守住双方的体面与隐私。",
         },
       },
       {
@@ -715,7 +715,7 @@ export const REPLAY_TRACES: readonly ReplayTrace[] = [
         },
         invariantCheck: {
           en: "No repeated alerts.",
-          zh: "不会反复提醒，打扰观演。",
+          zh: "不会反复提醒打扰观演。",
         },
       },
       {

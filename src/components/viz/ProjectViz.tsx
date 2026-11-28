@@ -111,7 +111,7 @@ export function VizConnect({ locale = "en" }: VizProps) {
           14 / 71
         </text>
         <text x="30" y="390" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
-          {zh ? "我主持的场次，占团队总数" : "sessions I ran, of the team’s total"}
+          {zh ? "我主持的场次 / 团队总数" : "sessions I ran, of the team’s total"}
         </text>
       </svg>
     </div>
@@ -387,7 +387,7 @@ export function VizHoop({ locale = "en" }: VizProps) {
           {zh ? "146 个生涯节点 · 10 章 · 1,975 个测试" : "146 career nodes · 10 chapters · 1,975 tests"}
         </text>
         <text x="30" y="380" fontFamily="var(--font-mono)" fontSize="10" letterSpacing="1" fill="var(--viz-muted)">
-          {zh ? "规则写在产量出现之前" : "the rules were written before the volume existed"}
+          {zh ? "规则写在大量产出之前" : "the rules were written before the volume existed"}
         </text>
       </svg>
     </div>
@@ -407,11 +407,11 @@ export function VizPricewise({ locale = "en" }: VizProps) {
     { label: zh ? "测试" : "TESTS", x: 314 },
   ];
   const defects = [
-    zh ? "语意搜索没用过向量" : "search never used a vector",
+    zh ? "语义搜索没用过向量" : "search never used a vector",
     zh ? "模板建的清单是空的" : "template lists came out empty",
     zh ? "鉴权缺密钥时不拒绝" : "auth failed open without its key",
     zh ? "六张表从没建过" : "six tables were never created",
-    zh ? "我的修复带进：向量撑爆返回" : "my fix's regression: a bloated response",
+    zh ? "我的修复引入的回归：向量撑爆返回" : "my fix's regression: a bloated response",
   ];
 
   return (
@@ -569,7 +569,7 @@ export function VizGapmapper({ locale = "en" }: VizProps) {
 
         <text x="30" y="248" fontFamily="var(--font-mono)" fontSize="8" letterSpacing="0.5" fill="var(--viz-focus)">
           {zh
-            ? "写进系统要求：匿名上报 · 位置取整到街段 · 显示信心与偏差 · 不出安全分数"
+            ? "写进系统要求：匿名上报 · 位置取整到街段 · 显示置信度与偏差 · 不出安全分数"
             : "AS REQUIREMENTS: ANONYMOUS · ROUNDED TO A STREET SEGMENT · CONFIDENCE SHOWN · NO SAFETY SCORE"}
         </text>
 

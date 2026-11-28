@@ -25,7 +25,7 @@ published: true
 在 [Walkie](/zh/projects/walkie) 和 [On The Beat](/zh/projects/onthebeat) 里，时间窗口同样划定了安全边界。两者的代码大部分由 Claude Code 写成，规则由我来定，输出由我审查，并在设备上实测。
 
 - **30 秒实体配对窗（`Walkie`）**：足够看清手表并按下前键，又不会让配对请求在桌上一直悬着。
-- **中继保活（`Walkie`）**：中继每 30 秒发一次 ping。gate L 让一条空闲链路保持 75 秒，刚好覆盖两次 ping。这项检查用的是一台替身设备经中继跑的，并非真表。手表离开数据线之后能不能保持连接，目前还没有运行记录。
+- **中继保活（`Walkie`）**：中继每 30 秒发一次 ping。gate L 让一条空闲链路保持 75 秒，刚好覆盖两次 ping。这项检查是用一台替身设备经中继跑的，并非真表。手表离开数据线之后能不能保持连接，目前还没有运行记录。
 - **未实测的穿戴参数（`On The Beat`）**：6 秒唤醒窗和 1.5 秒长按写在固件里，但还没有人在演出现场戴过，两者都只是估计值。
 
 可以到 [交互模式图谱](/zh/patterns?pattern=zero-dead-end-flat-routing) 看相关的防抖沙盒，或到 [Walkie](/zh/projects/walkie) 查看设备检查。

@@ -24,11 +24,11 @@ export const walkieModules: CaseModulesRecord = {
       },
       systemAction: {
         en: "Bridge issues a PAIR challenge; S3 opens a 30-second window requiring a physical Front Key press before deriving and storing the AES-256-GCM pair.key.",
-        zh: "桥接端发起 PAIR 挑战；S3 屏幕开启 30 秒倒计时，必须物理按下前键确认后才派生并落盘 AES-256-GCM 密钥 pair.key。",
+        zh: "桥接端发起 PAIR 挑战；S3 屏幕开启 30 秒倒计时，必须按下实体前键确认，才会派生并写入 AES-256-GCM 密钥 pair.key。",
       },
       cognitiveFriction: {
         en: "Typing hex tokens on a 1.14-inch screen invites shortcuts like hardcoded dev secrets, whereas silent auto-pairing risks unauthorized bridges hijacking the watch.",
-        zh: "在 1.14 寸小屏手输十六进制密钥太反人类，而无确认静默配对又怕被未授权宿主劫持。",
+        zh: "在 1.14 寸小屏上手输十六进制密钥极不现实，无确认静默配对又怕被未授权宿主劫持。",
       },
       edgeRecovery: {
         en: "If the 30-second countdown expires or Side Key is pressed, pairing aborts cleanly with zero key written (verified in gate-p5).",
@@ -88,7 +88,7 @@ export const walkieModules: CaseModulesRecord = {
       },
       userMentalModel: {
         en: "Plugging in a cable should immediately give lowest latency without manual Wi-Fi menus; unplugging should clearly indicate when a turn is dropped.",
-        zh: "插线就该立刻走稳健有线连接，拔线若打断当前这轮说话则必须明说而非悄悄丢包。",
+        zh: "插线就该立刻切到稳健的有线连接；拔线若打断当前这轮说话，必须明确提示，不能悄悄丢包。",
       },
       systemAction: {
         en: "USB link immediately preempts the Fly.io wss:// relay when attached; off-cable frames stay sealed with AES-256-GCM across pinned ISRG Root X1/X2 TLS.",
@@ -122,7 +122,7 @@ export const walkieModules: CaseModulesRecord = {
       },
       userMentalModel: {
         en: "I need a concise summary of what Claude wants to do and a deliberate physical action to approve or reject—without mistaking a deny click for an accept.",
-        zh: "需要一句话听懂或看清它要改什么，再用不会按混的物理动作决定放行或拦下。",
+        zh: "需要一句话听懂或看清 Claude 要改什么，再用不会按混的物理动作决定放行或拦下。",
       },
       systemAction: {
         en: "Watch enters the explicit approval queue screen showing tool summary; Front Key approves, Side Key denies with an optional spoken reason.",

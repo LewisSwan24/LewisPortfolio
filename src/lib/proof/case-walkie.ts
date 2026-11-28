@@ -32,7 +32,7 @@ export const walkieSummary: Record<ProofLocale, { walkie: CaseSummary }> = {
   zh: {
     walkie: {
       challenge:
-        "离开工位时，AI 编码助手常常刚好卡在权限确认或一句短暂追问上。想用手表做语音遥控，前提是实体按键必须握住最终审批权、云端中继看不见对话正文，且更新固件不会误删同一支表里原本装着的项目。",
+        "离开工位时，AI 编码助手常常刚好卡在权限确认或一句短暂追问上。想用手表做语音遥控，前提是实体按键必须握住最终审批权，云端中继看不见对话正文。更新固件时，也不能误删同一支表里原本装着的项目。",
       role: "独立完成：软硬件交互模型、实体确认边界、硬件实测与 AI 辅助编码验收",
       methods: ["实体按键审批交互", "物理配对确认流", "双系统防误擦机制", "真机屏幕状态走查", "语音意图路由"],
       evidence: [
@@ -40,7 +40,7 @@ export const walkieSummary: Record<ProofLocale, { walkie: CaseSummary }> = {
         "USB 有线优先、离桌自动切换端到端加密 Fly.io 中继，确保服务器只转发密文",
         "硬件在环检查覆盖小屏分页反馈、实体按压配对、加密封包与断线重连",
       ],
-      outcome: "做出了一套真正跑通的多项目 Claude Code 手腕语音遥控交互：看一眼小屏，按一下实体键，就能稳妥放行或拒绝高风险操作。",
+      outcome: "做出了一套真正跑通的多项目 Claude Code 手腕语音遥控交互。看一眼小屏，按一下实体键，就能稳妥放行或拒绝高风险操作。",
       next: "补拍真实佩戴在手腕上的操作画面，实测离桌待机续航，并邀请几位常驻终端的开发者试戴体验。",
     },
   },
@@ -174,19 +174,19 @@ export const walkieDepth: Record<ProofLocale, { walkie: CaseDepth }> = {
           method: "证书链与密钥隔离检查",
           sample: "tools/check-relay-roots.mjs 与仓库外 %APPDATA%\\walkie\\keys.env",
           question: "S3 端如何校验证书且避免日志泄露密钥？",
-          finding: "锁定 ISRG Root X1/X2 校验 Fly.io 中继证书，桥接在解析非法参数时会于加载密钥前退出。",
-          implication: "传输安全与凭据卫生均由脚本强制把关。",
+          finding: "锁定 ISRG Root X1/X2 校验 Fly.io 中继证书；桥接解析到非法参数时，会在加载密钥前退出。",
+          implication: "传输安全与密钥管理均由脚本强制把关。",
         },
       ],
       iterations: [
         {
-          version: "阶段一 — USB 链路、语音与 Claude 会话管理",
+          version: "阶段一：USB 链路、语音与 Claude 会话管理",
           change: "实现线协议、OpenAI/Gemini 语音兜底与多项目 Claude 进程管理器。",
-          reason: "先在有线环境打通语音到 Agent 的完整闭环，再引入无线中继。",
+          reason: "先在有线环境跑通语音到 Agent 的完整链路，再引入无线中继。",
           improvement: "跑通 USB 下的手腕语音对话与实体按键审批。",
         },
         {
-          version: "阶段三 — 加密封包与 Fly.io 离缆中继（计划 5–6）",
+          version: "阶段三：加密封包与 Fly.io 离缆中继（计划 5–6）",
           change: "加入 HKDF/AES-256-GCM 加密、4-bit ADPCM、ISRG 根证书锁定与端到端加密 wss:// 中继。",
           reason: "离开数据线后仍可遥控，同时不向中继暴露任何明文指令或审批。",
           improvement: "实现双通道自动回退与端到端机密性。",
@@ -200,17 +200,17 @@ export const walkieDepth: Record<ProofLocale, { walkie: CaseDepth }> = {
         },
         {
           constraint: "仓库尚未归档手腕屏幕实拍照片或运行录像。",
-          whyItMatters: "读者目前看到的是源码架构图而非实体外观照片。",
+          whyItMatters: "读者目前看到的是源码架构图，没有实体外观照片。",
           nextValidation: "补充 M5StickS3 真机照片与审批交互短录像。",
         },
         {
           constraint: "固件与桥接代码由 AI 编码工具辅助实现。",
-          whyItMatters: "本案例主张的是交互规则、安全边界与验收门禁，而非纯手写 C++。",
+          whyItMatters: "本案例主张的是交互规则、安全边界与验收门禁，纯手写 C++ 不在主张之内。",
           nextValidation: "在所有展示场景保持清晰的分工说明。",
         },
       ],
       takeaway:
-        "在手腕上指挥自主编码 Agent，会把 AI 交互压缩到最核心的骨架：高风险动作归实体按键、云端传输端到端加密、离线状态说实话。",
+        "在手腕上指挥自主编码 Agent，会把 AI 交互压缩到最核心的骨架。高风险动作归实体按键，云端传输端到端加密，离线状态说实话。",
     },
   },
 };

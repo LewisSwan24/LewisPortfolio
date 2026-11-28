@@ -39,7 +39,7 @@ export function ProcessWireframe({
           <text x="78" y="142">{isZh ? "重复点报名？" : "Tap Register twice?"}</text>
           <text x="78" y="216">{isZh ? "卡死在深层 Tab" : "Trapped in nested tab"}</text>
           <text x="330" y="150">{isZh ? "5 屏单层路由" : "5-screen flat map"}</text>
-          <text x="330" y="176">{isZh ? "显性 ← 返回路径" : "Explicit ← Back"}</text>
+          <text x="330" y="176">{isZh ? "明确 ← 返回路径" : "Explicit ← Back"}</text>
           <text x="580" y="150">{isZh ? "写明契合依据" : "Show match reason"}</text>
           <text x="580" y="176">{isZh ? "课程 · 图书馆 · 人数" : "Course · Library · Cap"}</text>
         </g>
@@ -58,7 +58,7 @@ export function ProcessWireframe({
         <rect width="800" height="500" fill="var(--bg)" />
         <rect x="48" y="42" width="704" height="416" rx="12" fill="var(--surface)" stroke="var(--border-strong)" strokeWidth="2" strokeDasharray="6 4" />
         <text x="76" y="88" fill="var(--text)" fontFamily="var(--font-mono)" fontSize="15">
-          {isZh ? "旧状态：静默退回关键字匹配（无置信度提示）" : "BEFORE: SILENT FALLBACK WITHOUT CONFIDENCE STATE"}
+          {isZh ? "旧状态：静默退回关键词匹配（无置信度提示）" : "BEFORE: SILENT FALLBACK WITHOUT CONFIDENCE STATE"}
         </text>
         <g stroke="var(--border)" fill="var(--bg-alt)">
           <rect x="76" y="120" width="648" height="78" rx="8" />
@@ -71,8 +71,8 @@ export function ProcessWireframe({
           <text x="98" y="350">CHKN BRST  →  {isZh ? "未标注单位（按克还是按盒？）" : "Missing unit check (kg vs pack)"}</text>
         </g>
         <g fill="var(--accent)" fontFamily="var(--font-ui)" fontSize="13">
-          <text x="98" y="180">{isZh ? "隐患：底层向量失败却向用户展示确定结果" : "Risk: UI looks confident even when semantic search failed"}</text>
-          <text x="98" y="278">{isZh ? "隐患：缺「未匹配 / 存疑」明确退避态" : "Risk: Missing explicit 'Unmatched' fallback state"}</text>
+          <text x="98" y="180">{isZh ? "隐患：底层向量失败，却仍展示确定结果" : "Risk: UI looks confident even when semantic search failed"}</text>
+          <text x="98" y="278">{isZh ? "隐患：缺少明确的「未匹配 / 存疑」回退状态" : "Risk: Missing explicit 'Unmatched' fallback state"}</text>
         </g>
       </svg>
     );
@@ -122,7 +122,7 @@ export function ProcessWireframe({
         <rect width="800" height="500" fill="var(--bg)" />
         <rect x="44" y="38" width="712" height="424" rx="12" fill="var(--surface)" stroke="var(--border-strong)" strokeWidth="2" strokeDasharray="6 4" />
         <text x="72" y="82" fill="var(--text)" fontFamily="var(--font-mono)" fontSize="15">
-          {isZh ? "改造前：语音直接授权执行（环境声与误识别无边界）" : "BEFORE: HANDS-FREE VOICE APPROVAL WITHOUT HARDWARE GATE"}
+          {isZh ? "改造前：语音直接授权执行（无法隔离环境声与误识别）" : "BEFORE: HANDS-FREE VOICE APPROVAL WITHOUT HARDWARE GATE"}
         </text>
         <g stroke="var(--accent)" strokeWidth="2" fill="var(--bg-alt)">
           <rect x="72" y="122" width="200" height="170" rx="8" strokeDasharray="4 3" />
@@ -135,7 +135,7 @@ export function ProcessWireframe({
           <text x="318" y="160">{isZh ? "无实体按键确认" : "Zero tactile barrier"}</text>
           <text x="318" y="192">{isZh ? "立即下发破坏性指令" : "Unchecked rm -rf runs"}</text>
           <text x="546" y="160" fill="var(--accent)">{isZh ? "离线报错含糊" : "Generic 'Offline'"}</text>
-          <text x="546" y="192">{isZh ? "分不清 Wi-Fi 还是 PC 断" : "Wi-Fi vs Relay vs PC unclear"}</text>
+          <text x="546" y="192">{isZh ? "分不清 Wi-Fi 还是 PC 断了" : "Wi-Fi vs Relay vs PC unclear"}</text>
         </g>
         <rect x="72" y="330" width="656" height="90" rx="8" fill="var(--bg-alt)" stroke="var(--accent)" strokeWidth="1.5" />
         <text x="96" y="380" fill="var(--text)" fontFamily="var(--font-ui)" fontSize="14">
@@ -197,7 +197,7 @@ export function ProcessWireframe({
           <text x="90" y="160" fill="var(--accent)">{isZh ? "单手即可触发方向" : "Solo taps unlock axis"}</text>
           <text x="90" y="192">{isZh ? "四人站在一块仍各自看屏" : "No physical mutual consent"}</text>
           <text x="316" y="160" fill="var(--accent)">{isZh ? "原定轻微电击惩罚" : "Original shock trap"}</text>
-          <text x="316" y="192">{isZh ? "展场无法逐人签署风险" : "Unsafe without supervision"}</text>
+          <text x="316" y="192">{isZh ? "展场无法逐人确认风险" : "Unsafe without supervision"}</text>
           <text x="542" y="160" fill="var(--accent)">{isZh ? "未去抖红外双次计分" : "Unbuffered IR double-fire"}</text>
           <text x="542" y="192">{isZh ? "震动与计分牌对不上" : "Score disagrees with haptics"}</text>
         </g>
@@ -225,9 +225,9 @@ export function ProcessWireframe({
         <circle cx="240" cy="255" r="60" fill="none" stroke="var(--border-strong)" strokeWidth="1.5" />
         <text x="240" y="260" textAnchor="middle" fill="var(--text)" fontFamily="var(--font-mono)" fontSize="13">EXACT GPS / ID</text>
         <g fill="var(--text-2)" fontFamily="var(--font-ui)" fontSize="13.5">
-          <text x="400" y="165" fill="var(--accent)">{isZh ? "问题 1：暴露实时头像与距离定位，人群中社死" : "1. Leaks identity & distance before consent"}</text>
-          <text x="400" y="215">{isZh ? "问题 2：要求现场低头点按三屏表单配对" : "2. Forces bright mobile screens in dark crowd"}</text>
-          <text x="400" y="265">{isZh ? "问题 3：相遇后还持续弹窗抢走演出注意力" : "3. Keeps pinging instead of receding after meet"}</text>
+          <text x="400" y="165" fill="var(--accent)">{isZh ? "问题 1：暴露实时头像与距离定位，在人群中很尴尬" : "1. Leaks identity & distance before consent"}</text>
+          <text x="400" y="215">{isZh ? "问题 2：要求现场低头填三屏表单配对" : "2. Forces bright mobile screens in dark crowd"}</text>
+          <text x="400" y="265">{isZh ? "问题 3：相遇后仍持续弹窗，抢走演出注意力" : "3. Keeps pinging instead of receding after meet"}</text>
         </g>
       </svg>
     );
@@ -254,7 +254,7 @@ export function ProcessWireframe({
         <g fill="var(--text-2)" fontFamily="var(--font-mono)" fontSize="13">
           <text x="94" y="175">[Mission 3 Only] Auto-Dodge Rain Key</text>
           <text x="450" y="175" fill="var(--accent)">[Mission 5] Auto-Play AI Commander</text>
-          <text x="94" y="310">{isZh ? "失效原因：玩家学到的不是全局语法，而是每一关背一套外挂快捷按钮。" : "Failure: Players never trust transferable tactics when hidden auto-pilots change each stage."}</text>
+          <text x="94" y="310">{isZh ? "失效原因：玩家学不到全局语法，只能每一关背一套外挂快捷按钮。" : "Failure: Players never trust transferable tactics when hidden auto-pilots change each stage."}</text>
         </g>
       </svg>
     );

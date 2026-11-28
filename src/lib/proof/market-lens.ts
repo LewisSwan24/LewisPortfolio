@@ -23,19 +23,19 @@ const MARKET_LENS_PROFILES: readonly MarketLensProfile[] = [
     id: "apac-closed-loop",
     badge: {
       en: "APAC · AI & Big-Tech Delivery",
-      zh: "大中华 / 亚太 · AI 大厂业务闭环版",
+      zh: "大中华 / 亚太 · AI 大厂业务落地版",
     },
     label: {
       en: "APAC AI / Big-Tech Closed-Loop",
-      zh: "APAC AI / 大厂业务闭环版",
+      zh: "APAC AI / 大厂业务落地版",
     },
     shortLabel: {
       en: "APAC Closed-Loop",
-      zh: "APAC 业务闭环版",
+      zh: "APAC 业务落地版",
     },
     thesis: {
       en: "Frames each project along user pain points, explicit gating mechanisms, engineering loop closure (TypeScript / Electron / ESP32 / Playwright), and measurable trust ceilings.",
-      zh: "严格按「用户痛点 → 交互机制 → 工程闭环 → 系统边界」叙事，突出高风险 AI 拒答护栏、双端代码交付效率与跨端一致性规范。",
+      zh: "严格按「用户痛点 → 交互机制 → 工程落地 → 系统边界」叙事。重点突出高风险 AI 拒答护栏、双端代码交付效率与跨端一致性规范。",
     },
     cadencePoints: [
       {
@@ -48,7 +48,7 @@ const MARKET_LENS_PROFILES: readonly MarketLensProfile[] = [
       },
       {
         en: "Attach explicit verification scope so interviewers see real vs bench boundaries immediately.",
-        zh: "主动拆清真机台架数据与待外部受试验证边界，减少评审沟通成本。",
+        zh: "主动拆清真机台架数据与待外部受试的验证边界，减少评审沟通成本。",
       },
     ],
     recommendedOrder: ["walkie", "autofill", "lamplight", "onthebeat"],
@@ -88,7 +88,7 @@ const MARKET_LENS_PROFILES: readonly MarketLensProfile[] = [
     },
     thesis: {
       en: "Leads with rejected shortcuts, physical & cognitive failure modes, WCAG 2.2 AA accessibility compliance, and empirical limits across firmware, host software, and browser portals.",
-      zh: "前置被否决方案、人机注意力限制、WCAG 2.2 AA 无障碍硬门槛与实验边界说明，贴合澳新及全球 Design Engineering 评审语态。",
+      zh: "先列出否决方案、人机注意力限制、WCAG 2.2 AA 无障碍硬门槛与实验边界说明，贴合澳新及全球 Design Engineering 评审习惯。",
     },
     cadencePoints: [
       {
@@ -97,11 +97,11 @@ const MARKET_LENS_PROFILES: readonly MarketLensProfile[] = [
       },
       {
         en: "Treat protocol invariants, dual-boot slot safety, and keyboard focus geometry as first-class UX concerns.",
-        zh: "把协议时序不变量、双槽位防变砖回滚、键盘焦点不被遮挡纳入同等交互一等公民。",
+        zh: "把协议时序不变量、双槽位防变砖回滚、防键盘焦点遮挡当作核心交互问题来看待。",
       },
       {
         en: "Read why the archived coursework projects stopped and which listed builds they relate to.",
-        zh: "在演进档案馆里看早期停做的课题为什么停下，以及它们和哪些主案相关。",
+        zh: "在演进档案馆里看早期停做的课题为什么停下，以及各自和哪些主案相关。",
       },
     ],
     recommendedOrder: ["walkie", "maze", "lamplight", "grassland"],
@@ -110,7 +110,7 @@ const MARKET_LENS_PROFILES: readonly MarketLensProfile[] = [
       {
         label: {
           en: "Open Archive Vault & Autopsy Map (/vault)",
-          zh: "浏览演进谱系与停做病理报告 (/vault)",
+          zh: "浏览演进谱系与停做复盘 (/vault)",
         },
         href: "/vault",
         tag: "Autopsy",

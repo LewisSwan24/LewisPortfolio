@@ -22,7 +22,7 @@ const STEPS = [
     bView: { en: "Still zero identity leaked", zh: "仍未泄露任何身份信息" },
     rule: {
       en: "Design rule: Single gesture commits intent without browsing profiles.",
-      zh: "交互规则：单次实体动作表达意愿，不引入刷资料卡片。",
+      zh: "交互规则：单次实体动作就能表达意愿，不用刷资料卡。",
     },
   },
   {
@@ -32,7 +32,7 @@ const STEPS = [
     bView: { en: '"Someone nearby waved" (no name)', zh: "屏幕仅提示「附近有人挥手」（无名字）" },
     rule: {
       en: "Design rule: Unilateral interest never leaks identity.",
-      zh: "交互规则：单方兴趣绝不泄露对方身份。",
+      zh: "交互规则：单方示好绝不泄露身份。",
     },
   },
   {
@@ -42,7 +42,7 @@ const STEPS = [
     bView: { en: "Meet Lewis @ Stage Left", zh: "碰面点：舞台左侧 · 对方 Lewis" },
     rule: {
       en: "Design rule: Success means phones returning to pockets.",
-      zh: "交互规则：交互成功的标准是手机重新放回口袋。",
+      zh: "交互规则：成功的标准是把手机重新放回口袋。",
     },
   },
 ] as const;
@@ -56,7 +56,7 @@ export function PrimitiveWave({ locale }: { locale: Locale }) {
     <div className="lab-prim-panel">
       <p className="lab-prim-summary">
         {isZh
-          ? "演出里的两位陌生人只有在双方都明确点头之后才互相看到名字与唯一碰面点，绝不提前暴露身份。"
+          ? "演出现场的两位陌生人，只有双方都明确点头后，才会看到彼此的名字与唯一碰面点。在此之前，绝不暴露身份。"
           : "Two strangers at a gig only learn names and a meeting landmark after both opt in — never before."}
       </p>
 
@@ -76,11 +76,11 @@ export function PrimitiveWave({ locale }: { locale: Locale }) {
 
       <div className="lab-dual-view" aria-live="polite">
         <div className="lab-dual-card">
-          <span className="eyebrow">{isZh ? "玩家 A（发起者）" : "Stranger A (Sender)"}</span>
+          <span className="eyebrow">{isZh ? "陌生人 A（发起者）" : "Stranger A (Sender)"}</span>
           <strong>{current.aView[locale]}</strong>
         </div>
         <div className="lab-dual-card">
-          <span className="eyebrow">{isZh ? "玩家 B（附近同伴）" : "Stranger B (Nearby)"}</span>
+          <span className="eyebrow">{isZh ? "陌生人 B（附近同伴）" : "Stranger B (Nearby)"}</span>
           <strong>{current.bView[locale]}</strong>
         </div>
       </div>
@@ -106,7 +106,7 @@ export function PrimitiveWave({ locale }: { locale: Locale }) {
               ? "重新开始"
               : "Restart flow"
             : isZh
-              ? "推进到下一状态 →"
+              ? "进入下一状态 →"
               : "Advance state →"}
         </button>
       </div>

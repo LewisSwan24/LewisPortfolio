@@ -32,13 +32,13 @@ export function DecisionComparator({
   const copy = isZh
     ? {
         eyebrow: "设计决策横向对照 · 设计主任视角",
-        title: "每个方案背后，究竟在解哪个人文冲突，又拒绝了什么捷径？",
-        sub: "把六个公开案例放在同一张表里比较，重点看人的心理摩擦与明确否决项，而非技术工具清单。",
+        title: "每个方案背后，究竟在解决人的什么摩擦，又拒绝了什么捷径？",
+        sub: "把六个公开案例放在同一张表里比较，重点看人的心理摩擦和明确否决项，不按技术工具清单罗列。",
         colCase: "案例",
         colTension: "人的真实痛点",
         colRejected: "明确否决方案",
         colTradeoff: "最终交互取舍",
-        colCost: "坦诚留存代价",
+        colCost: "仍保留的代价",
         readCase: "查看详情 →",
       }
     : {

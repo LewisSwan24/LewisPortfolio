@@ -36,14 +36,14 @@ const PATTERN_TO_CLUSTERS: Record<
       cluster: "ai-safety",
       mechanism: {
         en: "Grounds fail-closed approval gates against voice spoof and Enter-key fatigue.",
-        zh: "奠定基于实体键隔离、阻断语音误批与回车疲劳的失效闭锁审批规范。",
+        zh: "以实体键隔离防语音误批与回车疲劳，奠定失效闭锁审批规范。",
       },
     },
     {
       cluster: "physical-computing",
       mechanism: {
         en: "Extends physical dual-key affordances and USB preemption to field hardware guides.",
-        zh: "将物理双键盲操与 USB 优先抢占经验沉淀为嵌入式人因实战长文。",
+        zh: "把实体双键盲操与 USB 优先抢占经验整理成嵌入式人因实战长文。",
       },
     },
   ],
@@ -52,14 +52,14 @@ const PATTERN_TO_CLUSTERS: Record<
       cluster: "ai-safety",
       mechanism: {
         en: "Codifies non-hallucinating confidence lanes and hard human Submit locks.",
-        zh: "确立绝不编造开放题的三档置信分流与人工最终确认红线。",
+        zh: "确立三档置信分流与人工最终确认红线，绝不编造开放题。",
       },
     },
     {
       cluster: "bilingual-systems",
       mechanism: {
         en: "Cross-locale field normalization patterns documented cleanly in EN & ZH essays.",
-        zh: "沉淀中英表单语义映射与双语结构一致性的系统经验。",
+        zh: "整理中英表单语义映射与双语结构对齐的系统经验。",
       },
     },
   ],
@@ -75,7 +75,7 @@ const PATTERN_TO_CLUSTERS: Record<
       cluster: "cs-ixd",
       mechanism: {
         en: "Exemplifies encoding psychological friction rules directly as state invariants.",
-        zh: "体现从用户心理阻力出发先于线框编写状态不变量的方法。",
+        zh: "体现这一方法：从用户心理阻力出发，先于线框写好状态不变量。",
       },
     },
   ],
@@ -109,7 +109,7 @@ const PATTERN_TO_CLUSTERS: Record<
       cluster: "cs-ixd",
       mechanism: {
         en: "Enforces invariant input grammar across levels rather than single-mission hacks.",
-        zh: "要求全流程坚持一致命令语法与零破例规则，并由测试守住不退化。",
+        zh: "要求全流程沿用同一套命令语法、不设破例，并用测试守住不退化。",
       },
     },
     {
@@ -134,13 +134,13 @@ const CLUSTER_DETAILS: Record<
     verifiedStatus: "observed",
     honestGap: {
       en: "Captures author-led exhibition & codebase audits; longitudinal external cohort metrics remain open.",
-      zh: "涵盖展陈现场观察与代码门禁审计；长期跨团队对比指标尚待后续验证。",
+      zh: "涵盖展陈现场观察与代码门禁检查；长期跨团队对比指标尚待后续验证。",
     },
   },
   "ai-safety": {
     summary: {
       en: "Refusal thresholds, physical commitment keys, and zero-hallucination evidence trails.",
-      zh: "聚焦高风险 AI 默认拒答、物理确权按键与零幻觉证据溯源。",
+      zh: "聚焦高风险 AI 默认拒答、实体确认按键与零幻觉证据溯源。",
     },
     verifiedStatus: "synthetic-gate",
     honestGap: {
@@ -162,7 +162,7 @@ const CLUSTER_DETAILS: Record<
   "bilingual-systems": {
     summary: {
       en: "Independent EN/ZH transcreation, WCAG 2.2 AA calibration, and layout symmetry rules.",
-      zh: "围绕双语独立创译、去翻译腔门禁、WCAG 2.2 AA 及排版等价展开。",
+      zh: "围绕双语独立创译、去翻译腔门禁、WCAG 2.2 AA 与排版对称展开。",
     },
     verifiedStatus: "observed",
     honestGap: {

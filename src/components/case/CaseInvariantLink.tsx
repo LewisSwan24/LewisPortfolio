@@ -16,7 +16,7 @@ const INVARIANT_CARDS: Record<
       cta: "Inspect Walkie in /lab →",
     },
     zh: {
-      title: "状态机 · 实体按键工具审批闭环",
+      title: "状态机 · 实体按键工具审批",
       rule: "前键按住说话本地采集；AES-256-GCM 密文走端到端加密中继；Claude 工具权限必须等待手表物理前/侧键确认才会放行。",
       cta: "前往 /lab 走查 Walkie 状态机 →",
     },
@@ -29,7 +29,7 @@ const INVARIANT_CARDS: Record<
     },
     zh: {
       title: "状态机 · 零猜测置信度门控",
-      rule: "确定性字段自动填入，拿不准的控件留空高亮等待确认，最终 Submit 按钮在不可逆外部提交前严格锁定为人工操作。",
+      rule: "确定性字段自动填入，拿不准的控件留空高亮等待确认。最终 Submit 按钮在不可逆外部提交前严格锁定为人工操作。",
       cta: "前往 /lab 走查 Autofill 状态机 →",
     },
   },

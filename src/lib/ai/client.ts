@@ -46,11 +46,11 @@ export interface AiMatchResponse {
 export const PRESET_DESIGN_QUESTIONS: ReadonlyArray<{ en: string; zh: string }> = [
   {
     en: "Why physical watch buttons instead of hands-free voice approval?",
-    zh: "为什么坚持用手表实体按键审批，而不是纯语音口令直接放行？",
+    zh: "为什么坚持用手表实体按键审批，不用纯语音口令直接放行？",
   },
   {
     en: "How do Lamplight & Autofill curb habitual approval or hallucinated guesses?",
-    zh: "Lamplight 与 Autofill 如何防止习惯性回车误放行或 AI 胡乱猜题？",
+    zh: "Lamplight 与 Autofill 如何防止习惯性回车误放行或 AI 乱猜？",
   },
   {
     en: "When should social hardware step out of the way in a crowded gig?",
@@ -58,7 +58,7 @@ export const PRESET_DESIGN_QUESTIONS: ReadonlyArray<{ en: string; zh: string }> 
   },
   {
     en: "How does five-mission RTS grammar stay fair without special level buttons?",
-    zh: "多关卡策略交互如何在复杂度递增时不背叛玩家肌肉记忆？",
+    zh: "多关卡策略交互如何在复杂度递增时不打破玩家肌肉记忆？",
   },
   {
     en: "How does the site maintain static SSG with strict CSP and WCAG AAA?",

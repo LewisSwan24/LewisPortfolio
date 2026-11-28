@@ -21,9 +21,9 @@ export function CaseRejectionArchive({
     ? {
         eyebrow: "打回重做与纠偏档案",
         heading: "真实暴露的漏洞与方案否决记录",
-        lead: "记录来自真实调试日志、硬件台架与 AI 产出走查中暴露的结构性缺陷，以及最终落地的硬约束修复。",
+        lead: "记录真实调试日志、硬件台架与 AI 产出走查中暴露的结构性缺陷，以及最终落地的硬约束修复。",
         before: "返工前版本",
-        failure: "暴露的致命漏洞",
+        failure: "暴露的缺陷",
         fix: "落地的约束与修复",
         receipt: "可核验依据：",
       }

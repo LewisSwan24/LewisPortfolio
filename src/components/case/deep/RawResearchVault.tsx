@@ -180,7 +180,7 @@ export function RawResearchVault({
                     <dd>{probe.whatWeWatchFor[locale]}</dd>
                   </div>
                   <div className={styles.kvRow}>
-                    <dt>{isZh ? "判死红线" : "Failure signal"}</dt>
+                    <dt>{isZh ? "失败信号" : "Failure signal"}</dt>
                     <dd>{probe.failureSignal[locale]}</dd>
                   </div>
                 </dl>
@@ -224,7 +224,7 @@ export function RawResearchVault({
                     <dd>{log.observation[locale]}</dd>
                   </div>
                   <div className={styles.kvRow}>
-                    <dt>{isZh ? "交互与工程响应" : "Design & engineering change"}</dt>
+                    <dt>{isZh ? "交互与工程改动" : "Design & engineering change"}</dt>
                     <dd>{log.designResponse[locale]}</dd>
                   </div>
                 </dl>
@@ -303,7 +303,7 @@ export function RawResearchVault({
                     <dd>{item.priority[locale]}</dd>
                   </div>
                   <div className={styles.kvRow}>
-                    <dt>{isZh ? "冲突张力" : "Tension"}</dt>
+                    <dt>{isZh ? "主要冲突" : "Tension"}</dt>
                     <dd>{item.tension[locale]}</dd>
                   </div>
                   <div className={styles.kvRow}>

@@ -96,12 +96,12 @@ export function buildCaseDeck(input: {
     {
       id: `${record.slug}-artifact`,
       stepLabel: isZh ? "02 核心产物" : "02 Core Artifact",
-      title: isZh ? "系统结构与可交付产物" : "Shipped Architecture & Core Artifact",
+      title: isZh ? "系统架构与核心产物" : "Shipped Architecture & Core Artifact",
       subtitle: summary.outcome,
       kind: "evidence",
       image: primaryImage,
       bullets: summary.evidence.slice(0, 3).map((item, idx) => ({
-        title: isZh ? `实证 ${idx + 1}` : `Evidence 0${idx + 1}`,
+        title: isZh ? `证据 ${idx + 1}` : `Evidence 0${idx + 1}`,
         detail: item,
       })),
       speakerNote: summary.evidence[0] ?? summary.outcome,
@@ -127,7 +127,7 @@ export function buildCaseDeck(input: {
       stepLabel: isZh ? "04 迭代对比" : "04 Iteration & Trade-offs",
       title:
         record.processArtifacts?.scrubber?.title[locale] ??
-        (isZh ? "关键结构重构与方案取舍" : "Key Structural Iterations & Trade-offs"),
+        (isZh ? "关键结构迭代与方案取舍" : "Key Structural Iterations & Trade-offs"),
       subtitle:
         record.processArtifacts?.scrubber?.summary[locale] ?? narrative.id.label,
       kind: "comparison",
@@ -142,7 +142,7 @@ export function buildCaseDeck(input: {
     },
     {
       id: `${record.slug}-prototype`,
-      stepLabel: isZh ? "05 活原型演练" : "05 Live Prototype",
+      stepLabel: isZh ? "05 交互原型演练" : "05 Live Prototype",
       title:
         record.interactiveDemo?.title[locale] ??
         record.processArtifacts?.microLoop?.title[locale] ??
@@ -166,7 +166,7 @@ export function buildCaseDeck(input: {
     {
       id: `${record.slug}-limits`,
       stepLabel: isZh ? "06 边界与反思" : "06 Limits & Reflection",
-      title: isZh ? "实证边界、取舍与下一步" : "Honest Limits, Follow-Up & Next Step",
+      title: isZh ? "诚实边界、取舍与下一步" : "Honest Limits, Follow-Up & Next Step",
       subtitle: depth.takeaway,
       kind: "limits",
       bullets: depth.limits.slice(0, 3).map((l) => ({
@@ -179,7 +179,7 @@ export function buildCaseDeck(input: {
         boundary: interviewPack.managerFollowUp.boundary,
       },
       ctaHref: `/projects/${record.slug}`,
-      ctaLabel: isZh ? "回到完整案例阅读" : "Return to full case",
+      ctaLabel: isZh ? "回到完整案例" : "Return to full case",
       speakerNote: interviewPack.managerFollowUp.answer,
     },
   ];
@@ -205,7 +205,7 @@ export function buildHiringDeck(input: {
 
   const introSlide: PresentationSlide = {
     id: "hiring-thesis",
-    stepLabel: isZh ? "01 岗位适配与命题" : "01 Role Thesis",
+    stepLabel: isZh ? "01 岗位适配与主张" : "01 Role Thesis",
     title: deckTitle ?? room.brief.headline,
     subtitle: customIntro ?? room.brief.subhead,
     kind: "cover",

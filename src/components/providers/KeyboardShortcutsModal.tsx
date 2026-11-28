@@ -10,8 +10,8 @@ interface ShortcutItem {
 }
 
 const SHORTCUTS: readonly ShortcutItem[] = [
-  { keys: ["⌘", "K"], en: "Open command & rationale palette", zh: "打开指令面板与 AI 设计辩护问答" },
-  { keys: ["Shift", "P"], en: "Launch case presentation deck", zh: "在案例页启动演示幻灯片模式" },
+  { keys: ["⌘", "K"], en: "Open command & rationale palette", zh: "打开命令面板与 AI 设计理由问答" },
+  { keys: ["Shift", "P"], en: "Launch case presentation deck", zh: "在案例页启动演示模式" },
   { keys: ["←", "→"], en: "Navigate slides or lightbox frames", zh: "切换幻灯片或灯箱图片" },
   { keys: ["?"], en: "Toggle keyboard shortcuts dialog", zh: "打开或关闭快捷键说明" },
   { keys: ["Esc"], en: "Close active dialog or drawer", zh: "关闭当前弹窗或抽屉" },
@@ -122,7 +122,7 @@ export function KeyboardShortcutsModal({ initialOpen = false }: { initialOpen?: 
         </ul>
 
         <p className="shortcuts-dialog-foot">
-          {isZh ? "按 ? 或 ⌘/ 随时切换本窗口" : "Press ? or ⌘/ anytime to toggle this dialog"}
+          {isZh ? "按 ? 或 ⌘/ 随时打开或关闭" : "Press ? or ⌘/ anytime to toggle this dialog"}
         </p>
       </div>
     </dialog>

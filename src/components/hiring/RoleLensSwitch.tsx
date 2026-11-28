@@ -43,7 +43,7 @@ const LENSES: Array<{
     en: "Interaction Designer",
     zh: "交互设计师",
     noteEn: "State machines, physical-digital feedback loops, navigation clarity, and accessibility.",
-    noteZh: "状态机规则、软硬协同反馈闭环、导航清晰度与无障碍设计。",
+    noteZh: "状态机规则、软硬协同反馈循环、导航清晰度与无障碍设计。",
   },
   {
     id: "design-eng",

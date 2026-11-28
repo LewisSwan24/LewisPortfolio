@@ -51,7 +51,7 @@ export const autofillSummary: Record<ProofLocale, { autofill: CaseSummary }> = {
       methods: ["处理不确定的规则", "人在回路的提交", "本地优先的隐私设计", "表单组件库适配", "基于截图的视觉审查"],
       evidence: [
         "一个 Chrome 扩展，和一个带简历键盘的 Android App，2026 年 11 月 4 日起开始做",
-        "拿不准的栏位留空并标出待确认；多页表单会自动点「下一步」，最后的提交留给本人",
+        "拿不准的字段留空并标出待确认；多页表单会自动点「下一步」，最后的提交留给本人",
         "扩展不发出任何网络请求；在 Android 上，简历用绑定设备的密钥加密",
       ],
       outcome: "一个本地优先的自动填表工具，覆盖海外 ATS 平台和国内校招网站，我自己投递时用过。",
@@ -154,15 +154,15 @@ export const autofillDepth: Record<ProofLocale, { autofill: CaseDepth }> = {
       decisions: [
         {
           label: "绝不猜",
-          choice: "工具拿不准的栏位留空，并标出来等本人确认。",
+          choice: "工具拿不准的字段留空，并标出来等本人确认。",
           evidence: "这是 Lewis 自己选定的决定。README 写明了这一条；填写报告把「待确认」「未填」和「已填」分开列。",
-          tradeoff: "留给本人处理的栏位，比一个会猜的工具更多。",
+          tradeoff: "留给本人处理的字段，比一个会猜的工具更多。",
           impact: "错误的答案不会悄悄以本人的名义交出去。",
         },
         {
           label: "最后的提交留给你",
           choice: "多页申请里，工具会点「下一步」，在最终提交前停下。",
-          evidence: "这是 Lewis 自己选定的决定。侧栏上直接写着：它只点「下一步」，最终提交留给你。",
+          evidence: "这是 Lewis 自己选定的决定。侧栏上直接写着：工具只点「下一步」，最终提交留给你。",
           tradeoff: "每份申请本人都要多点一下。",
           impact: "没有任何东西会在本人看过之前发给雇主。",
         },
@@ -179,14 +179,14 @@ export const autofillDepth: Record<ProofLocale, { autofill: CaseDepth }> = {
           method: "视觉截图",
           sample: "仓库自带的截图测试，2026 年 11 月 20 日 6 / 6 通过，含亮色与暗色",
           question: "填完之后，本人看到的是什么？",
-          finding: "摘要卡统计已填、待确认、未填的栏位数，侧栏逐个列出每一栏和原因。",
+          finding: "摘要卡统计已填、待确认、未填的字段数，侧栏逐个列出每个字段和原因。",
           implication: "需要本人处理的状态看得见；人们会不会正确理解，没有测过。",
         },
         {
           method: "合成测试表单",
           sample: "用原生 HTML、Ant Design、Element Plus、react-select 和 ARIA 组件搭的测试表单",
           question: "引擎能不能填好每一种控件？",
-          finding: "README 记录合成测试表单上的栏位全部填对。",
+          finding: "README 记录合成测试表单上的字段全部填对。",
           implication: "这是仓库自己的测试表单，不是真实的申请网站。",
         },
         {
@@ -215,7 +215,7 @@ export const autofillDepth: Record<ProofLocale, { autofill: CaseDepth }> = {
         {
           constraint: "有记录的使用者只有 Lewis 本人，也没有做过用户测试。",
           whyItMatters: "其他申请人是否信任待确认标记、会不会真的去核对，没有测过。",
-          nextValidation: "请三四位应届生各用它完成一份真实申请，在旁观察。",
+          nextValidation: "请三四位应届生各用这个工具完成一份真实申请，在旁观察。",
         },
         {
           constraint: "没有在真实网站上量过填写准确率；100% 那个数字来自合成测试表单。",
@@ -224,7 +224,7 @@ export const autofillDepth: Record<ProofLocale, { autofill: CaseDepth }> = {
         },
         {
           constraint: "没有上架 Chrome 网上应用店或 Google Play，也没有 iOS App。键盘没有中文输入法，只允许微信登录的网站也用不了。",
-          whyItMatters: "每一条都限制了现在谁能用它。",
+          whyItMatters: "每一条都限制了现在谁能用。",
           nextValidation: "请外人试用之前，先定好发布方式。",
         },
         {
@@ -233,7 +233,7 @@ export const autofillDepth: Record<ProofLocale, { autofill: CaseDepth }> = {
           nextValidation: "在任何展示这个工具的地方都保留分工说明。",
         },
       ],
-      takeaway: "一个以别人名义行事的工具，设计主要在于它拒绝做什么：不猜、不提交、不把数据送走。每一条拒绝都显示在屏幕上，本人看得到还剩哪些事归自己。",
+      takeaway: "一个以别人名义行事的工具，设计主要在于拒绝做什么：不猜、不提交、不把数据送走。每一条拒绝都显示在屏幕上，本人看得到还剩哪些事归自己。",
     },
   },
 };
@@ -250,7 +250,7 @@ export const autofillScan: Record<ProofLocale, { autofill: CaseInterviewScan }> 
   zh: {
     autofill: {
       proves: "这个案例说明我能为一个以别人名义行事的工具定规则，并让每一条规则都被使用者看得见。",
-      inspect: ["拿不准的栏位怎么呈现，而不是被猜着填上。", "多页表单里工具停在哪里。", "案例对真实网站上的准确率怎么说。"],
+      inspect: ["拿不准的字段怎么呈现，而不是被猜着填上。", "多页表单里工具停在哪里。", "案例对真实网站上的准确率怎么说。"],
       questions: ["为什么宁可留空，也不填一个最可能的答案？", "你怎么知道简历从没离开设备？"],
       bestFit: ["做代替用户行事的辅助或自动化工具的团队。", "把隐私当成设计约束、而不只是设置页的产品。"],
     },
@@ -322,14 +322,14 @@ export const autofillPack: Record<ProofLocale, { autofill: CaseInterviewPack }> 
         {
           id: "autofill-never-guess",
           question: "为什么宁可留空，也不填一个最可能的答案？",
-          answer: "我定的规则很简单：工具拿不准时，栏位留空并标出待确认。填写报告把已填、待确认、未填分开计数，本人能清楚看到还剩哪些归自己。",
+          answer: "我定的规则很简单：工具拿不准时，字段留空并标出待确认。填写报告把已填、待确认、未填分开计数，本人能清楚看到还剩哪些归自己。",
           evidenceHref: "/projects/autofill#decision-timeline",
-          boundary: "其他人会不会真的去核对标出来的栏位，没有测过。",
+          boundary: "其他人会不会真的去核对标出来的字段，没有测过。",
         },
         {
           id: "autofill-submit",
           question: "工具停在哪里？",
-          answer: "停在最终提交之前。多页申请里，它会点「下一步」逐页填写，侧栏上直接写着最终提交留给你。",
+          answer: "停在最终提交之前。多页申请里，工具会点「下一步」逐页填写，侧栏上直接写着最终提交留给你。",
           evidenceHref: "/projects/autofill#decision-timeline",
           boundary: "每份申请要多点一下，这是我选择保留的代价。",
         },
@@ -346,7 +346,7 @@ export const autofillPack: Record<ProofLocale, { autofill: CaseInterviewPack }> 
         question: "这是你给自己做的，对在团队里做产品能说明什么？",
         answer: "说明我从真实问题出发，这次是我自己的问题，并把有风险的部分变成本人在屏幕上看得见的规则。我在真实申请上用过；没有在真实网站上量过准确率，案例里也照实写了。",
         evidenceHref: "/projects/autofill#outcome-limits",
-        boundary: "一个人的使用经验，证明不了别人也会信任它。",
+        boundary: "一个人的使用经验，证明不了别人也会信任这个工具。",
       },
     },
   },

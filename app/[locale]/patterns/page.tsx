@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
   const title =
     locale === "zh"
-      ? "交互模式图谱 · 可复现规则与活原型库"
+      ? "交互模式图谱 · 可复现规则与可运行原型库"
       : "Interaction Pattern Atlas · Executable Rules & Specimens";
   const description =
     locale === "zh"
@@ -60,7 +60,7 @@ export default async function PatternsPage() {
         </h1>
         <p className="sub" style={{ maxWidth: "46em" }}>
           {isZh
-            ? "每一条模式都源自真实产品或硬件卡点，附带常见反模式对照、活原型微沙盒、无障碍保障、可复制 TypeScript/React 片段，以及诚实的验证上限。"
+            ? "每一条模式都源自真实产品或硬件卡点，附带常见反模式对照与可运行原型微沙盒。同时附上无障碍保障、可复制 TypeScript/React 片段，以及诚实的验证上限。"
             : "Each pattern traces back to a real software or hardware bottleneck — pairing problem tension, anti-pattern toggles, a live micro-sandbox, accessibility guarantees, copyable code, and explicit evidence ceilings."}
         </p>
       </section>

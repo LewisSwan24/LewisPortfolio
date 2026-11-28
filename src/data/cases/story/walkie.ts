@@ -156,7 +156,7 @@ export const walkieStory: CaseStory = {
         id: "decision-spoken-summary-offline",
         title: "回传只说一句摘要，断线要讲清原因",
         conflict:
-          "拇指大小的腕表屏幕装不下代码 diff 与堆栈。塞满滚动文本会丧失可瞥视性；笼统的一句「已断线」，只会让人盲猜是 Wi-Fi、云中继还是电脑出了问题。",
+          "拇指大小的腕表屏幕装不下代码 diff 与堆栈。塞满滚动文本就没法一眼看清。笼统的一句「已断线」，只会让人盲猜是 Wi-Fi、云中继还是电脑出了问题。",
         chosen:
           "Node 24 桥接把执行结果收敛为简短语音简报，回传手腕。插线时 USB 永远抢占 AES-256-GCM 加密的 Fly.io 中继。离线界面明确区分无 Wi-Fi、中继不可达与电脑桥离线三种状态。",
         gaveUp:

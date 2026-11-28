@@ -48,7 +48,7 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
         }
         notes.push(
           isZh
-            ? `命中 ${list.length} 组经物理证据库核验的案例论证`
+            ? `命中 ${list.length} 组经本地静态证据库核验的案例论证`
             : `Matched ${list.length} case(s) grounded in static proof corpus`
         );
         setStatus(notes.join(" · "));
@@ -115,7 +115,7 @@ export function JdMatcherPanel({ locale }: { locale: ProofLocale }) {
           </h2>
           <p className="prose" style={{ marginTop: 6 }}>
             {isZh
-              ? "发送前在浏览器端自动剥离邮箱、电话与内网网址并限制长度，不留存原文；所有返回论证文本均从本地静态证明库物理查表还原。"
+              ? "发送前会在浏览器端自动剥离邮箱、电话与内网网址，并限制长度，不留存原文。返回的所有论证文本都从本地静态证明库查表还原。"
               : "Emails, phone numbers, and URLs are stripped locally before matching, raw prompts are never persisted, and every returned claim hydrates strictly from static case records."}
           </p>
         </div>

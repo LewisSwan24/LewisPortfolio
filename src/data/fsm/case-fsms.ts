@@ -34,7 +34,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 80,
         guarantees: {
           en: "Zero mic sampling until physical front key press; pair.key stays sealed in NVS.",
-          zh: "未按物理前键绝不开启麦克风采样；配对密钥安全封存于 NVS。",
+          zh: "未按物理前键绝不开启麦克风采样；配对密钥安全封存在 NVS 里。",
         },
       },
       {
@@ -45,18 +45,18 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 80,
         guarantees: {
           en: "USB serial preempts Wi-Fi immediately if plugged in; otherwise ADPCM crosses Fly.io TLS.",
-          zh: "插线时 USB 立即抢占串口低延迟通道；离线无线则走固定证书 ADPCM 隧道。",
+          zh: "插线时 USB 立即抢占串口低延迟通道；未插线时走固定证书 ADPCM 隧道。",
         },
       },
       {
         id: "perm-queue",
-        label: { en: "Approval Queue", zh: "工具审批阻塞" },
+        label: { en: "Approval Queue", zh: "等待工具审批" },
         kind: "normal",
         x: 455,
         y: 80,
         guarantees: {
           en: "Claude tool invocation halts hard until explicit Front ACK or Side Deny.",
-          zh: "任何危险文件/命令写入在收到物理前键或侧键反馈前强制挂起。",
+          zh: "收到物理前键或侧键反馈前，任何危险文件/命令写入都会强制挂起。",
         },
       },
       {
@@ -78,7 +78,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 230,
         guarantees: {
           en: "Distinguishes No Wi-Fi vs Relay Unreachable vs PC Bridge Offline rather than generic error.",
-          zh: "明确区分无 Wi-Fi / 中继断联 / PC 守护休眠，拒绝模糊报错。",
+          zh: "明确区分无 Wi-Fi、中继断连和 PC 守护休眠，不给模糊报错。",
         },
       },
       {
@@ -181,7 +181,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
       activeTuningFocus: "confidenceThreshold",
       rationale: {
         en: "Raising confidence cutoff narrows deterministic auto-fill coverage but eliminates high-risk field hallucination.",
-        zh: "提高置信度门槛会缩减自动直填覆盖，但彻底杜绝履历关键事实编造。",
+        zh: "提高置信度门槛会缩小自动直填范围，但能彻底杜绝编造简历关键事实。",
       },
     },
     states: [
@@ -215,7 +215,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 180,
         guarantees: {
           en: "Ambiguous select options require explicit applicant click before validation.",
-          zh: "多选项模糊字段亮起待审阅徽标，必须人工确认。",
+          zh: "多选项模糊字段亮起待复核徽标，必须人工确认。",
         },
       },
       {
@@ -226,7 +226,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 180,
         guarantees: {
           en: "Fields with no stored value or several candidates stay empty and flagged; it never presses Submit.",
-          zh: "简历里没有存值或有多个候选的栏位保持空白并标出，工具从不代按提交。",
+          zh: "简历里没有存值或有多个候选的字段保持空白并标出，工具从不代按提交。",
         },
       },
       {
@@ -254,7 +254,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         id: "af-ambig",
         from: "dom-scan",
         to: "tier-review",
-        trigger: { en: "Partial Key Match", zh: "命中模糊多意选项" },
+        trigger: { en: "Partial Key Match", zh: "命中模糊多义选项" },
         condition: { en: "40 <= score < threshold", zh: "落入复核区间" },
         kind: "guard",
       },
@@ -279,7 +279,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         from: "tier-auto",
         to: "human-submit",
         trigger: { en: "All Required Clear", zh: "核心字段核查完毕" },
-        condition: { en: "no blank locks left", zh: "无未决高危空槽" },
+        condition: { en: "no blank locks left", zh: "无未决高危空项" },
         kind: "advance",
       },
       {
@@ -297,7 +297,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
     caseName: { en: "Lamplight Nook", zh: "Lamplight Nook 反冲动弹窗" },
     summary: {
       en: "High-risk link gating defaulting initial focus to Safe Defer ('Not now') to counter habitual Enter-key fatigue.",
-      zh: "高频确认疲劳防御状态机：弹窗初始焦点死锁于安全的「先不要」，撤销期防误删。",
+      zh: "高频确认疲劳防御状态机：弹窗初始焦点默认锁定在安全的「先不要」，撤销期防误删。",
     },
     initialStateId: "link-click",
     goalStateIds: ["safe-resolved"],
@@ -313,7 +313,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
       activeTuningFocus: "holdThresholdMs",
       rationale: {
         en: "Confirm-proceed hold window prevents accidental Space/Enter double-taps from opening unvetted external links.",
-        zh: "320 ms 确认停留窗消除连续回车误操作导致的外链风险放行。",
+        zh: "320 ms 确认停留窗，防止连续误按回车把高风险外链直接放行。",
       },
     },
     states: [
@@ -325,7 +325,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 120,
         guarantees: {
           en: "Captures triggering element ref so Esc or 'Not now' restores exact focus.",
-          zh: "记录触发前焦点的 DOM 引用，拒绝时无损归还焦距。",
+          zh: "记录触发前焦点的 DOM 引用，拒绝时准确归还焦点。",
         },
       },
       {
@@ -336,7 +336,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 70,
         guarantees: {
           en: "Habitual Enter immediately cancels safely instead of proceeding.",
-          zh: "习惯性盲按回车将执行安全取消，零破坏。",
+          zh: "习惯性盲按回车只会安全取消，零破坏。",
         },
       },
       {
@@ -347,7 +347,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 210,
         guarantees: {
           en: "Requires intentional Tab shift + hold/click before domain navigation.",
-          zh: "必须显式 Tab 切换焦点并通过延迟校验才放行。",
+          zh: "必须主动按 Tab 切换焦点，通过延迟校验才放行。",
         },
       },
       {
@@ -509,7 +509,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 225,
         guarantees: {
           en: "Drops into standalone physical bell/haptic mode if USB serial disconnects.",
-          zh: "Web Serial 拔线时降级至本地蜂鸣器计分而不卡死关卡。",
+          zh: "Web Serial 拔线时降级到本地蜂鸣器计分，不卡死关卡。",
         },
       },
     ],
@@ -682,7 +682,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         id: "otb-recover",
         from: "ble-drop",
         to: "ble-scan",
-        trigger: { en: "Cool Reset", zh: "冷却重入匿名扫频" },
+        trigger: { en: "Cool Reset", zh: "冷却后重回匿名监听" },
         condition: { en: "cooldown elapsed", zh: "冷却时间已过" },
         kind: "recover",
       },
@@ -729,7 +729,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 120,
         guarantees: {
           en: "Identical box-select & key bindings across Missions 01 through 05.",
-          zh: "全 5 关强制使用同一套框选与快捷键契约。",
+          zh: "全 5 关统一使用同一套框选与快捷键规则。",
         },
       },
       {
@@ -762,7 +762,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         y: 225,
         guarantees: {
           en: "Rejects impassable cliff moves cleanly without swallowing squad selection.",
-          zh: "悬崖/深水拦截同时保留当前战团选中焦点。",
+          zh: "拦截悬崖/深水指令的同时，保留当前战团选中状态。",
         },
       },
     ],
@@ -780,7 +780,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         from: "order-preview",
         to: "stance-resolved",
         trigger: { en: "Issue Stance", zh: "右键下达冲锋/坚守令" },
-        condition: { en: "passable terrain & cooldown OK", zh: "地形通行且冷却毕" },
+        condition: { en: "passable terrain & cooldown OK", zh: "地形可通且已冷却" },
         kind: "advance",
       },
       {
@@ -795,7 +795,7 @@ export const CASE_FSM_SPECS: readonly CaseFsmSpec[] = [
         id: "gr-recover",
         from: "invalid-terrain",
         to: "squad-select",
-        trigger: { en: "Preserve Selection", zh: "保持选中退回重指" },
+        trigger: { en: "Preserve Selection", zh: "保持选中并重新指定" },
         condition: { en: "focus kept on squad", zh: "保留编组焦点" },
         kind: "recover",
       },

@@ -110,7 +110,7 @@ export function McpProtocolSandbox({ locale }: { locale: "en" | "zh" }) {
             </h2>
             <p className="prose" style={{ marginTop: 6, maxWidth: "70ch" }}>
               {isZh
-                ? "外部 Agent 可直接通过 POST /api/mcp 或 GET /llms-full.txt 读取经过 Schema 校验与脱敏的设计依据、协议重放帧和停做谱系；公开检索工具严格隔离 8 项非公开案例。"
+                ? "外部 Agent 可直接通过 POST /api/mcp 或 GET /llms-full.txt 读取设计依据、协议重放帧和停做谱系，内容均经过 Schema 校验与脱敏。公开检索工具严格隔离 8 项非公开案例。"
                 : "External coding and evaluation agents can query POST /api/mcp or GET /llms-full.txt cleanly without scraping DOM — backed by Zod strict validation, PII scrubbing, and unlisted route isolation."}
             </p>
           </div>

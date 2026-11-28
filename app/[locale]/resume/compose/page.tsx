@@ -44,12 +44,12 @@ export default async function ResumeComposePage() {
         </div>
         <h1 className="h-display h2" style={{ marginTop: 10 }}>
           {isZh
-            ? "按目标岗位实时拼装双语 A4 履历与设计依据。"
+            ? "按目标岗位实时拼装双语 A4 简历与设计依据。"
             : "Compose a tailored bilingual A4 resume & rationale dossier."}
         </h1>
         <p className="sub" style={{ maxWidth: "60ch", marginTop: 8 }}>
           {isZh
-            ? "切换岗位聚焦、增减精选案例并保留或精简实证边界声明，实时预览 A4 纸面排版并直接打印导出 PDF。"
+            ? "切换岗位方向、增减精选案例，并保留或精简实证边界声明，实时预览 A4 纸面排版并直接打印导出 PDF。"
             : "Switch specialization presets, toggle flagship works, and control tradeoff/ceiling visibility before exporting clean A4 print PDF or Markdown."}
         </p>
       </section>

@@ -43,7 +43,7 @@ const SCENARIOS: readonly ScenarioSpec[] = [
     },
     approvedReply: {
       en: "Spoken brief: Config updated; typecheck queued.",
-      zh: "语音简报：配置已更新，正在排队类型检查。",
+      zh: "语音简报：配置已更新，已排队等待类型检查。",
     },
   },
   {
@@ -57,7 +57,7 @@ const SCENARIOS: readonly ScenarioSpec[] = [
     },
     approvedReply: {
       en: "Spoken brief: Destructive shell command executed after physical confirm.",
-      zh: "语音简报：已按实体按键确认执行清理命令。",
+      zh: "语音简报：经实体按键确认，已执行清理命令。",
     },
   },
 ];
@@ -140,7 +140,7 @@ export function WalkieWristSim({ locale, onStatusChange }: SimulatorProps) {
           ? "Fly.io 加密中继"
           : "Fly.io sealed relay";
     const msg = isZh
-      ? `Claude 请求「${scenario.label.zh}」(${scenario.toolCall})，已通过${linkLabel}推至手腕等待物理审批。`
+      ? `Claude 请求「${scenario.label.zh}」(${scenario.toolCall})，已通过${linkLabel}推送到手腕，等待按键审批。`
       : `Claude requested "${scenario.label.en}" (${scenario.toolCall}) over ${linkLabel}. Waiting on wrist key.`;
     pushTimeline(scenario.risk.toUpperCase(), msg);
     onStatusChange?.(msg);
@@ -216,7 +216,7 @@ export function WalkieWristSim({ locale, onStatusChange }: SimulatorProps) {
         sideKey: "侧键 · 拒绝 (Backspace)",
         denyReasonLabel: "拒绝时可选口述原因：",
         scenarioTitle: "1. 模拟 Claude Code 请求",
-        timelineTitle: "2. 闭环状态时间线（手表 → 桥接 → 语音回传）",
+        timelineTitle: "2. 链路状态时间线（手表 → 桥接 → 语音回传）",
       }
     : {
         transportLabel: "Transport priority",

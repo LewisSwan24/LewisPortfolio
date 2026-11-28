@@ -44,7 +44,7 @@ export function PrimitiveConfidence({ locale }: { locale: Locale }) {
     <div className="lab-prim-panel">
       <p className="lab-prim-summary">
         {isZh
-          ? "拖动置信度门控阈值滑块，实时观察字段如何在「直填 / 待人工确认 / 刻意留空」之间流转，绝不静默猜测。"
+          ? "拖动置信度门控阈值滑块，实时查看字段在「直填 / 待人工确认 / 刻意留空」之间的切换，绝不静默猜测。"
           : "Drag the confidence gate threshold to watch fields route cleanly across Auto-fill, Human review, and Intentional blank."}
       </p>
 

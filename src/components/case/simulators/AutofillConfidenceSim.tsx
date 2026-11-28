@@ -19,7 +19,7 @@ export function AutofillConfidenceSim({ locale, onStatusChange }: SimulatorProps
     setScanned(true);
     setHumanSubmitted(false);
     const msg = isZh
-      ? "本地扫描完成：3 项高置信度直填，1 项下拉歧义待你确认，2 项刻意留空不编造；0 字节上传。"
+      ? "本地扫描完成：3 项高置信度直填，1 项下拉选项有歧义待你确认，2 项刻意留空不编造，0 字节上传。"
       : "Local scan complete: 3 exact matches filled, 1 ambiguous field flagged for review, 2 intentionally left blank. 0 bytes uploaded.";
     onStatusChange?.(msg);
   };
@@ -56,7 +56,7 @@ export function AutofillConfidenceSim({ locale, onStatusChange }: SimulatorProps
     setHumanSubmitted(true);
     onStatusChange?.(
       isZh
-        ? "已由你本人手动触发提交（扩展绝不代点提交按钮）。"
+        ? "已由你本人手动提交（扩展绝不代点提交按钮）。"
         : "Submitted manually by applicant — extension never auto-clicks Submit."
     );
   };
@@ -71,7 +71,7 @@ export function AutofillConfidenceSim({ locale, onStatusChange }: SimulatorProps
 
   const copy = isZh
     ? {
-        atsHeading: "模拟 ATS 申请表（6 个代表字段）",
+        atsHeading: "模拟 ATS 申请表（6 个典型字段）",
         fullNameLabel: "姓名",
         fullNameRule: "规则：1:1 匹配 resume.basics.name",
         schoolLabel: "毕业院校",
@@ -79,7 +79,7 @@ export function AutofillConfidenceSim({ locale, onStatusChange }: SimulatorProps
         degreeLabel: "学位",
         degreeRule: "规则：1:1 匹配 resume.education[0].degree",
         workAuthLabel: "签证与工作权限",
-        workAuthPlaceholder: "请选择工作权限...",
+        workAuthPlaceholder: "请选择工作权限……",
         workAuthOptions: [
           { value: "unrestricted", label: "无限制全职工作权限" },
           { value: "graduate-485", label: "毕业生临时工签（485）" },
@@ -108,10 +108,10 @@ export function AutofillConfidenceSim({ locale, onStatusChange }: SimulatorProps
         countBlank: "刻意留空",
         lockTitle: "人工提交锁（Submit Lock）",
         lockNote: !scanned
-          ? "点击「一键本地扫描」观察如何只填确定字段。"
+          ? "点击「一键本地扫描」，观察如何只填确定字段。"
           : !workAuth
-            ? "存在 1 项待确认字段；即使全部填完，最终提交按钮也仅由人手点击。"
-            : "确认完成。扩展已在此止步，请由你本人手动点击提交。",
+            ? "还有 1 项待确认字段。即使全部填完，最终提交按钮也只由人工点击。"
+            : "确认完成。扩展到此止步，请亲自点击提交。",
         submitBtn: humanSubmitted ? "已由申请人手动提交 ✓" : "手动提交申请（仅限人工）",
       }
     : {

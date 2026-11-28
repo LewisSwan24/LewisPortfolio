@@ -59,7 +59,7 @@ const STEPS: readonly TriageStep[] = [
     risk: "high",
     title: {
       en: "Overwrite existing config.json in workspace",
-      zh: "覆盖写入工作区既有 config.json",
+      zh: "覆盖写入工作区现有 config.json",
     },
     detail: {
       en: "High-risk write outside staging copy.",
@@ -67,11 +67,11 @@ const STEPS: readonly TriageStep[] = [
     },
     impactBefore: {
       en: "Before: existing config.json (14 lines, active API routing)",
-      zh: "改动前：现存 config.json（14 行生产路由配置）",
+      zh: "改动前：现有 config.json（14 行生产路由配置）",
     },
     impactAfter: {
       en: "After: replaces 6 routing keys; requires manual undo if wrong",
-      zh: "改动后：将覆写 6 个路由字段，误操作需手工恢复",
+      zh: "改动后：将覆盖 6 个路由字段，误操作需手动恢复",
     },
   },
   {
@@ -84,7 +84,7 @@ const STEPS: readonly TriageStep[] = [
     },
     detail: {
       en: "Irreversible external side effect.",
-      zh: "不可撤回的外部群发动作。",
+      zh: "不可撤回的外部群发操作。",
     },
     impactBefore: {
       en: "Before: 0 emails dispatched; draft saved locally",
@@ -149,7 +149,7 @@ export function LamplightTriageSim({ locale, onStatusChange }: SimulatorProps) {
     if (nextStep.risk === "low") {
       setStatuses((prev) => ({ ...prev, [nextStep.id]: "done" }));
       const msg = isZh
-        ? `${nextStep.actor} 自动推进低风险步骤：${nextStep.title.zh}`
+        ? `${nextStep.actor} 已自动完成低风险步骤：${nextStep.title.zh}`
         : `${nextStep.actor} completed low-risk step: ${nextStep.title.en}`;
       onStatusChange?.(msg);
       return;
@@ -182,7 +182,7 @@ export function LamplightTriageSim({ locale, onStatusChange }: SimulatorProps) {
     shouldFocusNotNowRef.current = true;
     setActiveRiskId(targetRisk.id);
     const msg = isZh
-      ? `前 3 步低风险已完成，高风险卡「${targetRisk.title.zh}」已弹出，默认聚焦「先不要」。`
+      ? `前 3 步低风险任务已完成，高风险卡「${targetRisk.title.zh}」已弹出，默认聚焦「先不要」。`
       : `3 low-risk steps complete. High-risk card "${targetRisk.title.en}" opened with focus on "Not now".`;
     onStatusChange?.(msg);
   };

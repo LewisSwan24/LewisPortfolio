@@ -24,10 +24,10 @@ const CASE_OPTIONS: Array<{ id: CaseFilter; en: string; zh: string }> = [
 ];
 
 const SEVERITY_OPTIONS: Array<{ id: SeverityFilter; en: string; zh: string }> = [
-  { id: "all", en: "All Tiers", zh: "全部审计等级" },
-  { id: "structural-guard", en: "Structural Guard", zh: "结构性硬保护" },
-  { id: "feedback", en: "Status & Feedback", zh: "状态与可见反馈" },
-  { id: "open-risk", en: "Open Risk / Pending", zh: "待补测开放风险" },
+  { id: "all", en: "All Tiers", zh: "全部层级" },
+  { id: "structural-guard", en: "Structural Guard", zh: "结构保护" },
+  { id: "feedback", en: "Status & Feedback", zh: "状态与反馈" },
+  { id: "open-risk", en: "Open Risk / Pending", zh: "待补测风险" },
 ];
 
 const SEVERITY_LABELS: Record<HeuristicSeverity, { en: string; zh: string }> = {
@@ -85,19 +85,19 @@ export function HeuristicAuditWorkbench({
           </div>
           <h2 id="heuristic-auditor-heading" className={styles.engineTitle}>
             {isZh
-              ? "逐项对照已落地的防御保护与仍待实地补测的风险"
+              ? "逐项对照已落地的结构保护与仍待实地补测的风险"
               : "Inspect implemented structural safeguards alongside unproven field gaps"}
           </h2>
           <p className={styles.engineLead}>
             {isZh
-              ? "按项目或审计级别筛选，每条记录直接锚定对应项目的状态矩阵、打回档案或交互模式库。"
+              ? "按项目或检查层级筛选，每条记录都直接链接到对应项目的状态矩阵、打回档案或交互模式库。"
               : "Filter by case or audit severity tier. Every card links back to verifiable case artifacts or open limits."}
           </p>
         </div>
 
         <output role="status" className={styles.statusBar} data-testid="heuristic-count-status">
           {isZh
-            ? `展示 ${shownCount} / ${audits.length} 条启发式核查`
+            ? `显示 ${shownCount} / ${audits.length} 条检查记录`
             : `Showing ${shownCount} of ${audits.length} audit checks`}
         </output>
       </header>
@@ -126,7 +126,7 @@ export function HeuristicAuditWorkbench({
         role="group"
         aria-label={isZh ? "按保护或风险级别筛选" : "Filter audits by severity"}
       >
-        <span className={styles.kicker}>{isZh ? "审计层级" : "Tier"}</span>
+        <span className={styles.kicker}>{isZh ? "检查层级" : "Tier"}</span>
         {SEVERITY_OPTIONS.map((opt) => (
           <button
             key={opt.id}

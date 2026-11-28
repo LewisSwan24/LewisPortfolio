@@ -5,7 +5,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
   studyStatus: "synthetic-gate",
   honestScopeNote: {
     en: "Zero-network unit checks, 3-tier border/dark-mode visual audits, and widget adapter mocks (AntD, Element Plus, react-select, ARIA) pass in CI. Live external applicant testing across ATS portals has not been conducted.",
-    zh: "零网络单测、三档线型明暗双色截图校验及组件库适配器回归均在自动化门禁通过；尚未组织真实求职者跑通外部各家校招网站。",
+    zh: "零网络单测、三档线型明暗双色截图校验及组件库适配器回归均在自动化门禁通过。尚未组织真实求职者跑通外部各家校招网站。",
   },
   moderatorGuide: {
     protocolTitle: {
@@ -25,7 +25,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
         id: "autofill-probe-tri-tier",
         prompt: {
           en: "Inspect the summary tally (e.g., 45 Filled / 1 Review / 1 Blank) and locate why the 1 blank field was skipped.",
-          zh: "查看顶部统计汇总（如 45 已填 / 1 待确认 / 1 刻意留空），并找出那 1 个空白栏位为何没被填上。",
+          zh: "查看顶部统计汇总（如 45 已填 / 1 待确认 / 1 刻意留空），并找出那 1 个空白字段为何没被填上。",
         },
         whatWeWatchFor: {
           en: "Whether tri-coding (2px solid / 2px dashed / 3px solid border + label + icon) communicates intentional refusal vs parser failure without relying on color alone.",
@@ -143,7 +143,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
         constraint: { en: "Solid border + 'Filled' badge + field log", zh: "实线边框 + 「已填」标签 + 侧栏命中依据" },
         rationale: {
           en: "High-confidence schema matches (name, email, phone, degree dates) fill without friction while staying auditable.",
-          zh: "姓名、邮箱、起止年月等无歧义栏位一次填妥，同时保留映射依据可查。",
+          zh: "姓名、邮箱、起止年月等无歧义字段一次填妥，同时保留映射依据可查。",
         },
         verifiedStatus: "synthetic-gate",
       },
@@ -259,7 +259,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
       },
       answer: {
         en: "A dry-run diff preview comparing which fields will change when switching between Design Engineer and UX Researcher resume variants.",
-        zh: "在切换「设计工程师 / UX 研究」不同版本简历前增加一层预演对比，直观标明哪些栏位会跟着改写。",
+        zh: "在切换「设计工程师 / UX 研究」不同版本简历前增加一层预演对比，直观标明哪些字段会跟着改写。",
       },
       verifiedStatus: "unverified-hypothesis",
     },
@@ -271,7 +271,7 @@ export const autofillResearchVault: RawResearchVaultRecord = {
       },
       answer: {
         en: "Floating overlays clash with OEM Android permissions and obscure small fields, whereas a custom keyboard lives cleanly inside the OS input method boundary.",
-        zh: "悬浮窗容易被各家国产安卓系统后台杀掉且遮挡输入框，做成系统级加密输入法才能在招聘小程序里稳定唤起。",
+        zh: "悬浮窗容易被各家国产安卓系统后台杀掉，还会遮挡输入框。做成系统级加密输入法，才能在招聘小程序里稳定唤起。",
       },
       verifiedStatus: "synthetic-gate",
     },

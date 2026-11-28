@@ -24,7 +24,7 @@ const HARDWARE_SPECS: Record<
     },
     zh: {
       title: "M5StickS3 实体双键标本",
-      summary: "实体前键与侧键将高风险命令批准锁定在拇指本体感觉中，语音仅提供上下文摘要。",
+      summary: "实体前键与侧键把高风险命令的批准锁在拇指本体感觉上，语音只提供上下文摘要。",
     },
   },
   maze: {
@@ -34,7 +34,7 @@ const HARDWARE_SPECS: Record<
     },
     zh: {
       title: "共色腕带协作迷宫标本",
-      summary: "共色导电腕带将单一移动轴耦合在两名玩家手里，促使共处一室的人抬头配合。",
+      summary: "共色导电腕带把单一移动轴耦合在两名玩家手里，促使共处一室的人抬头配合。",
     },
   },
   onthebeat: {

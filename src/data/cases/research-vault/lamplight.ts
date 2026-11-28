@@ -14,7 +14,7 @@ export const lamplightResearchVault: RawResearchVaultRecord = {
     },
     cohortAndSetting: {
       en: "Planned, not run: 6 developers or knowledge workers running a 10–15 minute coding/writing delegation alongside their main IDE or browser.",
-      zh: "计划中，未执行：6 名同时开着编辑器或文档的开发者/知识工作者，观察 10–15 分钟长任务委派时的打断感与审批安全感。",
+      zh: "计划中，未执行：6 名同时开着编辑器或文档的开发者/知识工作者。观察 10–15 分钟长任务委派时的打断感与审批安全感。",
     },
     openingBrief: {
       en: "Hand the café crew a real folder copy with a $0.50 cap, minimize the window into the corner while you read an article, and respond only when the crew calls you back.",
@@ -29,7 +29,7 @@ export const lamplightResearchVault: RawResearchVaultRecord = {
         },
         whatWeWatchFor: {
           en: "Focus stays anchored on 'Not now' so habitual Enter dismisses or defers the risky write rather than authorizing it.",
-          zh: "验证焦点是否死死锁在「先不要（Not now）」，让下意识回车触发安全暂缓，而非盲目放行破坏性写入。",
+          zh: "验证焦点是否死死锁在「先不要（Not now）」，让下意识回车触发安全暂缓，不会盲目放行破坏性写入。",
         },
         failureSignal: {
           en: "Any focus jump onto the 'Approve' button or keyboard shortcut that confirms on Enter.",
@@ -235,7 +235,7 @@ export const lamplightResearchVault: RawResearchVaultRecord = {
       },
       answer: {
         en: "The three-part safety floor: working-copy file isolation, pre-run spending cap, and 'Not now' default keyboard focus on every risk gate.",
-        zh: "副本隔离、任务前预算锁死、以及所有风险弹窗默认焦点落在「先不要」，这三道安全底座绝不让步。",
+        zh: "副本隔离、任务前预算锁死，以及所有风险弹窗默认焦点落在「先不要」，这三道安全底线绝不让步。",
       },
       verifiedStatus: "observed",
     },
@@ -271,7 +271,7 @@ export const lamplightResearchVault: RawResearchVaultRecord = {
       },
       answer: {
         en: "It turns rare safety-gate failures into repeatable design critique sessions—reviewers can scrub straight to a stall or refusal state in seconds.",
-        zh: "它把可遇不可求的边界故障变成了可随时拉取复核的「活标本」，设计评审时几秒就能切到拒答或超预算现场。",
+        zh: "把可遇不可求的边界故障变成了可随时拉取复核的「活标本」。设计评审时，几秒就能切到拒答或超预算现场。",
       },
       verifiedStatus: "bench-tested",
     },

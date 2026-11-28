@@ -42,7 +42,7 @@ const REFUSAL_MATRIX: ReadonlyArray<{
     name: { en: "Walkie", zh: "Walkie 手腕语音助手" },
     rule: {
       en: "High-risk shell/file calls block until physical watch button press",
-      zh: "高危命令行/文件工具调用阻塞至手表实体前键批准，口述「yes」不放行",
+      zh: "高危命令行/文件工具调用会阻塞，需按手表实体前键批准，口述「yes」不放行",
     },
     fallback: {
       en: "Explicit OFFLINE separation (No Wi-Fi / Relay unreachable / Bridge offline)",
@@ -66,11 +66,11 @@ const REFUSAL_MATRIX: ReadonlyArray<{
     name: { en: "Resume Autofill", zh: "Resume Autofill" },
     rule: {
       en: "Fields the stored resume does not settle stay blank and flagged, never guessed",
-      zh: "简历里定不下来的栏位留空并标出，绝不代猜",
+      zh: "简历里定不下来的字段留空并标出，绝不代猜",
     },
     fallback: {
       en: "Dictionary matches fill first; it stops before Submit and the person presses it",
-      zh: "词典匹配的栏位先填；工具停在提交前，由本人按提交",
+      zh: "词典匹配的字段先填；工具停在提交前，由本人按提交",
     },
     href: "/projects/autofill#design-decisions",
   },
@@ -107,7 +107,7 @@ export default async function AiWorkbenchPage() {
             </h1>
             <p className="sub">
               {isZh
-                ? "把作品集里每个设计冲突、被否决的常规方案和尚未实测的局限开放成可核查工作台。问题先在浏览器脱敏，再通过加权 BM25 命中公开案例与深度专栏，所有答案原文物理还原自验证库。"
+                ? "把作品集里每个设计冲突、被否决的常规方案和尚未实测的局限，都放进这个可核查的工作台。问题先在浏览器脱敏，再用加权 BM25 检索公开案例和深度专栏，所有答案都从验证库原样还原。"
                 : "Ask about any design tension, rejected alternative, or honest validation gap. Prompts scrub PII locally before bilingual BM25 scoring across 6 listed cases and technical essays — zero fabricated metrics allowed."}
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 18 }}>

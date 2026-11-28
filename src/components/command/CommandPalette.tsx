@@ -132,7 +132,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
             ) : (
               <input
                 className="cmdk-input"
-                aria-label={isZh ? "输入设计论证问题" : "Ask a grounded design question"}
+                aria-label={isZh ? "输入设计问题" : "Ask a grounded design question"}
                 autoFocus
                 value={aiQuery}
                 onChange={(e) => setAiQuery(e.target.value)}
@@ -215,7 +215,7 @@ export function CommandPalette({ isOpen, onClose, items }: CommandPaletteProps) 
                 style={{ justifySelf: "start", fontSize: 12 }}
                 onClick={() => navigate("/ai")}
               >
-                {isZh ? "打开完整 AI 实验室与追溯详情 →" : "Open full AI Lab with pipeline telemetry →"}
+                {isZh ? "打开完整 AI 实验室查看追溯详情 →" : "Open full AI Lab with pipeline telemetry →"}
               </button>
             </div>
           ) : (

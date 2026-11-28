@@ -70,7 +70,7 @@ export default async function LabPage() {
                   {isZh ? "进入模式图谱 →" : "Open Pattern Atlas →"}
                 </Link>
                 <Link href="/studio/replay" className="btn btn-ghost">
-                  {isZh ? "硬件协议帧重放工作台 →" : "Protocol Replay Studio →"}
+                  {isZh ? "进入协议重放台 →" : "Protocol Replay Studio →"}
                 </Link>
               </div>
             </div>

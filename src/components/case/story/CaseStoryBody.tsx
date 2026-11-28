@@ -57,7 +57,7 @@ export function storyCopyLabels(isZh: boolean) {
         links: "链接",
         journey: "一步步怎么做出来",
         beforeAfter: "改造前后",
-        rejected: "被我丢掉的版本",
+        rejected: "我丢掉的版本",
         research: "原始研究笔记",
         hardware: "硬件 3D 模型",
         interview: "面试官常问的问题",

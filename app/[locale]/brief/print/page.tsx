@@ -27,17 +27,17 @@ const ROLE_PRESETS: Record<
 > = {
   "ai-product-engineer": {
     enTitle: "AI Product & Design Engineer — Refusal Boundaries & Verification Dossier",
-    zhTitle: "AI 产品与设计工程师 — 拒绝边界与真原型论证手册",
+    zhTitle: "AI 产品与设计工程师：拒绝边界与真原型论证手册",
     cases: ["walkie", "lamplight", "autofill"],
   },
   "design-engineer": {
     enTitle: "Design Engineer — Systems Grammar & Interactive Prototyping Dossier",
-    zhTitle: "设计工程师 — 一致性规则与交互工程论证手册",
+    zhTitle: "设计工程师：一致性规则与交互工程论证手册",
     cases: ["grassland", "walkie", "autofill"],
   },
   "hardware-interaction": {
     enTitle: "Hardware × Physical Interaction — Embodied & Social Withdrawal Dossier",
-    zhTitle: "软硬协同交互设计师 — 实体触发与社交退场论证手册",
+    zhTitle: "软硬协同交互设计师：实体触发与社交退场论证手册",
     cases: ["walkie", "maze", "onthebeat"],
   },
 };
@@ -156,7 +156,7 @@ export default async function BriefPrintPage({
 
                 <aside className="brief-print-sidebar">
                   <div className="brief-print-side-box">
-                    <span className="eyebrow">{isZh ? "角色与关键度量" : "Role & Scope"}</span>
+                    <span className="eyebrow">{isZh ? "角色与关键指标" : "Role & Scope"}</span>
                     <p style={{ fontSize: 12, margin: "4px 0 8px" }}>{card.role}</p>
                     <ul className="brief-print-metrics">
                       <li>{card.m1}</li>
@@ -188,7 +188,7 @@ export default async function BriefPrintPage({
                       <path d={qr.path} fill="#151412" />
                     </svg>
                     <div>
-                      <span className="eyebrow">{isZh ? "扫码直达活原型" : "Scan for Live Prototype"}</span>
+                      <span className="eyebrow">{isZh ? "扫码直达可运行原型" : "Scan for Live Prototype"}</span>
                       <p style={{ fontSize: 10, wordBreak: "break-all", margin: "4px 0 0", color: "var(--text-2)" }}>
                         {liveUrl}
                       </p>
