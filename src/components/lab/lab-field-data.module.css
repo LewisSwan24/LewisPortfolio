@@ -1,0 +1,265 @@
+/* v7.1 block 3: field-data dashboard on /lab. Status colours are local because
+   the dark theme defines no success/warning tokens; every one is >= 3:1
+   against both surfaces (measured 29 Nov 2026), and each rating also carries
+   a word and a distinct glyph, so colour is never the only cue. */
+.plate {
+  display: grid;
+  gap: var(--s-4);
+  --fd-good: #3b5e42;
+  --fd-warn: #9a6b26;
+  --fd-poor: #a63f2a;
+  --fd-line: var(--text);
+  --fd-muted: var(--text-3);
+}
+
+:global(:root[data-theme="dark"]) .plate,
+:global(.dark) .plate {
+  --fd-good: #8cc79a;
+  --fd-warn: #e0b36a;
+  --fd-poor: #ff8a80;
+}
+
+.heading {
+  font-size: clamp(20px, 2.2vw, 26px);
+  margin-top: 8px;
+}
+
+.context {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.method {
+  margin-top: 6px;
+  max-width: 66ch;
+  font-size: 14px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.tableWrap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.table thead th {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table tbody th {
+  font-weight: 600;
+}
+
+.path {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-3);
+}
+
+.value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--text);
+}
+
+.rating {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 2px;
+  color: var(--text-2);
+}
+
+.glyph {
+  font-size: 12px;
+}
+
+.rating[data-rating="good"] .glyph {
+  color: var(--fd-good);
+}
+
+.rating[data-rating="needs-improvement"] .glyph {
+  color: var(--fd-warn);
+}
+
+.rating[data-rating="poor"] .glyph {
+  color: var(--fd-poor);
+}
+
+.rating[data-rating="few-samples"] .glyph {
+  color: var(--fd-muted);
+}
+
+.count {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.empty {
+  color: var(--text-3);
+}
+
+.trend {
+  display: grid;
+  gap: 8px;
+}
+
+.trendHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.trendTitle {
+  margin: 0;
+  font-size: 16px;
+}
+
+.switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+}
+
+.switchButton {
+  min-width: 52px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-left: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.switchButton:first-child {
+  border-left: 0;
+}
+
+.switchButton[aria-pressed="true"] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.switchButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.legend {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.trendList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.trendItem {
+  display: grid;
+  grid-template-columns: minmax(96px, 1fr) auto minmax(96px, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.trendItem:last-child {
+  border-bottom: 0;
+}
+
+.trendLabel {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.trendValue {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-2);
+  text-align: right;
+}
+
+.spark {
+  display: block;
+  overflow: visible;
+}
+
+.sparkBase {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.sparkThreshold {
+  stroke: var(--fd-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.sparkLine {
+  fill: none;
+  stroke: var(--fd-line);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.sparkDot {
+  fill: var(--fd-line);
+}
+
+.sparkHit {
+  fill: transparent;
+}
+
+@media (max-width: 520px) {
+  .trendItem {
+    grid-template-columns: 1fr auto;
+  }
+
+  .trendValue {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+}
