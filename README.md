@@ -1,4 +1,4 @@
-# Lewis Dong — Portfolio (`v6.9.0`)
+# Lewis Dong — Portfolio (`v7.0.0`)
 
 **Live site:** [lewisdong.com](https://lewisdong.com)
 
