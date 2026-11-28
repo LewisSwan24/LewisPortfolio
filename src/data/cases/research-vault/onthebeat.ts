@@ -235,7 +235,7 @@ export const onthebeatResearchVault: RawResearchVaultRecord = {
       },
       answer: {
         en: "Whether strangers at an actual crowded gig trust a first name, a meeting place and a shared number enough to walk over and say hello without a chat thread.",
-        zh: "在嘈杂拥挤的真实演出现场，没有聊天私信，只凭名字、碰面地点和同一个编号，陌生人能不能找对人并开口打招呼。",
+        zh: "在嘈杂拥挤的真实演出现场，没有聊天私信。只凭名字、碰面地点和同一个编号，陌生人能不能找对人并开口打招呼。",
       },
       verifiedStatus: "unverified-hypothesis",
     },

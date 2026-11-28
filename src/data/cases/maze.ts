@@ -101,14 +101,14 @@ export const mazeCase: CaseRecord = {
     "blurb": "This is the same console that drives the physical maze, running in demo mode with no hardware attached. Hit Start, then Trap Test, and watch the score, the haptic channels, and the event log all answer the same event.",
     "blurbZh": "这是驱动实体迷宫的同一套控制台，跑在 demo 模式下，不用接硬件。按 Start 开一局，再按 Trap Test，看计分、震动通道和事件日志同时反应。",
     "action": "Load the interactive demo",
-    "actionZh": "载入互动 demo"
+    "actionZh": "加载互动 demo"
   },
   "interactiveDemo": {
     "id": "maze-contact",
     "placement": "after-summary",
     "eyebrow": {
       "en": "Interactive prototype · 4-player co-touch gate",
-      "zh": "可操作活原型 · 四人触控协同迷宫"
+      "zh": "可运行原型 · 四人触控协同迷宫"
     },
     "title": {
       "en": "Test why one player alone cannot move the maze",
@@ -116,11 +116,11 @@ export const mazeCase: CaseRecord = {
     },
     "prompt": {
       "en": "Tap a wristband in Single-player mode to feel the lock, then switch to Two-player co-touch (or press Arrow keys on the grid) to steer the orb to GOAL.",
-      "zh": "先在「单人试按」模式下点击任意腕带感受方向锁定，再切换为「双人同时触碰」（或聚焦棋盘按方向键）协同把球送到终点。"
+      "zh": "先在「单人试按」模式下点击任意腕带，感受方向锁定。再切换为「双人同时触碰」（或聚焦棋盘按方向键），协同把球送到终点。"
     },
     "takeaway": {
       "en": "Collaborative hardware turns physical co-presence into an explicit state gate: one person alone gets immediate lock feedback, while paired touch drives all five synchronized channels.",
-      "zh": "协作型物理交互把「双人在场」编码为明确的状态门控：单人触碰即时给出锁定提示，双人配对则同步驱动计分、震动、灯带与串口。"
+      "zh": "协作型物理交互把「双人在场」做成明确的状态门槛。单人触碰立刻给出锁定提示，双人配对才同步驱动计分、震动、灯带与串口。"
     }
   },
   "processArtifacts": {
@@ -241,7 +241,7 @@ export const mazeCase: CaseRecord = {
           "label": { "en": "IR Debounce", "zh": "十路红外防抖" },
           "detail": {
             "en": "FC-51 sensors pass per-channel debounce + cooldown windows so one ball pass fires exactly once.",
-            "zh": "十路 FC-51 传感器经由防抖与冷却门控，确保小球单次通过严格仅记录一次事件。"
+            "zh": "十路 FC-51 传感器加上防抖与冷却窗口，确保小球单次经过只记录一次事件。"
           }
         },
         {
@@ -289,7 +289,7 @@ export const mazeCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "Pair shared color wristbands across players (A/B, B/C coupling) so no single person can drive any direction alone, while wiring instant visual, audio, and haptic cues into one round state machine.",
-        "zh": "让相邻玩家共用同色腕带触发链路（A/B、B/C 耦合），任何人都无法单人完成单一方向驱动，并用单一回合状态机即时联动声、光、触觉反馈，有意制造「温和的协同阻力」。"
+        "zh": "让相邻玩家共用同色腕带触发链路（A/B、B/C 耦合），任何人都无法独自驱动一个方向。同时用单一回合状态机即时联动声、光、触觉反馈，有意制造「温和的协同阻力」。"
       },
       "residualCostOrRisk": {
         "en": "Putting on wristbands and finger sleeves took each group about a minute, and many players struggled with the rules even after a team member explained them. Play was observed across 9 groups (36 people) rather than logged by channel.",
@@ -330,11 +330,11 @@ export const mazeCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "Relay-driven vibration motors in finger sleeves keep feedback on the body, each IR sensor needs three consecutive samples and then cools down for 400 ms so one ball pass is one round event, and servo tilt runs on its own Uno (SafeTouchServoController).",
-        "zh": "改用继电器驱动的指套震动马达把触觉留在身体上；每个红外传感器要连续三次取样才触发，之后冷却 400 ms，锁定「一过一事件」；平台倾斜放在单独一块 Uno 上的 SafeTouchServoController。"
+        "zh": "改用继电器驱动的指套震动马达，把触觉留在身体上。每个红外传感器要连续三次取样才触发，之后冷却 400 ms，锁定「一过一事件」。平台倾斜交由单独一块 Uno 上的 SafeTouchServoController 负责。"
       },
       "residualCostOrRisk": {
         "en": "Vibration is a gentler sensation than shock and the cooldown introduces a brief blind window for rapid re-triggers; built as one hand-wired exhibition unit rather than a manufacturable harness.",
-        "zh": "震动冲击感弱于电击，且冷却窗口会制造短暂盲区；目前仅验证了手工走线的单台展览机，不代表可量产耐久性。"
+        "zh": "震动冲击感弱于电击，冷却窗口也会留下短暂盲区。目前仅验证了手工走线的单台展览机，不代表可量产的耐久性。"
       }
     },
     {
@@ -345,7 +345,7 @@ export const mazeCase: CaseRecord = {
       },
       "humanTension": {
         "en": "Exhibition wiring degrades without fast bench diagnostics, yet external reviewers reading a web portfolio never own an Arduino Mega harness—without parity, either hardware debugging stalls or remote evaluators inspect a dead mock.",
-        "zh": "缺乏直观串口监控时，现场接线故障极难排查；但线上的简历审阅者手头不可能插着 Arduino Mega 实体迷宫，若把演示版单独重画成假动画，既难维护又会失真。"
+        "zh": "没有直观串口监控时，现场接线故障很难排查。但线上的简历审阅者手头不可能插着 Arduino Mega 实体迷宫，若把演示版单独画成假动画，既难维护又会失真。"
       },
       "rejectedAlternatives": [
         {
@@ -371,7 +371,7 @@ export const mazeCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "The JS Canvas console shares one event dispatcher: when USB Serial connects to Arduino Mega it logs live traps and relays; without hardware attached it replays the exact same trap, score, and haptic state transitions deterministically in the browser.",
-        "zh": "JS Canvas 控制台基于单一状态分发器：接上 USB Serial 时直接读取 Mega 的 10 路实时状态与错误恢复测试；脱离硬件时无缝退化为完全一致的浏览器本地状态回放引擎。"
+        "zh": "JS Canvas 控制台基于单一状态分发器。接上 USB Serial 时，直接读取 Mega 的 10 路实时状态与错误恢复测试。脱离硬件时，平滑切换为完全一致的浏览器本地状态回放。"
       },
       "residualCostOrRisk": {
         "en": "Chrome Web Serial requires a desktop Chromium browser with USB permission for live mode; remote viewers remain limited to deterministic simulation rather than physical wrist torque.",
@@ -393,7 +393,7 @@ export const mazeCase: CaseRecord = {
     "zh": {
       "kicker": "物理计算 · 多人协作装置",
       "title": "MazeRunners",
-      "sub": "双人共用同一腕带才能触发方向，用十路红外防抖、指套震动与浏览器实时控制台把实体木迷宫变成必须开口配合的四人协同游戏。",
+      "sub": "双人共用同一腕带才能触发方向。用十路红外防抖、指套震动与浏览器实时控制台，把实体木迷宫做成必须开口配合的四人协同游戏。",
       "role": "交互规则、全套接线、Arduino 固件与网页控制台",
       "date": "2026 · 已公开展出",
       "m1": "跨玩家共触互锁 + 震动反馈",
@@ -479,12 +479,12 @@ export const mazeCase: CaseRecord = {
       },
       "roleVal": "Design Technologist / 交互原型开发",
       "timeVal": "2026 · 已搭建并展出",
-      "teamVal": "团队项目；红外与震动程序由我编写，舵机程序由 AI 工具在我的草稿上改写，接线与测试由我负责，网页控制台也由我搭建",
+      "teamVal": "团队项目。红外与震动程序由我编写，舵机程序由 AI 工具在我的草稿上改写。接线与测试由我负责，网页控制台也由我搭建。",
       "toolsVal": "Arduino Mega · Arduino C/C++ · FC-51 红外 · TM1637 · Web Serial · JS Canvas",
       "ch": {
         "label": "问题",
         "title": "迷宫在会回应你之前，只是一件家具。",
-        "p": "题目是给公开展览做一台实体迷宫游戏。第一版就暴露了失败模式：一个还算好看的物件，人们推着球转，但什么都没发生。计分靠人记，陷阱是画上去的线，唯一的反馈是旁边的人在笑。真正的设计问题不是迷宫本身，而是让系统察觉到事件，并且回应得够快，让玩家看得出刚才发生了什么。即便如此，每轮开始前仍要由组员讲解规则。"
+        "p": "题目是给公开展览做一台实体迷宫游戏。第一版就暴露了失败模式：一个还算好看的物件，人们推着球转，但什么都没发生。计分靠人记，陷阱是画上去的线，唯一的反馈是旁边的人在笑。真正的设计问题不在迷宫本身，而在让系统察觉到事件并及时回应，让玩家看得出刚才发生了什么。即便如此，每轮开始前仍要由组员讲解规则。"
       },
       "re": {
         "label": "前期工作",
@@ -507,19 +507,19 @@ export const mazeCase: CaseRecord = {
       "sy": {
         "label": "系统概念",
         "title": "一个事件，多个通道，一个回合状态机。",
-        "p": "所有东西都挂在同一个回合状态机上。球打断红外光束，回合状态推进，这一个事件随即分头触发：计分与计时更新、玩家手指套里的震动脉冲触发、灯带与扬声器回应、浏览器控制台记录。各子系统各自反应，正是第一版让整台迷宫像是一堆拧在木板上的无关小装置的原因。"
+        "p": "所有东西都挂在同一个回合状态机上。球打断红外光束，回合状态推进。这一个事件随即分头触发：计分与计时更新，玩家指套发出震动脉冲，灯带与扬声器回应，浏览器控制台记录。第一版里各子系统各自反应，整台迷宫才像一堆拧在木板上的无关小装置。"
       },
       "id": {
         "label": "技术决策",
-        "p": "Mid-Fi 阶段用震动取代了电击，因为电击的复杂度与安全性均无法达标。继电器驱动的马达装在可穿戴手指套里，把感受留在身体上。每个红外传感器要连续三次取样才触发，之后冷却 400 ms，因为原始读数在一次经过里可能重复触发，让计分、计时与震动对不上。平台倾斜放在单独一块 Uno 上的 SafeTouchServoController，采用「按住才动」；发球机的步进电机在另一块 Uno 上，Mega 负责感测，所有板子共地。"
+        "p": "Mid-Fi 阶段用震动取代了电击，因为电击的复杂度与安全性均无法达标。继电器驱动的马达装在可穿戴手指套里，把感受留在身体上。每个红外传感器要连续三次取样才触发，之后冷却 400 ms。因为原始读数在一次经过里可能重复触发，会让计分、计时与震动对不上。平台倾斜放在单独一块 Uno 上的 SafeTouchServoController，采用「按住才动」；发球机的步进电机在另一块 Uno 上，Mega 负责感测，所有板子共地。"
       },
       "pr": {
         "label": "网页控制台",
-        "p": "一个浏览器端的系统控制台通过 Web Serial 连上迷宫并实时镜像：计分计时 HUD、硬件面板、事件日志，以及画布上的反馈模拟。它也能以 demo 模式独立运行：因为开发时硬件不一定在手边，放进作品集或面试场合更不会在。回归测试覆盖串口同步、反馈同步、舵机响应与音频一致性，让 demo 不会悄悄偏离固件真正的行为。"
+        "p": "浏览器端系统控制台通过 Web Serial 连上迷宫并实时镜像：显示计分计时 HUD、硬件面板、事件日志和画布上的反馈模拟。也能以 demo 模式独立运行。因为开发时硬件不一定在手边，放进作品集或面试场合更不会在。回归测试覆盖串口同步、反馈同步、舵机响应与音频一致性，让 demo 不会悄悄偏离固件真正的行为。"
       },
       "te": {
         "label": "测试与迭代",
-        "p": "台架测试反复调校防抖与冷却，直到一次球的经过刚好产生一个游戏事件。一致性测试则在只改动固件或只改动控制台时抓出漂移。之后展览上的多人游玩暴露了台架测不出来的东西：每组戴腕带和指套大约要一分钟，有些玩家第一次被震动吓了一跳，组员讲解之后仍有不少人没弄懂规则。"
+        "p": "台架测试反复调校防抖与冷却，直到一次球的经过刚好产生一个游戏事件。一致性测试则在只改动固件或只改动控制台时抓出漂移。之后展览上的多人游玩暴露了台架测不出来的问题。每组戴腕带和指套大约要一分钟，有些玩家第一次被震动吓了一跳。组员讲解之后，仍有不少人没弄懂规则。"
       },
       "ou": {
         "label": "产出与边界",
@@ -535,11 +535,11 @@ export const mazeCase: CaseRecord = {
           "label": "控制",
           "v": "实时 + demo 控制台"
         },
-        "p": "一套真的在运行、也真的展出过的系统：涵盖游戏状态、红外感测、玩家链路输入、震动与音频的固件模块；一块 Mega 加两块 Uno、全部共地的硬件分工；以及带一致性测试的浏览器控制台。证据状态：这是为一次展览搭建的课程项目。现场游玩是观察记录，不是数据埋点，所以我能描述玩家对什么有反应，但无法量化哪条通道承载了最多信息。"
+        "p": "这套系统实际运行并展出过。固件模块涵盖游戏状态、红外感测、玩家链路输入、震动与音频。硬件由一块 Mega 加两块 Uno 共地分工，并配有带一致性测试的浏览器控制台。证据状态：这是为一次展览搭建的课程项目。现场游玩属于观察记录，没有做数据埋点。所以我能描述玩家对什么有反应，但无法量化哪条通道承载了最多信息。"
       },
       "rf": {
         "label": "反思",
-        "p": "最重要的一课是：在硬件上，时序就是设计。防抖听起来像电子细节，直到一次重复触发让分数和你手指上的震动对不上，玩家就不再信任这套系统。最弱的一环是我证明了整条物理回路能跑通，却没有测量其中哪些部分真正起作用，如果重做，我会从第一天就记录每一次传感器事件和反馈触发，然后开始逐个关掉通道，看玩家实际在用哪几条。"
+        "p": "最重要的一课是：在硬件上，时序就是设计。防抖听起来像电子细节，直到一次重复触发让分数和你手指上的震动对不上，玩家就不再信任这套系统。最弱的一环是，我证明了整条物理回路能跑通，却没有测量其中哪些部分真正起作用。如果重做，我会从第一天就记录每一次传感器事件和反馈触发，然后逐个关掉通道，看玩家实际在用哪几条。"
       }
     }
   }

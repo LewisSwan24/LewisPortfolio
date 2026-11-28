@@ -20,7 +20,7 @@ export const onthebeatCase: CaseRecord = {
     },
     "changed": {
       "en": "A phone, two wristbands and a cloud relay that run without a laptop",
-      "zh": "手机、两支手环加云端 relay，不需要笔电就能运转"
+      "zh": "手机、两支手环加云端中继，不需要笔记本就能运转"
     }
   },
   "reviewMeta": {
@@ -54,9 +54,9 @@ export const onthebeatCase: CaseRecord = {
   ],
   "media": {
     "label": "One wave, two test windows",
-    "labelZh": "一次挥手，两个测试视窗",
+    "labelZh": "一次挥手，两个测试窗口",
     "blurb": "Two local test windows, Ava and Leo, walking the flow on the 29 September 2026 build. There are no photographs of the wristbands in this case.",
-    "blurbZh": "本机两个测试视窗 Ava 与 Leo 走一遍流程，截自 2026 年 9 月 29 日的构建。这个案例没有手环实拍照片。",
+    "blurbZh": "本机两个测试窗口 Ava 与 Leo 走一遍流程，截自 2026 年 9 月 29 日的构建。这个案例没有手环实拍照片。",
     "images": [
       {
         "src": "/projects/onthebeat/01-armed.jpg",
@@ -92,7 +92,7 @@ export const onthebeatCase: CaseRecord = {
     "placement": "after-summary",
     "eyebrow": {
       "en": "Interactive prototype · Mutual consent & device withdrawal",
-      "zh": "可操作活原型 · 匿名破冰与开口后设备退场"
+      "zh": "可运行原型 · 匿名破冰与开口后设备退场"
     },
     "title": {
       "en": "Test the blind wave → mutual nod → pocket-exit rhythm",
@@ -104,7 +104,7 @@ export const onthebeatCase: CaseRecord = {
     },
     "takeaway": {
       "en": "Lowering initiation friction only earns trust when devices fade quietly the moment real conversation starts.",
-      "zh": "社交硬件的价值只在帮陌生人迈过开头那半秒——两人真正开口后，软件就该礼貌退居二线。"
+      "zh": "社交硬件的价值只在帮陌生人迈过开头那半秒。两人真正开口后，软件就该礼貌退居二线。"
     }
   },
   "processArtifacts": {
@@ -247,7 +247,7 @@ export const onthebeatCase: CaseRecord = {
       },
       "humanTension": {
         "en": "At a dark, loud live gig, wanting to say hello to someone nearby carries real social face-loss anxiety if you misread the room—yet pulling up a bright social-feed screen breaks eye contact and kills the music moment.",
-        "zh": "在灯光昏暗、人声嘈杂的演出现场，想向邻近同行人搭话却担心误判对方意愿而当场尴尬；但如果低头刷通用社交软件加好友，又会直接打断现场的音乐沉浸感。"
+        "zh": "在灯光昏暗、人声嘈杂的演出现场，想向身边人搭话，又怕误判意愿而当场尴尬。但如果低头刷通用社交软件加好友，又会直接打断现场的音乐沉浸感。"
       },
       "rejectedAlternatives": [
         {
@@ -273,28 +273,28 @@ export const onthebeatCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "An initial wave transmits only anonymous presence ('someone nearby waved') across three low-stakes Figma prompt cards (SAY HI, FIRST SONG?, LET'S DANCE! from a teammate's concept); names and a shared meeting landmark unlock only after both nod, so both phones can go right back into pockets.",
-        "zh": "首次挥手只传递「附近有人在场」的匿名信号，配合组员原型里的三张低压力语义卡（SAY HI / FIRST SONG? / LET'S DANCE!）；唯有双方都点头确认后才解锁名字与碰面地标，随后手机即可收回口袋、让设备退居二线。"
+        "zh": "首次挥手只传递「附近有人在场」的匿名信号，配合组员原型里的三张低压力语义卡（SAY HI / FIRST SONG? / LET'S DANCE!）。双方都点头确认后，才解锁名字与碰面地标，随后手机就能收回口袋，让设备退居二线。"
       },
       "residualCostOrRisk": {
         "en": "No participant or live-gig wear testing has been run yet; wristband sleep/long-press timings (6s awake, 1.5s hold) remain unmeasured estimates, and the three-card concept came from a teammate.",
-        "zh": "尚未在真实或模拟演出现场做过参与者与佩戴实测（唤醒 6 秒、长按 1.5 秒仍为估计值），且三张卡的初始概念源自同组同学的 Figma 原型。"
+        "zh": "尚未在真实或模拟演出现场做过参与者与佩戴实测，唤醒 6 秒、长按 1.5 秒仍为估计值。此外，三张卡的初始概念源自同组同学的 Figma 原型。"
       }
     },
     {
       "id": "standalone-relay-and-ai-review",
       "decisionTitle": {
         "en": "Remove the laptop with an always-on relay and reject deceptive AI UI drafts",
-        "zh": "用常驻云端中继让手环脱离笔电独立运转，并拒收「假装完成」的 AI 产出"
+        "zh": "用常驻云端中继让手环脱离电脑独立运转，并拒收「假装完成」的 AI 产出"
       },
       "humanTension": {
         "en": "AI-generated prototypes often look finished on a laptop desk—mocked matches and laptop-tethered relays—that would collapse immediately in a real venue.",
-        "zh": "AI 生成的原型经常在笔记本桌面上「看起来什么都能跑」，实则暗藏写死的假匹配和离不开电脑本地服务的链路，带到现场会瞬间穿帮。"
+        "zh": "AI 生成的原型在笔记本桌面上经常「看起来什么都能跑」。实际却暗藏写死的假匹配和离不开电脑本地服务的链路，带到现场会瞬间穿帮。"
       },
       "rejectedAlternatives": [
         {
           "option": {
             "en": "Keep a laptop relay running at the table for demo convenience",
-            "zh": "保留本地笔电充当中继，省去云端部署"
+            "zh": "保留本地电脑充当中继，省去云端部署"
           },
           "flaw": {
             "en": "Neither phone nor wristbands can operate away from the desk, violating the portable gig setting.",
@@ -314,22 +314,22 @@ export const onthebeatCase: CaseRecord = {
       ],
       "chosenTradeoff": {
         "en": "Enforced bidirectional state through an always-on Fly.io Sydney relay, verified real MEET agreement across StickS3 and StickC Plus wristbands, and sent generated design canvases back across 5+ rework rounds (12+ on the earlier canvas) until every state transition held.",
-        "zh": "明确要求手环侧键可独立选卡、MEET 必须是真实双端协商并迁入悉尼常驻 Fly.io 中继；对 AI 生成画布逐屏走查并打回至少 5 轮返工（早期画布至少 12 轮），直到状态一致。"
+        "zh": "明确要求手环侧键可独立选卡、MEET 必须是真实双端协商，并将中继迁入悉尼常驻 Fly.io。同时对 AI 生成画布逐屏走查，打回至少 5 轮返工（早期画布至少 12 轮），直到状态一致。"
       },
       "residualCostOrRisk": {
         "en": "Depends on cloud connectivity in crowded venues; full-night battery life, StickC Plus front button, band-initiated wave-back, and the post-fix iPhone clip remain unverified, and firmware/app code was written and flashed by Claude Code.",
-        "zh": "现场仍依赖云端连接；整晚续航、Plus 正面键、手环端按实体键回挥以及 iPhone 片段修复后的复测仍未验证，且固件与 App 代码由 Claude Code 编写并烧录。"
+        "zh": "现场仍依赖云端连接；整晚续航、Plus 正面键、手环端按实体键回挥，以及 iPhone 片段修复后的复测均未验证。固件与 App 代码由 Claude Code 编写并烧录。"
       }
     },
     {
       "id": "wrist-side-button-agency-over-mirroring",
       "decisionTitle": {
         "en": "Let the ESP32 wristband side button drive state transitions back to the phone",
-        "zh": "赋权 ESP32 手环侧键反向驱动状态，拒绝让硬件沦为手机的纯被动副屏"
+        "zh": "让 ESP32 手环侧键反向驱动状态，不让硬件沦为手机的纯被动副屏"
       },
       "humanTension": {
         "en": "If the wristband merely mirrors whatever is tapped on React, attendees in a packed crowd are forced back onto unlocking a bright phone screen just to browse or switch icebreaker cards.",
-        "zh": "如果手环只能单向映射手机点按结果，人在拥挤演出现场还是不得不掏出亮屏手机去切换破冰语卡片——手环就彻底沦为了多此一举的挂件。"
+        "zh": "如果手环只能单向映射手机点按结果，人在拥挤的演出现场还是得掏出亮屏手机切换破冰卡片。这样手环就彻底成了多此一举的挂件。"
       },
       "rejectedAlternatives": [
         {
@@ -359,7 +359,7 @@ export const onthebeatCase: CaseRecord = {
       },
       "residualCostOrRisk": {
         "en": "StickC Plus front-button gesture and direct band-initiated wave-back remain unverified edge cases; the three icebreaker phrases came from a teammate's coursework Figma concept rather than Lewis.",
-        "zh": "StickC Plus 正面短按与从手环直接反向回挥目前尚未完成实机收口；同时三句破冰词条均源自课程同组队友的 Figma 概念原型（非本人原创）。"
+        "zh": "StickC Plus 正面短按与手环直接反向回挥尚未完成实机收口。同时，三句破冰词条均源自课程同组队友的 Figma 概念原型（非本人原创）。"
       }
     }
   ],
@@ -377,7 +377,7 @@ export const onthebeatCase: CaseRecord = {
     "zh": {
       "kicker": "社交穿戴 · 现场防尴尬破冰",
       "title": "On The Beat",
-      "sub": "在演出人群里帮两个陌生人自然开口而不必盯手机：只有双方手环都点头确认，彼此界面才出现姓名和碰面点。",
+      "sub": "在演出人群里帮两个陌生人自然开口，不必盯着手机。只有双方手环都点头确认，彼此界面才出现姓名和碰面点。",
       "role": "DECO3500 团队课程作业的个人版本 · 交互规则、AI 产出审查与真手环配对",
       "date": "2026 · 课程原型个人实现版",
       "m1": "双向同意后才揭示身份",
@@ -459,12 +459,12 @@ export const onthebeatCase: CaseRecord = {
     "zh": {
       "hero": {
         "title": "On The Beat",
-        "sub": "给现场演出用的手机 App、两支手环和一台云端 relay：帮两个陌生人开口，然后让设备退到一边。"
+        "sub": "给现场演出用的手机 App、两支手环和一台云端中继：帮两个陌生人开口，然后让设备退到一边。"
       },
       "roleVal": "定需求、审查 AI 输出、排查错误，并在真手环上配对实测。代码由 AI 工具编写",
       "timeVal": "2026 年 9 至 10 月 · 课程作业 DECO3500 的个人版本",
       "teamVal": "个人完成。最初的三张卡 Figma 原型出自组员",
-      "toolsVal": "React · Fly.io 上的 Node relay · C++ 固件（PlatformIO、M5Unified）· Claude Design · Claude Code",
+      "toolsVal": "React · Fly.io 上的 Node 中继 · C++ 固件（PlatformIO、M5Unified）· Claude Design · Claude Code",
       "ch": {
         "label": "问题",
         "title": "让人开口，然后退到一边。",
@@ -475,23 +475,23 @@ export const onthebeatCase: CaseRecord = {
         "title": "第一版「看起来能跑」背后露馅的三处断点。",
         "m1": {
           "t": "手环脱离手机独立切卡",
-          "b": "首版生成代码只允许手机单向遥控手环，迫使人继续盯屏幕；明确要求双向同步后，侧键选卡可反推手机状态切换。"
+          "b": "首版生成代码只允许手机单向遥控手环，迫使人继续盯屏幕。明确要求双向同步后，侧键选卡可反推手机状态切换。"
         },
         "m2": {
           "t": "真实双端协商的 MEET",
           "b": "早期 MEET 只是前端写死的假数据；打回重做后，StickS3 与 StickC Plus 通过真实挥手与回挥在双方点头后同步进入碰面态。"
         },
         "m3": {
-          "t": "脱离笔电的常驻云中继",
-          "b": "依赖桌面电脑的中继带不进演出现场；将 relay 迁至悉尼常驻 Fly.io 后 65 分钟，两支真手环脱离笔电独立配对成功。"
+          "t": "脱离电脑的常驻云中继",
+          "b": "依赖桌面电脑的中继带不进演出现场。将中继迁至悉尼常驻 Fly.io 后 65 分钟，两支真手环脱离笔记本独立配对成功。"
         },
         "quote": "没有电脑的话这俩东西都无法运转了",
         "quoteWho": "9 月 25 日真机联调中发出的硬性约束"
       },
       "sy": {
         "label": "系统概念",
-        "title": "手机、relay、两支手环。",
-        "p": "三个部分通过一台 relay 对话。手机 App 用 React。relay 是 Node，跑在 Fly.io 悉尼的一台常开机器上。两支手环是 StickS3 和 StickC Plus，属于 ESP32 系列的两种板子，跑 C++ 固件。两边都能改状态，所以都经过 relay 保持一致；双方都同意之前，谁也看不到对方的名字。"
+        "title": "手机、中继、两支手环。",
+        "p": "三个部分通过一台云端中继对话。手机 App 用 React。中继服务用 Node 编写，跑在 Fly.io 悉尼的一台常开机器上。两支手环是 StickS3 和 StickC Plus，属于 ESP32 系列的两种板子，跑 C++ 固件。两边都能改状态，所以都经过中继保持一致；双方都同意之前，谁也看不到对方的名字。"
       },
       "id": {
         "label": "设计决策",
@@ -503,7 +503,7 @@ export const onthebeatCase: CaseRecord = {
       },
       "te": {
         "label": "测试与迭代",
-        "p": "两类检查，都是我自己做的。真机上，9 月 25 日两支手环经云端 relay 同时显示 MEET，链路里没有笔电。软件上，用本机两个测试视窗 Ava 与 Leo 在 9 月 29 日的构建上走一遍：点亮 SAY HI，收到不带名字的挥手，双方点头后才显示名字。当晚设计画布至少返工 5 次，此前的 Say Hello 画布至少 12 轮。这些都不是参与者测试。"
+        "p": "两类检查，都是我自己做的。真机上，9 月 25 日两支手环经云端中继同时显示 MEET，链路里没有笔记本。软件上，用本机两个测试窗口 Ava 与 Leo 在 9 月 29 日的构建上走一遍：点亮 SAY HI，收到不带名字的挥手，双方点头后才显示名字。当晚设计画布至少返工 5 次，此前的 Say Hello 画布至少 12 轮。这些都不是参与者测试。"
       },
       "ou": {
         "label": "产出与边界",
@@ -519,11 +519,11 @@ export const onthebeatCase: CaseRecord = {
           "label": "参与者测试",
           "v": "尚无"
         },
-        "p": "手机 App、两支手环和一台常开的 relay，不需要笔电就能运转，代码在公开仓库里。证据状态：没有任何参与者测试这个 App 的记录。手环的时间参数，例如保持唤醒六秒、长按 1.5 秒，都是估计值，还要戴在手上实测。一晚的电池、Plus 的正面键、在手环上按实体键回挥，都没验证。员工页推播在 9 月 30 日送达过我的 Android 手机，当时开着 VPN。10 月 6 日 iPhone 片段消失的问题修好了，但没有复测。"
+        "p": "手机 App、两支手环和一台常开的中继，不需要笔记本就能运转，代码在公开仓库里。证据状态：没有任何参与者测试这个 App 的记录。手环的时间参数，例如保持唤醒六秒、长按 1.5 秒，都是估计值，还要戴在手上实测。一晚的电池、Plus 的正面键、在手环上按实体键回挥，都没验证。员工页推送在 9 月 30 日送达过我的 Android 手机，当时开着 VPN。10 月 6 日 iPhone 片段消失的问题修好了，但没有复测。"
       },
       "rf": {
         "label": "反思",
-        "p": "从记录看，我的部分在两头：说清系统必须做到什么，把只是看起来做完的输出打回去。显示 MEET 的模拟数据、只在我笔电上能跑的链路，在屏幕上看都没问题，一试才露馅。这个案例说不了的，是这些卡片能不能帮两个陌生人碰面。这需要在真实或模拟的演出现场找人来试，目前还没做。"
+        "p": "从记录看，我的部分在两头：说清系统必须做到什么，把只是看起来做完的输出打回去。显示 MEET 的模拟数据、只在我笔记本上能跑的链路，在屏幕上看都没问题，一试才露馅。这个案例说不了的，是这些卡片能不能帮两个陌生人碰面。这需要在真实或模拟的演出现场找人来试，目前还没做。"
       }
     }
   }

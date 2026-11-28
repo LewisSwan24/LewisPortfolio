@@ -5,7 +5,7 @@ export const mazeResearchVault: RawResearchVaultRecord = {
   studyStatus: "observed",
   honestScopeNote: {
     en: "Observed across 9 exhibition groups (36 players, ~3 completions) on the physical wooden maze, plus bench verification of 10-zone FC-51 IR debounce and Web Serial parity. Handwritten leaderboard scores were not archived.",
-    zh: "公开展览现场实测 9 组共 36 名试玩者（约 3 组通关），并完成 10 路 FC-51 红外防抖与 Web Serial 串口一致性台架验收；现场手写榜单未归档，故不宣称量化通关时长。",
+    zh: "公开展览现场实测 9 组共 36 名试玩者（约 3 组通关），并完成 10 路 FC-51 红外防抖与 Web Serial 串口一致性台架验收。现场手写榜单未归档，因此不宣称量化通关时长。",
   },
   moderatorGuide: {
     protocolTitle: {
@@ -158,7 +158,7 @@ export const mazeResearchVault: RawResearchVaultRecord = {
       },
       {
         dimension: { en: "Solo-Tap Gate", zh: "单人触发锁" },
-        constraint: { en: "Requires simultaneous pair conductivity per axis", zh: "单轴向必须两名搭档同时接通方可执行倾斜" },
+        constraint: { en: "Requires simultaneous pair conductivity per axis", zh: "单轴向必须两名搭档同时接通才能倾斜" },
         rationale: {
           en: "No one can tilt an axis alone, so partners have to act together.",
           zh: "谁都无法单独倾斜一条轴，搭档必须一起动手。",
@@ -271,7 +271,7 @@ export const mazeResearchVault: RawResearchVaultRecord = {
       },
       answer: {
         en: "Portfolio visitors cannot touch the wooden table; running the exact cooldown and pair-lock rules in the browser lets them inspect the design logic first-hand.",
-        zh: "作品集读者摸不到实体木桌，让网页端跑完全一致的冷却锁与双人协同规则，才能让人直观体验真正的交互逻辑。",
+        zh: "作品集读者摸不到实体木桌。让网页端跑完全一致的冷却锁与双人协同规则，才能让人直观体验真正的交互逻辑。",
       },
       verifiedStatus: "bench-tested",
     },

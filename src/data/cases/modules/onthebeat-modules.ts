@@ -32,7 +32,7 @@ export const onthebeatModules: CaseModulesRecord = {
       },
       edgeRecovery: {
         en: "Rebuilt bidirectional relay agreement; StickC Plus front button gesture & wrist-only wave-back remain documented open edge cases.",
-        zh: "打通手环侧键反向驱动状态；Plus 正面短按与纯手环直接回挥目前仍如实标记为待复测边界。",
+        zh: "接通手环侧键反向驱动状态；Plus 正面短按与纯手环直接回挥目前仍如实标记为待复测边界。",
       },
       focusTags: ["ux-research", "systems-hardware"],
       verifiedStatus: "bench-tested",
@@ -100,7 +100,7 @@ export const onthebeatModules: CaseModulesRecord = {
       },
       edgeRecovery: {
         en: "Verified via two local browser sessions (Ava & Leo on Sep 29 build) plus live 2-wristband Sydney relay handshake.",
-        zh: "除 9 月 25 日双环真机实测外，亦在 9 月 29 日用 Ava 与 Leo 双视窗完整走通状态流转。",
+        zh: "除 9 月 25 日双环真机实测外，也在 9 月 29 日用 Ava 与 Leo 双窗口完整走通状态流转。",
       },
       focusTags: ["ai-trust", "systems-hardware"],
       verifiedStatus: "bench-tested",
@@ -122,7 +122,7 @@ export const onthebeatModules: CaseModulesRecord = {
       },
       userMentalModel: {
         en: "Once we spot each other near the landmark, phones go straight back into pockets—the app succeeded by disappearing.",
-        zh: "找到彼此碰上面之后，手机就该收回口袋——工具在把人送到彼此面前后立刻退场。",
+        zh: "找到彼此碰上面之后，手机就该收回口袋。工具在把人送到彼此面前后立刻退场。",
       },
       systemAction: {
         en: "Shows first names, where to meet and a shared number without chat threads, social feeds, or retention hooks; LET'S FINISH then turns the card off.",
@@ -144,11 +144,11 @@ export const onthebeatModules: CaseModulesRecord = {
       step: 5,
       title: {
         en: "Rigorous AI canvas & firmware verification loop",
-        zh: "针对 AI 产出的多轮挑错与真机打回闭环",
+        zh: "针对 AI 产出的多轮挑错与真机打回循环",
       },
       shortTitle: {
         en: "AI review loop",
-        zh: "AI 挑错闭环",
+        zh: "AI 挑错循环",
       },
       trigger: {
         en: "Claude Design canvas or Claude Code firmware/app build is imported for inspection",
@@ -305,7 +305,7 @@ export const onthebeatModules: CaseModulesRecord = {
       },
       sourceReceipt: {
         en: "Sep 15–29 Claude Design -> Claude Code audit trail & Ava/Leo local walkthrough",
-        zh: "9 月 15–29 日设计审查记录与 Ava / Leo 双视窗全链路截图",
+        zh: "9 月 15–29 日设计审查记录与 Ava / Leo 双窗口全链路截图",
       },
       focusTags: ["ai-trust", "ux-research"],
       verifiedStatus: "observed",

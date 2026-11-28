@@ -148,7 +148,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
     },
     maze: {
       challenge:
-        "实体迷宫本身是静止的。要让迷宫读起来像一个会回应的多人系统，必须把感测、游戏状态和反馈实时绑在一起。",
+        "实体迷宫本身是静止的。要让迷宫像一个会回应的多人系统，必须把感测、游戏状态和反馈实时绑在一起。",
       role: "Design Technologist / 交互原型开发",
       methods: ["固件状态机", "传感器调校", "触觉反馈设计", "Web Serial 控制台"],
       evidence: ["可运行的 Arduino 实体作品", "公开展览中的多人游玩", "固件与网页一致性测试"],
@@ -1242,7 +1242,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           choice: "最初的陷阱反馈是轻微电击。我改成用继电器驱动的震动马达，装在手指套里。",
           evidence: "这台迷宫要放在公开展览上，玩家年龄与身体状况未知且无人全程看管，无法逐人取得同意与校准。",
           tradeoff: "震动的刺激强度不如电击，陷阱少了那种「让人记住」的冲击感。",
-          impact: "系统不需要有人守着每一轮也能展出，而反馈依然有效，因为它落在手指上，不是落在屏幕上。",
+          impact: "系统不需要有人守着每一轮也能展出。反馈依然有效，因为直接落在手指上，不在屏幕上。",
         },
         {
           label: "给红外传感器加防抖，而不是直接信任原始读数",
@@ -1254,7 +1254,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         {
           label: "把倾斜控制器从主反馈控制器上拆出来",
           choice: "平台倾斜改由独立的 SafeTouchServoController 负责，采用「按住才动」的行为，与主 PlanB 反馈固件分开。",
-          evidence: "舵机运动和对时间敏感的传感器轮询挤在同一块板上，会让反馈时机不稳定，而且一次舵机故障可能拖垮整轮。",
+          evidence: "舵机运动和对时间敏感的传感器轮询挤在同一块板上，会让反馈时机不稳定。而且一次舵机故障可能拖垮整轮。",
           tradeoff: "两个控制器意味着更多接线，布展时也多了一个故障点。",
           impact: "反馈时机不再和执行机构抢资源，「按住才动」也让倾斜功能可以安全地交给陌生人操作。",
         },
@@ -1279,7 +1279,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           sample: "覆盖串口同步、反馈同步、舵机响应与音频一致性的回归测试",
           question: "任一侧改动之后，浏览器控制台是否仍然与固件行为一致？",
           finding: "只要单独改一侧，反馈时机与串口事件结构就会出现漂移。",
-          implication: "这个 demo 可以被当成对真实系统的描述，而不是另一套说法。",
+          implication: "这个 demo 可以直接代表真实系统的行为，不会另起一套说法。",
         },
         {
           method: "公开展览游玩观察",
@@ -1303,7 +1303,7 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
           improvement: "保住了身体层面的感受，同时让迷宫可以安全地面对排队的陌生人。",
         },
         {
-          version: "同步反馈闭环",
+          version: "同步反馈链路",
           change: "把传感器事件、计分、计时、灯光、音效与浏览器控制台接到同一个回合状态机上。",
           reason: "各子系统各自反应时，整台迷宫像是一堆互不相干的小装置。",
           improvement: "现在一个事件会产生一组连贯的多通道反馈，玩家读得懂。",
@@ -1317,12 +1317,12 @@ const caseDepth: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseDepth>> = {
         },
         {
           constraint: "这是一台展览用的单机，不是可量产的产品。",
-          whyItMatters: "接线是手工走的，校准要按场地来，所以它无法证明耐久性、良率或可重复的组装流程。",
+          whyItMatters: "接线是手工走的，校准要按场地来，所以无法证明耐久性、良率或可重复的组装流程。",
           nextValidation: "改用制作好的线束重做一台，并在多个场地测量布置时间与传感器漂移。",
         },
       ],
       takeaway:
-        "这个案例证明我能把一个交互概念一路做穿固件、感测与实体反馈，再接回浏览器控制界面，并在陌生人真的会上手的硬件上做安全与校准判断。",
+        "这个案例证明我能把交互概念一路做穿固件、感测与实体反馈，再接回浏览器控制界面。同时也能在陌生人会直接上手的硬件上，做出安全与校准判断。",
     },
     hoop: {
       decisions: [
@@ -1914,7 +1914,7 @@ const caseInterviewScans: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseIn
     },
     maze: {
       proves:
-        "这个案例证明我不只是写规格，而是真的做得出来：感测、固件、实体反馈与浏览器控制界面被接成同一个闭环。",
+        "这个案例证明我不只是写规格，而是真的做得出来。感测、固件、实体反馈与浏览器控制界面已经串成同一条链路。",
       inspect: [
         "为什么电击陷阱最后变成了可穿戴手指套里的震动。",
         "传感器防抖如何把一次球的经过收敛成刚好一个游戏事件。",

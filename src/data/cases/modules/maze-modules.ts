@@ -24,7 +24,7 @@ export const mazeModules: CaseModulesRecord = {
       },
       systemAction: {
         en: "A team member explains the rules and players put on the vibration finger sleeves; adjacent color wristbands (A/B, B/C) gate tilt axes so solo taps lock cleanly.",
-        zh: "组员先讲解规则，玩家戴上震动手指套；相邻同色腕带电路耦合控制轴向，单人试按仅触发锁定提示，无法推动迷宫。",
+        zh: "组员先讲解规则，玩家戴上震动手指套。相邻同色腕带电路耦合控制轴向，单人试按只触发锁定提示，无法推动迷宫。",
       },
       cognitiveFriction: {
         en: "At the exhibition, gearing up took each group about a minute, and many players still struggled with the rules after the explanation.",
@@ -156,7 +156,7 @@ export const mazeModules: CaseModulesRecord = {
       },
       userMentalModel: {
         en: "Without the wooden board on my desk, the browser console should honestly demonstrate the exact firmware rules—not a fake movie.",
-        zh: "手边没有实体木板时，网页控制台也应该忠实演练和真机一模一样的规则，而不是播假动画。",
+        zh: "手边没有实体木板时，网页控制台也该照实跑出和真机一模一样的规则，别拿假动画充数。",
       },
       systemAction: {
         en: "JS Canvas console mirrors live Mega serial frames when attached and runs deterministic trap/sync simulation offline, guarded by parity tests.",
@@ -206,7 +206,7 @@ export const mazeModules: CaseModulesRecord = {
       },
       uiFeedback: {
         en: "Displays idle readiness or immediate 'Co-touch required' lock indicator rather than ignoring the tap silently.",
-        zh: "显式展示待机准备状态或即时弹出「需双人耦合」锁定提示，不让单人试按石沉大海。",
+        zh: "明确显示待机状态，或即时弹出「需双人耦合」锁定提示，不让单人试按石沉大海。",
       },
       keyboardFocus: {
         en: "Focus rests cleanly on Start / Mode switch controls.",
@@ -324,7 +324,7 @@ export const mazeModules: CaseModulesRecord = {
       },
       fixApplied: {
         en: "Gave each sensor a three-sample debounce and a 400 ms cooldown feeding one Mega round state machine, put tilt on its own Uno (SafeTouchServoController), and wrote serial/feedback/servo/audio parity tests.",
-        zh: "十路红外各加三次取样去抖与 400 ms 冷却，收拢进 Mega 上的单一状态机；倾斜放到单独一块 Uno（SafeTouchServoController），并补齐四类一致性回归测试。",
+        zh: "十路红外各加三次取样去抖与 400 ms 冷却，收拢进 Mega 上的单一状态机。倾斜放到单独一块 Uno（SafeTouchServoController），并补齐四类一致性回归测试。",
       },
       sourceReceipt: {
         en: "04-engineering-overview.png + firmware/web parity regression suite",
