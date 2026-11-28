@@ -16,7 +16,7 @@ describe("Three.js Specimen Kernel & Silent Fallback", () => {
 
     render(<SpecimenAxisCanvas locale="en" nodes={SPECIMEN_NODES} />);
 
-    expect(screen.getByRole("region", { name: /6-case design space specimen/i })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: /Chart of the 6 cases/i })).toBeInTheDocument();
     expect(screen.getByTestId("specimen-svg-baseline")).toBeInTheDocument();
 
     const buttons = screen.getAllByRole("button", { name: /Select specimen/i });

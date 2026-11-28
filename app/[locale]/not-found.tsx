@@ -1,5 +1,14 @@
 import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { DocumentTitle } from "@/components/DocumentTitle";
+
+// v7.0 R31: the <title> element below never reached the server HTML, so the
+// tab kept the site's default title on English 404s. Metadata does.
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations();
+  return { title: `404 · ${t("notFound.title")}`, robots: { index: false } };
+}
 
 export default async function NotFound() {
   const t = await getTranslations();
@@ -15,8 +24,7 @@ export default async function NotFound() {
 
   return (
     <main className="page" data-screen-label="— 404">
-      {/* v6.9 (R12): the tab said only the English site title. React hoists this. */}
-      <title>{`404 · ${t("notFound.title")} | Lewis Dong`}</title>
+      <DocumentTitle title={`404 · ${t("notFound.title")} | Lewis Dong`} />
       <section className="container cs-hero">
         <div className="eyebrow" style={{ marginBottom: 12 }}>
           {t("notFound.kicker")}

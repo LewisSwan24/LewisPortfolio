@@ -80,7 +80,7 @@ export default async function AboutPage() {
         <h1 className="h-display h1" style={{ marginTop: 16 }}>
           {isZh ? (
             <>
-              我做的是「让<em>人</em>能找到路」的数字产品。
+              我做的是<span className="nobr">「让<em>人</em>能找到路」</span>的数字产品。
             </>
           ) : (
             <>

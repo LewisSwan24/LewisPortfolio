@@ -22,7 +22,8 @@ import {
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
-  const title = locale === "zh" ? "面试准备资料 | Lewis Dong" : "Interview pack | Lewis Dong";
+  // v7.0 R31: the root template already appends "| Lewis Dong".
+  const title = locale === "zh" ? "面试准备资料" : "Interview pack";
   const description =
     locale === "zh"
       ? "给面试官的准备资料：AI 与信任主线、面试追问练习、能力边界、岗位描述匹配和可打印的 A4 简报。"

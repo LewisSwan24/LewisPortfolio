@@ -422,7 +422,7 @@ function DeckCardContent({ card, lang }: { card: DeckCard; lang: Lang }) {
 
       <ul className="dc-body">
         {card.body[lang].map((line, i) => (
-          <li key={i}>{line}</li>
+          <li key={i} className={line.startsWith("→") ? "dc-outcome" : undefined}>{line}</li>
         ))}
       </ul>
 

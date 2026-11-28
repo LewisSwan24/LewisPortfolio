@@ -219,7 +219,7 @@ export function ArchiveVaultClient({
 
                 <footer className={styles.cardFooter}>
                   <span className={styles.cardMeta}>
-                    {isZh ? "Unlisted 归档路由（不入导航与简历）" : "Unlisted archive (excluded from nav & CV)"}
+                    {isZh ? "未公开的归档页（不入导航与简历）" : "Unlisted archive (excluded from nav & CV)"}
                   </span>
                   <Link href={item.directArchivePath} className="btn btn-ghost">
                     {isZh ? "查看原始归档页 →" : "Inspect raw archive →"}

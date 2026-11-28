@@ -641,3 +641,10 @@
   mask-image: linear-gradient(to bottom, #000 78%, transparent);
 }
 .foldable-toggle { justify-self: start; min-height: 44px; }
+
+/* v7.0 R05: at 1440px the web font wrapped the /lab headline to 3 lines and
+   the fallback to 2, so the intro jumped 95px when the font loaded. Capped in
+   em, both fonts wrap the way they already do at 1280px. */
+.lab-hero .lab-h1 { max-width: 8.4em; }
+/* v7.0 R24: the replay headline ran to 5 lines at 88px on desktop. */
+.lab-hero .replay-h1 { font-size: clamp(34px, 4vw, 56px); }

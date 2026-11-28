@@ -139,7 +139,7 @@
   margin: 56px 0 0;
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--text-3);
 }
@@ -183,7 +183,7 @@
 .dc-head {
   display: flex; justify-content: space-between; align-items: baseline;
   font-family: var(--font-mono);
-  font-size: 10.5px; letter-spacing: 0.06em;
+  font-size: 11px; letter-spacing: 0.06em;
   color: var(--text-3);
   text-transform: uppercase;
   padding-bottom: 10px;
@@ -223,6 +223,9 @@
   padding-left: 0;
 }
 .dc-body li:first-child::before { display: none; }
+/* v7.0 R30: the outcome line brings its own arrow. */
+.dc-body li.dc-outcome { padding-left: 0; }
+.dc-body li.dc-outcome::before { display: none; }
 .dc-foot {
   display: flex; align-items: center; gap: 8px;
   font-family: var(--font-ui);

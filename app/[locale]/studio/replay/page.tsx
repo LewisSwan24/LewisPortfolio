@@ -43,7 +43,7 @@ export default async function ProtocolReplayStudioPage() {
                 ? "Replay Studio · 确定性硬件与协议帧工作台"
                 : "Replay Studio · Hardware & Protocol Frame Workbench"}
             </div>
-            <h1 className="h-display h1" style={{ marginTop: 12 }}>
+            <h1 className="h-display h1 replay-h1" style={{ marginTop: 12 }}>
               {isZh
                 ? "把毫秒级硬件防抖、加密帧与故障退避摆到桌面"
                 : "Inspect every millisecond of hardware debounce, sealing & fault recovery"}

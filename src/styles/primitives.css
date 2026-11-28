@@ -538,3 +538,7 @@ html {
   }
 }
 
+
+/* v7.0 R26/R32 helpers and R27 targets */
+.nobr { white-space: nowrap; }
+.blog-bio-links a { display: inline-flex; align-items: center; min-height: 24px; }

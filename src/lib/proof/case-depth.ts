@@ -128,7 +128,7 @@ const caseSummaries: Record<ProofLocale, Record<ProjectEvidenceSlug, CaseSummary
   zh: {
     connect: {
       challenge: "UQ 给国际学生办的活动不少。他们还是留在同一个圈子里：一次性的迎新派对制造的是认识，不是关系。",
-      role: "五人课程团队中的一员；我负责前端组件系统，并做了 71 场研究与测试里的 14 场",
+      role: "五人课程团队中的一员；我负责前端组件系统，并做了 71 场研究与测试里的 14 场。",
       methods: ["探索式访谈", "可证伪的假设卡", "出声思考可用性测试", "从纸面到可交互原型", "组件系统设计"],
       evidence: [
         "三轮共 71 份研究与测试记录；我那 14 场来自 9 位受访者，其中 4 位跨轮回访",

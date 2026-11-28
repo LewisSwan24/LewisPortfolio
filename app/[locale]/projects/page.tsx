@@ -2,12 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, getLocale } from "next-intl/server";
 import { EvidenceMatrix } from "@/components/hiring/EvidenceMatrix";
 import { DecisionComparator } from "@/components/case/DecisionComparator";
-import {
-  VizConnect,
-  VizMaze,
-  VizHoop,
-  VizPricewise,
-} from "@/components/viz/ProjectViz";
+import { VizMaze } from "@/components/viz/ProjectViz";
 import { ProjectCoverImage } from "@/components/viz/ProjectCoverImage";
 import { getProjectCover } from "@/lib/project-covers";
 import { getWorkIndexItems } from "@/lib/cases/registry";
@@ -57,15 +52,8 @@ function renderThumbVisual(
   }
   return (
     <div style={{ display: "contents" }}>
-      {slug === "maze" ? (
-        <VizMaze locale={locale} />
-      ) : slug === "hoop" ? (
-        <VizHoop locale={locale} />
-      ) : slug === "pricewise" ? (
-        <VizPricewise locale={locale} />
-      ) : slug === "connect" ? (
-        <VizConnect locale={locale} />
-      ) : null}
+      {/* hoop, pricewise and connect are unlisted, so only maze can reach here. */}
+      {slug === "maze" ? <VizMaze locale={locale} /> : null}
       <span className="work-index-thumb-label">{conceptLabel}</span>
     </div>
   );
