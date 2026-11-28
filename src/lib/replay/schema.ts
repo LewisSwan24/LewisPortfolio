@@ -11,8 +11,6 @@ export const ReplayDecodedFieldSchema = z.object({
   value: z.string().min(1),
 });
 
-export type ReplayDecodedField = z.infer<typeof ReplayDecodedFieldSchema>;
-
 export const ReplayFrameSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   timestampMs: z.number().int().nonnegative(),

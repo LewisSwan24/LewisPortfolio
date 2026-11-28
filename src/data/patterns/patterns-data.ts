@@ -417,7 +417,3 @@ export function dispatchCommand(
 export function getAllInteractionPatterns(): readonly InteractionPattern[] {
   return INTERACTION_PATTERNS;
 }
-
-export function getInteractionPatternBySlug(slug: string): InteractionPattern | undefined {
-  return INTERACTION_PATTERNS.find((pattern) => pattern.slug === slug);
-}

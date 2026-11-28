@@ -13,33 +13,3 @@ export function SkipLink() {
     </a>
   );
 }
-
-interface VisuallyHiddenProps {
-  children: React.ReactNode;
-}
-
-export function VisuallyHidden({ children }: VisuallyHiddenProps) {
-  return (
-    <span className="sr-only">
-      {children}
-    </span>
-  );
-}
-
-interface LiveRegionProps {
-  children: React.ReactNode;
-  politeness?: "polite" | "assertive";
-}
-
-export function LiveRegion({ children, politeness = "polite" }: LiveRegionProps) {
-  return (
-    <div
-      role="status"
-      aria-live={politeness}
-      aria-atomic="true"
-      className="sr-only"
-    >
-      {children}
-    </div>
-  );
-}

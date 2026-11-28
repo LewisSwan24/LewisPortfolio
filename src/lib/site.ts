@@ -94,5 +94,3 @@ export const siteConfig = {
     "Journey Mapping",
   ],
 };
-
-export type SiteConfig = typeof siteConfig;

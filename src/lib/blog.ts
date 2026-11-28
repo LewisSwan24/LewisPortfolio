@@ -3,11 +3,10 @@ import path from "path";
 import matter from "gray-matter";
 import {
   BLOG_CLUSTERS,
-  BLOG_CLUSTER_LABELS,
   type BlogCluster,
 } from "@/lib/blog-clusters";
 
-export { BLOG_CLUSTERS, BLOG_CLUSTER_LABELS, type BlogCluster };
+export { BLOG_CLUSTERS, type BlogCluster };
 
 const blogDirectory = path.join(process.cwd(), "content/blog");
 

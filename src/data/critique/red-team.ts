@@ -63,8 +63,6 @@ export const RedTeamLensEntrySchema = z.object({
   evidenceHref: z.string().startsWith("/projects/"),
 });
 
-export type RedTeamLensEntry = z.infer<typeof RedTeamLensEntrySchema>;
-
 export const RedTeamDeckSchema = z.object({
   slug: z.enum(CURRENT_PROJECT_SLUGS).refine((slug) => !isUnlistedProject(slug), {
     message: "Red-Team defense decks apply strictly to the 6 listed flagship cases.",

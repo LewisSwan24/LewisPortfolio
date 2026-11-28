@@ -1,0 +1,7 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "project": ["app/**", "src/**", "scripts/**", "e2e/**", "tests/**", "middleware.ts"],
+  "ignoreExportsUsedInFile": true,
+  "ignoreDependencies": ["eslint-config-next"],
+  "ignoreBinaries": ["ffmpeg"]
+}

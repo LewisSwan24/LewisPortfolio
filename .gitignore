@@ -47,3 +47,6 @@ output/
 # Local docs & stray exports
 /Lewis Dong Portfolio*.html
 /docs/
+
+# loc:report output (CI artifact)
+/loc-report/

@@ -11,8 +11,11 @@ export default defineConfig({
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'tests/**/*.test.ts', 'tests/**/*.test.tsx'],
     testTimeout: 60000,
     coverage: {
-      reporter: ['text', 'json', 'html'],
-      exclude: ['node_modules/', 'src/test/'],
+      provider: 'v8',
+      // loc:report reads coverage-final.json to see which files unit tests load.
+      include: ['app/**/*.{ts,tsx}', 'src/**/*.{ts,tsx,mjs}', 'scripts/lib/**/*.mjs', 'middleware.ts'],
+      reporter: ['text-summary', 'json', 'html'],
+      exclude: ['node_modules/', 'src/test/', '**/*.test.{ts,tsx}', '**/__tests__/**', '**/*.d.ts'],
     },
   },
   resolve: {

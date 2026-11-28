@@ -5,7 +5,6 @@ import {
   type ComposerLocaleText,
   type ComposerMarketEmphasis,
   type ComposerMarketMode,
-  type ComposerMarketSpec,
 } from "./composer-markets";
 
 export {
@@ -13,7 +12,6 @@ export {
   type ComposerLocaleText,
   type ComposerMarketEmphasis,
   type ComposerMarketMode,
-  type ComposerMarketSpec,
 };
 
 export type ComposerRoleId = "ixd-ai" | "design-tech" | "product-ux";

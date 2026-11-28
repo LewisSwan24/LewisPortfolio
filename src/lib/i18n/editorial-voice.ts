@@ -142,12 +142,3 @@ export function auditTranslationese(
   return violations;
 }
 
-export function assertNaturalEditorialCopy(text: string, locale: EditorialLocale, context = "copy"): void {
-  const issues = auditTranslationese(text, locale);
-  if (issues.length > 0) {
-    const details = issues
-      .map((i) => `[${i.ruleId}] "${i.match}" -> ${i.suggestion}`)
-      .join("; ");
-    throw new Error(`Translationese detected in ${context} (${locale}): ${details}`);
-  }
-}
