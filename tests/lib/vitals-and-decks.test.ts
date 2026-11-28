@@ -8,6 +8,10 @@ import {
 } from "../../app/api/vitals/route";
 import { resetTelemetryForTests } from "@/lib/vitals-store";
 
+// v7.1: beacons without a browser user agent are not counted.
+const BROWSER_UA =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+
 describe("Design-Rationale PDF Dossier, QR SVG & Zero-PII Vitals", () => {
   beforeEach(() => {
     resetTelemetryForTests();
@@ -33,7 +37,7 @@ describe("Design-Rationale PDF Dossier, QR SVG & Zero-PII Vitals", () => {
     const badRes = await vitalsPost(
       new Request("http://localhost/api/vitals", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", "user-agent": BROWSER_UA },
         body: JSON.stringify({
           metric: "LCP",
           value: 1120,
@@ -48,7 +52,7 @@ describe("Design-Rationale PDF Dossier, QR SVG & Zero-PII Vitals", () => {
       const res = await vitalsPost(
         new Request("http://localhost/api/vitals", {
           method: "POST",
-          headers: { "content-type": "application/json" },
+          headers: { "content-type": "application/json", "user-agent": BROWSER_UA },
           body: JSON.stringify({
             metric: "LCP",
             value: val,
@@ -62,7 +66,7 @@ describe("Design-Rationale PDF Dossier, QR SVG & Zero-PII Vitals", () => {
     const simRes = await vitalsPost(
       new Request("http://localhost/api/vitals", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", "user-agent": BROWSER_UA },
         body: JSON.stringify({
           metric: "INTERACTION",
           value: 1,

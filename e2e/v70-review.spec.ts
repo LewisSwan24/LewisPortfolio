@@ -156,6 +156,11 @@ test("P3 an interaction sends an INP beacon when the page is hidden", async ({ p
     if (route.request().method() === "POST") sent.push(route.request().postData() ?? "");
     await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
   });
+  // v7.1: automated browsers send no beacons (navigator.webdriver), so this
+  // page has to look like a real visitor for the INP beacon to be sent.
+  await page.addInitScript(() => {
+    Object.defineProperty(Navigator.prototype, "webdriver", { get: () => false, configurable: true });
+  });
   await page.goto("/patterns", { waitUntil: "networkidle" });
   // A real click, so the browser records an event-timing entry.
   await page.locator("main button").first().click();

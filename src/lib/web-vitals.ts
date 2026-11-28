@@ -22,6 +22,9 @@ function sendVitalBeacon(payload: {
   interactionTarget?: "specimen" | "simulator" | "rationale-ai" | "comparator" | "brief-print";
 }) {
   if (typeof navigator === "undefined" || typeof window === "undefined") return;
+  // v7.1 block 2: browsers driven by automation (Playwright, Lighthouse,
+  // WebDriver) set navigator.webdriver; their numbers are not field data.
+  if (navigator.webdriver) return;
   const json = JSON.stringify(payload);
   try {
     if (typeof navigator.sendBeacon === "function") {
