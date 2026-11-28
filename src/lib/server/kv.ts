@@ -12,8 +12,11 @@ interface KvConfig {
 }
 
 export function getKvConfig(): KvConfig | null {
-  const url = process.env.UPSTASH_REDIS_REST_URL?.trim();
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN?.trim();
+  // Vercel's storage integration may add the KV_REST_API_* names instead.
+  const upstashUrl = process.env.UPSTASH_REDIS_REST_URL?.trim();
+  const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN?.trim();
+  const url = upstashUrl && upstashToken ? upstashUrl : process.env.KV_REST_API_URL?.trim();
+  const token = upstashUrl && upstashToken ? upstashToken : process.env.KV_REST_API_TOKEN?.trim();
   if (!url || !token) return null;
   return { url: url.replace(/\/$/, ""), token };
 }
@@ -22,7 +25,7 @@ export function isKvConfigured(): boolean {
   return getKvConfig() !== null;
 }
 
-async function runPipeline(commands: Array<Array<string | number>>): Promise<Array<{ result?: unknown }> | null> {
+export async function kvPipeline(commands: Array<Array<string | number>>): Promise<Array<{ result?: unknown }> | null> {
   const cfg = getKvConfig();
   if (!cfg) return null;
 
@@ -44,7 +47,7 @@ async function runPipeline(commands: Array<Array<string | number>>): Promise<Arr
 }
 
 export async function kvGetJson<T>(key: string): Promise<T | null> {
-  const results = await runPipeline([["GET", key]]);
+  const results = await kvPipeline([["GET", key]]);
   const raw = results?.[0]?.result;
   if (typeof raw !== "string" || !raw) return null;
   try {
@@ -59,7 +62,7 @@ export async function kvSetJson<T>(
   value: T,
   ttlSeconds: number = BRIEF_TTL_SECONDS
 ): Promise<boolean> {
-  const results = await runPipeline([
+  const results = await kvPipeline([
     ["SET", key, JSON.stringify(value), "EX", ttlSeconds],
   ]);
   return results?.[0]?.result === "OK";
@@ -70,7 +73,7 @@ export async function kvRecordBriefView(
 ): Promise<{ count: number; lastViewedAt: string } | null> {
   const key = `brief:views:${shortId}`;
   const now = new Date().toISOString();
-  const results = await runPipeline([
+  const results = await kvPipeline([
     ["HINCRBY", key, "count", 1],
     ["HSET", key, "lastViewedAt", now],
     ["EXPIRE", key, BRIEF_TTL_SECONDS],
@@ -84,7 +87,7 @@ export async function kvGetBriefViews(
   shortId: string
 ): Promise<{ count: number; lastViewedAt: string } | null> {
   const key = `brief:views:${shortId}`;
-  const results = await runPipeline([["HGETALL", key]]);
+  const results = await kvPipeline([["HGETALL", key]]);
   const raw = results?.[0]?.result;
   if (!Array.isArray(raw) || raw.length === 0) return null;
 
@@ -101,11 +104,11 @@ export async function kvIncrementRateLimit(
   key: string,
   windowSeconds: number
 ): Promise<number | null> {
-  const results = await runPipeline([["INCR", key]]);
+  const results = await kvPipeline([["INCR", key]]);
   const count = Number(results?.[0]?.result);
   if (!Number.isFinite(count)) return null;
   if (count === 1) {
-    await runPipeline([["EXPIRE", key, windowSeconds]]);
+    await kvPipeline([["EXPIRE", key, windowSeconds]]);
   }
   return count;
 }
