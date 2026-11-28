@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // pnpm loc:report — effective lines of code, as defined in the v7.1–7.5 plan.
 //
 //   --root <dir>        repository to measure (default: cwd)
