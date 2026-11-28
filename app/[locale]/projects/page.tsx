@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = t("nav.work");
   const description =
     locale === "zh"
-      ? "六个精挑细选的公开案例，呈现以人为本的设计论证、实体交互原型与诚实边界。"
+      ? "六个精选公开案例，展示以人为本的设计论证、实体交互原型与诚实边界。"
       : "Six curated case studies grounding human-centered tradeoffs in working software and hardware prototypes.";
   return {
     title,
@@ -95,11 +95,11 @@ export default async function ProjectsPage() {
         <div className={patternStyles.bannerCard} style={{ marginTop: "var(--s-5)" }}>
           <div style={{ display: "grid", gap: 4 }}>
             <span className={patternStyles.kicker}>
-              {isZh ? "跨案例抽象 · 交互模式图谱" : "Cross-Case Primitives · Pattern Atlas"}
+              {isZh ? "跨案例提炼 · 交互模式图谱" : "Cross-Case Primitives · Pattern Atlas"}
             </span>
             <p style={{ margin: 0, fontSize: 14, color: "var(--text-2)" }}>
               {isZh
-                ? "把 6 个案例里的实体确权、三态分流与默契退场抽象为可复现活原型与代码标本。"
+                ? "把 6 个案例里的实体确权、三态分流与默契退场，整理成可以复现、能直接运行的原型与代码示例。"
                 : "Inspect the 6 reusable interaction rules, live micro-sandboxes, and copyable code extracted from these cases."}
             </p>
           </div>

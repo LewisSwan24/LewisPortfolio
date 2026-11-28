@@ -46,7 +46,7 @@ export const siteConfig = {
   // back to — /zh/feed.xml was serving the English description.
   titleZh: "交互与产品设计师 · 设计技术",
   descriptionZh:
-    "斯旺西大学 CS 本科 × 昆士兰大学交互设计硕士（2026 年 11 月毕业），专注 AI 交互边界、全栈前端工程与软硬协同真实原型验证。",
+    "斯旺西大学 CS 本科、昆士兰大学交互设计硕士（2026 年 11 月毕业）。专注 AI 交互边界、全栈前端工程，以及软硬结合的真实原型验证。",
   url: resolveSiteUrl(),
   author: {
     name: "Lewis Dong",

@@ -143,13 +143,13 @@ export default async function CasePage({ params }: Props) {
 
   const pageCopy = isZh
     ? {
-        coverCaption: "系统示意图 · 下方展开构建证据与诚实边界。",
+        coverCaption: "系统示意图 · 下方列出实现证据与诚实边界。",
         schematicLabel: "示意图",
-        caseDepthAria: "案例局限与下步规划",
+        caseDepthAria: "案例局限与后续规划",
         limitsLabel: "边界",
         outcomeLimits: "实证局限与边界",
         whyItMatters: "影响",
-        nextValidation: "下步验证",
+        nextValidation: "后续验证",
         interviewPack: "面试深入问答",
       }
     : {
@@ -411,7 +411,7 @@ export default async function CasePage({ params }: Props) {
       </section>
 
       <div className="container v4-editorial-grid cs-story-grid">
-        <aside className="v4-span-3 v4-rail-sticky" aria-label={isZh ? "案例导航轨" : "Case rail"}>
+        <aside className="v4-span-3 v4-rail-sticky" aria-label={isZh ? "案例导航栏" : "Case rail"}>
           <nav className="cs-jump" aria-label={isZh ? "本页目录" : "On this page"}>
             <span className="cs-jump-label" aria-hidden="true">
               {isZh ? "本页目录" : "On this page"}

@@ -107,7 +107,7 @@ export const PROJECT_COVERS = {
     height: 720,
     alt: {
       en: "Walkie architecture schematic connecting M5StickS3 dual-boot firmware, AES-256-GCM USB or Fly.io relay, Node 24 bridge, and Claude Code permission approvals",
-      zh: "Walkie 系统架构示意图：连接 M5StickS3 双启动固件、AES-256-GCM USB 或 Fly.io 中继、Node 24 桥接与 Claude Code 权限审批队列",
+      zh: "Walkie 系统架构示意图，串联 M5StickS3 双启动固件、AES-256-GCM USB 或 Fly.io 中继、Node 24 桥接，以及 Claude Code 权限审批队列",
     },
     fit: "contain",
   },
@@ -117,7 +117,7 @@ export const PROJECT_COVERS = {
     height: 800,
     alt: {
       en: "A Brisbane ringtail possum frame from the Fencepost community wildlife storyboard",
-      zh: "Fencepost 布里斯班社区野生动物故事板中的环尾负鼠画面",
+      zh: "Fencepost 布里斯班社区野生动物故事板，画面是环尾负鼠",
     },
     fit: "cover",
   },
