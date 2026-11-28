@@ -1,5 +1,5 @@
 import type { CaseJourneyStage } from "@/lib/cases/modules-schema";
-import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
+import { CssManuscriptReveal } from "@/components/motion/CssManuscriptReveal";
 import { JourneyScrollTracker } from "./JourneyScrollTracker";
 import { FocusTagList, VerifiedStatusBadge } from "./VerifiedStatusBadge";
 import styles from "./cases-deep.module.css";
@@ -63,7 +63,7 @@ export function CaseJourneyRail({
         locale={locale}
       />
 
-      <ManuscriptReveal withHairline itemSelector="[data-focus-item]">
+      <CssManuscriptReveal withHairline>
         <ol className={styles.journeyList}>
           {stages.map((stage) => (
             <li
@@ -113,7 +113,7 @@ export function CaseJourneyRail({
             </li>
           ))}
         </ol>
-      </ManuscriptReveal>
+      </CssManuscriptReveal>
     </section>
   );
 }
