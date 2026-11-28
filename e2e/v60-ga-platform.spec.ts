@@ -5,7 +5,12 @@ test.describe("v6.0 GA Platform Capabilities", () => {
     page,
   }) => {
     const errors: string[] = [];
-    page.on("pageerror", (err) => errors.push(err.message));
+    page.on("pageerror", (err) => {
+      // WebKit reports a prefetch that navigation cancelled as "… ?_rsc=… due to
+      // access control checks". Nothing failed on the page.
+      if (/\?_rsc=.*due to access control checks/.test(err.message)) return;
+      errors.push(err.message);
+    });
 
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/en/blog", { waitUntil: "networkidle" });

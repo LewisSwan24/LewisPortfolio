@@ -200,7 +200,7 @@ export function CaseChapterPill({
         aria-label={`${copy.title}: ${position} ${active.label}`}
         onClick={() => setOpen(true)}
       >
-        <span className="cs-chapter-pill-count">{position}</span>
+        <span className="cs-chapter-pill-count">{position}</span>{" "}
         <span className="cs-chapter-pill-label">{active.label}</span>
         <span className="cs-chapter-pill-caret" aria-hidden="true">▴</span>
       </button>

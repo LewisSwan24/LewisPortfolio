@@ -44,6 +44,8 @@ test.describe("v4.9 Lab FSM Explorer & Nielsen x WCAG Heuristic Auditor", () => 
   test("filters Nielsen x WCAG heuristic audits cleanly on desktop & mobile without overflow", async ({
     page,
   }) => {
+    // Desktop first: since v7.0 block 3 a phone shows its own shorter count.
+    await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/en/lab", { waitUntil: "networkidle" });
 
     const auditor = page.locator("#heuristic-auditor");

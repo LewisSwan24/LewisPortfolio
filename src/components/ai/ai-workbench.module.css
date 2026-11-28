@@ -83,6 +83,11 @@
   font-family: var(--font-ui);
 }
 
+/* iOS Safari zooms the page into any field under 16px when it gets focus. */
+@media (max-width: 767px) {
+  .queryInput { font-size: 16px; }
+}
+
 .presetRow {
   display: flex;
   flex-wrap: wrap;

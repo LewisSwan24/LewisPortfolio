@@ -49,8 +49,17 @@ export function getTelemetrySummary() {
   const byMetric = (m: VitalsBeacon["metric"]) =>
     recentSamples.filter((s) => s.metric === m).map((s) => s.value);
 
+  // v7.0 block 4 (P3): an all-routes p75 hides which page is slow.
+  const p75ByRouteGroup: Record<string, { LCP: number | null; INP: number | null }> = {};
+  for (const group of new Set(recentSamples.map((s) => s.routeGroup))) {
+    const values = (m: VitalsBeacon["metric"]) =>
+      recentSamples.filter((s) => s.routeGroup === group && s.metric === m).map((s) => s.value);
+    p75ByRouteGroup[group] = { LCP: p75(values("LCP")), INP: p75(values("INP")) };
+  }
+
   return {
     sampleCount: recentSamples.length,
+    p75ByRouteGroup,
     totalsByRouteGroup: { ...routeGroupTotals },
     interactionsByTarget: { ...interactionTotals },
     metricsP75: {

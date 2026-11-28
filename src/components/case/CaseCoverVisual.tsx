@@ -44,9 +44,13 @@ export function hasCaseSchematic(slug: CurrentProjectSlug): boolean {
 export function CaseCoverVisual({
   slug,
   locale,
+  priority = false,
 }: {
   slug: CurrentProjectSlug;
   locale: ProofLocale;
+  /** Only the hero cover. The related-case cards at the bottom used to be
+   * preloaded too and competed with the LCP image (v7.0 review P2). */
+  priority?: boolean;
 }) {
   if (hasScreenshotCover(slug)) {
     const cover = getProjectCover(slug)!;
@@ -54,7 +58,7 @@ export function CaseCoverVisual({
       <Image
         src={localizeMediaSrc(cover.src, locale)}
         fill
-        priority
+        priority={priority}
         alt={cover.alt[locale]}
         className={`project-cover project-cover--${cover.fit}`}
         sizes="(max-width: 1200px) 100vw, 1200px"
@@ -77,7 +81,7 @@ export function CaseCoverVisual({
           alt={photo.alt[locale]}
           className="project-cover project-cover--cover cs-cover-photo-mobile"
           sizes="(max-width: 600px) 100vw, 1px"
-          loading="eager"
+          loading={priority ? "eager" : "lazy"}
         />
       </>
     );

@@ -70,7 +70,7 @@ export function TOC({ items }: TOCProps) {
           </svg>
         </button>
         {isOpen && (
-          <nav className="mt-2 rounded-xl border border-border/60 bg-[var(--surface)] p-4">
+          <nav aria-label={onThisPage} className="mt-2 rounded-xl border border-border/60 bg-[var(--surface)] p-4">
             <ul className="space-y-2">
               {items.map((item) => (
                 <li key={item.id}>
@@ -98,7 +98,7 @@ export function TOC({ items }: TOCProps) {
       <aside className="hidden lg:block">
         <div className="sticky top-24">
           <p className="mb-4 text-sm font-medium text-foreground">{onThisPage}</p>
-          <nav>
+          <nav aria-label={onThisPage}>
             <ul className="space-y-2 border-l border-border">
               {items.map((item) => (
                 <li key={item.id}>

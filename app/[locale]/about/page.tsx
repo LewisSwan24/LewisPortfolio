@@ -205,7 +205,7 @@ export default async function AboutPage() {
           <div className="about-philo" style={{ marginTop: 24 }}>
             {([1, 2, 3, 4] as const).map((i) => (
               <div className="about-philo-item" key={i} data-reveal-item>
-                <h4>{t(`about.philo.${i}.t`)}</h4>
+                <h3>{t(`about.philo.${i}.t`)}</h3>
                 <p>{t(`about.philo.${i}.b`)}</p>
               </div>
             ))}
@@ -251,7 +251,7 @@ export default async function AboutPage() {
 
         <div className="about-philo" style={{ marginTop: 24 }}>
           <div className="about-philo-item">
-            <h4>{isZh ? "前端架构与服务端边界" : "RSC Boundaries & CSS Budgets"}</h4>
+            <h3>{isZh ? "前端架构与服务端边界" : "RSC Boundaries & CSS Budgets"}</h3>
             <p>
               {isZh
                 ? "使用 Next.js App Router、TypeScript 与 Zod 强校验把重内容留在服务端。持续集成卡住 CSS 体积（应用 ≤ 68 kB、总计 ≤ 98 kB，gzip 后），项目素材总量不超过 12 MB。"
@@ -259,7 +259,7 @@ export default async function AboutPage() {
             </p>
           </div>
           <div className="about-philo-item">
-            <h4>{isZh ? "三视口自动化无障碍检查" : "Automated 3-Viewport Accessibility"}</h4>
+            <h3>{isZh ? "三视口自动化无障碍检查" : "Automated 3-Viewport Accessibility"}</h3>
             <p>
               {isZh
                 ? "在桌面亮色、真实切换暗黑模式（#141413）以及 375px 窄屏上运行 Playwright + Axe 审计，确保键盘可达性与焦点环完整。"
