@@ -1,5 +1,5 @@
 import type { CaseRejectionEntry } from "@/lib/cases/modules-schema";
-import { ManuscriptReveal } from "@/components/motion/ManuscriptReveal";
+import { CssManuscriptReveal } from "@/components/motion/CssManuscriptReveal";
 import { FocusTagList, VerifiedStatusBadge } from "./VerifiedStatusBadge";
 import styles from "./cases-deep.module.css";
 
@@ -51,7 +51,7 @@ export function CaseRejectionArchive({
         <p className={styles.lead}>{copy.lead}</p>
       </header>
 
-      <ManuscriptReveal withHairline itemSelector="[data-focus-item]">
+      <CssManuscriptReveal withHairline>
         <ol className={styles.rejectionList}>
           {entries.map((entry) => (
             <li
@@ -94,7 +94,7 @@ export function CaseRejectionArchive({
             </li>
           ))}
         </ol>
-      </ManuscriptReveal>
+      </CssManuscriptReveal>
     </section>
   );
 }

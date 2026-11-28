@@ -37,3 +37,62 @@
     transform: none !important;
   }
 }
+
+/* v7.0 P1-a: CssManuscriptReveal. The same settle as the GSAP version
+   (opacity 0.92 → 1, 12px → 0; 0.96 and 6px on phones), driven by scroll
+   instead of a timer. Without view() support, or with reduced motion,
+   nothing animates and everything shows at its finished state. */
+.cssReveal {
+  --ms-from-opacity: 0.92;
+  --ms-from-y: 12px;
+}
+
+@media (max-width: 767px) {
+  .cssReveal {
+    --ms-from-opacity: 0.96;
+    --ms-from-y: 6px;
+  }
+}
+
+@keyframes ms-settle {
+  from {
+    opacity: var(--ms-from-opacity);
+    transform: translateY(var(--ms-from-y));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ms-draw {
+  from { transform: scaleY(0.15); }
+  to { transform: scaleY(1); }
+}
+
+/* The CSS version has no transform until a timeline drives it. */
+.cssHairlineFill {
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .cssReveal :global([data-focus-item]) {
+      animation: ms-settle linear both;
+      animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+
+    @media (min-width: 768px) {
+      .cssReveal {
+        view-timeline: --ms-rail block;
+      }
+      .cssHairlineFill {
+        animation: ms-draw linear both;
+        animation-timeline: --ms-rail;
+        animation-range: entry 20% cover 72%;
+      }
+    }
+  }
+}

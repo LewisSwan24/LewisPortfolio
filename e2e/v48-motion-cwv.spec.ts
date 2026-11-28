@@ -132,8 +132,12 @@ test.describe("v4.8 Manuscript Choreography, Dark SVG Calibration & CWV", () => 
     await page.setViewportSize({ width: 375, height: 812 });
 
     await page.goto("/en/projects/walkie", { waitUntil: "networkidle" });
-    const rail = page.locator("#journey-map [data-motion-mode]").first();
-    await expect(rail).toHaveAttribute("data-motion-mode", "reduced");
+    // v7.0 P1-a: the case rail reveals with CSS; under reduce nothing animates.
+    const rail = page.locator("#journey-map [data-css-reveal]").first();
+    await expect(rail).toHaveCount(1);
+    expect(
+      await page.locator("#journey-map [data-focus-item]").first().evaluate((el) => getComputedStyle(el).animationName),
+    ).toBe("none");
 
     const firstStageOpacity = await page
       .locator("#journey-map [data-focus-item]")
