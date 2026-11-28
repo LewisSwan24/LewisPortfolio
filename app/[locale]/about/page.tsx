@@ -40,18 +40,18 @@ export default async function AboutPage() {
   const charter = isZh
     ? {
         eyebrow: "分工与署名边界",
-        title: "计算机科班底座 × 交互设计方法 × 人机分工原则",
-        leftHeading: "由我拍板并签署验收的环节",
+        title: "计算机科班基础 × 交互设计方法 × 人机分工原则",
+        leftHeading: "由我拍板并验收的环节",
         leftItems: [
-          "识别真实使用阻滞、误触成本与社交尴尬门槛（靠现场与日志判断，不靠凭空想象）",
-          "定夺高风险交互规则（如 Walkie 实体键确认、Lamplight 默认「先不要」、Autofill 拒绝乱猜与代投）",
+          "识别真实使用摩擦、误触成本和社交尴尬门槛（靠现场与日志判断，不靠凭空想象）",
+          "定下高风险交互规则（如 Walkie 实体键确认、Lamplight 默认「先不要」、Autofill 拒绝乱猜与代投）",
           "MazeRunners 的硬件接线，ESP32 双系统烧录隔离的验收，以及 Playwright 三视口无障碍走查",
-          "坦诚拆清「已跑通的代码/真机门禁」与「尚待开展的外部受试研究」，绝不美化实验缺口",
+          "如实分清「已跑通的代码/真机门禁」与「尚待开展的外部受试研究」，绝不美化实验缺口",
         ],
         rightHeading: "AI 编码工具负责提速的环节",
         rightItems: [
-          "在协议帧格式、Zod 数据约束和交互规则确定后，快速展开 TypeScript / C++ / Electron 脚手架",
-          "并行尝试多套可执行交互版本供我评审并打回重构（如 On The Beat 连续打回多轮修改）",
+          "协议帧格式、Zod 数据约束和交互规则定好后，快速搭出 TypeScript / C++ / Electron 脚手架",
+          "并行产出多套可运行交互版本供我评审和打回重构（如 On The Beat 连续打回多轮修改）",
           "辅助起草双语测试用例与初稿说明（均须经源码、单测与人工核对一致后才发布）",
         ],
       }
@@ -108,7 +108,7 @@ export default async function AboutPage() {
           data-testid="about-trajectory-pill"
         >
           {isZh
-            ? "斯旺西 CS 荣誉本科 (2020–24, 2:1) × 昆士兰大学交互硕士 (2025–26.11) · 布里斯班基地 · 欢迎澳新与亚太全职机会"
+            ? "斯旺西 CS 荣誉本科 (2020–24, 2:1) × 昆士兰大学交互硕士 (2025–26.11) · 常驻布里斯班 · 欢迎澳新与亚太全职机会"
             : "Swansea CS BSc (2020–24, 2:1) × UQ IxD Master (2025–Nov 2026) · Brisbane · Open to AU & APAC Interaction & Product Design Roles"}
         </p>
       </section>
@@ -166,7 +166,7 @@ export default async function AboutPage() {
 
       <section className="container section about-workflow-section" aria-labelledby="about-workflow-heading">
         <div className="about-workflow-head">
-          <div className="label">{isZh ? "工作方法闭环" : "How ideas get tested"}</div>
+          <div className="label">{isZh ? "工作方法循环" : "How ideas get tested"}</div>
           <h2 id="about-workflow-heading" className="h-display h2" style={{ marginTop: 12 }}>
             {isZh
               ? "先替用户守住操作底线，再把原型拉进真实场景试错。"
@@ -179,8 +179,8 @@ export default async function AboutPage() {
             isZh
               ? [
                   { n: "01", t: "找准人的摩擦", d: "先识别打扰注意力、引发误触风险或让人尴尬的真实场景，再决定界面长什么样。" },
-                  { n: "02", t: "明示设计取舍", d: "写清否决了哪几种看似顺滑但伤害用户掌控感的备选路径。" },
-                  { n: "03", t: "跑通真原型", d: "用软件或硬件实体搭配自动化门禁跑到可测保真度，不止于口头讲故事。" },
+                  { n: "02", t: "明示设计取舍", d: "写清否决了哪几种看似顺滑、但削弱用户掌控感的备选方案。" },
+                  { n: "03", t: "跑通真原型", d: "用软件或硬件实体配上自动化门禁做到可测阶段，不停在口头讲故事。" },
                   { n: "04", t: "诚实标清边界", d: "实测没跑的部分直接标明，不拿离线模拟或自我体验冒充外部真实研究。" },
                 ]
               : [
@@ -217,7 +217,7 @@ export default async function AboutPage() {
         <div className="about-workflow-head">
           <div className="label">{t("about.sections.toolbox.label")}</div>
           <h2 id="about-toolbox-heading" className="h-display h2" style={{ marginTop: 12 }}>
-            {isZh ? "高频使用的设计、硬件与全栈工具" : "Tools & systems used in daily builds"}
+            {isZh ? "常用的设计、硬件与全栈工具" : "Tools & systems used in daily builds"}
           </h2>
         </div>
 
@@ -254,7 +254,7 @@ export default async function AboutPage() {
             <h3>{isZh ? "前端架构与服务端边界" : "RSC Boundaries & CSS Budgets"}</h3>
             <p>
               {isZh
-                ? "使用 Next.js App Router、TypeScript 与 Zod 强校验把重内容留在服务端。持续集成卡住 CSS 体积（应用 ≤ 68 kB、总计 ≤ 98 kB，gzip 后），项目素材总量不超过 12 MB。"
+                ? "用 Next.js App Router、TypeScript 和 Zod 强校验，把重内容留在服务端。持续集成卡住 CSS 体积（应用 ≤ 68 kB、总计 ≤ 98 kB，gzip 后），项目素材总量不超过 12 MB。"
                 : "Keep heavy bilingual case payloads inside Server Components validated by Zod, with CI budgets holding app CSS to 68 kB and total CSS to 98 kB gzipped, and project media to 12 MB."}
             </p>
           </div>
@@ -262,7 +262,7 @@ export default async function AboutPage() {
             <h3>{isZh ? "三视口自动化无障碍检查" : "Automated 3-Viewport Accessibility"}</h3>
             <p>
               {isZh
-                ? "在桌面亮色、真实切换暗黑模式（#141413）以及 375px 窄屏上运行 Playwright + Axe 审计，确保键盘可达性与焦点环完整。"
+                ? "在桌面亮色、真实切换暗黑模式（#141413）和 375px 窄屏上跑 Playwright + Axe 检查，确保键盘可达、焦点环完整。"
                 : "Run Playwright + @axe-core/playwright across Desktop Light, switched Dark Mode (#141413), and 375px mobile viewports so contrast and keyboard focus never regress."}
             </p>
           </div>

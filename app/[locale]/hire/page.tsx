@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     locale === "zh" ? "招聘与简历" : "Hire & CV";
   const description =
     locale === "zh"
-      ? "Lewis Dong 的快速招聘档案：岗位视角筛选、最强证据、面试问题与边界。"
+      ? "Lewis Dong 的招聘速览：按岗位视角筛选、最强证据、面试问题与边界。"
       : "A fast hiring dossier for Lewis Dong: role-tailored proof lens, strongest evidence, interview questions, and boundaries.";
 
   return {
@@ -62,8 +62,8 @@ export default async function HirePage() {
   const pageCopy =
     proofLocale === "zh"
       ? {
-          roleTitle: "把岗位需求匹配到证据。",
-          roleIntro: "先看岗位信号，再进入通话前最相关的案例证据。",
+          roleTitle: "按岗位需求对应具体证据。",
+          roleIntro: "先看岗位需求，再看通话前最相关的案例证据。",
         }
       : {
           roleTitle: "Match the opening to the proof.",

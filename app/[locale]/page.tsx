@@ -141,7 +141,7 @@ export default async function HomePage() {
               </strong>
               <strong>
                 {isZh
-                  ? "布里斯班基地 · 面向澳新全职（可搬迁/远程）及亚太团队"
+                  ? "常驻布里斯班 · 面向澳新全职（可搬迁/远程）及亚太团队"
                   : "Brisbane · AU & APAC Full-Time Roles"}
               </strong>
               <div className="hero-hr-links">
@@ -276,7 +276,7 @@ export default async function HomePage() {
           <div>
             <p className="prose" style={{ marginBottom: 24 }}>
               {isZh
-                ? "每一封真切来信，48 小时内必回；可直发邮件或填写联系页速写表单。"
+                ? "每一封认真来信，48 小时内必回。可以直接发邮件，也可以填联系页的快速留言表。"
                 : "Write directly or use the quick note form on /contact — I reply within 48 hours."}
             </p>
             <Link href="/contact" className="btn btn-primary">

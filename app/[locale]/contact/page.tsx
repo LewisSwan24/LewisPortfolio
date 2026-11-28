@@ -66,7 +66,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </h1>
           <p className="prose">
             {isZh
-              ? "如果你正在招人、推进一个交互复杂的新产品，或想先聊某个案例的取舍，直接写信给我即可，通常 48 小时内回复。"
+              ? "如果你正在招人、推进一个交互复杂的新产品，或想先聊某个案例的取舍，直接写信给我就可以。通常 48 小时内回复。"
               : "If you are hiring, shaping a tricky interaction problem, or want to compare notes on a shipped build, send a note — I usually reply within 48 hours."}
           </p>
           <ul className="contact-method-list" aria-label={isZh ? "联系方式" : "Contact methods"}>
@@ -139,7 +139,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </h3>
             <p className="prose" style={{ fontSize: 14, margin: 0 }}>
               {isZh
-                ? "确认团队目前卡在产品定义、AI 边界设计还是全栈原型交付，并同步我 2026 年 11 月毕业、布里斯班基地与澳新/亚太全职入职窗口。"
+                ? "先确认团队目前卡在产品定义、AI 边界设计还是全栈原型交付。同时同步我的时间安排：2026 年 11 月毕业，常驻布里斯班，可接澳新和亚太全职岗位。"
                 : "Confirm whether your team prioritizes interaction architecture, AI guardrails, or full-stack prototyping—aligned with my Nov 2026 graduation and AU/APAC full-time availability."}
             </p>
           </article>
@@ -150,7 +150,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </h3>
             <p className="prose" style={{ fontSize: 14, margin: 0 }}>
               {isZh
-                ? "直接打开 Walkie、Lamplight Nook 或 Resume Autofill 可交互原貌与源码取舍，拆解当初否决的脆方案及真实代码测试门禁。"
+                ? "直接打开 Walkie、Lamplight Nook 或 Resume Autofill 的可交互原型、源码和取舍，拆解当初否决的脆弱方案与真实代码测试门禁。"
                 : "Step directly through Walkie, Lamplight Nook, or Resume Autofill—unpacking rejected shortcuts, state-machine guardrails, and verified repo gates."}
             </p>
           </article>
