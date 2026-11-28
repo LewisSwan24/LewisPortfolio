@@ -382,7 +382,7 @@ export const lamplightCase: CaseRecord = {
     "en": {
       "kicker": "AI Agent UX · Desktop Workbench",
       "title": "Lamplight Nook",
-      "sub": "Turns an opaque background coding run into a readable café crew plan—locking risky approvals onto 'Not now' by default.",
+      "sub": "Shows a background coding run as a café crew working through a plan you can read. Risky approvals default to 'Not now'.",
       "role": "Solo · Direction, UX & acceptance",
       "date": "2026 · v1.0 in daily use",
       "m1": "Default-safe 'Not now' risk lock",

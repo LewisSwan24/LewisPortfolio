@@ -367,7 +367,7 @@ export const onthebeatCase: CaseRecord = {
     "en": {
       "kicker": "Social Wearables · Ambient Consent",
       "title": "On The Beat",
-      "sub": "Breaks the ice between two gig-goers without phone staring—revealing names and meet spots only after mutual wrist confirmation.",
+      "sub": "Helps two people at a gig start talking without staring at their phones. Names and a meeting spot appear only after both confirm on their wristbands.",
       "role": "Individual build of DECO3500 team coursework · Interaction rules, AI output review & wristband pairing",
       "date": "2026 · coursework build",
       "m1": "Mutual-nod identity reveal",

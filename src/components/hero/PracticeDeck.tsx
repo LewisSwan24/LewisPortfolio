@@ -28,8 +28,8 @@ const DECK: DeckCard[] = [
       en: [
         "Dual-boot M5StickS3 firmware sharing one watch with On The Beat.",
         "Voice captures context; destructive bash and file writes never auto-approve.",
-        "Three offline screens in code separate Wi-Fi, relay and laptop loss; not yet checked on the watch away from the cable.",
-        "→ physical wrist buttons own every high-risk gate (only Lewis has used it).",
+        "The code has three offline screens that tell lost Wi-Fi, relay and laptop apart; not yet checked on the watch away from the cable.",
+        "→ every high-risk approval needs a physical wrist button (only Lewis has used it).",
       ],
       zh: [
         "与 On The Beat 共用 M5StickS3 的双启动固件。",
@@ -47,7 +47,7 @@ const DECK: DeckCard[] = [
     project: { en: "Lamplight Nook", zh: "Lamplight Nook" },
     body: {
       en: [
-        "Long-running agent sessions staged as a pixel café with the plan on a blackboard.",
+        "Long-running agent sessions shown as a pixel café, with the plan on a blackboard.",
         "Risky commands wait behind one visible card instead of auto-running.",
         "Closing or dismissing defaults to 'not now' so silence is never consent.",
         "→ calm visibility over fake hands-free polish (no user testing; only Lewis has used it).",
@@ -68,9 +68,9 @@ const DECK: DeckCard[] = [
     project: { en: "Resume Autofill", zh: "Resume Autofill" },
     body: {
       en: [
-        "Resumes stay on the local browser/phone instead of remote scraping clouds.",
-        "Ambiguous work-rights or custom questions stop below threshold instead of guessing.",
-        "Every run logs why a field was filled or skipped, never auto-submitting forms.",
+        "Resumes stay in the local browser or phone instead of going to a remote scraping service.",
+        "Work-rights or custom questions it is unsure about stop below the threshold instead of being guessed.",
+        "Every run logs why each field was filled or skipped, and it never submits a form on its own.",
         "→ 100% on three synthetic test sites: native HTML, Ant Design, Element Plus (real ATS portals unmeasured).",
       ],
       zh: [
@@ -89,7 +89,7 @@ const DECK: DeckCard[] = [
     project: { en: "MazeRunners", zh: "MazeRunners" },
     body: {
       en: [
-        "Vibrating finger sleeves replaced the electric-shock idea, which could not meet both complexity and safety.",
+        "Vibrating finger sleeves replaced the electric-shock idea, which could not be both complex enough and safe.",
         "Each colour wristband is shared by two players so nobody steers solo.",
         "Tilting needs both players on a wristband at once; a team member explained the rules before each round.",
         "→ 9 groups (36 players) tested publicly; about 3 groups finished.",
@@ -111,7 +111,7 @@ const DECK: DeckCard[] = [
     body: {
       en: [
         "Three cards ('SAY HI', 'FIRST SONG?', 'LET'S DANCE!') from a teammate's original prototype.",
-        "Wristbands hear each other over ESP-NOW; an area is named only at -56 dBm or louder.",
+        "Wristbands hear each other over ESP-NOW; an area is named only when the signal is -56 dBm or stronger.",
         "Names and a meeting spot appear only after both people say yes.",
         "→ two real wristbands met through the cloud relay; no wearer testing yet.",
       ],

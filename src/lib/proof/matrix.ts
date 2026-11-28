@@ -27,14 +27,14 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     ],
     bestCases: ["walkie", "lamplight", "autofill", "maze", "grassland"],
     risk:
-      "I am strongest when product ambiguity needs structure; I would pair with engineering early for production constraints.",
+      "I'm at my best when an unclear product needs structure; for production constraints, I would bring in engineering early.",
     interviewAngle: "Ask how I turn human tension and safety constraints into explicit interaction rules.",
   },
   {
     id: "ux-research",
     label: "UX Research",
     fit:
-      "Best fit when the team needs field observation, real-workflow friction logging, and honest boundaries on what evidence proves.",
+      "Best fit when a team needs field observation, a log of where real workflows get stuck, and honesty about what the evidence does and does not prove.",
     proofLinks: [
       { label: "MazeRunners: exhibition group observation", href: "/projects/maze#evidence-board" },
       { label: "Resume Autofill: synthetic vs real-site limits", href: "/projects/autofill#outcome-limits" },
@@ -43,14 +43,14 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     ],
     bestCases: ["maze", "autofill", "lamplight", "onthebeat"],
     risk:
-      "Most builds are solo or exhibition prototypes without formal user studies yet, so I separate personal/bench observations from validated cohort data.",
-    interviewAngle: "Ask what my current builds prove today versus what still requires outside participant sessions.",
+      "Most builds are solo or exhibition prototypes with no formal user studies yet, so I keep my own and bench observations separate from validated data across users.",
+    interviewAngle: "Ask what my builds prove today and what still needs sessions with outside participants.",
   },
   {
     id: "ai-ux",
     label: "AI UX",
     fit:
-      "Best fit when a team needs someone to judge how far an AI feature should be trusted, design polite friction, and keep human authority intact.",
+      "Best fit when a team needs someone to judge how far an AI feature should be trusted, add friction that stays polite, and keep people in charge.",
     proofLinks: [
       { label: "Walkie: physical approval gate over voice", href: "/projects/walkie#decision-timeline" },
       { label: "Lamplight Nook: default focus on 'Not now'", href: "/projects/lamplight#decision-timeline" },
@@ -59,7 +59,7 @@ const sharedHiringRoleFits: HiringRoleFit[] = [
     ],
     bestCases: ["walkie", "lamplight", "autofill", "onthebeat"],
     risk:
-      "The examples focus on interaction scoping, prototyping, and real behavior under human oversight across independent and course builds.",
+      "These examples cover interaction scoping, prototyping, and how things actually behave under human oversight, across solo and course projects.",
     interviewAngle: "Ask why Lamplight locks focus to 'Not now' and why Walkie rejects voice-only tool approvals.",
   },
   {

@@ -277,7 +277,7 @@ export default async function HomePage() {
             <p className="prose" style={{ marginBottom: 24 }}>
               {isZh
                 ? "每一封认真来信，48 小时内必回。可以直接发邮件，也可以填联系页的快速留言表。"
-                : "Write directly or use the quick note form on /contact — I reply within 48 hours."}
+                : "Write to me directly or leave a quick note on /contact. I reply within 48 hours."}
             </p>
             <Link href="/contact" className="btn btn-primary">
               {t("hero.cta.note")} <span className="arrow">→</span>

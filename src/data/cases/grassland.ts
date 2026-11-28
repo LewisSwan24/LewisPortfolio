@@ -381,7 +381,7 @@ export const grasslandCase: CaseRecord = {
     "en": {
       "kicker": "Complex Systems · Real-Time Strategy",
       "title": "Grassland Iron Tide",
-      "sub": "A five-mission browser RTS chapter keeping selection grammar, battlefield sightlines, and defeat recovery strictly unified.",
+      "sub": "A five-mission browser RTS chapter where selection, battlefield sightlines, and recovering from defeat all follow one consistent set of rules.",
       "role": "Solo · Systems design, specs & QA sign-off",
       "date": "2026 · Chapter One playable",
       "m1": "Immutable 5-mission command model",

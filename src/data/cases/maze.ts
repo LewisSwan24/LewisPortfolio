@@ -383,7 +383,7 @@ export const mazeCase: CaseRecord = {
     "en": {
       "kicker": "Physical Computing · Co-Play System",
       "title": "MazeRunners",
-      "sub": "Two players share one wristband control—forcing physical coordination across sensors, finger-sleeve haptics, and a live web scoreboard.",
+      "sub": "Two players share one wristband control, so they have to coordinate physically. Built with sensors, finger-sleeve haptics, and a live web scoreboard.",
       "role": "Lead Interaction & Hardware/Web Dev",
       "date": "2026 · exhibited live",
       "m1": "Wrist co-touch & haptic traps",

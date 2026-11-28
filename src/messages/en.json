@@ -28,7 +28,7 @@
       "b": "then prove it in",
       "c": "working software."
     },
-    "body": "Trained in Computer Science at Swansea and Interaction Design at UQ, I turn messy human-AI and hardware edge cases into testable interaction rules—then ship working TypeScript, Electron, extension, and ESP32 prototypes to see where those rules hold.",
+    "body": "I studied Computer Science at Swansea and Interaction Design at UQ. I take the messy edge cases where people meet AI tools and hardware, turn them into interaction rules that can be tested, then build working TypeScript, Electron, browser extension, and ESP32 prototypes to see where those rules hold.",
     "deck": {
       "label": "The practice log —",
       "roledesc": "Card deck",
@@ -58,9 +58,9 @@
     "label": "How I work",
     "title": {
       "text": "Put the user in control,",
-      "em": "verify it in real code."
+      "em": "then check it in working code."
     },
-    "body": "Instead of polishing static slides, I diagnose where automation or interfaces break people's trust, design clear refusal and recovery paths, and build running software or hardware prototypes to test those choices early.",
+    "body": "I look for where automation or an interface loses people's trust, design clear ways to refuse and recover, and test those choices early in running software or hardware prototypes rather than static slides.",
     "step": {
       "1": {
         "t": "Spot Real Friction",
@@ -68,21 +68,21 @@
       },
       "2": {
         "t": "Lock Safety Rules",
-        "b": "Reject flashy auto-shortcuts when explicit confirmation or leaving blanks blank protects the user."
+        "b": "Skip the flashy shortcut when an explicit confirmation, or simply leaving a field blank, is what protects the user."
       },
       "3": {
         "t": "Ship Running Builds",
-        "b": "Build real Next.js, Electron, extension, or ESP32 prototypes backed by automated tests."
+        "b": "Build working Next.js, Electron, browser extension, or ESP32 prototypes with automated tests behind them."
       },
       "4": {
         "t": "Keep Scope Honest",
-        "b": "Separate measured device/repo verification from outside participant testing still left to run."
+        "b": "Keep what was checked on the device or in the repo separate from testing with outside participants, which is still to be done."
       }
     }
   },
   "feat": {
     "label": "Selected work",
-    "title": "Six builds—from problem framing to working proof.",
+    "title": "Six projects, from problem framing to working build.",
     "footer": "Full index",
     "deckPrev": "Previous case",
     "deckNext": "Next case",
@@ -314,10 +314,10 @@
       "text": "I design interactions that help people stay oriented.",
       "em": "oriented"
     },
-    "p1": "I'm finishing my Master of Interaction Design at The University of Queensland in November 2026 after earning a BSc (Hons) in Computer Science (2:1) at Swansea University in Wales. Having both engineering and design training keeps me grounded in what software and hardware can actually uphold under latency, permissions, and human fatigue.",
-    "p2": "My work focuses on complex human-system boundaries: where AI tools overreach user confidence, where multi-player hardware breaks solo silence, and where workflows hide failure or privacy risk. Instead of ending at static slides, I ship working prototypes in TypeScript, Electron, Chrome extensions, or ESP32 C++ so the rules can fail honestly and be revised.",
-    "p3": "In AI-assisted builds, I keep clear ownership: I define the human tension, the rejected shortcuts, the refusal limits, and the real hardware or Playwright acceptance checks — treating generated code as a draft to be interrogated rather than truth by default.",
-    "p4": "If you have a complex interaction problem or graduate opening, write directly and I will respond promptly.",
+    "p1": "I'm finishing my Master of Interaction Design at The University of Queensland in November 2026 after earning a BSc (Hons) in Computer Science (2:1) at Swansea University in Wales. Training in both engineering and design keeps me realistic about what software and hardware can actually handle once latency, permissions, and tired users come into play.",
+    "p2": "My work sits where people meet complex systems: AI tools that act beyond what users are confident about, multiplayer hardware that pulls people out of solo silence, and workflows that hide failures or privacy risks. Rather than stopping at static slides, I build working prototypes in TypeScript, Electron, Chrome extensions, or ESP32 C++, so a rule can visibly fail and then be revised.",
+    "p3": "In AI-assisted builds I am clear about what I own: the human tension, the shortcuts that were rejected, the limits on when the product refuses, and the acceptance checks on real hardware or in Playwright. I treat generated code as a draft to check, not as correct by default.",
+    "p4": "If you have a complex interaction problem or a graduate opening, write to me and I'll get back to you quickly.",
     "philo": {
       "1": {
         "t": "Research is not decoration.",
@@ -329,7 +329,7 @@
       },
       "3": {
         "t": "Care for the quiet states.",
-        "b": "Empty states, recovery paths, and physical confirmations — that's where trust actually lives."
+        "b": "Empty states, recovery paths, and physical confirmations are where trust is actually won or lost."
       },
       "4": {
         "t": "Decide in the open.",

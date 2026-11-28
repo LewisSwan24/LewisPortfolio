@@ -68,7 +68,7 @@ export default async function HirePage() {
       : {
           roleTitle: "Match the opening to the proof.",
           roleIntro:
-            "Pick the role signal first, then inspect the exact case evidence before the call.",
+            "Pick the role first, then look at the case evidence for it before we talk.",
         };
 
   return (

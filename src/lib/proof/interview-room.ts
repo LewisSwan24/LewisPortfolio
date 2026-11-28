@@ -14,13 +14,13 @@ const sharedInterviewDecisionRoom: InterviewDecisionRoom = {
         label: "Role fit",
         value: "Interaction, UX & Product teams",
         detail:
-          "Strongest where ambiguous problem spaces need information architecture, rapid prototyping, and research synthesis.",
+          "Strongest when an unclear problem needs information architecture, quick prototyping, and research synthesis.",
       },
       {
         label: "Case depth",
         value: "6 curated builds",
         detail:
-          "Walkie, Lamplight Nook, Resume Autofill, MazeRunners, On The Beat, and Grassland Iron Tide open with structured design tradeoffs and honest limits.",
+          "Walkie, Lamplight Nook, Resume Autofill, MazeRunners, On The Beat, and Grassland Iron Tide each open with their design trade-offs and an honest account of their limits.",
       },
       {
         label: "Decision trail",

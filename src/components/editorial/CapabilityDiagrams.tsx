@@ -230,7 +230,7 @@ export function CrossPracticeArchitectureSvg({ locale }: { locale: "en" | "zh" }
       <figcaption>
         {isZh
           ? "能力演进脉络：2020–2024 年英国斯旺西的 CS 科班训练与荣誉毕业论文，打下状态机确定性思考的基础。2025 年 UQ 研究生课程里，养成以人因和可验证架构为中心的重构习惯。最终在 2026 年汇成六件软硬件兼修的主力交付作品。"
-          : "Training arc from BSc Computer Science at Swansea (2020–24, 2:1 with extended honours dissertation) through 2025 UQ Interaction Design research methods into six 2026 shipped software and hardware prototypes."}
+          : "From a BSc in Computer Science at Swansea (2020–24, 2:1 with an extended honours dissertation), through UQ Interaction Design research methods in 2025, to six software and hardware prototypes built in 2026."}
       </figcaption>
     </figure>
   );

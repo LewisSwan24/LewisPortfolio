@@ -353,7 +353,7 @@ export const autofillCase: CaseRecord = {
     "en": {
       "kicker": "Trustworthy AI · Local Privacy Tool",
       "title": "Resume Autofill",
-      "sub": "Chrome and Android resume autofill that visibly separates certain matches from guesswork—and never submits on your behalf.",
+      "sub": "Resume autofill for Chrome and Android that shows which matches it is sure of and which would be guesswork, and never submits for you.",
       "role": "Solo · Full-stack architecture & rules",
       "date": "2026 · used on real applications",
       "m1": "3-tier certainty & Submit lock",

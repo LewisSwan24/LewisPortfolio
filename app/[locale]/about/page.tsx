@@ -57,19 +57,19 @@ export default async function AboutPage() {
       }
     : {
         eyebrow: "CS Base × IxD Craft × Authorship",
-        title: "How Computer Science training, design judgment, and AI tooling split work",
+        title: "How the work splits between Computer Science training, design judgment, and AI tools",
         leftHeading: "Owned & signed off by Lewis",
         leftItems: [
-          "Human friction framing, interview transcript coding, and refusal-rule architecture before screens are drawn",
-          "Explicit tradeoff gates across Walkie physical keys, Lamplight 'Not now' defaults, and Autofill hard Submit locks",
+          "Framing where people struggle, coding interview transcripts, and setting refusal rules before any screen is drawn",
+          "The trade-off calls behind Walkie's physical keys, Lamplight's 'Not now' default, and Autofill's locked Submit",
           "MazeRunners hardware wiring, sign-off on ESP32 dual-boot partition isolation, and Chromium 3-viewport Playwright/Axe verification",
-          "Honest separation between repository/bench proofs and unmeasured outside participant testing",
+          "Keeping repository and bench checks apart from outside participant testing, which is still unmeasured",
         ],
-        rightHeading: "Where AI coding & design tools accelerate",
+        rightHeading: "Where AI coding and design tools speed things up",
         rightItems: [
-          "Drafting TypeScript, C++, and Electron scaffolds once frame specs, Zod schemas, and constraints are locked",
-          "Spooling runtime UI variants rapidly so deceptive mock polish can be audited and rejected across review loops",
-          "Producing fixture harnesses and bilingual drafting passes strictly bound to source-verified project truth",
+          "Drafting TypeScript, C++, and Electron scaffolding once the frame specs, Zod schemas, and constraints are fixed",
+          "Generating UI variants quickly, so polish that only fakes real behavior can be spotted and rejected in review rounds",
+          "Producing test fixtures and first drafts in both languages, kept to facts checked against the source",
         ],
       };
 
@@ -185,9 +185,9 @@ export default async function AboutPage() {
                 ]
               : [
                   { n: "01", t: "Human friction first", d: "Pin down attention overload, error cost, and social discomfort before choosing visual components." },
-                  { n: "02", t: "Explicit tradeoffs", d: "Write out the tempting alternatives that had to be rejected so the user keeps legible control." },
-                  { n: "03", t: "Falsifiable prototypes", d: "Ship software or physical builds backed by automated gates so rules are tested in motion." },
-                  { n: "04", t: "Honest scope", d: "Keep verified behavior distinct from what still waits for outside participant testing." },
+                  { n: "02", t: "Explicit tradeoffs", d: "Write down the tempting alternatives that were rejected, so the user stays clearly in control." },
+                  { n: "03", t: "Falsifiable prototypes", d: "Build software or physical prototypes with automated checks, so the rules are tested in use." },
+                  { n: "04", t: "Honest scope", d: "Keep what has been verified apart from what still needs testing with outside participants." },
                 ]
           ).map((step) => (
             <li className="about-loop-step" key={step.n}>
@@ -240,12 +240,12 @@ export default async function AboutPage() {
       <section className="container section" aria-labelledby="about-arch-heading">
         <div className="about-workflow-head">
           <div className="label">
-            {isZh ? "工程栈与可验证标准" : "Engineering & Verification Rigor"}
+            {isZh ? "工程栈与可验证标准" : "Engineering & Verification"}
           </div>
           <h2 id="about-arch-heading" className="h-display h2" style={{ marginTop: 12 }}>
             {isZh
               ? "交互判断必须落到可复现的系统结构与预算红线上。"
-              : "Every interaction claim ships alongside reproducible architecture and budget gates."}
+              : "Each interaction claim comes with architecture and budget checks that can be rerun."}
           </h2>
         </div>
 
@@ -255,7 +255,7 @@ export default async function AboutPage() {
             <p>
               {isZh
                 ? "用 Next.js App Router、TypeScript 和 Zod 强校验，把重内容留在服务端。持续集成卡住 CSS 体积（应用 ≤ 68 kB、总计 ≤ 98 kB，gzip 后），项目素材总量不超过 12 MB。"
-                : "Keep heavy bilingual case payloads inside Server Components validated by Zod, with CI budgets holding app CSS to 68 kB and total CSS to 98 kB gzipped, and project media to 12 MB."}
+                : "Heavy bilingual case content stays in Server Components and is validated by Zod. CI budgets cap app CSS at 68 kB and total CSS at 98 kB gzipped, and project media at 12 MB."}
             </p>
           </div>
           <div className="about-philo-item">
@@ -275,7 +275,7 @@ export default async function AboutPage() {
             </p>
           </div>
           <div className="about-philo-item">
-            <h4>{isZh ? "进一步查验" : "Inspect Live Artifacts"}</h4>
+            <h4>{isZh ? "进一步查验" : "See the work"}</h4>
             <p>
               {isZh ? (
                 <>
@@ -286,8 +286,8 @@ export default async function AboutPage() {
                 </>
               ) : (
                 <>
-                  Browse <Link href="/projects" className="u-underline">6 flagship cases</Link>, interrogate tradeoffs in{" "}
-                  <Link href="/ai" className="u-underline">AI Lab</Link>, or inspect <Link href="/lab" className="u-underline">Lab</Link> and{" "}
+                  Browse the <Link href="/projects" className="u-underline">6 main cases</Link>, question the trade-offs in the{" "}
+                  <Link href="/ai" className="u-underline">AI Lab</Link>, or look through the <Link href="/lab" className="u-underline">Lab</Link> and{" "}
                   <Link href="/blog" className="u-underline">Writing</Link>.
                 </>
               )}
