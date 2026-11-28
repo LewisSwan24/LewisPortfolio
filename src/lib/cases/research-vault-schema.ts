@@ -12,8 +12,6 @@ export const ResearchTaskProbeSchema = z.object({
   verifiedStatus: CaseVerifiedStatusSchema,
 });
 
-export type ResearchTaskProbe = z.infer<typeof ResearchTaskProbeSchema>;
-
 export const ModeratorGuideSchema = z.object({
   protocolTitle: LocalizedStringSchema,
   cohortAndSetting: LocalizedStringSchema,
@@ -21,8 +19,6 @@ export const ModeratorGuideSchema = z.object({
   taskProbes: z.array(ResearchTaskProbeSchema).min(3),
   debriefQuestion: LocalizedStringSchema,
 });
-
-export type ModeratorGuide = z.infer<typeof ModeratorGuideSchema>;
 
 export const FieldObservationLogSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
@@ -33,16 +29,12 @@ export const FieldObservationLogSchema = z.object({
   verifiedStatus: CaseVerifiedStatusSchema,
 });
 
-export type FieldObservationLog = z.infer<typeof FieldObservationLogSchema>;
-
 export const ErgonomicsSpecRowSchema = z.object({
   dimension: LocalizedStringSchema,
   constraint: LocalizedStringSchema,
   rationale: LocalizedStringSchema,
   verifiedStatus: CaseVerifiedStatusSchema,
 });
-
-export type ErgonomicsSpecRow = z.infer<typeof ErgonomicsSpecRowSchema>;
 
 export const TriRoleTensionRowSchema = z.object({
   role: z.enum(["pm-product", "engineering-hardware", "end-user"]),
@@ -52,16 +44,12 @@ export const TriRoleTensionRowSchema = z.object({
   resolution: LocalizedStringSchema,
 });
 
-export type TriRoleTensionRow = z.infer<typeof TriRoleTensionRowSchema>;
-
 export const RebuildRetrospectiveItemSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   question: LocalizedStringSchema,
   answer: LocalizedStringSchema,
   verifiedStatus: CaseVerifiedStatusSchema,
 });
-
-export type RebuildRetrospectiveItem = z.infer<typeof RebuildRetrospectiveItemSchema>;
 
 export const RawResearchVaultRecordSchema = z.object({
   slug: z.enum(CURRENT_PROJECT_SLUGS).refine((slug) => !isUnlistedProject(slug), {

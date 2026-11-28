@@ -18,7 +18,3 @@ const STORIES: Partial<Record<StorySlug, CaseStory | undefined>> = {
 export function getCaseStory(slug: string): CaseStory | undefined {
   return STORIES[slug as StorySlug];
 }
-
-export function hasCaseStory(slug: string): boolean {
-  return getCaseStory(slug) !== undefined;
-}

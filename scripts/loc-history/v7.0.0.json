@@ -1,0 +1,4685 @@
+{
+  "ref": "v7.0.0",
+  "coverage": true,
+  "knip": true,
+  "kinds": {
+    "ci": {
+      "files": 2,
+      "nonBlank": 158,
+      "effective": 142,
+      "effectiveFiles": 2
+    },
+    "app": {
+      "files": 268,
+      "nonBlank": 38551,
+      "effective": 37248,
+      "effectiveFiles": 262
+    },
+    "test": {
+      "files": 113,
+      "nonBlank": 10192,
+      "effective": 9715,
+      "effectiveFiles": 113
+    },
+    "script": {
+      "files": 18,
+      "nonBlank": 1897,
+      "effective": 293,
+      "effectiveFiles": 1
+    },
+    "css": {
+      "files": 30,
+      "nonBlank": 10812,
+      "effective": 10460,
+      "effectiveFiles": 29
+    }
+  },
+  "notCode": {
+    "config": {
+      "files": 11,
+      "nonBlank": 585
+    },
+    "content": {
+      "files": 66,
+      "nonBlank": 1708
+    },
+    "excluded": {
+      "files": 4,
+      "nonBlank": 6426
+    },
+    "asset": {
+      "files": 70,
+      "nonBlank": 83
+    },
+    "data": {
+      "files": 43,
+      "nonBlank": 13901
+    },
+    "i18n": {
+      "files": 2,
+      "nonBlank": 990
+    }
+  },
+  "totals": {
+    "files": 431,
+    "nonBlank": 61610,
+    "effective": 57858,
+    "effectiveFiles": 407
+  },
+  "unitLineCoverage": {
+    "covered": 2421,
+    "total": 5575
+  },
+  "visitedPaths": 158,
+  "files": [
+    {
+      "path": ".env.example",
+      "kind": "config",
+      "nonBlank": 22,
+      "code": 22,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "kind": "content",
+      "nonBlank": 13,
+      "code": 13,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "kind": "ci",
+      "nonBlank": 106,
+      "code": 94,
+      "effective": 94
+    },
+    {
+      "path": ".github/workflows/webkit.yml",
+      "kind": "ci",
+      "nonBlank": 52,
+      "code": 48,
+      "effective": 48
+    },
+    {
+      "path": ".gitignore",
+      "kind": "config",
+      "nonBlank": 40,
+      "code": 40,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": ".prettierrc",
+      "kind": "config",
+      "nonBlank": 13,
+      "code": 13,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "kind": "content",
+      "nonBlank": 122,
+      "code": 122,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "MAINTENANCE.md",
+      "kind": "content",
+      "nonBlank": 22,
+      "code": 22,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "README.md",
+      "kind": "content",
+      "nonBlank": 118,
+      "code": 118,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "app/.well-known/mcp.json/route.ts",
+      "kind": "app",
+      "nonBlank": 12,
+      "code": 12,
+      "effective": 12
+    },
+    {
+      "path": "app/[locale]/[...rest]/page.tsx",
+      "kind": "app",
+      "nonBlank": 4,
+      "code": 4,
+      "effective": 4
+    },
+    {
+      "path": "app/[locale]/about/page.tsx",
+      "kind": "app",
+      "nonBlank": 284,
+      "code": 284,
+      "effective": 284
+    },
+    {
+      "path": "app/[locale]/ai/page.tsx",
+      "kind": "app",
+      "nonBlank": 166,
+      "code": 166,
+      "effective": 166
+    },
+    {
+      "path": "app/[locale]/blog/BlogIndex.tsx",
+      "kind": "app",
+      "nonBlank": 238,
+      "code": 233,
+      "effective": 233
+    },
+    {
+      "path": "app/[locale]/blog/[slug]/opengraph-image.tsx",
+      "kind": "app",
+      "nonBlank": 144,
+      "code": 144,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "app/[locale]/blog/[slug]/page.tsx",
+      "kind": "app",
+      "nonBlank": 259,
+      "code": 255,
+      "effective": 255
+    },
+    {
+      "path": "app/[locale]/blog/page.tsx",
+      "kind": "app",
+      "nonBlank": 36,
+      "code": 33,
+      "effective": 33
+    },
+    {
+      "path": "app/[locale]/brief/[id]/page.tsx",
+      "kind": "app",
+      "nonBlank": 167,
+      "code": 167,
+      "effective": 167
+    },
+    {
+      "path": "app/[locale]/brief/print/page.tsx",
+      "kind": "app",
+      "nonBlank": 189,
+      "code": 188,
+      "effective": 188
+    },
+    {
+      "path": "app/[locale]/contact/page.tsx",
+      "kind": "app",
+      "nonBlank": 173,
+      "code": 173,
+      "effective": 173
+    },
+    {
+      "path": "app/[locale]/hire/page.tsx",
+      "kind": "app",
+      "nonBlank": 108,
+      "code": 106,
+      "effective": 106
+    },
+    {
+      "path": "app/[locale]/interview/page.tsx",
+      "kind": "app",
+      "nonBlank": 142,
+      "code": 135,
+      "effective": 135
+    },
+    {
+      "path": "app/[locale]/lab/page.tsx",
+      "kind": "app",
+      "nonBlank": 92,
+      "code": 92,
+      "effective": 92
+    },
+    {
+      "path": "app/[locale]/layout.tsx",
+      "kind": "app",
+      "nonBlank": 98,
+      "code": 98,
+      "effective": 98
+    },
+    {
+      "path": "app/[locale]/maintenance/proof/page.tsx",
+      "kind": "app",
+      "nonBlank": 39,
+      "code": 39,
+      "effective": 39
+    },
+    {
+      "path": "app/[locale]/not-found.tsx",
+      "kind": "app",
+      "nonBlank": 76,
+      "code": 74,
+      "effective": 74
+    },
+    {
+      "path": "app/[locale]/page.tsx",
+      "kind": "app",
+      "nonBlank": 280,
+      "code": 277,
+      "effective": 277
+    },
+    {
+      "path": "app/[locale]/patterns/page.tsx",
+      "kind": "app",
+      "nonBlank": 67,
+      "code": 61,
+      "effective": 61
+    },
+    {
+      "path": "app/[locale]/projects/WorkIndex.tsx",
+      "kind": "app",
+      "nonBlank": 133,
+      "code": 133,
+      "effective": 133
+    },
+    {
+      "path": "app/[locale]/projects/[slug]/opengraph-image.tsx",
+      "kind": "app",
+      "nonBlank": 148,
+      "code": 148,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "app/[locale]/projects/[slug]/page.tsx",
+      "kind": "app",
+      "nonBlank": 555,
+      "code": 550,
+      "effective": 550
+    },
+    {
+      "path": "app/[locale]/projects/page.tsx",
+      "kind": "app",
+      "nonBlank": 128,
+      "code": 125,
+      "effective": 125
+    },
+    {
+      "path": "app/[locale]/resume/ResumeActions.tsx",
+      "kind": "app",
+      "nonBlank": 35,
+      "code": 34,
+      "effective": 34
+    },
+    {
+      "path": "app/[locale]/resume/compose/page.tsx",
+      "kind": "app",
+      "nonBlank": 61,
+      "code": 61,
+      "effective": 61
+    },
+    {
+      "path": "app/[locale]/resume/page.tsx",
+      "kind": "app",
+      "nonBlank": 403,
+      "code": 396,
+      "effective": 396
+    },
+    {
+      "path": "app/[locale]/studio/replay/page.tsx",
+      "kind": "app",
+      "nonBlank": 70,
+      "code": 70,
+      "effective": 70
+    },
+    {
+      "path": "app/[locale]/vault/page.tsx",
+      "kind": "app",
+      "nonBlank": 93,
+      "code": 91,
+      "effective": 91
+    },
+    {
+      "path": "app/api/ai/critique/route.ts",
+      "kind": "app",
+      "nonBlank": 125,
+      "code": 125,
+      "effective": 125
+    },
+    {
+      "path": "app/api/ai/match/route.ts",
+      "kind": "app",
+      "nonBlank": 120,
+      "code": 119,
+      "effective": 119
+    },
+    {
+      "path": "app/api/brief/route.ts",
+      "kind": "app",
+      "nonBlank": 89,
+      "code": 89,
+      "effective": 89
+    },
+    {
+      "path": "app/api/contact/route.ts",
+      "kind": "app",
+      "nonBlank": 108,
+      "code": 106,
+      "effective": 106
+    },
+    {
+      "path": "app/api/mcp/route.ts",
+      "kind": "app",
+      "nonBlank": 65,
+      "code": 65,
+      "effective": 65
+    },
+    {
+      "path": "app/api/vitals/route.ts",
+      "kind": "app",
+      "nonBlank": 36,
+      "code": 35,
+      "effective": 35
+    },
+    {
+      "path": "app/feed.xml/route.ts",
+      "kind": "app",
+      "nonBlank": 10,
+      "code": 10,
+      "effective": 10
+    },
+    {
+      "path": "app/layout.tsx",
+      "kind": "app",
+      "nonBlank": 55,
+      "code": 52,
+      "effective": 52
+    },
+    {
+      "path": "app/llms-full.txt/route.ts",
+      "kind": "app",
+      "nonBlank": 12,
+      "code": 12,
+      "effective": 12
+    },
+    {
+      "path": "app/llms.txt/route.ts",
+      "kind": "app",
+      "nonBlank": 12,
+      "code": 12,
+      "effective": 12
+    },
+    {
+      "path": "app/manifest.ts",
+      "kind": "app",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "app/opengraph-image.tsx",
+      "kind": "app",
+      "nonBlank": 119,
+      "code": 119,
+      "effective": 119
+    },
+    {
+      "path": "app/robots.ts",
+      "kind": "app",
+      "nonBlank": 48,
+      "code": 45,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "app/search-index/[locale]/route.ts",
+      "kind": "app",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 19
+    },
+    {
+      "path": "app/sitemap.ts",
+      "kind": "app",
+      "nonBlank": 109,
+      "code": 107,
+      "effective": 107
+    },
+    {
+      "path": "app/zh/feed.xml/route.ts",
+      "kind": "app",
+      "nonBlank": 10,
+      "code": 10,
+      "effective": 10
+    },
+    {
+      "path": "content/blog/accessibility-in-design.mdx",
+      "kind": "content",
+      "nonBlank": 28,
+      "code": 28,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/asymmetric-friction-against-enter-fatigue.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/bilingual-design-systems-without-drift.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/bilingual-editorial-voice-without-translationese.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/bundle-ceilings-and-css-zero-warning-gates.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/calibrated-motion-cognitive-bandwidth.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/causal-lineage-graphs-over-flat-tags.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/cognitive-sovereignty-and-default-refusal.mdx",
+      "kind": "content",
+      "nonBlank": 33,
+      "code": 33,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/confidence-tiers-over-silent-hallucination.mdx",
+      "kind": "content",
+      "nonBlank": 23,
+      "code": 23,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/debugging-tools-as-ux-critique.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/designing-for-ai.mdx",
+      "kind": "content",
+      "nonBlank": 15,
+      "code": 15,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/dual-boot-ota-slot-safety-ergonomics.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/fail-closed-approval-queues.mdx",
+      "kind": "content",
+      "nonBlank": 21,
+      "code": 21,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/fencepost-data-layer-ai-revocation.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/five-state-interface-audits.mdx",
+      "kind": "content",
+      "nonBlank": 28,
+      "code": 28,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/flat-state-machines-over-nested-tabs.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/honest-limits-as-design-rigor.mdx",
+      "kind": "content",
+      "nonBlank": 31,
+      "code": 31,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/mcp-endpoints-for-design-portfolios.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/protocol-locked-3d-hardware-twins.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/psychology-of-default-not-now-modals.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/service-worker-boundaries-around-private-briefs.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/shared-wristband-collaborative-friction.mdx",
+      "kind": "content",
+      "nonBlank": 22,
+      "code": 22,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/swansea-cs-to-uq-physical-computing.mdx",
+      "kind": "content",
+      "nonBlank": 23,
+      "code": 23,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/timing-as-interaction-design.mdx",
+      "kind": "content",
+      "nonBlank": 22,
+      "code": 22,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/usb-preemption-over-wireless-assumptions.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/ux-research-methods-guide.mdx",
+      "kind": "content",
+      "nonBlank": 47,
+      "code": 47,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/v3-architecture-and-performance-moat.mdx",
+      "kind": "content",
+      "nonBlank": 31,
+      "code": 31,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/walkie-and-fencepost-invariants.mdx",
+      "kind": "content",
+      "nonBlank": 35,
+      "code": 35,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/withdrawing-interfaces-in-social-spaces.mdx",
+      "kind": "content",
+      "nonBlank": 34,
+      "code": 34,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/writing-state-invariants-before-figma.mdx",
+      "kind": "content",
+      "nonBlank": 21,
+      "code": 21,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zero-hallucination-red-team-defense.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/accessibility-in-design.mdx",
+      "kind": "content",
+      "nonBlank": 28,
+      "code": 28,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/asymmetric-friction-against-enter-fatigue.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/bilingual-design-systems-without-drift.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/bilingual-editorial-voice-without-translationese.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/bundle-ceilings-and-css-zero-warning-gates.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/calibrated-motion-cognitive-bandwidth.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/causal-lineage-graphs-over-flat-tags.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/cognitive-sovereignty-and-default-refusal.mdx",
+      "kind": "content",
+      "nonBlank": 33,
+      "code": 33,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/confidence-tiers-over-silent-hallucination.mdx",
+      "kind": "content",
+      "nonBlank": 23,
+      "code": 23,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/debugging-tools-as-ux-critique.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/designing-for-ai.mdx",
+      "kind": "content",
+      "nonBlank": 14,
+      "code": 14,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/dual-boot-ota-slot-safety-ergonomics.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/fail-closed-approval-queues.mdx",
+      "kind": "content",
+      "nonBlank": 21,
+      "code": 21,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/fencepost-data-layer-ai-revocation.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/five-state-interface-audits.mdx",
+      "kind": "content",
+      "nonBlank": 28,
+      "code": 28,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/flat-state-machines-over-nested-tabs.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/honest-limits-as-design-rigor.mdx",
+      "kind": "content",
+      "nonBlank": 31,
+      "code": 31,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/mcp-endpoints-for-design-portfolios.mdx",
+      "kind": "content",
+      "nonBlank": 17,
+      "code": 17,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/protocol-locked-3d-hardware-twins.mdx",
+      "kind": "content",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/psychology-of-default-not-now-modals.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/service-worker-boundaries-around-private-briefs.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/shared-wristband-collaborative-friction.mdx",
+      "kind": "content",
+      "nonBlank": 22,
+      "code": 22,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/swansea-cs-to-uq-physical-computing.mdx",
+      "kind": "content",
+      "nonBlank": 24,
+      "code": 24,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/timing-as-interaction-design.mdx",
+      "kind": "content",
+      "nonBlank": 22,
+      "code": 22,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/usb-preemption-over-wireless-assumptions.mdx",
+      "kind": "content",
+      "nonBlank": 20,
+      "code": 20,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/ux-research-methods-guide.mdx",
+      "kind": "content",
+      "nonBlank": 47,
+      "code": 47,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/v3-architecture-and-performance-moat.mdx",
+      "kind": "content",
+      "nonBlank": 29,
+      "code": 29,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/walkie-and-fencepost-invariants.mdx",
+      "kind": "content",
+      "nonBlank": 35,
+      "code": 35,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/withdrawing-interfaces-in-social-spaces.mdx",
+      "kind": "content",
+      "nonBlank": 34,
+      "code": 34,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/writing-state-invariants-before-figma.mdx",
+      "kind": "content",
+      "nonBlank": 21,
+      "code": 21,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "content/blog/zh/zero-hallucination-red-team-defense.mdx",
+      "kind": "content",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "e2e/a11y.spec.ts",
+      "kind": "test",
+      "nonBlank": 82,
+      "code": 82,
+      "effective": 82
+    },
+    {
+      "path": "e2e/ai-workbench.spec.ts",
+      "kind": "test",
+      "nonBlank": 73,
+      "code": 71,
+      "effective": 71
+    },
+    {
+      "path": "e2e/basic.spec.ts",
+      "kind": "test",
+      "nonBlank": 691,
+      "code": 612,
+      "effective": 612
+    },
+    {
+      "path": "e2e/crawler.spec.ts",
+      "kind": "test",
+      "nonBlank": 222,
+      "code": 211,
+      "effective": 211
+    },
+    {
+      "path": "e2e/resume-pdf.spec.ts",
+      "kind": "test",
+      "nonBlank": 18,
+      "code": 18,
+      "effective": 18
+    },
+    {
+      "path": "e2e/simulators.spec.ts",
+      "kind": "test",
+      "nonBlank": 38,
+      "code": 36,
+      "effective": 36
+    },
+    {
+      "path": "e2e/v37-primitives.spec.ts",
+      "kind": "test",
+      "nonBlank": 49,
+      "code": 46,
+      "effective": 46
+    },
+    {
+      "path": "e2e/v38-process.spec.ts",
+      "kind": "test",
+      "nonBlank": 34,
+      "code": 30,
+      "effective": 30
+    },
+    {
+      "path": "e2e/v39-presentation-brief.spec.ts",
+      "kind": "test",
+      "nonBlank": 55,
+      "code": 53,
+      "effective": 53
+    },
+    {
+      "path": "e2e/v42-three-and-matrix.spec.ts",
+      "kind": "test",
+      "nonBlank": 108,
+      "code": 105,
+      "effective": 105
+    },
+    {
+      "path": "e2e/v43-ai-navigator.spec.ts",
+      "kind": "test",
+      "nonBlank": 50,
+      "code": 50,
+      "effective": 50
+    },
+    {
+      "path": "e2e/v44-decks-and-vitals.spec.ts",
+      "kind": "test",
+      "nonBlank": 64,
+      "code": 59,
+      "effective": 59
+    },
+    {
+      "path": "e2e/v45-security-and-cwv.spec.ts",
+      "kind": "test",
+      "nonBlank": 88,
+      "code": 84,
+      "effective": 84
+    },
+    {
+      "path": "e2e/v46-case-depth.spec.ts",
+      "kind": "test",
+      "nonBlank": 66,
+      "code": 62,
+      "effective": 62
+    },
+    {
+      "path": "e2e/v47-patterns.spec.ts",
+      "kind": "test",
+      "nonBlank": 55,
+      "code": 55,
+      "effective": 55
+    },
+    {
+      "path": "e2e/v48-motion-cwv.spec.ts",
+      "kind": "test",
+      "nonBlank": 142,
+      "code": 138,
+      "effective": 138
+    },
+    {
+      "path": "e2e/v49-lab-engines.spec.ts",
+      "kind": "test",
+      "nonBlank": 53,
+      "code": 48,
+      "effective": 48
+    },
+    {
+      "path": "e2e/v50-visual-cwv.spec.ts",
+      "kind": "test",
+      "nonBlank": 85,
+      "code": 78,
+      "effective": 78
+    },
+    {
+      "path": "e2e/v51-vault-and-research.spec.ts",
+      "kind": "test",
+      "nonBlank": 76,
+      "code": 70,
+      "effective": 70
+    },
+    {
+      "path": "e2e/v52-red-team-ai.spec.ts",
+      "kind": "test",
+      "nonBlank": 48,
+      "code": 45,
+      "effective": 45
+    },
+    {
+      "path": "e2e/v53-replay-studio.spec.ts",
+      "kind": "test",
+      "nonBlank": 50,
+      "code": 45,
+      "effective": 45
+    },
+    {
+      "path": "e2e/v54-monographs.spec.ts",
+      "kind": "test",
+      "nonBlank": 52,
+      "code": 48,
+      "effective": 48
+    },
+    {
+      "path": "e2e/v55-wcag22-cwv.spec.ts",
+      "kind": "test",
+      "nonBlank": 120,
+      "code": 113,
+      "effective": 113
+    },
+    {
+      "path": "e2e/v56-mcp-protocol.spec.ts",
+      "kind": "test",
+      "nonBlank": 89,
+      "code": 84,
+      "effective": 84
+    },
+    {
+      "path": "e2e/v57-lineage-graph.spec.ts",
+      "kind": "test",
+      "nonBlank": 44,
+      "code": 39,
+      "effective": 39
+    },
+    {
+      "path": "e2e/v58-hardware-twin.spec.ts",
+      "kind": "test",
+      "nonBlank": 54,
+      "code": 48,
+      "effective": 48
+    },
+    {
+      "path": "e2e/v59-arena-and-observatory.spec.ts",
+      "kind": "test",
+      "nonBlank": 49,
+      "code": 48,
+      "effective": 48
+    },
+    {
+      "path": "e2e/v60-ga-platform.spec.ts",
+      "kind": "test",
+      "nonBlank": 91,
+      "code": 83,
+      "effective": 83
+    },
+    {
+      "path": "e2e/v64-ux.spec.ts",
+      "kind": "test",
+      "nonBlank": 61,
+      "code": 56,
+      "effective": 56
+    },
+    {
+      "path": "e2e/v65-case-review.spec.ts",
+      "kind": "test",
+      "nonBlank": 264,
+      "code": 254,
+      "effective": 254
+    },
+    {
+      "path": "e2e/v65-review.spec.ts",
+      "kind": "test",
+      "nonBlank": 177,
+      "code": 173,
+      "effective": 173
+    },
+    {
+      "path": "e2e/v66-case-story.spec.ts",
+      "kind": "test",
+      "nonBlank": 84,
+      "code": 79,
+      "effective": 79
+    },
+    {
+      "path": "e2e/v67-unlisted-layout.spec.ts",
+      "kind": "test",
+      "nonBlank": 64,
+      "code": 55,
+      "effective": 55
+    },
+    {
+      "path": "e2e/v671-flaky-roots.spec.ts",
+      "kind": "test",
+      "nonBlank": 60,
+      "code": 46,
+      "effective": 46
+    },
+    {
+      "path": "e2e/v68-first-load.spec.ts",
+      "kind": "test",
+      "nonBlank": 48,
+      "code": 34,
+      "effective": 34
+    },
+    {
+      "path": "e2e/v69-phase-a.spec.ts",
+      "kind": "test",
+      "nonBlank": 132,
+      "code": 128,
+      "effective": 128
+    },
+    {
+      "path": "e2e/v69-phase-b.spec.ts",
+      "kind": "test",
+      "nonBlank": 250,
+      "code": 235,
+      "effective": 235
+    },
+    {
+      "path": "e2e/v69-phase-c.spec.ts",
+      "kind": "test",
+      "nonBlank": 202,
+      "code": 186,
+      "effective": 186
+    },
+    {
+      "path": "e2e/v69-phase-d.spec.ts",
+      "kind": "test",
+      "nonBlank": 203,
+      "code": 188,
+      "effective": 188
+    },
+    {
+      "path": "e2e/v69-review-leftovers.spec.ts",
+      "kind": "test",
+      "nonBlank": 76,
+      "code": 68,
+      "effective": 68
+    },
+    {
+      "path": "e2e/v70-p1a.spec.ts",
+      "kind": "test",
+      "nonBlank": 59,
+      "code": 49,
+      "effective": 49
+    },
+    {
+      "path": "e2e/v70-review.spec.ts",
+      "kind": "test",
+      "nonBlank": 153,
+      "code": 144,
+      "effective": 144
+    },
+    {
+      "path": "e2e/v70-small.spec.ts",
+      "kind": "test",
+      "nonBlank": 206,
+      "code": 200,
+      "effective": 200
+    },
+    {
+      "path": "e2e/v70-structure.spec.ts",
+      "kind": "test",
+      "nonBlank": 194,
+      "code": 186,
+      "effective": 186
+    },
+    {
+      "path": "eslint.config.mjs",
+      "kind": "config",
+      "nonBlank": 24,
+      "code": 24,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "middleware.ts",
+      "kind": "app",
+      "nonBlank": 33,
+      "code": 30,
+      "effective": 30
+    },
+    {
+      "path": "next.config.js",
+      "kind": "config",
+      "nonBlank": 237,
+      "code": 203,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "package.json",
+      "kind": "config",
+      "nonBlank": 87,
+      "code": 87,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "playwright.config.ts",
+      "kind": "config",
+      "nonBlank": 82,
+      "code": 56,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "kind": "excluded",
+      "nonBlank": 6344,
+      "code": 6344,
+      "effective": 0,
+      "reason": "excluded"
+    },
+    {
+      "path": "postcss.config.js",
+      "kind": "config",
+      "nonBlank": 5,
+      "code": 5,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/decks/ai-product-engineer.pdf",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/decks/design-engineer.pdf",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/decks/hardware-interaction.pdf",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/favicon.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/images/ai-interview-cover.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/images/connect-circles-cover.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/images/spectra-lens-cover.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/images/uq-connect-cover.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/og-image.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/autofill/01-form-filled.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/autofill/02-side-panel.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/autofill/03-summary-dark.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/autofill/after-architecture.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/autofill/after-architecture.zh.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/connect/01-app-home.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/connect/02-app-studybuddy.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/connect/03-app-events.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/connect/04-paper-prototype.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/fencepost/01-ringtail-brisbane.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/fencepost/02-brushtail-peeking.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/fencepost/03-shorncliffe-night.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/gapmapper/01-route-options.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/gapmapper/02-heads-up.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/01-main-menu.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/02-strategic-map.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/03-mission-02.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/04-mission-03.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/05-checkpoint.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/06-night-ford.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/07-chapter-complete.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/after-architecture.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/grassland/after-architecture.zh.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/hoop/01-main-menu.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/hoop/02-character-creation.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/hoop/04-career-node.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/lamplight/01-order.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/lamplight/02-board.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/lamplight/04-question.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/lamplight/10-mini.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/01-exhibition-setup.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/02-bracelet-finger-sleeve.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/03-wiring-layer.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/04-engineering-overview.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/05-planb-circuit-thumbnail.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/05-planb-circuit.mp4",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/06-final-contact.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/after-architecture.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/maze/after-architecture.zh.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/onthebeat/01-armed.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/onthebeat/02-waved.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/onthebeat/03-match.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/onthebeat/after-architecture.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/onthebeat/after-architecture.zh.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/pricewise/01-home.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/pricewise/02-scan.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/pricewise/03-compare.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/pricewise/04-products.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/rules/01-fietspad-ui.png",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/rules/02-guide-frames.jpg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/walkie/01-architecture.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/walkie/01-architecture.zh.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/walkie/02-key-state-machine.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/walkie/02-key-state-machine.zh.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/walkie/03-sealed-relay-frame.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/walkie/03-sealed-relay-frame.zh.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/walkie/after-architecture.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/projects/walkie/after-architecture.zh.svg",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/resume/lewis-dong-resume-en.pdf",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/resume/lewis-dong-resume-zh.pdf",
+      "kind": "asset",
+      "nonBlank": 0,
+      "code": 0,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "public/sw.js",
+      "kind": "asset",
+      "nonBlank": 83,
+      "code": 83,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "scripts/banned-claims.json",
+      "kind": "excluded",
+      "nonBlank": 43,
+      "code": 43,
+      "effective": 0,
+      "reason": "excluded"
+    },
+    {
+      "path": "scripts/build-resume-pdf.mjs",
+      "kind": "script",
+      "nonBlank": 120,
+      "code": 105,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/build-role-decks.mjs",
+      "kind": "script",
+      "nonBlank": 79,
+      "code": 70,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/build-semantic-index.mjs",
+      "kind": "script",
+      "nonBlank": 59,
+      "code": 54,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/build-telemetry-manifest.mjs",
+      "kind": "script",
+      "nonBlank": 206,
+      "code": 201,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/check-agent-readiness.mjs",
+      "kind": "script",
+      "nonBlank": 57,
+      "code": 50,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/check-banned-claims.mjs",
+      "kind": "script",
+      "nonBlank": 85,
+      "code": 80,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/check-bundle-budget.mjs",
+      "kind": "script",
+      "nonBlank": 105,
+      "code": 99,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/check-css-warnings.mjs",
+      "kind": "script",
+      "nonBlank": 33,
+      "code": 29,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/content-automation.mjs",
+      "kind": "script",
+      "nonBlank": 293,
+      "code": 293,
+      "effective": 293
+    },
+    {
+      "path": "scripts/optimize-media.mjs",
+      "kind": "script",
+      "nonBlank": 162,
+      "code": 155,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/package.json",
+      "kind": "config",
+      "nonBlank": 9,
+      "code": 9,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "scripts/pre-commit-image-optimization.sh",
+      "kind": "script",
+      "nonBlank": 33,
+      "code": 24,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/proof-bundle.mjs",
+      "kind": "script",
+      "nonBlank": 118,
+      "code": 118,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/proof-export.mjs",
+      "kind": "script",
+      "nonBlank": 100,
+      "code": 100,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/proof-handoff.mjs",
+      "kind": "script",
+      "nonBlank": 80,
+      "code": 80,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/proof-maintenance-report.mjs",
+      "kind": "script",
+      "nonBlank": 96,
+      "code": 96,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/proof-validate.mjs",
+      "kind": "script",
+      "nonBlank": 30,
+      "code": 27,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "scripts/validate-content.js",
+      "kind": "script",
+      "nonBlank": 52,
+      "code": 48,
+      "effective": 0,
+      "reason": "unused"
+    },
+    {
+      "path": "scripts/visual-verify.mjs",
+      "kind": "script",
+      "nonBlank": 189,
+      "code": 181,
+      "effective": 0,
+      "reason": "untested"
+    },
+    {
+      "path": "src/components/AuthorBio.tsx",
+      "kind": "app",
+      "nonBlank": 60,
+      "code": 60,
+      "effective": 60
+    },
+    {
+      "path": "src/components/CodeBlock.tsx",
+      "kind": "app",
+      "nonBlank": 83,
+      "code": 79,
+      "effective": 79
+    },
+    {
+      "path": "src/components/DocumentTitle.tsx",
+      "kind": "app",
+      "nonBlank": 14,
+      "code": 8,
+      "effective": 8
+    },
+    {
+      "path": "src/components/DynamicImports.tsx",
+      "kind": "app",
+      "nonBlank": 9,
+      "code": 9,
+      "effective": 9
+    },
+    {
+      "path": "src/components/ImageGallery.tsx",
+      "kind": "app",
+      "nonBlank": 56,
+      "code": 52,
+      "effective": 52
+    },
+    {
+      "path": "src/components/LocalizedLink.tsx",
+      "kind": "app",
+      "nonBlank": 14,
+      "code": 14,
+      "effective": 14
+    },
+    {
+      "path": "src/components/LocalizedServerLink.tsx",
+      "kind": "app",
+      "nonBlank": 19,
+      "code": 19,
+      "effective": 19
+    },
+    {
+      "path": "src/components/SearchProvider.tsx",
+      "kind": "app",
+      "nonBlank": 73,
+      "code": 73,
+      "effective": 73
+    },
+    {
+      "path": "src/components/ShareButtons.tsx",
+      "kind": "app",
+      "nonBlank": 137,
+      "code": 127,
+      "effective": 127
+    },
+    {
+      "path": "src/components/Skeleton.tsx",
+      "kind": "app",
+      "nonBlank": 18,
+      "code": 15,
+      "effective": 15
+    },
+    {
+      "path": "src/components/TOC.tsx",
+      "kind": "app",
+      "nonBlank": 116,
+      "code": 114,
+      "effective": 114
+    },
+    {
+      "path": "src/components/ai/AiWorkbenchPageClient.tsx",
+      "kind": "app",
+      "nonBlank": 296,
+      "code": 296,
+      "effective": 296
+    },
+    {
+      "path": "src/components/ai/McpProtocolSandbox.tsx",
+      "kind": "app",
+      "nonBlank": 227,
+      "code": 227,
+      "effective": 227
+    },
+    {
+      "path": "src/components/ai/RedTeamCritiquePanel.tsx",
+      "kind": "app",
+      "nonBlank": 255,
+      "code": 250,
+      "effective": 250
+    },
+    {
+      "path": "src/components/ai/StructuredRationaleCard.tsx",
+      "kind": "app",
+      "nonBlank": 101,
+      "code": 101,
+      "effective": 101
+    },
+    {
+      "path": "src/components/ai/ai-workbench.module.css",
+      "kind": "css",
+      "nonBlank": 290,
+      "code": 288,
+      "effective": 288
+    },
+    {
+      "path": "src/components/ai/mcp-sandbox.module.css",
+      "kind": "css",
+      "nonBlank": 125,
+      "code": 124,
+      "effective": 124
+    },
+    {
+      "path": "src/components/ai/red-team.module.css",
+      "kind": "css",
+      "nonBlank": 249,
+      "code": 246,
+      "effective": 246
+    },
+    {
+      "path": "src/components/brief/PrintDeckSelector.tsx",
+      "kind": "app",
+      "nonBlank": 103,
+      "code": 103,
+      "effective": 103
+    },
+    {
+      "path": "src/components/case/AdaptiveCaseMedia.tsx",
+      "kind": "app",
+      "nonBlank": 115,
+      "code": 113,
+      "effective": 113
+    },
+    {
+      "path": "src/components/case/BeforeAfterScrubber.tsx",
+      "kind": "app",
+      "nonBlank": 189,
+      "code": 185,
+      "effective": 185
+    },
+    {
+      "path": "src/components/case/CaseChapterPill.tsx",
+      "kind": "app",
+      "nonBlank": 240,
+      "code": 218,
+      "effective": 218
+    },
+    {
+      "path": "src/components/case/CaseCoverVisual.tsx",
+      "kind": "app",
+      "nonBlank": 90,
+      "code": 85,
+      "effective": 85
+    },
+    {
+      "path": "src/components/case/CaseDesignDecisions.tsx",
+      "kind": "app",
+      "nonBlank": 91,
+      "code": 91,
+      "effective": 91
+    },
+    {
+      "path": "src/components/case/CaseInvariantLink.tsx",
+      "kind": "app",
+      "nonBlank": 89,
+      "code": 89,
+      "effective": 89
+    },
+    {
+      "path": "src/components/case/CaseLightbox.tsx",
+      "kind": "app",
+      "nonBlank": 180,
+      "code": 173,
+      "effective": 173
+    },
+    {
+      "path": "src/components/case/CaseMediaGallery.tsx",
+      "kind": "app",
+      "nonBlank": 42,
+      "code": 42,
+      "effective": 42
+    },
+    {
+      "path": "src/components/case/CaseMediaGridClient.tsx",
+      "kind": "app",
+      "nonBlank": 87,
+      "code": 85,
+      "effective": 85
+    },
+    {
+      "path": "src/components/case/CaseMicroLoop.tsx",
+      "kind": "app",
+      "nonBlank": 137,
+      "code": 135,
+      "effective": 135
+    },
+    {
+      "path": "src/components/case/CaseNarrative.tsx",
+      "kind": "app",
+      "nonBlank": 242,
+      "code": 241,
+      "effective": 241
+    },
+    {
+      "path": "src/components/case/CaseRelatedNav.tsx",
+      "kind": "app",
+      "nonBlank": 59,
+      "code": 59,
+      "effective": 59
+    },
+    {
+      "path": "src/components/case/CaseSimulatorFrame.tsx",
+      "kind": "app",
+      "nonBlank": 155,
+      "code": 151,
+      "effective": 151
+    },
+    {
+      "path": "src/components/case/CaseSummaryBlock.tsx",
+      "kind": "app",
+      "nonBlank": 60,
+      "code": 60,
+      "effective": 0,
+      "reason": "unused"
+    },
+    {
+      "path": "src/components/case/CaseTerminologyNotes.tsx",
+      "kind": "app",
+      "nonBlank": 80,
+      "code": 80,
+      "effective": 80
+    },
+    {
+      "path": "src/components/case/DecisionComparator.tsx",
+      "kind": "app",
+      "nonBlank": 160,
+      "code": 158,
+      "effective": 158
+    },
+    {
+      "path": "src/components/case/DemoEmbed.tsx",
+      "kind": "app",
+      "nonBlank": 55,
+      "code": 45,
+      "effective": 45
+    },
+    {
+      "path": "src/components/case/DiagramViewer.tsx",
+      "kind": "app",
+      "nonBlank": 101,
+      "code": 92,
+      "effective": 92
+    },
+    {
+      "path": "src/components/case/ResearchQuoteDeck.tsx",
+      "kind": "app",
+      "nonBlank": 71,
+      "code": 70,
+      "effective": 70
+    },
+    {
+      "path": "src/components/case/deep/CaseJourneyRail.tsx",
+      "kind": "app",
+      "nonBlank": 113,
+      "code": 112,
+      "effective": 112
+    },
+    {
+      "path": "src/components/case/deep/CaseRejectionArchive.tsx",
+      "kind": "app",
+      "nonBlank": 94,
+      "code": 93,
+      "effective": 93
+    },
+    {
+      "path": "src/components/case/deep/CaseStateMatrixTable.tsx",
+      "kind": "app",
+      "nonBlank": 127,
+      "code": 127,
+      "effective": 127
+    },
+    {
+      "path": "src/components/case/deep/JourneyScrollTracker.tsx",
+      "kind": "app",
+      "nonBlank": 96,
+      "code": 92,
+      "effective": 92
+    },
+    {
+      "path": "src/components/case/deep/RawResearchVault.tsx",
+      "kind": "app",
+      "nonBlank": 333,
+      "code": 326,
+      "effective": 326
+    },
+    {
+      "path": "src/components/case/deep/VerifiedStatusBadge.tsx",
+      "kind": "app",
+      "nonBlank": 44,
+      "code": 44,
+      "effective": 44
+    },
+    {
+      "path": "src/components/case/deep/cases-deep.module.css",
+      "kind": "css",
+      "nonBlank": 459,
+      "code": 450,
+      "effective": 450
+    },
+    {
+      "path": "src/components/case/deep/code-diff-viewer.module.css",
+      "kind": "css",
+      "nonBlank": 87,
+      "code": 87,
+      "effective": 0,
+      "reason": "unused"
+    },
+    {
+      "path": "src/components/case/deep/raw-research-vault.module.css",
+      "kind": "css",
+      "nonBlank": 237,
+      "code": 231,
+      "effective": 231
+    },
+    {
+      "path": "src/components/case/simulators/AutofillConfidenceSim.tsx",
+      "kind": "app",
+      "nonBlank": 310,
+      "code": 310,
+      "effective": 310
+    },
+    {
+      "path": "src/components/case/simulators/ConnectIaResetSim.tsx",
+      "kind": "app",
+      "nonBlank": 231,
+      "code": 231,
+      "effective": 231
+    },
+    {
+      "path": "src/components/case/simulators/FencepostRevokeSim.tsx",
+      "kind": "app",
+      "nonBlank": 190,
+      "code": 190,
+      "effective": 190
+    },
+    {
+      "path": "src/components/case/simulators/GrasslandRulesSim.tsx",
+      "kind": "app",
+      "nonBlank": 110,
+      "code": 110,
+      "effective": 110
+    },
+    {
+      "path": "src/components/case/simulators/LamplightTriageSim.tsx",
+      "kind": "app",
+      "nonBlank": 370,
+      "code": 370,
+      "effective": 370
+    },
+    {
+      "path": "src/components/case/simulators/MazeContactSim.tsx",
+      "kind": "app",
+      "nonBlank": 293,
+      "code": 293,
+      "effective": 293
+    },
+    {
+      "path": "src/components/case/simulators/OntheBeatHandshakeSim.tsx",
+      "kind": "app",
+      "nonBlank": 95,
+      "code": 95,
+      "effective": 95
+    },
+    {
+      "path": "src/components/case/simulators/WalkieWristSim.tsx",
+      "kind": "app",
+      "nonBlank": 362,
+      "code": 362,
+      "effective": 362
+    },
+    {
+      "path": "src/components/case/simulators/registry.ts",
+      "kind": "app",
+      "nonBlank": 67,
+      "code": 67,
+      "effective": 67
+    },
+    {
+      "path": "src/components/case/simulators/types.ts",
+      "kind": "app",
+      "nonBlank": 4,
+      "code": 4,
+      "effective": 4
+    },
+    {
+      "path": "src/components/case/story/CaseAppendixHashOpener.tsx",
+      "kind": "app",
+      "nonBlank": 33,
+      "code": 27,
+      "effective": 27
+    },
+    {
+      "path": "src/components/case/story/CaseLedeLayout.tsx",
+      "kind": "app",
+      "nonBlank": 113,
+      "code": 104,
+      "effective": 104
+    },
+    {
+      "path": "src/components/case/story/CaseStoryBody.tsx",
+      "kind": "app",
+      "nonBlank": 330,
+      "code": 322,
+      "effective": 322
+    },
+    {
+      "path": "src/components/case/wireframes/ProcessWireframes.tsx",
+      "kind": "app",
+      "nonBlank": 279,
+      "code": 279,
+      "effective": 279
+    },
+    {
+      "path": "src/components/command/CommandPalette.tsx",
+      "kind": "app",
+      "nonBlank": 389,
+      "code": 389,
+      "effective": 389
+    },
+    {
+      "path": "src/components/contact/QuickContactForm.tsx",
+      "kind": "app",
+      "nonBlank": 273,
+      "code": 272,
+      "effective": 272
+    },
+    {
+      "path": "src/components/content/Comments.tsx",
+      "kind": "app",
+      "nonBlank": 38,
+      "code": 38,
+      "effective": 38
+    },
+    {
+      "path": "src/components/content/ReadingProgressChapters.tsx",
+      "kind": "app",
+      "nonBlank": 96,
+      "code": 96,
+      "effective": 96
+    },
+    {
+      "path": "src/components/content/RelatedPosts.tsx",
+      "kind": "app",
+      "nonBlank": 67,
+      "code": 67,
+      "effective": 67
+    },
+    {
+      "path": "src/components/editorial/CapabilityDiagrams.tsx",
+      "kind": "app",
+      "nonBlank": 404,
+      "code": 404,
+      "effective": 404
+    },
+    {
+      "path": "src/components/effects/PageTransition.tsx",
+      "kind": "app",
+      "nonBlank": 13,
+      "code": 8,
+      "effective": 8
+    },
+    {
+      "path": "src/components/hero/PracticeDeck.tsx",
+      "kind": "app",
+      "nonBlank": 406,
+      "code": 406,
+      "effective": 406
+    },
+    {
+      "path": "src/components/hiring/AiTrustThread.tsx",
+      "kind": "app",
+      "nonBlank": 38,
+      "code": 33,
+      "effective": 33
+    },
+    {
+      "path": "src/components/hiring/CaseInterviewPack.tsx",
+      "kind": "app",
+      "nonBlank": 79,
+      "code": 75,
+      "effective": 75
+    },
+    {
+      "path": "src/components/hiring/ContactRoleContext.tsx",
+      "kind": "app",
+      "nonBlank": 50,
+      "code": 48,
+      "effective": 48
+    },
+    {
+      "path": "src/components/hiring/CopyEmailButton.tsx",
+      "kind": "app",
+      "nonBlank": 25,
+      "code": 25,
+      "effective": 25
+    },
+    {
+      "path": "src/components/hiring/EvidenceMatrix.tsx",
+      "kind": "app",
+      "nonBlank": 137,
+      "code": 134,
+      "effective": 134
+    },
+    {
+      "path": "src/components/hiring/FollowThroughComponents.ts",
+      "kind": "app",
+      "nonBlank": 3,
+      "code": 3,
+      "effective": 3
+    },
+    {
+      "path": "src/components/hiring/FollowThroughContactContext.tsx",
+      "kind": "app",
+      "nonBlank": 46,
+      "code": 46,
+      "effective": 46
+    },
+    {
+      "path": "src/components/hiring/FollowThroughView.tsx",
+      "kind": "app",
+      "nonBlank": 88,
+      "code": 88,
+      "effective": 88
+    },
+    {
+      "path": "src/components/hiring/HiringRoleFitPanel.tsx",
+      "kind": "app",
+      "nonBlank": 71,
+      "code": 71,
+      "effective": 71
+    },
+    {
+      "path": "src/components/hiring/InterviewBoundaryNotes.tsx",
+      "kind": "app",
+      "nonBlank": 33,
+      "code": 33,
+      "effective": 33
+    },
+    {
+      "path": "src/components/hiring/InterviewDecisionBrief.tsx",
+      "kind": "app",
+      "nonBlank": 55,
+      "code": 55,
+      "effective": 55
+    },
+    {
+      "path": "src/components/hiring/InterviewDefenseArena.tsx",
+      "kind": "app",
+      "nonBlank": 130,
+      "code": 130,
+      "effective": 130
+    },
+    {
+      "path": "src/components/hiring/InterviewEvidenceBrief.tsx",
+      "kind": "app",
+      "nonBlank": 51,
+      "code": 51,
+      "effective": 51
+    },
+    {
+      "path": "src/components/hiring/InterviewQuestionBank.tsx",
+      "kind": "app",
+      "nonBlank": 53,
+      "code": 53,
+      "effective": 53
+    },
+    {
+      "path": "src/components/hiring/JdMatcherPanel.tsx",
+      "kind": "app",
+      "nonBlank": 250,
+      "code": 250,
+      "effective": 250
+    },
+    {
+      "path": "src/components/hiring/ProofMaintenanceComponents.ts",
+      "kind": "app",
+      "nonBlank": 1,
+      "code": 1,
+      "effective": 1
+    },
+    {
+      "path": "src/components/hiring/ProofMaintenanceView.tsx",
+      "kind": "app",
+      "nonBlank": 95,
+      "code": 95,
+      "effective": 95
+    },
+    {
+      "path": "src/components/hiring/RoleLensSwitch.tsx",
+      "kind": "app",
+      "nonBlank": 175,
+      "code": 174,
+      "effective": 174
+    },
+    {
+      "path": "src/components/hiring/TailoredBriefBuilder.tsx",
+      "kind": "app",
+      "nonBlank": 277,
+      "code": 277,
+      "effective": 277
+    },
+    {
+      "path": "src/components/hiring/defense-arena.module.css",
+      "kind": "css",
+      "nonBlank": 87,
+      "code": 87,
+      "effective": 87
+    },
+    {
+      "path": "src/components/lab/BundleObservatoryPanel.tsx",
+      "kind": "app",
+      "nonBlank": 214,
+      "code": 214,
+      "effective": 214
+    },
+    {
+      "path": "src/components/lab/LabTelemetryPanel.tsx",
+      "kind": "app",
+      "nonBlank": 82,
+      "code": 81,
+      "effective": 81
+    },
+    {
+      "path": "src/components/lab/LabWorkbench.tsx",
+      "kind": "app",
+      "nonBlank": 267,
+      "code": 262,
+      "effective": 262
+    },
+    {
+      "path": "src/components/lab/auditor/HeuristicAuditWorkbench.tsx",
+      "kind": "app",
+      "nonBlank": 169,
+      "code": 165,
+      "effective": 165
+    },
+    {
+      "path": "src/components/lab/bundle-observatory.module.css",
+      "kind": "css",
+      "nonBlank": 71,
+      "code": 71,
+      "effective": 71
+    },
+    {
+      "path": "src/components/lab/fsm/FsmExplorerPanel.tsx",
+      "kind": "app",
+      "nonBlank": 455,
+      "code": 451,
+      "effective": 451
+    },
+    {
+      "path": "src/components/lab/lab-engines.module.css",
+      "kind": "css",
+      "nonBlank": 332,
+      "code": 327,
+      "effective": 327
+    },
+    {
+      "path": "src/components/lab/primitives/LabPrimitivesGallery.tsx",
+      "kind": "app",
+      "nonBlank": 166,
+      "code": 166,
+      "effective": 166
+    },
+    {
+      "path": "src/components/lab/primitives/PrimitiveAnchorFocus.tsx",
+      "kind": "app",
+      "nonBlank": 51,
+      "code": 51,
+      "effective": 51
+    },
+    {
+      "path": "src/components/lab/primitives/PrimitiveConfidence.tsx",
+      "kind": "app",
+      "nonBlank": 82,
+      "code": 82,
+      "effective": 82
+    },
+    {
+      "path": "src/components/lab/primitives/PrimitiveDragSnap.tsx",
+      "kind": "app",
+      "nonBlank": 135,
+      "code": 135,
+      "effective": 135
+    },
+    {
+      "path": "src/components/lab/primitives/PrimitiveRiskCard.tsx",
+      "kind": "app",
+      "nonBlank": 93,
+      "code": 93,
+      "effective": 93
+    },
+    {
+      "path": "src/components/lab/primitives/PrimitiveWave.tsx",
+      "kind": "app",
+      "nonBlank": 106,
+      "code": 106,
+      "effective": 106
+    },
+    {
+      "path": "src/components/lab/primitives/PrimitiveWrist.tsx",
+      "kind": "app",
+      "nonBlank": 81,
+      "code": 81,
+      "effective": 81
+    },
+    {
+      "path": "src/components/layout/Breadcrumb.tsx",
+      "kind": "app",
+      "nonBlank": 66,
+      "code": 66,
+      "effective": 66
+    },
+    {
+      "path": "src/components/layout/Footer.tsx",
+      "kind": "app",
+      "nonBlank": 81,
+      "code": 79,
+      "effective": 79
+    },
+    {
+      "path": "src/components/layout/Navigation.tsx",
+      "kind": "app",
+      "nonBlank": 163,
+      "code": 160,
+      "effective": 160
+    },
+    {
+      "path": "src/components/layout/SkipLink.tsx",
+      "kind": "app",
+      "nonBlank": 39,
+      "code": 36,
+      "effective": 36
+    },
+    {
+      "path": "src/components/mdx-components.tsx",
+      "kind": "app",
+      "nonBlank": 133,
+      "code": 130,
+      "effective": 130
+    },
+    {
+      "path": "src/components/motion/CssManuscriptReveal.tsx",
+      "kind": "app",
+      "nonBlank": 34,
+      "code": 23,
+      "effective": 23
+    },
+    {
+      "path": "src/components/motion/ManuscriptReveal.tsx",
+      "kind": "app",
+      "nonBlank": 44,
+      "code": 39,
+      "effective": 39
+    },
+    {
+      "path": "src/components/motion/SectionReveal.tsx",
+      "kind": "app",
+      "nonBlank": 44,
+      "code": 39,
+      "effective": 39
+    },
+    {
+      "path": "src/components/motion/manuscript.module.css",
+      "kind": "css",
+      "nonBlank": 86,
+      "code": 81,
+      "effective": 81
+    },
+    {
+      "path": "src/components/navigation/BackToTop.tsx",
+      "kind": "app",
+      "nonBlank": 79,
+      "code": 74,
+      "effective": 74
+    },
+    {
+      "path": "src/components/navigation/TransitionLink.tsx",
+      "kind": "app",
+      "nonBlank": 53,
+      "code": 53,
+      "effective": 53
+    },
+    {
+      "path": "src/components/patterns/PatternWorkbenchClient.tsx",
+      "kind": "app",
+      "nonBlank": 290,
+      "code": 290,
+      "effective": 290
+    },
+    {
+      "path": "src/components/patterns/pattern-simulators.ts",
+      "kind": "app",
+      "nonBlank": 33,
+      "code": 24,
+      "effective": 24
+    },
+    {
+      "path": "src/components/patterns/patterns.module.css",
+      "kind": "css",
+      "nonBlank": 347,
+      "code": 342,
+      "effective": 342
+    },
+    {
+      "path": "src/components/presentation/PresentationShell.tsx",
+      "kind": "app",
+      "nonBlank": 306,
+      "code": 300,
+      "effective": 300
+    },
+    {
+      "path": "src/components/presentation/PresentationTrigger.tsx",
+      "kind": "app",
+      "nonBlank": 54,
+      "code": 53,
+      "effective": 53
+    },
+    {
+      "path": "src/components/providers/ErrorBoundary.tsx",
+      "kind": "app",
+      "nonBlank": 123,
+      "code": 93,
+      "effective": 93
+    },
+    {
+      "path": "src/components/providers/KeyboardShortcutsModal.tsx",
+      "kind": "app",
+      "nonBlank": 118,
+      "code": 118,
+      "effective": 118
+    },
+    {
+      "path": "src/components/providers/LazyKeyboardShortcuts.tsx",
+      "kind": "app",
+      "nonBlank": 41,
+      "code": 38,
+      "effective": 38
+    },
+    {
+      "path": "src/components/providers/OfflineShellRegister.tsx",
+      "kind": "app",
+      "nonBlank": 9,
+      "code": 9,
+      "effective": 9
+    },
+    {
+      "path": "src/components/providers/PerformanceMonitor.tsx",
+      "kind": "app",
+      "nonBlank": 19,
+      "code": 14,
+      "effective": 14
+    },
+    {
+      "path": "src/components/providers/ThemeProvider.tsx",
+      "kind": "app",
+      "nonBlank": 6,
+      "code": 6,
+      "effective": 6
+    },
+    {
+      "path": "src/components/providers/ThemeToggle.tsx",
+      "kind": "app",
+      "nonBlank": 75,
+      "code": 75,
+      "effective": 75
+    },
+    {
+      "path": "src/components/resume/ResumeComposerClient.tsx",
+      "kind": "app",
+      "nonBlank": 389,
+      "code": 389,
+      "effective": 389
+    },
+    {
+      "path": "src/components/resume/resume-composer.module.css",
+      "kind": "css",
+      "nonBlank": 244,
+      "code": 243,
+      "effective": 243
+    },
+    {
+      "path": "src/components/studio/LineageGraphClient.tsx",
+      "kind": "app",
+      "nonBlank": 398,
+      "code": 395,
+      "effective": 395
+    },
+    {
+      "path": "src/components/studio/ReplayTraceFallback.tsx",
+      "kind": "app",
+      "nonBlank": 29,
+      "code": 24,
+      "effective": 24
+    },
+    {
+      "path": "src/components/studio/ReplayWaveformSvg.tsx",
+      "kind": "app",
+      "nonBlank": 124,
+      "code": 118,
+      "effective": 118
+    },
+    {
+      "path": "src/components/studio/ReplayWorkbenchClient.tsx",
+      "kind": "app",
+      "nonBlank": 287,
+      "code": 284,
+      "effective": 284
+    },
+    {
+      "path": "src/components/studio/WebSerialProbePanel.tsx",
+      "kind": "app",
+      "nonBlank": 108,
+      "code": 108,
+      "effective": 108
+    },
+    {
+      "path": "src/components/studio/lineage-graph.module.css",
+      "kind": "css",
+      "nonBlank": 244,
+      "code": 244,
+      "effective": 244
+    },
+    {
+      "path": "src/components/studio/replay.module.css",
+      "kind": "css",
+      "nonBlank": 329,
+      "code": 324,
+      "effective": 324
+    },
+    {
+      "path": "src/components/three/HardwareFieldCanvas.tsx",
+      "kind": "app",
+      "nonBlank": 108,
+      "code": 108,
+      "effective": 108
+    },
+    {
+      "path": "src/components/three/HardwareFieldWebGL.tsx",
+      "kind": "app",
+      "nonBlank": 251,
+      "code": 251,
+      "effective": 251
+    },
+    {
+      "path": "src/components/three/HardwareTwinCanvas.tsx",
+      "kind": "app",
+      "nonBlank": 276,
+      "code": 272,
+      "effective": 272
+    },
+    {
+      "path": "src/components/three/SpecimenAxisCanvas.tsx",
+      "kind": "app",
+      "nonBlank": 225,
+      "code": 218,
+      "effective": 218
+    },
+    {
+      "path": "src/components/three/SpecimenAxisWebGL.tsx",
+      "kind": "app",
+      "nonBlank": 182,
+      "code": 180,
+      "effective": 180
+    },
+    {
+      "path": "src/components/three/hardware-twin.module.css",
+      "kind": "css",
+      "nonBlank": 140,
+      "code": 140,
+      "effective": 140
+    },
+    {
+      "path": "src/components/three/specimens.ts",
+      "kind": "app",
+      "nonBlank": 129,
+      "code": 129,
+      "effective": 129
+    },
+    {
+      "path": "src/components/three/types.ts",
+      "kind": "app",
+      "nonBlank": 24,
+      "code": 24,
+      "effective": 24
+    },
+    {
+      "path": "src/components/three/useWebGLSupport.ts",
+      "kind": "app",
+      "nonBlank": 41,
+      "code": 41,
+      "effective": 41
+    },
+    {
+      "path": "src/components/ui/AnchorNote.tsx",
+      "kind": "app",
+      "nonBlank": 67,
+      "code": 64,
+      "effective": 64
+    },
+    {
+      "path": "src/components/ui/AvailabilityPill.tsx",
+      "kind": "app",
+      "nonBlank": 25,
+      "code": 25,
+      "effective": 25
+    },
+    {
+      "path": "src/components/ui/Button.tsx",
+      "kind": "app",
+      "nonBlank": 74,
+      "code": 72,
+      "effective": 72
+    },
+    {
+      "path": "src/components/ui/Foldable.tsx",
+      "kind": "app",
+      "nonBlank": 66,
+      "code": 59,
+      "effective": 59
+    },
+    {
+      "path": "src/components/vault/ArchiveVaultClient.tsx",
+      "kind": "app",
+      "nonBlank": 220,
+      "code": 215,
+      "effective": 215
+    },
+    {
+      "path": "src/components/vault/vault.module.css",
+      "kind": "css",
+      "nonBlank": 243,
+      "code": 239,
+      "effective": 239
+    },
+    {
+      "path": "src/components/viz/ProjectCoverImage.tsx",
+      "kind": "app",
+      "nonBlank": 35,
+      "code": 26,
+      "effective": 26
+    },
+    {
+      "path": "src/components/viz/ProjectViz.tsx",
+      "kind": "app",
+      "nonBlank": 634,
+      "code": 599,
+      "effective": 599
+    },
+    {
+      "path": "src/data/ai/semantic-index.generated.json",
+      "kind": "excluded",
+      "nonBlank": 1,
+      "code": 1,
+      "effective": 0,
+      "reason": "excluded"
+    },
+    {
+      "path": "src/data/cases/autofill.ts",
+      "kind": "data",
+      "nonBlank": 511,
+      "code": 511,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/connect.ts",
+      "kind": "data",
+      "nonBlank": 361,
+      "code": 361,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/fencepost.ts",
+      "kind": "data",
+      "nonBlank": 271,
+      "code": 271,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/gapmapper.ts",
+      "kind": "data",
+      "nonBlank": 210,
+      "code": 210,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/grassland.ts",
+      "kind": "data",
+      "nonBlank": 539,
+      "code": 539,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/hoop.ts",
+      "kind": "data",
+      "nonBlank": 288,
+      "code": 288,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/index.ts",
+      "kind": "data",
+      "nonBlank": 29,
+      "code": 29,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/lamplight.ts",
+      "kind": "data",
+      "nonBlank": 540,
+      "code": 540,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/maze.ts",
+      "kind": "data",
+      "nonBlank": 545,
+      "code": 545,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/modules/autofill-modules.ts",
+      "kind": "data",
+      "nonBlank": 336,
+      "code": 336,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/modules/grassland-modules.ts",
+      "kind": "data",
+      "nonBlank": 336,
+      "code": 336,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/modules/index.ts",
+      "kind": "data",
+      "nonBlank": 24,
+      "code": 24,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/modules/lamplight-modules.ts",
+      "kind": "data",
+      "nonBlank": 336,
+      "code": 336,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/modules/maze-modules.ts",
+      "kind": "data",
+      "nonBlank": 336,
+      "code": 336,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/modules/onthebeat-modules.ts",
+      "kind": "data",
+      "nonBlank": 336,
+      "code": 336,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/modules/walkie-modules.ts",
+      "kind": "data",
+      "nonBlank": 359,
+      "code": 359,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/onthebeat.ts",
+      "kind": "data",
+      "nonBlank": 529,
+      "code": 529,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/pricewise.ts",
+      "kind": "data",
+      "nonBlank": 295,
+      "code": 295,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/research-vault/autofill.ts",
+      "kind": "data",
+      "nonBlank": 278,
+      "code": 278,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/research-vault/grassland.ts",
+      "kind": "data",
+      "nonBlank": 278,
+      "code": 278,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/research-vault/index.ts",
+      "kind": "data",
+      "nonBlank": 24,
+      "code": 24,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/research-vault/lamplight.ts",
+      "kind": "data",
+      "nonBlank": 278,
+      "code": 278,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/research-vault/maze.ts",
+      "kind": "data",
+      "nonBlank": 278,
+      "code": 278,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/research-vault/onthebeat.ts",
+      "kind": "data",
+      "nonBlank": 278,
+      "code": 278,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/research-vault/walkie.ts",
+      "kind": "data",
+      "nonBlank": 278,
+      "code": 278,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/rules.ts",
+      "kind": "data",
+      "nonBlank": 219,
+      "code": 219,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/spectra.ts",
+      "kind": "data",
+      "nonBlank": 193,
+      "code": 193,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/story/autofill.ts",
+      "kind": "data",
+      "nonBlank": 243,
+      "code": 236,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/story/grassland.ts",
+      "kind": "data",
+      "nonBlank": 230,
+      "code": 224,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/story/index.ts",
+      "kind": "data",
+      "nonBlank": 21,
+      "code": 21,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/story/lamplight.ts",
+      "kind": "data",
+      "nonBlank": 242,
+      "code": 236,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/story/maze.ts",
+      "kind": "data",
+      "nonBlank": 227,
+      "code": 222,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/story/onthebeat.ts",
+      "kind": "data",
+      "nonBlank": 247,
+      "code": 238,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/story/types.ts",
+      "kind": "data",
+      "nonBlank": 64,
+      "code": 53,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/story/walkie.ts",
+      "kind": "data",
+      "nonBlank": 246,
+      "code": 238,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/cases/walkie.ts",
+      "kind": "data",
+      "nonBlank": 510,
+      "code": 510,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/critique/defense-drills.ts",
+      "kind": "data",
+      "nonBlank": 260,
+      "code": 260,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/critique/red-team.ts",
+      "kind": "data",
+      "nonBlank": 668,
+      "code": 668,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/fsm/case-fsms.ts",
+      "kind": "data",
+      "nonBlank": 811,
+      "code": 811,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/heuristics/case-heuristics.ts",
+      "kind": "data",
+      "nonBlank": 357,
+      "code": 350,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/patterns/patterns-data.ts",
+      "kind": "data",
+      "nonBlank": 417,
+      "code": 417,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/replay/traces.ts",
+      "kind": "data",
+      "nonBlank": 748,
+      "code": 748,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/data/telemetry/bundle-manifest.generated.json",
+      "kind": "excluded",
+      "nonBlank": 38,
+      "code": 38,
+      "effective": 0,
+      "reason": "excluded"
+    },
+    {
+      "path": "src/data/vault/autopsies.ts",
+      "kind": "data",
+      "nonBlank": 325,
+      "code": 324,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/hooks/useGsapContext.ts",
+      "kind": "app",
+      "nonBlank": 23,
+      "code": 18,
+      "effective": 18
+    },
+    {
+      "path": "src/hooks/useKeyboardShortcuts.ts",
+      "kind": "app",
+      "nonBlank": 55,
+      "code": 52,
+      "effective": 0,
+      "reason": "unused"
+    },
+    {
+      "path": "src/hooks/useReducedMotion.ts",
+      "kind": "app",
+      "nonBlank": 20,
+      "code": 16,
+      "effective": 16
+    },
+    {
+      "path": "src/i18n/navigation.ts",
+      "kind": "app",
+      "nonBlank": 6,
+      "code": 4,
+      "effective": 4
+    },
+    {
+      "path": "src/i18n/request.ts",
+      "kind": "app",
+      "nonBlank": 14,
+      "code": 13,
+      "effective": 13
+    },
+    {
+      "path": "src/i18n/routing.ts",
+      "kind": "app",
+      "nonBlank": 13,
+      "code": 9,
+      "effective": 9
+    },
+    {
+      "path": "src/lib/__tests__/blog.test.ts",
+      "kind": "test",
+      "nonBlank": 104,
+      "code": 95,
+      "effective": 95
+    },
+    {
+      "path": "src/lib/__tests__/cn.test.ts",
+      "kind": "test",
+      "nonBlank": 34,
+      "code": 32,
+      "effective": 32
+    },
+    {
+      "path": "src/lib/__tests__/i18n.test.ts",
+      "kind": "test",
+      "nonBlank": 30,
+      "code": 30,
+      "effective": 30
+    },
+    {
+      "path": "src/lib/__tests__/image-utils.test.ts",
+      "kind": "test",
+      "nonBlank": 53,
+      "code": 51,
+      "effective": 51
+    },
+    {
+      "path": "src/lib/__tests__/project-covers.test.ts",
+      "kind": "test",
+      "nonBlank": 30,
+      "code": 30,
+      "effective": 30
+    },
+    {
+      "path": "src/lib/__tests__/seo.test.ts",
+      "kind": "test",
+      "nonBlank": 59,
+      "code": 59,
+      "effective": 59
+    },
+    {
+      "path": "src/lib/__tests__/site.test.ts",
+      "kind": "test",
+      "nonBlank": 82,
+      "code": 80,
+      "effective": 80
+    },
+    {
+      "path": "src/lib/__tests__/toc.test.ts",
+      "kind": "test",
+      "nonBlank": 49,
+      "code": 49,
+      "effective": 49
+    },
+    {
+      "path": "src/lib/ai/bm25.ts",
+      "kind": "app",
+      "nonBlank": 110,
+      "code": 110,
+      "effective": 110
+    },
+    {
+      "path": "src/lib/ai/client.ts",
+      "kind": "app",
+      "nonBlank": 83,
+      "code": 83,
+      "effective": 83
+    },
+    {
+      "path": "src/lib/ai/evidence-corpus.ts",
+      "kind": "app",
+      "nonBlank": 343,
+      "code": 343,
+      "effective": 343
+    },
+    {
+      "path": "src/lib/ai/hybrid-retrieval.ts",
+      "kind": "app",
+      "nonBlank": 84,
+      "code": 82,
+      "effective": 82
+    },
+    {
+      "path": "src/lib/ai/llm-adapter.ts",
+      "kind": "app",
+      "nonBlank": 166,
+      "code": 164,
+      "effective": 164
+    },
+    {
+      "path": "src/lib/ai/redact-jd.ts",
+      "kind": "app",
+      "nonBlank": 39,
+      "code": 38,
+      "effective": 38
+    },
+    {
+      "path": "src/lib/ai/vector-math-core.d.ts",
+      "kind": "app",
+      "nonBlank": 11,
+      "code": 11,
+      "effective": 11
+    },
+    {
+      "path": "src/lib/ai/vector-math-core.mjs",
+      "kind": "app",
+      "nonBlank": 108,
+      "code": 98,
+      "effective": 98
+    },
+    {
+      "path": "src/lib/analytics.ts",
+      "kind": "app",
+      "nonBlank": 11,
+      "code": 5,
+      "effective": 5
+    },
+    {
+      "path": "src/lib/blog-clusters.ts",
+      "kind": "app",
+      "nonBlank": 13,
+      "code": 13,
+      "effective": 13
+    },
+    {
+      "path": "src/lib/blog.ts",
+      "kind": "app",
+      "nonBlank": 167,
+      "code": 140,
+      "effective": 140
+    },
+    {
+      "path": "src/lib/cases/case-toc.ts",
+      "kind": "app",
+      "nonBlank": 76,
+      "code": 60,
+      "effective": 60
+    },
+    {
+      "path": "src/lib/cases/comparator.ts",
+      "kind": "app",
+      "nonBlank": 45,
+      "code": 45,
+      "effective": 45
+    },
+    {
+      "path": "src/lib/cases/localized-media.ts",
+      "kind": "app",
+      "nonBlank": 19,
+      "code": 15,
+      "effective": 15
+    },
+    {
+      "path": "src/lib/cases/modules-schema.ts",
+      "kind": "app",
+      "nonBlank": 109,
+      "code": 108,
+      "effective": 108
+    },
+    {
+      "path": "src/lib/cases/mood.ts",
+      "kind": "app",
+      "nonBlank": 76,
+      "code": 76,
+      "effective": 76
+    },
+    {
+      "path": "src/lib/cases/registry.ts",
+      "kind": "app",
+      "nonBlank": 150,
+      "code": 150,
+      "effective": 150
+    },
+    {
+      "path": "src/lib/cases/research-vault-schema.ts",
+      "kind": "app",
+      "nonBlank": 69,
+      "code": 69,
+      "effective": 69
+    },
+    {
+      "path": "src/lib/cases/schema.ts",
+      "kind": "app",
+      "nonBlank": 309,
+      "code": 305,
+      "effective": 305
+    },
+    {
+      "path": "src/lib/cn.ts",
+      "kind": "app",
+      "nonBlank": 5,
+      "code": 5,
+      "effective": 5
+    },
+    {
+      "path": "src/lib/design-tokens.ts",
+      "kind": "app",
+      "nonBlank": 15,
+      "code": 15,
+      "effective": 15
+    },
+    {
+      "path": "src/lib/feed.ts",
+      "kind": "app",
+      "nonBlank": 62,
+      "code": 57,
+      "effective": 57
+    },
+    {
+      "path": "src/lib/fsm/schema.ts",
+      "kind": "app",
+      "nonBlank": 144,
+      "code": 143,
+      "effective": 143
+    },
+    {
+      "path": "src/lib/graph/lineage-graph.ts",
+      "kind": "app",
+      "nonBlank": 334,
+      "code": 327,
+      "effective": 327
+    },
+    {
+      "path": "src/lib/graph/schema.ts",
+      "kind": "app",
+      "nonBlank": 100,
+      "code": 95,
+      "effective": 95
+    },
+    {
+      "path": "src/lib/i18n/editorial-voice.ts",
+      "kind": "app",
+      "nonBlank": 143,
+      "code": 143,
+      "effective": 143
+    },
+    {
+      "path": "src/lib/image-utils.ts",
+      "kind": "app",
+      "nonBlank": 80,
+      "code": 66,
+      "effective": 66
+    },
+    {
+      "path": "src/lib/llms.ts",
+      "kind": "app",
+      "nonBlank": 148,
+      "code": 148,
+      "effective": 148
+    },
+    {
+      "path": "src/lib/locale-href.ts",
+      "kind": "app",
+      "nonBlank": 24,
+      "code": 24,
+      "effective": 24
+    },
+    {
+      "path": "src/lib/mcp/client-presets.ts",
+      "kind": "app",
+      "nonBlank": 94,
+      "code": 94,
+      "effective": 94
+    },
+    {
+      "path": "src/lib/mcp/schema.ts",
+      "kind": "app",
+      "nonBlank": 55,
+      "code": 55,
+      "effective": 55
+    },
+    {
+      "path": "src/lib/mcp/server.ts",
+      "kind": "app",
+      "nonBlank": 424,
+      "code": 424,
+      "effective": 424
+    },
+    {
+      "path": "src/lib/metadata.ts",
+      "kind": "app",
+      "nonBlank": 75,
+      "code": 67,
+      "effective": 67
+    },
+    {
+      "path": "src/lib/motion/gsap.ts",
+      "kind": "app",
+      "nonBlank": 39,
+      "code": 28,
+      "effective": 28
+    },
+    {
+      "path": "src/lib/motion/useGsapChoreography.ts",
+      "kind": "app",
+      "nonBlank": 139,
+      "code": 133,
+      "effective": 133
+    },
+    {
+      "path": "src/lib/motion/view-transitions.ts",
+      "kind": "app",
+      "nonBlank": 74,
+      "code": 74,
+      "effective": 74
+    },
+    {
+      "path": "src/lib/patterns/schema.ts",
+      "kind": "app",
+      "nonBlank": 47,
+      "code": 47,
+      "effective": 47
+    },
+    {
+      "path": "src/lib/pdf/qr-svg.ts",
+      "kind": "app",
+      "nonBlank": 215,
+      "code": 203,
+      "effective": 203
+    },
+    {
+      "path": "src/lib/portfolio-proof.ts",
+      "kind": "app",
+      "nonBlank": 1,
+      "code": 1,
+      "effective": 1
+    },
+    {
+      "path": "src/lib/presentation/build-deck.ts",
+      "kind": "app",
+      "nonBlank": 254,
+      "code": 254,
+      "effective": 254
+    },
+    {
+      "path": "src/lib/project-covers.ts",
+      "kind": "app",
+      "nonBlank": 125,
+      "code": 114,
+      "effective": 114
+    },
+    {
+      "path": "src/lib/project-routes.ts",
+      "kind": "app",
+      "nonBlank": 121,
+      "code": 96,
+      "effective": 96
+    },
+    {
+      "path": "src/lib/proof/ai-trust-thread.ts",
+      "kind": "app",
+      "nonBlank": 128,
+      "code": 102,
+      "effective": 102
+    },
+    {
+      "path": "src/lib/proof/anchors.ts",
+      "kind": "app",
+      "nonBlank": 38,
+      "code": 38,
+      "effective": 38
+    },
+    {
+      "path": "src/lib/proof/application-packets.ts",
+      "kind": "app",
+      "nonBlank": 80,
+      "code": 80,
+      "effective": 80
+    },
+    {
+      "path": "src/lib/proof/case-autofill.ts",
+      "kind": "app",
+      "nonBlank": 348,
+      "code": 328,
+      "effective": 328
+    },
+    {
+      "path": "src/lib/proof/case-depth.ts",
+      "kind": "app",
+      "nonBlank": 2249,
+      "code": 2240,
+      "effective": 2240
+    },
+    {
+      "path": "src/lib/proof/case-fencepost.ts",
+      "kind": "app",
+      "nonBlank": 315,
+      "code": 310,
+      "effective": 310
+    },
+    {
+      "path": "src/lib/proof/case-lamplight.ts",
+      "kind": "app",
+      "nonBlank": 354,
+      "code": 335,
+      "effective": 335
+    },
+    {
+      "path": "src/lib/proof/case-walkie.ts",
+      "kind": "app",
+      "nonBlank": 325,
+      "code": 320,
+      "effective": 320
+    },
+    {
+      "path": "src/lib/proof/events.ts",
+      "kind": "app",
+      "nonBlank": 30,
+      "code": 30,
+      "effective": 30
+    },
+    {
+      "path": "src/lib/proof/follow-through.ts",
+      "kind": "app",
+      "nonBlank": 109,
+      "code": 109,
+      "effective": 109
+    },
+    {
+      "path": "src/lib/proof/handoff-export.ts",
+      "kind": "app",
+      "nonBlank": 84,
+      "code": 84,
+      "effective": 84
+    },
+    {
+      "path": "src/lib/proof/handoff.ts",
+      "kind": "app",
+      "nonBlank": 55,
+      "code": 55,
+      "effective": 55
+    },
+    {
+      "path": "src/lib/proof/index.ts",
+      "kind": "app",
+      "nonBlank": 26,
+      "code": 24,
+      "effective": 24
+    },
+    {
+      "path": "src/lib/proof/interview-room.ts",
+      "kind": "app",
+      "nonBlank": 484,
+      "code": 482,
+      "effective": 482
+    },
+    {
+      "path": "src/lib/proof/locale.ts",
+      "kind": "app",
+      "nonBlank": 203,
+      "code": 203,
+      "effective": 203
+    },
+    {
+      "path": "src/lib/proof/maintenance.ts",
+      "kind": "app",
+      "nonBlank": 260,
+      "code": 260,
+      "effective": 260
+    },
+    {
+      "path": "src/lib/proof/market-lens.ts",
+      "kind": "app",
+      "nonBlank": 128,
+      "code": 128,
+      "effective": 128
+    },
+    {
+      "path": "src/lib/proof/matrix.ts",
+      "kind": "app",
+      "nonBlank": 1084,
+      "code": 1064,
+      "effective": 1064
+    },
+    {
+      "path": "src/lib/proof/projects.ts",
+      "kind": "app",
+      "nonBlank": 790,
+      "code": 787,
+      "effective": 787
+    },
+    {
+      "path": "src/lib/proof/recent-cases.ts",
+      "kind": "app",
+      "nonBlank": 671,
+      "code": 658,
+      "effective": 658
+    },
+    {
+      "path": "src/lib/proof/release-bundle.ts",
+      "kind": "app",
+      "nonBlank": 50,
+      "code": 50,
+      "effective": 50
+    },
+    {
+      "path": "src/lib/proof/role-packets.ts",
+      "kind": "app",
+      "nonBlank": 342,
+      "code": 342,
+      "effective": 342
+    },
+    {
+      "path": "src/lib/proof/types.ts",
+      "kind": "app",
+      "nonBlank": 558,
+      "code": 538,
+      "effective": 538
+    },
+    {
+      "path": "src/lib/proof/validation.ts",
+      "kind": "app",
+      "nonBlank": 329,
+      "code": 326,
+      "effective": 326
+    },
+    {
+      "path": "src/lib/replay/hardware-twin-map.ts",
+      "kind": "app",
+      "nonBlank": 216,
+      "code": 215,
+      "effective": 215
+    },
+    {
+      "path": "src/lib/replay/schema.ts",
+      "kind": "app",
+      "nonBlank": 37,
+      "code": 37,
+      "effective": 37
+    },
+    {
+      "path": "src/lib/resume/composer-data.ts",
+      "kind": "app",
+      "nonBlank": 248,
+      "code": 248,
+      "effective": 248
+    },
+    {
+      "path": "src/lib/resume/composer-markets.ts",
+      "kind": "app",
+      "nonBlank": 48,
+      "code": 48,
+      "effective": 48
+    },
+    {
+      "path": "src/lib/search-index.ts",
+      "kind": "app",
+      "nonBlank": 16,
+      "code": 16,
+      "effective": 16
+    },
+    {
+      "path": "src/lib/seo.tsx",
+      "kind": "app",
+      "nonBlank": 206,
+      "code": 185,
+      "effective": 185
+    },
+    {
+      "path": "src/lib/server/brief-codec.ts",
+      "kind": "app",
+      "nonBlank": 77,
+      "code": 77,
+      "effective": 77
+    },
+    {
+      "path": "src/lib/server/kv.ts",
+      "kind": "app",
+      "nonBlank": 99,
+      "code": 94,
+      "effective": 94
+    },
+    {
+      "path": "src/lib/server/rate-limit.ts",
+      "kind": "app",
+      "nonBlank": 67,
+      "code": 66,
+      "effective": 66
+    },
+    {
+      "path": "src/lib/share-url.ts",
+      "kind": "app",
+      "nonBlank": 9,
+      "code": 9,
+      "effective": 9
+    },
+    {
+      "path": "src/lib/site.ts",
+      "kind": "app",
+      "nonBlank": 91,
+      "code": 73,
+      "effective": 73
+    },
+    {
+      "path": "src/lib/toc.ts",
+      "kind": "app",
+      "nonBlank": 54,
+      "code": 54,
+      "effective": 54
+    },
+    {
+      "path": "src/lib/vitals-store.ts",
+      "kind": "app",
+      "nonBlank": 63,
+      "code": 62,
+      "effective": 62
+    },
+    {
+      "path": "src/lib/web-vitals.ts",
+      "kind": "app",
+      "nonBlank": 73,
+      "code": 68,
+      "effective": 68
+    },
+    {
+      "path": "src/lib/zod-jitless.ts",
+      "kind": "app",
+      "nonBlank": 16,
+      "code": 2,
+      "effective": 2
+    },
+    {
+      "path": "src/messages/en.json",
+      "kind": "i18n",
+      "nonBlank": 495,
+      "code": 495,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/messages/zh.json",
+      "kind": "i18n",
+      "nonBlank": 495,
+      "code": 495,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "src/styles/base.css",
+      "kind": "css",
+      "nonBlank": 251,
+      "code": 239,
+      "effective": 239
+    },
+    {
+      "path": "src/styles/globals.css",
+      "kind": "css",
+      "nonBlank": 15,
+      "code": 14,
+      "effective": 14
+    },
+    {
+      "path": "src/styles/primitives.css",
+      "kind": "css",
+      "nonBlank": 507,
+      "code": 483,
+      "effective": 483
+    },
+    {
+      "path": "src/styles/sections/case.css",
+      "kind": "css",
+      "nonBlank": 1146,
+      "code": 1109,
+      "effective": 1109
+    },
+    {
+      "path": "src/styles/sections/hiring.css",
+      "kind": "css",
+      "nonBlank": 932,
+      "code": 910,
+      "effective": 910
+    },
+    {
+      "path": "src/styles/sections/home.css",
+      "kind": "css",
+      "nonBlank": 416,
+      "code": 390,
+      "effective": 390
+    },
+    {
+      "path": "src/styles/sections/lab.css",
+      "kind": "css",
+      "nonBlank": 562,
+      "code": 547,
+      "effective": 547
+    },
+    {
+      "path": "src/styles/sections/pages.css",
+      "kind": "css",
+      "nonBlank": 1508,
+      "code": 1474,
+      "effective": 1474
+    },
+    {
+      "path": "src/styles/sections/presentation.css",
+      "kind": "css",
+      "nonBlank": 11,
+      "code": 9,
+      "effective": 9
+    },
+    {
+      "path": "src/styles/sections/process.css",
+      "kind": "css",
+      "nonBlank": 21,
+      "code": 19,
+      "effective": 19
+    },
+    {
+      "path": "src/styles/sections/simulators.css",
+      "kind": "css",
+      "nonBlank": 1195,
+      "code": 1168,
+      "effective": 1168
+    },
+    {
+      "path": "src/styles/sections/work.css",
+      "kind": "css",
+      "nonBlank": 294,
+      "code": 286,
+      "effective": 286
+    },
+    {
+      "path": "src/styles/v4/grid.css",
+      "kind": "css",
+      "nonBlank": 92,
+      "code": 89,
+      "effective": 89
+    },
+    {
+      "path": "src/styles/v4/tokens.css",
+      "kind": "css",
+      "nonBlank": 292,
+      "code": 286,
+      "effective": 286
+    },
+    {
+      "path": "src/test/setup.ts",
+      "kind": "test",
+      "nonBlank": 1,
+      "code": 1,
+      "effective": 1
+    },
+    {
+      "path": "tests/components/AvailabilityPill.test.tsx",
+      "kind": "test",
+      "nonBlank": 13,
+      "code": 13,
+      "effective": 13
+    },
+    {
+      "path": "tests/components/CaseDeepModules.test.tsx",
+      "kind": "test",
+      "nonBlank": 34,
+      "code": 32,
+      "effective": 32
+    },
+    {
+      "path": "tests/components/CaseDesignDecisions.test.tsx",
+      "kind": "test",
+      "nonBlank": 48,
+      "code": 48,
+      "effective": 48
+    },
+    {
+      "path": "tests/components/CaseProcessArtifacts.test.tsx",
+      "kind": "test",
+      "nonBlank": 91,
+      "code": 88,
+      "effective": 88
+    },
+    {
+      "path": "tests/components/CaseSimulators.test.tsx",
+      "kind": "test",
+      "nonBlank": 191,
+      "code": 171,
+      "effective": 171
+    },
+    {
+      "path": "tests/components/DecisionComparator.test.tsx",
+      "kind": "test",
+      "nonBlank": 29,
+      "code": 29,
+      "effective": 29
+    },
+    {
+      "path": "tests/components/FollowThroughComponents.test.tsx",
+      "kind": "test",
+      "nonBlank": 44,
+      "code": 44,
+      "effective": 44
+    },
+    {
+      "path": "tests/components/InterviewDecisionComponents.test.tsx",
+      "kind": "test",
+      "nonBlank": 91,
+      "code": 91,
+      "effective": 91
+    },
+    {
+      "path": "tests/components/LabWorkbench.test.tsx",
+      "kind": "test",
+      "nonBlank": 25,
+      "code": 25,
+      "effective": 25
+    },
+    {
+      "path": "tests/components/PatternWorkbench.test.tsx",
+      "kind": "test",
+      "nonBlank": 86,
+      "code": 83,
+      "effective": 83
+    },
+    {
+      "path": "tests/components/PresentationShell.test.tsx",
+      "kind": "test",
+      "nonBlank": 52,
+      "code": 52,
+      "effective": 52
+    },
+    {
+      "path": "tests/components/ProofMaintenanceComponents.test.tsx",
+      "kind": "test",
+      "nonBlank": 25,
+      "code": 25,
+      "effective": 25
+    },
+    {
+      "path": "tests/components/RoleLensSwitch.test.tsx",
+      "kind": "test",
+      "nonBlank": 59,
+      "code": 59,
+      "effective": 59
+    },
+    {
+      "path": "tests/components/ThreeSpecimen.test.tsx",
+      "kind": "test",
+      "nonBlank": 36,
+      "code": 36,
+      "effective": 36
+    },
+    {
+      "path": "tests/components/V37WebPrimitives.test.tsx",
+      "kind": "test",
+      "nonBlank": 115,
+      "code": 114,
+      "effective": 114
+    },
+    {
+      "path": "tests/components/V65CaseReview.test.tsx",
+      "kind": "test",
+      "nonBlank": 110,
+      "code": 109,
+      "effective": 109
+    },
+    {
+      "path": "tests/components/WorkIndex.test.tsx",
+      "kind": "test",
+      "nonBlank": 75,
+      "code": 75,
+      "effective": 75
+    },
+    {
+      "path": "tests/lib/ai-grounding.test.ts",
+      "kind": "test",
+      "nonBlank": 156,
+      "code": 155,
+      "effective": 155
+    },
+    {
+      "path": "tests/lib/brief-server.test.ts",
+      "kind": "test",
+      "nonBlank": 107,
+      "code": 105,
+      "effective": 105
+    },
+    {
+      "path": "tests/lib/case-modules-integrity.test.ts",
+      "kind": "test",
+      "nonBlank": 116,
+      "code": 115,
+      "effective": 115
+    },
+    {
+      "path": "tests/lib/case-mood.test.ts",
+      "kind": "test",
+      "nonBlank": 15,
+      "code": 15,
+      "effective": 15
+    },
+    {
+      "path": "tests/lib/case-registry.test.ts",
+      "kind": "test",
+      "nonBlank": 166,
+      "code": 166,
+      "effective": 166
+    },
+    {
+      "path": "tests/lib/case-story.test.ts",
+      "kind": "test",
+      "nonBlank": 71,
+      "code": 67,
+      "effective": 67
+    },
+    {
+      "path": "tests/lib/case-toc.test.ts",
+      "kind": "test",
+      "nonBlank": 64,
+      "code": 63,
+      "effective": 63
+    },
+    {
+      "path": "tests/lib/contact-api.test.tsx",
+      "kind": "test",
+      "nonBlank": 81,
+      "code": 77,
+      "effective": 77
+    },
+    {
+      "path": "tests/lib/cross-portfolio-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 94,
+      "code": 94,
+      "effective": 94
+    },
+    {
+      "path": "tests/lib/design-tokens.test.ts",
+      "kind": "test",
+      "nonBlank": 37,
+      "code": 37,
+      "effective": 37
+    },
+    {
+      "path": "tests/lib/fsm-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 53,
+      "code": 53,
+      "effective": 53
+    },
+    {
+      "path": "tests/lib/hardware-twin-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 44,
+      "code": 44,
+      "effective": 44
+    },
+    {
+      "path": "tests/lib/hybrid-retrieval-and-redteam.test.ts",
+      "kind": "test",
+      "nonBlank": 120,
+      "code": 120,
+      "effective": 120
+    },
+    {
+      "path": "tests/lib/lineage-graph-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 63,
+      "code": 59,
+      "effective": 59
+    },
+    {
+      "path": "tests/lib/locale-href.test.ts",
+      "kind": "test",
+      "nonBlank": 31,
+      "code": 31,
+      "effective": 31
+    },
+    {
+      "path": "tests/lib/mcp-protocol-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 162,
+      "code": 158,
+      "effective": 158
+    },
+    {
+      "path": "tests/lib/motion-choreography.test.tsx",
+      "kind": "test",
+      "nonBlank": 148,
+      "code": 148,
+      "effective": 148
+    },
+    {
+      "path": "tests/lib/patterns-integrity.test.ts",
+      "kind": "test",
+      "nonBlank": 62,
+      "code": 62,
+      "effective": 62
+    },
+    {
+      "path": "tests/lib/portfolio-proof.test.ts",
+      "kind": "test",
+      "nonBlank": 609,
+      "code": 566,
+      "effective": 566
+    },
+    {
+      "path": "tests/lib/proof-handoff-export.test.ts",
+      "kind": "test",
+      "nonBlank": 43,
+      "code": 43,
+      "effective": 43
+    },
+    {
+      "path": "tests/lib/proof-handoff.test.ts",
+      "kind": "test",
+      "nonBlank": 22,
+      "code": 22,
+      "effective": 22
+    },
+    {
+      "path": "tests/lib/proof-registry.test.ts",
+      "kind": "test",
+      "nonBlank": 231,
+      "code": 231,
+      "effective": 231
+    },
+    {
+      "path": "tests/lib/proof-release-bundle.test.ts",
+      "kind": "test",
+      "nonBlank": 36,
+      "code": 33,
+      "effective": 33
+    },
+    {
+      "path": "tests/lib/proof-validation.test.ts",
+      "kind": "test",
+      "nonBlank": 47,
+      "code": 47,
+      "effective": 47
+    },
+    {
+      "path": "tests/lib/replay-traces-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 66,
+      "code": 65,
+      "effective": 65
+    },
+    {
+      "path": "tests/lib/role-label.test.ts",
+      "kind": "test",
+      "nonBlank": 19,
+      "code": 17,
+      "effective": 17
+    },
+    {
+      "path": "tests/lib/search-and-llms.test.ts",
+      "kind": "test",
+      "nonBlank": 29,
+      "code": 29,
+      "effective": 29
+    },
+    {
+      "path": "tests/lib/share-url.test.ts",
+      "kind": "test",
+      "nonBlank": 24,
+      "code": 24,
+      "effective": 24
+    },
+    {
+      "path": "tests/lib/site-version.test.ts",
+      "kind": "test",
+      "nonBlank": 33,
+      "code": 29,
+      "effective": 29
+    },
+    {
+      "path": "tests/lib/toc.test.ts",
+      "kind": "test",
+      "nonBlank": 31,
+      "code": 31,
+      "effective": 31
+    },
+    {
+      "path": "tests/lib/v55-master-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 196,
+      "code": 195,
+      "effective": 195
+    },
+    {
+      "path": "tests/lib/v59-arena-observatory.test.ts",
+      "kind": "test",
+      "nonBlank": 49,
+      "code": 49,
+      "effective": 49
+    },
+    {
+      "path": "tests/lib/v60-ga-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 100,
+      "code": 100,
+      "effective": 100
+    },
+    {
+      "path": "tests/lib/v61-hr-content-invariants.test.ts",
+      "kind": "test",
+      "nonBlank": 62,
+      "code": 62,
+      "effective": 62
+    },
+    {
+      "path": "tests/lib/v63-trust-cleanup.test.ts",
+      "kind": "test",
+      "nonBlank": 60,
+      "code": 60,
+      "effective": 60
+    },
+    {
+      "path": "tests/lib/v64-ux.test.ts",
+      "kind": "test",
+      "nonBlank": 32,
+      "code": 29,
+      "effective": 29
+    },
+    {
+      "path": "tests/lib/v65-review.test.ts",
+      "kind": "test",
+      "nonBlank": 35,
+      "code": 34,
+      "effective": 34
+    },
+    {
+      "path": "tests/lib/v69-ai-lab-name.test.ts",
+      "kind": "test",
+      "nonBlank": 13,
+      "code": 11,
+      "effective": 11
+    },
+    {
+      "path": "tests/lib/vault-and-research-integrity.test.ts",
+      "kind": "test",
+      "nonBlank": 129,
+      "code": 129,
+      "effective": 129
+    },
+    {
+      "path": "tests/lib/vitals-and-decks.test.ts",
+      "kind": "test",
+      "nonBlank": 104,
+      "code": 103,
+      "effective": 103
+    },
+    {
+      "path": "tests/lib/vitals-by-route.test.ts",
+      "kind": "test",
+      "nonBlank": 20,
+      "code": 16,
+      "effective": 16
+    },
+    {
+      "path": "tests/lib/zod-jitless.test.ts",
+      "kind": "test",
+      "nonBlank": 48,
+      "code": 39,
+      "effective": 39
+    },
+    {
+      "path": "tests/scripts/content-automation.test.ts",
+      "kind": "test",
+      "nonBlank": 119,
+      "code": 119,
+      "effective": 119
+    },
+    {
+      "path": "tsconfig.json",
+      "kind": "config",
+      "nonBlank": 44,
+      "code": 44,
+      "effective": 0,
+      "reason": "not-code"
+    },
+    {
+      "path": "vitest.config.ts",
+      "kind": "config",
+      "nonBlank": 22,
+      "code": 22,
+      "effective": 0,
+      "reason": "not-code"
+    }
+  ]
+}

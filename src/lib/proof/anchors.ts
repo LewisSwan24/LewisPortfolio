@@ -23,20 +23,3 @@ export const hiringRoleIds = [
   "accessibility",
 ] as const satisfies readonly HiringRoleId[];
 
-export const roleRouteParams = hiringRoleIds.map((role) => ({ role }));
-
-export const projectLabels: Record<ProjectEvidenceSlug, string> = {
-  connect: "UQ Connect",
-  spectra: "Spectra Lens",
-  maze: "MazeRunners",
-  hoop: "Hoop Dream",
-  pricewise: "PriceWise",
-  gapmapper: "Perception Gap Mapper",
-  rules: "Requirements into Rules",
-  grassland: "Grassland Iron Tide",
-  onthebeat: "On The Beat",
-  lamplight: "Lamplight Nook",
-  autofill: "Resume Autofill",
-  walkie: "Walkie",
-  fencepost: "Fencepost",
-};

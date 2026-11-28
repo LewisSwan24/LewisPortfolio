@@ -20,8 +20,6 @@ export const LocalizedStringSchema = z.object({
   zh: z.string().min(1),
 });
 
-export type LocalizedString = z.infer<typeof LocalizedStringSchema>;
-
 export const CaseWorkSummarySchema = z.object({
   order: z.number().int().positive().optional(),
   tags: z.array(WorkTagSchema).min(1),
@@ -31,8 +29,6 @@ export const CaseWorkSummarySchema = z.object({
   problem: LocalizedStringSchema,
   changed: LocalizedStringSchema,
 });
-
-export type CaseWorkSummary = z.infer<typeof CaseWorkSummarySchema>;
 
 export const CaseReviewMetaSchema = z.object({
   reviewedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
@@ -163,16 +159,12 @@ export const CaseDemoSchema = z.object({
   actionZh: z.string().min(1),
 });
 
-export type CaseDemo = z.infer<typeof CaseDemoSchema>;
-
 export const CaseLinkSchema = z.object({
   label: z.string().min(1),
   labelZh: z.string().min(1).optional(),
   href: z.string().min(1),
   external: z.boolean().optional(),
 });
-
-export type CaseLink = z.infer<typeof CaseLinkSchema>;
 
 export const CaseCoverSchema = z.object({
   src: z.string().startsWith("/projects/"),
@@ -236,8 +228,6 @@ export const CaseMicroLoopIdSchema = z.enum([
   "autofill-lanes",
   "maze-state",
 ]);
-
-export type CaseMicroLoopId = z.infer<typeof CaseMicroLoopIdSchema>;
 
 export const CaseScrubberSchema = z.object({
   eyebrow: LocalizedStringSchema,
@@ -307,8 +297,6 @@ export const CaseProcessArtifactsSchema = z.object({
   quotes: CaseResearchQuotesSchema.optional(),
   microLoop: CaseMicroLoopSchema.optional(),
 });
-
-export type CaseProcessArtifacts = z.infer<typeof CaseProcessArtifactsSchema>;
 
 export const DesignDecisionTradeoffSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),

@@ -57,18 +57,6 @@ export function linksToUnlistedProject(href: string): boolean {
   return slug !== undefined && isUnlistedProject(slug);
 }
 
-export const LEGACY_PROJECT_SLUG_REDIRECTS: Record<string, CurrentProjectSlug> = {
-  "uq-connect": "connect",
-  "spectra-lens": "spectra",
-  // Only slugs that were genuinely live before the rename belong here; this
-  // list mirrors legacyProjectRedirects in next.config.js. "maze" and
-  // "hoop" are newer, so they have no legacy alias to redirect from.
-  //
-  // "connect-circles" -> "circles" is gone with the case itself: Connect
-  // Circles described a project that never existed, so there is no destination
-  // to send that URL to. /projects/circles now redirects to /projects.
-};
-
 export const PROJECT_OG_COPY: Record<
   CurrentProjectSlug,
   { title: string; oneLiner: string }

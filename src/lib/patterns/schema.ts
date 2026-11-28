@@ -24,8 +24,6 @@ export const PatternCodeSnippetSchema = z.object({
   code: z.string().min(40),
 });
 
-export type PatternCodeSnippet = z.infer<typeof PatternCodeSnippetSchema>;
-
 export const InteractionPatternSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
   order: z.number().int().positive(),

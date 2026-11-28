@@ -25,8 +25,6 @@ export const VaultLineageSuccessorSchema = z.object({
   transferMechanism: LocalizedStringSchema,
 });
 
-export type VaultLineageSuccessor = z.infer<typeof VaultLineageSuccessorSchema>;
-
 export const VaultAutopsyRecordSchema = z.object({
   slug: z.enum(CURRENT_PROJECT_SLUGS).refine((slug) => isUnlistedProject(slug), {
     message: "Archive Vault entries must correspond exclusively to unlisted archival slugs.",

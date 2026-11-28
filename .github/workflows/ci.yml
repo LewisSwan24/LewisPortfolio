@@ -51,7 +51,23 @@ jobs:
         run: pnpm check:claims
 
       - name: Unit tests
-        run: pnpm test:ci
+        # Coverage tells loc:report which files the unit tests load.
+        run: pnpm test:ci --coverage
+
+      - name: Dead-code check
+        run: pnpm knip
+
+      - name: Effective lines of code
+        run: |
+          pnpm loc:report --coverage coverage/coverage-final.json --out loc-report
+          cat loc-report/loc-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload loc report
+        uses: actions/upload-artifact@v7
+        with:
+          name: loc-report
+          path: loc-report/
+          retention-days: 90
 
       - name: Automation checks
         run: pnpm automation:check

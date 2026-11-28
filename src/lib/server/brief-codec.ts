@@ -16,7 +16,6 @@ export const BriefPayloadSchema = z.object({
 export type BriefPayload = z.infer<typeof BriefPayloadSchema>;
 
 export const CreateBriefInputSchema = BriefPayloadSchema.omit({ createdAt: true });
-export type CreateBriefInput = z.infer<typeof CreateBriefInputSchema>;
 
 function signPayload(encoded: string, secret: string): string {
   return createHmac("sha256", secret).update(encoded).digest("base64url").slice(0, 16);

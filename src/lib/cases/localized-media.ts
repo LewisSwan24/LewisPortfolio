@@ -17,5 +17,3 @@ export function localizeMediaSrc(src: string, locale: string): string {
   if (locale !== "zh" || !ZH_SVG_TWINS.has(src)) return src;
   return src.replace(/\.svg$/, ".zh.svg");
 }
-
-export const zhSvgTwins: ReadonlySet<string> = ZH_SVG_TWINS;

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import type { PaletteItem } from "@/components/command/CommandPalette";
 
 const LazyCommandPalette = dynamic(
@@ -17,14 +17,6 @@ interface SearchContextType {
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
-
-export function useSearch() {
-  const context = useContext(SearchContext);
-  if (!context) {
-    throw new Error("useSearch must be used within a SearchProvider");
-  }
-  return context;
-}
 
 interface SearchProviderProps {
   children: ReactNode;

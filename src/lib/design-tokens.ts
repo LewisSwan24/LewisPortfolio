@@ -12,5 +12,3 @@ export const tokens = {
     tertiary: "#b8b5ad",
   },
 } as const;
-
-export type Tokens = typeof tokens;
