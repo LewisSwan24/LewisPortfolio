@@ -630,3 +630,14 @@
 
 /* v6.9 (review D04): at least a 24px tap target (WCAG 2.2 2.5.8). */
 .lab-control-row input[type="range"] { min-height: 24px; }
+
+/* v7.0 L2: long lab modules show their first screen until asked. */
+.foldable { display: grid; gap: var(--s-3); min-width: 0; }
+.foldable-body { min-width: 0; }
+.foldable[data-folded="true"] .foldable-body {
+  max-height: min(85svh, 760px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent);
+  mask-image: linear-gradient(to bottom, #000 78%, transparent);
+}
+.foldable-toggle { justify-self: start; min-height: 44px; }

@@ -47,6 +47,15 @@ const retiredHiringRedirects = ["", "/en", "/zh"].map((prefix) => ({
   permanent: true,
 }));
 
+// v7.0 S2: the lineage graph moved onto /vault as a folded section. English
+// pages are unprefixed, so both English sources land on /vault directly rather
+// than on /en/vault, which would redirect a second time.
+const studioGraphRedirects = ["", "/en", "/zh"].map((prefix) => ({
+  source: `${prefix}/studio/graph`,
+  destination: `${prefix === "/zh" ? "/zh" : ""}/vault#lineage-graph`,
+  permanent: true,
+}));
+
 function disabledSurfaceRedirects() {
   return [
     {
@@ -217,6 +226,7 @@ const nextConfig = {
       ...legacyProjectRedirects,
       ...retiredCaseRedirects,
       ...retiredHiringRedirects,
+      ...studioGraphRedirects,
       ...disabledSurfaceRedirects(),
     ];
   },

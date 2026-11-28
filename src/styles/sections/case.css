@@ -1198,3 +1198,7 @@ main[data-screen-label^="06 Post"] .cs-hero h1 {
     display: none !important;
   }
 }
+
+/* v7.0 L3 */
+.case-build-more { justify-self: start; margin-top: var(--s-3); min-height: 44px; }
+.case-build-grid figure[hidden] { display: none; }

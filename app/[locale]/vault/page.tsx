@@ -4,6 +4,11 @@ import { LocalizedServerLink as Link } from "@/components/LocalizedServerLink";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
 import { getAllVaultAutopsies } from "@/data/vault/autopsies";
 import { ArchiveVaultClient } from "@/components/vault/ArchiveVaultClient";
+import { LineageGraphClient } from "@/components/studio/LineageGraphClient";
+import { CaseAppendixHashOpener } from "@/components/case/story/CaseAppendixHashOpener";
+import { buildCausalLineageGraph } from "@/lib/graph/lineage-graph";
+
+const NO_ALIASES = {} as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as "en" | "zh";
@@ -31,6 +36,7 @@ export default async function ArchiveVaultPage() {
   const locale: "en" | "zh" = rawLocale === "zh" ? "zh" : "en";
   const isZh = locale === "zh";
   const autopsies = getAllVaultAutopsies();
+  const graph = await buildCausalLineageGraph();
 
   return (
     <main className="page" data-screen-label="Archive Vault · Death Autopsies">
@@ -58,9 +64,9 @@ export default async function ArchiveVaultPage() {
           <Link href="/projects" className="btn btn-primary">
             {isZh ? "回到 6 大公开旗舰 →" : "Back to 6 Listed Flagships →"}
           </Link>
-          <Link href="/studio/graph" className="btn btn-ghost">
-            {isZh ? "打开关联图谱 →" : "Open Lineage Graph →"}
-          </Link>
+          <a href="#lineage-graph" className="btn btn-ghost">
+            {isZh ? "关联图谱 ↓" : "Lineage graph ↓"}
+          </a>
           <Link href="/patterns" className="btn btn-ghost">
             {isZh ? "查看交互模式图谱 →" : "Open Pattern Atlas →"}
           </Link>
@@ -69,6 +75,25 @@ export default async function ArchiveVaultPage() {
 
       <section className="container section">
         <ArchiveVaultClient autopsies={autopsies} locale={locale} />
+      </section>
+
+      {/* v7.0 S2: the lineage graph used to be its own page (/studio/graph,
+          now a redirect here). It stays whole, folded; #lineage-graph opens it. */}
+      <section className="container section" style={{ paddingTop: 0 }}>
+        <CaseAppendixHashOpener aliases={NO_ALIASES} />
+        <details id="lineage-graph" className="fold-row">
+          <summary>
+            <span className="h-display h3">
+              {isZh ? "关联图谱：归档作品、主案、模式与专文" : "Lineage graph: archived work, listed cases, patterns and essays"}
+            </span>
+          </summary>
+          <p className="prose" style={{ maxWidth: "70ch", marginTop: 12 }}>
+            {isZh
+              ? "四层坐标由服务端预先算好：归档作品、公开主案、交互模式、专文聚类。点击或用方向键选中任一节点，就会高亮和它相连的节点。上方的实证筛选可以找出仍待外部验证的部分。连线只表示相关，不表示因果。"
+              : "Precomputed on the server with no heavy client graph library. Click or arrow-navigate any node across the four layers to highlight the nodes it links to. Links mean related, not caused by."}
+          </p>
+          <LineageGraphClient graph={graph} locale={locale} />
+        </details>
       </section>
     </main>
   );

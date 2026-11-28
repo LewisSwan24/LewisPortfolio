@@ -68,7 +68,7 @@ async function englishLeft(page: Page) {
 
 test.describe("R08/R10/R12 Chinese pages carry no stray English labels", () => {
   const PAGES = [
-    "/zh", "/zh/ai", "/zh/hire", "/zh/interview", "/zh/studio/graph", "/zh/vault",
+    "/zh", "/zh/ai", "/zh/hire", "/zh/interview", "/zh/vault#lineage-graph", "/zh/vault",
     "/zh/resume/compose", "/zh/patterns", "/zh/projects", "/zh/lab",
     "/zh/projects/onthebeat", "/zh/projects/grassland", "/zh/projects/lamplight",
     "/zh/projects/autofill", "/zh/projects/connect", "/zh/projects/walkie",
@@ -129,7 +129,7 @@ const OLD_NAMES_EN = /Hiring overview|Hiring Decision Room|Hiring dossier|hiring
 const OLD_NAMES_ZH = /招聘速览|招聘决策|招聘简报|岗位与证据简报|招聘页|档案解剖|设计演进档案馆|复盘档案馆|死亡解剖档案馆|Archive Vault|实验室工作台|设计实验室|AI 红队答辩|^实验室 · /m;
 
 test.describe("R13–R15 one name per page", () => {
-  const PAGES = ["", "/hire", "/interview", "/contact", "/resume", "/studio/replay", "/studio/graph", "/about", "/projects", "/vault", "/blog", "/lab", "/ai"];
+  const PAGES = ["", "/hire", "/interview", "/contact", "/resume", "/studio/replay", "/vault#lineage-graph", "/about", "/projects", "/vault", "/blog", "/lab", "/ai"];
   for (const locale of ["en", "zh"] as const) {
     test(`${locale}: no retired names in pages, titles or footer`, async ({ browser }) => {
       test.setTimeout(120_000);
@@ -190,7 +190,7 @@ test.describe("R16 one job title", () => {
 });
 
 test.describe("R17 no paths inside labels", () => {
-  for (const path of ["/en/blog", "/zh/blog", "/en/studio/replay", "/zh/studio/replay", "/en/studio/graph", "/zh/studio/graph"]) {
+  for (const path of ["/en/blog", "/zh/blog", "/en/studio/replay", "/zh/studio/replay", "/vault#lineage-graph", "/zh/vault#lineage-graph"]) {
     test(path, async ({ browser }) => {
       const { ctx, page } = await open(browser, path);
       const labels = await page.locator("main a, main button").allInnerTexts();

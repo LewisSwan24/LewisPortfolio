@@ -17,27 +17,34 @@ export function Footer() {
             {t("foot.signature.text")} <em>{t("foot.signature.em")}</em>
           </div>
 
+          {/* v7.0 S1: three short groups instead of one 11-link column, which
+              ran to 1.5 screens on a phone with "Writing" alone beside it. */}
           <div>
-            <h4>{t("foot.site")}</h4>
+            <h4>{t("foot.groupWork")}</h4>
             <ul>
               <li><Link href="/projects">{t("nav.work")}</Link></li>
               <li><Link href="/patterns">{isZh ? "模式图谱" : "Patterns"}</Link></li>
               <li><Link href="/vault">{isZh ? "演进档案馆" : "Archive Vault"}</Link></li>
-              <li><Link href="/studio/graph">{isZh ? "因果谱系图" : "Lineage Graph"}</Link></li>
-              <li><Link href="/lab">{t("nav.lab")}</Link></li>
-              <li><Link href="/studio/replay">{isZh ? "协议重放台" : "Replay Studio"}</Link></li>
-              <li><Link href="/ai">{t("nav.ai")}</Link></li>
-              <li><Link href="/about">{t("nav.about")}</Link></li>
-              <li><Link href="/resume">{t("nav.resume")}</Link></li>
-              <li><Link href="/hire">{t("nav.hire")}</Link></li>
-              <li><Link href="/contact">{t("nav.contact")}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4>{t("foot.write")}</h4>
+            <h4>{t("foot.groupLabs")}</h4>
             <ul>
+              <li><Link href="/lab">{t("nav.lab")}</Link></li>
+              <li><Link href="/ai">{t("nav.ai")}</Link></li>
+              <li><Link href="/studio/replay">{isZh ? "协议重放台" : "Replay Studio"}</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>{t("foot.groupAbout")}</h4>
+            <ul>
+              <li><Link href="/about">{t("nav.about")}</Link></li>
               <li><Link href="/blog">{t("nav.writing")}</Link></li>
+              <li><Link href="/resume">{t("nav.resume")}</Link></li>
+              <li><Link href="/hire">{t("nav.hire")}</Link></li>
+              <li><Link href="/contact">{t("nav.contact")}</Link></li>
             </ul>
           </div>
 

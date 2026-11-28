@@ -2,13 +2,13 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 test.describe("v5.9 Defense Arena, Code Diff Inspector & Lab 08 Telemetry Observatory", () => {
-  test("exercises Interview Defense Arena across roles & markets on /en/interview with zero serious/critical a11y violations", async ({
+  test("exercises Interview Defense Arena across roles & markets on /en/ai with zero serious/critical a11y violations", async ({
     page,
   }) => {
     const errors: string[] = [];
     page.on("pageerror", (err) => errors.push(err.message));
 
-    await page.goto("/en/interview", { waitUntil: "networkidle" });
+    await page.goto("/en/ai", { waitUntil: "networkidle" });
     const arena = page.getByTestId("interview-defense-arena");
     await expect(arena).toBeVisible();
 

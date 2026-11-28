@@ -4,7 +4,6 @@ import { getLocale } from "next-intl/server";
 import { localizeInternalHref } from "@/lib/locale-href";
 import { AiTrustThread } from "@/components/hiring/AiTrustThread";
 import { InterviewBoundaryNotes } from "@/components/hiring/InterviewBoundaryNotes";
-import { InterviewDefenseArena } from "@/components/hiring/InterviewDefenseArena";
 import { JdMatcherPanel } from "@/components/hiring/JdMatcherPanel";
 import { TailoredBriefBuilder } from "@/components/hiring/TailoredBriefBuilder";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/metadata";
@@ -69,7 +68,21 @@ export default async function InterviewPackPage() {
         <AiTrustThread thread={aiTrustThread} />
       </section>
 
-      <InterviewDefenseArena locale={proofLocale} />
+      {/* v7.0 S3: the pushback arena lives on /ai; this page used to render a
+          second copy of it. */}
+      <section className="section container" aria-labelledby="interview-arena-link">
+        <h2 id="interview-arena-link" className="h-display h3" style={{ margin: 0 }}>
+          {isZh ? "面试追问练习" : "Interviewer pushback drills"}
+        </h2>
+        <p className="prose" style={{ marginTop: 8, maxWidth: "66ch" }}>
+          {isZh
+            ? "按岗位和市场切换的追问题库，放在 AI 实验室页。"
+            : "The question bank, switchable by role and market, is on the AI Lab page."}
+        </p>
+        <Link className="btn btn-ghost" href={localizeInternalHref("/ai#defense-arena", proofLocale)}>
+          {isZh ? "去 AI 实验室练习 →" : "Practise on the AI Lab page →"}
+        </Link>
+      </section>
 
       <section className="section container">
         <InterviewBoundaryNotes notes={room.boundaries} labels={proofLabels} />

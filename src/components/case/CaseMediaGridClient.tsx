@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AdaptiveCaseMedia } from "./AdaptiveCaseMedia";
 import { CaseLightbox, type LightboxSlide } from "./CaseLightbox";
 
@@ -9,6 +9,8 @@ export interface CaseGalleryCardItem extends LightboxSlide {
   height: number;
   caption: string;
 }
+
+const PREVIEW_COUNT = 2;
 
 export function CaseMediaGridClient({
   items,
@@ -20,12 +22,26 @@ export function CaseMediaGridClient({
   isZh: boolean;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  // v7.0 L3: two photos first, the rest on request. They stay in the DOM
+  // (hidden), and the lightbox still steps through every one.
+  const [showAll, setShowAll] = useState(false);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const focusAfterExpand = useRef(false);
+  const folded = !showAll && items.length > PREVIEW_COUNT;
+
+  useEffect(() => {
+    if (!focusAfterExpand.current) return;
+    focusAfterExpand.current = false;
+    gridRef.current
+      ?.querySelectorAll<HTMLButtonElement>("figure .case-build-trigger")
+      [PREVIEW_COUNT]?.focus();
+  }, [showAll]);
 
   return (
     <>
-      <div className={`case-build-grid${allPhones ? " case-build-grid--phones" : ""}`}>
+      <div ref={gridRef} className={`case-build-grid${allPhones ? " case-build-grid--phones" : ""}`}>
         {items.map((image, idx) => (
-          <figure key={image.src}>
+          <figure key={image.src} hidden={folded && idx >= PREVIEW_COUNT}>
             <div className="case-build-media-stage">
               <AdaptiveCaseMedia
                 src={image.src}
@@ -53,6 +69,18 @@ export function CaseMediaGridClient({
           </figure>
         ))}
       </div>
+      {folded && (
+        <button
+          type="button"
+          className="btn btn-ghost case-build-more"
+          onClick={() => {
+            focusAfterExpand.current = true;
+            setShowAll(true);
+          }}
+        >
+          {isZh ? `显示全部 ${items.length} 张` : `Show all ${items.length} photos`}
+        </button>
+      )}
 
       <CaseLightbox
         slides={items}

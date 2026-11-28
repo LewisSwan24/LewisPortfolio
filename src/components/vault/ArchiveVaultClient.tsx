@@ -178,49 +178,55 @@ export function ArchiveVaultClient({
               <VerifiedStatusBadge status={item.verifiedStatus} locale={locale} />
             </header>
 
-            <dl className={styles.dlBlock}>
-              <div className={styles.dlItem}>
-                <dt>{isZh ? "当年做了什么" : "What was built"}</dt>
-                <dd>{item.whatItBuilt[locale]}</dd>
-              </div>
-              <div className={styles.dlItem}>
-                <dt>{isZh ? "为何中止或退出主展" : "Why it was retired / scoped out"}</dt>
-                <dd>{item.autopsyReason[locale]}</dd>
-              </div>
-              <div className={styles.dlItem}>
-                <dt>{isZh ? "暴露出的结构性缺陷" : "Structural flaw exposed"}</dt>
-                <dd>{item.structuralFlawExposed[locale]}</dd>
-              </div>
-              <div className={styles.dlItem}>
-                <dt>{isZh ? "提炼出的设计不变量" : "Reusable design invariant"}</dt>
-                <dd>{item.lineageLesson[locale]}</dd>
-              </div>
-            </dl>
+            {/* v7.0 L4: title and reason up front; the full autopsy folds. */}
+            <p className={styles.cardReason} data-testid="vault-reason">
+              {item.autopsyReason[locale]}
+            </p>
 
-            <div className={styles.successorBox}>
-              <span className="eyebrow">
-                {isZh ? "相关的公开主案" : "Related listed case(s)"}
-              </span>
-              {item.lineageSuccessors.map((succ) => (
-                <div key={succ.slug} style={{ fontSize: 13.5, lineHeight: 1.55 }}>
-                  <Link href={`/projects/${succ.slug}`} className={styles.successorLink}>
-                    {succ.title[locale]} ↗
-                  </Link>
-                  <p style={{ margin: "2px 0 0", color: "var(--text-2)" }}>
-                    {succ.transferMechanism[locale]}
-                  </p>
+            <details className={`fold-row ${styles.cardFold}`}>
+              <summary>{isZh ? "展开完整复盘" : "Read the full autopsy"}</summary>
+              <div className={styles.cardFoldBody}>
+                <dl className={styles.dlBlock}>
+                  <div className={styles.dlItem}>
+                    <dt>{isZh ? "当年做了什么" : "What was built"}</dt>
+                    <dd>{item.whatItBuilt[locale]}</dd>
+                  </div>
+                  <div className={styles.dlItem}>
+                    <dt>{isZh ? "暴露出的结构性缺陷" : "Structural flaw exposed"}</dt>
+                    <dd>{item.structuralFlawExposed[locale]}</dd>
+                  </div>
+                  <div className={styles.dlItem}>
+                    <dt>{isZh ? "提炼出的设计不变量" : "Reusable design invariant"}</dt>
+                    <dd>{item.lineageLesson[locale]}</dd>
+                  </div>
+                </dl>
+
+                <div className={styles.successorBox}>
+                  <span className="eyebrow">
+                    {isZh ? "相关的公开主案" : "Related listed case(s)"}
+                  </span>
+                  {item.lineageSuccessors.map((succ) => (
+                    <div key={succ.slug} style={{ fontSize: 13.5, lineHeight: 1.55 }}>
+                      <Link href={`/projects/${succ.slug}`} className={styles.successorLink}>
+                        {succ.title[locale]} ↗
+                      </Link>
+                      <p style={{ margin: "2px 0 0", color: "var(--text-2)" }}>
+                        {succ.transferMechanism[locale]}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            <footer className={styles.cardFooter}>
-              <span className={styles.cardMeta}>
-                {isZh ? "Unlisted 归档路由（不入导航与简历）" : "Unlisted archive (excluded from nav & CV)"}
-              </span>
-              <Link href={item.directArchivePath} className="btn btn-ghost">
-                {isZh ? "查看原始归档页 →" : "Inspect raw archive →"}
-              </Link>
-            </footer>
+                <footer className={styles.cardFooter}>
+                  <span className={styles.cardMeta}>
+                    {isZh ? "Unlisted 归档路由（不入导航与简历）" : "Unlisted archive (excluded from nav & CV)"}
+                  </span>
+                  <Link href={item.directArchivePath} className="btn btn-ghost">
+                    {isZh ? "查看原始归档页 →" : "Inspect raw archive →"}
+                  </Link>
+                </footer>
+              </div>
+            </details>
           </article>
         ))}
       </div>

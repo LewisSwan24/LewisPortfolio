@@ -197,7 +197,7 @@ export const DEFENSE_DRILLS: readonly DefenseDrill[] = [
       en: "Test 2D schematic fallback and WCAG keyboard DAG nav",
       zh: "点击 2D 图纸降级与键盘 DAG 无障碍核验",
     },
-    evidenceHref: "/studio/graph",
+    evidenceHref: "/vault#lineage-graph",
     residualGap: {
       en: "Touch dragging on 4x browser zoom viewports stays clean via buttons, not multi-finger pinch zoom inside SVG.",
       zh: "放大 400% 浏览器视口时，图谱依赖分组按钮与表格切换，不额外依赖双指捏合手势。",

@@ -6,7 +6,7 @@ import { expect, test, type Browser } from "@playwright/test";
  */
 
 test.describe("R02 lineage graph column counts", () => {
-  for (const path of ["/en/studio/graph", "/zh/studio/graph"]) {
+  for (const path of ["/vault#lineage-graph", "/zh/vault#lineage-graph"]) {
     test(`each column header counts the nodes it heads: ${path}`, async ({ page }) => {
       await page.goto(path);
       const result = await page.evaluate(() => {

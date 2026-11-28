@@ -24,7 +24,7 @@ const CONCURRENCY = Number(arg('concurrency', '4'));
 const ROUTES = [
   '/', '/projects',
   ...['walkie', 'maze', 'lamplight', 'autofill', 'onthebeat', 'grassland'].map((s) => `/projects/${s}`),
-  '/about', '/hire', '/interview', '/resume', '/contact', '/vault', '/studio/graph', '/studio/replay',
+  '/about', '/hire', '/interview', '/resume', '/contact', '/vault', '/studio/replay',
   '/patterns', '/ai', '/lab', '/blog',
   '/blog/shared-wristband-collaborative-friction',
 ];

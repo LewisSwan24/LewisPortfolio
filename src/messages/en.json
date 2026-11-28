@@ -105,8 +105,9 @@
       "em": "how you think and build."
     },
     "elsewhere": "Elsewhere",
-    "site": "Site",
-    "write": "Write",
+    "groupWork": "Work",
+    "groupLabs": "Labs",
+    "groupAbout": "About",
     "meta": {
       "built": "Built with Next.js and CSS Grid — verifiable trade-offs, grounded AI citations, and zero-mock hardware specs.",
       "version": "v6.9.0 · updated November 2026"
