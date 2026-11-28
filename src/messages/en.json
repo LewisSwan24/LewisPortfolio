@@ -28,7 +28,7 @@
       "b": "then prove it in",
       "c": "working software."
     },
-    "body": "I studied Computer Science at Swansea and Interaction Design at UQ. I take the messy edge cases where people meet AI tools and hardware, turn them into interaction rules that can be tested, then build working TypeScript, Electron, browser extension, and ESP32 prototypes to see where those rules hold.",
+    "body": "I studied Computer Science at Swansea and Interaction Design at UQ. I take the messy edge cases where people meet AI tools and hardware, turn them into testable interaction rules, then build working TypeScript, Electron, browser extension, and ESP32 prototypes to see where those rules hold.",
     "deck": {
       "label": "The practice log —",
       "roledesc": "Card deck",

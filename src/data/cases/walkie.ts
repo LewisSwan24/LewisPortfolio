@@ -366,7 +366,7 @@ export const walkieCase: CaseRecord = {
     en: {
       kicker: "Physical AI · Tactile Control",
       title: "Walkie",
-      sub: "A wrist-worn M5StickS3 voice remote for Claude Code. Every high-risk tool approval still needs a deliberate press of a physical key.",
+      sub: "A wrist-worn M5StickS3 voice remote for Claude Code. High-risk tool approvals need a deliberate physical key press.",
       role: "Solo · Product direction, interaction rules & on-device checks",
       date: "2026 · Oct",
       m1: "Dual-boot S3 key-locked approvals",
