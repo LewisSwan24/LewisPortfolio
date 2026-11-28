@@ -37,7 +37,8 @@ const KEEP_ENGLISH = [
   /^GitHub ↗$/,
   /^\(Shift\+P\)$/,
   // web-vitals metric names and a build-mode id
-  /^(LCP|INP|CLS) \(p75\)( ·)?$/,
+  // (v7.1: the /lab field-data dashboard names them bare, e.g. its metric switch)
+  /^(LCP|INP|CLS|FCP|TTFB)( \(p75\))?( ·)?$/,
   /^next-build-static$/,
   // course codes
   /^\d{4} · [A-Z]{4}\d{4}$/,
