@@ -1,0 +1,63 @@
+name: WebKit
+
+# v7.0 block 4 (T1): the suite under Safari's engine. Not on every PR, since it
+# adds about 7 minutes; run by hand from the Actions tab, and nightly on master.
+# Playwright's WebKit stands in for Safari; it is not a real iPhone.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 17 * * *" # 03:00 in Brisbane
+
+jobs:
+  webkit:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [webkit, "Mobile Safari"]
+    env:
+      # Same reason as the e2e job in ci.yml: a fresh runner has no image cache.
+      E2E_UNOPTIMIZED_IMAGES: "1"
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright WebKit
+        run: pnpm exec playwright install --with-deps webkit
+
+      - name: Restore Next.js build cache
+        uses: actions/cache@v6
+        with:
+          path: .next/cache
+          key: nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('app/**', 'src/**', 'content/**') }}
+          restore-keys: nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
+
+      - name: Build
+        run: pnpm build
+
+      - name: Run E2E tests
+        run: pnpm exec playwright test --project="${{ matrix.project }}"
+        env:
+          E2E_PROD: "1"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report-${{ matrix.project == 'webkit' && 'webkit' || 'mobile-safari' }}
+          path: playwright-report/
+          retention-days: 7

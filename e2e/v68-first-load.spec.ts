@@ -39,7 +39,10 @@ for (const path of PAGES) {
   });
 }
 
-test("/en/patterns headline keeps its line count when the font loads", async ({ browser }) => {
+test("/en/patterns headline keeps its line count when the font loads", async ({ browser, browserName }) => {
+  // v7.0 review F9, not picked for fixing: WebKit sets the bold fallback in Arial
+  // Bold, wider than Chromium's synthetic bold, so the line count differs there.
+  test.fixme(browserName === "webkit", "review finding F9, left open");
   test.setTimeout(120_000); // eight full page loads
   for (const width of [768, 1024, 1280, 1440]) {
     const web = await heroBox(browser, "/en/patterns", width, false);

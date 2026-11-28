@@ -42,6 +42,7 @@
   color: var(--text-3);
   text-decoration: none;
   display: inline-flex; gap: 8px; margin-bottom: var(--s-6);
+  align-items: center; min-height: 24px; /* WCAG 2.5.8 target size */
 }
 .cs-back:hover { color: var(--accent); }
 /* Width in em, not ch: ch follows whichever font is rendering, and the

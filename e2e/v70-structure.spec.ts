@@ -21,7 +21,7 @@ test.describe("S1 footer groups", () => {
       await page.setViewportSize(PHONE);
       await page.goto(path);
       const footer = page.locator("footer.pd-footer");
-      for (const h of heads) await expect(footer.locator("h4", { hasText: new RegExp(`^${h}$`) })).toHaveCount(1);
+      for (const h of heads) await expect(footer.locator("h2", { hasText: new RegExp(`^${h}$`) })).toHaveCount(1);
       const sizes = await footer.locator("ul").evaluateAll((uls) => uls.map((u) => u.querySelectorAll("a").length));
       expect(Math.max(...sizes)).toBeLessThanOrEqual(5);
       await expect(footer.locator('a[href$="/studio/graph"]')).toHaveCount(0);

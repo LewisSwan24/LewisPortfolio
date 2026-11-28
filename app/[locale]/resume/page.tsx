@@ -258,9 +258,9 @@ function EntryBlock({ entry, colon }: { entry: Entry; colon: string }) {
     <div className="res-entry">
       <div className="date">{entry.date}</div>
       <div>
-        <h4>
+        <h3>
           {entry.caseHref ? <Link href={entry.caseHref}>{entry.title}</Link> : entry.title}
-        </h4>
+        </h3>
         <p className="org">
           {entry.sub} · {entry.org}
         </p>
@@ -342,14 +342,14 @@ export default async function ResumePage() {
         <div className="res-body v4-editorial-grid">
           <div className="v4-span-8">
             <div className="res-section">
-              <h3>{c.projects}</h3>
+              <h2>{c.projects}</h2>
               {c.entries.map((entry) => (
                 <EntryBlock key={entry.title} entry={entry} colon={colon} />
               ))}
             </div>
 
             <div className="res-section">
-              <h3>{c.other}</h3>
+              <h2>{c.other}</h2>
               <EntryBlock entry={c.uqConnect} colon={colon} />
               {c.otherRows.map((row) => (
                 <RowBlock key={row.name} row={row} />
@@ -357,19 +357,19 @@ export default async function ResumePage() {
             </div>
 
             <div className="res-section">
-              <h3>{c.coursework}</h3>
+              <h2>{c.coursework}</h2>
               {c.courseRows.map((row) => (
                 <RowBlock key={row.name} row={row} />
               ))}
             </div>
 
             <div className="res-section">
-              <h3>{t("resume.section.edu")}</h3>
+              <h2>{t("resume.section.edu")}</h2>
               {c.edu.map((e) => (
                 <div className="res-entry" key={e.title}>
                   <div className="date">{e.date}</div>
                   <div>
-                    <h4>{e.title}</h4>
+                    <h3>{e.title}</h3>
                     <p className="org">{e.org}</p>
                   </div>
                 </div>
@@ -379,7 +379,7 @@ export default async function ResumePage() {
 
           <aside className="res-side v4-span-4 v4-rail-sticky">
             <div className="res-side-card role-fit-card">
-              <h4>{isZh ? "目标岗位" : "Target roles"}</h4>
+              <h2>{isZh ? "目标岗位" : "Target roles"}</h2>
               <p className="role-fit-availability">{roleFit.availability}</p>
               <div className="role-fit-tags">
                 {roleFit.roles.map((role) => (
@@ -398,7 +398,7 @@ export default async function ResumePage() {
               </div>
             </div>
             <div className="res-side-card">
-              <h4>{c.skills}</h4>
+              <h2>{c.skills}</h2>
               {c.skillRows.map((row) => (
                 <p key={row.name} style={{ ...sideText, marginBottom: 8 }}>
                   <b>{row.name}</b> · {row.text}
@@ -406,7 +406,7 @@ export default async function ResumePage() {
               ))}
             </div>
             <div className="res-side-card">
-              <h4>{isZh ? "语言" : "Languages"}</h4>
+              <h2>{isZh ? "语言" : "Languages"}</h2>
               <p style={sideText}>{c.languages}</p>
             </div>
           </aside>

@@ -2,7 +2,8 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Resume A4 Vector PDF Export", () => {
   for (const locale of ["en", "zh"] as const) {
-    test(`exports valid non-empty A4 PDF for /${locale}/resume`, async ({ page }) => {
+    test(`exports valid non-empty A4 PDF for /${locale}/resume`, async ({ page, browserName }) => {
+      test.skip(browserName !== "chromium", "page.pdf() exists only in Chromium");
       await page.goto(`/${locale}/resume`, { waitUntil: "networkidle" });
       await expect(page.locator("main[data-screen-label='05 Resume']")).toBeVisible();
       await page.emulateMedia({ media: "print" });

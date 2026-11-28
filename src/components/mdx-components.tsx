@@ -26,7 +26,7 @@ function getTextFromChildren(children: React.ReactNode): string {
   return "";
 }
 
-function createHeading(level: 2 | 3, slugger: GithubSlugger) {
+function createHeading(level: 2 | 3, slugger: GithubSlugger, locale: string) {
   const HeadingComponent = ({
     children,
     ...props
@@ -41,11 +41,13 @@ function createHeading(level: 2 | 3, slugger: GithubSlugger) {
         <a
           href={`#${id}`}
           className={cn(
-            "ml-2 rounded px-1 text-muted-foreground opacity-0 transition-opacity motion-reduce:transition-none",
+            "ml-2 inline-block min-w-6 rounded px-1 text-center text-muted-foreground opacity-0 transition-opacity motion-reduce:transition-none",
             "group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100",
             "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background"
           )}
-          aria-label={`Link to ${text || "section"}`}
+          aria-label={
+            locale === "zh" ? `本节链接：${text || "本节"}` : `Link to ${text || "section"}`
+          }
         >
           #
         </a>
@@ -61,8 +63,8 @@ export function getMdxComponents(locale = "en"): MDXComponents {
   const slugger = new GithubSlugger();
 
   return {
-    h2: createHeading(2, slugger),
-    h3: createHeading(3, slugger),
+    h2: createHeading(2, slugger, locale),
+    h3: createHeading(3, slugger, locale),
     a: ({ href, children, ...props }) => {
       const resolvedHref = href ? localizeInternalHref(href, locale) : href;
       const isExternal = resolvedHref?.startsWith("http");

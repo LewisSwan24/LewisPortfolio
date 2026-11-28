@@ -209,7 +209,7 @@ export function BlogIndex({ posts, tags }: { posts: PostItem[]; tags: string[] }
                   <div className="eyebrow">
                     {BLOG_CLUSTER_LABELS[p.cluster][proofLocale]} · {date}
                   </div>
-                  <h3 className="idx-flag-title">{p.title}</h3>
+                  <h2 className="idx-flag-title">{p.title}</h2>
                   <p>{p.excerpt}</p>
                   <div className="idx-flag-tags v3-pill-row">
                     {p.tags.slice(0, 3).map((tag) => (

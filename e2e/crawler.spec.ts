@@ -68,10 +68,20 @@ const ALLOWED_UNLISTED_BY_ROUTE: Record<string, readonly string[]> = {
 };
 
 test.describe("Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
+  // Playwright's WebKit aborts page.goto with "Service Worker context closed"
+  // partway through this crawl. v60 tests the worker itself.
+  test.use({ serviceWorkers: async ({ browserName }, provide) => provide(browserName === "webkit" ? "block" : "allow") });
   test("crawls all public routes with zero console/page errors, valid anchors, and no unlisted or retired leaks", async ({
     page,
+    browserName,
   }) => {
     test.setTimeout(360_000);
+    // WebKit logs a fetch that a navigation cancelled as a console error: Next's
+    // RSC prefetches ("Load failed") and lazy chunks still loading when page.goto
+    // moves on. A chunk that is really missing still fails the 4xx/5xx check below.
+    const cancelledByNavigation = (text: string) =>
+      browserName === "webkit" &&
+      (/Failed to fetch RSC payload .* TypeError: Load failed/.test(text) || /ChunkLoadError: Loading chunk \d+ failed/.test(text));
 
     const pageErrors: string[] = [];
     const consoleErrors: string[] = [];
@@ -79,9 +89,13 @@ test.describe("Site-Wide Crawler, Interactive Dialog & Endpoints", () => {
     const anchorsByPath = new Map<string, Set<string>>();
     const crossPageHashLinks: Array<{ source: string; href: string }> = [];
 
-    page.on("pageerror", (err) => pageErrors.push(err.message));
+    page.on("pageerror", (err) => {
+      // Same cancelled prefetch, reported by WebKit as "… ?_rsc=… due to access control checks".
+      if (browserName === "webkit" && /\?_rsc=.*due to access control checks/.test(err.message)) return;
+      pageErrors.push(err.message);
+    });
     page.on("console", (msg) => {
-      if (msg.type() === "error") {
+      if (msg.type() === "error" && !cancelledByNavigation(msg.text())) {
         consoleErrors.push(msg.text());
       }
     });

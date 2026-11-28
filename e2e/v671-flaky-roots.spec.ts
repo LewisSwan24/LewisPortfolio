@@ -21,11 +21,18 @@ for (const path of ["/en/patterns", "/zh/patterns", "/en/patterns?pattern=defaul
   });
 }
 
-async function focusSkipLink(page: Page, route: string) {
+async function focusSkipLink(page: Page, route: string, browserName: string) {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(route, { waitUntil: "networkidle" });
   await page.locator("body").focus();
-  await page.keyboard.press("Tab");
+  if (browserName === "webkit") {
+    // Safari's Tab skips links unless "Press Tab to highlight each item" is
+    // on, and Playwright's WebKit has no way to turn it on. Focus it directly:
+    // what this test checks is where the focused link sits.
+    await page.locator(".skip-link").focus();
+  } else {
+    await page.keyboard.press("Tab");
+  }
   // Let the slide-in transition finish before measuring.
   await page.evaluate(() =>
     Promise.all((document.activeElement?.getAnimations() ?? []).map((a) => a.finished)),
@@ -33,8 +40,8 @@ async function focusSkipLink(page: Page, route: string) {
 }
 
 for (const route of ["/en", "/en/hire", "/zh/patterns"]) {
-  test(`the focused skip link is readable and above the nav on ${route}`, async ({ page }) => {
-    await focusSkipLink(page, route);
+  test(`the focused skip link is readable and above the nav on ${route}`, async ({ page, browserName }) => {
+    await focusSkipLink(page, route, browserName);
     const probe = await page.evaluate(() => {
       const el = document.activeElement as HTMLElement;
       const r = el.getBoundingClientRect();

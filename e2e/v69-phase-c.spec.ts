@@ -84,7 +84,9 @@ test.describe("R08/R10/R12 Chinese pages carry no stray English labels", () => {
 });
 
 test.describe("R08 keyboard hint", () => {
-  test("(Shift+P) shows with a keyboard and pointer, not on a phone", async ({ browser }) => {
+  test("(Shift+P) shows with a keyboard and pointer, not on a phone", async ({ browser }, testInfo) => {
+    // The desktop half needs a mouse; contexts in a touch-phone project inherit touch.
+    test.skip(testInfo.project.use.hasTouch === true, "this project emulates a touch phone");
     const desk = await open(browser, "/en/projects/walkie");
     await expect(desk.page.locator(".presentation-shortcut").first()).toBeVisible();
     await desk.ctx.close();

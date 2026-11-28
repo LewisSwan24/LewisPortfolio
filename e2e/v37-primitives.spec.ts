@@ -12,14 +12,21 @@ test.describe("Modern Web Primitives & /lab Exhibition", () => {
     await expect(page.locator("main h1")).toHaveAttribute("tabindex", "-1");
   });
 
-  test("AnchorNote opens native popover and dismisses cleanly on Escape", async ({ page }) => {
+  test("AnchorNote opens native popover and dismisses cleanly on Escape", async ({ page, browserName }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     // v6.6: term notes sit in the collapsed appendix; the hash opens it.
     await page.goto("/en/projects/walkie#for-interviewers");
 
     const trigger = page.locator(".anchor-note-trigger").first();
     await expect(trigger).toBeVisible();
-    await trigger.click();
+    if (browserName === "webkit") {
+      // Safari does not focus a button on click, so focus could never return to
+      // it; the keyboard path is the one where focus return matters there.
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+    } else {
+      await trigger.click();
+    }
 
     const popoverId = await trigger.getAttribute("popovertarget");
     const popover = page.locator(`#${popoverId}`);

@@ -345,10 +345,10 @@ export default async function CasePage({ params }: Props) {
             ) : (
               <>
                 {hasScreenshotCover(k) ? (
-                  <CaseCoverVisual slug={k} locale={proofLocale} />
+                  <CaseCoverVisual slug={k} locale={proofLocale} priority />
                 ) : (
                   <DiagramViewer label={`${card.title} · ${pageCopy.schematicLabel}`} isZh={isZh}>
-                    <CaseCoverVisual slug={k} locale={proofLocale} />
+                    <CaseCoverVisual slug={k} locale={proofLocale} priority />
                   </DiagramViewer>
                 )}
                 {!hasScreenshotCover(k) && <figcaption>{pageCopy.coverCaption}</figcaption>}

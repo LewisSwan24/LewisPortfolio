@@ -238,6 +238,11 @@ const nextConfig = {
   trailingSlash: false,
   // Strict React mode for better development
   reactStrictMode: true,
+  // v7.0 block 4 (F11): Next 15 streams <title> and <meta name="description">
+  // into <body> for every user agent not on its "HTML-limited bot" list, which
+  // includes Safari and Googlebot. Treating every agent as limited keeps them in
+  // <head>; the cost is that the page waits for generateMetadata before streaming.
+  htmlLimitedBots: /.*/,
 };
 
 module.exports = withNextIntl(withBundleAnalyzer(nextConfig));

@@ -23,7 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const description =
     locale === "zh" ? siteConfig.descriptionZh : siteConfig.description;
   return {
-    title,
+    // absolute: the title already names Lewis, so skip the layout's "| Lewis Dong".
+    title: { absolute: title },
     description,
     alternates: buildAlternates("/", locale),
     openGraph: buildOpenGraph({ title, description, path: "/", locale }),
@@ -209,7 +210,7 @@ export default async function HomePage() {
                 {[1, 2, 3, 4].map((i) => (
                   <div className="approach-step" key={i} data-reveal-item="">
                     <div className="num">0{i}</div>
-                    <h4>{t(`approach.step.${i}.t`)}</h4>
+                    <h3>{t(`approach.step.${i}.t`)}</h3>
                     <p>{t(`approach.step.${i}.b`)}</p>
                   </div>
                 ))}

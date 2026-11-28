@@ -20,7 +20,7 @@ export function Footer() {
           {/* v7.0 S1: three short groups instead of one 11-link column, which
               ran to 1.5 screens on a phone with "Writing" alone beside it. */}
           <div>
-            <h4>{t("foot.groupWork")}</h4>
+            <h2>{t("foot.groupWork")}</h2>
             <ul>
               <li><Link href="/projects">{t("nav.work")}</Link></li>
               <li><Link href="/patterns">{isZh ? "模式图谱" : "Patterns"}</Link></li>
@@ -29,7 +29,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4>{t("foot.groupLabs")}</h4>
+            <h2>{t("foot.groupLabs")}</h2>
             <ul>
               <li><Link href="/lab">{t("nav.lab")}</Link></li>
               <li><Link href="/ai">{t("nav.ai")}</Link></li>
@@ -38,7 +38,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4>{t("foot.groupAbout")}</h4>
+            <h2>{t("foot.groupAbout")}</h2>
             <ul>
               <li><Link href="/about">{t("nav.about")}</Link></li>
               <li><Link href="/blog">{t("nav.writing")}</Link></li>
@@ -49,7 +49,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4>{t("foot.elsewhere")}</h4>
+            <h2>{t("foot.elsewhere")}</h2>
             <ul>
               {siteConfig.social.linkedin ? (
                 <li>

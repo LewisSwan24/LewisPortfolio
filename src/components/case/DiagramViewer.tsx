@@ -70,7 +70,7 @@ export function DiagramViewer({
         className="case-build-trigger case-build-trigger--overlay"
         data-diagram-zoom-trigger=""
         onClick={() => setOpen(true)}
-        aria-label={isZh ? `放大查看：${label}` : `Enlarge: ${label}`}
+        aria-label={isZh ? `点击放大：${label}` : `Enlarge: ${label}`}
       >
         <span className="case-build-zoom-badge" aria-hidden="true">
           {isZh ? "点击放大 ↗" : "Enlarge ↗"}
